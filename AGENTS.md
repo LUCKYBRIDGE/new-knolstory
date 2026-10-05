@@ -33,10 +33,17 @@ Ren'Py Web Runtime
 7. Final official story renderer is Ren'Py Web; do not grow a permanent second Web Player.
 8. UI work reads `DESIGN.md` first.
 9. Legacy continuity is a baseline, not a freeze. Improve UX, accessibility, performance, architecture and presentation when better.
-10. Do not modify `story-maker` as part of ordinary Next work.
+10. Do not modify `story-maker` as part of ordinary Next work. Legacy is feature-frozen; post-baseline legacy fixes are tracked in `docs/migration/forward-port-log.md` (ADR 0011).
+11. Ren'Py never receives StoryDocument. Playback state (current cut, choice path, resume) is owned by Runtime Core in the Web host (ADR 0014).
+12. ShortStory page rendering and A4 print stay in Web/CSS — the only allowed Web renderer exception (ADR 0009). Never reuse it for KnolStory chapter/cut playback.
+13. Never work around Ren'Py constraints or performance budgets with a separate Web Stage renderer. Adjust runtime configuration, asset strategy or UX instead.
+14. Never delete or mutate legacy local storage (IDB `nolstory-workspace-v1`, `storygame*` keys). New storage uses the `knolstory-*` namespace (ADR 0010).
+15. No absolute local paths in scripts, config or doc references. The repo is used from more than one machine path; ADR 0012 is the only place that records them.
+16. Read legacy behavior from the baseline commit (`git show 18da4fc:<path>`), not from whatever branch a local legacy clone has checked out.
 
 ## Before coding
-Read: `AGENTS.md` → `DESIGN.md` when relevant → `STATUS.md` → relevant ADR → relevant `.agents/skills/*/SKILL.md`.
+Read: `AGENTS.md` → `STATUS.md` → `docs/architecture/development-blueprint.md` → `DESIGN.md` when relevant → relevant ADR → relevant `.agents/skills/*/SKILL.md`.
+Open questions listed in `STATUS.md` are not decided; do not implement around them silently.
 
 ## Legacy classification
 Every inherited subsystem is classified as **PRESERVE / REFINE / REBUILD / RETIRE** before large migration work.

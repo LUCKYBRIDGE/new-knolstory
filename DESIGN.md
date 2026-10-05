@@ -14,7 +14,8 @@ For major UI work inspect the corresponding parts of `LUCKYBRIDGE/story-maker@18
 - `app/components/SceneFocusEditor.tsx`
 - `app/components/StoryPlayer.tsx`
 - `app/components/StoryStage.tsx`
-- cover design and speaker-color files
+- cover design files
+- `app/story-speaker-colors.ts`
 
 Reference is evidence, not a pixel-copy command.
 
@@ -81,16 +82,30 @@ Baseline: primary 48px, default 44px, compact visual 36px, minimum hit target 44
 `Editor Stage = Preview = Player = Shared Player = Ren'Py Web Runtime`.
 Web provides authoring chrome and editing overlay only.
 
+- **Edit Overlay** positions handles from RuntimeScene logical coordinates (Runtime Core layout), scaled to the displayed Stage. It never measures the canvas or recomputes layout. Textbox bounds come from the Ren'Py `sceneRendered` report (ADR 0014).
+- Stage keeps a fixed logical aspect ratio and letterboxes; letterbox areas use paper tones, not black, in editor surfaces.
+
 ## Ren'Py skin
 Never expose stock quick menu, dialogue, choices, save/load or preferences as product UI.
+Ren'Py colors, fonts, radii and spacing are generated from `packages/design-tokens` — never hand-copied into `.rpy`.
+
+## ShortStory exception
+ShortStory pages and A4 print are rendered by Web/CSS (ADR 0009). They use the same design tokens and must look like the same product, but they are not a model for KnolStory chapter/cut playback.
 
 ## Responsive
-- Wide: Cut | Stage | Inspector
-- Medium: Stage + collapsible side panels
-- Narrow: one primary task at a time
+Device tiers are defined in ADR 0013.
+
+- **Wide (Tier 1 PC/Chromebook):** Cut | Stage | Inspector
+- **Medium (Tier 1 tablet):** Stage + collapsible side panels; touch-first controls
+- **Narrow (Tier 2 phone):** one primary task at a time. Stage on top (reduced size allowed), the active editor as a bottom sheet. Core editing must be reachable: text, speaker, background/character, choices, add/move cut. Full flow map and bulk asset work may be simplified.
+- Orientation changes must not lose the current cut, selection or unsaved input.
 
 ## Accessibility and QA
 Require visible keyboard focus, touch support, reduced-motion consideration, non-color-only status, no clipped author text, consistent controls, no unexplained blank space and Web/Ren'Py visual continuity.
+
+- Canvas text is mirrored to a DOM semantic layer: `aria-live` speaker + line, real `<button>` choices, focusable advance control (ADR 0015).
+- Reduced motion (OS setting or in-app) is passed to Ren'Py and honored by every effect/transition.
+- Speaker colors are never the only speaker cue; the speaker name is always present.
 
 ## Final principle
 The legacy product is the starting point for a better KnolStory, not a constraint preventing improvement.
