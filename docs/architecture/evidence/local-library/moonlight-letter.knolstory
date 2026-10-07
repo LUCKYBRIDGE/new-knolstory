@@ -1,0 +1,171 @@
+{
+  "documentType": "story-maker-project",
+  "schemaVersion": 5,
+  "savedAt": "2026-10-07T23:47:11.145Z",
+  "appVersion": "knolstory-next",
+  "project": {
+    "cover": {
+      "author": "서재 검증 작가",
+      "subtitle": "아이디어에서 첫 대사까지",
+      "authorNote": "여러 작품을 오가도 이야기를 잃지 않아요.",
+      "layout": "picture",
+      "theme": "night",
+      "font": "serif",
+      "titlePosition": "top",
+      "authorPosition": "bottom",
+      "align": "center",
+      "titleSize": 36,
+      "titleColor": "",
+      "backgroundId": "seonnyeo.background.BG-forest-roots",
+      "characterId": "heungbu.character.heungbu-young",
+      "characterPosition": "center"
+    },
+    "choiceMode": "simple",
+    "id": "d70fc2b1-84c2-43a0-9878-e6efe61a2ef5",
+    "title": "서재에서 시작한 달빛 편지",
+    "description": "편지를 들고 숲으로 떠나는 아이의 짧은 이야기",
+    "planning": {
+      "premise": "달빛 편지로 친구를 찾는다.",
+      "structureMode": "free",
+      "material": "",
+      "theme": "",
+      "mainCharacter": "편지를 든 흥부",
+      "mainGoal": "친구에게 편지를 전하기",
+      "centralProblem": "숲의 길이 나뉜다.",
+      "stakes": "",
+      "endingChange": "",
+      "opening": "편지를 챙긴다.",
+      "middle": "숲에서 친구를 찾는다.",
+      "crisis": "",
+      "climax": "",
+      "ending": "편지를 함께 읽는다.",
+      "characterNotes": "",
+      "worldNotes": "",
+      "mood": "",
+      "openQuestions": "",
+      "freeNotes": ""
+    },
+    "creativeMemos": [
+      {
+        "id": "1e8f3c4a-e102-4e0c-a9e1-6dc336df2444",
+        "kind": "free",
+        "title": "작품 전체 아이디어",
+        "fields": [
+          {
+            "id": "1e8f3c4a-e102-4e0c-a9e1-6dc336df2444-body",
+            "label": "메모 내용",
+            "value": "달빛과 편지의 색을 함께 생각한다.",
+            "order": 1,
+            "source": "default"
+          }
+        ],
+        "order": 1,
+        "createdAt": "2026-10-07T23:47:02.931Z",
+        "updatedAt": "2026-10-07T23:47:03.018Z"
+      },
+      {
+        "id": "2865015f-2812-4607-8525-c3492b656708",
+        "kind": "free",
+        "title": "첫 장에서 소개할 것",
+        "linkedChapterId": "aa0d2c80-19d5-4700-a3e6-af6e9c0e701a",
+        "fields": [
+          {
+            "id": "2865015f-2812-4607-8525-c3492b656708-body",
+            "label": "메모 내용",
+            "value": "장에 연결한 메모로 대본을 연다.",
+            "order": 1,
+            "source": "default"
+          }
+        ],
+        "order": 2,
+        "createdAt": "2026-10-07T23:47:03.082Z",
+        "updatedAt": "2026-10-07T23:47:03.199Z"
+      },
+      {
+        "id": "51591089-f60b-444e-9be9-8ef76de219c0",
+        "kind": "free",
+        "title": "편지를 보여 줄 컷",
+        "linkedChapterId": "aa0d2c80-19d5-4700-a3e6-af6e9c0e701a",
+        "linkedLineId": "f1ee10de-5c07-48b9-9585-f1f3fb8eccfb",
+        "fields": [
+          {
+            "id": "51591089-f60b-444e-9be9-8ef76de219c0-body",
+            "label": "메모 내용",
+            "value": "이 컷에서 편지를 소개한다.",
+            "order": 1,
+            "source": "default"
+          }
+        ],
+        "order": 3,
+        "createdAt": "2026-10-07T23:47:03.249Z",
+        "updatedAt": "2026-10-07T23:47:03.321Z"
+      }
+    ],
+    "sheetUrl": "",
+    "sheetEditable": false,
+    "speakerNames": [],
+    "chapters": [
+      {
+        "chapterNumber": 1,
+        "id": "aa0d2c80-19d5-4700-a3e6-af6e9c0e701a",
+        "order": 1,
+        "title": "첫 번째 장",
+        "summary": "",
+        "purpose": "",
+        "mood": "",
+        "keyEvents": "",
+        "nextChapterIdea": "",
+        "storyStageKeys": [],
+        "chapterSpeakerNames": [],
+        "characterAssetIds": [],
+        "backgroundAssetIds": [],
+        "backgroundId": "",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      }
+    ],
+    "lines": [
+      {
+        "id": "f1ee10de-5c07-48b9-9585-f1f3fb8eccfb",
+        "chapterId": "aa0d2c80-19d5-4700-a3e6-af6e9c0e701a",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "",
+        "text": "달빛 편지를 챙겨 숲으로 떠났다.",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "backgroundId": "",
+        "inheritActors": false,
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "20a0d1d2-ece6-4d2f-be6e-fde4921df098",
+        "chapterId": "aa0d2c80-19d5-4700-a3e6-af6e9c0e701a",
+        "order": 2,
+        "type": "dialogue",
+        "speaker": "narration",
+        "speakerName": "",
+        "text": "숲에서 친구에게 편지를 전했다.",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "backgroundId": "",
+        "inheritActors": false,
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": []
+        }
+      }
+    ],
+    "updatedAt": "2026-10-07T23:47:04.495Z"
+  }
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ENTRY-01",
+    "before": "Next opens library for all fresh visitors",
+    "after": "first visitor intro; returning library; reload saved view; expliciteditor priority",
+    "evidence": "entry-cover.spec first browser, landing-visit/workspace unit tests"
+  },
+  {
+    "id": "COVER-01",
+    "before": "Advanced cover data retained but basic thumbnail ignored it",
+    "after": "BookCover shared resolver for shelf/editor/start, threefaces and actuallayer editing",
+    "evidence": "book-cover.test and actualcover screenshots/archive full comparison"
+  },
+  {
+    "id": "COVER-02",
+    "before": "Full-width cover as flex child intercepted card buttons",
+    "after": "Fixed thumbnail wrapper, decorative thumbnail hidden from duplicate headings",
+    "evidence": "failed /tmp/cover-draft-ui trace; final entry/library tests"
+  },
+  {
+    "id": "COVER-03",
+    "before": "Text field accessible name changed with letter counter",
+    "after": "explicit textbox accessible name; stable title/box labels",
+    "evidence": "failed draft traces and final fullcover tests"
+  },
+  {
+    "id": "ENTRY-02",
+    "before": "Returning page hydration could show initial disabledintro briefly to test helper",
+    "after": "Helper waits correctentry readiness; application retains content and restore precedence",
+    "evidence": "existing device workspace3rd host run"
+  },
+  {
+    "id": "SEC-01",
+    "before": "uuid8 moderate buffer-bound advisory from Excel dependency",
+    "after": "Pinned11.1.1 CJS/browser override; productionaudit clean",
+    "evidence": "production audit and full792 tests/type/lint/build"
+  },
+  {
+    "id": "SEC-02",
+    "before": "braces lint devtool high advisory",
+    "after": "Tracked dev-only fixedlint-root risk, vendor no fix, no hiddenignore",
+    "status": "remaining developer-tool restriction",
+    "evidence": "independentsecurityreview + GHSA-vfj7-8cjw-p6xm"
+  },
+  {
+    "id": "GIT-01",
+    "before": "Unverifiedlegacy art and screenPNG could be accidentallypublished with wholeimplementation",
+    "after": "Excluded frompublicGit; exact421 local restore fromauthorizedprivate baseline; sourceCI explicitlyseparate",
+    "evidence": "staged media rights gate"
+  }
+]

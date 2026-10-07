@@ -1,0 +1,45 @@
+{
+  "unitContractIntegration": {
+    "command": "pnpm test:coverage --maxWorkers=1",
+    "passed": 720,
+    "files": 39,
+    "exitCode": 0,
+    "coverage": {
+      "lines": 98.12,
+      "statements": 93.49,
+      "branches": 91.1,
+      "functions": 95.18
+    },
+    "scope": "Configured TS packages and web/lib; not all React/Python"
+  },
+  "host": {
+    "command": "pnpm exec playwright test --project=host",
+    "passed": 43,
+    "skipped": 14,
+    "exitCode": 0
+  },
+  "native": {
+    "command": "pnpm exec playwright test --project=stories-runtime",
+    "passed": 19,
+    "skipped": 19,
+    "exitCode": 0
+  },
+  "strictLibraryChrome": {
+    "command": "pnpm exec playwright test local-library.spec.ts --project=stories-runtime",
+    "passed": 1,
+    "exitCode": 0,
+    "additional": "Both own metadata/cover/memos file and existing rich archive restored in fresh context; positive parked iframe size"
+  },
+  "DPR": {
+    "command": "pnpm test:e2e:runtime",
+    "passed": 3,
+    "exitCode": 0
+  },
+  "checks": {
+    "pnpm typecheck": 0,
+    "pnpm lint": 0,
+    "pnpm build": 0,
+    "git diff --check": 0
+  },
+  "skipReason": "Opposite host/native path skipped in each project and covered by matching project; added sample/duplicate test independently passed in host."
+}

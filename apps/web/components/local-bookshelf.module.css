@@ -1,0 +1,48 @@
+.library { max-width: 1440px; margin: 0 auto; padding: clamp(16px, 3vw, 40px); color: #183331; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.header h1 { margin: 4px 0 12px; font-size: clamp(28px, 4vw, 40px); }
+.header p { margin: 0; line-height: 1.65; }
+.eyebrow { color: #4c625f; font-size: 14px; }
+.shortstory { color: #2f7d68; text-underline-offset: 4px; padding: 12px 0; flex-shrink: 0; }
+.create { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px; padding: 20px; background: #fffdf8; border: 1px solid #d8d0c2; border-radius: 16px; }
+.create > p { flex-basis: 100%; margin: 0; line-height: 1.6; color: #4c625f; font-size: 14px; }
+.create button, .actions button { min-height: 44px; border: 1px solid #d8d0c2; border-radius: 12px; background: #fffdf8; color: #183331; padding: 8px 12px; cursor: pointer; font: inherit; }
+.create button:disabled, .actions button:disabled { opacity: .5; cursor: default; }
+.import { display: grid; gap: 8px; font-weight: 600; min-width: 0; }
+.import input { max-width: 100%; min-height: 44px; font: inherit; font-size: 14px; }
+.import input::file-selector-button { min-height: 44px; padding: 8px 12px; border: 1px solid #d8d0c2; border-radius: 12px; background: #eee5d5; color: #183331; margin-right: 8px; cursor: pointer; }
+.notice { padding: 12px 16px; border-radius: 12px; background: #d6eadf; line-height: 1.6; overflow-wrap: anywhere; }
+.section { margin-top: 32px; }
+.sectionHeading { margin-bottom: 16px; }
+.sectionHeading h2 { margin: 0 0 8px; font-size: 22px; }
+.sectionHeading h2 span { font-size: 14px; font-weight: 400; margin-left: 8px; color: #4c625f; }
+.sectionHeading p { margin: 0; line-height: 1.6; color: #4c625f; }
+.empty { padding: 20px 0; color: #4c625f; line-height: 1.65; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 20px; }
+.card { display: flex; gap: 16px; padding: 20px; border: 1px solid #d8d0c2; background: #fffdf8; border-radius: 16px; min-width: 0; }
+.cover { position: relative; flex: 0 0 96px; width: 96px; height: auto; border-radius: 4px 10px 10px 4px; align-self: flex-start; background: #eee5d5; border: 1px solid #d8d0c2; }
+.background { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.character { position: absolute; bottom: 0; left: 0; width: 100%; height: 80%; object-fit: contain; object-position: bottom; }
+.coverTitle { position: absolute; inset: auto 0 0; background: rgba(255,253,248,.94); padding: 8px; font-size: 13px; font-weight: 700; overflow-wrap: anywhere; line-height: 1.4; }
+.details { min-width: 0; flex: 1; }
+.details h3 { margin: 0 0 8px; font-size: 19px; line-height: 1.5; overflow-wrap: anywhere; }
+.description { margin: 0 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.65; font-size: 14px; }
+.author, .modified { font-size: 12px; line-height: 1.6; color: #4c625f; margin: 8px 0; overflow-wrap: anywhere; }
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.actions button:first-child { background: #d6eadf; border-color: #a4c7b7; }
+.hint { margin: 10px 0 0; font-size: 12px; color: #4c625f; line-height: 1.6; }
+.library button:focus-visible, .library a:focus-visible, .library input:focus-visible { outline: 3px solid #2f7d68; outline-offset: 3px; }
+@media (max-width: 600px) {
+  .header { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .create { padding: 16px; flex-direction: column; }
+  .card { padding: 16px; gap: 12px; }
+  .cover { flex-basis: 76px; width: 76px; height: 114px; }
+  .actions { grid-template-columns: 1fr; }
+}
+
+.cover[data-cover-layout="classic"] .coverTitle{inset:8px 0 auto;background:transparent;color:inherit;text-align:center;}
+.cover[data-cover-layout="classic"] .character{height:60%;}
+.cover[data-cover-layout="bold"] .character{height:96%;}
+.cover[data-cover-layout="bold"] .coverTitle{inset:6px 0 auto;}
+.coverTitle small{display:block;font-weight:400;font-size:10px;line-height:1.4;}
+.cover[data-cover-layout="classic"] .coverTitle{background:rgba(255,253,248,.94);color:var(--ink,#183331);}

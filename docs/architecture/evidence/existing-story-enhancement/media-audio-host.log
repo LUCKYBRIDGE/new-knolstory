@@ -1,0 +1,14 @@
+
+Running 6 tests using 1 worker
+
+(node:59051) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/media-provenance.spec.ts:3:1 › existing-work audio source and rights records travel with the original bytes (8.6s)
+  ✓  2 [host] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 1280px (9.2s)
+  ✓  3 [host] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 390px (9.4s)
+  -  4 [host] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches
+  -  5 [host] › tests/e2e/responsive-audio-authoring.spec.ts:159:1 › delivered portable branching demo opens with embedded audio and plays both native endings
+  -  6 [host] › tests/e2e/responsive-audio-authoring.spec.ts:184:1 › ending keeps the last entrance confirmed and does not replay its sounds
+
+  3 skipped
+  3 passed (28.3s)

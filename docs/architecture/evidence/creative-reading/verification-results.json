@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-07",
+  "unitContractIntegration": {
+    "command": "pnpm test:coverage --maxWorkers=1",
+    "exitCode": 0,
+    "files": 37,
+    "tests": 707,
+    "coverage": {
+      "lines": 98.04,
+      "statements": 93.66,
+      "branches": 91.22,
+      "functions": 95.38
+    }
+  },
+  "hostE2E": {
+    "command": "pnpm exec playwright test --project=host",
+    "exitCode": 0,
+    "passed": 39,
+    "skipped": 13
+  },
+  "nativeE2E": {
+    "command": "pnpm exec playwright test --project=stories-runtime",
+    "exitCode": 0,
+    "passed": 18,
+    "skipped": 16
+  },
+  "strictPostReloadArchiveAndChosenPath": {
+    "command": "pnpm exec playwright test creative-reading-journey.spec.ts --project=stories-runtime",
+    "exitCode": 0,
+    "passed": 1
+  },
+  "runtimeDPR": {
+    "command": "pnpm test:e2e:runtime",
+    "passed": 3,
+    "exitCode": 0
+  },
+  "pythonHelper": {
+    "command": "python3 spikes/renpy-web/presenter-unit-test.py",
+    "passed": 7,
+    "exitCode": 0
+  },
+  "nativeScopes": {
+    "command": "node spikes/renpy-web/verify-presentation-scopes.mjs",
+    "exitCode": 0
+  },
+  "checks": {
+    "pnpm typecheck": 0,
+    "pnpm lint": 0,
+    "pnpm build": 0,
+    "git diff --check": 0
+  },
+  "skipReason": "Opposite host/native project paths are excluded; each required path runs in its matching project."
+}

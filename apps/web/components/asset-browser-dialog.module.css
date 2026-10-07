@@ -1,0 +1,65 @@
+.field { display: grid; gap: 8px; min-width: 0; }
+.launcher { display: flex; align-items: center; gap: 12px; text-align: left; width: 100%; }
+.launcher img { width: 56px; height: 56px; object-fit: contain; background: var(--paper); border-radius: var(--radius-control); }
+.launcher span { display: grid; gap: 4px; min-width: 0; overflow-wrap: anywhere; }
+.dialog { padding: 0; width: min(1080px, calc(100vw - 32px)); max-width: 100%; max-height: calc(100dvh - 32px); border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--white); color: var(--ink); }
+.dialog::backdrop { background: rgb(24 51 49 / 48%); }
+.shell { display: flex; flex-direction: column; max-height: calc(100dvh - 34px); min-height: 0; }
+.dialog button, .dialog input, .dialog summary { min-height: 44px; font: inherit; }
+.dialog button { border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--white); color: var(--ink); padding: 8px 12px; cursor: pointer; overflow-wrap: anywhere; }
+.dialog button:disabled { opacity: .5; cursor: default; }
+.dialog button[aria-pressed="true"] { background: var(--mint); border-color: var(--mint-strong); }
+.dialog :focus-visible { outline: 3px solid var(--mint-strong); outline-offset: 2px; }
+.header { display: flex; align-items: start; justify-content: space-between; gap: 12px; padding: 18px 20px 8px; }
+.header h2 { margin: 4px 0; font-size: 1.3rem; overflow-wrap: anywhere; }
+.header p, .footer p { font-size: .85rem; margin: 4px 0; }
+.comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 8px 20px; background: var(--paper); }
+.comparison > div { display: flex; gap: 10px; align-items: center; min-width: 0; }
+.comparison span:not(.thumbnail) { display: grid; gap: 4px; overflow-wrap: anywhere; }
+.thumbnail { display: block; height: 120px; width: 100%; background: var(--paper); border-radius: var(--radius-control); overflow: hidden; }
+.thumbnail img { width: 100%; height: 100%; object-fit: contain; }
+.background img { object-fit: cover; }
+.comparison .thumbnail { width: 72px; height: 64px; flex-shrink: 0; }
+.findbar { display: flex; gap: 8px; padding: 10px 20px; }
+.findbar input { flex: 1; width: 0; border: 1px solid var(--line); border-radius: var(--radius-control); padding: 8px 12px; color: var(--ink); background: var(--white); }
+.tabs { display: flex; gap: 6px; padding: 0 20px 10px; flex-wrap: wrap; }
+.body { overflow: auto; min-height: 0; padding: 12px 20px; }
+.facets { display: flex; flex-wrap: wrap; gap: 8px; }
+.facets details { border: 1px solid var(--line); border-radius: var(--radius-control); padding: 0 10px; max-width: 100%; }
+.facets summary { display: flex; align-items: center; cursor: pointer; }
+.facets details > div, .chips { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 8px; }
+.chips { margin-top: 10px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.card, .selected { position: relative; border: 2px solid transparent; border-radius: var(--radius-control); }
+.selected { border-color: var(--mint-strong); }
+.dialog .option { width: 100%; display: grid; gap: 8px; text-align: left; padding: 8px; height: 100%; }
+.option strong, .option small { overflow-wrap: anywhere; }
+.dialog .favorite { position: absolute; right: 10px; top: 10px; min-width: 44px; z-index: 1; font-size: 1.25rem; }
+.footer { padding: 10px 20px 16px; border-top: 1px solid var(--line); }
+.footer > div { display: flex; justify-content: end; gap: 8px; }
+.footer > div button:last-child { background: var(--mint-strong); color: var(--white); }
+.empty { padding: 24px; text-align: center; }
+@media (max-width: 560px) {
+  .dialog { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); }
+  .shell { max-height: calc(100dvh - 14px); }
+  .header, .comparison, .findbar, .tabs, .body, .footer { padding-left: 12px; padding-right: 12px; }
+  .header h2 { font-size: 1.05rem; }
+  .comparison { gap: 8px; }
+  .comparison .thumbnail { width: 44px; height: 48px; }
+  .comparison strong { font-size: .8rem; }
+  .findbar { flex-wrap: wrap; }
+  .findbar input { width: 100%; flex-basis: 100%; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .footer p { font-size: .75rem; }
+}
+@media (max-height: 520px) {
+  .header { padding-top: 8px; padding-bottom: 4px; }
+  .header p, .header > div > small, .footer > p { display: none; }
+  .comparison { padding-top: 4px; padding-bottom: 4px; }
+  .comparison .thumbnail { width: 32px; height: 32px; }
+  .comparison small { font-size: .7rem; }
+  .findbar { padding-top: 4px; padding-bottom: 4px; flex-wrap: nowrap; }
+  .findbar input { flex-basis: auto; width: 0; }
+  .tabs { padding-bottom: 4px; }
+  .footer { padding-top: 6px; padding-bottom: 6px; }
+}

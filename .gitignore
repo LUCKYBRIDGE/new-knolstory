@@ -1,1 +1,35 @@
 .DS_Store
+node_modules/
+.next/
+out/
+dist/
+.turbo/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.cache/
+apps/web/public/runtime/
+apps/web/public/runtime.zip
+renpy/responsive-spike/game/*.rpyc
+renpy/responsive-spike/game/tokens.rpy
+renpy/responsive-spike/game/NotoSansKR.ttf
+renpy/responsive-spike/game/NotoSansKR-LICENSE.txt
+renpy/responsive-spike/game/cache/
+renpy/responsive-spike/game/saves/
+renpy/responsive-spike/game/assets/
+renpy/responsive-spike/log.txt
+
+.next-dev/
+
+# Legacy media remain local until redistribution evidence is verified.
+apps/web/public/assets/legacy-18da4fc/
+# Actual screen evidence is retained locally; screenshots contain legacy art.
+docs/architecture/evidence/**/*.png
+docs/architecture/evidence/**/*.jpg
+docs/architecture/evidence/**/*.jpeg
+docs/architecture/evidence/**/*.webp
+__pycache__/
+*.pyc
+.env*
+!.env.example

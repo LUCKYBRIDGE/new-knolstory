@@ -1,0 +1,51 @@
+{
+  "browser": "Chrome",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "fixedBaseline": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "records": [
+    {
+      "version": "before",
+      "cutId": "P2-v165-11",
+      "text": "흰 천은 나무들 사이를 스치며 더 깊은 숲으로 날아갔다.\n세찬 빗줄기가 시야를 가렸다. 기울어진 소나무 쪽에서 흙이 무너지는 소리가 났고, 흰 천은 보이지 않았다.",
+      "chapterId": "P2-v165",
+      "audio": {
+        "music": "",
+        "ambience": "",
+        "musicStarts": "0",
+        "ambienceStarts": "0",
+        "sounds": "0"
+      }
+    },
+    {
+      "version": "after",
+      "cutId": "P2-v165-11",
+      "text": "흰 천은 나무들 사이를 스치며 더 깊은 숲으로 날아갔다.\n세찬 빗줄기가 시야를 가렸다. 기울어진 소나무 쪽에서 흙이 무너지는 소리가 났고, 흰 천은 보이지 않았다.",
+      "chapterId": "P2-v165",
+      "presentation": {
+        "effects": [
+          {
+            "id": "direction:P2-v165-11:shake",
+            "intensity": "soft",
+            "repeat": "once",
+            "scope": "cut",
+            "target": {
+              "kind": "background"
+            },
+            "trigger": "scene-enter",
+            "type": "shake"
+          }
+        ]
+      },
+      "audio": {
+        "music": "assets/audio/story-score/score-tension.ogg",
+        "ambience": "assets/audio/story-score/ambience-rain.ogg",
+        "musicStarts": "1",
+        "ambienceStarts": "1",
+        "sounds": "1"
+      }
+    }
+  ]
+}

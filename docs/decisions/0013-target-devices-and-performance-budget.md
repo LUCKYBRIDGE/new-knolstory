@@ -6,11 +6,25 @@
 
 | 등급 | 환경 | 요구 |
 |---|---|---|
-| **Tier 1 — 편집 주 환경** | 학교 Windows PC (Chrome/Edge), 크롬북, 안드로이드 태블릿 | 편집·플레이 전 기능. Release gate 필수 |
-| **Tier 2 — 읽기/플레이 + 핵심 편집** | 스마트폰 (안드로이드) | 읽기·플레이 전 기능. 편집은 좁은 화면 모드에서 핵심 작업(글·화자·배경/인물 선택·선택지·컷 추가/이동) 가능. 전체 흐름 지도·대량 자산 작업은 단순화 허용 |
-| **Best-effort** | iPad/iPhone Safari | 차단 오류만 대응. Release gate 비필수 *(iPhone 포함 여부는 열린 질문)* |
+| **Tier 1 — 편집 주 환경** | 학교 Windows PC (Chrome), 크롬북, 안드로이드 태블릿 (Chrome) | 편집·플레이 전 기능. Release gate 필수 |
+| **Tier 2 — 읽기/플레이 + 핵심 편집** | 스마트폰 (안드로이드 Chrome) | 읽기·플레이 전 기능. 편집은 좁은 화면 모드에서 핵심 작업(글·화자·배경/인물 선택·선택지·컷 추가/이동) 가능. 전체 흐름 지도·대량 자산 작업은 단순화 허용 |
+| **현 단계 범위 밖** | Safari / iPad·iPhone | 지원 구현·QA·Release gate에서 제외 (2026-10-06, 소유자 결정) |
+
+지원 브라우저는 우선 Chrome이다. Edge 등 다른 브라우저의 별도 검증은 현 단계 필수 범위가 아니다. iPhone의 Chrome도 현 단계 기기 지원 범위에 포함하지 않는다.
 
 편집의 최적 환경은 태블릿 이상이다. 스마트폰 편집은 “가능해야 한다”이며 “동일 경험”을 요구하지 않는다.
+
+## Viewport 예산
+
+KnolStory Stage는 반응형 편집 Shell 안에서 고정 논리 비율로 표시한다. 초기 probe 기준은 `1280×720` 16:9이며, 좁은 화면에서는 Stage 자체를 줄이고 active editor를 별도 Web panel로 제공한다.
+
+| 항목 | 목표 | 측정 기준 |
+|---|---|---|
+| Overlay ↔ Ren'Py content rect 정렬 오차 | `<= 2 CSS px` | DPR 1/1.5/2, desktop/tablet/phone landscape |
+| Resize/orientation 후 overlay 재활성화 | 실제 viewport 동기화 확인 후. generation별 ack는 제품 계약 강화 후보이며 probe 완료 사항이 아님 | 모든 Tier |
+| Resize/orientation 중 iframe lifecycle | iframe 재생성 없음 | 모든 Tier |
+| 스마트폰 landscape 대사 표시 | 2-3줄 이상 읽기 가능, clipping 없음 | 안드로이드 Chrome |
+| 핵심 편집 control hit target | 제품 기준 `44px` 유지 | touch 기기 |
 
 ## 성능 예산 (초기 목표치)
 

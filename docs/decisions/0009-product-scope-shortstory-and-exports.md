@@ -20,9 +20,10 @@ Blueprint v1.3은 Ren'Py 단일 렌더러를 정의했지만, 레거시 baseline
    - 대체 수단은 Ren'Py Web 플레이어를 사용하는 **온라인 공유 링크**다.
    - 기존에 배포된 HTML 파일은 그대로 열리지만, new-knolstory는 새로 만들지 않는다.
    - 오프라인 보관·이동 수단은 `.knolstory` / `.shortstory` 파일이다.
-3. **Excel/Google 시트 호환은 승계(PRESERVE)한다.** *(기본 가정 — 소유자 확인 필요, STATUS 열린 질문 참조)*
-   - 8탭 놀스토리 Excel, 4탭 숏스토리 Excel, 공개 시트 읽기는 `packages/compatibility`의 import/export 어댑터로 이전한다.
-   - Excel 구조는 StoryDocument의 투영(projection)일 뿐 SSOT가 아니다.
+3. **Excel/Google 시트 지원은 Next 형식에 맞춰 재설계(REFINE)한다.** (2026-10-06, 소유자 확인)
+   - 새 StoryDocument와 숏스토리 구조를 기준으로 버전이 명시된 공통 표 형식을 정의하고, Excel 가져오기/내보내기와 공개 Google 시트 읽기에 사용한다. 기존 8탭/4탭 구조를 유지할 의무는 없다.
+   - 표 형식은 StoryDocument의 투영일 뿐 SSOT가 아니다. 지원 범위와 표현할 수 없는 항목을 명시하고 조용한 데이터 손실을 허용하지 않는다.
+   - 구형 Excel/시트 읽기 어댑터 범위는 M2/M8에서 비용과 실제 자료를 확인해 정한다. 구형 형식으로 내보내기는 요구하지 않는다. `.knolstory`/`.nolstory` 작품 파일 호환 의무는 유지한다.
 
 ## 결과
 

@@ -1,0 +1,9 @@
+.controls { display:grid; gap:12px; }
+.controls label,.picker label { display:grid; gap:6px; }
+.controls input,.controls select,.controls button,.picker input,.picker select { min-height:44px; max-width:100%; }
+.picker { display:grid; gap:8px; padding:10px 0; }
+.picker audio { width:100%; min-width:0; }
+.picker small,.hint { color:var(--ink-soft); font-size:.8rem; line-height:1.5; }
+.sound { display:grid; gap:8px; padding:12px; border:1px solid var(--line); border-radius:12px; }
+.row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.upload { font-size:.85rem; }

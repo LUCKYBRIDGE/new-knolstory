@@ -19,6 +19,12 @@ For major UI work inspect the corresponding parts of `LUCKYBRIDGE/story-maker@18
 
 Reference is evidence, not a pixel-copy command.
 
+## First and returning visits
+
+Owner clarification (2026-10-08): preserve the legacy distinction between the first visit's book-introduction home and the returning visit's library. The introduction home, the library, and an individual book's cover/start screen are separate surfaces. Next now implements this distinction with a separate book-introduction home, a returning-visit library, and a per-book cover/start surface. Reload restores the saved current screen; fresh return starts in the library while retaining each work's editing and reading context. Detailed evidence: docs/architecture/book-entry-and-cover.md.
+
+The fixed baseline uses `app/story-landing-visit.ts` and `StoryStudio.tsx`: initial discovery screen is `home`, a browser-local visited preference selects `library` on returning visits, and saved navigation can restore a later context. A Next implementation must use its own `knolstory-*` preference and preserve saved work/read state without writing legacy `storygame*` keys. The visit preference belongs to the browser, not the StoryDocument or exported book.
+
 ## Classification
 - **PRESERVE:** warm storybook identity, Korean readability, story-first surfaces, student-friendly controls, clear current context.
 - **REFINE:** spacing, density, typography hierarchy, chapter/cut/branch navigation, asset picker, panels, forms, responsive behavior.
@@ -83,7 +89,8 @@ Baseline: primary 48px, default 44px, compact visual 36px, minimum hit target 44
 Web provides authoring chrome and editing overlay only.
 
 - **Edit Overlay** positions handles from RuntimeScene logical coordinates (Runtime Core layout), scaled to the displayed Stage. It never measures the canvas or recomputes layout. Textbox bounds come from the Ren'Py `sceneRendered` report (ADR 0014).
-- Stage keeps a fixed logical aspect ratio and letterboxes; letterbox areas use paper tones, not black, in editor surfaces.
+- Runtime Core derives the logical Stage aspect ratio from the actual story display area. Desktop/phone portrait/phone landscape previews use the same rules. Ren’Py changes its virtual dimensions within the persistent runtime; Web only projects the resolved Stage. Preview preset letterboxes use paper tones. See `docs/architecture/responsive-audio-authoring.md`.
+- The first responsive editor probe uses a 1280×720 logical stage (16:9 candidate). Editor panels adapt independently. Resizing must preserve the runtime instance, current selection and authored coordinates. Touch handles retain at least 44 CSS px hit areas. Detailed rules: `docs/architecture/responsive-runtime-editor.md`.
 
 ## Ren'Py skin
 Never expose stock quick menu, dialogue, choices, save/load or preferences as product UI.
@@ -93,7 +100,7 @@ Ren'Py colors, fonts, radii and spacing are generated from `packages/design-toke
 ShortStory pages and A4 print are rendered by Web/CSS (ADR 0009). They use the same design tokens and must look like the same product, but they are not a model for KnolStory chapter/cut playback.
 
 ## Responsive
-Device tiers are defined in ADR 0013.
+Device tiers are defined in ADR 0013. Chrome is the initial supported browser; Safari / iPad·iPhone are outside the current implementation and QA scope.
 
 - **Wide (Tier 1 PC/Chromebook):** Cut | Stage | Inspector
 - **Medium (Tier 1 tablet):** Stage + collapsible side panels; touch-first controls

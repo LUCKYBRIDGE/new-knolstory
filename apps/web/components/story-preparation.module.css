@@ -1,0 +1,25 @@
+.preparation { display: grid; gap: 18px; color: var(--ink, #183331); min-width: 0; padding: 20px; }
+.header { display: flex; justify-content: space-between; align-items: start; gap: 12px; flex-wrap: wrap; }
+.preparation h2, .preparation h3 { margin: 0 0 8px; }
+.preparation p { margin: 0 0 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.hint { color: var(--ink-soft, #4c625f); font-size: .9rem; }
+.columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.panel { min-width: 0; padding: 20px; border: 1px solid var(--line, #d8d0c2); border-radius: 16px; background: var(--white, #fffdf8); }
+.preparation label { display: grid; gap: 7px; margin: 0 0 16px; font-weight: 600; min-width: 0; }
+.preparation input, .preparation textarea, .preparation select { width: 100%; min-width: 0; box-sizing: border-box; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line, #d8d0c2); border-radius: 10px; font: inherit; color: inherit; background: #fff; }
+.preparation textarea { resize: vertical; font-weight: 400; line-height: 1.6; }
+.preparation button { min-height: 44px; padding: 9px 14px; border: 1px solid var(--line, #d8d0c2); border-radius: 12px; background: var(--mint, #d6eadf); color: inherit; font: inherit; cursor: pointer; white-space: normal; overflow-wrap: anywhere; }
+.preparation :is(button,input,select,textarea,summary):focus-visible { outline: 3px solid var(--mint-strong, #2f7d68); outline-offset: 3px; }
+.preparation summary { cursor: pointer; min-height: 44px; display: list-item; align-content: center; font-weight: 600; }
+.preparation details[open] summary { margin-bottom: 12px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.memoGrid { display: grid; gap: 16px; grid-template-columns: repeat(2,minmax(0,1fr)); }
+.memo { min-width: 0; border-top: 1px solid var(--line, #d8d0c2); padding-top: 16px; }
+.memo > button, .confirm { margin-top: 12px; }
+.confirm { padding: 12px; border: 1px solid #b42318; border-radius: 12px; }
+.confirm button { margin: 4px; }
+@media (max-width: 760px) {
+  .preparation { padding: 12px; gap: 12px; }
+  .columns, .memoGrid { grid-template-columns: minmax(0,1fr); }
+  .panel { padding: 14px; }
+}

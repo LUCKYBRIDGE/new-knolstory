@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-07",
+  "result": "A-F verified",
+  "criteria": [
+    {
+      "criterion": "A",
+      "evidence": [
+        "forest-promise.knolstory",
+        "authored-flow.png",
+        "creative-reading-journey.spec.ts"
+      ],
+      "verified": "UI-created blank 12-cut work; 1/2/3A/3B/4, actual forest/character/music/sound, two branches and merge/ending."
+    },
+    {
+      "criterion": "B",
+      "evidence": [
+        "issues.json",
+        "before-fix-regressions.json",
+        "authoring-choice-links.png",
+        "authoring-scope.png",
+        "reading-surface.spec.ts"
+      ],
+      "verified": "Current work/chapter/branch/local cut labels, outgoing/incoming destinations and repairs; automatic branch identity; setting scope and friendly actor labels."
+    },
+    {
+      "criterion": "C",
+      "evidence": [
+        "read-path-A.png",
+        "read-path-B.png",
+        "reading-save.png",
+        "edited-native-reading.png",
+        "creative-reading-journey.spec.ts"
+      ],
+      "verified": "Actual RenPy A and B, save/load, actual-path history and reselection, restart, current-cut edit and reread."
+    },
+    {
+      "criterion": "D",
+      "evidence": [
+        "reading-choice-desktop.png",
+        "reading-choice-landscape.png",
+        "reading-choice-portrait.png",
+        "reading-phone-portrait-speaker.png",
+        "run-summary.json"
+      ],
+      "verified": "Installed Chrome 154.0.8037.98; PC1280x900, phone844x390/390x844, keyboard Enter, touch audio start, fullscreen enter/exit, both selected branch states preserved across rotation/fullscreen and same iframe."
+    },
+    {
+      "criterion": "E",
+      "evidence": [
+        "forest-promise.knolstory",
+        "creative-reading-journey.spec.ts",
+        "stories.spec.ts",
+        "stories-runtime.spec.ts",
+        "shortstory.spec.ts"
+      ],
+      "verified": "Save/reload/export; compare entire project and embedded audio; import the post-reload exported file into a clean browser context; actual native play; four legacy works and separate ShortStory file/read/print regressions."
+    },
+    {
+      "criterion": "F",
+      "evidence": [
+        "verification-results.json",
+        "vn-workflow-verification.md"
+      ],
+      "verified": "707 TS unit/contract/integration, 39 host and18 native regression paths, DPR1/1.5/2, Python7, native scope pixels, types/lint/build/diff checks passed."
+    }
+  ],
+  "limitations": [
+    "Chrome browser viewport emulation, not Android/Windows/Chromebook hardware performance or speaker quality",
+    "Audio playback seconds are not saved",
+    "Independent follow-up review stopped due to agent usage limit; parent inspected current source and results",
+    "Coverage applies to configured TS package and web/lib sources, not total React/Python coverage"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@knolstory/runtime-core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "devDependencies": { "@knolstory/compatibility": "workspace:*" },
+  "dependencies": { "@knolstory/runtime-contract": "workspace:*", "@knolstory/story-domain": "workspace:*", "@knolstory/asset-registry": "workspace:*" }
+}

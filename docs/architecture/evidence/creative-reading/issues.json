@@ -1,0 +1,59 @@
+{
+  "auditDate": "2026-10-07",
+  "issues": [
+    {
+      "id": "UX-01",
+      "before": "Reading retained work management, manuscript/cut tools and cut list; stage used one editor grid column.",
+      "after": "Reading hides editor chrome, uses full width, exposes next/save/load/history/restart/motion/fullscreen/edit in reading menu.",
+      "evidence": "reading-desktop.png; reading-surface.spec.ts"
+    },
+    {
+      "id": "UX-02",
+      "before": "Choice new-chapter button used generic chapter creation without branch identity.",
+      "after": "Uses existing createStoryChoiceChapter; source 2 creates 3A/3B immediately with unchanged linked asset/layout semantics.",
+      "evidence": "forest-promise.knolstory; authoring-choice-links.png; choice-created regression"
+    },
+    {
+      "id": "UX-03",
+      "before": "Destination dropdown omitted numbered chapter and branch; bottom navigation used entire-work cut index.",
+      "after": "Destination uses cutLabel; navigation and counter use current chapter cuts; manuscript chapter dropdown uses chapterLabel.",
+      "evidence": "authoring-choice-links.png; reading-surface.spec.ts"
+    },
+    {
+      "id": "UX-04",
+      "before": "Current-cut connection context exposed incoming links only.",
+      "after": "Outgoing destinations, endings and pending/missing repair buttons are available next to incoming context.",
+      "evidence": "reading-surface.spec.ts; authored-flow.png"
+    },
+    {
+      "id": "UX-05",
+      "before": "Runtime error details and audio exceptions appeared directly; edit exit disabled until runtime ready.",
+      "after": "Safe action-oriented runtime messages, protected late status transitions, edit exit available during preparation/failure.",
+      "evidence": "runtime-status.test.ts; reading-surface.spec.ts"
+    },
+    {
+      "id": "UX-06",
+      "before": "844x390 reading viewport extended to y419.7; stage internal scrolling cropped dialogue below screen.",
+      "after": "Landscape removes preview toolbar, makes menu a single scrollable row, reserves a complete visible viewport; actual native dialogue visible.",
+      "evidence": "reading-phone-landscape.png; landscape viewport regression"
+    },
+    {
+      "id": "UX-07",
+      "before": "Effect actor target options displayed internal actor keys.",
+      "after": "Effect target shows registry image display name while preserving actor identity.",
+      "evidence": "story-effect-controls.tsx"
+    },
+    {
+      "id": "UX-08",
+      "before": "390x844 reading stacked menus/preview toolbar; viewport bottom extended to y1001.2 and clipped dialogue. Resize captures could acknowledge a prior viewport revision.",
+      "after": "Portrait reading uses one scrolling menu row, compact orientation hint and a fully visible viewport. Journey captures wait until scene/engine sizes match the current display ratio.",
+      "evidence": "reading-phone-portrait-speaker.png; reading-choice-portrait.png; portrait viewport regression"
+    },
+    {
+      "id": "UX-09",
+      "before": "Actor editing headings/buttons/image tools/speaker choices exposed persisted actor keys, including generated UUIDs.",
+      "after": "A shared side/order label identifies each actor in visible controls and accessible names; registry image names distinguish pictures. Document identity and layout values remain unchanged.",
+      "evidence": "actor-label.test.ts; composition-intent/legacy-authoring-workspace/responsive-audio-authoring E2E; authoring-scope.png"
+    }
+  ]
+}

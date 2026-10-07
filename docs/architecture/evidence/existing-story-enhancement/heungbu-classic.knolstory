@@ -1,0 +1,4146 @@
+{
+  "documentType": "story-maker-project",
+  "schemaVersion": 5,
+  "savedAt": "2026-10-07T22:34:31.391Z",
+  "appVersion": "knolstory-existing-direction-v1",
+  "project": {
+    "cover": {
+      "author": "전래 이야기",
+      "subtitle": "흥부와 놀부로 널리 알려진 이야기",
+      "authorNote": "여러 이본의 대표 서사를 바탕으로 현대어로 재구성했다.",
+      "layout": "classic",
+      "theme": "cream",
+      "font": "serif",
+      "titlePosition": "top",
+      "authorPosition": "bottom",
+      "align": "center",
+      "titleSize": 40,
+      "titleColor": "",
+      "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+      "characterId": "heungbu.character.heungbu-default",
+      "characterPosition": "center"
+    },
+    "id": "classic-heungbu-tale",
+    "title": "흥부전",
+    "description": "여러 「흥부전」과 판소리 「흥보가」에 공통적으로 나타나는 중심 사건을 바탕으로 오늘날의 독자가 읽기 쉽게 풀어 쓴 원작 읽기이다.",
+    "planning": {
+      "premise": "가난하게 살아가던 흥부가 다친 제비를 정성껏 치료해 주고 뜻밖의 복을 얻는다. 이를 본 놀부는 같은 복을 얻으려고 행동을 흉내 내지만 욕심 때문에 오히려 가진 것을 잃고, 마지막에는 흥부의 도움을 받아 형제 사이를 회복한다.",
+      "structureMode": "five",
+      "material": "고전소설 「흥부전」과 판소리 「흥보가」의 대표 서사",
+      "theme": "다른 생명을 향한 선의와 자신의 이익만을 바라는 욕심은 겉으로 비슷한 행동도 서로 다른 의미와 결과를 만들 수 있다. 잘못을 인정하고 다시 손을 내밀 때 관계도 새롭게 시작될 수 있다.",
+      "mainCharacter": "흥부와 놀부",
+      "mainGoal": "흥부는 가난 속에서 가족의 생계를 이어 가고, 놀부는 흥부가 얻은 복의 비밀을 알아내어 자신도 더 큰 부자가 되려고 한다.",
+      "centralProblem": "형 놀부에게 쫓겨난 흥부 가족은 심한 가난에 시달리고, 뒤늦게 흥부의 행운을 본 놀부는 그 결과만을 얻기 위해 흥부의 행동을 억지로 따라 한다.",
+      "stakes": "흥부 가족의 생계와 놀부의 재산, 그리고 멀어진 형제의 관계",
+      "endingChange": "모든 재산을 잃은 놀부가 자신의 행동을 돌아보고, 흥부가 형에게 다시 손을 내밀면서 두 형제의 관계가 회복된다.",
+      "opening": "부모가 세상을 떠난 뒤 놀부가 재산을 차지하고 흥부 가족을 집에서 내보낸다.",
+      "middle": "가난하게 살던 흥부가 다친 제비를 치료하고, 이듬해 제비가 가져온 박씨에서 열린 박을 타 큰 부자가 된다.",
+      "crisis": "흥부의 이야기를 들은 놀부가 같은 복을 얻으려고 일부러 제비를 다치게 한 뒤 박씨를 얻는다.",
+      "climax": "놀부의 박에서는 복이 아니라 온갖 소동과 재앙이 쏟아져 나와 놀부의 재산이 사라진다.",
+      "ending": "흥부가 몰락한 놀부에게 도움을 주고, 놀부가 지난 행동을 뉘우치면서 형제가 다시 화목하게 살아간다.",
+      "characterNotes": "흥부: 가난한 형편에서도 다친 생명을 그냥 지나치지 않는 인물이다. 제비를 치료할 때 보답을 바라지 않는다.\n놀부: 많은 재산을 가졌지만 자신의 것을 나누기 싫어하며, 흥부가 얻은 결과를 보고 더 큰 재물을 얻으려 한다.\n흥부 아내: 흥부와 함께 어려운 살림을 꾸리고 아이들을 돌본다.\n놀부 아내: 놀부의 살림과 몰락 과정을 함께 겪는다.",
+      "worldNotes": "조선 시대 농촌 마을을 배경으로 한다. 흥부의 초라한 집과 놀부의 넉넉한 집을 대비하고, 제비와 박에서 판타지적 사건이 시작된다. 흥부와 놀부가 박을 타는 장면에는 판소리계 이야기 특유의 해학과 과장을 살린다.",
+      "mood": "가족 갈등 → 가난과 답답함 → 따뜻함 → 신비로움과 기쁨 → 욕심과 불안 → 해학적인 소동 → 반성과 화해",
+      "openQuestions": "흥부와 놀부는 모두 제비의 다리를 고쳐 주었는데 왜 두 행동은 다르게 느껴질까?\n흥부가 자신을 힘들게 했던 놀부를 마지막에 도와주는 결말에는 어떤 의미가 있을까?",
+      "freeNotes": "원작 읽기는 분기 없이 선형으로 진행한다. 「흥부전」에는 여러 이본이 있으므로 박 속에서 나오는 인물이나 재물은 특정 이본 하나를 그대로 옮기지 않고 대표적인 사건 중심으로 구성한다. 놀스토리판의 어린 시절 설정이나 ‘흥부의 지나친 베풂’에 대한 현대적 재해석은 원작 읽기에 추가하지 않는다."
+    },
+    "creativeMemos": [],
+    "sheetUrl": "",
+    "sheetEditable": false,
+    "speakerNames": [
+      "흥부",
+      "놀부",
+      "흥부 아내",
+      "놀부 아내",
+      "아이",
+      "마을 사람"
+    ],
+    "chapters": [
+      {
+        "id": "classic-heungbu-1",
+        "order": 1,
+        "title": "쫓겨난 흥부",
+        "summary": "부모가 세상을 떠난 뒤 놀부가 집과 재산을 차지하고 아우 흥부의 가족을 내쫓는다.",
+        "purpose": "흥부와 놀부의 처지가 갈라지는 출발점을 보여 주고 이후 흥부 가족이 겪는 가난의 원인을 제시한다.",
+        "mood": "평온함 → 상실 → 갈등 → 서러움 → 막막함",
+        "keyEvents": "흥부와 놀부 형제가 소개된다.\n부모가 세상을 떠난다.\n놀부가 집과 재산을 차지한다.\n흥부 가족이 쫓겨난다.\n흥부가 작은 집에서 새 생활을 시작한다.",
+        "nextChapterIdea": "살림이 어려워진 흥부가 가족을 먹여 살리기 위해 온갖 일을 찾아 나선다.",
+        "storyStageKeys": [
+          "opening"
+        ],
+        "chapterSpeakerNames": [
+          "흥부",
+          "놀부",
+          "흥부 아내"
+        ],
+        "characterAssetIds": [
+          "heungbu.character.heungbu-default",
+          "heungbu.character.nolbu-default",
+          "heungbu.character.nolbu-angry",
+          "heungbu.character.heungbu-pleading",
+          "heungbu.character.wife-heungbu-worried",
+          "heungbu.character.wife-heungbu"
+        ],
+        "backgroundAssetIds": [
+          "onggojib.background.spring-courtyard-pixel",
+          "onggojib.background.classic-closed-house",
+          "seonnyeo.background.BG04-cottage-day",
+          "onggojib.background.classic-gate-threshold",
+          "onggojib.background.snow-village-road-pixel"
+        ],
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-loss",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-2",
+        "order": 2,
+        "title": "빈 쌀독",
+        "summary": "흥부 부부가 온갖 일을 하며 가족을 먹여 살리려 하지만 가난에서 벗어나지 못하고, 결국 흥부가 놀부에게 도움을 청한다.",
+        "purpose": "흥부 가족의 가난을 충분히 보여 주어 이후 제비의 보은이 단순한 행운이 아니라 오랜 고난 뒤의 변화로 느껴지게 한다.",
+        "mood": "고단함 → 걱정 → 희망 → 모멸감 → 막막함",
+        "keyEvents": "흥부 부부가 품팔이를 한다.\n먹을 것이 떨어진다.\n흥부가 놀부에게 도움을 청한다.\n놀부가 흥부를 내쫓는다.\n흥부가 다른 일거리까지 찾아 나선다.",
+        "nextChapterIdea": "긴 겨울이 지나고 봄이 찾아온 흥부네 집 처마에 제비가 둥지를 튼다.",
+        "storyStageKeys": [
+          "middle"
+        ],
+        "chapterSpeakerNames": [
+          "흥부",
+          "흥부 아내",
+          "아이",
+          "놀부",
+          "마을 사람"
+        ],
+        "characterAssetIds": [
+          "heungbu.character.heungbu-default",
+          "heungbu.character.wife-heungbu",
+          "heungbu.character.wife-heungbu-worried",
+          "heungbu.character.child-01",
+          "heungbu.character.child-02",
+          "heungbu.character.heungbu-pleading",
+          "heungbu.character.nolbu-default",
+          "heungbu.character.nolbu-angry",
+          "heungbu.character.neighbor"
+        ],
+        "backgroundAssetIds": [
+          "seonnyeo.background.BG04-cottage-day",
+          "seonnyeo.background.BG09-room-day",
+          "onggojib.background.snow-village-road-pixel",
+          "onggojib.background.classic-gate-threshold",
+          "onggojib.background.classic-closed-house",
+          "seonnyeo.background.BG05-cottage-snow"
+        ],
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-loss",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-3",
+        "order": 3,
+        "title": "다친 제비",
+        "summary": "흥부가 처마에서 떨어져 다리를 다친 새끼 제비를 치료해 주고, 이듬해 돌아온 제비에게 박씨 하나를 받는다.",
+        "purpose": "흥부의 행동과 이후 보은의 원인을 자연스럽게 연결하고, 흥부가 보답을 바라지 않았음을 분명하게 보여 준다.",
+        "mood": "평온함 → 긴박함 → 따뜻함 → 이별 → 신비로움 → 기대",
+        "keyEvents": "제비가 흥부네 처마에 둥지를 튼다.\n새끼 제비가 떨어져 다친다.\n흥부가 다리를 치료한다.\n가을에 제비가 떠난다.\n이듬해 제비가 박씨를 물어 온다.\n흥부가 박씨를 심는다.",
+        "nextChapterIdea": "박 넝쿨에 커다란 박들이 열리고 먹을 것이 떨어진 흥부 가족이 박을 타기 시작한다.",
+        "storyStageKeys": [
+          "middle"
+        ],
+        "chapterSpeakerNames": [
+          "흥부",
+          "흥부 아내",
+          "아이"
+        ],
+        "characterAssetIds": [
+          "heungbu.character.swallow",
+          "heungbu.character.heungbu-default",
+          "heungbu.character.child-01",
+          "heungbu.character.child-02",
+          "heungbu.character.heungbu-pleading",
+          "heungbu.character.heungbu-happy",
+          "heungbu.character.wife-heungbu"
+        ],
+        "backgroundAssetIds": [
+          "seonnyeo.background.BG04-cottage-day",
+          "seonnyeo.background.BG06-cottage-autumn"
+        ],
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-warmth",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "play",
+            "assetId": "audio:music:ambience-forest",
+            "loop": true,
+            "volume": 0.19,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-4",
+        "order": 4,
+        "title": "흥부가 박을 타다",
+        "summary": "먹을 것이 떨어진 흥부 가족이 박을 타자 곡식과 재물이 쏟아져 나오고 흥부 가족의 살림이 크게 달라진다.",
+        "purpose": "제비의 보은을 완성하고 작품의 대표 장면인 박 타는 장면에 판소리 특유의 기대감과 해학을 살린다.",
+        "mood": "가난 → 기대 → 놀라움 → 흥겨움 → 기쁨 → 안정",
+        "keyEvents": "가을에 박이 익는다.\n먹을 것이 떨어진다.\n흥부 부부가 박을 타기 시작한다.\n곡식과 재물이 나온다.\n흥부 가족이 가난에서 벗어난다.\n놀부가 흥부의 소식을 듣는다.",
+        "nextChapterIdea": "흥부가 부자가 되었다는 이야기를 들은 놀부가 그 비밀을 알아내기 위해 흥부를 찾아온다.",
+        "storyStageKeys": [
+          "middle",
+          "climax"
+        ],
+        "chapterSpeakerNames": [
+          "흥부",
+          "흥부 아내",
+          "아이"
+        ],
+        "characterAssetIds": [
+          "heungbu.character.heungbu-default",
+          "heungbu.character.wife-heungbu-worried",
+          "heungbu.character.heungbu-pleading",
+          "heungbu.character.wife-heungbu",
+          "heungbu.character.child-01",
+          "heungbu.character.child-02",
+          "heungbu.character.heungbu-happy",
+          "heungbu.character.nolbu-default"
+        ],
+        "backgroundAssetIds": [
+          "seonnyeo.background.BG06-cottage-autumn",
+          "onggojib.background.spring-courtyard-pixel",
+          "onggojib.background.classic-closed-house"
+        ],
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-curiosity",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-5",
+        "order": 5,
+        "title": "놀부와 제비",
+        "summary": "흥부의 행운을 알게 된 놀부가 제비의 보은을 그대로 얻으려고 일부러 제비를 다치게 한다.",
+        "purpose": "흥부와 놀부의 행동을 직접 대비하여 두 사람이 같은 ‘제비 치료’를 전혀 다른 이유로 행했음을 보여 준다.",
+        "mood": "의심 → 놀라움 → 탐욕 → 조급함 → 불길함",
+        "keyEvents": "놀부가 흥부의 부자가 된 모습을 본다.\n흥부에게 박씨의 사연을 듣는다.\n놀부가 제비를 기다린다.\n제비가 다치지 않자 일부러 다리를 다치게 한다.\n이듬해 박씨를 얻는다.",
+        "nextChapterIdea": "놀부가 큰 기대를 품고 박을 타지만 박 속에서는 예상하지 못한 것들이 나타난다.",
+        "storyStageKeys": [
+          "crisis"
+        ],
+        "chapterSpeakerNames": [
+          "흥부",
+          "놀부",
+          "놀부 아내"
+        ],
+        "characterAssetIds": [
+          "heungbu.character.nolbu-angry",
+          "heungbu.character.nolbu-default",
+          "heungbu.character.heungbu-default",
+          "heungbu.character.swallow",
+          "heungbu.character.wife-nolbu-shocked"
+        ],
+        "backgroundAssetIds": [
+          "onggojib.background.warm-room-pixel",
+          "onggojib.background.snow-village-road-pixel",
+          "onggojib.background.spring-courtyard-pixel"
+        ],
+        "backgroundId": "onggojib.background.warm-room-pixel",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-tension",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-6",
+        "order": 6,
+        "title": "놀부가 박을 타다",
+        "summary": "놀부가 기대에 부풀어 박을 타지만 박 속에서는 재물이 아니라 온갖 소동과 재앙이 이어지고 결국 놀부의 재산이 사라진다.",
+        "purpose": "흥부의 박 타기와 대칭되는 장면을 통해 놀부의 욕심이 만들어 낸 결과를 판소리적인 해학과 과장으로 보여 준다.",
+        "mood": "기대 → 이상함 → 당황 → 소동 → 집착 → 몰락",
+        "keyEvents": "놀부의 박이 크게 열린다.\n놀부가 첫 박을 탄다.\n박에서 재물을 요구하는 사람들이 나온다.\n놀부가 계속 박을 탄다.\n온갖 소동이 벌어진다.\n놀부의 재산과 집이 사라진다.",
+        "nextChapterIdea": "모든 것을 잃은 놀부의 소식을 들은 흥부가 형을 찾아간다.",
+        "storyStageKeys": [
+          "climax"
+        ],
+        "chapterSpeakerNames": [
+          "놀부",
+          "놀부 아내"
+        ],
+        "characterAssetIds": [
+          "heungbu.character.wife-nolbu",
+          "heungbu.character.nolbu-default",
+          "heungbu.character.neighbor",
+          "heungbu.character.nolbu-angry",
+          "heungbu.character.wife-nolbu-shocked",
+          "heungbu.character.nolbu-remorse"
+        ],
+        "backgroundAssetIds": [
+          "seonnyeo.background.BG06-cottage-autumn",
+          "onggojib.background.spring-courtyard-pixel",
+          "onggojib.background.classic-open-house-empty"
+        ],
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-tension",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-7",
+        "order": 7,
+        "title": "다시 만난 형제",
+        "summary": "흥부가 모든 재산을 잃은 놀부를 찾아가 돕고, 놀부가 자신의 지난 행동을 뉘우치면서 두 형제가 화해한다.",
+        "purpose": "놀부의 몰락 자체가 아니라 반성과 흥부의 도움을 통해 원작의 형제 화해 결말을 완성한다.",
+        "mood": "쓸쓸함 → 망설임 → 미안함 → 반성 → 따뜻함 → 화해",
+        "keyEvents": "흥부가 놀부의 몰락 소식을 듣는다.\n놀부를 찾아간다.\n놀부가 자신의 잘못을 돌아본다.\n흥부가 재산과 살림을 나누어 준다.\n형제가 화해한다.",
+        "nextChapterIdea": "이야기 끝",
+        "storyStageKeys": [
+          "ending"
+        ],
+        "chapterSpeakerNames": [
+          "흥부",
+          "흥부 아내",
+          "놀부"
+        ],
+        "characterAssetIds": [
+          "heungbu.character.heungbu-default",
+          "heungbu.character.wife-heungbu",
+          "heungbu.character.wife-heungbu-worried",
+          "heungbu.character.nolbu-remorse",
+          "heungbu.character.heungbu-happy",
+          "heungbu.character.nolbu-default",
+          "heungbu.character.swallow"
+        ],
+        "backgroundAssetIds": [
+          "onggojib.background.spring-courtyard-pixel",
+          "onggojib.background.snow-village-road-pixel",
+          "onggojib.background.classic-open-house-empty",
+          "seonnyeo.background.BG04-cottage-day"
+        ],
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-resolve",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      }
+    ],
+    "lines": [
+      {
+        "id": "classic-heungbu-1-line-01",
+        "chapterId": "classic-heungbu-1",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "옛날 어느 마을에 놀부와 흥부라는 형제가 살았다. 형 놀부에게는 아우 흥부보다 훨씬 많은 재산이 있었다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-02",
+        "chapterId": "classic-heungbu-1",
+        "order": 2,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 자기 재산을 몹시 아꼈다. 곡식 한 줌이라도 남에게 내주는 것을 싫어했고, 자신의 몫이 줄어드는 일이라면 무엇이든 못마땅해했다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.classic-closed-house",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-03",
+        "chapterId": "classic-heungbu-1",
+        "order": 3,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "아우 흥부는 형과 성품이 달랐다. 어려운 사람을 보면 그냥 지나치지 못했고 좀 손해를 보더라도 남을 돕곤 했다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-04",
+        "chapterId": "classic-heungbu-1",
+        "order": 4,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "세월이 흘러 두 형제의 부모가 세상을 떠났다. 집과 논밭을 비롯한 많은 재산이 형제에게 남았다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-05",
+        "chapterId": "classic-heungbu-1",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그러나 놀부는 부모가 남긴 재산을 거의 모두 자기 것으로 삼았다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.classic-closed-house",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-06",
+        "chapterId": "classic-heungbu-1",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "형님, 저도 가족과 살아가야 합니다. 작은 집과 밭이라도 나누어 주시면 그것으로 살림을 꾸려 보겠습니다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-07",
+        "chapterId": "classic-heungbu-1",
+        "order": 7,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "네 가족은 네가 먹여 살려야지. 내 재산을 왜 너에게 나누어 주어야 하느냐?",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-08",
+        "chapterId": "classic-heungbu-1",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "많은 것을 바라는 것이 아닙니다. 가족이 몸 붙여 살 곳만이라도 마련해 주십시오.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-09",
+        "chapterId": "classic-heungbu-1",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "더 들을 것도 없다. 내 집에서 나가거라!",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-10",
+        "chapterId": "classic-heungbu-1",
+        "order": 10,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "결국 흥부는 아내와 아이들을 데리고 살던 집을 떠났다. 변변한 살림살이도 챙기지 못한 채였다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-11",
+        "chapterId": "classic-heungbu-1",
+        "order": 11,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "흥부 아내",
+        "text": "여보, 이제 어디에서 아이들과 살아야 하지요?",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-12",
+        "chapterId": "classic-heungbu-1",
+        "order": 12,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "우선 비바람을 피할 곳부터 마련합시다. 내가 무슨 일이든 해서 식구들을 먹여 살려 보겠소.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-13",
+        "chapterId": "classic-heungbu-1",
+        "order": 13,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부 가족은 마을 한쪽에 허름한 집을 마련했다. 놀부의 넓은 기와집과는 비교하기도 어려운 초라한 집이었다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-1-line-14",
+        "chapterId": "classic-heungbu-1",
+        "order": 14,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그날부터 형제의 삶은 전혀 다른 길로 흘러가기 시작했다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-01",
+        "chapterId": "classic-heungbu-2",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 가족을 먹여 살리기 위해 할 수 있는 일을 가리지 않았다. 남의 논밭을 갈고 장작을 패고 무거운 짐도 날랐다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": []
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-02",
+        "chapterId": "classic-heungbu-2",
+        "order": 2,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부 아내도 온종일 부지런히 일했다. 하지만 식구는 많고 품삯은 적었다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-03",
+        "chapterId": "classic-heungbu-2",
+        "order": 3,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "일거리가 없는 날이면 그날 먹을 양식을 마련하는 것조차 어려웠다. 곡식독은 자주 바닥을 드러냈다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "seonnyeo.background.BG09-room-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-04",
+        "chapterId": "classic-heungbu-2",
+        "order": 4,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "아이",
+        "text": "아버지, 오늘 저녁에는 밥을 먹을 수 있어요?",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG09-room-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-05",
+        "chapterId": "classic-heungbu-2",
+        "order": 5,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "조금만 기다리거라. 아버지가 먹을 것을 구해 오마.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG09-room-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-06",
+        "chapterId": "classic-heungbu-2",
+        "order": 6,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 한참을 망설이다 형 놀부의 집으로 향했다. 자신은 굶더라도 아이들까지 굶는 모습을 더는 보고 있기 어려웠다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-07",
+        "chapterId": "classic-heungbu-2",
+        "order": 7,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "형님, 아이들이 며칠째 제대로 먹지 못했습니다. 쌀을 조금만 빌려주십시오. 제가 품을 팔아서라도 꼭 갚겠습니다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-08",
+        "chapterId": "classic-heungbu-2",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "또 나에게 얻어먹으러 왔느냐? 네 식구를 먹여 살리는 것은 네 몫이다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-09",
+        "chapterId": "classic-heungbu-2",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "많이 필요하지 않습니다. 아이들 한 끼 먹일 만큼만이라도 부탁드립니다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-10",
+        "chapterId": "classic-heungbu-2",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "한 톨도 줄 수 없다. 어서 돌아가거라!",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.classic-gate-threshold",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-11",
+        "chapterId": "classic-heungbu-2",
+        "order": 11,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 쌀 한 줌 얻지 못한 채 놀부의 집에서 쫓겨났다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "",
+        "backgroundId": "onggojib.background.classic-closed-house",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-12",
+        "chapterId": "classic-heungbu-2",
+        "order": 12,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그 뒤에도 흥부는 일거리를 찾아 이 마을 저 마을을 돌아다녔다. 품팔이는 물론 돈을 벌 수 있다는 일이면 무엇이든 알아보았다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-13",
+        "chapterId": "classic-heungbu-2",
+        "order": 13,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "마을 사람",
+        "text": "고을에 대신 벌을 받아 주면 품삯을 주겠다는 사람이 있다더군. 하지만 쉬운 일은 아닐 걸세.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.neighbor",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.neighbor"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-14",
+        "chapterId": "classic-heungbu-2",
+        "order": 14,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 가족 생각에 그 일이라도 해 보려고 먼 길을 찾아갔다. 그러나 도착했을 때에는 이미 일이 끝난 뒤였다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-15",
+        "chapterId": "classic-heungbu-2",
+        "order": 15,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "오늘도 빈손이구나. 그래도 내일은 또 다른 일거리를 찾아봐야지.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "",
+        "backgroundId": "seonnyeo.background.BG05-cottage-snow",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-2-line-16",
+        "chapterId": "classic-heungbu-2",
+        "order": 16,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그렇게 어렵고 추운 겨울이 지나고, 어느덧 마을에 따뜻한 봄이 찾아왔다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-01",
+        "chapterId": "classic-heungbu-3",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "봄이 되자 남쪽에서 돌아온 제비들이 흥부네 집 처마 밑에 둥지를 틀었다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-3-line-01:audio:sound:sfx-swallow",
+              "assetId": "audio:sound:sfx-swallow",
+              "volume": 0.42
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-02",
+        "chapterId": "classic-heungbu-3",
+        "order": 2,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "얼마 뒤 둥지에서는 새끼 제비들이 태어났다. 흥부 가족은 작은 제비 가족을 보는 것을 즐거워했다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-03",
+        "chapterId": "classic-heungbu-3",
+        "order": 3,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "아이",
+        "text": "아버지, 제비가 또 먹이를 물고 왔어요!",
+        "leftAssetId": "heungbu.character.swallow",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-04",
+        "chapterId": "classic-heungbu-3",
+        "order": 4,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "새끼들을 키우느라 어미 제비도 무척 바쁘겠구나.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-05",
+        "chapterId": "classic-heungbu-3",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그러던 어느 날 처마 밑에서 갑자기 툭 하는 소리가 났다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-06",
+        "chapterId": "classic-heungbu-3",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "아이",
+        "text": "아버지! 새끼 제비 한 마리가 땅에 떨어졌어요!",
+        "leftAssetId": "heungbu.character.swallow",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-07",
+        "chapterId": "classic-heungbu-3",
+        "order": 7,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부가 살펴보니 새끼 제비는 한쪽 다리를 다쳐 제대로 움직이지 못하고 있었다.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-08",
+        "chapterId": "classic-heungbu-3",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "이 조그만 것이 얼마나 아플까. 그대로 두면 다시 날기도 어렵겠구나.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-09",
+        "chapterId": "classic-heungbu-3",
+        "order": 9,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 가느다란 나뭇조각을 다친 다리에 대고 조심스럽게 묶어 주었다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-3-line-09:audio:sound:sfx-cloth",
+              "assetId": "audio:sound:sfx-cloth",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-10",
+        "chapterId": "classic-heungbu-3",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "조금만 참고 있어라. 다리가 나으면 다시 하늘을 날 수 있을 것이다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-11",
+        "chapterId": "classic-heungbu-3",
+        "order": 11,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "며칠이 지나자 제비의 다리는 다시 나았다. 새끼 제비는 다른 제비들과 함께 힘차게 날아다니기 시작했다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-12",
+        "chapterId": "classic-heungbu-3",
+        "order": 12,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "가을이 찾아오자 제비들은 따뜻한 남쪽으로 떠났다. 흥부도 빈 둥지를 바라보며 제비들을 떠나보냈다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-13",
+        "chapterId": "classic-heungbu-3",
+        "order": 13,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "다시 겨울이 지나고 이듬해 봄이 되었다. 어느 날 제비 한 마리가 흥부네 마당 위를 빙빙 돌았다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-14",
+        "chapterId": "classic-heungbu-3",
+        "order": 14,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "제비는 흥부 앞에 작은 씨앗 하나를 떨어뜨리고 날아갔다. 조그마한 박씨였다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-3-line-14:audio:sound:sfx-swallow",
+              "assetId": "audio:sound:sfx-swallow",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-15",
+        "chapterId": "classic-heungbu-3",
+        "order": 15,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "흥부 아내",
+        "text": "지난해 다리를 고쳐 준 그 제비가 가져온 것 아닐까요?",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-16",
+        "chapterId": "classic-heungbu-3",
+        "order": 16,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "그런지도 모르겠구려. 박이 열리면 바가지라도 만들 수 있으니 한번 심어 봅시다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-3-line-17",
+        "chapterId": "classic-heungbu-3",
+        "order": 17,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부가 박씨를 심자 싹이 돋고 넝쿨이 빠르게 자랐다. 여름이 지나자 지붕 위에는 커다란 박들이 주렁주렁 열렸다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-01",
+        "chapterId": "classic-heungbu-4",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "가을이 되자 지붕 위의 박들이 크고 단단하게 익었다. 그러나 흥부네 살림은 여전히 어려웠다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-02",
+        "chapterId": "classic-heungbu-4",
+        "order": 2,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "흥부 아내",
+        "text": "여보, 이제 집에 쌀이 한 톨도 남지 않았어요.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-03",
+        "chapterId": "classic-heungbu-4",
+        "order": 3,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "그렇다면 박이라도 하나 타 봅시다. 박 속을 긁어 죽을 끓이면 오늘 한 끼는 넘길 수 있겠지요.",
+        "leftAssetId": "heungbu.character.heungbu-pleading",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-pleading"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-04",
+        "chapterId": "classic-heungbu-4",
+        "order": 4,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부 부부는 가장 잘 익은 박 하나를 내려 마당 가운데 놓았다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-05",
+        "chapterId": "classic-heungbu-4",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "슬근슬근, 슥삭슥삭. 흥부와 아내가 양쪽에서 톱을 잡고 박을 타기 시작했다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-4-line-05:audio:sound:sfx-gourd",
+              "assetId": "audio:sound:sfx-gourd",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-06",
+        "chapterId": "classic-heungbu-4",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "아이",
+        "text": "아버지, 안에서 무슨 소리가 나는 것 같아요!",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-07",
+        "chapterId": "classic-heungbu-4",
+        "order": 7,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "마침내 첫 번째 박이 쩍 갈라졌다. 그런데 박 속에서 쌀과 곡식이 와르르 쏟아져 나왔다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-4-line-07:audio:sound:sfx-crack",
+              "assetId": "audio:sound:sfx-crack",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-08",
+        "chapterId": "classic-heungbu-4",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "흥부 아내",
+        "text": "세상에! 쌀이에요. 이렇게 많은 쌀이 어디에서 나온 거죠?",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-09",
+        "chapterId": "classic-heungbu-4",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "아이들이 이제 배를 곯지 않아도 되겠구려. 우선 따뜻한 밥부터 지읍시다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-10",
+        "chapterId": "classic-heungbu-4",
+        "order": 10,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "가족은 놀란 마음으로 두 번째 박을 내려놓았다. 다시 톱질을 하자 이번에는 돈과 귀한 물건들이 쏟아져 나왔다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-11",
+        "chapterId": "classic-heungbu-4",
+        "order": 11,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "아이",
+        "text": "이번 박에서는 반짝반짝하는 것이 계속 나와요!",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.child-01",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.child-01",
+              "characterKey": "heungbu.child-01"
+            },
+            {
+              "key": "R2",
+              "assetId": "heungbu.character.child-02",
+              "characterKey": "heungbu.child-02"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-12",
+        "chapterId": "classic-heungbu-4",
+        "order": 12,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "세 번째 박에서도 살림에 필요한 물건과 재물이 이어졌다. 박을 열 때마다 흥부 가족에게 필요한 것들이 나타났다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-13",
+        "chapterId": "classic-heungbu-4",
+        "order": 13,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "흥부 아내",
+        "text": "제비가 정말 당신의 은혜를 갚으러 박씨를 가져왔던 모양이에요.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-14",
+        "chapterId": "classic-heungbu-4",
+        "order": 14,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "다친 것을 보고 도와준 것뿐인데 이런 일이 생길 줄은 꿈에도 몰랐소.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-15",
+        "chapterId": "classic-heungbu-4",
+        "order": 15,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 무너질 듯한 집을 고치고 가족이 지낼 넉넉한 집도 마련했다. 곡식독과 곳간도 채울 수 있게 되었다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        },
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-warmth",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-16",
+        "chapterId": "classic-heungbu-4",
+        "order": 16,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부 가족은 오랫동안 이어졌던 굶주림에서 벗어났다. 하지만 흥부는 어렵게 살던 때를 잊지 않았다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-17",
+        "chapterId": "classic-heungbu-4",
+        "order": 17,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "우리도 배고파 보았으니 어려운 사람의 사정을 잊지 말고 삽시다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-4-line-18",
+        "chapterId": "classic-heungbu-4",
+        "order": 18,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "가난하던 흥부가 큰 부자가 되었다는 이야기는 마을 곳곳으로 퍼졌다. 그리고 얼마 지나지 않아 그 소식이 놀부의 귀에도 들어갔다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.classic-closed-house",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-01",
+        "chapterId": "classic-heungbu-5",
+        "order": 1,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "흥부가 부자가 되었다고? 그 녀석이 무슨 재주로 큰돈을 벌었단 말이냐?",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.warm-room-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-02",
+        "chapterId": "classic-heungbu-5",
+        "order": 2,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 직접 확인하기 위해 흥부의 집을 찾아갔다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-03",
+        "chapterId": "classic-heungbu-5",
+        "order": 3,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "예전에 보았던 허름한 집 대신 넉넉한 새집이 서 있었다. 곳간에도 곡식이 가득했다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-04",
+        "chapterId": "classic-heungbu-5",
+        "order": 4,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "흥부야, 대체 무슨 일을 했기에 갑자기 이렇게 부자가 되었느냐?",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-05",
+        "chapterId": "classic-heungbu-5",
+        "order": 5,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "저도 뜻밖의 일이었습니다. 지난해 다친 제비의 다리를 고쳐 주었더니 이듬해 박씨 하나를 물어다 주었습니다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-06",
+        "chapterId": "classic-heungbu-5",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "그 씨에서 열린 박을 탔더니 곡식과 재물이 나왔습니다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-07",
+        "chapterId": "classic-heungbu-5",
+        "order": 7,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "제비 다리를 고쳐 준 것이 전부라고?",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-08",
+        "chapterId": "classic-heungbu-5",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "예. 하지만 보답을 받으려고 도와준 것은 아니었습니다. 다친 것을 보고 그냥 지나칠 수 없었을 뿐입니다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-09",
+        "chapterId": "classic-heungbu-5",
+        "order": 9,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그러나 놀부의 머릿속에는 흥부의 마지막 말보다 박 속에서 나온 재물만 가득했다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-10",
+        "chapterId": "classic-heungbu-5",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "제비 한 마리만 고쳐 주면 되는 일이었군. 그것이라면 나도 할 수 있지.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.warm-room-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-11",
+        "chapterId": "classic-heungbu-5",
+        "order": 11,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 집으로 돌아와 날마다 처마의 제비 둥지를 살폈다.",
+        "leftAssetId": "heungbu.character.swallow",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-12",
+        "chapterId": "classic-heungbu-5",
+        "order": 12,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "하지만 새끼 제비들은 아무 탈 없이 무럭무럭 자랐다. 기다리다 못한 놀부는 점점 조급해졌다.",
+        "leftAssetId": "heungbu.character.swallow",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-13",
+        "chapterId": "classic-heungbu-5",
+        "order": 13,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "멀쩡한 제비만 기다리다가는 언제 박씨를 얻는단 말이냐?",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-14",
+        "chapterId": "classic-heungbu-5",
+        "order": 14,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 마침내 새끼 제비 한 마리를 붙잡아 일부러 다리를 다치게 했다.",
+        "leftAssetId": "heungbu.character.swallow",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-15",
+        "chapterId": "classic-heungbu-5",
+        "order": 15,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "놀부 아내",
+        "text": "멀쩡한 제비를 왜 다치게 하는 거예요?",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-16",
+        "chapterId": "classic-heungbu-5",
+        "order": 16,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "다시 고쳐 주면 되지 않소? 흥부가 한 대로만 하면 우리에게도 박씨를 가져올 것이오.",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-17",
+        "chapterId": "classic-heungbu-5",
+        "order": 17,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 다친 다리를 묶어 준 뒤 제비가 날아가도록 놓아주었다. 그리고 다음 봄이 오기만을 기다렸다.",
+        "leftAssetId": "heungbu.character.swallow",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-18",
+        "chapterId": "classic-heungbu-5",
+        "order": 18,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "이듬해 봄, 정말로 제비 한 마리가 놀부의 마당에 박씨 하나를 떨어뜨렸다.",
+        "leftAssetId": "heungbu.character.swallow",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-5-line-18:audio:sound:sfx-swallow",
+              "assetId": "audio:sound:sfx-swallow",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-5-line-19",
+        "chapterId": "classic-heungbu-5",
+        "order": 19,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "드디어 왔구나! 흥부보다 몇 배는 더 큰 부자가 되어 보자!",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-01",
+        "chapterId": "classic-heungbu-6",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부가 심은 박씨에서도 기다란 넝쿨이 자랐다. 가을이 되자 지붕 위에는 큼직한 박들이 주렁주렁 열렸다.",
+        "leftAssetId": "heungbu.character.wife-nolbu",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-02",
+        "chapterId": "classic-heungbu-6",
+        "order": 2,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "저 박 속에 얼마나 많은 금은보화가 들어 있을까. 흥부의 박보다 훨씬 많이 나오면 좋겠구나!",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-03",
+        "chapterId": "classic-heungbu-6",
+        "order": 3,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 가장 큰 박부터 내려놓고 톱을 잡았다.",
+        "leftAssetId": "heungbu.character.wife-nolbu",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-04",
+        "chapterId": "classic-heungbu-6",
+        "order": 4,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "자, 나오너라! 금도 좋고 은도 좋다. 많으면 많을수록 좋다!",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-05",
+        "chapterId": "classic-heungbu-6",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "슥삭슥삭 톱질 끝에 첫 번째 박이 쩍 갈라졌다.",
+        "leftAssetId": "heungbu.character.wife-nolbu",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "seonnyeo.background.BG06-cottage-autumn",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-6-line-05:audio:sound:sfx-gourd",
+              "assetId": "audio:sound:sfx-gourd",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-06",
+        "chapterId": "classic-heungbu-6",
+        "order": 6,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그러나 곡식도 금은보화도 나오지 않았다. 험상궂은 사람들이 우르르 튀어나왔다.",
+        "leftAssetId": "heungbu.character.neighbor",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.neighbor"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-07",
+        "chapterId": "classic-heungbu-6",
+        "order": 7,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "너희들은 누구냐? 내 보물은 어디 있느냐?",
+        "leftAssetId": "heungbu.character.neighbor",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.neighbor"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-08",
+        "chapterId": "classic-heungbu-6",
+        "order": 8,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "사람들은 이런저런 빚과 값을 내놓으라며 놀부에게 돈을 요구했다. 놀부가 따질 틈도 없이 재물을 한몫씩 챙겨 사라졌다.",
+        "leftAssetId": "heungbu.character.neighbor",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.neighbor"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-09",
+        "chapterId": "classic-heungbu-6",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "놀부 아내",
+        "text": "이상해요. 박을 타서 재산이 늘기는커녕 줄어들고 있잖아요.",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-10",
+        "chapterId": "classic-heungbu-6",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "첫 번째 박만 잘못된 것이오. 다음 박에는 틀림없이 보물이 들어 있을 거요.",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-11",
+        "chapterId": "classic-heungbu-6",
+        "order": 11,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 두 번째 박을 탔다. 이번에도 박이 갈라지자 시끌벅적한 무리가 튀어나와 집 안을 뒤집어 놓았다.",
+        "leftAssetId": "heungbu.character.neighbor",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.neighbor"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-heungbu-6-line-11:audio:sound:sfx-crack",
+              "assetId": "audio:sound:sfx-crack",
+              "volume": 0.42
+            }
+          ]
+        },
+        "presentation": {
+          "effects": [
+            {
+              "id": "direction:classic-heungbu-6-line-11:shake",
+              "intensity": "soft",
+              "repeat": "once",
+              "scope": "cut",
+              "target": {
+                "kind": "background"
+              },
+              "trigger": "scene-enter",
+              "type": "shake"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-12",
+        "chapterId": "classic-heungbu-6",
+        "order": 12,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "세 번째 박에서는 또 다른 사람들이 몰려나왔다. 어떤 이는 돈을 요구하고 어떤 이는 물건을 가져가며 마당을 아수라장으로 만들었다.",
+        "leftAssetId": "heungbu.character.neighbor",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.neighbor"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-13",
+        "chapterId": "classic-heungbu-6",
+        "order": 13,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "놀부 아내",
+        "text": "이제 그만 타요! 남은 박이라도 그냥 버립시다!",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-14",
+        "chapterId": "classic-heungbu-6",
+        "order": 14,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "안 되오! 흥부의 박에서는 계속 재물이 나왔다 하지 않았소. 마지막 박에는 분명 큰 보물이 있을 것이오!",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-15",
+        "chapterId": "classic-heungbu-6",
+        "order": 15,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 손해를 보고도 멈추지 않았다. 남은 박을 하나씩 계속 내려 톱질했다.",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-16",
+        "chapterId": "classic-heungbu-6",
+        "order": 16,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "하지만 박을 탈 때마다 더 큰 소동이 벌어졌다. 애써 모은 돈과 곡식이 사라지고 살림살이도 망가졌다.",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-angry",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-angry"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-17",
+        "chapterId": "classic-heungbu-6",
+        "order": 17,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "마침내 마지막 박까지 갈라졌다. 그 박에서는 지독한 냄새가 나는 더러운 것들이 쏟아져 나와 집 안과 마당을 뒤덮었다.",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-18",
+        "chapterId": "classic-heungbu-6",
+        "order": 18,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "아이고, 내 재산! 내 집! 이게 대체 무슨 일이란 말이냐!",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-19",
+        "chapterId": "classic-heungbu-6",
+        "order": 19,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부가 평생 모아 온 재물은 거의 남지 않았다. 넉넉하던 살림은 하루아침에 엉망이 되고 말았다.",
+        "leftAssetId": "heungbu.character.wife-nolbu-shocked",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.wife-nolbu-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-20",
+        "chapterId": "classic-heungbu-6",
+        "order": 20,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부가 한 행동을 그대로 따라 하면 같은 복을 얻을 것이라고 생각했지만 처음부터 두 사람의 행동은 같지 않았다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-21",
+        "chapterId": "classic-heungbu-6",
+        "order": 21,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 다친 제비를 보고 도왔고, 놀부는 재물을 얻으려고 먼저 제비를 다치게 했다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-6-line-22",
+        "chapterId": "classic-heungbu-6",
+        "order": 22,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "모든 것을 잃은 놀부는 텅 빈 마당에 털썩 주저앉았다.",
+        "leftAssetId": "",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-01",
+        "chapterId": "classic-heungbu-7",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "얼마 뒤 흥부는 놀부가 박을 타다가 재산을 모두 잃었다는 소식을 들었다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu"
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-02",
+        "chapterId": "classic-heungbu-7",
+        "order": 2,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "흥부 아내",
+        "text": "형님이 당신에게 했던 일을 생각하면 마음이 편하지만은 않겠어요.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-03",
+        "chapterId": "classic-heungbu-7",
+        "order": 3,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "그렇소. 하지만 형님 가족이 먹을 것도 없이 지낸다니 그대로 모른 척할 수는 없구려.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.wife-heungbu-worried",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.wife-heungbu-worried"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-04",
+        "chapterId": "classic-heungbu-7",
+        "order": 4,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 먹을 것과 옷가지, 필요한 물건을 챙겨 놀부를 찾아갔다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "",
+        "backgroundId": "onggojib.background.snow-village-road-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-05",
+        "chapterId": "classic-heungbu-7",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "예전에 흥부를 대문 밖으로 내쫓던 놀부는 온데간데없었다. 놀부는 텅 빈 집터에 힘없이 앉아 있었다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-06",
+        "chapterId": "classic-heungbu-7",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "무엇 하러 왔느냐? 내가 너에게 한 일을 생각하면 너를 볼 낯도 없구나.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-07",
+        "chapterId": "classic-heungbu-7",
+        "order": 7,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "우선 일어나십시오, 형님. 배부터 채우고 앞으로 살아갈 일을 생각해야 하지 않겠습니까.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-08",
+        "chapterId": "classic-heungbu-7",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "네가 굶을 때 나는 쌀 한 줌 주지 않았다. 부모님이 남긴 재산도 내가 차지하고 네 가족을 집에서 내보냈지.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-09",
+        "chapterId": "classic-heungbu-7",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "그런데 내가 모든 것을 잃으니 네가 가장 먼저 찾아오는구나.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-10",
+        "chapterId": "classic-heungbu-7",
+        "order": 10,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부는 자신이 흥부에게 했던 일과 제비에게 한 일을 하나씩 떠올렸다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-11",
+        "chapterId": "classic-heungbu-7",
+        "order": 11,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "놀부",
+        "text": "흥부야, 내가 잘못했다. 재물을 많이 가지는 것만 생각하다가 동생도 다른 사람도 제대로 보지 못했구나.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-12",
+        "chapterId": "classic-heungbu-7",
+        "order": 12,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "흥부",
+        "text": "지난 일을 되돌릴 수는 없습니다. 하지만 앞으로 살아가는 모습은 바꿀 수 있지 않겠습니까?",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-13",
+        "chapterId": "classic-heungbu-7",
+        "order": 13,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 놀부 가족이 다시 살아갈 수 있도록 곡식과 재물을 나누어 주었다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.nolbu-remorse",
+        "backgroundId": "onggojib.background.classic-open-house-empty",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-remorse"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-14",
+        "chapterId": "classic-heungbu-7",
+        "order": 14,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "놀부도 이전처럼 자신의 재산만 움켜쥐고 살지 않으려고 노력했다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-15",
+        "chapterId": "classic-heungbu-7",
+        "order": 15,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "한동안 멀어져 있던 두 형제는 다시 서로의 집을 오가기 시작했다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-16",
+        "chapterId": "classic-heungbu-7",
+        "order": 16,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "다친 제비 한 마리에서 시작된 일은 흥부와 놀부의 삶을 모두 크게 바꾸어 놓았다.",
+        "leftAssetId": "heungbu.character.heungbu-default",
+        "rightAssetId": "heungbu.character.swallow",
+        "backgroundId": "seonnyeo.background.BG04-cottage-day",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-default"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.swallow"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-17",
+        "chapterId": "classic-heungbu-7",
+        "order": 17,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "흥부는 아무런 보답을 바라지 않은 행동으로 뜻밖의 복을 얻었고, 놀부는 그 결과만 탐내어 행동을 흉내 냈다가 가진 것을 잃었다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-18",
+        "chapterId": "classic-heungbu-7",
+        "order": 18,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그러나 이야기는 놀부가 벌을 받는 데서 끝나지 않았다. 흥부가 다시 손을 내밀고 놀부가 자신의 잘못을 뉘우치면서 두 사람은 다시 형제로 살아갈 수 있게 되었다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-heungbu-7-line-19",
+        "chapterId": "classic-heungbu-7",
+        "order": 19,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그 뒤 흥부와 놀부는 서로 도우며 오래도록 화목하게 살았다고 한다.",
+        "leftAssetId": "heungbu.character.heungbu-happy",
+        "rightAssetId": "heungbu.character.nolbu-default",
+        "backgroundId": "onggojib.background.spring-courtyard-pixel",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "heungbu.character.heungbu-happy"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "heungbu.character.nolbu-default"
+            }
+          ]
+        }
+      }
+    ],
+    "updatedAt": "원작 읽기 기준본"
+  }
+}

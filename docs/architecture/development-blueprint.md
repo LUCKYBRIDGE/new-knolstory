@@ -11,10 +11,10 @@
 |---|---|---|
 | Ren'Py 위험 확인 | 7~9단계에서 처음 Ren'Py 실행 | M1에서 spike로 앞당김 ([계획](renpy-web-spike-plan.md)) |
 | 재생 상태 소유 | 미정 | Web 호스트의 runtime-core가 소유, Ren'Py는 presenter ([ADR 0014](../decisions/0014-renpy-web-host-and-bridge-model.md)) |
-| 숏스토리·HTML·Excel | 언급 없음 | 숏스토리 Web 유지(예외), 오프라인 HTML 폐기→공유 링크, Excel 승계 ([ADR 0009](../decisions/0009-product-scope-shortstory-and-exports.md)) |
-| 운영 전환 | 언급 없음 | 같은 도메인 교체 + 로컬 자동 마이그레이션 ([ADR 0010](../decisions/0010-service-cutover-and-local-data-migration.md)) |
+| 숏스토리·HTML·Excel | 언급 없음 | 숏스토리 Web 유지(예외), 오프라인 HTML 폐기→공유 링크, Next 형식 Excel/시트 지원 ([ADR 0009](../decisions/0009-product-scope-shortstory-and-exports.md)) |
+| 최초 출시 | 언급 없음 | `story.knolquiz.com` 독립 출시 + 기존 작품 파일 가져오기 ([ADR 0010](../decisions/0010-service-cutover-and-local-data-migration.md)) |
 | 레거시 운영 | “안정 기준점” | 기능 동결 + forward-port 로그 ([ADR 0011](../decisions/0011-legacy-freeze-and-forward-port.md)) |
-| 서버 | 폴더만 존재 | 레거시 server 승계 (기본 가정) |
+| 서버 | 폴더만 존재 | 새 DB로 독립 개발, 기존 구현·정책 재사용 검토 (추천안) |
 | 도구 | 미정 | pnpm + Turborepo + Next 정적 + Vitest/Playwright ([ADR 0012](../decisions/0012-toolchain-and-monorepo.md)) |
 | 대상 기기·성능 | 미정 | Tier 1/2 + 예산 ([ADR 0013](../decisions/0013-target-devices-and-performance-budget.md)) |
 | 접근성 | 원칙만 | canvas 대응 DOM 의미 계층 ([ADR 0015](../decisions/0015-accessible-story-text-layer.md)) |
@@ -53,21 +53,22 @@ Server (server/): 인증 · 권한 · 학급 · 과제 · 제출 · 게시 · �
 | 읽기 연속성 (경로·이어읽기·표지/종료) | PRESERVE | `runtime-core`, `apps/web` |
 | 숏스토리 (Reader/Editor/.shortstory/A4 인쇄) | PRESERVE (Web) | `apps/web` |
 | 놀스토리·숏스토리 오프라인 HTML 내보내기 | RETIRE → 공유 링크 | — |
-| Excel 8탭 / 4탭, 공개 Google 시트 읽기 | PRESERVE | `compatibility` |
+| Excel / 공개 Google 시트 읽기 (Next 형식 기준, 구형 탭 구조 고정 없음) | REFINE | `compatibility` |
 | 로컬 저장 (기기당 2개, 체크포인트, 되돌리기, 자동 저장) | PRESERVE 의미 / REFINE | `apps/web` |
-| 서버 (PostgreSQL, Kakao OIDC, 교사 승인코드, Outbox, 관리자 분리) | PRESERVE (기본 가정) | `server/` |
+| 서버 (PostgreSQL, Kakao OIDC, 교사 승인코드, Outbox, 관리자 분리) | 재사용 후보 / REFINE (추천안). 새 DB·Next 계약으로 독립 개발 | `server/` |
 | 대표 작품 (선녀, 흥부, 옹고집, 별주부) | PRESERVE (fixture + 기본 콘텐츠) | `assets/`, `tests/fixtures` |
 
 ## 마일스톤
 
 각 마일스톤은 **종료 조건을 만족해야 완료**다. M1의 두 트랙은 병행한다.
 
-### M0 — 기반 문서 (현재)
-- 종료: ADR 0001~0015, DESIGN.md, Blueprint v1.4, STATUS의 열린 질문 정리. 소유자 확인.
+### M0 — 기반 문서
+- 종료: ADR 0001~0015, DESIGN.md, Blueprint v1.4, STATUS의 정책 질문 정리.
+- 2026-10-06 확인: Excel/시트는 Next 형식으로 지원, Chrome 우선·Safari 제외, 최종 도메인 `story.knolquiz.com`. 레거시 정식 서비스가 없었으므로 독립 개발·최초 출시로 진행한다. 서버 재사용 검토는 M1을 막지 않는다.
 
 ### M1 — 골격과 위험 확인 (병행)
 - **M1a 모노레포**: pnpm/Turborepo, Next 정적 앱 빈 화면, 패키지 골격, CI(typecheck/lint/unit), 의존 방향 검사
-- **M1b Ren'Py spike**: [spike 계획](renpy-web-spike-plan.md) S1~S10
+- **M1b Ren'Py spike**: [spike 계획](renpy-web-spike-plan.md) S1~S12. 고정 논리 Stage + responsive editor shell + viewportGeneration bridge를 검증한다
 - 종료: CI green, spike 결과 문서, ADR 0013·0014 확정
 
 ### M2 — 도메인과 호환
@@ -98,12 +99,12 @@ Server (server/): 인증 · 권한 · 학급 · 과제 · 제출 · 게시 · �
 - 종료: 4개 기본 작품의 연출 구간이 의미상 동등 (아래 “시각 동등성” 기준)
 
 ### M8 — 주변 기능
-- 숏스토리(Web), Excel/시트, 로컬 저장 체계, 서버 연동(계정·학급·과제·제출·게시·공유 링크)
+- 숏스토리(Web), Next 형식 Excel/시트 어댑터, 로컬 저장 체계, 서버 연동(계정·학급·과제·제출·게시·공유 링크)
 - 종료: 레거시 기능별 분류표의 PRESERVE 항목 전부 동작
 
-### M9 — 전환
-- 로컬 자동 마이그레이션 (ADR 0010), release gate, 운영 교체, 롤백 리허설
-- 종료: 운영 도메인 교체 완료, 레거시 Web 렌더러 코드가 new-knolstory에 없음
+### M9 — 최초 출시
+- 작품 파일 가져오기·저장 검증 (ADR 0010), release gate, `story.knolquiz.com` 배포, Next 백업·복원 검증
+- 종료: 새 서비스 도메인 배포 완료, 레거시 Web 렌더러 코드가 new-knolstory에 없음. 기존 DB 이전·로컬 자동 이전은 필요해질 때 별도 범위로 진행
 
 ## 시각 동등성(Visual parity) 정의
 
@@ -115,12 +116,12 @@ Server (server/): 인증 · 권한 · 학급 · 과제 · 제출 · 게시 · �
 
 ## 완성 정의 (KnolStory Next 1.0)
 
-- 레거시 baseline에서 만든 모든 작품 파일·로컬 작품이 의미 손실 없이 열리고 재생된다
+- 레거시 baseline의 작품 파일을 의미 손실 없이 가져와 재생한다. 기존 로컬 작품은 파일로 이전하며 자동 저장소 이전은 필수 조건이 아니다
 - Editor Stage = Preview = Player = 제출 뷰어 = 공유 링크 = Ren'Py Web Runtime
 - 놀스토리 장·컷 작품을 위한 Web 렌더러가 존재하지 않는다 (숏스토리 예외만 존재)
 - Tier 1 기기에서 편집·플레이, Tier 2 기기에서 플레이·핵심 편집이 성능 예산 안에서 동작한다
 - 키보드·스크린리더로 이야기를 읽고 선택할 수 있다
-- 운영 도메인이 교체됐고, 롤백 절차가 검증됐다
+- `story.knolquiz.com`에 새 서비스가 출시됐고, Next 백업·복원 절차가 검증됐다
 
 ## 금지사항
 
@@ -131,3 +132,7 @@ v1.3 금지사항을 그대로 유지하고 다음을 추가한다.
 - 레거시 로컬 저장소 원본을 삭제·수정하지 않음
 - 문서·스크립트에 로컬 절대 경로를 쓰지 않음
 - `story-maker`에 신규 기능을 추가하지 않음
+
+## 2026-10-07 구도·연출·오디오 확장
+
+고정16:9 M1b probe 이후, 사용자 요청에 따라 실제 이야기 표시 영역과 대표 구도 미리보기를 Runtime Core/동일 Ren’Py 인스턴스에 연결했다. 오디오 ID·장 기본/컷 지시·사용자 파일 첨부·인물 motion을 추가했다. 해당 목표의 계약·호환·검증 범위는 [반응형 오디오 제작](responsive-audio-authoring.md)에 기록한다. 학교 Android 실기기와 M1 성능/운영 전체 완료를 의미하지 않는다.

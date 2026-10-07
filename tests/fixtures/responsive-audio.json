@@ -1,0 +1,304 @@
+{
+  "id": "responsive-audio",
+  "title": "숲에서 고르는 두 길",
+  "description": "모바일 구도와 음악·효과음을 확인하는 짧은 분기 이야기",
+  "planning": {
+    "premise": "",
+    "material": "",
+    "theme": "",
+    "mainCharacter": "",
+    "mainGoal": "",
+    "centralProblem": "",
+    "stakes": "",
+    "endingChange": "",
+    "opening": "",
+    "middle": "",
+    "crisis": "",
+    "climax": "",
+    "ending": "",
+    "characterNotes": "",
+    "worldNotes": "",
+    "mood": "",
+    "openQuestions": "",
+    "freeNotes": "콘텐츠 기준: docs/review-main-004-seonnyeo-namukkun/01-통합-상세대본.md\n선택 기억을 기존 컷 분기로 풀어낸 편집본입니다. 같은 장면의 조건별 변형이 별도 장으로 표시될 수 있습니다.\n장면별 배경과 인물 이미지를 내장 자산 ID로 연결했습니다. 이 이미지 팩이 등록된 story-maker에서 열 수 있습니다. Stage Composition v1으로 같은 공간의 인물과 선택지 무대를 보존합니다.",
+    "structureMode": "five"
+  },
+  "creativeMemos": [],
+  "sheetUrl": "",
+  "sheetEditable": false,
+  "speakerNames": [
+    "아이",
+    "어른",
+    "나"
+  ],
+  "chapters": [
+    {
+      "id": "forest",
+      "order": 1,
+      "title": "숲의 갈림길",
+      "summary": "",
+      "purpose": "",
+      "mood": "",
+      "keyEvents": "",
+      "nextChapterIdea": "",
+      "storyStageKeys": [],
+      "chapterSpeakerNames": [
+        "아이",
+        "어른",
+        "나"
+      ],
+      "characterAssetIds": [],
+      "backgroundAssetIds": [],
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "leftAssetId": "",
+      "rightAssetId": "",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.45,
+          "loop": true,
+          "fadeInMs": 250
+        },
+        "sounds": [
+          {
+            "id": "chapter-step",
+            "assetId": "audio:sound:step",
+            "volume": 0.4,
+            "delayMs": 0
+          }
+        ]
+      }
+    }
+  ],
+  "lines": [
+    {
+      "id": "opening",
+      "chapterId": "forest",
+      "order": 1,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "아이",
+      "text": "아이와 어른은 숲의 두 길 앞에 섰다.",
+      "leftAssetId": "",
+      "rightAssetId": "",
+      "backgroundId": "",
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "",
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "child",
+            "assetId": "onggojib.character.child-pixel",
+            "facing": "original"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "adult",
+            "assetId": "onggojib.character.classic-master",
+            "facing": "original"
+          }
+        ],
+        "speakerActorKey": "child"
+      },
+      "audio": {
+        "sounds": [
+          {
+            "id": "bell",
+            "assetId": "audio:sound:chime",
+            "volume": 0.6
+          }
+        ]
+      },
+      "presentation": {
+        "backgroundFocal": {
+          "x": 0.55,
+          "y": 0.4
+        },
+        "effects": [
+          {
+            "type": "flash",
+            "intensity": "soft",
+            "trigger": "scene-enter"
+          }
+        ]
+      }
+    },
+    {
+      "id": "center",
+      "chapterId": "forest",
+      "order": 2,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "아이",
+      "text": "나는 가운데 선 아이에게 어느 길로 갈지 물었다.",
+      "leftAssetId": "",
+      "rightAssetId": "",
+      "backgroundId": "",
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "",
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "child",
+            "assetId": "onggojib.character.child-pixel",
+            "facing": "original",
+            "position": "center"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "child"
+      },
+      "audio": {
+        "music": {
+          "action": "maintain"
+        }
+      },
+      "presentation": {
+        "transition": {
+          "type": "fade-black",
+          "durationMs": 300,
+          "mode": "auto"
+        }
+      }
+    },
+    {
+      "id": "empty",
+      "chapterId": "forest",
+      "order": 3,
+      "type": "narration",
+      "speaker": "narration",
+      "speakerName": "",
+      "text": "인적 없는 길에 발걸음 소리만 울렸다.",
+      "leftAssetId": "",
+      "rightAssetId": "",
+      "backgroundId": "",
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "",
+      "stageComposition": {
+        "leftActors": [],
+        "rightActors": []
+      },
+      "audio": {
+        "sounds": [
+          {
+            "id": "step",
+            "assetId": "audio:sound:step",
+            "volume": 0.5,
+            "delayMs": 150
+          }
+        ]
+      }
+    },
+    {
+      "id": "pov",
+      "chapterId": "forest",
+      "order": 4,
+      "type": "dialogue",
+      "speaker": "narration",
+      "speakerName": "나",
+      "text": "나는 마음이 이끄는 길을 골랐다.",
+      "leftAssetId": "",
+      "rightAssetId": "",
+      "backgroundId": "",
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "",
+      "stageComposition": {
+        "leftActors": [],
+        "rightActors": []
+      },
+      "backgroundMode": "none",
+      "flow": {
+        "type": "choice",
+        "options": [
+          {
+            "id": "light",
+            "label": "밝은 숲으로",
+            "targetLineId": "end-light"
+          },
+          {
+            "id": "night",
+            "label": "밤의 길로",
+            "targetLineId": "end-night"
+          }
+        ]
+      }
+    },
+    {
+      "id": "end-light",
+      "chapterId": "forest",
+      "order": 5,
+      "type": "narration",
+      "speaker": "narration",
+      "speakerName": "",
+      "text": "밝은 숲에서 우리의 여행이 끝났다.",
+      "leftAssetId": "",
+      "rightAssetId": "",
+      "backgroundId": "",
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "",
+      "stageComposition": {
+        "leftActors": [],
+        "rightActors": []
+      },
+      "audio": {
+        "music": {
+          "action": "stop",
+          "fadeOutMs": 300
+        }
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": null
+      }
+    },
+    {
+      "id": "end-night",
+      "chapterId": "forest",
+      "order": 6,
+      "type": "dialogue",
+      "speaker": "right",
+      "speakerName": "어른",
+      "text": "밤의 길에서 새로운 이야기를 기다렸다.",
+      "leftAssetId": "",
+      "rightAssetId": "",
+      "backgroundId": "",
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "",
+      "stageComposition": {
+        "leftActors": [],
+        "rightActors": [
+          {
+            "key": "adult",
+            "assetId": "onggojib.character.classic-master",
+            "facing": "original",
+            "position": "center"
+          }
+        ],
+        "speakerActorKey": "adult"
+      },
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:night",
+          "volume": 0.35,
+          "loop": true,
+          "fadeInMs": 200,
+          "fadeOutMs": 200
+        }
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": null
+      }
+    }
+  ],
+  "updatedAt": "pinky-ne-site 804fe9f"
+}

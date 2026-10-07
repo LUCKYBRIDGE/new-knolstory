@@ -1,0 +1,73 @@
+{
+  "criteria": [
+    {
+      "criterion": "A",
+      "result": "verified",
+      "evidence": [
+        "library-desktop.png",
+        "library-phone.png",
+        "run-summary.json"
+      ],
+      "details": "Two UI-created works and one imported file; separate own/imported/examples cards and reopen actions."
+    },
+    {
+      "criterion": "B",
+      "result": "verified",
+      "evidence": [
+        "preparation-desktop.png",
+        "preparation-tablet.png",
+        "preparation-phone.png",
+        "moonlight-letter.knolstory"
+      ],
+      "details": "Info/author/subtitle/note/basic assets and theme/layout, seven core planning fields, whole/chapter/cut memo, linked edit jump, manuscript two cuts."
+    },
+    {
+      "criterion": "C",
+      "result": "verified",
+      "evidence": [
+        "tests/e2e/local-library.spec.ts",
+        "workspace-storage.test.ts"
+      ],
+      "details": "Per-work editor position and native read resume; shelf/refresh transitions; immutable preserved original/corrupt read protection; sample copy and duplicate-file original protection."
+    },
+    {
+      "criterion": "D",
+      "result": "verified",
+      "evidence": [
+        "moonlight-letter.knolstory",
+        "forest-library.knolstory",
+        "tests/e2e/local-library.spec.ts"
+      ],
+      "details": "Post-reload export, clean Chrome context import of both new preparation and rich12-cut archive, exact full project and audio-resource equality; original lines/chapters/cover/id unchanged."
+    },
+    {
+      "criterion": "E",
+      "result": "verified",
+      "evidence": [
+        "verification-results.json"
+      ],
+      "details": "Chrome154 PC1280x900/tablet1024x768/phone390x844; existing full host/native and ShortStory regression; tests/types/lint/build."
+    },
+    {
+      "criterion": "F",
+      "result": "verified",
+      "evidence": [
+        "issues.json",
+        "run-summary.json",
+        "local-library-and-preparation.md"
+      ],
+      "details": "Actual screenshots, three portable files, issues and limits, verification results saved in existing architecture/evidence structure."
+    }
+  ],
+  "invariants": [
+    "StoryDocument remains content SSOT",
+    "No alternate story renderer; persistent Core to RenPy runtime",
+    "Legacy storygame keys/IDB are untouched",
+    "Advanced cover/memo data preserved; explicit relink only updates linked scope"
+  ],
+  "limits": [
+    "Browser viewport conditions, not actual school hardware performance",
+    "Advanced cover editing/start-cover not included",
+    "Independent review interrupted by agent usage limit; root performed source review"
+  ]
+}

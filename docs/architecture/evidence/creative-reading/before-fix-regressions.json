@@ -1,0 +1,32 @@
+[
+  {
+    "issue": "UX-01",
+    "beforeFix": "Regression failed before production fix",
+    "test": "reading-surface.spec.ts >> reading gives the stage full width and keeps an exit while runtime is preparing",
+    "failure": "```\nError: expect(locator).toBeHidden() failed\n\nLocator:  getByRole('complementary', { name: '장과 컷 목록' })\nExpected: hidden\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n  - Expect \"toBeHidden\" getByRole('complementary', { name: '장과 컷 목록' }) with timeout 5000ms\n  - waiting for getByRole('complementary', { name: '장과 컷 목록' })\n    14 × locator resolved to <aside aria-label=\"장과 컷 목록\" class=\"story-workspace-module__gRDfJG__cuts\">…</aside>\n       - unexpected value \"visible\"\n\n```"
+  },
+  {
+    "issue": "UX-02",
+    "beforeFix": "Regression failed before production fix",
+    "test": "reading-surface.spec.ts >> choice-created chapters receive branch identity immediately",
+    "failure": "```\nError: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('complementary', { name: '장과 컷 목록' })\nExpected substring: \"2장A\"\nReceived string:    \"이야기 구성작품 제목장 제목새 장 추가새 컷을 쓴 뒤 선택지의 도착 컷을 연결하세요. 갈래의 마지막 컷은 ‘이야기 끝’으로 지정해요.1장 · 첫 번째 장 · 1컷1컷 · 해설 ·  ↗ 선택2장 · 새 장 · 1컷1컷 · 해설 · \"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('complementary', { name: '장과 컷 목록' }) with timeout 5000ms\n  - waiting for getByRole('complementary', { name: '장과 컷 목록' })\n    14 × locator resolved to <aside aria-label=\"장과 컷 목록\" class=\"story-workspace-module__gRDfJG__cuts\">…</aside>\n       - unexpected value \"이야기 구성작품 제목장 제목새 장 추가새 컷을 쓴 뒤 선택지의 도착 컷을 연결하세요. 갈래의 마지막 컷은 ‘이야기 끝’으로 지정해요.1장 · 첫 번째 장 · 1컷1컷 · 해설 ·  ↗ 선택2장 · 새 장 · 1컷1컷 · 해설 · \"\n\n```"
+  },
+  {
+    "issue": "UX-04",
+    "beforeFix": "Regression failed before production fix",
+    "test": "reading-surface.spec.ts >> current cut exposes outgoing destination and local chapter cut count",
+    "failure": "```\nTest timeout of 120000ms exceeded.\n```\n\n```\nError: locator.click: Test timeout of 120000ms exceeded.\nCall log:\n  - waiting for getByText('이 컷에서 나가는 연결 1개', { exact: true })\n\n```"
+  },
+  {
+    "issue": "UX-06",
+    "beforeFix": "Regression failed before production fix",
+    "test": "reading-surface.spec.ts >> landscape reading fits the complete runtime viewport above the screen edge",
+    "failure": "```\nError: expect(received).toBeLessThanOrEqual(expected)\n\nExpected: <= 390\nReceived:    419.734375\n```"
+  },
+  {
+    "issue": "UX-08",
+    "beforeFix": "Regression failed before production fix",
+    "test": "reading-surface.spec.ts >> portrait reading keeps dialogue and choices inside the visible runtime area",
+    "failure": "```\nError: expect(received).toBeLessThanOrEqual(expected)\n\nExpected: <= 844\nReceived:    1001.21875\n```"
+  }
+]

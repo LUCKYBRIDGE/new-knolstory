@@ -1,0 +1,89 @@
+
+> knolstory-next@ test:e2e <workspace>
+> playwright test --project=host --output=/tmp/book-full-host-final
+
+
+Running 75 tests using 1 worker
+
+(node:69799) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/authoring.spec.ts:61:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip (8.2s)
+  -   2 [host] › tests/e2e/authoring.spec.ts:94:1 › newly authored branching work renders real assets and both native Ren’Py choices reach endings
+  ✓   3 [host] › tests/e2e/authoring.spec.ts:136:1 › blank creation preserves existing work and structural editing retains choice identities (13.4s)
+  ✓   4 [host] › tests/e2e/authoring.spec.ts:184:1 › explicit save retries a failed device write while preserving the draft (5.9s)
+  ✓   5 [host] › tests/e2e/authoring.spec.ts:207:1 › corrupt stored workspace remains untouched while switching and importing file-only drafts (4.0s)
+  ✓   6 [host] › tests/e2e/chapter-branch-identity.spec.ts:6:1 › chapter identity and extended branch cuts survive editor, file export and reload (4.8s)
+  ✓   7 [host] › tests/e2e/composition-intent.spec.ts:108:1 › composition authoring separates body scale, center, original facing and actor exits through files (10.3s)
+  -   8 [host] › tests/e2e/composition-intent.spec.ts:135:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes
+  ✓   9 [host] › tests/e2e/existing-story-enhancement.spec.ts:3:1 › existing originals are directly readable beside KnolStory works (1.6s)
+  ✓  10 [host] › tests/e2e/flow-authoring.spec.ts:76:1 › flow overview navigates nested branches and diagnoses pending and unreachable cuts without losing authored content (9.9s)
+  -  11 [host] › tests/e2e/flow-authoring.spec.ts:149:1 › native Ren’Py follows all six nested and merged routes to two independent endings with a persistent renderer
+  ✓  12 [host] › tests/e2e/flow-authoring.spec.ts:184:1 › large inherited work can find and edit a cut beyond the initial chapter page (2.5s)
+  ✓  13 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:50:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px (19.4s)
+  ✓  14 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:50:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px (19.0s)
+  -  15 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:59:1 › new manuscript story survives files and reaches both endings in native RenPy
+  ✓  16 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:66:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px (7.8s)
+  ✓  17 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:66:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px (8.1s)
+  -  18 [host] › tests/e2e/local-library.spec.ts:98:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome
+  ✓  19 [host] › tests/e2e/local-library.spec.ts:204:1 › library keeps blank planning optional and separates examples from a UI-created work (5.6s)
+  ✓  20 [host] › tests/e2e/local-library.spec.ts:225:1 › previous device workspace opens in library without changing its authored content or legacy keys (2.5s)
+  ✓  21 [host] › tests/e2e/local-library.spec.ts:254:1 › corrupt device storage is kept intact while UI-created recovery work can be exported (1.8s)
+  ✓  22 [host] › tests/e2e/local-library.spec.ts:279:1 › example preparation makes an independent own copy and duplicate import keeps the original (3.6s)
+  ✓  23 [host] › tests/e2e/media-provenance.spec.ts:4:1 › existing-work audio source and rights records travel with the original bytes (8.3s)
+  ✓  24 [host] › tests/e2e/mobile-authoring.spec.ts:92:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change (10.2s)
+  -  25 [host] › tests/e2e/mobile-authoring.spec.ts:186:1 › phone file-restored work renders real assets and both native Ren’Py endings with one iframe
+  ✓  26 [host] › tests/e2e/presentation-polish.spec.ts:77:1 › presentation controls provide an explicit current-cut preview action without changing stored composition (2.6s)
+  -  27 [host] › tests/e2e/presentation-polish.spec.ts:103:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+  -  28 [host] › tests/e2e/presentation-polish.spec.ts:146:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+  ✓  29 [host] › tests/e2e/reading-surface.spec.ts:3:1 › reading gives the stage full width and keeps an exit while runtime is preparing (1.9s)
+  ✓  30 [host] › tests/e2e/reading-surface.spec.ts:16:1 › current cut exposes outgoing destination and local chapter cut count (1.7s)
+  ✓  31 [host] › tests/e2e/reading-surface.spec.ts:26:1 › choice-created chapters receive branch identity immediately (1.6s)
+  ✓  32 [host] › tests/e2e/reading-surface.spec.ts:35:1 › landscape reading fits the complete runtime viewport above the screen edge (1.3s)
+  ✓  33 [host] › tests/e2e/reading-surface.spec.ts:41:1 › portrait reading keeps dialogue and choices inside the visible runtime area (1.4s)
+  ✓  34 [host] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 1280px (9.0s)
+  ✓  35 [host] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 390px (9.4s)
+  -  36 [host] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches
+  -  37 [host] › tests/e2e/responsive-audio-authoring.spec.ts:159:1 › delivered portable branching demo opens with embedded audio and plays both native endings
+  -  38 [host] › tests/e2e/responsive-audio-authoring.spec.ts:184:1 › ending keeps the last entrance confirmed and does not replay its sounds
+  ✓  39 [host] › tests/e2e/responsive-editor.spec.ts:3:1 › draft and the same iframe survive panel changes and portrait/landscape resize (387ms)
+  ✓  40 [host] › tests/e2e/responsive-editor.spec.ts:21:1 › logical actor coordinates survive viewport changes (283ms)
+  ✓  41 [host] › tests/e2e/runtime-unavailable.spec.ts:3:1 › runtime load failure preserves authored text without a substitute stage (329ms)
+  ✓  42 [host] › tests/e2e/shortstory.spec.ts:3:1 › ShortStory edits static pages, saves, restores files and prints without runtime (1.0s)
+  ✓  43 [host] › tests/e2e/shortstory.spec.ts:28:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected (830ms)
+  ✓  44 [host] › tests/e2e/stories.spec.ts:5:3 › 선녀와 나무꾼: representative text edits survive reload and file roundtrip (8.4s)
+  ✓  45 [host] › tests/e2e/stories.spec.ts:5:3 › 흥부와 놀부: representative text edits survive reload and file roundtrip (4.2s)
+  ✓  46 [host] › tests/e2e/stories.spec.ts:5:3 › 옹고집전: representative text edits survive reload and file roundtrip (4.4s)
+  ✓  47 [host] › tests/e2e/stories.spec.ts:5:3 › 별주부전: representative text edits survive reload and file roundtrip (4.1s)
+  ✓  48 [host] › tests/e2e/stories.spec.ts:30:1 › persistent story runtime and current edit survive narrow screen changes (2.2s)
+  ✓  49 [host] › tests/e2e/stories.spec.ts:54:1 › malformed import preserves current work and explains the error (1.9s)
+  ✓  50 [host] › tests/e2e/stories.spec.ts:72:1 › edits stay separate when switching representative works (2.8s)
+  ✓  51 [host] › tests/e2e/stories.spec.ts:85:1 › unfinished links and explicit endings remain distinct in playback (7.1s)
+  ✓  52 [host] › tests/e2e/stories.spec.ts:103:1 › importing a different work preserves edits in the outgoing representative work (3.6s)
+  ✓  53 [host] › tests/e2e/stories.spec.ts:126:3 › empty imported document leaves the editor intact (2.0s)
+  ✓  54 [host] › tests/e2e/stories.spec.ts:126:3 › unknown-asset imported document leaves the editor intact (2.1s)
+  ✓  55 [host] › tests/e2e/stories.spec.ts:161:1 › reading position and branch history resume after reload (6.8s)
+  ✓  56 [host] › tests/e2e/vn-workflow.spec.ts:8:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields (3.2s)
+  -  57 [host] › tests/e2e/vn-workflow.spec.ts:20:1 › native portrait single speaker, slots and actual-path backlog restore both routes
+  -  58 [host] › tests/e2e/vn-workflow.spec.ts:36:1 › changed-work slots show saved excerpt and require explicit compatible restore
+  -  59 [host] › tests/e2e/vn-workflow.spec.ts:47:1 › numbered real-asset branch chapters play A and B then join without crossing routes
+(node:70893) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  60 [host] › tests/e2e/entry-cover.spec.ts:3:1 › first browser entry introduces existing books, return enters library and introduction remains reachable (7.9s)
+  ✓  61 [host] › tests/e2e/entry-cover.spec.ts:25:113 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration (8.9s)
+  ✓  62 [host] › tests/e2e/entry-cover.spec.ts:25:113 › heungbu: full cover draft, cancellation, layered editing and archive restoration (8.8s)
+  -  63 [host] › tests/e2e/entry-cover.spec.ts:56:1 › all eight existing editions enter actual RenPy through their stored book cover
+  ✓  64 [host] › tests/e2e/entry-cover.spec.ts:69:89 › existing book cover touch and keyboard editing at portrait (2.6s)
+  ✓  65 [host] › tests/e2e/entry-cover.spec.ts:69:89 › existing book cover touch and keyboard editing at landscape (2.6s)
+  -  66 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › seonnyeo-classic: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  67 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › heungbu-classic: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  68 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › onggojib-classic: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  69 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › rabbit-classic: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  70 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › seonnyeo: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  71 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › heungbu: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  72 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › onggojib: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  73 [host] › tests/e2e/existing-score-runtime.spec.ts:105:27 › rabbit: actual Chrome reads the existing scored work, resumes and preserves its archive
+  -  74 [host] › tests/e2e/existing-score-runtime.spec.ts:189:1 › Seonnyeo existing storm: fixed original versus scored cut in actual Chrome Ren’Py
+  -  75 [host] › tests/e2e/existing-score-runtime.spec.ts:230:1 › existing eight works: actual decoded music clock advances after the first unlocked cue
+
+  25 skipped
+  50 passed (4.4m)
