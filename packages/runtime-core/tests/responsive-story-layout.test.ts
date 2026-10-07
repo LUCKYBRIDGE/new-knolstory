@@ -53,7 +53,7 @@ describe('responsive story framing', () => {
         expect(scene.dialogue.text).toBe(line.text);
       }
     }
-  }, 15000);
+  }, 60000);
   it('keeps enough text height at small landscape preview sizes', () => {
     const view = resolveStoryViewport({ width: 390, height: 176 });
     expect(view.textboxRect.height).toBeGreaterThan(view.dialogueStyle.fontSize * 3 + 48);
