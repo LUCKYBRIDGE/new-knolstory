@@ -73,3 +73,7 @@ for(const [width,height,label] of [[390,844,'portrait'],[844,390,'landscape']] a
  await dialog.getByLabel('지은이',{exact:true}).focus();await page.keyboard.press('Tab');expect(await dialog.getByLabel('표지 소개 문장',{exact:true}).evaluate(n=>n===document.activeElement)).toBe(true);
  expect(await dialog.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);await page.screenshot({path:`${evidence}/cover-editor-${label}.png`,fullPage:true});await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(page.getByLabel('지은이',{exact:true})).toHaveValue('전래 이야기');await context.close();
 });
+
+test('cover title validation keeps the applied book intact and draft recoverable',async({page})=>{
+ await page.goto('/');await enterLibrary(page);await page.getByRole('region',{name:'원작',exact:true}).getByRole('article').first().getByRole('button',{name:'작품 준비',exact:true}).click();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});await dialog.getByLabel('작품 제목',{exact:true}).fill('가'.repeat(201));await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();await expect(dialog).toBeVisible();await expect(dialog.getByRole('status')).toContainText('200자');await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByRole('region',{name:'작품 준비',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue('선녀와 나무꾼 · 내 사본');
+});

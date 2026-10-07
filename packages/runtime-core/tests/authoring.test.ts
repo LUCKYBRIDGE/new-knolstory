@@ -77,11 +77,12 @@ describe('new story authoring', () => {
 
   it('preserves authored content and extends explicit exits when inserting into representative stories', () => {
     for (const { project } of representativeStories) {
-      const changed = insertStoryCut(project, orderedLines(project)[0].id, 'new-authoring-cut');
+      const selected=orderedLines(project)[0];
+      const changed = insertStoryCut(project, selected.id, 'new-authoring-cut');
+      const changedById=new Map(changed.lines.map(line=>[line.id,line]));
       expect(changed.lines).toHaveLength(project.lines.length + 1);
       for (const line of project.lines) {
-        const result = changed.lines.find(cut => cut.id === line.id)!;
-        const selected = orderedLines(project)[0];
+        const result = changedById.get(line.id)!;
         if (line.id === selected.id && (line.flow?.type === 'goto' || line.ending?.endsStory)) {
           expect({ ...result, order: line.order, flow: line.flow, ending: line.ending }).toEqual({ ...line, ending: line.ending });
           const added = changed.lines.find(cut => cut.id === 'new-authoring-cut')!;

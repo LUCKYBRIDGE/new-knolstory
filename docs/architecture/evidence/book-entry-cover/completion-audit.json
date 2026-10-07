@@ -130,11 +130,15 @@
     "developerAudit": "unpatched braces advisory remains documented",
     "mediaInventoryFiles": 1341,
     "mediaCheck": "passed",
-    "publicSourceCiTests": 790
+    "publicSourceCiTests": 790,
+    "coverInvalidTitleProtection": "RED then GREEN; draft retained, applied title unchanged"
   },
   "github": {
     "branch": "codex/book-entry-cover",
     "publicUnverifiedMediaFiles": 0,
-    "privateLegacyCorpus": "authorized local restoration only"
+    "privateLegacyCorpus": "authorized local restoration only",
+    "pullRequest": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1",
+    "implementationCommit": "e2fd89b2d6176a48c797bc6fabedcf597a6ce22a",
+    "sourceCi": "first run timed out in repeated invariant computation; optimized same full test, revalidation pending"
   }
 }
