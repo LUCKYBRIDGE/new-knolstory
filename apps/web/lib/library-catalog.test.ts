@@ -28,9 +28,16 @@ it('uses available horizontal space for the owner specified shelf layouts',()=>{
  expect(shelfLayoutForWidth(1200)).toEqual({columns:5,rows:2,capacity:10});
  expect(shelfLayoutForWidth(1000)).toEqual({columns:4,rows:2,capacity:8});
  expect(shelfLayoutForWidth(750)).toEqual({columns:3,rows:3,capacity:9});
- expect(shelfLayoutForWidth(350)).toEqual({columns:2,rows:4,capacity:8});
+ expect(shelfLayoutForWidth(350)).toEqual({columns:2,rows:3,capacity:6});
 });
 
 it('stores all-books and original-book pages independently',()=>{
  expect(parseLibraryView('{"version":1,"filter":"all","query":"","pages":{"all":2,"original":0}}').pages).toEqual({all:2,original:0});
+});
+
+it('six-book pages preserve all eight books and clamp after a wider layout',()=>{
+ const books=Array.from({length:8},(_,id)=>id);
+ expect(libraryPage(books,0,6).items).toEqual(books.slice(0,6));
+ expect(libraryPage(books,1,6).items).toEqual(books.slice(6));
+ expect(libraryPage(books,1,8)).toEqual({items:books,page:0,pages:1});
 });

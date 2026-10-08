@@ -1,0 +1,25 @@
+
+Running 18 tests using 1 worker
+
+(node:71998) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 1365x900 (2.9s)
+  ✓   2 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 820x1180 (2.9s)
+  ✓   3 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 390x844 (2.4s)
+  ✓   4 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 844x390 (2.4s)
+  ✓   5 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 320x740 (2.2s)
+  ✓   6 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:17:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.5s)
+  ✓   7 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:26:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book (2.8s)
+  ✓   8 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:39:1 › layered front, spine and back covers keep direct edits in the draft until apply (1.6s)
+  ✓   9 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:48:1 › all eight books start native RenPy from the library focus and retain the same runtime (13.7s)
+  ✓  10 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:61:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript (3.3s)
+  ✓  11 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:67:1 › tab browsing preferences survive book work and reload without entering the story file (3.6s)
+  ✓  12 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:72:1 › modal keyboard boundaries include collapsed settings and nested image selection (2.4s)
+  ✓  13 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:76:1 › cover title size changes the rendered typography without covering the whole artwork panel (1.3s)
+  ✓  14 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:80:1 › books physically rest on shelf faces and room decoration frames the focused shelves (2.5s)
+  ✓  15 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:92:1 › one cabinet and drawer follow 5x2, 4x2, 3x3 and 2x3 available-width layouts (1.6s)
+  ✓  16 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:99:1 › reference introduction uses exact rectangular posters and quiet library controls (1.9s)
+  ✓  17 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:107:1 › compact shelf shows six books and drawer near the first viewport without losing the remaining books (2.3s)
+  ✓  18 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:121:1 › cabinet joinery uses visible wood grain and preserves the book selection experience (919ms)
+
+  18 passed (53.2s)

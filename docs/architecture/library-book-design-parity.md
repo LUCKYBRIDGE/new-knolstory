@@ -101,3 +101,25 @@ Tab/Shift+Tab 초점 순환과 중첩 이미지 창 Escape도 직접 확인했�
 Final correction verification: 812 TS unit/contract/integration tests, 24 Python tests, full host 66 passed (26 native-only skipped), final design 16 passed including all eight editions entering the persistent RenPy. Types, lint, static build, production audit and 1351 media hashes passed. The free release gate still exits 1 as expected. [Verification](evidence/library-book-design/introduction-reference-correction/verification.json), [Host](evidence/library-book-design/introduction-reference-correction/host.log), [Final design/native](evidence/library-book-design/introduction-reference-correction/design-native.log).
 
 Self evaluation: accuracy 4/5 (actual browser/native evidence; physical devices excluded), completeness 4/5 (reference layout, quiet header and cover compatibility; final owner visual judgment remains), clarity 4/5 (supersedes earlier screenshots), actionability 4/5 (existing setup commands; authorized legacy checkout required), conciseness 4/5 (single project document with separate evidence). Improvement applied: compare exact reference assets and actual captures before claiming parity.
+
+
+## 2026-10-08 2×3과 첫 화면 밀도
+
+소유자의 추가 요청으로 좁은 화면은 2×4에서 2×3으로 변경했다. 8권 중 6권/2권을 서랍 페이지로 나눠 보존한다. 화면 높이를 기준으로 행 높이를 조절하고 휴대폰의 고정230px 행을 제거했다. 서랍은76px로 줄이고 좁거나 짧은 화면의 장식 footer를 숨긴다. 책장 접촉과44px 페이지 버튼은 유지한다.
+
+390×844/320×740/820×1180/1200×900/1500×1000에서 서랍 하단이 첫 화면 높이+48px 이내인지 검증했다. 첫 페이지6권·다음2권의 합이 원래8권이고 폭 확장 시 유효 페이지로 복귀하는 것도 확인했다. 매우 낮은 가로 화면에서는 최소 책 크기를 유지해 추가 스크롤이 가능하며 모든 화면의 무스크롤을 주장하지 않는다.
+
+관련 단위34개, 최종 디자인17개(8작품 actual Ren’Py 포함), 타입·린트·정적build 통과. [이번 검증](evidence/library-book-design/six-book-compact/verification.json). 이전 전체66개 회귀는 이전 커밋의 기록이며 이번에는 관련 디자인/native를 재검증했다. 자체 점검: 실제 viewport/페이지 보존 근거 확인, 실물기기 제외, 원고/표지/runtime 계약 변경 없음.
+
+
+## 2026-10-08 목재 책장과 선택 경험 재정비
+
+고정18da4fc의 `docs/design/README.md`, `tokens.md`, `book-covers/DESIGN.md`, `mockups/README.md`, `library-direct-entry.md`, 공통 UIUX reference와 실제 `StoryDiscovery`/CSS를 대조했다. 과거86adfec의 soft/warm oak, 연속 기둥과 하단 몰딩도 확인했다. legacy의 최종 inline action보다 사용자가 지정한 이전의 선택 후 행동을 우선한다. 문서의 검토 후보를 승인된 구현으로 취급하지 않는다.
+
+분류: **PRESERVE** 원본 room/oak/plant/흐린전경, 한 권의 BookCover와 선택 후 행동; **REFINE** 명암·재료·서랍·받침·키보드/모바일 밀도; **REBUILD** 슬롯마다 끊기는 선반 앞면을 행 전체 판으로 교체; **RETIRE** 결을 덮는 불투명 그라데이션과 선택 책 뒤의 불투명 초록 패널.
+
+연속 좌우 기둥, 얇게 빛을 받는 상판, 행 전체의 목재 앞판, 안으로 들어간 서랍 패널과 이중 홈, 손잡이/고정부, 하단 몰딩/바닥 접촉 그림자를 추가했다. 모두 이미 복원된 원본 목재 자료를 사용하며 새 미디어나 다운로드는 없다. 책 선택은 방이 비치는 radial backdrop와 목재 pedestal, 큰 책·좌우 탐색·읽기/보조 행동으로 연결한다. focus trap/Escape/초점 복귀와 원고·저장·Ren’Py 계약은 그대로다.
+
+2×3/6+2권 페이지와 첫 화면 밀도 기준을 함께 유지한다. 색·질감은 시각적 목재 표현이며 물리 재질을 검증했다는 뜻이 아니다. [새 화면·검사 근거](evidence/library-book-design/cabinet-craft/verification.json). 스크린샷은 같은 폴더에 로컬 보관하고 Git에 공개하지 않는다.
+
+최종 검증: 관련 단위34개, 디자인/native18개(8작품 actual Ren’Py 포함), 타입·린트·build·productionaudit 통과. desktop/mobile/선택 화면을 실제 캡처로 확인했다. 독립 legacy 소스 조사를 완료했다. 독립 코드 리뷰는 agent 이용 한도로 실행되지 않아 주 담당이 diff와 실제 화면을 점검했다.

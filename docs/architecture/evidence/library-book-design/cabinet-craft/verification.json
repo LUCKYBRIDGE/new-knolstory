@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-08",
+  "scope": "2x3 compact shelf plus legacy oak cabinet and book focus",
+  "design_native_checks": 18,
+  "includes": [
+    "eight works in same native RenPy iframe",
+    "five viewport drawer near first screen",
+    "6+2 pagination preserves eight works",
+    "continuous wood rails/stiles/base and keyboard selection"
+  ],
+  "unit_checks": 34,
+  "types": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "production_audit": "passed",
+  "review": "Primary agent diff/captures reviewed; independent legacy research completed; independent code review unavailable due to agent usage limit",
+  "media": "No new media; ignored restored legacy texture reused; public-release block unchanged",
+  "hardware": "Local browser viewport tests; no physical school/Android hardware claim"
+}

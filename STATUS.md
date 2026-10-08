@@ -9,6 +9,14 @@
 ## Phase
 **대표 작품 읽기·편집과 빈 작품 창작 연결 구현 — M2 도메인/호환 이식과 M4–M6 핵심 경로를 연결했다.** 네 작품의 실제 데이터·자산·분기·연출을 Ren'Py로 읽고, 빈 작품에서 새 장·컷과 짧은 분기를 작성해 기기 저장·파일 왕복·Ren'Py 재생까지 진행할 수 있다. 전체 M1–M9/제품 1.0 완료는 아니다.
 
+## 2026-10-08 cabinet material and selection experience
+
+Legacy design documents and fixed/historical oak cabinet implementations informed continuous wood rails/stiles, a recessed drawer panel, handle mounts and molded base. Selection now keeps the room visible behind a large book and wooden pedestal rather than an opaque green card. 2×3 compact pagination remains. [Design/evidence](docs/architecture/library-book-design-parity.md).
+
+## 2026-10-08 narrow shelf correction
+
+Narrow shelves now use 2×3 with six books per page. Viewport-height sizing, a smaller drawer and reduced ornamental footer keep the cabinet near the first viewport. Five viewport sizes preserve drawer access within height+48px; pagination preserves all eight books. 34 relevant unit and 17 design/native checks, types, lint and build passed. [Evidence](docs/architecture/evidence/library-book-design/six-book-compact/verification.json).
+
 ## 2026-10-08 final visual correction
 
 The introduction now follows the attached StartScreen: gold double frame, rectangular original posters, two menus and yellow read button. The library uses a small title, classification and collapsed tools while retaining the cabinet, drawer and selection-only books. Five archived Onggojib cover aliases display current art without mutating manuscripts or legacy storage. Ten UI assets restore through the existing setup. 812 TS, 24 Python, 66 host, 16 final design checks including eight actual RenPy entries passed, with types/lint/build/production audit and 1351 hashes. Public legacy media release remains blocked; physical device performance is not claimed. [Final correction evidence](docs/architecture/library-book-design-parity.md).

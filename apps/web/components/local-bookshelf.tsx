@@ -43,7 +43,7 @@ export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,no
   </header>
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
   <div ref={cases} className={styles.bookcases} style={{'--shelf-columns':layout.columns,'--shelf-rows':layout.rows} as CSSProperties}>
-   <span className={styles.topPlant} aria-hidden="true"/>
+   <span className={styles.topPlant} aria-hidden="true"/><span className={`${styles.upright} ${styles.uprightLeft}`} data-cabinet-upright aria-hidden="true"/><span className={`${styles.upright} ${styles.uprightRight}`} data-cabinet-upright aria-hidden="true"/>
    <div className={styles.grid} data-shelf-room="warm" data-columns={layout.columns} data-rows={layout.rows} data-capacity={layout.capacity}>
     {sections.filter(section=>filter==='all'||filter===section.kind).map(section=><section key={section.kind} className={styles.collection} aria-label={section.title}>
      <h2 className={styles.semantic}>{section.kind==='example'?'놀스토리':section.title}</h2>
@@ -55,9 +55,10 @@ export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,no
      {works.filter(work=>work.kind===section.kind).length===0&&<p className={styles.semantic}>{section.kind==='own'?'아직 내 작품이 없어요. 새 작품을 만들어 첫 이야기를 시작해 보세요.':section.kind==='imported'?'가져온 작품이 없어요. 보관한 .knolstory 파일을 열어 보세요.':'준비된 책이 없어요.'}</p>}
     </section>)}
     {Array.from({length:layout.capacity-pagination.items.length},(_,index)=><div key={`empty-${index}`} className={styles.emptySlot} aria-hidden="true"><span className={styles.plank}/></div>)}
+    {Array.from({length:layout.rows},(_,index)=><span key={`rail-${index}`} className={styles.rail} style={{'--shelf-index':index+1} as CSSProperties} data-cabinet-rail aria-hidden="true"/>)}
     {!visible.length&&<p className={styles.emptyMessage}>이 자리는 새로운 이야기를 기다리고 있어요.</p>}
    </div>
-   <div className={styles.drawer} aria-label="책장 서랍"><span className={styles.drawerHandle} aria-hidden="true"/><nav className={styles.paging} aria-label={`${filter==='all'?'서재':sections.find(section=>section.kind===filter)?.title} 선반 페이지`}><button aria-label="이전 선반" disabled={pagination.page===0} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page-1}))}>‹</button><span role="status">{pagination.page+1} / {pagination.pages} 선반 · {visible.length}권</span><button aria-label="다음 선반" disabled={pagination.page===pagination.pages-1} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page+1}))}>›</button></nav></div>
+   <div className={styles.drawer} aria-label="책장 서랍" data-drawer-face><span className={styles.drawerHandle} aria-hidden="true"/><nav className={styles.paging} aria-label={`${filter==='all'?'서재':sections.find(section=>section.kind===filter)?.title} 선반 페이지`}><button aria-label="이전 선반" disabled={pagination.page===0} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page-1}))}>‹</button><span role="status">{pagination.page+1} / {pagination.pages} 선반 · {visible.length}권</span><button aria-label="다음 선반" disabled={pagination.page===pagination.pages-1} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page+1}))}>›</button></nav></div><span className={styles.base} data-cabinet-base aria-hidden="true"/>
   </div>
   <div className={`${styles.foreground} ${styles.foregroundLeft}`} aria-hidden="true"/><div className={`${styles.foreground} ${styles.foregroundRight}`} aria-hidden="true"/>
   <footer className={styles.roomFooter}>─ ◇ ─<p>오늘도, 새로운 이야기가 기다리고 있어요.</p><small>© 놀퀴즈</small></footer>

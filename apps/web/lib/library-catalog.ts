@@ -24,6 +24,6 @@ export function parseLibraryView(raw:string|null):{filter:string;query:string;pa
 /** Owner-specified cabinet tiers measured inside the available room, not the screen. */
 export function shelfLayoutForWidth(width:number){
  const columns=width>=1100?5:width>=900?4:width>=600?3:2;
- const rows=columns>=4?2:columns===3?3:4;
+ const rows=columns>=4?2:3;
  return {columns,rows,capacity:columns*rows};
 }
