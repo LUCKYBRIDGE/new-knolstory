@@ -57,3 +57,9 @@
 GitHub 첫 source CI는 대형 원고 보존 test의 동일 컷 정렬/선형검색 반복 때문에5초 제한을 넘겼다. 비교 항목과 전체 원고 범위를 유지하면서 선택 컷과 결과Map을 루프 밖에서 한 번 계산해 수정했다(로컬 해당7tests 통과). 표지 제목도 기존 Core의200자 검증을 적용 전에 재사용해 잘못된 초안이 저장 상태를 바꾸지 않도록 RED→GREEN UI검사를 추가했다.
 
 원격 source CI의 두 번째 실행에서는1,613컷×세로/가로 전수 컴파일이15초 상한을 넘겼다. public CI worker를2개로 제한하고 이 전수case에만60초 상한을 적용했다. 모든 컷·표시영역·assertion은 그대로 실행하며 이 시간을 제품의 기기 성능 승인으로 사용하지 않는다. 로컬에서도 같은worker설정으로790 source tests를 다시 확인한다.
+
+## GitHub 전달 완료
+
+사용자 요청에 따라 `codex/book-entry-cover`를 origin에 push하고 [PR1](https://github.com/LUCKYBRIDGE/new-knolstory/pull/1)을 이 작업에 연결했다. main은 병합하지 않았다. [검증된 source commit](https://github.com/LUCKYBRIDGE/new-knolstory/commit/c443c933b77147ea81558820c6a4c430ecfc2651)의 [GitHub CI](https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/37705346524)에서 설치·productionaudit·타입·린트·790 source tests·build를 모두 통과했다. 공개배포 권리 미확인그림/화면은 upload하지 않았다. 이 최종 전달 기록만 추가하는 문서 commit은 이미 검증된 application code를 변경하지 않는다.
+
+[전체 요구사항 완료 감사](evidence/book-entry-cover/completion-audit.json), [GitHub 전달 범위](evidence/book-entry-cover/github-delivery.json). 로컬 전체792/media1341/host50/native22 및 편집된기존작품 두갈래의 실제 검증을 publicsource CI의790 검증과 구분한다. 추가 제목검증case는 기존 Core검증 재사용으로 잘못된201자 초안이 적용되지 않고 취소 뒤 원래 제목을 보존함을 확인했다. 실제하드웨어·공개출시 권리 제한은 위와 같다.

@@ -1,5 +1,5 @@
 {
-  "status": "local workflow completion verified; GitHub upload in progress",
+  "status": "complete: local full workflow verified and user-authorized GitHub source delivery verified",
   "requirements": [
     {
       "requirement": "Fixed baseline/current behavior inventory and PRESERVE/REFINE classification",
@@ -103,7 +103,7 @@
         "scripts/restore-legacy-media.py",
         ".github/workflows/ci.yml"
       ],
-      "status": "upload pending; local421 restore verified"
+      "status": "verified: source branch pushed, PR1 attached, fixed421 restore tested"
     }
   ],
   "limitations": [
@@ -139,6 +139,8 @@
     "privateLegacyCorpus": "authorized local restoration only",
     "pullRequest": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1",
     "implementationCommit": "e2fd89b2d6176a48c797bc6fabedcf597a6ce22a",
-    "sourceCi": "first run timed out in repeated invariant computation; optimized same full test, revalidation pending"
+    "sourceCi": "success: 790 source tests, production audit, types, lint and build in fresh GitHub runner",
+    "verifiedSourceCommit": "c443c933b77147ea81558820c6a4c430ecfc2651",
+    "sourceCiRun": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/37705346524"
   }
 }
