@@ -27,11 +27,11 @@ Node.js `>=22.13.0`, pnpm workspaces, Turborepo, Next.js static export, Vitest, 
 ## Local representative-story workspace
 
 ```sh
-pnpm install
-pnpm dev
+pnpm env:prepare --legacy ../story-maker
+pnpm preview
 ```
 
-Open `http://localhost:3000` for the four representative manuscripts (선녀·흥부·옹고집·별주부). The Web editor adapts its panels and keeps one embedded Ren'Py instance. Build the real runtime first using [the Ren'Py build instructions](spikes/renpy-web/README.md). Without that build, the page retains editing inputs and reports the runtime as unavailable; it does not draw a substitute story stage. The original coordinate probe remains at `/probe`.
+Open `http://127.0.0.1:3000` for the eight editions (four original manuscripts and four KnolStory editions). The Web editor adapts its panels and keeps one embedded Ren'Py instance. The preparation command builds the real runtime and static app; [detailed prerequisites and recovery](docs/architecture/reproducible-test-environment.md) are below. Use `pnpm dev` for source editing. Without that build, the page retains editing inputs and reports the runtime as unavailable; it does not draw a substitute story stage. The original coordinate probe remains at `/probe`.
 
 ```sh
 pnpm typecheck
@@ -53,16 +53,29 @@ Design and acceptance criteria: [Responsive Runtime Editor](docs/architecture/re
 
 ## Test on another computer
 
+Use the `codex/book-entry-cover` branch while [PR #1](https://github.com/LUCKYBRIDGE/new-knolstory/pull/1) is open; these features are not yet merged into `main`. Clone with `git clone --branch codex/book-entry-cover https://github.com/LUCKYBRIDGE/new-knolstory.git`, then enter that checkout.
+
 The first browser visit opens **책 소개**. Enter the library, select an original or KnolStory book, and start reading from its cover. A returning visit opens the library; reloading restores the current saved screen. The library's **작품 준비 → 책 표지 편집** edits the front, spine and back cover with Apply/Cancel. Browser storage is local to that computer; use `.knolstory` export/import to move authored books.
 
 The repository contains source, document fixtures, original procedural audio/effect resources and licensed cover fonts. **Legacy images and screenshots containing them are not published in this repository while their redistribution evidence remains unverified.** For authorized local testing with the existing legacy checkout, restore exact fixed-baseline media without overwriting the current Next source:
 
+Prerequisites: Git, Node.js `>=22.13.0`, the `pnpm@10.33.0` pinned in `package.json`, Python `>=3.9`, and an **existing authorized** `story-maker` checkout containing the baseline commit. Enable Corepack if necessary (`corepack enable`). On Windows run preparation inside WSL2 with Linux Node/pnpm/Python; native Windows and school/Android hardware have not been validated.
+
 ```sh
-python3 scripts/restore-legacy-media.py ../story-maker
-pnpm install --frozen-lockfile
+pnpm env:prepare --legacy ../story-maker
+pnpm env:doctor
+pnpm preview
 ```
 
-Keep `story-maker` at a sibling path or pass another local path to the script. The script reads commit `18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b` and verifies every restored file against the recorded SHA256. It does not change that checkout or grant redistribution rights. The restored art remains ignored by Git. For the actual Ren’Py story renderer, install the pinned SDK/Web dependencies and build it following [runtime setup](spikes/renpy-web/README.md), then run `pnpm dev` and open `http://localhost:3000`. The runtime output and SDK cache are generated locally and ignored by Git. macOS/Linux can run the documented shell build; Windows can use WSL2 for that build. This is a local test setup, not a public release approval.
+Open `http://127.0.0.1:3000`. Preparation restores and hashes the fixed 421 legacy files, installs the lockfile, downloads and verifies the pinned SDK/Web/font, installs Playwright Chromium, builds the shared Ren’Py runtime, then builds the static app. `preview` serves that build on loopback. `pnpm dev` is available for source editing. Preparation does not clone the private repository, install credentials or change legacy source. Pass a different authorized checkout path with `--legacy`; quote paths containing spaces.
+
+An SDK previously installed by hand must be adopted once using `pnpm runtime:prepare --reinstall`, then rerun preparation. This replaces only the generated SDK after the pinned archives have been verified and staged. Invalid cached downloads are preserved and reported; remove the named invalid cache file and retry. Linux/WSL browser launch may additionally need `pnpm exec playwright install-deps chromium` (system administrator privileges). Full commands, recovery, file transfer and validation boundaries: [reproducible test environment](docs/architecture/reproducible-test-environment.md).
+
+```sh
+pnpm env:verify
+```
+
+The verification command checks scripts, types, lint, full coverage and media provenance, then runs the existing introduction/cover/archive browser tests, all eight real Ren’Py entries and both routes of the cover-edited Heungbu work. It uses the static build and installed Chromium by default. Set `KNOL_BROWSER_CHANNEL=chrome` to explicitly test installed Google Chrome. Stop any server on port 3000 before verifying; the static test server does not silently reuse it. Generated SDK/runtime output, restored private media and screenshots remain ignored by Git. This is a local test setup, not a public release approval.
 
 The original/forked manuscripts' project data and audio cues are in [existing-work evidence](docs/architecture/existing-story-enhancement.md). Cover and entry workflow evidence and remaining limitations are in [book-entry verification](docs/architecture/book-entry-and-cover.md).
 

@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-08",
+  "status": "local reproducible test environment verified; source delivery tracked by PR1 checks",
+  "initialState": {
+    "branch": "codex/book-entry-cover",
+    "head": "8e4655a76116a6efe472a60921d21336573e68bf",
+    "workingTree": "clean",
+    "prState": "OPEN",
+    "prDraft": true,
+    "priorVerifiedSourceCommit": "c443c933b77147ea81558820c6a4c430ecfc2651",
+    "headChecks": "none at initial inspection; prior docs commit used skip ci"
+  },
+  "reproduction": {
+    "directory": ".cache/cross-machine",
+    "method": "Source and task changes only; no project dependencies, media, SDK or runtime copied",
+    "physicalSecondComputer": false,
+    "globalCaches": "Package and browser caches may be reused; not a fresh OS installation",
+    "tools": {
+      "node": "22.23.3",
+      "pnpm": "10.33.0",
+      "python": "3.9.6",
+      "chromium": "153.0.8010.12",
+      "googleChrome": "154.0.8037.98",
+      "renpy": "8.5.3"
+    },
+    "sdkWebFont": "All three downloaded into empty project cache and SHA256 verified",
+    "legacy": "421 baseline files restored from authorized read-only Git checkout",
+    "repeatPrepare": "Passed after build with verified cached inputs and installation manifest"
+  },
+  "requirements": [
+    {
+      "requirement": "Inspect completed features and actual branch/PR first",
+      "status": "verified; existing features reused",
+      "evidence": [
+        "../book-entry-cover/completion-audit.json",
+        "../../book-entry-and-cover.md"
+      ]
+    },
+    {
+      "requirement": "Automate prepare, doctor, fixed shared native/static build and preview",
+      "status": "verified fresh and repeated",
+      "evidence": [
+        "fresh-prepare.log",
+        "repeat-prepare.log",
+        "sdk-reuse.log"
+      ]
+    },
+    {
+      "requirement": "Original/VN cover edit, save/reload and file transfer",
+      "status": "verified; full project equality in isolated browser contexts",
+      "evidence": [
+        "verify.log",
+        "seonnyeo-classic-cover-roundtrip.json",
+        "heungbu-cover-roundtrip.json"
+      ]
+    },
+    {
+      "requirement": "All eight editions enter actual persistent RenPy through covers",
+      "status": "verified in Chromium and Google Chrome",
+      "evidence": [
+        "verify.log",
+        "chrome-eight-entry.log"
+      ]
+    },
+    {
+      "requirement": "Cover-edited existing work full paths, ending, slots, history, restart and editor return",
+      "status": "verified; Heungbu227/225 cuts",
+      "evidence": [
+        "heungbu-native-input.knolstory",
+        "heungbu-native-reading.json"
+      ]
+    },
+    {
+      "requirement": "Unverified media excluded from GitHub; release block maintained",
+      "status": "verified; free release exits1 and no ignored art/screenshots tracked",
+      "evidence": [
+        "../../../../.gitignore",
+        "../../../../packages/asset-registry/src/media-provenance.json"
+      ]
+    }
+  ],
+  "checks": {
+    "scriptTests": 21,
+    "typescriptUnitContractIntegration": 794,
+    "configuredTsCoverage": {
+      "statements": 93.2,
+      "branches": 89.66,
+      "lines": 97.84
+    },
+    "coverageScope": "Configured TS package and web/lib sources, not all React/Python",
+    "hostRegression": {
+      "passed": 51,
+      "skipped": 25,
+      "skips": "Native-only cases belong to stories-runtime project"
+    },
+    "dpr": [
+      1,
+      1.5,
+      2
+    ],
+    "nativeEightEntryChromium": "passed",
+    "nativeEightEntryGoogleChrome": "passed",
+    "heungbuPathCuts": [
+      227,
+      225
+    ],
+    "exactArchiveProjectMatch": true,
+    "inputSha256": "3b66190b6e59c3ddf7faea4dfbdc16335badc463cd7ab2d46e39f31b0acaab6c",
+    "sourceMediaHashes": 451,
+    "distributedMediaHashes": 1341,
+    "typecheck": "passed",
+    "lint": "passed",
+    "staticBuild": "passed",
+    "productionAudit": "passed",
+    "developerAudit": "Existing unpatched braces high advisory remains documented",
+    "freeReleaseAllowed": false,
+    "blockedDistributedMediaFiles": 1280
+  },
+  "fixes": [
+    "Use installed Chromium by default; explicit system Chrome override",
+    "Exclude regenerated SDK state narrowly; reject unexpected/modified source",
+    "Replace generated native assets; exclude Web cover fonts",
+    "Disable Web export cache for ignored generated assets and compare static runtime hashes",
+    "Flush current workspace on pagehide to prevent reload before100ms debounce losing view",
+    "Prefer page.html over same-name Next RSC payload directory"
+  ],
+  "reviews": {
+    "correctness": "Independent findings addressed and final review passed",
+    "security": "Independent security review; no critical/high/medium findings"
+  },
+  "limitations": [
+    "Same host with isolated project, not physical second hardware or fresh OS",
+    "WSL2 procedure documented but not physically validated; school PC/Chromebook/Android performance and input unverified",
+    "Not all possible story branches traversed; eight first entries and Heungbu two full paths in this run",
+    "Legacy public/free/commercial media release blocked; no deployment or credential grant",
+    "Artwork screenshots, traces and generated runtime remain local/ignored",
+    "Human soundtrack listening approval not claimed"
+  ],
+  "delivery": {
+    "branch": "codex/book-entry-cover",
+    "pullRequest": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1",
+    "sourceChecks": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1/checks",
+    "mainMerged": false
+  }
+}

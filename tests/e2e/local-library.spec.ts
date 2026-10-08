@@ -98,7 +98,7 @@ async function fillPreparation(page: Page) {
 test('local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome', async ({ playwright }, info) => {
   test.skip(info.project.name !== 'stories-runtime'); test.setTimeout(420000);
   mkdirSync(evidence, { recursive: true });
-  const browser = await playwright.chromium.launch({ channel: 'chrome' });
+  const browser = await playwright.chromium.launch({ channel: process.env.KNOL_BROWSER_CHANNEL || undefined });
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 }, hasTouch: true });
   const page = await context.newPage(); page.setDefaultTimeout(15000);
   try {

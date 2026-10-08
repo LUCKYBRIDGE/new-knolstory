@@ -7,16 +7,14 @@ Pinned SDK: Ren'Py 8.5.3 (official stable release May 15, 2026). Official SDK an
 From the repository root on macOS/Linux:
 
 ```sh
-mkdir -p .cache/renpy
-curl -L --fail https://www.renpy.org/dl/8.5.3/renpy-8.5.3-sdk.tar.bz2 -o .cache/renpy/sdk.tar.bz2
-tar -xjf .cache/renpy/sdk.tar.bz2 -C .cache/renpy
-curl -L --fail https://www.renpy.org/dl/8.5.3/renpy-8.5.3-web.zip -o .cache/renpy/web.zip
-unzip -qo .cache/renpy/web.zip -d .cache/renpy/renpy-8.5.3-sdk
-curl -L --fail 'https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosanskr/NotoSansKR%5Bwght%5D.ttf' -o .cache/renpy/NotoSansKR.ttf
-pnpm install
-python3 spikes/renpy-web/build.py
-pnpm dev
+pnpm install --frozen-lockfile
+pnpm runtime:prepare
+pnpm runtime:build
+pnpm build
+pnpm preview
 ```
+
+The stdlib Python installer verifies SDK/Web/font SHA-256 before extracting. Downloads are staged; unsafe archive paths/links are rejected. Cached archives and installed SDK files are verified on reuse. An existing manual installation requires `pnpm runtime:prepare --reinstall` once. Use `pnpm env:prepare --legacy ../story-maker` for the complete authorized-media/browser setup. See [the test runbook](../../docs/architecture/reproducible-test-environment.md).
 
 `KNOL_RENPY_SDK` can override the SDK directory. No global SDK installation is required. Noto Sans KR is licensed under the included `FONT-LICENSE.txt`; the initial font is the upstream variable font, not yet a performance-optimized subset. The build verifies the font SHA-256; if upstream changes it, retrieve the matching version or review an explicit upgrade. Production font subsetting remains follow-up work. SDK archive SHA-256 `eb0a9be7f0fb13632fe25ceade9a8bed5a1b4d6b6e83bd19eeeb29e1a1bb4a45` and Web archive SHA-256 `954db897e65f51ea63cb2fb7b203d02be0447f4e22069514020bbe6c6691fdfc` were verified against the official release checksums during this probe.
 

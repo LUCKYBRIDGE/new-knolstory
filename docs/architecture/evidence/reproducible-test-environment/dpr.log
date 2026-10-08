@@ -1,0 +1,20 @@
+
+> knolstory-next@ test:e2e:runtime <checkout>
+> playwright test --project=runtime --project=runtime-dpr-1.5 --project=runtime-dpr-2
+
+[WebServer] (node:14546) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:14560) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [runtime] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (5.3s)
+(node:14584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [runtime-dpr-1.5] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (5.6s)
+(node:14606) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [runtime-dpr-2] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (5.9s)
+
+  3 passed (18.3s)

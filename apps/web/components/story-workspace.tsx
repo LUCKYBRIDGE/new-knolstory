@@ -54,6 +54,7 @@ import {BookIntroduction} from './book-introduction';
 import {BookStart} from './book-start';
 import {BookCoverEditor} from './book-cover-editor';
 import {loadLandingVisit,markLandingVisited,resolveEntryView} from '../lib/landing-visit';
+import {scheduleWorkspaceAutosave} from '../lib/workspace-autosave';
 
 const FIRST = representativeStories[0]!;
 const builtInStories=[...representativeStories,...classicStories];
@@ -170,7 +171,7 @@ export function StoryWorkspace() {
   }, []);
   useEffect(() => {
     if (!hydrated) return;
-    const timer = window.setTimeout(() => {
+    return scheduleWorkspaceAutosave(window, () => {
       try {
         const next=writeWorkspaceSnapshot(localStorage,project,savedProjects.current,contexts.current,{storyId,lineId,mode,playback,editorView,activeTool,writerChapterId,previewProfile,view});savedProjects.current=next.works;contexts.current=next.contexts;
         setSaveStatus("기기에 저장됨");
@@ -178,8 +179,7 @@ export function StoryWorkspace() {
         setSaveStatus("기기 저장 실패 — 파일로 보관해 주세요");
         setError(String(issue));
       }
-    }, 100);
-    return () => window.clearTimeout(timer);
+    });
   }, [project, storyId, lineId, hydrated, mode, playback, view,editorView,activeTool,writerChapterId,previewProfile]);
   useEffect(() => () => dragCleanup.current?.(), []);
   useEffect(() => {

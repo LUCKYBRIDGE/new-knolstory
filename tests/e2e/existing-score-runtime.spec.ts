@@ -1,9 +1,10 @@
 import {enterLibrary,beginSelectedBook} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import type { StoryProject } from '../../packages/story-domain/src/index';
 
-test.use({ channel: 'chrome' });
+test.use({ channel: process.env.KNOL_BROWSER_CHANNEL || undefined });
 
 type PlaybackState = { lineId: string | null; path: string[]; status: 'reading' | 'choice' | 'ended'; choiceHistory?: { pathIndex: number; choiceId: string }[] };
 const audioCatalog: { id: string; runtimePath: string }[] = JSON.parse(readFileSync('packages/asset-registry/src/story-score.json', 'utf8'));
@@ -104,7 +105,7 @@ async function saveResume(page: Page, project: StoryProject, state: PlaybackStat
   await page.getByTestId('story-runtime-frame').evaluate(n => n.setAttribute('data-score-instance', 'persistent'));
 }
 
-for (const id of workIds) test(`${id}: actual Chrome reads the existing scored work, resumes and preserves its archive`, async ({ browser }, info) => {
+for (const id of workIds) test(`${id}: actual browser reads the existing scored work, resumes and preserves its archive`, async ({ browser }, info) => {
   test.skip(info.project.name !== 'stories-runtime'); test.setTimeout(900000);
   mkdirSync(evidence, { recursive: true });
   const project = readProject(id);
@@ -184,11 +185,11 @@ for (const id of workIds) test(`${id}: actual Chrome reads the existing scored w
   const archive = JSON.parse(readFileSync((await (await download).path())!, 'utf8'));
   expect(archive.project).toEqual(project);
   expect(Number(await status(page).getAttribute('data-music-start-count'))).toBeGreaterThan(0);
-  writeFileSync(`${reportFolder(id)}/${id}-native-reading.json`, JSON.stringify({ browser: 'Chrome via Playwright channel chrome', viewport: { width: 1280, height: 900 }, scope: id.endsWith('-classic') ? 'complete original manuscript' : 'first-option route and alternate first-fork route; subsequent choices first option', projectId: project.id, authoredCuts: project.lines.length, audioTransport: 'RenPy bundled game assets; browser per-file responses may be absent', audioResponses: [...audioResponses], records, archiveProjectExactMatch: true }, null, 2));
+  writeFileSync(`${reportFolder(id)}/${id}-native-reading.json`, JSON.stringify({ browser: `Playwright ${process.env.KNOL_BROWSER_CHANNEL || 'chromium'}`, browserVersion: browser.version(), inputArchive: archivePath(id), inputArchiveSha256: createHash('sha256').update(readFileSync(archivePath(id))).digest('hex'), viewport: { width: 1280, height: 900 }, scope: id.endsWith('-classic') ? 'complete original manuscript' : 'first-option route and alternate first-fork route; subsequent choices first option', projectId: project.id, authoredCuts: project.lines.length, audioTransport: 'RenPy bundled game assets; browser per-file responses may be absent', audioResponses: [...audioResponses], records, archiveProjectExactMatch: true }, null, 2));
   await context.close();
 });
 
-test('Seonnyeo existing storm: fixed original versus scored cut in actual Chrome Ren’Py', async ({ browser }, info) => {
+test('Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py', async ({ browser }, info) => {
   test.skip(info.project.name !== 'stories-runtime'); test.setTimeout(240000);
   mkdirSync(evidence, { recursive: true });
   const cutId = 'P2-v165-11';

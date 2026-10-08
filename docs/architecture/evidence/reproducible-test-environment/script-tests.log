@@ -1,0 +1,14 @@
+
+> knolstory-next@ test:scripts <checkout>
+> python3 -m unittest discover -s scripts/tests
+
+....Downloading resource
+.Extracting verified SDK and Web support.
+....Verified pinned SDK installation.
+..Verified cached resource
+.Downloading resource
+.........
+----------------------------------------------------------------------
+Ran 21 tests in 0.020s
+
+OK

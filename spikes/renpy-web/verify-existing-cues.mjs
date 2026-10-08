@@ -7,7 +7,7 @@ const output='docs/architecture/evidence/existing-story-enhancement';
 const cues=JSON.parse(await readFile(`${output}/runtime-cues.json`,'utf8'));
 assert.equal(cues.length,131);
 await writeFile('apps/web/public/runtime/verify-existing-cues.html','<!doctype html><html><body style="margin:0"></body></html>');
-const browser=await chromium.launch({channel:'chrome',headless:true});
+const browser=await chromium.launch({channel:process.env.KNOL_BROWSER_CHANNEL || undefined,headless:true});
 try{
  const page=await browser.newPage({viewport:{width:1280,height:720}});const errors=[];
  page.on('pageerror',e=>errors.push(e.message));

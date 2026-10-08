@@ -63,3 +63,10 @@ GitHub 첫 source CI는 대형 원고 보존 test의 동일 컷 정렬/선형검
 사용자 요청에 따라 `codex/book-entry-cover`를 origin에 push하고 [PR1](https://github.com/LUCKYBRIDGE/new-knolstory/pull/1)을 이 작업에 연결했다. main은 병합하지 않았다. [검증된 source commit](https://github.com/LUCKYBRIDGE/new-knolstory/commit/c443c933b77147ea81558820c6a4c430ecfc2651)의 [GitHub CI](https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/37705346524)에서 설치·productionaudit·타입·린트·790 source tests·build를 모두 통과했다. 공개배포 권리 미확인그림/화면은 upload하지 않았다. 이 최종 전달 기록만 추가하는 문서 commit은 이미 검증된 application code를 변경하지 않는다.
 
 [전체 요구사항 완료 감사](evidence/book-entry-cover/completion-audit.json), [GitHub 전달 범위](evidence/book-entry-cover/github-delivery.json). 로컬 전체792/media1341/host50/native22 및 편집된기존작품 두갈래의 실제 검증을 publicsource CI의790 검증과 구분한다. 추가 제목검증case는 기존 Core검증 재사용으로 잘못된201자 초안이 적용되지 않고 취소 뒤 원래 제목을 보존함을 확인했다. 실제하드웨어·공개출시 권리 제한은 위와 같다.
+
+
+## 2026-10-08 재현 환경 후속 작업
+
+다른 컴퓨터 준비 절차는 [재현 환경 안내](reproducible-test-environment.md)로 통합했다. 고정 SDK/Web/폰트의 다운로드·해시·안전 추출, 권한 있는421파일 복원, lockfile 설치, 브라우저 준비와 공유runtime/정적앱 build를 자동화한다. Web 표지 글꼴의 native 중복 복사를 제외하고 생성 asset을 교체해 미디어 목록과 재빌드를 일치시킨다. 정적 build를 실제 제공하는 preview에서 기존 E2E를 실행하며, 개발서버만의 성공과 구분한다.
+
+정적 검사에서 소개 재방문 직후 새로고침이100ms 저장 debounce보다 빠르면 서재로 돌아가던 결함을 재현했다. 현재 snapshot을 pagehide에서 저장하고 이전 timer/handler를 정리하도록 보완했다. 원고·cover schema·Ren’Py 해석 계약은 변경하지 않는다. 후속 검증 결과는 재현 환경 문서에 따로 기록하며 기존 완료 감사의 이전 실행 수치를 새 실행으로 바꾸지 않는다.

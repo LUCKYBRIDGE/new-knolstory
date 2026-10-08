@@ -28,7 +28,10 @@ shutil.copy2(ROOT / 'spikes/renpy-web/FONT-LICENSE.txt', project / 'game/NotoSan
 # One shared asset corpus, never a story-specific runtime package.
 assets = ROOT / 'apps/web/public/assets'
 if assets.exists():
-    shutil.copytree(assets, project / 'game/assets', dirs_exist_ok=True)
+    # Replace generated copies so deleted source assets cannot survive rebuilds.
+    shutil.rmtree(project / 'game/assets', ignore_errors=True)
+    # Cover fonts belong to static Web book UI, not the story presenter.
+    shutil.copytree(assets, project / 'game/assets', ignore=shutil.ignore_patterns('cover-fonts'))
 env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy')
 subprocess.run([str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
 html = (output / 'index.html').read_text()

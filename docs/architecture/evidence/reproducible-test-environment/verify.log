@@ -1,0 +1,192 @@
+
+> knolstory-next@ env:verify <checkout>
+> python3 scripts/test-environment.py verify
+
+git: git version 2.50.1 (Apple Git-155)
+node: v22.23.3
+pnpm: 10.33.0
+Browser: 153.0.8010.12
+Source media: 451 hashes verified
+Public legacy-media release remains blocked. Physical school/Android hardware is not verified.
++ python3 -m unittest discover -s scripts/tests
+....Downloading resource
+.Extracting verified SDK and Web support.
+....Verified pinned SDK installation.
+..Verified cached resource
+.Downloading resource
+.......
+----------------------------------------------------------------------
+Ran 19 tests in 0.020s
+
+OK
++ pnpm typecheck
+
+> knolstory-next@ typecheck <checkout>
+> turbo run typecheck
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@knolstory/story-domain:typecheck: cache hit, replaying logs 2b603c49e8675034
+@knolstory/runtime-contract:typecheck: cache hit, replaying logs a643f9166810eb9f
+@knolstory/asset-registry:typecheck: cache hit, replaying logs 08bd651f9ffc918d
+@knolstory/story-domain:typecheck:
+@knolstory/story-domain:typecheck: > @knolstory/story-domain@0.0.0 typecheck <checkout>/packages/story-domain
+@knolstory/story-domain:typecheck: > tsc --noEmit
+@knolstory/story-domain:typecheck:
+@knolstory/runtime-contract:typecheck:
+@knolstory/runtime-contract:typecheck: > @knolstory/runtime-contract@0.0.0 typecheck <checkout>/packages/runtime-contract
+@knolstory/runtime-contract:typecheck: > tsc --noEmit
+@knolstory/runtime-contract:typecheck:
+@knolstory/asset-registry:typecheck:
+@knolstory/asset-registry:typecheck: > @knolstory/asset-registry@0.0.0 typecheck <checkout>/packages/asset-registry
+@knolstory/asset-registry:typecheck: > tsc --noEmit
+@knolstory/asset-registry:typecheck:
+@knolstory/compatibility:typecheck: cache hit, replaying logs 16c0beb055c9ec2c
+@knolstory/compatibility:typecheck:
+@knolstory/compatibility:typecheck: > @knolstory/compatibility@0.0.0 typecheck <checkout>/packages/compatibility
+@knolstory/compatibility:typecheck: > tsc --noEmit
+@knolstory/compatibility:typecheck:
+@knolstory/runtime-core:typecheck: cache hit, replaying logs 9e2de84804a3a4a3
+@knolstory/runtime-core:typecheck:
+@knolstory/runtime-core:typecheck: > @knolstory/runtime-core@0.0.0 typecheck <checkout>/packages/runtime-core
+@knolstory/runtime-core:typecheck: > tsc --noEmit
+@knolstory/runtime-core:typecheck:
+@knolstory/web:typecheck: cache hit, replaying logs e08e74fbbb1c0d0e
+@knolstory/web:typecheck:
+@knolstory/web:typecheck: > @knolstory/web@0.0.0 typecheck <checkout>/apps/web
+@knolstory/web:typecheck: > tsc --noEmit
+@knolstory/web:typecheck:
+
+ Tasks:    6 successful, 6 total
+Cached:    6 cached, 6 total
+  Time:    20ms >>> FULL TURBO
+
++ pnpm lint
+
+> knolstory-next@ lint <checkout>
+> eslint .
+
++ pnpm test:coverage
+
+> knolstory-next@ test:coverage <checkout>
+> vitest run --coverage
+
+
+ RUN  v4.1.11 <checkout>
+      Coverage enabled with v8
+
+
+ Test Files  47 passed (47)
+      Tests  794 passed (794)
+   Start at  17:26:36
+   Duration  7.57s (transform 4.23s, setup 0ms, import 10.47s, tests 14.74s, environment 2ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |    93.2 |    89.66 |   95.32 |   97.84 |
+ apps/web/lib      |    82.6 |    77.38 |   84.27 |   90.88 |
+  ...references.ts |   82.35 |       75 |    87.5 |     100 | 9-16
+  ...ortability.ts |     100 |    89.47 |     100 |     100 | 8-9,29
+  ...-resources.ts |   92.94 |    91.83 |   85.18 |   98.07 | 36
+  ...ver-editor.ts |   82.35 |    53.43 |      95 |   91.17 | ...07-108,113-115
+  book-cover.ts    |   95.71 |    85.27 |      90 |   97.87 | 83
+  ...provenance.ts |      85 |     90.9 |     100 |     100 | 5-8
+  player-saves.ts  |    92.3 |    91.86 |     100 |     100 | 25,30-32,38-42,51
+  ...tion-phase.ts |     100 |       50 |     100 |     100 | 4
+  story-archive.ts |       0 |        0 |       0 |       0 | 6-36
+  ...reparation.ts |   93.02 |    92.85 |   88.46 |     100 | 24,42
+  ...ce-storage.ts |   87.69 |    86.66 |     100 |     100 | ...31-35,40-43,49
+ ...t-registry/src |     100 |    92.07 |     100 |     100 |
+  asset-query.ts   |     100 |    92.05 |     100 |     100 | ...,67-69,116-118
+  index.ts         |     100 |     87.5 |     100 |     100 | 36
+ ...patibility/src |    90.5 |    79.74 |   96.11 |     100 |
+  ...ic-stories.ts |   83.33 |       50 |     100 |     100 | 23-34
+  excel.ts         |    89.7 |    74.41 |     100 |     100 | 10-20,23-28,45-48
+  index.ts         |      80 |       50 |     100 |     100 | 11-18
+  shortstory.ts    |    80.7 |    73.49 |      85 |     100 | ...20,30-34,46-48
+  ...-direction.ts |     100 |    95.78 |     100 |     100 | 57,71,80-82
+  story-table.ts   |   92.61 |    76.82 |   97.22 |     100 | ...5,81,87,92,101
+ ...e-contract/src |    93.4 |     92.4 |     100 |   98.41 |
+  audio.ts         |   90.47 |    90.19 |     100 |     100 | 12,18
+  index.ts         |   94.28 |    92.85 |     100 |   98.07 | 72
+ ...ntime-core/src |   97.14 |    93.34 |   97.95 |     100 |
+  audio.ts         |   96.77 |       95 |     100 |     100 | 6-7,23
+  authoring.ts     |   97.14 |    96.96 |   96.87 |     100 | 20,59
+  ...-authoring.ts |      99 |     92.3 |   97.56 |     100 | 41,49,61,66,71,73
+  flow-analysis.ts |     100 |    98.55 |     100 |     100 | 98
+  ...ck-history.ts |     100 |     86.2 |     100 |     100 | 13-14,22
+  ...ion-scopes.ts |   89.65 |       84 |     100 |     100 | 6-10,16,20
+  ...-placement.ts |   94.73 |       75 |     100 |     100 | 10,16-17
+  ...ive-layout.ts |      95 |    97.36 |     100 |     100 | 12
+  stage-layout.ts  |     100 |     91.2 |     100 |     100 | 20,29,45-47,56-58
+  stage-view.ts    |     100 |    94.23 |     100 |     100 | 85,97,100
+  story-runtime.ts |      94 |    93.08 |   93.93 |     100 | ...48,155-157,162
+ ...ain/src/legacy |   98.32 |    96.61 |   99.47 |    99.6 |
+  ...r-identity.ts |   76.92 |    71.42 |     100 |   81.81 | 13-14
+  cover-design.ts  |   95.89 |    96.39 |   93.75 |     100 | 46,67,85
+  ...tive-memos.ts |     100 |    97.91 |     100 |     100 | 64
+  story-flow.ts    |     100 |    92.59 |     100 |     100 | ...30,138-147,155
+  ...esentation.ts |      96 |    96.26 |     100 |     100 | 20-22,24
+  ...t-document.ts |     100 |    95.12 |     100 |     100 | 82-103,139,154
+  ...validation.ts |     100 |    98.77 |     100 |     100 | 390,453,456
+  ...omposition.ts |   95.58 |     96.1 |     100 |     100 | 67,79,85-86
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 93.2% ( 2386/2560 )
+Branches     : 89.66% ( 3071/3425 )
+Functions    : 95.32% ( 693/727 )
+Lines        : 97.84% ( 1590/1625 )
+================================================================================
++ pnpm test:media-provenance
+
+> knolstory-next@ test:media-provenance <checkout>
+> python3 scripts/media-provenance.py --check
+
+Verified 1341 media files: no missing record or stale SHA256.
++ pnpm exec playwright test entry-cover.spec.ts --project=host
+[WebServer] (node:12432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:12449) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/entry-cover.spec.ts:3:1 › first browser entry introduces existing books, return enters library and introduction remains reachable (5.8s)
+  ✓  2 [host] › tests/e2e/entry-cover.spec.ts:25:113 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration (5.4s)
+  ✓  3 [host] › tests/e2e/entry-cover.spec.ts:25:113 › heungbu: full cover draft, cancellation, layered editing and archive restoration (5.5s)
+  -  4 [host] › tests/e2e/entry-cover.spec.ts:56:1 › all eight existing editions enter actual RenPy through their stored book cover
+  ✓  5 [host] › tests/e2e/entry-cover.spec.ts:69:89 › existing book cover touch and keyboard editing at portrait (1.4s)
+  ✓  6 [host] › tests/e2e/entry-cover.spec.ts:69:89 › existing book cover touch and keyboard editing at landscape (1.4s)
+  ✓  7 [host] › tests/e2e/entry-cover.spec.ts:77:1 › cover title validation keeps the applied book intact and draft recoverable (864ms)
+
+  1 skipped
+  6 passed (21.2s)
++ pnpm exec playwright test entry-cover.spec.ts --project=stories-runtime --grep all eight
+[WebServer] (node:12505) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:12522) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [stories-runtime] › tests/e2e/entry-cover.spec.ts:56:1 › all eight existing editions enter actual RenPy through their stored book cover (13.2s)
+
+  1 passed (14.0s)
++ pnpm exec playwright test existing-score-runtime.spec.ts --project=stories-runtime --grep heungbu: actual
+[WebServer] (node:12540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:12556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [stories-runtime] › tests/e2e/existing-score-runtime.spec.ts:108:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive (3.4m)
+
+  1 passed (3.4m)

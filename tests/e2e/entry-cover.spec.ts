@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-test.use({channel:'chrome'});
+test.use({channel:process.env.KNOL_BROWSER_CHANNEL || undefined});
 test('first browser entry introduces existing books, return enters library and introduction remains reachable',async({page})=>{
  await page.goto('/');
  const intro=page.getByRole('main',{name:'책 소개',exact:true});await expect(intro).toBeVisible();

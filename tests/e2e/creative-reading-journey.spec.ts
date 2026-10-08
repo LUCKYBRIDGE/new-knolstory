@@ -48,7 +48,7 @@ async function author(page:Page){
 
 test('UI-authored twelve-cut story survives Chrome files and both actual RenPy reading paths',async({playwright},info)=>{
  test.skip(info.project.name!=='stories-runtime');test.setTimeout(480000);mkdirSync(evidence,{recursive:true});
- const browser=await playwright.chromium.launch({channel:'chrome'});const context=await browser.newContext({viewport:{width:1280,height:900}});const page=await context.newPage();page.setDefaultTimeout(15000);
+ const browser=await playwright.chromium.launch({channel:process.env.KNOL_BROWSER_CHANNEL || undefined});const context=await browser.newContext({viewport:{width:1280,height:900}});const page=await context.newPage();page.setDefaultTimeout(15000);
  try{
   const groups=await author(page);const path=`${evidence}/forest-promise.knolstory`;const original=await exportFile(page,path);expect(original.project.lines).toHaveLength(12);expect(original.project.chapters.map((c:{chapterNumber:number;branchLabel?:string})=>[c.chapterNumber,c.branchLabel??''])).toEqual([[1,''],[2,''],[3,'A'],[3,'B'],[4,'']]);expect(original.audioResources.length).toBe(2);
   await page.reload();await saved(page);expect(await exportFile(page,path)).toMatchObject({project:original.project,audioResources:original.audioResources});
