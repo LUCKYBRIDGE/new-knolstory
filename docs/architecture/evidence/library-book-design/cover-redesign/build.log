@@ -1,0 +1,43 @@
+
+> knolstory-next@ build <checkout>
+> turbo run build
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running build in 6 packages
+   • Remote caching disabled
+
+@knolstory/web:build: cache bypass, force executing 90559d0c9274c4fd
+@knolstory/web:build:
+@knolstory/web:build: > @knolstory/web@0.0.0 build <checkout>/apps/web
+@knolstory/web:build: > next build
+@knolstory/web:build:
+@knolstory/web:build: ▲ Next.js 16.3.8 (Turbopack)
+@knolstory/web:build: ✓ Running next.config.ts took 47ms
+@knolstory/web:build:
+@knolstory/web:build:   Creating an optimized production build ...
+@knolstory/web:build: ✓ Compiled successfully in 418ms
+@knolstory/web:build:   Running TypeScript ...
+@knolstory/web:build:   Finished TypeScript in 1621ms ...
+@knolstory/web:build:   Collecting page data using 6 workers ...
+@knolstory/web:build:   Generating static pages using 6 workers (0/5) ...
+@knolstory/web:build:   Generating static pages using 6 workers (1/5)
+@knolstory/web:build:   Generating static pages using 6 workers (2/5)
+@knolstory/web:build:   Generating static pages using 6 workers (3/5)
+@knolstory/web:build: ✓ Generating static pages using 6 workers (5/5) in 379ms
+@knolstory/web:build:   Finalizing page optimization ...
+@knolstory/web:build:
+@knolstory/web:build: Route (app)
+@knolstory/web:build: ┌ ○ /
+@knolstory/web:build: ├ ○ /_not-found
+@knolstory/web:build: ├ ○ /probe
+@knolstory/web:build: └ ○ /shortstory
+@knolstory/web:build:
+@knolstory/web:build:
+@knolstory/web:build: ○  (Static)  prerendered as static content
+@knolstory/web:build:
+
+ Tasks:    1 successful, 1 total
+Cached:    0 cached, 1 total
+  Time:    3.916s

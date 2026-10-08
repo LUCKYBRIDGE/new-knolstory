@@ -214,7 +214,7 @@ test('library keeps blank planning optional and separates examples from a UI-cre
   await page.getByLabel('1컷 대사 / 해설',{exact:true}).fill('첫 문장부터 시작해도 괜찮아요.');
   await saved(page); await library(page);
   await expect(card(page,'내 작품','기획 없이 시작한 이야기')).toContainText('최근 수정');
-  await card(page,'내 작품','기획 없이 시작한 이야기').getByRole('button',{name:/책 표지와 소개 보기$/}).click();await expect(page.getByRole('dialog').getByRole('button',{name:'이어읽기',exact:true})).toBeDisabled();await page.keyboard.press('Escape');
+  await card(page,'내 작품','기획 없이 시작한 이야기').getByRole('button',{name:/책 표지와 소개 보기$/}).click();await expect(page.getByRole('dialog').getByRole('button',{name:'이어읽기',exact:true})).toHaveCount(0);await page.keyboard.press('Escape');
   await page.reload(); await library(page);
   await open(page,'내 작품','기획 없이 시작한 이야기','편집하기');
   await expect(page.getByLabel('1컷 대사 / 해설',{exact:true})).toHaveValue('첫 문장부터 시작해도 괜찮아요.');

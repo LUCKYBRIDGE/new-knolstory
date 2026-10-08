@@ -13,7 +13,8 @@ export async function beginSelectedBook(page:Page,resume=false){
 /** Books expose their actions only after selection, as in the legacy shelf. */
 export async function openShelfAction(page:Page,book:import('@playwright/test').Locator,intent:string){
  await book.getByRole('button',{name:/책 표지와 소개 보기$/}).click();
- await page.getByRole('dialog').getByRole('button',{name:intent,exact:true}).click();
+ const dialog=page.getByRole('dialog');if(intent==='작품 준비'||intent==='책 표지 편집'||intent==='파일로 보관')await dialog.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();
+ await dialog.getByRole('button',{name:intent,exact:true}).click();
 }
 
 export async function openLibraryTools(page:Page){

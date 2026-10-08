@@ -34,3 +34,5 @@
 /* Each front rail is one continuous board, independent of the number of book slots. */
 .plank{background:none;border:0;box-shadow:none}
 .rail{position:absolute;top:calc(var(--shelf-index) * var(--shelf-row) - var(--fascia));left:0;right:0;height:var(--fascia);z-index:1;pointer-events:none;border-top:2px solid #e6c49b;background:linear-gradient(180deg,#f7dfb84d,#a7754718 12%,#84532d2b 65%,#68402280),var(--shelf-wood) center 92%/1200px auto;box-shadow:0 6px 7px #3d220e55,inset 0 4px 4px #ffffff14}
+
+.header h1{font-size:clamp(18px,2.2vw,27px);white-space:nowrap}@media(max-width:600px){.header h1{font-size:20px}}

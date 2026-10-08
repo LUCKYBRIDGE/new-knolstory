@@ -86,7 +86,7 @@ export function BookCover({project,compact=false,className='',face='front',editi
         </div>
         {(!composition||composition.showEdition)&&<span className={styles.edition}>{BOOK_EDITION_LABELS[edition]}</span>}
         <FittedCopy style={{...boxStyle(model.titleBox),background:'transparent',color:model.ink,textAlign:cover.align,fontFamily:COVER_FONTS[cover.font].family}}
-          className={styles.titleBox} signature={JSON.stringify([model.title,cover])}>
+          className={styles.titleBox} role="title" signature={JSON.stringify([model.title,cover])}>
           <div data-cover-copy-size={`${model.titleSize}cqw`} style={{fontSize:`${model.titleSize}cqw`,background:panel}}>
             {cover.subtitle&&<p className={styles.tagline}>{cover.subtitle}</p>}
             <h2 className={styles.title} data-font={cover.font}>{model.title}</h2>

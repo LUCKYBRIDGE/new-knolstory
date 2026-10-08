@@ -248,7 +248,7 @@ export function StoryWorkspace() {
     rememberCurrent();
     const fixture=builtInStories.find(item=>item.id===key);
     let next=fixture?structuredClone(catalogProject(fixture)):savedProjects.current[key];if(!next)return;
-    if(fixture&&(intent==='edit'||intent==='prepare')){
+    if(fixture&&(intent==='edit'||intent==='prepare'||intent==='cover')){
       next={...next,id:crypto.randomUUID(),title:`${next.title} · 내 사본`,updatedAt:new Date().toISOString()};key=`new:${next.id}`;
       setImportedWorks(current=>({...current,[key]:next!.title}));
     }
@@ -256,7 +256,7 @@ export function StoryWorkspace() {
     const resume=intent==='resume'?resumeFor(key,next):undefined;
     if(intent==='resume'&&!resume){setError('이 작품의 읽기 위치를 확인할 수 없어요. 처음부터 읽기 또는 읽기 저장 메뉴를 이용해 주세요.');return;}
     setProject(next);setStoryId(key);setLineId(editId);setEditorView(context?.editorView??'cut');setActiveTool(context?.activeTool??'text');setWriterChapterId(context?.writerChapterId??null);setPreviewProfile(context?.previewProfile??'auto');
-    setPlayback(resume??createPlayback(next,intent==='edit'||intent==='prepare'?editId:undefined));setMode('edit');setView(intent==='prepare'?'prepare':intent==='start'||intent==='resume'?'book':'editor');setRuntimeMounted(current=>current||intent==='edit');setPresentationEntry(v=>v+1);setPlaybackRun(v=>v+1);setRevision(v=>v+1);setError('');
+    setPlayback(resume??createPlayback(next,intent==='edit'||intent==='prepare'?editId:undefined));setMode('edit');setView(intent==='cover'?'cover':intent==='prepare'?'prepare':intent==='start'||intent==='resume'?'book':'editor');setRuntimeMounted(current=>current||intent==='edit');setPresentationEntry(v=>v+1);setPlaybackRun(v=>v+1);setRevision(v=>v+1);setError('');
   }
   const libraryWorks=[...builtInStories.map(fixture=>({key:fixture.id,project:catalogProject(fixture),kind:fixture.id.endsWith('-classic')?'original' as const:'example' as const,canResume:!!resumeFor(fixture.id,catalogProject(fixture))})),...Object.entries({...savedProjects.current,[storyId]:project}).filter(([key])=>key.startsWith('new:')||key.startsWith('import:')).map(([key,work])=>({key,project:work,kind:key.startsWith('new:')?'own' as const:'imported' as const,canResume:!!resumeFor(key,work)}))];
   function patch(values: Partial<StoryLine>) {
@@ -385,11 +385,11 @@ export function StoryWorkspace() {
       );
     }
   }
-  async function exportFile() {
+  async function exportFile(work:StoryProject=project) {
     try {
-      const content=JSON.stringify(await portableStory(project),null,2);
+      const content=JSON.stringify(await portableStory(work),null,2);
       if(new Blob([content]).size>20_000_000)throw new Error('작품 파일은20MB 이하여야 합니다.');
-      downloadArtifact(content,`${project.title.replace(/[\\/:*?"<>|]/g,'_')}.knolstory`,'application/json');setManageOpen(false);
+      downloadArtifact(content,`${work.title.replace(/[\\/:*?"<>|]/g,'_')}.knolstory`,'application/json');setManageOpen(false);
     } catch (issue) {
       setError(`파일로 보관하지 못했어요. ${String(issue)}`);
     }
@@ -479,7 +479,7 @@ export function StoryWorkspace() {
     {view==='home'&&<BookIntroduction works={libraryWorks} onMyWorks={()=>{try{sessionStorage.setItem('knolstory-library-view-v1',JSON.stringify({version:1,filter:'own',query:'',pages:{}}));}catch{/* Library remains usable without tab preferences. */}returnToLibrary();}} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'start')} disabled={!loadComplete} notice={storageError||error}/>}
     {view==='book'&&<BookStart edition={storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory"} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>beginBook(false)} onResume={()=>beginBook(true)} onLibrary={returnToLibrary} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
     {view==='cover'&&<BookCoverEditor project={project} onApply={(cover,title)=>{preparationChange(renameStoryProject({...project,cover},title));setView('prepare');}} onCancel={()=>setView('prepare')}/>}
-    {view==='library'&&<><LocalBookshelf onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');}} works={libraryWorks} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={storageError||error}/><p data-testid="library-save-status" role="status">{saveStatus}</p></>}
+    {view==='library'&&<><LocalBookshelf onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={storageError||error}/><p data-testid="library-save-status" role="status">{saveStatus}</p></>}
     {view==='prepare'&&<main className={styles.preparationShell}><header className={styles.header}><strong>놀스토리 · {project.title}</strong><div className={styles.controls}><button onClick={returnToLibrary}>서재로</button><button onClick={()=>void exportFile()}>작품 파일 내보내기</button><button disabled={!hydrated} onClick={saveNow}>지금 저장</button></div><p data-testid="preparation-save-status" role="status">{saveStatus}</p></header>{(storageError||error)&&<p role="alert">{storageError||error}</p>}<StoryPreparation onEditCover={()=>setView('cover')} project={project} currentLineId={lineId} onProjectChange={preparationChange} onOpenCut={id=>editFromFlow(id)} onContinueWriting={continueWriting}/></main>}
     <main data-parked={view!=='editor'} aria-hidden={view!=='editor'} inert={view!=='editor'} ref={shell} className={`${styles.shell} ${compact ? styles.compact : ""} ${mode === "play" ? styles.playMode : ""} ${editorView==='writer'?styles.writing:''}`}>
       <WorkspaceManagement project={project} storyId={storyId} importedWorks={importedWorks} savedWorks={savedProjects.current} compact={compact} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={setManageOpen} onCreate={newStory} onChoose={chooseStory} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportProject={next=>{try{acceptImported(next);}catch(issue){setError(String(issue));}}} onError={setError} onLibrary={returnToLibrary} onPrepare={prepareWork}/>

@@ -9,6 +9,10 @@
 ## Phase
 **대표 작품 읽기·편집과 빈 작품 창작 연결 구현 — M2 도메인/호환 이식과 M4–M6 핵심 경로를 연결했다.** 네 작품의 실제 데이터·자산·분기·연출을 Ren'Py로 읽고, 빈 작품에서 새 장·컷과 짧은 분기를 작성해 기기 저장·파일 왕복·Ren'Py 재생까지 진행할 수 있다. 전체 M1–M9/제품 1.0 완료는 아니다.
 
+## 2026-10-08 cover readability and library identity
+
+The library is now 놀스토리 서재. Basic cover text and illustration zones are separate, all eight new presets use bounded templates, and Korean title words stay together. Existing authored composition/layers remain intact. Direct cover editing and selected-book file backup live under the book tools; resume appears only with history. Existing cover editing is reused, including a separate-text/image reset. [Evidence](docs/architecture/library-book-design-parity.md).
+
 ## 2026-10-08 cabinet material and selection experience
 
 Legacy design documents and fixed/historical oak cabinet implementations informed continuous wood rails/stiles, a recessed drawer panel, handle mounts and molded base. Selection now keeps the room visible behind a large book and wooden pedestal rather than an opaque green card. 2×3 compact pagination remains. [Design/evidence](docs/architecture/library-book-design-parity.md).

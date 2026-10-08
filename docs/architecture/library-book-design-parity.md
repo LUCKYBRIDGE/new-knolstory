@@ -130,3 +130,16 @@ Self evaluation: accuracy 4/5 (actual browser/native evidence; physical devices 
 첨부 확대 이미지에서 종이 단면이 굵은 반복 줄무늬와 둥근 돌출로 보였다. 기존 고대비4px 반복을 제거하고 좁은 page block/낮은 대비의 미세한 종이결, 절제된 표지 보드/책등 접힘으로 교체했다. compact 단면은2px 돌출로 줄이고 아래로 내려오는 단면을 없앴다. 기본 표지의 무광 결은 CSS 마감이며 layered finish의 none/subtle 선택과 원고·레이어 데이터는 바꾸지 않는다. 실제 shelf/선택 화면을 캡처했고 단면이4px보다 좁게 돌출하고 아래로 내려오지 않는 것을 브라우저에서 검사한다.
 
 책 재료 정정 후 최종 디자인/native19개, 정적build·lint·productionaudit를 다시 통과했다. 새 테스트는 단면 돌출/바닥 접촉을 확인하며 실제 재질의 물리 검증을 주장하지 않는다.
+
+
+## 2026-10-08 놀스토리 서재·표지 가독성과 편집 동선
+
+고정 story-maker의 BookCover/표지 DESIGN/StoryDiscovery 선택 행동을 대조했다. 기존 제목 상자는 아래94%까지 뻗어 그림과 겹쳤고, anywhere 줄바꿈으로 한글 단어가 끊겼다. 기본3layout×3제목위치와 명시적으로 선택하는8프리셋을 글/그림 전용 영역으로 변경했다. under-title 지은이와 부제도 같은 글 영역에 맞춘다. layered 새 프리셋 중 poster/literary 그림 상자도 subtitle과 겹치지 않게 정돈했다. 저장된 composition/design 좌표와 전체 원고는 자동 변환하지 않는다.
+
+한글 제목은 keep-all/단어 단위로 표시하고 초과 문구는 원문을 보존한 채 영역에 맞춘다. 글자 크기는 선택값을 유지하되 실제 표시 크기는 안전 영역에 의해 제한된다. 테스트가 예전처럼 무조건2배 성장을 요구하지 않고 실제 크기 변화·선택값 유지·그림 영역 분리를 검사하도록 수정했다.
+
+명칭은 ‘내 서재’에서 ‘놀스토리 서재’로 변경했다. legacy처럼 읽기/사본 편집을 우선하고, 보조 기능은 선택한 책의 ‘책 꾸미기·작품 도구’에 모았다. 비활성 이어읽기를 제거하고 기록이 있을 때만 표시한다. 표지 편집을 서재에서 바로 열 수 있으며 기본 책은 내 사본을 만든다. 파일 보관은 현재 편집 중인 다른 작품이 아니라 선택한 책을 내보낸다. 기존 편집기의 세 면/직접 조작/미리보기/프리셋/Apply·Cancel·Undo를 재사용하고 ‘글·그림 분리 배치’를 제공한다.
+
+독립 단위 회귀에서 새 영역 분리/프리셋 테스트가 먼저 실패한 뒤 수정으로 통과했다. 새 UI 검사는 한글 단어 내부 줄바꿈 없음, 직접 표지 편집→분리 배치→적용→원본 보존→선택 책 파일 보관을 확인한다. 저장된 자유 배치는 사용자의 의도이므로 자동 재배치하지 않는다. 이 경우 편집기에서 분리 배치 또는 프리셋을 명시적으로 선택한다.
+
+최종 검증:826 TS 단위/계약/통합, 관련host29개(native3skip), 디자인/native20개(8작품 actualRen’Py 포함) 통과. 타입·lint·정적build·productionaudit 통과. 구성된 TS coverage:statement93.38%,branch90.44%,line97.62%; React/Python 전체가 아니다. [검증](evidence/library-book-design/cover-redesign/verification.json), [host](evidence/library-book-design/cover-redesign/host.log), [native](evidence/library-book-design/cover-redesign/design-native.log). 독립 코드/보안 검토 high/medium 없음. 사용자 저장 자유 배치의 미관을 자동 수정했다고 주장하지 않는다. 자체 점검은 기본/새 프리셋의 분리·실제 줄바꿈·원본보존·파일 동선 근거를 확인했으며 실물기기와 사용자 최종 미적 판단은 별도다.

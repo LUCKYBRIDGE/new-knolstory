@@ -44,11 +44,11 @@ function faceElements(face: CoverFaceId, preset: CoverFacePresetId, cover: Story
   const box = { x: .10, y: .45, w: .8, h: .35 };
   if (preset === "cloth") Object.assign(box, { x: .25, y: .49, w: .5, h: .3 });
   if (preset === "literary") Object.assign(box, { x: .14, y: .58, w: .72, h: .2 });
-  if (preset === "poster") Object.assign(box, { x: .06, y: .36, w: .88, h: .45 });
+  if (preset === "poster") Object.assign(box, { x: .06, y: .45, w: .88, h: .36 });
   if (cover.backgroundId && preset !== "character") result.push({ id: `${face}-scene`, type: "image", role: "scene", assetId: cover.backgroundId, assetType: "background", box,
     // Old posters keep their complete artwork. New wide scenes can fill a window.
     frame: /poster|scene/.test(cover.backgroundId) ? "rect" : preset === "arch" ? "arch" : preset === "cameo" ? "oval" : "rect", crop: { fit: /poster|scene/.test(cover.backgroundId) ? "contain" : "cover", zoom: 1, x: 50, y: 50 } });
-  if (cover.characterId && (preset === "character" || !/poster|scene/.test(cover.backgroundId))) result.push({ id: `${face}-actor`, type: "image", role: "actor", assetId: cover.characterId, assetType: "character", box: { x: .26, y: .45, w: .48, h: .34 }, frame: "rect", crop: { fit: "contain", zoom: 1, x: 50, y: 100 } });
+  if (cover.characterId && (preset === "character" || !/poster|scene/.test(cover.backgroundId))) result.push({ id: `${face}-actor`, type: "image", role: "actor", assetId: cover.characterId, assetType: "character", box: { x: .26, y: Math.max(.45,box.y), w: .48, h: Math.min(.34,box.h) }, frame: "rect", crop: { fit: "contain", zoom: 1, x: 50, y: 100 } });
   result.push(text("author", { bind: "cover.author" }, .12, .91, .76, .06, .035), text("edition", { text: "놀스토리 · 우리 이야기" }, .12, .02, .76, .04, .029));
   result.push(text("description", { bind: "project.description" }, .12, .16, .76, .7, .038, "band"));
   return result;

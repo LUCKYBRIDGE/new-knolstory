@@ -325,3 +325,7 @@
 .pageEdges::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 2px,#7963450d 2px 2.5px,transparent 2.5px 4px);opacity:.55;border-radius:inherit}
 .book:not([data-layered-cover]) .surfaceFinish{background:repeating-linear-gradient(0deg,#ffffff05 0 .5px,transparent .5px 3px),repeating-linear-gradient(90deg,#00000004 0 .5px,transparent .5px 3px),linear-gradient(115deg,#fff2,transparent 30%,#00000006 70%,#00000014)}
 .book[data-compact] .binding{width:3.5%}
+
+/* Korean cover typography keeps words together; fitting reduces copy within its own zone. */
+.titleBox>div{line-height:1.25}.title{line-height:1.25;word-break:keep-all;overflow-wrap:normal;text-wrap:pretty}.tagline,.titleBox .author{word-break:keep-all;overflow-wrap:normal;line-height:1.4}
+.copyBox[data-role="title"]{word-break:keep-all;overflow-wrap:normal}.copyBox[data-role="title"] .layerCopy{line-height:1.25;word-break:keep-all;overflow-wrap:normal;text-wrap:pretty}

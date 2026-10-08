@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-08",
+  "scope": "Branded library, separate cover typography/art and direct cover tools",
+  "unit_contract_integration": 826,
+  "host": {
+    "passed": 29,
+    "native_only_skipped": 3
+  },
+  "design_native": {
+    "passed": 20,
+    "includes": "eight actual RenPy entries in persistent iframe"
+  },
+  "coverage": {
+    "statements": 93.38,
+    "branches": 90.44,
+    "lines": 97.62,
+    "scope": "configured TS packages and web libs; not total React/Python"
+  },
+  "types": "passed",
+  "lint": "passed",
+  "static_build": "passed",
+  "production_audit": "passed",
+  "review": "independent security/correctness review: no high/medium findings",
+  "authored_content": "Existing composition/layer boxes and manuscripts preserved; preset reset requires user selection",
+  "hardware": "Local browser viewport tests; physical hardware performance not claimed",
+  "media": "No new media; restored legacy images remain ignored and public-release block unchanged"
+}

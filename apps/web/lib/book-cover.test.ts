@@ -53,8 +53,42 @@ describe('static book cover compatibility', () => {
   const next=applyCoverPreset(cover,id);expect(next).toMatchObject({presetId:id,layout,author:'보존',subtitle:'부제',authorNote:'기록',backgroundId:'bg',characterId:'actor',titleColor:'#abcdef'});expect(cover.presetId).toBeUndefined();
   expect(resolveBookCover({...blank(),cover:next}).preset).toBe(id);
  });
+ it.each(COVER_PRESET_OPTIONS)('resets $id to bounded book typography without generating an overlapping free composition',({id})=>{
+  const original={...DEFAULT_COVER,subtitle:'그림 밖에 자리한 부제',author:'작가',titleColor:'#123456',composition:defaultCoverComposition(DEFAULT_COVER)};
+  const next=applyCoverPreset(original,id);
+  const {titleBox,artBox}=resolveBookCover({...blank(),cover:next});
+  expect(next.composition).toBeUndefined();
+  expect(['top','bottom']).toContain(next.titlePosition);
+  expect(titleBox.y+titleBox.h<=artBox.y||artBox.y+artBox.h<=titleBox.y).toBe(true);
+  expect(next).toMatchObject({subtitle:original.subtitle,author:original.author,titleColor:original.titleColor});
+  expect(original.composition).toEqual(defaultCoverComposition(DEFAULT_COVER));
+ });
  it.each(['classic','picture','bold'] as const)('uses %s legacy layout geometry without creating saved composition', layout=>{
   const model=resolveBookCover({...blank(),cover:{...DEFAULT_COVER,layout}});expect(model.mode).toBe('legacy');expect(model.cover.composition).toBeUndefined();expect(model.artBox.h).toBeGreaterThan(0);
+ });
+ it.each(['classic','picture','bold'] as const)('keeps %s built-in title, subtitle and under-title author apart from artwork',layout=>{
+  for(const titlePosition of ['top','middle','bottom'] as const){
+   const project={...blank(),title:'선녀와 나무꾼',cover:{...DEFAULT_COVER,layout,titlePosition,subtitle:'하늘과 땅 사이에서 이어진 만남과 이별',author:'전래 이야기',authorPosition:'under-title' as const}};
+   const before=structuredClone(project);
+   Object.freeze(project.cover);Object.freeze(project);
+   const {titleBox,artBox}=resolveBookCover(project);
+   const separated=titleBox.y+titleBox.h<=artBox.y||artBox.y+artBox.h<=titleBox.y;
+   expect(separated).toBe(true);
+   expect(titleBox.h).toBeGreaterThanOrEqual(.22);
+   expect(titleBox.y+titleBox.h).toBeLessThanOrEqual(.87);
+   expect(artBox.y+artBox.h).toBeLessThanOrEqual(.87);
+   expect(artBox.h).toBeGreaterThan(.2);
+   expect(project).toEqual(before);
+  }
+ });
+ it('keeps authored full-bleed composition geometry and layered element coordinates intact',()=>{
+  const composition={...defaultCoverComposition(DEFAULT_COVER),titleY:24,titleWidth:66};
+  const manual=resolveBookCover({...blank(),cover:{...DEFAULT_COVER,composition}});
+  expect(manual.artBox).toEqual({x:0,y:0,w:1,h:1});
+  expect(manual.titleBox.y).toBe(.24);expect(manual.titleBox.h).toBe(.7);
+  const design=createCoverDesign(DEFAULT_COVER);const before=structuredClone(design);
+  expect(resolveBookCover({...blank(),cover:{...DEFAULT_COVER,design}}).elements).toEqual(design.faces.front.elements.filter(item=>item.type!=='text'||item.region!=='band'||design.band.enabled));
+  expect(design).toEqual(before);
  });
  it('clamps projected manual boxes to legacy safe margins without rewriting authored positions',()=>{
   const composition={...defaultCoverComposition(DEFAULT_COVER),titleX:10,titleWidth:90,characterX:15,characterScale:1.3,characterBottom:35,backgroundFit:'complete' as const};

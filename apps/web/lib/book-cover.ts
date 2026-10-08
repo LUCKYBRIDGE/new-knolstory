@@ -45,12 +45,12 @@ export function applyCoverPreset(cover: StoryCover, id: CoverPresetId): StoryCov
   const layout=COVER_PRESET_OPTIONS.find(option=>option.id===id)?.layout;
   if(!layout) throw new RangeError('표지 디자인을 확인해 주세요.');
   const {composition: _composition,presetId: _preset,...content}=cover; void _composition;void _preset;
-  const settings:Partial<StoryCover>=layout==='classic'?{titlePosition:'top',align:'center',titleSize:36,font:'serif',authorPosition:'bottom'}:layout==='picture'?{titlePosition:'bottom',align:'left',titleSize:32,font:'sans',authorPosition:'under-title'}:{titlePosition:'middle',align:'center',titleSize:44,font:'sans',authorPosition:'bottom'};
+  const settings:Partial<StoryCover>=layout==='classic'?{titlePosition:'top',align:'center',titleSize:36,font:'serif',authorPosition:'bottom'}:layout==='picture'?{titlePosition:'bottom',align:'left',titleSize:32,font:'sans',authorPosition:'under-title'}:{titlePosition:'top',align:'center',titleSize:44,font:'sans',authorPosition:'bottom'};
   const next:StoryCover={...content,...settings,layout,presetId:id};
   if(layout==='classic') return id==='oval'?{...next,theme:'cream'}:next;
-  if(id==='letter') return {...next,theme:'cream',font:'handwriting',composition:{...defaultCoverComposition(next),titleY:14,characterScale:.55,characterX:65,textPanel:'none'}};
-  if(id==='starlight'||id==='poster') return {...next,theme:id==='starlight'?'night':next.theme,font:id==='poster'?'rounded':'serif',titlePosition:'top',composition:{...defaultCoverComposition(next),titleY:10,characterScale:.8,characterBottom:0,textPanel:'none'}};
-  return {...next,composition:{...defaultCoverComposition(next),showEdition:true,textPanel:'none',characterScale:layout==='picture'?.78:.6,characterX:layout==='bold'?72:defaultCoverComposition(next).characterX,characterBottom:layout==='picture'?35:0,titleY:layout==='picture'?67:35}};
+  if(id==='letter') return {...next,theme:'cream',font:'handwriting',titlePosition:'top'};
+  if(id==='starlight'||id==='poster') return {...next,theme:id==='starlight'?'night':next.theme,font:id==='poster'?'rounded':'serif',titlePosition:'top'};
+  return next;
 }
 export function coverTextPanel(color: string): string {
   const [r,g,b]=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/255).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4);
@@ -74,12 +74,22 @@ export function coverImageGeometry(image: Pick<CoverImageElement,'crop'>, natura
   return {width,height,left:(fw-width)*image.crop.x/100,top:(fh-height)*image.crop.y/100};
 }
 function coverAsset(id:string,type:'background'|'character') { const asset=resolveAsset(id);return asset?.type===type?asset:undefined; }
+/** Basic covers reserve paper for the whole copy group and a separate illustration inset.
+ * Free compositions and layered designs own their coordinates and bypass these templates. */
+function builtInCoverBoxes(cover:StoryCover):{titleBox:CoverBox;artBox:CoverBox} {
+  const position=cover.titlePosition;
+  const titleY=position==='top'?.12:position==='middle'?.35:.63;
+  const artY=position==='top'?.38:position==='middle'?.08:.10;
+  const artHeight=position==='top'?.48:position==='middle'?.23:.49;
+  return {titleBox:{x:.11,y:titleY,w:.80,h:.23},artBox:{x:.11,y:artY,w:.80,h:artHeight}};
+}
 /** Canonical static cover model shared by shelf, preparation preview and start screen. */
 export function resolveBookCover(project: StoryProject, face: CoverFaceId='front') {
   const cover=resolveStoryCover(project),theme=COVER_THEMES[cover.theme],composition=cover.composition;
   const title=project.title||'제목을 기다리는 이야기';
   const context={title,description:project.description,author:cover.author,subtitle:cover.subtitle,authorNote:cover.authorNote};
-  const artBox:CoverBox=composition||cover.layout==='picture'?{x:0,y:0,w:1,h:1}:cover.layout==='bold'?{x:0,y:.12,w:1,h:.76}:{x:.13,y:.31,w:.78,h:.60};
+  const template=builtInCoverBoxes(cover);
+  const artBox:CoverBox=composition?{x:0,y:0,w:1,h:1}:template.artBox;
   const width=composition?Math.min(80*composition.characterScale,90):80;
   const x=composition?Math.max(5+width/2,Math.min(95-width/2,composition.characterX)):cover.characterPosition==='left'?44:cover.characterPosition==='right'?56:50;
   const bottom=composition?composition.characterBottom:cover.layout==='picture'?(cover.titlePosition==='bottom'?32:cover.titlePosition==='top'?14:20):0;
@@ -87,7 +97,7 @@ export function resolveBookCover(project: StoryProject, face: CoverFaceId='front
   const actorBox:CoverBox={x:(x-width/2)/100,y:(100-bottom-height)/100,w:width/100,h:height/100};
   const titleWidth=composition?.titleWidth??82,titleX=composition?coverCompositionTitleX(composition):51;
   const titleY=composition?.titleY??(cover.titlePosition==='top'?12:cover.titlePosition==='middle'?35:55);
-  const titleBox:CoverBox={x:(titleX-titleWidth/2)/100,y:titleY/100,w:titleWidth/100,h:(94-titleY)/100};
+  const titleBox:CoverBox=composition?{x:(titleX-titleWidth/2)/100,y:titleY/100,w:titleWidth/100,h:(94-titleY)/100}:template.titleBox;
   const ink=cover.titleColor||(cover.layout==='classic'?theme.accent:theme.ink);
   const design=cover.design;
   return {mode:design?'layers' as const:'legacy' as const,face,cover,preset:design?.faces[face].preset??cover.presetId??cover.layout,

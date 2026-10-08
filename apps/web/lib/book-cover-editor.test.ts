@@ -40,3 +40,14 @@ describe('cover draft editing', () => {
     expect(next.faces.front.elements).toHaveLength(design.faces.front.elements.length);
   });
 });
+
+it('new three-face front presets keep every face text box outside illustration boxes',()=>{
+ const cover={...DEFAULT_COVER,backgroundId:'onggojib.background.warm-room-pixel',characterId:'onggojib.character.real-consistent-pixel',subtitle:'표지 소개',author:'우리 반'};
+ const original=createCoverDesign(cover);
+ for(const preset of ['picturebook','arch','cloth','literary','banded','character','cameo','poster'] as const){
+  const next=selectCoverFacePreset(original,'front',preset,cover);const items=next.faces.front.elements;
+  for(const text of items.filter(item=>item.type==='text'&&item.region==='face'))for(const image of items.filter(item=>item.type==='image')){
+   const a=text.box,b=image.box;expect(a.x+a.w<=b.x||b.x+b.w<=a.x||a.y+a.h<=b.y||b.y+b.h<=a.y).toBe(true);
+  }
+ }
+});

@@ -7,10 +7,10 @@ import type {StoryProject} from '@knolstory/story-domain';
 import {NewStoryForm} from './new-story-form';
 import styles from './local-bookshelf.module.css';
 export type BookshelfWork={key:string;project:StoryProject;kind:'own'|'imported'|'example'|'original';canResume:boolean};
-export type BookshelfIntent='edit'|'start'|'resume'|'prepare';
-export type LocalBookshelfProps={works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onIntroduction?:()=>void};
+export type BookshelfIntent='edit'|'start'|'resume'|'prepare'|'cover';
+export type LocalBookshelfProps={works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onExport?:(key:string)=>void;onIntroduction?:()=>void};
 const sections=[{kind:'original',title:'원작'},{kind:'example',title:'기본 예제'},{kind:'own',title:'내 작품'},{kind:'imported',title:'가져온 작품'}] as const;
-export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction}:LocalBookshelfProps){
+export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction,onExport}:LocalBookshelfProps){
  const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null),tools=useRef<HTMLDetailsElement>(null);
  useEffect(()=>{const dismiss=(event:PointerEvent)=>{if(tools.current?.open&&event.target instanceof Node&&!tools.current.contains(event.target))tools.current.open=false;};const escape=(event:KeyboardEvent)=>{if(event.key==='Escape'&&tools.current?.open){tools.current.open=false;tools.current.querySelector<HTMLElement>('summary')?.focus();}};document.addEventListener('pointerdown',dismiss);document.addEventListener('keydown',escape);return()=>{document.removeEventListener('pointerdown',dismiss);document.removeEventListener('keydown',escape);};},[]);
  const [layout,setLayout]=useState(()=>shelfLayoutForWidth(1000));
@@ -29,7 +29,7 @@ export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,no
  const selectedWork=works.find(work=>work.key===selected);
  return <main ref={room} className={styles.library} aria-label="로컬 서재">
   <header className={styles.header}>
-   <h1>내 서재</h1>
+   <h1>놀스토리 서재</h1>
    <div className={styles.headerTools}>
     {onIntroduction&&<button className={styles.introLink} onClick={onIntroduction}>책 소개</button>}
     <label className={styles.classification}><span className={styles.semantic}>책 분류</span><select aria-label="책 분류" value={filter} onChange={event=>{setFilter(event.target.value);if(tools.current)tools.current.open=false;}}><option value="all">모든 책</option>{sections.map(section=><option key={section.kind} value={section.kind}>{section.kind==='example'?'놀스토리':section.title}</option>)}</select></label>
@@ -62,6 +62,6 @@ export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,no
   </div>
   <div className={`${styles.foreground} ${styles.foregroundLeft}`} aria-hidden="true"/><div className={`${styles.foreground} ${styles.foregroundRight}`} aria-hidden="true"/>
   <footer className={styles.roomFooter}>─ ◇ ─<p>오늘도, 새로운 이야기가 기다리고 있어요.</p><small>© 놀퀴즈</small></footer>
-  {selectedWork&&<LibraryBookFocus works={visible} selected={selectedWork} onSelect={setSelected} onClose={()=>setSelected(null)} onOpen={(key,intent)=>{setSelected(null);onOpen(key,intent);}} disabled={disabled}/>}
+  {selectedWork&&<LibraryBookFocus works={visible} selected={selectedWork} onSelect={setSelected} onClose={()=>setSelected(null)} onOpen={(key,intent)=>{setSelected(null);onOpen(key,intent);}} disabled={disabled} onExport={onExport}/>}
  </main>;
 }
