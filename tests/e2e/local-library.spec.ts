@@ -1,3 +1,4 @@
+import {openShelfAction} from './library-entry';
 import {enterLibrary,beginSelectedBook} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -19,7 +20,7 @@ async function library(page: Page) {
 }
 async function open(page: Page, kind: string, title: string, intent: string) {
   await library(page);
-  await card(page, kind, title).getByRole('button', { name: intent, exact: true }).click();
+  await openShelfAction(page,card(page, kind, title),intent);
   if(intent==='처음부터 읽기'||intent==='이어읽기')await beginSelectedBook(page,intent==='이어읽기');
 }
 async function preparation(page: Page) {
@@ -171,7 +172,7 @@ test('local library prepares three separate works and roundtrips preparation wit
     await saved(fresh); await library(fresh); await open(fresh,'가져온 작품',forestTitle,'편집하기');
     const roundtrip = await exportFile(fresh,info.outputPath('fresh.knolstory'));
     expect(roundtrip.project).toEqual(archive.project); expect(roundtrip.audioResources).toEqual(archive.audioResources);
-    await library(fresh); await card(fresh,'가져온 작품',forestTitle).getByRole('button',{name:'처음부터 읽기',exact:true}).click();await beginSelectedBook(fresh);
+    await library(fresh); await openShelfAction(fresh,card(fresh,'가져온 작품',forestTitle),'처음부터 읽기');await beginSelectedBook(fresh);
     await ready(fresh); await unlock(fresh); await shot(fresh,'imported-native-reading');
     for(let i=0;i<5;i++){await fresh.getByRole('button',{name:'다음으로',exact:true}).click();await ready(fresh);}
     await fresh.getByRole('button',{name:'별빛의 길로 가기',exact:true}).click();await ready(fresh);await saved(fresh);
@@ -179,7 +180,7 @@ test('local library prepares three separate works and roundtrips preparation wit
     await fresh.getByRole('region',{name:'1번 읽기 저장'}).getByRole('button',{name:'여기에 저장',exact:true}).click();
     await fresh.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await fresh.getByTestId('story-runtime-frame').evaluate(node=>node.setAttribute('data-library-instance','same'));
     await library(fresh);await expect(fresh.getByTestId('story-runtime-frame')).toHaveAttribute('data-library-instance','same');const parked=await fresh.getByTestId('story-runtime-frame').boundingBox();expect(parked!.width).toBeGreaterThan(0);expect(parked!.height).toBeGreaterThan(0); await fresh.reload(); await library(fresh);
-    await card(fresh,'가져온 작품',forestTitle).getByRole('button',{name:'이어읽기',exact:true}).click();await beginSelectedBook(fresh,true);await ready(fresh);
+    await openShelfAction(fresh,card(fresh,'가져온 작품',forestTitle),'이어읽기');await beginSelectedBook(fresh,true);await ready(fresh);
     await expect(fresh.getByText('별빛 아래에서 길 잃은 친구를 만났다.',{exact:true})).toBeVisible();
     await fresh.getByRole('button',{name:'편집으로',exact:true}).click();
     const lineId=archive.project.lines.find((line:{text:string})=>line.text==='별빛 아래에서 길 잃은 친구를 만났다.')?.id;
@@ -212,7 +213,7 @@ test('library keeps blank planning optional and separates examples from a UI-cre
   await page.getByLabel('1컷 대사 / 해설',{exact:true}).fill('첫 문장부터 시작해도 괜찮아요.');
   await saved(page); await library(page);
   await expect(card(page,'내 작품','기획 없이 시작한 이야기')).toContainText('최근 수정');
-  await expect(card(page,'내 작품','기획 없이 시작한 이야기').getByRole('button',{name:'이어읽기',exact:true})).toBeDisabled();
+  await card(page,'내 작품','기획 없이 시작한 이야기').getByRole('button',{name:/책 표지와 소개 보기$/}).click();await expect(page.getByRole('dialog').getByRole('button',{name:'이어읽기',exact:true})).toBeDisabled();await page.keyboard.press('Escape');
   await page.reload(); await library(page);
   await open(page,'내 작품','기획 없이 시작한 이야기','편집하기');
   await expect(page.getByLabel('1컷 대사 / 해설',{exact:true})).toHaveValue('첫 문장부터 시작해도 괜찮아요.');
@@ -278,7 +279,7 @@ test('corrupt device storage is kept intact while UI-created recovery work can b
 
 test('example preparation makes an independent own copy and duplicate import keeps the original',async({page},info)=>{
  test.skip(info.project.name!=='host');await page.goto('/'); await enterLibrary(page);await library(page);
- const example=page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article').first();const originalTitle=await example.getByRole('heading').innerText();await example.getByRole('button',{name:'작품 준비',exact:true}).click();
+ const example=page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article').first();const originalTitle=await example.getByRole('heading').innerText();await openShelfAction(page,example,'작품 준비');
  await expect(page.getByRole('region',{name:'작품 준비',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`${originalTitle} · 내 사본`);await library(page);await expect(page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article').first()).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
  await page.getByLabel('서재 작품 파일 가져오기').setInputFiles(forestFile);await saved(page);await library(page);const raw=await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])));await page.getByLabel('서재 작품 파일 가져오기').setInputFiles(forestFile);await expect(page.getByRole('main',{name:'로컬 서재'})).toContainText('같은 작품이 이미');await expect(page.getByRole('region',{name:'가져온 작품'}).getByRole('article')).toHaveCount(1);expect(await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])))).toEqual(raw);
 });

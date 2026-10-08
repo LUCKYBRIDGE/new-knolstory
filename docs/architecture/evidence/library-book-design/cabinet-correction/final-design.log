@@ -1,0 +1,25 @@
+[WebServer] (node:47446) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 15 tests using 1 worker
+
+(node:47461) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/library-design-parity.spec.ts:6:83 › legacy book surfaces and focus browsing at 1365x900 (3.4s)
+  ✓   2 [host] › tests/e2e/library-design-parity.spec.ts:6:83 › legacy book surfaces and focus browsing at 820x1180 (2.5s)
+  ✓   3 [host] › tests/e2e/library-design-parity.spec.ts:6:83 › legacy book surfaces and focus browsing at 390x844 (1.9s)
+  ✓   4 [host] › tests/e2e/library-design-parity.spec.ts:6:83 › legacy book surfaces and focus browsing at 844x390 (2.1s)
+  ✓   5 [host] › tests/e2e/library-design-parity.spec.ts:6:83 › legacy book surfaces and focus browsing at 320x740 (2.0s)
+  ✓   6 [host] › tests/e2e/library-design-parity.spec.ts:16:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.5s)
+  ✓   7 [host] › tests/e2e/library-design-parity.spec.ts:25:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book (2.3s)
+  ✓   8 [host] › tests/e2e/library-design-parity.spec.ts:38:1 › layered front, spine and back covers keep direct edits in the draft until apply (1.7s)
+  -   9 [host] › tests/e2e/library-design-parity.spec.ts:47:1 › all eight books start native RenPy from the library focus and retain the same runtime
+  ✓  10 [host] › tests/e2e/library-design-parity.spec.ts:60:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript (3.2s)
+  ✓  11 [host] › tests/e2e/library-design-parity.spec.ts:66:1 › tab browsing preferences survive book work and reload without entering the story file (3.3s)
+  ✓  12 [host] › tests/e2e/library-design-parity.spec.ts:71:1 › modal keyboard boundaries include collapsed settings and nested image selection (2.4s)
+  ✓  13 [host] › tests/e2e/library-design-parity.spec.ts:75:1 › cover title size changes the rendered typography without covering the whole artwork panel (1.4s)
+  ✓  14 [host] › tests/e2e/library-design-parity.spec.ts:79:1 › books physically rest on shelf faces and room decoration frames the focused shelves (2.5s)
+  ✓  15 [host] › tests/e2e/library-design-parity.spec.ts:91:1 › one cabinet and drawer follow 5x2, 4x2, 3x3 and 2x4 available-width layouts (1.5s)
+
+  1 skipped
+  14 passed (32.7s)

@@ -42,6 +42,8 @@
 
 ## Active task
 
+2026-10-08 서재 디자인 소유자 정정 반영: 판본별 카드책장을 하나의 연속 책장/하단서랍으로 통합하고 책밑의 모든 실행버튼·제목을 제거했다. 실제 가로공간5×2/4×2/3×3/2×4, 책바닥=선반상단, 상판화분·흐린전경·방바닥선을 복원했다. 책선택 집중창에서만 읽기/편집/준비를 제공한다. 전체host65/최종디자인14/native8/805tests 및1346media 검증. [정정결과](docs/architecture/evidence/library-book-design/cabinet-correction/verification.json).
+
 2026-10-08 소개·서재·책 디자인 계승 완료: 고정 story-maker의 포스터형 첫 진입·실제 방/선반·큰 책·집중 창·양장본 마감과 직접 표지 편집을 현재 Next 저장/파일/Ren’Py에 맞춰 이식했다. 분류·검색·선반 페이지·탭 복원, 기본/세 면 실물 프리셋과 44px pointer/keyboard 조작·초안 undo/redo/취소/적용을 연결했다. 803 tests, 정적host59 및 최종관련18,8작품 native/Chrome와 편집된흥부227/225경로·전체파일일치,타입·린트·build·1344media검증 통과. 소유자가 기존프로젝트 저작권과 재사용허가를 직접 확인했다. 상세 분류·파일·화면·한계: [디자인 계승](docs/architecture/library-book-design-parity.md). 실물기기 성능과 서비스배포는 별도다.
 
 2026-10-08 다른 컴퓨터용 테스트 환경 후속: 설치·권한 있는 레거시 복원·고정 SDK/Web/폰트 해시 검증·공유runtime·정적build와 Chromium 준비를 자동화하고, static preview에서 기존 책/표지/파일/native 검사를 실행한다. 정적 검사에서 발견한 소개 재방문 직후 reload의100ms 저장 경합을 pagehide 저장으로 수정했다. 준비/복구/작품 이동과 실행 근거는 [재현 테스트 환경](docs/architecture/reproducible-test-environment.md)에 기록한다. 실제 다른 하드웨어·학교 Windows/Chromebook/Android 및 공개출시 권리 승인은 포함하지 않는다.

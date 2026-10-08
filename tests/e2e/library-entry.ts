@@ -9,3 +9,9 @@ export async function beginSelectedBook(page:Page,resume=false){
  await expect(page.getByRole('main',{name:'책 표지와 소개',exact:true})).toBeVisible();
  await page.getByRole('main',{name:'책 표지와 소개',exact:true}).getByRole('button',{name:resume?'이어읽기':'처음부터 읽기',exact:true}).click();
 }
+
+/** Books expose their actions only after selection, as in the legacy shelf. */
+export async function openShelfAction(page:Page,book:import('@playwright/test').Locator,intent:string){
+ await book.getByRole('button',{name:/책 표지와 소개 보기$/}).click();
+ await page.getByRole('dialog').getByRole('button',{name:intent,exact:true}).click();
+}

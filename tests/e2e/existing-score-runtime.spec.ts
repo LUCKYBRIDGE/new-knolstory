@@ -1,3 +1,4 @@
+import {openShelfAction} from './library-entry';
 import {enterLibrary,beginSelectedBook} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -121,7 +122,7 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   // Open the shipped original/VN catalog first; no newly invented story is used.
   const category = id.endsWith('-classic') ? '원작' : '기본 예제';
   const card = page.getByRole('region', { name: category, exact: true }).getByRole('article').filter({ has: page.getByRole('heading', { name: process.env.KNOL_COVER_ARCHIVE&&id==='heungbu'?source.title:project.title, exact: true }) });
-  await card.getByRole('button', { name: '처음부터 읽기', exact: true }).click(); await beginSelectedBook(page);
+  await openShelfAction(page,card,'처음부터 읽기'); await beginSelectedBook(page);
   await ready(page); await unlock(page);
   await verifyAudio(page, project, createPlayback(project));
   await page.getByRole('button', { name: '서재로', exact: true }).click();
@@ -130,7 +131,7 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   await page.getByRole('button', { name: '서재로', exact: true }).click();
   const imported = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
   await expect(imported).toBeVisible();
-  await imported.getByRole('button', { name: '처음부터 읽기', exact: true }).click(); await beginSelectedBook(page); await ready(page); await unlock(page);
+  await openShelfAction(page,imported,'처음부터 읽기'); await beginSelectedBook(page); await ready(page); await unlock(page);
   const frame = page.getByTestId('story-runtime-frame');
   await frame.evaluate(n => n.setAttribute('data-score-instance', 'persistent'));
   const records: unknown[] = [];
@@ -208,7 +209,7 @@ test('Seonnyeo existing storm: fixed original versus scored cut in actual browse
     await expect(page.getByRole('region', { name: '작품 준비', exact: true })).toBeVisible();
     await page.getByRole('button', { name: '서재로', exact: true }).click();
     const card = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
-    await card.getByRole('button', { name: '편집하기', exact: true }).click();
+    await openShelfAction(page,card,'편집하기');
     await page.getByRole('button', { name: '현재 컷 꾸미기', exact: true }).click();
     const locator = page.locator(`[data-line-id="${cutId}"]`);
     await locator.evaluate(n => { n.closest('details')!.open = true; });
@@ -240,7 +241,7 @@ test('existing eight works: actual decoded music clock advances after the first 
     const project = readProject(id);
     const category = id.endsWith('-classic') ? '원작' : '기본 예제';
     const card = page.getByRole('region', { name: category, exact: true }).getByRole('article').filter({ has: page.getByRole('heading', { name: project.title, exact: true }) });
-    await card.getByRole('button', { name: '처음부터 읽기', exact: true }).click(); await beginSelectedBook(page);
+    await openShelfAction(page,card,'처음부터 읽기'); await beginSelectedBook(page);
     await ready(page); await unlock(page);
     const first = createPlayback(project);
     await verifyAudio(page, project, first);
