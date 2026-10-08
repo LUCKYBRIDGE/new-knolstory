@@ -123,3 +123,10 @@ Self evaluation: accuracy 4/5 (actual browser/native evidence; physical devices 
 2×3/6+2권 페이지와 첫 화면 밀도 기준을 함께 유지한다. 색·질감은 시각적 목재 표현이며 물리 재질을 검증했다는 뜻이 아니다. [새 화면·검사 근거](evidence/library-book-design/cabinet-craft/verification.json). 스크린샷은 같은 폴더에 로컬 보관하고 Git에 공개하지 않는다.
 
 최종 검증: 관련 단위34개, 디자인/native18개(8작품 actual Ren’Py 포함), 타입·린트·build·productionaudit 통과. desktop/mobile/선택 화면을 실제 캡처로 확인했다. 독립 legacy 소스 조사를 완료했다. 독립 코드 리뷰는 agent 이용 한도로 실행되지 않아 주 담당이 diff와 실제 화면을 점검했다.
+
+
+### 책 단면 추가 정정
+
+첨부 확대 이미지에서 종이 단면이 굵은 반복 줄무늬와 둥근 돌출로 보였다. 기존 고대비4px 반복을 제거하고 좁은 page block/낮은 대비의 미세한 종이결, 절제된 표지 보드/책등 접힘으로 교체했다. compact 단면은2px 돌출로 줄이고 아래로 내려오는 단면을 없앴다. 기본 표지의 무광 결은 CSS 마감이며 layered finish의 none/subtle 선택과 원고·레이어 데이터는 바꾸지 않는다. 실제 shelf/선택 화면을 캡처했고 단면이4px보다 좁게 돌출하고 아래로 내려오지 않는 것을 브라우저에서 검사한다.
+
+책 재료 정정 후 최종 디자인/native19개, 정적build·lint·productionaudit를 다시 통과했다. 새 테스트는 단면 돌출/바닥 접촉을 확인하며 실제 재질의 물리 검증을 주장하지 않는다.

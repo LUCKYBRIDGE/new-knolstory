@@ -125,3 +125,9 @@ test('cabinet joinery uses visible wood grain and preserves the book selection e
  expect(surfaces.every(surface=>surface.image.includes('shelf.webp'))).toBe(true);
  const shelf=page.locator('[data-shelf-book]').first();const opener=shelf.getByRole('button');await opener.focus();await page.keyboard.press('Enter');await expect(page.getByRole('dialog')).toBeVisible();await page.keyboard.press('Escape');await expect(opener).toBeFocused();
 });
+
+test('book page blocks stay narrow and rest above the shelf instead of protruding below the cover',async({page})=>{
+ await page.goto('/');await enterLibrary(page);
+ const edges=await page.locator('[data-shelf-book] [data-cover-face="front"]').evaluateAll(books=>books.map(book=>{const cover=book.getBoundingClientRect();const edge=book.querySelector('[class*="pageEdges"]')!.getBoundingClientRect();return {projection:edge.right-cover.right,bottom:edge.bottom-cover.bottom,image:getComputedStyle(book.querySelector('[class*="pageEdges"]')!).backgroundImage};}));
+ expect(edges.every(edge=>edge.projection<=4&&edge.bottom<=1)).toBe(true);expect(edges.every(edge=>!edge.image.includes('repeating-linear-gradient'))).toBe(true);
+});

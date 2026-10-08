@@ -15,5 +15,12 @@
   "production_audit": "passed",
   "review": "Primary agent diff/captures reviewed; independent legacy research completed; independent code review unavailable due to agent usage limit",
   "media": "No new media; ignored restored legacy texture reused; public-release block unchanged",
-  "hardware": "Local browser viewport tests; no physical school/Android hardware claim"
+  "hardware": "Local browser viewport tests; no physical school/Android hardware claim",
+  "book_material_followup": {
+    "design_native_checks": 19,
+    "build": "passed",
+    "lint": "passed",
+    "production_audit": "passed",
+    "change": "Narrow low-contrast page block, fine matte grain, smaller board/spine crease; no authored data change"
+  }
 }
