@@ -1,1 +1,258 @@
-.introduction,.start{max-width:1280px;margin:auto;padding:clamp(18px,4vw,48px);color:#233f3a;background:#faf7ef;min-height:100dvh}.introHeader{max-width:760px;margin:0 auto 36px;text-align:center}.introHeader h1{font-family:serif;font-size:clamp(28px,4vw,44px);line-height:1.35}.introHeader p,.bookDetails p{line-height:1.7;overflow-wrap:anywhere}.introHeader button,.introHeader a{margin:8px}.introduction button,.start button{min-height:44px;border:1px solid #cfc5b4;border-radius:12px;background:#fffdf8;color:inherit;padding:10px 16px;cursor:pointer}.introduction button:disabled,.start button:disabled{opacity:.5;cursor:default}.introduction button:focus-visible,.start button:focus-visible,.introHeader a:focus-visible{outline:3px solid #347969;outline-offset:3px}.books{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.introBook{display:grid;grid-template-columns:minmax(110px,160px) minmax(0,1fr);align-items:start;gap:20px;padding:20px;border:1px solid #ded6c9;border-radius:16px;min-width:0;background:#fffdf8}.introBook h3{margin-top:4px}.introBook p{line-height:1.6;overflow-wrap:anywhere}.startHeader{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}.startContent{display:grid;grid-template-columns:minmax(220px,360px) minmax(0,1fr);gap:clamp(24px,5vw,70px);align-items:center;max-width:1000px;margin:auto}.bookDetails h1{font-family:serif;font-size:clamp(28px,4vw,42px);line-height:1.3;overflow-wrap:anywhere}.startActions,.editActions{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}.startActions button:first-child,.introHeader button{background:#285c4e;color:#fff}.editActions{margin-top:32px}.bookDetails{min-width:0}.bookDetails details p{white-space:pre-wrap}@media(max-width:720px){.books{grid-template-columns:1fr}.introBook{padding:14px;gap:14px;grid-template-columns:110px minmax(0,1fr)}.startContent{grid-template-columns:1fr}.startContent>div:first-child{width:min(70vw,280px);margin:auto}.startActions button{flex:1}}@media(max-height:500px) and (min-width:600px){.startContent{grid-template-columns:minmax(170px,220px) minmax(0,1fr)}.startHeader{margin-bottom:12px}}
+.introduction {
+  color:var(--ink);
+  background:var(--paper);
+  min-height:100dvh
+}
+.poster {
+  position:relative;
+  isolation:isolate;
+  max-width:1440px;
+  margin:auto;
+  min-height:700px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding:36px clamp(24px,5vw,80px) 56px;
+  gap:32px;
+  background:radial-gradient(ellipse at 5% 0%,#fffdf8,transparent 60%),linear-gradient(120deg,#eee5d5,var(--paper));
+  border-bottom:1px solid var(--line)
+}
+.brand {
+  grid-column:1/-1;
+  font:600 28px/1.5 "Knol Story Serif",serif;
+  display:flex;
+  gap:12px;
+  align-items:center
+}
+.brand small {
+  font:12px/1.5 sans-serif;
+  color:var(--ink-soft);
+  margin-left:auto
+}
+.posterCopy {
+  align-self:center;
+  position:relative;
+  z-index:2
+}
+.eyebrow {
+  font-size:12px;
+  color:var(--mint-strong);
+  letter-spacing:.08em
+}
+.posterCopy h1 {
+  font:500 clamp(32px,3.8vw,56px)/1.4 "Knol Story Serif",serif;
+  letter-spacing:-.04em;
+  margin:20px 0
+}
+.posterCopy>p {
+  line-height:1.9;
+  color:var(--ink-soft)
+}
+.mainMenu {
+  display:grid;
+  gap:12px;
+  max-width:330px;
+  margin-top:36px
+}
+.mainMenu button,.mainMenu a {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  min-height:54px;
+  border-radius:12px;
+  padding:14px 22px;
+  text-decoration:none
+}
+.mainMenu button {
+  background:var(--ink);
+  color:var(--white);
+  border-color:var(--ink);
+  font-weight:600
+}
+.mainMenu a {
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--ink)
+}
+.posterScene {
+  position:relative;
+  min-height:550px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  border-radius:180px 180px 14px 14px;
+  overflow:hidden;
+  box-shadow:0 20px 40px #1833311a;
+  background:var(--mint)
+}
+.sceneArt {
+  position:absolute;
+  inset:0
+}
+.sceneBackground {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.75
+}
+.sceneCharacter {
+  position:absolute;
+  inset:auto 0 16%;
+  width:100%;
+  height:74%;
+  object-fit:contain;
+  object-position:center bottom
+}
+.sceneArt::after {
+  content:"";
+  position:absolute;
+  inset:45% 0 0;
+  background:linear-gradient(transparent,var(--paper))
+}
+.featuredCopy {
+  position:relative;
+  text-align:center;
+  padding:24px;
+  width:100%
+}
+.featuredCopy small {
+  font-size:12px
+}
+.featuredCopy h2 {
+  font:500 26px/1.4 "Knol Story Serif",serif;
+  margin:8px 0
+}
+.featuredCopy p {
+  font-size:13px;
+  line-height:1.6
+}
+.featuredCopy button {
+  background:var(--white)
+}
+.nextStory {
+  margin-left:8px;
+  min-width:44px
+}
+.catalog {
+  max-width:1200px;
+  margin:auto;
+  padding:48px 24px 72px
+}
+.catalog>header {
+  text-align:center;
+  margin-bottom:34px
+}
+.catalog h2 {
+  font:500 32px/1.4 "Knol Story Serif",serif;
+  margin:10px 0
+}
+.catalog>header>p {
+  line-height:1.7
+}
+.books {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:36px 28px
+}
+.introBook {
+  min-width:0;
+  text-align:center
+}
+.bookButton {
+  width:75%;
+  max-width:180px;
+  background:transparent!important;
+  padding:0;
+  border:0;
+  transition:transform .2s
+}
+.bookButton:hover {
+  transform:translateY(-6px)
+}
+.introBook h3 {
+  font:600 18px/1.5 "Knol Story Serif",serif;
+  margin:8px 0;
+  overflow-wrap:anywhere
+}
+.introBook p {
+  font-size:12px;
+  line-height:1.7;
+  overflow-wrap:anywhere
+}
+.kind {
+  color:var(--mint-strong);
+  font-weight:600;
+  margin-top:20px
+}
+.introBook>div>button {
+  font-size:12px
+}
+.notice {
+  max-width:1200px;
+  margin:16px auto;
+  padding:16px;
+  background:var(--mint);
+  border-radius:12px
+}
+.introduction button:disabled {
+  opacity:.5
+}
+.introduction button:focus-visible,.introduction a:focus-visible {
+  outline:3px solid var(--mint-strong);
+  outline-offset:4px
+}
+@media(max-width:900px) {
+  .poster {
+    grid-template-columns:1fr;
+    min-height:0
+  }
+  .brand small {
+    display:none
+  }
+  .posterCopy {
+    grid-row:2
+  }
+  .posterScene {
+    min-height:520px;
+    width:min(100%,450px);
+    margin:auto
+  }
+  .posterCopy {
+    text-align:center
+  }
+  .mainMenu {
+    margin:24px auto
+  }
+  .books {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+}
+@media(max-width:480px) {
+  .poster {
+    padding:24px 18px 32px;
+    gap:20px
+  }
+  .posterCopy h1 {
+    font-size:32px
+  }
+  .posterScene {
+    min-height:430px
+  }
+  .catalog {
+    padding:32px 16px
+  }
+  .books {
+    gap:28px 16px
+  }
+  .introBook h3 {
+    font-size:16px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .bookButton {
+    transition:none
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .bookButton:hover {transform:none;}
+}

@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-08",
+  "objective": "Bring the introduction, library, book cover and cover editing system to the fixed story-maker design quality, adapted to KnolStory Next.",
+  "status": "complete: local implementation and browser/runtime validation",
+  "baseline": "story-maker@18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "baseNextCommit": "b4e5ee86a4cdf2a93eeb9817201c78c5926d57f8",
+  "ownerAuthorization": {
+    "source": "Direct user statement on2026-10-08",
+    "statement": "User owns KnolQuiz, KnolStory and story-maker and authorized reuse and continued work.",
+    "record": "../../../../packages/asset-registry/src/legacy-ui-media.json"
+  },
+  "requirements": [
+    {
+      "id": "legacy-reference",
+      "status": "verified",
+      "proof": "Fixed-baseline StartScreen/StoryDiscovery/BookCover/BookCoverCanvas/design docs inspected; original room/shelf/plant SHA256 restored.",
+      "evidence": [
+        "../../library-book-design-parity.md",
+        "legacy-restore.log",
+        "../../../../packages/asset-registry/src/legacy-ui-media.json"
+      ]
+    },
+    {
+      "id": "introduction",
+      "status": "verified",
+      "proof": "Poster-style introduction, four selectable featured works, eight original/VN books, library and ShortStory entry, first/return/reload continuity.",
+      "evidence": [
+        "core-design.log",
+        "host-regression.log",
+        "final-intro.png"
+      ]
+    },
+    {
+      "id": "library-quality",
+      "status": "verified",
+      "proof": "Legacy room/wood/plant, large physical books, correct edition contexts, categorized shelves, reading-first selected-book focus. Current local collections retained.",
+      "evidence": [
+        "final-library.png",
+        "final-book-focus.png",
+        "core-design.log"
+      ]
+    },
+    {
+      "id": "library-system",
+      "status": "verified",
+      "proof": "Source filters, normalized Korean title/author search, nine existing-book copies paged8+1, bounded pagination, tab filter/search/page restoration, no document changes.",
+      "evidence": [
+        "core-design.log",
+        "browsing-restore.log",
+        "../../../../apps/web/lib/library-catalog.test.ts"
+      ]
+    },
+    {
+      "id": "selected-book",
+      "status": "verified",
+      "proof": "Focus dialog, next/previous buttons, arrows, Escape, native focus trap/return, read/resume/prepare/edit, responsive book-start pedestal and source labels.",
+      "evidence": [
+        "core-design.log",
+        "final-book-focus.png",
+        "eight-native-focus.log"
+      ]
+    },
+    {
+      "id": "canonical-book",
+      "status": "verified",
+      "proof": "Shelf/introduction/focus/start/editor/preset thumbnails use one BookCover and cover resolver; front/spine/back, binding/pages/finish and authored image proportions preserved.",
+      "evidence": [
+        "../../../../apps/web/components/book-cover.tsx",
+        "final-cover-editor.png",
+        "cover-and-responsive.log"
+      ]
+    },
+    {
+      "id": "cover-editor",
+      "status": "verified",
+      "proof": "Basic/layered live presets, three faces, pointer/keyboard move/resize/cancel,44px handles, numeric alternatives, title/cover unified draft undo/redo, Apply/Cancel, one-gesture history. Selected title/layer font sizes survive fitting; title panel wraps copy.",
+      "evidence": [
+        "core-design.log",
+        "pointer-apply.log",
+        "../../../../apps/web/lib/cover-editor-interactions.test.ts",
+        "final-cover-editor.png",
+        "typography.log"
+      ]
+    },
+    {
+      "id": "files-and-originals",
+      "status": "verified",
+      "proof": "Existing original/VN full project export/import/re-export equality; pointer applied cover preserves manuscript. Prior tracked evidence restored, new results stored separately.",
+      "evidence": [
+        "seonnyeo-classic-cover-roundtrip.json",
+        "heungbu-cover-roundtrip.json",
+        "pointer-apply.log",
+        "cover-and-responsive.log"
+      ]
+    },
+    {
+      "id": "native-reading",
+      "status": "verified",
+      "proof": "All eight editions through new focus to actual persistent RenPy in Chromium and Chrome; cover-edited Heungbu227/225 paths, endings, slots, history, restart, editor return and exact archive.",
+      "evidence": [
+        "eight-native-focus.log",
+        "chrome-eight-native.log",
+        "heungbu-native-reading.json",
+        "heungbu-native-input.knolstory"
+      ]
+    },
+    {
+      "id": "responsive-accessible",
+      "status": "verified",
+      "proof": "1365x900,820x1180,390x844,844x390,320x740; no horizontal overflow, touch/keyboard, focus restore, full authored text in focus, reduced-motion styles and standard modal keyboard behavior.",
+      "evidence": [
+        "core-design.log",
+        "cover-and-responsive.log",
+        "intro-390.png",
+        "focus-844.png",
+        "accessibility.json"
+      ]
+    },
+    {
+      "id": "architecture",
+      "status": "verified",
+      "proof": "No StoryDocument schema, Asset ID, Flow, Core layout or RenPy interpretation changes; no alternate story renderer; separate Next tab preference; ShortStory remains Web exception.",
+      "evidence": [
+        "../../../../apps/web/components/story-workspace.tsx",
+        "host-regression.log"
+      ]
+    },
+    {
+      "id": "quality-checks",
+      "status": "verified",
+      "proof": "803 TS checks,24 Python script checks, type/lint/build/media checks; full59 host and final18 affected cases, independent reviews.",
+      "evidence": [
+        "coverage.log",
+        "script-tests.log",
+        "host-regression.log",
+        "core-design.log",
+        "media-check.log",
+        "production-audit.log",
+        "final-acceptance.log"
+      ]
+    }
+  ],
+  "checks": {
+    "unitContractIntegration": 803,
+    "configuredCoverage": {
+      "statements": 92.92,
+      "branches": 89.33,
+      "lines": 97.48
+    },
+    "pythonScripts": 24,
+    "fullHost": {
+      "passed": 59,
+      "skipped": 26,
+      "scope": "Full59 host regression before final typography and modal keyboard fixes; affected18 cases passed afterward."
+    },
+    "finalDesignHost": {
+      "passed": 10,
+      "skipped": 1
+    },
+    "nativeEightFocusChromium": "passed",
+    "nativeEightFocusGoogleChrome": "passed",
+    "editedHeungbuPaths": [
+      227,
+      225
+    ],
+    "typecheck": "passed",
+    "lint": "passed",
+    "staticBuild": "passed",
+    "sourceMediaHashes": 454,
+    "mediaHashes": 1344,
+    "productionAudit": "passed",
+    "developerAudit": "Existing unpatched braces development-tool warning; no dependency changes",
+    "review": "Independent code and security review: no critical/high/medium findings",
+    "finalRelatedHost": {
+      "passed": 18,
+      "skipped": 2,
+      "scope": "Final source: original/VN cover archive and all new design/keyboard/typography journeys"
+    }
+  },
+  "boundaries": [
+    "Browser viewport conditions, not school Windows/Chromebook/Android physical hardware or performance validation.",
+    "Legacy checkout is read-only; its pre-existing local changes were not reverted.",
+    "Rendered screens and restored binaries remain local restoration outputs; no service deployment performed.",
+    "This goal changes local implementation; prior PR/source CI results are not asserted as verification of these new changes."
+  ],
+  "delivery": {
+    "branch": "codex/book-entry-cover",
+    "scope": "Local source, docs, portable examples and verification evidence; preview at http://127.0.0.1:3000"
+  }
+}

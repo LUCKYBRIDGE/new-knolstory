@@ -24,6 +24,8 @@ def inventory():
  score=json.loads((ROOT/'apps/web/public/assets/audio/story-score/manifest.json').read_text());scores={f"assets/audio/story-score/{a['file']}":a for a in score['assets']}
  files=list((ROOT/'apps/web/public').rglob('*'))+list((ROOT/'renpy/responsive-spike/game').rglob('*'))
  overrides=json.loads(OVERRIDES.read_text()) if OVERRIDES.exists() else {}
+ ui=json.loads((ROOT/'packages/asset-registry/src/legacy-ui-media.json').read_text())
+ ui_sources={item['file']:item for item in ui['entries']}
  usages={}
  ids=set(a['id'] for a in catalog)|set(f"audio:{'music' if a['kind']=='ambience' else 'sound' if a['kind']=='sfx' else a['kind']}:{a['id']}" for a in score['assets'])
  def scan(value,work,location='$'):
@@ -39,6 +41,7 @@ def inventory():
   relative=file.relative_to(ROOT).as_posix();pub=relative.removeprefix('apps/web/public/');asset=by_path.get(pub);cue=scores.get(pub)
   record={'file':relative,'sha256':digest(file),'mediaType':'font' if file.suffix.lower() in {'.ttf','.woff','.woff2','.otf'} else 'audio' if file.suffix.lower() in {'.wav','.ogg','.mp3'} else 'video' if file.suffix.lower() in {'.mp4','.webm'} else 'image','assetIds':[],'provider':'unknown','source':'unknown','authorOrRightsHolder':'unknown','license':'unknown','commercialUse':'unverified','redistribution':'unverified','attribution':'unverified','generationPlan':'not-recorded','replacementRequiredBeforeCommercialRelease':'review-required','replacementAssetId':None}
   if asset:record.update(assetIds=[asset['id']],provider='legacy-repository',source=f"story-maker@18da4fc:{asset.get('sourcePath','unknown')}",authorOrRightsHolder=asset.get('copyright','unknown'))
+  elif relative in ui_sources:record.update(provider='legacy-repository',source=f"story-maker@18da4fc:{ui_sources[relative]['sourcePath']}",authorOrRightsHolder='project owner; user-declared on 2026-10-08',usageAuthorization='Direct owner instruction: reuse existing project design/resources in KnolStory Next',redistribution='unverified')
   elif cue:record.update(assetIds=[f"audio:{'music' if cue['kind']=='ambience' else 'sound' if cue['kind']=='sfx' else cue['kind']}:{cue['id']}"],provider='original-procedural-synthesis',source='scripts/create-story-soundtrack.py',authorOrRightsHolder='KnolStory Next original synthesis',license='CC0-1.0',commercialUse='permitted',redistribution='permitted',attribution='not-required',generationPlan='local-no-paid-service',replacementRequiredBeforeCommercialRelease=False)
   elif pub in ['assets/audio/forest.wav','assets/audio/night.wav','assets/audio/chime.wav','assets/audio/step.wav']:record.update(assetIds=[f"audio:{'sound' if file.stem in ['chime','step'] else 'music'}:{file.stem}"],provider='original-procedural-synthesis',source='apps/web/public/assets/audio/README.md',authorOrRightsHolder='KnolStory Next original synthesis',license='original-project-asset; no external samples',generationPlan='local-no-paid-service')
   elif file.name=='NotoSansKR.ttf':record.update(provider='Noto font distribution',source='spikes/renpy-web/FONT-LICENSE.txt',authorOrRightsHolder='Adobe / Noto contributors',license='OFL-1.1',commercialUse='permitted',redistribution='permitted-with-license',attribution='keep copyright and OFL text',attributionEvidence=['apps/web/public/assets/licenses/NotoSansKR-OFL.txt'],replacementRequiredBeforeCommercialRelease=False)

@@ -25,6 +25,10 @@ Owner clarification (2026-10-08): preserve the legacy distinction between the fi
 
 The fixed baseline uses `app/story-landing-visit.ts` and `StoryStudio.tsx`: initial discovery screen is `home`, a browser-local visited preference selects `library` on returning visits, and saved navigation can restore a later context. A Next implementation must use its own `knolstory-*` preference and preserve saved work/read state without writing legacy `storygame*` keys. The visit preference belongs to the browser, not the StoryDocument or exported book.
 
+## 2026-10-08 소개·서재·책 디자인 계승
+
+소유자는 고정 story-maker의 소개 화면·서재·책 디자인 시스템을 직접 재사용해도 된다고 승인하고, Next에서 동급의 품질·완성도를 요구했다. 포스터형 첫 진입, 목재 서가, 판본 구분, 선택한 책의 집중 화면, 양장본 마감과 세 면 직접 편집을 현재 StoryDocument/로컬 저장/단일 Ren’Py 경계에 맞춰 계승한다. 표지 내용과 실제 이야기는 별개이며 동작·파일 보존 및 반응형 화면으로 검증한다. 구현 분류·근거: docs/architecture/library-book-design-parity.md. 사용자가 기존 프로젝트의 저작권자로서 재사용을 허용했다. 방 이미지도 고정 checkout에서 복원하며 출처·해시와 소유자 재사용 허가를 기록한다.
+
 ## Classification
 - **PRESERVE:** warm storybook identity, Korean readability, story-first surfaces, student-friendly controls, clear current context.
 - **REFINE:** spacing, density, typography hierarchy, chapter/cut/branch navigation, asset picker, panels, forms, responsive behavior.

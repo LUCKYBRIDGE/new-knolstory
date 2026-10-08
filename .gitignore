@@ -33,3 +33,6 @@ __pycache__/
 *.pyc
 .env*
 !.env.example
+
+# Legacy room imagery is restored locally from the owner-authorized fixed checkout.
+apps/web/public/assets/legacy-ui/

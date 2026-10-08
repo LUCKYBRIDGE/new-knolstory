@@ -3,6 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { ASSET_FACETS, assetDisplayName, assetCharacterIds, facetLabel, facetValues, isSelectableAsset, resolveAsset, searchAssets, type Asset, type FacetKey } from '@knolstory/asset-registry';
 import { readAssetPreferences, recordRecentAsset, toggleAssetFavorite, writeAssetPreferences, type AssetPreferences } from '../lib/asset-preferences';
+import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './asset-browser-dialog.module.css';
 type Props = { label: string; type: Asset['type']; value: string; chapterAssetIds?: readonly string[]; onSelect: (id: string) => void; onClose: () => void };
 type Filters = Partial<Record<FacetKey, readonly string[]>>;
@@ -57,7 +58,7 @@ export function AssetBrowserDialog({ label, type, value, chapterAssetIds = [], o
   function clear() { setFilters({}); setSearch(''); setView('all'); setSameCharacter(false); }
   const chips = ASSET_FACETS.flatMap(f => (filters[f.key] ?? []).map(entry => ({ key: f.key, entry })));
   const canApply = isSelectableAsset(preview) && preview.type === type;
-  return <dialog ref={dialog} className={styles.dialog} aria-labelledby={titleId} onCancel={event => { event.preventDefault(); onClose(); }}>
+  return <dialog ref={dialog} className={styles.dialog} aria-labelledby={titleId} onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={event => { event.preventDefault(); event.stopPropagation(); onClose(); }}>
     <div className={styles.shell}>
       <header className={styles.header}><div><small>이야기 그림 자료실</small><h2 id={titleId}>이미지 선택 · {label}</h2><p>적용 대상: {label}. 그림을 미리 본 뒤 적용하세요.</p></div><button type="button" aria-label="이미지 선택 닫기" onClick={onClose}>닫기</button></header>
       <div className={styles.comparison}>

@@ -96,7 +96,7 @@ def doctor():
             errors.append('Browser launch failed; pnpm exec playwright install chromium (Linux may need install-deps chromium)')
     for error in errors:
         print('ERROR: ' + error, file=sys.stderr)
-    print('Public legacy-media release remains blocked. Physical school/Android hardware is not verified.')
+    print('Owner-authorized legacy design/resource reuse is recorded in legacy-ui-media.json. Physical school/Android hardware is not verified.')
     return 1 if errors else 0
 
 

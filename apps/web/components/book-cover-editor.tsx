@@ -1,4 +1,5 @@
 'use client';
+import {trapDialogTab} from '../lib/dialog-keyboard';
 import { useEffect, useId, useRef, useState } from 'react';
 import { ASSET_CATALOG } from '@knolstory/asset-registry';
 import { COVER_FONTS, COVER_PRESET_OPTIONS, COVER_THEMES, isStoryCover, type StoryCover, type StoryCoverComposition, type StoryProject } from '@knolstory/story-domain';
@@ -6,25 +7,29 @@ import { applyCoverPreset, defaultCoverComposition, resolveStoryCover, updateCov
 import { addCoverElement, coverElementText, COVER_DESIGN_OPTIONS, createCoverDesign, editCoverBox, patchCoverElement, removeCoverElement, reorderCoverElement, selectCoverFacePreset, type CoverDesign, type CoverElement, type CoverFaceId, type CoverTextElement } from '../lib/book-cover-editor';
 import { AssetPickerField } from './asset-picker-field';
 import { BookCover } from './book-cover';
+import {commitCoverDraft,undoCoverDraft,redoCoverDraft,type CoverDraftHistory} from '../lib/cover-editor-interactions';
+import {CoverEditorCanvas} from './cover-editor-canvas';
 import styles from './book-cover-editor.module.css';
 
 const faceLabels={front:'앞표지',spine:'책등',back:'뒤표지'};
-type CoverHistory={past:StoryCover[];present:StoryCover;future:StoryCover[]};
+type CoverHistory=CoverDraftHistory;
 /** REFINE: fixed story-maker@18da4fc BookCoverEditor and CoverLayersEditor.
  * Cover changes remain isolated until Apply. Bound layer text follows draft book information; Apply commits title and cover. */
 export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject;onApply:(cover:StoryCover,title:string)=>void;onCancel:()=>void}) {
   const [initial]=useState<StoryCover>(()=>structuredClone(resolveStoryCover(project)));
-  const [history,setHistory]=useState<CoverHistory>(()=>({past:[],present:initial,future:[]}));
-  const [title,setTitle]=useState(project.title);
+  const [history,setHistory]=useState<CoverHistory>(()=>({past:[],present:{cover:initial,title:project.title},future:[]}));
+  const title=history.present.title;
+  const setTitle=(title:string)=>setHistory(current=>commitCoverDraft(current,{...current.present,title}));
   const previewProject={...project,title};
   const [face,setFace]=useState<CoverFaceId>('front'),[selectedId,select]=useState(''),[message,setMessage]=useState('');
   const [applying,setApplying]=useState(false);
   const dialog=useRef<HTMLDialogElement>(null),headingId=useId();
-  const cover=history.present,design=cover.design,items=design?.faces[face].elements??[],selected=items.find(item=>item.id===selectedId);
+  const gestureStart=useRef<CoverHistory|null>(null);
+  const cover=history.present.cover,design=cover.design,items=design?.faces[face].elements??[],selected=items.find(item=>item.id===selectedId);
   useEffect(()=>{const opener=document.activeElement as HTMLElement|null;const element=dialog.current;element?.showModal();return()=>{element?.close();opener?.focus();};},[]);
   const commit=(next:StoryCover)=>{
     if(!isStoryCover(next)){setMessage('상자 글은 500자까지 쓸 수 있어요. 그림과 크기·위치 범위도 확인해 주세요.');return;}
-    setHistory(current=>({past:[...current.past,current.present].slice(-40),present:next,future:[]}));setMessage('');
+    setHistory(current=>commitCoverDraft(current,{...current.present,cover:next}));setMessage('');
   };
   const patch=(changes:Partial<StoryCover>)=>{
     const next={...cover,...changes};
@@ -48,8 +53,8 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
       :{id,type,role:assetType==='character'?'actor':'scene',assetId:asset!.id,assetType,box:{...box,h:.4},frame:'rect',crop:{fit:'contain',zoom:1,x:50,y:50}};
     try{commitDesign(addCoverElement(design,face,element));select(id);}catch(error){setMessage(error instanceof Error?error.message:'이 면의 상자 개수를 확인해 주세요.');}
   };
-  const undo=()=>setHistory(current=>current.past.length?{past:current.past.slice(0,-1),present:current.past.at(-1)!,future:[current.present,...current.future]}:current);
-  const redo=()=>setHistory(current=>current.future.length?{past:[...current.past,current.present],present:current.future[0],future:current.future.slice(1)}:current);
+  const undo=()=>setHistory(undoCoverDraft);
+  const redo=()=>setHistory(redoCoverDraft);
   const updateFinish=(key:keyof CoverDesign['finish'],value:string)=>{
     if(!design)return;
     const previous=design.finish[key];
@@ -57,12 +62,15 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
     commitDesign({...design,finish:{...design.finish,[key]:value},faces});
   };
   const apply=()=>{if(applying)return;setApplying(true);try{onApply(structuredClone(cover),title);}catch(error){setMessage(error instanceof Error?error.message:'표지를 적용하지 못했어요. 다시 시도해 주세요.');setApplying(false);}};
-  return <dialog ref={dialog} className={styles.dialog} aria-labelledby={headingId} onCancel={event=>{event.preventDefault();if(!applying)onCancel();}}>
+  return <dialog ref={dialog} className={styles.dialog} aria-labelledby={headingId} onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={event=>{event.preventDefault();if(!applying)onCancel();}}>
     <header className={styles.header}><div><small>한 권의 이야기를 직접 꾸며요</small><h2 id={headingId}>내 책 표지 꾸미기</h2></div><button type="button" onClick={onCancel} disabled={applying}>닫기</button></header>
     <div className={styles.body}>
       <section className={styles.preview} aria-label="표지 미리보기">
         <div className={styles.actions}>{(Object.keys(faceLabels) as CoverFaceId[]).map(id=><button key={id} type="button" aria-pressed={face===id} onClick={()=>{setFace(id);select('');}}>{faceLabels[id]}</button>)}</div>
-        <div className={styles.book} data-face={face}><BookCover project={{...previewProject,cover}} face={face} /></div>
+        <div className={styles.book} data-face={face}><CoverEditorCanvas project={previewProject} cover={cover} face={face} selectedId={selectedId} onSelect={select}
+          onBegin={()=>{gestureStart.current=history;}}
+          onChange={(next,gesture)=>{if(gesture)setHistory(current=>({...current,present:{...current.present,cover:next}}));else commit(next);}}
+          onEnd={cancelled=>{const start=gestureStart.current;gestureStart.current=null;if(!start)return;setHistory(current=>cancelled?start:commitCoverDraft(start,current.present));}} /></div>
         <p>긴 글은 상자에 맞춰 작아져요. 표지의 제목은 작품 제목을 따라갑니다.</p>
         <div className={styles.actions}><button type="button" disabled={!history.past.length||applying} onClick={undo}>되돌리기</button><button type="button" disabled={!history.future.length||applying} onClick={redo}>다시 하기</button></div>
       </section>
@@ -72,7 +80,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
         <label>표지 소개 문장<input value={cover.subtitle} onChange={event=>patch({subtitle:event.target.value})}/></label>
         <label>작가의 말<textarea value={cover.authorNote} onChange={event=>patch({authorNote:event.target.value})}/></label>
         {!design?<>
-          <fieldset><legend>디자인 골라 시작하기</legend><div className={styles.presets}>{COVER_PRESET_OPTIONS.map(option=><button type="button" key={option.id} aria-pressed={(cover.presetId??cover.layout)===option.id} onClick={()=>commit(applyCoverPreset(cover,option.id))}><strong>{option.label}</strong><small>{option.description}</small></button>)}</div></fieldset>
+          <fieldset><legend>디자인 골라 시작하기</legend><div className={styles.presets}>{COVER_PRESET_OPTIONS.map(option=><button type="button" key={option.id} aria-pressed={(cover.presetId??cover.layout)===option.id} onClick={()=>commit(applyCoverPreset(cover,option.id))}><span className={styles.presetThumbnail} aria-hidden="true"><BookCover project={{...previewProject,cover:applyCoverPreset(cover,option.id)}} compact/></span><strong>{option.label}</strong><small>{option.description}</small></button>)}</div></fieldset>
           <Select label="표지 색감" value={cover.theme} options={Object.entries(COVER_THEMES).map(([id,theme])=>[id,theme.label])} onChange={value=>patch({theme:value as StoryCover['theme']})}/>
           <Select label="제목 글꼴" value={cover.font} options={Object.entries(COVER_FONTS).map(([id,font])=>[id,font.label])} onChange={value=>patch({font:value as StoryCover['font']})}/>
           <Range label="제목 크기" value={cover.titleSize} min={14} max={80} onChange={titleSize=>patch({titleSize})}/>
@@ -88,6 +96,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
           <button type="button" onClick={()=>patch({design:createCoverDesign(cover)})}>세 면과 글·그림 상자 편집 시작</button>
           <p>상자 편집을 시작하면 지금 색감과 그림으로 세 면을 만들어요. 현재 기본 표지 설정도 함께 보관합니다.</p>
         </>:<>
+          <fieldset><legend>{faceLabels[face]} 디자인 비교</legend><div className={styles.presets}>{COVER_DESIGN_OPTIONS.map(option=><button type="button" key={option.id} aria-label={`${option.label} 디자인 적용`} aria-pressed={design.faces[face].preset===option.id} onClick={()=>commitDesign(selectCoverFacePreset(design,face,option.id,cover))}><span className={styles.presetThumbnail} aria-hidden="true"><BookCover project={{...previewProject,cover:{...cover,design:selectCoverFacePreset(design,face,option.id,cover)}}} face={face} compact/></span><strong>{option.label}</strong></button>)}</div></fieldset>
           <Select label={`${faceLabels[face]} 디자인`} value={design.faces[face].preset} options={COVER_DESIGN_OPTIONS.map(option=>[option.id,option.label])} onChange={value=>commitDesign(selectCoverFacePreset(design,face,value as CoverDesign['faces']['front']['preset'],cover))}/>
           <details><summary>종이·색·장식</summary>
             <Select label="재질" value={design.finish.stock} options={[["cream","종이"],["matte","무광"],["cloth","천 장정"]]} onChange={value=>updateFinish('stock',value)}/>
@@ -121,7 +130,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
           </fieldset>}
           <details><summary>기본 표지로 전환</summary><p>세 면의 상자를 없애고 보관한 기본 표지 설정으로 돌아가요. 적용 전에는 되돌릴 수 있어요.</p><button type="button" onClick={()=>{const next={...cover};delete next.design;commit(next);select('');}}>상자 디자인 제거하고 기본 표지 사용</button></details>
         </>}
-        <button type="button" onClick={()=>{commit(structuredClone(initial));setTitle(project.title);select('');}}>편집 전 표지로 되돌리기</button>
+        <button type="button" onClick={()=>{setHistory(current=>commitCoverDraft(current,{cover:structuredClone(initial),title:project.title}));select('');}}>편집 전 표지로 되돌리기</button>
         <p role="status" className={styles.message}>{message||'변경은 표지 적용 전까지 이 창에만 있어요.'}</p>
       </section>
     </div>

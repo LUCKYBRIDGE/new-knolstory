@@ -42,6 +42,8 @@
 
 ## Active task
 
+2026-10-08 소개·서재·책 디자인 계승 완료: 고정 story-maker의 포스터형 첫 진입·실제 방/선반·큰 책·집중 창·양장본 마감과 직접 표지 편집을 현재 Next 저장/파일/Ren’Py에 맞춰 이식했다. 분류·검색·선반 페이지·탭 복원, 기본/세 면 실물 프리셋과 44px pointer/keyboard 조작·초안 undo/redo/취소/적용을 연결했다. 803 tests, 정적host59 및 최종관련18,8작품 native/Chrome와 편집된흥부227/225경로·전체파일일치,타입·린트·build·1344media검증 통과. 소유자가 기존프로젝트 저작권과 재사용허가를 직접 확인했다. 상세 분류·파일·화면·한계: [디자인 계승](docs/architecture/library-book-design-parity.md). 실물기기 성능과 서비스배포는 별도다.
+
 2026-10-08 다른 컴퓨터용 테스트 환경 후속: 설치·권한 있는 레거시 복원·고정 SDK/Web/폰트 해시 검증·공유runtime·정적build와 Chromium 준비를 자동화하고, static preview에서 기존 책/표지/파일/native 검사를 실행한다. 정적 검사에서 발견한 소개 재방문 직후 reload의100ms 저장 경합을 pagehide 저장으로 수정했다. 준비/복구/작품 이동과 실행 근거는 [재현 테스트 환경](docs/architecture/reproducible-test-environment.md)에 기록한다. 실제 다른 하드웨어·학교 Windows/Chromebook/Android 및 공개출시 권리 승인은 포함하지 않는다.
 
 2026-10-08 책 소개·서재·표지 제작·게임 시작 연결 완료: 최초 접속 책 소개/재접속 서재, 새로고침 작업 위치 복원과 소개 재방문, 기존8책의 표지→actual Ren’Py 읽기를 연결했다. 기본8디자인·자유배치·앞표지/책등/뒤표지 layer·글꼴/그림/띠지 및 제목 초안/적용/취소/되돌림을 동일 cover 모델로 썸네일·미리보기·시작에 표시한다. 원작/놀스토리 표지 파일 전체왕복과 원고보존, 편집된 흥부두경로227/225컷·슬롯/기록/편집복귀, ChromePC/가로/세로 터치/키보드/넘침, 숏스토리 및 전체host50/native22/DPR3/792 tests·타입·린트·build·productionaudit 통과. 미확인레거시 그림은 공개Git에서 제외하고 권한있는기기의 고정421파일 복원명령을 제공한다. 개발braces 경고와 실기기/공개출시권리 제한 유지. [검증·문제·파일·화면](docs/architecture/book-entry-and-cover.md).

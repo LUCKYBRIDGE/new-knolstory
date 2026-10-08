@@ -1,0 +1,12 @@
+[WebServer] (node:30896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:30910) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [08/Oct/2026 18:59:16] code 404, message File not found
+[WebServer] 127.0.0.1 - - [08/Oct/2026 18:59:19] code 404, message File not found
+  ✓  1 [stories-runtime] › tests/e2e/library-design-parity.spec.ts:45:1 › all eight books start native RenPy from the library focus and retain the same runtime (11.2s)
+
+  1 passed (12.7s)

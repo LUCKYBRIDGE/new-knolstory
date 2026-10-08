@@ -23,6 +23,16 @@ def restore(legacy):
   relative=path.relative_to(ROOT).as_posix()
   if hashlib.sha256(result.stdout).hexdigest()!=expected.get(relative):raise SystemExit('Media requires exact conversion from baseline; source mismatch: '+asset['id'])
   path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(result.stdout);restored+=1
+ ui=json.loads((ROOT/'packages/asset-registry/src/legacy-ui-media.json').read_text())
+ for item in ui['entries']:
+  relative=Path(item['file'])
+  if relative.is_absolute() or '..' in relative.parts or not item['file'].startswith('apps/web/public/assets/legacy-ui/'):
+   raise SystemExit('Invalid local UI media destination.')
+  result=subprocess.run(['git','-C',str(legacy),'show',f"{BASELINE}:{item['sourcePath']}"],capture_output=True)
+  if result.returncode or hashlib.sha256(result.stdout).hexdigest()!=item['sha256']:
+   raise SystemExit('Missing or mismatched fixed-baseline room media: '+relative.name)
+  path=ROOT/relative;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(result.stdout)
+ print(f"Restored {len(ui['entries'])} exact fixed-baseline room files for authorized local testing.")
  print(f'Restored {restored} exact fixed-baseline files for local testing. No release permission is inferred.')
 if __name__=='__main__':
  parser=argparse.ArgumentParser();parser.add_argument('legacy',type=Path);args=parser.parse_args();restore(args.legacy)

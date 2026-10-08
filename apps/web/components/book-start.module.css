@@ -1,0 +1,63 @@
+.start {
+  min-height:100dvh;
+  padding:24px clamp(20px,5vw,72px) 48px;
+  color:#f8eddb;
+  background:radial-gradient(ellipse at 25% 35%,#78533166,transparent 55%),radial-gradient(ellipse at 80% 10%,#38574a44,transparent 50%),#263b32;
+}
+.startHeader { max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px; }
+.startHeader strong { font-family:"Knol Story Serif",serif;font-size:22px;letter-spacing:.04em; }
+.startHeader strong span { color:#e8c587;margin-right:4px; }
+.start button { min-height:44px;padding:10px 16px;border:1px solid #aa9878;border-radius:10px;background:#fff8e9;color:#2d4338;font:inherit;cursor:pointer; }
+.startHeader button { color:#f6ecd8;background:#ffffff08;border-color:#f6ecd84a; }
+.start button:focus-visible,.authorNote summary:focus-visible { outline:3px solid #f0ca80;outline-offset:4px; }
+.start button:disabled { opacity:.5;cursor:default; }
+.start button:hover:not(:disabled) { border-color:#e8c587;box-shadow:0 3px 12px #071b1430; }
+.startContent { display:grid;grid-template-columns:minmax(240px,.95fr) minmax(0,1fr);gap:clamp(36px,7vw,100px);align-items:center;max-width:1060px;margin:clamp(32px,6vh,72px) auto 0; }
+.showcase { position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;padding:32px 20px 0;min-width:0; }
+.showcase::before { content:"";position:absolute;inset:0 0 8%;z-index:-1;background:radial-gradient(ellipse at center,#f5d89520,transparent 70%);pointer-events:none; }
+.coverStand { width:min(100%,300px);transform:perspective(1200px) rotateY(-7deg) rotateZ(-1deg);position:relative;z-index:2; }
+.pedestal { width:min(116%,380px);height:24px;margin-top:2px;border-radius:50% 50% 5px 5px;background:linear-gradient(180deg,#c5a374,#9d754a);border-top:2px solid #e5c89a;box-shadow:0 5px 0 #684a30,0 9px 0 #493624,0 18px 24px #0a160c55; }
+.showcase figcaption { margin-top:32px;color:#d8c7aa;font-size:12px;letter-spacing:.08em;text-align:center;line-height:1.7; }
+.showcase figcaption span { margin:0 8px;color:#f0ca80; }
+.bookDetails { min-width:0; }
+.eyebrow { margin:0 0 14px;color:#e3c38b;font-size:12px;letter-spacing:.13em; }
+.eyebrow span { margin:0 8px;opacity:.6; }
+.bookDetails h1 { margin:0;font:500 clamp(30px,3.6vw,48px)/1.4 "Knol Story Serif","Batang",serif;letter-spacing:-.04em;text-wrap:balance;overflow-wrap:anywhere; }
+.subtitle { margin:12px 0 0;color:#ead8ba;font-size:17px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere; }
+.description { margin:24px 0 0;line-height:1.85;color:#e3decc;white-space:pre-wrap;overflow-wrap:anywhere; }
+.author { margin:16px 0 0;font-size:13px;color:#d9c7a9;white-space:pre-wrap;overflow-wrap:anywhere; }
+.authorNote { margin-top:16px;border-top:1px solid #e4cfaa33;color:#e3decc; }
+.authorNote summary { min-height:44px;padding:12px 0;cursor:pointer;font-size:13px; }
+.authorNote p { margin:0 0 16px;font-size:14px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere; }
+.startActions { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:28px 0 14px; }
+.startActions button { padding:16px;text-align:left;min-height:80px;border-color:#d9c8a8;background:#f5ecda; }
+.startActions strong,.startActions small { display:block;overflow-wrap:anywhere; }
+.startActions strong { font-size:16px;font-weight:700; }
+.startActions small { margin-top:6px;font-size:11px;line-height:1.6; }
+.startActions .primary { color:#263b32;background:#e8c78b;border-color:#e8c78b;box-shadow:0 4px 16px #091b1630; }
+.readingHint { margin:0;font-size:12px;line-height:1.8;color:#bfcdbf; }
+.editActions { margin-top:28px;padding-top:20px;border-top:1px solid #e4cfaa33; }
+.editActions>span { display:block;font-size:11px;letter-spacing:.1em;color:#d8c7aa;margin-bottom:10px; }
+.editActions>div { display:flex;flex-wrap:wrap;gap:8px; }
+.editActions button { background:#ffffff08;border-color:#e4cfaa44;color:#f6ecd8;font-size:13px; }
+@media(max-width:720px) {
+  .start { padding:18px 20px 32px; }
+  .startContent { grid-template-columns:1fr;gap:28px;margin-top:16px; }
+  .showcase { padding-top:20px; }
+  .coverStand { width:min(52vw,220px); }
+  .pedestal { width:min(68vw,280px);height:18px; }
+  .showcase figcaption { margin-top:24px; }
+  .bookDetails { width:min(100%,520px);margin:auto; }
+  .bookDetails h1 { font-size:30px; }
+  .description { margin-top:16px;font-size:14px; }
+  .startActions { margin-top:22px; }
+}
+@media(max-height:560px) and (min-width:600px) {
+  .start { padding:16px 28px 28px; }
+  .startContent { grid-template-columns:minmax(150px,.6fr) minmax(0,1fr);gap:36px;margin-top:20px;align-items:start; }
+  .showcase { padding:20px 8px 0; }
+  .coverStand { width:min(26vw,200px); }
+  .bookDetails h1 { font-size:28px; }
+  .startActions { margin-top:18px; }
+}
+@media(prefers-reduced-motion:reduce) { .coverStand { transform:none; } }

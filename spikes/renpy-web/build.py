@@ -31,7 +31,7 @@ if assets.exists():
     # Replace generated copies so deleted source assets cannot survive rebuilds.
     shutil.rmtree(project / 'game/assets', ignore_errors=True)
     # Cover fonts belong to static Web book UI, not the story presenter.
-    shutil.copytree(assets, project / 'game/assets', ignore=shutil.ignore_patterns('cover-fonts'))
+    shutil.copytree(assets, project / 'game/assets', ignore=shutil.ignore_patterns('cover-fonts', 'legacy-ui'))
 env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy')
 subprocess.run([str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
 html = (output / 'index.html').read_text()

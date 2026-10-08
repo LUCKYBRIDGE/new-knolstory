@@ -67,7 +67,7 @@ pnpm env:doctor
 pnpm preview
 ```
 
-Open `http://127.0.0.1:3000`. Preparation restores and hashes the fixed 421 legacy files, installs the lockfile, downloads and verifies the pinned SDK/Web/font, installs Playwright Chromium, builds the shared Ren’Py runtime, then builds the static app. `preview` serves that build on loopback. `pnpm dev` is available for source editing. Preparation does not clone the private repository, install credentials or change legacy source. Pass a different authorized checkout path with `--legacy`; quote paths containing spaces.
+Open `http://127.0.0.1:3000`. Preparation restores and hashes the fixed 421 story assets plus three library-room images, installs the lockfile, downloads and verifies the pinned SDK/Web/font, installs Playwright Chromium, builds the shared Ren’Py runtime, then builds the static app. `preview` serves that build on loopback. `pnpm dev` is available for source editing. Preparation does not clone the private repository, install credentials or change legacy source. Pass a different authorized checkout path with `--legacy`; quote paths containing spaces.
 
 An SDK previously installed by hand must be adopted once using `pnpm runtime:prepare --reinstall`, then rerun preparation. This replaces only the generated SDK after the pinned archives have been verified and staged. Invalid cached downloads are preserved and reported; remove the named invalid cache file and retry. Linux/WSL browser launch may additionally need `pnpm exec playwright install-deps chromium` (system administrator privileges). Full commands, recovery, file transfer and validation boundaries: [reproducible test environment](docs/architecture/reproducible-test-environment.md).
 
@@ -76,6 +76,8 @@ pnpm env:verify
 ```
 
 The verification command checks scripts, types, lint, full coverage and media provenance, then runs the existing introduction/cover/archive browser tests, all eight real Ren’Py entries and both routes of the cover-edited Heungbu work. It uses the static build and installed Chromium by default. Set `KNOL_BROWSER_CHANNEL=chrome` to explicitly test installed Google Chrome. Stop any server on port 3000 before verifying; the static test server does not silently reuse it. Generated SDK/runtime output, restored private media and screenshots remain ignored by Git. This is a local test setup, not a public release approval.
+
+Library and book-design continuity, direct cover editing and validation: [legacy design parity](docs/architecture/library-book-design-parity.md). The three room images are restored from the fixed legacy checkout; the owner-authorized reuse and exact hashes are recorded in the restoration manifest.
 
 The original/forked manuscripts' project data and audio cues are in [existing-work evidence](docs/architecture/existing-story-enhancement.md). Cover and entry workflow evidence and remaining limitations are in [book-entry verification](docs/architecture/book-entry-and-cover.md).
 
