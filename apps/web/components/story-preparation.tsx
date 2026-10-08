@@ -1,7 +1,8 @@
 "use client";
 import { useState } from 'react';
 import { chapterLabel, type StoryPlanning, type StoryProject } from '@knolstory/story-domain';
-import {COVER_THEMES,DEFAULT_COVER} from '@knolstory/story-domain';
+import {COVER_THEMES} from '@knolstory/story-domain';
+import {resolveStoryCover} from '../lib/book-cover';
 import { AssetPickerField } from './asset-picker-field';
 import { addPreparationMemo, deletePreparationMemo, memoDestinations, updatePreparationCover, updatePreparationInfo, updatePreparationMemo, updatePreparationPlanning, type PreparationMemo } from '../lib/story-preparation';
 import styles from './story-preparation.module.css';
@@ -23,7 +24,7 @@ const otherPlanning: [keyof StoryPlanning,string][] = [
 const memoKinds: [PreparationMemo['kind'],string][]=[['free','자유 메모'],['character','인물'],['relationship','관계'],['place','장소'],['event','사건'],['task','할 일']];
 
 export function StoryPreparation({project,onProjectChange,onOpenCut,onContinueWriting,currentLineId,onEditCover}:StoryPreparationProps) {
-  const cover={...DEFAULT_COVER,...project.cover};
+  const cover=resolveStoryCover(project);
   const chapters=project.chapters.slice().sort((a,b)=>a.order-b.order);
   const cuts=chapters.flatMap(chapter=>project.lines.filter(l=>l.chapterId===chapter.id).slice().sort((a,b)=>a.order-b.order).map((line,index)=>({id:line.id,label:`${chapterLabel(chapter)} · ${index+1}컷`})));
   const updateCover=(patch:Parameters<typeof updatePreparationCover>[1])=>onProjectChange(updatePreparationCover(project,patch));

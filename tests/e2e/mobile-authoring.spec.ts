@@ -1,3 +1,4 @@
+import {startShelfCreation} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { PNG } from 'pngjs';
@@ -42,7 +43,7 @@ async function currentId(page: Page) {
 async function create(page: Page) {
   await page.goto('/?view=editor');
   await management(page);
-  await page.getByRole('button', { name: '새 작품 만들기', exact: true }).click({ timeout: 10000 });
+  await startShelfCreation(page);
   await page.getByLabel('새 작품 제목', { exact: true }).fill(title);
   await page.getByRole('button', { name: '빈 작품 시작', exact: true }).click({ timeout: 10000 });
   await tool(page, '자산 편집');

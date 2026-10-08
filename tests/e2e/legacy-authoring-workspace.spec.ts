@@ -1,3 +1,4 @@
+import {startShelfCreation} from './library-entry';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 const hero='heungbu.character.heungbu-swallow-care';
@@ -22,7 +23,7 @@ async function pick(page:Page,label:string,id:string,search=''){
 }
 async function author(page:Page){
  await page.goto('/?view=editor');await saved(page);await management(page);
- await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();await page.getByLabel('새 작품 제목').fill('장 대본과 그림 자료실');await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
+ await startShelfCreation(page);await page.getByLabel('새 작품 제목').fill('장 대본과 그림 자료실');await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
  const first=await currentId(page);let panel=await writer(page);
  await panel.getByText('장 설정 · 화자와 기본 자료',{exact:true}).click();await page.getByLabel('대본 장 제목').fill('첫 만남');await page.getByLabel('장 개요').fill('두 선택지로 서로 다른 이야기를 씁니다.');await page.getByLabel('장 화자 추가').fill('나');await panel.getByRole('button',{name:'장 화자 등록',exact:true}).click();
  await pick(page,'장 기본 배경',bg,'용궁');

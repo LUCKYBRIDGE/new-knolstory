@@ -29,7 +29,7 @@ pnpm preview
 
 `http://127.0.0.1:3000`을 연다. `prepare`는 다음 순서로 실패 즉시 멈춘다.
 
-1. 도구 버전 확인 및 고정 baseline에서 레거시 421파일 복원·SHA256 대조.
+1. 도구 버전 확인 및 고정 baseline에서 레거시 작품 자산 421파일과 소개·서재 UI 10파일 복원·SHA256 대조.
 2. `pnpm install --frozen-lockfile`.
 3. Ren’Py 8.5.3 SDK/Web 지원과 고정 커밋의 Noto Sans KR 다운로드·SHA256 확인·안전 추출.
 4. Playwright Chromium 설치.
@@ -112,3 +112,6 @@ pnpm env:verify
 [흥부 고정 입력](evidence/reproducible-test-environment/heungbu-native-input.knolstory)과 [native 경로 기록](evidence/reproducible-test-environment/heungbu-native-reading.json)은 같은 project ID와 SHA256을 확인해 별도 보관했다. 뒤의 host 검사가 표지 파일을 다시 생성해도 native 입력이 바뀌지 않는다. 그림이 들어간 실제 화면과 trace는 local/ignored 상태다. 무료 공개 release gate는 1280개 미확인 distributed media 때문에 exit1로 차단됨을 확인했으며 공개 배포하지 않았다.
 
 자체 점검(agent-self-evaluation): 정확성 4/5(실제 native/해시·파일 일치; 물리 기기 제외), 완결성 4/5(대상 흐름/자동화 완료; Windows/학교 기기 별도), 명확성 4/5(공개 source CI와 권한 로컬 native 구분), 실행 가능성 4/5(단일 준비·복구·이동 안내; 레거시 기존 권한 필요), 간결성 4/5(기존 감사 유지, 재현 근거만 분리). 평균 4.0/5. 다음 검증은 실제 학교 기기의 입력/성능과 공개 미디어 권리 증빙이다.
+
+
+2026-10-08 화면 정정: 준비 도구의 같은 복원 명령이 목재 방/선반/상판 화분/전경 2개/사각 포스터 4개/로고의 UI 10개를 추가로 복원한다. 서재의 검색·새 작품·파일 가져오기는 접힌 작품 관리에서 연다. 원본 첨부 소개 구도와 현재 옹고집 표지 호환 및 이번 검증은 [디자인 정정 문서](library-book-design-parity.md#2026-10-08-첨부-원본-소개와-조용한-서재-상단-정정)에 기록한다. 이전 감사 수치는 당시 실행의 기록이다.

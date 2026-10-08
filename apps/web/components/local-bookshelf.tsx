@@ -11,7 +11,8 @@ export type BookshelfIntent='edit'|'start'|'resume'|'prepare';
 export type LocalBookshelfProps={works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onIntroduction?:()=>void};
 const sections=[{kind:'original',title:'원작'},{kind:'example',title:'기본 예제'},{kind:'own',title:'내 작품'},{kind:'imported',title:'가져온 작품'}] as const;
 export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction}:LocalBookshelfProps){
- const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null);
+ const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null),tools=useRef<HTMLDetailsElement>(null);
+ useEffect(()=>{const dismiss=(event:PointerEvent)=>{if(tools.current?.open&&event.target instanceof Node&&!tools.current.contains(event.target))tools.current.open=false;};const escape=(event:KeyboardEvent)=>{if(event.key==='Escape'&&tools.current?.open){tools.current.open=false;tools.current.querySelector<HTMLElement>('summary')?.focus();}};document.addEventListener('pointerdown',dismiss);document.addEventListener('keydown',escape);return()=>{document.removeEventListener('pointerdown',dismiss);document.removeEventListener('keydown',escape);};},[]);
  const [layout,setLayout]=useState(()=>shelfLayoutForWidth(1000));
  const [initialView]=useState(()=>{try{return parseLibraryView(typeof window==='undefined'?null:sessionStorage.getItem(LIBRARY_VIEW_KEY));}catch{return parseLibraryView(null);}});
  const [filter,setFilter]=useState(initialView.filter),[query,setQuery]=useState(initialView.query),[pages,setPages]=useState(initialView.pages),[selected,setSelected]=useState<string|null>(null);
@@ -27,9 +28,19 @@ export function LocalBookshelf({works,onOpen,onCreate,onImport,disabled=false,no
  const pagination=libraryPage(visible,pages[pageKey]??0,layout.capacity);
  const selectedWork=works.find(work=>work.key===selected);
  return <main ref={room} className={styles.library} aria-label="로컬 서재">
-  <header className={styles.header}><div><p className={styles.eyebrow}>놀스토리 · 이 기기의 이야기</p><h1>내 서재</h1><p>책을 골라 이야기를 펼치고, 나만의 다음 장을 써 보세요.</p></div>{onIntroduction&&<button onClick={onIntroduction}>책 소개</button>}<a href="/shortstory">숏스토리 그림책 열기</a></header>
-  <nav className={styles.filters} aria-label="서재 책 분류"><button aria-pressed={filter==='all'} onClick={()=>setFilter('all')}>모든 책</button>{sections.map(section=><button key={section.kind} aria-pressed={filter===section.kind} onClick={()=>setFilter(section.kind)}>{section.kind==='example'?'놀스토리':section.title}</button>)}<label className={styles.search}>책 찾기<input type="search" maxLength={200} placeholder="제목이나 지은이" value={query} onChange={event=>setQuery(event.target.value)}/></label></nav>
-  <div className={styles.create}><NewStoryForm disabled={disabled} onCreate={title=>onCreate(title)!==false}/><label className={styles.import}>작품 파일 가져오기<input type="file" accept=".knolstory" aria-label="서재 작품 파일 가져오기" disabled={disabled} onChange={event=>{const file=event.target.files?.[0];if(file)onImport(file);event.target.value='';}}/></label><p>작품은 이 브라우저에 저장돼요. 다른 기기로 옮길 때는 작품 파일로 보관하세요.</p></div>
+  <header className={styles.header}>
+   <h1>내 서재</h1>
+   <div className={styles.headerTools}>
+    {onIntroduction&&<button className={styles.introLink} onClick={onIntroduction}>책 소개</button>}
+    <label className={styles.classification}><span className={styles.semantic}>책 분류</span><select aria-label="책 분류" value={filter} onChange={event=>{setFilter(event.target.value);if(tools.current)tools.current.open=false;}}><option value="all">모든 책</option>{sections.map(section=><option key={section.kind} value={section.kind}>{section.kind==='example'?'놀스토리':section.title}</option>)}</select></label>
+    <details ref={tools} className={styles.tools} data-testid="library-tools"><summary>작품 관리</summary><div className={styles.toolsPanel}>
+     <label className={styles.search}>책 찾기<input type="search" maxLength={200} placeholder="제목이나 지은이" value={query} onKeyDown={event=>{if(event.key==='Enter'){if(tools.current)tools.current.open=false;tools.current?.querySelector<HTMLElement>('summary')?.focus();}}} onChange={event=>setQuery(event.target.value)}/></label>
+     <NewStoryForm disabled={disabled} onCreate={title=>onCreate(title)!==false}/>
+     <label className={styles.import}>작품 파일 가져오기<input type="file" accept=".knolstory" aria-label="서재 작품 파일 가져오기" disabled={disabled} onChange={event=>{const file=event.target.files?.[0];if(file)onImport(file);event.target.value='';}}/></label>
+     <a href="/shortstory">숏스토리 그림책 열기</a><p>이 브라우저에 저장한 작품을 다른 기기로 옮길 때는 작품 파일로 보관하세요.</p>
+    </div></details>
+   </div>
+  </header>
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
   <div ref={cases} className={styles.bookcases} style={{'--shelf-columns':layout.columns,'--shelf-rows':layout.rows} as CSSProperties}>
    <span className={styles.topPlant} aria-hidden="true"/>

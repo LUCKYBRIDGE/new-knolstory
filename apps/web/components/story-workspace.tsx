@@ -476,7 +476,7 @@ export function StoryWorkspace() {
     target.addEventListener("lostpointercapture", end);
   }
   return (<>
-    {view==='home'&&<BookIntroduction works={libraryWorks} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'start')} disabled={!loadComplete} notice={storageError||error}/>}
+    {view==='home'&&<BookIntroduction works={libraryWorks} onMyWorks={()=>{try{sessionStorage.setItem('knolstory-library-view-v1',JSON.stringify({version:1,filter:'own',query:'',pages:{}}));}catch{/* Library remains usable without tab preferences. */}returnToLibrary();}} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'start')} disabled={!loadComplete} notice={storageError||error}/>}
     {view==='book'&&<BookStart edition={storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory"} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>beginBook(false)} onResume={()=>beginBook(true)} onLibrary={returnToLibrary} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
     {view==='cover'&&<BookCoverEditor project={project} onApply={(cover,title)=>{preparationChange(renameStoryProject({...project,cover},title));setView('prepare');}} onCancel={()=>setView('prepare')}/>}
     {view==='library'&&<><LocalBookshelf onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');}} works={libraryWorks} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={storageError||error}/><p data-testid="library-save-status" role="status">{saveStatus}</p></>}

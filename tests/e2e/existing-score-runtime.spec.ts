@@ -1,3 +1,4 @@
+import {importShelfFile} from './library-entry';
 import {openShelfAction} from './library-entry';
 import {enterLibrary,beginSelectedBook} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
@@ -126,7 +127,7 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   await ready(page); await unlock(page);
   await verifyAudio(page, project, createPlayback(project));
   await page.getByRole('button', { name: '서재로', exact: true }).click();
-  await page.getByLabel('서재 작품 파일 가져오기', { exact: true }).setInputFiles(archivePath(id));
+  await importShelfFile(page,archivePath(id));
   await expect(page.getByRole('region', { name: '작품 준비', exact: true })).toBeVisible();
   await page.getByRole('button', { name: '서재로', exact: true }).click();
   const imported = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
@@ -205,7 +206,7 @@ test('Seonnyeo existing storm: fixed original versus scored cut in actual browse
     expect(cut.text).toContain('흙이 무너지는 소리');
     await page.goto('/'); await enterLibrary(page); await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');
     const inputFile = version === 'before' ? { name: 'baseline.knolstory', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ documentType: 'story-maker-project', schemaVersion: 5, savedAt: '2026-10-08T00:00:00.000Z', appVersion: 'before-after-baseline', project })) } : sourceFile;
-    await page.getByLabel('서재 작품 파일 가져오기', { exact: true }).setInputFiles(inputFile);
+    await importShelfFile(page,inputFile);
     await expect(page.getByRole('region', { name: '작품 준비', exact: true })).toBeVisible();
     await page.getByRole('button', { name: '서재로', exact: true }).click();
     const card = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });

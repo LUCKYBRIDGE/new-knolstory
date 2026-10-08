@@ -55,7 +55,7 @@ Design and acceptance criteria: [Responsive Runtime Editor](docs/architecture/re
 
 Use the `codex/book-entry-cover` branch while [PR #1](https://github.com/LUCKYBRIDGE/new-knolstory/pull/1) is open; these features are not yet merged into `main`. Clone with `git clone --branch codex/book-entry-cover https://github.com/LUCKYBRIDGE/new-knolstory.git`, then enter that checkout.
 
-The first browser visit opens **책 소개**. Enter the library, select an original or KnolStory book, and start reading from its cover. A returning visit opens the library; reloading restores the current saved screen. The library's **작품 준비 → 책 표지 편집** edits the front, spine and back cover with Apply/Cancel. Browser storage is local to that computer; use `.knolstory` export/import to move authored books.
+The first browser visit opens **책 소개**. Enter the library, select an original or KnolStory book, and start reading from its cover. A returning visit opens the library; reloading restores the current saved screen. Select a book to open its action menu; **작품 준비 → 책 표지 편집** edits the front, spine and back cover with Apply/Cancel. The library keeps a compact title, book classification and collapsed **작품 관리** menu. Open that menu for search, new books or file import. Browser storage is local to that computer; use `.knolstory` export/import to move authored books.
 
 The repository contains source, document fixtures, original procedural audio/effect resources and licensed cover fonts. **Legacy images and screenshots containing them are not published in this repository while their redistribution evidence remains unverified.** For authorized local testing with the existing legacy checkout, restore exact fixed-baseline media without overwriting the current Next source:
 
@@ -67,7 +67,7 @@ pnpm env:doctor
 pnpm preview
 ```
 
-Open `http://127.0.0.1:3000`. Preparation restores and hashes the fixed 421 story assets plus three library-room images, installs the lockfile, downloads and verifies the pinned SDK/Web/font, installs Playwright Chromium, builds the shared Ren’Py runtime, then builds the static app. `preview` serves that build on loopback. `pnpm dev` is available for source editing. Preparation does not clone the private repository, install credentials or change legacy source. Pass a different authorized checkout path with `--legacy`; quote paths containing spaces.
+Open `http://127.0.0.1:3000`. Preparation restores and hashes the fixed 421 story assets plus ten library/introduction UI images, installs the lockfile, downloads and verifies the pinned SDK/Web/font, installs Playwright Chromium, builds the shared Ren’Py runtime, then builds the static app. `preview` serves that build on loopback. `pnpm dev` is available for source editing. Preparation does not clone the private repository, install credentials or change legacy source. Pass a different authorized checkout path with `--legacy`; quote paths containing spaces.
 
 An SDK previously installed by hand must be adopted once using `pnpm runtime:prepare --reinstall`, then rerun preparation. This replaces only the generated SDK after the pinned archives have been verified and staged. Invalid cached downloads are preserved and reported; remove the named invalid cache file and retry. Linux/WSL browser launch may additionally need `pnpm exec playwright install-deps chromium` (system administrator privileges). Full commands, recovery, file transfer and validation boundaries: [reproducible test environment](docs/architecture/reproducible-test-environment.md).
 
@@ -77,7 +77,7 @@ pnpm env:verify
 
 The verification command checks scripts, types, lint, full coverage and media provenance, then runs the existing introduction/cover/archive browser tests, all eight real Ren’Py entries and both routes of the cover-edited Heungbu work. It uses the static build and installed Chromium by default. Set `KNOL_BROWSER_CHANNEL=chrome` to explicitly test installed Google Chrome. Stop any server on port 3000 before verifying; the static test server does not silently reuse it. Generated SDK/runtime output, restored private media and screenshots remain ignored by Git. This is a local test setup, not a public release approval.
 
-Library and book-design continuity, direct cover editing and validation: [legacy design parity](docs/architecture/library-book-design-parity.md). The three room images are restored from the fixed legacy checkout; the owner-authorized reuse and exact hashes are recorded in the restoration manifest.
+Library and book-design continuity, direct cover editing and validation: [legacy design parity](docs/architecture/library-book-design-parity.md). The ten UI images (room, shelf, plant, two foreground decorations, four rectangular posters and logo) are restored from the fixed legacy checkout; the owner-authorized reuse and exact hashes are recorded in the restoration manifest.
 
 The original/forked manuscripts' project data and audio cues are in [existing-work evidence](docs/architecture/existing-story-enhancement.md). Cover and entry workflow evidence and remaining limitations are in [book-entry verification](docs/architecture/book-entry-and-cover.md).
 

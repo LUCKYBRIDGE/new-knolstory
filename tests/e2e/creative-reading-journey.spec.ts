@@ -1,3 +1,4 @@
+import {startShelfCreation} from './library-entry';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
 const evidence='docs/architecture/evidence/creative-reading';
@@ -21,7 +22,7 @@ async function exportFile(page:Page,path:string){await saved(page);await manage(
 async function ready(page:Page){const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.evaluate(n=>n.getAttribute('data-scene-revision')===n.getAttribute('data-rendered-revision')),{timeout:30000}).toBe(true);await expect.poll(()=>page.evaluate(()=>{const viewport=document.querySelector('[data-testid="story-stage-viewport"]')!.getBoundingClientRect();const status=document.querySelector('[data-testid="story-runtime-status"]')!;const width=Number(status.getAttribute('data-scene-width')),height=Number(status.getAttribute('data-scene-height'));return Math.abs(width/height-viewport.width/viewport.height)<.02&&Number(status.getAttribute('data-engine-width'))===width&&Number(status.getAttribute('data-engine-height'))===height;}),{timeout:30000}).toBe(true);}
 async function shot(page:Page,name:string){await page.screenshot({path:`${evidence}/${name}.png`});}
 async function author(page:Page){
- await page.goto('/?view=editor');await saved(page);await manage(page);await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();await page.getByLabel('새 작품 제목').fill(title);await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
+ await page.goto('/?view=editor');await saved(page);await manage(page);await startShelfCreation(page);await page.getByLabel('새 작품 제목').fill(title);await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
  const groups:string[][]=[];
  for(const [chapterIndex,chapter] of chapters.entries()){
   if(chapterIndex===1||chapterIndex===4){await page.getByRole('button',{name:'현재 컷 꾸미기',exact:true}).click();await tool(page,'컷 목록');await page.getByRole('button',{name:'새 장 추가',exact:true}).click();}

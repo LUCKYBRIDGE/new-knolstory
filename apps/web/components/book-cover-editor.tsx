@@ -1,7 +1,7 @@
 'use client';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import { useEffect, useId, useRef, useState } from 'react';
-import { ASSET_CATALOG } from '@knolstory/asset-registry';
+import { ASSET_CATALOG, isSelectableAsset } from '@knolstory/asset-registry';
 import { COVER_FONTS, COVER_PRESET_OPTIONS, COVER_THEMES, isStoryCover, type StoryCover, type StoryCoverComposition, type StoryProject } from '@knolstory/story-domain';
 import { applyCoverPreset, defaultCoverComposition, resolveStoryCover, updateCoverComposition } from '../lib/book-cover';
 import { addCoverElement, coverElementText, COVER_DESIGN_OPTIONS, createCoverDesign, editCoverBox, patchCoverElement, removeCoverElement, reorderCoverElement, selectCoverFacePreset, type CoverDesign, type CoverElement, type CoverFaceId, type CoverTextElement } from '../lib/book-cover-editor';
@@ -47,7 +47,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
   const add=(type:'text'|'image',assetType:'background'|'character'='background')=>{
     if(!design)return;
     const id=`box-${crypto.randomUUID()}`,box={x:.12,y:.25,w:.76,h:.18};
-    const asset=ASSET_CATALOG.find(asset=>asset.type===assetType);
+    const asset=ASSET_CATALOG.find(asset=>asset.type===assetType&&isSelectableAsset(asset));
     if(type==='image'&&!asset){setMessage('선택할 그림 자료가 없어요.');return;}
     const element:CoverElement=type==='text'?{id,type,role:'custom',region:'face',content:{text:'새 글'},box,style:{fontId:cover.font,fontSize:.06,color:design.finish.ink,align:'center',writing:'horizontal'}}
       :{id,type,role:assetType==='character'?'actor':'scene',assetId:asset!.id,assetType,box:{...box,h:.4},frame:'rect',crop:{fit:'contain',zoom:1,x:50,y:50}};

@@ -1,10 +1,11 @@
+import {importShelfFile} from './library-entry';
 import {openShelfAction} from './library-entry';
 import {test,expect} from '@playwright/test';
 test.use({channel:process.env.KNOL_BROWSER_CHANNEL || undefined});
 test('first browser entry introduces existing books, return enters library and introduction remains reachable',async({page})=>{
  await page.goto('/');
  const intro=page.getByRole('main',{name:'책 소개',exact:true});await expect(intro).toBeVisible();
- await expect(intro.getByRole('article')).toHaveCount(8);
+ await expect(intro.locator('[data-intro-poster]')).toHaveCount(1);await expect(intro.getByRole('navigation',{name:'놀스토리 메인 메뉴'}).getByRole('button')).toHaveCount(2);
  await expect(page.getByTestId('story-runtime-frame')).toHaveCount(0);
  await page.getByRole('button',{name:'서재로 가기',exact:true}).click();
  await expect(page.getByRole('main',{name:'로컬 서재'})).toBeVisible();
@@ -47,7 +48,7 @@ for(const [id,kind,title] of [['seonnyeo-classic','원작','선녀와 나무꾼'
  await page.reload();await expect(page.getByRole('region',{name:'작품 준비'})).toBeVisible();
  const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await pending;await download.saveAs(`${evidence}/${id}-cover.knolstory`);
  const archive=JSON.parse(readFileSync(`${evidence}/${id}-cover.knolstory`,'utf8'));expect({...archive.project,cover:before.cover,title:before.title,updatedAt:before.updatedAt}).toEqual(before);expect(archive.project.title).toBe(`${title} · 표지 적용 검토`);expect(archive.project.cover.design.faces.front.elements.some((e:{content?:{text?:string}})=>e.content?.text==='함께 읽는 우리 이야기')).toBe(true);
- const fresh=await browser.newContext({viewport:{width:1280,height:900}});const restored=await fresh.newPage();await restored.goto('/');await enterLibrary(restored);await restored.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(`${evidence}/${id}-cover.knolstory`);
+ const fresh=await browser.newContext({viewport:{width:1280,height:900}});const restored=await fresh.newPage();await restored.goto('/');await enterLibrary(restored);await importShelfFile(restored,`${evidence}/${id}-cover.knolstory`);
  const exportAgain=restored.waitForEvent('download');await restored.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();expect(JSON.parse(readFileSync((await(await exportAgain).path())!,'utf8')).project).toEqual(archive.project);
  await restored.getByRole('button',{name:'서재로',exact:true}).click();const imported=restored.getByRole('article',{name:`가져온 작품 · ${archive.project.title}`,exact:true});await openShelfAction(restored,imported,'처음부터 읽기');await expect(restored.getByRole('main',{name:'책 표지와 소개'})).toBeVisible();
  for(const [width,height,label] of [[1280,900,'desktop'],[844,390,'landscape'],[390,844,'portrait']] as const){await restored.setViewportSize({width,height});await restored.screenshot({path:`${evidence}/${id}-start-${label}.png`,fullPage:true});expect(await restored.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}

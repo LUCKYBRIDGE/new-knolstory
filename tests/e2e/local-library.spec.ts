@@ -1,3 +1,4 @@
+import {startShelfCreation,importShelfFile} from './library-entry';
 import {openShelfAction} from './library-entry';
 import {enterLibrary,beginSelectedBook} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
@@ -42,7 +43,7 @@ async function exportFile(page: Page, path: string) {
 }
 async function create(page: Page, title: string) {
   await library(page);
-  await page.getByRole('button', { name: '새 작품 만들기', exact: true }).click();
+  await startShelfCreation(page);
   await page.getByLabel('새 작품 제목', { exact: true }).fill(title);
   await page.getByRole('button', { name: '빈 작품 시작', exact: true }).click();
   await expect((await preparation(page)).getByLabel('작품 제목', { exact: true })).toHaveValue(title);
@@ -132,7 +133,7 @@ test('local library prepares three separate works and roundtrips preparation wit
     const second=await exportFile(page,`${evidence}/sea-story.knolstory`);
     expect(second.project.lines[0].text).toBe('바닷가에 새 이야기를 남겼다.');
     await library(page);
-    await page.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(forestFile);
+    await importShelfFile(page,forestFile);
     await saved(page); await library(page);
     await expect(card(page,'가져온 작품',forestTitle)).toBeVisible();
     await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(2);
@@ -167,8 +168,8 @@ test('local library prepares three separate works and roundtrips preparation wit
     expect(archive.audioResources).toEqual(importedBaseline.audioResources);
     const clean = await browser.newContext({viewport:{width:1280,height:900}});
     const fresh = await clean.newPage(); fresh.setDefaultTimeout(15000); await fresh.goto('http://127.0.0.1:3000'); await enterLibrary(fresh); await library(fresh);
-    await fresh.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(`${evidence}/moonlight-letter.knolstory`);await saved(fresh);await library(fresh);await open(fresh,'가져온 작품',ownTitle,'편집하기');const restoredOwn=await exportFile(fresh,info.outputPath('own-fresh.knolstory'));expect(restoredOwn.project).toEqual(own.project);await library(fresh);
-    await fresh.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(`${evidence}/forest-library.knolstory`);
+    await importShelfFile(fresh,`${evidence}/moonlight-letter.knolstory`);await saved(fresh);await library(fresh);await open(fresh,'가져온 작품',ownTitle,'편집하기');const restoredOwn=await exportFile(fresh,info.outputPath('own-fresh.knolstory'));expect(restoredOwn.project).toEqual(own.project);await library(fresh);
+    await importShelfFile(fresh,`${evidence}/forest-library.knolstory`);
     await saved(fresh); await library(fresh); await open(fresh,'가져온 작품',forestTitle,'편집하기');
     const roundtrip = await exportFile(fresh,info.outputPath('fresh.knolstory'));
     expect(roundtrip.project).toEqual(archive.project); expect(roundtrip.audioResources).toEqual(archive.audioResources);
@@ -265,7 +266,7 @@ test('corrupt device storage is kept intact while UI-created recovery work can b
   await page.goto('/'); await enterLibrary(page);
   await expect(page.getByTestId('library-save-status')).toHaveText('저장 내용을 불러오지 못함');
   await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toContainText('원본을 유지하고 자동 저장을 중지');
-  await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();await page.getByLabel('새 작품 제목',{exact:true}).fill('파일로 보관할 복구 작품');
+  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('파일로 보관할 복구 작품');
   await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
   const prep=page.getByRole('region',{name:'작품 준비',exact:true});
   await prep.getByLabel('작품 소개',{exact:true}).fill('기존 원본은 보존하고 새 내용은 파일로 옮긴다.');
@@ -281,5 +282,5 @@ test('example preparation makes an independent own copy and duplicate import kee
  test.skip(info.project.name!=='host');await page.goto('/'); await enterLibrary(page);await library(page);
  const example=page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article').first();const originalTitle=await example.getByRole('heading').innerText();await openShelfAction(page,example,'작품 준비');
  await expect(page.getByRole('region',{name:'작품 준비',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`${originalTitle} · 내 사본`);await library(page);await expect(page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article').first()).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
- await page.getByLabel('서재 작품 파일 가져오기').setInputFiles(forestFile);await saved(page);await library(page);const raw=await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])));await page.getByLabel('서재 작품 파일 가져오기').setInputFiles(forestFile);await expect(page.getByRole('main',{name:'로컬 서재'})).toContainText('같은 작품이 이미');await expect(page.getByRole('region',{name:'가져온 작품'}).getByRole('article')).toHaveCount(1);expect(await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])))).toEqual(raw);
+ await importShelfFile(page,forestFile);await saved(page);await library(page);const raw=await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])));await importShelfFile(page,forestFile);await expect(page.getByRole('main',{name:'로컬 서재'})).toContainText('같은 작품이 이미');await expect(page.getByRole('region',{name:'가져온 작품'}).getByRole('article')).toHaveCount(1);expect(await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])))).toEqual(raw);
 });

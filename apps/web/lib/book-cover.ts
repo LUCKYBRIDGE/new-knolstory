@@ -6,12 +6,26 @@ export { COVER_FONTS, COVER_PRESET_OPTIONS, COVER_TITLE_SIZE };
 export type { StoryCoverComposition, CoverPresetId, CoverFaceId };
 export const COVER_BAND = { top: .82, height: .18 } as const;
 export type CoverTextContext = { title: string; description: string; author: string; subtitle: string; authorNote: string };
+/** Archived cover-only aliases project onto the current watercolor edition; saved works stay intact. */
+const CURRENT_COVER_ART:Readonly<Record<string,string>>={
+  'legacy-cover.onggojib.background.warm-room-pixel':'onggojib.background.warm-room-pixel',
+  'legacy-cover.onggojib.background.winter-courtyard-pixel':'onggojib.background.winter-courtyard-pixel',
+  'legacy-cover.onggojib.background.classic-closed-house':'onggojib.background.spring-courtyard-pixel',
+  'legacy-cover.onggojib.character.real-consistent-pixel':'onggojib.character.real-consistent-pixel',
+  'legacy-cover.onggojib.character.real-angry-pixel':'onggojib.character.real-angry-pixel',
+};
+const currentCoverArt=(id:string)=>Object.hasOwn(CURRENT_COVER_ART,id)?CURRENT_COVER_ART[id]:id;
+function projectCurrentCoverArt(cover:StoryCover):StoryCover {
+  const design=cover.design;
+  return {...cover,backgroundId:currentCoverArt(cover.backgroundId),characterId:currentCoverArt(cover.characterId),
+    ...(design?{design:{...design,faces:Object.fromEntries(Object.entries(design.faces).map(([id,face])=>[id,{...face,elements:face.elements.map(item=>item.type==='image'?{...item,assetId:currentCoverArt(item.assetId)}:item)}])) as typeof design.faces}}:{})};
+}
 /** Cover metadata only. No playback scene, runtime composition or persisted changes. */
 export function resolveStoryCover(project: Pick<StoryProject, 'cover' | 'chapters' | 'lines'>): StoryCover {
-  if (project.cover) return structuredClone(project.cover);
+  if (project.cover) return projectCurrentCoverArt(structuredClone(project.cover));
   const chapter = [...project.chapters].sort((a,b)=>a.order-b.order)[0];
   const line = project.lines.filter(l=>l.chapterId===chapter?.id).sort((a,b)=>a.order-b.order)[0];
-  return {...DEFAULT_COVER,backgroundId:line?.backgroundId||chapter?.backgroundId||'',characterId:line?.leftAssetId||chapter?.leftAssetId||''};
+  return projectCurrentCoverArt({...DEFAULT_COVER,backgroundId:line?.backgroundId||chapter?.backgroundId||'',characterId:line?.leftAssetId||chapter?.leftAssetId||''});
 }
 export function defaultCoverComposition(cover: StoryCover): StoryCoverComposition {
   return {version:1,backgroundFit:'fill',backgroundX:50,backgroundY:50,backgroundZoom:1,

@@ -29,6 +29,14 @@ The fixed baseline uses `app/story-landing-visit.ts` and `StoryStudio.tsx`: init
 
 소유자는 고정 story-maker의 소개 화면·서재·책 디자인 시스템을 직접 재사용해도 된다고 승인하고, Next에서 동급의 품질·완성도를 요구했다. 포스터형 첫 진입, 목재 서가, 판본 구분, 선택한 책의 집중 화면, 양장본 마감과 세 면 직접 편집을 현재 StoryDocument/로컬 저장/단일 Ren’Py 경계에 맞춰 계승한다. 표지 내용과 실제 이야기는 별개이며 동작·파일 보존 및 반응형 화면으로 검증한다. 구현 분류·근거: docs/architecture/library-book-design-parity.md. 사용자가 기존 프로젝트의 저작권자로서 재사용을 허용했다. 방 이미지도 고정 checkout에서 복원하며 출처·해시와 소유자 재사용 허가를 기록한다.
 
+## 2026-10-08 첨부 원본에 따른 최종 정정
+
+책 소개는 소유자가 첨부한 StartScreen 구도를 따른다. 크림색 종이와 금색 이중 테두리, 왼쪽 로고·두 메뉴·작품 제목·작가 문구·노란 읽기 버튼, 오른쪽 원본 사각 포스터를 유지한다. 세로 화면에서는 제목 다음에 사각 포스터와 읽기 버튼을 배치한다. 아치형 이미지나 소개용 8권 목록으로 대체하지 않는다.
+
+서재는 작은 제목과 책 분류, 접힌 ‘작품 관리’를 기본 상단으로 사용한다. 검색·새 작품·파일 가져오기·숏스토리는 작품 관리에서 연다. 큰 안내 제목·설명·분류 버튼 줄·파일 선택창을 상시 펼치지 않는다. 책장·서랍과 선반 접촉, 공간에 따른 5×2/4×2/3×3/2×4 배치, 책 선택 후 행동 메뉴는 유지한다.
+
+옹고집의 폐기된 표지 전용 자산은 표시 시 현재 그림으로 호환하며, 새 자료 선택에서는 제외한다. 원고·컷 자산과 사용자가 만든 배치·텍스트를 임의로 변경하지 않는다.
+
 ## Classification
 - **PRESERVE:** warm storybook identity, Korean readability, story-first surfaces, student-friendly controls, clear current context.
 - **REFINE:** spacing, density, typography hierarchy, chapter/cut/branch navigation, asset picker, panels, forms, responsive behavior.

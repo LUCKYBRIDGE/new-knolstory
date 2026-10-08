@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- catalog thumbnail preview */
 import { useState } from 'react';
-import { ASSET_CATALOG, assetDisplayName, resolveAsset } from '@knolstory/asset-registry';
+import { ASSET_CATALOG, assetDisplayName, resolveAsset, isSelectableAsset } from '@knolstory/asset-registry';
 import { AssetBrowserDialog } from './asset-browser-dialog';
 import styles from './asset-browser-dialog.module.css';
 export type AssetPickerFieldProps = {
@@ -20,7 +20,7 @@ export function AssetPickerField({ label, type, value, onChange, chapterAssetIds
     <select aria-label={label} value={value} onChange={event => onChange(event.target.value)}>
       {allowDefault && <option value="">{defaultLabel}</option>}
       {!allowDefault && <option value="">{allowNone ? '없음' : '이미지 선택'}</option>}
-      {ASSET_CATALOG.filter(asset => asset.type === type).map(asset => <option key={asset.id} value={asset.id}>{asset.label}</option>)}
+      {ASSET_CATALOG.filter(asset => asset.type === type && (asset.id === value || isSelectableAsset(asset))).map(asset => <option key={asset.id} value={asset.id}>{asset.label}</option>)}
       {allowNone && allowDefault && <option value="__none">없음</option>}
     </select>
     {open && <AssetBrowserDialog label={label} type={type} value={value} chapterAssetIds={chapterAssetIds} onSelect={onChange} onClose={() => setOpen(false)} />}

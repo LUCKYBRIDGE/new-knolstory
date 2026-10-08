@@ -84,3 +84,20 @@ Tab/Shift+Tab 초점 순환과 중첩 이미지 창 Escape도 직접 확인했�
 
 
 최종 정정 검사: 전체 정적 host65개(반대 native26skip), 관련디자인14개, 새로운 책 선택→집중 창→8작품 actualRen’Py,805단위/계약/통합 및24Python 검사를 통과했다. 타입·린트·build·productionaudit와1346media해시가 일치했다. 독립 검토에서 high/medium 지적은 없었으며 모든책/원작 페이지기억 공유는 별도키로 수정했다. [이번 정정 검증](evidence/library-book-design/cabinet-correction/verification.json), [전체host](evidence/library-book-design/cabinet-correction/full-host.log), [네배치/접촉/버튼없음 검사](evidence/library-book-design/cabinet-correction/final-design.log), [8작품native](evidence/library-book-design/cabinet-correction/native-eight.log). 최종 실제 화면은 같은 폴더의 final-cabinet.png에 로컬 보관한다.
+
+
+## 2026-10-08 첨부 원본 소개와 조용한 서재 상단 정정
+
+앞선 소개 구현은 원본의 메뉴·문구·사각 포스터 구도를 충분히 따르지 않았다. 이번 정정은 첨부 이미지와 고정 legacy StartScreen을 기준으로 소개를 다시 구성했으며, 이전 감사의 소개 화면은 최종 모습이 아니다. 크림 종이/금색 이중 테두리, 왼쪽 로고/두 메뉴/제목/작가 문구/노란 읽기, 오른쪽 원본 사각 포스터와 세로 순서를 그대로 적용했다. 사용자 아이콘은 현재 구현된 내 작품으로 연결하며 온라인 계정 구현을 주장하지 않는다.
+
+고정 baseline의 네 포스터와 로고를 해시가 있는 UI 복원 manifest에 추가했다. 기존 준비 명령으로 다른 checkout에서도 총 10개 UI 자료를 복원한다. binary는 계속 공개 Git에서 제외하고 미확인 미디어 공개 배포 차단을 유지한다. 이번 변경은 Ren’Py의 asset/runtime package에 소개 장식을 넣지 않는다.
+
+서재의 큰 제목·부제·장식 구분선·5개 분류 버튼과 상시 펼쳐진 검색/파일 도구를 제거했다. 작은 제목/책 분류 select/작품 관리만 상단에 보이며 나머지는 접힌 메뉴로 옮겼다. 바깥 클릭/Escape/검색 Enter는 메뉴를 닫고, 검색 Enter는 메뉴 버튼으로 초점을 돌린다. 분류·검색은 기존 session preference로 복원한다. 책장/서랍/선반 접촉/반응형 행열과 책 선택 후 행동은 유지한다.
+
+옹고집의 5개 폐기된 표지 ID만 현재 watercolor-v2 자료로 해석한다. 기본 표지와 앞표지/책등/뒤표지의 그림 레이어에 같은 호환 규칙을 적용하되 원본 project와 legacy storage는 수정하지 않는다. 배치/크롭/사용자 텍스트 및 관련 없는 자료는 보존한다. 새 자료 선택과 새 레이어의 초기 그림에서도 폐기된 자료를 제외한다.
+
+검증 결과와 로그는 `evidence/library-book-design/introduction-reference-correction/`에 별도로 보관한다. 실제 검증은 로컬 Chromium이며 Windows/크롬북/Android 실물 성능을 확인한 것으로 주장하지 않는다.
+
+Final correction verification: 812 TS unit/contract/integration tests, 24 Python tests, full host 66 passed (26 native-only skipped), final design 16 passed including all eight editions entering the persistent RenPy. Types, lint, static build, production audit and 1351 media hashes passed. The free release gate still exits 1 as expected. [Verification](evidence/library-book-design/introduction-reference-correction/verification.json), [Host](evidence/library-book-design/introduction-reference-correction/host.log), [Final design/native](evidence/library-book-design/introduction-reference-correction/design-native.log).
+
+Self evaluation: accuracy 4/5 (actual browser/native evidence; physical devices excluded), completeness 4/5 (reference layout, quiet header and cover compatibility; final owner visual judgment remains), clarity 4/5 (supersedes earlier screenshots), actionability 4/5 (existing setup commands; authorized legacy checkout required), conciseness 4/5 (single project document with separate evidence). Improvement applied: compare exact reference assets and actual captures before claiming parity.

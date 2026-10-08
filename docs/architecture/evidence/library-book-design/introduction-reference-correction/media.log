@@ -1,0 +1,5 @@
+
+> knolstory-next@ test:media-provenance <checkout>
+> python3 scripts/media-provenance.py --check
+
+Verified 1351 media files: no missing record or stale SHA256.

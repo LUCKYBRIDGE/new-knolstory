@@ -1,3 +1,4 @@
+import {startShelfCreation} from './library-entry';
 import {test,expect} from '@playwright/test';
 
 test('reading gives the stage full width and keeps an exit while runtime is preparing',async({page})=>{
@@ -26,7 +27,7 @@ test('current cut exposes outgoing destination and local chapter cut count',asyn
 test('choice-created chapters receive branch identity immediately',async({page})=>{
  await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));
  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
- await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();await page.getByLabel('새 작품 제목').fill('갈래 자동 표시');await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
+ await startShelfCreation(page);await page.getByLabel('새 작품 제목').fill('갈래 자동 표시');await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
  await page.getByLabel('진행 방식',{exact:true}).selectOption('choice');
  await page.getByRole('button',{name:'선택지 1에 새 장 연결',exact:true}).click();
  await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toContainText('2장A');

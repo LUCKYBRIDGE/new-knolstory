@@ -1,0 +1,16 @@
+
+> knolstory-next@ test:scripts <checkout>
+> python3 -m unittest discover -s scripts/tests
+
+....Downloading resource
+.Extracting verified SDK and Web support.
+....Verified pinned SDK installation.
+..Verified cached resource
+.Downloading resource
+............
+----------------------------------------------------------------------
+Ran 24 tests in 0.028s
+
+OK
+Restored 1 exact fixed-baseline room files for authorized local testing.
+Restored 0 exact fixed-baseline files for local testing. No release permission is inferred.

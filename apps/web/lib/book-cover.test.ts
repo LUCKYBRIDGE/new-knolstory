@@ -2,9 +2,40 @@ import { describe, expect, it } from 'vitest';
 import { createBlankStoryProject } from '@knolstory/runtime-core';
 import { ASSET_CATALOG } from '@knolstory/asset-registry';
 import { DEFAULT_COVER, type StoryCover } from '@knolstory/story-domain';
+import {createCoverDesign} from './book-cover-editor';
 import { COVER_PRESET_OPTIONS, applyCoverPreset, defaultCoverComposition, updateCoverComposition, resolveStoryCover, resolveBookCover, coverTextPanel, coverTitleSize, coverImageGeometry, coverElementBox, coverElementText } from './book-cover';
 const blank = () => createBlankStoryProject({id:'cover-test',chapterId:'c',lineId:'l'});
 describe('static book cover compatibility', () => {
+ it.each([
+  ['legacy-cover.onggojib.background.warm-room-pixel','onggojib.background.warm-room-pixel','background'],
+  ['legacy-cover.onggojib.background.winter-courtyard-pixel','onggojib.background.winter-courtyard-pixel','background'],
+  ['legacy-cover.onggojib.background.classic-closed-house','onggojib.background.spring-courtyard-pixel','background'],
+  ['legacy-cover.onggojib.character.real-consistent-pixel','onggojib.character.real-consistent-pixel','character'],
+  ['legacy-cover.onggojib.character.real-angry-pixel','onggojib.character.real-angry-pixel','character'],
+ ] as const)('projects archived cover art %s onto current watercolor art without rewriting saved content', (oldId,currentId,type)=>{
+  const cover={...DEFAULT_COVER,[type==='background'?'backgroundId':'characterId']:oldId};
+  const project={...blank(),cover};const before=structuredClone(project);
+  const model=resolveBookCover(project);
+  expect((type==='background'?model.background:model.character)?.id).toBe(currentId);
+  expect(ASSET_CATALOG.find(asset=>asset.id===currentId)?.metadata?.artFamily).toBe('onggojib-watercolor-v2');
+  expect(project).toEqual(before);
+ });
+ it('updates image aliases on every display face while preserving layer identity, crop, boxes, style and text',()=>{
+  const original=createCoverDesign(DEFAULT_COVER);
+  const faces=Object.fromEntries(Object.entries(original.faces).map(([face,side])=>[face,{...side,elements:[...side.elements,{id:`${face}-old-image`,type:'image' as const,role:'scene' as const,assetType:'background' as const,assetId:'legacy-cover.onggojib.background.warm-room-pixel',box:{x:.2,y:.3,w:.4,h:.5},frame:'arch' as const,crop:{fit:'cover' as const,zoom:1.2,x:20,y:70}}]}])) as typeof original.faces;
+  const cover={...DEFAULT_COVER,design:{...original,faces}};const before=structuredClone(cover);
+  const resolved=resolveStoryCover({...blank(),cover});
+  for(const face of ['front','spine','back'] as const){
+   expect(resolved.design!.faces[face]).toEqual({...faces[face],elements:faces[face].elements.map(item=>item.type==='image'?{...item,assetId:'onggojib.background.warm-room-pixel'}:item)});
+  }
+  expect(cover).toEqual(before);expect(resolved.design).not.toBe(cover.design);
+ });
+ it('uses the same alias projection for inferred covers without remapping unrelated or unknown IDs',()=>{
+  const p=blank();const project={...p,lines:[{...p.lines[0],backgroundId:'legacy-cover.onggojib.background.classic-closed-house',leftAssetId:'legacy-cover.onggojib.character.real-angry-pixel'}]};
+  expect(resolveStoryCover(project)).toMatchObject({backgroundId:'onggojib.background.spring-courtyard-pixel',characterId:'onggojib.character.real-angry-pixel'});
+  const unknown={...DEFAULT_COVER,backgroundId:'legacy-cover.onggojib.background.unknown',characterId:'heungbu.character.heungbu-default'};
+  expect(resolveStoryCover({...p,cover:unknown})).toEqual(unknown);
+ });
  it('derives missing covers from the first ordered chapter and cut without modifying the project', () => {
   const p=blank(); const chapter={...p.chapters[0],id:'first',order:0,backgroundId:'chapter-bg',leftAssetId:'chapter-actor'};
   const line={...p.lines[0],chapterId:'first',backgroundId:'cut-bg',leftAssetId:'cut-actor'};

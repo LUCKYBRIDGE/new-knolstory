@@ -1,3 +1,4 @@
+import {startShelfCreation} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
@@ -29,7 +30,7 @@ async function choices(page: Page, targets: string[]) {
 }
 async function createNestedStory(page: Page) {
   await page.goto('/?view=editor');
-  await page.getByRole('button', { name: '새 작품 만들기', exact: true }).click();
+  await startShelfCreation(page);
   await page.getByLabel('새 작품 제목', { exact: true }).fill('숲에서 만나 두 엔딩으로');
   await page.getByRole('button', { name: '빈 작품 시작', exact: true }).click();
   await page.getByLabel('장 제목', { exact: true }).fill('갈림길과 만남');
