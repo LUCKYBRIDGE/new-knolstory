@@ -13,6 +13,8 @@
 
 네 기본 작품을 한 권씩 표시하고 같은 책에서 원작/놀스토리/숏스토리/편집 판본을 고른다. 기존 여덟 원고와 ID·Flow·StageComposition은 유지한다. 읽다 편집하기·준비/표지/사본·개인 삭제 확인/복구와 가져온 기본 작품의 독립 ID를 연결했다. 숏스토리 네 원본(34쪽)의 실제 고정 pack 글/삽화, 개인 사본·다중 보관·작품별 쪽 위치·기존 단일 저장 원본 backup·파일/표·표지/A4를 구현했다. 비동기 가져오기와 삭제 저장 실패의 데이터 유실 경로를 RED→GREEN으로 수정했다. actual Chrome에서 확인한 SDK hover의 편집 포커스 탈취도 bridge capture로 수정했다. 847 TS/24 Python, 전체 정적 host93·최종 catalog29·Chrome native/DPR7, 원작335컷과 놀스토리8경로의 실제 엔딩, A4 PDF 10/10/12/10쪽을 검증했다.
 
+GitHub 구현 커밋 `327b142`을 브랜치/PR #1에 반영했고 두 source CI check가 모두 성공했다(845 source tests, private catalog 제외). 완료 기록 커밋의 head check는 별도 확인한다.
+
 비교 감사와 후속 목표: [네 작품 감사](docs/architecture/four-work-library-audit.md). 형식과 지원 범위: [숏스토리](docs/architecture/four-work-shortstory.md). 실제 화면·파일·전체 원고 읽기·최종 검사/GitHub: [완료 근거](docs/architecture/four-work-library-verification.md). 계정·온라인 저장·학급·과제·제출·공개 공유는 SV-01~05의 서버/정책 의존 단계이며 구현 완료가 아니다. 과거 revision 체크포인트·다중 탭 충돌·v2 학생 활동/구형 Excel·실기기/스크린리더·공개 배포는 후속 목표로 명시했다.
 
 ## 2026-10-08 cover readability and library identity

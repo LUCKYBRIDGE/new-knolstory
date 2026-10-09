@@ -79,3 +79,7 @@ pnpm preview
 서버/계정/온라인 저장/학급/과제/제출/공개 권한, 과거 revision checkpoint·다중 탭 충돌, v2 활동 문서·구형 Excel, 실물 학교 기기/스크린리더, 공개 media release는 [후속 목표](four-work-library-audit.md)의 의존성과 종료 조건으로 남긴다. 미확인 미디어의 공개 배포 차단은 유지한다. 서비스 도메인에 배포하거나 main으로 병합하지 않았다.
 
 자체 평가(`agent-self-evaluation`): 정확성4/5(원고 해시·실제 native·PDF를 대조, 물리기기 제외), 완결성4/5(요청한 로컬 흐름과 후속 목표를 연결, v2/서버 기능은 제한 명시), 명확성4/5(이전 snapshot·실패·최종 결과 분리, 근거 문서가 길어 색인 제공), 실행 가능성4/5(현재 로컬/파일 왕복과 재현 명령, 권한 있는 legacy 자산 필요), 간결성4/5(한 검증 문서와 별도 감사/형식 계약으로 구분). 평균4.0/5. 사용자가 현재 네 책·사본·그림책과 기록/파일을 직접 확인할 수 있는지를 최종 기준으로 삼았다.
+
+## GitHub 구현 커밋 확인
+
+구현 커밋 `327b142d8edd44ca9341a0e33837c71938d3e3c8`을 `codex/book-entry-cover`에 push하고 PR #1의 제목/본문을 최종 경험·검증·제한에 맞춰 갱신했다. 새 구현 head의 두 CI check가 모두 SUCCESS이며, source subset 845개·24 Python·production audit·타입·린트·정적 build가 통과했다. private catalog binary test는 제외했고 로컬 847개와 구분한다. [정확한 구현 head/CI 기록](evidence/four-work-library/github-delivery.json), [최신 PR checks](https://github.com/LUCKYBRIDGE/new-knolstory/pull/1/checks). 이 기록 커밋의 새 head CI도 push 후 별도로 확인한다.

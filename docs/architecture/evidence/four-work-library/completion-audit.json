@@ -1,5 +1,5 @@
 {
-  "status": "local-complete; GitHub delivery and exact pushed-head CI pending",
+  "status": "complete local implementation and implementation-commit GitHub CI verified; final documentation head check follows",
   "date": "2026-10-09",
   "baseline": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
   "historicalFourWorkShelf": "906885d",
@@ -111,7 +111,11 @@
   "github": {
     "branch": "codex/book-entry-cover",
     "pullRequest": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1",
-    "status": "pending push and new-head CI"
+    "implementationCommit": "327b142d8edd44ca9341a0e33837c71938d3e3c8",
+    "implementationCi": "both checks SUCCESS",
+    "sourceTests": 845,
+    "privateCatalogTestExcluded": true,
+    "latestHeadChecksUrl": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1/checks"
   },
   "limitations": [
     "Server accounts/online storage/classes/assignments/submission/publication remain SV-01..05 follow-ups, policy not silently decided",
