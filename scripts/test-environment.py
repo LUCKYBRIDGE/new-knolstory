@@ -123,12 +123,13 @@ def main():
     for command in [[sys.executable, '-m', 'unittest', 'discover', '-s', 'scripts/tests'],
                     ['pnpm', 'typecheck'], ['pnpm', 'lint'], ['pnpm', 'test:coverage'],
                     ['pnpm', 'test:media-provenance'],
-                    ['pnpm', 'exec', 'playwright', 'test', 'entry-cover.spec.ts', '--project=host'],
+                    ['pnpm', 'exec', 'playwright', 'test', 'entry-cover.spec.ts', 'four-work-library.spec.ts', 'four-work-shortstory.spec.ts', '--project=host'],
                     ['pnpm', 'exec', 'playwright', 'test', 'entry-cover.spec.ts', '--project=stories-runtime', '--grep', 'all eight'],
+                    ['pnpm', 'exec', 'playwright', 'test', 'four-work-runtime.spec.ts', '--project=stories-runtime'],
                     ['pnpm', 'exec', 'playwright', 'test', 'existing-score-runtime.spec.ts', '--project=stories-runtime', '--grep', 'heungbu: actual']]:
         environment = dict(os.environ, KNOL_TEST_STATIC='1')
         if command[-1] == 'heungbu: actual':
-            environment['KNOL_COVER_ARCHIVE'] = str(ROOT / 'docs/architecture/evidence/book-entry-cover/heungbu-cover.knolstory')
+            environment['KNOL_COVER_ARCHIVE'] = str(ROOT / 'docs/architecture/evidence/four-work-library/entry-cover/heungbu-cover.knolstory')
         run(command, environment)
     return 0
 

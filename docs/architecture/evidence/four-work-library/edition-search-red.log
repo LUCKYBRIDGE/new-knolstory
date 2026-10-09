@@ -1,0 +1,61 @@
+
+ RUN  v4.1.11 <workspace>
+
+ ❯ apps/web/lib/library-catalog.test.ts (7 tests | 1 failed) 6ms
+   × finds the grouped book by either edition title and author without changing source documents 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/library-catalog.test.ts > finds the grouped book by either edition title and author without changing source documents
+AssertionError: expected [] to deeply equal [ { project: { …(2) }, …(1) } ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "builtin": {
+-       "knolstory": {
+-         "project": {
+-           "cover": {
+-             "author": "우리 반 각색",
+-           },
+-           "title": "흥부와 놀부, 서로의 몫",
+-         },
+-       },
+-       "original": {
+-         "project": {
+-           "cover": {
+-             "author": "전래 이야기",
+-           },
+-           "title": "흥부전",
+-         },
+-       },
+-       "title": "흥부와 놀부",
+-     },
+-     "project": {
+-       "cover": {
+-         "author": "전래 이야기",
+-       },
+-       "title": "흥부전",
+-     },
+-   },
+- ]
++ []
+
+ ❯ apps/web/lib/library-catalog.test.ts:49:43
+     47|  const knolstory={project:{title:'흥부와 놀부, 서로의 몫',cover:{author:'우리 반 각…
+     48|  const book={...original,builtin:{title:'흥부와 놀부',original,knolstory}};…
+     49|  expect(findLibraryBooks([book],'서로의 몫')).toEqual([book]);expect(findL…
+       |                                           ^
+     50| });
+     51|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  09:22:55
+   Duration  143ms (transform 13ms, setup 0ms, import 20ms, tests 6ms, environment 0ms)
+

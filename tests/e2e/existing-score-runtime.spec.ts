@@ -1,3 +1,4 @@
+import {openBuiltinEdition} from './library-entry';
 import {importShelfFile} from './library-entry';
 import {openShelfAction} from './library-entry';
 import {enterLibrary,beginSelectedBook} from './library-entry';
@@ -48,7 +49,7 @@ function expectedAudio(project: StoryProject, state: PlaybackState, channel: 'mu
 const evidence = 'docs/architecture/evidence/existing-story-enhancement';
 const workIds = ['seonnyeo-classic', 'heungbu-classic', 'onggojib-classic', 'rabbit-classic', 'seonnyeo', 'heungbu', 'onggojib', 'rabbit'];
 const archivePath=(id:string)=>id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?process.env.KNOL_COVER_ARCHIVE:`${evidence}/${id}.knolstory`;
-const reportFolder=(id:string)=>id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?'docs/architecture/evidence/book-entry-cover':evidence;
+const reportFolder=(id:string)=>id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?'docs/architecture/evidence/four-work-library/entry-cover':'docs/architecture/evidence/four-work-library/full-score';
 const readProject = (id: string): StoryProject => JSON.parse(readFileSync(archivePath(id), 'utf8')).project;
 const status = (page: Page) => page.getByTestId('story-runtime-status');
 async function ready(page: Page) {
@@ -109,7 +110,7 @@ async function saveResume(page: Page, project: StoryProject, state: PlaybackStat
 
 for (const id of workIds) test(`${id}: actual browser reads the existing scored work, resumes and preserves its archive`, async ({ browser }, info) => {
   test.skip(info.project.name !== 'stories-runtime'); test.setTimeout(900000);
-  mkdirSync(evidence, { recursive: true });
+  mkdirSync(reportFolder(id), { recursive: true });
   const project = readProject(id);
   const source: StoryProject = JSON.parse(readFileSync(`tests/fixtures/stories/${id}.json`, 'utf8'));
   // Independent authored-content assertion against the fixed-baseline manuscript.
@@ -121,14 +122,16 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   page.on('response', response => { if (response.status() === 200 && /assets\/audio\//.test(response.url())) audioResponses.add(response.url()); });
   await page.goto('/'); await enterLibrary(page); await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');
   // Open the shipped original/VN catalog first; no newly invented story is used.
-  const category = id.endsWith('-classic') ? '원작' : '기본 예제';
-  const card = page.getByRole('region', { name: category, exact: true }).getByRole('article').filter({ has: page.getByRole('heading', { name: process.env.KNOL_COVER_ARCHIVE&&id==='heungbu'?source.title:project.title, exact: true }) });
-  await openShelfAction(page,card,'처음부터 읽기'); await beginSelectedBook(page);
+  await openBuiltinEdition(page,id.replace('-classic',''),id.endsWith('-classic')?'original':'knolstory','start'); await beginSelectedBook(page);
   await ready(page); await unlock(page);
   await verifyAudio(page, project, createPlayback(project));
   await page.getByRole('button', { name: '서재로', exact: true }).click();
   await importShelfFile(page,archivePath(id));
   await expect(page.getByRole('region', { name: '작품 준비', exact: true })).toBeVisible();
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).storyId)).toMatch(/^import:/);
+  const importedProject=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+  const sourceBuiltinId=JSON.parse(readFileSync(`tests/fixtures/stories/${id}.json`,'utf8')).id;
+  if(project.id===sourceBuiltinId){expect(importedProject.id).not.toBe(project.id);expect({...importedProject,id:project.id}).toEqual(project);}else expect(importedProject).toEqual(project);
   await page.getByRole('button', { name: '서재로', exact: true }).click();
   const imported = page.getByRole('article', { name: `가져온 작품 · ${project.title}`, exact: true });
   await expect(imported).toBeVisible();
@@ -185,9 +188,9 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   const download = page.waitForEvent('download');
   await page.getByRole('button', { name: '작품 파일 내보내기', exact: true }).click();
   const archive = JSON.parse(readFileSync((await (await download).path())!, 'utf8'));
-  expect(archive.project).toEqual(project);
+  expect(archive.project).toEqual(importedProject);
   expect(Number(await status(page).getAttribute('data-music-start-count'))).toBeGreaterThan(0);
-  writeFileSync(`${reportFolder(id)}/${id}-native-reading.json`, JSON.stringify({ browser: `Playwright ${process.env.KNOL_BROWSER_CHANNEL || 'chromium'}`, browserVersion: browser.version(), inputArchive: archivePath(id), inputArchiveSha256: createHash('sha256').update(readFileSync(archivePath(id))).digest('hex'), viewport: { width: 1280, height: 900 }, scope: id.endsWith('-classic') ? 'complete original manuscript' : 'first-option route and alternate first-fork route; subsequent choices first option', projectId: project.id, authoredCuts: project.lines.length, audioTransport: 'RenPy bundled game assets; browser per-file responses may be absent', audioResponses: [...audioResponses], records, archiveProjectExactMatch: true }, null, 2));
+  writeFileSync(`${reportFolder(id)}/${id}-native-reading.json`, JSON.stringify({ browser: `Playwright ${process.env.KNOL_BROWSER_CHANNEL || 'chromium'}`, browserVersion: browser.version(), inputArchive: archivePath(id), inputArchiveSha256: createHash('sha256').update(readFileSync(archivePath(id))).digest('hex'), viewport: { width: 1280, height: 900 }, scope: id.endsWith('-classic') ? 'complete original manuscript' : 'first-option route and alternate first-fork route; subsequent choices first option', projectId: project.id, importedProjectId: importedProject.id, importedIdentityForked: importedProject.id!==project.id, authoredCuts: project.lines.length, audioTransport: 'RenPy bundled game assets; browser per-file responses may be absent', audioResponses: [...audioResponses], records, archiveProjectExactMatch: true }, null, 2));
   await context.close();
 });
 
@@ -225,11 +228,11 @@ test('Seonnyeo existing storm: fixed original versus scored cut in actual browse
       await expect(status(page)).toHaveAttribute('data-music-path', '');
       await expect(status(page)).toHaveAttribute('data-sound-play-count', '0');
     }
-    await page.screenshot({ path: `${evidence}/seonnyeo-storm-${version}.png`, fullPage: true });
+    await page.screenshot({ path: `docs/architecture/evidence/four-work-library/full-score/seonnyeo-storm-${version}.png`, fullPage: true });
     records.push({ version, cutId, text: cut.text, chapterId: cut.chapterId, presentation: cut.presentation, audio });
     await context.close();
   }
-  writeFileSync(`${evidence}/seonnyeo-storm-comparison.json`, JSON.stringify({ browser: 'Chrome', viewport: { width: 1280, height: 900 }, fixedBaseline: '18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b', records }, null, 2));
+  writeFileSync('docs/architecture/evidence/four-work-library/full-score/seonnyeo-storm-comparison.json', JSON.stringify({ browser: 'Chrome', viewport: { width: 1280, height: 900 }, fixedBaseline: '18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b', records }, null, 2));
 });
 
 test('existing eight works: actual decoded music clock advances after the first unlocked cue', async ({ browser }, info) => {
@@ -240,9 +243,7 @@ test('existing eight works: actual decoded music clock advances after the first 
   const records: unknown[] = [];
   for (const id of workIds) {
     const project = readProject(id);
-    const category = id.endsWith('-classic') ? '원작' : '기본 예제';
-    const card = page.getByRole('region', { name: category, exact: true }).getByRole('article').filter({ has: page.getByRole('heading', { name: project.title, exact: true }) });
-    await openShelfAction(page,card,'처음부터 읽기'); await beginSelectedBook(page);
+    await openBuiltinEdition(page,id.replace('-classic',''),id.endsWith('-classic')?'original':'knolstory','start'); await beginSelectedBook(page);
     await ready(page); await unlock(page);
     const first = createPlayback(project);
     await verifyAudio(page, project, first);
@@ -256,6 +257,6 @@ test('existing eight works: actual decoded music clock advances after the first 
     records.push({ catalogId: id, projectId: project.id, firstLine: first.lineId, nextLine: next.lineId, musicPath: await status(page).getAttribute('data-music-path'), musicPositionSeconds: Number(await status(page).getAttribute('data-music-position')), musicStartCount: Number(await status(page).getAttribute('data-music-start-count')), ambiencePath: await status(page).getAttribute('data-ambience-path'), ambienceStartCount: Number(await status(page).getAttribute('data-ambience-start-count')) });
     await page.getByRole('button', { name: '서재로', exact: true }).click();
   }
-  writeFileSync(`${evidence}/decoded-music-clock.json`, JSON.stringify({ browser: 'Chrome', method: 'native renpy.music.get_pos reported by sceneRendered after first unlocked cue and one real dialogue advance', records }, null, 2));
+  writeFileSync('docs/architecture/evidence/four-work-library/full-score/decoded-music-clock.json', JSON.stringify({ browser: 'Chrome', method: 'native renpy.music.get_pos reported by sceneRendered after first unlocked cue and one real dialogue advance', records }, null, 2));
   await context.close();
 });

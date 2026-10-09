@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "format": "shortstory",
+    "version": 1,
+    "kind": "project"
+  },
+  "project": {
+    "id": "7c9c3741-2e60-43bd-b10e-f9151e733f68",
+    "title": "별주부전 · 나의 그림책",
+    "description": "8장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "authorDisplayName": "전래 이야기 · 놀퀴즈",
+    "source": {
+      "kind": "preset",
+      "presetId": "rabbit-classic"
+    },
+    "cover": {
+      "backgroundId": "rabbit-turtle.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요."
+    },
+    "pages": [
+      {
+        "id": "743ca817-fcd3-478d-a9bc-736f8b802318",
+        "order": 1,
+        "title": "용궁의 근심",
+        "text": "용왕이 깊은 병에 걸렸어요. 토끼의 간이 약이 된다는 말을 듣고, 별주부가 토끼를 찾아 육지로 가겠다고 나섰어요.\n나의 새로운 첫 장면입니다.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-01",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "5e5a4dc1-5139-4f96-82e9-377eca0f47b4",
+        "order": 2,
+        "title": "낯선 육지",
+        "text": "바다에서 나온 별주부는 낯선 풀숲과 언덕을 살폈어요. 토끼의 모습을 떠올리며, 어디에서 토끼를 만날 수 있을지 생각했지요.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-02",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "b170ec6c-296d-41e0-9675-8fe903d96bff",
+        "order": 3,
+        "title": "달콤한 초대",
+        "text": "토끼를 만난 별주부는 용궁의 멋진 잔치를 이야기했어요. 간을 구하러 왔다는 사실은 숨긴 채, 함께 용궁으로 가자고 권했지요.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-03",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "b751fcd0-4db3-4d5a-9b12-b42859e84f92",
+        "order": 4,
+        "title": "바다를 건너",
+        "text": "토끼는 별주부의 등에 올라 바다를 건넜어요. 신기한 용궁을 볼 생각에 설렜지만, 깊은 바다에서 혼자 돌아갈 방법은 없었어요.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-04",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "867d4ff9-26cd-452f-b809-7cb098981f0f",
+        "order": 5,
+        "title": "뜻밖의 위기",
+        "text": "용궁에 도착한 토끼는 용왕의 병을 고치기 위해 자기 간이 필요하다는 말을 들었어요. 깜짝 놀랐지만, 살아 돌아갈 방법을 찾으려고 정신을 가다듬었지요.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-05",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "02cdcff3-51eb-4751-b488-06daa5c6227e",
+        "order": 6,
+        "title": "위기를 뒤집는 꾀",
+        "text": "토끼는 간을 육지에 두고 왔다고 말했어요. 다시 데려다주면 가져오겠다는 말에 용왕은 별주부에게 토끼를 뭍으로 돌려보내라고 했지요.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-06",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "bdf6beaf-9d39-4194-b831-6c48834e359f",
+        "order": 7,
+        "title": "다시 밟은 땅",
+        "text": "뭍에 닿자 토끼는 별주부의 등에서 폴짝 뛰어내렸어요. 간은 몸속에 있다며 달아나자, 별주부는 그제야 토끼의 꾀에 속았다는 것을 알았지요.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-07",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "6dd03e17-914b-4b30-a3bb-e6ed04a3af8b",
+        "order": 8,
+        "title": "숲으로 돌아간 토끼",
+        "text": "토끼는 풀숲으로 달려가고 별주부는 물가에 남았어요. 토끼는 달콤한 말을 믿고 위험에 빠졌지만, 침착하게 생각한 덕분에 목숨을 구했지요.",
+        "backgroundId": "rabbit-turtle.scene.shortstory-classic-08",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      }
+    ],
+    "updatedAt": "2026-10-09T00:20:57.355Z"
+  }
+}

@@ -1,0 +1,41 @@
+
+ RUN  v4.1.11 <workspace>
+
+ ❯ apps/web/lib/builtin-works.test.ts (5 tests | 1 failed | 4 skipped) 20ms
+   × uses the work title only for pristine builtin thumbnails and preserves authored cover text 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/builtin-works.test.ts > uses the work title only for pristine builtin thumbnails and preserves authored cover text
+AssertionError: expected { …(12) } to deeply equal { …(12) }
+
+- Expected
++ Received
+
+@@ -3927,8 +3927,8 @@
+      "흥부 아내",
+      "놀부 아내",
+      "아이",
+      "마을 사람",
+    ],
+-   "title": "내가 쓴 표지 문구",
++   "title": "흥부와 놀부",
+    "updatedAt": "원작 읽기 기준본",
+  }
+
+ ❯ apps/web/lib/builtin-works.test.ts:42:110
+     40|  const grouped=(p:typeof project)=>groupBuiltinWorks([{key:'heungbu-cl…
+     41|  expect(builtinShelfCoverProject(grouped(project),classicStories).titl…
+     42|  const title={...project,title:'내가 쓴 표지 문구'};expect(builtinShelfCoverP…
+       |                                                                                                              ^
+     43|  const cover={...project,cover:{...project.cover!,author:'내가 정한 지은이'}}…
+     44|  expect(builtinShelfCoverProject(grouped(project),[])).toEqual(project…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  09:31:17
+   Duration  553ms (transform 310ms, setup 0ms, import 445ms, tests 20ms, environment 0ms)
+

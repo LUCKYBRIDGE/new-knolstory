@@ -6,6 +6,15 @@
   let engineViewport = null;
   let logicalWidth=1280, logicalHeight=720;
   const origin = location.origin;
+  // The SDK focuses its window on canvas mouseenter. Resizing the editor can put
+  // that canvas under the stationary pointer while a Web text field is active.
+  // Passive hover must not steal host focus; intentional canvas clicks still work.
+  addEventListener('mouseenter', (event) => {
+    if (event.target?.id !== 'canvas') return;
+    try {
+      if (parent.document.activeElement !== window.frameElement) event.stopImmediatePropagation();
+    } catch { /* The focus guard is optional for a foreign, non-authoring embed. */ }
+  }, true);
   function rendererRect() {
     const box = document.getElementById('canvas').getBoundingClientRect();
     if (engineViewport && engineViewport.physicalWidth > 0 && engineViewport.physicalHeight > 0) {

@@ -11,7 +11,9 @@ test('ShortStory edits static pages, saves, restores files and prints without ru
  await page.getByRole('button',{name:'이 기기에 저장',exact:true}).click();
  await page.reload();
  await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('내 그림책');
+ await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('다음 장면입니다.');
  await page.getByRole('button',{name:'읽기',exact:true}).click();
+ await page.getByRole('button',{name:'1쪽 · 제목 없는 쪽',exact:true}).click();
  await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText('첫 번째 그림의 이야기');
  await page.getByRole('button',{name:'다음 쪽',exact:true}).click();
  await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText('다음 장면입니다.');
@@ -36,7 +38,7 @@ test('ShortStory pictures and Excel survive reopening on phone; unsupported audi
  await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('그림과 글을 엑셀로 보관해요.');
  await page.getByText('이 쪽 그림 고르기',{exact:true}).click();await expect(page.getByLabel('쪽 배경',{exact:true})).toHaveValue(id!);
  await page.getByRole('button',{name:'이 기기에 저장',exact:true}).click();
- const project=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-workspace-v1')!).project);
+ const project=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!).books.at(-1));
  await page.locator('input[type=file]').setInputFiles({name:'unsupported.shortstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({manifest:{format:'shortstory',version:1,kind:'project'},project:{...project,music:{assetId:'fake'}}}))});
  await expect(page.locator('main [role=alert]')).toContainText('숏스토리');await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('그림과 글을 엑셀로 보관해요.');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);

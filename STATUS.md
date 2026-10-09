@@ -9,6 +9,12 @@
 ## Phase
 **대표 작품 읽기·편집과 빈 작품 창작 연결 구현 — M2 도메인/호환 이식과 M4–M6 핵심 경로를 연결했다.** 네 작품의 실제 데이터·자산·분기·연출을 Ren'Py로 읽고, 빈 작품에서 새 장·컷과 짧은 분기를 작성해 기기 저장·파일 왕복·Ren'Py 재생까지 진행할 수 있다. 전체 M1–M9/제품 1.0 완료는 아니다.
 
+## Active task — 2026-10-09 네 작품 중심 읽기·편집·보관
+
+네 기본 작품을 한 권씩 표시하고 같은 책에서 원작/놀스토리/숏스토리/편집 판본을 고른다. 기존 여덟 원고와 ID·Flow·StageComposition은 유지한다. 읽다 편집하기·준비/표지/사본·개인 삭제 확인/복구와 가져온 기본 작품의 독립 ID를 연결했다. 숏스토리 네 원본(34쪽)의 실제 고정 pack 글/삽화, 개인 사본·다중 보관·작품별 쪽 위치·기존 단일 저장 원본 backup·파일/표·표지/A4를 구현했다. 비동기 가져오기와 삭제 저장 실패의 데이터 유실 경로를 RED→GREEN으로 수정했다. actual Chrome에서 확인한 SDK hover의 편집 포커스 탈취도 bridge capture로 수정했다. 847 TS/24 Python, 전체 정적 host93·최종 catalog29·Chrome native/DPR7, 원작335컷과 놀스토리8경로의 실제 엔딩, A4 PDF 10/10/12/10쪽을 검증했다.
+
+비교 감사와 후속 목표: [네 작품 감사](docs/architecture/four-work-library-audit.md). 형식과 지원 범위: [숏스토리](docs/architecture/four-work-shortstory.md). 실제 화면·파일·전체 원고 읽기·최종 검사/GitHub: [완료 근거](docs/architecture/four-work-library-verification.md). 계정·온라인 저장·학급·과제·제출·공개 공유는 SV-01~05의 서버/정책 의존 단계이며 구현 완료가 아니다. 과거 revision 체크포인트·다중 탭 충돌·v2 학생 활동/구형 Excel·실기기/스크린리더·공개 배포는 후속 목표로 명시했다.
+
 ## 2026-10-08 cover readability and library identity
 
 The library is now 놀스토리 서재. Basic cover text and illustration zones are separate, all eight new presets use bounded templates, and Korean title words stay together. Existing authored composition/layers remain intact. Direct cover editing and selected-book file backup live under the book tools; resume appears only with history. Existing cover editing is reused, including a separate-text/image reset. [Evidence](docs/architecture/library-book-design-parity.md).
@@ -56,7 +62,7 @@ The introduction now follows the attached StartScreen: gold double frame, rectan
 - **Bridge·성능:** ADR 0014의 세부안과 ADR 0013 수치는 M1b 측정 후 확정.
 - **편집 화면 반응형 방향:** 초기1280×720 probe 이후, 현재 이야기는 실제 표시 영역의 비율을 Runtime Core가 계산하고 같은 Ren'Py 인스턴스에서 가상 화면 크기를 갱신한다. 세로 편집은 무대와 활성 입력을 스크롤로 접근하고 가로 편집은 나누며 가로 읽기는 전체 폭을 사용한다. [구도·오디오 규칙](docs/architecture/responsive-audio-authoring.md).
 
-## Active task
+## Previous verified work
 
 2026-10-08 서재 디자인 소유자 정정 반영: 판본별 카드책장을 하나의 연속 책장/하단서랍으로 통합하고 책밑의 모든 실행버튼·제목을 제거했다. 실제 가로공간5×2/4×2/3×3/2×4, 책바닥=선반상단, 상판화분·흐린전경·방바닥선을 복원했다. 책선택 집중창에서만 읽기/편집/준비를 제공한다. 전체host65/최종디자인14/native8/805tests 및1346media 검증. [정정결과](docs/architecture/evidence/library-book-design/cabinet-correction/verification.json).
 

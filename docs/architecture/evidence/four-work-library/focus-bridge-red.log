@@ -1,0 +1,34 @@
+
+ RUN  v4.1.11 <workspace>
+
+ ❯ spikes/renpy-web/bridge.test.ts (11 tests | 2 failed) 8ms
+   × does not let passive canvas hover take focus from the Web authoring controls 2ms
+   × preserves existing native focus and leaves noncanvas hover events intact 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  spikes/renpy-web/bridge.test.ts > does not let passive canvas hover take focus from the Web authoring controls
+AssertionError: expected undefined to be defined
+ ❯ spikes/renpy-web/bridge.test.ts:75:31
+     73| it('does not let passive canvas hover take focus from the Web authorin…
+     74|  const {listeners,parent}=bridge();parent.document.activeElement={tagN…
+     75|  expect(listeners.mouseenter).toBeDefined();listeners.mouseenter({targ…
+       |                               ^
+     76| });
+     77| it('preserves existing native focus and leaves noncanvas hover events …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  spikes/renpy-web/bridge.test.ts > preserves existing native focus and leaves noncanvas hover events intact
+AssertionError: expected undefined to be defined
+ ❯ spikes/renpy-web/bridge.test.ts:79:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 9 passed (11)
+   Start at  09:11:15
+   Duration  126ms (transform 20ms, setup 0ms, import 26ms, tests 8ms, environment 0ms)
+

@@ -1,10 +1,11 @@
+import {builtinShelfCard,openBuiltinEdition} from './library-entry';
 import {startShelfCreation,importShelfFile} from './library-entry';
 import {openShelfAction} from './library-entry';
 import {enterLibrary,beginSelectedBook} from './library-entry';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 
-const evidence = 'docs/architecture/evidence/local-library';
+const evidence = 'docs/architecture/evidence/four-work-library/local-library';
 const forestFile = 'docs/architecture/evidence/creative-reading/forest-promise.knolstory';
 const forestTitle = '숲의 약속 · 두 길에서 만나는 친구';
 const ownTitle = '서재에서 시작한 달빛 편지';
@@ -105,7 +106,7 @@ test('local library prepares three separate works and roundtrips preparation wit
   const page = await context.newPage(); page.setDefaultTimeout(15000);
   try {
     await page.goto('/'); await enterLibrary(page); await library(page);
-    await expect(page.getByRole('region', { name: '기본 예제', exact: true }).getByRole('article')).toHaveCount(4);
+    await expect(page.getByRole('region', { name: '기본 작품', exact: true }).getByRole('article')).toHaveCount(4);
     await create(page, '달빛 편지 준비'); await fillPreparation(page);
     for (const [width,height,name] of [[1280,900,'desktop'],[1024,768,'tablet'],[390,844,'phone']] as const) {
       await page.setViewportSize({width,height}); await shot(page, `preparation-${name}`);
@@ -207,7 +208,7 @@ test('library keeps blank planning optional and separates examples from a UI-cre
   test.skip(info.project.name !== 'host');
   await page.goto('/'); await enterLibrary(page); await library(page);
   await expect(page.getByRole('region',{name:'내 작품',exact:true})).toContainText('아직 내 작품이 없어요');
-  await expect(page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article')).toHaveCount(4);
+  await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
   await create(page,'기획 없이 시작한 이야기');
   await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('');
   await page.getByRole('button',{name:'이 장 대본 쓰기',exact:true}).click();
@@ -221,7 +222,7 @@ test('library keeps blank planning optional and separates examples from a UI-cre
   await preparation(page);
   await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('');
   await library(page);
-  await expect(page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article')).toHaveCount(4);
+  await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
 });
 
 test('previous device workspace opens in library without changing its authored content or legacy keys', async ({page},info) => {
@@ -280,7 +281,7 @@ test('corrupt device storage is kept intact while UI-created recovery work can b
 
 test('example preparation makes an independent own copy and duplicate import keeps the original',async({page},info)=>{
  test.skip(info.project.name!=='host');await page.goto('/'); await enterLibrary(page);await library(page);
- const example=page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article').first();const originalTitle=await example.getByRole('heading').innerText();await openShelfAction(page,example,'작품 준비');
- await expect(page.getByRole('region',{name:'작품 준비',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`${originalTitle} · 내 사본`);await library(page);await expect(page.getByRole('region',{name:'기본 예제',exact:true}).getByRole('article').first()).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
+ const originalTitle='선녀와 나무꾼';await openBuiltinEdition(page,'seonnyeo','knolstory','prepare');
+ await expect(page.getByRole('region',{name:'작품 준비',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`${originalTitle} · 내 사본`);await library(page);await expect(builtinShelfCard(page,'seonnyeo')).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
  await importShelfFile(page,forestFile);await saved(page);await library(page);const raw=await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])));await importShelfFile(page,forestFile);await expect(page.getByRole('main',{name:'로컬 서재'})).toContainText('같은 작품이 이미');await expect(page.getByRole('region',{name:'가져온 작품'}).getByRole('article')).toHaveCount(1);expect(await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])))).toEqual(raw);
 });

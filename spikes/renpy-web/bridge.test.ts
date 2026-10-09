@@ -9,8 +9,9 @@ const scene = { contractVersion: 1, sceneId: 'probe', revision: 1, width: 1280, 
 function bridge() {
   const listeners: Record<string, (event: unknown) => void> = {};
   const events: unknown[] = [];
-  const parent = { postMessage: (event: unknown) => events.push(event) };
-  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene } };
+  const frameElement = {};
+  const parent = { postMessage: (event: unknown) => events.push(event), document: {activeElement: frameElement as unknown} };
+  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene }, frameElement };
   runInNewContext(readFileSync('spikes/renpy-web/bridge.js', 'utf8'), {
     window, parent, location: { origin: 'https://story.knolquiz.com' }, structuredClone,
     addEventListener: (name: string, fn: (event: unknown) => void) => { listeners[name] = fn; },
@@ -21,7 +22,7 @@ function bridge() {
     origin: 'https://story.knolquiz.com', source: parent,
     data: { protocol: 1, type: 'loadScene', seq, revision, payload }, ...overrides,
   });
-  return { api, events, send };
+  return { api, events, send, parent, frameElement, listeners };
 }
 describe('actual runtime iframe bridge', () => {
   it('accepts complete resolved scene and drains only once', () => {
@@ -66,4 +67,14 @@ describe('actual runtime iframe bridge', () => {
   it('reports actual fitted renderer rect including letterbox offset', () => {
     const { api, events } = bridge(); api.emit({ protocol: 1, type: 'ready' }); expect(events).toEqual([expect.objectContaining({ rendererRect: { x: 0, y: 75, width: 800, height: 450 } })]);
   });
+});
+
+// SDK canvas mouseenter calls window.focus; a host editing control must keep ownership.
+it('does not let passive canvas hover take focus from the Web authoring controls',()=>{
+ const {listeners,parent}=bridge();parent.document.activeElement={tagName:'TEXTAREA'};let blocked=0;
+ expect(listeners.mouseenter).toBeDefined();listeners.mouseenter({target:{id:'canvas'},stopImmediatePropagation:()=>{blocked++;}});expect(blocked).toBe(1);
+});
+it('preserves existing native focus and leaves noncanvas hover events intact',()=>{
+ const {listeners,parent,frameElement}=bridge();let blocked=0;const event=(id:string)=>({target:{id},stopImmediatePropagation:()=>{blocked++;}});
+ expect(listeners.mouseenter).toBeDefined();parent.document.activeElement=frameElement;listeners.mouseenter(event('canvas'));parent.document.activeElement={tagName:'INPUT'};listeners.mouseenter(event('presplash'));expect(blocked).toBe(0);
 });

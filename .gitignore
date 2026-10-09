@@ -36,3 +36,6 @@ __pycache__/
 
 # Legacy room imagery is restored locally from the owner-authorized fixed checkout.
 apps/web/public/assets/legacy-ui/
+
+# Local print proofs contain owner-authorized legacy illustrations.
+docs/architecture/evidence/**/*.pdf

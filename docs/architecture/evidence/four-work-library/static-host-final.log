@@ -1,0 +1,37 @@
+[WebServer] (node:18144) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 27 tests using 1 worker
+
+(node:18161) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/four-work-library.spec.ts:4:1 › the default library groups eight manuscripts into four independent work choices (2.4s)
+  ✓   2 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 별주부전 원작: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   3 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 별주부전 놀스토리: chosen manuscript opens and returns to its grouped book (1.3s)
+  ✓   4 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 옹고집전 원작: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   5 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 옹고집전 놀스토리: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   6 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 선녀와 나무꾼 원작: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   7 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 선녀와 나무꾼 놀스토리: chosen manuscript opens and returns to its grouped book (1.6s)
+  ✓   8 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 흥부와 놀부 원작: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   9 [host] › tests/e2e/four-work-library.spec.ts:22:75 › 흥부와 놀부 놀스토리: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓  10 [host] › tests/e2e/four-work-library.spec.ts:34:1 › all four shelf choices open their actual ShortStory and return to the same library (11.4s)
+  -  11 [host] › tests/e2e/four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+  -  12 [host] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+  ✓  13 [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage (5.8s)
+  ✓  14 [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual rabbit picture book read, isolated position and complete A4 print (1.8s)
+  ✓  15 [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual onggojib picture book read, isolated position and complete A4 print (1.8s)
+  ✓  16 [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual seonnyeo picture book read, isolated position and complete A4 print (2.1s)
+  ✓  17 [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual heungbu picture book read, isolated position and complete A4 print (1.9s)
+  ✓  18 [host] › tests/e2e/four-work-shortstory.spec.ts:29:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import (2.6s)
+  ✓  19 [host] › tests/e2e/four-work-shortstory.spec.ts:51:1 › old single workspace backs up, immediate new/import preserve it, unsupported v2 rejects and storage failure blocks switching (476ms)
+  ✓  20 [host] › tests/e2e/four-work-shortstory.spec.ts:62:1 › delayed Google picture book import retains books created and edited while waiting (696ms)
+  ✓  21 [host] › tests/e2e/four-work-shortstory.spec.ts:74:1 › failed picture book deletion preserves its editable draft for save retry and reload (605ms)
+  ✓  22 [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser (1.2s)
+  ✓  23 [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser (1.2s)
+  ✓  24 [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser (1.3s)
+  ✓  25 [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser (1.2s)
+  ✓  26 [host] › tests/e2e/shortstory.spec.ts:3:1 › ShortStory edits static pages, saves, restores files and prints without runtime (760ms)
+  ✓  27 [host] › tests/e2e/shortstory.spec.ts:30:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected (707ms)
+
+  2 skipped
+  25 passed (50.5s)

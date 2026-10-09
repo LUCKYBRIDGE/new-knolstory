@@ -1,0 +1,37 @@
+{
+  "baselineCommit": "917057296e40bac8b1ca218a4c09ab18c748e616",
+  "manuscripts": {
+    "tests/fixtures/stories/heungbu-classic.json": {
+      "sha256": "f124552577186240d216b9e2e08c80887bc3c37086bdc92f3569f8e137d1d94a",
+      "projectId": "classic-heungbu-tale"
+    },
+    "tests/fixtures/stories/heungbu.json": {
+      "sha256": "6cd0b638118d445b60cf3e7cd76398445683d586b4d1672001cd37b8212a0e5c",
+      "projectId": "heungbu-nolbu-nolstory"
+    },
+    "tests/fixtures/stories/onggojib-classic.json": {
+      "sha256": "e05bd44cd7b5fcc2e9095c93e629999695d072fec8591b822614591b64ef5126",
+      "projectId": "classic-onggojib-tale"
+    },
+    "tests/fixtures/stories/onggojib.json": {
+      "sha256": "b39446dbc1f68e0b2fc99b816459e7bdc4c648b15646bc75341ad8cfdf3e7ca6",
+      "projectId": "pinky-review-main-003"
+    },
+    "tests/fixtures/stories/rabbit-classic.json": {
+      "sha256": "2d48bd47729612dd1b902280fce98bb9119e5560894cd65425af5d6344dc9e40",
+      "projectId": "classic-rabbit-tale"
+    },
+    "tests/fixtures/stories/rabbit.json": {
+      "sha256": "b1c422b7cf207c70b7d8dd8efddd6972069863f6eb359d46ebb60036ee9fa8b9",
+      "projectId": "pinky-review-main-002"
+    },
+    "tests/fixtures/stories/seonnyeo-classic.json": {
+      "sha256": "501d6356419a5cf33d11cabde1d0d655719452637f031e20cad2571c4eaed24c",
+      "projectId": "classic-seonnyeo-tale"
+    },
+    "tests/fixtures/stories/seonnyeo.json": {
+      "sha256": "c52606c1ae760c19c745352805441a8c4a3f8bf0ebc1368070375bb4bd3283d5",
+      "projectId": "pinky-review-main-004"
+    }
+  }
+}

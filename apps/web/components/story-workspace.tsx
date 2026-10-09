@@ -46,6 +46,8 @@ import { ChapterWriter } from "./chapter-writer";
 import { CutDeleteDialog } from "./cut-delete-dialog";
 import {readStoryFile,portableStory,downloadArtifact} from "../lib/story-archive";
 
+import {PersonalLibraryTools} from './personal-library-tools';
+import {prepareImportedWork,copyPersonalWork,isPersonalWork,readDeletedWork,writeDeletedWork,DELETED_WORK_KEY,type DeletedWork} from '../lib/personal-library';
 import {StoryPlayerMenu} from "./story-player-menu";
 
 import { previewViewport, type PreviewProfile } from "../lib/story-viewport";
@@ -60,6 +62,8 @@ const FIRST = representativeStories[0]!;
 const builtInStories=[...representativeStories,...classicStories];
 
 export function StoryWorkspace() {
+  const [deletedWork,setDeletedWork]=useState<DeletedWork|undefined>();
+  const [pendingWorkDelete,setPendingWorkDelete]=useState<string|null>(null);
   const contexts = useRef<WorkContexts>({});
   const [view,setView]=useState<WorkspaceView>('home');
   const [runtimeMounted,setRuntimeMounted]=useState(false);
@@ -157,6 +161,7 @@ export function StoryWorkspace() {
           if(loaded.warning)setError(loaded.warning);setRevision(v=>v+1);
         }else{setView(resolveEntryView({visited,hasWorkspace:false,reload,directEditor:directEditor.current}));setRuntimeMounted(directEditor.current);}
 
+        try{setDeletedWork(readDeletedWork(localStorage));}catch(issue){setError(String(issue));}
         setHydrated(true);
       } catch (issue) {
         if(directEditor.current){setView('editor');setRuntimeMounted(true);}
@@ -224,7 +229,16 @@ export function StoryWorkspace() {
     if(location.search)history.replaceState(null,'',location.pathname);
     directEditor.current=false;
   }
-  function prepareWork(){rememberCurrent();setMode('edit');setView('prepare');setManageOpen(false);}
+  function prepareWork(){if(protectAuthoring('prepare'))return;rememberCurrent();setMode('edit');setView('prepare');setManageOpen(false);}
+  function protectAuthoring(target:'editor'|'prepare',requestedLine?:string){
+    if(directEditor.current||!builtInStories.some(item=>item.id===storyId))return false;
+    rememberCurrent();const source=contexts.current[storyId];
+    const next=copyPersonalWork(project,crypto.randomUUID(),new Date().toISOString());const key=`new:${next.id}`;
+    const editId=requestedLine??(mode==='play'?line.id:lineId);
+    savedProjects.current={...savedProjects.current,[key]:next};
+    contexts.current={...contexts.current,[key]:{...source!,lineId:editId,playback:undefined,hasRead:false}};
+    setProject(next);setStoryId(key);setImportedWorks(current=>({...current,[key]:next.title}));setLineId(editId);setPlayback(createPlayback(next,editId));setMode('edit');setView(target);setManageOpen(false);setSaveStatus(hydrated?'저장 중':'기기 저장 중지 — 작품 파일로 보관해 주세요');setRevision(v=>v+1);setError('');return true;
+  }
   function continueWriting(){setView('editor');setRuntimeMounted(true);setMode('edit');setEditorView('writer');setWriterChapterId(chapter.id);setActiveTool('writer');setInspector(true);setRevision(v=>v+1);}
   function beginBook(resume:boolean){
     const state=resume?resumeFor(storyId,project):createPlayback(project);
@@ -249,8 +263,10 @@ export function StoryWorkspace() {
     const fixture=builtInStories.find(item=>item.id===key);
     let next=fixture?structuredClone(catalogProject(fixture)):savedProjects.current[key];if(!next)return;
     if(fixture&&(intent==='edit'||intent==='prepare'||intent==='cover')){
-      next={...next,id:crypto.randomUUID(),title:`${next.title} · 내 사본`,updatedAt:new Date().toISOString()};key=`new:${next.id}`;
+      const sourceContext=contexts.current[key];next=copyPersonalWork(next,crypto.randomUUID(),new Date().toISOString());key=`new:${next.id}`;
+      if(sourceContext)contexts.current={...contexts.current,[key]:{...sourceContext,playback:undefined,hasRead:false}};
       setImportedWorks(current=>({...current,[key]:next!.title}));
+      setSaveStatus(hydrated?'저장 중':'기기 저장 중지 — 작품 파일로 보관해 주세요');
     }
     const context=contexts.current[key];const editId=context?.lineId&&next.lines.some(cut=>cut.id===context.lineId)?context.lineId:orderedLines(next)[0]!.id;
     const resume=intent==='resume'?resumeFor(key,next):undefined;
@@ -332,6 +348,7 @@ export function StoryWorkspace() {
     setRevision((value) => value + 1);
   }
   function editFromFlow(id: string, repair?: { choiceId?: string; kind?: string }) {
+    const copied=protectAuthoring('editor',id);
     setView("editor");setRuntimeMounted(true);
     setEditorView("cut");
     setWriterChapterId(null);
@@ -339,7 +356,7 @@ export function StoryWorkspace() {
     setInspector(true);
     setActiveTool(repair && repair.kind !== "unreachable" ? "flow" : "text");
     setFlowMapOpen(false);
-    selectCut(id);
+    if(!copied)selectCut(id);
     const cut = project.lines.find(item => item.id === id);
     const index = cut?.flow?.type === "choice" ? cut.flow.options.findIndex(option => option.id === repair?.choiceId) : -1;
     const label = repair && index >= 0 ? `선택지 ${index + 1} ${repair.kind === "blank-choice" ? "문구" : "도착 컷"}`
@@ -356,6 +373,7 @@ export function StoryWorkspace() {
     setRevision((value) => value + 1);
   }
   function switchMode(next: "edit" | "play") {
+    if(next==='edit'&&protectAuthoring('editor'))return;
     rememberCurrent();
     setPresentationEntry(value=>value+1);
     setManageOpen(false);
@@ -365,13 +383,15 @@ export function StoryWorkspace() {
     setRevision((value) => value + 1);
   }
   function chooseStory(id:string){
+    if(!directEditor.current){openLibraryWork(id,'edit');return;}
     // Existing direct editor entry preserves fixture identity and stored edits.
     rememberCurrent();const fixture=builtInStories.find(item=>item.id===id);const next=savedProjects.current[id]??(fixture?structuredClone(fixture.project):undefined);if(!next)return;
     const context=contexts.current[id];setProject(next);setStoryId(id);setLineId(context?.lineId??orderedLines(next)[0]!.id);setPlayback(createPlayback(next,context?.lineId));setMode('edit');setView('editor');setRuntimeMounted(true);setEditorView(context?.editorView??'cut');setActiveTool(context?.activeTool??'text');setWriterChapterId(context?.writerChapterId??null);setPreviewProfile(context?.previewProfile??'auto');setRevision(v=>v+1);setError('');
   }
   function acceptImported(next:StoryProject){
-    if(!directEditor.current&&Object.entries({...savedProjects.current,[storyId]:project}).some(([key,work])=>(key.startsWith('new:')||key.startsWith('import:'))&&work.id===next.id))throw Error('같은 작품이 이미 서재에 있습니다. 기존 작품을 보존했어요. 서재에서 해당 작품을 열어 주세요.');
-    rememberCurrent();const key=`import:${next.id}`;setStoryId(key);setImportedWorks(current=>({...current,[key]:next.title}));setProject(next);setLineId(orderedLines(next)[0]!.id);setPlayback(createPlayback(next));setMode('edit');setManageOpen(false);setEditorView('cut');setWriterChapterId(null);setActiveTool('text');setPreviewProfile('auto');setView(directEditor.current?'editor':'prepare');if(directEditor.current)setRuntimeMounted(true);setSaveStatus(hydrated?'저장 중':'기기 저장 중지 — 작품 파일로 보관해 주세요');setRevision(v=>v+1);setError('');
+    const builtinIdentity=!directEditor.current&&builtInStories.some(item=>item.project.id===next.id);
+    if(!directEditor.current)next=prepareImportedWork(next,{...savedProjects.current,[storyId]:project},builtInStories.map(item=>item.project.id),crypto.randomUUID());
+    rememberCurrent();const key=`import:${next.id}`;setStoryId(key);setImportedWorks(current=>({...current,[key]:next.title}));setProject(next);setLineId(orderedLines(next)[0]!.id);setPlayback(createPlayback(next));setMode('edit');setManageOpen(false);setEditorView('cut');setWriterChapterId(null);setActiveTool('text');setPreviewProfile('auto');setView(directEditor.current?'editor':'prepare');if(directEditor.current)setRuntimeMounted(true);setSaveStatus(hydrated?'저장 중':'기기 저장 중지 — 작품 파일로 보관해 주세요');setRevision(v=>v+1);setError(builtinIdentity?'기본 제공 작품과 읽기 기록이 섞이지 않도록 가져온 작품을 독립 사본으로 보관했어요.':'');
   }
 
   async function importFile(file?: File) {
@@ -393,6 +413,39 @@ export function StoryWorkspace() {
     } catch (issue) {
       setError(`파일로 보관하지 못했어요. ${String(issue)}`);
     }
+  }
+  function duplicatePersonalWork(key:string){
+    if(!isPersonalWork(key))return;
+    rememberCurrent();const original=savedProjects.current[key];if(!original)return;
+    const copy=copyPersonalWork(original,crypto.randomUUID(),new Date().toISOString());const copyKey=`new:${copy.id}`;
+    savedProjects.current={...savedProjects.current,[copyKey]:copy};const source=contexts.current[key];
+    if(source)contexts.current={...contexts.current,[copyKey]:{...source,playback:undefined,hasRead:false}};
+    setImportedWorks(current=>({...current,[copyKey]:copy.title}));openLibraryWork(copyKey,'prepare');
+  }
+  function deletePersonalWork(){
+    if(!pendingWorkDelete||!hydrated)return;
+    const key=pendingWorkDelete;if(!isPersonalWork(key))return;
+    try{
+      const works={...savedProjects.current,[storyId]:project};const removed=works[key];if(!removed)return;
+      const context=key===storyId?captureContext(project,contexts.current[key],snapshot()):contexts.current[key];
+      const checkpoint={key,project:removed,context};writeDeletedWork(localStorage,checkpoint);setDeletedWork(checkpoint);
+      const remaining=Object.fromEntries(Object.entries(works).filter(([id])=>id!==key));
+      const remainingContexts=Object.fromEntries(Object.entries(contexts.current).filter(([id])=>id!==key));
+      const fallback=storyId===key?getRepresentativeStory(FIRST.id).project:project;const active=storyId===key?FIRST.id:storyId;
+      const state={...snapshot(),storyId:active,lineId:storyId===key?orderedLines(fallback)[0]!.id:lineId,mode:'edit' as const,playback:storyId===key?createPlayback(fallback):playback,view:'library' as const};
+      const saved=writeWorkspaceSnapshot(localStorage,fallback,remaining,remainingContexts,state);savedProjects.current=saved.works;contexts.current=saved.contexts;
+      setProject(fallback);setStoryId(active);setLineId(state.lineId);setPlayback(state.playback);setMode('edit');setView('library');setImportedWorks(current=>Object.fromEntries(Object.entries(current).filter(([id])=>id!==key)));setPendingWorkDelete(null);setSaveStatus('기기에 저장됨');setError('');
+    }catch(issue){setError(`작품을 삭제하지 못했어요. 현재 작품과 복구 자료는 보존됩니다. ${String(issue)}`);}
+  }
+  function restorePersonalWork(){
+    if(!deletedWork||!hydrated)return;
+    try{
+      const existing={...savedProjects.current,[storyId]:project};
+      if(existing[deletedWork.key])throw Error('같은 작품이 서재에 있어 덮어쓰지 않았어요.');
+      const works={...existing,[deletedWork.key]:deletedWork.project};const nextContexts={...contexts.current,...(deletedWork.context?{[deletedWork.key]:deletedWork.context}:{})};
+      const saved=writeWorkspaceSnapshot(localStorage,project,works,nextContexts,snapshot());savedProjects.current=saved.works;contexts.current=saved.contexts;
+      setImportedWorks(current=>({...current,[deletedWork.key]:deletedWork.project.title}));localStorage.removeItem(DELETED_WORK_KEY);setDeletedWork(undefined);setSaveStatus('기기에 저장됨');setError('');
+    }catch(issue){setError(`복구하지 못했어요. 복구 자료는 보존됩니다. ${String(issue)}`);}
   }
   function confirmDelete() {
     if (!deleteId) return;
@@ -479,7 +532,7 @@ export function StoryWorkspace() {
     {view==='home'&&<BookIntroduction works={libraryWorks} onMyWorks={()=>{try{sessionStorage.setItem('knolstory-library-view-v1',JSON.stringify({version:1,filter:'own',query:'',pages:{}}));}catch{/* Library remains usable without tab preferences. */}returnToLibrary();}} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'start')} disabled={!loadComplete} notice={storageError||error}/>}
     {view==='book'&&<BookStart edition={storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory"} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>beginBook(false)} onResume={()=>beginBook(true)} onLibrary={returnToLibrary} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
     {view==='cover'&&<BookCoverEditor project={project} onApply={(cover,title)=>{preparationChange(renameStoryProject({...project,cover},title));setView('prepare');}} onCancel={()=>setView('prepare')}/>}
-    {view==='library'&&<><LocalBookshelf onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={storageError||error}/><p data-testid="library-save-status" role="status">{saveStatus}</p></>}
+    {view==='library'&&<><LocalBookshelf onDuplicate={duplicatePersonalWork} onDelete={key=>{if(isPersonalWork(key))setPendingWorkDelete(key);}} onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={storageError||error}/><PersonalLibraryTools deleted={deletedWork} pendingTitle={pendingWorkDelete?libraryWorks.find(work=>work.key===pendingWorkDelete)?.project.title:undefined} onRestore={restorePersonalWork} onCancel={()=>setPendingWorkDelete(null)} onConfirm={deletePersonalWork}/><p data-testid="library-save-status" role="status">{saveStatus}</p></>}
     {view==='prepare'&&<main className={styles.preparationShell}><header className={styles.header}><strong>놀스토리 · {project.title}</strong><div className={styles.controls}><button onClick={returnToLibrary}>서재로</button><button onClick={()=>void exportFile()}>작품 파일 내보내기</button><button disabled={!hydrated} onClick={saveNow}>지금 저장</button></div><p data-testid="preparation-save-status" role="status">{saveStatus}</p></header>{(storageError||error)&&<p role="alert">{storageError||error}</p>}<StoryPreparation onEditCover={()=>setView('cover')} project={project} currentLineId={lineId} onProjectChange={preparationChange} onOpenCut={id=>editFromFlow(id)} onContinueWriting={continueWriting}/></main>}
     <main data-parked={view!=='editor'} aria-hidden={view!=='editor'} inert={view!=='editor'} ref={shell} className={`${styles.shell} ${compact ? styles.compact : ""} ${mode === "play" ? styles.playMode : ""} ${editorView==='writer'?styles.writing:''}`}>
       <WorkspaceManagement project={project} storyId={storyId} importedWorks={importedWorks} savedWorks={savedProjects.current} compact={compact} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={setManageOpen} onCreate={newStory} onChoose={chooseStory} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportProject={next=>{try{acceptImported(next);}catch(issue){setError(String(issue));}}} onError={setError} onLibrary={returnToLibrary} onPrepare={prepareWork}/>

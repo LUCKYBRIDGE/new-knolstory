@@ -18,7 +18,7 @@ describe('library browsing preserves the corpus',()=>{
 
 import {parseLibraryView} from './library-catalog';
 it('restores only valid tab browsing preferences without persisting project data',()=>{
- expect(parseLibraryView('{"version":1,"filter":"example","query":"흥부","pages":{"example":2}}')).toEqual({filter:'example',query:'흥부',pages:{example:2}});
+ expect(parseLibraryView('{"version":1,"filter":"example","query":"흥부","pages":{"example":2}}')).toEqual({filter:'builtin',query:'흥부',pages:{example:2,builtin:2}});
  expect(parseLibraryView('{"version":1,"filter":"admin","query":{},"pages":{"example":-1}}')).toEqual({filter:'all',query:'',pages:{}});
  expect(parseLibraryView('corrupt')).toEqual({filter:'all',query:'',pages:{}});
 });
@@ -40,4 +40,11 @@ it('six-book pages preserve all eight books and clamp after a wider layout',()=>
  expect(libraryPage(books,0,6).items).toEqual(books.slice(0,6));
  expect(libraryPage(books,1,6).items).toEqual(books.slice(6));
  expect(libraryPage(books,1,8)).toEqual({items:books,page:0,pages:1});
+});
+
+it('finds the grouped book by either edition title and author without changing source documents',()=>{
+ const original={project:{title:'흥부전',cover:{author:'전래 이야기'}}};
+ const knolstory={project:{title:'흥부와 놀부, 서로의 몫',cover:{author:'우리 반 각색'}}};
+ const book={...original,builtin:{title:'흥부와 놀부',original,knolstory}};const before=JSON.stringify(book);
+ expect(findLibraryBooks([book],'서로의 몫')).toEqual([book]);expect(findLibraryBooks([book],'우리 반')).toEqual([book]);expect(JSON.stringify(book)).toBe(before);
 });

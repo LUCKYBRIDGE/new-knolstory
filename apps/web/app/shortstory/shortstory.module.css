@@ -25,3 +25,16 @@
 .hidden,.printBook { display:none; }
 @media(max-width:720px) { .shell { padding:16px; } .header { align-items:flex-start; flex-direction:column; } .workspace { grid-template-columns:1fr; gap:12px; } .contents { display:flex; gap:8px; overflow:auto; align-items:center; } .contents h2 { flex:0 0 140px; margin:0; } .contents button { flex:0 0 150px; } .metadata { grid-template-columns:1fr; } .focus { padding:16px; } }
 @media print { @page { size:A4 portrait; margin:16mm; } .shell { margin:0; padding:0; max-width:none; } .shell>* { display:none!important; } .shell>.printBook { display:block!important; } .printBook article { break-after:page; break-inside:avoid; } .printBook article:last-child { break-after:auto; } .printBook p { white-space:pre-wrap; overflow-wrap:anywhere; font-size:14pt; line-height:1.8; } .printBook h1 { font-size:24pt; } .printBook h2 { font-size:20pt; } .printBook .art { width:100%; height:100mm; aspect-ratio:auto; print-color-adjust:exact; } }
+.library { padding-bottom:16px; }
+.bookList { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.bookList h2 { font-size:18px; }
+.bookList button { display:block; text-align:left; width:100%; margin-bottom:8px; overflow-wrap:anywhere; }
+.bookList button[aria-pressed=true] { background:var(--mint); border-color:var(--mint-strong); }
+.originalNotice { color:var(--ink-soft); }.originalNotice span { display:block; font-size:14px; }
+.coverPreview { width:200px; max-width:100%; }.coverPreview>div { width:100%; }
+.confirm { border:2px solid var(--color-danger); border-radius:12px; padding:16px; margin-top:16px; }.confirm button { margin:6px; }
+.printCoverArt { width:110mm; height:160mm; margin:auto; }
+@media(max-width:720px) { .bookList { grid-template-columns:1fr; gap:8px; } .library[open] .bookList { max-height:300px; overflow:auto; } .coverPreview { width:160px; } }
+@media print { .printCoverArt { display:block; width:110mm; height:160mm; margin-bottom:8mm; } .printCoverArt>div { width:100%; height:100%; } .printBook article { min-height:245mm; } }
+
+.bookTitle { margin:8px 0; font-size:26px; word-break:keep-all; overflow-wrap:break-word; }

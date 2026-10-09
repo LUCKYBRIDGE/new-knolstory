@@ -1,0 +1,125 @@
+{
+  "status": "local-complete; GitHub delivery and exact pushed-head CI pending",
+  "date": "2026-10-09",
+  "baseline": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "historicalFourWorkShelf": "906885d",
+  "implementationBase": "917057296e40bac8b1ca218a4c09ab18c748e616",
+  "requirements": [
+    {
+      "requirement": "fixed and historical comparison audit",
+      "status": "verified local",
+      "evidence": "four-work-library-audit.md"
+    },
+    {
+      "requirement": "four work books, eight immutable manuscripts",
+      "status": "verified local",
+      "evidence": "manuscript-preservation.json"
+    },
+    {
+      "requirement": "eight independent reading/resume/manual slots",
+      "status": "verified local",
+      "evidence": "edition-resume-isolation.json"
+    },
+    {
+      "requirement": "protected current-cut copy editing",
+      "status": "verified local",
+      "evidence": "read-to-edit-original-preservation.json"
+    },
+    {
+      "requirement": "cover copy/reload/fresh context roundtrip",
+      "status": "verified local",
+      "evidence": "entry-cover/*-cover-roundtrip.json"
+    },
+    {
+      "requirement": "cover-edited full native two endings",
+      "status": "verified local",
+      "evidence": "entry-cover/heungbu-native-reading.json"
+    },
+    {
+      "requirement": "four exact picture books with 34 source pages",
+      "status": "verified local",
+      "evidence": "shortstory/source-preservation.json"
+    },
+    {
+      "requirement": "four picture-book copies survive fresh context/reload",
+      "status": "verified local",
+      "evidence": "shortstory/*-copy-roundtrip.json"
+    },
+    {
+      "requirement": "multiple picture books, safe switching and restoration",
+      "status": "verified local",
+      "evidence": "shortstory-final.log"
+    },
+    {
+      "requirement": "unsupported fields/v2 rejected, previous raw backup retained",
+      "status": "verified local",
+      "evidence": "shortstory/migration-contract.json"
+    },
+    {
+      "requirement": "failed delete and delayed import protect current drafts",
+      "status": "verified local",
+      "evidence": "shortstory-storage-green.log"
+    },
+    {
+      "requirement": "actual A4 print PDF text, images and dimensions",
+      "status": "verified local",
+      "evidence": "shortstory/print-verification.json"
+    },
+    {
+      "requirement": "responsive materials, focused choice, keyboard and original user cover text",
+      "status": "verified local",
+      "evidence": "final-catalog-host.log"
+    },
+    {
+      "requirement": "full regression and final source checks",
+      "status": "verified local",
+      "evidence": "coverage.log;full-host-final.log;static-native-final.log"
+    },
+    {
+      "requirement": "prioritized missing server/compatibility/device goals",
+      "status": "verified local",
+      "evidence": "four-work-library-audit.md"
+    },
+    {
+      "requirement": "Pristine-only thumbnail projection retains authored original title/cover and both edition titles remain searchable",
+      "status": "verified local",
+      "evidence": "final-catalog-unit.log;final-catalog-host.log"
+    }
+  ],
+  "checks": {
+    "unitContractIntegration": 847,
+    "hostFull": 93,
+    "hostFinalCatalog": 29,
+    "hostFinalCatalogNativeOnlySkipped": 1,
+    "nativeFinalStaticChrome": 7,
+    "nativeFullManuscriptsChromium": 8,
+    "pythonPreparation": 24,
+    "coverage": {
+      "statements": 93.34,
+      "branches": 90.68,
+      "functions": 95.32,
+      "lines": 97.59,
+      "scope": "TypeScript packages and apps/web/lib, not all React/Python"
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeBuild": "passed",
+    "staticBuild": "passed",
+    "productionDependencies": "no known vulnerabilities",
+    "mediaHashes": 1351
+  },
+  "github": {
+    "branch": "codex/book-entry-cover",
+    "pullRequest": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1",
+    "status": "pending push and new-head CI"
+  },
+  "limitations": [
+    "Server accounts/online storage/classes/assignments/submission/publication remain SV-01..05 follow-ups, policy not silently decided",
+    "Legacy ShortStory v2 student activity files and old Excel tabs not supported; declared and rejected",
+    "Single active tab; concurrent-tab merge and revision checkpoints remain ST-01..02 follow-ups",
+    "No physical school hardware, physical paper printer or real screen-reader user claim",
+    "Public unverified media redistribution remains blocked; screenshots/PDF/private corpus stay local",
+    "Native complete-original plus two representative first-fork routes per KnolStory; not all possible branch combinations",
+    "Existing directEditor fixture development/compatibility route remains, ordinary library entry protects originals"
+  ]
+}

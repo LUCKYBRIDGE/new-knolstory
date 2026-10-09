@@ -25,3 +25,5 @@ export * from './excel';
 export * from "./classic-stories";
 
 export * from "./story-direction";
+
+export * from './shortstory-originals';

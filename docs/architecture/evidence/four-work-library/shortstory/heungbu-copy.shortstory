@@ -1,0 +1,97 @@
+{
+  "manifest": {
+    "format": "shortstory",
+    "version": 1,
+    "kind": "project"
+  },
+  "project": {
+    "id": "fafe411e-ec88-4dc6-830d-2e3c6b6a66fb",
+    "title": "흥부와 놀부 · 나의 그림책",
+    "description": "8장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "authorDisplayName": "전래 이야기 · 놀퀴즈",
+    "source": {
+      "kind": "preset",
+      "presetId": "heungbu-classic"
+    },
+    "cover": {
+      "backgroundId": "heungbu.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요."
+    },
+    "pages": [
+      {
+        "id": "cf25cdea-a10f-4bf8-9218-1bc080ab0ff2",
+        "order": 1,
+        "title": "쫓겨난 흥부 가족",
+        "text": "형 놀부는 동생 흥부에게 재산을 나누어 주지 않고 집에서 내쫓았어요. 흥부는 아내와 아이들을 데리고 새로 살 곳을 찾아 길을 나섰지요.\n나의 새로운 첫 장면입니다.",
+        "backgroundId": "heungbu.scene.shortstory-classic-01",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "875780ec-b9aa-48fc-a590-4b8f727485fe",
+        "order": 2,
+        "title": "비어 있는 그릇",
+        "text": "작은 집에서 살게 된 흥부 가족은 먹을 것이 부족했어요. 흥부와 아내는 빈 그릇을 바라보며 아이들을 먹일 방법을 걱정했지요.",
+        "backgroundId": "heungbu.scene.shortstory-classic-02",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "cc143604-efe9-4c19-b7cb-cd46db986dee",
+        "order": 3,
+        "title": "다친 제비를 돌보다",
+        "text": "흥부는 다리를 다친 제비를 발견했어요. 가난한 형편에도 아내와 함께 제비를 정성껏 돌보고, 나으면 다시 날아갈 수 있도록 도와주었지요.",
+        "backgroundId": "heungbu.scene.shortstory-classic-03",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "5d33dd35-d7a6-41f6-9170-c2e2beae7b4c",
+        "order": 4,
+        "title": "제비가 가져온 박씨",
+        "text": "이듬해 봄, 제비가 돌아와 흥부에게 박씨를 주었어요. 흥부는 반갑게 제비를 맞이하고 그 씨앗을 심었지요. 덩굴이 자라 커다란 박이 열렸어요.",
+        "backgroundId": "heungbu.scene.shortstory-classic-04",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "185eac30-85a6-450f-b31a-a4b03a629149",
+        "order": 5,
+        "title": "박 속에서 나온 선물",
+        "text": "흥부 가족이 커다란 박을 타자 금은보화와 살림에 필요한 것들이 나왔어요. 가족은 놀라워하며 기뻐했고, 어려운 살림도 나아졌지요.",
+        "backgroundId": "heungbu.scene.shortstory-classic-05",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "3c2224b1-e5fa-45f1-94ca-dea4997e2ce4",
+        "order": 6,
+        "title": "욕심으로 흉내 낸 놀부",
+        "text": "소문을 들은 놀부는 흥부처럼 부자가 되고 싶었어요. 일부러 제비를 다치게 한 뒤 고쳐 주고, 돌아온 제비가 준 박씨를 꼭 쥐며 큰 보물을 기대했지요.",
+        "backgroundId": "heungbu.scene.shortstory-classic-06",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "1324eb06-de9e-4fa8-a71e-7e44207649f7",
+        "order": 7,
+        "title": "다른 박의 소동",
+        "text": "놀부의 박에서는 보물 대신 집안을 어지럽히는 것들이 쏟아져 나왔어요. 마당이 뒤집히고 재산을 잃자 놀부는 놀라고 두려워졌지요.",
+        "backgroundId": "heungbu.scene.shortstory-classic-07",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "65b043b2-ac44-4b21-adf4-c6dc6261e992",
+        "order": 8,
+        "title": "다시 만난 형제",
+        "text": "놀부가 어려움에 빠졌다는 소식을 듣고 흥부가 찾아왔어요. 흥부는 형의 손을 잡고 도와주었고, 놀부는 지난 잘못을 뉘우치며 동생에게 고마움을 전했지요.",
+        "backgroundId": "heungbu.scene.shortstory-classic-08",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      }
+    ],
+    "updatedAt": "2026-10-09T00:21:00.658Z"
+  }
+}

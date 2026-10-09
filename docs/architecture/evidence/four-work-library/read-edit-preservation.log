@@ -1,0 +1,9 @@
+
+Running 1 test using 1 worker
+
+(node:95670) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+  1 passed (14.5s)

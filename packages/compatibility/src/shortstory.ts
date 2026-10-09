@@ -33,7 +33,7 @@ export function encodeShortStory(project:ShortStoryProject):string {
 export function decodeShortStory(text:string):ShortStoryProject {
   if(new TextEncoder().encode(text).length>MAX_BYTES)throw new Error('숏스토리 파일은 10MB 이하로 열 수 있어요.');
   let data;try{data=JSON.parse(text);}catch{throw new Error('숏스토리 파일을 읽지 못했어요.');}
-  if(data?.manifest?.format!=='shortstory'||data.manifest.version!==1||data.manifest.kind!=='project')throw new Error('지원하지 않는 숏스토리 파일 버전이에요.');
+  if(!record(data)||!keys(data,['manifest','project'])||!record(data.manifest)||!keys(data.manifest,['format','version','kind'])||data.manifest.format!=='shortstory'||data.manifest.version!==1||data.manifest.kind!=='project')throw new Error('지원하지 않는 숏스토리 파일 버전이나 추가 자료가 있어요. 원본 파일은 보존해 주세요.');
   return parseShortStory(data.project);
 }
 export function exportShortStoryTable(project:ShortStoryProject):string[][] {
@@ -42,6 +42,7 @@ export function exportShortStoryTable(project:ShortStoryProject):string[][] {
 }
 export function importShortStoryTable(rows:readonly(readonly string[])[]):ShortStoryProject {
   const original=parseShortStory(readTablePayload(rows,'shortstory'));
+  if(rows.slice(2).some(row=>row.length&&(!['payload','project','page'].includes(row[0])||row[0]==='project'&&(row.slice(7).some(Boolean)||row[2]||row[3])||row[0]==='page'&&(row.slice(10).some(Boolean)||row[2]||row[5]))))throw new Error('지원하지 않는 숏스토리 표 행·셀입니다. 원본을 버리지 않고 가져오기를 중단했어요.');
   const projectRows=rows.filter(row=>row[0]==='project');
   if(projectRows.length!==1||projectRows[0][1]!==original.id)throw new Error('숏스토리 작품 행을 확인해 주세요.');
   const pages=rows.filter(row=>row[0]==='page').map(row=>({id:row[1],order:Number(row[3]),title:row[4]??'',text:row[6]??'',backgroundId:row[7]??'',leftAssetId:row[8]??'',rightAssetId:row[9]??''})).sort((a,b)=>a.order-b.order);
