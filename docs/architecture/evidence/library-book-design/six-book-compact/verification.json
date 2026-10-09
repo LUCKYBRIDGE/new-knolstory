@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-08",
+  "layout": "2x3 at narrow widths; six books on page one and two on page two",
+  "design_checks": 17,
+  "includes": "same iframe native entry for all eight works",
+  "unit_checks": 34,
+  "viewport_checks": [
+    [
+      390,
+      844
+    ],
+    [
+      320,
+      740
+    ],
+    [
+      820,
+      1180
+    ],
+    [
+      1200,
+      900
+    ],
+    [
+      1500,
+      1000
+    ]
+  ],
+  "drawer_bottom_limit": "viewport height + 48px at tested sizes",
+  "types": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "scope": "Local browser viewport simulation; no physical hardware claim"
+}

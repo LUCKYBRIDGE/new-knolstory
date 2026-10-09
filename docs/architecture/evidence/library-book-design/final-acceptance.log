@@ -1,0 +1,32 @@
+[WebServer] (node:40455) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 20 tests using 1 worker
+
+(node:40469) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/entry-cover.spec.ts:3:1 › first browser entry introduces existing books, return enters library and introduction remains reachable (6.4s)
+  ✓   2 [host] › tests/e2e/entry-cover.spec.ts:25:113 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration (6.0s)
+  ✓   3 [host] › tests/e2e/entry-cover.spec.ts:25:113 › heungbu: full cover draft, cancellation, layered editing and archive restoration (6.1s)
+  -   4 [host] › tests/e2e/entry-cover.spec.ts:56:1 › all eight existing editions enter actual RenPy through their stored book cover
+  ✓   5 [host] › tests/e2e/entry-cover.spec.ts:69:89 › existing book cover touch and keyboard editing at portrait (1.6s)
+  ✓   6 [host] › tests/e2e/entry-cover.spec.ts:69:89 › existing book cover touch and keyboard editing at landscape (1.7s)
+  ✓   7 [host] › tests/e2e/entry-cover.spec.ts:77:1 › cover title validation keeps the applied book intact and draft recoverable (1.0s)
+(node:40773) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [host] › tests/e2e/library-design-parity.spec.ts:5:83 › legacy book surfaces and focus browsing at 1365x900 (2.5s)
+  ✓   9 [host] › tests/e2e/library-design-parity.spec.ts:5:83 › legacy book surfaces and focus browsing at 820x1180 (2.6s)
+  ✓  10 [host] › tests/e2e/library-design-parity.spec.ts:5:83 › legacy book surfaces and focus browsing at 390x844 (2.0s)
+  ✓  11 [host] › tests/e2e/library-design-parity.spec.ts:5:83 › legacy book surfaces and focus browsing at 844x390 (2.2s)
+  ✓  12 [host] › tests/e2e/library-design-parity.spec.ts:5:83 › legacy book surfaces and focus browsing at 320x740 (1.9s)
+  ✓  13 [host] › tests/e2e/library-design-parity.spec.ts:15:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.5s)
+  ✓  14 [host] › tests/e2e/library-design-parity.spec.ts:24:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book (2.0s)
+  ✓  15 [host] › tests/e2e/library-design-parity.spec.ts:36:1 › layered front, spine and back covers keep direct edits in the draft until apply (1.6s)
+  -  16 [host] › tests/e2e/library-design-parity.spec.ts:45:1 › all eight books start native RenPy from the library focus and retain the same runtime
+  ✓  17 [host] › tests/e2e/library-design-parity.spec.ts:58:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript (3.2s)
+  ✓  18 [host] › tests/e2e/library-design-parity.spec.ts:64:1 › tab browsing preferences survive book work and reload without entering the story file (3.2s)
+  ✓  19 [host] › tests/e2e/library-design-parity.spec.ts:69:1 › modal keyboard boundaries include collapsed settings and nested image selection (2.1s)
+  ✓  20 [host] › tests/e2e/library-design-parity.spec.ts:73:1 › cover title size changes the rendered typography without covering the whole artwork panel (1.3s)
+
+  2 skipped
+  18 passed (50.3s)

@@ -1,0 +1,98 @@
+{
+  "scope": "local enhancement; public release blocked pending legacy media rights evidence",
+  "unitContractIntegrationTests": 761,
+  "coverage": {
+    "statements": 93.53,
+    "branches": 91.3,
+    "functions": 95.44,
+    "lines": 98.13
+  },
+  "baselineRegression": {
+    "hostPassed": 44,
+    "nativePassed": 19,
+    "dprPassed": 3
+  },
+  "finalRelatedRegression": {
+    "provenanceAndAudioHostPassed": 3,
+    "portableAudioNativePassed": 3,
+    "stormAndDecoderNativePassed": 2,
+    "legacyLibraryAndProvenanceHostPassed": 5,
+    "allEditorialCuesNativeVerified": 131,
+    "allEditorialCueSoundEntrances": 102
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "productionBuild": "passed",
+  "mediaInventoryFiles": 1337,
+  "mediaInventoryCheck": "passed",
+  "freeReleaseAllowed": false,
+  "works": [
+    {
+      "file": "heungbu-classic-native-reading.json",
+      "archiveProjectExactMatch": true
+    },
+    {
+      "file": "heungbu-native-reading.json",
+      "archiveProjectExactMatch": true
+    },
+    {
+      "file": "onggojib-classic-native-reading.json",
+      "archiveProjectExactMatch": true
+    },
+    {
+      "file": "onggojib-native-reading.json",
+      "archiveProjectExactMatch": true
+    },
+    {
+      "file": "rabbit-classic-native-reading.json",
+      "archiveProjectExactMatch": true
+    },
+    {
+      "file": "rabbit-native-reading.json",
+      "archiveProjectExactMatch": true
+    },
+    {
+      "file": "seonnyeo-classic-native-reading.json",
+      "archiveProjectExactMatch": true
+    },
+    {
+      "file": "seonnyeo-native-reading.json",
+      "archiveProjectExactMatch": true
+    }
+  ],
+  "releaseEvidencePythonTests": 3,
+  "presenterPythonTests": 12,
+  "selfAssessment": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "Native paths, decoder clock, archives, file hashes and automated checks verified; actual listening quality is unverified."
+    },
+    "completeness": {
+      "score": 3,
+      "evidence": "Local enhancement and exhaustive records implemented; legacy permission evidence remains unresolved and public release stays blocked."
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Explicit distinction between recorded provenance and permission; before/after screen evidence linked."
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Eight editable archives and source/rights forms available; unknown legacy assets require proof or replacement."
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Policy and final checks are consolidated in existing project docs."
+    },
+    "overall": 3.8,
+    "improvements": [
+      "Resolve legacy media redistribution evidence before public release.",
+      "Conduct listening review before describing the synthesized soundtrack as artistically approved."
+    ],
+    "selfCheck": "No full copyright clearance or hearing approval claimed."
+  },
+  "creationLineage": {
+    "exactMatchedAssets": 15,
+    "matchedFileCopies": 45,
+    "providerAccountAndPlan": "unverified; not inferred from creation receipt"
+  }
+}

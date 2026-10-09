@@ -1,0 +1,15 @@
+
+Running 3 tests using 1 worker
+
+(node:96824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/3] [stories-runtime] › tests/e2e/entry-cover.spec.ts:58:1 › all eight existing editions enter actual RenPy through their stored book cover
+[2/3] [stories-runtime] › tests/e2e/existing-score-runtime.spec.ts:238:1 › existing eight works: actual decoded music clock advances after the first unlocked cue
+(node:97113) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[3/3] [stories-runtime] › tests/e2e/library-design-parity.spec.ts:49:1 › all eight books start native RenPy from the library focus and retain the same runtime
+  3 passed (57.7s)

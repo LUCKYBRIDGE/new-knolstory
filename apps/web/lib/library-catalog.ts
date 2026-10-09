@@ -1,0 +1,35 @@
+/** Display-only catalog operations; never rewrite or reorder saved projects. */
+type SearchBook={project:{title:string;cover?:{author:string}}};
+export function findLibraryBooks<T extends SearchBook & {builtin?:{title:string;original?:SearchBook;knolstory?:SearchBook}}>(works:readonly T[],query:string):T[]{
+ const normalize=(value:string)=>value.normalize('NFC').replace(/\s+/g,' ').trim().toLocaleLowerCase('ko-KR');
+ const needle=normalize(query);
+ return works.filter(work=>{
+  const editions=[work.project,work.builtin?.original?.project,work.builtin?.knolstory?.project];
+  const searchable=[work.builtin?.title,...editions.map(project=>project?`${project.title} ${project.cover?.author??''}`:'')].join(' ');
+  return normalize(searchable).includes(needle);
+ });
+}
+export function libraryPage<T>(works:readonly T[],requested:number,capacity:number){
+ const size=Math.max(1,Math.floor(capacity)||1),pages=Math.max(1,Math.ceil(works.length/size));
+ const page=Math.max(0,Math.min(pages-1,Math.floor(requested)||0));
+ return {items:works.slice(page*size,(page+1)*size),page,pages};
+}
+
+export const LIBRARY_VIEW_KEY='knolstory-library-view-v1';
+export function parseLibraryView(raw:string|null):{filter:string;query:string;pages:Record<string,number>}{
+ const empty={filter:'all',query:'',pages:{}};
+ try{
+  const data=JSON.parse(raw??'null');
+  if(data?.version!==1||!['all','builtin','original','example','own','imported'].includes(data.filter)||typeof data.query!=='string'||data.query.length>200)return empty;
+  const pages:Record<string,number>=Object.fromEntries(Object.entries(data.pages??{}).filter(([key,page])=>['all','builtin','original','example','own','imported'].includes(key)&&typeof page==='number'&&Number.isSafeInteger(page)&&page>=0).map(([key,page])=>[key,Number(page)]));
+  const migrated=data.filter==='original'||data.filter==='example';
+  return {filter:migrated?'builtin':data.filter,query:data.query,pages:migrated?{...pages,builtin:pages.builtin??pages[data.filter]??0}:pages};
+ }catch{return empty;}
+}
+
+/** Owner-specified cabinet tiers measured inside the available room, not the screen. */
+export function shelfLayoutForWidth(width:number){
+ const columns=width>=1100?5:width>=900?4:width>=600?3:2;
+ const rows=columns>=4?2:3;
+ return {columns,rows,capacity:columns*rows};
+}

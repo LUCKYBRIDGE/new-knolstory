@@ -1,0 +1,76 @@
+{
+  "baseline": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "projection": "Exact editorial referenceText, titles, scene IDs and illustration IDs projected to strict v1 pages; full pack metadata preserved separately, not a v2 activity document importer",
+  "works": [
+    {
+      "workId": "rabbit",
+      "sourcePath": "app/shortstory/packs/rabbit-classic.v1.json",
+      "sourceSha256": "be95bc617febb86d4287f3515a44e8c56fed40b1097361ff2877e950f588e591",
+      "completeSourcePackMatches": true,
+      "pages": 8,
+      "images": [
+        "rabbit-turtle.scene.shortstory-classic-01",
+        "rabbit-turtle.scene.shortstory-classic-02",
+        "rabbit-turtle.scene.shortstory-classic-03",
+        "rabbit-turtle.scene.shortstory-classic-04",
+        "rabbit-turtle.scene.shortstory-classic-05",
+        "rabbit-turtle.scene.shortstory-classic-06",
+        "rabbit-turtle.scene.shortstory-classic-07",
+        "rabbit-turtle.scene.shortstory-classic-08"
+      ]
+    },
+    {
+      "workId": "onggojib",
+      "sourcePath": "app/shortstory/packs/onggojib-classic.v1.json",
+      "sourceSha256": "ebd5b7ee4f32d4e81cd1dcad9f998c9717917aab511fc215dd8ac0bfc2e34eea",
+      "completeSourcePackMatches": true,
+      "pages": 8,
+      "images": [
+        "onggojib.scene.shortstory-classic-01",
+        "onggojib.scene.shortstory-classic-02",
+        "onggojib.scene.shortstory-classic-03",
+        "onggojib.scene.shortstory-classic-04",
+        "onggojib.scene.shortstory-classic-05",
+        "onggojib.scene.shortstory-classic-06",
+        "onggojib.scene.shortstory-classic-07",
+        "onggojib.scene.shortstory-classic-08"
+      ]
+    },
+    {
+      "workId": "seonnyeo",
+      "sourcePath": "app/shortstory/packs/seonnyeo-classic.v1.json",
+      "sourceSha256": "93c231d23ca679ed5cdb51fd9f650a72c123a0cbfc30ee90e67e9c45cf473e52",
+      "completeSourcePackMatches": true,
+      "pages": 10,
+      "images": [
+        "seonnyeo.scene.shortstory-classic-01",
+        "seonnyeo.scene.shortstory-classic-02",
+        "seonnyeo.scene.shortstory-classic-03",
+        "seonnyeo.scene.shortstory-classic-04",
+        "seonnyeo.scene.shortstory-classic-05",
+        "seonnyeo.scene.shortstory-classic-06",
+        "seonnyeo.scene.shortstory-classic-07",
+        "seonnyeo.scene.shortstory-classic-08",
+        "seonnyeo.scene.shortstory-classic-09",
+        "seonnyeo.scene.shortstory-classic-10"
+      ]
+    },
+    {
+      "workId": "heungbu",
+      "sourcePath": "app/shortstory/packs/heungbu-classic.v1.json",
+      "sourceSha256": "fd5a7d26d9254658a339b392e156d16b42d73289463c967e1f3b0ab35c84ea32",
+      "completeSourcePackMatches": true,
+      "pages": 8,
+      "images": [
+        "heungbu.scene.shortstory-classic-01",
+        "heungbu.scene.shortstory-classic-02",
+        "heungbu.scene.shortstory-classic-03",
+        "heungbu.scene.shortstory-classic-04",
+        "heungbu.scene.shortstory-classic-05",
+        "heungbu.scene.shortstory-classic-06",
+        "heungbu.scene.shortstory-classic-07",
+        "heungbu.scene.shortstory-classic-08"
+      ]
+    }
+  ]
+}

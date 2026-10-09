@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-08",
+  "status": "verified",
+  "ownerRequest": [
+    "Books rest directly on shelves",
+    "No buttons below books; select book first for actions",
+    "One cabinet with bottom drawer",
+    "Available-width5x2/4x2/3x3/2x4",
+    "Top-plant and blurred near-camera foreground from older story-maker design"
+  ],
+  "legacyReferences": [
+    "86adfec:app/globals.css",
+    "675e6d1:app/globals.css",
+    "18da4fc:app/components/StoryDiscovery.tsx"
+  ],
+  "resources": "Five owner-authorized room/shelf/plant/foreground files restored from pinned18da4fc SHA256 manifest",
+  "layout": {
+    "measuredWidthThresholds": [
+      1100,
+      900,
+      600
+    ],
+    "tiers": [
+      {
+        "columns": 5,
+        "rows": 2,
+        "capacity": 10
+      },
+      {
+        "columns": 4,
+        "rows": 2,
+        "capacity": 8
+      },
+      {
+        "columns": 3,
+        "rows": 3,
+        "capacity": 9
+      },
+      {
+        "columns": 2,
+        "rows": 4,
+        "capacity": 8
+      }
+    ],
+    "emptySlots": "Retained inside the same cabinet",
+    "bookContactToleranceCssPx": 2,
+    "booksOnly": true,
+    "actions": "Selected-book focus dialog only",
+    "drawer": true
+  },
+  "checks": {
+    "fullHostPassed": 65,
+    "fullHostSkipped": 26,
+    "finalDesignHostPassed": 14,
+    "nativeEightFromBookFocus": "passed",
+    "unitContractIntegrationPassed": 805,
+    "pythonScriptTestsPassed": 24,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "productionAudit": "passed",
+    "mediaHashesVerified": 1346,
+    "viewports": [
+      1500,
+      1365,
+      1200,
+      844,
+      820,
+      390,
+      320
+    ],
+    "foreground": "blur3px desktop/2.5px mobile, pointer-events:none; books and shelves sharp",
+    "independentReview": "No high/medium findings; all-books/original page memory was separated after review"
+  },
+  "evidence": [
+    "full-host.log",
+    "final-design.log",
+    "native-eight.log",
+    "coverage.log",
+    "final-cabinet.png"
+  ],
+  "limitations": [
+    "Browser conditions only; no physical school-device performance claim",
+    "Current changes locally verified, not new GitHub CI verification"
+  ]
+}

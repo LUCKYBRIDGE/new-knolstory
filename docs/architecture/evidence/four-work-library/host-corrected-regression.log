@@ -1,0 +1,11 @@
+
+Running 3 tests using 1 worker
+
+(node:96385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/3] [host] › tests/e2e/library-design-parity.spec.ts:92:1 › cabinet preserves shelf capacity and compacts occupied rows around four books
+[2/3] [host] › tests/e2e/library-design-parity.spec.ts:120:1 › cabinet joinery uses visible wood grain and preserves the book selection experience
+[3/3] [host] › tests/e2e/local-library.spec.ts:282:1 › example preparation makes an independent own copy and duplicate import keeps the original
+  3 passed (8.8s)

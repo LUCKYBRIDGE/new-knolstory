@@ -1,0 +1,146 @@
+{
+  "status": "complete: local full workflow verified and user-authorized GitHub source delivery verified",
+  "requirements": [
+    {
+      "requirement": "Fixed baseline/current behavior inventory and PRESERVE/REFINE classification",
+      "evidence": [
+        "docs/architecture/book-entry-and-cover.md",
+        "apps/web/lib/landing-visit.ts",
+        "apps/web/lib/book-cover.ts"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "First intro, returning library, introduction revisit and reload context restoration",
+      "evidence": [
+        "tests/e2e/entry-cover.spec.ts:first browser",
+        "apps/web/lib/landing-visit.test.ts",
+        "apps/web/lib/workspace-storage.test.ts"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Existing8 editions entry through stored book cover to native RenPy and same instance",
+      "evidence": [
+        "eight-native-entry.log",
+        "all-eight-return-library.png"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Full inherited basic/free/three-face text/image/font/preset/material/band editing, apply/cancel/reset",
+      "evidence": [
+        "apps/web/components/book-cover-editor.tsx",
+        "apps/web/lib/book-cover*.test.ts",
+        "touch.log",
+        "seonnyeo-classic-cover-roundtrip.json",
+        "heungbu-cover-roundtrip.json"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Canonical cover display shelf/editor/start and old direct settings/data preservation",
+      "evidence": [
+        "apps/web/components/book-cover.tsx",
+        "apps/web/lib/book-cover.test.ts",
+        "full cover project equality checks"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Save,reload,export,fresh-context import fullproject preservation on existing original/VN",
+      "evidence": [
+        "seonnyeo-classic-cover.knolstory",
+        "heungbu-cover.knolstory",
+        "tests/e2e/entry-cover.spec.ts full cover tests"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "Existing branch paths,save/load/history/restart/edit-return with custom cover",
+      "evidence": [
+        "heungbu-native-input.knolstory",
+        "heungbu-native-reading.json",
+        "heungbu-native-paths.log"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "PC/landscape/portrait touch/keyboard/overflow, story native viewports",
+      "evidence": [
+        "touch.log",
+        "shortstory-dpr.log",
+        "native-related.log",
+        "introduction-portrait.png",
+        "cover-editor-landscape.png",
+        "heungbu-start-portrait.png"
+      ],
+      "status": "verified for Chrome browser conditions; physical Android excluded"
+    },
+    {
+      "requirement": "ShortStory independent editor/reader/print regression",
+      "evidence": [
+        "shortstory-dpr.log",
+        "host-regression.log"
+      ],
+      "status": "verified"
+    },
+    {
+      "requirement": "RelatedTDD, fullregression,type/lint/build, compatible original story and media rights",
+      "evidence": [
+        "coverage.log",
+        "host-regression.log",
+        "production-audit.log",
+        "issues.json",
+        "media-provenance.json"
+      ],
+      "status": "verified; native22/host50/full792 checks pass"
+    },
+    {
+      "requirement": "User-authorized GitHub source upload and another computer setup",
+      "evidence": [
+        "README.md",
+        "scripts/restore-legacy-media.py",
+        ".github/workflows/ci.yml"
+      ],
+      "status": "verified: source branch pushed, PR1 attached, fixed421 restore tested"
+    }
+  ],
+  "limitations": [
+    "Legacy media redistribution remains unverified: no public release; images/screen evidence not published.",
+    "Public source CI cannot access private legacy corpus, so full media/browser checks are run locally and clearly separated.",
+    "Unpatched braces devtool advisory remains tracked; production audit clean.",
+    "Physical hardware and human soundtrack listening approval not claimed."
+  ],
+  "checks": {
+    "fullUnitContractIntegration": 792,
+    "hostRegressionPassed": 50,
+    "nativeRegressionPassed": 22,
+    "editedExistingHeungbuRoutes": [
+      227,
+      225
+    ],
+    "coverRelatedHostPassed": 5,
+    "dprPassed": 3,
+    "shortStoryPassed": 2,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "productionAudit": "passed",
+    "developerAudit": "unpatched braces advisory remains documented",
+    "mediaInventoryFiles": 1341,
+    "mediaCheck": "passed",
+    "publicSourceCiTests": 790,
+    "coverInvalidTitleProtection": "RED then GREEN; draft retained, applied title unchanged"
+  },
+  "github": {
+    "branch": "codex/book-entry-cover",
+    "publicUnverifiedMediaFiles": 0,
+    "privateLegacyCorpus": "authorized local restoration only",
+    "pullRequest": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1",
+    "implementationCommit": "e2fd89b2d6176a48c797bc6fabedcf597a6ce22a",
+    "sourceCi": "success: 790 source tests, production audit, types, lint and build in fresh GitHub runner",
+    "verifiedSourceCommit": "c443c933b77147ea81558820c6a4c430ecfc2651",
+    "sourceCiRun": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/37705346524"
+  }
+}

@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:15884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [stories-runtime] › tests/e2e/existing-score-runtime.spec.ts:111:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive (3.5m)
+
+  1 passed (3.5m)

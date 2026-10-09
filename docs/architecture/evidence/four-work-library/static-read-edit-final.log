@@ -1,0 +1,45 @@
+[WebServer] (node:18582) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:18599) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:05:36] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:05:36] "GET /favicon.ico HTTP/1.1" 404 -
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:05:40] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:05:40] "GET /favicon.ico HTTP/1.1" 404 -
+  ✘  1 [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy (9.8s)
+
+
+  1) [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "원본을 지키고 내 문장으로 고쳐 씁니다."
+    Received: "그런데 어느 날부터 용왕이 큰 병에 걸렸다. 좋은 음식과 귀한 약을 써 보아도 병은 좀처럼 낫지 않았다."
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      28 |  const rect=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.1);await expect(page.getByRole('button',{name:'다음으로',exact:true})).toBeEnabled({timeout:20000});await page.getByRole('button',{name:'다음으로',exact:true}).click();await ready(page);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const before=await stored(page),original=before.document.project;
+      29 |  await page.getByRole('button',{name:'편집으로',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();await expect.poll(async()=>(await stored(page)).storyId).toMatch(/^new:/);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const after=await stored(page);expect(after.storyId).toMatch(/^new:/);expect(after.lineId).toBe(before.playback.lineId);expect(after.document.project.id).not.toBe(original.id);expect(after.document.project.lines).toEqual(original.lines);expect(after.document.project.chapters).toEqual(original.chapters);expect(after.works[before.storyId].project).toEqual(original);
+    > 30 |  const cut=original.lines.find((line:{id:string})=>line.id===before.playback.lineId);await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(cut.text);await page.getByLabel('대사 / 해설',{exact:true}).fill('원본을 지키고 내 문장으로 고쳐 씁니다.');await expect.poll(async()=>(await stored(page)).document.project.lines.find((line:{id:string})=>line.id===cut.id).text).toBe('원본을 지키고 내 문장으로 고쳐 씁니다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const edited=await stored(page);expect(edited.works[before.storyId].project).toEqual(original);expect(edited.document.project.lines.find((line:{id:string})=>line.id===cut.id).text).toBe('원본을 지키고 내 문장으로 고쳐 씁니다.');await page.reload();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('원본을 지키고 내 문장으로 고쳐 씁니다.');expect((await stored(page)).works[before.storyId].project).toEqual(original);
+         |                                                                                                                                                                                                                                                                                                                                                                       ^
+      31 |  await page.getByRole('button',{name:'서재로',exact:true}).click();await openBuiltinEdition(page,'rabbit','original','resume');await beginSelectedBook(page,true);await ready(page);expect((await stored(page)).playback.lineId).toBe(cut.id);expect((await stored(page)).document.project).toEqual(original);await expect(page.getByText(cut.text,{exact:true})).toBeVisible();writeFileSync(`${evidence}/read-to-edit-original-preservation.json`,JSON.stringify({sourceKey:before.storyId,sourceProjectId:original.id,copyProjectId:after.document.project.id,currentCut:cut.id,sourceProjectExactMatch:true},null,2));
+      32 | });
+      33 |
+        at <workspace>/tests/e2e/four-work-runtime.spec.ts:30:359
+
+    Error Context: .cache/four-work-read-edit-final/four-work-runtime-reading--e7860-s-a-preserved-personal-copy-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/four-work-read-edit-final/four-work-runtime-reading--e7860-s-a-preserved-personal-copy-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/four-work-read-edit-final/four-work-runtime-reading--e7860-s-a-preserved-personal-copy-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy 

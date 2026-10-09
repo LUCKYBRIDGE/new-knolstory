@@ -1,0 +1,94 @@
+{
+  "browser": "Chrome",
+  "method": "native renpy.music.get_pos reported by sceneRendered after first unlocked cue and one real dialogue advance",
+  "records": [
+    {
+      "catalogId": "seonnyeo-classic",
+      "projectId": "classic-seonnyeo-tale",
+      "firstLine": "classic-seonnyeo-1-line-01",
+      "nextLine": "classic-seonnyeo-1-line-02",
+      "musicPath": "assets/audio/story-score/score-curiosity.ogg",
+      "musicPositionSeconds": 0.266,
+      "musicStartCount": 1,
+      "ambiencePath": "assets/audio/story-score/ambience-forest.ogg",
+      "ambienceStartCount": 1
+    },
+    {
+      "catalogId": "heungbu-classic",
+      "projectId": "classic-heungbu-tale",
+      "firstLine": "classic-heungbu-1-line-01",
+      "nextLine": "classic-heungbu-1-line-02",
+      "musicPath": "assets/audio/story-score/score-loss.ogg",
+      "musicPositionSeconds": 0.309,
+      "musicStartCount": 2,
+      "ambiencePath": "",
+      "ambienceStartCount": 1
+    },
+    {
+      "catalogId": "onggojib-classic",
+      "projectId": "classic-onggojib-tale",
+      "firstLine": "classic-onggojib-1-line-01",
+      "nextLine": "classic-onggojib-1-line-02",
+      "musicPath": "assets/audio/story-score/score-tension.ogg",
+      "musicPositionSeconds": 0.293,
+      "musicStartCount": 3,
+      "ambiencePath": "",
+      "ambienceStartCount": 1
+    },
+    {
+      "catalogId": "rabbit-classic",
+      "projectId": "classic-rabbit-tale",
+      "firstLine": "classic-rabbit-1-line-01",
+      "nextLine": "classic-rabbit-1-line-02",
+      "musicPath": "assets/audio/story-score/score-tension.ogg",
+      "musicPositionSeconds": 0.421,
+      "musicStartCount": 4,
+      "ambiencePath": "",
+      "ambienceStartCount": 1
+    },
+    {
+      "catalogId": "seonnyeo",
+      "projectId": "pinky-review-main-004",
+      "firstLine": "P1-v166-1",
+      "nextLine": "P1-v166-2",
+      "musicPath": "assets/audio/story-score/score-calm.ogg",
+      "musicPositionSeconds": 0.693,
+      "musicStartCount": 5,
+      "ambiencePath": "assets/audio/story-score/ambience-stream.ogg",
+      "ambienceStartCount": 2
+    },
+    {
+      "catalogId": "heungbu",
+      "projectId": "heungbu-nolbu-nolstory",
+      "firstLine": "scene-1-1",
+      "nextLine": "scene-1-2",
+      "musicPath": "assets/audio/story-score/score-warmth.ogg",
+      "musicPositionSeconds": 0.282,
+      "musicStartCount": 6,
+      "ambiencePath": "",
+      "ambienceStartCount": 2
+    },
+    {
+      "catalogId": "onggojib",
+      "projectId": "pinky-review-main-003",
+      "firstLine": "review-main-003:start:0",
+      "nextLine": "review-main-003:start:1",
+      "musicPath": "assets/audio/story-score/score-tension.ogg",
+      "musicPositionSeconds": 0.405,
+      "musicStartCount": 7,
+      "ambiencePath": "",
+      "ambienceStartCount": 2
+    },
+    {
+      "catalogId": "rabbit",
+      "projectId": "pinky-review-main-002",
+      "firstLine": "review-main-002:start:0",
+      "nextLine": "review-main-002:start:1",
+      "musicPath": "assets/audio/story-score/score-tension.ogg",
+      "musicPositionSeconds": 0.368,
+      "musicStartCount": 8,
+      "ambiencePath": "",
+      "ambienceStartCount": 2
+    }
+  ]
+}

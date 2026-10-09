@@ -1,0 +1,31 @@
+{
+  "implementationCommit": "327b142d8edd44ca9341a0e33837c71938d3e3c8",
+  "branch": "codex/book-entry-cover",
+  "pullRequest": "https://github.com/LUCKYBRIDGE/new-knolstory/pull/1",
+  "implementationHeadCi": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-09T00:46:30Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/37866324739/job/113613797721",
+      "name": "checks",
+      "startedAt": "2026-10-09T00:44:50Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-09T00:45:51Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/37866320749/job/113613784703",
+      "name": "checks",
+      "startedAt": "2026-10-09T00:44:46Z",
+      "status": "COMPLETED",
+      "workflowName": "CI"
+    }
+  ],
+  "publicSourceTestCount": 845,
+  "privateCatalogTestFileExcluded": true,
+  "publicPrivateMediaUploaded": false,
+  "finalDocumentationHeadCi": "Checked separately after the verification record commit; see PR checks for latest head"
+}

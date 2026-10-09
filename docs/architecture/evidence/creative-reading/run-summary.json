@@ -1,0 +1,34 @@
+{
+  "browser": "154.0.8037.98",
+  "authorship": "Created from blank story using UI controls; no seeded project",
+  "cutCount": 12,
+  "chapters": [
+    "1",
+    "2",
+    "3A",
+    "3B",
+    "4"
+  ],
+  "routes": [
+    "A → 4",
+    "B → 4"
+  ],
+  "checks": [
+    "reload",
+    "export",
+    "isolated-context import",
+    "native audio unlock",
+    "save/load",
+    "actual-path history",
+    "history reselection",
+    "desktop/phone-landscape/phone-portrait",
+    "touch",
+    "keyboard Enter",
+    "fullscreen enter/exit",
+    "menu preserves audio counts",
+    "restart",
+    "portrait speaker",
+    "edit return"
+  ],
+  "hardware": "Chrome viewport conditions only; no Android hardware claim"
+}

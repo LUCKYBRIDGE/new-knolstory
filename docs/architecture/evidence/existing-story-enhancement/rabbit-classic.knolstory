@@ -1,0 +1,1926 @@
+{
+  "documentType": "story-maker-project",
+  "schemaVersion": 5,
+  "savedAt": "2026-10-07T22:34:31.403Z",
+  "appVersion": "knolstory-existing-direction-v1",
+  "project": {
+    "cover": {
+      "author": "전래 이야기",
+      "subtitle": "또 다른 이름, 토끼전",
+      "authorNote": "여러 이본의 대표 서사를 바탕으로 현대어로 재구성했습니다.",
+      "layout": "classic",
+      "theme": "cream",
+      "font": "serif",
+      "titlePosition": "top",
+      "authorPosition": "bottom",
+      "align": "center",
+      "titleSize": 40,
+      "titleColor": "",
+      "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "characterId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+      "characterPosition": "center"
+    },
+    "id": "classic-rabbit-tale",
+    "title": "별주부전",
+    "description": "여러 별주부전 이본의 공통적인 중심 사건을 바탕으로 오늘날의 독자가 읽기 쉽게 풀어 쓴 원작 읽기입니다.",
+    "planning": {
+      "premise": "병든 용왕을 위해 별주부가 토끼를 꾀어 용궁으로 데려가지만, 토끼가 재치 있는 말로 위기에서 벗어난다.",
+      "structureMode": "five",
+      "material": "고전 토끼전·별주부전의 대표 서사",
+      "theme": "힘이 약한 존재도 지혜와 말로 위기를 헤쳐 나갈 수 있다.",
+      "mainCharacter": "토끼",
+      "mainGoal": "용궁에서 간을 빼앗길 위기를 벗어나 육지로 돌아간다.",
+      "centralProblem": "별주부에게 속아 용궁으로 간 토끼가 자신의 간이 용왕의 약으로 필요하다는 사실을 알게 된다.",
+      "stakes": "토끼가 꾀를 내지 못하면 목숨을 잃을 수 있다.",
+      "endingChange": "토끼는 위기 속에서 기지를 발휘해 살아 돌아가고 별주부는 빈손으로 용궁에 돌아간다.",
+      "opening": "병든 용왕에게 토끼의 간이 약이라는 처방이 내려지고 별주부가 육지행을 자원한다.",
+      "middle": "별주부가 토끼를 찾아 용궁의 부귀와 벼슬로 꾀고 토끼는 바다를 건너 용궁에 도착한다.",
+      "crisis": "토끼는 자신이 간을 빼앗기기 위해 속아 왔음을 알고 도망칠 곳도 없다는 사실을 깨닫는다.",
+      "climax": "토끼가 간을 육지에 두고 왔다고 둘러대어 용왕을 설득한다.",
+      "ending": "육지로 돌아온 토끼가 별주부의 등에서 뛰어내려 거짓말을 밝히고 숲으로 달아난다.",
+      "characterNotes": "토끼: 호기심과 욕망 때문에 위험에 빠지지만 위기에서 재치를 발휘한다.\n별주부: 용왕에게 충성하여 임무를 수행하지만 토끼에게 목적을 숨긴다.\n용왕: 병을 고치려는 마음이 급해 토끼의 엉뚱한 말을 믿는다.",
+      "worldNotes": "용궁의 화려함과 깊은 바다의 폐쇄성을 육지의 자유로운 들판과 대비한다.",
+      "mood": "근심 → 호기심 → 불안 → 위기 → 통쾌한 탈출",
+      "openQuestions": "토끼는 왜 별주부의 말을 따라갔을까?\n용왕은 왜 토끼의 말을 믿었을까?",
+      "freeNotes": "원작 읽기는 분기 없이 선형으로 진행하며, 현대적 화해나 새로운 치료법을 덧붙이지 않는다."
+    },
+    "creativeMemos": [],
+    "sheetUrl": "",
+    "sheetEditable": false,
+    "speakerNames": [
+      "토끼",
+      "별주부",
+      "용왕"
+    ],
+    "chapters": [
+      {
+        "id": "classic-rabbit-1",
+        "order": 1,
+        "title": "용궁에 닥친 근심",
+        "summary": "병이 깊어진 용왕에게 토끼의 간이 약이라는 처방이 내려지고, 별주부가 육지로 나섭니다.",
+        "purpose": "용왕의 병과 별주부의 임무를 제시하는 발단",
+        "mood": "평온함 → 근심 → 답답함 → 결심",
+        "keyEvents": "용왕이 병든다.\n도사가 토끼의 간을 처방한다.\n신하들이 망설인다.\n별주부가 육지행을 자원한다.",
+        "nextChapterIdea": "별주부가 낯선 육지에서 토끼를 찾아 나선다.",
+        "storyStageKeys": [
+          "opening"
+        ],
+        "chapterSpeakerNames": [
+          "용왕",
+          "별주부"
+        ],
+        "characterAssetIds": [
+          "rabbit-turtle.character.dragonking-sick-elder-attached",
+          "rabbit-turtle.character.palace-physician-worried",
+          "rabbit-turtle.character.turtle-resolve",
+          "rabbit-turtle.character.classic-turtle-portrait"
+        ],
+        "backgroundAssetIds": [
+          "rabbit-turtle.background.classic-palace-vista",
+          "rabbit-turtle.background.rabbit-turtle-bg-palace",
+          "rabbit-turtle.background.classic-court"
+        ],
+        "backgroundId": "rabbit-turtle.background.classic-palace-vista",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-tension",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-2",
+        "order": 2,
+        "title": "육지에서 만난 토끼",
+        "summary": "별주부가 토끼를 찾아내고 용궁의 부귀와 높은 벼슬을 내세워 함께 가자고 꾑니다.",
+        "purpose": "별주부와 토끼의 말씨름과 토끼의 선택을 보여 주는 전개",
+        "mood": "낯섦 → 탐색 → 경계 → 의심 → 기대",
+        "keyEvents": "별주부가 육지에 오른다.\n토끼를 찾아낸다.\n토끼가 별주부를 의심한다.\n높은 벼슬이라는 말에 마음이 흔들린다.",
+        "nextChapterIdea": "토끼가 별주부 등에 올라 용궁으로 향한다.",
+        "storyStageKeys": [
+          "middle"
+        ],
+        "chapterSpeakerNames": [
+          "토끼",
+          "별주부"
+        ],
+        "characterAssetIds": [
+          "rabbit-turtle.character.turtle-resolve",
+          "rabbit-turtle.character.classic-turtle-portrait",
+          "rabbit-turtle.character.rabbit-white-unified-720x900",
+          "rabbit-turtle.character.turtle-offer",
+          "rabbit-turtle.character.rabbit-suspicious",
+          "rabbit-turtle.character.rabbit-thinking",
+          "rabbit-turtle.character.rabbit-speaking-truth"
+        ],
+        "backgroundAssetIds": [
+          "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+          "rabbit-turtle.background.rabbit-turtle-bg-grassland"
+        ],
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-curiosity",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "play",
+            "assetId": "audio:music:ambience-forest",
+            "loop": true,
+            "volume": 0.19,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-3",
+        "order": 3,
+        "title": "바닷속 용궁으로",
+        "summary": "토끼가 별주부를 따라 바다를 건너 화려한 용궁에 도착하지만, 그곳에서 진짜 목적을 알게 됩니다.",
+        "purpose": "기대와 불안을 쌓아 용궁에서의 배신을 크게 드러내는 전개",
+        "mood": "기대 → 불안 → 경이로움 → 들뜸 → 충격",
+        "keyEvents": "토끼가 별주부 등에 오른다.\n육지와 멀어진다.\n바닷속 풍경을 본다.\n용궁에서 자신의 간이 목적임을 알게 된다.",
+        "nextChapterIdea": "도망칠 수 없는 토끼가 말과 꾀로 위기를 뒤집는다.",
+        "storyStageKeys": [
+          "middle"
+        ],
+        "chapterSpeakerNames": [
+          "토끼",
+          "별주부",
+          "용왕"
+        ],
+        "characterAssetIds": [
+          "rabbit-turtle.character.rabbit-suspicious",
+          "rabbit-turtle.character.turtle-resolve",
+          "rabbit-turtle.character.turtle-offer",
+          "rabbit-turtle.character.classic-riding",
+          "rabbit-turtle.character.rabbit-white-unified-720x900",
+          "rabbit-turtle.character.dragonking-sick-elder-attached",
+          "rabbit-turtle.character.rabbit-speaking-truth",
+          "rabbit-turtle.character.rabbit-shocked"
+        ],
+        "backgroundAssetIds": [
+          "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+          "rabbit-turtle.background.classic-sea",
+          "rabbit-turtle.background.classic-underwater",
+          "rabbit-turtle.background.classic-palace-vista",
+          "rabbit-turtle.background.classic-court",
+          "rabbit-turtle.background.rabbit-turtle-bg-palace"
+        ],
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-ocean",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "play",
+            "assetId": "audio:music:ambience-ocean",
+            "loop": true,
+            "volume": 0.19,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-4",
+        "order": 4,
+        "title": "토끼가 낸 꾀",
+        "summary": "죽음을 앞둔 토끼가 침착함을 되찾고 간을 육지에 두고 왔다는 말로 상황을 뒤집습니다.",
+        "purpose": "토끼의 기지와 말의 힘이 가장 크게 드러나는 위기와 절정",
+        "mood": "충격 → 공포 → 침착 → 익살 → 의심 → 역전",
+        "keyEvents": "토끼가 속았음을 안다.\n도망칠 수 없음을 깨닫는다.\n간을 육지에 두고 왔다고 둘러댄다.\n용왕이 흔들린다.",
+        "nextChapterIdea": "용왕이 토끼의 말을 믿고 다시 육지로 보내 준다.",
+        "storyStageKeys": [
+          "crisis",
+          "climax"
+        ],
+        "chapterSpeakerNames": [
+          "토끼",
+          "용왕"
+        ],
+        "characterAssetIds": [
+          "rabbit-turtle.character.rabbit-shocked",
+          "rabbit-turtle.character.dragonking-sick-elder-attached",
+          "rabbit-turtle.character.rabbit-thinking",
+          "rabbit-turtle.character.classic-rabbit-laugh",
+          "rabbit-turtle.character.rabbit-speaking-truth"
+        ],
+        "backgroundAssetIds": [
+          "rabbit-turtle.background.classic-court",
+          "rabbit-turtle.background.rabbit-turtle-bg-palace"
+        ],
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-tension",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 500
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-5",
+        "order": 5,
+        "title": "다시 밟은 육지",
+        "summary": "용왕에게서 벗어난 토끼가 육지에 닿는 순간 뛰어내려 자신의 꾀를 밝히고 자유를 되찾습니다.",
+        "purpose": "토끼의 기지가 성공하는 결말과 별주부의 빈손 귀환을 보여 준다",
+        "mood": "조바심 → 긴장 → 해방 → 통쾌함 → 여운",
+        "keyEvents": "용왕이 토끼의 말을 믿는다.\n토끼가 육지로 돌아간다.\n물가에서 뛰어내린다.\n간 거짓말을 밝히고 숲으로 달아난다.",
+        "nextChapterIdea": "이야기 끝",
+        "storyStageKeys": [
+          "ending"
+        ],
+        "chapterSpeakerNames": [
+          "용왕",
+          "토끼",
+          "별주부"
+        ],
+        "characterAssetIds": [
+          "rabbit-turtle.character.rabbit-thinking",
+          "rabbit-turtle.character.dragonking-sick-elder-attached",
+          "rabbit-turtle.character.turtle-resolve",
+          "rabbit-turtle.character.classic-riding",
+          "rabbit-turtle.character.classic-rabbit-leap",
+          "rabbit-turtle.character.classic-turtle-water",
+          "rabbit-turtle.character.classic-rabbit-rock",
+          "rabbit-turtle.character.turtle-tired"
+        ],
+        "backgroundAssetIds": [
+          "rabbit-turtle.background.rabbit-turtle-bg-palace",
+          "rabbit-turtle.background.classic-underwater",
+          "rabbit-turtle.background.classic-sea",
+          "rabbit-turtle.background.rabbit-turtle-bg-shore-escape"
+        ],
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-resolve",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "ambience": {
+            "action": "play",
+            "assetId": "audio:music:ambience-ocean",
+            "loop": true,
+            "volume": 0.19,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          }
+        }
+      }
+    ],
+    "lines": [
+      {
+        "id": "classic-rabbit-1-line-01",
+        "chapterId": "classic-rabbit-1",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "아주 먼 옛날, 깊고 푸른 바닷속에 아름다운 용궁이 있었다. 그곳에는 바다의 온갖 생물을 다스리는 용왕이 살고 있었다.",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-palace-vista",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-02",
+        "chapterId": "classic-rabbit-1",
+        "order": 2,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그런데 어느 날부터 용왕이 큰 병에 걸렸다. 좋은 음식과 귀한 약을 써 보아도 병은 좀처럼 낫지 않았다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-03",
+        "chapterId": "classic-rabbit-1",
+        "order": 3,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "날이 갈수록 몸에 힘이 빠지는구나. 이 넓은 바다에 내 병을 고칠 약 하나가 없단 말이냐?",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-04",
+        "chapterId": "classic-rabbit-1",
+        "order": 4,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "용궁의 의원들이 온갖 약을 지어 올렸지만 아무 소용이 없었다. 용왕의 병이 깊어질수록 수궁 전체에도 근심이 퍼졌다.",
+        "leftAssetId": "rabbit-turtle.character.palace-physician-worried",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.palace-physician-worried"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-05",
+        "chapterId": "classic-rabbit-1",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그러던 어느 날, 한 도사가 용궁을 찾아왔다. 용왕의 병세를 살펴본 도사는 육지에 사는 토끼의 간을 먹으면 병이 나을 것이라고 일러 주었다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-06",
+        "chapterId": "classic-rabbit-1",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "토끼의 간이라니! 그렇다면 누가 육지로 나가 토끼를 데려오겠느냐?",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-07",
+        "chapterId": "classic-rabbit-1",
+        "order": 7,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "신하들은 갑자기 바닥만 내려다보았다. 조금 전까지 제 의견을 말하던 이들도 육지에 다녀오라는 말에는 선뜻 나서지 못했다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-08",
+        "chapterId": "classic-rabbit-1",
+        "order": 8,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "누구는 육지를 잘 모른다 하고, 누구는 자신에게 맞지 않는 일이라고 했다. 말은 많았지만 정작 나서는 신하는 없었다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-09",
+        "chapterId": "classic-rabbit-1",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "그 많은 신하 가운데 육지에 다녀올 자가 하나도 없단 말이냐?",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-10",
+        "chapterId": "classic-rabbit-1",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "별주부",
+        "text": "대왕마마, 제가 다녀오겠습니다. 저는 물에서도 헤엄칠 수 있고 육지에도 오를 수 있으니 토끼를 찾아보겠습니다.",
+        "leftAssetId": "rabbit-turtle.character.turtle-resolve",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.turtle-resolve"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-1-line-11",
+        "chapterId": "classic-rabbit-1",
+        "order": 11,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "용왕은 토끼의 모습을 그린 그림을 별주부에게 내주었다. 별주부는 긴 귀와 동그란 눈, 짧은 꼬리를 눈여겨본 뒤 육지를 향해 떠났다.",
+        "leftAssetId": "rabbit-turtle.character.classic-turtle-portrait",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-turtle-portrait"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-01",
+        "chapterId": "classic-rabbit-2",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "별주부는 거센 파도를 헤치고 오래도록 헤엄쳤다. 마침내 물 밖으로 머리를 내밀자 멀리 푸른 산과 넓은 들판이 보였다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.turtle-resolve",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-resolve"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-rabbit-2-line-01:audio:sound:sfx-water",
+              "assetId": "audio:sound:sfx-water",
+              "volume": 0.42
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-02",
+        "chapterId": "classic-rabbit-2",
+        "order": 2,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "육지에 오른 별주부는 사방을 두리번거렸다. 나무 냄새도, 풀잎 사이로 부는 바람도 바닷속에서는 만나 본 적 없는 것들이었다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.classic-turtle-portrait",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.classic-turtle-portrait"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-03",
+        "chapterId": "classic-rabbit-2",
+        "order": 3,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "별주부",
+        "text": "산도 넓고 들도 넓구나. 이 많은 짐승 사이에서 토끼 한 마리를 어떻게 찾는담?",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.classic-turtle-portrait",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.classic-turtle-portrait"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-04",
+        "chapterId": "classic-rabbit-2",
+        "order": 4,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "별주부는 품속의 그림을 자꾸 꺼내 보며 산길을 돌아다녔다. 지나가는 짐승들을 살펴보았지만 그림 속 토끼와는 달랐다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.classic-turtle-portrait",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.classic-turtle-portrait"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-05",
+        "chapterId": "classic-rabbit-2",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "한참을 헤매던 별주부의 눈에 풀숲 너머로 쫑긋 솟은 두 귀가 들어왔다. 동그란 눈과 짧은 꼬리까지 그림과 꼭 같았다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+        "rightAssetId": "rabbit-turtle.character.classic-turtle-portrait",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-white-unified-720x900"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.classic-turtle-portrait"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-06",
+        "chapterId": "classic-rabbit-2",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "별주부",
+        "text": "혹시 토끼 선생 아니십니까? 저는 먼 바닷속 용궁에서 온 별주부라고 합니다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+        "rightAssetId": "rabbit-turtle.character.turtle-offer",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-white-unified-720x900"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-offer"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-07",
+        "chapterId": "classic-rabbit-2",
+        "order": 7,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "용궁에서 왔다고? 바닷속에 있다는 그 용궁 말이오? 그런데 용궁 사람이 나에게는 무슨 일이오?",
+        "leftAssetId": "rabbit-turtle.character.rabbit-suspicious",
+        "rightAssetId": "rabbit-turtle.character.turtle-offer",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-suspicious"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-offer"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-08",
+        "chapterId": "classic-rabbit-2",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "별주부",
+        "text": "용궁에는 진주와 산호로 꾸민 궁궐이 있고 좋은 음식도 넘쳐납니다. 용왕님께서는 재주 있는 인재를 무척 아끼시지요.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+        "rightAssetId": "rabbit-turtle.character.turtle-offer",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-white-unified-720x900"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-offer"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-09",
+        "chapterId": "classic-rabbit-2",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "그런데 용왕께서 나 같은 산토끼를 어떻게 아시오? 처음 보는 나를 대뜸 데려가겠다니 조금 수상하지 않소?",
+        "leftAssetId": "rabbit-turtle.character.rabbit-suspicious",
+        "rightAssetId": "rabbit-turtle.character.turtle-offer",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-suspicious"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-offer"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-10",
+        "chapterId": "classic-rabbit-2",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "별주부",
+        "text": "영리하고 재빠른 토끼의 이름이 어찌 산에만 머물겠습니까? 토끼 선생의 재주라면 용궁에서도 높은 벼슬을 맡고 귀한 대접을 받을 것입니다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-thinking",
+        "rightAssetId": "rabbit-turtle.character.turtle-offer",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-thinking"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-offer"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-11",
+        "chapterId": "classic-rabbit-2",
+        "order": 11,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "토끼는 귀가 솔깃했다. 늘 사냥꾼과 사나운 짐승을 피해 살아온 터라 좋은 음식과 높은 벼슬이 기다린다는 말은 꽤 그럴듯하게 들렸다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-thinking",
+        "rightAssetId": "rabbit-turtle.character.turtle-resolve",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-thinking"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-resolve"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-2-line-12",
+        "chapterId": "classic-rabbit-2",
+        "order": 12,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "바닷속 세상도 한번 보고 싶었소. 정말 그 말대로라면 나쁠 것도 없겠구려. 좋소. 용궁에 한번 가 봅시다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-speaking-truth",
+        "rightAssetId": "rabbit-turtle.character.turtle-resolve",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-grassland",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-speaking-truth"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-resolve"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-01",
+        "chapterId": "classic-rabbit-3",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "막상 바닷가에 도착하자 토끼는 걸음을 멈추었다. 토끼는 달리기는 잘했지만 헤엄을 칠 줄은 몰랐다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-suspicious",
+        "rightAssetId": "rabbit-turtle.character.turtle-resolve",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-suspicious"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-resolve"
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-02",
+        "chapterId": "classic-rabbit-3",
+        "order": 2,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "별주부",
+        "text": "걱정하지 마십시오. 제 등에 올라타고 단단히 붙잡으시면 용궁까지 안전하게 모시겠습니다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-suspicious",
+        "rightAssetId": "rabbit-turtle.character.turtle-offer",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-suspicious"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-offer"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-03",
+        "chapterId": "classic-rabbit-3",
+        "order": 3,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "토끼가 등에 올라타자 별주부는 천천히 바다로 들어갔다. 발끝에 닿던 물은 어느새 깊어지고 사방에는 파란 바다만 남았다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-sea",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-rabbit-3-line-03:audio:sound:sfx-water",
+              "assetId": "audio:sound:sfx-water",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-04",
+        "chapterId": "classic-rabbit-3",
+        "order": 4,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "별주부, 육지가 자꾸 멀어지는구려. 정말 이 길이 용궁으로 가는 길이 맞소?",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-sea",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": [],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-05",
+        "chapterId": "classic-rabbit-3",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "토끼가 뒤돌아보니 익숙한 산과 들은 손바닥만 하게 작아져 있었다. 이제 혼자 힘으로는 돌아갈 수도 없었다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-sea",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-06",
+        "chapterId": "classic-rabbit-3",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "별주부",
+        "text": "이제 거의 다 왔습니다. 앞을 보십시오. 육지에서는 평생 볼 수 없는 세상이 곧 나타날 것입니다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-sea",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-07",
+        "chapterId": "classic-rabbit-3",
+        "order": 7,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "조금 더 내려가자 형형색색의 물고기가 떼를 지어 지나가고 붉고 푸른 산호가 숲처럼 펼쳐졌다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-underwater",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-08",
+        "chapterId": "classic-rabbit-3",
+        "order": 8,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "겁을 먹었던 토끼도 처음 보는 광경에 눈을 떼지 못했다. 잠시 뒤 저 멀리 번쩍이는 기둥과 커다란 궁궐이 모습을 드러냈다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-palace-vista",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-09",
+        "chapterId": "classic-rabbit-3",
+        "order": 9,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "별주부가 토끼를 데리고 대전에 들어서자 수궁의 신하들이 일제히 토끼를 바라보았다. 토끼는 자신을 환영하는 줄 알고 어깨를 폈다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-white-unified-720x900"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-10",
+        "chapterId": "classic-rabbit-3",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "용왕님을 뵙습니다. 듣던 것보다 훨씬 훌륭한 궁궐이구려. 별주부를 따라오기를 잘한 것 같습니다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-speaking-truth",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-speaking-truth"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-3-line-11",
+        "chapterId": "classic-rabbit-3",
+        "order": 11,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "오오, 네가 바로 토끼로구나! 어서 저 토끼를 붙잡아라. 저 토끼의 간을 얻어야 내 병을 고칠 수 있다!",
+        "leftAssetId": "rabbit-turtle.character.rabbit-shocked",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        },
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:score-tension",
+            "loop": true,
+            "volume": 0.26,
+            "fadeInMs": 700,
+            "fadeOutMs": 500
+          },
+          "sounds": [
+            {
+              "id": "direction:classic-rabbit-3-line-11:audio:sound:sfx-sting",
+              "assetId": "audio:sound:sfx-sting",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-01",
+        "chapterId": "classic-rabbit-4",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "토끼는 순간 자기 귀를 의심했다. 높은 벼슬도 귀한 대접도 모두 자신을 이곳까지 데려오기 위한 거짓말이었다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-shocked",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-02",
+        "chapterId": "classic-rabbit-4",
+        "order": 2,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "잠깐만요! 지금 제 간을 얻겠다고 하셨습니까?",
+        "leftAssetId": "rabbit-turtle.character.rabbit-shocked",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-03",
+        "chapterId": "classic-rabbit-4",
+        "order": 3,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "그렇다. 네 간이 내 병을 낫게 할 귀한 약이라고 하였다. 내가 살려면 네 간이 꼭 필요하다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-shocked",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-04",
+        "chapterId": "classic-rabbit-4",
+        "order": 4,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "수궁의 신하들이 토끼를 에워쌌다. 문밖으로 달아난다 해도 사방은 깊은 바다였다. 토끼에게는 도망칠 길이 없었다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-shocked",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.classic-court",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-shocked"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-05",
+        "chapterId": "classic-rabbit-4",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "토끼의 가슴이 쿵쿵 뛰었다. 하지만 겁먹은 모습을 보이면 정말 끝이라는 생각에 눈을 굴리며 머리를 빠르게 움직였다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-thinking",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-thinking"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-06",
+        "chapterId": "classic-rabbit-4",
+        "order": 6,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "그러더니 토끼는 조금 전까지의 두려운 얼굴을 감추고 갑자기 배를 잡고 웃기 시작했다.\n\n“하하하하!”",
+        "leftAssetId": "rabbit-turtle.character.classic-rabbit-laugh",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-rabbit-laugh"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-07",
+        "chapterId": "classic-rabbit-4",
+        "order": 7,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "죽을 처지가 된 자가 무엇이 그리 우습단 말이냐?",
+        "leftAssetId": "rabbit-turtle.character.classic-rabbit-laugh",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-rabbit-laugh"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-08",
+        "chapterId": "classic-rabbit-4",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "대왕마마께서 제 간을 필요로 하셨다면 왜 진작 말씀하지 않으셨습니까? 알았다면 이렇게 빈손으로 오지 않았을 것입니다.",
+        "leftAssetId": "rabbit-turtle.character.classic-rabbit-laugh",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-rabbit-laugh"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-09",
+        "chapterId": "classic-rabbit-4",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "빈손이라니? 네 간은 네 배 속에 있는 것이 아니냐?",
+        "leftAssetId": "rabbit-turtle.character.rabbit-speaking-truth",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-speaking-truth"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-10",
+        "chapterId": "classic-rabbit-4",
+        "order": 10,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "아이고, 육지 사정을 모르시는군요. 저희 토끼들은 귀한 간을 늘 몸속에 넣어 두지 않습니다. 가끔 꺼내 깨끗이 씻고 햇볕에도 말리지요.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-speaking-truth",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-speaking-truth"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-11",
+        "chapterId": "classic-rabbit-4",
+        "order": 11,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "용왕은 미심쩍은 얼굴로 토끼를 바라보았다. 그러자 토끼가 기다렸다는 듯 말을 이었다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-thinking",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-thinking"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-4-line-12",
+        "chapterId": "classic-rabbit-4",
+        "order": 12,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "하필 오늘 아침에도 간을 산속 나뭇가지에 걸어 두고 왔습니다. 저를 육지로 보내 주시면 그 귀한 간을 얼른 가져오겠습니다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-speaking-truth",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-speaking-truth"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-01",
+        "chapterId": "classic-rabbit-5",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "말도 안 되는 이야기 같았지만 용왕은 병을 고칠 수 있다는 생각에 마음이 급했다. 결국 토끼의 말을 믿어 보기로 했다.",
+        "leftAssetId": "rabbit-turtle.character.rabbit-thinking",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.rabbit-thinking"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ]
+        },
+        "presentation": {
+          "transition": {
+            "durationMs": 350,
+            "mode": "auto",
+            "type": "fade-black"
+          }
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-02",
+        "chapterId": "classic-rabbit-5",
+        "order": 2,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "용왕",
+        "text": "좋다! 별주부야, 당장 토끼를 육지에 데려다주어라. 그리고 반드시 간을 가지고 돌아오도록 하라!",
+        "leftAssetId": "rabbit-turtle.character.turtle-resolve",
+        "rightAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.turtle-resolve"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-03",
+        "chapterId": "classic-rabbit-5",
+        "order": 3,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "토끼는 속으로 쾌재를 불렀지만 얼굴에는 드러내지 않았다. 아무 일도 없었다는 듯 다시 별주부의 등에 올라탔다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-underwater",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-04",
+        "chapterId": "classic-rabbit-5",
+        "order": 4,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "두 사람은 용궁을 떠나 육지를 향했다. 올 때 그렇게 신기했던 물고기와 산호도 이제 토끼의 눈에는 들어오지 않았다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-underwater",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-05",
+        "chapterId": "classic-rabbit-5",
+        "order": 5,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "얼마 뒤 멀리 산과 나무가 모습을 드러냈다. 익숙한 풀 냄새와 흙냄새까지 느껴지자 토끼의 두 귀가 번쩍 섰다.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-sea",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": []
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-06",
+        "chapterId": "classic-rabbit-5",
+        "order": 6,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "조금만 더 가까이 가 주시오. 간을 걸어 둔 곳으로 가려면 바로 저 물가에서 내려야 하오.",
+        "leftAssetId": "rabbit-turtle.character.classic-riding",
+        "rightAssetId": "",
+        "backgroundId": "rabbit-turtle.background.classic-sea",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-riding"
+            }
+          ],
+          "rightActors": [],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-07",
+        "chapterId": "classic-rabbit-5",
+        "order": 7,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "별주부의 발이 바닥에 닿는 바로 그 순간이었다. 토끼가 힘껏 뒷다리를 굴러 별주부의 등에서 뛰어내렸다.",
+        "leftAssetId": "rabbit-turtle.character.classic-rabbit-leap",
+        "rightAssetId": "rabbit-turtle.character.classic-turtle-water",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-rabbit-leap"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.classic-turtle-water"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-rabbit-5-line-07:audio:sound:sfx-steps",
+              "assetId": "audio:sound:sfx-steps",
+              "volume": 0.42
+            }
+          ]
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-08",
+        "chapterId": "classic-rabbit-5",
+        "order": 8,
+        "type": "dialogue",
+        "speaker": "right",
+        "speakerName": "별주부",
+        "text": "토끼 선생! 어디로 가십니까? 용왕님께 가져갈 간을 찾아야 하지 않습니까?",
+        "leftAssetId": "rabbit-turtle.character.classic-rabbit-rock",
+        "rightAssetId": "rabbit-turtle.character.classic-turtle-water",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-rabbit-rock"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.classic-turtle-water"
+            }
+          ],
+          "speakerActorKey": "R1"
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-09",
+        "chapterId": "classic-rabbit-5",
+        "order": 9,
+        "type": "dialogue",
+        "speaker": "left",
+        "speakerName": "토끼",
+        "text": "하하하! 세상 어느 짐승이 간을 꺼내 놓고 다닌단 말이오? 내 간은 처음부터 내 배 속에 있었소. 용궁의 높은 벼슬은 그대나 많이 하시오!",
+        "leftAssetId": "rabbit-turtle.character.classic-rabbit-rock",
+        "rightAssetId": "rabbit-turtle.character.classic-turtle-water",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [
+            {
+              "key": "L1",
+              "assetId": "rabbit-turtle.character.classic-rabbit-rock"
+            }
+          ],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.classic-turtle-water"
+            }
+          ],
+          "speakerActorKey": "L1"
+        }
+      },
+      {
+        "id": "classic-rabbit-5-line-10",
+        "chapterId": "classic-rabbit-5",
+        "order": 10,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "해설",
+        "text": "토끼는 뒤도 돌아보지 않고 산으로 달려가 숲속으로 사라졌다. 별주부는 텅 빈 물가에 한동안 서 있다가 마침내 몸을 돌려 깊은 바다로 돌아갔다.",
+        "leftAssetId": "",
+        "rightAssetId": "rabbit-turtle.character.turtle-tired",
+        "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-shore-escape",
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": [
+            {
+              "key": "R1",
+              "assetId": "rabbit-turtle.character.turtle-tired"
+            }
+          ]
+        },
+        "audio": {
+          "sounds": [
+            {
+              "id": "direction:classic-rabbit-5-line-10:audio:sound:sfx-water",
+              "assetId": "audio:sound:sfx-water",
+              "volume": 0.42
+            }
+          ]
+        }
+      }
+    ],
+    "updatedAt": "원작 읽기 기준본"
+  }
+}

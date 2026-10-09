@@ -1,0 +1,79 @@
+{
+  "sourceCommit": "917057296e40bac8b1ca218a4c09ab18c748e616",
+  "viewport": {
+    "width": 1365,
+    "height": 900
+  },
+  "shelf": [
+    {
+      "name": "원작 · 선녀와 나무꾼",
+      "edition": "original"
+    },
+    {
+      "name": "원작 · 흥부전",
+      "edition": "original"
+    },
+    {
+      "name": "원작 · 옹고집전",
+      "edition": "original"
+    },
+    {
+      "name": "원작 · 별주부전",
+      "edition": "original"
+    },
+    {
+      "name": "기본 예제 · 선녀와 나무꾼",
+      "edition": "knolstory"
+    },
+    {
+      "name": "기본 예제 · 흥부와 놀부, 서로의 몫",
+      "edition": "knolstory"
+    },
+    {
+      "name": "기본 예제 · 옹고집전: 옹고집의 속죄",
+      "edition": "knolstory"
+    },
+    {
+      "name": "기본 예제 · 별주부전",
+      "edition": "knolstory"
+    }
+  ],
+  "focus": {
+    "visibleButtons": [
+      "닫기",
+      "‹",
+      "›",
+      "처음부터 읽기책 표지를 펼쳐 이야기를 만나요",
+      "편집하기내 사본에서 새 이야기를 써요"
+    ],
+    "menus": [
+      "책 꾸미기·작품 도구"
+    ]
+  },
+  "short": {
+    "title": "나의 짧은 이야기",
+    "buttons": [
+      "쓰기",
+      "읽기",
+      "이 기기에 저장",
+      ".shortstory로 보관",
+      "Excel로 보관",
+      "시트용 TSV 보관",
+      "파일 가져오기",
+      "새 그림책",
+      "A4 인쇄",
+      "1쪽 · 제목 없는 쪽",
+      "현재 쪽 뒤에 빈 쪽 추가",
+      "현재 쪽 복제",
+      "쪽 앞으로 이동",
+      "쪽 뒤로 이동",
+      "현재 쪽 삭제",
+      "이전 쪽",
+      "다음 쪽"
+    ],
+    "links": [
+      "놀스토리로 돌아가기"
+    ]
+  },
+  "scope": "Fresh isolated browser context; source-based legacy comparison; no legacy or physical device runtime claimed"
+}

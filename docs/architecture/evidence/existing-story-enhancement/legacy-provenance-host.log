@@ -1,0 +1,14 @@
+
+Running 6 tests using 1 worker
+
+(node:59968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  1 [host] › tests/e2e/local-library.spec.ts:96:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome
+  ✓  2 [host] › tests/e2e/local-library.spec.ts:202:1 › library keeps blank planning optional and separates examples from a UI-created work (6.1s)
+  ✓  3 [host] › tests/e2e/local-library.spec.ts:223:1 › previous device workspace opens in library without changing its authored content or legacy keys (2.5s)
+  ✓  4 [host] › tests/e2e/local-library.spec.ts:252:1 › corrupt device storage is kept intact while UI-created recovery work can be exported (1.4s)
+  ✓  5 [host] › tests/e2e/local-library.spec.ts:277:1 › example preparation makes an independent own copy and duplicate import keeps the original (3.3s)
+  ✓  6 [host] › tests/e2e/media-provenance.spec.ts:3:1 › existing-work audio source and rights records travel with the original bytes (7.6s)
+
+  1 skipped
+  5 passed (21.7s)

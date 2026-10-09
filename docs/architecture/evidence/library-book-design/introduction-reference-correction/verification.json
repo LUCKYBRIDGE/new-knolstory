@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-08",
+  "scope": "Reference introduction, current Onggojib cover art and quiet library header",
+  "host": {
+    "passed": 66,
+    "native_only_skipped": 26
+  },
+  "final_design": {
+    "passed": 16,
+    "includes": "eight editions enter persistent native RenPy"
+  },
+  "unit_contract_integration": 812,
+  "python_scripts": 24,
+  "coverage": {
+    "statements": 92.95,
+    "lines": 97.49,
+    "scope": "configured TS packages and web libs"
+  },
+  "media_hashes": 1351,
+  "source_media_hashes": 461,
+  "legacy_story_restore": 421,
+  "legacy_ui_restore": 10,
+  "types": "passed",
+  "lint": "passed",
+  "static_build": "passed",
+  "production_audit": "no known vulnerabilities",
+  "free_release_gate": {
+    "exit_code": 1,
+    "expected": "unverified legacy media remain blocked"
+  },
+  "review": "no high or medium findings",
+  "hardware": "Local browser; no second physical computer or school/Android hardware claim",
+  "publication": "source and text only; legacy binaries/screenshots/runtime ignored"
+}

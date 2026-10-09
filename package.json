@@ -1,0 +1,41 @@
+{
+  "name": "knolstory-next",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @knolstory/web dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test --project=host",
+    "test:e2e:runtime": "playwright test --project=runtime --project=runtime-dpr-1.5 --project=runtime-dpr-2",
+    "test:e2e:stories": "playwright test --project=stories-runtime",
+    "test:presenter": "node spikes/renpy-web/verify-presenter.mjs",
+    "test:media-provenance": "python3 scripts/media-provenance.py --check",
+    "env:prepare": "python3 scripts/test-environment.py prepare",
+    "env:doctor": "python3 scripts/test-environment.py doctor",
+    "env:verify": "python3 scripts/test-environment.py verify",
+    "runtime:prepare": "python3 scripts/prepare-runtime.py",
+    "runtime:build": "python3 spikes/renpy-web/build.py",
+    "test:scripts": "python3 -m unittest discover -s scripts/tests",
+    "preview": "python3 scripts/serve-test-build.py"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "22.20.5",
+    "@types/pngjs": "6.0.5",
+    "@vitest/coverage-v8": "4.1.11",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.3.8",
+    "pngjs": "7.0.0",
+    "turbo": "2.11.7",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  },
+  "type": "module"
+}

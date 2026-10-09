@@ -1,0 +1,42 @@
+
+Running 32 tests using 1 worker
+
+(node:77722) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/entry-cover.spec.ts:5:1 › first browser entry introduces existing books, return enters library and introduction remains reachable (6.2s)
+  ✓   2 [host] › tests/e2e/entry-cover.spec.ts:27:113 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration (6.5s)
+  ✓   3 [host] › tests/e2e/entry-cover.spec.ts:27:113 › heungbu: full cover draft, cancellation, layered editing and archive restoration (6.5s)
+  -   4 [host] › tests/e2e/entry-cover.spec.ts:58:1 › all eight existing editions enter actual RenPy through their stored book cover
+  ✓   5 [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at portrait (1.8s)
+  ✓   6 [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at landscape (1.7s)
+  ✓   7 [host] › tests/e2e/entry-cover.spec.ts:79:1 › cover title validation keeps the applied book intact and draft recoverable (1.2s)
+(node:77817) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [host] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 1365x900 (2.9s)
+  ✓   9 [host] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 820x1180 (3.0s)
+  ✓  10 [host] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 390x844 (2.3s)
+  ✓  11 [host] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 844x390 (2.4s)
+  ✓  12 [host] › tests/e2e/library-design-parity.spec.ts:7:83 › legacy book surfaces and focus browsing at 320x740 (2.2s)
+  ✓  13 [host] › tests/e2e/library-design-parity.spec.ts:17:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.6s)
+  ✓  14 [host] › tests/e2e/library-design-parity.spec.ts:26:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book (2.7s)
+  ✓  15 [host] › tests/e2e/library-design-parity.spec.ts:39:1 › layered front, spine and back covers keep direct edits in the draft until apply (2.0s)
+  -  16 [host] › tests/e2e/library-design-parity.spec.ts:48:1 › all eight books start native RenPy from the library focus and retain the same runtime
+  ✓  17 [host] › tests/e2e/library-design-parity.spec.ts:61:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript (3.3s)
+  ✓  18 [host] › tests/e2e/library-design-parity.spec.ts:67:1 › tab browsing preferences survive book work and reload without entering the story file (3.7s)
+  ✓  19 [host] › tests/e2e/library-design-parity.spec.ts:72:1 › modal keyboard boundaries include collapsed settings and nested image selection (2.6s)
+  ✓  20 [host] › tests/e2e/library-design-parity.spec.ts:76:1 › cover title size changes the rendered typography without covering the whole artwork panel (1.5s)
+  ✓  21 [host] › tests/e2e/library-design-parity.spec.ts:80:1 › books physically rest on shelf faces and room decoration frames the focused shelves (2.6s)
+  ✓  22 [host] › tests/e2e/library-design-parity.spec.ts:92:1 › one cabinet and drawer follow 5x2, 4x2, 3x3 and 2x3 available-width layouts (1.8s)
+  ✓  23 [host] › tests/e2e/library-design-parity.spec.ts:99:1 › reference introduction uses exact rectangular posters and quiet library controls (1.9s)
+  ✓  24 [host] › tests/e2e/library-design-parity.spec.ts:107:1 › compact shelf shows six books and drawer near the first viewport without losing the remaining books (2.4s)
+  ✓  25 [host] › tests/e2e/library-design-parity.spec.ts:121:1 › cabinet joinery uses visible wood grain and preserves the book selection experience (936ms)
+  ✓  26 [host] › tests/e2e/library-design-parity.spec.ts:129:1 › book page blocks stay narrow and rest above the shelf instead of protruding below the cover (823ms)
+  ✓  27 [host] › tests/e2e/library-design-parity.spec.ts:135:1 › branded library shows word-safe cover titles and opens cover editing directly from the chosen book (1.4s)
+  -  28 [host] › tests/e2e/local-library.spec.ts:100:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome
+  ✓  29 [host] › tests/e2e/local-library.spec.ts:206:1 › library keeps blank planning optional and separates examples from a UI-created work (4.2s)
+  ✓  30 [host] › tests/e2e/local-library.spec.ts:227:1 › previous device workspace opens in library without changing its authored content or legacy keys (1.8s)
+  ✓  31 [host] › tests/e2e/local-library.spec.ts:256:1 › corrupt device storage is kept intact while UI-created recovery work can be exported (1.2s)
+  ✓  32 [host] › tests/e2e/local-library.spec.ts:281:1 › example preparation makes an independent own copy and duplicate import keeps the original (2.8s)
+
+  3 skipped
+  29 passed (1.3m)

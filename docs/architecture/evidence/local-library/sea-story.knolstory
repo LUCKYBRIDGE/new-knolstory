@@ -1,0 +1,80 @@
+{
+  "documentType": "story-maker-project",
+  "schemaVersion": 5,
+  "savedAt": "2026-10-07T23:47:06.149Z",
+  "appVersion": "knolstory-next",
+  "project": {
+    "choiceMode": "simple",
+    "id": "f4832578-e7ab-463e-8662-ddeaf1c0d0b5",
+    "title": "다음에 쓸 바다 이야기",
+    "description": "",
+    "planning": {
+      "premise": "",
+      "structureMode": "free",
+      "material": "",
+      "theme": "",
+      "mainCharacter": "",
+      "mainGoal": "",
+      "centralProblem": "",
+      "stakes": "",
+      "endingChange": "",
+      "opening": "",
+      "middle": "",
+      "crisis": "",
+      "climax": "",
+      "ending": "",
+      "characterNotes": "",
+      "worldNotes": "",
+      "mood": "",
+      "openQuestions": "",
+      "freeNotes": ""
+    },
+    "creativeMemos": [],
+    "sheetUrl": "",
+    "sheetEditable": false,
+    "speakerNames": [],
+    "chapters": [
+      {
+        "chapterNumber": 1,
+        "id": "b73b7121-c7b9-4c55-9fbf-40451366a97b",
+        "order": 1,
+        "title": "첫 번째 장",
+        "summary": "",
+        "purpose": "",
+        "mood": "",
+        "keyEvents": "",
+        "nextChapterIdea": "",
+        "storyStageKeys": [],
+        "chapterSpeakerNames": [],
+        "characterAssetIds": [],
+        "backgroundAssetIds": [],
+        "backgroundId": "",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      }
+    ],
+    "lines": [
+      {
+        "id": "c049d87a-9925-4de7-a4f8-47ba90a45ee3",
+        "chapterId": "b73b7121-c7b9-4c55-9fbf-40451366a97b",
+        "order": 1,
+        "type": "narration",
+        "speaker": "narration",
+        "speakerName": "",
+        "text": "바닷가에 새 이야기를 남겼다.",
+        "leftAssetId": "",
+        "rightAssetId": "",
+        "backgroundId": "",
+        "inheritActors": false,
+        "purposeNote": "",
+        "emotionNote": "",
+        "directionNote": "",
+        "stageComposition": {
+          "leftActors": [],
+          "rightActors": []
+        }
+      }
+    ],
+    "updatedAt": "2026-10-07T23:47:05.868Z"
+  }
+}

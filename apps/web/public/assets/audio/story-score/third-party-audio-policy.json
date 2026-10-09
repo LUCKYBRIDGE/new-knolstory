@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "currentElevenLabsAssets": [],
+  "currentStatus": "No ElevenLabs output has been included in the distributed story-score palette or enhanced manuscripts.",
+  "requiredPerAsset": ["stableAssetId", "provider", "providerGenerationId", "generatedAt", "accountPlanAtGeneration", "sourceFileSha256", "licenseOrTermsUrl", "termsCheckedAt", "commercialUseStatus", "redistributionStatus", "requiredAttribution", "replacementRequiredBeforeCommercialRelease", "replacementAssetId"],
+  "usageTracking": "StoryDocument chapter/cut music, ambience and sound cues reference stableAssetId; search all official and saved/imported works before replacing/removing an asset.",
+  "replacementPolicy": "Keep document references stable only when replacing the same intended sound under a recorded asset revision; preserve original source hash and record replacement lineage. If semantics differ, use a new asset ID and explicitly migrate only recorded cue references.",
+  "elevenLabsFreePolicy": "Treat generation during a free plan as non-commercial and attribution-required unless provider grants documented additional rights. A later plan upgrade is not evidence of retroactive rights.",
+  "releaseGate": "No commercially restricted or unknown-rights audio may enter commercial builds, public reusable asset packs or export attachments without an explicit verified rights decision or replacement.",
+  "reference": "https://help.elevenlabs.io/hc/en-us/articles/13313564601361-Can-I-publish-the-content-I-generate-on-the-platform"
+}

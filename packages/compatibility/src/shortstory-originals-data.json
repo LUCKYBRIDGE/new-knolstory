@@ -1,0 +1,523 @@
+[
+  {
+    "packId": "rabbit-classic",
+    "packVersion": "1",
+    "worldId": "rabbit",
+    "kind": "classic",
+    "title": "별주부전",
+    "description": "8장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "editorial": {
+      "basis": "app/story-classic-readings.ts의 별주부전 및 기존 숏스토리. 전래 이야기의 사건을 삽화에 맞춰 새로 요약했다.",
+      "credit": "전래 이야기 바탕의 놀스토리 편집 줄거리 · 기본 제공 삽화 © 놀퀴즈"
+    },
+    "cover": {
+      "backgroundId": "rabbit-turtle.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요.",
+      "assetRevisions": {
+        "rabbit-turtle.scene.shortstory-classic-01": "sha256-4adf840ee2d32aff1a9a3f461413ab1c3ec4aff523ac0d31a9268d3884ec1800"
+      }
+    },
+    "scenes": [
+      {
+        "sourceSceneId": "rabbit-classic-01",
+        "title": "용궁의 근심",
+        "referenceText": "용왕이 깊은 병에 걸렸어요. 토끼의 간이 약이 된다는 말을 듣고, 별주부가 토끼를 찾아 육지로 가겠다고 나섰어요.",
+        "question": "별주부는 용왕의 부탁을 듣고 어떤 마음이 들었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-01",
+          "revision": "sha256-4adf840ee2d32aff1a9a3f461413ab1c3ec4aff523ac0d31a9268d3884ec1800"
+        }
+      },
+      {
+        "sourceSceneId": "rabbit-classic-02",
+        "title": "낯선 육지",
+        "referenceText": "바다에서 나온 별주부는 낯선 풀숲과 언덕을 살폈어요. 토끼의 모습을 떠올리며, 어디에서 토끼를 만날 수 있을지 생각했지요.",
+        "question": "처음 온 곳에서 별주부는 무엇을 먼저 살폈을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-02",
+          "revision": "sha256-40e7c87935fab0d0d2bd0df33c1ed6126eba544362ae0122327022bd111fff6a"
+        }
+      },
+      {
+        "sourceSceneId": "rabbit-classic-03",
+        "title": "달콤한 초대",
+        "referenceText": "토끼를 만난 별주부는 용궁의 멋진 잔치를 이야기했어요. 간을 구하러 왔다는 사실은 숨긴 채, 함께 용궁으로 가자고 권했지요.",
+        "question": "토끼는 별주부의 어떤 말에 마음이 움직였을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-03",
+          "revision": "sha256-93559cd230bd5f572eb3016fa70194d50b8c8cd6f8bea13a1f1e723862358f1f"
+        }
+      },
+      {
+        "sourceSceneId": "rabbit-classic-04",
+        "title": "바다를 건너",
+        "referenceText": "토끼는 별주부의 등에 올라 바다를 건넜어요. 신기한 용궁을 볼 생각에 설렜지만, 깊은 바다에서 혼자 돌아갈 방법은 없었어요.",
+        "question": "토끼는 바다를 건너며 무엇을 기대하고 걱정했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-04",
+          "revision": "sha256-39d7a6bd1e6bf4f4fb74fff56ab2d799abd80a6b2aaf58c6bc2b96e04dd558e8"
+        }
+      },
+      {
+        "sourceSceneId": "rabbit-classic-05",
+        "title": "뜻밖의 위기",
+        "referenceText": "용궁에 도착한 토끼는 용왕의 병을 고치기 위해 자기 간이 필요하다는 말을 들었어요. 깜짝 놀랐지만, 살아 돌아갈 방법을 찾으려고 정신을 가다듬었지요.",
+        "question": "놀란 토끼가 침착해지려고 어떤 생각을 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-05",
+          "revision": "sha256-9b4ac9b76e668513deab27073248b42074a2698f3bc0247888f1d5cf1c004c59"
+        }
+      },
+      {
+        "sourceSceneId": "rabbit-classic-06",
+        "title": "위기를 뒤집는 꾀",
+        "referenceText": "토끼는 간을 육지에 두고 왔다고 말했어요. 다시 데려다주면 가져오겠다는 말에 용왕은 별주부에게 토끼를 뭍으로 돌려보내라고 했지요.",
+        "question": "토끼의 말에 용왕과 별주부는 어떻게 반응했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-06",
+          "revision": "sha256-7628df79b4eb0ed64dfdbea78a59e9b9bebeba9560cd232283531f6936be2670"
+        }
+      },
+      {
+        "sourceSceneId": "rabbit-classic-07",
+        "title": "다시 밟은 땅",
+        "referenceText": "뭍에 닿자 토끼는 별주부의 등에서 폴짝 뛰어내렸어요. 간은 몸속에 있다며 달아나자, 별주부는 그제야 토끼의 꾀에 속았다는 것을 알았지요.",
+        "question": "토끼가 뛰어내린 순간 두 인물의 마음은 어떻게 달랐을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-07",
+          "revision": "sha256-e9a498d6e905af8a18a2a21daaade61099474e101abf633b641af2f3b39445f7"
+        }
+      },
+      {
+        "sourceSceneId": "rabbit-classic-08",
+        "title": "숲으로 돌아간 토끼",
+        "referenceText": "토끼는 풀숲으로 달려가고 별주부는 물가에 남았어요. 토끼는 달콤한 말을 믿고 위험에 빠졌지만, 침착하게 생각한 덕분에 목숨을 구했지요.",
+        "question": "별주부는 혼자 물가에 남아 무슨 생각을 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "rabbit-turtle.scene.shortstory-classic-08",
+          "revision": "sha256-2302d024c772d71f1cd445a60c111d9d9e4b2ff2603845e52b3afbf68df3ae04"
+        }
+      }
+    ],
+    "defaultSequence": [
+      "rabbit-classic-01",
+      "rabbit-classic-02",
+      "rabbit-classic-03",
+      "rabbit-classic-04",
+      "rabbit-classic-05",
+      "rabbit-classic-06",
+      "rabbit-classic-07",
+      "rabbit-classic-08"
+    ],
+    "recommendedBlankSourceSceneIds": [
+      "rabbit-classic-03",
+      "rabbit-classic-06"
+    ]
+  },
+  {
+    "packId": "onggojib-classic",
+    "packVersion": "1",
+    "worldId": "onggojib",
+    "kind": "classic",
+    "title": "옹고집전",
+    "description": "8장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "editorial": {
+      "basis": "app/story-classic-onggojib.ts의 전래 원작 읽기 및 기존 숏스토리. 8개 완성 삽화의 사건에 맞춰 새로 요약했다.",
+      "credit": "전래 이야기 바탕의 놀스토리 편집 줄거리 · 기본 제공 삽화 © 놀퀴즈"
+    },
+    "cover": {
+      "backgroundId": "onggojib.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요.",
+      "assetRevisions": {
+        "onggojib.scene.shortstory-classic-01": "sha256-2acfd808d36b73c50ee5c8db5b4abe9f699ad8995890cc4df1e0dc7f5a73edac"
+      }
+    },
+    "scenes": [
+      {
+        "sourceSceneId": "onggojib-classic-01",
+        "title": "닫힌 대문",
+        "referenceText": "재산이 많은 옹고집은 가난한 이웃이 도움을 청해도 매정하게 내쫓았어요. 곡식이 쌓인 집 안과 추운 대문 밖 사이에 굳게 닫힌 마음이 놓여 있었지요.",
+        "question": "대문 안과 밖에 있는 사람들은 각각 어떤 마음이었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-01",
+          "revision": "sha256-2acfd808d36b73c50ee5c8db5b4abe9f699ad8995890cc4df1e0dc7f5a73edac"
+        }
+      },
+      {
+        "sourceSceneId": "onggojib-classic-02",
+        "title": "쫓겨난 승려",
+        "referenceText": "어느 날 승려가 옹고집의 집을 찾아왔어요. 옹고집은 먹을 것을 나누기는커녕 승려를 꾸짖어 쫓아냈지요. 이 일은 산속 도승에게 전해졌어요.",
+        "question": "승려가 돌아선 뒤 옹고집은 무슨 생각을 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-02",
+          "revision": "sha256-92501a7c60ceda909b4f3281cb42f7f4a140cea07067b00e30c84215c1681372"
+        }
+      },
+      {
+        "sourceSceneId": "onggojib-classic-03",
+        "title": "또 다른 옹고집",
+        "referenceText": "이야기를 들은 도승은 풀과 짚으로 옹고집과 똑같이 생긴 사람을 만들었어요. 가짜 옹고집은 진짜 옹고집의 집으로 향했지요.",
+        "question": "도승은 왜 똑같이 생긴 옹고집을 만들었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-03",
+          "revision": "sha256-5a98c798b53a35331234b009ff65c3234561ca1267e33e81ab0c980303143691"
+        }
+      },
+      {
+        "sourceSceneId": "onggojib-classic-04",
+        "title": "두 옹고집의 다툼",
+        "referenceText": "집에 돌아온 진짜 옹고집은 자기 자리에 앉은 또 다른 옹고집을 보고 놀랐어요. 둘은 서로 진짜라고 우겼고, 가족도 누구를 믿어야 할지 몰랐지요.",
+        "question": "가족은 두 옹고집을 어떻게 구별하려 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-04",
+          "revision": "sha256-dfb599b6e73d174b4e686f5da726f84978229a2ea933f44a757ccc2dd9cbcff5"
+        }
+      },
+      {
+        "sourceSceneId": "onggojib-classic-05",
+        "title": "관아의 판결",
+        "referenceText": "두 옹고집은 관아에서 시비를 가렸어요. 가짜가 집안 내력과 문서를 더 잘 설명하자 사또는 가짜의 말을 믿었고, 진짜 옹고집은 집에서 쫓겨났지요.",
+        "question": "진짜 옹고집은 판결을 듣고 어떤 말을 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-05",
+          "revision": "sha256-ea48c248ef35b00176c80653dcf737d5bcb5e37255885b2b4386517baef25342"
+        }
+      },
+      {
+        "sourceSceneId": "onggojib-classic-06",
+        "title": "추운 문밖에서",
+        "referenceText": "떠돌던 옹고집은 추위와 배고픔을 견디며 남의 집에 도움을 청했어요. 문밖에서 거절당하자 자신이 내쫓았던 이웃들의 마음이 떠올랐지요.",
+        "question": "옹고집은 이전의 자기 행동을 어떻게 돌아보았을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-06",
+          "revision": "sha256-00f5d31da3b21b696fbc9c25cc63fc5a36b816bf82ac8d398d1733650fa65b24"
+        }
+      },
+      {
+        "sourceSceneId": "onggojib-classic-07",
+        "title": "풀과 짚으로 돌아가다",
+        "referenceText": "잘못을 뉘우친 옹고집은 도승에게 부적을 받아 집으로 돌아왔어요. 부적을 내밀자 가짜 옹고집은 다시 풀과 짚으로 변했고, 가족은 진짜 옹고집을 알아보았지요.",
+        "question": "가족은 달라진 옹고집에게 어떤 말을 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-07",
+          "revision": "sha256-abd3dc151abd5f82a8316385344c9c701e0d2a044440b0e55bac6105f47d0dfd"
+        }
+      },
+      {
+        "sourceSceneId": "onggojib-classic-08",
+        "title": "열린 대문",
+        "referenceText": "집을 되찾은 옹고집은 이웃에게 곡식을 나누고 어머니를 정성껏 보살폈어요. 굳게 닫혔던 대문이 열리고, 옹고집의 마음도 조금씩 달라졌지요.",
+        "question": "옹고집의 변화는 어떤 행동에서 드러나나요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "onggojib.scene.shortstory-classic-08",
+          "revision": "sha256-36b3aeefcc07f9111764f8007d9d7a3cb04fb216ad318ca5cb6e0d70553f1562"
+        }
+      }
+    ],
+    "defaultSequence": [
+      "onggojib-classic-01",
+      "onggojib-classic-02",
+      "onggojib-classic-03",
+      "onggojib-classic-04",
+      "onggojib-classic-05",
+      "onggojib-classic-06",
+      "onggojib-classic-07",
+      "onggojib-classic-08"
+    ],
+    "recommendedBlankSourceSceneIds": [
+      "onggojib-classic-04",
+      "onggojib-classic-07"
+    ]
+  },
+  {
+    "packId": "seonnyeo-classic",
+    "packVersion": "1",
+    "worldId": "seonnyeo",
+    "kind": "classic",
+    "title": "선녀와 나무꾼",
+    "description": "10장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "editorial": {
+      "basis": "app/story-classic-seonnyeo.ts의 전래 원작 읽기 및 기존 숏스토리. 10개 승인 완성 삽화에 맞춰 새로 요약했다.",
+      "credit": "전래 이야기 바탕의 놀스토리 편집 줄거리 · 기본 제공 삽화 © 놀퀴즈"
+    },
+    "cover": {
+      "backgroundId": "seonnyeo.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요.",
+      "assetRevisions": {
+        "seonnyeo.scene.shortstory-classic-01": "sha256-88e2b3756295e61ae1c58644c616f1894ad6ba87a04ffc5a494fdff88d1f4e08"
+      }
+    },
+    "scenes": [
+      {
+        "sourceSceneId": "seonnyeo-classic-01",
+        "title": "사슴을 숨겨 주다",
+        "referenceText": "나무꾼은 사냥꾼에게 쫓기는 사슴을 나무 뒤에 숨겨 주었어요. 사슴은 고마운 마음에 선녀들이 내려오는 연못을 알려 주었지요.",
+        "question": "나무꾼과 사슴은 처음 만났을 때 어떤 마음이었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-01",
+          "revision": "sha256-88e2b3756295e61ae1c58644c616f1894ad6ba87a04ffc5a494fdff88d1f4e08"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-02",
+        "title": "연못의 날개옷",
+        "referenceText": "사슴의 말을 들은 나무꾼은 연못으로 갔어요. 나무꾼은 바위 위에 놓인 선녀의 날개옷 하나를 몰래 감췄지요. 그 옷이 선녀에게 얼마나 중요한지 생각하지 못했어요.",
+        "question": "다른 사람의 물건을 감추면 어떤 일이 생길까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-02",
+          "revision": "sha256-4f37ff1df22741dda862ea22685631dd8355ec8a2a0ad2079774e9cb7db0f0ed"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-03",
+        "title": "돌아가지 못한 선녀",
+        "referenceText": "날개옷을 잃은 선녀는 하늘로 돌아갈 수 없었어요. 지상에 남은 선녀는 나무꾼과 함께 살게 되었지만, 고향과 날개옷을 그리워했지요.",
+        "question": "선녀가 나무꾼에게 자신의 마음을 말한다면 어떻게 말할까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-03",
+          "revision": "sha256-4807a8a46e557533b0d2008d0ef2756e1c9b846a8d3c66b8a87fb53a2af92636"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-04",
+        "title": "두 아이와 날개옷",
+        "referenceText": "두 아이가 태어난 뒤 나무꾼은 감춰 두었던 날개옷을 꺼내 보였어요. 선녀는 다시 만난 옷을 바라보며 하늘로 돌아갈 생각을 했지요.",
+        "question": "날개옷을 본 선녀와 나무꾼의 마음은 어떻게 달랐을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-04",
+          "revision": "sha256-26d8269d42d90a9667f413b35032de9fdaa8f5d01f28e14649433d0b247295e5"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-05",
+        "title": "하늘로 떠난 가족",
+        "referenceText": "선녀는 날개옷을 입고 두 아이를 안아 하늘로 올라갔어요. 나무꾼은 뒤늦게 손을 뻗었지만, 떠나는 가족을 붙잡을 수 없었지요.",
+        "question": "가족이 떠난 뒤 나무꾼은 무엇을 생각했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-05",
+          "revision": "sha256-2adbe01d4a7cbca53eec753990cff3815e410597b530e917f598863f98defe3d"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-06",
+        "title": "두레박을 타고",
+        "referenceText": "가족을 그리워하던 나무꾼에게 사슴이 다시 길을 알려 주었어요. 나무꾼은 하늘에서 물을 길으러 내려온 두레박을 타고 구름 위로 올라갔지요.",
+        "question": "나무꾼은 두레박을 타며 어떤 말을 준비했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-06",
+          "revision": "sha256-93ea7810810ac88640e6b2abe3e1ee918571088d60159168550ca309213557d7"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-07",
+        "title": "하늘나라의 재회",
+        "referenceText": "하늘나라에 도착한 나무꾼은 선녀와 아이들을 다시 만났어요. 아이들을 품에 안고 함께 지냈지만, 시간이 지나자 지상의 어머니가 걱정되었지요.",
+        "question": "선녀와 나무꾼은 다시 만난 뒤 어떤 이야기를 나누었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-07",
+          "revision": "sha256-a49568fe17121a16b53989d07d6d077eb50481abb9e13daf60ea6a3edd950f58"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-08",
+        "title": "용마 위에서 만난 어머니",
+        "referenceText": "선녀는 나무꾼에게 용마를 내주며 땅에 내려서지 말라고 당부했어요. 나무꾼은 말을 타고 어머니를 찾아갔고, 어머니는 반가운 마음에 호박죽을 내밀었지요.",
+        "question": "오랜만에 만난 어머니는 아들에게 무슨 말을 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-08",
+          "revision": "sha256-fe3bce81935b180b5fe4528e0296c382c98cf5de6180203ba62f0540bd09e194"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-09",
+        "title": "돌아오지 못한 길",
+        "referenceText": "말 위에서 죽을 먹던 나무꾼은 뜨거운 죽을 말 등에 쏟았어요. 놀란 말이 뛰자 나무꾼은 땅에 떨어졌고, 용마만 하늘로 돌아가 버렸지요.",
+        "question": "혼자 남은 나무꾼은 누구에게 무엇을 말하고 싶었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-09",
+          "revision": "sha256-2b9329290f87bd7a9ed72e53f2408279cafa1f9f1fb52fc0546c3c7ace8e406e"
+        }
+      },
+      {
+        "sourceSceneId": "seonnyeo-classic-10",
+        "title": "하늘을 향한 울음",
+        "referenceText": "나무꾼은 다시 하늘로 갈 수 없어 가족을 그리워했어요. 마침내 수탉이 되어 하늘을 바라보며 울었다고 전해져요. 긴 그리움이 마당에 남았지요.",
+        "question": "내 이야기에서는 인물들이 다시 만날 방법을 어떻게 찾을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "seonnyeo.scene.shortstory-classic-10",
+          "revision": "sha256-4d251f0233e4a71c15cb16d59576541f042917b5c45dbceed397b05ccf64907b"
+        }
+      }
+    ],
+    "defaultSequence": [
+      "seonnyeo-classic-01",
+      "seonnyeo-classic-02",
+      "seonnyeo-classic-03",
+      "seonnyeo-classic-04",
+      "seonnyeo-classic-05",
+      "seonnyeo-classic-06",
+      "seonnyeo-classic-07",
+      "seonnyeo-classic-08",
+      "seonnyeo-classic-09",
+      "seonnyeo-classic-10"
+    ],
+    "recommendedBlankSourceSceneIds": [
+      "seonnyeo-classic-03",
+      "seonnyeo-classic-06",
+      "seonnyeo-classic-09"
+    ]
+  },
+  {
+    "packId": "heungbu-classic",
+    "packVersion": "1",
+    "worldId": "heungbu",
+    "kind": "classic",
+    "title": "흥부와 놀부",
+    "description": "8장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "editorial": {
+      "basis": "app/story-classic-heungbu.ts의 전래 원작 읽기. 8개 승인 완성 삽화에 맞춰 사건과 인과를 새로 요약했다.",
+      "credit": "전래 이야기 바탕의 놀스토리 편집 줄거리 · 기본 제공 삽화 © 놀퀴즈"
+    },
+    "cover": {
+      "backgroundId": "heungbu.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요.",
+      "assetRevisions": {
+        "heungbu.scene.shortstory-classic-01": "sha256-18fa2baab9eff38342043ec1ffabdbd9781846ccbdf22c92a853bfac6eac4384"
+      }
+    },
+    "scenes": [
+      {
+        "sourceSceneId": "heungbu-classic-01",
+        "title": "쫓겨난 흥부 가족",
+        "referenceText": "형 놀부는 동생 흥부에게 재산을 나누어 주지 않고 집에서 내쫓았어요. 흥부는 아내와 아이들을 데리고 새로 살 곳을 찾아 길을 나섰지요.",
+        "question": "집을 떠나는 가족들은 서로 어떤 말을 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-01",
+          "revision": "sha256-18fa2baab9eff38342043ec1ffabdbd9781846ccbdf22c92a853bfac6eac4384"
+        }
+      },
+      {
+        "sourceSceneId": "heungbu-classic-02",
+        "title": "비어 있는 그릇",
+        "referenceText": "작은 집에서 살게 된 흥부 가족은 먹을 것이 부족했어요. 흥부와 아내는 빈 그릇을 바라보며 아이들을 먹일 방법을 걱정했지요.",
+        "question": "흥부 가족은 어려운 때에 서로 어떻게 힘을 주었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-02",
+          "revision": "sha256-8553543d226fc858bd8150de43b33e52603b4a0e6b84483462552e97e7561927"
+        }
+      },
+      {
+        "sourceSceneId": "heungbu-classic-03",
+        "title": "다친 제비를 돌보다",
+        "referenceText": "흥부는 다리를 다친 제비를 발견했어요. 가난한 형편에도 아내와 함께 제비를 정성껏 돌보고, 나으면 다시 날아갈 수 있도록 도와주었지요.",
+        "question": "흥부는 작은 제비를 왜 그냥 지나치지 못했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-03",
+          "revision": "sha256-37e530ea6b76b33172ff4ab8a5dc0352c1fc02a89977f1bea6b58ad69e3b6569"
+        }
+      },
+      {
+        "sourceSceneId": "heungbu-classic-04",
+        "title": "제비가 가져온 박씨",
+        "referenceText": "이듬해 봄, 제비가 돌아와 흥부에게 박씨를 주었어요. 흥부는 반갑게 제비를 맞이하고 그 씨앗을 심었지요. 덩굴이 자라 커다란 박이 열렸어요.",
+        "question": "박씨를 받은 흥부는 어떤 기대를 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-04",
+          "revision": "sha256-2fff8745aaa8c2035a0c642c20cdfaadebd8a13361e13e7f8d693c7e3f566e52"
+        }
+      },
+      {
+        "sourceSceneId": "heungbu-classic-05",
+        "title": "박 속에서 나온 선물",
+        "referenceText": "흥부 가족이 커다란 박을 타자 금은보화와 살림에 필요한 것들이 나왔어요. 가족은 놀라워하며 기뻐했고, 어려운 살림도 나아졌지요.",
+        "question": "가족은 생긴 재물을 어떻게 쓰고 싶었을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-05",
+          "revision": "sha256-8fe1f6aac019f93c9af91b74a55bfa7031376a464bcd0ad28454821f81d876a2"
+        }
+      },
+      {
+        "sourceSceneId": "heungbu-classic-06",
+        "title": "욕심으로 흉내 낸 놀부",
+        "referenceText": "소문을 들은 놀부는 흥부처럼 부자가 되고 싶었어요. 일부러 제비를 다치게 한 뒤 고쳐 주고, 돌아온 제비가 준 박씨를 꼭 쥐며 큰 보물을 기대했지요.",
+        "question": "놀부의 행동은 흥부의 행동과 어떤 점이 달랐을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-06",
+          "revision": "sha256-00be0a536e0553ceb97b706e84cdc8b88c5ca196331fab199a17edeb4d04d1b2"
+        }
+      },
+      {
+        "sourceSceneId": "heungbu-classic-07",
+        "title": "다른 박의 소동",
+        "referenceText": "놀부의 박에서는 보물 대신 집안을 어지럽히는 것들이 쏟아져 나왔어요. 마당이 뒤집히고 재산을 잃자 놀부는 놀라고 두려워졌지요.",
+        "question": "놀부는 소동을 겪으며 무엇을 깨달았을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-07",
+          "revision": "sha256-f1767c604f09d58d4417a887c7aaad4d574e2a01a41428dbc189dc197a7da8c2"
+        }
+      },
+      {
+        "sourceSceneId": "heungbu-classic-08",
+        "title": "다시 만난 형제",
+        "referenceText": "놀부가 어려움에 빠졌다는 소식을 듣고 흥부가 찾아왔어요. 흥부는 형의 손을 잡고 도와주었고, 놀부는 지난 잘못을 뉘우치며 동생에게 고마움을 전했지요.",
+        "question": "두 형제는 앞으로 어떻게 지내기로 했을까요?",
+        "art": {
+          "kind": "illustration",
+          "assetId": "heungbu.scene.shortstory-classic-08",
+          "revision": "sha256-7669832c9fa9b22cf96338adbd9fd4d6aab6c38b6f537a006c50a347baaa4521"
+        }
+      }
+    ],
+    "defaultSequence": [
+      "heungbu-classic-01",
+      "heungbu-classic-02",
+      "heungbu-classic-03",
+      "heungbu-classic-04",
+      "heungbu-classic-05",
+      "heungbu-classic-06",
+      "heungbu-classic-07",
+      "heungbu-classic-08"
+    ],
+    "recommendedBlankSourceSceneIds": [
+      "heungbu-classic-03",
+      "heungbu-classic-07"
+    ]
+  }
+]

@@ -1,0 +1,44 @@
+[WebServer] (node:20275) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:20289) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:25] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:25] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  1 [runtime] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (6.0s)
+(node:20512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:31] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:31] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  2 [runtime-dpr-1.5] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (5.6s)
+(node:20539) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:38] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:38] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  3 [runtime-dpr-2] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (5.4s)
+(node:20585) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:44] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:44] "GET /favicon.ico HTTP/1.1" 404 -
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:47] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:47] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  4 [stories-runtime] › tests/e2e/entry-cover.spec.ts:58:1 › all eight existing editions enter actual RenPy through their stored book cover (11.3s)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:58] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:13:58] "GET /favicon.ico HTTP/1.1" 404 -
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:14:06] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:14:06] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  5 [stories-runtime] › tests/e2e/existing-score-runtime.spec.ts:111:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive (3.2m)
+(node:20934) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:17:09] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:17:09] "GET /favicon.ico HTTP/1.1" 404 -
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:17:12] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:17:12] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  6 [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload (41.6s)
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:17:54] code 404, message File not found
+[WebServer] 127.0.0.1 - - [09/Oct/2026 09:17:54] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  7 [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy (10.9s)
+
+  7 passed (4.6m)

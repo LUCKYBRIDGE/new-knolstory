@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/presentation.rpy", line 183: Line is indented, but the preceding ATL statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    linear knol_actor_motion_value(actor, scene, "remaining") alpha knol_actor_motion_value(actor, scene, "end_alpha") xoffset knol_actor_motion_value(actor, scene, "end_xoffset")
+    ^
+
+Ren'Py Version: Ren'Py 8.5.3.26051504
+Thu Oct  8 07:31:03 2026

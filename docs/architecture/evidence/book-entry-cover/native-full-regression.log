@@ -1,0 +1,51 @@
+
+Running 41 tests using 1 worker
+
+(node:70863) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -   1 [stories-runtime] › tests/e2e/authoring.spec.ts:61:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip
+  ✓   2 [stories-runtime] › tests/e2e/authoring.spec.ts:94:1 › newly authored branching work renders real assets and both native Ren’Py choices reach endings (6.8s)
+  -   3 [stories-runtime] › tests/e2e/authoring.spec.ts:136:1 › blank creation preserves existing work and structural editing retains choice identities
+  -   4 [stories-runtime] › tests/e2e/authoring.spec.ts:184:1 › explicit save retries a failed device write while preserving the draft
+  -   5 [stories-runtime] › tests/e2e/composition-intent.spec.ts:108:1 › composition authoring separates body scale, center, original facing and actor exits through files
+  ✓   6 [stories-runtime] › tests/e2e/composition-intent.spec.ts:135:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes (18.0s)
+  ✓   7 [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:49:1 › UI-authored twelve-cut story survives Chrome files and both actual RenPy reading paths (51.5s)
+  ✓   8 [stories-runtime] › tests/e2e/existing-story-enhancement.spec.ts:3:1 › existing originals are directly readable beside KnolStory works (1.6s)
+  -   9 [stories-runtime] › tests/e2e/flow-authoring.spec.ts:76:1 › flow overview navigates nested branches and diagnoses pending and unreachable cuts without losing authored content
+  ✓  10 [stories-runtime] › tests/e2e/flow-authoring.spec.ts:149:1 › native Ren’Py follows all six nested and merged routes to two independent endings with a persistent renderer (17.8s)
+  -  11 [stories-runtime] › tests/e2e/flow-authoring.spec.ts:184:1 › large inherited work can find and edit a cut beyond the initial chapter page
+  -  12 [stories-runtime] › tests/e2e/legacy-authoring-workspace.spec.ts:50:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+  -  13 [stories-runtime] › tests/e2e/legacy-authoring-workspace.spec.ts:50:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px
+  ✓  14 [stories-runtime] › tests/e2e/legacy-authoring-workspace.spec.ts:59:1 › new manuscript story survives files and reaches both endings in native RenPy (18.3s)
+  -  15 [stories-runtime] › tests/e2e/legacy-authoring-workspace.spec.ts:66:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+  -  16 [stories-runtime] › tests/e2e/legacy-authoring-workspace.spec.ts:66:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px
+  ✓  17 [stories-runtime] › tests/e2e/local-library.spec.ts:98:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome (35.3s)
+  -  18 [stories-runtime] › tests/e2e/local-library.spec.ts:204:1 › library keeps blank planning optional and separates examples from a UI-created work
+  -  19 [stories-runtime] › tests/e2e/local-library.spec.ts:225:1 › previous device workspace opens in library without changing its authored content or legacy keys
+  -  20 [stories-runtime] › tests/e2e/local-library.spec.ts:254:1 › corrupt device storage is kept intact while UI-created recovery work can be exported
+  -  21 [stories-runtime] › tests/e2e/local-library.spec.ts:279:1 › example preparation makes an independent own copy and duplicate import keeps the original
+  ✓  22 [stories-runtime] › tests/e2e/media-provenance.spec.ts:4:1 › existing-work audio source and rights records travel with the original bytes (7.8s)
+  -  23 [stories-runtime] › tests/e2e/mobile-authoring.spec.ts:92:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change
+  ✓  24 [stories-runtime] › tests/e2e/mobile-authoring.spec.ts:186:1 › phone file-restored work renders real assets and both native Ren’Py endings with one iframe (11.4s)
+  -  25 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:77:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+  ✓  26 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:103:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape (12.4s)
+  ✓  27 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:146:1 › presentation preview visibly renders both native looks then restores neutral on back and restart (12.9s)
+  -  28 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 1280px
+  -  29 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 390px
+  ✓  30 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches (25.4s)
+  ✓  31 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:159:1 › delivered portable branching demo opens with embedded audio and plays both native endings (7.4s)
+  ✓  32 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:184:1 › ending keeps the last entrance confirmed and does not replay its sounds (4.9s)
+  ✓  33 [stories-runtime] › tests/e2e/stories-runtime.spec.ts:43:1 › all four full manuscripts render actual image assets and edited text in one persistent Ren’Py instance (26.5s)
+  ✓  34 [stories-runtime] › tests/e2e/stories-runtime.spec.ts:127:1 › representative native choices move to their linked cut and back restores choice (12.5s)
+  ✓  35 [stories-runtime] › tests/e2e/stories-runtime.spec.ts:172:1 › Onggojib confirmation transition blocks host advance until native confirmation (7.0s)
+  ✓  36 [stories-runtime] › tests/e2e/stories-runtime.spec.ts:201:1 › actual image placement and presentation edits survive document export and native playback (7.4s)
+  -  37 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:8:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields
+  ✓  38 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:20:1 › native portrait single speaker, slots and actual-path backlog restore both routes (12.3s)
+  ✓  39 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:36:1 › changed-work slots show saved excerpt and require explicit compatible restore (6.7s)
+  ✓  40 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:47:1 › numbered real-asset branch chapters play A and B then join without crossing routes (7.6s)
+(node:72232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  41 [stories-runtime] › tests/e2e/entry-cover.spec.ts:56:1 › all eight existing editions enter actual RenPy through their stored book cover (12.4s)
+
+  19 skipped
+  22 passed (5.5m)

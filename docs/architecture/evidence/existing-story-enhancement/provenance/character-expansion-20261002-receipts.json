@@ -1,0 +1,122 @@
+[
+  {
+    "assetId": "creative.character.physician-explain",
+    "sourceSha256": "783b85998363f45b57396560d06a94ac766a25b21b1258174bbfaadce44cde30",
+    "outputSha256": "b59fdbb28dc6d4be0d6a2c9410719aca00ee948cb0b95a13b8b30b30e1384980",
+    "removedPixels": 15497,
+    "removedComponents": 2,
+    "fitHeight": 1025,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "rabbit-turtle.character.physician-unified-720x900",
+    "referenceSha256": "528826dc98286efa9f52680a3d00e8dbef7e7522e6a8b82d907c4f1545bd4765",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.onggojib-child-wave",
+    "sourceSha256": "3a07d5364b476af6a837197474e3e6be30f703f2a1b6964253a4475f0bba50ed",
+    "outputSha256": "271b6c246156d4cf16e9a2194d1ed2cad61fb3cdec77395bd3d953d9b0373984",
+    "removedPixels": 14915,
+    "removedComponents": 1,
+    "fitHeight": 1020,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "onggojib.character.child-pixel",
+    "referenceSha256": "a5e815dab1471ea1b41f9d8d6fdbd4df044ae78f5c05d721cdc535d0f6da0c32",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.onggojib-guard-guide",
+    "sourceSha256": "046aff53759362650e4eb58d0ce6f6d5fccfc38272fdb0a1fad6f6ab15eac46f",
+    "outputSha256": "b55f16e0412094375a7fc218eea139dd6247d8e190d4996843b77affb314f42f",
+    "removedPixels": 26422,
+    "removedComponents": 0,
+    "fitHeight": 1030,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "onggojib.character.posol-pixel",
+    "referenceSha256": "8b54525e1e1d49d3d64b139bc8f29ddf774b0a167850b08471af6cecd3e22ea7",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.seonnyeo-deer-listen",
+    "sourceSha256": "c8411650bcc314d4164eebf09085cf0828e639eca3a06a6c41e71f46ca79a560",
+    "outputSha256": "9e7d52bbdafa02a26eca31a26a6710e73c4a6b3c9857dda9a83f811f3bb3eaa0",
+    "removedPixels": 26209,
+    "removedComponents": 0,
+    "fitHeight": 1001,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "seonnyeo.character.classic-deer",
+    "referenceSha256": "d8f5f11837d0667183625805dca02f689022b9765fec4a415099f21adff6eb75",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.seonnyeo-hunter-look",
+    "sourceSha256": "b58a79c58cad26606b058d9b747dfc05ac17b627ed0672aaa70b7e9ca977370e",
+    "outputSha256": "46b8bc010369188d05e888a46086aeb12e2ab9717c1c50e384fa8cf6d1c40d4d",
+    "removedPixels": 27204,
+    "removedComponents": 1,
+    "fitHeight": 1002,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "seonnyeo.character.classic-hunter",
+    "referenceSha256": "9a5c8d4407f5902d4b8a223c606346b8efae2230b7ea233ecdd058bdaa47da34",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.heungbu-neighbor-greet",
+    "sourceSha256": "983fe19754dda58762738a97f1b29efc36943aafe78313cdd156909bbc165c21",
+    "outputSha256": "5cc60856e3c96b09238dcbe4a788e8c9c080e2190401c13ef72852ed0571cd69",
+    "removedPixels": 14945,
+    "removedComponents": 0,
+    "fitHeight": 1000,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "heungbu.character.neighbor",
+    "referenceSha256": "2fbc3ec5922c0bb54e045288d4fd20f7215f26570cd50b257104492dff3a6d90",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.rabbit-listen",
+    "sourceSha256": "dee5140f6f368aa3ca160352aa6d3ddd7f465e0c54643eeb32d607b628e7d612",
+    "outputSha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179",
+    "removedPixels": 17446,
+    "removedComponents": 0,
+    "fitHeight": 1030,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+    "referenceSha256": "7024e5ba06597ad3d04d1ff4df51d413c0d6a725983ec28df959a5dd76cf29cf",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.onggojib-real-explain",
+    "sourceSha256": "9953142b85d6e89e3c5dd2be7cfde9bdc42ec3c6b1aa4b4af1bd680407ea275c",
+    "outputSha256": "edd88d36d0ca15ab6cad4fc8fc7844086c5ed6148591861a278a7e75120a7318",
+    "removedPixels": 18645,
+    "removedComponents": 0,
+    "fitHeight": 1030,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "onggojib.character.real-consistent-pixel",
+    "referenceSha256": "99cbd5ae7c73ea78fe6491a12019f387922ec3296246a883aa746327602b4c36",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.woodcutter-thanks",
+    "sourceSha256": "4839fc0cadb97be37447207a68de72035864d4a9efe9d65c3fb8b87ce10d7200",
+    "outputSha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d",
+    "removedPixels": 12991,
+    "removedComponents": 0,
+    "fitHeight": 1000,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "seonnyeo.character.M02-neutral",
+    "referenceSha256": "77d553709e9bb678a14beb92f7f4c3630245dceb24cf4cebcfc421fe4aaee46b",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  },
+  {
+    "assetId": "creative.character.heungbu-encourage",
+    "sourceSha256": "4a6ddbbff07da2630001c3ad97754428d266d46d2d026ceb2d585324bf2cc53e",
+    "outputSha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653",
+    "removedPixels": 15693,
+    "removedComponents": 0,
+    "fitHeight": 999,
+    "operation": "Keep the largest alpha-connected subject, uniformly fit it to the 800x1200 stage canvas, and preserve transparent padding.",
+    "referenceAssetId": "heungbu.character.heungbu-default",
+    "referenceSha256": "03e7ce726f147c600b896f8fe319727517a0a2f059e47d9c8c8c9146e579bb6c",
+    "placementNote": "Same standing-pose canvas scale cap; no anatomy approval inferred from bbox. No crouched-pose height matching."
+  }
+]

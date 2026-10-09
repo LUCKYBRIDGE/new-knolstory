@@ -1,0 +1,19 @@
+
+Running 11 tests using 1 worker
+
+(node:68657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:49:1 › UI-authored twelve-cut story survives Chrome files and both actual RenPy reading paths (55.1s)
+  ✓   2 [stories-runtime] › tests/e2e/local-library.spec.ts:98:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome (37.9s)
+  -   3 [stories-runtime] › tests/e2e/local-library.spec.ts:204:1 › library keeps blank planning optional and separates examples from a UI-created work
+  -   4 [stories-runtime] › tests/e2e/local-library.spec.ts:225:1 › previous device workspace opens in library without changing its authored content or legacy keys
+  -   5 [stories-runtime] › tests/e2e/local-library.spec.ts:254:1 › corrupt device storage is kept intact while UI-created recovery work can be exported
+  -   6 [stories-runtime] › tests/e2e/local-library.spec.ts:279:1 › example preparation makes an independent own copy and duplicate import keeps the original
+  -   7 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 1280px
+  -   8 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 390px
+  ✓   9 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches (27.7s)
+  ✓  10 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:159:1 › delivered portable branching demo opens with embedded audio and plays both native endings (7.7s)
+  ✓  11 [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:184:1 › ending keeps the last entrance confirmed and does not replay its sounds (5.3s)
+
+  6 skipped
+  5 passed (2.2m)

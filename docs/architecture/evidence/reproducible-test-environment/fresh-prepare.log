@@ -1,0 +1,103 @@
+git: git version 2.50.1 (Apple Git-155)
+node: v22.23.3
+pnpm: 10.33.0
++ python3 scripts/restore-legacy-media.py <authorized-legacy-checkout>
+Restored 421 exact fixed-baseline files for local testing. No release permission is inferred.
++ pnpm install --frozen-lockfile
+Scope: all 7 workspace projects
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +472
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 472, reused 472, downloaded 0, added 470
+Progress: resolved 472, reused 472, downloaded 0, added 472, done
+
+devDependencies:
++ @playwright/test 1.63.0
++ @types/node 22.20.5
++ @types/pngjs 6.0.5
++ @vitest/coverage-v8 4.1.11
++ eslint 9.39.5
++ eslint-config-next 16.3.8
++ pngjs 7.0.0
++ turbo 2.11.7
++ typescript 5.9.3
++ vitest 4.1.11
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: unrs-resolver@1.12.2.                               │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Done in 2.1s using pnpm v10.33.0
++ python3 scripts/prepare-runtime.py
+Downloading sdk.tar.bz2
+Downloading web.zip
+Downloading NotoSansKR.ttf
+Extracting verified SDK and Web support.
+Prepared Ren'Py 8.5.3 and verified Noto Sans KR.
++ pnpm exec playwright install chromium
++ python3 spikes/renpy-web/build.py
+Scanning Ren'Py files...
+
+Writing the web zip package. - 1057 of 1057
+All packages have been built.
+
+Due to the presence of permission information, unpacking and repacking the Linux and Macintosh distributions on Windows is not supported.
+Preparing progressive download
+
+Creating package... - 455 of 455
+Built Ren'Py 8.5.3 to apps/web/public/runtime
++ pnpm build
+
+> knolstory-next@ build <checkout>
+> turbo run build
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running build in 6 packages
+   • Remote caching disabled
+
+@knolstory/web:build: cache miss, executing b67559096f4387a8
+@knolstory/web:build:
+@knolstory/web:build: > @knolstory/web@0.0.0 build <checkout>/apps/web
+@knolstory/web:build: > next build
+@knolstory/web:build:
+@knolstory/web:build: ▲ Next.js 16.3.8 (Turbopack)
+@knolstory/web:build: ✓ Running next.config.ts took 1177ms
+@knolstory/web:build:
+@knolstory/web:build:   Creating an optimized production build ...
+@knolstory/web:build: ✓ Compiled successfully in 1585ms
+@knolstory/web:build:   Running TypeScript ...
+@knolstory/web:build:   Finished TypeScript in 2.7s ...
+@knolstory/web:build:   Collecting page data using 6 workers ...
+@knolstory/web:build:   Generating static pages using 6 workers (0/5) ...
+@knolstory/web:build:   Generating static pages using 6 workers (1/5)
+@knolstory/web:build:   Generating static pages using 6 workers (2/5)
+@knolstory/web:build:   Generating static pages using 6 workers (3/5)
+@knolstory/web:build: ✓ Generating static pages using 6 workers (5/5) in 402ms
+@knolstory/web:build:   Finalizing page optimization ...
+@knolstory/web:build:
+@knolstory/web:build: Route (app)
+@knolstory/web:build: ┌ ○ /
+@knolstory/web:build: ├ ○ /_not-found
+@knolstory/web:build: ├ ○ /probe
+@knolstory/web:build: └ ○ /shortstory
+@knolstory/web:build:
+@knolstory/web:build:
+@knolstory/web:build: ○  (Static)  prerendered as static content
+@knolstory/web:build:
+
+ Tasks:    1 successful, 1 total
+Cached:    0 cached, 1 total
+  Time:    8.499s
+
+git: git version 2.50.1 (Apple Git-155)
+node: v22.23.3
+pnpm: 10.33.0
+Browser: 153.0.8010.12
+Source media: 451 hashes verified
+Public legacy-media release remains blocked. Physical school/Android hardware is not verified.

@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:15475) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/four-work-shortstory.spec.ts:62:1 › delayed Google picture book import retains books created and edited while waiting (996ms)
+  ✓  2 [host] › tests/e2e/four-work-shortstory.spec.ts:74:1 › failed picture book deletion preserves its editable draft for save retry and reload (852ms)
+
+  2 passed (2.4s)

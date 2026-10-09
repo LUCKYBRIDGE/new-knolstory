@@ -1,0 +1,241 @@
+{
+  "scope": "Read-only source and decoded waveform review. No listening performed; no headphone/speaker or auditory/artistic approval claimed.",
+  "compositionFacts": [
+    "All eight cues use the same 60 BPM eight-bar framework and plucked accompaniment. Roots, motifs, mode and lead timbre vary; this creates a shared sonic palette but may become repetitive during a long scene.",
+    "No drums or percussion exist in music; no intentionally sharp rhythmic transients or hard global loop fades.",
+    "Gourd revision uses inharmonic hollow-body resonances at 230/371/613/947Hz with a contact-noise impulse, replacing the 98Hz plucked musical gesture. Door revision adds a quieter harmonic creak and filtered friction before a brief resonant close/latch contact. Bird calls remain frequency sweeps. All are stylized synthetic cues, not acoustic recordings.",
+    "Original profiles use gain .26 music/.19 ambience/.42 SFX, quieter than the Knolstory figures below."
+  ],
+  "artDirectionCriteria": [
+    "At intended player volume, music should support prose without pulling attention to every two-beat melody note.",
+    "Compare full 32-second loops twice; if a scene lasts longer, avoid repeating the same prominent sting or chirp on every cut.",
+    "An event cue must match the described event and occur once; do not label generic impact as an authentic door recording.",
+    "Keep ambience subordinate to music and reduce it further where birds or upper-frequency rain distract from dialogue.",
+    "Preserve deliberate silence at emotional pauses and choices; avoid a continuous music assignment just to cover every chapter.",
+    "Judge synthetic bird/door/gourd recognizability by actual playback, not by filenames or waveform validation."
+  ],
+  "gainAssessment": "At current gains, music averages about -31.8 dBFS and ambience -36.6 dBFS; single-shot SFX vary around -26.5 to -32.2 dBFS overall RMS. Digital levels are restrained with substantial headroom, but physical audibility cannot be inferred without output/device listening. Do not blindly increase every channel.",
+  "assets": [
+    {
+      "id": "score-calm",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -20.83,
+      "lowBandEnergyPercent": 45.6,
+      "midBandEnergyPercent": 54.4,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "score-curiosity",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -19.22,
+      "lowBandEnergyPercent": 37.0,
+      "midBandEnergyPercent": 62.8,
+      "highBandEnergyPercent": 0.2
+    },
+    {
+      "id": "score-tension",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -21.36,
+      "lowBandEnergyPercent": 55.5,
+      "midBandEnergyPercent": 44.5,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "score-loss",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -21.0,
+      "lowBandEnergyPercent": 43.5,
+      "midBandEnergyPercent": 56.5,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "score-warmth",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -20.99,
+      "lowBandEnergyPercent": 32.1,
+      "midBandEnergyPercent": 67.8,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "score-mystery",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -18.86,
+      "lowBandEnergyPercent": 72.7,
+      "midBandEnergyPercent": 27.3,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "score-ocean",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -21.03,
+      "lowBandEnergyPercent": 57.9,
+      "midBandEnergyPercent": 42.1,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "score-resolve",
+      "decodedRmsDbfs": -21.93,
+      "defaultKnolstoryGain": 0.32,
+      "predictedRmsDbfsAtGain": -31.83,
+      "predictedPeakDbfsAtGain": -19.3,
+      "lowBandEnergyPercent": 41.4,
+      "midBandEnergyPercent": 58.4,
+      "highBandEnergyPercent": 0.2
+    },
+    {
+      "id": "ambience-stream",
+      "decodedRmsDbfs": -23.81,
+      "defaultKnolstoryGain": 0.23,
+      "predictedRmsDbfsAtGain": -36.57,
+      "predictedPeakDbfsAtGain": -21.46,
+      "lowBandEnergyPercent": 17.5,
+      "midBandEnergyPercent": 63.8,
+      "highBandEnergyPercent": 18.7
+    },
+    {
+      "id": "ambience-rain",
+      "decodedRmsDbfs": -23.8,
+      "defaultKnolstoryGain": 0.23,
+      "predictedRmsDbfsAtGain": -36.57,
+      "predictedPeakDbfsAtGain": -22.08,
+      "lowBandEnergyPercent": 0.0,
+      "midBandEnergyPercent": 64.4,
+      "highBandEnergyPercent": 35.6
+    },
+    {
+      "id": "ambience-forest",
+      "decodedRmsDbfs": -23.81,
+      "defaultKnolstoryGain": 0.23,
+      "predictedRmsDbfsAtGain": -36.57,
+      "predictedPeakDbfsAtGain": -20.87,
+      "lowBandEnergyPercent": 33.3,
+      "midBandEnergyPercent": 62.5,
+      "highBandEnergyPercent": 4.2
+    },
+    {
+      "id": "ambience-ocean",
+      "decodedRmsDbfs": -23.8,
+      "defaultKnolstoryGain": 0.23,
+      "predictedRmsDbfsAtGain": -36.57,
+      "predictedPeakDbfsAtGain": -19.64,
+      "lowBandEnergyPercent": 43.6,
+      "midBandEnergyPercent": 53.2,
+      "highBandEnergyPercent": 3.3
+    },
+    {
+      "id": "sfx-thunder",
+      "decodedRmsDbfs": -22.62,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -28.64,
+      "predictedPeakDbfsAtGain": -9.54,
+      "lowBandEnergyPercent": 75.5,
+      "midBandEnergyPercent": 24.5,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "sfx-door",
+      "decodedRmsDbfs": -24.38,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -30.4,
+      "predictedPeakDbfsAtGain": -9.51,
+      "lowBandEnergyPercent": 90.6,
+      "midBandEnergyPercent": 9.3,
+      "highBandEnergyPercent": 0.1
+    },
+    {
+      "id": "sfx-cloth",
+      "decodedRmsDbfs": -20.37,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -26.39,
+      "predictedPeakDbfsAtGain": -9.74,
+      "lowBandEnergyPercent": 36.7,
+      "midBandEnergyPercent": 55.4,
+      "highBandEnergyPercent": 7.9
+    },
+    {
+      "id": "sfx-steps",
+      "decodedRmsDbfs": -22.97,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -28.99,
+      "predictedPeakDbfsAtGain": -9.57,
+      "lowBandEnergyPercent": 64.8,
+      "midBandEnergyPercent": 35.2,
+      "highBandEnergyPercent": 0.0
+    },
+    {
+      "id": "sfx-bird",
+      "decodedRmsDbfs": -20.45,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -26.47,
+      "predictedPeakDbfsAtGain": -13.61,
+      "lowBandEnergyPercent": 0.0,
+      "midBandEnergyPercent": 0.0,
+      "highBandEnergyPercent": 100.0
+    },
+    {
+      "id": "sfx-swallow",
+      "decodedRmsDbfs": -20.44,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -26.46,
+      "predictedPeakDbfsAtGain": -12.85,
+      "lowBandEnergyPercent": 0.0,
+      "midBandEnergyPercent": 0.0,
+      "highBandEnergyPercent": 100.0
+    },
+    {
+      "id": "sfx-gourd",
+      "decodedRmsDbfs": -21.87,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -27.89,
+      "predictedPeakDbfsAtGain": -9.51,
+      "lowBandEnergyPercent": 75.8,
+      "midBandEnergyPercent": 24.2,
+      "highBandEnergyPercent": 0.1
+    },
+    {
+      "id": "sfx-crack",
+      "decodedRmsDbfs": -26.13,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -32.15,
+      "predictedPeakDbfsAtGain": -9.75,
+      "lowBandEnergyPercent": 38.2,
+      "midBandEnergyPercent": 48.1,
+      "highBandEnergyPercent": 13.6
+    },
+    {
+      "id": "sfx-water",
+      "decodedRmsDbfs": -25.3,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -31.32,
+      "predictedPeakDbfsAtGain": -9.54,
+      "lowBandEnergyPercent": 29.0,
+      "midBandEnergyPercent": 53.0,
+      "highBandEnergyPercent": 18.0
+    },
+    {
+      "id": "sfx-sting",
+      "decodedRmsDbfs": -20.44,
+      "defaultKnolstoryGain": 0.5,
+      "predictedRmsDbfsAtGain": -26.46,
+      "predictedPeakDbfsAtGain": -12.82,
+      "lowBandEnergyPercent": 30.9,
+      "midBandEnergyPercent": 69.1,
+      "highBandEnergyPercent": 0.0
+    }
+  ],
+  "revision": "Narrow source-driven gourd/door semantic correction. Actual listening not performed; recognizability remains a listening criterion."
+}

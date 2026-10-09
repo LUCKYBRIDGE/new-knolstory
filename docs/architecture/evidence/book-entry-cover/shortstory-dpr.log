@@ -1,0 +1,18 @@
+
+Running 5 tests using 1 worker
+
+(node:70089) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/shortstory.spec.ts:3:1 › ShortStory edits static pages, saves, restores files and prints without runtime (1.2s)
+  ✓  2 [host] › tests/e2e/shortstory.spec.ts:28:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected (939ms)
+(node:70101) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [runtime] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (6.3s)
+(node:70122) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [runtime-dpr-1.5] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (6.5s)
+(node:70145) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [runtime-dpr-2] › tests/e2e/renpy-runtime.spec.ts:20:1 › real Ren’Py acknowledges editing and keeps canvas aligned through responsive resize (8.4s)
+
+  5 passed (25.2s)

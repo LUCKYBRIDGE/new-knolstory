@@ -1,0 +1,13 @@
+.menu{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 0}.menu button{min-height:44px;padding:8px 12px;border:1px solid var(--line,#d8ded8);border-radius:12px;background:var(--paper,#fffdf8);color:var(--ink,#23302c);font:inherit;cursor:pointer}.menu button:focus-visible{outline:3px solid var(--mint,#72b8a6);outline-offset:2px}.menu button:disabled{opacity:.5;cursor:default}.status{font-size:.875rem;width:100%}.dialog{width:min(900px,calc(100vw - 24px));max-height:calc(100dvh - 24px);box-sizing:border-box;border:1px solid var(--line,#d8ded8);border-radius:16px;background:var(--paper,#fffdf8);color:var(--ink,#23302c);padding:20px;overflow:auto}.dialog::backdrop{background:#182b26b3}.header{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:-20px;background:var(--paper,#fffdf8);z-index:1;padding:12px 0}.header h2{margin:0;font-size:1.25rem}.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.slot{padding:14px;border:1px solid var(--line,#d8ded8);border-radius:12px;min-width:0}.slot h3{margin:0 0 6px}.slot time{font-size:.8rem}.slot p{overflow-wrap:anywhere;white-space:pre-wrap;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.slot>div{display:flex;gap:8px;flex-wrap:wrap}.error,.changed{color:#8c3629}.confirm{padding:12px;background:#faf1dc;border-radius:12px;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.confirm p{width:100%;margin:0}.log{padding-left:24px}.log li{padding:14px 0;border-bottom:1px solid var(--line,#d8ded8)}.speaker{font-weight:700;margin:0}.text{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}.choice{padding:8px;background:#e5f3ed;border-radius:8px}@media(max-width:650px){.slots{grid-template-columns:1fr}.dialog{padding:14px}.header{top:-14px}.menu{gap:6px}.menu button{flex-grow:1}}
+
+.location{font-size:.8rem;color:#52645c;margin:0 0 6px}
+@media(max-width:1000px) and (max-height:500px){
+ .menu{flex-wrap:nowrap;overflow-x:auto;flex:0 0 auto;padding:4px 8px;gap:6px;}
+ .menu button{flex:0 0 auto;white-space:nowrap;font-size:13px;padding:6px 10px;}
+ .menu>.status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+}
+@media(max-width:720px) and (min-height:501px){
+ .menu{flex-wrap:nowrap;overflow-x:auto;flex:0 0 auto;padding:4px 8px;gap:6px;}
+ .menu button{flex:0 0 auto;white-space:nowrap;font-size:13px;padding:6px 10px;}
+ .menu>.status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+}

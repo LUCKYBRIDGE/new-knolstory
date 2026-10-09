@@ -1,0 +1,480 @@
+[
+  {
+    "id": "rabbit-turtle.dragonking",
+    "name": "용왕",
+    "aliases": [
+      "젊은 용왕"
+    ],
+    "storyPackIds": [
+      "rabbit-turtle"
+    ],
+    "representativeAssetId": "rabbit-turtle.character.dragonking-unified-720x900"
+  },
+  {
+    "id": "rabbit-turtle.physician",
+    "name": "의관",
+    "aliases": [],
+    "storyPackIds": [
+      "rabbit-turtle"
+    ],
+    "representativeAssetId": "rabbit-turtle.character.physician-unified-720x900"
+  },
+  {
+    "id": "rabbit-turtle.rabbit",
+    "name": "토끼",
+    "aliases": [],
+    "storyPackIds": [
+      "rabbit-turtle"
+    ],
+    "representativeAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900"
+  },
+  {
+    "id": "rabbit-turtle.turtle",
+    "name": "자라",
+    "aliases": [
+      "어린 자라"
+    ],
+    "storyPackIds": [
+      "rabbit-turtle"
+    ],
+    "representativeAssetId": "rabbit-turtle.character.turtle-unified-720x900"
+  },
+  {
+    "id": "onggojib.child",
+    "name": "아이",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.child-pixel"
+  },
+  {
+    "id": "onggojib.double",
+    "name": "가짜 옹고집",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+  },
+  {
+    "id": "onggojib.servant",
+    "name": "옹고집의 하인",
+    "aliases": [
+      "하인"
+    ],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.servant-household-pixel"
+  },
+  {
+    "id": "onggojib.worker",
+    "name": "일꾼",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.worker-woodcutter-v2-pixel"
+  },
+  {
+    "id": "onggojib.wife",
+    "name": "옹고집의 아내",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.wife-pixel"
+  },
+  {
+    "id": "onggojib.real",
+    "name": "진짜 옹고집",
+    "aliases": [
+      "옹고집"
+    ],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.real-consistent-pixel"
+  },
+  {
+    "id": "onggojib.magistrate",
+    "name": "사또",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.magistrate-command-pixel"
+  },
+  {
+    "id": "onggojib.guard",
+    "name": "포졸",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.posol-pixel"
+  },
+  {
+    "id": "onggojib.second-child",
+    "name": "둘째 아이",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.second-child-hesitant-pixel"
+  },
+  {
+    "id": "onggojib.stranger",
+    "name": "낯선 사람",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.stranger-hidden-pixel"
+  },
+  {
+    "id": "onggojib.youngest-child",
+    "name": "막내 아이",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.youngest-child-cautious-pixel"
+  },
+  {
+    "id": "seonnyeo.fairy",
+    "name": "막내 선녀",
+    "aliases": [
+      "선녀"
+    ],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.M01-earth-neutral"
+  },
+  {
+    "id": "seonnyeo.woodcutter",
+    "name": "나무꾼",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.M02-neutral"
+  },
+  {
+    "id": "seonnyeo.eldest-fairy",
+    "name": "큰언니 선녀",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.M03-neutral"
+  },
+  {
+    "id": "seonnyeo.second-fairy",
+    "name": "둘째 언니 선녀",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.M04-neutral"
+  },
+  {
+    "id": "onggojib.mother",
+    "name": "어머니",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.classic-mother"
+  },
+  {
+    "id": "onggojib.monk",
+    "name": "승려",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.classic-monk"
+  },
+  {
+    "id": "onggojib.master",
+    "name": "도승",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.classic-master"
+  },
+  {
+    "id": "onggojib.straw",
+    "name": "짚 인형",
+    "aliases": [],
+    "storyPackIds": [
+      "onggojib"
+    ],
+    "representativeAssetId": "onggojib.character.classic-straw-bound"
+  },
+  {
+    "id": "seonnyeo.deer",
+    "name": "사슴",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-deer"
+  },
+  {
+    "id": "seonnyeo.hunter",
+    "name": "사냥꾼",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-hunter"
+  },
+  {
+    "id": "seonnyeo.mother",
+    "name": "어머니",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-mother"
+  },
+  {
+    "id": "seonnyeo.children",
+    "name": "두 아이",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-children"
+  },
+  {
+    "id": "seonnyeo.first-child",
+    "name": "선녀의 첫째",
+    "aliases": [
+      "첫째",
+      "첫째 아기"
+    ],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-fairy-celestial-holding-first-baby"
+  },
+  {
+    "id": "seonnyeo.second-child",
+    "name": "선녀의 둘째",
+    "aliases": [
+      "둘째"
+    ],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-fairy-earth-carrying-children"
+  },
+  {
+    "id": "seonnyeo.horse",
+    "name": "용마",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-celestial-horse"
+  },
+  {
+    "id": "seonnyeo.rooster",
+    "name": "수탉",
+    "aliases": [],
+    "storyPackIds": [
+      "seonnyeo"
+    ],
+    "representativeAssetId": "seonnyeo.character.classic-rooster-calling-sky"
+  },
+  {
+    "id": "heungbu.heungbu",
+    "name": "흥부",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.heungbu-default"
+  },
+  {
+    "id": "heungbu.nolbu",
+    "name": "놀부",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.nolbu-default"
+  },
+  {
+    "id": "heungbu.wife-heungbu",
+    "name": "흥부 아내",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.wife-heungbu"
+  },
+  {
+    "id": "heungbu.wife-nolbu",
+    "name": "놀부 아내",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.wife-nolbu"
+  },
+  {
+    "id": "heungbu.children",
+    "name": "흥부네 아이들",
+    "aliases": [
+      "아이들"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.children"
+  },
+  {
+    "id": "heungbu.swallow",
+    "name": "제비",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.swallow"
+  },
+  {
+    "id": "heungbu.neighbor",
+    "name": "이웃 농부",
+    "aliases": [
+      "이웃"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.neighbor"
+  },
+  {
+    "id": "heungbu.street-boy",
+    "name": "아이 5 · 길거리 남자아이",
+    "aliases": [
+      "길거리 남자아이"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.child-05"
+  },
+  {
+    "id": "heungbu.street-girl",
+    "name": "아이 6 · 길거리 여자아이",
+    "aliases": [
+      "길거리 여자아이"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.child-06"
+  },
+  {
+    "id": "heungbu.nolbu-children",
+    "name": "놀부네 아이들",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.nolbu-children"
+  },
+  {
+    "id": "heungbu.child-01",
+    "name": "아이 1 · 흥부네 첫째",
+    "aliases": [
+      "흥부네 첫째"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.child-01"
+  },
+  {
+    "id": "heungbu.child-02",
+    "name": "아이 2 · 흥부네 둘째",
+    "aliases": [
+      "흥부네 둘째"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.child-02"
+  },
+  {
+    "id": "heungbu.child-03",
+    "name": "아이 3 · 놀부네 첫째",
+    "aliases": [
+      "놀부네 첫째"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.child-03"
+  },
+  {
+    "id": "heungbu.child-04",
+    "name": "아이 4 · 놀부네 둘째",
+    "aliases": [
+      "놀부네 둘째"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.child-04"
+  },
+  {
+    "id": "creative.village-girl",
+    "name": "마을 소녀",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "creative.character.village-girl",
+    "artFamily": "creative-watercolor-v1"
+  },
+  {
+    "id": "creative.young-traveler",
+    "name": "젊은 여행자",
+    "aliases": [],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "creative.character.young-traveler",
+    "artFamily": "creative-watercolor-v1"
+  },
+  {
+    "id": "rabbit-turtle.court-officials",
+    "name": "용궁 신하들",
+    "aliases": [
+      "용궁 신하"
+    ],
+    "storyPackIds": [
+      "rabbit-turtle"
+    ],
+    "representativeAssetId": "rabbit-turtle.background.classic-court"
+  },
+  {
+    "id": "heungbu.goblins",
+    "name": "도깨비들",
+    "aliases": [
+      "도깨비"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.scene.nolbu-goblin-chaos"
+  }
+]

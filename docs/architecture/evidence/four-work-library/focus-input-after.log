@@ -1,0 +1,113 @@
+immediate 입력 시점을 추적하는 문장
+later 입력 시점을 추적하는 문장
+{
+  events: [
+    {
+      type: 'blur',
+      target: 'BUTTON',
+      value: '',
+      active: 'BODY',
+      time: 429.7999999523163
+    },
+    {
+      type: 'focusin',
+      target: 'BUTTON',
+      value: '',
+      active: 'BUTTON',
+      time: 600.1999999284744
+    },
+    {
+      type: 'blur',
+      target: 'BUTTON',
+      value: '',
+      active: 'BODY',
+      time: 610.5
+    },
+    {
+      type: 'focusin',
+      target: 'BUTTON',
+      value: '',
+      active: 'BUTTON',
+      time: 610.6999999284744
+    },
+    {
+      type: 'blur',
+      target: 'BUTTON',
+      value: '',
+      active: 'BODY',
+      time: 657.8999999761581
+    },
+    {
+      type: 'focusin',
+      target: 'BUTTON',
+      value: '',
+      active: 'BUTTON',
+      time: 657.8999999761581
+    },
+    {
+      type: 'blur',
+      target: 'BUTTON',
+      value: '',
+      active: 'BODY',
+      time: 673.5
+    },
+    {
+      type: 'focusin',
+      target: 'BUTTON',
+      value: '',
+      active: 'BUTTON',
+      time: 723.8999999761581
+    },
+    {
+      type: 'blur',
+      target: 'BUTTON',
+      value: '',
+      active: 'BODY',
+      time: 743.6999999284744
+    },
+    {
+      type: 'focusin',
+      target: 'BUTTON',
+      value: '',
+      active: 'BUTTON',
+      time: 3391.100000023842
+    },
+    {
+      type: 'blur',
+      target: 'BUTTON',
+      value: '',
+      active: 'BODY',
+      time: 3608.6999999284744
+    },
+    {
+      type: 'focusin',
+      target: 'BUTTON',
+      value: '',
+      active: 'BUTTON',
+      time: 3608.6999999284744
+    },
+    {
+      type: 'blur',
+      target: 'BUTTON',
+      value: '',
+      active: 'BODY',
+      time: 3622.6999999284744
+    },
+    {
+      type: 'focusin',
+      target: 'story-line-text',
+      value: '그런데 어느 날부터 용왕이 큰 병에 걸렸다. 좋은 음식과 귀한 약을 써 보아도 병은 좀처럼 낫지 않았다.',
+      active: 'TEXTAREA',
+      time: 3835.1999999284744
+    },
+    {
+      type: 'input',
+      target: 'story-line-text',
+      value: '입력 시점을 추적하는 문장',
+      active: 'TEXTAREA',
+      time: 3842.1999999284744
+    }
+  ],
+  active: '<textarea id="story-line-text" aria-label="대사 / 해설" maxlength="20000">입력 시점을 추적하는 문장</textarea>',
+  stored: '입력 시점을 추적하는 문장'
+}

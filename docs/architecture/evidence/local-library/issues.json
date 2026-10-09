@@ -1,0 +1,12 @@
+{
+  "issues": [
+    {"id":"LIB-01","before":"Works were accessible only from a select; new/imported/examples had no shelf or preparation entry.","after":"Grouped local cards with metadata, basic cover and explicit edit/prepare/start/resume actions."},
+    {"id":"LIB-02","before":"Switching works always selected the first cut; only current work context persisted.","after":"Existing storage envelope gains independent per-work editor position/tool/profile and read path."},
+    {"id":"LIB-03","before":"Planning, metadata and memos changed the whole-project save fingerprint.","after":"playback-v2 compares playback content; old unchanged fingerprints stay readable; real story changes still require compatibility check."},
+    {"id":"LIB-04","before":"Hiding the retained runtime using display:none gave RenPy a zero display size and GL2 resize exception.","after":"Persistent iframe is parked offscreen with positive dimensions, visibility/inert/aria-hidden; real shelf/reload/resume journey passes."},
+    {"id":"LIB-05","before":"Changing basic cover data could risk replacing advanced cover fields; memo single cut parent could appear as duplicate destination.","after":"Immutable partial merges preserve advanced design/composition/preset and memo fields/links; single paired parent is treated as context."},
+    {"id":"LIB-06","before":"Example edits and same-id file imports could be confused with another independent work.","after":"Example card editing makes a new-ID own copy; shelf duplicate import retains original and explains opening the existing card."},
+    {"id":"LIB-07","before":"Theme text on bright classic thumbnail images had low contrast.","after":"Classic thumbnail title uses a readable paper panel with ink text."}
+  ],
+  "limits":["Installed Chrome viewport tests, not actual Android hardware performance","Advanced cover data is preserved; advanced canvas designer/start-cover playback are outside this goal","Same project-ID shelf import is refused to preserve original","Independent review agent stopped at usage limit; root reviewed current source directly"]
+}

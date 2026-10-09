@@ -1,0 +1,49 @@
+{
+  "renderer": "Chromium print-to-PDF, not physical printer",
+  "works": [
+    {
+      "workId": "rabbit",
+      "pdfPages": 10,
+      "readingPages": 8,
+      "allReferenceTextRetained": true,
+      "eachReadingPageHasImage": true,
+      "a4Points": [
+        594.95996,
+        841.91998
+      ]
+    },
+    {
+      "workId": "onggojib",
+      "pdfPages": 10,
+      "readingPages": 8,
+      "allReferenceTextRetained": true,
+      "eachReadingPageHasImage": true,
+      "a4Points": [
+        594.95996,
+        841.91998
+      ]
+    },
+    {
+      "workId": "seonnyeo",
+      "pdfPages": 12,
+      "readingPages": 10,
+      "allReferenceTextRetained": true,
+      "eachReadingPageHasImage": true,
+      "a4Points": [
+        594.95996,
+        841.91998
+      ]
+    },
+    {
+      "workId": "heungbu",
+      "pdfPages": 10,
+      "readingPages": 8,
+      "allReferenceTextRetained": true,
+      "eachReadingPageHasImage": true,
+      "a4Points": [
+        594.95996,
+        841.91998
+      ]
+    }
+  ]
+}

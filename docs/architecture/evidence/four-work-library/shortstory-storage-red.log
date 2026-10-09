@@ -1,0 +1,82 @@
+
+Running 2 tests using 1 worker
+
+(node:15000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/four-work-shortstory.spec.ts:62:1 › delayed Google picture book import retains books created and edited while waiting (5.8s)
+(node:15074) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/four-work-shortstory.spec.ts:74:1 › failed picture book deletion preserves its editable draft for save retry and reload (6.0s)
+
+
+  1) [host] › tests/e2e/four-work-shortstory.spec.ts:62:1 › delayed Google picture book import retains books created and edited while waiting 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: '응답을 기다리며 만든 책', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: '응답을 기다리며 만든 책', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '응답을 기다리며 만든 책', exact: true })
+
+
+      68 |  await page.getByRole('button',{name:'새 그림책',exact:true}).click();await page.getByLabel('이야기 제목',{exact:true}).fill('응답을 기다리며 만든 책');await page.getByLabel('이 쪽의 이야기').fill('가져오는 동안 쓴 글을 보존해요.');
+      69 |  release();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue(getShortStoryOriginal('rabbit').title);
+    > 70 |  await expect(page.getByRole('button',{name:'응답을 기다리며 만든 책',exact:true})).toBeVisible();await page.getByRole('button',{name:'응답을 기다리며 만든 책',exact:true}).click();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('가져오는 동안 쓴 글을 보존해요.');await page.reload();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('가져오는 동안 쓴 글을 보존해요.');
+         |                                                                           ^
+      71 |  const books=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!).books);expect(books).toHaveLength(2);
+      72 | });
+      73 |
+        at <workspace>/tests/e2e/four-work-shortstory.spec.ts:70:75
+
+    Error Context: .cache/four-work-storage-red/four-work-shortstory-delay-89955-ed-and-edited-while-waiting-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/four-work-storage-red/four-work-shortstory-delay-89955-ed-and-edited-while-waiting-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/four-work-storage-red/four-work-shortstory-delay-89955-ed-and-edited-while-waiting-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/four-work-shortstory.spec.ts:74:1 › failed picture book deletion preserves its editable draft for save retry and reload 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByLabel('이야기 제목', { exact: true })
+    Expected: "삭제 실패에서도 지킬 책"
+    Received: "별주부전"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('이야기 제목', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('이야기 제목', { exact: true })
+        14 × locator resolved to <input readonly value="별주부전"/>
+           - unexpected value "별주부전"
+
+
+      77 |  await page.getByRole('button',{name:'이 그림책 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 확인',exact:true}).click();await expect(page.locator('main [role=alert]')).toContainText('저장하지 못했어요');await page.getByRole('button',{name:'취소',exact:true}).click();
+      78 |  await page.getByLabel('이 쪽의 이야기').fill('삭제가 실패한 뒤에도 이 글은 보관되어야 해요.');
+    > 79 |  await page.evaluate(()=>{(window as unknown as {restoreShortStoryTestStorage:()=>void}).restoreShortStoryTestStorage();});await page.getByRole('button',{name:'이 기기에 저장',exact:true}).click();await page.reload();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('삭제 실패에서도 지킬 책');await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('삭제가 실패한 뒤에도 이 글은 보관되어야 해요.');
+         |                                                                                                                                                                                                                                                                         ^
+      80 |  const state=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!));expect(state.books).toHaveLength(1);expect(state.deleted).toHaveLength(0);
+      81 | });
+      82 |
+        at <workspace>/tests/e2e/four-work-shortstory.spec.ts:79:265
+
+    Error Context: .cache/four-work-storage-red/four-work-shortstory-faile-7c77f-t-for-save-retry-and-reload-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/four-work-storage-red/four-work-shortstory-faile-7c77f-t-for-save-retry-and-reload-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/four-work-storage-red/four-work-shortstory-faile-7c77f-t-for-save-retry-and-reload-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [host] › tests/e2e/four-work-shortstory.spec.ts:62:1 › delayed Google picture book import retains books created and edited while waiting 
+    [host] › tests/e2e/four-work-shortstory.spec.ts:74:1 › failed picture book deletion preserves its editable draft for save retry and reload 

@@ -1,0 +1,78 @@
+{
+  "objective": "existing original and KnolStory direction and soundtrack enhancement",
+  "requirements": [
+    {
+      "id": "existing_manuscripts",
+      "requirement": "기존 원작과 놀스토리를 대상으로 작업",
+      "evidence": "8 existing .knolstory exports; raw fixed-baseline fixtures; story-direction preservation tests",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "native_direction",
+      "requirement": "RenPy 전환·ATL·오디오 기능에 연결",
+      "evidence": "native-direction pixel evidence; presentation.rpy and audio.rpy; presenter12 and actual audio verification",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "sound_assets",
+      "requirement": "음악·환경음·효과음 실제 묶음과 제작 방식·출처 확보",
+      "evidence": "22 actual Ogg files; manifest/decoded validation; procedural generator; no third-party audio samples",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "seonnyeo_comparison",
+      "requirement": "선녀와 나무꾼 기존 장면의 읽기 경험 비교",
+      "evidence": "same P2-v165-11 unchanged text; before/after Chrome screenshots and native channel/SFX state",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "whole_work",
+      "requirement": "선녀 전체로 적용 확대",
+      "evidence": "166 VN chapters+6 original chapters; exact exported cue fields; 336/335 native paths and 83-cut original",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "other_works",
+      "requirement": "다른 여러 기존 작품에도 반복 적용",
+      "evidence": "Heungbu/Onggojib/Rabbit originals and VN; all242 chapters configured; original335 cuts and VN routes end-to-end",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "preservation",
+      "requirement": "기존 원고·ID·분기·직접배치와 저장·파일 보존",
+      "evidence": "761 unit/contract/integration; all8 exports current project equality; native archiveProjectExactMatch and resume/history",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "new_asset_rights",
+      "requirement": "새로 확보한 자료는 무료 배포 가능한 것만 사용",
+      "evidence": "22 original sample-free synthesis files dedicated CC0; no ElevenLabs files; no paid jobs",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "all_provenance",
+      "requirement": "모든 미디어 출처·조건·상업 교체 기록과 누락 검사",
+      "evidence": "1337-file SHA256 inventory; creation receipts matched15 assets; missing evidence explicit; legacy stored audio RED/GREEN and export/import",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    },
+    {
+      "id": "release_gate",
+      "requirement": "무료 불허/미확인 자료 배포 금지 및 필수 표기",
+      "evidence": "free-release audit remains blocked; public copyright/OFL evidence checked; no actual public release",
+      "status": "verified for local manuscript enhancement; public release authorization excluded and still blocked"
+    }
+  ],
+  "limits": [
+    "Existing legacy media permissions are unverified, so public/free/commercial release remains blocked.",
+    "Native playback and decoding have been verified, but no claim of human listening approval or Android hardware testing.",
+    "Not every possible branch combination has been UI-traversed."
+  ],
+  "nativeCueAudit": {
+    "evidence": "all-cues-native.json",
+    "verifiedCuts": 131,
+    "works": 8,
+    "soundEntrances": 102,
+    "sameEntryRevisionNoReplay": true,
+    "scope": "independent entry for each exact authored cue; not all branch combinations"
+  }
+}

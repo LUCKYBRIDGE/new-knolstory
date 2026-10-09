@@ -1,0 +1,2093 @@
+{
+  "version": 1,
+  "works": [
+    {
+      "projectId": "pinky-review-main-004",
+      "profile": "nolstory",
+      "chapters": [
+        {
+          "chapterIds": [
+            "P1-v166"
+          ],
+          "music": "audio:music:score-calm",
+          "ambience": "audio:music:ambience-stream",
+          "intent": "자매가 계곡을 즐기는 평온함에서 갑작스러운 날씨 변화를 예고한다.",
+          "evidence": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다."
+        },
+        {
+          "chapterIds": [
+            "P2-v165"
+          ],
+          "music": "audio:music:score-tension",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "날개옷이 바람에 날아가고 선녀가 미끄러지는 실제 사건에만 소리와 충격을 둔다.",
+          "evidence": "빗방울 몇 개가 떨어지는가 싶더니 순식간에 거센 바람이 계곡을 휩쓸었다."
+        },
+        {
+          "chapterIds": [
+            "P3-v164"
+          ],
+          "music": "audio:music:score-loss",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "자매의 하늘길이 비구름에 가려지고 막내가 지상에 남는 상실.",
+          "evidence": "선녀가 절뚝거리며 계곡으로 돌아왔을 때, 언니들은 이미 은빛 길 저편에 있었다. 비구름 사이로 목소리가 끊겨 들렸다."
+        },
+        {
+          "chapterIds": [
+            "1-v163"
+          ],
+          "music": "audio:music:score-curiosity",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "나무꾼이 다친 낯선 이를 발견하는 경계와 도움의 첫 만남.",
+          "evidence": "이제부터 이야기의 중요한 순간마다 나무꾼의 입장에서 선택해 보세요."
+        },
+        {
+          "chapterIds": [
+            "C1-v162"
+          ],
+          "music": "audio:music:score-curiosity",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "접근 거리와 도움 방식을 고르는 첫 선택은 장면을 끊지 않는다.",
+          "evidence": "어떻게 도울까?"
+        },
+        {
+          "chapterIds": [
+            "C1-A-v106"
+          ],
+          "music": "audio:music:score-calm",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "거리를 존중하고 옷과 물을 놓아두는 도움에 긴장을 낮춘다.",
+          "evidence": "“가까이 가지 않겠소.”"
+        },
+        {
+          "chapterIds": [
+            "2-v105",
+            "2-v160"
+          ],
+          "music": "audio:music:score-calm",
+          "intent": "작은 집의 문을 닫고 다친 발목을 치료하는 안전한 공간.",
+          "evidence": "산 아래 작은 집에는 방 하나와 부엌, 오래된 마루가 있었다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "3-v104",
+            "3-v159"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "낯선 음식과 고향 이야기로 처음 웃는 친밀함.",
+          "evidence": "“먹을 수 있겠소?”"
+        },
+        {
+          "chapterIds": [
+            "4-v103",
+            "4-v158"
+          ],
+          "music": "audio:music:score-curiosity",
+          "ambience": "audio:music:ambience-forest",
+          "intent": "산에서 날개옷과 선녀라는 정체를 설명하는 발견.",
+          "evidence": "며칠 뒤, 선녀의 발목이 어느 정도 나았다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "5-v102",
+            "5-v157"
+          ],
+          "music": "audio:music:score-calm",
+          "ambience": "audio:music:ambience-forest",
+          "intent": "며칠 동안 숲을 뒤지고 농담하며 나란히 걷는 관계의 변화.",
+          "evidence": "두 사람은 여러 날 산을 뒤졌다. 선녀는 바람에 꺾인 가지를 따라 걸었다. 기울어진 소나무도 돌아보았지만, 뿌리 둘레에는 단단히 엉긴 흙과 돌뿐이었다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "6-v101",
+            "6-v156"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "날개옷이 나오지 않아 생활과 찾기의 균형을 다시 묻는다.",
+          "evidence": "한 달이 지나도 옷은 나오지 않았다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "C2-v100",
+            "C2-v155"
+          ],
+          "music": "audio:music:score-curiosity",
+          "intent": "수색을 함께 지속할지 결정하는 생활의 선택.",
+          "evidence": "계속 찾을까?"
+        },
+        {
+          "chapterIds": [
+            "C2-A-v83",
+            "C2-A-v139"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "장에 가지 않는 날 함께 찾겠다는 합의를 지지한다.",
+          "evidence": "“장에 가지 않는 날에는 같이 찾아봅시다.”"
+        },
+        {
+          "chapterIds": [
+            "7-v82",
+            "7-v98",
+            "7-v138",
+            "7-v153"
+          ],
+          "music": "audio:music:score-curiosity",
+          "intent": "차가운 첫눈을 처음 만나는 작은 발견.",
+          "evidence": "늦가을, 이른 첫눈이 내렸다. 마당을 덮은 눈은 해가 나면 녹을 만큼 얇았다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "8-v81",
+            "8-v97",
+            "8-v137",
+            "8-v152"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "씨앗 주머니와 바느질로 생활이 섞여 드는 온기.",
+          "evidence": "가을이 깊어지는 동안 두 사람의 생활은 조금씩 섞여들었다. 선녀는 마을 어귀에서 씨앗 고르는 법을 배워 와 처마 밑에 작은 주머니들을 말렸다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "9-v80",
+            "9-v96",
+            "9-v136",
+            "9-v151"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "마루의 고백과 두고 가기 싫은 마음에 대사 여백을 준다.",
+          "evidence": "눈이 녹은 저녁. 둘은 마루에 나란히 앉아 있다. 선녀는 빈 화분에 손가락으로 작은 고랑을 그었다."
+        },
+        {
+          "chapterIds": [
+            "10-v79",
+            "10-v95",
+            "10-v135",
+            "10-v150"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "부부가 되고 싶다는 뜻을 선녀가 먼저 밝히는 상호 선택.",
+          "evidence": "며칠 뒤, 선녀가 먼저 말을 꺼낸다."
+        },
+        {
+          "chapterIds": [
+            "11-v78",
+            "11-v94",
+            "11-v134",
+            "11-v149"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "하늘의 가족에 대한 그리움을 잊지 않는 약속과 혼인.",
+          "evidence": "“대신 한 가지는 알고 있어야 해요.”"
+        },
+        {
+          "chapterIds": [
+            "12-v77",
+            "12-v93",
+            "12-v133",
+            "12-v148"
+          ],
+          "music": "audio:music:score-calm",
+          "intent": "장보기와 실을 기억해 달라는 일상의 친밀함.",
+          "evidence": "“오늘 장에 가요?”",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "13-v76",
+            "13-v92",
+            "13-v132",
+            "13-v147"
+          ],
+          "music": "audio:music:score-loss",
+          "ambience": "audio:music:ambience-forest",
+          "intent": "하늘을 지나가는 기러기가 고향의 그리움을 깨운다.",
+          "evidence": "가을 어느 날, 기러기 떼가 하늘을 지나간다. 선녀는 바구니를 든 채 오래 바라본다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "C3-v75",
+            "C3-v91",
+            "C3-v131",
+            "C3-v146"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "고향 그리움을 어떻게 받아들일지 선택하는 여백.",
+          "evidence": "선녀의 그리움 앞에서"
+        },
+        {
+          "chapterIds": [
+            "C3-A-v53",
+            "C3-A-v85",
+            "C3-A-v123",
+            "C3-A-v143"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "그리운 가족 이야기를 끝까지 듣는 공감.",
+          "evidence": "“가족이 보고 싶은 거요?”"
+        },
+        {
+          "chapterIds": [
+            "14-v52",
+            "14-v73",
+            "14-v84",
+            "14-v89",
+            "14-v122",
+            "14-v129",
+            "14-v142",
+            "14-v144"
+          ],
+          "music": "audio:music:score-mystery",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "비가 씻어낸 뿌리에서 날개옷을 찾고 숨기고 싶은 마음이 생긴다.",
+          "evidence": "늦가을 밤, 다시 큰비가 내린다. 아직 덜 찬 달이 비구름 뒤에 숨었다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "C4-v51",
+            "C4-v72",
+            "C4-v88",
+            "C4-v121",
+            "C4-v128",
+            "C4-v141"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "발견한 옷을 돌려줄지 숨길지 정하는 핵심 선택.",
+          "evidence": "선녀옷을 어떻게 할까?"
+        },
+        {
+          "chapterIds": [
+            "R1-v13",
+            "R1-v61",
+            "R1-v86",
+            "R1-v107"
+          ],
+          "music": "audio:music:score-curiosity",
+          "intent": "돌려받은 옷과 마지막 보름밤의 기한을 확인하는 발견.",
+          "evidence": "저녁. 선녀가 부엌에서 국을 젓고 있다."
+        },
+        {
+          "chapterIds": [
+            "R2-v12",
+            "R2-v60"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "돌아갈 수 있게 되면서 실제 결정을 앞둔 두려움.",
+          "evidence": "“옷이 없을 때는 그냥 그리워하면 됐어요.”"
+        },
+        {
+          "chapterIds": [
+            "R3-v11",
+            "R3-v59"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "남기를 바라는 마음과 상대의 대답을 먼저 듣는 대화.",
+          "evidence": "“당신은 내가 여기 남았으면 좋겠죠?”"
+        },
+        {
+          "chapterIds": [
+            "R4-v10",
+            "R4-v20",
+            "R4-v58",
+            "R4-v65"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "하늘의 어머니와 지상의 삶 사이에서 선녀가 자신의 뜻을 정한다.",
+          "evidence": "날마다 달의 빈 가장자리가 조금씩 메워졌다. 마지막 보름밤을 앞둔 저녁, 선녀가 옷을 곁에 놓고 앉았다."
+        },
+        {
+          "chapterIds": [
+            "C5R-v9",
+            "C5R-v19",
+            "C5R-v57",
+            "C5R-v64"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "선녀가 내린 선택을 존중하거나 붙잡으려는 마지막 갈림길.",
+          "evidence": "선녀의 선택을 어떻게 마주할까?"
+        },
+        {
+          "chapterIds": [
+            "E1-1-v4",
+            "E1-1-v16"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "떠나는 뜻을 확인하며 서로의 기억을 남긴다.",
+          "evidence": "“당신이 하늘로 돌아가고 싶다면, 망설이지 말고 가시오.”"
+        },
+        {
+          "chapterIds": [
+            "E1-2-v3",
+            "E1-2-v15"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "보름밤에 날개옷을 입고 하늘로 떠나는 작별.",
+          "evidence": "이 계절의 마지막 보름밤. 아직 열려 있는 하늘길이 달빛 너머로 이어져 있다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "E1-3-v2",
+            "E1-3-v14"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "겨울 마당에서 웃음과 씨앗 주머니를 기억하는 남겨진 생활.",
+          "evidence": "겨울이 오자 나무꾼은 지붕을 고치고 장작을 쌓았다. 문득 웃음소리가 생각나면 하던 일을 잠깐 멈췄다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "E1-4-v1"
+          ],
+          "music": "audio:music:score-resolve",
+          "intent": "서로 다른 고향에서 하루를 시작하되 존중의 기억이 남는 엔딩.",
+          "evidence": "하늘의 집에서는 선녀가 어머니의 손을 잡고 오래 이야기를 나누었다. 산 아래 작은 집에서는 나무꾼이 아침밥을 지었다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "E2-1-v8",
+            "E2-1-v18",
+            "E2-1-v56",
+            "E2-1-v63"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "심은 씨앗과 계절의 숲을 스스로 선택하는 지상의 삶.",
+          "evidence": "“당신이 이곳에 남고 싶다면, 함께 걷겠소.”"
+        },
+        {
+          "chapterIds": [
+            "E2-2-v7",
+            "E2-2-v17",
+            "E2-2-v55",
+            "E2-2-v62"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "하늘길이 사라져도 함께 새벽을 맞는 자신의 결정.",
+          "evidence": "이 계절의 마지막 보름밤. 아직 열려 있는 하늘길이 달빛 너머로 이어져 있다."
+        },
+        {
+          "chapterIds": [
+            "E2-3-v6",
+            "E2-3-v54"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "겨울과 계절이 흐르며 깊어지는 공동생활.",
+          "evidence": "겨울이 온다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "E2-4-v5"
+          ],
+          "music": "audio:music:score-resolve",
+          "intent": "남은 그리움을 인정하며 물주는 손을 함께 멈추는 일상의 엔딩.",
+          "evidence": "어느 날 장롱을 정리하다 선녀가 쓰던 작은 머리끈과 날개옷이 나란히 보인다."
+        },
+        {
+          "chapterIds": [
+            "H1-v50",
+            "H1-v71",
+            "H1-v87",
+            "H1-v120",
+            "H1-v127",
+            "H1-v140"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "옷을 궤짝 아래 숨겨 하루의 결정을 미루는 불안.",
+          "evidence": "나무꾼은 집으로 바로 들어가지 않는다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "H2-v49",
+            "H2-v70",
+            "H2-v119",
+            "H2-v126"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "찾는 선녀 앞에서 발견한 사실을 말하지 못하는 긴장.",
+          "evidence": "“비가 흙을 쓸어 갔더라고요. 마을 어귀에서 동쪽 물길을 따라 올라가 봤어요.”",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "H3-v48",
+            "H3-v69",
+            "H3-v118",
+            "H3-v125"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "아침 햇살 속에서 고백을 다시 미루려는 망설임.",
+          "evidence": "이튿날 아침, 창문으로 맑은 햇살이 비친다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "C4H-v47",
+            "C4H-v68",
+            "C4H-v117",
+            "C4H-v124"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "숨긴 옷을 오늘 말할지 결정하는 갈림길.",
+          "evidence": "다음 날 아침의 선택"
+        },
+        {
+          "chapterIds": [
+            "HA1-v22",
+            "HA1-v67"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "늦게 돌려준 옷과 기한을 확인하고 혼자 생각할 시간을 청한다.",
+          "evidence": "나무꾼은 장작 창고로 가 궤짝 아래에서 선녀옷을 꺼낸다."
+        },
+        {
+          "chapterIds": [
+            "HA2-v21",
+            "HA2-v66"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "선녀가 돌아갈지 머물지 스스로 정리하는 조용한 시간.",
+          "evidence": "“옷을 찾았으니 이제 나도 결정해야 해요.”",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "HB1-v46",
+            "HB1-v116"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "옷을 숨긴 둘째 날에 평소와 다른 행동으로 의심이 쌓인다.",
+          "evidence": "“어젯밤에 큰언니가 꿈에 나왔어요.”"
+        },
+        {
+          "chapterIds": [
+            "HB2-v45",
+            "HB2-v115"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "창고로 향하는 선녀를 막는 행동으로 의심이 커진다.",
+          "evidence": "선녀가 장작 창고 쪽으로 향한다."
+        },
+        {
+          "chapterIds": [
+            "HB3-v44",
+            "HB3-v114"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "밤에 이상한 행동의 이유를 직접 묻는 긴장.",
+          "evidence": "그날 밤."
+        },
+        {
+          "chapterIds": [
+            "C5H-v43",
+            "C5H-v113"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "숨긴 옷을 사실대로 말할지 거짓말할지 선택.",
+          "evidence": "진실을 말할까?"
+        },
+        {
+          "chapterIds": [
+            "E3-1-v30",
+            "E3-1-v108"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "며칠 숨긴 옷을 꺼내며 약속을 어긴 사실을 마주한다.",
+          "evidence": "“있소.”"
+        },
+        {
+          "chapterIds": [
+            "E3-2-v29"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "바로 용서하지 않고 광 옆에서 자며 거리를 두는 시간.",
+          "evidence": "선녀는 바로 용서하지 않는다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "E3-3-v28"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "하늘로 돌아갈 뜻과 불확실한 재회를 말하는 준비.",
+          "evidence": "“나 하늘에 갈 거예요.”"
+        },
+        {
+          "chapterIds": [
+            "C6C-v27"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "떠나는 상대에게 약속을 요구할지 마음만 전할지 선택.",
+          "evidence": "마지막으로 무엇을 말할까?"
+        },
+        {
+          "chapterIds": [
+            "C6C-A-v25",
+            "C6L-A-v33"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "떠나는 상대의 뜻을 듣는 마지막 대화.",
+          "evidence": "“다시 만나고 싶소.”"
+        },
+        {
+          "chapterIds": [
+            "E3-4-v24"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "찢어진 날개옷과 열린 하늘길을 따라 떠나는 작별.",
+          "evidence": "마지막 보름밤을 앞둔 밤, 둥글어 가는 달이 산 위로 떠오른다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "E3-5-v23"
+          ],
+          "music": "audio:music:score-curiosity",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "몇 계절 뒤 다시 만났지만 관계를 새로 말해야 하는 열린 엔딩.",
+          "evidence": "하늘로 돌아간 선녀는 상한 날개옷을 제대로 고쳤다. 몇 계절이 지나, 선녀들이 지상을 찾는 때가 다시 돌아왔다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "C6C-B-v26",
+            "C6L-B-v34"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "상대에게 약속을 요구하는 마음과 그 부담을 마주한다.",
+          "evidence": "“돌아오겠다고 약속해주면 안 되겠소?”"
+        },
+        {
+          "chapterIds": [
+            "E4-1-v42",
+            "E4-1-v112"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "발견한 것을 없다고 말하며 신뢰를 훼손하는 선택.",
+          "evidence": "“아무것도 없소.”"
+        },
+        {
+          "chapterIds": [
+            "E4-2-v41",
+            "E4-2-v111"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "옷을 장롱으로 옮기고 문을 닫으며 진실을 더 감춘다.",
+          "evidence": "그날 밤 나무꾼은 잠들지 못한다."
+        },
+        {
+          "chapterIds": [
+            "E4-3-v40",
+            "E4-3-v110"
+          ],
+          "music": "audio:music:score-mystery",
+          "intent": "보름이 지난 뒤 장롱의 은빛 자락을 선녀가 직접 발견한다.",
+          "evidence": "마지막 보름밤이 지나고 다음 밤이 왔다. 나무꾼은 어젯밤에도 결국 말을 꺼내지 못했다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "E4-4-v39",
+            "E4-4-v109"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "돌아오지 못하게 된 사실과 거짓말을 직접 따지는 대화.",
+          "evidence": "“다녀왔소.”"
+        },
+        {
+          "chapterIds": [
+            "E4-5-v38"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "그날만은 혼자 있게 해 달라고 방으로 들어가는 거리.",
+          "evidence": "“오늘은 더 이야기하고 싶지 않아요.”"
+        },
+        {
+          "chapterIds": [
+            "E4-6-v37"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "거의 말하지 않는 아침 식탁의 단절.",
+          "evidence": "아침 식탁. 둘 다 거의 말하지 않는다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "E4-7-v36"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "고향으로 갈 길을 잃고 지상에서도 떠나려 짐을 꾸린다.",
+          "evidence": "다음 저녁, 어제보다 조금 더 이지러진 달이 뜬다."
+        },
+        {
+          "chapterIds": [
+            "C6L-v35"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "문을 나서는 선택 앞에서 붙잡을 말의 무게.",
+          "evidence": "마지막 순간"
+        },
+        {
+          "chapterIds": [
+            "E4-8-v32"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "스스로 짐과 날개옷을 들고 마을길로 떠나는 이별.",
+          "evidence": "선녀가 날개옷을 보자기로 싸서 품에 안는다. 작은 짐은 자기 어깨에 멘다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "E4-9-v31"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "비어 있는 집과 마지막 닫힌 문으로 관계의 끝을 남긴다.",
+          "evidence": "다음 날 아침.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "C3-B-v74",
+            "C3-B-v90",
+            "C3-B-v130",
+            "C3-B-v145"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "떠날 두려움과 그리움을 구분하려는 불안한 대화.",
+          "evidence": "“머리로는 알겠소.”"
+        },
+        {
+          "chapterIds": [
+            "C2-B-v99",
+            "C2-B-v154"
+          ],
+          "music": "audio:music:score-calm",
+          "intent": "혼자 찾을 시간을 존중하는 합의와 고마움.",
+          "evidence": "“알겠소.”"
+        },
+        {
+          "chapterIds": [
+            "C1-B-v161"
+          ],
+          "music": "audio:music:score-tension",
+          "ambience": "audio:music:ambience-rain",
+          "intent": "산길 위험을 설명하면서 낯선 이에 대한 경계가 남는 반응.",
+          "evidence": "“이 비에는 산길이 무너질 수도 있소.”"
+        }
+      ],
+      "events": [
+        {
+          "lineId": "P1-v166-13",
+          "evidence": "멀리서 천둥이 울린다.",
+          "intent": "멀리 울리는 실제 천둥으로 폭풍이 다가옴을 한 번 알린다.",
+          "sound": "audio:sound:sfx-thunder"
+        },
+        {
+          "lineId": "P2-v165-7",
+          "evidence": "바위 위의 흰 천 하나가 바람에 들려 숲 쪽으로 날아간다.",
+          "intent": "날개옷이 바람에 들려 날아가는 천의 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "P2-v165-11",
+          "evidence": "흰 천은 나무들 사이를 스치며 더 깊은 숲으로 날아갔다.\n세찬 빗줄기가 시야를 가렸다. 기울어진 소나무 쪽에서 흙이 무너지는 소리가 났고, 흰 천은 보이지 않았다.",
+          "intent": "흙이 무너지는 실제 소리를 짧게 강조한다.",
+          "sound": "audio:sound:sfx-crack",
+          "effect": "shake"
+        },
+        {
+          "lineId": "P2-v165-13",
+          "evidence": "선녀가 젖은 풀을 헤치다 비탈에서 미끄러진다.",
+          "intent": "비탈에서 미끄러지는 충격은 천둥과 별도로 한 번만.",
+          "effect": "shake"
+        },
+        {
+          "lineId": "1-v163-1",
+          "evidence": "이제부터 이야기의 중요한 순간마다 나무꾼의 입장에서 선택해 보세요.",
+          "intent": "자매 장면에서 나무꾼 시점으로 바뀌며 새로 등장한 M02만 서서히 드러낸다.",
+          "actorKey": "M02",
+          "motion": "fade-in"
+        },
+        {
+          "lineId": "2-v105-8",
+          "evidence": "선녀는 문이 닫힌 것을 확인한 뒤에야 발목을 치료한다.",
+          "intent": "닫힌 문을 확인한 뒤 치료할 수 있는 안전한 공간을 소리로 알린다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "2-v160-8",
+          "evidence": "선녀는 문이 닫힌 것을 확인한 뒤에야 발목을 치료한다.",
+          "intent": "닫힌 문을 확인한 뒤 치료할 수 있는 안전한 공간을 소리로 알린다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "14-v52-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v73-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v84-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v89-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v122-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v129-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v142-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v144-2",
+          "evidence": "다음 날 산에 오른 나무꾼은 첫 폭풍에 기울었던 소나무 앞에서 멈춘다. 빗물이 뿌리 둘레의 흙을 깊게 씻어냈다.",
+          "intent": "다음 날 산길로 바뀌면 밤의 비를 끝내고 숲의 소리를 사용한다.",
+          "ambience": "audio:music:ambience-forest"
+        },
+        {
+          "lineId": "14-v52-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v73-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v84-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v89-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v122-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v129-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v142-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v144-6",
+          "evidence": "천을 꺼내자 믿기 어려울 만큼 가볍다. 뿌리에 걸린 옷자락이 찢어져 있었고, 흙에 눌린 자리는 거뭇하게 바래 있었다.",
+          "intent": "뿌리에 걸렸던 날개옷을 실제 꺼내는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "14-v52-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v73-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v84-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v89-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v122-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v129-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v142-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v144-8",
+          "evidence": "나무꾼은 계곡의 맑은 물에 조심스럽게 천을 헹궈 흙을 털어냈다. 낮에는 평범한 흰 천처럼 보인다.",
+          "intent": "날개옷을 계곡 물에 헹구는 실제 소리.",
+          "sound": "audio:sound:sfx-water",
+          "ambience": "audio:music:ambience-stream"
+        },
+        {
+          "lineId": "14-v52-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "14-v73-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "14-v84-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "14-v89-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "14-v122-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "14-v129-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "14-v142-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "14-v144-16",
+          "evidence": "나무꾼이 옷을 접으려다가 멈춘다.",
+          "intent": "찾은 옷을 접으려다 멈춘 뒤 숨기고 싶은 마음이 생겨 음악을 긴장으로 바꾼다.",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "R1-v13-8",
+          "evidence": "선녀가 보자기를 펼친다. 손이 그대로 멈춘다.",
+          "intent": "선녀가 보자기를 직접 펼쳐 자기 옷을 확인하는 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "R1-v61-8",
+          "evidence": "선녀가 보자기를 펼친다. 손이 그대로 멈춘다.",
+          "intent": "선녀가 보자기를 직접 펼쳐 자기 옷을 확인하는 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "R1-v86-8",
+          "evidence": "선녀가 보자기를 펼친다. 손이 그대로 멈춘다.",
+          "intent": "선녀가 보자기를 직접 펼쳐 자기 옷을 확인하는 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "R1-v107-8",
+          "evidence": "선녀가 보자기를 펼친다. 손이 그대로 멈춘다.",
+          "intent": "선녀가 보자기를 직접 펼쳐 자기 옷을 확인하는 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "H1-v50-2",
+          "evidence": "장작 창고의 오래된 궤짝 아래에 선녀옷을 넣는다.",
+          "intent": "궤짝 아래에 날개옷을 넣는 실제 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "H1-v71-2",
+          "evidence": "장작 창고의 오래된 궤짝 아래에 선녀옷을 넣는다.",
+          "intent": "궤짝 아래에 날개옷을 넣는 실제 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "H1-v87-2",
+          "evidence": "장작 창고의 오래된 궤짝 아래에 선녀옷을 넣는다.",
+          "intent": "궤짝 아래에 날개옷을 넣는 실제 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "H1-v120-2",
+          "evidence": "장작 창고의 오래된 궤짝 아래에 선녀옷을 넣는다.",
+          "intent": "궤짝 아래에 날개옷을 넣는 실제 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "H1-v127-2",
+          "evidence": "장작 창고의 오래된 궤짝 아래에 선녀옷을 넣는다.",
+          "intent": "궤짝 아래에 날개옷을 넣는 실제 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "H1-v140-2",
+          "evidence": "장작 창고의 오래된 궤짝 아래에 선녀옷을 넣는다.",
+          "intent": "궤짝 아래에 날개옷을 넣는 실제 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "HA1-v22-8",
+          "evidence": "선녀가 떨리는 손으로 보자기를 연다. 희미한 은빛이 서린 옷이 드러난다.",
+          "intent": "떨리는 손으로 보자기를 열어 늦게 돌려받는 옷을 확인한다.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "HA1-v67-8",
+          "evidence": "선녀가 떨리는 손으로 보자기를 연다. 희미한 은빛이 서린 옷이 드러난다.",
+          "intent": "떨리는 손으로 보자기를 열어 늦게 돌려받는 옷을 확인한다.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "E4-2-v41-6",
+          "evidence": "그러나 결국 장롱 문을 닫는다.",
+          "intent": "장롱 문을 실제 닫는 순간에만 소리를 붙인다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "E4-2-v111-6",
+          "evidence": "그러나 결국 장롱 문을 닫는다.",
+          "intent": "장롱 문을 실제 닫는 순간에만 소리를 붙인다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "E4-8-v32-7",
+          "evidence": "선녀는 문턱을 넘어 마을로 내려가는 길을 걷는다. 나무꾼은 빈 문간에 서서 그 뒷모습을 바라본다.",
+          "intent": "선녀가 문턱을 넘어 실제 떠나는 발걸음. 기존의 빈 무대 지정은 보존한다.",
+          "sound": "audio:sound:sfx-steps"
+        },
+        {
+          "lineId": "E4-9-v31-9",
+          "evidence": "나무꾼은 오래 서 있다가 천천히 문을 닫는다.",
+          "intent": "마지막에 실제 문을 닫는 행위로 끝난 관계를 남긴다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "E1-4-v1-2",
+          "evidence": "선녀는 창가에서 지상의 숲을 떠올렸다. 나무꾼은 문을 열고 겨울 공기를 들이마셨다.",
+          "intent": "나무꾼이 겨울의 아침에 실제 문을 여는 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "E2-4-v5-7",
+          "evidence": "“여기는 조금만 줘요.” 선녀가 말하자 나무꾼은 물동이를 기울이던 손을 멈췄다. 작은 잎 위로 물방울 하나가 굴러갔다.",
+          "intent": "작은 잎 위로 굴러가는 물방울과 함께 사는 일상의 여운.",
+          "sound": "audio:sound:sfx-water"
+        },
+        {
+          "lineId": "P2-v165-9",
+          "evidence": "막내 선녀가 옷을 따라 달린다.",
+          "intent": "옷을 따라 실제 달리는 막내를 짧게 이동시키되 기존 최종배치값은 보존한다.",
+          "actorKey": "M01",
+          "motion": "move",
+          "fromXAnchor": 15
+        },
+        {
+          "lineId": "C1-A-v106-2",
+          "evidence": "나무꾼은 자신의 겉옷과 물통을 바위 위에 놓고 멀찍이 물러난다.",
+          "intent": "겉옷을 놓고 멀찍이 물러나는 실제 행동을 중앙에서 기존 오른쪽 자리로 이동시킨다.",
+          "actorKey": "M02",
+          "motion": "move",
+          "fromXAnchor": 50
+        }
+      ]
+    },
+    {
+      "projectId": "heungbu-nolbu-nolstory",
+      "profile": "nolstory",
+      "chapters": [
+        {
+          "chapterIds": [
+            "chapter-1"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "아이들에게 떡을 나누고 형제가 서로 반쪽을 건네던 어린 시절.",
+          "evidence": "옛날 어느 마을에 놀부와 흥부라는 형제가 살았다.\n\n형 놀부는 꼼꼼했고, 동생 흥부는 마음이 따뜻했다.\n\n둘은 성격이 달랐지만 어릴 때에는 제법 사이가 좋은 형제였다."
+        },
+        {
+          "chapterIds": [
+            "chapter-2"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "흉년의 씨앗과 당장 굶는 이웃 사이에서 서로의 책임이 충돌한다.",
+          "evidence": "세월이 흘러 두 형제는 부모와 함께 농사를 지었다.\n\n흥부도 부지런히 일했지만 어려운 사람을 보면 좀처럼 그냥 지나치지 못했다.\n\n놀부는 아버지를 도와 장부와 곡식을 관리했다."
+        },
+        {
+          "chapterIds": [
+            "chapter-3"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "부모의 죽음과 재산 분배에 오래된 감정이 끼어들며 살림을 나눈다.",
+          "evidence": "세월이 더 흘러 두 형제는 차례로 혼인을 했다.\n\n흥부에게 첫아이가 태어나자 놀부는 작은 이불을 하나 들고 찾아왔다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "chapter-4"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "큰비와 병으로 쌀독이 비고 형의 조건부 도움을 가족과 의논한다.",
+          "evidence": "처음 몇 해는 그럭저럭 살아갈 만했다.\n\n흥부는 부지런히 일했고 아이들도 하나둘 늘어났다.\n\n작은 집은 언제나 북적였다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "chapter-5a"
+          ],
+          "music": "audio:music:score-calm",
+          "intent": "도움을 받아 겨울을 넘기되 집안 결정을 모두 넘기지 않는 경계.",
+          "evidence": "흥부 가족은 놀부의 곡식을 빌리기로 했다.\n\n곡식 자루가 들어오자 아이들의 얼굴이 밝아졌다."
+        },
+        {
+          "chapterIds": [
+            "chapter-5b"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "일과 가족 사이의 어려움에서 이웃과 서로 돕는 법을 배운다.",
+          "evidence": "흥부 가족은 놀부의 곡식을 빌리지 않기로 했다.\n\n흥부는 다음 날부터 더 많은 일을 찾아다녔다."
+        },
+        {
+          "chapterIds": [
+            "chapter-6"
+          ],
+          "music": "audio:music:score-warmth",
+          "ambience": "audio:music:ambience-forest",
+          "intent": "가족의 필요한 몫을 지키면서 함께 제비를 치료한다.",
+          "evidence": "그해 봄이 무르익어 갈 무렵이었다.\n\n흥부네 처마 아래에 제비 한 쌍이 둥지를 틀었다.\n\n아이들은 아침마다 제비를 올려다보았다."
+        },
+        {
+          "chapterIds": [
+            "chapter-7"
+          ],
+          "music": "audio:music:score-curiosity",
+          "intent": "제비의 박씨가 재물이 되지만 가족과 사용 방법을 함께 정한다.",
+          "evidence": "다음 해 봄, 제비가 다시 찾아왔다.\n\n부리에는 작은 박씨 하나가 물려 있었다."
+        },
+        {
+          "chapterIds": [
+            "chapter-8"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "흥부가 달라졌다는 사실보다 행운으로만 설명하려는 불편함.",
+          "evidence": "흥부가 부자가 되었다는 소식은 곧 놀부에게도 전해졌다.\n\n놀부는 직접 흥부의 집을 찾아갔다."
+        },
+        {
+          "chapterIds": [
+            "chapter-9"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "멈출 수 있는 순간을 지나 제비를 일부러 해치는 결정.",
+          "evidence": "놀부는 며칠 동안 기다렸다.\n\n하지만 다친 제비는 나타나지 않았다."
+        },
+        {
+          "chapterIds": [
+            "chapter-10"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "버려진 물건과 도깨비, 물바람이 이어지는데도 박을 멈추지 않는다.",
+          "evidence": "다음 해, 정말로 제비가 박씨를 물어왔다.\n\n놀부는 뛸 듯이 기뻐했다."
+        },
+        {
+          "chapterIds": [
+            "chapter-11"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "도움을 받을 입장이 된 놀부와 흥부가 다시 경계를 정한다.",
+          "evidence": "놀부네가 어려워졌다는 소식은 흥부에게도 전해졌다.\n\n집 한쪽이 무너졌고 곡식도 많이 잃었다.\n\n겨울도 멀지 않았다."
+        },
+        {
+          "chapterIds": [
+            "chapter-12a"
+          ],
+          "music": "audio:music:score-resolve",
+          "intent": "도움을 받아 다시 살아가며 함께 일하는 형제의 엔딩.",
+          "evidence": "놀부 가족은 겨울 동안 흥부네 집에서 함께 지내기로 했다.\n\n놀부는 쉽게 고개를 끄덕이지 못했다."
+        },
+        {
+          "chapterIds": [
+            "chapter-12b"
+          ],
+          "music": "audio:music:score-resolve",
+          "intent": "서로의 삶과 결정권을 지키며 오가는 길을 남기는 엔딩.",
+          "evidence": "흥부 가족은 마을에 오래 비어 있던 작은 집을 놀부 가족이 지낼 수 있도록 서둘러 고치기로 했다.\n\n날이 더 추워지기 전에 해야 할 일이 많았다."
+        }
+      ],
+      "events": [
+        {
+          "lineId": "scene-6-1",
+          "evidence": "그해 봄이 무르익어 갈 무렵이었다.\n\n흥부네 처마 아래에 제비 한 쌍이 둥지를 틀었다.\n\n아이들은 아침마다 제비를 올려다보았다.",
+          "intent": "처마 아래 둥지를 튼 제비의 실제 존재를 알린다.",
+          "sound": "audio:sound:sfx-swallow"
+        },
+        {
+          "lineId": "scene-6-9",
+          "evidence": "아이들이 웃었다.\n\n첫째는 가느다란 나뭇가지를 찾았고, 둘째는 헝겊을 가져왔다.\n\n막내는 자기 몸통만 한 장작을 들고 왔다.",
+          "intent": "아이들이 헝겊과 나뭇가지를 가져와 함께 치료를 준비하는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "scene-6-12",
+          "evidence": "얼마 뒤 제비는 다시 하늘로 날아올랐다.\n\n아이들은 처마 밑에서 손을 흔들었다.",
+          "intent": "회복한 제비가 다시 날아오르는 순간.",
+          "sound": "audio:sound:sfx-swallow"
+        },
+        {
+          "lineId": "scene-7-1",
+          "evidence": "다음 해 봄, 제비가 다시 찾아왔다.\n\n부리에는 작은 박씨 하나가 물려 있었다.",
+          "intent": "박씨를 물고 돌아온 제비의 보은.",
+          "sound": "audio:sound:sfx-swallow"
+        },
+        {
+          "lineId": "scene-7-4",
+          "evidence": "흥부가 첫 번째 박에 톱을 댔다.\n\n쓱싹, 쓱싹.",
+          "intent": "쓱싹쓱싹 첫 박을 타는 톱질의 실제 소리.",
+          "sound": "audio:sound:sfx-gourd"
+        },
+        {
+          "lineId": "scene-7-6",
+          "evidence": "쩍!\n\n박이 갈라지자 곡식과 비단, 값진 물건이 우르르 쏟아졌다.\n\n아이들은 마당을 뛰어다녔다.",
+          "intent": "쩍 갈라지는 첫 박에서 재물이 쏟아지는 발견.",
+          "sound": "audio:sound:sfx-crack"
+        },
+        {
+          "lineId": "scene-7-12",
+          "evidence": "그날 밤 가족은 박에서 나온 재물을 가운데 두고 오래 이야기했다.\n\n먼저 낡은 집을 고치고, 다음 농사를 준비하고, 아이들을 위한 몫을 남기기로 했다.",
+          "intent": "재물보다 함께 사용 방법을 의논하는 가족의 온기로 음악을 바꾼다.",
+          "music": "audio:music:score-warmth"
+        },
+        {
+          "lineId": "scene-10-1",
+          "evidence": "다음 해, 정말로 제비가 박씨를 물어왔다.\n\n놀부는 뛸 듯이 기뻐했다.",
+          "intent": "놀부에게도 박씨를 가져온 제비.",
+          "sound": "audio:sound:sfx-swallow"
+        },
+        {
+          "lineId": "scene-10-3",
+          "evidence": "커다란 박들이 열렸다.\n\n놀부는 가족과 동네 사람들을 불러 모으고 첫 번째 박을 탔다.",
+          "intent": "손님들 앞에서 실제 첫 박을 타는 소리.",
+          "sound": "audio:sound:sfx-gourd"
+        },
+        {
+          "lineId": "scene-10-9",
+          "evidence": "두 번째 박이 갈라지자 이번에는 도깨비들이 튀어나왔다.\n\n도깨비들은 마당을 뛰어다니며 장독 뚜껑을 뒤집고, 곡식 자루를 굴리고, 놀부의 갓을 빼앗아 달아났다.",
+          "intent": "두 번째 박이 갈라져 도깨비가 마당을 어지럽히는 사건.",
+          "sound": "audio:sound:sfx-crack",
+          "effect": "shake"
+        },
+        {
+          "lineId": "scene-10-15",
+          "evidence": "하나가 둘이 되고 둘이 셋이 되었다.\n\n마지막 박이 갈라지자 거센 물과 바람이 쏟아져 나왔다.\n\n곡식은 젖고 집 한쪽이 무너졌다.",
+          "intent": "마지막 박에서 거센 물과 바람이 쏟아지는 사건.",
+          "sound": "audio:sound:sfx-water",
+          "effect": "shake"
+        }
+      ]
+    },
+    {
+      "projectId": "pinky-review-main-003",
+      "profile": "nolstory",
+      "chapters": [
+        {
+          "chapterIds": [
+            "review-main-003:start"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "관아에서 얼굴보다 가족을 지킨 행동을 기준으로 돌아갈 사람을 고르는 시점.",
+          "evidence": "옹고집의 시점"
+        },
+        {
+          "chapterIds": [
+            "review-main-003:real-route",
+            "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+            "review-main-003:real-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "다시 집으로 돌아왔어도 아이와 일꾼을 대하는 행동이 같은지 시험한다.",
+          "evidence": "오래 함께 산 저 사람과 돌아가겠습니다."
+        },
+        {
+          "chapterIds": [
+            "review-main-003:real-loop-testimony",
+            "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+            "review-main-003:real-loop-testimony-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "되풀이된 관아 판정 앞에서 같은 행동의 결과를 다시 마주한다.",
+          "evidence": "다음 날, 옹고집은 국을 한 술 뜨자마자 목소리를 높였다."
+        },
+        {
+          "chapterIds": [
+            "review-main-003:fake-first-verdict",
+            "review-main-003:fake-first-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+            "review-main-003:fake-first-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "가족이 조용한 사람을 택하고 이름과 집을 빼앗겼다고 느끼는 판결.",
+          "evidence": "아이들을 지켜 준 저 사람과 돌아가겠습니다."
+        },
+        {
+          "chapterIds": [
+            "review-main-003:fake-repeat-verdict",
+            "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+            "review-main-003:fake-repeat-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "아이를 지켜 준 사람을 고른 부인과 관아에서 끌려나는 옹고집.",
+          "evidence": "이번에는 아이들을 지켜 준 저 사람과 돌아가겠습니다."
+        },
+        {
+          "chapterIds": [
+            "review-main-003:fake-route",
+            "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+            "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "닫힌 대문과 젖은 장작의 품삯을 겪으며 남에게 한 일을 자신이 당한다.",
+          "evidence": "쫓겨난 옹고집의 시점"
+        },
+        {
+          "chapterIds": [
+            "review-main-003:b-meal-act",
+            "review-main-003:b-meal-slip",
+            "review-main-003:b-after-meal-days",
+            "review-main-003:b-child-scene",
+            "review-main-003:b-vase-care",
+            "review-main-003:b-vase-care-after-harsh",
+            "review-main-003:b-vase-stick",
+            "review-main-003:b-before-confession-days"
+          ],
+          "music": "audio:music:score-curiosity",
+          "intent": "상처를 돌본 가족 앞에서 듣기와 삯 지키기 같은 작은 행동을 다시 선택한다.",
+          "evidence": "그래. 이리 앉아 보아라. 까치가 어찌 되었느냐.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "review-main-003:b-fake-warning"
+          ],
+          "music": "audio:music:score-mystery",
+          "intent": "약속한 삯을 저버리자 마당이 갈라지고 또 다른 옹고집만 보이게 된다.",
+          "evidence": "패기만 하면 일인 줄 알았느냐? 쌓은 모양이 엉망이다. 삯은 반만 줘라."
+        },
+        {
+          "chapterIds": [
+            "review-main-003:b-final-acts"
+          ],
+          "music": "audio:music:score-resolve",
+          "intent": "남을 안으로 들인 뒤 모질었던 행동을 사과하고 봄의 대문을 함께 연다.",
+          "evidence": "그날 늦은 밤, 대문 밖에서 밥을 청하는 소리가 났다. 옹고집이 자리에서 일어났다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+            "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "젖은 장작의 품삯과 짚신을 거절한 뒤 똑같은 얼굴과 관아로 이어지는 사건.",
+          "evidence": "밥은 거저 못 준다. 장작부터 패라.",
+          "transition": "dissolve"
+        }
+      ],
+      "events": [
+        {
+          "lineId": "review-main-003:fake-route:9",
+          "evidence": "옹고집은 대문을 두드린 뒤, 간신히 밥을 청했다.",
+          "intent": "닫힌 대문을 실제 두드린 뒤 밥을 청하는 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:fake-route:23",
+          "evidence": "문 안쪽에서 빈 그릇을 거두는 소리가 났다. 곧 빗장이 걸렸고, 마당은 다시 조용해졌다.",
+          "intent": "약속한 삯을 저버린 뒤 실제 빗장이 걸리는 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:fake-route:49",
+          "evidence": "옹고집이 다시 대문을 두드리자 안쪽에서 빗장이 풀렸다. 부인이 문을 열었다.",
+          "intent": "다시 두드린 대문에서 빗장이 풀리고 부인이 열어 주는 소리.",
+          "sound": "audio:sound:sfx-door",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "review-main-003:start:6",
+          "evidence": "그때 대문 밖에서 기침 소리가 났다. 옹고집이 문을 열자 낯선 사내가 빈 그릇을 들고 서 있었다.",
+          "intent": "낯선 사내를 발견하며 실제 여는 대문.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:b-fake-warning:1",
+          "evidence": "마당이 갈라졌다. 같은 얼굴의 사내가 금 사이로 걸어 나왔다.",
+          "intent": "마당이 실제 갈라지는 사건. 기존 균열 효과를 보존하며 소리만 더한다.",
+          "sound": "audio:sound:sfx-crack"
+        },
+        {
+          "lineId": "review-main-003:b-fake-warning:7",
+          "evidence": "하인은 아무 반응 없이 그 앞을 지나 일꾼들을 내보내려고 대문을 열었다.",
+          "intent": "일꾼을 내보내기 위해 실제 대문을 여는 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:b-fake-warning:12",
+          "evidence": "그가 대문을 두드렸다. 소리는 나지 않았다. 문 안쪽에서 빗장 걸리는 소리만 났다.",
+          "intent": "옹고집의 두드림은 소리 나지 않고 문 안쪽 빗장만 실제 들린다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:b-final-acts:16",
+          "evidence": "봄날 아침, 옹고집이 빗장을 풀자 아이들이 함께 대문을 밀었다.",
+          "intent": "봄날 아이들과 함께 실제 대문을 열며 달라진 생활을 남긴다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+          "evidence": "며칠 뒤, 대문 밖에서 남편의 목소리가 들렸다. 부인이 문을 열자 옹고집과 똑같이 생긴 사내가 서 있었다.",
+          "intent": "같은 얼굴의 재등장 또는 충돌에 실제 열리는 대문 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:25",
+          "evidence": "일주일 뒤, 대문이 거칠게 열리고 눈발을 뒤집어쓴 남편이 뛰어 들어왔다.",
+          "intent": "같은 얼굴의 재등장 또는 충돌에 실제 열리는 대문 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:14",
+          "evidence": "며칠 뒤, 대문 밖에서 남편의 목소리가 들렸다. 부인이 문을 열자 옹고집과 똑같이 생긴 사내가 서 있었다.",
+          "intent": "같은 얼굴의 재등장 또는 충돌에 실제 열리는 대문 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:26",
+          "evidence": "일주일 뒤, 대문이 거칠게 열리고 눈발을 뒤집어쓴 남편이 뛰어 들어왔다.",
+          "intent": "같은 얼굴의 재등장 또는 충돌에 실제 열리는 대문 소리.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:40",
+          "evidence": "옹고집이 다시 대문을 두드리자 안쪽에서 빗장이 풀렸다. 부인이 문을 열었다.",
+          "intent": "다시 두드린 문이 열려 부인의 돌봄을 받는 변화.",
+          "sound": "audio:sound:sfx-door",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:41",
+          "evidence": "옹고집이 다시 대문을 두드리자 안쪽에서 빗장이 풀렸다. 부인이 문을 열었다.",
+          "intent": "다시 두드린 문이 열려 부인의 돌봄을 받는 변화.",
+          "sound": "audio:sound:sfx-door",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+          "evidence": "눈발이 거세 집 모양도 제대로 보이지 않았다. 옹고집이 큰 대문을 두드리자 누군가 문틈으로 내다보았다.",
+          "intent": "원문에 명시된 문을 두드림 또는 빗장 소리만 해당 갈래의 정확한 컷에 적용한다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:21",
+          "evidence": "몇 걸음 가지 못해 눈길에 주저앉았다. 뒤에서 빗장 거는 소리가 났다.",
+          "intent": "원문에 명시된 문을 두드림 또는 빗장 소리만 해당 갈래의 정확한 컷에 적용한다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:4",
+          "evidence": "눈발이 거세 집 모양도 제대로 보이지 않았다. 옹고집이 큰 대문을 두드리자 누군가 문틈으로 내다보았다.",
+          "intent": "원문에 명시된 문을 두드림 또는 빗장 소리만 해당 갈래의 정확한 컷에 적용한다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:22",
+          "evidence": "몇 걸음 가지 못해 눈길에 주저앉았다. 뒤에서 빗장 거는 소리가 났다.",
+          "intent": "원문에 명시된 문을 두드림 또는 빗장 소리만 해당 갈래의 정확한 컷에 적용한다.",
+          "sound": "audio:sound:sfx-door"
+        }
+      ]
+    },
+    {
+      "projectId": "pinky-review-main-002",
+      "profile": "nolstory",
+      "chapters": [
+        {
+          "chapterIds": [
+            "review-main-002:start"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "자라를 살린 왕이 토끼를 속여 오라 명해 은혜와 생명이 충돌한다.",
+          "evidence": "나는 용궁 대청에서 용왕님을 모시는 자라였다."
+        },
+        {
+          "chapterIds": [
+            "review-main-002:obey-route"
+          ],
+          "music": "audio:music:score-curiosity",
+          "ambience": "audio:music:ambience-ocean",
+          "intent": "잔치라는 초대에 토끼가 의심하면서도 자라 등에 오르는 첫 거짓말.",
+          "evidence": "실은 용궁에 귀한 손님을 모시는 자리가 있소."
+        },
+        {
+          "chapterIds": [
+            "review-main-002:hesitate-route"
+          ],
+          "music": "audio:music:score-tension",
+          "ambience": "audio:music:ambience-ocean",
+          "intent": "병든 이를 돕자고 하되 간의 처방을 숨기는 반쪽 진실.",
+          "evidence": "용궁에 아주 위급하게 앓고 있는 분이 있소."
+        },
+        {
+          "chapterIds": [
+            "review-main-002:sea-route"
+          ],
+          "music": "audio:music:score-ocean",
+          "ambience": "audio:music:ambience-ocean",
+          "intent": "산호의 경이를 즐기는 토끼와 등에 느껴지는 무게로 죄책감을 느끼는 자라.",
+          "evidence": "우리는 함께 물속으로 들어갔다.\n처음에는 토끼가 몸을 잔뜩 웅크렸다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "review-main-002:palace"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "호위와 그물이 초대를 함정으로 바꾸고 토끼의 꾀를 인정할지 선택한다.",
+          "evidence": "마침내 용궁 대청 문이 열렸다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "review-main-002:ending-1"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "왕을 살려도 빈 방석과 처음 숨긴 진실의 책임이 남는 엔딩.",
+          "evidence": "전하.\n토끼의 말은 사실이 아닙니다."
+        },
+        {
+          "chapterIds": [
+            "review-main-002:shield-route"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "왕을 직접 속일 책임을 지고 토끼를 풀어 육지로 데려간다.",
+          "evidence": "전하.\n저도 토끼의 말을 그대로 믿기는 어렵습니다."
+        },
+        {
+          "chapterIds": [
+            "review-main-002:shoreAfterShield"
+          ],
+          "music": "audio:music:score-loss",
+          "ambience": "audio:music:ambience-ocean",
+          "intent": "토끼를 내려주고 해친 신뢰를 사과한 뒤 자신의 다음 길을 결정한다.",
+          "evidence": "새벽빛이 번질 무렵 우리는 육지 모래톱에 도착했다.",
+          "transition": "dissolve"
+        },
+        {
+          "chapterIds": [
+            "review-main-002:ending-2"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "용궁을 돌아보지 못한 채 은혜와 거짓말의 기억을 안고 사는 엔딩.",
+          "evidence": "나는 오랫동안 바다를 바라보았다."
+        },
+        {
+          "chapterIds": [
+            "review-main-002:ending-3"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "왕에게 자신이 한 선택을 고백하고 바다의 숨결을 잃은 뒤 강으로 떠나는 엔딩.",
+          "evidence": "나는 결국 몸을 돌려 다시 바다로 들어갔다."
+        }
+      ],
+      "events": [
+        {
+          "lineId": "review-main-002:start:24",
+          "evidence": "어린 시절, 나는 큰비에 휩쓸려 민물에서 바다까지 떠내려왔다.",
+          "intent": "왕에게 구해졌던 큰비의 기억이 물소리와 함께 시작된다.",
+          "ambience": "audio:music:ambience-rain",
+          "music": "audio:music:score-loss"
+        },
+        {
+          "lineId": "review-main-002:start:34",
+          "evidence": "눈을 뜨자 다시 어두운 용궁 대청이었다.",
+          "intent": "기억에서 어두운 대청으로 돌아올 때 빗소리와 회상 음악을 끝낸다.",
+          "ambienceStop": true,
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "review-main-002:start:48",
+          "evidence": "나는 끝내 대답 대신 물문을 열었다.\n그리고 육지를 향해 헤엄쳤다.",
+          "intent": "물문을 열고 육지로 향하는 실제 이동.",
+          "sound": "audio:sound:sfx-water",
+          "music": "audio:music:score-ocean",
+          "ambience": "audio:music:ambience-ocean"
+        },
+        {
+          "lineId": "review-main-002:start:49",
+          "evidence": "긴 물길을 지나 육지로 올라오자 차가운 겨울바람이 불었다.",
+          "intent": "겨울 육지로 올라온 뒤 바닷속 음악에서 발견의 음악으로 이동한다.",
+          "music": "audio:music:score-curiosity"
+        },
+        {
+          "lineId": "review-main-002:hesitate-route:7",
+          "evidence": "나는 곧바로 대답하지 못했다.\n파도 소리만 한 번 밀려왔다가 빠져나갔다.",
+          "intent": "말을 잇지 못한 사이 실제 한 번 밀려오는 파도.",
+          "sound": "audio:sound:sfx-water"
+        },
+        {
+          "lineId": "review-main-002:sea-route:0",
+          "evidence": "우리는 함께 물속으로 들어갔다.\n처음에는 토끼가 몸을 잔뜩 웅크렸다.",
+          "intent": "함께 물속으로 들어가는 실제 입수.",
+          "sound": "audio:sound:sfx-water"
+        },
+        {
+          "lineId": "review-main-002:sea-route:8",
+          "evidence": "나도 모르게 웃음이 나올 뻔했다.\n그 순간 등에 올라탄 토끼의 무게가 다시 또렷하게 느껴졌다.",
+          "intent": "토끼의 무게로 되살아나는 죄책감은 강조음 대신 음악의 불안으로 표현한다.",
+          "music": "audio:music:score-loss"
+        },
+        {
+          "lineId": "review-main-002:palace:0",
+          "evidence": "마침내 용궁 대청 문이 열렸다.",
+          "intent": "열리는 용궁 대청 문.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-002:palace:6",
+          "evidence": "밧줄과 그물이 토끼를 둘러쌌다.",
+          "intent": "그물과 밧줄이 토끼를 둘러싸는 실제 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "review-main-002:ending-1:9",
+          "evidence": "문이 닫히기 직전 긴 귀 끝만 잠시 보였다가 사라졌다.",
+          "intent": "긴 귀 끝이 사라지며 실제 닫히는 문. 폭력의 소리는 만들지 않는다.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "review-main-002:shield-route:14",
+          "evidence": "호위들이 토끼를 묶은 줄을 풀었다.",
+          "intent": "호위가 토끼를 묶은 줄을 푸는 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "review-main-002:shield-route:20",
+          "evidence": "우리는 용궁 문을 지나 어두운 바다를 헤엄쳐 올라갔다.",
+          "intent": "용궁 문을 지나 어두운 바다를 올라가는 실제 물길.",
+          "sound": "audio:sound:sfx-water",
+          "music": "audio:music:score-ocean",
+          "ambience": "audio:music:ambience-ocean"
+        },
+        {
+          "lineId": "review-main-002:shoreAfterShield:1",
+          "evidence": "발이 땅에 닿자 토끼는 내 등에서 뛰어내렸다.",
+          "intent": "모래톱에서 토끼가 등에 내려 땅을 밟는 실제 사건.",
+          "sound": "audio:sound:sfx-steps"
+        },
+        {
+          "lineId": "review-main-002:ending-3:37",
+          "evidence": "나는 그날 새벽 용궁을 떠났다.\n\n물문이 닫히기 직전 한 번 뒤를 돌아보았다. 어두운 대청 안에서 용왕님이 아주 작게 보였다.",
+          "intent": "새벽에 용궁을 떠나며 실제 닫히는 물문.",
+          "sound": "audio:sound:sfx-door"
+        }
+      ]
+    },
+    {
+      "projectId": "classic-seonnyeo-tale",
+      "profile": "original",
+      "chapters": [
+        {
+          "chapterIds": [
+            "classic-seonnyeo-1"
+          ],
+          "music": "audio:music:score-curiosity",
+          "ambience": "audio:music:ambience-forest",
+          "intent": "산속 추격과 사슴의 보은을 담담히 따라간다.",
+          "evidence": "옛날 어느 산골 마을에 가난한 나무꾼이 살았다. 나무꾼은 늙은 어머니를 모시고 살며 날마다 산에 올라 나무를 해다 팔았다."
+        },
+        {
+          "chapterIds": [
+            "classic-seonnyeo-2"
+          ],
+          "music": "audio:music:score-mystery",
+          "ambience": "audio:music:ambience-stream",
+          "intent": "연못의 신비와 날개옷을 숨기는 사건의 불안을 유지한다.",
+          "evidence": "며칠 뒤 나무꾼은 사슴에게 들은 길을 따라 깊은 산속으로 들어갔다. 한참을 걷자 울창한 나무 사이로 맑고 고요한 연못 하나가 나타났다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-seonnyeo-3"
+          ],
+          "music": "audio:music:score-warmth",
+          "intent": "작은 집의 가족 생활에서 감춘 옷이 드러나는 변화를 대비한다.",
+          "evidence": "나무꾼과 선녀는 산 아래 작은 집에서 함께 살았다. 나무꾼은 여전히 산에 올라 나무를 했고 그렇게 하루하루 세월이 흘렀다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-seonnyeo-4"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "하늘로 떠난 가족과 지상에 남은 나무꾼의 그리움을 따른다.",
+          "evidence": "날개옷을 입은 선녀는 두 아이를 데리고 하늘로 올라가기 시작했다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-seonnyeo-5"
+          ],
+          "music": "audio:music:score-curiosity",
+          "intent": "두레박과 하늘나라의 발견에서 가족 재회로 이동한다.",
+          "evidence": "나무꾼은 사슴이 알려 준 대로 연못가에서 기다렸다. 그러던 어느 날 높은 하늘에서 긴 줄 하나가 천천히 내려오기 시작했다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-seonnyeo-6"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "금기를 어긴 뒤 되돌아갈 수 없는 길과 마지막 그리움을 과장하지 않는다.",
+          "evidence": "나무꾼은 용마의 등에 올라 하늘나라를 떠났다. 용마는 구름 사이를 가르며 빠르게 지상으로 내려갔다.",
+          "transition": "fade-black"
+        }
+      ],
+      "events": [
+        {
+          "lineId": "classic-seonnyeo-1-line-02",
+          "evidence": "어느 날도 나무꾼은 깊은 산속에서 나무를 베고 있었다. 한참 일을 하고 있는데 수풀 너머에서 다급한 발소리가 들려왔다.",
+          "intent": "실제 들려오는 추격 발소리.",
+          "sound": "audio:sound:sfx-steps"
+        },
+        {
+          "lineId": "classic-seonnyeo-2-line-03",
+          "evidence": "얼마나 기다렸을까. 갑자기 하늘이 환해지더니 구름 사이로 선녀들이 하나둘 내려오기 시작했다.",
+          "intent": "하늘이 환해지며 선녀가 내려오는 한 번의 빛.",
+          "effect": "flash"
+        },
+        {
+          "lineId": "classic-seonnyeo-2-line-05",
+          "evidence": "나무꾼은 사슴이 해 준 말을 떠올렸다. 그는 조심스럽게 연못가로 다가가 여러 벌의 날개옷 가운데 하나를 집어 들었다.",
+          "intent": "날개옷을 집어 드는 물성 소리.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "classic-seonnyeo-3-line-08",
+          "evidence": "그러던 어느 날, 나무꾼은 오랫동안 감추어 두었던 날개옷을 꺼냈다. 그리고 그것을 선녀에게 보여 주었다.",
+          "intent": "감춘 날개옷을 꺼내는 전환점.",
+          "sound": "audio:sound:sfx-cloth",
+          "music": "audio:music:score-mystery"
+        },
+        {
+          "lineId": "classic-seonnyeo-4-line-08",
+          "evidence": "그러던 어느 날, 오래전에 나무꾼이 목숨을 구해 주었던 사슴이 다시 나타났다.",
+          "intent": "사슴의 재등장.",
+          "sound": "audio:sound:sfx-steps"
+        },
+        {
+          "lineId": "classic-seonnyeo-5-line-02",
+          "evidence": "줄 끝에는 커다란 두레박이 매달려 있었다. 두레박은 점점 아래로 내려와 마침내 연못의 맑은 물속에 잠겼다.",
+          "intent": "두레박이 연못 물속에 잠기는 사건.",
+          "sound": "audio:sound:sfx-water"
+        },
+        {
+          "lineId": "classic-seonnyeo-5-line-05",
+          "evidence": "마침내 나무꾼의 눈앞에 하늘나라가 펼쳐졌다. 그리고 그곳에서 그토록 찾던 선녀와 두 아이를 다시 만났다.",
+          "intent": "하늘나라에서 가족을 다시 만나는 온기.",
+          "music": "audio:music:score-warmth"
+        },
+        {
+          "lineId": "classic-seonnyeo-6-line-13",
+          "evidence": "그 순간 뜨거운 호박죽이 그만 용마의 등에 흘러내렸다. 뜨거움에 놀란 용마가 갑자기 크게 몸을 일으켰다.",
+          "intent": "용마가 뜨거운 죽에 놀라는 순간만 짧게 강조.",
+          "sound": "audio:sound:sfx-sting",
+          "effect": "shake"
+        }
+      ]
+    },
+    {
+      "projectId": "classic-heungbu-tale",
+      "profile": "original",
+      "chapters": [
+        {
+          "chapterIds": [
+            "classic-heungbu-1"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "형제의 재산 불평등과 쫓겨난 가족의 시작.",
+          "evidence": "옛날 어느 마을에 놀부와 흥부라는 형제가 살았다. 형 놀부에게는 아우 흥부보다 훨씬 많은 재산이 있었다."
+        },
+        {
+          "chapterIds": [
+            "classic-heungbu-2"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "빈 쌀독과 겨울의 어려움은 소리보다 문장에 여백을 준다.",
+          "evidence": "흥부는 가족을 먹여 살리기 위해 할 수 있는 일을 가리지 않았다. 남의 논밭을 갈고 장작을 패고 무거운 짐도 날랐다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-heungbu-3"
+          ],
+          "music": "audio:music:score-warmth",
+          "ambience": "audio:music:ambience-forest",
+          "intent": "제비 가족을 돌보고 치료하는 봄의 온기.",
+          "evidence": "봄이 되자 남쪽에서 돌아온 제비들이 흥부네 집 처마 밑에 둥지를 틀었다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-heungbu-4"
+          ],
+          "music": "audio:music:score-curiosity",
+          "intent": "박을 타는 발견과 살림이 회복되는 기쁨.",
+          "evidence": "가을이 되자 지붕 위의 박들이 크고 단단하게 익었다. 그러나 흥부네 살림은 여전히 어려웠다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-heungbu-5"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "놀부가 결과만 탐내며 제비를 해치는 불편함.",
+          "evidence": "흥부가 부자가 되었다고? 그 녀석이 무슨 재주로 큰돈을 벌었단 말이냐?",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-heungbu-6"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "박을 거듭 타며 손해가 커지는 사건.",
+          "evidence": "놀부가 심은 박씨에서도 기다란 넝쿨이 자랐다. 가을이 되자 지붕 위에는 큼직한 박들이 주렁주렁 열렸다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-heungbu-7"
+          ],
+          "music": "audio:music:score-resolve",
+          "intent": "흥부의 도움과 놀부의 뉘우침을 통한 형제의 회복.",
+          "evidence": "얼마 뒤 흥부는 놀부가 박을 타다가 재산을 모두 잃었다는 소식을 들었다.",
+          "transition": "fade-black"
+        }
+      ],
+      "events": [
+        {
+          "lineId": "classic-heungbu-3-line-01",
+          "evidence": "봄이 되자 남쪽에서 돌아온 제비들이 흥부네 집 처마 밑에 둥지를 틀었다.",
+          "intent": "봄에 제비가 처마로 돌아오는 사건.",
+          "sound": "audio:sound:sfx-swallow"
+        },
+        {
+          "lineId": "classic-heungbu-3-line-09",
+          "evidence": "흥부는 가느다란 나뭇조각을 다친 다리에 대고 조심스럽게 묶어 주었다.",
+          "intent": "다친 제비 다리를 조심스럽게 묶는 동작.",
+          "sound": "audio:sound:sfx-cloth"
+        },
+        {
+          "lineId": "classic-heungbu-3-line-14",
+          "evidence": "제비는 흥부 앞에 작은 씨앗 하나를 떨어뜨리고 날아갔다. 조그마한 박씨였다.",
+          "intent": "박씨를 떨어뜨리고 떠나는 제비.",
+          "sound": "audio:sound:sfx-swallow"
+        },
+        {
+          "lineId": "classic-heungbu-4-line-05",
+          "evidence": "슬근슬근, 슥삭슥삭. 흥부와 아내가 양쪽에서 톱을 잡고 박을 타기 시작했다.",
+          "intent": "슬근슬근 슥삭슥삭 톱질.",
+          "sound": "audio:sound:sfx-gourd"
+        },
+        {
+          "lineId": "classic-heungbu-4-line-07",
+          "evidence": "마침내 첫 번째 박이 쩍 갈라졌다. 그런데 박 속에서 쌀과 곡식이 와르르 쏟아져 나왔다.",
+          "intent": "첫 번째 박이 쩍 갈라지는 순간.",
+          "sound": "audio:sound:sfx-crack"
+        },
+        {
+          "lineId": "classic-heungbu-4-line-15",
+          "evidence": "흥부는 무너질 듯한 집을 고치고 가족이 지낼 넉넉한 집도 마련했다. 곡식독과 곳간도 채울 수 있게 되었다.",
+          "intent": "새집과 양식으로 삶이 회복되는 온기.",
+          "music": "audio:music:score-warmth"
+        },
+        {
+          "lineId": "classic-heungbu-5-line-18",
+          "evidence": "이듬해 봄, 정말로 제비 한 마리가 놀부의 마당에 박씨 하나를 떨어뜨렸다.",
+          "intent": "놀부에게도 박씨를 떨어뜨리는 제비.",
+          "sound": "audio:sound:sfx-swallow"
+        },
+        {
+          "lineId": "classic-heungbu-6-line-05",
+          "evidence": "슥삭슥삭 톱질 끝에 첫 번째 박이 쩍 갈라졌다.",
+          "intent": "놀부의 첫 번째 박 톱질.",
+          "sound": "audio:sound:sfx-gourd"
+        },
+        {
+          "lineId": "classic-heungbu-6-line-11",
+          "evidence": "놀부는 두 번째 박을 탔다. 이번에도 박이 갈라지자 시끌벅적한 무리가 튀어나와 집 안을 뒤집어 놓았다.",
+          "intent": "두 번째 박의 소동을 한 번만 강조.",
+          "sound": "audio:sound:sfx-crack",
+          "effect": "shake"
+        }
+      ]
+    },
+    {
+      "projectId": "classic-onggojib-tale",
+      "profile": "original",
+      "chapters": [
+        {
+          "chapterIds": [
+            "classic-onggojib-1"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "닫힌 대문과 인색한 행동을 절제해서 드러낸다.",
+          "evidence": "옛날 어느 고을에 옹고집이라는 큰 부자가 살았다. 넓은 논밭과 커다란 집을 가지고 있었고, 해마다 곳간에는 곡식이 가득 쌓였다."
+        },
+        {
+          "chapterIds": [
+            "classic-onggojib-2"
+          ],
+          "music": "audio:music:score-mystery",
+          "intent": "도승이 짚으로 가짜를 만드는 기이한 사건.",
+          "evidence": "어느 날, 수행길에 오른 한 승려가 옹고집의 집 앞에 이르렀다. 먼 길을 걸어온 승려는 대문 앞에서 조용히 합장했다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-onggojib-3"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "두 얼굴의 충돌과 가족의 혼란.",
+          "evidence": "가짜 옹고집은 사랑방에 앉아 장부를 살피고 하인들에게 일을 시켰다. 가족과 하인들은 늘 보던 얼굴을 조금도 의심하지 않았다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-onggojib-4"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "관가에서 진짜를 가리지 못하는 판정의 압박.",
+          "evidence": "두 옹고집이 나란히 관가에 들어서자 사또도 한동안 말을 잇지 못했다. 앞에 선 두 사람은 얼굴만 보아서는 조금도 구별할 수 없었다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-onggojib-5"
+          ],
+          "music": "audio:music:score-loss",
+          "intent": "닫힌 문 밖에서 겪는 배고픔과 뒤늦은 성찰.",
+          "evidence": "포졸들은 계속 소리치는 옹고집을 관가 밖으로 내보냈다. 사람들은 길가에 서서 그를 남의 집을 탐낸 수상한 사람처럼 바라보았다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-onggojib-6"
+          ],
+          "music": "audio:music:score-resolve",
+          "intent": "부적의 진실 이후 달라진 행동과 열린 대문.",
+          "evidence": "산길을 한참 오른 끝에 옹고집은 마침내 도승을 만났다. 옹고집은 그를 보는 순간 모든 일이 어디에서 시작되었는지 짐작할 수 있었다.",
+          "transition": "fade-black"
+        }
+      ],
+      "events": [
+        {
+          "lineId": "classic-onggojib-1-line-01",
+          "evidence": "옛날 어느 고을에 옹고집이라는 큰 부자가 살았다. 넓은 논밭과 커다란 집을 가지고 있었고, 해마다 곳간에는 곡식이 가득 쌓였다.",
+          "intent": "이야기의 닫힌 대문.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "classic-onggojib-2-line-10",
+          "evidence": "도승이 주문을 외우자 축 늘어져 있던 짚 인형이 천천히 허리를 폈다. 거친 짚은 살갗처럼 변하고 빈 얼굴에는 눈과 코가 생겨났다.",
+          "intent": "주문에 짚 인형이 몸을 펴는 순간.",
+          "sound": "audio:sound:sfx-sting",
+          "effect": "flash"
+        },
+        {
+          "lineId": "classic-onggojib-2-line-12",
+          "evidence": "가짜 옹고집이 대문에 이르자 하인은 조금도 의심하지 않고 주인에게 하듯 문을 열었다. 가짜는 오래 살아온 자기 집에 돌아온 사람처럼 태연히 안으로 들어갔다.",
+          "intent": "가짜에게 열린 대문.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "classic-onggojib-3-line-02",
+          "evidence": "얼마 뒤 밖에 나갔던 진짜 옹고집이 돌아왔다. 사랑방 문을 연 그는 자기 자리에 앉아 있는 자기 얼굴을 보고 그 자리에서 멈춰 섰다.",
+          "intent": "진짜가 사랑방 문을 여는 실제 동작.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "classic-onggojib-4-line-11",
+          "evidence": "사또도 끝내 다른 방법을 찾지 못했다. 집안 내력과 족보, 문서의 위치를 정확히 알고 가족들까지 주인으로 받아들이는 쪽을 본래 옹고집이라 판단했다.",
+          "intent": "판정이 내려지는 순간의 무게.",
+          "music": "audio:music:score-loss"
+        },
+        {
+          "lineId": "classic-onggojib-5-line-04",
+          "evidence": "옹고집은 손이 아플 만큼 대문을 두드렸다. 하지만 문은 열리지 않았다. 그는 해가 기울 때까지 대문 앞에 있다가 결국 돌아섰다.",
+          "intent": "열리지 않는 대문을 두드리는 동작.",
+          "sound": "audio:sound:sfx-door"
+        },
+        {
+          "lineId": "classic-onggojib-6-line-08",
+          "evidence": "옹고집이 부적을 꺼내자 가짜 옹고집의 모습이 흔들렸다. 수염과 얼굴빛이 차례로 사라지고 팔과 다리가 뻣뻣하게 굳더니, 마침내 마루 위에는 처음 도승이 엮었던 풀과 짚만 남았다.",
+          "intent": "부적 앞에서 가짜가 풀과 짚으로 돌아가는 한 번의 변화.",
+          "sound": "audio:sound:sfx-sting",
+          "effect": "flash"
+        }
+      ]
+    },
+    {
+      "projectId": "classic-rabbit-tale",
+      "profile": "original",
+      "chapters": [
+        {
+          "chapterIds": [
+            "classic-rabbit-1"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "용왕의 병과 간을 구하려는 명령의 근심.",
+          "evidence": "아주 먼 옛날, 깊고 푸른 바닷속에 아름다운 용궁이 있었다. 그곳에는 바다의 온갖 생물을 다스리는 용왕이 살고 있었다."
+        },
+        {
+          "chapterIds": [
+            "classic-rabbit-2"
+          ],
+          "music": "audio:music:score-curiosity",
+          "ambience": "audio:music:ambience-forest",
+          "intent": "별주부가 육지에서 토끼를 찾고 설득하는 발견.",
+          "evidence": "별주부는 거센 파도를 헤치고 오래도록 헤엄쳤다. 마침내 물 밖으로 머리를 내밀자 멀리 푸른 산과 넓은 들판이 보였다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-rabbit-3"
+          ],
+          "music": "audio:music:score-ocean",
+          "ambience": "audio:music:ambience-ocean",
+          "intent": "돌아가기 어려워진 바닷속 길과 용궁의 경이.",
+          "evidence": "막상 바닷가에 도착하자 토끼는 걸음을 멈추었다. 토끼는 달리기는 잘했지만 헤엄을 칠 줄은 몰랐다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-rabbit-4"
+          ],
+          "music": "audio:music:score-tension",
+          "intent": "포위된 토끼가 꾀를 내는 위기.",
+          "evidence": "토끼는 순간 자기 귀를 의심했다. 높은 벼슬도 귀한 대접도 모두 자신을 이곳까지 데려오기 위한 거짓말이었다.",
+          "transition": "fade-black"
+        },
+        {
+          "chapterIds": [
+            "classic-rabbit-5"
+          ],
+          "music": "audio:music:score-resolve",
+          "ambience": "audio:music:ambience-ocean",
+          "intent": "육지로 돌아온 토끼의 탈출과 별주부의 남은 길.",
+          "evidence": "말도 안 되는 이야기 같았지만 용왕은 병을 고칠 수 있다는 생각에 마음이 급했다. 결국 토끼의 말을 믿어 보기로 했다.",
+          "transition": "fade-black"
+        }
+      ],
+      "events": [
+        {
+          "lineId": "classic-rabbit-2-line-01",
+          "evidence": "별주부는 거센 파도를 헤치고 오래도록 헤엄쳤다. 마침내 물 밖으로 머리를 내밀자 멀리 푸른 산과 넓은 들판이 보였다.",
+          "intent": "물 밖으로 머리를 내미는 순간.",
+          "sound": "audio:sound:sfx-water"
+        },
+        {
+          "lineId": "classic-rabbit-3-line-03",
+          "evidence": "토끼가 등에 올라타자 별주부는 천천히 바다로 들어갔다. 발끝에 닿던 물은 어느새 깊어지고 사방에는 파란 바다만 남았다.",
+          "intent": "별주부 등에 올라 바다로 들어가는 사건.",
+          "sound": "audio:sound:sfx-water"
+        },
+        {
+          "lineId": "classic-rabbit-3-line-11",
+          "evidence": "오오, 네가 바로 토끼로구나! 어서 저 토끼를 붙잡아라. 저 토끼의 간을 얻어야 내 병을 고칠 수 있다!",
+          "intent": "용왕의 붙잡으라는 명령으로 환영이 함정으로 바뀐다.",
+          "sound": "audio:sound:sfx-sting",
+          "music": "audio:music:score-tension"
+        },
+        {
+          "lineId": "classic-rabbit-5-line-07",
+          "evidence": "별주부의 발이 바닥에 닿는 바로 그 순간이었다. 토끼가 힘껏 뒷다리를 굴러 별주부의 등에서 뛰어내렸다.",
+          "intent": "토끼가 뒷다리로 뛰어내리는 탈출 순간.",
+          "sound": "audio:sound:sfx-steps"
+        },
+        {
+          "lineId": "classic-rabbit-5-line-10",
+          "evidence": "토끼는 뒤도 돌아보지 않고 산으로 달려가 숲속으로 사라졌다. 별주부는 텅 빈 물가에 한동안 서 있다가 마침내 몸을 돌려 깊은 바다로 돌아갔다.",
+          "intent": "별주부가 다시 바다로 돌아가는 마무리.",
+          "sound": "audio:sound:sfx-water"
+        }
+      ]
+    }
+  ]
+}

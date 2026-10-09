@@ -1,0 +1,72 @@
+{
+  "baseline": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "policy": "Fixed-baseline resources reused with permission from the user, who declared ownership of KnolQuiz, KnolStory and story-maker on 2026-10-08. This manifest records exact restoration inputs.",
+  "entries": [
+    {
+      "file": "apps/web/public/assets/legacy-ui/room.webp",
+      "sourcePath": "public/library/parquet-room-clear.webp",
+      "sha256": "718481c9e4f1cdc3f7f6511124ac66d3b4e63cb8e46fb990bf3c18dfd0fdc3cc",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/shelf.webp",
+      "sourcePath": "public/library/oak-shelf-soft.webp",
+      "sha256": "f70a928c512a8a79dafb62379ee5f4ab76e99e103a941f70272ac5b5e7b01ad0",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/plant.webp",
+      "sourcePath": "public/library/pothos-pot.webp",
+      "sha256": "9e8d07b9424f26d369d43e42395dc6a1f6e1ad6287245a9e7c585115c17819b7",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/foreground-left.webp",
+      "sourcePath": "public/library/foreground-plant-books.webp",
+      "sha256": "15587e61abd0aab02a5474d507ebe15b348eff15f0d4d488e9bcf2917309e788",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/foreground-right.webp",
+      "sourcePath": "public/library/foreground-chair-lamp.webp",
+      "sha256": "ec4cbd6af54397d6b30f3059049e4c41c7da2468b090176d8e19af918c9d8736",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/intro-onggojib.webp",
+      "sourcePath": "public/story-assets/onggojib.poster.art.webp",
+      "sha256": "9dcf577b3517122b9ae10be75fdcd6504609ee24a2adb66cf5375fca20e232ae",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/intro-seonnyeo.webp",
+      "sourcePath": "public/story-assets/seonnyeo.poster.art.webp",
+      "sha256": "e076736f3e22fe18960688eae580e838a04d843c5d5f3a4b7a7ea758978805cc",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/intro-heungbu.webp",
+      "sourcePath": "public/story-assets/heungbu-nolbu.poster.art.webp",
+      "sha256": "c41b821d5d5c239a1ae8cceea2d0f80d4a639883b5007284fedb942e9dd79bb7",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/intro-rabbit.webp",
+      "sourcePath": "public/story-assets/rabbit-turtle.poster.art.webp",
+      "sha256": "f29b0928f89b4b43c18734da5ef8faba1341362e39b3db28249e794fb1b073c6",
+      "redistribution": "unverified"
+    },
+    {
+      "file": "apps/web/public/assets/legacy-ui/knolstory-outline.png",
+      "sourcePath": "public/brand/knolstory-outline-256.png",
+      "sha256": "27b28f6b0d143b5f571055375454c0d34c013f39ea6e1ee36cd2c8aaea6f1ef3",
+      "redistribution": "unverified"
+    }
+  ],
+  "ownerAuthorization": {
+    "date": "2026-10-08",
+    "source": "Direct user instruction in this task",
+    "scope": "Reuse existing introduction, library and book design/resources in KnolStory Next",
+    "statement": "User declared ownership of KnolQuiz, KnolStory and story-maker and authorized continued work."
+  }
+}

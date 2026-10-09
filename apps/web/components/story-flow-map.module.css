@@ -1,0 +1,52 @@
+.dialog { width: min(1120px, calc(100vw - 32px)); max-width: calc(100vw - 32px); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--paper); color: var(--ink); overflow: hidden; }
+.dialog::backdrop { background: color-mix(in srgb, var(--navy) 45%, transparent); }
+.header { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 24px; background: var(--white); border-bottom: 1px solid var(--line); }
+.header h2 { margin: 0; font-size: 22px; }
+.eyebrow { color: var(--mint-strong); font-size: 12px; font-weight: 700; margin: 0 0 4px; }
+.body { overflow: auto; max-height: calc(100dvh - 138px); padding: 20px 24px; overscroll-behavior: contain; }
+.context { margin: 0 0 8px; overflow-wrap: anywhere; }
+.legend, .result { color: var(--ink-soft); font-size: 13px; overflow-wrap: anywhere; }
+.filters { display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, 260px); gap: 16px; margin-top: 20px; }
+.filters label { font-size: 13px; font-weight: 700; }
+.filters input, .filters select { display: block; margin-top: 6px; }
+.issues { padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--white); margin: 24px 0; }
+.issues h3, .diagramSection h3 { margin: 0 0 12px; font-size: 16px; }
+.issues p { margin: 0; font-size: 13px; }
+.issues ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 8px; }
+.issues button { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 4px; overflow-wrap: anywhere; }
+.issues > button { margin-top: 12px; }
+.issues button span { font-size: 13px; }
+.editHint { color: var(--mint-strong); }
+.chapters { display: grid; gap: 16px; }
+.chapter { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--white); }
+.chapter summary { cursor: pointer; min-height: 48px; padding: 14px 16px; font-weight: 700; overflow-wrap: anywhere; }
+.chapter summary span { font-size: 13px; color: var(--ink-soft); font-weight: 400; }
+.cuts { list-style: none; padding: 0 16px 16px; margin: 0; display: grid; gap: 16px; }
+.cuts > li { border-left: 3px solid var(--line); padding-left: 12px; min-width: 0; }
+.cuts > li.currentCut { border-left-color: var(--mint-strong); }
+.cutButton { width: 100%; text-align: left; display: flex; align-items: flex-start; flex-direction: column; gap: 8px; overflow-wrap: anywhere; }
+.currentCut .cutButton { background: var(--mint); border-color: var(--mint-strong); }
+.authoredText { font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.badges { display: flex; flex-wrap: wrap; gap: 4px; font-size: 11px; }
+.badges > span, .terminal, .issueBadge { border-radius: var(--radius-control); background: var(--paper); padding: 3px 8px; font-weight: 700; }
+.badges .currentBadge { background: var(--mint-strong); color: var(--white); }
+.badges .sharedBadge { background: var(--mint); color: var(--ink); }
+.badges .issueBadge, .connections .issueBadge { background: var(--paper); color: var(--ink); border: 1px solid var(--coral); }
+.connections { list-style: none; padding: 8px 0 0; margin: 0; display: grid; gap: 6px; }
+.connections li { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 13px; overflow-wrap: anywhere; }
+.connectionLabel { white-space: pre-wrap; overflow-wrap: anywhere; min-width: 0; }
+.connections button { font-size: 13px; max-width: 100%; text-align: left; overflow-wrap: anywhere; }
+.arrow { color: var(--mint-strong); font-size: 20px; flex-shrink: 0; }
+.terminal { background: var(--mint); }
+.diagramSection { margin: 20px 0; }
+.diagramScroll { max-width: 100%; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius-panel); background: var(--white); }
+.diagram { position: relative; }
+.wires { position: absolute; inset: 0; color: var(--mint-strong); pointer-events: none; }
+.wires > path { fill: none; stroke: currentColor; stroke-width: 2; }
+.laneTitle { position: absolute; top: 12px; width: 180px; overflow-wrap: anywhere; font-size: 13px; }
+.mapNode { position: absolute; min-height: 80px; padding: 8px; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; background: var(--paper); text-align: left; overflow-wrap: anywhere; }
+.mapCurrent { border: 2px solid var(--mint-strong); background: var(--mint); }
+@media (max-width: 600px) { .dialog { width: calc(100vw - 16px); max-width: calc(100vw - 16px); max-height: calc(100dvh - 16px); } .header { padding: 12px 16px; } .header h2 { font-size: 19px; } .body { padding: 16px 12px; max-height: calc(100dvh - 114px); } .filters { grid-template-columns: minmax(0, 1fr); gap: 10px; } .cuts { padding: 0 10px 10px; } .chapter summary { padding: 12px; } .issues { padding: 12px; } }
+
+.mapConnection { font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.moreCuts { margin: 0 16px 16px; max-width: calc(100% - 32px); text-align: left; }

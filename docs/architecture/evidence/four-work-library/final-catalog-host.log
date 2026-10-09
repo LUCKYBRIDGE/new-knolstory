@@ -1,0 +1,40 @@
+[WebServer] (node:22980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 30 tests using 1 worker
+
+(node:23004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/four-work-library.spec.ts:4:1 › the default library groups eight manuscripts into four independent work choices (2.4s)
+  ✓   2 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 원작: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   3 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 놀스토리: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   4 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 원작: chosen manuscript opens and returns to its grouped book (1.5s)
+  ✓   5 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 놀스토리: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   6 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 원작: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓   7 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 놀스토리: chosen manuscript opens and returns to its grouped book (1.6s)
+  ✓   8 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 원작: chosen manuscript opens and returns to its grouped book (1.3s)
+  ✓   9 [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 놀스토리: chosen manuscript opens and returns to its grouped book (1.4s)
+  ✓  10 [host] › tests/e2e/four-work-library.spec.ts:35:1 › all four shelf choices open their actual ShortStory and return to the same library (10.9s)
+  ✓  11 [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 1365x900 (2.8s)
+  ✓  12 [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 820x1180 (2.9s)
+  ✓  13 [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 390x844 (2.3s)
+  ✓  14 [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 844x390 (2.3s)
+  ✓  15 [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 320x740 (2.2s)
+  ✓  16 [host] › tests/e2e/library-design-parity.spec.ts:18:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.6s)
+  ✓  17 [host] › tests/e2e/library-design-parity.spec.ts:27:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book (2.8s)
+  ✓  18 [host] › tests/e2e/library-design-parity.spec.ts:40:1 › layered front, spine and back covers keep direct edits in the draft until apply (2.1s)
+  -  19 [host] › tests/e2e/library-design-parity.spec.ts:49:1 › all eight books start native RenPy from the library focus and retain the same runtime
+  ✓  20 [host] › tests/e2e/library-design-parity.spec.ts:61:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript (3.4s)
+  ✓  21 [host] › tests/e2e/library-design-parity.spec.ts:67:1 › tab browsing preferences survive book work and reload without entering the story file (3.6s)
+  ✓  22 [host] › tests/e2e/library-design-parity.spec.ts:72:1 › modal keyboard boundaries include collapsed settings and nested image selection (2.6s)
+  ✓  23 [host] › tests/e2e/library-design-parity.spec.ts:76:1 › cover title size changes the rendered typography without covering the whole artwork panel (1.5s)
+  ✓  24 [host] › tests/e2e/library-design-parity.spec.ts:80:1 › books physically rest on shelf faces and room decoration frames the focused shelves (2.3s)
+  ✓  25 [host] › tests/e2e/library-design-parity.spec.ts:92:1 › cabinet preserves shelf capacity and compacts occupied rows around four books (1.6s)
+  ✓  26 [host] › tests/e2e/library-design-parity.spec.ts:99:1 › reference introduction uses exact rectangular posters and quiet library controls (1.9s)
+  ✓  27 [host] › tests/e2e/library-design-parity.spec.ts:107:1 › compact shelf keeps all four books and drawer near the first viewport (2.2s)
+  ✓  28 [host] › tests/e2e/library-design-parity.spec.ts:120:1 › cabinet joinery uses visible wood grain and preserves the book selection experience (925ms)
+  ✓  29 [host] › tests/e2e/library-design-parity.spec.ts:128:1 › book page blocks stay narrow and rest above the shelf instead of protruding below the cover (761ms)
+  ✓  30 [host] › tests/e2e/library-design-parity.spec.ts:134:1 › branded library shows word-safe cover titles and opens cover editing directly from the chosen book (1.4s)
+
+  1 skipped
+  29 passed (1.1m)

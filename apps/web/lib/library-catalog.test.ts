@@ -1,0 +1,50 @@
+import {describe,it,expect} from 'vitest';
+import {libraryPage,findLibraryBooks} from './library-catalog';
+describe('library browsing preserves the corpus',()=>{
+ it('matches Korean titles/authors with normalized whitespace without reordering or modifying works',()=>{
+  const items=[{key:'a',project:{title:'흥부와  놀부',cover:{author:'전래 이야기'}}},{key:'b',project:{title:'선녀',cover:{author:'우리 반'}}}];
+  expect(findLibraryBooks(items,'흥부와 놀부')).toEqual([items[0]]);
+  expect(findLibraryBooks(items,'우리')).toEqual([items[1]]);
+  expect(items[0].project.title).toBe('흥부와  놀부');
+ });
+ it('bounds page after filter/removal and never drops remaining books',()=>{
+  const items=Array.from({length:13},(_,key)=>key);
+  expect(libraryPage(items,99,8)).toEqual({items:items.slice(8),page:1,pages:2});
+  expect(libraryPage(items,-3,8).items).toEqual(items.slice(0,8));
+  expect(libraryPage([],4,8)).toEqual({items:[],page:0,pages:1});
+  expect([...libraryPage(items,0,8).items,...libraryPage(items,1,8).items]).toEqual(items);
+ });
+});
+
+import {parseLibraryView} from './library-catalog';
+it('restores only valid tab browsing preferences without persisting project data',()=>{
+ expect(parseLibraryView('{"version":1,"filter":"example","query":"흥부","pages":{"example":2}}')).toEqual({filter:'builtin',query:'흥부',pages:{example:2,builtin:2}});
+ expect(parseLibraryView('{"version":1,"filter":"admin","query":{},"pages":{"example":-1}}')).toEqual({filter:'all',query:'',pages:{}});
+ expect(parseLibraryView('corrupt')).toEqual({filter:'all',query:'',pages:{}});
+});
+
+import {shelfLayoutForWidth} from './library-catalog';
+it('uses available horizontal space for the owner specified shelf layouts',()=>{
+ expect(shelfLayoutForWidth(1200)).toEqual({columns:5,rows:2,capacity:10});
+ expect(shelfLayoutForWidth(1000)).toEqual({columns:4,rows:2,capacity:8});
+ expect(shelfLayoutForWidth(750)).toEqual({columns:3,rows:3,capacity:9});
+ expect(shelfLayoutForWidth(350)).toEqual({columns:2,rows:3,capacity:6});
+});
+
+it('stores all-books and original-book pages independently',()=>{
+ expect(parseLibraryView('{"version":1,"filter":"all","query":"","pages":{"all":2,"original":0}}').pages).toEqual({all:2,original:0});
+});
+
+it('six-book pages preserve all eight books and clamp after a wider layout',()=>{
+ const books=Array.from({length:8},(_,id)=>id);
+ expect(libraryPage(books,0,6).items).toEqual(books.slice(0,6));
+ expect(libraryPage(books,1,6).items).toEqual(books.slice(6));
+ expect(libraryPage(books,1,8)).toEqual({items:books,page:0,pages:1});
+});
+
+it('finds the grouped book by either edition title and author without changing source documents',()=>{
+ const original={project:{title:'흥부전',cover:{author:'전래 이야기'}}};
+ const knolstory={project:{title:'흥부와 놀부, 서로의 몫',cover:{author:'우리 반 각색'}}};
+ const book={...original,builtin:{title:'흥부와 놀부',original,knolstory}};const before=JSON.stringify(book);
+ expect(findLibraryBooks([book],'서로의 몫')).toEqual([book]);expect(findLibraryBooks([book],'우리 반')).toEqual([book]);expect(JSON.stringify(book)).toBe(before);
+});

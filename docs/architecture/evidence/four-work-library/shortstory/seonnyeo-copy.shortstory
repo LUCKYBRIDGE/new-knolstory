@@ -1,0 +1,115 @@
+{
+  "manifest": {
+    "format": "shortstory",
+    "version": 1,
+    "kind": "project"
+  },
+  "project": {
+    "id": "251a5940-71c2-4516-8aac-115de14c17d6",
+    "title": "선녀와 나무꾼 · 나의 그림책",
+    "description": "10장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "authorDisplayName": "전래 이야기 · 놀퀴즈",
+    "source": {
+      "kind": "preset",
+      "presetId": "seonnyeo-classic"
+    },
+    "cover": {
+      "backgroundId": "seonnyeo.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요."
+    },
+    "pages": [
+      {
+        "id": "0c31bfa4-ddf5-4644-8074-df64df404069",
+        "order": 1,
+        "title": "사슴을 숨겨 주다",
+        "text": "나무꾼은 사냥꾼에게 쫓기는 사슴을 나무 뒤에 숨겨 주었어요. 사슴은 고마운 마음에 선녀들이 내려오는 연못을 알려 주었지요.\n나의 새로운 첫 장면입니다.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-01",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "b58572b1-3f59-4847-8ab5-df88d906a811",
+        "order": 2,
+        "title": "연못의 날개옷",
+        "text": "사슴의 말을 들은 나무꾼은 연못으로 갔어요. 나무꾼은 바위 위에 놓인 선녀의 날개옷 하나를 몰래 감췄지요. 그 옷이 선녀에게 얼마나 중요한지 생각하지 못했어요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-02",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "34c6d7d2-7003-4ddd-a395-df0cbcefad7f",
+        "order": 3,
+        "title": "돌아가지 못한 선녀",
+        "text": "날개옷을 잃은 선녀는 하늘로 돌아갈 수 없었어요. 지상에 남은 선녀는 나무꾼과 함께 살게 되었지만, 고향과 날개옷을 그리워했지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-03",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "59f27a91-603f-45df-b1b6-e801a472be49",
+        "order": 4,
+        "title": "두 아이와 날개옷",
+        "text": "두 아이가 태어난 뒤 나무꾼은 감춰 두었던 날개옷을 꺼내 보였어요. 선녀는 다시 만난 옷을 바라보며 하늘로 돌아갈 생각을 했지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-04",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "fdf8ff3e-ec47-48c6-972e-6136ad0ec0f2",
+        "order": 5,
+        "title": "하늘로 떠난 가족",
+        "text": "선녀는 날개옷을 입고 두 아이를 안아 하늘로 올라갔어요. 나무꾼은 뒤늦게 손을 뻗었지만, 떠나는 가족을 붙잡을 수 없었지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-05",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "bef2512e-69bd-4d8e-a3c9-9689cc1d699f",
+        "order": 6,
+        "title": "두레박을 타고",
+        "text": "가족을 그리워하던 나무꾼에게 사슴이 다시 길을 알려 주었어요. 나무꾼은 하늘에서 물을 길으러 내려온 두레박을 타고 구름 위로 올라갔지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-06",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "3a2a5e37-059d-4dae-b871-d501d3117f8a",
+        "order": 7,
+        "title": "하늘나라의 재회",
+        "text": "하늘나라에 도착한 나무꾼은 선녀와 아이들을 다시 만났어요. 아이들을 품에 안고 함께 지냈지만, 시간이 지나자 지상의 어머니가 걱정되었지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-07",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "01be3f49-bda8-488f-beac-29fd3ed139d0",
+        "order": 8,
+        "title": "용마 위에서 만난 어머니",
+        "text": "선녀는 나무꾼에게 용마를 내주며 땅에 내려서지 말라고 당부했어요. 나무꾼은 말을 타고 어머니를 찾아갔고, 어머니는 반가운 마음에 호박죽을 내밀었지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-08",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "feeac186-1b5d-4716-98ee-f952467a718a",
+        "order": 9,
+        "title": "돌아오지 못한 길",
+        "text": "말 위에서 죽을 먹던 나무꾼은 뜨거운 죽을 말 등에 쏟았어요. 놀란 말이 뛰자 나무꾼은 땅에 떨어졌고, 용마만 하늘로 돌아가 버렸지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-09",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "741fd76d-b329-4abb-84f3-155116988cc4",
+        "order": 10,
+        "title": "하늘을 향한 울음",
+        "text": "나무꾼은 다시 하늘로 갈 수 없어 가족을 그리워했어요. 마침내 수탉이 되어 하늘을 바라보며 울었다고 전해져요. 긴 그리움이 마당에 남았지요.",
+        "backgroundId": "seonnyeo.scene.shortstory-classic-10",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      }
+    ],
+    "updatedAt": "2026-10-09T00:20:59.536Z"
+  }
+}
