@@ -57,4 +57,4 @@ ZIP 내부의 `assets/…`, `docs/…`, `scripts/…`는 이 독립 `package` �
 
 ZIP의 `package` 폴더에서 `python -m http.server 8766 --bind 127.0.0.1`을 실행하고 `http://127.0.0.1:8766/assets/audio-preview.html`을 연다. 배경음·환경음 동시 비교용 수납 도구이며 서비스의 공식 플레이어가 아니다.
 
-이 확보본과 main의 관계는 검토용 draft PR에 기록한다. main에 자동 병합하지 않고 다른 로컬의 기존 개발 흐름과 실제 파일을 확인한 뒤 통합한다.
+이 확보본과 main의 관계는 [검토용 Draft PR #2](https://github.com/LUCKYBRIDGE/new-knolstory/pull/2)에 기록했다. main에 자동 병합하지 않고 다른 로컬의 기존 개발 흐름과 실제 파일을 확인한 뒤 통합한다.

@@ -1,5 +1,8 @@
 # CC0 음원 확보 작업 상태
 
+- [확인] GitHub 별도 브랜치 `chore/cc0-audio-staging-2026-10-13`와 Draft PR #2에 이 staging 폴더만 게시했다. main·앱 코드에는 적용하지 않았다.
+- [확인] `audio-cc0-staging-2026-10-13-v1` prerelease에 ZIP·manifest를 게시했다. GitHub 서버 크기·SHA-256과 로컬 두 파일이 일치한다. [받기·병합 안내](README.md)를 따른다.
+
 2026-10-13. 앱 개발의 기존 기준선은 `STATUS.md`를 따릅니다. 이 문서는 별도 로컬에서 진행한 음원 확보 범위만 기록합니다.
 
 - [확인] CC0 개별 배포 자료 39개에서 음원 492개를 확보하고, 동일 바이트 2개를 별칭으로 정리하여 카탈로그 490개를 만들었습니다. 작품용 추가 6곡은 `docs/assets/CC0_BGM_SUPPLEMENT.md`, 이후 편집용 추가 83개는 `docs/assets/CC0_EDITOR_EXPANSION.md`에 있습니다.
