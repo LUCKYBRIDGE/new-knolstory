@@ -1,0 +1,94 @@
+TAP version 13
+# {"equal":true,"target":"knolstory_next_restore_943ea3cbcf5645f392eee323a9a7096f","tables":10,"archiveBytes":1100637,"run":"2026-10-16T08-46-18-291Z-6756e9b6"}
+# Subtest: actual isolated snapshot archive restores exact rows and schema into a new database
+ok 1 - actual isolated snapshot archive restores exact rows and schema into a new database
+  ---
+  duration_ms: 1029.02725
+  type: 'test'
+  ...
+# Subtest: only accepts generated isolated restore database names
+ok 2 - only accepts generated isolated restore database names
+  ---
+  duration_ms: 0.756625
+  type: 'test'
+  ...
+# Subtest: snapshot IDs and identifiers cannot inject SQL
+ok 3 - snapshot IDs and identifiers cannot inject SQL
+  ---
+  duration_ms: 0.271625
+  type: 'test'
+  ...
+# Subtest: comparison fails on missing tables, changed bytes, counts or schema objects
+ok 4 - comparison fails on missing tables, changed bytes, counts or schema objects
+  ---
+  duration_ms: 0.671875
+  type: 'test'
+  ...
+# Subtest: snapshot close sends rollback, observes close and cleans listeners
+ok 5 - snapshot close sends rollback, observes close and cleans listeners
+  ---
+  duration_ms: 0.395417
+  type: 'test'
+  ...
+# Subtest: snapshot close escalates TERM then KILL and waits for actual reap
+ok 6 - snapshot close escalates TERM then KILL and waits for actual reap
+  ---
+  duration_ms: 23.702625
+  type: 'test'
+  ...
+# Subtest: snapshot close has a final bounded rejection when a child never reaps
+ok 7 - snapshot close has a final bounded rejection when a child never reaps
+  ---
+  duration_ms: 31.997834
+  type: 'test'
+  ...
+# Subtest: snapshot close handles pipe errors and synchronous end failures
+ok 8 - snapshot close handles pipe errors and synchronous end failures
+  ---
+  duration_ms: 0.676292
+  type: 'test'
+  ...
+# Subtest: snapshot close reaps children whose exit event has already occurred
+ok 9 - snapshot close reaps children whose exit event has already occurred
+  ---
+  duration_ms: 0.135375
+  type: 'test'
+  ...
+# Subtest: snapshot close rejects invalid deadlines and recognizes already reaped children
+ok 10 - snapshot close rejects invalid deadlines and recognizes already reaped children
+  ---
+  duration_ms: 0.26975
+  type: 'test'
+  ...
+# Subtest: repeated pipe errors do not postpone the bounded forced reap
+ok 11 - repeated pipe errors do not postpone the bounded forced reap
+  ---
+  duration_ms: 21.055833
+  type: 'test'
+  ...
+# Subtest: already signalled and reap-completed exporters reject close
+ok 12 - already signalled and reap-completed exporters reject close
+  ---
+  duration_ms: 0.138709
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1104.845
+# start of coverage report
+# ---------------------------------------------------------------------
+# file                 | line % | branch % | funcs % | uncovered lines
+# ---------------------------------------------------------------------
+# server               |        |          |         | 
+#  operations          |        |          |         | 
+#   backup-restore.mjs |  97.25 |    91.89 |   87.88 | 84-86
+# ---------------------------------------------------------------------
+# all files            |  97.25 |    91.89 |   87.88 | 
+# ---------------------------------------------------------------------
+# end of coverage report

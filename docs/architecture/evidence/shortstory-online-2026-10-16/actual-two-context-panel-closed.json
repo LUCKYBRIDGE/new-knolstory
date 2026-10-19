@@ -1,0 +1,16 @@
+{
+  "origin": "http://127.0.0.1:15401",
+  "scope": "Production ShortStory Web, real Docker API/PostgreSQL; two isolated browser storage contexts on one Mac, not physical devices or live OAuth.",
+  "create201": true,
+  "secondContextIndependentCopy": true,
+  "originalSecondContextBookPreserved": true,
+  "updateRevision": 2,
+  "staleContext409": true,
+  "localConflictManuscriptPreserved": true,
+  "remoteNewerManuscriptPreserved": true,
+  "responseLossAfterActualCommit": true,
+  "exactRetryAfterReload": true,
+  "replay200": true,
+  "duplicateDocuments": 0,
+  "pageErrors": []
+}

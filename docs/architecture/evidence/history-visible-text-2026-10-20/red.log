@@ -1,0 +1,97 @@
+
+Running 1 test using 1 worker
+
+(node:22960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut (9.5s)
+
+
+  1) tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut 
+
+    Error: expect(locator).not.toContainText(expected) failed
+
+    Locator: getByRole('dialog')
+    Expected substring: not "아직 읽지 않은 마지막 문장입니다_숨김확인"
+    Received string: "지난기록닫기실제로 읽은 컷과 선택한 길입니다.1장 · 계곡 · 1컷해설1번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    2번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    3번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    4번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    5번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    6번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    7번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    8번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    9번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    10번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    11번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    12번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    13번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    14번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    15번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    16번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    17번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    18번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    19번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    20번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    21번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    22번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    23번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    24번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    25번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    26번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    아직 읽지 않은 마지막 문장입니다_숨김확인이 지점부터 다시 읽기"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "not toContainText" getByRole('dialog') with timeout 5000ms
+      - waiting for getByRole('dialog')
+        14 × locator resolved to <dialog open="" aria-labelledby="_r_0_-title" data-system-menu="player-dialog" class="story-player-menu-module__VLhC_G__dialog">…</dialog>
+           - unexpected value "지난기록닫기실제로 읽은 컷과 선택한 길입니다.1장 · 계곡 · 1컷해설1번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    2번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    3번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    4번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    5번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    6번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    7번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    8번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    9번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    10번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    11번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    12번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    13번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    14번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    15번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    16번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    17번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    18번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    19번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    20번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    21번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    22번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    23번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    24번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    25번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    26번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.
+    아직 읽지 않은 마지막 문장입니다_숨김확인이 지점부터 다시 읽기"
+
+
+      11 |  const gate=frame.contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});if(await gate.count())await gate.press('Enter');
+      12 |  const first=JSON.parse((await status.getAttribute('data-dialogue-page'))!);expect(first.index).toBe(0);expect(first.count).toBeGreaterThan(2);
+    > 13 |  let dialog=await history(page);await expect(dialog).not.toContainText(secret);
+         |                                                          ^
+      14 |  expect(first.endOffset).toBeGreaterThan(0);expect(first.endOffset).toBeLessThan(Array.from(manuscript).length);
+      15 |  await expect(dialog.locator('ol li').last()).toContainText(Array.from(manuscript).slice(0,first.endOffset).join(''));
+      16 |  await page.screenshot({path:info.outputPath('first-page-history.png')});await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/history-visible-text.spec.ts:13:58
+
+    Error Context: docs/architecture/evidence/history-visible-text-2026-10-20/red-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/history-visible-text-2026-10-20/red-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/history-visible-text-2026-10-20/red-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut 

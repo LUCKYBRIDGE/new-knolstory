@@ -1,0 +1,53 @@
+
+Running 1 test using 1 worker
+
+(node:59097) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text (30.9s)
+
+
+  1) tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('대사 / 해설', { exact: true })
+        - locator resolved to <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설"></textarea>
+        - fill("아직 파일로 내보내지 않은 둘째 탭의 초안")
+      - attempting fill action
+        2 × waiting for element to be visible, enabled and editable
+          - element is not visible
+        - retrying fill action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and editable
+          - element is not visible
+        - retrying fill action
+          - waiting 100ms
+        51 × waiting for element to be visible, enabled and editable
+           - element is not visible
+         - retrying fill action
+           - waiting 500ms
+
+
+       99 |  await create(page,'보관함의 원고');const second=await context.newPage();await second.goto('/?view=editor');
+      100 |  await expect(second.getByRole('alert').filter({hasText:'다른 탭에서 보관함'})).toBeVisible();
+    > 101 |  const text=second.getByLabel('대사 / 해설',{exact:true}),draft='아직 파일로 내보내지 않은 둘째 탭의 초안';await text.fill(draft);
+          |                                                                                                  ^
+      102 |  const before=await page.evaluate(key=>localStorage.getItem(key),workspace);
+      103 |  const reopen=second.getByRole('button',{name:'저장된 보관함 다시 열기',exact:true});
+      104 |  await text.dispatchEvent('compositionstart');await expect(reopen).toBeDisabled();await text.dispatchEvent('compositionend');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:101:98
+
+    Error Context: docs/architecture/evidence/reload-draft-2026-10-20/red-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/reload-draft-2026-10-20/red-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/reload-draft-2026-10-20/red-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text 

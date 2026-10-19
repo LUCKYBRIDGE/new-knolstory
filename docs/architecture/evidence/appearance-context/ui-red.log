@@ -1,0 +1,33 @@
+
+Running 1 test using 1 worker
+
+(node:54891) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/direction-purpose.spec.ts:13:122 › appearance controls follow current actors and preserve saved absent groups 1440 (2.1s)
+
+
+  1) [host] › tests/e2e/direction-purpose.spec.ts:13:122 › appearance controls follow current actors and preserve saved absent groups 1440 
+
+    ReferenceError: confirmAuthoringImport is not defined
+
+      17 |  line.stageComposition={leftActors:sample.side==='left'?[{key:'authored-left',assetId:'character:F01',xAnchor:37,scaleMultiplier:1.17,facing:'left'}]:[],rightActors:sample.side==='right'?[{key:'authored-right',assetId:'character:F01',xAnchor:71,scaleMultiplier:.95}]:[]};
+      18 |  line.presentation=sample.side==='saved'?{actors:{left:{opacity:0,emphasis:'dim',spectral:true,xAnchor:37,scaleMultiplier:1.1,facing:'left'}}}:undefined;
+    > 19 |  await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'actor-context.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(archive))});await confirmAuthoringImport(page);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+         |                                                                                                                                                                           ^
+      20 |  await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'연출 편집',exact:true}).click();await page.getByLabel('조정할 연출',{exact:true}).selectOption('actors');
+      21 |  const controls=page.getByTestId('story-actor-appearance-controls');
+      22 |  if(sample.side==='none'){await expect(controls.getByRole('combobox')).toHaveCount(0);await expect(controls.getByRole('button',{name:'인물 배치하기',exact:true})).toBeVisible();}
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:19:171
+
+    Error Context: test-results-appearance-context/direction-purpose-appearan-5d0e8-ve-saved-absent-groups-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-appearance-context/direction-purpose-appearan-5d0e8-ve-saved-absent-groups-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-appearance-context/direction-purpose-appearan-5d0e8-ve-saved-absent-groups-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/direction-purpose.spec.ts:13:122 › appearance controls follow current actors and preserve saved absent groups 1440 

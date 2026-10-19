@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ apps/web/lib/choice-writing.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/choice-writing.test.ts [ apps/web/lib/choice-writing.test.ts ]
+Error: Cannot find module './choice-writing' imported from <repo>/apps/web/lib/choice-writing.test.ts
+ ❯ apps/web/lib/choice-writing.test.ts:3:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {readFileSync} from 'node:fs';
+      3| import {createChoiceWritingDraft} from './choice-writing';
+       | ^
+      4| import {createAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapsh…
+      5| import type {StoryProject} from '@knolstory/story-domain';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  21:41:23
+   Duration  106ms (transform 11ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

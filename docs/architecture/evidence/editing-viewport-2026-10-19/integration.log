@@ -1,0 +1,70 @@
+
+Running 13 tests using 1 worker
+
+(node:41245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/editing-workbench.spec.ts:50:1 › several cut texts edit directly and companion visibility never edits manuscript data (5.8s)
+  ✓   2 tests/e2e/editing-workbench.spec.ts:67:1 › background workbench updates separate cuts and preserves their text, stage, audio and effects (6.4s)
+  ✓   3 tests/e2e/editing-workbench.spec.ts:78:1 › audio and direction require separate opt-in, persist real cut ranges and survive local-file reopen (4.7s)
+  ✓   4 tests/e2e/editing-workbench.spec.ts:104:1 › character batch view changes placement across cuts without converting left/right speaker roles (5.5s)
+  ✓   5 tests/e2e/editing-workbench.spec.ts:126:1 › basic editing keeps previous and next cut context beside a clear current editor at desktop and phone widths (2.2s)
+  ✘   6 tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait (2.0s)
+(node:41371) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 tests/e2e/editing-workbench.spec.ts:177:1 › legacy advanced controls remain separately opt-in and preserve existing choices (2.2s)
+  ✓   8 tests/e2e/editing-workbench.spec.ts:196:1 › direction edits existing actor motion while keeping one native frame and actor identities (2.3s)
+  ✓   9 tests/e2e/editing-workbench.spec.ts:209:1 › phone basic editor fits previous current next in 1:4:1 with landscape native scene (2.1s)
+  ✘  10 tests/e2e/editing-workbench.spec.ts:224:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls (50.3s)
+(node:41673) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 tests/e2e/editing-workbench.spec.ts:236:1 › native frame remains mounted and interactive through editor read return (2.0s)
+  ✓  12 tests/e2e/editing-workbench.spec.ts:245:1 › actual native basic preview renders landscape inside the phone center without changing manuscript (4.1s)
+  ✓  13 tests/e2e/editing-workbench.spec.ts:254:1 › editing follows modeled visible viewport shrink and pan while keeping text accessible (2.1s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 2
+    Received:    36
+
+      160 |  const after=await field.evaluate(element=>{const input=element as HTMLTextAreaElement,panel=input.closest('[data-writer-scroll]');return {panelScroll:panel?.scrollTop??0,windowScroll:scrollY,start:input.selectionStart,end:input.selectionEnd,focused:document.activeElement===input,fieldTop:input.getBoundingClientRect().top,bodyHeight:document.body.scrollHeight,headers:Array.from(document.querySelectorAll('header')).map(x=>x.getBoundingClientRect().height)};});
+      161 |  expect(after.focused).toBe(true);expect(after.start).toBe(before.start+'한글 조합 중'.length);expect(after.end).toBe(after.start);
+    > 162 |  expect(Math.abs(after.panelScroll-before.panelScroll)).toBeLessThanOrEqual(2);
+          |                                                         ^
+      163 |  // Chromium may scroll to reveal an input caret. The editor must keep the same document position and height.
+      164 |  expect(Math.abs(after.fieldTop+after.windowScroll-before.fieldTop-before.windowScroll)).toBeLessThanOrEqual(2);expect(after.bodyHeight).toBe(before.bodyHeight);expect(after.headers).toEqual(before.headers);expect(after.fieldTop).toBeGreaterThanOrEqual(0);
+      165 |  await field.dispatchEvent('compositionend',{data:'한글 조합 중'});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:162:57
+
+    Error Context: docs/architecture/evidence/editing-viewport-2026-10-19/integration-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-viewport-2026-10-19/integration-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-viewport-2026-10-19/integration-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/editing-workbench.spec.ts:224:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: Object with guid handle@25f5612cb5b6054a75a3130150fbf1ca was not bound in the connection
+
+    Error Context: docs/architecture/evidence/editing-viewport-2026-10-19/integration-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-viewport-2026-10-19/integration-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-viewport-2026-10-19/integration-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait 
+    tests/e2e/editing-workbench.spec.ts:224:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls 
+  11 passed (1.6m)

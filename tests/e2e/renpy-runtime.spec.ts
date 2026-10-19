@@ -69,8 +69,8 @@ test('real Ren’Py acknowledges editing and keeps canvas aligned through respon
   expect(Number(await page.locator('body').getAttribute('data-observed-acks'))).toBeGreaterThan(1);
   await page.mouse.up();
   await expect.poll(async () => Number(await page.getByRole('spinbutton', { name: '인물 X 좌표' }).inputValue())).toBeGreaterThan(before);
-  await page.getByRole('button', { name: '편집 패널 접기' }).click();
-  await page.getByRole('button', { name: '편집 패널 열기' }).click();
+  await page.getByRole('button', { name: '글 편집 영역 접기' }).click();
+  await page.getByRole('button', { name: '글 편집 영역 열기' }).click();
   await expect(page.getByLabel('선택한 인물')).toHaveValue('heungbu');
   await expect(frame).toHaveAttribute('data-real-runtime', 'same-frame');
   await expect.poll(async () => {

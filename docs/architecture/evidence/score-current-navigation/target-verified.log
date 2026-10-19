@@ -1,0 +1,34 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:19] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:32245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/1a3x8ldwgr8gi.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:20] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] code 404, message File not found
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /favicon.ico HTTP/1.1" 404 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 23:11:21] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/score-narrative.spec.ts:45:1 › score route destinations distinguish repeated cut text in different chapters (2.6s)
+
+  1 passed (3.9s)

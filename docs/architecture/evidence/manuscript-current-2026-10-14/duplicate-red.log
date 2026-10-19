@@ -1,0 +1,121 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts (4 tests | 4 failed) 13ms
+   × duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b"} 8ms
+   × duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":null} 1ms
+   × duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b","routes":[{"id":"route","condition":{"mode":"all","terms":[]},"targetLineId":"b"}]} 1ms
+   × duplication preserves terminal ending metadata independently of Flow and still ends after moving the copy 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-flow-preservation.test.ts > duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b"}
+AssertionError: expected { id: 'a', chapterId: 'first', …(17) } to deeply equal { id: 'a', chapterId: 'first', …(16) }
+
+- Expected
++ Received
+
+@@ -8,14 +8,12 @@
+    },
+    "backgroundId": "",
+    "chapterId": "first",
+    "directionNote": "",
+    "emotionNote": "",
+-   "flow": {
+-     "targetLineId": "b",
+-     "type": "goto",
+-   },
++   "ending": undefined,
++   "flow": undefined,
+    "id": "a",
+    "leftAssetId": "",
+    "order": 1,
+    "presentation": {
+      "effects": [
+
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts:12:53
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-flow-preservation.test.ts > duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":null}
+AssertionError: expected { id: 'a', chapterId: 'first', …(17) } to deeply equal { id: 'a', chapterId: 'first', …(16) }
+
+- Expected
++ Received
+
+@@ -8,14 +8,12 @@
+    },
+    "backgroundId": "",
+    "chapterId": "first",
+    "directionNote": "",
+    "emotionNote": "",
+-   "flow": {
+-     "targetLineId": null,
+-     "type": "goto",
+-   },
++   "ending": undefined,
++   "flow": undefined,
+    "id": "a",
+    "leftAssetId": "",
+    "order": 1,
+    "presentation": {
+      "effects": [
+
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts:12:53
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-flow-preservation.test.ts > duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b","routes":[{"id":"route","condition":{"mode":"all","terms":[]},"targetLineId":"b"}]}
+Error: 선택지는 2개 또는 3개이며 문구와 도착 컷이 있어야 해요.
+ ❯ validated packages/runtime-core/src/authoring.ts:20:25
+     18|   const candidate = touch ? { ...project, updatedAt: new Date().toISOS…
+     19|   const loaded = parseStoryDocument(createStoryDocument({ project: can…
+     20|   if (!loaded.ok) throw new Error(loaded.issues.map(issue => issue.mes…
+       |                         ^
+     21|   return candidate;
+     22| }
+ ❯ replaceChapterCuts packages/runtime-core/src/authoring.ts:76:10
+ ❯ insertStoryCut packages/runtime-core/src/authoring.ts:94:10
+ ❯ duplicateStoryCut packages/runtime-core/src/editor-authoring.ts:30:46
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts:11:83
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-flow-preservation.test.ts > duplication preserves terminal ending metadata independently of Flow and still ends after moving the copy
+AssertionError: expected { id: 'a', chapterId: 'first', …(14) } to deeply equal { id: 'a', chapterId: 'first', …(13) }
+
+- Expected
++ Received
+
+@@ -1,15 +1,12 @@
+  {
+    "backgroundId": "",
+    "chapterId": "first",
+    "directionNote": "",
+    "emotionNote": "",
+-   "ending": {
+-     "description": "마지막 해설",
+-     "endsStory": true,
+-     "name": "따뜻한 끝",
+-   },
++   "ending": undefined,
++   "flow": undefined,
+    "id": "a",
+    "leftAssetId": "",
+    "order": 1,
+    "purposeNote": "",
+    "rightAssetId": "",
+
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts:21:139
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  09:12:48
+   Duration  438ms (transform 225ms, setup 0ms, import 327ms, tests 13ms, environment 0ms)
+

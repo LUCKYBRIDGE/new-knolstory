@@ -98,7 +98,9 @@ export function resolveBookCover(project: StoryProject, face: CoverFaceId='front
   const titleWidth=composition?.titleWidth??82,titleX=composition?coverCompositionTitleX(composition):51;
   const titleY=composition?.titleY??(cover.titlePosition==='top'?12:cover.titlePosition==='middle'?35:55);
   const titleBox:CoverBox=composition?{x:(titleX-titleWidth/2)/100,y:titleY/100,w:titleWidth/100,h:(94-titleY)/100}:template.titleBox;
-  const ink=cover.titleColor||(cover.layout==='classic'?theme.accent:theme.ink);
+  // Fitted titles can become normal-size text even in a full cover preview.
+  // Only the default palette changes; authored colors and layered designs stay intact.
+  const ink=cover.titleColor||(cover.layout==='classic'&&cover.design?theme.accent:theme.ink);
   const design=cover.design;
   return {mode:design?'layers' as const:'legacy' as const,face,cover,preset:design?.faces[face].preset??cover.presetId??cover.layout,
     context,title,theme,ink,panel:cover.titleColor?coverTextPanel(ink):theme.paper,

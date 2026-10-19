@@ -33,3 +33,5 @@
 A4는 Web/CSS 인쇄로 표지, 각 그림/글 쪽, 마지막 인사를 출력한다. Chromium print-to-PDF 결과는 별주부전 10쪽, 옹고집전 10쪽, 선녀와 나무꾼 12쪽, 흥부와 놀부 10쪽이다. 각 본문 쪽에 해당 원래 글 전체와 삽화가 들어 있고 A4 치수를 확인했다. 실제 종이 프린터·학교 하드웨어 출력 검증으로 주장하지 않는다. 생성 PDF와 화면은 미확인 그림을 포함하므로 Git에는 공개하지 않고 로컬 evidence에만 둔다.
 
 [실제 PDF 텍스트/삽화/치수 검증](evidence/four-work-library/shortstory/print-verification.json), [단일 작업 보존·중단 검사](evidence/four-work-library/shortstory/migration-contract.json). 최종 전체 검사·검토·GitHub 결과는 [이번 목표의 완료 근거](four-work-library-verification.md)에 기록한다.
+
+사용자에게 보이는 기능 이름과 설명은 [제품 용어 기준](editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 내부 키·현재 파일 계약과 과거 검증 기록은 용어 정리로 바꾸지 않는다.

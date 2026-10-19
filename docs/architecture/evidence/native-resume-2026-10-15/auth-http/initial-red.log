@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/auth-routes.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/auth-routes.test.ts [ server/http/auth-routes.test.ts ]
+Error: Cannot find module './auth-routes' imported from /Users/wan/ai_dev/apps/new-knolstory/server/http/auth-routes.test.ts
+ ❯ server/http/auth-routes.test.ts:3:1
+      1| import { createServer, type Server } from 'node:http';
+      2| import { afterEach, describe, expect, it } from 'vitest';
+      3| import { createAuthRouter, type AuthRouterOptions } from './auth-route…
+       | ^
+      4| import { createAuthStateService, type AuthStatePort, type PendingFlow,…
+      5| import type { Account, IdentityLinkPort, VerifiedIdentity } from '../a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:27:43
+   Duration  129ms (transform 15ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

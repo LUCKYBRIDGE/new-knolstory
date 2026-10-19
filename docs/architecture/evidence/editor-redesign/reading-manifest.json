@@ -1,0 +1,5112 @@
+{
+  "date": "2026-10-11",
+  "count": 45,
+  "checks": [
+    {
+      "id": "phone-library-confirm",
+      "device": "phone",
+      "state": "library-confirm",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 서재 복귀 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 836,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 142.515625,
+          "y": 482.1875,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "보관하고 서재로",
+          "x": 211.96875,
+          "y": 482.1875,
+          "width": 137.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-library-done",
+      "device": "phone",
+      "state": "library-done",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 서재 복귀 예시",
+      "expanded": false,
+      "dock": null,
+      "buttons": [
+        {
+          "label": "이어 읽기",
+          "x": 61,
+          "y": 466.90625,
+          "width": 93.375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-restart-done",
+      "device": "phone",
+      "state": "restart-done",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 첫 컷 복귀",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 836,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 348.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 펼치기",
+          "x": 335,
+          "y": 793,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-settings",
+      "device": "phone",
+      "state": "settings",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 읽기 설정",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 836,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 10,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 78.171875,
+          "y": 8,
+          "width": 42.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 124.265625,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 192.4375,
+          "y": 8,
+          "width": 67.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 263.96875,
+          "y": 8,
+          "width": 100.640625,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 296.078125,
+          "y": 83,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "전체 화면",
+          "x": 14,
+          "y": 441.1875,
+          "width": 362,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-restart-done",
+      "device": "web",
+      "state": "restart-done",
+      "w": 1440,
+      "h": 900,
+      "title": "처음부터 시작 · 첫 컷 복귀",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 1390.75,
+          "y": 59,
+          "width": 31.25,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 451.1875,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 550.546875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 627.828125,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 727.1875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 804.46875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 907.1875,
+          "y": 785,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-library-done",
+      "device": "web",
+      "state": "library-done",
+      "w": 1440,
+      "h": 900,
+      "title": "위치 보관 뒤 · 서재 복귀 예시",
+      "expanded": false,
+      "dock": null,
+      "buttons": [
+        {
+          "label": "이어 읽기",
+          "x": 231,
+          "y": 495.046875,
+          "width": 93.375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-top-menu",
+      "device": "web",
+      "state": "top-menu",
+      "w": 1440,
+      "h": 900,
+      "title": "웹 · 상단 읽기 메뉴",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴 닫기",
+          "x": 1356,
+          "y": 75,
+          "width": 41,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정\n글 크기 · 자동 대기 · 동작",
+          "x": 1147,
+          "y": 122,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "전체 화면\n작품을 화면에 크게",
+          "x": 1147,
+          "y": 182,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "처음부터 읽기\n현재 경로를 초기화하기 전 확인",
+          "x": 1147,
+          "y": 262,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "서재로 돌아가기\n현재 읽기 위치를 보관하고 나가기",
+          "x": 1147,
+          "y": 322,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-top-menu",
+      "device": "phone",
+      "state": "top-menu",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 상단 읽기 메뉴",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 836,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴 닫기",
+          "x": 318,
+          "y": 69,
+          "width": 41,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정\n글 크기 · 자동 대기 · 동작",
+          "x": 109,
+          "y": 116,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "전체 화면\n작품을 화면에 크게",
+          "x": 109,
+          "y": 176,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "처음부터 읽기\n현재 경로를 초기화하기 전 확인",
+          "x": 109,
+          "y": 256,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "서재로 돌아가기\n현재 읽기 위치를 보관하고 나가기",
+          "x": 109,
+          "y": 316,
+          "width": 258,
+          "height": 57,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-fullscreen",
+      "device": "web",
+      "state": "fullscreen",
+      "w": 1440,
+      "h": 810,
+      "title": "전체 화면 · 작품 무대",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 736,
+        "toolsTop": 748,
+        "toolsBottom": 776,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 748,
+            "bottom": 776,
+            "height": 28
+          },
+          {
+            "y": 748,
+            "bottom": 776,
+            "height": 28
+          },
+          {
+            "y": 748,
+            "bottom": 776,
+            "height": 28
+          },
+          {
+            "y": 748,
+            "bottom": 776,
+            "height": 28
+          },
+          {
+            "y": 748,
+            "bottom": 776,
+            "height": 28
+          },
+          {
+            "y": 748,
+            "bottom": 776,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 810
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 451.1875,
+          "y": 740,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 550.546875,
+          "y": 740,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 627.828125,
+          "y": 740,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 727.1875,
+          "y": 740,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 804.46875,
+          "y": 740,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 907.1875,
+          "y": 740,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-restart-confirm",
+      "device": "web",
+      "state": "restart-confirm",
+      "w": 1440,
+      "h": 900,
+      "title": "처음부터 읽기 · 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 760.734375,
+          "y": 514.5,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "처음부터 시작",
+          "x": 830.1875,
+          "y": 514.5,
+          "width": 122.8125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-restart-confirm",
+      "device": "phone",
+      "state": "restart-confirm",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 처음부터 읽기 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 836,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 157.234375,
+          "y": 482.1875,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "처음부터 시작",
+          "x": 226.6875,
+          "y": 482.1875,
+          "width": 122.8125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-library-confirm",
+      "device": "web",
+      "state": "library-confirm",
+      "w": 1440,
+      "h": 900,
+      "title": "서재 복귀 · 위치 보관 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 746.015625,
+          "y": 514.5,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "보관하고 서재로",
+          "x": 815.46875,
+          "y": 514.5,
+          "width": 137.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-load-confirm",
+      "device": "web",
+      "state": "load-confirm",
+      "w": 1440,
+      "h": 900,
+      "title": "불러오기 · 선택한 기록 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 794.65625,
+          "y": 501,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 864.109375,
+          "y": 501,
+          "width": 88.890625,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-load",
+      "device": "phone",
+      "state": "load",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 불러오기 기록 목록",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 10,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 78.171875,
+          "y": 8,
+          "width": 42.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 124.265625,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 192.4375,
+          "y": 8,
+          "width": 67.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 263.96875,
+          "y": 8,
+          "width": 100.640625,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 296.078125,
+          "y": 83,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 14,
+          "y": 145,
+          "width": 58.46875,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 80.46875,
+          "y": 145,
+          "width": 58.46875,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3페이지",
+          "x": 146.9375,
+          "y": 145,
+          "width": 58.46875,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 213.40625,
+          "y": 145,
+          "width": 65.5625,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 286.96875,
+          "y": 145,
+          "width": 65.5625,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 14,
+          "y": 199,
+          "width": 176,
+          "height": 207.5,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2번 저장 · 1장 2컷\n2026.10.11 14:10\n\n나무꾼 — 길이 두 갈래로 나뉘었어요.\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 200,
+          "y": 199,
+          "width": 176,
+          "height": 207.5,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3번 · 빈 저장 위치\n저장된 기록 없음",
+          "x": 14,
+          "y": 416.5,
+          "width": 176,
+          "height": 191,
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "label": "4번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 200,
+          "y": 416.5,
+          "width": 176,
+          "height": 191,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 69,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 121,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 173,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3",
+          "x": 225,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 277,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-load-confirm",
+      "device": "phone",
+      "state": "load-confirm",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 기록 복원 확인",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 191.15625,
+          "y": 482.1875,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 260.609375,
+          "y": 482.1875,
+          "width": 88.890625,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-basic",
+      "device": "web",
+      "state": "basic",
+      "w": 1440,
+      "h": 900,
+      "title": "웹 · 글 상자 아래 여섯 읽기 도구",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 1390.75,
+          "y": 59,
+          "width": 31.25,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 451.1875,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 550.546875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 627.828125,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 727.1875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 804.46875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 907.1875,
+          "y": 785,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-basic",
+      "device": "tablet",
+      "state": "basic",
+      "w": 1024,
+      "h": 768,
+      "title": "태블릿 · 작은 한 줄 메뉴",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 598,
+        "toolsTop": 610,
+        "toolsBottom": 638,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 610,
+            "bottom": 638,
+            "height": 28
+          },
+          {
+            "y": 610,
+            "bottom": 638,
+            "height": 28
+          },
+          {
+            "y": 610,
+            "bottom": 638,
+            "height": 28
+          },
+          {
+            "y": 610,
+            "bottom": 638,
+            "height": 28
+          },
+          {
+            "y": 610,
+            "bottom": 638,
+            "height": 28
+          },
+          {
+            "y": 610,
+            "bottom": 638,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 768
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 974.75,
+          "y": 110,
+          "width": 31.25,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 274.359375,
+          "y": 602,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 361.25,
+          "y": 602,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 426.0625,
+          "y": 602,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 512.953125,
+          "y": 602,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 577.765625,
+          "y": 602,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 668.015625,
+          "y": 602,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-folded",
+      "device": "phone",
+      "state": "basic",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 기본 접힘",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 836,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 348.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 펼치기",
+          "x": 335,
+          "y": 793,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-expanded",
+      "device": "phone",
+      "state": "basic",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 도구 펼침",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 348.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 12,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 134,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 256,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 12,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 134,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 256,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 접기",
+          "x": 335,
+          "y": 731,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-landscape-folded",
+      "device": "phone landscape",
+      "state": "basic",
+      "w": 844,
+      "h": 390,
+      "title": "휴대폰 가로 · 접힌 읽기 도구",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 382,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 390
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 802.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 펼치기",
+          "x": 716.609375,
+          "y": 339,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-landscape-expanded",
+      "device": "phone landscape",
+      "state": "basic",
+      "w": 844,
+      "h": 390,
+      "title": "휴대폰 가로 · 한 줄 도구",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 350,
+        "toolsTop": 354,
+        "toolsBottom": 382,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 354,
+            "bottom": 382,
+            "height": 28
+          },
+          {
+            "y": 354,
+            "bottom": 382,
+            "height": 28
+          },
+          {
+            "y": 354,
+            "bottom": 382,
+            "height": 28
+          },
+          {
+            "y": 354,
+            "bottom": 382,
+            "height": 28
+          },
+          {
+            "y": 354,
+            "bottom": 382,
+            "height": 28
+          },
+          {
+            "y": 354,
+            "bottom": 382,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 390
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 802.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 84.390625,
+          "y": 354,
+          "width": 112.53125,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 196.921875,
+          "y": 354,
+          "width": 112.53125,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 309.453125,
+          "y": 354,
+          "width": 112.546875,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 422,
+          "y": 354,
+          "width": 112.53125,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 534.53125,
+          "y": 354,
+          "width": 112.53125,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 647.0625,
+          "y": 354,
+          "width": 112.546875,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 접기",
+          "x": 716.609375,
+          "y": 307,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-history",
+      "device": "web",
+      "state": "history",
+      "w": 1440,
+      "h": 900,
+      "title": "지난기록 · 읽은 대사와 선택",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "이 지점부터 다시 읽기",
+          "x": 289.796875,
+          "y": 251.171875,
+          "width": 131.453125,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "이 지점부터 다시 읽기",
+          "x": 289.796875,
+          "y": 416.34375,
+          "width": 131.453125,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "이 지점부터 다시 읽기",
+          "x": 289.796875,
+          "y": 589.015625,
+          "width": 131.453125,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-history",
+      "device": "phone",
+      "state": "history",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 지난기록",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 10,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 78.171875,
+          "y": 8,
+          "width": 42.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 124.265625,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 192.4375,
+          "y": 8,
+          "width": 67.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 263.96875,
+          "y": 8,
+          "width": 100.640625,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 296.078125,
+          "y": 83,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "이 지점부터 다시 읽기",
+          "x": 18,
+          "y": 249.5625,
+          "width": 131.453125,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "이 지점부터 다시 읽기",
+          "x": 18,
+          "y": 418.125,
+          "width": 131.453125,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "이 지점부터 다시 읽기",
+          "x": 18,
+          "y": 602.6875,
+          "width": 131.453125,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-history-return",
+      "device": "web",
+      "state": "history-return",
+      "w": 1440,
+      "h": 900,
+      "title": "지난기록 · 이 지점부터 읽기 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 741.546875,
+          "y": 501,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "여기서 다시 읽기",
+          "x": 811,
+          "y": 501,
+          "width": 142,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-auto",
+      "device": "web",
+      "state": "auto",
+      "w": 1440,
+      "h": 900,
+      "title": "자동 · 켜짐 표시",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 1390.75,
+          "y": 59,
+          "width": 31.25,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 438.46875,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 537.828125,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 615.109375,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 켜짐",
+          "x": 714.46875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 817.1875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 919.90625,
+          "y": 785,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-auto-expanded",
+      "device": "phone",
+      "state": "auto",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 자동 켜짐·도구 펼침",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 348.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 12,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 134,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 256,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 켜짐",
+          "x": 12,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 134,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 256,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 접기",
+          "x": 335,
+          "y": 731,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-auto-folded",
+      "device": "phone",
+      "state": "auto",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 접힘 상태의 자동 표시",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 836,
+        "toolsTop": 0,
+        "toolsBottom": 0,
+        "toolsVisible": false,
+        "rows": [
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          },
+          {
+            "y": 0,
+            "bottom": 0,
+            "height": 0
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 348.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 펼치기",
+          "x": 335,
+          "y": 793,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-auto-choice",
+      "device": "web",
+      "state": "auto-choice",
+      "w": 1440,
+      "h": 900,
+      "title": "자동 · 선택지에서 대기",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 1390.75,
+          "y": 59,
+          "width": 31.25,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "선녀와 함께 길을 찾아본다",
+          "x": 288,
+          "y": 207,
+          "width": 864,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "잠시 쉬며 이야기를 나눈다",
+          "x": 288,
+          "y": 261,
+          "width": 864,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 451.1875,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 550.546875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 627.828125,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 727.1875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 804.46875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 907.1875,
+          "y": 785,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-settings",
+      "device": "web",
+      "state": "settings",
+      "w": 1440,
+      "h": 900,
+      "title": "자동 대기·글·동작 설정",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "전체 화면",
+          "x": 285.796875,
+          "y": 424.09375,
+          "width": 650,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-save",
+      "device": "web",
+      "state": "save",
+      "w": 1440,
+      "h": 900,
+      "title": "저장 · 슬롯 선택",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 285.796875,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 366.90625,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 448.015625,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 537.5,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2번 저장 · 1장 2컷\n2026.10.11 14:10\n\n나무꾼 — 길이 두 갈래로 나뉘었어요.\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 633.265625,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3번 · 빈 저장 위치\n여기에 저장하기",
+          "x": 980.734375,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "4번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "5번 · 빈 저장 위치\n여기에 저장하기",
+          "x": 633.265625,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "6번 · 빈 저장 위치\n여기에 저장하기",
+          "x": 980.734375,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 700,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 752,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 804,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 856,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-save",
+      "device": "phone",
+      "state": "save",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 저장 슬롯",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 10,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 78.171875,
+          "y": 8,
+          "width": 42.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 124.265625,
+          "y": 8,
+          "width": 64.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 192.4375,
+          "y": 8,
+          "width": 67.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 263.96875,
+          "y": 8,
+          "width": 100.640625,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 296.078125,
+          "y": 83,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 14,
+          "y": 145,
+          "width": 58.46875,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 80.46875,
+          "y": 145,
+          "width": 58.46875,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3페이지",
+          "x": 146.9375,
+          "y": 145,
+          "width": 58.46875,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 213.40625,
+          "y": 145,
+          "width": 65.5625,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 286.96875,
+          "y": 145,
+          "width": 65.5625,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 14,
+          "y": 199,
+          "width": 176,
+          "height": 207.5,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2번 저장 · 1장 2컷\n2026.10.11 14:10\n\n나무꾼 — 길이 두 갈래로 나뉘었어요.\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 200,
+          "y": 199,
+          "width": 176,
+          "height": 207.5,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3번 · 빈 저장 위치\n여기에 저장하기",
+          "x": 14,
+          "y": 416.5,
+          "width": 176,
+          "height": 191,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "4번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 200,
+          "y": 416.5,
+          "width": 176,
+          "height": 191,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 69,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 121,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 173,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3",
+          "x": 225,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 277,
+          "y": 623.5,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-overwrite",
+      "device": "web",
+      "state": "overwrite",
+      "w": 1440,
+      "h": 900,
+      "title": "저장 · 덮어쓰기 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 794.65625,
+          "y": 501,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "덮어쓰기",
+          "x": 864.109375,
+          "y": 501,
+          "width": 88.890625,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-save-complete",
+      "device": "web",
+      "state": "save-complete",
+      "w": 1440,
+      "h": 900,
+      "title": "저장 · 완료 알림",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 285.796875,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 366.90625,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 448.015625,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 537.5,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2번 저장 · 1장 2컷\n2026.10.11 14:10\n\n나무꾼 — 길이 두 갈래로 나뉘었어요.\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 633.265625,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 980.734375,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "4번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "5번 · 빈 저장 위치\n여기에 저장하기",
+          "x": 633.265625,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "6번 · 빈 저장 위치\n여기에 저장하기",
+          "x": 980.734375,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 700,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 752,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 804,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 856,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-load",
+      "device": "web",
+      "state": "load",
+      "w": 1440,
+      "h": 900,
+      "title": "불러오기 · 기록 선택과 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 285.796875,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 366.90625,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 448.015625,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 537.5,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2번 저장 · 1장 2컷\n2026.10.11 14:10\n\n나무꾼 — 길이 두 갈래로 나뉘었어요.\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 633.265625,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "3번 · 빈 저장 위치\n저장된 기록 없음",
+          "x": 980.734375,
+          "y": 204,
+          "width": 333.46875,
+          "height": 243.8125,
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "label": "4번 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "5번 · 빈 저장 위치\n저장된 기록 없음",
+          "x": 633.265625,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "label": "6번 · 빈 저장 위치\n저장된 기록 없음",
+          "x": 980.734375,
+          "y": 461.8125,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 700,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 752,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 804,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 856,
+          "y": 719.625,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-load-page2",
+      "device": "web",
+      "state": "load-page2",
+      "w": 1440,
+      "h": 900,
+      "title": "불러오기 · 두 번째 페이지",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 285.796875,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 366.90625,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 448.015625,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 537.5,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "7번 · 빈 저장 위치\n저장된 기록 없음",
+          "x": 285.796875,
+          "y": 204,
+          "width": 333.46875,
+          "height": 210,
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "label": "8번 · 빈 저장 위치\n저장된 기록 없음",
+          "x": 633.265625,
+          "y": 204,
+          "width": 333.46875,
+          "height": 210,
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "label": "9번 · 빈 저장 위치\n저장된 기록 없음",
+          "x": 980.734375,
+          "y": 204,
+          "width": 333.46875,
+          "height": 210,
+          "disabled": true,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 700,
+          "y": 430,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 752,
+          "y": 430,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 804,
+          "y": 430,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 856,
+          "y": 430,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-autosave-page",
+      "device": "web",
+      "state": "automatic-page",
+      "w": 1440,
+      "h": 900,
+      "title": "자동 저장 탭 · 자동 넘기기와 별개",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 285.796875,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 366.90625,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 448.015625,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 537.5,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 204,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 700,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 752,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 804,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 856,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-quick-page",
+      "device": "web",
+      "state": "quick-page",
+      "w": 1440,
+      "h": 900,
+      "title": "빠른 저장 탭 · 최근 기록",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "지난기록",
+          "x": 117.796875,
+          "y": 121,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 117.796875,
+          "y": 173,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 117.796875,
+          "y": 225,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 설정",
+          "x": 117.796875,
+          "y": 277,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기로 돌아가기",
+          "x": 117.796875,
+          "y": 786,
+          "width": 128,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "닫기 ×",
+          "x": 1234.28125,
+          "y": 81,
+          "width": 79.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1페이지",
+          "x": 285.796875,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2페이지",
+          "x": 366.90625,
+          "y": 150,
+          "width": 73.109375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동 저장",
+          "x": 448.015625,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 537.5,
+          "y": 150,
+          "width": 81.484375,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장 · 1장 3컷\n2026.10.11 14:25\n\n선녀 — 이 숲에서 길을 잃었나요?\n\n선택 경로: 선녀에게 길을 묻는다",
+          "x": 285.796875,
+          "y": 204,
+          "width": 333.46875,
+          "height": 241.8125,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "‹",
+          "x": 700,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "1",
+          "x": 752,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "2",
+          "x": 804,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "›",
+          "x": 856,
+          "y": 461.8125,
+          "width": 44,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-quick-saved",
+      "device": "web",
+      "state": "quick-saved",
+      "w": 1440,
+      "h": 900,
+      "title": "빠른 저장 · 화면 유지·짧은 알림",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 1390.75,
+          "y": 59,
+          "width": 31.25,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 451.1875,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 550.546875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 627.828125,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 727.1875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 804.46875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 907.1875,
+          "y": 785,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-quick-saved",
+      "device": "phone",
+      "state": "quick-saved",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 빠른 저장 완료",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 348.484375,
+          "y": 12,
+          "width": 29.515625,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 12,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 134,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 256,
+          "y": 778,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 12,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 134,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 256,
+          "y": 808,
+          "width": 122,
+          "height": 28,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "읽기 도구 접기",
+          "x": 335,
+          "y": 731,
+          "width": 40,
+          "height": 40,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-quick-load",
+      "device": "web",
+      "state": "quick-load",
+      "w": 1440,
+      "h": 900,
+      "title": "빠른 불러오기 · 현재 읽기 변경 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 760.734375,
+          "y": 514.5,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 830.1875,
+          "y": 514.5,
+          "width": 122.8125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-quick-load",
+      "device": "phone",
+      "state": "quick-load",
+      "w": 390,
+      "h": 844,
+      "title": "휴대폰 · 빠른 불러오기 확인",
+      "expanded": true,
+      "dock": {
+        "dialogueBottom": 774,
+        "toolsTop": 778,
+        "toolsBottom": 836,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 778,
+            "bottom": 806,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          },
+          {
+            "y": 808,
+            "bottom": 836,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 844
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 157.234375,
+          "y": 482.1875,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 226.6875,
+          "y": 482.1875,
+          "width": 122.8125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-quick-empty",
+      "device": "web",
+      "state": "quick-empty",
+      "w": 1440,
+      "h": 900,
+      "title": "빠른 저장 없음 · 안내",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "닫기",
+          "x": 790.171875,
+          "y": 514.5,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 859.625,
+          "y": 514.5,
+          "width": 93.375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-restored",
+      "device": "web",
+      "state": "restored",
+      "w": 1440,
+      "h": 900,
+      "title": "불러온 뒤 · 같은 장면 복귀",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "읽기 메뉴",
+          "x": 1390.75,
+          "y": 59,
+          "width": 31.25,
+          "height": 36,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "지난기록",
+          "x": 451.1875,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 550.546875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 627.828125,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 727.1875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 804.46875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 907.1875,
+          "y": 785,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-changed-work",
+      "device": "web",
+      "state": "changed-work",
+      "w": 1440,
+      "h": 900,
+      "title": "작품 변경 · 복원 유효성 확인",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "취소",
+          "x": 707.625,
+          "y": 514.5,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "연결 확인 후 이어읽기",
+          "x": 777.078125,
+          "y": 514.5,
+          "width": 175.921875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-save-error",
+      "device": "web",
+      "state": "save-error",
+      "w": 1440,
+      "h": 900,
+      "title": "저장 실패 · 기존 기록 보호",
+      "expanded": false,
+      "dock": {
+        "dialogueBottom": 781,
+        "toolsTop": 793,
+        "toolsBottom": 821,
+        "toolsVisible": true,
+        "rows": [
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          },
+          {
+            "y": 793,
+            "bottom": 821,
+            "height": 28
+          }
+        ],
+        "viewportHeight": 900
+      },
+      "buttons": [
+        {
+          "label": "닫기",
+          "x": 790.171875,
+          "y": 501,
+          "width": 59.453125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "다시 저장",
+          "x": 859.625,
+          "y": 501,
+          "width": 93.375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ],
+      "imagesLoaded": true,
+      "overflow": false
+    }
+  ],
+  "scope": "image mockups only; native renderer and playback/storage unchanged",
+  "newFeatures": [
+    "auto-forward",
+    "quick-save/load",
+    "save-thumbnail"
+  ],
+  "existing": [
+    "history",
+    "manual-save/load",
+    "auto-save"
+  ],
+  "assets": [
+    "BG-forest-roots.webp",
+    "M02-neutral.webp",
+    "M01-soft-smile.webp"
+  ]
+}

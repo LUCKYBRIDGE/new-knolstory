@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-17T04:47:17.052827+00:00",
+  "scope": "PC04/07 bounded API shutdown, actualHTTP/process tests plus ready isolatedDocker restart; not fulloperatingrestore",
+  "sourceSha256": {
+    "server/http/api-shutdown.ts": "ffb23c1a587cced4007f6f6001f25f46b84b6cbef504a73403c6f82f989dae87",
+    "server/http/api-shutdown.test.ts": "26b7930f78768cf4f0d067061c1698f76abe016d0c2b417c4d22a6a3458e5f53",
+    "server/main.ts": "523260206d9ed85788e7e89ce2ff4c6c49387fd3a63ef287e71e976b4b790684",
+    "server/dist/main.mjs": "6e15d80809989179cdedcf541aadf002b357904daa84244306f1d390b4514d08"
+  },
+  "verification": {
+    "focusedTests": {
+      "passed": 4,
+      "log": "green-final.log",
+      "statements": 97.29,
+      "branches": 94.11,
+      "functions": 100,
+      "lines": 100,
+      "scope": "ActualinflightHTTPdrain beforepoolclose; repeatstop; stuckrequestdeadline; stuck/rejectedpool;explicitfailurecode. DBtestsusefakepool."
+    },
+    "process": "process-verification.json:actualSIGTERM+SIGINTchildprocessnormalexit0/stuckpoolexit1,onecleanup",
+    "docker": "docker-verification.json:actualreadyNextAPIexit0/restartlive200ready503;existingPostgreSQLnoDBwrites/migration",
+    "build": "build.log",
+    "types": "types-final.log",
+    "lint": "lint.log",
+    "dockerBuild": "docker-build.log",
+    "review": "Read-onlyreviewnoP1/P2withinrealNodeServercontract."
+  },
+  "retainedFailures": {
+    "red.log": "MissinghelperTDDfailure.",
+    "green.log": "ActiveHTTPresponsecompletedbutkeepaliveidleconnectionretainedbeforedeadline;idlecloseintervaladded.",
+    "stopped-state.json": "ActualDockerexit143duringstartupbeforelistenerready;notnormalshutdownproof.",
+    "ready-stopped-state.json": "Verifiedlivebeforestopthenexit0."
+  },
+  "behavior": "Oneboundedreferenceddeadline includesHTTPdrain+pool.end,repeatcallsidempotent,severityupgradepreserved,latecompletioncannotexittwice. Periodicidlecloseaddressesconnectionsbecomingidleafterinitialclose.",
+  "remaining": [
+    "Startupinterruptionbeforelistenerinstallationcanstillreceiveexit143;notclaimedgracefulstartupcancellation.",
+    "Dockerheldtransaction/interruptedwriteorwholeoperatingrestoreunverified.",
+    "Noexternaldeployment/liveOAuth/policydecisions."
+  ]
+}

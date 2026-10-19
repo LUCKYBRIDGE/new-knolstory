@@ -27,3 +27,10 @@ export * from "./classic-stories";
 export * from "./story-direction";
 
 export * from './shortstory-originals';
+
+export * from './authoring-archive';
+export * from './authoring-fields';
+export * from './authoring-workbook';
+export * from './authoring-workbook/excel';
+
+export * from './reader-text';

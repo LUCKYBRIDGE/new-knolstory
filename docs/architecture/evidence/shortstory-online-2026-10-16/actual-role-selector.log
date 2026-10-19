@@ -1,0 +1,10 @@
+file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-shortstory-browser.mjs:26
+ const copied=await library(b);if(active(copied).id===active(original).id||JSON.stringify(copied.books.find(book=>book.id===beforeB.activeId))!==JSON.stringify(active(beforeB)))throw Error('Independent second-device copy failed');
+                                                                                                                                    ^
+
+TypeError: Cannot read properties of null (reading 'activeId')
+    at file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-shortstory-browser.mjs:26:133
+    at Array.find (<anonymous>)
+    at file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-shortstory-browser.mjs:26:104
+
+Node.js v22.23.3

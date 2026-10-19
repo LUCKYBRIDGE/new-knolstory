@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-17T04:44:29.478265+00:00",
+  "scope": "PC04/07 local gateway API observation/error propagation, no public deployment",
+  "sourceSha256": {
+    "server/operations/web-api-proxy.mjs": "02ec4f3488be4210c70301b5d904329d917dd2a507dac472bedb2893cda76dc2",
+    "server/operations/web-api-proxy.test.mjs": "b4b5796d4d19ee4e3d60b54fb84559a47b29225470d5f800e40a5d2b847ac77c"
+  },
+  "verification": {
+    "proxyTests": {
+      "passed": 8,
+      "log": "proxy-observed-green.log",
+      "scope": "StreamingcookiesCSRFredirect/8MBfiles,401429503bodyrequestidretry/cache,untrustedforwardingheadersstripped,502withoutforgedid,504sanitized,hostreject,HMRallowedpathandresetcleanup."
+    },
+    "actualDockerGateway": "docker-gateway.json:200401503 correlatedUUID/status,canaryabsent;429onlycontrolledtest.",
+    "lint": "lint.log"
+  },
+  "change": "Late upgrade response for alreadydestroyed client immediately destroysnewupstream socket. Existingstreaming/HTTPsemanticsunchanged.",
+  "retainedFailures": {
+    "proxy-tests.log": "Existingresettestfailed70ms remote socket count;newresponsepropagationpassed.",
+    "proxy-corrected.log": "Bounded1secwaitstillfailed;notmerelytiming.",
+    "proxy-green.log": "Guardalone didnot resolve count:pausedmockserverdidnotconsumeFIN.",
+    "diagnosis": "Testupstream now resumesread anddestroys onend so remotecloseobservable. Original failures not sufficient proofproductionleak; guard defensivelateeventcleanup."
+  },
+  "lifecycle": "Ownedloopback15401gatewaystartedwithWeb3126/API15400; no Docker recreation/DB changes/publicexposure.",
+  "limits": [
+    "No liveOAuth",
+    "No actual429stress/rate limitthroughproduction",
+    "No realbrowseronlineflow inthischeck",
+    "No targethardware/fullreleaseclaim"
+  ]
+}

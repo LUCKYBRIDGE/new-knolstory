@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:24152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut (9.6s)
+
+
+  1) tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('story-runtime-status')
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 5000ms
+      - waiting for getByTestId('story-runtime-status')
+        14 × locator resolved to <div role="status" data-music-path="" data-textbox-y="495" data-ambience-path="" data-sound-paths="[]" data-music-position="" data-scene-revision="8" data-scene-width="1280" data-scene-height="720" data-artwork-rect="null" data-engine-width="1280" data-engine-height="720" data-choices-rect="null" data-sound-play-count="0" data-rendered-revision="8" data-music-start-count="0" data-renderer-width="1280" data-renderer-height="720" data-audio-unlocked="false" data-ambience-start-count="0" data-testid="…>이야기 무대 연결됨</div>
+           - unexpected value "false"
+
+
+      16 |  await page.screenshot({path:info.outputPath('first-page-history.png')});await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+      17 |  const unlocked=await status.getAttribute('data-audio-unlocked')==='true';
+    > 18 |  await frame.click({position:{x:30,y:30}});if(!unlocked){await expect(status).toHaveAttribute('data-audio-unlocked','true');await frame.click({position:{x:30,y:30}});}
+         |                                                                               ^
+      19 |  await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).index).toBe(1);
+      20 |  const second=JSON.parse((await status.getAttribute('data-dialogue-page'))!);expect(second.endOffset).toBeGreaterThan(first.endOffset);
+      21 |  dialog=await history(page);await expect(dialog).not.toContainText(secret);await expect(dialog.locator('ol li').last()).toContainText(Array.from(manuscript).slice(0,second.endOffset).join(''));
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/history-visible-text.spec.ts:18:79
+
+    Error Context: docs/architecture/evidence/history-visible-text-2026-10-20/final-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/history-visible-text-2026-10-20/final-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/history-visible-text-2026-10-20/final-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut 

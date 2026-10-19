@@ -1,0 +1,13 @@
+
+Running 5 tests using 1 worker
+
+(node:79978) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/5] [host] › tests/e2e/editor-term-guide.spec.ts:31:1 › guide preserves author drafts and restores focus in four viewport layouts
+[2/5] [host] › tests/e2e/editor-term-guide.spec.ts:47:1 › ShortStory guide leaves edited page text untouched
+[3/5] [host] › tests/e2e/editor-time-seconds.spec.ts:6:1 › decimal seconds preserve exact milliseconds through save, reload and file reopening
+[4/5] [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual excel edited seconds workbook opens with exact authoring values
+[5/5] [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual google edited seconds workbook opens with exact authoring values
+  5 passed (24.7s)

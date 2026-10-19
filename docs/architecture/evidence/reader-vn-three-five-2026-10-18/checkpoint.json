@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-18",
+  "status": "local-focused-verified-not-deployed",
+  "changes": [
+    "Referencepagination3landscape5portrait atfont32; displayfontsizepreservespages",
+    "Editorfraction/referencehints3/5",
+    "Curated86creativecuts outof2635; originalfixturefiles unchanged; pristinecatalogonly transform",
+    "Exactwholeprojectgate+lineId/before match; originals/personal/editedworks preserved",
+    "NoID/Flow/score/stage/audio/presentation/choice changes"
+  ],
+  "editorial": "editorial-summary.json",
+  "text_review": "text-review.html",
+  "mockups": "mockups/index.html",
+  "checks": {
+    "vitest": "59tests/6filespassed incl86edits structuralpreservation+all4storiesparse+existingdirection+runtime",
+    "native_geometry_python": "20passed including3/5referenceRED→GREEN and1000seededlosslesscases",
+    "presenter_python": "19passed",
+    "native_web_e2e": "9passed1.2m: existingreaderflows+4providedcatalogs actualnative; allcuratedtexts matched inloadedprojects",
+    "coverage": "reader-text adapter andcapacityonly:100%lines97.56%statements95.83%branches100%functions; notrepocoverage",
+    "web_typecheck": "passed",
+    "compatibility_typecheck": "passed",
+    "runtime_build": "passed",
+    "web_build": "passed",
+    "eslint": "0errors;Reactversiondetectnotice only",
+    "docs": "57active0linkerrors",
+    "review": "Editorial2findingsfixed; adapterread-onlyreviewnoissues"
+  },
+  "limits": [
+    "Firstcuratededitorialpass, notwholemanuscriptrewrite",
+    "Existing saved/edited catalogworks intentionally notautooverwritten",
+    "No deploy/physicaldevice/screenreader completion"
+  ],
+  "sha256": {
+    "renpy/responsive-spike/game/script.rpy": "47888bcadbddc72b33f10a762449b422464f723bb72920095bae1a91c2f4e1f1",
+    "apps/web/lib/dialogue-capacity.ts": "0edde26d7d4454dff1f26751f01a8175c122a1e558bc53e79f6c996dbfb04c27",
+    "apps/web/components/dialogue-capacity-hint.tsx": "c6562c72caba64fe7e0373ba6112f48db50cca283e62a31efafa139cb26a2131",
+    "packages/compatibility/src/reader-text.ts": "8a903c65bda6df453d6edfc52190b27d22dbb52751c7655259eac740acc3eabb",
+    "packages/compatibility/src/reader-text-rabbit-heungbu.json": "4d75bba4baf30fce48522aabd01109f3be0484c5b8fdd3a050c7714b5f6ce34a",
+    "packages/compatibility/src/reader-text-seonnyeo-onggojib.json": "0d1beaa6ad1f925d6eb663909b436c247718bf0d8c54ae894867bc31388b287d",
+    "apps/web/components/story-workspace.tsx": "5b7a16c8f5301493a4d5e58633d26935a0f950530af627b564b849eb13f337e7",
+    "tests/e2e/reader-reform.spec.ts": "7a83195a45d4d75219f7cbc6eb87bdf60587d864e2203f90c2007213fdeb0889"
+  },
+  "self_evaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual9nativeflows andbefore/afterreview; editorial86scopeexplicit, physicaldeviceoutsideevidence"
+  }
+}

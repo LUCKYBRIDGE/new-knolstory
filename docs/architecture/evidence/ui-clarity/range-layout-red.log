@@ -1,0 +1,18 @@
+[WebServer] (node:942) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:978) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:987) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/ui-clarity.spec.ts:65:91 › cut range fields fit their panel 768 (2.0s)
+  ✓  2 [host] › tests/e2e/ui-clarity.spec.ts:65:91 › cut range fields fit their panel 390 (1.9s)
+  ✓  3 [host] › tests/e2e/ui-clarity.spec.ts:65:91 › cut range fields fit their panel 844 (1.9s)
+
+  3 passed (7.7s)

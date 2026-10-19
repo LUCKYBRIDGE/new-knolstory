@@ -1,0 +1,52 @@
+
+Running 5 tests using 1 worker
+
+(node:6021) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/audio-attributes.spec.ts:5:1 › uploaded sound keeps Korean name, attributes and provenance through filters and file reload (6.4s)
+  ✓  2 [host] › tests/e2e/audio-service-rights.spec.ts:6:1 › excluded originals are unavailable from the public service (37ms)
+  ✘  3 [host] › tests/e2e/audio-service-rights.spec.ts:12:1 › excluded common audio has no preview and an approved replacement survives saving and reopening (6.4s)
+(node:6111) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [host] › tests/e2e/cc0-audio.spec.ts:5:1 › all 21 CC0 originals load and decode in the browser (1.7s)
+  ✓  5 [host] › tests/e2e/cc0-audio.spec.ts:25:1 › CC0 Korean labels and source facets select real files and native runtime plays all three channels (5.8s)
+
+
+  1) [host] › tests/e2e/audio-service-rights.spec.ts:12:1 › excluded common audio has no preview and an approved replacement survives saving and reopening 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('1번 효과음', { exact: true }).locator('option:checked') with timeout 5000ms
+      - waiting for getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+        13 × locator resolved to <option disabled value="audio:sound:pixabay-352704">서비스 제공 제외 · 노크소리1</option>
+           - unexpected value "enabled"
+
+
+      21 |  const picker=page.getByLabel('1번 효과음',{exact:true});
+      22 |  await expect(picker.locator('option:checked')).toHaveText(`서비스 제공 제외 · ${old.name}`);
+    > 23 |  await expect(picker.locator('option:checked')).toBeDisabled();
+         |                                                 ^
+      24 |  await expect(page.getByRole('alert').filter({hasText:'공용 편집 자료의 원본 제공'})).toBeVisible();
+      25 |  await expect(page.getByLabel('1번 효과음 미리 듣기')).toHaveCount(0);
+      26 |  await expect(page.getByLabel('1번 효과음 출처 필터').locator('option[value="Pixabay"]')).toHaveCount(0);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/audio-service-rights.spec.ts:23:49
+
+    Error Context: ../../../../../tmp/knol-service-audio-host/audio-service-rights-exclu-48f51-rvives-saving-and-reopening-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-service-audio-host/audio-service-rights-exclu-48f51-rvives-saving-and-reopening-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-service-audio-host/audio-service-rights-exclu-48f51-rvives-saving-and-reopening-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/audio-service-rights.spec.ts:12:1 › excluded common audio has no preview and an approved replacement survives saving and reopening 
+  4 passed (21.5s)

@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:94538) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 1440 (4.2s)
+  ✓  2 tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 390 (3.9s)
+
+  2 passed (8.6s)

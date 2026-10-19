@@ -4,8 +4,14 @@ export type DisplaySize = Readonly<{width:number;height:number}>;
 export function previewViewport(profile:PreviewProfile,actual:DisplaySize):DisplaySize {
   switch(profile) {
     case 'desktop': return {width:1280,height:720};
-    case 'portrait': return {width:360,height:800};
-    case 'landscape': return {width:800,height:360};
-    default:return actual;
+    case 'portrait': return {width:720,height:1280};
+    case 'landscape': return {width:1280,height:720};
+    default:return actual.width<actual.height?{width:720,height:1280}:{width:1280,height:720};
   }
+}
+
+/** Retired preview choices are interpreted without rewriting stored manuscripts. */
+export function normalizePreviewProfile(value:unknown):PreviewProfile{
+ if(value==='classic')return 'landscape';
+ return value==='desktop'||value==='landscape'||value==='portrait'||value==='auto'?value:'auto';
 }

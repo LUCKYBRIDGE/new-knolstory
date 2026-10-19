@@ -1,0 +1,35 @@
+import {test,expect} from '@playwright/test';
+import {readFile} from 'node:fs/promises';
+import {createExcelWorkbook} from '../../packages/compatibility/src/excel';
+const mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+test('official shortstory Excel edits are previewed, cancellable and survive independent file reopening',async({page,browser})=>{
+ await page.goto('/shortstory');
+ await page.getByLabel('이야기 제목',{exact:true}).fill('원본 보호 그림책');
+ await page.getByLabel('이 쪽의 이야기').fill('변경 전 글');
+ await page.getByText('표지·소개·Google 시트 편집',{exact:true}).click();await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();await page.getByRole('button',{name:'세 면과 글·그림 상자 편집 시작',exact:true}).click();await page.getByRole('button',{name:'표지 적용',exact:true}).click();
+ const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Excel로 보관',exact:true}).click();const file=await downloaded;
+ const book=await createExcelWorkbook();await book.xlsx.load(await readFile((await file.path())!) as never);
+ const set=(sheetName:string,key:string,value:string)=>{const sheet=book.getWorksheet(sheetName)!;const col=sheet.getRow(2).values as string[];const at=col.indexOf(key);expect(at).toBeGreaterThan(0);sheet.getCell(3,at).value=value;};
+ set('그림책 정보','title','표에서 만든 새 제목');set('그림책 정보','authorNote','마지막 인사도 표에서');set('그림책 쪽','text','한국어 줄바꿈\n이모지 🌱와 00123');
+ set('표지 글 레이어','contentKind','text');set('표지 글 레이어','bind','⟪미설정⟫');set('표지 글 레이어','text','표에서 바꾼 표지 문구');set('표지 글 레이어','x','0.2');
+ const bytes=Buffer.from(await book.xlsx.writeBuffer());
+ await page.getByLabel('숏스토리 파일 가져오기',{exact:true}).setInputFiles({name:'edited.xlsx',mimeType:mime,buffer:bytes});
+ const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인'});await expect(dialog).toContainText('표에서 만든 새 제목');
+ await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('원본 보호 그림책');
+ await dialog.getByRole('button',{name:'가져오기 취소',exact:true}).click();await expect(dialog).toHaveCount(0);
+ await page.getByLabel('숏스토리 파일 가져오기',{exact:true}).setInputFiles({name:'edited.xlsx',mimeType:mime,buffer:bytes});
+ await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+ await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('표에서 만든 새 제목');await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('한국어 줄바꿈\n이모지 🌱와 00123');
+ await expect(page.getByRole('region',{name:'내 그림책 목록'})).toContainText('원본 보호 그림책');
+ await page.reload();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('표에서 만든 새 제목');
+ const saved=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const archiveFile=await saved;const archiveBytes=await readFile((await archiveFile.path())!);
+ const archive=JSON.parse(archiveBytes.toString());expect(archive.formatVersion).toBe(2);expect(archive.format).toBe('shortstory');if(archive.format!=='shortstory')throw Error('wrong format');expect(archive.project.cover.authorNote).toBe('마지막 인사도 표에서');const textLayer=archive.project.cover.design.faces.front.elements.find((layer:{type:string})=>layer.type==='text');expect(textLayer.content).toEqual({text:'표에서 바꾼 표지 문구'});expect(textLayer.box.x).toBe(.2);
+ const context=await browser.newContext();const second=await context.newPage();await second.goto('/shortstory');await second.getByLabel('숏스토리 파일 가져오기',{exact:true}).setInputFiles({name:'picture.shortstory',mimeType:'application/json',buffer:archiveBytes});await second.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await second.getByRole('button',{name:'읽기',exact:true}).click();await expect(second.getByRole('region',{name:'숏스토리 읽기'})).toContainText('이모지 🌱와 00123');await expect(second.locator('iframe')).toHaveCount(0);await context.close();
+});
+test('blank official shortstory workbook accepts a new book and rejects formulas without changing the draft',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('지켜야 할 초안');
+ const download=page.waitForEvent('download');await page.getByRole('button',{name:'빈 Excel·Google 시트 양식',exact:true}).click();const file=await download;
+ const book=await createExcelWorkbook();await book.xlsx.load(await readFile((await file.path())!) as never);book.getWorksheet('그림책 정보')!.getCell('B3').value='빈 양식의 작품';book.getWorksheet('그림책 쪽')!.getCell('D3').value={formula:'1+1',result:2};
+ await page.getByLabel('숏스토리 파일 가져오기',{exact:true}).setInputFiles({name:'formula.xlsx',mimeType:mime,buffer:Buffer.from(await book.xlsx.writeBuffer())});await expect(page.locator('main [role=alert]')).toContainText('수식');await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('지켜야 할 초안');await expect(page.getByRole('dialog')).toHaveCount(0);
+ book.getWorksheet('그림책 쪽')!.getCell('D3').value='=이 글은 수식이 아닌 원문';await page.getByLabel('숏스토리 파일 가져오기',{exact:true}).setInputFiles({name:'blank-edited.xlsx',mimeType:mime,buffer:Buffer.from(await book.xlsx.writeBuffer())});await page.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('빈 양식의 작품');await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('=이 글은 수식이 아닌 원문');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+});

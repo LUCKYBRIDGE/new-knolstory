@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:66401) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/account-menu.spec.ts:16:39 › account login return and logout preserve local authored work 1440 (8.8s)
+
+  1 passed (9.3s)

@@ -1,0 +1,11 @@
+{
+  "webOrigin": "http://127.0.0.1:3126",
+  "gatewayOrigin": "http://127.0.0.1:15401",
+  "apiOrigin": "http://127.0.0.1:15400",
+  "gatewayWebStatus": 200,
+  "providers": {
+    "kakao": false,
+    "google": false
+  },
+  "scope": "Local availability check after confirmed absent preview/gateway processes; not a repeat of actual auth/document integration"
+}

@@ -1,0 +1,22 @@
+
+> @knolstory/web@0.0.0 build /Users/wan/ai_dev/apps/new-knolstory/apps/web
+> python3 ../../scripts/check-service-audio.py && next build
+
+Service audio: reviewed scope records and original/runtime hashes verified.
+▲ Next.js 16.3.8 (Turbopack)
+✓ Running next.config.ts took 23ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 588ms
+  Running TypeScript ...
+../../packages/runtime-core/src/actor-overrides.ts(5,2): error TS2322: Type '{ motion?: StoryActorMotion; position?: "center"; positionOrder?: number; key: string; assetId: string; characterKey?: string; placementPreset?: "single-left" | "single-right" | "double-left" | "double-right"; ... 7 more ...; spectral?: boolean; }' is not assignable to type 'StageActorEntry & StoryActorOverride'.
+  Type '{ motion?: StoryActorMotion; position?: "center"; positionOrder?: number; key: string; assetId: string; characterKey?: string; placementPreset?: "single-left" | "single-right" | "double-left" | "double-right"; ... 7 more ...; spectral?: boolean; }' is not assignable to type 'StoryActorOverride'.
+    Types of property 'facing' are incompatible.
+      Type '"left" | "right" | "original" | undefined' is not assignable to type '"left" | "right" | undefined'.
+        Type '"original"' is not assignable to type '"left" | "right" | undefined'.
+../../packages/runtime-core/src/story-runtime.ts(152,22): error TS2367: This comparison appears to be unintentional because the types '"left" | "right" | undefined' and '"original"' have no overlap.
+Failed to type check.
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @knolstory/web@0.0.0 build: `python3 ../../scripts/check-service-audio.py && next build`
+Exit status 1

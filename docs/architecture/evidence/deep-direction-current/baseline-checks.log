@@ -1,0 +1,34 @@
+# Baseline audio catalog checks - 2026-10-13T11:04:47.191Z
+
+
+## pnpm exec vitest run packages/asset-registry/tests/pixabay-audio.test.ts packages/asset-registry/tests/cc0-audio.test.ts packages/asset-registry/tests/audio-category.test.ts packages/compatibility/tests/staged-audio-roundtrip.test.ts
+
+
+ RUN  v4.1.11 <repo>
+
+
+ Test Files  4 passed (4)
+      Tests  5 passed (5)
+   Start at  20:04:47
+   Duration  1.99s (transform 987ms, setup 0ms, import 1.80s, tests 1.25s, environment 0ms)
+
+
+[exit 0]
+
+## pnpm --filter @knolstory/asset-registry typecheck
+
+
+> @knolstory/asset-registry@0.0.0 typecheck <repo>/packages/asset-registry
+> tsc --noEmit
+
+
+[exit 0]
+
+## pnpm --filter @knolstory/compatibility typecheck
+
+
+> @knolstory/compatibility@0.0.0 typecheck <repo>/packages/compatibility
+> tsc --noEmit
+
+
+[exit 0]

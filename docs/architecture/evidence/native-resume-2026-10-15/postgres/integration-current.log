@@ -1,0 +1,55 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-af5ce8e2412c Creating 
+ Container knolstory-next-storage-test-runner-run-af5ce8e2412c Created 
+
+> @knolstory/storage-test@ typecheck /workspace/server
+> tsc --project tsconfig.integration.json
+
+
+> @knolstory/storage-test@ test:integration /workspace/server
+> vitest run --config vitest.config.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+
+ [31m❯[39m storage/postgres-save-port.integration.ts [2m([22m[2m14 tests[22m[2m | [22m[33m14 skipped[39m[2m)[22m[32m 27[2mms[22m[39m
+     [2m[90m↓[39m[22m migrates idempotently and verifies immutable checksums
+     [2m[90m↓[39m[22m serializes independent clients: identical retries save once and replay stale revision
+     [2m[90m↓[39m[22m accepts one different key and rejects the stale competing revision
+     [2m[90m↓[39m[22m conflicts on changed content or transport metadata with the same key
+     [2m[90m↓[39m[22m isolates scope, record and receipt keys
+     [2m[90m↓[39m[22m preserves exact knolstory content through JSONB
+     [2m[90m↓[39m[22m preserves exact shortstory content through JSONB
+     [2m[90m↓[39m[22m rolls back record and receipt when the real receipt insert fails
+     [2m[90m↓[39m[22m preserves prior private bytes and metadata internally without publishing them
+     [2m[90m↓[39m[22m rejects corrupted client project identity on load
+     [2m[90m↓[39m[22m never creates missing records
+     [2m[90m↓[39m[22m checks literal transaction authorization before snapshot or receipt reads
+     [2m[90m↓[39m[22m rejects malformed snapshots before connecting
+     [2m[90m↓[39m[22m rejects mixed targets within one callback and rolls back
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m storage/postgres-save-port.integration.ts[2m > [22mreal PostgreSQL existing-record transactions
+[31m[1mError[22m: Storage migration checksum mismatch.[39m
+[36m [2m❯[22m runStorageMigrations migrations/runner.ts:[2m20:65[22m[39m
+    [90m 18|[39m   if(journal.rows.some(row=>row.version!==1))throw Error('Unsupported …
+    [90m 19|[39m   [35mconst[39m existing[33m=[39m{rows[33m:[39mjournal[33m.[39mrows}[33m;[39m
+    [90m 20|[39m   if(existing.rows[0]&&existing.rows[0].sha256!==checksum)throw Error(…
+    [90m   |[39m                                                                 [31m^[39m
+    [90m 21|[39m   [35mif[39m([33m![39mexisting[33m.[39mrows[[34m0[39m]) {
+    [90m 22|[39m    [35mawait[39m client[33m.[39m[34mquery[39m(sql)[33m;[39m
+[90m [2m❯[22m storage/postgres-save-port.integration.ts:[2m41:22[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [33m14 skipped[39m[90m (14)[39m
+[2m   Start at [22m 15:15:01
+[2m   Duration [22m 396ms[2m (transform 249ms, setup 0ms, import 287ms, tests 27ms, environment 0ms)[22m
+
+ ELIFECYCLE  Command failed with exit code 1.
+

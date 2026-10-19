@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-10-17T04:13:17.032938+00:00",
+  "scope": "PC06 delayed render acknowledgment and focus ownership; host controlled-ack cases plus affected actual native integration",
+  "sourceSha256": {
+    "apps/web/components/story-text-accessibility.tsx": "09fea53471fcb2354f61237f1d43dc57251322ad755d81f64ed4e6adf3a706d8",
+    "apps/web/components/story-workspace.tsx": "aa008455175e8bc7f01bc03e391ed8c2507cafbfac23aaf612dc89be8889c51d",
+    "tests/e2e/accessibility-focus-ownership.spec.ts": "35e51b026170623a61edb287d84b7059ec0133a34e8906919e2caf24f7391c16",
+    "playwright.config.ts": "88217a24f2304a805bce6392e98169d609b86f264b069737f44a152d2c1d8246",
+    "apps/web/out/index.html": "d40211734f9faf9184965bef1c3ad727afc9b60d30c4606def5d02117c6be4da"
+  },
+  "changes": [
+    "Focus recovery requires actual rendered revision equality from RuntimeHost.",
+    "Focusin to another control, pointerdown outside origin and window blur cancel pending recovery independent of React rerenders; source removal to BODY does not cancel by itself.",
+    "Pointer navigation clears prior pending ownership; no Core/runtime/native package/storage changes."
+  ],
+  "verification": {
+    "hostDelayed": {
+      "passed": 3,
+      "log": "final.log",
+      "artifactPath": "final-run",
+      "cases": [
+        {
+          "ownership": "other",
+          "focus": {
+            "tag": "BUTTON",
+            "text": "\u00b7\u00b7\u00b7"
+          },
+          "summaryFocused": false
+        },
+        {
+          "ownership": "waiting",
+          "focus": {
+            "tag": "SUMMARY",
+            "text": "\ub300\uc0ac\u00b7\ud574\uc124 \ud14d\uc2a4\ud2b8 \ubcf4\uae30"
+          },
+          "summaryFocused": true
+        },
+        {
+          "ownership": "other-then-body",
+          "focus": {
+            "tag": "BODY",
+            "text": "\ub180\uc2a4\ud1a0\ub9ac\uc11c\uc7ac\ub85c\uc791\ud488\uc791\ud488 \uc124\uc815\uc791\ud488 \uc815\ubcf4\u00b7\ud45c\uc9c0\uc774\uc57c\uae30 \uae30\ud68d\ucc3d\uc791 \uba54\ubaa8\uc774\uc57c\uae30 \uc810\uc218\ud30c\uc77c\u00b7\uc800\uc7a5\uae30\uae30 \uc800\uc7a5\uc740 \uc774 \ube0c\ub77c\uc6b0\uc800\uc5d0, \uc791\ud488 \ud30c\uc77c\uc740 \ub2e4\ub978 \uae30\uae30\ub85c \uc62e\uae30\uac70\ub098 \ub530\ub85c \ubcf4\uad00\ud560 \ub54c \uc0ac\uc6a9\ud574\uc694.\uc791\ud488 \ud30c\uc77c \ub0b4"
+          },
+          "summaryFocused": false
+        }
+      ],
+      "runLimit": "Same run has automatic test failure due wrong exact input label; not claimed all4 passed in one run."
+    },
+    "hostAutomatic": {
+      "passed": 1,
+      "log": "automatic-corrected.log",
+      "artifacts": "automatic-corrected-run",
+      "scope": "Same static source; only incorrect spinbutton name corrected to include visible suffix. No repeated delayed cases."
+    },
+    "actualNativeImpact": {
+      "passed": 1,
+      "log": "native-impact.log",
+      "artifacts": "native-impact-run",
+      "reason": "Changed recovery now waits native render ack; previous native source evidence did not cover new readiness/ownership conditions."
+    },
+    "build": "build.log",
+    "typecheck": "types.log",
+    "lint": "lint-final.log",
+    "review": "Independent pre-implementation review identified both ack and historical ownership gaps. Sub-agent execution hit usage limit; primary completed implementation/tests."
+  },
+  "retainedFailures": {
+    "initial.log": "Early focus before matching render ack genuineRED; other failures include envelope timestamp equality fixture error. initial-run retained.",
+    "final.log": "Delayed3pass, automatic setup wrong exact label timed out; final-run retained.",
+    "automatic-corrected.log": "Corrected automatic1pass, separate execution."
+  },
+  "limits": [
+    "Host controlledack tests are not native delay or screenreader evidence.",
+    "Native impact one validated fixture at390 CSSwidth, not physical hardware.",
+    "No claim80percentnewcomponentcoverage; focusedbehavior+type/build/lint only.",
+    "Full goal still needs policies/liveOAuth/classes/sharing/physicalAT/release."
+  ]
+}

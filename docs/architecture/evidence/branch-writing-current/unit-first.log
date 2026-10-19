@@ -1,0 +1,345 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ apps/web/lib/choice-writing.test.ts (3 tests | 1 failed) 10ms
+     × roundtrips the complete generated branch via archive/workbook/XLSX/JSONB without editor visits 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/choice-writing.test.ts > new choice branch writing draft > roundtrips the complete generated branch via archive/workbook/XLSX/JSONB without editor visits
+AssertionError: expected Promise{…} to deeply equal { format: 'knolstory', …(3) }
+
+- Expected
++ Received
+
+- {
+-   "audioResources": [],
+-   "document": {
+-     "appVersion": "test",
+-     "documentType": "story-maker-project",
+-     "project": {
+-       "chapters": [
+-         {
+-           "backgroundAssetIds": [],
+-           "backgroundId": "",
+-           "chapterSpeakerNames": [
+-             "선녀 1",
+-             "선녀",
+-             "선녀 2",
+-           ],
+-           "characterAssetIds": [],
+-           "id": "polish",
+-           "keyEvents": "",
+-           "leftAssetId": "",
+-           "mood": "",
+-           "nextChapterIdea": "",
+-           "order": 1,
+-           "purpose": "",
+-           "rightAssetId": "",
+-           "storyStageKeys": [],
+-           "summary": "",
+-           "title": "넓은 무대의 하루",
+-         },
+-         {
+-           "backgroundAssetIds": [],
+-           "backgroundId": "",
+-           "branchLabel": "A",
+-           "chapterNumber": 2,
+-           "chapterSpeakerNames": [
+-             "선녀 1",
+-             "선녀",
+-             "선녀 2",
+-           ],
+-           "characterAssetIds": [],
+-           "id": "format-0",
+-           "keyEvents": "",
+-           "leftAssetId": "",
+-           "mood": "",
+-           "nextChapterIdea": "",
+-           "order": 2,
+-           "purpose": "",
+-           "rightAssetId": "",
+-           "storyStageKeys": [],
+-           "summary": "",
+-           "title": "친구를 찾아간다",
+-         },
+-       ],
+-       "cover": {
+-         "align": "center",
+-         "author": "",
+-         "authorNote": "",
+-         "authorPosition": "bottom",
+-         "backgroundId": "seonnyeo.background.poster-art",
+-         "characterId": "",
+-         "characterPosition": "center",
+-         "composition": {
+-           "backgroundFit": "fill",
+-           "backgroundX": 50,
+-           "backgroundY": 50,
+-           "backgroundZoom": 1,
+-           "characterBottom": 20,
+-           "characterScale": 1,
+-           "characterX": 50,
+-           "showEdition": false,
+-           "textPanel": "auto",
+-           "titleWidth": 78,
+-           "titleX": 50,
+-           "titleY": 6,
+-           "version": 1,
+-         },
+-         "font": "serif",
+-         "layout": "picture",
+-         "subtitle": "",
+-         "theme": "night",
+-         "titleColor": "",
+-         "titlePosition": "top",
+-         "titleSize": 34,
+-       },
+-       "creativeMemos": [],
+-       "description": "선택, 신뢰, 관계와 두 고향을 다루는 이야기",
+-       "id": "presentation-polish",
+-       "lines": [
+-         {
+-           "backgroundId": "seonnyeo.background.BG01-valley-day",
+-           "chapterId": "polish",
+-           "directionNote": "원전 장면: P1
+- 원전 컷: P1-1
+- 배경: valley",
+-           "emotionNote": "",
+-           "flow": {
+-             "options": [
+-               {
+-                 "id": "new",
+-                 "label": "친구를 찾아간다",
+-                 "targetLineId": "format-1",
+-               },
+-               {
+-                 "id": "existing",
+-                 "label": "남은 글을 읽는다",
+-                 "targetLineId": "shake",
+-               },
+-             ],
+-             "type": "choice",
+-           },
+-           "id": "neutral",
+-           "leftAssetId": "seonnyeo.character.M01-base",
+-           "order": 1,
+-           "purposeNote": "",
+-           "rightAssetId": "seonnyeo.character.M03-neutral",
+-           "speaker": "left",
+-           "speakerName": "선녀",
+-           "stageComposition": {
+-             "leftActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M01-base",
+-                 "characterKey": "M01",
+-                 "key": "M01",
+-               },
+-             ],
+-             "rightActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M03-neutral",
+-                 "characterKey": "M03",
+-                 "key": "M03",
+-               },
+-             ],
+-           },
+-           "text": "선녀와 친구가 넓은 무대 양쪽에서 이야기를 시작해요.",
+-           "type": "dialogue",
+-         },
+-         {
+-           "backgroundId": "seonnyeo.background.BG01-valley-day",
+-           "chapterId": "polish",
+-           "directionNote": "원전 장면: P1
+- 원전 컷: P1-1
+- 배경: valley",
+-           "emotionNote": "",
+-           "id": "shake",
+-           "leftAssetId": "seonnyeo.character.M01-base",
+-           "order": 2,
+-           "presentation": {
+-             "effects": [
+-               {
+-                 "intensity": "strong",
+-                 "type": "shake",
+-               },
+-             ],
+-           },
+-           "purposeNote": "",
+-           "rightAssetId": "seonnyeo.character.M03-neutral",
+-           "speaker": "left",
+-           "speakerName": "선녀",
+-           "stageComposition": {
+-             "leftActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M01-base",
+-                 "characterKey": "M01",
+-                 "key": "M01",
+-               },
+-             ],
+-             "rightActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M03-neutral",
+-                 "characterKey": "M03",
+-                 "key": "M03",
+-               },
+-             ],
+-           },
+-           "text": "shake 장면을 확인해요.",
+-           "type": "dialogue",
+-         },
+-         {
+-           "backgroundId": "seonnyeo.background.BG01-valley-day",
+-           "chapterId": "polish",
+-           "directionNote": "원전 장면: P1
+- 원전 컷: P1-1
+- 배경: valley",
+-           "emotionNote": "",
+-           "flow": {
+-             "targetLineId": null,
+-             "type": "goto",
+-           },
+-           "id": "flash-red",
+-           "leftAssetId": "seonnyeo.character.M01-base",
+-           "order": 3,
+-           "presentation": {
+-             "effects": [
+-               {
+-                 "intensity": "strong",
+-                 "type": "flash-red",
+-               },
+-             ],
+-           },
+-           "purposeNote": "",
+-           "rightAssetId": "seonnyeo.character.M03-neutral",
+-           "speaker": "left",
+-           "speakerName": "선녀",
+-           "stageComposition": {
+-             "leftActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M01-base",
+-                 "characterKey": "M01",
+-                 "key": "M01",
+-               },
+-             ],
+-             "rightActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M03-neutral",
+-                 "characterKey": "M03",
+-                 "key": "M03",
+-               },
+-             ],
+-           },
+-           "text": "flash-red 장면을 확인해요.",
+-           "type": "dialogue",
+-         },
+-         {
+-           "backgroundId": "seonnyeo.background.BG01-valley-day",
+-           "chapterId": "format-0",
+-           "coSpeakerNames": [],
+-           "directionNote": "",
+-           "emotionNote": "",
+-           "id": "format-1",
+-           "leftAssetId": "seonnyeo.character.M01-base",
+-           "order": 1,
+-           "purposeNote": "",
+-           "rightAssetId": "seonnyeo.character.M03-neutral",
+-           "speaker": "narration",
+-           "speakerName": "해설",
+-           "stageComposition": {
+-             "leftActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M01-base",
+-                 "characterKey": "M01",
+-                 "key": "M01",
+-               },
+-             ],
+-             "rightActors": [
+-               {
+-                 "assetId": "seonnyeo.character.M03-neutral",
+-                 "characterKey": "M03",
+-                 "key": "M03",
+-               },
+-             ],
+-           },
+-           "text": "",
+-           "type": "narration",
+-           "workingTitle": "",
+-         },
+-       ],
+-       "planning": {
+-         "centralProblem": "",
+-         "characterNotes": "",
+-         "climax": "",
+-         "crisis": "",
+-         "ending": "",
+-         "endingChange": "",
+-         "freeNotes": "콘텐츠 기준: docs/review-main-004-seonnyeo-namukkun/01-통합-상세대본.md
+- 선택 기억을 기존 컷 분기로 풀어낸 편집본입니다. 같은 장면의 조건별 변형이 별도 장으로 표시될 수 있습니다.
+- 장면별 배경과 인물 이미지를 내장 자산 ID로 연결했습니다. 이 이미지 팩이 등록된 story-maker에서 열 수 있습니다. Stage Composition v1으로 같은 공간의 인물과 선택지 무대를 보존합니다.",
+-         "mainCharacter": "",
+-         "mainGoal": "",
+-         "material": "",
+-         "middle": "",
+-         "mood": "",
+-         "openQuestions": "",
+-         "opening": "",
+-         "premise": "",
+-         "stakes": "",
+-         "structureMode": "five",
+-         "theme": "",
+-         "worldNotes": "",
+-       },
+-       "sheetEditable": false,
+-       "sheetUrl": "",
+-       "speakerNames": [
+-         "선녀 1",
+-         "선녀",
+-         "선녀 2",
+-         "나무꾼",
+-         "나무꾼의 생각",
+-         "선녀의 기억",
+-         "선녀의 과거 목소리",
+-         "나무꾼의 과거 목소리",
+-       ],
+-       "title": "넓은 무대의 하루",
+-       "updatedAt": "pinky-ne-site 804fe9f",
+-     },
+-     "savedAt": "2026-10-13T00:00:00.000Z",
+-     "schemaVersion": 7,
+-   },
+-   "format": "knolstory",
+-   "formatVersion": 2,
+- }
++ Promise {}
+
+ ❯ apps/web/lib/choice-writing.test.ts:20:69
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: 형식 정보 · 구조 확인 · 버전: 지원하지 않는 편집 양식입니다.
+ ❯ importAuthoringWorkbook packages/compatibility/src/authoring-workbook/index.ts:124:145
+
+ ❯ apps/web/lib/choice-writing.test.ts:20:10
+ ❯ processTicksAndRejections node:internal/process/task_queues:103:5
+ ❯ node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { sheet: '형식 정보', row: +0 }
+This error originated in "apps/web/lib/choice-writing.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+     Errors  1 error
+   Start at  21:41:35
+   Duration  869ms (transform 534ms, setup 0ms, import 771ms, tests 10ms, environment 0ms)
+

@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/google-native-roundtrip.test.ts packages/compatibility/tests/authoring-excel.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  2 passed (2)
+      Tests  3 passed (3)
+   Start at  20:40:50
+   Duration  988ms (transform 540ms, setup 0ms, import 782ms, tests 500ms, environment 0ms)
+

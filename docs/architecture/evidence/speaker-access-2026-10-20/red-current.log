@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:47719) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:368:1 › character opt-in restores speaker linking and registration without opening tools by default (1.0m)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:368:1 › character opt-in restores speaker linking and registration without opening tools by default 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷 상세·메모·정리' }) }).first().getByText('말하는 인물 상세 설정', { exact: true })
+
+
+      371 |  await settings(page);await page.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();await page.keyboard.press('Escape');
+      372 |  if(!await detail.evaluate(node=>(node as HTMLDetailsElement).open))await detail.locator(':scope>summary').click();
+    > 373 |  await detail.getByText('말하는 인물 상세 설정',{exact:true}).click();
+          |                                                      ^
+      374 |  const link=detail.getByRole('combobox',{name:'말하는 인물 그림',exact:true}),key=await link.locator('option').nth(1).getAttribute('value');expect(key).toBeTruthy();
+      375 |  const before=(await exported(page)).project;
+      376 |  // Export dismisses the detail. Reopen through the same current settings entry.
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:373:54
+
+    Error Context: docs/architecture/evidence/speaker-access-2026-10-20/red-current-run/editing-workbench-characte-33e38-ut-opening-tools-by-default/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/speaker-access-2026-10-20/red-current-run/editing-workbench-characte-33e38-ut-opening-tools-by-default/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/speaker-access-2026-10-20/red-current-run/editing-workbench-characte-33e38-ut-opening-tools-by-default/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:368:1 › character opt-in restores speaker linking and registration without opening tools by default 

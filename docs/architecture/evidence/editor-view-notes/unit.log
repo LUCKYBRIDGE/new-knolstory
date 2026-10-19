@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/cut-notes-roundtrip.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/cut-notes-roundtrip.test.ts [ packages/compatibility/tests/cut-notes-roundtrip.test.ts ]
+Error: Cannot find package '@knolstory/runtime-core' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/compatibility/tests/cut-notes-roundtrip.test.ts
+ ❯ packages/compatibility/tests/cut-notes-roundtrip.test.ts:3:1
+      1| import {it,expect} from 'vitest';
+      2| import {getRepresentativeStory} from '../src';
+      3| import {patchStoryLine} from '@knolstory/runtime-core';
+       | ^
+      4| import {createStoryDocument} from '@knolstory/story-domain';
+      5| import {createAuthoringArchive,encodeAuthoringArchive,decodeAuthoringA…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  13 passed (13)
+   Start at  15:50:36
+   Duration  2.00s (transform 1.14s, setup 0ms, import 1.26s, tests 1.32s, environment 0ms)
+

@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-19",
+  "status": "local-focused-verified-not-deployed",
+  "requirement": "Continue PC11 and keep library navigation inside settings",
+  "changes": [
+    "Library navigation already inside unifiedsettings; now flushes current recovery state before leaving and stops on composition/writefailure",
+    "Backgroundscreen per-cut collapsed fit/focal controls, default semantics retained, reset only focal",
+    "Default basic screen remains uncluttered, local work-file save remains primary"
+  ],
+  "checks": {
+    "red": "red.log missing backgrounddisplay control on previous static candidate, preserved",
+    "focused": "focused.log3passed11.0s: settings/library/samework return, quota prevents leaving, backgroundfit/focal/reset/reload preserve relateddata",
+    "types": "types.log passed; worker own final source typecheck also passed",
+    "lint": "lint.log clean",
+    "build": "build.log passed",
+    "review": "Independent readonly review found no actionable defect in navigation/fieldpreservation"
+  },
+  "limits": [
+    "No new physicaldevice/keyboard/nativepreview proof beyond prior checkpoints",
+    "Recovery write before librarynavigation is not a disk work-file save",
+    "UI preferences still mounted-session scope; longmanuscript/rapidresize/otherdetails remain PC11followups",
+    "Only changed behavior focused checks rerun; no all-product gate claim"
+  ],
+  "sha256": {
+    "apps/web/components/story-workspace.tsx": "3f5f83013a997ba47b1eab2dbc6f33d9e3476d2104a05647a51772ef6945e55e",
+    "apps/web/components/story-editing-workbench.tsx": "8c691a7cc3977147ed30e36b3e732a15adbffbbec1333977fdb81c479d31c173",
+    "apps/web/components/story-editing-workbench.module.css": "c785606a5f8248db43de801d910ac93625e6bbd70a4bee5af9a24020d6a2f38a",
+    "tests/e2e/editing-workbench.spec.ts": "3d93512efee0a1585d2e8bd92afe1aad1b2008e56b7433aa5bf48cbbf42ead63",
+    "DESIGN.md": "f0c37bbfe5534e91214ff9d560f2fba97369a19920b05cf15f80ca3f8defc353",
+    "docs/architecture/product-completion-plan.md": "b166ade1671e5d7f29cede7fae89d38ea97b96355421599b75c9f9426db6efbb"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Three real click/edit/export/reopen/preservation focused tests pass; device/full-product scopes stay explicit"
+  }
+}

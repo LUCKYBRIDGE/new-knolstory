@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:39853) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait (2.4s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:177:1 › legacy advanced controls remain separately opt-in and preserve existing choices (2.2s)
+
+  2 passed (5.0s)

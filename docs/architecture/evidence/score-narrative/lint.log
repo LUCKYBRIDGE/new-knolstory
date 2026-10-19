@@ -1,0 +1,10 @@
+
+> knolstory-next@ lint /Users/wan/ai_dev/apps/new-knolstory
+> eslint .
+
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web/components/story-workspace.tsx
+  138:6  warning  React Hook useMemo has a missing dependency: 'playback'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+✖ 1 problem (0 errors, 1 warning)
+

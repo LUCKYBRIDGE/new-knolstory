@@ -1,0 +1,44 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-8aea2f38a050 Creating 
+ Container knolstory-next-storage-test-runner-run-8aea2f38a050 Created 
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - import "./vitest.config" without a file extension (vitest.restore.config.ts:2:18). Add the file extension
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+
+ [32m✓[39m http/auth-routes.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+ [32m✓[39m http/auth-service.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 156[2mms[22m[39m
+ [32m✓[39m http/document-routes.test.ts [2m([22m[2m35 tests[22m[2m)[22m[32m 193[2mms[22m[39m
+ [32m✓[39m auth/identity-links.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m auth/oidc-provider.test.ts [2m([22m[2m44 tests[22m[2m)[22m[32m 137[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-completion.integration.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+ [32m✓[39m documents/service.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 281[2mms[22m[39m
+ [32m✓[39m storage/postgres-save-port.integration.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 537[2mms[22m[39m
+ [32m✓[39m auth/postgres-identity-port.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m auth/postgres-identity-port.integration.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+ [32m✓[39m storage/snapshot-projection.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 168[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-state.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+ [32m✓[39m auth/auth-state.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m http/document-service.integration.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 179[2mms[22m[39m
+ [32m✓[39m storage/sql-client-lifecycle.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m auth/postgres-request-session.integration.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 132[2mms[22m[39m
+ [32m✓[39m auth/postgres-request-session.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[90mstdout[2m | operations/restore-content.integration.ts[2m > [22m[2mrestored application content[2m > [22m[2mreads all restored records with the shared validator and preserves existing private bytes
+[22m[39m{"restoreValidation":{"records":205,"valid":194,"invalid":11,"knolstory":139,"shortstory":55,"privateResources":13},"scope":"Actual shared snapshot/hash/asset validation in restored test DB; invalid rows are retained rather than silently repaired."}
+
+ [32m✓[39m operations/restore-content.integration.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1070[2mms[22m[39m
+     [33m[2m✓[22m[39m reads all restored records with the shared validator and preserves existing private bytes [33m 1055[2mms[22m[39m
+ [32m✓[39m documents/validation.test.ts [2m([22m[2m40 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m config.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-completion.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m documents/service.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m http/pool-errors.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+[2m      Tests [22m [1m[32m342 passed[39m[22m[90m (342)[39m
+[2m   Start at [22m 08:37:42
+[2m   Duration [22m 8.77s[2m (transform 1.92s, setup 0ms, import 4.37s, tests 3.12s, environment 1ms)[22m
+

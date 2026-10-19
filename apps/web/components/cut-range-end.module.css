@@ -1,0 +1,4 @@
+.range { grid-column:1/-1; display:grid; gap:4px; min-width:0; }
+.range p { margin:0; font-size:12px; line-height:1.5; overflow-wrap:anywhere; }
+.range label { display:grid; gap:4px; min-width:0; }
+.range select { width:100%; min-width:0; max-width:100%; }

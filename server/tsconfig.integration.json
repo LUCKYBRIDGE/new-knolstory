@@ -1,0 +1,31 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@knolstory/story-domain": [
+        "../packages/story-domain/src/index.ts"
+      ],
+      "@knolstory/asset-registry": [
+        "../packages/asset-registry/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "storage/**/*.ts",
+    "auth/**/*.ts",
+    "vitest.config.ts",
+    "http/**/*.ts",
+    "config.ts",
+    "config.test.ts",
+    "main.ts",
+    "documents/**/*.ts",
+    "operations/restore-content.integration.ts",
+    "vitest.restore.config.ts",
+    "operations/restore-fence.integration.ts",
+    "vitest.restore-fence.config.ts"
+  ],
+  "exclude": [
+    "storage/save-existing.test.ts"
+  ]
+}

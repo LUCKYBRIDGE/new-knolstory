@@ -1,0 +1,3871 @@
+{
+  "schemaVersion": 1,
+  "scope": "Current scalar field paths, all union field structures; not every enum value",
+  "formats": {
+    "knolstory": {
+      "fieldCount": 318,
+      "covered": [
+        "$.chapters[].audio.ambience.action",
+        "$.chapters[].audio.ambience.assetId",
+        "$.chapters[].audio.ambience.fadeInMs",
+        "$.chapters[].audio.ambience.fadeOutMs",
+        "$.chapters[].audio.ambience.loop",
+        "$.chapters[].audio.ambience.volume",
+        "$.chapters[].audio.music.action",
+        "$.chapters[].audio.music.assetId",
+        "$.chapters[].audio.music.fadeInMs",
+        "$.chapters[].audio.music.fadeOutMs",
+        "$.chapters[].audio.music.loop",
+        "$.chapters[].audio.music.volume",
+        "$.chapters[].audio.sounds[].assetId",
+        "$.chapters[].audio.sounds[].delayMs",
+        "$.chapters[].audio.sounds[].id",
+        "$.chapters[].audio.sounds[].volume",
+        "$.chapters[].backgroundAssetIds[]",
+        "$.chapters[].backgroundId",
+        "$.chapters[].branchLabel",
+        "$.chapters[].chapterNumber",
+        "$.chapters[].chapterSpeakerNames[]",
+        "$.chapters[].characterAssetIds[]",
+        "$.chapters[].id",
+        "$.chapters[].keyEvents",
+        "$.chapters[].leftAssetId",
+        "$.chapters[].mood",
+        "$.chapters[].nextChapterIdea",
+        "$.chapters[].order",
+        "$.chapters[].purpose",
+        "$.chapters[].rightAssetId",
+        "$.chapters[].storyStageKeys[]",
+        "$.chapters[].summary",
+        "$.chapters[].title",
+        "$.characters[].defaultImageId",
+        "$.characters[].description",
+        "$.characters[].id",
+        "$.characters[].name",
+        "$.characters[].role",
+        "$.choiceMode",
+        "$.continuation.chapterId",
+        "$.continuation.label",
+        "$.continuation.lineId",
+        "$.cover.align",
+        "$.cover.author",
+        "$.cover.authorNote",
+        "$.cover.authorPosition",
+        "$.cover.backgroundId",
+        "$.cover.characterId",
+        "$.cover.characterPosition",
+        "$.cover.composition.backgroundFit",
+        "$.cover.composition.backgroundX",
+        "$.cover.composition.backgroundY",
+        "$.cover.composition.backgroundZoom",
+        "$.cover.composition.characterBottom",
+        "$.cover.composition.characterScale",
+        "$.cover.composition.characterX",
+        "$.cover.composition.showEdition",
+        "$.cover.composition.textPanel",
+        "$.cover.composition.titleWidth",
+        "$.cover.composition.titleX",
+        "$.cover.composition.titleY",
+        "$.cover.composition.version",
+        "$.cover.design.band.designId",
+        "$.cover.design.band.enabled",
+        "$.cover.design.faces.back.elements[].assetId",
+        "$.cover.design.faces.back.elements[].assetType",
+        "$.cover.design.faces.back.elements[].box.h",
+        "$.cover.design.faces.back.elements[].box.w",
+        "$.cover.design.faces.back.elements[].box.x",
+        "$.cover.design.faces.back.elements[].box.y",
+        "$.cover.design.faces.back.elements[].content.bind",
+        "$.cover.design.faces.back.elements[].content.text",
+        "$.cover.design.faces.back.elements[].crop.fit",
+        "$.cover.design.faces.back.elements[].crop.x",
+        "$.cover.design.faces.back.elements[].crop.y",
+        "$.cover.design.faces.back.elements[].crop.zoom",
+        "$.cover.design.faces.back.elements[].frame",
+        "$.cover.design.faces.back.elements[].id",
+        "$.cover.design.faces.back.elements[].region",
+        "$.cover.design.faces.back.elements[].role",
+        "$.cover.design.faces.back.elements[].style.align",
+        "$.cover.design.faces.back.elements[].style.color",
+        "$.cover.design.faces.back.elements[].style.fontId",
+        "$.cover.design.faces.back.elements[].style.fontSize",
+        "$.cover.design.faces.back.elements[].style.writing",
+        "$.cover.design.faces.back.elements[].type",
+        "$.cover.design.faces.back.preset",
+        "$.cover.design.faces.front.elements[].assetId",
+        "$.cover.design.faces.front.elements[].assetType",
+        "$.cover.design.faces.front.elements[].box.h",
+        "$.cover.design.faces.front.elements[].box.w",
+        "$.cover.design.faces.front.elements[].box.x",
+        "$.cover.design.faces.front.elements[].box.y",
+        "$.cover.design.faces.front.elements[].content.bind",
+        "$.cover.design.faces.front.elements[].content.text",
+        "$.cover.design.faces.front.elements[].crop.fit",
+        "$.cover.design.faces.front.elements[].crop.x",
+        "$.cover.design.faces.front.elements[].crop.y",
+        "$.cover.design.faces.front.elements[].crop.zoom",
+        "$.cover.design.faces.front.elements[].frame",
+        "$.cover.design.faces.front.elements[].id",
+        "$.cover.design.faces.front.elements[].region",
+        "$.cover.design.faces.front.elements[].role",
+        "$.cover.design.faces.front.elements[].style.align",
+        "$.cover.design.faces.front.elements[].style.color",
+        "$.cover.design.faces.front.elements[].style.fontId",
+        "$.cover.design.faces.front.elements[].style.fontSize",
+        "$.cover.design.faces.front.elements[].style.writing",
+        "$.cover.design.faces.front.elements[].type",
+        "$.cover.design.faces.front.preset",
+        "$.cover.design.faces.spine.elements[].assetId",
+        "$.cover.design.faces.spine.elements[].assetType",
+        "$.cover.design.faces.spine.elements[].box.h",
+        "$.cover.design.faces.spine.elements[].box.w",
+        "$.cover.design.faces.spine.elements[].box.x",
+        "$.cover.design.faces.spine.elements[].box.y",
+        "$.cover.design.faces.spine.elements[].content.bind",
+        "$.cover.design.faces.spine.elements[].content.text",
+        "$.cover.design.faces.spine.elements[].crop.fit",
+        "$.cover.design.faces.spine.elements[].crop.x",
+        "$.cover.design.faces.spine.elements[].crop.y",
+        "$.cover.design.faces.spine.elements[].crop.zoom",
+        "$.cover.design.faces.spine.elements[].frame",
+        "$.cover.design.faces.spine.elements[].id",
+        "$.cover.design.faces.spine.elements[].region",
+        "$.cover.design.faces.spine.elements[].role",
+        "$.cover.design.faces.spine.elements[].style.align",
+        "$.cover.design.faces.spine.elements[].style.color",
+        "$.cover.design.faces.spine.elements[].style.fontId",
+        "$.cover.design.faces.spine.elements[].style.fontSize",
+        "$.cover.design.faces.spine.elements[].style.writing",
+        "$.cover.design.faces.spine.elements[].type",
+        "$.cover.design.faces.spine.preset",
+        "$.cover.design.finish.accent",
+        "$.cover.design.finish.color",
+        "$.cover.design.finish.ink",
+        "$.cover.design.finish.stock",
+        "$.cover.design.finish.texture",
+        "$.cover.design.trim",
+        "$.cover.design.version",
+        "$.cover.font",
+        "$.cover.layout",
+        "$.cover.presetId",
+        "$.cover.subtitle",
+        "$.cover.theme",
+        "$.cover.titleColor",
+        "$.cover.titlePosition",
+        "$.cover.titleSize",
+        "$.creativeMemos[].createdAt",
+        "$.creativeMemos[].fields[].id",
+        "$.creativeMemos[].fields[].label",
+        "$.creativeMemos[].fields[].order",
+        "$.creativeMemos[].fields[].source",
+        "$.creativeMemos[].fields[].value",
+        "$.creativeMemos[].id",
+        "$.creativeMemos[].kind",
+        "$.creativeMemos[].linkedChapterId",
+        "$.creativeMemos[].linkedChapterIds[]",
+        "$.creativeMemos[].linkedCharacterNames[]",
+        "$.creativeMemos[].linkedLineId",
+        "$.creativeMemos[].linkedLineIds[]",
+        "$.creativeMemos[].order",
+        "$.creativeMemos[].title",
+        "$.creativeMemos[].updatedAt",
+        "$.description",
+        "$.id",
+        "$.lines[].audio.ambience.action",
+        "$.lines[].audio.ambience.assetId",
+        "$.lines[].audio.ambience.fadeInMs",
+        "$.lines[].audio.ambience.fadeOutMs",
+        "$.lines[].audio.ambience.loop",
+        "$.lines[].audio.ambience.volume",
+        "$.lines[].audio.music.action",
+        "$.lines[].audio.music.assetId",
+        "$.lines[].audio.music.fadeInMs",
+        "$.lines[].audio.music.fadeOutMs",
+        "$.lines[].audio.music.loop",
+        "$.lines[].audio.music.volume",
+        "$.lines[].audio.sounds[].assetId",
+        "$.lines[].audio.sounds[].delayMs",
+        "$.lines[].audio.sounds[].id",
+        "$.lines[].audio.sounds[].volume",
+        "$.lines[].backgroundId",
+        "$.lines[].backgroundMode",
+        "$.lines[].chapterId",
+        "$.lines[].coSpeakerNames[]",
+        "$.lines[].directionNote",
+        "$.lines[].emotionNote",
+        "$.lines[].ending.description",
+        "$.lines[].ending.endsStory",
+        "$.lines[].ending.name",
+        "$.lines[].flow.options[].id",
+        "$.lines[].flow.options[].label",
+        "$.lines[].flow.options[].targetLineId",
+        "$.lines[].flow.targetLineId",
+        "$.lines[].flow.type",
+        "$.lines[].id",
+        "$.lines[].inheritActors",
+        "$.lines[].leftAssetId",
+        "$.lines[].order",
+        "$.lines[].presentation.actors.left.emphasis",
+        "$.lines[].presentation.actors.left.facing",
+        "$.lines[].presentation.actors.left.opacity",
+        "$.lines[].presentation.actors.left.scaleMultiplier",
+        "$.lines[].presentation.actors.left.spectral",
+        "$.lines[].presentation.actors.left.xAnchor",
+        "$.lines[].presentation.actors.right.emphasis",
+        "$.lines[].presentation.actors.right.facing",
+        "$.lines[].presentation.actors.right.opacity",
+        "$.lines[].presentation.actors.right.scaleMultiplier",
+        "$.lines[].presentation.actors.right.spectral",
+        "$.lines[].presentation.actors.right.xAnchor",
+        "$.lines[].presentation.backgroundFit",
+        "$.lines[].presentation.backgroundFocal.x",
+        "$.lines[].presentation.backgroundFocal.y",
+        "$.lines[].presentation.clearFollowingEffects",
+        "$.lines[].presentation.effects[].delayMs",
+        "$.lines[].presentation.effects[].id",
+        "$.lines[].presentation.effects[].intensity",
+        "$.lines[].presentation.effects[].periodMs",
+        "$.lines[].presentation.effects[].repeat",
+        "$.lines[].presentation.effects[].scope",
+        "$.lines[].presentation.effects[].target.actorKey",
+        "$.lines[].presentation.effects[].target.kind",
+        "$.lines[].presentation.effects[].trigger",
+        "$.lines[].presentation.effects[].type",
+        "$.lines[].presentation.look.intensity",
+        "$.lines[].presentation.look.type",
+        "$.lines[].presentation.presetOrigin",
+        "$.lines[].presentation.transition.actionLabel",
+        "$.lines[].presentation.transition.cue",
+        "$.lines[].presentation.transition.description",
+        "$.lines[].presentation.transition.durationMs",
+        "$.lines[].presentation.transition.mode",
+        "$.lines[].presentation.transition.title",
+        "$.lines[].presentation.transition.type",
+        "$.lines[].purposeNote",
+        "$.lines[].rightAssetId",
+        "$.lines[].speaker",
+        "$.lines[].speakerName",
+        "$.lines[].stageComposition.leftActors[].assetId",
+        "$.lines[].stageComposition.leftActors[].baseDepth",
+        "$.lines[].stageComposition.leftActors[].characterKey",
+        "$.lines[].stageComposition.leftActors[].depthOverride",
+        "$.lines[].stageComposition.leftActors[].facing",
+        "$.lines[].stageComposition.leftActors[].key",
+        "$.lines[].stageComposition.leftActors[].motion.delayMs",
+        "$.lines[].stageComposition.leftActors[].motion.durationMs",
+        "$.lines[].stageComposition.leftActors[].motion.fromXAnchor",
+        "$.lines[].stageComposition.leftActors[].motion.type",
+        "$.lines[].stageComposition.leftActors[].placementPreset",
+        "$.lines[].stageComposition.leftActors[].position",
+        "$.lines[].stageComposition.leftActors[].positionOrder",
+        "$.lines[].stageComposition.leftActors[].scaleMultiplier",
+        "$.lines[].stageComposition.leftActors[].xAnchor",
+        "$.lines[].stageComposition.rightActors[].assetId",
+        "$.lines[].stageComposition.rightActors[].baseDepth",
+        "$.lines[].stageComposition.rightActors[].characterKey",
+        "$.lines[].stageComposition.rightActors[].depthOverride",
+        "$.lines[].stageComposition.rightActors[].facing",
+        "$.lines[].stageComposition.rightActors[].key",
+        "$.lines[].stageComposition.rightActors[].motion.delayMs",
+        "$.lines[].stageComposition.rightActors[].motion.durationMs",
+        "$.lines[].stageComposition.rightActors[].motion.fromXAnchor",
+        "$.lines[].stageComposition.rightActors[].motion.type",
+        "$.lines[].stageComposition.rightActors[].placementPreset",
+        "$.lines[].stageComposition.rightActors[].position",
+        "$.lines[].stageComposition.rightActors[].positionOrder",
+        "$.lines[].stageComposition.rightActors[].scaleMultiplier",
+        "$.lines[].stageComposition.rightActors[].xAnchor",
+        "$.lines[].stageComposition.speakerActorKey",
+        "$.lines[].stageComposition.speakerActorKeys[]",
+        "$.lines[].text",
+        "$.lines[].type",
+        "$.lines[].workingTitle",
+        "$.planning.centralProblem",
+        "$.planning.characterNotes",
+        "$.planning.climax",
+        "$.planning.crisis",
+        "$.planning.ending",
+        "$.planning.endingChange",
+        "$.planning.freeNotes",
+        "$.planning.mainCharacter",
+        "$.planning.mainGoal",
+        "$.planning.material",
+        "$.planning.middle",
+        "$.planning.mood",
+        "$.planning.openQuestions",
+        "$.planning.opening",
+        "$.planning.premise",
+        "$.planning.stakes",
+        "$.planning.structureMode",
+        "$.planning.theme",
+        "$.planning.worldNotes",
+        "$.sheetEditable",
+        "$.sheetUrl",
+        "$.source.baseEditionId",
+        "$.source.baseStoryId",
+        "$.source.kind",
+        "$.source.linearCreation.choices[].label",
+        "$.source.linearCreation.choices[].lineId",
+        "$.source.linearCreation.choices[].optionId",
+        "$.source.linearCreation.mode",
+        "$.source.linearCreation.prefixLineIds[]",
+        "$.source.linearCreation.sourceRevision",
+        "$.source.linearCreation.sourceStartChoiceLineId",
+        "$.source.linearCreation.writingStartLineId",
+        "$.source.linearSetup",
+        "$.source.originalAuthorDisplayName",
+        "$.source.originalFingerprint",
+        "$.source.originalTitle",
+        "$.source.publicationId",
+        "$.speakerNames[]",
+        "$.stageDefaults.backgroundId",
+        "$.stageDefaults.leftAssetId",
+        "$.stageDefaults.rightAssetId",
+        "$.title",
+        "$.updatedAt"
+      ],
+      "missing": [],
+      "fieldMappings": [
+        {
+          "path": "$.chapters[].audio.ambience.action",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.ambience.assetId",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.ambience.fadeInMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.ambience.fadeOutMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.ambience.loop",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.ambience.volume",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.music.action",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.music.assetId",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.music.fadeInMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.music.fadeOutMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.music.loop",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.music.volume",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.sounds[].assetId",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.sounds[].delayMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.sounds[].id",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.chapters[].audio.sounds[].volume",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.chapters[].backgroundAssetIds[]",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "projectLists"
+          ]
+        },
+        {
+          "path": "$.chapters[].backgroundId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].branchLabel",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].chapterNumber",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].chapterSpeakerNames[]",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "projectLists"
+          ]
+        },
+        {
+          "path": "$.chapters[].characterAssetIds[]",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "projectLists"
+          ]
+        },
+        {
+          "path": "$.chapters[].id",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].keyEvents",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].leftAssetId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].mood",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].nextChapterIdea",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].order",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].purpose",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].rightAssetId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].storyStageKeys[]",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "projectLists"
+          ]
+        },
+        {
+          "path": "$.chapters[].summary",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.chapters[].title",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "chapters"
+          ]
+        },
+        {
+          "path": "$.characters[].defaultImageId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "characters"
+          ]
+        },
+        {
+          "path": "$.characters[].description",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "characters"
+          ]
+        },
+        {
+          "path": "$.characters[].id",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "characters"
+          ]
+        },
+        {
+          "path": "$.characters[].name",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "characters"
+          ]
+        },
+        {
+          "path": "$.characters[].role",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "characters"
+          ]
+        },
+        {
+          "path": "$.choiceMode",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "project"
+          ]
+        },
+        {
+          "path": "$.continuation.chapterId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "continuation"
+          ]
+        },
+        {
+          "path": "$.continuation.label",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "continuation"
+          ]
+        },
+        {
+          "path": "$.continuation.lineId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "continuation"
+          ]
+        },
+        {
+          "path": "$.cover.align",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.author",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.authorNote",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.authorPosition",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.backgroundId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.characterId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.characterPosition",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.composition.backgroundFit",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.backgroundX",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.backgroundY",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.backgroundZoom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.characterBottom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.characterScale",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.characterX",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.showEdition",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.textPanel",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.titleWidth",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.titleX",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.titleY",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.composition.version",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverComposition"
+          ]
+        },
+        {
+          "path": "$.cover.design.band.designId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.band.enabled",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].assetId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].assetType",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.h",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.w",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].content.bind",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].content.text",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.fit",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.zoom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].frame",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].id",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].region",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].role",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.align",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.fontId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.fontSize",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.writing",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].type",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.preset",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverFaces"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].assetId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].assetType",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.h",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.w",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].content.bind",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].content.text",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.fit",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.zoom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].frame",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].id",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].region",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].role",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.align",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.fontId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.fontSize",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.writing",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].type",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.preset",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverFaces"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].assetId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].assetType",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.h",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.w",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].content.bind",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].content.text",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.fit",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.zoom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].frame",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].id",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].region",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].role",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.align",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.fontId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.fontSize",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.writing",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].type",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.preset",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverFaces"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.accent",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.ink",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.stock",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.texture",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.trim",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.version",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.font",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.layout",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.presetId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.subtitle",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.theme",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.titleColor",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.titlePosition",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.cover.titleSize",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "cover"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].createdAt",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].fields[].id",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoFields"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].fields[].label",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoFields"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].fields[].order",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoFields"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].fields[].source",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoFields"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].fields[].value",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoFields"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].id",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].kind",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].linkedChapterId",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].linkedChapterIds[]",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoLinks"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].linkedCharacterNames[]",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoLinks"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].linkedLineId",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].linkedLineIds[]",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memoLinks"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].order",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].title",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.creativeMemos[].updatedAt",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "memos"
+          ]
+        },
+        {
+          "path": "$.description",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "project"
+          ]
+        },
+        {
+          "path": "$.id",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "project"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.ambience.action",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.ambience.assetId",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.ambience.fadeInMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.ambience.fadeOutMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.ambience.loop",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.ambience.volume",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.music.action",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.music.assetId",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.music.fadeInMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.music.fadeOutMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.music.loop",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.music.volume",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioTracks"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.sounds[].assetId",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.sounds[].delayMs",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.sounds[].id",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.lines[].audio.sounds[].volume",
+          "module": "audio",
+          "implementation": "packages/compatibility/src/authoring-workbook/audio.ts",
+          "tables": [
+            "audioSounds"
+          ]
+        },
+        {
+          "path": "$.lines[].backgroundId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].backgroundMode",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].chapterId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].coSpeakerNames[]",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "projectLists"
+          ]
+        },
+        {
+          "path": "$.lines[].directionNote",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].emotionNote",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].ending.description",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "endings"
+          ]
+        },
+        {
+          "path": "$.lines[].ending.endsStory",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "endings"
+          ]
+        },
+        {
+          "path": "$.lines[].ending.name",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "endings"
+          ]
+        },
+        {
+          "path": "$.lines[].flow.options[].id",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "flowChoices"
+          ]
+        },
+        {
+          "path": "$.lines[].flow.options[].label",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "flowChoices"
+          ]
+        },
+        {
+          "path": "$.lines[].flow.options[].targetLineId",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "flowChoices"
+          ]
+        },
+        {
+          "path": "$.lines[].flow.targetLineId",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "flows"
+          ]
+        },
+        {
+          "path": "$.lines[].flow.type",
+          "module": "flow",
+          "implementation": "packages/compatibility/src/authoring-workbook/flow.ts",
+          "tables": [
+            "flows"
+          ]
+        },
+        {
+          "path": "$.lines[].id",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].inheritActors",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].leftAssetId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].order",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.left.emphasis",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.left.facing",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.left.opacity",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.left.scaleMultiplier",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.left.spectral",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.left.xAnchor",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.right.emphasis",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.right.facing",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.right.opacity",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.right.scaleMultiplier",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.right.spectral",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.actors.right.xAnchor",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.backgroundFit",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.backgroundFocal.x",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.backgroundFocal.y",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.clearFollowingEffects",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].delayMs",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].id",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].intensity",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].periodMs",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].repeat",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].scope",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].target.actorKey",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].target.kind",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].trigger",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.effects[].type",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentationEffects"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.look.intensity",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.look.type",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.presetOrigin",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.transition.actionLabel",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.transition.cue",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.transition.description",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.transition.durationMs",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.transition.mode",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.transition.title",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].presentation.transition.type",
+          "module": "presentation",
+          "implementation": "packages/compatibility/src/authoring-workbook/presentation.ts",
+          "tables": [
+            "presentations"
+          ]
+        },
+        {
+          "path": "$.lines[].purposeNote",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].rightAssetId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].speaker",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].speakerName",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].assetId",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].baseDepth",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].characterKey",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].depthOverride",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].facing",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].key",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].motion.delayMs",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].motion.durationMs",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].motion.fromXAnchor",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].motion.type",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].placementPreset",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].position",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].positionOrder",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].scaleMultiplier",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.leftActors[].xAnchor",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].assetId",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].baseDepth",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].characterKey",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].depthOverride",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].facing",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].key",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].motion.delayMs",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].motion.durationMs",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].motion.fromXAnchor",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].motion.type",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].placementPreset",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].position",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].positionOrder",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].scaleMultiplier",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.rightActors[].xAnchor",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageActors"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.speakerActorKey",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stages"
+          ]
+        },
+        {
+          "path": "$.lines[].stageComposition.speakerActorKeys[]",
+          "module": "stage",
+          "implementation": "packages/compatibility/src/authoring-workbook/stage.ts",
+          "tables": [
+            "stageSpeakers"
+          ]
+        },
+        {
+          "path": "$.lines[].text",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].type",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.lines[].workingTitle",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "cuts"
+          ]
+        },
+        {
+          "path": "$.planning.centralProblem",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.characterNotes",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.climax",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.crisis",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.ending",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.endingChange",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.freeNotes",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.mainCharacter",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.mainGoal",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.material",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.middle",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.mood",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.openQuestions",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.opening",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.premise",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.stakes",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.structureMode",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.theme",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.planning.worldNotes",
+          "module": "preparation",
+          "implementation": "packages/compatibility/src/authoring-workbook/preparation.ts",
+          "tables": [
+            "planning"
+          ]
+        },
+        {
+          "path": "$.sheetEditable",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "project"
+          ]
+        },
+        {
+          "path": "$.sheetUrl",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "project"
+          ]
+        },
+        {
+          "path": "$.source.baseEditionId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.source.baseStoryId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.source.kind",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.choices[].label",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourceChoices"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.choices[].lineId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourceChoices"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.choices[].optionId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourceChoices"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.mode",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourceCreation"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.prefixLineIds[]",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourcePrefixes"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.sourceRevision",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourceCreation"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.sourceStartChoiceLineId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourceCreation"
+          ]
+        },
+        {
+          "path": "$.source.linearCreation.writingStartLineId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "sourceCreation"
+          ]
+        },
+        {
+          "path": "$.source.linearSetup",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.source.originalAuthorDisplayName",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.source.originalFingerprint",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.source.originalTitle",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.source.publicationId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "source"
+          ]
+        },
+        {
+          "path": "$.speakerNames[]",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "projectLists"
+          ]
+        },
+        {
+          "path": "$.stageDefaults.backgroundId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "stageDefaults"
+          ]
+        },
+        {
+          "path": "$.stageDefaults.leftAssetId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "stageDefaults"
+          ]
+        },
+        {
+          "path": "$.stageDefaults.rightAssetId",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "stageDefaults"
+          ]
+        },
+        {
+          "path": "$.title",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "project"
+          ]
+        },
+        {
+          "path": "$.updatedAt",
+          "module": "project",
+          "implementation": "packages/compatibility/src/authoring-workbook/project.ts",
+          "tables": [
+            "project"
+          ]
+        }
+      ]
+    },
+    "shortstory": {
+      "fieldCount": 95,
+      "covered": [
+        "$.authorDisplayName",
+        "$.cover.authorNote",
+        "$.cover.backgroundId",
+        "$.cover.characterId",
+        "$.cover.design.band.designId",
+        "$.cover.design.band.enabled",
+        "$.cover.design.faces.back.elements[].assetId",
+        "$.cover.design.faces.back.elements[].assetType",
+        "$.cover.design.faces.back.elements[].box.h",
+        "$.cover.design.faces.back.elements[].box.w",
+        "$.cover.design.faces.back.elements[].box.x",
+        "$.cover.design.faces.back.elements[].box.y",
+        "$.cover.design.faces.back.elements[].content.bind",
+        "$.cover.design.faces.back.elements[].content.text",
+        "$.cover.design.faces.back.elements[].crop.fit",
+        "$.cover.design.faces.back.elements[].crop.x",
+        "$.cover.design.faces.back.elements[].crop.y",
+        "$.cover.design.faces.back.elements[].crop.zoom",
+        "$.cover.design.faces.back.elements[].frame",
+        "$.cover.design.faces.back.elements[].id",
+        "$.cover.design.faces.back.elements[].region",
+        "$.cover.design.faces.back.elements[].role",
+        "$.cover.design.faces.back.elements[].style.align",
+        "$.cover.design.faces.back.elements[].style.color",
+        "$.cover.design.faces.back.elements[].style.fontId",
+        "$.cover.design.faces.back.elements[].style.fontSize",
+        "$.cover.design.faces.back.elements[].style.writing",
+        "$.cover.design.faces.back.elements[].type",
+        "$.cover.design.faces.back.preset",
+        "$.cover.design.faces.front.elements[].assetId",
+        "$.cover.design.faces.front.elements[].assetType",
+        "$.cover.design.faces.front.elements[].box.h",
+        "$.cover.design.faces.front.elements[].box.w",
+        "$.cover.design.faces.front.elements[].box.x",
+        "$.cover.design.faces.front.elements[].box.y",
+        "$.cover.design.faces.front.elements[].content.bind",
+        "$.cover.design.faces.front.elements[].content.text",
+        "$.cover.design.faces.front.elements[].crop.fit",
+        "$.cover.design.faces.front.elements[].crop.x",
+        "$.cover.design.faces.front.elements[].crop.y",
+        "$.cover.design.faces.front.elements[].crop.zoom",
+        "$.cover.design.faces.front.elements[].frame",
+        "$.cover.design.faces.front.elements[].id",
+        "$.cover.design.faces.front.elements[].region",
+        "$.cover.design.faces.front.elements[].role",
+        "$.cover.design.faces.front.elements[].style.align",
+        "$.cover.design.faces.front.elements[].style.color",
+        "$.cover.design.faces.front.elements[].style.fontId",
+        "$.cover.design.faces.front.elements[].style.fontSize",
+        "$.cover.design.faces.front.elements[].style.writing",
+        "$.cover.design.faces.front.elements[].type",
+        "$.cover.design.faces.front.preset",
+        "$.cover.design.faces.spine.elements[].assetId",
+        "$.cover.design.faces.spine.elements[].assetType",
+        "$.cover.design.faces.spine.elements[].box.h",
+        "$.cover.design.faces.spine.elements[].box.w",
+        "$.cover.design.faces.spine.elements[].box.x",
+        "$.cover.design.faces.spine.elements[].box.y",
+        "$.cover.design.faces.spine.elements[].content.bind",
+        "$.cover.design.faces.spine.elements[].content.text",
+        "$.cover.design.faces.spine.elements[].crop.fit",
+        "$.cover.design.faces.spine.elements[].crop.x",
+        "$.cover.design.faces.spine.elements[].crop.y",
+        "$.cover.design.faces.spine.elements[].crop.zoom",
+        "$.cover.design.faces.spine.elements[].frame",
+        "$.cover.design.faces.spine.elements[].id",
+        "$.cover.design.faces.spine.elements[].region",
+        "$.cover.design.faces.spine.elements[].role",
+        "$.cover.design.faces.spine.elements[].style.align",
+        "$.cover.design.faces.spine.elements[].style.color",
+        "$.cover.design.faces.spine.elements[].style.fontId",
+        "$.cover.design.faces.spine.elements[].style.fontSize",
+        "$.cover.design.faces.spine.elements[].style.writing",
+        "$.cover.design.faces.spine.elements[].type",
+        "$.cover.design.faces.spine.preset",
+        "$.cover.design.finish.accent",
+        "$.cover.design.finish.color",
+        "$.cover.design.finish.ink",
+        "$.cover.design.finish.stock",
+        "$.cover.design.finish.texture",
+        "$.cover.design.trim",
+        "$.cover.design.version",
+        "$.description",
+        "$.id",
+        "$.pages[].backgroundId",
+        "$.pages[].id",
+        "$.pages[].leftAssetId",
+        "$.pages[].order",
+        "$.pages[].rightAssetId",
+        "$.pages[].text",
+        "$.pages[].title",
+        "$.source.kind",
+        "$.source.presetId",
+        "$.title",
+        "$.updatedAt"
+      ],
+      "missing": [],
+      "fieldMappings": [
+        {
+          "path": "$.authorDisplayName",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.cover.authorNote",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.cover.backgroundId",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.cover.characterId",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.cover.design.band.designId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.band.enabled",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].assetId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].assetType",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.h",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.w",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].box.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].content.bind",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].content.text",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.fit",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].crop.zoom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].frame",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].id",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].region",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].role",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.align",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.fontId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.fontSize",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].style.writing",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.elements[].type",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.back.preset",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverFaces"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].assetId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].assetType",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.h",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.w",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].box.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].content.bind",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].content.text",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.fit",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].crop.zoom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].frame",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].id",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].region",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].role",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.align",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.fontId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.fontSize",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].style.writing",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.elements[].type",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.front.preset",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverFaces"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].assetId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].assetType",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.h",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.w",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].box.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].content.bind",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].content.text",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.fit",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.x",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.y",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].crop.zoom",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].frame",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].id",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].region",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].role",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.align",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.fontId",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.fontSize",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].style.writing",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.elements[].type",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverTextLayers",
+            "coverImageLayers"
+          ]
+        },
+        {
+          "path": "$.cover.design.faces.spine.preset",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverFaces"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.accent",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.color",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.ink",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.stock",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.finish.texture",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.trim",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.cover.design.version",
+          "module": "cover",
+          "implementation": "packages/compatibility/src/authoring-workbook/cover.ts",
+          "tables": [
+            "coverDesign"
+          ]
+        },
+        {
+          "path": "$.description",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.id",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.pages[].backgroundId",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "pages"
+          ]
+        },
+        {
+          "path": "$.pages[].id",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "pages"
+          ]
+        },
+        {
+          "path": "$.pages[].leftAssetId",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "pages"
+          ]
+        },
+        {
+          "path": "$.pages[].order",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "pages"
+          ]
+        },
+        {
+          "path": "$.pages[].rightAssetId",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "pages"
+          ]
+        },
+        {
+          "path": "$.pages[].text",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "pages"
+          ]
+        },
+        {
+          "path": "$.pages[].title",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "pages"
+          ]
+        },
+        {
+          "path": "$.source.kind",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.source.presetId",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.title",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        },
+        {
+          "path": "$.updatedAt",
+          "module": "index",
+          "implementation": "packages/compatibility/src/authoring-workbook/index.ts",
+          "tables": [
+            "shortProject"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,235 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:03] "GET / HTTP/1.1" 200 -
+
+Running 4 tests using 1 worker
+
+(node:60698) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/3iec99xtbv5j-.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/21i8f6ipfsvk3.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/1dtgwu0ke4xwg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:04] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 1440 (6.6s)
+(node:60752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/3iec99xtbv5j-.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/21i8f6ipfsvk3.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/1dtgwu0ke4xwg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:11] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  2 [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 768 (6.3s)
+(node:60774) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/21i8f6ipfsvk3.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/3iec99xtbv5j-.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/1dtgwu0ke4xwg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:17] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:18] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  3 [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 390 (6.4s)
+(node:60797) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/3iec99xtbv5j-.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/21i8f6ipfsvk3.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/1dtgwu0ke4xwg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 01:40:24] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  4 [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 844 (6.4s)
+
+
+  1) [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 1440 
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -2,11 +2,10 @@
+        "ambience": Object {
+          "action": "play",
+        },
+        "music": Object {
+          "action": "play",
+    -     "fadeInMs": undefined,
+        },
+        "sounds": Array [
+          Object {
+            "delayMs": 200,
+          },
+
+      3 | import {parseAuthoringFile} from './authoring-file';
+      4 | for(const width of [1440,768,390,844])test(`sound purpose switches retain independent cues undo and native playback ${width}`,async({page},info)=>{
+    > 5 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const original=await page.getByLabel('대사 / 해설',{exact:true}).inputValue();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await expect(kind).toHaveValue('music');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'배경음 변경 취소',exact:true})).toHaveCount(0);await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).fill('1.2');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).blur();await kind.selectOption('ambience');await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toBeHidden();await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.selectOption('music');await page.getByRole('button',{name:'배경음 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('play');await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByText('효과음을 여러 컷에 추가',{exact:true})).toBeHidden();await page.getByRole('button',{name:'효과음 추가',exact:true}).click();await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).fill('0.2');await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).blur();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,project=parseAuthoringFile(readFileSync((await file.path())!,'utf8')).project;const line=project.lines.find((cut:{text:string})=>cut.text===original);expect(line.audio).toMatchObject({music:{action:'play',fadeInMs:undefined},ambience:{action:'play'},sounds:[{delayMs:200}]});await page.reload();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(kind).toHaveValue('music');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.2');const frame=await page.getByTestId('story-runtime-frame').elementHandle();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await page.screenshot({path:info.outputPath(`sound-purpose-${width}.png`),fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sound-purpose.spec.ts:5:2169
+
+    Error Context: test-results/sound-purpose-sound-purpos-905e6-do-and-native-playback-1440-host/error-context.md
+
+  2) [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 768 
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -2,11 +2,10 @@
+        "ambience": Object {
+          "action": "play",
+        },
+        "music": Object {
+          "action": "play",
+    -     "fadeInMs": undefined,
+        },
+        "sounds": Array [
+          Object {
+            "delayMs": 200,
+          },
+
+      3 | import {parseAuthoringFile} from './authoring-file';
+      4 | for(const width of [1440,768,390,844])test(`sound purpose switches retain independent cues undo and native playback ${width}`,async({page},info)=>{
+    > 5 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const original=await page.getByLabel('대사 / 해설',{exact:true}).inputValue();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await expect(kind).toHaveValue('music');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'배경음 변경 취소',exact:true})).toHaveCount(0);await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).fill('1.2');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).blur();await kind.selectOption('ambience');await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toBeHidden();await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.selectOption('music');await page.getByRole('button',{name:'배경음 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('play');await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByText('효과음을 여러 컷에 추가',{exact:true})).toBeHidden();await page.getByRole('button',{name:'효과음 추가',exact:true}).click();await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).fill('0.2');await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).blur();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,project=parseAuthoringFile(readFileSync((await file.path())!,'utf8')).project;const line=project.lines.find((cut:{text:string})=>cut.text===original);expect(line.audio).toMatchObject({music:{action:'play',fadeInMs:undefined},ambience:{action:'play'},sounds:[{delayMs:200}]});await page.reload();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(kind).toHaveValue('music');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.2');const frame=await page.getByTestId('story-runtime-frame').elementHandle();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await page.screenshot({path:info.outputPath(`sound-purpose-${width}.png`),fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sound-purpose.spec.ts:5:2169
+
+    Error Context: test-results/sound-purpose-sound-purpos-6e426-ndo-and-native-playback-768-host/error-context.md
+
+  3) [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 390 
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -2,11 +2,10 @@
+        "ambience": Object {
+          "action": "play",
+        },
+        "music": Object {
+          "action": "play",
+    -     "fadeInMs": undefined,
+        },
+        "sounds": Array [
+          Object {
+            "delayMs": 200,
+          },
+
+      3 | import {parseAuthoringFile} from './authoring-file';
+      4 | for(const width of [1440,768,390,844])test(`sound purpose switches retain independent cues undo and native playback ${width}`,async({page},info)=>{
+    > 5 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const original=await page.getByLabel('대사 / 해설',{exact:true}).inputValue();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await expect(kind).toHaveValue('music');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'배경음 변경 취소',exact:true})).toHaveCount(0);await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).fill('1.2');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).blur();await kind.selectOption('ambience');await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toBeHidden();await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.selectOption('music');await page.getByRole('button',{name:'배경음 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('play');await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByText('효과음을 여러 컷에 추가',{exact:true})).toBeHidden();await page.getByRole('button',{name:'효과음 추가',exact:true}).click();await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).fill('0.2');await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).blur();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,project=parseAuthoringFile(readFileSync((await file.path())!,'utf8')).project;const line=project.lines.find((cut:{text:string})=>cut.text===original);expect(line.audio).toMatchObject({music:{action:'play',fadeInMs:undefined},ambience:{action:'play'},sounds:[{delayMs:200}]});await page.reload();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(kind).toHaveValue('music');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.2');const frame=await page.getByTestId('story-runtime-frame').elementHandle();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await page.screenshot({path:info.outputPath(`sound-purpose-${width}.png`),fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sound-purpose.spec.ts:5:2169
+
+    Error Context: test-results/sound-purpose-sound-purpos-eeaf8-ndo-and-native-playback-390-host/error-context.md
+
+  4) [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 844 
+
+    Error: expect(received).toMatchObject(expected)
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -2,11 +2,10 @@
+        "ambience": Object {
+          "action": "play",
+        },
+        "music": Object {
+          "action": "play",
+    -     "fadeInMs": undefined,
+        },
+        "sounds": Array [
+          Object {
+            "delayMs": 200,
+          },
+
+      3 | import {parseAuthoringFile} from './authoring-file';
+      4 | for(const width of [1440,768,390,844])test(`sound purpose switches retain independent cues undo and native playback ${width}`,async({page},info)=>{
+    > 5 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const original=await page.getByLabel('대사 / 해설',{exact:true}).inputValue();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await expect(kind).toHaveValue('music');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'배경음 변경 취소',exact:true})).toHaveCount(0);await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).fill('1.2');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true}).blur();await kind.selectOption('ambience');await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toBeHidden();await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.selectOption('music');await page.getByRole('button',{name:'배경음 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('play');await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByText('효과음을 여러 컷에 추가',{exact:true})).toBeHidden();await page.getByRole('button',{name:'효과음 추가',exact:true}).click();await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).fill('0.2');await page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true}).blur();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,project=parseAuthoringFile(readFileSync((await file.path())!,'utf8')).project;const line=project.lines.find((cut:{text:string})=>cut.text===original);expect(line.audio).toMatchObject({music:{action:'play',fadeInMs:undefined},ambience:{action:'play'},sounds:[{delayMs:200}]});await page.reload();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(kind).toHaveValue('music');await kind.selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');await kind.selectOption('sounds');await expect(page.getByLabel('1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.2');const frame=await page.getByTestId('story-runtime-frame').elementHandle();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await page.screenshot({path:info.outputPath(`sound-purpose-${width}.png`),fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sound-purpose.spec.ts:5:2169
+
+    Error Context: test-results/sound-purpose-sound-purpos-51869-ndo-and-native-playback-844-host/error-context.md
+
+  4 failed
+    [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 1440 
+    [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 768 
+    [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 390 
+    [host] › tests/e2e/sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 844 

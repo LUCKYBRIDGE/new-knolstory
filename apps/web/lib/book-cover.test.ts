@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createBlankStoryProject } from '@knolstory/runtime-core';
 import { ASSET_CATALOG } from '@knolstory/asset-registry';
-import { DEFAULT_COVER, type StoryCover } from '@knolstory/story-domain';
+import { DEFAULT_COVER, COVER_THEMES, type StoryCover } from '@knolstory/story-domain';
 import {createCoverDesign} from './book-cover-editor';
 import { COVER_PRESET_OPTIONS, applyCoverPreset, defaultCoverComposition, updateCoverComposition, resolveStoryCover, resolveBookCover, coverTextPanel, coverTitleSize, coverImageGeometry, coverElementBox, coverElementText } from './book-cover';
 const blank = () => createBlankStoryProject({id:'cover-test',chapterId:'c',lineId:'l'});
@@ -117,5 +117,27 @@ describe('static book cover compatibility', () => {
   expect(coverImageGeometry({crop:{fit:'cover',zoom:1,x:100,y:50}},{width:200,height:100},{width:100,height:100})).toEqual({width:200,height:100,left:-100,top:0});
   expect(coverImageGeometry({crop:{fit:'contain',zoom:1,x:50,y:100}},{width:200,height:100},{width:100,height:100})).toEqual({width:100,height:50,left:0,top:50});
   expect(coverImageGeometry({crop:{fit:'cover',zoom:1,x:0,y:0}},{width:0,height:100},{width:100,height:100})).toBeUndefined();
+ });
+});
+
+function contrastRatio(first:string,second:string){
+ const luminance=(hex:string)=>{const rgb=hex.replace('#','').match(/.{2}/g)!.map(value=>{const s=Number.parseInt(value,16)/255;return s<=.04045?s/12.92:((s+.055)/1.055)**2.4;});return rgb[0]!*.2126+rgb[1]!*.7152+rgb[2]!*.0722;};
+ const a=luminance(first),b=luminance(second);return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+}
+describe('default classic cover ink',()=>{
+ it.each(Object.keys(COVER_THEMES) as (keyof typeof COVER_THEMES)[])('uses readable default ink for fitted titles and captions on %s paper without rewriting the cover',theme=>{
+  const project={...blank(),cover:{...DEFAULT_COVER,theme,layout:'classic' as const,titleColor:'',subtitle:'작은 부제',author:'지은이',authorPosition:'under-title' as const}},before=structuredClone(project);
+  const model=resolveBookCover(project);
+  expect(model.ink).toBe(COVER_THEMES[theme].ink);
+  expect(contrastRatio(model.ink,model.panel)).toBeGreaterThanOrEqual(4.5);
+  expect(project).toEqual(before);
+ });
+ it('preserves an explicit authored title color and all custom design layer colors',()=>{
+  const project={...blank(),cover:{...DEFAULT_COVER,layout:'classic' as const,titleColor:'#123456'}},before=structuredClone(project);
+  expect(resolveBookCover(project).ink).toBe('#123456');expect(project).toEqual(before);
+  const design=createCoverDesign(project.cover),layered={...project,cover:{...project.cover,titleColor:'',design}},layeredBefore=structuredClone(layered);
+  const model=resolveBookCover(layered);
+  expect(model.elements).toEqual(design.faces.front.elements.filter(item=>item.type!=='text'||item.region!=='band'||design.band.enabled));
+  expect(model.ink).toBe(COVER_THEMES[layered.cover.theme].accent);expect(layered).toEqual(layeredBefore);
  });
 });

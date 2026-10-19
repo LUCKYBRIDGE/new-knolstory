@@ -1,0 +1,25 @@
+{
+  "apps/web/public": {
+    "excludedMp3Count": 0
+  },
+  "apps/web/out": {
+    "excludedMp3Count": 0
+  },
+  "renpy/responsive-spike/game/assets": {
+    "excludedMp3Count": 0
+  },
+  "apps/web/public/runtime/game.zip": {
+    "sha256": "f70254d4b82ac2e70d972a357c43f33bd1d4fa2fd0d0fc39b2faadd3fd9e0f4c",
+    "excludedMembers": 0,
+    "approvedCommonAudio": 47,
+    "uniqueCommonAudio": 47,
+    "engineLicenseIncluded": true
+  },
+  "apps/web/out/runtime/game.zip": {
+    "sha256": "f70254d4b82ac2e70d972a357c43f33bd1d4fa2fd0d0fc39b2faadd3fd9e0f4c",
+    "excludedMembers": 0,
+    "approvedCommonAudio": 47,
+    "uniqueCommonAudio": 47,
+    "engineLicenseIncluded": true
+  }
+}

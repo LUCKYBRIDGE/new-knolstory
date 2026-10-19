@@ -1,0 +1,92 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-15T14:56:21.941Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "scores": [
+        {
+          "id": "3bb3d827-c79a-48f2-a5c9-de62a9486b9d",
+          "name": "이웃에게 나눈 횟수",
+          "description": "음식과 도움을 나눈 선택을 셉니다.",
+          "initial": 2
+        }
+      ],
+      "choiceMode": "simple",
+      "id": "9f1b3f80-475e-4bdd-aaf2-cb845f0abac7",
+      "title": "선택에 따라 쌓이는 이야기",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "6ca35abb-8b8d-4449-9f3a-fb6bf0494bfc",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "061a775e-6dee-46e1-84ab-b1c1a066f91d",
+          "chapterId": "6ca35abb-8b8d-4449-9f3a-fb6bf0494bfc",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-15T14:56:21.834Z"
+    }
+  },
+  "audioResources": []
+}

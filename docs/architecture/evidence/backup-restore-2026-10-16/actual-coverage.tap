@@ -1,0 +1,46 @@
+TAP version 13
+# {"equal":true,"target":"knolstory_next_restore_d68572e4c3144b7e868d552379c6ae8e","tables":10,"archiveBytes":1100637,"run":"2026-10-16T08-38-41-466Z-c5a2fe4f"}
+# Subtest: actual isolated snapshot archive restores exact rows and schema into a new database
+ok 1 - actual isolated snapshot archive restores exact rows and schema into a new database
+  ---
+  duration_ms: 989.144291
+  type: 'test'
+  ...
+# Subtest: only accepts generated isolated restore database names
+ok 2 - only accepts generated isolated restore database names
+  ---
+  duration_ms: 0.757166
+  type: 'test'
+  ...
+# Subtest: snapshot IDs and identifiers cannot inject SQL
+ok 3 - snapshot IDs and identifiers cannot inject SQL
+  ---
+  duration_ms: 0.23675
+  type: 'test'
+  ...
+# Subtest: comparison fails on missing tables, changed bytes, counts or schema objects
+ok 4 - comparison fails on missing tables, changed bytes, counts or schema objects
+  ---
+  duration_ms: 0.664375
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1059.944209
+# start of coverage report
+# ---------------------------------------------------------------------
+# file                 | line % | branch % | funcs % | uncovered lines
+# ---------------------------------------------------------------------
+# server               |        |          |         | 
+#  operations          |        |          |         | 
+#   backup-restore.mjs | 100.00 |    86.11 |   81.82 | 
+# ---------------------------------------------------------------------
+# all files            | 100.00 |    86.11 |   81.82 | 
+# ---------------------------------------------------------------------
+# end of coverage report

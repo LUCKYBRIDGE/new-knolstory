@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  1 passed (1)
+      Tests  45 passed (45)
+   Start at  01:06:09
+   Duration  475ms (transform 241ms, setup 0ms, import 347ms, tests 15ms, environment 0ms)
+
+ % Coverage report from v8
+---------------|---------|----------|---------|---------|-------------------
+File           | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------|---------|----------|---------|---------|-------------------
+All files      |   97.59 |    93.52 |      96 |     100 |                   
+ book-cover.ts |   97.59 |    93.52 |      96 |     100 | 28-33,46,67,89,94 
+---------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 97.59% ( 81/83 )
+Branches     : 93.52% ( 130/139 )
+Functions    : 96% ( 24/25 )
+Lines        : 100% ( 58/58 )
+================================================================================

@@ -1,0 +1,420 @@
+{
+  "date": "2026-10-10",
+  "runtime": "8.5.3",
+  "scope": "non-audio authoring priority functions",
+  "limits": [
+    "physical device and screenreader unverified",
+    "server/API/DB/deployment excluded",
+    "expression variant and camera/timeline followups"
+  ],
+  "files": [
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/actual-external.log",
+      "sha256": "942311f7ffa33a296c25fd0d3c416f315e87fbd84162f5838e60c3c2bfa0b2f0"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/compatibility-regression-green.log",
+      "sha256": "ee06172f473abb2b11b7f9eb05a4ac6eafa6e4cac68c6c279cd6204fd09fabd3"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/coverage-final.log",
+      "sha256": "422bf5750cd7bb5bcdf4f1686c828ed1e386ca197bbe7c2965eb6e89db8698c9"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/docs-final.log",
+      "sha256": "08bbb7ae94ac8530acd91ae9673030840de5c79fbd0ddf57253964639556f1d7"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/docs.log",
+      "sha256": "08bbb7ae94ac8530acd91ae9673030840de5c79fbd0ddf57253964639556f1d7"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/editor-1440.png",
+      "sha256": "f2738f33e55f4fec0526f7cf251211e468d4797c3648a3e41dd581b2fe34d50a"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/editor-390.png",
+      "sha256": "e158ebee7365102fee5b2a389848bd4de5769a8632c75923023d74cfac92a06f"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/editor-768.png",
+      "sha256": "9b6fdd5b08f2b0f0ba3968de283a43821f906927327699412ae1256a8416482e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/editor-844.png",
+      "sha256": "130ef66955bc5cc5c41d4cb863b4911c40326a0c892b8f22f24f585c7c887865"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/external-ui-rerun.log",
+      "sha256": "291efffcdb7e4e4dcf636d59ac6047bd47577b5995500e55792ce788c30474ff"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/external-ui.log",
+      "sha256": "bd4cb89d873b4adb4c8b30140d7e5da47a07513b8d6bb9f050311b78a556b8a1"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/final-helpers-green.log",
+      "sha256": "7edaf97ed940687a317bed9f8163a332c4f0004e80a0429390b0981ad1dcd161"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/final-helpers.log",
+      "sha256": "d2b4ae6194c4db80c4405ab594d7888e4bb9e55ed66f89c278a76266b0bad12e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/format-duration-green.log",
+      "sha256": "0af3f929510c41c3166e3e1fdd67dd8127538a052cff9a283874d541c580a4d0"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/lint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/actor-absent.png",
+      "sha256": "4558f508750e26970cae11cf392673f989fcd8d951fe1934a8b6c29fc479dab6"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/actor-fading.png",
+      "sha256": "21ba5e9eb030108d9de1950802078ff3d17afe27393d908e6178819836a786ca"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/actor-final.png",
+      "sha256": "4558f508750e26970cae11cf392673f989fcd8d951fe1934a8b6c29fc479dab6"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/actor-waits.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/authored-long-effect.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/baseline.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/before-effect.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/long-confirm-1560.png",
+      "sha256": "34e81b4dd7b8a7e18dfdc0a80b711d2b96dab5cafce6f158d85b97d47de01743"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/long-confirm-590.png",
+      "sha256": "96410ee5d0d811d21444f5acf22fea5ab41113de8f571b6794b40dad0cb8e29c"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/long-confirm-720.png",
+      "sha256": "0a6901bfeda9604d960ef4eed928a4aae34d301ca13b0ec6e0d8fbfbc623357c"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/long-shake.png",
+      "sha256": "ff212a83361ac34af1926fae0288ece7ab2f827ebe2f88685915ed6da93d487f"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-0.png",
+      "sha256": "42437a05771a3abc955210011b181c83fba757365c77af15947458e4d88f4bb7"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-1.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-10.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-11.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-12.png",
+      "sha256": "6883eb8b9dda0bda0374360fd3cc5bd368508f316b9859fa5a551fe59e04ce4d"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-13.png",
+      "sha256": "0da6ebc6b1cdd8bc850b05c2a71a09a148e2ddd9336a6094a36efbf4405ea7ce"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-2.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-3.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-4.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-5.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-6.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-7.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-8.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/loop-9.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/reduced-loop.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/reduced-shake.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/result.json",
+      "sha256": "ca7370450e7cda95c91eb76a2a8cd2a3923e2281824a184b0f7af71a58feb577"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm/same-entry-effect-ended.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-confirm.log",
+      "sha256": "ddb7c752d44ceb9bb67134c2040d81a2c8c73f9268b7db854eac9a86de7fe34a"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/actor-absent.png",
+      "sha256": "4558f508750e26970cae11cf392673f989fcd8d951fe1934a8b6c29fc479dab6"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/actor-fading.png",
+      "sha256": "bfa15a074f46aae45e46490c0963a3cdb45c5cd7346fcc9e84b46024179585a2"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/actor-final.png",
+      "sha256": "4558f508750e26970cae11cf392673f989fcd8d951fe1934a8b6c29fc479dab6"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/actor-waits.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/authored-long-effect.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/baseline.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/before-effect.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/long-shake.png",
+      "sha256": "ff212a83361ac34af1926fae0288ece7ab2f827ebe2f88685915ed6da93d487f"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-0.png",
+      "sha256": "148e959ae3aeb0899fab5ec77cfba4996238ff984930910f89d326f904b8ebc1"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-1.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-10.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-11.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-12.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-13.png",
+      "sha256": "8a1a172adfbea11993b027caca6acb1b25743a6d43ea930411ce9c69c31800c6"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-2.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-3.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-4.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-5.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-6.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-7.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-8.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/loop-9.png",
+      "sha256": "4f452e537bb5c8b578b67a7aab58382226a407d1ed8f7cb172c42f95fda33973"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/reduced-loop.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/reduced-shake.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/result.json",
+      "sha256": "9b07801ad3442b59db8e858cd99b6fa1ffee196a84798ab335e54baa55f6ab84"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final/same-entry-effect-ended.png",
+      "sha256": "a48e49e9f44ae8a1b5d9487a037b8428783061047a459dffd64b14085fca3b5e"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-final.log",
+      "sha256": "ddb7c752d44ceb9bb67134c2040d81a2c8c73f9268b7db854eac9a86de7fe34a"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-scopes.log",
+      "sha256": "c78261273c3de9c656b9de5062ce86cf43a0044869bf79a0f92b50101d137a5b"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-transitions/atl-same-entry-final.png",
+      "sha256": "0b374d08a0fb5d2d24bb489092b1df3bcc6f3cb20c4de4dc8859990e236ece51"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-transitions/atl-start.png",
+      "sha256": "98c474e244173ac4f2b1cb67573aa6486e8cdf108b1ba9114d4ee7052effe6b8"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-transitions/during-dissolve.png",
+      "sha256": "c9ba3801260bd4d21d7b279d1e2f927f72c74bf0b2b60f9746e7dd13290fdea0"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-transitions/final-dissolve.png",
+      "sha256": "86d8ba0c83f6170c82efbea59a2872666aaf7e4aa1301199bd80dda443a9b90c"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-transitions/old-scene.png",
+      "sha256": "06eecefe92d69f0e860da46d933d91ec3535599f84ed5a1b2ddd41316aa69e17"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-transitions/same-entry-no-replay.png",
+      "sha256": "b8b9df7bfd7917c32662d6ac3adc16a9b26a9d5ec669651ca4cd9a0dca67c63b"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native-transitions.log",
+      "sha256": "65f01cfb318d4a6c4ccca0ffa5ee506443217023f76c6437d56fd63d0df56dd8"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/native.log",
+      "sha256": "ddb7c752d44ceb9bb67134c2040d81a2c8c73f9268b7db854eac9a86de7fe34a"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/presenter-unit.log",
+      "sha256": "f3db3d46f41b9a8f002eb4b8ea61bd996a374227f2c2820b28b7807cf17eeffa"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/rabbit-effect-duration.jsonb.json",
+      "sha256": "b270545b443dfc875dee2a9183a22dfafaceacd19f060c7e3a4ac7a155c4e3d5"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/rabbit-effect-duration.knolstory",
+      "sha256": "a8b8bc37d47100d47b687629de2c420006d24d6f40680e180e9114101cfe2b97"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/rabbit-effect-duration.xlsx",
+      "sha256": "a3066c8dc30ddf89700bd9e54f26fda510aa946eb68397c2981b4f3f4e17cfcb"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/rabbit-excel-edited.xlsx",
+      "sha256": "3e35f97ad7b3921339bbc4be6ceb6628193f8372f2c73792ea23ad8fdda65ed5"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/rabbit-google-edited.xlsx",
+      "sha256": "05faa15befe6a2989ecdf23142d1a726c827f682859dcc05e1b01ea59f3d3dd3"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/runtime-build.log",
+      "sha256": "52c415ec846491dd6dc1a9eb00d2ff697163f05e31186123c3387f2dfaabb5a9"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/transition-fixture-corrected.log",
+      "sha256": "cd4670512d58c0cfdf464153e4ceafdb5c378db26df5d41ce4492731f85b8057"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/transition-green.log",
+      "sha256": "91621cecfdfd637f3e7c5676a38b2f503045a49a86f2f1af289d4c8fb18ffcc2"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/transition-red.log",
+      "sha256": "6289fc76554f76a6a13b02716d3fd4703f965c9d65b8dba67aa6acadb286ac72"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/typecheck-final.log",
+      "sha256": "d65869829c5f3513d04279563fc3cd82a336ece6c65d8e7393b734448b19e6a6"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/typecheck-final2.log",
+      "sha256": "1f840ab6bb02ee9cd2824453ef1d5562b98ea06af28ac2ae5436a94da23dfc9d"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/typecheck.log",
+      "sha256": "b3604db537e21039c4561cdf6684e880c266fccff172633adf89c5fb6f1b0424"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/ui-native-final.log",
+      "sha256": "2497df026a49da6a07bd91aae8c3cab29e4a1c45fcb795ee8c6e8291ef5e51b3"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/ui-native-final2.log",
+      "sha256": "0bd3f559ef42e760040f2c162016b5b86c37eec898254d25faece80b2681695a"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/unit-coverage-bounded.log",
+      "sha256": "376b395a288f0c1d07d03c79ee85bcc31d4bdf7395ad3bd97c12d9ea62c40760"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/unit-coverage.log",
+      "sha256": "52a6ab0086b179ccc8407c8904a425857bec2ce9fc1e9c6d38a1ddff10bcd5c0"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/web-build-final.log",
+      "sha256": "8ebe1bd9222cd69ea6526bd5279d00bb30778852ae405a3d9b3bc0d3d4da4686"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/web-build-final2.log",
+      "sha256": "2be3979690f644cb993214cb2269e74366c137e32341e6b255fcae550e84ea69"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/web-build-key-fix.log",
+      "sha256": "b1bac712be6656e1926bd56acdab33ed9195c9fe311843da4bb002a98c5a0e5d"
+    },
+    {
+      "path": "docs/architecture/evidence/non-audio-direction/web-build.log",
+      "sha256": "58ed3aa6f068191aa70dd5414042eff2f8b5c7198b5a3084585e8b4c806aad7f"
+    }
+  ]
+}

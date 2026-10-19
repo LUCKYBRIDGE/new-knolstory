@@ -1,0 +1,86 @@
+
+Running 2 tests using 1 worker
+
+(node:46856) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:355:1 › speaker and choice Korean composition keep active inputs editable while blocking cut and screen changes (7.0s)
+(node:46949) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/local-work-files.spec.ts:60:1 › leaving the work while a writable file stream opens aborts before any new write (6.7s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:355:1 › speaker and choice Korean composition keep active inputs editable while blocking cut and screen changes 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('combobox', { name: '현재 장과 컷 이동', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByRole('combobox', { name: '현재 장과 컷 이동', exact: true }) with timeout 5000ms
+      - waiting for getByRole('combobox', { name: '현재 장과 컷 이동', exact: true })
+        13 × locator resolved to <select aria-label="현재 장과 컷 이동">…</select>
+           - unexpected value "enabled"
+
+
+      356 |  await prepare(page);const detail=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷 상세·메모·정리'})}).first();await detail.locator(':scope>summary').click();
+      357 |  const name=detail.getByRole('textbox',{name:'말하는 인물 이름',exact:true});await name.focus();await name.dispatchEvent('compositionstart');
+    > 358 |  await expect(name).toBeEnabled();await expect(page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeDisabled();await expect(detail.getByRole('combobox',{name:'글 종류',exact:true})).toBeDisabled();
+          |                                                                                                           ^
+      359 |  await name.fill('한글 이름 조합');await name.dispatchEvent('compositionend');await expect(page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeEnabled();
+      360 |  await settings(page);await page.getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).check();await page.keyboard.press('Escape');
+      361 |  const flow=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await flow.locator(':scope>summary').click();await flow.getByRole('combobox',{name:'진행 방식',exact:true}).selectOption('choice');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:358:107
+
+    Error Context: docs/architecture/evidence/input-file-safety-2026-10-20/red-run/editing-workbench-speaker--1647e-king-cut-and-screen-changes/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/input-file-safety-2026-10-20/red-run/editing-workbench-speaker--1647e-king-cut-and-screen-changes/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/input-file-safety-2026-10-20/red-run/editing-workbench-speaker--1647e-king-cut-and-screen-changes/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/local-work-files.spec.ts:60:1 › leaving the work while a writable file stream opens aborts before any new write 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 3
+
+      Object {
+    -   "aborts": 1,
+    -   "closes": 0,
+    -   "writes": 0,
+    +   "aborts": 0,
+    +   "closes": 1,
+    +   "writes": 1,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      68 |  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+      69 |  await page.evaluate(()=>(window as unknown as {streamGate:{release:()=>void}}).streamGate.release());
+    > 70 |  await expect.poll(()=>page.evaluate(()=>{const {writes,closes,aborts}=(window as unknown as {streamGate:{writes:number;closes:number;aborts:number}}).streamGate;return {writes,closes,aborts};})).toEqual({writes:0,closes:0,aborts:1});
+         |                                                                                                                                                                                                     ^
+      71 | });
+      72 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-work-files.spec.ts:70:197
+
+    Error Context: docs/architecture/evidence/input-file-safety-2026-10-20/red-run/local-work-files-leaving-t-c6758-aborts-before-any-new-write/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/input-file-safety-2026-10-20/red-run/local-work-files-leaving-t-c6758-aborts-before-any-new-write/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/input-file-safety-2026-10-20/red-run/local-work-files-leaving-t-c6758-aborts-before-any-new-write/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/editing-workbench.spec.ts:355:1 › speaker and choice Korean composition keep active inputs editable while blocking cut and screen changes 
+    tests/e2e/local-work-files.spec.ts:60:1 › leaving the work while a writable file stream opens aborts before any new write 

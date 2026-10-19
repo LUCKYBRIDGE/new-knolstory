@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-contract/tests/pixabay-path.test.ts (2 tests | 1 failed) 11ms
+   × uses the same safe audio paths for outgoing commands and incoming native state 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-contract/tests/pixabay-path.test.ts > uses the same safe audio paths for outgoing commands and incoming native state
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/runtime-contract/tests/pixabay-path.test.ts:10:32
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  12:59:36
+   Duration  121ms (transform 19ms, setup 0ms, import 18ms, tests 11ms, environment 0ms)
+

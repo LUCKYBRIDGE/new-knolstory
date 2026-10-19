@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:24657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 1440 (7.9s)
+  ✓  2 [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 390 (6.8s)
+
+  2 passed (15.2s)

@@ -1,0 +1,53 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/catalog-only-authoring.test.ts (6 tests | 2 failed) 5ms
+   × rejects unregistered character defaults and wrong image kinds 2ms
+   × does not interpret memo fields named assetId or characterId as media 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/catalog-only-authoring.test.ts > rejects unregistered character defaults and wrong image kinds
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/catalog-only-authoring.test.ts:14:133
+     12| it('rejects unregistered character defaults and wrong image kinds',()=…
+     13|  expect(()=>assertCatalogOnlyMedia({project:{characters:[{defaultImage…
+     14|  expect(()=>assertCatalogOnlyMedia({project:{stageDefaults:{background…
+       |                                                                                                                                     ^
+     15| });
+     16| it('does not interpret memo fields named assetId or characterId as med…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  apps/web/lib/catalog-only-authoring.test.ts > does not interpret memo fields named assetId or characterId as media
+AssertionError: expected [Function] to not throw an error but 'Error: 외부 그림·음원은 사용할 수 없어요. 놀스토리에 등록된…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"Error: 외부 그림·음원은 사용할 수 없어요. 놀스토리에 등록된 자료를 선택해 주세요."
+
+ ❯ apps/web/lib/catalog-only-authoring.test.ts:17:174
+     15| });
+     16| it('does not interpret memo fields named assetId or characterId as med…
+     17|  expect(()=>assertCatalogOnlyMedia({project:{creativeMemos:[{fields:[{…
+       |                                                                                                                                                                              ^
+     18| });
+     19|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  08:29:32
+   Duration  276ms (transform 115ms, setup 0ms, import 180ms, tests 5ms, environment 0ms)
+

@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-10-16T23:30:40.393688+00:00",
+  "scope": "PC06 host reader menu semantics/focus plus one actual local native integration, not full accessibility or product completion",
+  "sourceSha256": {
+    "apps/web/components/story-player-menu.tsx": "5db7c5e8e400d8bcdb8d154a810c0030b18f1a4c1cea340b4bcad5cadc0d1066",
+    "apps/web/components/story-text-accessibility.tsx": "efd1e778de93d2136b9c24d06001c17c82d9d53ec3ca01878dfe1e89352adefa",
+    "tests/e2e/accessibility-reader.spec.ts": "149be5678208e7c3abe7309446da89edad709ec35495da8039d2f6a3bd26a1a2",
+    "tests/e2e/accessibility-reader-native.spec.ts": "df71bb4996c47fef3a5f6b2d227556fc29781f1019f333c2da9adced44ab9a39",
+    "playwright.config.ts": "065b3efb0fe8d44894435c266c77fd369cb1814c99360b9bc3de8b30ba623c1c",
+    "apps/web/out/index.html": "5181f5ebc149872afe42991a6ed0e3a8a8f31154f63aad1b4ea1c59887e11d0e"
+  },
+  "changes": [
+    "Close top menu on focus leaving group/trigger without forcing returned focus.",
+    "Semantic choices disabled while readerBusy matches Core dispatch guard.",
+    "Named tool group, useId menu/dialog references, slot details linked as computed description.",
+    "Reuse dialog Tab boundary helper. Confirmation cancel focuses replacement slot/history; overall dialog keeps original external opener across nested confirmations."
+  ],
+  "verification": {
+    "host": {
+      "passed": 2,
+      "log": "reviewed.log",
+      "results": [
+        {
+          "width": 390,
+          "surfaces": 6,
+          "unresolvedNodes": 0
+        },
+        {
+          "width": 1440,
+          "surfaces": 6,
+          "unresolvedNodes": 0
+        }
+      ],
+      "artifacts": "reviewed-run",
+      "scope": "Acknowledgement harness only; actual Core choice scene/mirror, menu busy, Tab exit, group, settings boundaries, Escape opener return, empty/filled slots and load cancel, exact project/works unchanged."
+    },
+    "native": {
+      "passed": 1,
+      "log": "native-unlocked.log",
+      "report": "native-unlocked-run/accessibility-reader-nativ-55986-ntic-advance-at-phone-width/native-reader.json",
+      "scope": "Unintercepted actual RenPy/WASM200, pointer audio unlock, phone CSS viewport, keyboard menu/close and semantic next with actual scene acknowledgement, same iframe and authored project/works."
+    },
+    "build": "build-reviewed.log",
+    "typecheck": "types-reviewed.log",
+    "lint": "lint-reviewed.log",
+    "lintLimit": "0 errors; existing next/no-img-element thumbnail warning remains.",
+    "dialogHelper": "dialog-keyboard.log: 2 tests passed"
+  },
+  "retainedRuns": {
+    "initial.log": "Parser setup failure, no product test.",
+    "initial-v2.log": "Invalid one-choice fixture setup failure.",
+    "initial-v3.log": "Import resolution setup failure.",
+    "initial-v4.log": "Actual host RED; raw scene/axe/results in initial-run-v4.",
+    "candidate.log": "Additional Tab boundary/cancel focus failures in candidate-run; implementation fixed.",
+    "final.log": "Pre-review host2pass in final-run, not current final after captureFocus guard.",
+    "reviewed.log": "Current host2pass.",
+    "native.log": "Native next disabled without required audio activation gesture; native-run retained.",
+    "native-unlocked.log": "Current native1pass with actual pointer unlock."
+  },
+  "limits": [
+    "Host scanner raw label-content-name-mismatch retained; slot-only computed name/description checks classified separately, not global rule skip or WCAG pass.",
+    "Real screen reader, voice control, browser zoom, physical devices not verified.",
+    "First audio unlock uses pointer. Keyboard-only audio activation is next independent gap.",
+    "Changed/auto/quick slot and history cancel branches not all exercised by new focused tests; prior unrelated evidence retained.",
+    "Native only one original scene transition at390; no broad runtime rebuild or full runtime regression claim.",
+    "No API/DB/provider/public deployment changes."
+  ]
+}

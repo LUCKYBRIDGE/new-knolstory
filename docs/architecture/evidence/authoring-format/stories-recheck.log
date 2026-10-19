@@ -1,0 +1,9 @@
+
+Running 1 test using 1 worker
+
+(node:23008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [host] › tests/e2e/stories.spec.ts:86:1 › unfinished links and explicit endings remain distinct in playback
+  1 passed (5.8s)

@@ -1,173 +1,44 @@
-import { test, expect } from "@playwright/test";
-import { readFileSync } from "node:fs";
-
-for (const label of ["선녀와 나무꾼", "흥부와 놀부", "옹고집전", "별주부전"]) {
-  test(`${label}: representative text edits survive reload and file roundtrip`, async ({
-    page,
-  }) => {
-    await page.goto("/?view=editor");
-    await page.getByLabel("작품 선택").selectOption({ label });
-    const editor = page.getByLabel("대사 / 해설");
-    await expect(editor).not.toHaveValue("");
-    const original = await editor.inputValue();
-    const edited = `${original}\n새 놀스토리에서 고친 문장입니다.`;
-    await editor.fill(edited);
-    await expect(page.getByTestId("save-status")).toHaveText("기기에 저장됨");
-    await page.reload();
-    await expect(editor).toHaveValue(edited);
-    const downloadPromise = page.waitForEvent("download");
-    await page.getByRole("button", { name: "작품 파일 내보내기" }).click();
-    const download = await downloadPromise;
-    const path = await download.path();
-    expect(path).toBeTruthy();
-    await editor.fill("파일을 불러오기 전 임시 변경");
-    await page.getByLabel("작품 파일 가져오기").setInputFiles(path!);
-    await expect(editor).toHaveValue(edited);
-    await expect(page.getByTestId("workspace-error")).toHaveCount(0);
-  });
-}
-
-test("persistent story runtime and current edit survive narrow screen changes", async ({
-  page,
-}) => {
-  await page.goto("/?view=editor");
-  const frame = page.getByTestId("story-runtime-frame");
-  await frame.evaluate((element) =>
-    element.setAttribute("data-instance", "same"),
-  );
-  await page
-    .getByLabel("대사 / 해설")
-    .fill("화면을 바꾸어도 작품을 잃지 않아요.");
-  await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.getByLabel("대사 / 해설")).toHaveValue(
-    "화면을 바꾸어도 작품을 잃지 않아요.",
-  );
-  await page.setViewportSize({ width: 844, height: 390 });
-  await expect(frame).toHaveAttribute("data-instance", "same");
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth > innerWidth,
-    ),
-  ).toBe(false);
+import {previousReadCut} from './reader-actions';
+import {confirmAuthoringImport,parseAuthoringFile,expectIndependentImportedProject} from './authoring-file';
+import {enterLibrary,openBuiltinEdition,openShelfAction} from './library-entry';
+import {createStoryDocument} from '../../packages/story-domain/src';
+import {test,expect,type Page} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
+async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(n=>(n as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
+async function exported(page:Page){await saved(page);await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,archive:parseAuthoringFile(readFileSync(path,'utf8'))};}
+async function library(page:Page){await saved(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();}
+async function builtin(page:Page,id:string,initial=false){if(initial){await page.goto('/');await enterLibrary(page);}else await library(page);await openBuiltinEdition(page,id,'knolstory','edit');await saved(page);}
+async function own(page:Page,title:string){await library(page);await openShelfAction(page,page.getByRole('article',{name:`내 작품 · ${title}`,exact:true}),'편집하기');await saved(page);}
+async function importFile(page:Page,path:string){await menu(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);const preparation=page.getByRole('region',{name:'작품 설정',exact:true});if(await preparation.isVisible())await preparation.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();await saved(page);}
+async function flow(page:Page){const tools=page.locator('[data-additional-tools]');if(!await tools.evaluate(n=>(n as HTMLDetailsElement).open))await tools.locator(':scope>summary').click();await page.getByRole('button',{name:'선택지 편집',exact:true}).click();}
+async function ready(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(()=>status.evaluate(node=>Number(node.getAttribute('data-rendered-revision'))>=0&&node.getAttribute('data-rendered-revision')===node.getAttribute('data-scene-revision')),{timeout:90000}).toBe(true);}
+async function read(page:Page){await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await ready(page);const status=page.getByTestId('story-runtime-status');if(await status.getAttribute('data-audio-unlocked')!=='true'){const frame=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(frame.x+frame.width*.5,frame.y+frame.height*.08);await ready(page);}}
+async function next(page:Page){const button=page.getByRole('button',{name:'다음으로',exact:true});await expect(button).toBeEnabled({timeout:30000});await button.focus();await button.press('Enter');}
+async function exit(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await saved(page);}
+for(const [id,label] of [['seonnyeo','선녀와 나무꾼'],['heungbu','흥부와 놀부'],['onggojib','옹고집전'],['rabbit','별주부전']])test(`${label}: representative text edits survive reload and file roundtrip`,async({page})=>{
+ await builtin(page,id,true);const editor=page.getByLabel('대사 / 해설',{exact:true});await expect(editor).not.toHaveValue('');const original=await editor.inputValue(),before=(await exported(page)).archive.project,current=await page.getByLabel('현재 장과 컷 이동').inputValue(),edited=original+'\n새 놀스토리에서 고친 문장입니다.';await editor.fill(edited);await saved(page);await page.reload();await expect(editor).toHaveValue(edited);const file=await exported(page);expect(file.archive.project).toEqual({...before,updatedAt:file.archive.project.updatedAt,lines:before.lines.map((line:{id:string})=>line.id===current?{...line,text:edited}:line)});
+ await editor.fill('파일을 불러오기 전 임시 변경');await importFile(page,file.path);await expect(editor).toHaveValue(edited);await page.reload();await expect(editor).toHaveValue(edited);expectIndependentImportedProject((await exported(page)).archive.project,file.archive.project);await expect(page.getByTestId('workspace-error')).toHaveCount(0);
 });
-
-test("malformed import preserves current work and explains the error", async ({
-  page,
-}) => {
-  await page.goto("/?view=editor");
-  await page.getByLabel("대사 / 해설").fill("보존해야 하는 작품");
-  await page
-    .getByLabel("작품 파일 가져오기")
-    .setInputFiles({
-      name: "broken.knolstory",
-      mimeType: "application/json",
-      buffer: Buffer.from("{broken"),
-    });
-  await expect(page.getByTestId("workspace-error")).toBeVisible();
-  await expect(page.getByLabel("대사 / 해설")).toHaveValue(
-    "보존해야 하는 작품",
-  );
+test('persistent story runtime and current edit survive narrow screen changes',async({page})=>{
+ await page.goto('/?view=editor');await saved(page);const frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>node.setAttribute('data-instance','same'));await page.getByLabel('대사 / 해설').fill('화면을 바꾸어도 작품을 잃지 않아요.');await saved(page);const before=(await exported(page)).archive.project;await page.setViewportSize({width:390,height:844});await expect(page.getByLabel('대사 / 해설')).toHaveValue('화면을 바꾸어도 작품을 잃지 않아요.');await page.setViewportSize({width:844,height:390});await expect(frame).toHaveAttribute('data-instance','same');expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);expect((await exported(page)).archive.project).toEqual(before);
 });
-
-test("edits stay separate when switching representative works", async ({
-  page,
-}) => {
-  await page.goto("/?view=editor");
-  await page.getByLabel("대사 / 해설").fill("선녀 작품의 수정");
-  await page.getByLabel("작품 선택").selectOption("heungbu");
-  await page.getByLabel("대사 / 해설").fill("흥부 작품의 수정");
-  await page.getByLabel("작품 선택").selectOption("seonnyeo");
-  await expect(page.getByLabel("대사 / 해설")).toHaveValue("선녀 작품의 수정");
-  await page.getByLabel("작품 선택").selectOption("heungbu");
-  await expect(page.getByLabel("대사 / 해설")).toHaveValue("흥부 작품의 수정");
+test('malformed import preserves current work and explains the error',async({page})=>{
+ await page.goto('/?view=editor');await saved(page);await page.getByLabel('대사 / 해설').fill('보존해야 하는 작품');const before=(await exported(page)).archive.project;await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'broken.knolstory',mimeType:'application/json',buffer:Buffer.from('{broken')});await expect(page.getByTestId('workspace-error')).toBeVisible();await expect(page.getByLabel('대사 / 해설')).toHaveValue('보존해야 하는 작품');expect((await exported(page)).archive.project).toEqual(before);
 });
-
-test("unfinished links and explicit endings remain distinct in playback", async ({
-  page,
-}) => {
-  await page.goto("/?view=editor");
-  await page.getByLabel("진행 방식").selectOption("goto");
-  await page.getByLabel("도착 컷", { exact: true }).selectOption("");
-  await page.getByRole("button", { name: "현재 컷부터 읽기" }).click();
-  await page.getByRole("button", { name: "다음으로", exact: true }).click();
-  await expect(page.getByTestId("playback-status")).toHaveText("연결 대기");
-  await page.getByRole("button", { name: "편집으로", exact: true }).click();
-  await page.getByLabel("도착 컷", { exact: true }).selectOption("__ending");
-  await page.getByRole("button", { name: "현재 컷부터 읽기" }).click();
-  await page.getByRole("button", { name: "다음으로", exact: true }).click();
-  await expect(page.getByTestId("playback-status")).toHaveText("이야기 끝");
-  await page.getByRole("button", { name: "이전으로", exact: true }).click();
-  await expect(page.getByTestId("playback-status")).toHaveText("읽는 중");
+test('edits stay separate when switching representative works',async({page})=>{
+ await builtin(page,'seonnyeo',true);await page.getByLabel('대사 / 해설').fill('선녀 작품의 수정');const first=(await exported(page)).archive.project;await builtin(page,'heungbu');await page.getByLabel('대사 / 해설').fill('흥부 작품의 수정');const second=(await exported(page)).archive.project;expect(first.id).not.toBe(second.id);await own(page,first.title);await expect(page.getByLabel('대사 / 해설')).toHaveValue('선녀 작품의 수정');expect((await exported(page)).archive.project).toEqual(first);await own(page,second.title);await expect(page.getByLabel('대사 / 해설')).toHaveValue('흥부 작품의 수정');expect((await exported(page)).archive.project).toEqual(second);
 });
-
-test("importing a different work preserves edits in the outgoing representative work", async ({
-  page,
-}) => {
-  await page.goto("/?view=editor");
-  await page.getByLabel("작품 선택").selectOption("heungbu");
-  await page.getByLabel("대사 / 해설").fill("내보낸 흥부 문장");
-  const downloadPromise = page.waitForEvent("download");
-  await page.getByRole("button", { name: "작품 파일 내보내기" }).click();
-  const path = await (await downloadPromise).path();
-  await page.getByLabel("작품 선택").selectOption("seonnyeo");
-  await page.getByLabel("대사 / 해설").fill("보존해야 하는 선녀 문장");
-  await page.getByLabel("작품 파일 가져오기").setInputFiles(path!);
-  await expect(page.getByLabel("대사 / 해설")).toHaveValue("내보낸 흥부 문장");
-  await expect(page.getByLabel("작품 선택")).toHaveValue(/import:/);
-  await page.getByLabel("작품 선택").selectOption("seonnyeo");
-  await expect(page.getByLabel("대사 / 해설")).toHaveValue(
-    "보존해야 하는 선녀 문장",
-  );
-  await page.getByLabel("작품 선택").selectOption("heungbu");
-  await expect(page.getByLabel("대사 / 해설")).toHaveValue("내보낸 흥부 문장");
+test('unfinished links and explicit endings remain distinct in playback',async({page})=>{
+ await page.goto('/?view=editor');await saved(page);await flow(page);await page.getByLabel('진행 방식').selectOption('goto');await page.getByLabel('도착 컷',{exact:true}).selectOption('');const pending=(await exported(page)).archive.project;await read(page);await next(page);await expect(page.getByTestId('playback-status')).toHaveText('연결 대기');await exit(page);expect((await exported(page)).archive.project).toEqual(pending);await flow(page);await page.getByLabel('도착 컷',{exact:true}).selectOption('__ending');const ending=(await exported(page)).archive.project;await read(page);await next(page);await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');await previousReadCut(page);await expect(page.getByTestId('playback-status')).toHaveText('읽는 중');await exit(page);expect((await exported(page)).archive.project).toEqual(ending);
 });
-
-for (const failure of ["empty", "unknown-asset"] as const) {
-  test(`${failure} imported document leaves the editor intact`, async ({
-    page,
-  }) => {
-    await page.goto("/?view=editor");
-    await page.getByLabel("대사 / 해설").fill("가져오기 실패 시 보존할 문장");
-    const project = JSON.parse(
-      readFileSync("tests/fixtures/stories/seonnyeo.json", "utf8"),
-    );
-    if (failure === "empty") {
-      project.lines = [];
-      project.chapters = [];
-    } else project.lines[0].backgroundId = "missing.background.id";
-    const document = {
-      documentType: "story-maker-project",
-      schemaVersion: 5,
-      savedAt: "2026-10-06T00:00:00.000Z",
-      appVersion: "boundary-test",
-      project,
-    };
-    await page
-      .getByLabel("작품 파일 가져오기")
-      .setInputFiles({
-        name: `${failure}.knolstory`,
-        mimeType: "application/json",
-        buffer: Buffer.from(JSON.stringify(document)),
-      });
-    await expect(page.getByTestId("workspace-error")).toContainText(
-      "현재 작품은 유지됩니다",
-    );
-    await expect(page.getByLabel("대사 / 해설")).toHaveValue(
-      "가져오기 실패 시 보존할 문장",
-    );
-  });
-}
-
-test('reading position and branch history resume after reload', async ({ page }) => {
-  await page.goto('/?view=editor');
-  await page.getByLabel('작품 선택').selectOption('heungbu');
-  await page.getByRole('button', { name: '현재 컷부터 읽기' }).click();
-  await page.getByRole('button', { name: '다음으로', exact: true }).click();
-  const current = await page.locator('[data-line-id][aria-current="true"]').getAttribute('data-line-id');
-  await expect.poll(async () => page.evaluate(() => JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path.length)).toBe(2);
-  await page.reload();
-  await expect(page.getByRole('button', { name: '편집으로', exact: true })).toBeVisible();
-  await expect(page.locator(`[data-line-id="${current}"]`)).toHaveAttribute('aria-current', 'true');
-  await page.getByRole('button', { name: '이전으로', exact: true }).click();
-  await expect(page.locator(`[data-line-id="${current}"]`)).not.toHaveAttribute('aria-current', 'true');
+test('importing a different work preserves edits in the outgoing representative work',async({page})=>{
+ await builtin(page,'heungbu',true);await page.getByLabel('대사 / 해설').fill('내보낸 흥부 문장');const first=await exported(page);await builtin(page,'seonnyeo');await page.getByLabel('대사 / 해설').fill('보존해야 하는 선녀 문장');const second=(await exported(page)).archive.project;await importFile(page,first.path);await expect(page.getByLabel('대사 / 해설')).toHaveValue('내보낸 흥부 문장');const imported=(await exported(page)).archive.project;expectIndependentImportedProject(imported,first.archive.project);await own(page,second.title);await expect(page.getByLabel('대사 / 해설')).toHaveValue('보존해야 하는 선녀 문장');expect((await exported(page)).archive.project).toEqual(second);await own(page,first.archive.project.title);await expect(page.getByLabel('대사 / 해설')).toHaveValue('내보낸 흥부 문장');expect((await exported(page)).archive.project).toEqual(first.archive.project);
+});
+for(const failure of ['empty','unknown-asset'] as const)test(`${failure} imported document leaves the editor intact`,async({page})=>{
+ await page.goto('/?view=editor');await saved(page);await page.getByLabel('대사 / 해설').fill('가져오기 실패 시 보존할 문장');const before=(await exported(page)).archive.project,project=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8')),base=createStoryDocument({project,savedAt:'2026-10-14T00:00:00.000Z',appVersion:'boundary-test'}),document={...base,project:failure==='empty'?{...base.project,lines:[],chapters:[]}:{...base.project,lines:base.project.lines.map((line,index)=>index?line:{...line,backgroundId:'missing.background.id'})}};
+ await page.getByLabel('작품 파일 가져오기').setInputFiles({name:`${failure}.knolstory`,mimeType:'application/json',buffer:Buffer.from(JSON.stringify(document))});await expect(page.getByTestId('workspace-error')).toContainText('현재 작품은 유지됩니다');await expect(page.getByLabel('대사 / 해설')).toHaveValue('가져오기 실패 시 보존할 문장');expect((await exported(page)).archive.project).toEqual(before);
+});
+test('reading position and branch history resume after reload',async({page})=>{
+ await builtin(page,'heungbu',true);const before=(await exported(page)).archive.project;await read(page);await next(page);await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path.length)).toBe(2);const state=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback);await page.reload();await expect(page.getByRole('button',{name:'읽기 메뉴',exact:true})).toBeVisible();await ready(page);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback)).toEqual(state);await previousReadCut(page);await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path.length)).toBe(1);await exit(page);await expect(page.getByLabel('현재 장과 컷 이동')).not.toHaveValue(state.lineId);expect((await exported(page)).archive.project).toEqual(before);
 });

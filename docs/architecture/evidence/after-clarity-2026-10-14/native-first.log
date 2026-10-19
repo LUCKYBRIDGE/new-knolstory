@@ -1,0 +1,107 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET / HTTP/1.1" 200 -
+
+Running 4 tests using 1 worker
+
+(node:22240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  1 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:24:1 › prior private export stays intact while registered current Excel and mocked public sheet copies roundtrip complete content
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:35] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:36] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:36] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:36] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:38] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:38] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:38] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:38] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:39] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:39] "GET /assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:39] "GET /assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:39] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:40] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:42] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:42] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:42] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:42] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  2 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:37:1 › native portrait single speaker, slots and actual-path backlog restore both routes (9.6s)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:45] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:48] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:48] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:48] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:48] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:48] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  3 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:52:1 › changed-work slots show saved excerpt and require explicit compatible restore (6.3s)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:51] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:54] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:54] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:54] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:54] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:54] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:55] "GET /runtime/game/effects/spotlight.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 22:44:55] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+  ✓  4 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:63:1 › numbered real-asset branch chapters play A and B then join without crossing routes (7.6s)
+
+  1 skipped
+  3 passed (24.2s)

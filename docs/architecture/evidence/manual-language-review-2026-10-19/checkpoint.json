@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-19",
+  "status": "manual-semantic-review-and-focused-corrections-verified-open-functional-defect-recorded",
+  "method": "Independent reader/library and editor/domain source reviews plus parent file/online/contract reading; meaning matched to actual branches, storage destination and supported conditions. Not a keyword-count audit.",
+  "review": "review.md",
+  "checks": {
+    "scoreRed": "score-red.log incorrect chapter/cut reference reproduction",
+    "unit": "unit-final.log3files23tests passed",
+    "browser": "current-browser.log4passed17.0s with normal actual engine: text/file preservation, optional audio/direction ranges, score conditions/reopen, reader quick save/load accessibleaction",
+    "priorAttempt": "browser.log interrupted obsolete approved-reader helper waiting for retired 보기 설정; retained. New focused reader test uses current entry and normal engine.",
+    "build": "build-final.log passed",
+    "type": "types-final.log passed",
+    "lint": "lint.log0errors; existing player thumbnail img warning retained. new-tests-lint.log0errors",
+    "docs": "docs.log link/lexical check after semantic review, not proof of semantic completeness"
+  },
+  "open": [
+    "Visited current-cut history may expose unread later pages: Core returns full line.text without dialoguePosition; actual browser reproduction and repair not performed. Kept contract and queued separately.",
+    "Whole UI/external workbook/server raw errors not exhaustively reviewed",
+    "Automatic advance accessible name can be clarified further without conflating reader autosave; not changed in this turn"
+  ],
+  "preservation": [
+    "No authored text/IDs/Flow/Stage/codec/runtime build changes",
+    "Historical reading proposals retained under explicit superseded heading",
+    "Existing private audio not labelled missing solely because catalog name lookup fails",
+    "No deployment or whole product completion"
+  ],
+  "sha256": {
+    "apps/web/components/story-score-controls.tsx": "bf7b248da3d158e401d96143f3e43caf1e0d6e0f22c2735b4fdf6dcf773cf09a",
+    "apps/web/components/story-score-controls.test.ts": "731ae05e5326de73ba2f89700a27fce510f2d7f1a06fc65ed32f5646f7e5aa1c",
+    "apps/web/components/story-branch-condition-field.tsx": "0bfff89b9151a58311c039bc1d103f0824260dbe8d62190168f2b9251090829f",
+    "apps/web/components/story-editing-workbench.tsx": "273696419abe88e62c9e15487858b263032c91d48addef7b052f582498268485",
+    "apps/web/components/story-player-menu.tsx": "4d730e794a46a097f3ed9a92d70b41d94a521f10a4c3635922a59e6612e47004",
+    "apps/web/components/library-book-focus.tsx": "73a74e370bbd96365b11ea31efcf93fe074b6fb45b9f544e28ac122453d50407",
+    "apps/web/components/book-start.tsx": "cc9e1c9856d1cbf64d548f841b6dc40faedd7f1c40630e460c4e08df2adfc397",
+    "apps/web/lib/player-saves.ts": "7c2133d0bc5436f0a3bb5785b8f446d61c721dd30ddcc6bbc472934971cb3de1",
+    "apps/web/lib/editor-terms.ts": "9c1f06b7d87241c96a3f0d7bca6f0d30962c80706898a757de9d5a7f4e39e3c9",
+    "tests/e2e/manual-reader-wording.spec.ts": "05685e5dda6fb733478dfe887a977bef716a1a9a6ad68f294522cbf7db002200",
+    "playwright.config.ts": "c8701443be0a745721024989276307646d5859ed4ee94719ee5804c739bbaf2e",
+    "docs/architecture/reading-interface-design.md": "ba8e0af6e55bd8bade05573c1bba05d8f13c5feae0b43cb5a40becfe0e567b19",
+    "docs/architecture/authoring-storage-contract.md": "cc19009bcc2fe9917834c76018362a13a3f25104348ef95e3eb5b720cd271c1f",
+    "docs/architecture/product-completion-plan.md": "006cf7f9f78f460c8bdc3313da125870bc2fb093c0014141491c8c69d89024a3"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Specific semantic findings and corrections, original failure retained, unfinished functional defect named instead of hiding it with copy"
+  }
+}

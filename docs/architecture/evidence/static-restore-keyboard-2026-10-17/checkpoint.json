@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-10-17T04:15:44.210093+00:00",
+  "scope": "PC07 local private static backup/restore of current keyboard-enabled candidate; full operating recovery and product incomplete",
+  "sourceSha256": {
+    "server/operations/static_release.py": "80f909e6235d7ff5c12aa66abddc5dea70ff4d027dd670158d64495dbbfef42d",
+    "server/operations/serve_static_restore.py": "31a708b690a79f950bde194ad881fcbbd55a041a06b36106df0aa559a151b3dc",
+    "server/operations/static-release.playwright.config.ts": "f300393ab8a0cf72f46d87c11a5ce8c30d06b0170cf9b984313597c37415c7cd",
+    "tests/e2e/restored-release.spec.ts": "e889925747019f28152f0c6545b57ac7b96830dd80ffb5d63806c7270ca7fc2e",
+    "apps/web/out/index.html": "d40211734f9faf9184965bef1c3ad727afc9b60d30c4606def5d02117c6be4da",
+    "apps/web/out/runtime/knol-bridge.js": "648028244f8e5234930359b15dec605337afde94f23b87eb780f838fd93dbb20",
+    "apps/web/out/runtime/game.zip": "6714d677376eb8f0da942c45555ffe6341a7c20d195be322b46d2124d629209c"
+  },
+  "copy": {
+    "bytes": 807646312,
+    "files": 1479,
+    "manifestSha256": "24ec2606dbdaf15bc1dd2aa839162896e67fb5f199bab7860f62c4dd9d27c8ae",
+    "restoreRun": "fabe2ab74eb94c789de81f9e90552a64",
+    "run": "dc72505e93d4479496b7e64edb7a543a"
+  },
+  "tree": {
+    "sourceBackupRestoreEqual": true,
+    "sourceManifestSha256": "24ec2606dbdaf15bc1dd2aa839162896e67fb5f199bab7860f62c4dd9d27c8ae",
+    "trustedManifestSha256": "24ec2606dbdaf15bc1dd2aa839162896e67fb5f199bab7860f62c4dd9d27c8ae",
+    "files": 1479,
+    "bytes": 807646312,
+    "oldEvidence": {
+      "backups": "verified unchanged manifest and files",
+      "restores": "verified unchanged manifest and files"
+    },
+    "scope": "Same-machine private file trees only; no activation/off-host durability/DB or live account verification"
+  },
+  "browser": {
+    "scope": "Actual restored file tree on a separate loopback origin; no source Web files, mocked renderer or live OAuth used.",
+    "origin": "http://127.0.0.1:3143",
+    "manifestSha256": "24ec2606dbdaf15bc1dd2aa839162896e67fb5f199bab7860f62c4dd9d27c8ae",
+    "restoreRun": "fabe2ab74eb94c789de81f9e90552a64",
+    "library": true,
+    "nativeRuntimeAcknowledged": true,
+    "nativeAdvance": true,
+    "keyboardAudioUnlocked": true,
+    "shortStoryImageBytesLoaded": true,
+    "shortStoryNextPage": true,
+    "runtimeResponseCount": 17,
+    "missingAssets": [],
+    "pageErrors": [],
+    "externalHttpRequests": []
+  },
+  "verification": {
+    "browserPassed": 1,
+    "log": "browser.log",
+    "artifacts": "browser-run",
+    "report": "browser-run/restored-release-restored--f7c77-ShortStory-and-RenPy-reader/browser-result.json",
+    "lint": "lint-final.log",
+    "priorToolEvidence": "Unchanged copy/serve implementation reuses prior unit/security checks; actual new file tree copy/restore and restored candidate execution performed now.",
+    "review": "Read-only review found test skip and trust-reference validation gaps; explicit keyboard unlock true plus manifest/run format assertions added before execution."
+  },
+  "changes": [
+    "Browser evidence now uses per-run test output instead of hardcoded historical evidence folder.",
+    "Restored known audio scene must begin locked and keyboard Tab/Enter unlock; no silent conditional skip.",
+    "Expected manifest SHA and restore-run format required in browser gate."
+  ],
+  "remaining": [
+    "Same-Mac file copies only; no off-host backup durability/encryption.",
+    "No roles/secrets/liveOAuth/API/DB/whole-operating restore verified here.",
+    "No public deployment, traffic activation or legacy service changes.",
+    "Physical devices, real assistive technology and policy-dependent service work remain."
+  ],
+  "previewLifecycle": "Owned isolated3143 preview stopped after verification; current backup/restore and historical outputs retained."
+}

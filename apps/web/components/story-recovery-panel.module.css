@@ -1,0 +1,15 @@
+.panel{min-width:0;border-top:1px solid var(--line,#d8d0c2);padding-block:.5rem;}
+.panel summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:650;overflow-wrap:anywhere;}
+.body{display:grid;gap:.6rem;min-width:0;}
+.body p{margin:0;color:var(--ink-soft,#4c625f);line-height:1.6;overflow-wrap:anywhere;}
+.toolbar,.actions{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;}
+.checkbox{display:flex;align-items:center;gap:.4rem;min-height:44px;cursor:pointer;overflow-wrap:anywhere;}
+.checkbox input{width:20px;height:20px;flex-shrink:0;}
+.list{list-style:none;padding:0;margin:0;display:grid;gap:.5rem;}
+.record{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.6rem;border:1px solid var(--line,#d8d0c2);border-radius:8px;min-width:0;}
+.description{display:grid;gap:.2rem;min-width:0;overflow-wrap:anywhere;}
+.description time,.description span{font-size:.85rem;color:var(--ink-soft,#4c625f);}
+.panel button{min-height:44px;white-space:normal;overflow-wrap:anywhere;max-width:100%;}
+.body .error{color:var(--color-danger,#b42318);}
+.panel :is(button,input,summary):focus-visible{outline:3px solid var(--mint-strong,#2f7d68);outline-offset:3px;}
+@media(max-width:650px){.record{align-items:stretch;flex-direction:column;}.actions button{flex:1 1 140px;}}

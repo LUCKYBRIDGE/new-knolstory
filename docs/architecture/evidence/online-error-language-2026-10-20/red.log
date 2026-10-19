@@ -1,0 +1,38 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/document-api.test.ts (10 tests | 1 failed) 33ms
+     × explains actionable service failures without exposing server messages or calling uploads storage 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/document-api.test.ts > online document client > explains actionable service failures without exposing server messages or calling uploads storage
+AssertionError: expected Error: 온라인 휴지통에 있는 작품이에요. 복구한 뒤 다시 보관해 주세… { …(3) } to match object { code: 'DOCUMENT_TRASHED', …(2) }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+- {
++ OnlineDocumentError {
+    "code": "DOCUMENT_TRASHED",
+-   "message": "온라인 휴지통에서 이 작품을 복구한 뒤 다시 업로드해 주세요. 기기의 원고는 유지됩니다.",
+    "status": 409,
+  }
+
+ ❯ apps/web/lib/document-api.test.ts:16:102
+     14|    ['INVALID_SNAPSHOT',400,'작품 내용을 확인하지 못해 업로드하지 않았어요. 기기의 원고는 유지됩니다.'…
+     15|   ] as const){
+     16|    await expect(documentList(reply({code,message:'database private pat…
+       |                                                                                                      ^
+     17|   }
+     18|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  08:19:27
+   Duration  911ms (transform 514ms, setup 0ms, import 787ms, tests 33ms, environment 0ms)
+

@@ -1,0 +1,67 @@
+
+Running 27 tests using 1 worker
+
+(node:2712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 1365x900 (2.2s)
+  ✓   2 [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 820x1180 (2.2s)
+  ✓   3 [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 390x844 (1.6s)
+  ✓   4 [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 844x390 (1.7s)
+  ✓   5 [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740 (1.6s)
+  ✓   6 [host] › tests/e2e/library-design-parity.spec.ts:19:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.7s)
+  ✓   7 [host] › tests/e2e/library-design-parity.spec.ts:28:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book (4.6s)
+  ✓   8 [host] › tests/e2e/library-design-parity.spec.ts:42:1 › layered front, spine and back covers keep direct edits in the draft until apply (2.1s)
+  -   9 [host] › tests/e2e/library-design-parity.spec.ts:51:1 › all eight books start native RenPy from the library focus and retain the same runtime
+  ✓  10 [host] › tests/e2e/library-design-parity.spec.ts:63:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript (3.5s)
+  ✓  11 [host] › tests/e2e/library-design-parity.spec.ts:69:1 › tab browsing preferences survive book work and reload without entering the story file (5.4s)
+  ✘  12 [host] › tests/e2e/library-design-parity.spec.ts:74:1 › modal keyboard boundaries include collapsed settings and nested image selection (6.6s)
+(node:2851) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [host] › tests/e2e/library-design-parity.spec.ts:78:1 › cover title size changes the rendered typography without covering the whole artwork panel (1.6s)
+  ✓  14 [host] › tests/e2e/library-design-parity.spec.ts:82:1 › books physically rest on shelf faces and room decoration frames the focused shelves (2.0s)
+  ✓  15 [host] › tests/e2e/library-design-parity.spec.ts:94:1 › cabinet preserves shelf capacity and at least two rows around four books (1.3s)
+  ✓  16 [host] › tests/e2e/library-design-parity.spec.ts:101:1 › reference introduction uses exact rectangular posters and quiet library controls (1.7s)
+  ✓  17 [host] › tests/e2e/library-design-parity.spec.ts:109:1 › compact shelf keeps all four books and drawer near the first viewport (1.9s)
+  ✓  18 [host] › tests/e2e/library-design-parity.spec.ts:122:1 › cabinet joinery uses visible wood grain and preserves the book selection experience (921ms)
+  ✓  19 [host] › tests/e2e/library-design-parity.spec.ts:130:1 › book page blocks stay narrow and rest above the shelf instead of protruding below the cover (766ms)
+  ✓  20 [host] › tests/e2e/library-design-parity.spec.ts:136:1 › branded library shows word-safe cover titles and opens cover editing directly from the chosen book (1.6s)
+  ✓  21 [host] › tests/e2e/library-design-parity.spec.ts:145:2 › window and cabinet have a visible strip of wall at every library width (2.2s)
+  ✓  22 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 1365x900 (1.2s)
+  ✓  23 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 820x1180 (1.2s)
+  ✓  24 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 390x844 (993ms)
+  ✓  25 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 844x390 (1.1s)
+  ✓  26 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 320x740 (961ms)
+  ✓  27 [host] › tests/e2e/walnut-library.spec.ts:17:1 › cabinet keeps two shelf rows with four books, a single match or an empty collection (1.1s)
+
+
+  1) [host] › tests/e2e/library-design-parity.spec.ts:74:1 › modal keyboard boundaries include collapsed settings and nested image selection 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '내 책 표지 꾸미기' }).getByRole('button', { name: '닫기', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('dialog', { name: '내 책 표지 꾸미기' }).getByRole('button', { name: '닫기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '내 책 표지 꾸미기' }).getByRole('button', { name: '닫기', exact: true })
+        14 × locator resolved to <button type="button">닫기</button>
+           - unexpected value "inactive"
+
+
+      73 |
+      74 | test('modal keyboard boundaries include collapsed settings and nested image selection',async({page})=>{
+    > 75 |  await page.goto('/');await enterLibrary(page);const card=builtinShelfCard(page,'seonnyeo');const opener=card.getByRole('button',{name:/책 표지와 소개 보기$/});await opener.click();const focus=page.getByRole('dialog');for(let i=0;i<16;i++){await page.keyboard.press(i<8?'Tab':'Shift+Tab');expect(await focus.evaluate(dialog=>dialog.contains(document.activeElement))).toBe(true);}await page.keyboard.press('Escape');await expect(opener).toBeFocused();await openShelfAction(page,card,'작품 준비');await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const editor=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});await editor.getByRole('button',{name:'표지 적용',exact:true}).focus();await page.keyboard.press('Tab');await expect(editor.getByRole('button',{name:'닫기',exact:true})).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(editor.getByRole('button',{name:'표지 적용',exact:true})).toBeFocused();await editor.getByText('내 마음대로 배치',{exact:true}).focus();await page.keyboard.press('Tab');await expect(editor.getByRole('button',{name:'세 면과 글·그림 상자 편집 시작',exact:true})).toBeFocused();await editor.getByRole('button',{name:'표지 배경 이미지 찾기',exact:true}).click();const child=page.getByRole('dialog',{name:'이미지 선택 · 표지 배경'});await child.locator('button:not([disabled])').last().focus();await page.keyboard.press('Tab');await expect(child.getByRole('button',{name:'이미지 선택 닫기'})).toBeFocused();await page.keyboard.press('Escape');await expect(child).toHaveCount(0);await expect(editor).toBeVisible();await page.keyboard.press('Escape');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+      76 | });
+      77 |
+      78 | test('cover title size changes the rendered typography without covering the whole artwork panel',async({page})=>{
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-design-parity.spec.ts:75:773
+
+    Error Context: test-results/library-design-parity-moda-2054c--and-nested-image-selection-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/library-design-parity.spec.ts:74:1 › modal keyboard boundaries include collapsed settings and nested image selection 
+  1 skipped
+  25 passed (55.0s)

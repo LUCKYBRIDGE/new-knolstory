@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-19",
+  "status": "six-editor-screens-local-focused-verified-not-full-product-complete-not-deployed",
+  "requirement": "Simple editing UX: basic current scene, multi-cut text/background/characters/audio/direction; selectable read-only companion information; preserve local-file default and authored content.",
+  "implementation": [
+    "Six work screens; advanced controls individually opt-in, existing authored data does not auto-unlock",
+    "Direct multi-cut text/background/character editing; left/center/right and actor identity preservation",
+    "Audio/effect overview and expanded existing start/end/range authoring; actor motion controls reused with canonical units",
+    "View-only companions do not edit data or unlock editor",
+    "Per-project session preferences and per-screen cursor/scroll snapshots; no forced focus on normal text patch",
+    "Single native runtime kept mounted; multi-cut images are catalog-material previews",
+    "Restored gated legacy choices/scores/branch editing and basic metadata/memo/cut structure operations",
+    "Current design, local skill, project instruction and old-mockup supersession updated; current screenshot gallery generated"
+  ],
+  "checks": {
+    "e2e": "8 focused cases pass on final Web candidate: verified.log first5 passed, focused.log final2 passed, motion.log1 passed. Passing cases reused; no combined all8-green run claimed. Original failed logs retained.",
+    "specifics": [
+      "Independent multi-cut text edits and full-project equality on companion-only toggle",
+      "Two background replacements preserve all other authoring data",
+      "Audio/end-cut and following effect/end-cut changes survive disabling editing and importing actual downloaded file into fresh storage with API blocked",
+      "Character center/scale preserve actor keys, side role/speaker, text/flow/audio/presentation through reload",
+      "1440/390 CSS widths show previous/current/next context, current field emphasis and no horizontal overflow",
+      "Synthetic composition keeps editable textarea, caret and stable document geometry; navigation blocks during composition; returning to text restores selection",
+      "Legacy choice/score/branch opt-ins and metadata do not bypass character gate; full project unchanged",
+      "Actor motion move/start position authoring preserves keys and one unchanged native iframe DOM identity across screens; no native render acknowledgement claim"
+    ],
+    "webBuild": "build-final-integration.log passed",
+    "types": "Final source Web typecheck passed (/tmp/workbench-final-types.log copied as typecheck-current.log)",
+    "lint": "Changed editor sources passed lint-final-integration.log; final test-only additions passed lint-tests-current.log. Historical local-work-file-actions issue belongs to earlier checkpoint.",
+    "review": "Read-only reviewer found removed legacy access, stale actor-handle gate, speaker-details bypass and hidden flow-repair focus; each addressed in source.",
+    "visual": "Four actual UI screenshots in gallery; screenshots are CSS viewport automation, not physical phone evidence",
+    "docs": "57 active documents, 0 link errors"
+  },
+  "limits": [
+    "Preferences/cursor snapshots are session UI memory, not persistent disk/file preferences",
+    "No new multi-select bulk apply across arbitrary selected rows; existing Core/audio/effect range semantics reused",
+    "Background picker supports image/inherit/none; dedicated focal/fit/depth/advanced chapter resource UX still pending",
+    "Overview shows authored settings and explicit ranges, not computed unique branch playback history",
+    "Conditional alternative text/additional scene DSL is not implemented here; requires domain/storage/Runtime design",
+    "No whole-device/native-runtime/accessibility/performance/release gate rerun; previous unrelated native/manuscript evidence remains scoped to its own candidate",
+    "Physical Korean IME unverified; synthetic composition and keyboard insertion are separate evidence",
+    "Early scroll assertion wrongly assumed browser viewport cannot follow caret; body/document field position and header heights remained stable. Tests now distinguish browser caret reveal from app geometry jumps",
+    "Existing disabled goto option is retained to preserve current flow type; test now checks disabled attribute instead of absence/Playwright option disabled matcher",
+    "React workbench module coverage percentage was not measured; deep authoring/file comparisons are focused E2E evidence, not whole-product 80% coverage proof"
+  ],
+  "sha256": {
+    "apps/web/components/story-editing-workbench.tsx": "e7f964a81171b9ebda614a834773815eab172ee96ea2f3abe7b98eb7754b7e32",
+    "apps/web/components/story-editing-workbench.module.css": "3c1ada9a1d07bef0fbbf50606f34d1fd2b6a940423b8aad1adb41c32c35b02c5",
+    "apps/web/components/story-workspace.tsx": "34231e237814745cdd7b19522b02992b6796310e104a01c490ab63c6f43d98d8",
+    "apps/web/components/story-workspace.module.css": "cf95cc9166368415ad304825639401980d38514b5de641d868bdc04eb49df1eb",
+    "apps/web/components/story-workspace-inspector.tsx": "709873e6b24e9f391c8c28174733380d50a0f303166f982f65e22eee884149c7",
+    "apps/web/components/story-score-controls.tsx": "aabbb758926054cee80666def234fa3ddd749fd5f67db3798207a13e435e6ec0",
+    "apps/web/components/story-branch-condition-field.tsx": "9d0d16351c16e8f8647038f5155a36c962b6e7efd30054acebba628d98b001ea",
+    "apps/web/components/story-branch-editing-context.tsx": "ebb988cba27b7e17d5696d275ceaca256d11579792081adcfd68bd9756185ecf",
+    "apps/web/components/story-preparation.tsx": "07f646d24f9adb4af68972f8af3cb927897ce3e6f43b904bb94ac0e8812287c8",
+    "apps/web/components/workspace-management.tsx": "1d4b87980ffbad81feb65aa007e8132d4d1b50df7298338450bc7a0a0dd7766e",
+    "tests/e2e/editing-workbench.spec.ts": "ae3da7e2f7e87f864b83503469e7ca785338f7a0384676a2165c05e556e6aaff",
+    "playwright.config.ts": "187108b5ecaf5bab6df45245dee6323477755b3971b53d026529db9fe52b8c7c",
+    "DESIGN.md": "8e6917640fae4c519600260c08a692f51bc2abc0f6c9327f369212d15035f7bd",
+    "STATUS.md": "2027796f06d6849ed71b9e1239f3943bb0447a8fcce788eb751ba57e69636b03",
+    "AGENTS.md": "2fa8e0045ed31af6c75f0812080c2755f3567e02cdc13c394231b5fc330d6597",
+    ".agents/skills/design-system/SKILL.md": "4fc509eec36bc3813527af2e455ead6de697fb79cb5a075f9375dc84c39b3666",
+    "docs/architecture/editor-redesign-final.md": "281d3bec313f6b2afb2e0bb7b384944457192fd21c11add2578410cc715d201a",
+    "docs/architecture/editor-redesign-versions.md": "a0dea29b2b411110cba950a2cbb4e47f95c06cee56a5a0052cf98f4b7b57c80c",
+    "docs/architecture/product-completion-plan.md": "55caf7b9b04c4defe668a6124bffcdd5ba4ae02df918d4eaa5ee1c1692449576",
+    "docs/architecture/product-completion-goal-2026-10-15.md": "7f5ee4ba43bbb0db3d209f0a15d2d91d47c7f75133a86e1bc1ecaeccde71843f"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual edit/export/reopen comparisons pass; device/native UI, long-manuscript performance and more advanced batch UX remain explicit follow-ups."
+  }
+}

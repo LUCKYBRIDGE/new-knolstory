@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-10-16T08:48:19.008894+00:00",
+  "scope": "Current isolated Next PostgreSQL16 logical backup/restore; not complete production recovery",
+  "sourceSha256": {
+    "server/operations/backup-restore.mjs": "30cf8d28860e943926b966519542a019c4d96d9112d4efae490fc59e606a9f63",
+    "server/operations/backup-restore.test.mjs": "63148b384429e35f109ff5e47682a33a8d72921b2c638c3d4b5f17ee4a6a6b83",
+    "server/operations/backup-restore.integration.test.mjs": "ec663b78185f415a4b5cefc12016611d1f52130ef9c8581b61f169a6a86a1f3c",
+    "server/operations/restore-content.integration.ts": "28e3a59ea4500170aeac1e115e71b229bad3904d369910710edbf6dffb155eee",
+    "server/vitest.restore.config.ts": "7e7b0677dea70a8f325bdd0e61d1bbd815a1c6681b8bceaf7ffcce07facc7be0"
+  },
+  "verification": {
+    "operatorTests": {
+      "passed": 12,
+      "evidence": "actual-reviewed-coverage.tap",
+      "coverage": {
+        "lines": 97.25,
+        "branches": 91.89,
+        "functions": 87.88
+      }
+    },
+    "exactRestore": "restore-2026-10-16T08-46-18-291Z-6756e9b6.json",
+    "applicationProbe": {
+      "passed": 3,
+      "log": "restored-reviewed-source-comparison.log",
+      "records": 181,
+      "valid": 171,
+      "invalidMatchedToSource": 10,
+      "knolstory": 126,
+      "shortstory": 45,
+      "privateResources": 11,
+      "perRecordSourceAndRestoreEqual": true
+    },
+    "sourceUnchanged": "source-after-reviewed.json",
+    "lint": "lint-reviewed.log"
+  },
+  "executionCorrection": "First restore probe used mergeConfig and seeded ordinary tests into its disposable restore DB; source untouched. Literal include and a fresh restore DB used for final3. Original logs and both verification DBs retained. No aggregate342-test completion claim.",
+  "preservation": {
+    "protectedArtifacts": 483,
+    "changed": [],
+    "legacyContainers": 23,
+    "legacyMetadataChanged": []
+  },
+  "privateArtifacts": "Logical custom archives and detailed inventory outside checkout; run directory0700/files0600; no payload/secret/private path in public report.",
+  "remaining": [
+    "Off-host durable/encrypted backups and retention decision",
+    "Roles/grants/secrets and static assets/runtime recovery",
+    "Historical-session revocation procedure before traffic activation",
+    "Full service/class/sharing/device/accessibility/release requirements"
+  ],
+  "review": "Independent P2 review fixes: exact source/read outcome comparison; unique trigger error assertion; bounded exporter close with pipe guards/TERM/KILL/reap and remote idle timeout. Close helper tests11 plus actual backup1, probe3; no historic-validator regression claim.",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual consistent restore and source preservation proven; operating restore and full product remain incomplete."
+  }
+}

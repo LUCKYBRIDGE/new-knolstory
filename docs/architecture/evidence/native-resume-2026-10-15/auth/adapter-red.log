@@ -1,0 +1,121 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/auth/identity-links.test.ts (29 tests | 9 failed) 13ms
+     × rolls back signup on non-insertion result undefined 4ms
+     × rolls back signup on non-insertion result false 1ms
+     × rolls back signup on non-insertion result unexpected 0ms
+     × rolls back signup on non-insertion result already-linked 0ms
+     × rejects invalid link adapter result undefined 1ms
+     × rejects invalid link adapter result false 0ms
+     × rejects invalid link adapter result unexpected 0ms
+     × does not allow an adapter to mutate Google into a Kakao signup 0ms
+     × detaches Kakao identity and created account ID across awaited port calls 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > rolls back signup on non-insertion result undefined
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > rolls back signup on non-insertion result false
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > rolls back signup on non-insertion result unexpected
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > rolls back signup on non-insertion result already-linked
+AssertionError: promise resolved "{ accountId: 'account-1', …(1) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "accountId": "account-1",
++   "created": true,
+  }
+
+ ❯ rejectsCode server/auth/identity-links.test.ts:53:23
+     51|
+     52| async function rejectsCode(action: Promise<unknown>, code: IdentityLin…
+     53|   await expect(action).rejects.toMatchObject({ name: 'IdentityLinkErro…
+       |                       ^
+     54| }
+     55|
+ ❯ server/auth/identity-links.test.ts:181:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > rejects invalid link adapter result undefined
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > rejects invalid link adapter result false
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > rejects invalid link adapter result unexpected
+AssertionError: promise resolved "{ accountId: 'account-1', …(1) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "accountId": "account-1",
++   "linked": false,
+  }
+
+ ❯ rejectsCode server/auth/identity-links.test.ts:53:23
+     51|
+     52| async function rejectsCode(action: Promise<unknown>, code: IdentityLin…
+     53|   await expect(action).rejects.toMatchObject({ name: 'IdentityLinkErro…
+       |                       ^
+     54| }
+     55|
+ ❯ server/auth/identity-links.test.ts:194:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > does not allow an adapter to mutate Google into a Kakao signup
+AssertionError: promise resolved "{ accountId: 'account-1', …(1) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "accountId": "account-1",
++   "created": true,
+  }
+
+ ❯ rejectsCode server/auth/identity-links.test.ts:53:23
+     51|
+     52| async function rejectsCode(action: Promise<unknown>, code: IdentityLin…
+     53|   await expect(action).rejects.toMatchObject({ name: 'IdentityLinkErro…
+       |                       ^
+     54| }
+     55|
+ ❯ server/auth/identity-links.test.ts:208:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  server/auth/identity-links.test.ts > provider identity boundary > detaches Kakao identity and created account ID across awaited port calls
+AssertionError: expected { …(2) } to deeply equal { accountId: 'account-1', …(1) }
+
+- Expected
++ Received
+
+  {
+-   "accountId": "account-1",
++   "accountId": "substituted-account",
+    "created": true,
+  }
+
+ ❯ server/auth/identity-links.test.ts:235:49
+    233|       })),
+    234|     };
+    235|     expect(await resolveLogin(kakao, mutating)).toEqual({ accountId: '…
+       |                                                 ^
+    236|     expect(state().identities).toEqual([{ ...kakao, accountId: 'accoun…
+    237|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 20 passed (29)
+   Start at  00:18:53
+   Duration  137ms (transform 15ms, setup 0ms, import 22ms, tests 13ms, environment 0ms)
+

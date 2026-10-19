@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-10-16T15:41:35.893498+00:00",
+  "scope": "PC06 follow-up: selected default compact cover/status contrast and five abbreviated/icon DOM controls; full accessibility and product completion remain unproven.",
+  "sourceSha256": {
+    "apps/web/lib/book-cover.ts": "3e6a0199697aac4396e8520113151750a953650ee5822605caf936d14924e5d7",
+    "apps/web/lib/book-cover.test.ts": "b7a92b63865a55edd540194d60a87861abb88e3c1b0ed902566bde5833b0ef31",
+    "apps/web/components/book-cover.tsx": "0935fabfbce62dfe3d0c3cd56feb2fe79a11beca06da2888241710529d7fdce8",
+    "apps/web/components/local-bookshelf.module.css": "675def9a7bc3736292219b36c83568b2478c25ac81873a48cabf0db5b7bd9f88",
+    "tests/e2e/contrast-math.ts": "836a46e8e28184493cc8f7ede9f07c5b5adf5f1b8f2cc36b3ff226757c7deb19",
+    "tests/e2e/contrast-math.test.ts": "b381a9ee2b3b5e9d0b9bc3366c51589a88467670d75554204397f8b0253ef8bd",
+    "tests/e2e/rendered-contrast.ts": "686f7ef1faaf8c2deba4c919ce4bf02fc9597b8d3042d951a3b6da53b0aad44b",
+    "tests/e2e/accessibility-contrast.spec.ts": "f07202d08bd2ed8923f42d8ab7cdbc481cbe331a1b50e981342e9c8f63c14673",
+    "tests/e2e/accessibility-control-names.spec.ts": "5054c15fec20f869537796e6892470592c757b04b9ff213eac493d74944957d7",
+    "vitest.config.ts": "f9e6bf2a15d3d6690d482b7581b0b95a1d9379b94e36b784b5884aa8a29352a0",
+    "playwright.config.ts": "3eebbf553a83c83f61058fe3fc57a5cb73beb3211fe781c85372fc90ffdef456",
+    "apps/web/out/index.html": "e85b933de7b6092e5aea2572d79bb2907d10e82dd9f4365691540e9387d55f47"
+  },
+  "verification": {
+    "coverUnit": {
+      "passed": 45,
+      "log": "cover-coverage.log",
+      "coverage": {
+        "statements": 97.61,
+        "branches": 93.7,
+        "functions": 96,
+        "lines": 100
+      }
+    },
+    "measurementMath": {
+      "passed": 3,
+      "log": "math-coverage.log",
+      "scope": "Test-only arithmetic/mask support; coverage100% all metrics"
+    },
+    "realRenderedText": {
+      "passed": 2,
+      "log": "rendered-green.log",
+      "measurements": [
+        {
+          "width": 390,
+          "texts": 9,
+          "minimum": 10.165793358329871,
+          "coverMinimum": 10.165793358329871,
+          "statusMinimum": 11.193611908072072,
+          "allAtLeast4_5": true
+        },
+        {
+          "width": 1440,
+          "texts": 9,
+          "minimum": 10.257180411901986,
+          "coverMinimum": 10.257180411901986,
+          "statusMinimum": 11.193611908072072,
+          "allAtLeast4_5": true
+        }
+      ],
+      "scope": "18 selected texts across1440/390; actual backgrounds and CSS foreground, independent glyph masks"
+    },
+    "measurementHarness": {
+      "passed": 1,
+      "log": "mask-harness.log",
+      "scope": "Synthetic gradient matching foreground/background; rejects unsupported opacity"
+    },
+    "controlNames": {
+      "passed": 2,
+      "log": "control-names.log",
+      "scope": "Five unique DOM button purposes at390/1440 with explicit focus+Enter; project/works unchanged"
+    },
+    "build": "build.log",
+    "lint": "final-lint.log",
+    "rawMeasurements": "rendered-green-artifacts",
+    "maskHarness": "mask-harness-artifacts",
+    "docs": "docs-check.log",
+    "typecheck": "Next build TypeScript stage passed in build.log"
+  },
+  "retainedRed": [
+    "cover-red.log",
+    "rendered-red.log",
+    "rendered-red-artifacts",
+    "initial-measurement.json"
+  ],
+  "review": "Independent method review found paint-difference threshold could miss low contrast; replaced with independent black/white masks and opaque-RGB guard. Final read-only method/product review: no remaining P1/P2 in reviewed scope.",
+  "preservation": "Default compact visual ink/status backing only; large covers, explicit title colors, custom design layer colors, authored data/IDs/layout/fonts/images/Flow/StageComposition unchanged. No storage migration/runtime interpreter change. Existing file/native verification reused for unchanged contracts.",
+  "remaining": [
+    "Other image/wood backgrounds and open dialogs",
+    "Large cover and explicitly authored color contrast",
+    "Sequential Tab order, actual screen readers/voice input and physical devices",
+    "Deletion/class/sharing/retention decisions and live OAuth setup",
+    "Full release and operating restore"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4
+  }
+}

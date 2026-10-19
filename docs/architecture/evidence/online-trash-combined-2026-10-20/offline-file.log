@@ -1,0 +1,14 @@
+node:internal/process/promises:394
+    triggerUncaughtException(err, true /* fromPromise */);
+    ^
+
+page.waitForEvent: Timeout 20000ms exceeded while waiting for event "download"
+=========================== logs ===========================
+waiting for event "download"
+============================================================
+    at /Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-online-trash-browser.mjs:41:26 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

@@ -39,3 +39,36 @@ apps/web/public/assets/legacy-ui/
 
 # Local print proofs contain owner-authorized legacy illustrations.
 docs/architecture/evidence/**/*.pdf
+# Native UI diagnostic traces contain full runtime bytes and private legacy artwork.
+docs/architecture/evidence/library-native-current/**/*trace*.zip
+
+.tools/audio-import-2026-10-13/
+
+# Versioned shared audio is restored from the verified acquisition Release.
+apps/web/public/assets/audio/cc0/*/
+
+# Current native context traces include the same private runtime/art corpus.
+docs/architecture/evidence/native-resume-2026-10-15/**/*.zip
+
+# Diagnostics may embed private manuscript/media/session snapshots; preserve locally.
+docs/architecture/evidence/**/*.zip
+docs/architecture/evidence/**/.playwright-artifacts-*/
+docs/architecture/evidence/**/*.trace
+docs/architecture/evidence/**/*.network
+test-results-*/
+# Pixabay permits scene-integrated use, not a standalone public source download.
+apps/web/public/assets/audio/pixabay/*.mp3
+
+# Generated test renderings and extracted build/coverage mirrors are not source.
+docs/architecture/evidence/**/coverage/
+docs/architecture/evidence/**/error-context.md
+
+# Failed assertions serialized full browser workspaces; keep raw diagnostics local.
+docs/architecture/evidence/basic-draft-recovery-2026-10-20/download.log
+docs/architecture/evidence/local-file-errors-2026-10-20/combined.log
+docs/architecture/evidence/recovery-navigation/ownership-final.log
+# Office owner lockfiles are machine-local.
+~$*
+
+# HTML coverage trees duplicate source and generated tool code.
+docs/architecture/evidence/**/*coverage*/

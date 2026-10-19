@@ -1,0 +1,78 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:1519) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/2n13u1_a90z_7.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:00] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:01] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:07] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:16] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:16] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:16] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:19] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:19] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:19] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:19] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:19] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:19] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 20:53:19] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+  ✘  1 [stories-runtime] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations (28.4s)
+
+
+  1) [stories-runtime] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('region', { name: '작품 설정', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('region', { name: '작품 설정', exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: '작품 설정', exact: true })
+
+
+      50 |   if(hasChoices)await expect(page.locator('summary').filter({hasText:/^선택 결과·표시 조건/})).toHaveCount(hasScores?2:0);
+      51 |   if(hasChoices||hasScores)await page.getByRole('button',{name:'이야기 점수 설정 열기',exact:true}).click();else{await expect(page.getByRole('button',{name:'이야기 점수 설정 열기',exact:true})).toHaveCount(0);await openManagement();await page.getByRole('button',{name:'이야기 점수',exact:true}).click();}
+    > 52 |   const settings=page.getByRole('region',{name:'작품 설정',exact:true});await expect(settings).toBeVisible();
+         |                                                                                            ^
+      53 |   if(hasScores)await expect(settings.getByLabel('점수 1 이름',{exact:true})).toHaveValue('신뢰');else await expect(settings.getByLabel('점수 1 이름',{exact:true})).toHaveCount(0);
+      54 |   await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();
+      55 |   await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(project.lines[0].id);
+        at <repo>/tests/e2e/approved-editor.spec.ts:52:92
+
+    Error Context: test-results-current-ux/approved-editor-choice-and-3ffdd-nt-in-all-four-combinations-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/approved-editor-choice-and-3ffdd-nt-in-all-four-combinations-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/approved-editor-choice-and-3ffdd-nt-in-all-four-combinations-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [stories-runtime] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations 

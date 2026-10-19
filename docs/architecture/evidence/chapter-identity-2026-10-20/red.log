@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:31739) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections (167ms)
+
+
+  1) tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      34 |
+      35 | test('chapter display identity edits never reorder chapters or change story connections',async({page,browser},info)=>{
+    > 36 |  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+         |                                                                ^
+      37 |  await importFile(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project:source}));
+      38 |  const before=(await exportFile(page)).project;const controls=await chapter(page);
+      39 |  const detail=controls.locator('details').filter({has:page.locator('summary',{hasText:'장 번호·갈래 표시'})});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/chapter-settings-access.spec.ts:36:64
+
+    Error Context: docs/architecture/evidence/chapter-identity-2026-10-20/red-run/chapter-settings-access-ch-03fee-or-change-story-connections/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chapter-identity-2026-10-20/red-run/chapter-settings-access-ch-03fee-or-change-story-connections/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chapter-identity-2026-10-20/red-run/chapter-settings-access-ch-03fee-or-change-story-connections/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections 

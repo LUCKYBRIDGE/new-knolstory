@@ -1,0 +1,163 @@
+{
+  "sourceCommit": "8ec4c7cda0da51087e8c5ce354648fa9a3b02ced",
+  "release": "audio-cc0-staging-2026-10-13-v1",
+  "incoming": 490,
+  "existing": 61,
+  "added": 469,
+  "catalogueTotal": 530,
+  "aliases": {
+    "audio.cc0.kenney-rpg.bookclose": "audio:sound:cc0-kenney-bookClose",
+    "audio.cc0.kenney-rpg.bookflip1": "audio:sound:cc0-kenney-bookFlip1",
+    "audio.cc0.kenney-rpg.bookflip2": "audio:sound:cc0-kenney-bookFlip2",
+    "audio.cc0.kenney-rpg.bookopen": "audio:sound:cc0-kenney-bookOpen",
+    "audio.cc0.kenney-rpg.bookplace1": "audio:sound:cc0-kenney-bookPlace1",
+    "audio.cc0.kenney-rpg.cloth1": "audio:sound:cc0-kenney-cloth1",
+    "audio.cc0.kenney-rpg.cloth2": "audio:sound:cc0-kenney-cloth2",
+    "audio.cc0.kenney-rpg.creak1": "audio:sound:cc0-kenney-creak1",
+    "audio.cc0.kenney-rpg.doorclose-1": "audio:sound:cc0-kenney-doorClose_1",
+    "audio.cc0.kenney-rpg.dooropen-1": "audio:sound:cc0-kenney-doorOpen_1",
+    "audio.cc0.kenney-rpg.footstep00": "audio:sound:cc0-kenney-footstep00",
+    "audio.cc0.kenney-rpg.footstep02": "audio:sound:cc0-kenney-footstep02",
+    "audio.cc0.kenney-rpg.handlecoins": "audio:sound:cc0-kenney-handleCoins",
+    "audio.cc0.kenney-rpg.handlecoins2": "audio:sound:cc0-kenney-handleCoins2",
+    "audio.cc0.kenney-rpg.metalpot1": "audio:sound:cc0-kenney-metalPot1",
+    "audio.cc0.kenney-rpg.metalpot2": "audio:sound:cc0-kenney-metalPot2",
+    "audio.cc0.oga-forest-ambience.forest-ambience": "audio:music:cc0-oga-forest",
+    "audio.cc0.oga-rain.1": "audio:music:cc0-oga-rain-1",
+    "audio.cc0.oga-rain.2": "audio:music:cc0-oga-rain-2",
+    "audio.cc0.oga-rain.3": "audio:music:cc0-oga-rain-3",
+    "audio.cc0.oga-rain.4": "audio:music:cc0-oga-rain-4",
+    "audio.cc0.kenney-impact.footstep-carpet-002": "audio.cc0.kenney-impact.footstep-carpet-001",
+    "audio.cc0.kenney-impact.footstep-carpet-004": "audio.cc0.kenney-impact.footstep-carpet-003"
+  },
+  "exactExistingDuplicates": [
+    {
+      "alias": "audio.cc0.kenney-rpg.bookclose",
+      "canonical": "audio:sound:cc0-kenney-bookClose",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-bookClose.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.bookflip1",
+      "canonical": "audio:sound:cc0-kenney-bookFlip1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-bookFlip1.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.bookflip2",
+      "canonical": "audio:sound:cc0-kenney-bookFlip2",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-bookFlip2.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.bookopen",
+      "canonical": "audio:sound:cc0-kenney-bookOpen",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-bookOpen.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.bookplace1",
+      "canonical": "audio:sound:cc0-kenney-bookPlace1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-bookPlace1.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.cloth1",
+      "canonical": "audio:sound:cc0-kenney-cloth1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-cloth1.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.cloth2",
+      "canonical": "audio:sound:cc0-kenney-cloth2",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-cloth2.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.creak1",
+      "canonical": "audio:sound:cc0-kenney-creak1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-creak1.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.doorclose-1",
+      "canonical": "audio:sound:cc0-kenney-doorClose_1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-doorClose_1.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.dooropen-1",
+      "canonical": "audio:sound:cc0-kenney-doorOpen_1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-doorOpen_1.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.footstep00",
+      "canonical": "audio:sound:cc0-kenney-footstep00",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-footstep00.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.footstep02",
+      "canonical": "audio:sound:cc0-kenney-footstep02",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-footstep02.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.handlecoins",
+      "canonical": "audio:sound:cc0-kenney-handleCoins",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-handleCoins.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.handlecoins2",
+      "canonical": "audio:sound:cc0-kenney-handleCoins2",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-handleCoins2.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.metalpot1",
+      "canonical": "audio:sound:cc0-kenney-metalPot1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-metalPot1.ogg"
+    },
+    {
+      "alias": "audio.cc0.kenney-rpg.metalpot2",
+      "canonical": "audio:sound:cc0-kenney-metalPot2",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/kenney-metalPot2.ogg"
+    },
+    {
+      "alias": "audio.cc0.oga-forest-ambience.forest-ambience",
+      "canonical": "audio:music:cc0-oga-forest",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/oga-forest.mp3"
+    },
+    {
+      "alias": "audio.cc0.oga-rain.1",
+      "canonical": "audio:music:cc0-oga-rain-1",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/oga-rain-1.ogg"
+    },
+    {
+      "alias": "audio.cc0.oga-rain.2",
+      "canonical": "audio:music:cc0-oga-rain-2",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/oga-rain-2.ogg"
+    },
+    {
+      "alias": "audio.cc0.oga-rain.3",
+      "canonical": "audio:music:cc0-oga-rain-3",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/oga-rain-3.ogg"
+    },
+    {
+      "alias": "audio.cc0.oga-rain.4",
+      "canonical": "audio:music:cc0-oga-rain-4",
+      "licensePreserved": "CC0-1.0",
+      "srcPreserved": "/assets/audio/cc0/oga-rain-4.ogg"
+    }
+  ],
+  "delivery": "on-demand; only referenced scene files enter native playback",
+  "scope": "No existing story, Asset ID, audio bytes or old license changed. Story cue proposals remain optional and are not applied automatically."
+}

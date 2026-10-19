@@ -1,0 +1,310 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:37] "GET / HTTP/1.1" 200 -
+
+Running 5 tests using 1 worker
+
+(node:55557) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/0490mpxmqex7_.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:38] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:41] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:41] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:41] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:41] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:41] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:41] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 1440 (6.4s)
+(node:55579) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:44] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /_next/static/chunks/0490mpxmqex7_.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:45] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:47] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:47] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:47] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  2 [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 768 (6.1s)
+(node:55610) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/0490mpxmqex7_.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:51] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:54] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:54] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:54] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:54] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:54] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:54] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  3 [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 390 (6.1s)
+(node:55630) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/0490mpxmqex7_.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:57] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:29:58] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:00] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:00] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:00] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:00] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:00] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:00] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  4 [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 844 (6.1s)
+(node:55828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/0490mpxmqex7_.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:04] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:07] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:07] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:07] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:07] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:07] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:30:07] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  5 [host] › tests/e2e/direction-purpose.spec.ts:32:1 › native side opacity hides both left actors and matches an empty left stage (6.3s)
+
+
+  1) [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:21:177
+
+    Error Context: test-results-appearance-context/direction-purpose-appearan-5d0e8-ve-saved-absent-groups-1440-host/error-context.md
+
+  2) [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 768 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:21:177
+
+    Error Context: test-results-appearance-context/direction-purpose-appearan-3f34c-rve-saved-absent-groups-768-host/error-context.md
+
+  3) [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 390 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:21:177
+
+    Error Context: test-results-appearance-context/direction-purpose-appearan-69cce-rve-saved-absent-groups-390-host/error-context.md
+
+  4) [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 844 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:21:177
+
+    Error Context: test-results-appearance-context/direction-purpose-appearan-9e66f-rve-saved-absent-groups-844-host/error-context.md
+
+  5) [host] › tests/e2e/direction-purpose.spec.ts:32:1 › native side opacity hides both left actors and matches an empty left stage 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at importWork (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:36:313)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:38:69
+
+    Error Context: test-results-appearance-context/direction-purpose-native-s-7b4bf-matches-an-empty-left-stage-host/error-context.md
+
+  5 failed
+    [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 1440 
+    [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 768 
+    [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 390 
+    [host] › tests/e2e/direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 844 
+    [host] › tests/e2e/direction-purpose.spec.ts:32:1 › native side opacity hides both left actors and matches an empty left stage 

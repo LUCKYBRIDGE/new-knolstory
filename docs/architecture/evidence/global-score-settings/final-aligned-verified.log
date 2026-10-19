@@ -1,0 +1,609 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:52] "GET / HTTP/1.1" 200 -
+
+Running 18 tests using 1 worker
+
+(node:52244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -   1 [host] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-story.knolstory
+  -   2 [host] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 390 score-story.knolstory
+  -   3 [host] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-excel-edited.xlsx
+  -   4 [host] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-google-edited.xlsx
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:53] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:06:57] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64043)
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64044)
+  ✓   5 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 (8.8s)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:01] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:02] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:05] "GET /?view=editor HTTP/1.1" 304 -
+  ✓   6 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 768 (8.4s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:10] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:14] "GET /?view=editor HTTP/1.1" 304 -
+  ✓   7 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 390 (8.7s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:19] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:23] "GET /?view=editor HTTP/1.1" 304 -
+  ✓   8 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 844 (8.4s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:27] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   9 [host] › tests/e2e/work-menu-purpose.spec.ts:40:1 › score settings return preserves editing context when composing or device saving fails (2.3s)
+(node:52374) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:30] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:32] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:32] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:33] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:33] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:34] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:34] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:37] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:37] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:37] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  10 [stories-runtime] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-story.knolstory (13.7s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:43] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:44] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:46] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:46] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:46] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:46] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:47] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:48] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:50] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:50] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:50] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  11 [stories-runtime] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 390 score-story.knolstory (13.8s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:57] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:07:58] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:00] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:00] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:00] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:00] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:01] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:01] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:04] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:04] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:04] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  12 [stories-runtime] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-excel-edited.xlsx (12.3s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:10] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:12] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:12] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:12] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:12] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:12] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:12] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:13] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:13] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:15] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:15] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:17] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:17] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:17] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  13 [stories-runtime] › tests/e2e/score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-google-edited.xlsx (13.6s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:23] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:27] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64361)
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64360)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] Traceback (most recent call last):
+[WebServer] ----------------------------------------
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+  ✓  14 [stories-runtime] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 (8.3s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:31] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:32] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:35] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64388)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+  ✓  15 [stories-runtime] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 768 (8.5s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:40] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:44] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64417)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] ConnectionResetError: [Errno 54] Connection reset by peer
+[WebServer] ----------------------------------------
+  ✓  16 [stories-runtime] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 390 (8.4s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:48] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:49] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:52] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64445)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 64446)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+  ✓  17 [stories-runtime] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 844 (8.6s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/0heibev01y8vr.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:08:57] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  18 [stories-runtime] › tests/e2e/work-menu-purpose.spec.ts:40:1 › score settings return preserves editing context when composing or device saving fails (2.3s)
+
+  4 skipped
+  14 passed (2.1m)

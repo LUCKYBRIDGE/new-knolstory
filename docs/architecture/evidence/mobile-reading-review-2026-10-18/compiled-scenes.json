@@ -1,0 +1,479 @@
+[
+  {
+    "format": "portrait",
+    "who": "child",
+    "display": {
+      "width": 390,
+      "height": 844
+    },
+    "scene": {
+      "contractVersion": 1,
+      "sceneId": "responsive-audio/opening",
+      "revision": 1,
+      "width": 720,
+      "height": 1558,
+      "viewportVersion": 1,
+      "textboxRect": {
+        "x": 22.153846153846157,
+        "y": 1236.7692307692307,
+        "width": 675.6923076923077,
+        "height": 192
+      },
+      "dialogueStyle": {
+        "fontSize": 32,
+        "speakerFontSize": 30,
+        "padding": 24
+      },
+      "actors": [
+        {
+          "handle": {
+            "x": 360,
+            "y": 360.25322399999993
+          },
+          "id": "child",
+          "name": "아이_기본.png",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.child-pixel.webp",
+          "rect": {
+            "x": -110.26672000000002,
+            "y": -27.716820000000098,
+            "width": 940.53344,
+            "height": 1410.80016
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "normal",
+          "depth": 1
+        }
+      ],
+      "dialogue": {
+        "speaker": "아이",
+        "text": "아이는 어른을 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “숲으로 가면 무엇을 볼 수 있나요?” 어른은 나무를 가리켰다. 아이는 고개를 끄덕였다."
+      },
+      "background": {
+        "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "fit": "cover",
+        "focal": {
+          "x": 0.55,
+          "y": 0.4
+        },
+        "rect": {
+          "x": -1126.4256666666668,
+          "y": 0,
+          "width": 2768.0466666666666,
+          "height": 1558
+        }
+      },
+      "choices": [],
+      "mode": "play",
+      "reducedMotion": false,
+      "presentation": {
+        "effects": []
+      }
+    }
+  },
+  {
+    "format": "portrait",
+    "who": "adult",
+    "display": {
+      "width": 390,
+      "height": 844
+    },
+    "scene": {
+      "contractVersion": 1,
+      "sceneId": "responsive-audio/opening",
+      "revision": 2,
+      "width": 720,
+      "height": 1558,
+      "viewportVersion": 1,
+      "textboxRect": {
+        "x": 22.153846153846157,
+        "y": 1236.7692307692307,
+        "width": 675.6923076923077,
+        "height": 192
+      },
+      "dialogueStyle": {
+        "fontSize": 32,
+        "speakerFontSize": 30,
+        "padding": 24
+      },
+      "actors": [
+        {
+          "handle": {
+            "x": 360,
+            "y": 340.5787999999999
+          },
+          "id": "adult",
+          "name": "도승 · 고요한 가르침",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.classic-master.webp",
+          "rect": {
+            "x": -37.46311111111112,
+            "y": 181.59355555555544,
+            "width": 794.9262222222222,
+            "height": 1192.3893333333333
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "normal",
+          "depth": 1
+        }
+      ],
+      "dialogue": {
+        "speaker": "어른",
+        "text": "아이는 어른을 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “숲으로 가면 무엇을 볼 수 있나요?” 어른은 나무를 가리켰다. 아이는 고개를 끄덕였다."
+      },
+      "background": {
+        "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "fit": "cover",
+        "focal": {
+          "x": 0.55,
+          "y": 0.4
+        },
+        "rect": {
+          "x": -1126.4256666666668,
+          "y": 0,
+          "width": 2768.0466666666666,
+          "height": 1558
+        }
+      },
+      "choices": [],
+      "mode": "play",
+      "reducedMotion": false,
+      "presentation": {
+        "effects": []
+      }
+    }
+  },
+  {
+    "format": "portrait",
+    "who": "narration",
+    "display": {
+      "width": 390,
+      "height": 844
+    },
+    "scene": {
+      "contractVersion": 1,
+      "sceneId": "responsive-audio/opening",
+      "revision": 3,
+      "width": 720,
+      "height": 1558,
+      "viewportVersion": 1,
+      "textboxRect": {
+        "x": 22.153846153846157,
+        "y": 1236.7692307692307,
+        "width": 675.6923076923077,
+        "height": 192
+      },
+      "dialogueStyle": {
+        "fontSize": 32,
+        "speakerFontSize": 30,
+        "padding": 24
+      },
+      "actors": [],
+      "dialogue": {
+        "speaker": "해설",
+        "text": "아이는 어른을 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “숲으로 가면 무엇을 볼 수 있나요?” 어른은 나무를 가리켰다. 아이는 고개를 끄덕였다."
+      },
+      "background": {
+        "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "fit": "cover",
+        "focal": {
+          "x": 0.55,
+          "y": 0.4
+        },
+        "rect": {
+          "x": -1126.4256666666668,
+          "y": 0,
+          "width": 2768.0466666666666,
+          "height": 1558
+        }
+      },
+      "choices": [],
+      "mode": "play",
+      "reducedMotion": false,
+      "presentation": {
+        "effects": []
+      }
+    }
+  },
+  {
+    "format": "landscape",
+    "who": "child",
+    "display": {
+      "width": 844,
+      "height": 390
+    },
+    "scene": {
+      "contractVersion": 1,
+      "sceneId": "responsive-audio/opening",
+      "revision": 4,
+      "width": 1280,
+      "height": 591,
+      "viewportVersion": 1,
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 332.33649289099526,
+        "width": 921.5999999999999,
+        "height": 198
+      },
+      "dialogueStyle": {
+        "fontSize": 26,
+        "speakerFontSize": 24,
+        "padding": 24
+      },
+      "actors": [
+        {
+          "handle": {
+            "x": 287.20000000000005,
+            "y": 139.82350799999998
+          },
+          "id": "child",
+          "name": "아이_기본.png",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.child-pixel.webp",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "normal",
+          "depth": 1
+        },
+        {
+          "handle": {
+            "x": 992.8,
+            "y": 133.32960000000006
+          },
+          "id": "adult",
+          "name": "도승 · 고요한 가르침",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.classic-master.webp",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "dim",
+          "depth": 1
+        }
+      ],
+      "dialogue": {
+        "speaker": "아이",
+        "text": "아이는 어른을 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “숲으로 가면 무엇을 볼 수 있나요?” 어른은 나무를 가리켰다. 아이는 고개를 끄덕였다."
+      },
+      "background": {
+        "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "fit": "cover",
+        "focal": {
+          "x": 0.55,
+          "y": 0.4
+        },
+        "rect": {
+          "x": 0,
+          "y": -51.780112570356465,
+          "width": 1280,
+          "height": 720.4502814258911
+        }
+      },
+      "choices": [],
+      "mode": "play",
+      "reducedMotion": false,
+      "presentation": {
+        "effects": []
+      }
+    }
+  },
+  {
+    "format": "landscape",
+    "who": "adult",
+    "display": {
+      "width": 844,
+      "height": 390
+    },
+    "scene": {
+      "contractVersion": 1,
+      "sceneId": "responsive-audio/opening",
+      "revision": 5,
+      "width": 1280,
+      "height": 591,
+      "viewportVersion": 1,
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 332.33649289099526,
+        "width": 921.5999999999999,
+        "height": 198
+      },
+      "dialogueStyle": {
+        "fontSize": 26,
+        "speakerFontSize": 24,
+        "padding": 24
+      },
+      "actors": [
+        {
+          "handle": {
+            "x": 287.20000000000005,
+            "y": 139.82350799999998
+          },
+          "id": "child",
+          "name": "아이_기본.png",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.child-pixel.webp",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "dim",
+          "depth": 1
+        },
+        {
+          "handle": {
+            "x": 992.8,
+            "y": 133.32960000000006
+          },
+          "id": "adult",
+          "name": "도승 · 고요한 가르침",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.classic-master.webp",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "normal",
+          "depth": 1
+        }
+      ],
+      "dialogue": {
+        "speaker": "어른",
+        "text": "아이는 어른을 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “숲으로 가면 무엇을 볼 수 있나요?” 어른은 나무를 가리켰다. 아이는 고개를 끄덕였다."
+      },
+      "background": {
+        "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "fit": "cover",
+        "focal": {
+          "x": 0.55,
+          "y": 0.4
+        },
+        "rect": {
+          "x": 0,
+          "y": -51.780112570356465,
+          "width": 1280,
+          "height": 720.4502814258911
+        }
+      },
+      "choices": [],
+      "mode": "play",
+      "reducedMotion": false,
+      "presentation": {
+        "effects": []
+      }
+    }
+  },
+  {
+    "format": "landscape",
+    "who": "narration",
+    "display": {
+      "width": 844,
+      "height": 390
+    },
+    "scene": {
+      "contractVersion": 1,
+      "sceneId": "responsive-audio/opening",
+      "revision": 6,
+      "width": 1280,
+      "height": 591,
+      "viewportVersion": 1,
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 332.33649289099526,
+        "width": 921.5999999999999,
+        "height": 198
+      },
+      "dialogueStyle": {
+        "fontSize": 26,
+        "speakerFontSize": 24,
+        "padding": 24
+      },
+      "actors": [
+        {
+          "handle": {
+            "x": 287.20000000000005,
+            "y": 139.82350799999998
+          },
+          "id": "child",
+          "name": "아이_기본.png",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.child-pixel.webp",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "normal",
+          "depth": 1
+        },
+        {
+          "handle": {
+            "x": 992.8,
+            "y": 133.32960000000006
+          },
+          "id": "adult",
+          "name": "도승 · 고요한 가르침",
+          "imagePath": "assets/legacy-18da4fc/onggojib.character.classic-master.webp",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          },
+          "flipX": false,
+          "opacity": 1,
+          "spectral": false,
+          "emphasis": "normal",
+          "depth": 1
+        }
+      ],
+      "dialogue": {
+        "speaker": "해설",
+        "text": "아이는 어른을 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “숲으로 가면 무엇을 볼 수 있나요?” 어른은 나무를 가리켰다. 아이는 고개를 끄덕였다."
+      },
+      "background": {
+        "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "fit": "cover",
+        "focal": {
+          "x": 0.55,
+          "y": 0.4
+        },
+        "rect": {
+          "x": 0,
+          "y": -51.780112570356465,
+          "width": 1280,
+          "height": 720.4502814258911
+        }
+      },
+      "choices": [],
+      "mode": "play",
+      "reducedMotion": false,
+      "presentation": {
+        "effects": []
+      }
+    }
+  }
+]

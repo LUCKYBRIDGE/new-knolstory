@@ -1,0 +1,97 @@
+{
+  "checkedAt": "2026-10-16T23:41:35.052350+00:00",
+  "scope": "PC06 one actual native390 keyboard audio-choice-rewind-alternate-route-menu-editor flow, not full product/AT/device completion",
+  "sourceSha256": {
+    "apps/web/components/story-text-accessibility.tsx": "68175f138bfebc0d136a62ceba8fac88edd86a51a1e75807f6a751e404193f96",
+    "apps/web/components/story-workspace.tsx": "94fafaf3fea7d651af7e947a23872e4ea5f4bdba886ce514d48a219df295d474",
+    "apps/web/components/story-player-menu.tsx": "2531d398d629ed13db68829b45786a851fd514b791de90792ac2d167e4582c76",
+    "tests/e2e/accessibility-choice-native.spec.ts": "6bcef8bdf2e0328c6abc905bf75005abf7f91f7bc4cf6ea2128f37035a698b73",
+    "playwright.config.ts": "3d450296e064db57c36ede99cb82b52f8ecda09f8b05202fb98d9e8317a3035a",
+    "apps/web/out/index.html": "a88baa865a070451bbd40fa68dbb91b69f7fff811c739e5cb69219e4e6b15370"
+  },
+  "changes": [
+    "Same-origin native canvas Tab exits to Web semantic summary; ShiftTab to reader menu; listeners owned by Web with load/cleanup.",
+    "Only detail0 DOM navigation originating in focused control records recovery; after scene revision/ack, removed/disabled control falling to BODY restores stable summary. Other active controls and pointer actions retained.",
+    "No Core/native renderer/StoryDocument/storage/API changes."
+  ],
+  "verification": {
+    "native": {
+      "passed": 1,
+      "log": "final.log",
+      "raw": "final-run/accessibility-choice-nativ-c66b7-choice-retain-authored-work-native/choice-native-diagnostic.json",
+      "scope": "Actual imported validated two-choice work with existing CC0 score music; keyboard unlock, true Tab reachability/ShiftTab exit, Core paths and choiceHistory, native ack+text after each choice/rewind; settings Escape/editor return, same iframe, exact full authored project/works. Pointer choice does not focus summary.",
+      "focusSteps": [
+        {
+          "step": "first-choice-before-audio-entry",
+          "host": "BODY",
+          "text": "\ub180\uc2a4\ud1a0\ub9ac\uc11c\uc7ac\ub85c\uc791\ud488\uc791\ud488 \uc124\uc815\uc791\ud488 \uc815\ubcf4\u00b7\ud45c\uc9c0\uc774\uc57c\uae30 \uae30\ud68d\ucc3d\uc791 \uba54\ubaa8\uc774\uc57c\uae30 \uc810\uc218\ud30c\uc77c\u00b7\uc800\uc7a5\uae30\uae30 \uc800\uc7a5\uc740 \uc774 \ube0c\ub77c\uc6b0\uc800\uc5d0, "
+        },
+        {
+          "step": "audio-entry-key-sent",
+          "host": "IFRAME",
+          "text": ""
+        },
+        {
+          "step": "first-choice-ready",
+          "host": "IFRAME",
+          "text": ""
+        },
+        {
+          "step": "tab-to-first-choice",
+          "host": "BUTTON",
+          "text": "\uccab \ubc88\uc9f8 \uae38\uc744 \uc120\ud0dd\ud569\ub2c8\ub2e4"
+        },
+        {
+          "step": "first-choice-applied",
+          "host": "SUMMARY",
+          "text": "\ub300\uc0ac\u00b7\ud574\uc124 \ud14d\uc2a4\ud2b8 \ubcf4\uae30"
+        },
+        {
+          "step": "tab-to-rewind",
+          "host": "BUTTON",
+          "text": "\uc774\uc804 \uc77d\uc740 \ucef7"
+        },
+        {
+          "step": "rewound-choice-discarded",
+          "host": "SUMMARY",
+          "text": "\ub300\uc0ac\u00b7\ud574\uc124 \ud14d\uc2a4\ud2b8 \ubcf4\uae30"
+        },
+        {
+          "step": "tab-to-alternate",
+          "host": "BUTTON",
+          "text": "\ub2e4\ub978 \uae38\uc744 \uc120\ud0dd\ud569\ub2c8\ub2e4"
+        },
+        {
+          "step": "alternate-choice-applied",
+          "host": "SUMMARY",
+          "text": "\ub300\uc0ac\u00b7\ud574\uc124 \ud14d\uc2a4\ud2b8 \ubcf4\uae30"
+        },
+        {
+          "step": "pointer-choice-keeps-own-focus",
+          "host": "BODY",
+          "text": "\ub180\uc2a4\ud1a0\ub9ac\uc11c\uc7ac\ub85c\uc791\ud488\uc791\ud488 \uc124\uc815\uc791\ud488 \uc815\ubcf4\u00b7\ud45c\uc9c0\uc774\uc57c\uae30 \uae30\ud68d\ucc3d\uc791 \uba54\ubaa8\uc774\uc57c\uae30 \uc810\uc218\ud30c\uc77c\u00b7\uc800\uc7a5\uae30\uae30 \uc800\uc7a5\uc740 \uc774 \ube0c\ub77c\uc6b0\uc800\uc5d0, "
+        },
+        {
+          "step": "returned-editor",
+          "host": "TEXTAREA",
+          "text": "\u201c\ub9c9\ub0b4\uc57c. \ud558\ub298\uae38\uc774 \uc5f4\ub9b0\ub2e4\uace0 \uc81c\uc77c \uba3c\uc800 \ub098\uc11c\ub354\ub2c8, \ub3cc\uc544\uac08 \uc0dd\uac01\uc740 \uc5c6\ub2c8?\u201d"
+        }
+      ]
+    },
+    "build": "build-final.log",
+    "typecheck": "types.log",
+    "lint": "lint-final.log",
+    "lintLimit": "0 errors; existing thumbnail next/no-img-element warning remains.",
+    "review": "Read-only review found no additional P1/P2 for current production wiring."
+  },
+  "retainedRuns": {
+    "first.log": "No-audio fixture incorrectly required audio unlock; fixture error, not product RED; first-run retained.",
+    "second.log": "Actual keyboard Tab trapped in native and semantic focus lost after choice/back; second-run retains each Core path/native/focus snapshot. Diagnostic fallback focus allowed remaining path checks but soft failures made entire test fail.",
+    "final.log": "Current native focused pass; no fallback required because true Tab assertions passed."
+  },
+  "limits": [
+    "One fixture and390 CSS viewport; no physical phone, real screenreader/voice/browserzoom.",
+    "Pointer nonfocus-theft tested; delayed-ack manual focus changes and automatic playback focus retention not all exercised.",
+    "No full native regression rerun; runtime package unchanged from previous gate evidence."
+  ]
+}

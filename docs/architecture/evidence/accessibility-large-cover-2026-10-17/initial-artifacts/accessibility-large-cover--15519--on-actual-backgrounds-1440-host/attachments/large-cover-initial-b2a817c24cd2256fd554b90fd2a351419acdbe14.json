@@ -1,0 +1,1358 @@
+{
+  "width": 1440,
+  "scope": "Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback",
+  "reports": [
+    {
+      "surface": "seonnyeo-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.81,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 17.859375,
+          "height": 10.90625
+        },
+        "textRanges": [
+          {
+            "left": 4.6875,
+            "top": 2.84375,
+            "right": 14.171875,
+            "bottom": 7.84375
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.764608831176892,
+      "samples": 42,
+      "worst": {
+        "x": 13,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "seonnyeo-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 8.22222,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 23
+        },
+        "textRanges": [
+          {
+            "left": 7.765625,
+            "top": 0,
+            "right": 129.140625,
+            "bottom": 11
+          },
+          {
+            "left": 129.140625,
+            "top": 0,
+            "right": 131.703125,
+            "bottom": 11
+          },
+          {
+            "left": 60.5,
+            "top": 11.5,
+            "right": 76.390625,
+            "bottom": 22.5
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.729401366367855,
+      "samples": 699,
+      "worst": {
+        "x": 126,
+        "y": 2,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "seonnyeo-focus",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "선녀와 나무꾼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 20.5556,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 25.703125
+        },
+        "textRanges": [
+          {
+            "left": 7.859375,
+            "top": -3,
+            "right": 129.03125,
+            "bottom": 27
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.71919439602001,
+      "samples": 1068,
+      "worst": {
+        "x": 126,
+        "y": 10,
+        "background": [
+          233,
+          221,
+          194
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "seonnyeo-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.03,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 142.453125,
+          "height": 11.25
+        },
+        "textRanges": [
+          {
+            "left": 48.078125,
+            "top": 1,
+            "right": 80.34375,
+            "bottom": 9
+          },
+          {
+            "left": 80.34375,
+            "top": 1,
+            "right": 94.359375,
+            "bottom": 9
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.994724051137613,
+      "samples": 222,
+      "worst": {
+        "x": 91,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "seonnyeo-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.8,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 28.375,
+          "height": 17.6875
+        },
+        "textRanges": [
+          {
+            "left": 7,
+            "top": 4,
+            "right": 22.375,
+            "bottom": 13
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.373084523400458,
+      "samples": 115,
+      "worst": {
+        "x": 19,
+        "y": 4,
+        "background": [
+          234,
+          222,
+          198
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "seonnyeo-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 13.3333,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 37.3125
+        },
+        "textRanges": [
+          {
+            "left": 12.59375,
+            "top": -1,
+            "right": 209.40625,
+            "bottom": 18
+          },
+          {
+            "left": 209.40625,
+            "top": -1,
+            "right": 213.546875,
+            "bottom": 18
+          },
+          {
+            "left": 98.109375,
+            "top": 17.65625,
+            "right": 123.875,
+            "bottom": 36.65625
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.626152202729163,
+      "samples": 1490,
+      "worst": {
+        "x": 205,
+        "y": 3,
+        "background": [
+          231,
+          218,
+          193
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "seonnyeo-book-start",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "선녀와 나무꾼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 33.3333,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 41.65625
+        },
+        "textRanges": [
+          {
+            "left": 12.734375,
+            "top": -4,
+            "right": 209.25,
+            "bottom": 44
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.591432470943901,
+      "samples": 2557,
+      "worst": {
+        "x": 205,
+        "y": 13,
+        "background": [
+          230,
+          217,
+          192
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "seonnyeo-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 11.4,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 231,
+          "height": 18.25
+        },
+        "textRanges": [
+          {
+            "left": 77.96875,
+            "top": 2,
+            "right": 130.28125,
+            "bottom": 15
+          },
+          {
+            "left": 130.28125,
+            "top": 2,
+            "right": 153.015625,
+            "bottom": 15
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.899010021612217,
+      "samples": 617,
+      "worst": {
+        "x": 152,
+        "y": 14,
+        "background": [
+          230,
+          217,
+          191
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.81,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 17.859375,
+          "height": 10.90625
+        },
+        "textRanges": [
+          {
+            "left": 4.6875,
+            "top": 2.84375,
+            "right": 14.171875,
+            "bottom": 7.84375
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.764608831176892,
+      "samples": 46,
+      "worst": {
+        "x": 13,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부로 널리 알려진 이야기",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 8.22222,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 11.5
+        },
+        "textRanges": [
+          {
+            "left": 7.765625,
+            "top": 0,
+            "right": 129.140625,
+            "bottom": 11
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.729401366367855,
+      "samples": 628,
+      "worst": {
+        "x": 126,
+        "y": 2,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-focus",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 20.5556,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 25.703125
+        },
+        "textRanges": [
+          {
+            "left": 17.484375,
+            "top": -3,
+            "right": 119.421875,
+            "bottom": 27
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.729401366367855,
+      "samples": 1052,
+      "worst": {
+        "x": 114,
+        "y": 4,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.03,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 142.453125,
+          "height": 11.25
+        },
+        "textRanges": [
+          {
+            "left": 48.078125,
+            "top": 1,
+            "right": 80.34375,
+            "bottom": 9
+          },
+          {
+            "left": 80.34375,
+            "top": 1,
+            "right": 94.359375,
+            "bottom": 9
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.994724051137613,
+      "samples": 222,
+      "worst": {
+        "x": 91,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.8,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 28.375,
+          "height": 17.6875
+        },
+        "textRanges": [
+          {
+            "left": 7,
+            "top": 4,
+            "right": 22.375,
+            "bottom": 13
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.373084523400458,
+      "samples": 115,
+      "worst": {
+        "x": 19,
+        "y": 4,
+        "background": [
+          234,
+          222,
+          198
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부로 널리 알려진 이야기",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 13.3333,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 18.65625
+        },
+        "textRanges": [
+          {
+            "left": 12.59375,
+            "top": -1,
+            "right": 209.40625,
+            "bottom": 18
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.626152202729163,
+      "samples": 1383,
+      "worst": {
+        "x": 205,
+        "y": 3,
+        "background": [
+          231,
+          218,
+          193
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-book-start",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "흥부전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 33.3333,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 41.65625
+        },
+        "textRanges": [
+          {
+            "left": 64.203125,
+            "top": -4,
+            "right": 157.796875,
+            "bottom": 44
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.7649452931104532,
+      "samples": 1403,
+      "worst": {
+        "x": 150,
+        "y": 7,
+        "background": [
+          235,
+          222,
+          196
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "heungbu-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 11.4,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 231,
+          "height": 18.25
+        },
+        "textRanges": [
+          {
+            "left": 77.96875,
+            "top": 2,
+            "right": 130.28125,
+            "bottom": 15
+          },
+          {
+            "left": 130.28125,
+            "top": 2,
+            "right": 153.015625,
+            "bottom": 15
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.899010021612217,
+      "samples": 617,
+      "worst": {
+        "x": 152,
+        "y": 14,
+        "background": [
+          230,
+          217,
+          191
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.81,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 17.859375,
+          "height": 10.90625
+        },
+        "textRanges": [
+          {
+            "left": 4.6875,
+            "top": 2.84375,
+            "right": 14.171875,
+            "bottom": 7.84375
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.764608831176892,
+      "samples": 42,
+      "worst": {
+        "x": 13,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "진짜와 가짜가 벌이는 기묘한 다툼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 8.22222,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 11.5
+        },
+        "textRanges": [
+          {
+            "left": 7.765625,
+            "top": 0,
+            "right": 129.140625,
+            "bottom": 11
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.729401366367855,
+      "samples": 614,
+      "worst": {
+        "x": 123,
+        "y": 3,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-focus",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "옹고집전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 20.5556,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 25.703125
+        },
+        "textRanges": [
+          {
+            "left": 29.96875,
+            "top": -3,
+            "right": 106.921875,
+            "bottom": 27
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.729401366367855,
+      "samples": 769,
+      "worst": {
+        "x": 106,
+        "y": 20,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.03,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 142.453125,
+          "height": 11.25
+        },
+        "textRanges": [
+          {
+            "left": 48.078125,
+            "top": 1,
+            "right": 80.34375,
+            "bottom": 9
+          },
+          {
+            "left": 80.34375,
+            "top": 1,
+            "right": 94.359375,
+            "bottom": 9
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.994724051137613,
+      "samples": 222,
+      "worst": {
+        "x": 91,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.8,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 28.375,
+          "height": 17.6875
+        },
+        "textRanges": [
+          {
+            "left": 7,
+            "top": 4,
+            "right": 22.375,
+            "bottom": 13
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.373084523400458,
+      "samples": 115,
+      "worst": {
+        "x": 19,
+        "y": 4,
+        "background": [
+          234,
+          222,
+          198
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "진짜와 가짜가 벌이는 기묘한 다툼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 13.3333,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 18.65625
+        },
+        "textRanges": [
+          {
+            "left": 12.59375,
+            "top": -1,
+            "right": 209.40625,
+            "bottom": 18
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.626152202729163,
+      "samples": 1385,
+      "worst": {
+        "x": 199,
+        "y": 5,
+        "background": [
+          231,
+          218,
+          193
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-book-start",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "옹고집전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 33.3333,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 41.65625
+        },
+        "textRanges": [
+          {
+            "left": 48.59375,
+            "top": -4,
+            "right": 173.390625,
+            "bottom": 44
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.626152202729163,
+      "samples": 2088,
+      "worst": {
+        "x": 172,
+        "y": 31,
+        "background": [
+          231,
+          218,
+          193
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "onggojib-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 11.4,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 231,
+          "height": 18.25
+        },
+        "textRanges": [
+          {
+            "left": 77.96875,
+            "top": 2,
+            "right": 130.28125,
+            "bottom": 15
+          },
+          {
+            "left": 130.28125,
+            "top": 2,
+            "right": 153.015625,
+            "bottom": 15
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.899010021612217,
+      "samples": 617,
+      "worst": {
+        "x": 152,
+        "y": 14,
+        "background": [
+          230,
+          217,
+          191
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.81,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 17.859375,
+          "height": 10.90625
+        },
+        "textRanges": [
+          {
+            "left": 4.6875,
+            "top": 2.84375,
+            "right": 14.171875,
+            "bottom": 7.84375
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.764608831176892,
+      "samples": 42,
+      "worst": {
+        "x": 13,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "또 다른 이름, 토끼전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 8.22222,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 11.5
+        },
+        "textRanges": [
+          {
+            "left": 31.5,
+            "top": 0,
+            "right": 105.390625,
+            "bottom": 11
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.7649452931104532,
+      "samples": 316,
+      "worst": {
+        "x": 103,
+        "y": 2,
+        "background": [
+          235,
+          222,
+          196
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-focus",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "별주부전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 20.5556,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 136.90625,
+          "height": 25.703125
+        },
+        "textRanges": [
+          {
+            "left": 29.96875,
+            "top": -3,
+            "right": 106.921875,
+            "bottom": 27
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.729401366367855,
+      "samples": 824,
+      "worst": {
+        "x": 106,
+        "y": 20,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-focus",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.03,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 142.453125,
+          "height": 11.25
+        },
+        "textRanges": [
+          {
+            "left": 48.078125,
+            "top": 1,
+            "right": 80.34375,
+            "bottom": 9
+          },
+          {
+            "left": 80.34375,
+            "top": 1,
+            "right": 94.359375,
+            "bottom": 9
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.994724051137613,
+      "samples": 222,
+      "worst": {
+        "x": 91,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 7.8,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 28.375,
+          "height": 17.6875
+        },
+        "textRanges": [
+          {
+            "left": 7,
+            "top": 4,
+            "right": 22.375,
+            "bottom": 13
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 10.373084523400458,
+      "samples": 115,
+      "worst": {
+        "x": 19,
+        "y": 4,
+        "background": [
+          234,
+          222,
+          198
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "또 다른 이름, 토끼전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 13.3333,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 18.65625
+        },
+        "textRanges": [
+          {
+            "left": 51.078125,
+            "top": -1,
+            "right": 170.90625,
+            "bottom": 18
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.7649452931104532,
+      "samples": 722,
+      "worst": {
+        "x": 167,
+        "y": 3,
+        "background": [
+          235,
+          222,
+          196
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-book-start",
+      "large": true,
+      "threshold": 3,
+      "info": {
+        "style": null,
+        "text": "별주부전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 33.3333,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 222,
+          "height": 41.65625
+        },
+        "textRanges": [
+          {
+            "left": 48.59375,
+            "top": -4,
+            "right": 173.390625,
+            "bottom": 44
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 3.626152202729163,
+      "samples": 1907,
+      "worst": {
+        "x": 172,
+        "y": 37,
+        "background": [
+          231,
+          218,
+          193
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "rabbit-book-start",
+      "large": false,
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 11.4,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": [],
+        "box": {
+          "width": 231,
+          "height": 18.25
+        },
+        "textRanges": [
+          {
+            "left": 77.96875,
+            "top": 2,
+            "right": 130.28125,
+            "bottom": 15
+          },
+          {
+            "left": 130.28125,
+            "top": 2,
+            "right": 153.015625,
+            "bottom": 15
+          }
+        ],
+        "mixedTextStyle": false
+      },
+      "minimum": 9.899010021612217,
+      "samples": 617,
+      "worst": {
+        "x": 152,
+        "y": 14,
+        "background": [
+          230,
+          217,
+          191
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    }
+  ]
+}

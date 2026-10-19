@@ -43,10 +43,11 @@ init python:
         if knol_scene.get("mode") == "play" and not knol_scene.get("reducedMotion") and not knol_transition_active and not knol_waiting_for_audio():
             for effect in knol_target_effects(kind, actor_id):
                 elapsed = knol_effect_elapsed(effect)
-                if effect["type"] == "shake" and 0 <= elapsed < .6:
+                duration = knol_effect_duration(effect)
+                if effect["type"] == "shake" and 0 <= elapsed < duration:
                     amount = {"soft": 4, "normal": 7, "strong": 12}[effect.get("intensity", "normal")]
                     wave = [0, -1, .8, -.6, .4, -.2, 0]
-                    trans.xoffset += wave[min(int(elapsed / .1), 6)] * amount
+                    trans.xoffset += wave[min(int(elapsed / max(.001, duration / 6)), 6)] * amount
                     trans.yoffset += abs(trans.xoffset) / 3
         return .016
 
@@ -127,10 +128,11 @@ init python:
         knol_emit(event)
 
     def knol_finish_transition():
-        global knol_transition_active, knol_presentation_started
+        global knol_transition_active, knol_presentation_started, knol_effect_clocks
         knol_transition_active = False
+        previous_started = knol_presentation_started
         knol_presentation_started = time.monotonic()
-        knol_sync_effect_clocks(knol_scene, True)
+        knol_effect_clocks = {key: knol_presentation_started if start >= previous_started else start for key, start in knol_effect_clocks.items()}
         global knol_audio_started
         knol_audio_started = knol_presentation_started
         knol_emit({"protocol": 1, "type": "presentationDone", "sceneId": knol_scene["sceneId"], "revision": knol_revision})
@@ -139,12 +141,17 @@ init python:
     def knol_effect_delay(effect):
         return effect.get("delayMs", 1000 if effect.get("trigger") == "after-delay" else 0) / 1000.0
 
-    def knol_effect_alpha(trans, st, at, effect, duration=0.8, peak=0.4):
+    def knol_effect_duration(effect):
+        default = 600 if effect["type"] == "shake" else 1800 if effect["type"] in ("crack", "screen-crack") else 800
+        return effect.get("durationMs", default) / 1000.0
+
+    def knol_effect_alpha(trans, st, at, effect, duration=None, peak=0.4):
         if knol_transition_active:
             trans.alpha = 0
             return .016
+        duration = knol_effect_duration(effect) if duration is None else duration
         elapsed = knol_effect_elapsed(effect)
-        trans.alpha = 0 if elapsed < 0 or elapsed > duration else peak * min(elapsed / (duration * .2), 1, (duration - elapsed) / (duration * .35))
+        trans.alpha = 0 if duration <= 0 or elapsed < 0 or elapsed >= duration else peak * min(elapsed / (duration * .2), 1, (duration - elapsed) / (duration * .35))
         return .016
 
     def knol_shake(trans, st, at):
@@ -166,7 +173,7 @@ init python:
         else:
             displayable = Solid("#bd253a" if kind == "flash-red" else "#ffffff" if kind == "flash" else "#080b12")
         peak = .22 if reduced else 1 if kind == "fade-black" else {"soft": .25, "normal": .4, "strong": .65}[effect.get("intensity", "normal")]
-        duration = 1.8 if reduced or kind in ("crack", "screen-crack") else .8
+        duration = knol_effect_duration(effect)
         from functools import partial
         return Transform(displayable, xysize=size or (config.screen_width, config.screen_height), function=partial(knol_effect_alpha,
             effect=effect, duration=duration, peak=peak))
@@ -180,6 +187,7 @@ init python:
 transform knol_actor_motion_atl(actor, scene):
     alpha knol_actor_motion_value(actor, scene, "start_alpha")
     xoffset knol_actor_motion_value(actor, scene, "start_xoffset")
+    pause knol_actor_motion_value(actor, scene, "wait")
     linear knol_actor_motion_value(actor, scene, "remaining") alpha knol_actor_motion_value(actor, scene, "end_alpha") xoffset knol_actor_motion_value(actor, scene, "end_xoffset")
 
 transform knol_actor_shake_transform(actor, scene):

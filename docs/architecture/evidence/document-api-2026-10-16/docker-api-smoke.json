@@ -1,0 +1,39 @@
+{
+  "origin": "http://127.0.0.1:15401",
+  "results": [
+    {
+      "path": "/api/v1/documents",
+      "method": "GET",
+      "status": 401,
+      "body": {
+        "success": false,
+        "error": {
+          "code": "SESSION_REQUIRED"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/documents",
+      "method": "POST",
+      "status": 401,
+      "body": {
+        "success": false,
+        "error": {
+          "code": "SESSION_REQUIRED"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/documents/12345678-1234-4123-8123-123456789012",
+      "method": "GET",
+      "status": 401,
+      "body": {
+        "success": false,
+        "error": {
+          "code": "SESSION_REQUIRED"
+        }
+      }
+    }
+  ],
+  "scope": "Actual bundled Docker API through gateway; authenticated full flows proven by separate actual HTTP/PostgreSQL integration, no live provider login."
+}

@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/actor-group-appearance.test.ts (1 test | 1 failed) 16ms
+   × compiles appearance for every actor on a side while preserving authored placements 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/actor-group-appearance.test.ts > compiles appearance for every actor on a side while preserving authored placements
+AssertionError: expected [] to deeply equal [ [ +0, true, 'dim' ], …(1) ]
+
+- Expected
++ Received
+
+- [
+-   [
+-     0,
+-     true,
+-     "dim",
+-   ],
+-   [
+-     0,
+-     true,
+-     "dim",
+-   ],
+- ]
++ []
+
+ ❯ packages/runtime-core/tests/actor-group-appearance.test.ts:12:116
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  08:24:27
+   Duration  787ms (transform 467ms, setup 0ms, import 667ms, tests 16ms, environment 0ms)
+

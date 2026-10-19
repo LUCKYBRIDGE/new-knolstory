@@ -1,0 +1,35 @@
+
+Running 1 test using 1 worker
+
+(node:3785) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 (5.4s)
+
+
+  1) [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('group', { name: '글 편집 보기' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('group', { name: '글 편집 보기' }) with timeout 5000ms
+      - waiting for getByRole('group', { name: '글 편집 보기' })
+
+
+       5 | for(const viewport of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`nearby writing views keep cut text and cursor ${viewport.width}`,async({page})=>{
+       6 |  await page.setViewportSize(viewport);await page.goto('/?view=editor');
+    >  7 |  const views=page.getByRole('group',{name:'글 편집 보기'});await expect(views).toBeVisible();
+         |                                                                           ^
+       8 |  const position=page.getByLabel('현재 장과 컷 이동'),id=await position.inputValue();
+       9 |  const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.');
+      10 |  await text.evaluate(node=>{(node as HTMLTextAreaElement).setSelectionRange(7,11);});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-view-notes.spec.ts:7:75
+
+    Error Context: test-results/editor-view-notes-nearby-w-966f7-ep-cut-text-and-cursor-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 

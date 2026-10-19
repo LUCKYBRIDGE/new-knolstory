@@ -1,0 +1,9 @@
+.settings { display:grid; gap:12px; min-width:0; color:var(--ink); word-break:keep-all; overflow-wrap:anywhere; }
+.settings label { display:grid; gap:5px; min-width:0; }
+.settings input,.settings textarea { width:100%; min-width:0; box-sizing:border-box; font:inherit; color:var(--ink); background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-control); padding:8px; }
+.settings input { min-height:44px; }
+.settings textarea { resize:vertical; line-height:1.6; }
+.settings fieldset { min-width:0; margin:0; padding:8px; border:1px solid var(--line); border-radius:var(--radius-control); }
+.settings p { font-size:13px; line-height:1.6; color:var(--ink-soft); margin:6px 0; }
+.settings summary { cursor:pointer; min-height:44px; padding:8px 0; box-sizing:border-box; }
+.settings [role=alert] { color:var(--ink); }

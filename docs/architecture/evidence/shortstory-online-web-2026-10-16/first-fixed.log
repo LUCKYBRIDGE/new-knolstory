@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:50119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 1440 (765ms)
+
+  1 passed (1.3s)

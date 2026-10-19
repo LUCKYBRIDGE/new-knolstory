@@ -48,3 +48,51 @@ it('preserves imported advanced design and multi-field memo records through basi
  const edited=updatePreparationCover(updatePreparationPlanning(advanced,{mainGoal:'목표'}),{theme:'night',layout:'picture'});
  expect(edited.cover!.design).toBe(design);expect(edited.lines).toBe(project.lines);expect(edited.chapters).toBe(project.chapters);
 });
+
+import { createStoryDocument, parseStoryDocument, serializeStoryDocument } from '@knolstory/story-domain';
+import { addMemoField, renameMemoField, moveMemoField, deleteMemoField, restoreMemoField, filterPreparationMemos } from './story-preparation';
+describe('creative memo field authoring',()=>{
+ const memo=()=>({...addPreparationMemo(blank(),'m','now','l').creativeMemos[0],linkedLineIds:['l'],linkedCharacterNames:['흥부'],fields:[
+  {id:'a',label:'같은 항목',value:'첫 원고',order:10,source:'recommended' as const},
+  {id:'b',label:'같은 항목',value:'둘째 원고',order:10,source:'default' as const},
+ ]});
+ it('adds, renames and moves by identity with repeated labels and orders; preserves sources and links',()=>{
+  const original=memo(); const added=addMemoField(original,'c','세 번째');
+  expect(added.fields[2]).toMatchObject({id:'c',value:'',source:'custom',order:11});
+  const renamed=renameMemoField(added,'b','아주 긴 한국어 이름');
+  const moved=moveMemoField(renamed,'b',-1);
+  expect(moved.fields.map(f=>f.id)).toEqual(['b','a','c']);
+  expect(moved.fields[0]).toMatchObject({label:'아주 긴 한국어 이름',value:'둘째 원고',source:'default',order:1});
+  expect(moved.linkedLineIds).toBe(original.linkedLineIds);
+  expect(moved.linkedCharacterNames).toBe(original.linkedCharacterNames);
+  expect(original.fields[1].label).toBe('같은 항목');
+  expect(moveMemoField(moved,'b',-1)).toBe(moved);
+ });
+ it('rejects blank labels and duplicate or missing ids without altering authored fields',()=>{
+  const m=memo();expect(()=>addMemoField(m,'a','new')).toThrow();expect(()=>addMemoField(m,'c','   ')).toThrow();
+  expect(()=>renameMemoField(m,'a','')).toThrow();expect(()=>renameMemoField(m,'missing','new')).toThrow();
+  expect(()=>deleteMemoField(m,'missing')).toThrow();
+ });
+ it('undoes deletion at the original position without losing later edits, including an empty memo',()=>{
+  const m=memo();const deleted=deleteMemoField(m,'a');
+  const later=renameMemoField(deleted,'b','수정 유지');
+  const restored=restoreMemoField(later,m.fields[0],0);
+  expect(restored.fields.map(f=>f.id)).toEqual(['a','b']);expect(restored.fields[1].label).toBe('수정 유지');
+  expect(restored.fields[0].source).toBe('recommended');
+  expect(restoreMemoField(restored,m.fields[0],0)).toBe(restored);
+  expect(restoreMemoField(deleteMemoField({...m,fields:[m.fields[0]]},'a'),m.fields[0],0).fields).toHaveLength(1);
+ });
+ it('roundtrips field values, ordering, metadata and links through the official file format',()=>{
+  const m=moveMemoField(renameMemoField(addMemoField(memo(),'c','새 항목'),'b','이름'), 'b',-1);
+  const p={...blank(),creativeMemos:[m]};
+  const loaded=parseStoryDocument(JSON.parse(serializeStoryDocument(createStoryDocument({project:p,savedAt:'2026-10-09T00:00:00.000Z',appVersion:'test'}))));
+  expect(loaded.ok).toBe(true);if(loaded.ok)expect(loaded.document.project.creativeMemos[0]).toEqual(m);
+ });
+ it('searches titles, labels, bodies and linked people while combining kind and scope filters',()=>{
+  const a=memo(), b={...memo(),id:'other',kind:'task' as const,title:'할 일',linkedLineId:undefined,linkedChapterId:undefined,linkedLineIds:undefined};
+  expect(filterPreparationMemos([a,b],{query:'둘째 원고'})).toHaveLength(2);
+  expect(filterPreparationMemos([a,b],{query:'흥부',kind:'task',scope:'work'})).toEqual([b]);
+  expect(filterPreparationMemos([a,b],{query:'같은 항목',scope:'current',lineId:'l',chapterId:'c'})).toEqual([a]);
+  expect(filterPreparationMemos([a,b],{query:'없는 말'})).toEqual([]);
+ });
+});

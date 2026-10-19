@@ -1,0 +1,884 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-15T14:54:21.746Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "cover": {
+        "author": "",
+        "subtitle": "",
+        "authorNote": "",
+        "layout": "picture",
+        "theme": "night",
+        "font": "serif",
+        "titlePosition": "top",
+        "authorPosition": "bottom",
+        "align": "center",
+        "titleSize": 34,
+        "titleColor": "",
+        "backgroundId": "seonnyeo.background.poster-art",
+        "characterId": "",
+        "characterPosition": "center",
+        "composition": {
+          "version": 1,
+          "backgroundFit": "fill",
+          "backgroundX": 50,
+          "backgroundY": 50,
+          "backgroundZoom": 1,
+          "characterX": 50,
+          "characterBottom": 20,
+          "characterScale": 1,
+          "titleX": 50,
+          "titleY": 6,
+          "titleWidth": 78,
+          "showEdition": false,
+          "textPanel": "auto"
+        }
+      },
+      "id": "presentation-polish",
+      "title": "넓은 무대의 하루",
+      "description": "선택, 신뢰, 관계와 두 고향을 다루는 이야기",
+      "planning": {
+        "premise": "",
+        "structureMode": "five",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": "콘텐츠 기준: docs/review-main-004-seonnyeo-namukkun/01-통합-상세대본.md\n선택 기억을 기존 컷 분기로 풀어낸 편집본입니다. 같은 장면의 조건별 변형이 별도 장으로 표시될 수 있습니다.\n장면별 배경과 인물 이미지를 내장 자산 ID로 연결했습니다. 이 이미지 팩이 등록된 story-maker에서 열 수 있습니다. Stage Composition v1으로 같은 공간의 인물과 선택지 무대를 보존합니다."
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [
+        "선녀 1",
+        "선녀",
+        "선녀 2",
+        "나무꾼",
+        "나무꾼의 생각",
+        "선녀의 기억",
+        "선녀의 과거 목소리",
+        "나무꾼의 과거 목소리"
+      ],
+      "chapters": [
+        {
+          "id": "polish",
+          "order": 1,
+          "title": "넓은 무대의 하루",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [
+            "선녀 1",
+            "선녀",
+            "선녀 2"
+          ],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "neutral",
+          "chapterId": "polish",
+          "order": 1,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "선녀와 친구가 넓은 무대 양쪽에서 이야기를 시작해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "shake"
+          }
+        },
+        {
+          "id": "shake",
+          "chapterId": "polish",
+          "order": 2,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "shake 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "flash-red"
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "strong",
+                "type": "shake"
+              }
+            ]
+          }
+        },
+        {
+          "id": "flash-red",
+          "chapterId": "polish",
+          "order": 3,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "flash-red 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "fade-black"
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "strong",
+                "type": "flash-red"
+              }
+            ]
+          }
+        },
+        {
+          "id": "fade-black",
+          "chapterId": "polish",
+          "order": 4,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "fade-black 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "crack"
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "strong",
+                "type": "fade-black"
+              }
+            ]
+          }
+        },
+        {
+          "id": "crack",
+          "chapterId": "polish",
+          "order": 5,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "crack 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "spotlight"
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "strong",
+                "type": "crack"
+              }
+            ]
+          }
+        },
+        {
+          "id": "spotlight",
+          "chapterId": "polish",
+          "order": 6,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "spotlight 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "flash"
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "strong",
+                "type": "spotlight"
+              }
+            ]
+          }
+        },
+        {
+          "id": "flash",
+          "chapterId": "polish",
+          "order": 7,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "flash 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "screen-crack"
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "strong",
+                "type": "flash"
+              }
+            ]
+          }
+        },
+        {
+          "id": "screen-crack",
+          "chapterId": "polish",
+          "order": 8,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "screen-crack 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "flashback"
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "strong",
+                "type": "screen-crack"
+              }
+            ]
+          }
+        },
+        {
+          "id": "flashback",
+          "chapterId": "polish",
+          "order": 9,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "flashback 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "fractured-reality"
+          },
+          "presentation": {
+            "look": {
+              "intensity": "strong",
+              "type": "flashback"
+            },
+            "transition": {
+              "actionLabel": "선녀의 시점으로 이어서 읽기",
+              "description": "먼 숲 너머를 바라보던 선녀가 자신의 선택을 돌아봅니다.",
+              "durationMs": 900,
+              "mode": "confirm",
+              "title": "나무꾼의 시점에서 선녀의 마음을 다시 바라보는 아주 긴 장면 제목",
+              "type": "perspective-blackout"
+            }
+          }
+        },
+        {
+          "id": "fractured-reality",
+          "chapterId": "polish",
+          "order": 10,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "fractured-reality 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "transition-fade-black"
+          },
+          "presentation": {
+            "look": {
+              "intensity": "normal",
+              "type": "fractured-reality"
+            }
+          }
+        },
+        {
+          "id": "transition-fade-black",
+          "chapterId": "polish",
+          "order": 11,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "transition-fade-black 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "transition-white-fade"
+          },
+          "presentation": {
+            "transition": {
+              "durationMs": 900,
+              "mode": "auto",
+              "title": "다음 장면으로",
+              "type": "fade-black"
+            }
+          }
+        },
+        {
+          "id": "transition-white-fade",
+          "chapterId": "polish",
+          "order": 12,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "transition-white-fade 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "transition-perspective-blackout"
+          },
+          "presentation": {
+            "transition": {
+              "durationMs": 900,
+              "mode": "auto",
+              "title": "다음 장면으로",
+              "type": "white-fade"
+            }
+          }
+        },
+        {
+          "id": "transition-perspective-blackout",
+          "chapterId": "polish",
+          "order": 13,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "transition-perspective-blackout 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "single"
+          },
+          "presentation": {
+            "transition": {
+              "durationMs": 900,
+              "mode": "auto",
+              "title": "다음 장면으로",
+              "type": "perspective-blackout"
+            }
+          }
+        },
+        {
+          "id": "single",
+          "chapterId": "polish",
+          "order": 14,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "single 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "center"
+          }
+        },
+        {
+          "id": "center",
+          "chapterId": "polish",
+          "order": 15,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "center 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base",
+                "xAnchor": 50,
+                "scaleMultiplier": 0.85
+              }
+            ],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "four"
+          }
+        },
+        {
+          "id": "four",
+          "chapterId": "polish",
+          "order": 16,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "four 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              },
+              {
+                "key": "M02",
+                "characterKey": "M02",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              },
+              {
+                "key": "M04",
+                "characterKey": "M04",
+                "assetId": "seonnyeo.character.M04-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "choice"
+          }
+        },
+        {
+          "id": "choice",
+          "chapterId": "polish",
+          "order": 17,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "choice 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "a",
+                "targetLineId": "ending-a",
+                "label": "따뜻한 결말"
+              },
+              {
+                "id": "b",
+                "targetLineId": "ending-b",
+                "label": "새로운 결말"
+              }
+            ]
+          }
+        },
+        {
+          "id": "ending-a",
+          "chapterId": "polish",
+          "order": 18,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "ending-a 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": null
+          }
+        },
+        {
+          "id": "ending-b",
+          "chapterId": "polish",
+          "order": 19,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "선녀",
+          "text": "ending-b 장면을 확인해요.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "seonnyeo.character.M03-neutral",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "M01",
+                "characterKey": "M01",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "M03",
+                "characterKey": "M03",
+                "assetId": "seonnyeo.character.M03-neutral"
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": null
+          }
+        }
+      ],
+      "updatedAt": "2026-10-15T14:54:15.747Z"
+    }
+  },
+  "audioResources": []
+}

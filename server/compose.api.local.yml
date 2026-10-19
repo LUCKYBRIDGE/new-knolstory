@@ -1,0 +1,42 @@
+name: knolstory-next-api-dev
+services:
+  api:
+    image: knolstory-next-api:local
+    build:
+      context: ..
+      dockerfile: server/Dockerfile
+    environment:
+      PORT: '4000'
+      KNOLSTORY_BIND_HOST: 0.0.0.0
+      KNOLSTORY_AUTH_ORIGIN: ${KNOLSTORY_AUTH_ORIGIN:-http://127.0.0.1:15400}
+      PGHOST: knolstory-next-storage-test-db-1
+      PGPORT: '5432'
+      PGUSER: knolstory_next_storage_test
+      PGDATABASE: knolstory_next_storage_test
+      PGPASSWORD_FILE: /run/knolstory-next-secrets/storage-db-password
+      KNOLSTORY_CSRF_SECRET_FILE: /run/knolstory-next-secrets/api-csrf-secret
+      KAKAO_CLIENT_ID_FILE: ${KAKAO_CLIENT_ID_FILE:-}
+      KAKAO_CLIENT_SECRET_FILE: ${KAKAO_CLIENT_SECRET_FILE:-}
+      GOOGLE_CLIENT_ID_FILE: ${GOOGLE_CLIENT_ID_FILE:-}
+      GOOGLE_CLIENT_SECRET_FILE: ${GOOGLE_CLIENT_SECRET_FILE:-}
+    volumes:
+      - ${KNOLSTORY_STORAGE_SECRET_DIR:?Run the API compose helper}:/run/knolstory-next-secrets:ro
+    user: "${KNOLSTORY_SECRET_UID:?Run the API compose helper}:${KNOLSTORY_SECRET_GID:?Run the API compose helper}"
+    ports: ['127.0.0.1:15400:4000']
+    networks: [storage_test, outbound]
+    mem_limit: 384m
+    cpus: 1
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:4000/health/live').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+networks:
+  storage_test:
+    external: true
+    name: knolstory-next-storage-test_storage_test
+  outbound: {}

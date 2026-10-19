@@ -1,0 +1,66 @@
+
+Running 3 tests using 1 worker
+
+(node:14658) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/local-work-files.spec.ts:4:57 › knolstory: real downloaded work file reopens without server or previous browser storage (5.5s)
+(node:14706) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 tests/e2e/local-work-files.spec.ts:4:57 › shortstory: real downloaded work file reopens without server or previous browser storage (797ms)
+  ✓  3 tests/e2e/local-work-files.spec.ts:27:1 › explicit file handle save verifies write, reuses selected file, protects external edits and allows save as (2.5s)
+
+
+  1) tests/e2e/local-work-files.spec.ts:4:57 › knolstory: real downloaded work file reopens without server or previous browser storage 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 3
+    + Received  + 3
+
+    @@ -3312,12 +3312,12 @@
+                  "characterKey": "M04",
+                  "key": "M04",
+                },
+              ],
+            },
+    -       "text": "서버 없이 실제 파일로 이어 쓰는 원고.
+    - 파일 안에 남아야 하는 문장입니다.",
+    +       "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.
+    + 하지만 바위 너머에서는 웃음소리가 들렸다.",
+            "type": "narration",
+          },
+          Object {
+            "backgroundId": "seonnyeo.background.BG01-valley-day",
+            "chapterId": "P1-v166",
+    @@ -64108,7 +64108,7 @@
+          "선녀의 기억",
+          "선녀의 과거 목소리",
+          "나무꾼의 과거 목소리",
+        ],
+        "title": "선녀와 나무꾼",
+    -   "updatedAt": "2026-10-18T14:42:08.632Z",
+    +   "updatedAt": "pinky-ne-site 804fe9f",
+      }
+
+      21 |  const restored=await reopened.evaluate(format=>{const data=JSON.parse(localStorage.getItem(format==='knolstory'?'knolstory-next-workspace-v1':'knolstory-shortstory-library-v1')!);return format==='knolstory'?data.document.project:data.books.find((b:{id:string})=>b.id===data.activeId);},format);
+      22 |  const original=format==='knolstory'?archive.document.project:archive.project;
+    > 23 |  expect(restored).toEqual({...original,id:restored.id});
+         |                   ^
+      24 |  await info.attach('saved-work-file',{body:raw,contentType:'application/json'});await reopened.screenshot({path:info.outputPath('reopened-file.png')});await context.close();
+      25 | });
+      26 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-work-files.spec.ts:23:19
+
+    Error Context: docs/architecture/evidence/local-work-files-2026-10-18/first-run/local-work-files-knolstory-3dfab-or-previous-browser-storage/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/local-work-files-2026-10-18/first-run/local-work-files-knolstory-3dfab-or-previous-browser-storage/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/local-work-files-2026-10-18/first-run/local-work-files-knolstory-3dfab-or-previous-browser-storage/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/local-work-files.spec.ts:4:57 › knolstory: real downloaded work file reopens without server or previous browser storage 
+  2 passed (10.0s)

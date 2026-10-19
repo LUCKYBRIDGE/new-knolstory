@@ -1,0 +1,229 @@
+[WebServer] (node:59874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:59875) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:59881) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 10 tests using 1 worker
+
+(node:59930) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/10] tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1440x900
+  1) tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1440x900 
+
+    Error: browserContext.close: ENOENT: no such file or directory, open '/Users/wan/ai_dev/apps/new-knolstory/test-results/.playwright-artifacts-0/traces/b94b83de044b758298b1-d26b826f368db0f2afd9.network'
+
+    Error Context: test-results/editor-density-editor-writ-822ee-ve-Korean-input-at-1440x900/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/editor-density-editor-writ-822ee-ve-Korean-input-at-1440x900/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/editor-density-editor-writ-822ee-ve-Korean-input-at-1440x900/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:60048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/10] tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1024x768
+[3/10] tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 768x1024
+[4/10] tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 390x844
+  2) tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 390x844 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '작품 준비', exact: true })
+        - locator resolved to <button>작품 준비</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <button>작품 파일 내보내기</button> from <details open="" class="story-workspace-module__gRDfJG__management">…</details> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <button>작품 파일 내보내기</button> from <details open="" class="story-workspace-module__gRDfJG__management">…</details> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        27 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <button>작품 파일 내보내기</button> from <details open="" class="story-workspace-module__gRDfJG__management">…</details> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      27 |  const management=page.getByText('작품 관리',{exact:true});
+      28 |  if(await management.isVisible()&&!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();
+    > 29 |  await page.getByRole('button',{name:'작품 준비',exact:true}).click();
+         |                                                           ^
+      30 |  const preparation=page.getByRole('region',{name:'작품 준비',exact:true});
+      31 |  const info=preparation.locator('section').filter({has:page.getByRole('heading',{name:'작품 정보',exact:true})});
+      32 |  expect(await info.evaluate(node=>parseFloat(getComputedStyle(node).paddingLeft))).toBeLessThanOrEqual(12);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-density.spec.ts:29:59
+
+    Error Context: test-results/editor-density-editor-writ-77284-rve-Korean-input-at-390x844/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/editor-density-editor-writ-77284-rve-Korean-input-at-390x844/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/editor-density-editor-writ-77284-rve-Korean-input-at-390x844/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:60127) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[5/10] tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 844x390
+  3) tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 844x390 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '작품 준비', exact: true })
+        - locator resolved to <button>작품 준비</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <select aria-label="작품 선택">…</select> from <details open="" class="story-workspace-module__gRDfJG__management">…</details> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <select aria-label="작품 선택">…</select> from <details open="" class="story-workspace-module__gRDfJG__management">…</details> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        27 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <select aria-label="작품 선택">…</select> from <details open="" class="story-workspace-module__gRDfJG__management">…</details> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      27 |  const management=page.getByText('작품 관리',{exact:true});
+      28 |  if(await management.isVisible()&&!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();
+    > 29 |  await page.getByRole('button',{name:'작품 준비',exact:true}).click();
+         |                                                           ^
+      30 |  const preparation=page.getByRole('region',{name:'작품 준비',exact:true});
+      31 |  const info=preparation.locator('section').filter({has:page.getByRole('heading',{name:'작품 정보',exact:true})});
+      32 |  expect(await info.evaluate(node=>parseFloat(getComputedStyle(node).paddingLeft))).toBeLessThanOrEqual(12);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-density.spec.ts:29:59
+
+    Error Context: test-results/editor-density-editor-writ-216d2-rve-Korean-input-at-844x390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/editor-density-editor-writ-216d2-rve-Korean-input-at-844x390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/editor-density-editor-writ-216d2-rve-Korean-input-at-844x390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:60187) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[6/10] tests/e2e/shortstory-conflict.spec.ts:4:1 › two ShortStory tabs preserve the saved book and export the blocked draft
+[7/10] tests/e2e/shortstory-conflict.spec.ts:24:1 › a read-only second tab never migrates or recovers storage over the writer
+[8/10] tests/e2e/storage-recovery.spec.ts:10:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+  4) tests/e2e/storage-recovery.spec.ts:10:1 › previous manuscript opens as independent copy; both revisions survive reload and file export 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('작품 제목', { exact: true }) resolved to 2 elements:
+        1) <input value="복구하기 전 원고" aria-label="작품 제목"/> aka getByRole('textbox', { name: '작품 제목' })
+        2) <input maxlength="200" value="복구하기 전 원고" aria-label="작품 제목"/> aka getByLabel('장과 컷 목록').getByLabel('작품 제목')
+
+    Call log:
+      - waiting for getByLabel('작품 제목', { exact: true })
+
+
+      11 |  await create(page,'복구하기 전 원고');await page.getByLabel('핵심 아이디어',{exact:true}).fill('원래 아이디어를 보호해요');
+      12 |  await records(page);await page.getByRole('button',{name:'현재 원고 기록하기',exact:true}).click();
+    > 13 |  await page.getByLabel('작품 제목',{exact:true}).fill('고쳐 쓴 현재 원고');await page.getByLabel('핵심 아이디어',{exact:true}).fill('새로운 아이디어');
+         |                                              ^
+      14 |  await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+      15 |  await page.getByRole('button',{name:'이 기록을 사본으로 열기',exact:true}).click();
+      16 |  await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue('복구하기 전 원고 · 내 사본');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:13:46
+
+    Error Context: test-results/storage-recovery-previous--a1e6c-vive-reload-and-file-export/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/storage-recovery-previous--a1e6c-vive-reload-and-file-export/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/storage-recovery-previous--a1e6c-vive-reload-and-file-export/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:60422) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[9/10] tests/e2e/storage-recovery.spec.ts:24:1 › second tab draft cannot overwrite first tab, even when using manual save
+[10/10] tests/e2e/storage-recovery.spec.ts:35:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+  5) tests/e2e/storage-recovery.spec.ts:35:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('작품 제목', { exact: true })
+    Expected: "정상 원고 · 내 사본"
+    Error: strict mode violation: getByLabel('작품 제목', { exact: true }) resolved to 2 elements:
+        1) <input aria-label="작품 제목" value="정상 원고 · 내 사본"/> aka getByRole('textbox', { name: '작품 제목' })
+        2) <input maxlength="200" aria-label="작품 제목" value="정상 원고 · 내 사본"/> aka getByLabel('장과 컷 목록').getByLabel('작품 제목')
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('작품 제목', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('작품 제목', { exact: true })
+
+
+      38 |  await expect(page.getByRole('region',{name:'기기 보관함 복구'})).toBeVisible();
+      39 |  await records(page);await page.getByLabel('모든 작품의 기록 보기').check();await page.getByRole('button',{name:'이 기록을 사본으로 열기',exact:true}).click();
+    > 40 |  await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue('정상 원고 · 내 사본');
+         |                                                      ^
+      41 |  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe('broken-workspace-raw');
+      42 |  await page.getByRole('button',{name:'손상 원본 보존하고 새 보관함 시작',exact:true}).click();
+      43 |  await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:40:54
+
+    Error Context: test-results/storage-recovery-corrupt-s-648fc-th-checkpoint-copy-retained/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/storage-recovery-corrupt-s-648fc-th-checkpoint-copy-retained/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/storage-recovery-corrupt-s-648fc-th-checkpoint-copy-retained/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  5 failed
+    tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1440x900 
+    tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 390x844 
+    tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 844x390 
+    tests/e2e/storage-recovery.spec.ts:10:1 › previous manuscript opens as independent copy; both revisions survive reload and file export 
+    tests/e2e/storage-recovery.spec.ts:35:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained 
+  5 passed (1.2m)

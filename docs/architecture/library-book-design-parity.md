@@ -143,3 +143,21 @@ Self evaluation: accuracy 4/5 (actual browser/native evidence; physical devices 
 독립 단위 회귀에서 새 영역 분리/프리셋 테스트가 먼저 실패한 뒤 수정으로 통과했다. 새 UI 검사는 한글 단어 내부 줄바꿈 없음, 직접 표지 편집→분리 배치→적용→원본 보존→선택 책 파일 보관을 확인한다. 저장된 자유 배치는 사용자의 의도이므로 자동 재배치하지 않는다. 이 경우 편집기에서 분리 배치 또는 프리셋을 명시적으로 선택한다.
 
 최종 검증:826 TS 단위/계약/통합, 관련host29개(native3skip), 디자인/native20개(8작품 actualRen’Py 포함) 통과. 타입·lint·정적build·productionaudit 통과. 구성된 TS coverage:statement93.38%,branch90.44%,line97.62%; React/Python 전체가 아니다. [검증](evidence/library-book-design/cover-redesign/verification.json), [host](evidence/library-book-design/cover-redesign/host.log), [native](evidence/library-book-design/cover-redesign/design-native.log). 독립 코드/보안 검토 high/medium 없음. 사용자 저장 자유 배치의 미관을 자동 수정했다고 주장하지 않는다. 자체 점검은 기본/새 프리셋의 분리·실제 줄바꿈·원본보존·파일 동선 근거를 확인했으며 실물기기와 사용자 최종 미적 판단은 별도다.
+
+## 2026-10-09 소개 유지와 월넛 책장
+
+소유자가 책 소개의 자동 서재 이동 중단, 화분의 자연스러운 안착, 약간 어두운 월넛 책장과 입체감, 창문/오른쪽 공간과의 여유를 요청했다. 이 절은 앞선 재방문 서재 규칙을 갱신한다. 새 `/` 접속은 재방문도 책 소개에서 사용자의 버튼 선택을 기다린다. 새로고침은 저장된 소개·서재·편집·작품 준비·읽기 위치를 복원한다. 초기 저장값 확인 중에는 중립적인 로딩을 표시해 소개가 보였다가 자동으로 사라지는 현상을 없앴다. 숏스토리 복귀는 `?view=library`로 명시하고 이 일회성 query를 소비해 이후 편집/읽기 reload를 방해하지 않는다. 손상된 Next 저장과 레거시 키는 보존한다.
+
+고정 `story-maker@18da4fc`의 `app/globals.css` 13595 이후 warm oak/plant 규칙과 실제 `pothos-pot.webp`를 읽었다. 기존 원본 목재 결·식물은 PRESERVE, 색감·접촉/입체감·양옆 여백은 REFINE이다. 원본 화분 바닥은 900px 이미지의 약514px(0.572)에 있으며, 늘어진 잎 끝을 기준으로 올리면 화분이 상판과 맞지 않는다. 기존 Next에서 상판보다 약11px 아래였던 화분 바닥을 약2px 접촉 위치로 맞추고, 작은 타원형 접촉 그림자를 넣었다.
+
+책장 전체에 필터를 씌우지 않고 나무 표면의 CSS layer에만 월넛 계열 갈색을 얹었다. 뒤판/안쪽 모서리·선반 아래는 어둡게, 앞면·상판·기둥의 모서리는 부드럽게 밝히고 얇은 오른쪽 측판과 발밑 그림자를 추가했다. 기존 Asset ID/StoryDocument/표지·원고/사용자 배치는 바꾸지 않는다. 목재 결은 계속 보이며 장식은 pointer-events:none이다. 같은 마감을 집중 창의 목재 받침에도 적용했다.
+
+PC 양옆 여백은 약7.5vw(최대120px), 좁은 화면은20px로 늘렸다. 왼쪽 창문과 책장의 간격, 오른쪽 방 여유가 같이 생긴다. 낮은 책장 아래에서 방 배경이 단색 띠로 끊기던 부분은 같은 room 자산을 이어 바닥으로 연결했다. 새 미디어를 만들거나 legacy 자산을 수정하지 않았다.
+
+PC1365×900, 태블릿820×1180, 휴대폰390×844/844×390, 좁은320×740에서 실제 화면을 캡처했다. 화분 바닥/상판 오차3px 이내, 책/선반 접촉2px 이내, 양옆 여백·가로 넘침 없음, 네 기본 책·선택 창·Escape 초점 복귀를 확인한다. 소개 대기·다른 포스터·fresh navigation/reload·명시적 읽기/내작품·손상값 보존과 숏스토리 복귀 뒤 작품 준비 reload도 검사했다. 최종 결과는 [검증 기록](evidence/walnut-library/verification.json), [소개/여백 검사](evidence/walnut-library/entry-and-spacing.log), [정적 build 회귀](evidence/walnut-library/static-host.log)에 모은다. 화면 PNG는 같은 폴더에 로컬 보관하며 미확인 그림을 공개 Git에 올리지 않는다.
+
+코드 검토에서 명시적 서재 query가 이후 편집 reload를 서재로 돌리는 결함을 발견했다. 실패를 재현한 뒤 초기 hydration에서 해당 query만 제거하고 다른 query/hash/history state는 보존했다. 수정 전 [RED](evidence/walnut-library/query-red.log), 수정 후 실제 browser 회귀를 구분한다. `agent-self-evaluation` 기준 자체 점검은 정확성4/5(브라우저/위치 수치, 물리기기 제외), 완결성4/5(요청한 진입/재질/간격과 복귀 검사, 미감은 소유자 확인 대상), 명확성4/5(바뀐 재방문 규칙을 기존 문서와 구분), 실행가능성5/5(현재 preview에서 직접 확인), 간결성4/5(기존 문서에 추가). 평균4.2/5.
+
+최종 정적 관련 browser44개 통과(native 전용2개 제외), 전체 TS849개와 entry/storage/autosave14개, 타입·린트·build·1351미디어 해시 검증을 통과했다. 물리기기 검증/서비스 배포로 확대하지 않는다. 이전 목표의 표지 evidence는 그대로 보존하고 이번 실행 파일은 `walnut-library/entry-cover`에 별도로 보관했다.
+
+사용자에게 보이는 기능 이름과 설명은 [제품 용어 기준](editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 내부 키·현재 파일 계약과 과거 검증 기록은 용어 정리로 바꾸지 않는다.

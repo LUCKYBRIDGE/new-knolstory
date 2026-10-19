@@ -2,6 +2,10 @@
 
 **Status:** Accepted (2026-10-06, 소유자 추가 확인 반영)
 
+## 2026-10-10 적용 범위 갱신
+
+현재 Next 저작 형식과 legacy 파일 호환 범위는 [ADR0016](0016-authoring-format-contract-and-scope.md)이 이 문서의 해당 부분을 대체한다. 아래는 2026-10-06 결정의 역사다. 현재 목표에 old story-maker 파일/이전 의무를 자동 적용하지 않는다. 원본 보호·namespace 경계는 유지한다.
+
 ## 배경
 
 소유자는 레거시 놀스토리가 학생·교사에게 정식 서비스된 상태가 아니라고 확인했다. Next는 기존 운영 사용자·계정·DB의 무중단 승계를 전제로 하지 않고 독립적으로 개발·출시한다. 레거시 개발·시험 작품은 브라우저 저장소(IndexedDB `nolstory-workspace-v1`, `storygame*` localStorage 키 등)에 있을 수 있다.

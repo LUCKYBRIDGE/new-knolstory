@@ -1,0 +1,66 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/runtime-core/tests/duplicate-reference-remap.test.ts (2 tests | 2 failed) 9ms
+   × remaps only clone-local self targets, ranges and exact choice references while every original remains unchanged 8ms
+   × self goto and score-route destinations follow the new clone, retaining definitions and conditions 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-reference-remap.test.ts > remaps only clone-local self targets, ranges and exact choice references while every original remains unchanged
+AssertionError: expected { type: 'choice', …(1) } to deeply equal { type: 'choice', …(1) }
+
+- Expected
++ Received
+
+@@ -1,11 +1,11 @@
+  {
+    "options": [
+      {
+        "id": "copy-choice-1",
+        "label": "자기 갈래",
+-       "targetLineId": "copy",
++       "targetLineId": "a",
+      },
+      {
+        "id": "copy-choice-2",
+        "label": "다른 컷",
+        "targetLineId": "b",
+
+ ❯ packages/runtime-core/tests/duplicate-reference-remap.test.ts:11:20
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-reference-remap.test.ts > self goto and score-route destinations follow the new clone, retaining definitions and conditions
+AssertionError: expected { type: 'goto', …(2) } to deeply equal { type: 'goto', …(2) }
+
+- Expected
++ Received
+
+@@ -10,11 +10,11 @@
+              "value": 0,
+            },
+          ],
+        },
+        "id": "loop",
+-       "targetLineId": "copy",
++       "targetLineId": "a",
+      },
+    ],
+-   "targetLineId": "copy",
++   "targetLineId": "a",
+    "type": "goto",
+  }
+
+ ❯ packages/runtime-core/tests/duplicate-reference-remap.test.ts:21:284
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  09:19:50
+   Duration  415ms (transform 219ms, setup 0ms, import 318ms, tests 9ms, environment 0ms)
+

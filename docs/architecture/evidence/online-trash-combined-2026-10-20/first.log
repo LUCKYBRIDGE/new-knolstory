@@ -1,0 +1,16 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('region', { name: '온라인 작품', exact: true }).locator('li').filter({ has: getByRole('region', { name: '온라인 작품', exact: true }).getByRole('button', { name: /온라인 휴지통으로 이동$/ }) }).filter({ hasText: '실제 휴지통 결합 검사' }).last().getByRole('button', { name: /온라인 휴지통으로 이동$/ })[22m
+
+    at /Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-online-trash-browser.mjs:43:60 {
+  log: [
+    "  - waiting for getByRole('region', { name: '온라인 작품', exact: true }).locator('li').filter({ has: getByRole('region', { name: '온라인 작품', exact: true }).getByRole('button', { name: /온라인 휴지통으로 이동$/ }) }).filter({ hasText: '실제 휴지통 결합 검사' }).last().getByRole('button', { name: /온라인 휴지통으로 이동$/ })"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

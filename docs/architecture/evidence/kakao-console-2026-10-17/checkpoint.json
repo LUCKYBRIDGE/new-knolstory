@@ -1,0 +1,32 @@
+{
+  "observed": "2026-10-17",
+  "surface": "authenticated Kakao Developers console",
+  "app": {
+    "name": "놀스토리",
+    "id": "1589616",
+    "role": "Owner"
+  },
+  "loginEnabled": true,
+  "openidConnectEnabled": true,
+  "registeredLoginRedirects": [
+    "https://story-stg.knolquiz.com/api/v1/auth/kakao/callback",
+    "https://story.knolquiz.com/api/v1/auth/kakao/callback"
+  ],
+  "clientSecretEnabled": true,
+  "providerChangesMade": false,
+  "limits": [
+    "No key or secret values stored in evidence",
+    "No actual OAuth consent/callback completed",
+    "New HTTPS validation hostname and redirect require action-time confirmation before public access creation"
+  ],
+  "proposedValidation": {
+    "hostname": "story-next.knolquiz.com",
+    "service": "http://127.0.0.1:15501",
+    "callback": "https://story-next.knolquiz.com/api/v1/auth/kakao/callback",
+    "preserve": [
+      "story.knolquiz.com",
+      "story-stg.knolquiz.com",
+      "mini-ssh.knolquiz.com"
+    ]
+  }
+}

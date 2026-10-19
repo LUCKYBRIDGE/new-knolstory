@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-14",
+  "scope": "local chapter range UI, catalog-only workbook guidance and current authoring navigation; Excel ChatGPT add-in connection explicitly excluded",
+  "source": {
+    "apps/web/components/cut-range-end.tsx": "d195d463dfb3e2cdcca2dd66c1cc9e38fb167212c67bcd424b0f7ab17dab1627",
+    "apps/web/components/story-audio-controls.tsx": "0c49978d8122fd04443e713903c3794b269bd7c3084ab6212e617d8f8e58b4a2",
+    "apps/web/components/chapter-writer.tsx": "79b9c64f42d135483b9baaf74a9902546e115df280216a7adb7c7240c3eb2b7f",
+    "packages/compatibility/src/authoring-workbook/audio.ts": "8d2c80bbccd7cb96737133c76c873524b33e5c9d56461cba747df1ca830a2f0b",
+    "packages/compatibility/src/authoring-workbook/application-help.ts": "c9138c1bb1c2ad2d2bb9e2fe6fe0e3185d35b09a0559c7962bb3de89fa290908",
+    "packages/compatibility/src/authoring-workbook/guide.ts": "6c35d729e2a407d5b0d6653dfb0f55ed290905128975d91bc68d2412aaca5717",
+    "packages/compatibility/src/authoring-workbook/excel.ts": "429a7dc7182a7fd9cc7149dc97343e533b9ed288ec71583e2edba43a52207902",
+    "packages/compatibility/tests/authoring-workbook-readability.test.ts": "524d4be1b671ba51ee6d21def7be5287c8e98af77e1c0e7a85b772268fea350c",
+    "packages/compatibility/tests/range-external-preparation.test.ts": "2fc176b2774940da42bf06d685c6f89cbfb4245f8f2f9a7672657bd7d5ee9225",
+    "packages/runtime-core/tests/audio.test.ts": "094be3eeba3f57f36f6de854c9f13124696569b8e80436d11d055830044b9ebc",
+    "tests/e2e/chapter-audio-range.spec.ts": "a89463247fdddff41a78e14ed42486afd36ad8443b4574003f58d709170a63fd",
+    "tests/e2e/authoring.spec.ts": "7166a400c1b68ddc05b68c66da0c83485e8a29a2d0208cfc9953dbb161ac51e2",
+    "playwright.config.ts": "f6bdf76c86ec7e46a4689d522912d9dd650fbe13419201c6f3ffeb6516a9cb17"
+  },
+  "artifacts": {
+    "affected-final.log": "326211e8a7e9e07e29540d660fa766c278ba4cb0ed608aa54ade0fdf9ae7eff5",
+    "authoring-host-final.log": "484dee9738c3e597e85ee61a03833d79d5dbc91cd71d4680486d06d0ce72efc5",
+    "ui-unlock-surface.log": "347f3c93ddc7d09b3636509558a6d9f5de3e7a2dd8e7222e58ec8305532e6859",
+    "unit-final.log": "7d9bdfc76e5b8c99b389cfe356790a589bdbd795051d607b2506f621eacf6d0a",
+    "existing-contracts.log": "950cae2bb553408c95cfa53f73e8b786d300be693f947a3d3f0f17922d1e2bdf",
+    "coverage.log": "f60eeec1dd9ea37a0eda4a5b808c8fa98bab02a556271a42a9dfb7d678bfac9c",
+    "build.log": "d4405ea8a79a9f7f6bd5257113b0888de81aa8a35962bffd42f291861188a78f",
+    "typecheck-final.log": "2f7eb4fcc28ed63fab1b3036ab94c9fde6168dd4be7ab60d601cce86789d5614",
+    "lint-last.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs-last.log": "38c6f0a4b60c4d727b12df25fbbb568613f14890a9fad8dba5dfb5e2cb756e67"
+  },
+  "results": {
+    "nativePassed": 16,
+    "oppositeHostExcluded": 4,
+    "hostPassed": 4,
+    "oppositeNativeExcluded": 1,
+    "unitsPassed": 1218,
+    "artifactWritersExcluded": 2,
+    "coverage": {
+      "statements": 93.72,
+      "branches": 91.21,
+      "functions": 96.67,
+      "lines": 98.7
+    }
+  },
+  "runtimeZip": {
+    "bytes": 37641800,
+    "sha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6",
+    "publicAndOutMatch": true
+  },
+  "limitations": [
+    "selected branch scope not implemented",
+    "whole unrelated E2E suite not rerun",
+    "physical Samsung/target devices unverified",
+    "fresh actual external-app edits separate",
+    "original Chrome error cause unconfirmed",
+    "no commit/push/deployment"
+  ]
+}

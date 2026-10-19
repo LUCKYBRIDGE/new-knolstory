@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:94750) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/accessibility-control-names.spec.ts:10:31 › five abbreviated control names and keyboard activation 390 (6.0s)
+  ✓  2 [host] › tests/e2e/accessibility-control-names.spec.ts:10:31 › five abbreviated control names and keyboard activation 1440 (8.0s)
+
+  2 passed (14.5s)

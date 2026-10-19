@@ -1,0 +1,1709 @@
+[
+  {
+    "path": "tests/e2e/approved-editor.spec.ts",
+    "line": 57,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`choice-score-${hasScores}-${width}.png`)",
+    "referenced": [
+      {
+        "key": "score",
+        "value": "page.getByRole('region',{name:'선택지 1 점수 변화·표시 조건',exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/approved-editor.spec.ts",
+    "line": 118,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`tool-navigation-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/approved-reader.spec.ts",
+    "line": 62,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('approved-phone-native.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/audio-attributes.spec.ts",
+    "line": 16,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('private-attributes-'+size.width+'.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/authoring-format-runtime.spec.ts",
+    "line": 3,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/authoring-format/native-confirm.png`",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/authoring-formats.spec.ts",
+    "line": 20,
+    "call": "writeFileSync",
+    "destination": "edited",
+    "referenced": [
+      {
+        "key": "edited",
+        "value": "info.outputPath('blank-created.xlsx')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/authoring-formats.spec.ts",
+    "line": 29,
+    "call": "writeFileSync",
+    "destination": "broken",
+    "referenced": [
+      {
+        "key": "broken",
+        "value": "info.outputPath('broken.xlsx')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/authoring-formats.spec.ts",
+    "line": 40,
+    "call": "writeFileSync",
+    "destination": "edited",
+    "referenced": [
+      {
+        "key": "edited",
+        "value": "info.outputPath('blank-created.xlsx')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/authoring.spec.ts",
+    "line": 127,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('blank-authored-renpy-ending.png')",
+    "referenced": [
+      {
+        "key": "authored",
+        "value": "await exportedProject(page)"
+      },
+      {
+        "key": "png",
+        "value": "PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot())"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/branch-scope.spec.ts",
+    "line": 29,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`branch-condition-${size.width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      },
+      {
+        "key": "condition",
+        "value": "page.getByLabel('효과 갈래 조건',{exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/branch-scope.spec.ts",
+    "line": 39,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath(`branch-native-active-${size.width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/branch-scope.spec.ts",
+    "line": 40,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath(`branch-native-inactive-${size.width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/branch-writing.spec.ts",
+    "line": 11,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`branch-confirm-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/branch-writing.spec.ts",
+    "line": 16,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`branch-writing-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/cc0-audio.spec.ts",
+    "line": 23,
+    "call": "writeFileSync",
+    "destination": "info.outputPath('browser-decode.json')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/cc0-audio.spec.ts",
+    "line": 36,
+    "call": "(await pending).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "info.outputPath('cc0-edited.knolstory')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/chapter-audio-range.spec.ts",
+    "line": 13,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`chapter-range-${size.width}.png`)",
+    "referenced": [
+      {
+        "key": "chapter",
+        "value": "baseline.chapters[0]"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/choice-density.spec.ts",
+    "line": 4,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`choice-only-${width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/composition-intent.spec.ts",
+    "line": 164,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('small-and-big-native.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/composition-intent.spec.ts",
+    "line": 179,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('front-center-native.png')",
+    "referenced": [
+      {
+        "key": "front",
+        "value": "await addCut(page, '어른이 정면으로 나를 바라본다.')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/composition-intent.spec.ts",
+    "line": 184,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('semantic-forward-focus.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/composition-intent.spec.ts",
+    "line": 187,
+    "call": "writeFileSync",
+    "destination": "testInfo.outputPath('background-only-before-back.png')",
+    "referenced": [
+      {
+        "key": "background",
+        "value": "seed.lines[0].backgroundId as string"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/composition-intent.spec.ts",
+    "line": 195,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('first-person-text-only-native.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/composition-intent.spec.ts",
+    "line": 198,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('semantic-back-focus.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/composition-intent.spec.ts",
+    "line": 201,
+    "call": "writeFileSync",
+    "destination": "testInfo.outputPath('background-only-restored.png')",
+    "referenced": [
+      {
+        "key": "background",
+        "value": "seed.lines[0].backgroundId as string"
+      },
+      {
+        "key": "restored",
+        "value": "PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot({ scale: 'css' }))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/create-writing.spec.ts",
+    "line": 7,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`create-writing-${width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/creative-reading-journey.spec.ts",
+    "line": 22,
+    "call": "(await pending).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "`${evidence}/forest-promise.knolstory`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/creative-reading-journey.spec.ts",
+    "line": 24,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/${name}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/creative-reading`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/creative-reading-journey.spec.ts",
+    "line": 72,
+    "call": "writeFileSync",
+    "destination": "`${evidence}/run-summary.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/creative-reading`"
+      },
+      {
+        "key": "summary",
+        "value": "page.locator('[data-work-menu]>summary')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/direction-purpose.spec.ts",
+    "line": 7,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`direction-effects-${width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/direction-purpose.spec.ts",
+    "line": 7,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`direction-${width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/direction-purpose.spec.ts",
+    "line": 35,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`appearance-context-${sample.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/direction-purpose.spec.ts",
+    "line": 44,
+    "call": "canvas.screenshot",
+    "destination": "info.outputPath('native-both-visible.png')",
+    "referenced": [
+      {
+        "key": "visible",
+        "value": "PNG.sync.read(await canvas.screenshot({path:info.outputPath('native-both-visible.png')}))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/direction-purpose.spec.ts",
+    "line": 46,
+    "call": "canvas.screenshot",
+    "destination": "info.outputPath('native-both-hidden.png')",
+    "referenced": [
+      {
+        "key": "hidden",
+        "value": "PNG.sync.read(await canvas.screenshot({path:info.outputPath('native-both-hidden.png')}))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/direction-purpose.spec.ts",
+    "line": 47,
+    "call": "canvas.screenshot",
+    "destination": "info.outputPath('native-empty-left.png')",
+    "referenced": [
+      {
+        "key": "empty",
+        "value": "PNG.sync.read(await canvas.screenshot({path:info.outputPath('native-empty-left.png')}))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/editor-chrome-navigation.spec.ts",
+    "line": 10,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`compact-editor-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/editor-density.spec.ts",
+    "line": 38,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('preparation.png')",
+    "referenced": [
+      {
+        "key": "preparation",
+        "value": "page.getByRole('region',{name:'작품 설정',exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/editor-density.spec.ts",
+    "line": 43,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('writer.png')",
+    "referenced": [
+      {
+        "key": "writer",
+        "value": "page.getByRole('region',{name:'장 전체 글 고치기',exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/editor-flow-context.spec.ts",
+    "line": 8,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`upstream-dialog-${size.width}.png`)",
+    "referenced": [
+      {
+        "key": "dialog",
+        "value": "page.getByRole('dialog',{name:'현재 컷 연결 살펴보기'})"
+      },
+      {
+        "key": "upstream",
+        "value": "dialog.locator('[data-upstream-cut]')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/editor-flow-context.spec.ts",
+    "line": 9,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`flow-context-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/editor-navigation.spec.ts",
+    "line": 27,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`editing-path-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/editor-related-memos.spec.ts",
+    "line": 9,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`related-memos-${size.width}.png`)",
+    "referenced": [
+      {
+        "key": "related",
+        "value": "page.locator('[data-related-memos]')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/editor-view-notes.spec.ts",
+    "line": 21,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`cut-notes-${viewport.width}.png`)",
+    "referenced": [
+      {
+        "key": "notes",
+        "value": "page.locator('[data-cut-notes]')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/entry-cover.spec.ts",
+    "line": 48,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/${id}-cover-editor.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/entry-cover.spec.ts",
+    "line": 51,
+    "call": "download.saveAs",
+    "destination": "`${evidence}/${id}-cover.knolstory`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/entry-cover.spec.ts",
+    "line": 56,
+    "call": "restored.screenshot",
+    "destination": "`${evidence}/${id}-start-${label}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/entry-cover.spec.ts",
+    "line": 57,
+    "call": "writeFileSync",
+    "destination": "`${evidence}/${id}-cover-roundtrip.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/entry-cover.spec.ts",
+    "line": 70,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/all-eight-return-library.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/entry-cover.spec.ts",
+    "line": 74,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/introduction-${label}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/entry-cover.spec.ts",
+    "line": 78,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/cover-editor-${label}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/excel-authoring-roundtrip.spec.ts",
+    "line": 15,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('excel-registered-reopened.png')",
+    "referenced": [
+      {
+        "key": "reopened",
+        "value": "(await exported()).archive"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/existing-score-runtime.spec.ts",
+    "line": 158,
+    "call": "page.screenshot",
+    "destination": "`${reportFolder(id)}/${id}-native.png`",
+    "referenced": [
+      {
+        "key": "reportFolder",
+        "value": "(id:string)=>{const folder=`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/${id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?'entry-cover':'full-score'}`;mkdirSync(folder,{recursive:true});return folder;}"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/existing-score-runtime.spec.ts",
+    "line": 194,
+    "call": "writeFileSync",
+    "destination": "`${reportFolder(id)}/${id}-native-reading.json`",
+    "referenced": [
+      {
+        "key": "reportFolder",
+        "value": "(id:string)=>{const folder=`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/${id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?'entry-cover':'full-score'}`;mkdirSync(folder,{recursive:true});return folder;}"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/existing-score-runtime.spec.ts",
+    "line": 232,
+    "call": "page.screenshot",
+    "destination": "`${reportFolder('seonnyeo')}/seonnyeo-storm-${version}.png`",
+    "referenced": [
+      {
+        "key": "reportFolder",
+        "value": "(id:string)=>{const folder=`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/${id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?'entry-cover':'full-score'}`;mkdirSync(folder,{recursive:true});return folder;}"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/existing-score-runtime.spec.ts",
+    "line": 236,
+    "call": "writeFileSync",
+    "destination": "`${reportFolder('seonnyeo')}/seonnyeo-storm-comparison.json`",
+    "referenced": [
+      {
+        "key": "reportFolder",
+        "value": "(id:string)=>{const folder=`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/${id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?'entry-cover':'full-score'}`;mkdirSync(folder,{recursive:true});return folder;}"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/existing-score-runtime.spec.ts",
+    "line": 261,
+    "call": "writeFileSync",
+    "destination": "`${reportFolder('seonnyeo')}/decoded-music-clock.json`",
+    "referenced": [
+      {
+        "key": "reportFolder",
+        "value": "(id:string)=>{const folder=`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/${id==='heungbu'&&process.env.KNOL_COVER_ARCHIVE?'entry-cover':'full-score'}`;mkdirSync(folder,{recursive:true});return folder;}"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/existing-story-enhancement.spec.ts",
+    "line": 8,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath('original-native.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/external-shortstory-print.spec.ts",
+    "line": 9,
+    "call": "page.pdf",
+    "destination": "info.outputPath(`shortstory-${source}-a4.pdf`)",
+    "referenced": [
+      {
+        "key": "pdf",
+        "value": "await page.pdf({format:'A4',preferCSSPageSize:true,printBackground:true,path:info.outputPath(`shortstory-${source}-a4.pdf`)})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/file-actions.spec.ts",
+    "line": 5,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`settings-file-menu-${width}.png`)",
+    "referenced": [
+      {
+        "key": "menu",
+        "value": "page.locator('[data-work-menu]')"
+      },
+      {
+        "key": "file",
+        "value": "await download"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/file-actions.spec.ts",
+    "line": 5,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`file-menu-${width}.png`)",
+    "referenced": [
+      {
+        "key": "menu",
+        "value": "page.locator('[data-work-menu]')"
+      },
+      {
+        "key": "file",
+        "value": "await download"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/flow-authoring.spec.ts",
+    "line": 74,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('flow-map-desktop.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/flow-authoring.spec.ts",
+    "line": 77,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('flow-map-phone.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/flow-authoring.spec.ts",
+    "line": 111,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('flow-host.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/flow-authoring.spec.ts",
+    "line": 162,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('flow-native.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/four-work-library.spec.ts",
+    "line": 29,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath(`${id}-${edition}-native.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/four-work-runtime.spec.ts",
+    "line": 23,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/four-books-independent-resume.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/four-work-library`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-runtime.spec.ts",
+    "line": 23,
+    "call": "writeFileSync",
+    "destination": "`${evidence}/edition-resume-isolation.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/four-work-library`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-runtime.spec.ts",
+    "line": 31,
+    "call": "writeFileSync",
+    "destination": "`${evidence}/read-to-edit-original-preservation.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/four-work-library`"
+      },
+      {
+        "key": "original",
+        "value": "before.document.project"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-shortstory.spec.ts",
+    "line": 20,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/${work}-reader.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-shortstory.spec.ts",
+    "line": 23,
+    "call": "page.pdf",
+    "destination": "`${evidence}/${work}-a4.pdf`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`"
+      },
+      {
+        "key": "pdf",
+        "value": "await page.pdf({format:'A4',preferCSSPageSize:true,printBackground:true,path:`${evidence}/${work}-a4.pdf`})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-shortstory.spec.ts",
+    "line": 26,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/${work}-phone.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-shortstory.spec.ts",
+    "line": 50,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/multi-book-original-preserved.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`"
+      },
+      {
+        "key": "original",
+        "value": "getShortStoryOriginal(work)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-shortstory.spec.ts",
+    "line": 60,
+    "call": "writeFile",
+    "destination": "`${evidence}/migration-contract.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-shortstory.spec.ts",
+    "line": 90,
+    "call": "writeFile",
+    "destination": "`${evidence}/${work}-copy.shortstory`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/four-work-shortstory.spec.ts",
+    "line": 90,
+    "call": "writeFile",
+    "destination": "`${evidence}/${work}-copy-roundtrip.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/shortstory`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/google-authoring-roundtrip.spec.ts",
+    "line": 15,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('google-registered-reopened.png')",
+    "referenced": [
+      {
+        "key": "reopened",
+        "value": "(await exported()).archive"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/image-selection.spec.ts",
+    "line": 5,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`picker-${width}.png`)",
+    "referenced": [
+      {
+        "key": "picker",
+        "value": "page.getByRole('dialog',{name:`이미지 선택 · 장 기본 ${label}`,exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/legacy-authoring-workspace.spec.ts",
+    "line": 60,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`writer-${width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/legacy-authoring-workspace.spec.ts",
+    "line": 74,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('native-authored-ending.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/legacy-authoring-workspace.spec.ts",
+    "line": 74,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('native-manuscript.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/legacy-authoring-workspace.spec.ts",
+    "line": 83,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`asset-browser-${width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/library-design-parity.spec.ts",
+    "line": 13,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/intro-${width}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-design`"
+      },
+      {
+        "key": "intro",
+        "value": "page.getByRole('main',{name:'책 소개'})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/library-design-parity.spec.ts",
+    "line": 16,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/focus-${width}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-design`"
+      },
+      {
+        "key": "focus",
+        "value": "page.getByRole('dialog')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/library-design-parity.spec.ts",
+    "line": 17,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/library-${width}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-design`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/library-design-parity.spec.ts",
+    "line": 89,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/shelf-contact-${width}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-design`"
+      },
+      {
+        "key": "contact",
+        "value": "await page.locator('[data-shelf-book]').evaluateAll(nodes=>nodes.map(node=>Math.abs(node.querySelector('[data-shelf-cover]')!.getBoundingClientRect().bottom-node.querySelector('[class*=\"plank\"]')!.getBoundingClientRect().top)))"
+      },
+      {
+        "key": "shelf",
+        "value": "page.locator('[data-shelf-book]').first()"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/library-design-parity.spec.ts",
+    "line": 151,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`library-${width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 66,
+    "call": "(await pending).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "await(await pending).path()"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 111,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/${name}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_LIBRARY_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-native`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 269,
+    "call": "clean.tracing.stop",
+    "destination": "`${evidence}/fresh-trace-${info.repeatEachIndex}.zip`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_LIBRARY_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-native`"
+      },
+      {
+        "key": "fresh",
+        "value": "await clean.newPage()"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 278,
+    "call": "writeFileSync",
+    "destination": "`${evidence}/run-summary.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_LIBRARY_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-native`"
+      },
+      {
+        "key": "summary",
+        "value": "page.locator('[data-work-menu]>summary')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 281,
+    "call": "writeFileSync",
+    "destination": "`${evidence}/browser-errors-${info.repeatEachIndex}.json`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_LIBRARY_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-native`"
+      },
+      {
+        "key": "browser",
+        "value": "await playwright.chromium.launch({ channel: process.env.KNOL_BROWSER_CHANNEL || undefined })"
+      },
+      {
+        "key": "errors",
+        "value": "[]"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 282,
+    "call": "clean.tracing.stop",
+    "destination": "`${evidence}/fresh-trace-${info.repeatEachIndex}.zip`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_LIBRARY_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-native`"
+      },
+      {
+        "key": "fresh",
+        "value": "await clean.newPage()"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 283,
+    "call": "context.tracing.stop",
+    "destination": "`${evidence}/main-trace-${info.repeatEachIndex}.zip`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "process.env.KNOL_LIBRARY_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/library-native`"
+      },
+      {
+        "key": "main",
+        "value": "page.getByRole('main', { name: '로컬 서재', exact: true })"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/local-library.spec.ts",
+    "line": 297,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`memo-scroll-${width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/manuscript-operations.spec.ts",
+    "line": 27,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('manuscript.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/memo-authoring.spec.ts",
+    "line": 58,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`memo-${viewport.width}x${viewport.height}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/memo-authoring.spec.ts",
+    "line": 64,
+    "call": "(await download).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "info.outputPath('memo-roundtrip.knolstory')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/mobile-authoring.spec.ts",
+    "line": 135,
+    "call": "appendFileSync",
+    "destination": "testInfo.outputPath('editor-geometries.jsonl')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/mobile-authoring.spec.ts",
+    "line": 183,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('phone-authoring.png')",
+    "referenced": [
+      {
+        "key": "png",
+        "value": "PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot())"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/mobile-authoring.spec.ts",
+    "line": 219,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath(`phone-native-ending-${index+1}.png`)",
+    "referenced": [
+      {
+        "key": "index",
+        "value": "0"
+      },
+      {
+        "key": "png",
+        "value": "PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot())"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/mobile-authoring.spec.ts",
+    "line": 227,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('phone-renpy-ending.png')",
+    "referenced": [
+      {
+        "key": "png",
+        "value": "PNG.sync.read(await page.getByTestId('story-stage-viewport').screenshot())"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/native-diagnostics.ts",
+    "line": 6,
+    "call": "writeFileSync",
+    "destination": "path",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/native-diagnostics.ts",
+    "line": 7,
+    "call": "appendFileSync",
+    "destination": "path",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/native-save-thumbnail.spec.ts",
+    "line": 8,
+    "call": "image.screenshot",
+    "destination": "info.outputPath('native-saved-thumbnail.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/non-audio-direction-ui.spec.ts",
+    "line": 87,
+    "call": "page.screenshot",
+    "destination": "testInfo.outputPath('effect-cards-full-page.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/non-audio-external.spec.ts",
+    "line": 31,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath(`${app}-native.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/non-audio-external.spec.ts",
+    "line": 37,
+    "call": "(await download).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "info.outputPath(`${app}.knolstory`)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/non-audio-transition.spec.ts",
+    "line": 44,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath('confirm-native.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/non-audio-transition.spec.ts",
+    "line": 54,
+    "call": "(await download).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "info.outputPath('confirm.knolstory')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/pixabay-scene-audio.spec.ts",
+    "line": 90,
+    "call": "(await pending).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "info.outputPath('pixabay-scene-reference.knolstory')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/presentation-polish.spec.ts",
+    "line": 121,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath(`auto-${viewport.width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/presentation-polish.spec.ts",
+    "line": 138,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath(`${id}-${viewport.width}.png`)",
+    "referenced": [
+      {
+        "key": "width",
+        "value": "Number(await status.getAttribute('data-scene-width'))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/presentation-polish.spec.ts",
+    "line": 152,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('neutral-before.png')",
+    "referenced": [
+      {
+        "key": "neutral",
+        "value": "await pixels(page)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/presentation-polish.spec.ts",
+    "line": 161,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath(`${look}-native.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/presentation-polish.spec.ts",
+    "line": 171,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('neutral-after-back.png')",
+    "referenced": [
+      {
+        "key": "neutral",
+        "value": "await pixels(page)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/presentation-polish.spec.ts",
+    "line": 184,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "testInfo.outputPath('neutral-after-restart.png')",
+    "referenced": [
+      {
+        "key": "neutral",
+        "value": "await pixels(page)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/reading-surface.spec.ts",
+    "line": 33,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath('native-reader.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/renpy-runtime.spec.ts",
+    "line": 38,
+    "call": "page.screenshot",
+    "destination": "'test-results/renpy-landscape.png'",
+    "referenced": [
+      {
+        "key": "png",
+        "value": "PNG.sync.read(await page.getByTestId('stage-viewport').screenshot({ scale: 'css', style: '.actor-handle { visibility: hidden !important; }' }))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/renpy-runtime.spec.ts",
+    "line": 91,
+    "call": "page.screenshot",
+    "destination": "'test-results/renpy-desktop.png'",
+    "referenced": [
+      {
+        "key": "png",
+        "value": "PNG.sync.read(await page.getByTestId('stage-viewport').screenshot({ scale: 'css', style: '.actor-handle { visibility: hidden !important; }' }))"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 36,
+    "call": "restored.screenshot",
+    "destination": "info.outputPath('registered-copy-'+width+'.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 41,
+    "call": "frame.screenshot",
+    "destination": "info.outputPath('native-'+preset+'.png')",
+    "referenced": [
+      {
+        "key": "preset",
+        "value": "page.getByLabel('미리보기 화면 비율',{exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 42,
+    "call": "frame.screenshot",
+    "destination": "info.outputPath('native-phone-auto.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 42,
+    "call": "frame.screenshot",
+    "destination": "info.outputPath('native-phone-landscape.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 43,
+    "call": "frame.screenshot",
+    "destination": "info.outputPath('native-center.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 43,
+    "call": "frame.screenshot",
+    "destination": "info.outputPath('native-phone-landscape-reading.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 44,
+    "call": "frame.screenshot",
+    "destination": "info.outputPath('native-pov-'+ending+'.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/responsive-audio-authoring.spec.ts",
+    "line": 49,
+    "call": "frame.screenshot",
+    "destination": "info.outputPath('prior-demo-ending.png')",
+    "referenced": [
+      {
+        "key": "demo",
+        "value": "parseAuthoringFile(readFileSync('docs/architecture/evidence/responsive-audio/branching-demo.knolstory','utf8'))"
+      },
+      {
+        "key": "prior",
+        "value": "await existingPrivateWorkspace(page,demo.project,demo.audioResources)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/scene-resources.spec.ts",
+    "line": 5,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`scene-resources-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/score-authoring.spec.ts",
+    "line": 30,
+    "call": "(await downloaded).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "info.outputPath('score.knolstory')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/score-narrative.spec.ts",
+    "line": 13,
+    "call": "(await pending).saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "info.outputPath('score-edited.knolstory')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/score-narrative.spec.ts",
+    "line": 34,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`score-routes-${viewport.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/score-narrative.spec.ts",
+    "line": 47,
+    "call": "(await sheetDownload).saveAs",
+    "destination": "sheet",
+    "referenced": [
+      {
+        "key": "sheet",
+        "value": "info.outputPath('score-edited.xlsx')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/score-narrative.spec.ts",
+    "line": 72,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`score-native-${sample.width}-${sample.file}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/sfx-list.spec.ts",
+    "line": 6,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`sfx-list-${width}.png`)",
+    "referenced": [
+      {
+        "key": "list",
+        "value": "page.getByRole('group',{name:'효과음 목록',exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/sound-purpose.spec.ts",
+    "line": 5,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`sound-purpose-${width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/staged-audio.spec.ts",
+    "line": 11,
+    "call": "writeFileSync",
+    "destination": "info.outputPath('console-errors.json')",
+    "referenced": [
+      {
+        "key": "errors",
+        "value": "[]"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/staged-audio.spec.ts",
+    "line": 17,
+    "call": "saved.download.saveAs",
+    "destination": "file",
+    "referenced": [
+      {
+        "key": "file",
+        "value": "info.outputPath('staged-reference.knolstory')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/staged-audio.spec.ts",
+    "line": 18,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('before-ready.png')",
+    "referenced": [
+      {
+        "key": "before",
+        "value": "(await exportWork(page)).archive.document.project"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/staged-audio.spec.ts",
+    "line": 18,
+    "call": "writeFileSync",
+    "destination": "info.outputPath('before-ready.json')",
+    "referenced": [
+      {
+        "key": "before",
+        "value": "(await exportWork(page)).archive.document.project"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/staged-audio.spec.ts",
+    "line": 18,
+    "call": "writeFileSync",
+    "destination": "info.outputPath('native-audio-state.json')",
+    "referenced": [
+      {
+        "key": "state",
+        "value": "page.getByTestId('story-runtime-status')"
+      },
+      {
+        "key": "native",
+        "value": "info.project.name==='stories-runtime'"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/staged-audio.spec.ts",
+    "line": 18,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('native-shared-channels.png')",
+    "referenced": [
+      {
+        "key": "native",
+        "value": "info.project.name==='stories-runtime'"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/staging-import.spec.ts",
+    "line": 12,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`staging-dialog-${size.width}.png`)",
+    "referenced": [
+      {
+        "key": "dialog",
+        "value": "page.getByRole('dialog',{name:'다른 컷 배치 가져오기'})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/staging-import.spec.ts",
+    "line": 17,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`staging-${size.width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/stories-runtime.spec.ts",
+    "line": 92,
+    "call": "page.screenshot",
+    "destination": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/stories-runtime/story-${fixture.id}-actual.png`",
+    "referenced": [
+      {
+        "key": "png",
+        "value": "PNG.sync.read(\n            await page.getByTestId(\"story-stage-viewport\").screenshot(),\n          )"
+      },
+      {
+        "key": "fixture",
+        "value": "fixtures.find(f => f.id === 'onggojib')!"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/stories-runtime.spec.ts",
+    "line": 229,
+    "call": "page.screenshot",
+    "destination": "`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/stories-runtime/story-placement-edited.png`",
+    "referenced": [
+      {
+        "key": "png",
+        "value": "PNG.sync.read(\n            await page.getByTestId(\"story-stage-viewport\").screenshot(),\n          )"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/ui-clarity.spec.ts",
+    "line": 29,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('viewpoint-edit.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/ui-clarity.spec.ts",
+    "line": 30,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('viewpoint-read-before-glyph.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/ui-clarity.spec.ts",
+    "line": 30,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('viewpoint-read.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/ui-clarity.spec.ts",
+    "line": 60,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('long-choice-scroll.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/vn-workflow.spec.ts",
+    "line": 23,
+    "call": "download.saveAs",
+    "destination": "path",
+    "referenced": [
+      {
+        "key": "path",
+        "value": "await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/vn-workflow.spec.ts",
+    "line": 40,
+    "call": "page.getByTestId('story-stage-viewport').screenshot",
+    "destination": "info.outputPath('portrait-speaker.png')",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/walnut-library.spec.ts",
+    "line": 8,
+    "call": "page.screenshot",
+    "destination": "info.outputPath('legacy-honey-oak.png')",
+    "referenced": [
+      {
+        "key": "oak",
+        "value": "await cabinet.evaluate(node=>getComputedStyle(node).backgroundImage)"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/walnut-library.spec.ts",
+    "line": 18,
+    "call": "page.screenshot",
+    "destination": "`${evidence}/after-${width}.png`",
+    "referenced": [
+      {
+        "key": "evidence",
+        "value": "`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/walnut-library`"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/work-actions.spec.ts",
+    "line": 4,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`work-info-${width}.png`)",
+    "referenced": []
+  },
+  {
+    "path": "tests/e2e/work-actions.spec.ts",
+    "line": 5,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`work-menu-${width}.png`)",
+    "referenced": [
+      {
+        "key": "menu",
+        "value": "page.locator('[data-work-menu]')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/work-menu-purpose.spec.ts",
+    "line": 7,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`purpose-menu-${width}.png`)",
+    "referenced": [
+      {
+        "key": "menu",
+        "value": "page.locator('[data-work-menu]')"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/work-menu-purpose.spec.ts",
+    "line": 90,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`global-score-settings-${width}.png`)",
+    "referenced": [
+      {
+        "key": "settings",
+        "value": "page.getByRole('region',{name:'작품 설정',exact:true})"
+      }
+    ]
+  },
+  {
+    "path": "tests/e2e/writing-focus.spec.ts",
+    "line": 13,
+    "call": "page.screenshot",
+    "destination": "info.outputPath(`writing-${size.width}.png`)",
+    "referenced": []
+  }
+]

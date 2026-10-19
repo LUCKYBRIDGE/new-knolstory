@@ -1,0 +1,12 @@
+
+Running 5 tests using 1 worker
+
+(node:72573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 1280 (1.7s)
+  ✓  2 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 820 (1.6s)
+  ✓  3 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 390 (1.8s)
+  ✓  4 [host] › tests/e2e/approved-editor.spec.ts:24:1 › manuscript navigation protects IME and failed storage (1.3s)
+  ✓  5 [host] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations (9.9s)
+
+  5 passed (16.9s)

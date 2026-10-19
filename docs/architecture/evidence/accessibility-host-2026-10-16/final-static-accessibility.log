@@ -1,0 +1,18 @@
+
+Running 11 tests using 1 worker
+
+(node:93047) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px (981ms)
+  ✓   2 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 390px (712ms)
+  ✓   3 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 1440px (771ms)
+  ✓   4 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 (706ms)
+  ✓   5 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 (629ms)
+  ✓   6 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 1440x740 (668ms)
+  ✓   7 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 (705ms)
+  ✓   8 tests/e2e/accessibility-narrow.spec.ts:19:1 › open account panels remain inside the real Chromium visual viewport after page-scale zoom (621ms)
+  ✓   9 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 1440 (3.3s)
+  ✓  10 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 390 (3.1s)
+  ✓  11 tests/e2e/accessibility.spec.ts:45:1 › bookshelf drawer exposes its existing label through a supported group role (574ms)
+
+  11 passed (13.4s)

@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "date": "2026-10-11",
+  "scope": "Design implementation references; not proof of product completion or physical-device measurement",
+  "images": [
+    {
+      "kind": "editor",
+      "id": "web-basic",
+      "path": "approved/editor-web-basic.png",
+      "source": "../editor-redesign/final/web-basic.png",
+      "sha256": "54d8c9f5fb40e2e32465651045a59cbeee7facc526ba00489dc0fa1b5eb202f5",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "tablet-hardware",
+      "path": "approved/editor-tablet-hardware.png",
+      "source": "../editor-redesign/final/tablet-hardware.png",
+      "sha256": "6a06bfb6fff42afb5057078741e4c70bc63ff69d8ff31117054155eab1330c4c",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "phone-hardware",
+      "path": "approved/editor-phone-hardware.png",
+      "source": "../editor-redesign/final/phone-hardware.png",
+      "sha256": "4fb90ae06dce51598d5222e15b5ac30ee9a146b336e53b1b064800b0b9678fce",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "phone-landscape-hardware",
+      "path": "approved/editor-phone-landscape-hardware.png",
+      "source": "../editor-redesign/final/phone-landscape-hardware.png",
+      "sha256": "d4f647dee4470c11ac5a268a674f3613ed19ea4c6ba23ea4d40a7934360c844a",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-neither",
+      "path": "approved/editor-web-neither.png",
+      "source": "../editor-redesign/final/web-neither.png",
+      "sha256": "5f4ffa6553840c329ffa3e2926baa4c27dcd93ad81ac9673b18b8db65e44d092",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-choice-only",
+      "path": "approved/editor-web-choice-only.png",
+      "source": "../editor-redesign/final/web-choice-only.png",
+      "sha256": "8e3dc014cbac526ba60a1f743f50eef58f192ec98fd159bc0898af632f1373f5",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-score-only",
+      "path": "approved/editor-web-score-only.png",
+      "source": "../editor-redesign/final/web-score-only.png",
+      "sha256": "e58bf6ec5e5534f53931474c57e55c1d8cd142cd3b9abc700e93d2f2d636f859",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-choice-and-score",
+      "path": "approved/editor-web-choice-and-score.png",
+      "source": "../editor-redesign/final/web-choice-and-score.png",
+      "sha256": "32ac993e3b72b05ef22209e079e1e5e2f0a246da82c5c057c6c3d20cd18bb595",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-choice-result",
+      "path": "approved/editor-web-choice-result.png",
+      "source": "../editor-redesign/final/web-choice-result.png",
+      "sha256": "7d94365f33c407e5fa893834af5fdcc7cb8e8c1f8fa7bd62feb76d6cbba89987",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-choice-condition",
+      "path": "approved/editor-web-choice-condition.png",
+      "source": "../editor-redesign/final/web-choice-condition.png",
+      "sha256": "fdb99e5b2e1c494bf620e527f1b2554b42af0654c75e5f8ff5d6cc5d789a178a",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-actor-settings",
+      "path": "approved/editor-web-actor-settings.png",
+      "source": "../editor-redesign/final/web-actor-settings.png",
+      "sha256": "3a88c3b0eea435acf390ebe3741ae5ff7cf87d597d3a99402d16efc4ed0c15f3",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "editor",
+      "id": "web-background-settings",
+      "path": "approved/editor-web-background-settings.png",
+      "source": "../editor-redesign/final/web-background-settings.png",
+      "sha256": "49d4d495c0b35ecf5a8f88dbc1403020f6d9028f45047274ffcf6c79c353cc62",
+      "approval": "user-delegated-selected-final",
+      "basis": "User delegated final selection and authorized development using selected final editor design."
+    },
+    {
+      "kind": "reader",
+      "id": "web-basic",
+      "path": "approved/reader-web-basic.png",
+      "source": "../editor-redesign/reading/web-basic.png",
+      "sha256": "a9fa2e92cce0fefd74f85565f069ed7a33e4d3cc20c493ac8413f163d457aa64",
+      "approval": "approved-direction-latest-corrections",
+      "basis": "User approved bottom docking then explicitly chose history/save/load/auto/quick-save/quick-load order."
+    },
+    {
+      "kind": "reader",
+      "id": "tablet-basic",
+      "path": "approved/reader-tablet-basic.png",
+      "source": "../editor-redesign/reading/tablet-basic.png",
+      "sha256": "4405e8cc419bc626a98d29b17e08486260fb2e00f652eb9a8d7ce6e46851b67f",
+      "approval": "approved-direction-latest-corrections",
+      "basis": "User approved bottom docking then explicitly chose history/save/load/auto/quick-save/quick-load order."
+    },
+    {
+      "kind": "reader",
+      "id": "phone-folded",
+      "path": "approved/reader-phone-folded.png",
+      "source": "../editor-redesign/reading/phone-folded.png",
+      "sha256": "79b2219008416bf2833cb6eb4d412ea0f1af6fb22ae0c3dbf0c6cebb5b8302ac",
+      "approval": "approved-direction-latest-corrections",
+      "basis": "User approved bottom docking then explicitly chose history/save/load/auto/quick-save/quick-load order."
+    },
+    {
+      "kind": "reader",
+      "id": "phone-expanded",
+      "path": "approved/reader-phone-expanded.png",
+      "source": "../editor-redesign/reading/phone-expanded.png",
+      "sha256": "e91d4850f6da7214cca890a91d6e71f2d473db518e82041e0e86b87cab5c13d0",
+      "approval": "approved-direction-latest-corrections",
+      "basis": "User approved bottom docking then explicitly chose history/save/load/auto/quick-save/quick-load order."
+    },
+    {
+      "kind": "reader",
+      "id": "phone-landscape-expanded",
+      "path": "approved/reader-phone-landscape-expanded.png",
+      "source": "../editor-redesign/reading/phone-landscape-expanded.png",
+      "sha256": "3a1377ea0db27a10f4504980c5177982458124225b732ccc8e200faaaeed30e5",
+      "approval": "approved-direction-latest-corrections",
+      "basis": "User approved bottom docking then explicitly chose history/save/load/auto/quick-save/quick-load order."
+    },
+    {
+      "kind": "reader",
+      "id": "web-top-menu",
+      "path": "approved/reader-web-top-menu.png",
+      "source": "../editor-redesign/reading/web-top-menu.png",
+      "sha256": "3b6d666f284775a54ea81d4e26303fc2eb833fca8ef3e468f58a4a70949958a8",
+      "approval": "approved-direction-latest-corrections",
+      "basis": "User approved bottom docking then explicitly chose history/save/load/auto/quick-save/quick-load order."
+    },
+    {
+      "kind": "reader",
+      "id": "phone-top-menu",
+      "path": "approved/reader-phone-top-menu.png",
+      "source": "../editor-redesign/reading/phone-top-menu.png",
+      "sha256": "cdcfdef6d420eebe07b275dd7608c637053249727fa8b603eca78eac8ac77a30",
+      "approval": "approved-direction-latest-corrections",
+      "basis": "User approved bottom docking then explicitly chose history/save/load/auto/quick-save/quick-load order."
+    }
+  ],
+  "excluded": [
+    "collection/A/B/C alternatives",
+    "old gallery-v3 and mockups",
+    "keyboard-provisional screenshots",
+    "unmeasured Samsung keyboard shapes and fixed keyboard heights"
+  ],
+  "contractProposals": [
+    "exact per-cue start/end cut ranges need separate content/Core/workbook contract; do not implement decorative controls",
+    "native save thumbnail requires measured capture and storage support; use real summaries until available"
+  ],
+  "invariants": {
+    "readerOrder": [
+      "지난기록",
+      "저장",
+      "불러오기",
+      "자동",
+      "빠른 저장",
+      "빠른 불러오기"
+    ],
+    "phoneDock": {
+      "bottomGap": 8,
+      "textboxToolsGap": 4,
+      "toolRowGap": 2,
+      "rowHeight": 28
+    },
+    "stage": "Single RenPy renderer, Core logical layout, content preserved"
+  }
+}

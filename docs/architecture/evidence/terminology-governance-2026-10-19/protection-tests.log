@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: detects retired product names and provides preferred labels
+ok 1 - detects retired product names and provides preferred labels
+  ---
+  duration_ms: 1.243541
+  type: 'test'
+  ...
+# Subtest: keeps link targets, anchors and fences intact while checking current descriptions
+ok 2 - keeps link targets, anchors and fences intact while checking current descriptions
+  ---
+  duration_ms: 0.311417
+  type: 'test'
+  ...
+# Subtest: does not alter protected historical records or literal quotations
+ok 3 - does not alter protected historical records or literal quotations
+  ---
+  duration_ms: 0.132709
+  type: 'test'
+  ...
+# Subtest: is idempotent and does not rewrite semantically distinct vocabulary
+ok 4 - is idempotent and does not rewrite semantically distinct vocabulary
+  ---
+  duration_ms: 0.044334
+  type: 'test'
+  ...
+# Subtest: preserves inline and indented code, reference identifiers and reference definitions
+ok 5 - preserves inline and indented code, reference identifiers and reference definitions
+  ---
+  duration_ms: 0.117875
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 61.609667

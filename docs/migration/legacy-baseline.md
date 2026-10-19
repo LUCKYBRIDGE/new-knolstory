@@ -24,3 +24,5 @@ High-value legacy areas:
 - UI/UX references and visual language
 
 Classify each migrated subsystem as PRESERVE / REFINE / REBUILD / RETIRE.
+
+사용자에게 보이는 기능 이름과 설명은 [제품 용어 기준](../architecture/editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 내부 키·현재 파일 계약과 과거 검증 기록은 용어 정리로 바꾸지 않는다.

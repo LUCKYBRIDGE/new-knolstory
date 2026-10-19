@@ -1,0 +1,42 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:82708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/1-udlyp1h51ss.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:33] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:34] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:42] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:49] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:49] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:49] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:51] "GET /assets/audio/cc0/oga-tension/v1/komiku-it-s-time-for-adventure-vol-2-12-tension-0.mp3 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:51] "GET /assets/audio/cc0/oga-park/v1/park-ambience-river.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:51] "GET /assets/audio/cc0/kenney-impact/v1/footstep-carpet-001.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:52] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:52] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:52] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:52] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:52] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:29:52] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -

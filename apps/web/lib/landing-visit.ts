@@ -7,9 +7,9 @@ export function loadLandingVisit(storage:Pick<Storage,'getItem'>):boolean{
 export function markLandingVisited(storage:Pick<Storage,'setItem'>):boolean{
  try{storage.setItem(LANDING_VISIT_KEY,JSON.stringify({visited:true,version:1}));return true;}catch{return false;}
 }
-/** Fresh return enters library; reload keeps the current tab's saved workspace location. */
-export function resolveEntryView(input:{visited:boolean;hasWorkspace:boolean;reload:boolean;storedView?:WorkspaceView;directEditor?:boolean}):WorkspaceView{
+/** Fresh entry introduces books; reload and explicit routes restore their intended screen. */
+export function resolveEntryView(input:{visited:boolean;hasWorkspace:boolean;reload:boolean;storedView?:WorkspaceView;directEditor?:boolean;directLibrary?:boolean}):WorkspaceView{
  if(input.directEditor)return 'editor';
- if(!input.visited&&!input.hasWorkspace)return 'home';
- return input.reload&&input.storedView?input.storedView:'library';
+ if(input.directLibrary)return 'library';
+ return input.reload&&input.storedView?input.storedView:'home';
 }

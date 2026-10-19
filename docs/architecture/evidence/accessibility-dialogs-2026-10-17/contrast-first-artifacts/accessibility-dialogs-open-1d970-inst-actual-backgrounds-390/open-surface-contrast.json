@@ -1,0 +1,890 @@
+{
+  "width": 390,
+  "reports": [
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "책을 펼치면 무대가 시작돼요",
+        "color": "rgb(227, 195, 139)",
+        "fill": "rgb(227, 195, 139)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 3.699897131748622,
+      "samples": 866,
+      "worst": {
+        "x": 140,
+        "y": 5,
+        "background": [
+          108,
+          94,
+          83
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "닫기",
+        "color": "rgb(255, 242, 216)",
+        "fill": "rgb(255, 242, 216)",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 11.812331407609356,
+      "samples": 200,
+      "worst": {
+        "x": 18,
+        "y": 15,
+        "background": [
+          65,
+          44,
+          30
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "열린 화면 접근성 검사",
+        "color": "rgb(215, 187, 121)",
+        "fill": "rgb(215, 187, 121)",
+        "fontSize": 13.2594,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 5.439780011551324,
+      "samples": 990,
+      "worst": {
+        "x": 18,
+        "y": 1,
+        "background": [
+          35,
+          72,
+          64
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "내 작품",
+        "color": "rgb(216, 199, 170)",
+        "fill": "rgb(216, 199, 170)",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 3.405664054141517,
+      "samples": 197,
+      "worst": {
+        "x": 12,
+        "y": 7,
+        "background": [
+          119,
+          100,
+          79
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "열린 화면 접근성 검사",
+        "color": "rgb(246, 236, 216)",
+        "fill": "rgb(246, 236, 216)",
+        "fontSize": 20,
+        "fontWeight": 500,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 5.026910974874338,
+      "samples": 1570,
+      "worst": {
+        "x": 156,
+        "y": 7,
+        "background": [
+          116,
+          97,
+          78
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "나의 생각을 한 권의 이야기로 채워 보세요.",
+        "color": "rgb(246, 236, 216)",
+        "fill": "rgb(246, 236, 216)",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 5.5943449096240325,
+      "samples": 1535,
+      "worst": {
+        "x": 150,
+        "y": 3,
+        "background": [
+          109,
+          90,
+          70
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "최근 수정 · 2026. 10. 17.",
+        "color": "rgb(216, 199, 170)",
+        "fill": "rgb(216, 199, 170)",
+        "fontSize": 11,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 7.705532958590981,
+      "samples": 511,
+      "worst": {
+        "x": 141,
+        "y": 13,
+        "background": [
+          69,
+          45,
+          27
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "처음부터 읽기",
+        "color": "rgb(255, 240, 206)",
+        "fill": "rgb(255, 240, 206)",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 7.905870637265403,
+      "samples": 724,
+      "worst": {
+        "x": 3,
+        "y": 4,
+        "background": [
+          34,
+          82,
+          66
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "책 표지를 펼쳐 이야기를 만나요",
+        "color": "rgb(255, 240, 206)",
+        "fill": "rgb(255, 240, 206)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.130912416648917,
+      "samples": 937,
+      "worst": {
+        "x": 1,
+        "y": 3,
+        "background": [
+          33,
+          80,
+          65
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "편집하기",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.997407704184509,
+      "samples": 469,
+      "worst": {
+        "x": 50,
+        "y": 17,
+        "background": [
+          246,
+          229,
+          199
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "대본과 장면을 이어 써요",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 7.997986609567722,
+      "samples": 736,
+      "worst": {
+        "x": 112,
+        "y": 12,
+        "background": [
+          240,
+          215,
+          178
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "책 표지 편집",
+        "color": "rgb(255, 240, 206)",
+        "fill": "rgb(255, 240, 206)",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 7.905870637265403,
+      "samples": 612,
+      "worst": {
+        "x": 2,
+        "y": 4,
+        "background": [
+          34,
+          82,
+          66
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "앞표지·책등·뒤표지를 직접 꾸며요",
+        "color": "rgb(255, 240, 206)",
+        "fill": "rgb(255, 240, 206)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.130912416648917,
+      "samples": 1049,
+      "worst": {
+        "x": 0,
+        "y": 7,
+        "background": [
+          33,
+          80,
+          65
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "작품 정보·기획",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.550777126456357,
+      "samples": 749,
+      "worst": {
+        "x": 83,
+        "y": 17,
+        "background": [
+          243,
+          223,
+          190
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "작품 정보·기획과 메모",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.1383465790801,
+      "samples": 665,
+      "worst": {
+        "x": 101,
+        "y": 12,
+        "background": [
+          241,
+          217,
+          181
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "작품 파일 내보내기",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.280417289793888,
+      "samples": 965,
+      "worst": {
+        "x": 110,
+        "y": 15,
+        "background": [
+          242,
+          219,
+          184
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "이 책을 작품 파일로 내려받아요",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.340444706764902,
+      "samples": 974,
+      "worst": {
+        "x": 92,
+        "y": 12,
+        "background": [
+          242,
+          220,
+          185
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "사본 만들기",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.865936302234408,
+      "samples": 578,
+      "worst": {
+        "x": 66,
+        "y": 15,
+        "background": [
+          246,
+          227,
+          196
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "원본을 보존하고 새 책으로 복사해요",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 7.9213073702756915,
+      "samples": 1103,
+      "worst": {
+        "x": 122,
+        "y": 12,
+        "background": [
+          239,
+          214,
+          177
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "내 작품 삭제",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 15,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 8.784067127312975,
+      "samples": 603,
+      "worst": {
+        "x": 70,
+        "y": 15,
+        "background": [
+          245,
+          226,
+          195
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "book-focus",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "삭제를 확인하고 복구할 수 있어요",
+        "color": "rgb(84, 52, 27)",
+        "fill": "rgb(84, 52, 27)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 7.975208269857202,
+      "samples": 993,
+      "worst": {
+        "x": 123,
+        "y": 8,
+        "background": [
+          239,
+          215,
+          177
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "cover-editor",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "한 권의 이야기를 직접 꾸며요",
+        "color": "rgb(35, 63, 58)",
+        "fill": "rgb(35, 63, 58)",
+        "fontSize": 13.3333,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 11.205230109633668,
+      "samples": 974,
+      "worst": {
+        "x": 2,
+        "y": 1,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "cover-editor",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "내 책 표지 꾸미기",
+        "color": "rgb(35, 63, 58)",
+        "fill": "rgb(35, 63, 58)",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 11.205230109633668,
+      "samples": 849,
+      "worst": {
+        "x": 10,
+        "y": 3,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "cover-editor",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "편집 용어 안내",
+        "color": "rgb(35, 63, 58)",
+        "fill": "rgb(35, 63, 58)",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 11.205230109633668,
+      "samples": 691,
+      "worst": {
+        "x": 26,
+        "y": 11,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "cover-editor",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "닫기",
+        "color": "rgb(35, 63, 58)",
+        "fill": "rgb(35, 63, 58)",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 11.205230109633668,
+      "samples": 194,
+      "worst": {
+        "x": 29,
+        "y": 11,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "cover-editor",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "취소",
+        "color": "rgb(76, 98, 95)",
+        "fill": "rgb(76, 98, 95)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 6.4161576666871,
+      "samples": 133,
+      "worst": {
+        "x": 15,
+        "y": 15,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "cover-editor",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "표지 적용",
+        "color": "rgb(255, 255, 255)",
+        "fill": "rgb(255, 255, 255)",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 1.5418346692767666,
+      "samples": 298,
+      "worst": {
+        "x": 68,
+        "y": 3,
+        "background": [
+          204,
+          210,
+          200
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "recovery",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "고쳐 쓰기 전 현재 원고를 기록해 두세요. 복구는 원본을 보호한 새 사본으로 열립니다. 이 기기에서 최근 10개·총 2MB까지 보관하며, 오래된 기록부터 정리합니다. 작품 파일도 따로 보관해 주세요.",
+        "color": "rgb(76, 98, 95)",
+        "fill": "rgb(76, 98, 95)",
+        "fontSize": 13,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 6.4161576666871,
+      "samples": 6024,
+      "worst": {
+        "x": 19,
+        "y": 4,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "recovery",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "현재 원고 기록하기",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 9.975757352385873,
+      "samples": 645,
+      "worst": {
+        "x": 6,
+        "y": 1,
+        "background": [
+          227,
+          221,
+          209
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "recovery",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "열린 화면 접근성 검사",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 13.26994567857508,
+      "samples": 891,
+      "worst": {
+        "x": 1,
+        "y": 3,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "recovery",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "2026. 10. 17. 오전 12:52:03",
+        "color": "rgb(76, 98, 95)",
+        "fill": "rgb(76, 98, 95)",
+        "fontSize": 13.6,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 6.4161576666871,
+      "samples": 801,
+      "worst": {
+        "x": 96,
+        "y": 2,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "recovery",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "직접 보관 · 1장 · 1컷",
+        "color": "rgb(76, 98, 95)",
+        "fill": "rgb(76, 98, 95)",
+        "fontSize": 13.6,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 6.4161576666871,
+      "samples": 613,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "recovery",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "이 기록을 사본으로 열기",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 13.26994567857508,
+      "samples": 775,
+      "worst": {
+        "x": 27,
+        "y": 15,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    },
+    {
+      "surface": "recovery",
+      "threshold": 4.5,
+      "info": {
+        "style": null,
+        "text": "기록 파일 내보내기",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "fontWeight": 400,
+        "opacity": 1,
+        "filters": []
+      },
+      "minimum": 13.26994567857508,
+      "samples": 610,
+      "worst": {
+        "x": 39,
+        "y": 15,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      },
+      "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+    }
+  ],
+  "scope": "Selected plain-text service chrome on actual rendered backgrounds; authored cover preview colors and all fields are not covered."
+}

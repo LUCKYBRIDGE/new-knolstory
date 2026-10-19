@@ -1,46 +1,34 @@
-import {startShelfCreation} from './library-entry';
-import {test,expect} from '@playwright/test';
+import {enterLibrary,startShelfCreation} from './library-entry';
+import {test,expect,type Page} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {createStoryDocument} from '../../packages/story-domain/src';
+async function management(page:Page){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(n=>(n as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();}
+async function exported(page:Page){await management(page);const event=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(readFileSync((await(await event).path())!,'utf8')).project;}
+async function start(page:Page){await page.getByText('보기 설정',{exact:true}).click();await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await expect(page.getByRole('button',{name:'읽기 메뉴',exact:true})).toBeVisible();}
+async function exit(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();}
+async function unavailable(page:Page){await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
 
-test('reading gives the stage full width and keeps an exit while runtime is preparing',async({page})=>{
- await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));
- await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
- await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();
- await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toBeHidden();
- await expect(page.getByRole('button',{name:'새 작품 만들기',exact:true})).toBeHidden();
- await expect(page.getByRole('button',{name:'이 장 대본',exact:true})).toBeHidden();
+test('reading gives the stage full width and keeps an exit while runtime is preparing',async({page},info)=>{
+ test.skip(info.project.name!=='host');await unavailable(page);const before=await exported(page);await start(page);
+ await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toBeHidden();await expect(page.getByRole('button',{name:'새 작품 만들기',exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'장 전체 글 고치기',exact:true})).toBeHidden();
  const stage=await page.getByTestId('story-stage-viewport').boundingBox();expect(stage!.width).toBeGreaterThan(1150);
- await expect(page.getByRole('button',{name:'전체 화면',exact:true})).toBeEnabled();
- await page.getByRole('button',{name:'편집으로',exact:true}).click();
- await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await expect(page.getByRole('button',{name:'전체 화면',exact:true})).toBeEnabled();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();expect(await exported(page)).toEqual(before);
 });
-
-test('current cut exposes outgoing destination and local chapter cut count',async({page})=>{
- await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));
- await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
- await page.getByText('이 컷에서 나가는 연결 1개',{exact:true}).click({timeout:5000});
- const context=page.getByTestId('flow-context');await expect(context).toContainText('2번째 컷');
- await context.getByRole('button',{name:/→ .*2번째 컷/}).click();
- await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”');
- await expect(page.getByText('2컷 / 이 장 15컷',{exact:true})).toBeVisible();
+test('current cut exposes outgoing destination and local chapter cut count',async({page},info)=>{
+ test.skip(info.project.name!=='host');await unavailable(page);const before=await exported(page),first=before.lines[0],target=before.lines.filter((line:typeof first)=>line.chapterId===first.chapterId).sort((a:typeof first,b:typeof first)=>a.order-b.order)[1];
+ await page.locator('[data-writing-tools]>summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();const context=page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});await expect(context.getByRole('heading',{name:'이 컷에서 나가는 길 · 1개',exact:true})).toBeVisible();await expect(context).toContainText('2컷');await context.locator(`[data-flow-cut="${target.id}"]`).click();
+ await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”');await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(target.id);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'컷 목록',exact:true}).click();const list=page.getByRole('complementary',{name:'장과 컷 목록',exact:true});await expect(list.locator(`[data-line-id="${target.id}"]`)).toHaveAttribute('aria-current','true');const chapter=list.locator(`[data-line-id="${target.id}"]`).locator('..');await expect(chapter.locator('[data-line-id]')).toHaveCount(15);expect(await exported(page)).toEqual(before);
 });
-
-test('choice-created chapters receive branch identity immediately',async({page})=>{
- await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));
- await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
- await startShelfCreation(page);await page.getByLabel('새 작품 제목').fill('갈래 자동 표시');await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
- await page.getByLabel('진행 방식',{exact:true}).selectOption('choice');
- await page.getByRole('button',{name:'선택지 1에 새 장 연결',exact:true}).click();
- await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toContainText('2장A');
+test('choice-created chapters receive branch identity immediately',async({page},info)=>{
+ test.skip(info.project.name!=='host');await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));await page.goto('/');await enterLibrary(page);await startShelfCreation(page);await page.getByLabel('새 작품 제목').fill('갈래 자동 표시');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();const first=await page.getByLabel('현재 장과 컷 이동').inputValue();
+ await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'선택지 편집',exact:true}).click();await page.getByLabel('진행 방식',{exact:true}).selectOption('choice');await page.getByRole('button',{name:'선택지 1에 새 장 연결',exact:true}).click();await page.getByRole('dialog',{name:'새 갈래 작성',exact:true}).getByRole('button',{name:'새 갈래 만들고 글쓰기',exact:true}).click();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'컷 목록',exact:true}).click();await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toContainText('2장A');const current=await page.getByLabel('현재 장과 컷 이동').inputValue(),project=await exported(page),created=project.lines.find((line:{id:string})=>line.id===current);expect(project.chapters.find((chapter:{id:string})=>chapter.id===created.chapterId)).toMatchObject({chapterNumber:2,branchLabel:'A'});expect(project.lines.find((line:{id:string})=>line.id===first).flow.options[0].targetLineId).toBe(current);
 });
-
-test('landscape reading fits the complete runtime viewport above the screen edge',async({page})=>{
- await page.setViewportSize({width:844,height:390});await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));
- await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();
- const bounds=await page.getByTestId('story-stage-viewport').boundingBox();expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(390);expect(bounds!.height).toBeGreaterThan(240);
+for(const viewport of [{width:844,height:390,minHeight:240},{width:390,height:844,minHeight:500}])test(`${viewport.width} reading keeps the complete runtime viewport inside the screen`,async({page},info)=>{
+ test.skip(info.project.name!=='host');await page.setViewportSize(viewport);await unavailable(page);const before=await exported(page);await start(page);const bounds=(await page.getByTestId('story-stage-viewport').boundingBox())!;expect(bounds.y).toBeGreaterThanOrEqual(0);expect(bounds.y+bounds.height).toBeLessThanOrEqual(viewport.height);expect(bounds.height).toBeGreaterThan(viewport.minHeight);await exit(page);expect(await exported(page)).toEqual(before);
 });
-
-test('portrait reading keeps dialogue and choices inside the visible runtime area',async({page})=>{
- await page.setViewportSize({width:390,height:844});await page.route('**/runtime/index.html',route=>route.fulfill({status:503,body:'Unavailable'}));
- await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();
- const bounds=await page.getByTestId('story-stage-viewport').boundingBox();expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(844);expect(bounds!.height).toBeGreaterThan(500);
+for(const viewport of [{width:1280,height:900},{width:820,height:1180},{width:390,height:844},{width:844,height:390}])test(`native reader keeps bottom dialogue and compact reading tools at ${viewport.width}`,async({page},info)=>{
+ test.skip(info.project.name!=='stories-runtime');await page.setViewportSize(viewport);const project=parseAuthoringFile(readFileSync('tests/fixtures/responsive-audio.json','utf8'));await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'current-reader.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(createStoryDocument({project,savedAt:'2026-10-14T00:00:00.000Z',appVersion:'reader-surface-test'})))});await confirmAuthoringImport(page);const before=await exported(page),first=await page.getByLabel('현재 장과 컷 이동').inputValue(),frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>node.setAttribute('data-reader-surface-instance','same'));await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(()=>status.evaluate(node=>Number(node.getAttribute('data-rendered-revision'))>=0&&node.getAttribute('data-rendered-revision')===node.getAttribute('data-scene-revision')),{timeout:90000}).toBe(true);const bounds=(await page.getByTestId('story-stage-viewport').boundingBox())!;expect(bounds.y).toBeGreaterThanOrEqual(0);expect(bounds.y+bounds.height).toBeLessThanOrEqual(viewport.height);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ const rects=JSON.parse((await status.getAttribute('data-dialogue-rects'))!) as {speaker:{y:number;height:number};body:{y:number;height:number}},height=Number(await status.getAttribute('data-scene-height')),textboxY=Number(await status.getAttribute('data-textbox-y'));expect(rects).not.toBeNull();expect(textboxY).toBeGreaterThan(height*.5);expect(rects.body.y).toBeGreaterThanOrEqual(rects.speaker.y+rects.speaker.height);expect(rects.body.y+rects.body.height).toBeLessThanOrEqual(height);const nativeBoxBottom=rects.body.y+rects.body.height+20,scale=Math.min(bounds.width/Number(await status.getAttribute('data-scene-width')),bounds.height/height);expect((height-nativeBoxBottom)*scale).toBeGreaterThanOrEqual(-1);expect((height-nativeBoxBottom)*scale).toBeLessThanOrEqual(50);
+ const labels=await page.getByRole('button',{name:'지난기록',exact:true}).locator('..').locator('button').allTextContents();expect(labels).toEqual(viewport.width<=720?['지난기록','빠른 저장','설정']:['지난기록','저장','불러오기','자동 OFF','빠른 저장','빠른 불러오기']);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).focus();await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('native-reader.png')});await exit(page);await expect(frame).toHaveAttribute('data-reader-surface-instance','same');await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(first);expect(await exported(page)).toEqual(before);
 });

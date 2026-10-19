@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-19",
+  "status": "local-wording-verified-not-deployed",
+  "userDecision": "Default work save is an actual local .knolstory/.shortstory file; online action is explicit upload and does not replace local file saving.",
+  "scope": "UI labels, success/retry guidance, account/local-file explanation, current goal/design/storage contract/continuation plan. No persistence/API/schema behavior change.",
+  "checks": {
+    "webBuild": "passed",
+    "onlineE2E": "23 passed in 48.7s, mocked API; both formats, narrow viewport, upload/reupload/retry/conflict/local preservation",
+    "docs": "57 active documents, 0 link errors",
+    "lint": "online-works-panel and account-menu pass. Existing local-work-file-actions issues remain: react-hooks/immutability for session prop ref mutation, plus cleanup-ref warning. That component changed only explanatory text; lint is not claimed clean.",
+    "review": "Read-only reviewer confirmed UI and E2E selector consistency; four residual canonical-doc terms identified and corrected."
+  },
+  "preservation": "Earlier evidence is retained unchanged; its source hashes identify earlier candidates, current text hashes are below. No manuscript/runtime/design layout repeated.",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "User wording rule represented in all targeted UI actions and canonical current docs; 23 mock E2E pass. Existing lint and actual deployment are explicitly outside successful checks."
+  },
+  "sha256": {
+    "apps/web/components/online-works-panel.tsx": "05b30401eebf676cbdc1f5e4561a94ef92e49b410fb5e1745ca8fd16d763eb64",
+    "apps/web/components/account-menu.tsx": "b687fbd6db153e7df1473f32ecf42b0109ed286c67a23100121e8a65dba3d96b",
+    "apps/web/components/local-work-file-actions.tsx": "45cc88538ed443fd53cfee8b40db28fa1078f1b8d896fd1c5ec3a8255cd58a08",
+    "tests/e2e/online-works.spec.ts": "a2e8cc487bf96a0614e6bcb655a9aa4d8007b81af69dcd264248a858ce301fa0",
+    "tests/e2e/shortstory-online.spec.ts": "990576c1dc7ea3e49a542cb3b7e73d60ee7565f2bab1f69c3156d61bf0462f43",
+    "tests/e2e/online-trash.spec.ts": "acdce93bce4dc84c0dcab25e2fa28fd1f51c10cc81667c607794a2b9b710d0c2",
+    "DESIGN.md": "295de37cec8ea069ede697f2de6aee32cdae6fe4821255ff784894c86185c12c",
+    "STATUS.md": "c71aa3da0e96f98fa3b9a7936c80783d2ad94ba4e3210d310fd959e639451ea8",
+    "docs/architecture/authoring-storage-contract.md": "95ed3e3b0ff35c556450e23144c59ce2e452e616d59742f90c77e8883d63751a",
+    "docs/architecture/product-completion-goal-2026-10-15.md": "03ff9be31b885a035989b4966e89080e69b1cb95cc719414e6de627a8de2e634",
+    "docs/architecture/product-completion-plan.md": "f22fdd7eda4411daaa51f2d0dea88d92a441665f4898c37b5540d36306846253"
+  }
+}

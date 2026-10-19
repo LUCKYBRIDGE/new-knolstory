@@ -1,0 +1,363 @@
+
+Running 147 tests using 1 worker
+
+(node:62471) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/147] [host] › tests/e2e/authoring.spec.ts:62:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip
+[2/147] [host] › tests/e2e/authoring.spec.ts:95:1 › newly authored branching work renders real assets and both native Ren’Py choices reach endings
+[3/147] [host] › tests/e2e/authoring.spec.ts:137:1 › blank creation preserves existing work and structural editing retains choice identities
+[4/147] [host] › tests/e2e/authoring.spec.ts:185:1 › explicit save retries a failed device write while preserving the draft
+[5/147] [host] › tests/e2e/authoring.spec.ts:208:1 › corrupt stored workspace remains untouched while switching and importing file-only drafts
+[6/147] [host] › tests/e2e/chapter-branch-identity.spec.ts:6:1 › chapter identity and extended branch cuts survive editor, file export and reload
+[7/147] [host] › tests/e2e/composition-intent.spec.ts:108:1 › composition authoring separates body scale, center, original facing and actor exits through files
+[8/147] [host] › tests/e2e/composition-intent.spec.ts:135:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes
+[9/147] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1440x900
+[10/147] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1024x768
+[11/147] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 768x1024
+[12/147] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 390x844
+[13/147] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 844x390
+[14/147] [host] › tests/e2e/existing-story-enhancement.spec.ts:5:1 › existing originals are directly readable beside KnolStory works
+[15/147] [host] › tests/e2e/flow-authoring.spec.ts:77:1 › flow overview navigates nested branches and diagnoses pending and unreachable cuts without losing authored content
+[16/147] [host] › tests/e2e/flow-authoring.spec.ts:150:1 › native Ren’Py follows all six nested and merged routes to two independent endings with a persistent renderer
+[17/147] [host] › tests/e2e/flow-authoring.spec.ts:185:1 › large inherited work can find and edit a cut beyond the initial chapter page
+[18/147] [host] › tests/e2e/four-work-library.spec.ts:4:1 › the default library groups eight manuscripts into four independent work choices
+[19/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 원작: chosen manuscript opens and returns to its grouped book
+[20/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 놀스토리: chosen manuscript opens and returns to its grouped book
+[21/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 원작: chosen manuscript opens and returns to its grouped book
+[22/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 놀스토리: chosen manuscript opens and returns to its grouped book
+[23/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 원작: chosen manuscript opens and returns to its grouped book
+[24/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 놀스토리: chosen manuscript opens and returns to its grouped book
+[25/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 원작: chosen manuscript opens and returns to its grouped book
+[26/147] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 놀스토리: chosen manuscript opens and returns to its grouped book
+[27/147] [host] › tests/e2e/four-work-library.spec.ts:35:1 › all four shelf choices open their actual ShortStory and return to the same library
+[28/147] [host] › tests/e2e/four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+[29/147] [host] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+[30/147] [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+[31/147] [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual rabbit picture book read, isolated position and complete A4 print
+[32/147] [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual onggojib picture book read, isolated position and complete A4 print
+[33/147] [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual seonnyeo picture book read, isolated position and complete A4 print
+[34/147] [host] › tests/e2e/four-work-shortstory.spec.ts:8:25 › actual heungbu picture book read, isolated position and complete A4 print
+[35/147] [host] › tests/e2e/four-work-shortstory.spec.ts:29:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import
+[36/147] [host] › tests/e2e/four-work-shortstory.spec.ts:51:1 › old single workspace backs up, immediate new/import preserve it, unsupported v2 rejects and storage failure blocks switching
+[37/147] [host] › tests/e2e/four-work-shortstory.spec.ts:62:1 › delayed Google picture book import retains books created and edited while waiting
+[38/147] [host] › tests/e2e/four-work-shortstory.spec.ts:74:1 › failed picture book deletion preserves its editable draft for save retry and reload
+[39/147] [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser
+[40/147] [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser
+[41/147] [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser
+[42/147] [host] › tests/e2e/four-work-shortstory.spec.ts:83:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser
+[43/147] [host] › tests/e2e/introduction-stability.spec.ts:7:1 › introduction waits for a choice and stays open across reloads and new navigation
+[44/147] [host] › tests/e2e/introduction-stability.spec.ts:42:1 › my works leaves introduction only after an explicit choice
+[45/147] [host] › tests/e2e/introduction-stability.spec.ts:51:1 › a corrupt workspace stays intact while introduction waits for explicit navigation
+[46/147] [host] › tests/e2e/introduction-stability.spec.ts:64:1 › explicit ShortStory library return is consumed so later preparation survives reload
+[47/147] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:51:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+[48/147] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:51:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px
+[49/147] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:60:1 › new manuscript story survives files and reaches both endings in native RenPy
+[50/147] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:67:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+[51/147] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:67:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px
+[52/147] [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 1365x900
+[53/147] [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 820x1180
+[54/147] [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 390x844
+[55/147] [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 844x390
+[56/147] [host] › tests/e2e/library-design-parity.spec.ts:8:83 › legacy book surfaces and focus browsing at 320x740
+[57/147] [host] › tests/e2e/library-design-parity.spec.ts:18:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft
+[58/147] [host] › tests/e2e/library-design-parity.spec.ts:27:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book
+[59/147] [host] › tests/e2e/library-design-parity.spec.ts:41:1 › layered front, spine and back covers keep direct edits in the draft until apply
+[60/147] [host] › tests/e2e/library-design-parity.spec.ts:50:1 › all eight books start native RenPy from the library focus and retain the same runtime
+[61/147] [host] › tests/e2e/library-design-parity.spec.ts:62:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript
+[62/147] [host] › tests/e2e/library-design-parity.spec.ts:68:1 › tab browsing preferences survive book work and reload without entering the story file
+[63/147] [host] › tests/e2e/library-design-parity.spec.ts:73:1 › modal keyboard boundaries include collapsed settings and nested image selection
+[64/147] [host] › tests/e2e/library-design-parity.spec.ts:77:1 › cover title size changes the rendered typography without covering the whole artwork panel
+[65/147] [host] › tests/e2e/library-design-parity.spec.ts:81:1 › books physically rest on shelf faces and room decoration frames the focused shelves
+[66/147] [host] › tests/e2e/library-design-parity.spec.ts:93:1 › cabinet preserves shelf capacity and at least two rows around four books
+[67/147] [host] › tests/e2e/library-design-parity.spec.ts:100:1 › reference introduction uses exact rectangular posters and quiet library controls
+[68/147] [host] › tests/e2e/library-design-parity.spec.ts:108:1 › compact shelf keeps all four books and drawer near the first viewport
+[69/147] [host] › tests/e2e/library-design-parity.spec.ts:121:1 › cabinet joinery uses visible wood grain and preserves the book selection experience
+[70/147] [host] › tests/e2e/library-design-parity.spec.ts:129:1 › book page blocks stay narrow and rest above the shelf instead of protruding below the cover
+[71/147] [host] › tests/e2e/library-design-parity.spec.ts:135:1 › branded library shows word-safe cover titles and opens cover editing directly from the chosen book
+[72/147] [host] › tests/e2e/local-library.spec.ts:101:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome
+[73/147] [host] › tests/e2e/local-library.spec.ts:207:1 › library keeps blank planning optional and separates examples from a UI-created work
+[74/147] [host] › tests/e2e/local-library.spec.ts:228:1 › previous device workspace opens in library without changing its authored content or legacy keys
+[75/147] [host] › tests/e2e/local-library.spec.ts:257:1 › corrupt device storage is kept intact while UI-created recovery work can be exported
+[76/147] [host] › tests/e2e/local-library.spec.ts:282:1 › example preparation makes an independent own copy and duplicate import keeps the original
+[77/147] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1440x1000
+  1) [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1440x1000 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 9
+    Received: 30
+
+      16 |  const text=writer.getByLabel('1컷 대사 / 해설');await text.fill(original);await text.focus();await text.press('Home');await text.press('Control+Home');
+      17 |  for(let i=0;i<9;i++)await text.press('ArrowRight');
+    > 18 |  const position=await text.evaluate(node=>(node as HTMLTextAreaElement).selectionStart);expect(position).toBe(9);
+         |                                                                                                          ^
+      19 |  await writer.getByRole('button',{name:'커서 위치에서 컷 나누기',exact:true}).click();await saved(page);
+      20 |  let file=await exported(page);expect(file.project.lines.map((line:{text:string})=>line.text)).toEqual([original.slice(0,9),original.slice(9)]);
+      21 |  const firstId=file.project.lines[0].id;await page.reload();await saved(page);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-operations.spec.ts:18:106
+
+    Error Context: ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-0c833-reserve-Korean-at-1440x1000-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-0c833-reserve-Korean-at-1440x1000-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-0c833-reserve-Korean-at-1440x1000-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:64334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[78/147] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1024x768
+  2) [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1024x768 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 9
+    Received: 30
+
+      16 |  const text=writer.getByLabel('1컷 대사 / 해설');await text.fill(original);await text.focus();await text.press('Home');await text.press('Control+Home');
+      17 |  for(let i=0;i<9;i++)await text.press('ArrowRight');
+    > 18 |  const position=await text.evaluate(node=>(node as HTMLTextAreaElement).selectionStart);expect(position).toBe(9);
+         |                                                                                                          ^
+      19 |  await writer.getByRole('button',{name:'커서 위치에서 컷 나누기',exact:true}).click();await saved(page);
+      20 |  let file=await exported(page);expect(file.project.lines.map((line:{text:string})=>line.text)).toEqual([original.slice(0,9),original.slice(9)]);
+      21 |  const firstId=file.project.lines[0].id;await page.reload();await saved(page);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-operations.spec.ts:18:106
+
+    Error Context: ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-75cf8-preserve-Korean-at-1024x768-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-75cf8-preserve-Korean-at-1024x768-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-75cf8-preserve-Korean-at-1024x768-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:64339) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[79/147] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 768x1024
+  3) [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 768x1024 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 9
+    Received: 30
+
+      16 |  const text=writer.getByLabel('1컷 대사 / 해설');await text.fill(original);await text.focus();await text.press('Home');await text.press('Control+Home');
+      17 |  for(let i=0;i<9;i++)await text.press('ArrowRight');
+    > 18 |  const position=await text.evaluate(node=>(node as HTMLTextAreaElement).selectionStart);expect(position).toBe(9);
+         |                                                                                                          ^
+      19 |  await writer.getByRole('button',{name:'커서 위치에서 컷 나누기',exact:true}).click();await saved(page);
+      20 |  let file=await exported(page);expect(file.project.lines.map((line:{text:string})=>line.text)).toEqual([original.slice(0,9),original.slice(9)]);
+      21 |  const firstId=file.project.lines[0].id;await page.reload();await saved(page);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-operations.spec.ts:18:106
+
+    Error Context: ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-d6721-preserve-Korean-at-768x1024-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-d6721-preserve-Korean-at-768x1024-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-d6721-preserve-Korean-at-768x1024-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:64344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[80/147] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 390x844
+  4) [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 390x844 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '새 작품 만들기', exact: true })
+
+
+       at library-entry.ts:30
+
+      28 | }
+      29 | export async function startShelfCreation(page:Page){
+    > 30 |  await openLibraryTools(page);await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();
+         |                                                                                           ^
+      31 | }
+      32 | export async function selectShelfCollection(page:Page,kind:string){await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind);}
+      33 | export async function fillShelfSearch(page:Page,query:string){await openLibraryTools(page);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill(query);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');}
+        at startShelfCreation (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-entry.ts:30:91)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-operations.spec.ts:14:2
+
+    Error Context: ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-67ef0--preserve-Korean-at-390x844-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-67ef0--preserve-Korean-at-390x844-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-67ef0--preserve-Korean-at-390x844-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:64532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[81/147] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 844x390
+  5) [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 844x390 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '새 작품 만들기', exact: true })
+
+
+       at library-entry.ts:30
+
+      28 | }
+      29 | export async function startShelfCreation(page:Page){
+    > 30 |  await openLibraryTools(page);await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();
+         |                                                                                           ^
+      31 | }
+      32 | export async function selectShelfCollection(page:Page,kind:string){await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind);}
+      33 | export async function fillShelfSearch(page:Page,query:string){await openLibraryTools(page);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill(query);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');}
+        at startShelfCreation (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-entry.ts:30:91)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-operations.spec.ts:14:2
+
+    Error Context: ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-c2026--preserve-Korean-at-844x390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-c2026--preserve-Korean-at-844x390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-host/manuscript-operations-manu-c2026--preserve-Korean-at-844x390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:64614) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[82/147] [host] › tests/e2e/media-provenance.spec.ts:4:1 › existing-work audio source and rights records travel with the original bytes
+[83/147] [host] › tests/e2e/memo-authoring.spec.ts:13:1 › memo fields survive reorder, delete undo, filters, device save and fresh-context file import on five viewport sizes
+[84/147] [host] › tests/e2e/mobile-authoring.spec.ts:93:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change
+  6) [host] › tests/e2e/mobile-authoring.spec.ts:93:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 845
+    Received:    867.921875
+
+      146 |       const editorScroll = await page.getByRole('complementary', { name: '현재 컷 편집' }).locator('..').boundingBox();
+      147 |       expect(editorScroll!.y).toBeGreaterThanOrEqual(0);
+    > 148 |       expect(editorScroll!.y + editorScroll!.height).toBeLessThanOrEqual(viewport.height + 1);
+          |                                                      ^
+      149 |     }
+      150 |     await expect(input).toHaveValue(texts[0]!);
+      151 |   }
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/mobile-authoring.spec.ts:148:54
+
+    Error Context: ../../../../../tmp/knolstory-parity-host/mobile-authoring-phone-aut-c0107--files-and-cut-order-change-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-host/mobile-authoring-phone-aut-c0107--files-and-cut-order-change-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-host/mobile-authoring-phone-aut-c0107--files-and-cut-order-change-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:64633) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[85/147] [host] › tests/e2e/mobile-authoring.spec.ts:187:1 › phone file-restored work renders real assets and both native Ren’Py endings with one iframe
+[86/147] [host] › tests/e2e/presentation-polish.spec.ts:77:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+[87/147] [host] › tests/e2e/presentation-polish.spec.ts:103:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+[88/147] [host] › tests/e2e/presentation-polish.spec.ts:146:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+[89/147] [host] › tests/e2e/reading-surface.spec.ts:4:1 › reading gives the stage full width and keeps an exit while runtime is preparing
+[90/147] [host] › tests/e2e/reading-surface.spec.ts:17:1 › current cut exposes outgoing destination and local chapter cut count
+[91/147] [host] › tests/e2e/reading-surface.spec.ts:27:1 › choice-created chapters receive branch identity immediately
+[92/147] [host] › tests/e2e/reading-surface.spec.ts:36:1 › landscape reading fits the complete runtime viewport above the screen edge
+[93/147] [host] › tests/e2e/reading-surface.spec.ts:42:1 › portrait reading keeps dialogue and choices inside the visible runtime area
+[94/147] [host] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 1280px
+[95/147] [host] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 390px
+[96/147] [host] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches
+[97/147] [host] › tests/e2e/responsive-audio-authoring.spec.ts:159:1 › delivered portable branching demo opens with embedded audio and plays both native endings
+[98/147] [host] › tests/e2e/responsive-audio-authoring.spec.ts:184:1 › ending keeps the last entrance confirmed and does not replay its sounds
+[99/147] [host] › tests/e2e/responsive-editor.spec.ts:3:1 › draft and the same iframe survive panel changes and portrait/landscape resize
+[100/147] [host] › tests/e2e/responsive-editor.spec.ts:21:1 › logical actor coordinates survive viewport changes
+[101/147] [host] › tests/e2e/runtime-unavailable.spec.ts:3:1 › runtime load failure preserves authored text without a substitute stage
+[102/147] [host] › tests/e2e/shortstory-conflict.spec.ts:4:1 › two ShortStory tabs preserve the saved book and export the blocked draft
+[103/147] [host] › tests/e2e/shortstory-conflict.spec.ts:24:1 › a read-only second tab never migrates or recovers storage over the writer
+[104/147] [host] › tests/e2e/shortstory.spec.ts:3:1 › ShortStory edits static pages, saves, restores files and prints without runtime
+[105/147] [host] › tests/e2e/shortstory.spec.ts:30:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected
+[106/147] [host] › tests/e2e/storage-recovery.spec.ts:11:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+[107/147] [host] › tests/e2e/storage-recovery.spec.ts:26:1 › second tab draft cannot overwrite first tab, even when using manual save
+[108/147] [host] › tests/e2e/storage-recovery.spec.ts:37:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+[109/147] [host] › tests/e2e/stories.spec.ts:5:3 › 선녀와 나무꾼: representative text edits survive reload and file roundtrip
+[110/147] [host] › tests/e2e/stories.spec.ts:5:3 › 흥부와 놀부: representative text edits survive reload and file roundtrip
+[111/147] [host] › tests/e2e/stories.spec.ts:5:3 › 옹고집전: representative text edits survive reload and file roundtrip
+[112/147] [host] › tests/e2e/stories.spec.ts:5:3 › 별주부전: representative text edits survive reload and file roundtrip
+[113/147] [host] › tests/e2e/stories.spec.ts:30:1 › persistent story runtime and current edit survive narrow screen changes
+[114/147] [host] › tests/e2e/stories.spec.ts:54:1 › malformed import preserves current work and explains the error
+[115/147] [host] › tests/e2e/stories.spec.ts:72:1 › edits stay separate when switching representative works
+[116/147] [host] › tests/e2e/stories.spec.ts:85:1 › unfinished links and explicit endings remain distinct in playback
+[117/147] [host] › tests/e2e/stories.spec.ts:103:1 › importing a different work preserves edits in the outgoing representative work
+[118/147] [host] › tests/e2e/stories.spec.ts:126:3 › empty imported document leaves the editor intact
+[119/147] [host] › tests/e2e/stories.spec.ts:126:3 › unknown-asset imported document leaves the editor intact
+[120/147] [host] › tests/e2e/stories.spec.ts:161:1 › reading position and branch history resume after reload
+[121/147] [host] › tests/e2e/vn-workflow.spec.ts:8:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields
+[122/147] [host] › tests/e2e/vn-workflow.spec.ts:20:1 › native portrait single speaker, slots and actual-path backlog restore both routes
+[123/147] [host] › tests/e2e/vn-workflow.spec.ts:36:1 › changed-work slots show saved excerpt and require explicit compatible restore
+[124/147] [host] › tests/e2e/vn-workflow.spec.ts:47:1 › numbered real-asset branch chapters play A and B then join without crossing routes
+[125/147] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 1365x900
+[126/147] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 820x1180
+[127/147] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 390x844
+[128/147] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 844x390
+[129/147] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 320x740
+[130/147] [host] › tests/e2e/walnut-library.spec.ts:17:1 › cabinet keeps two shelf rows with four books, a single match or an empty collection
+(node:64787) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[131/147] [host] › tests/e2e/entry-cover.spec.ts:6:1 › fresh browser entry introduces existing books and explicit navigation enters library
+[132/147] [host] › tests/e2e/entry-cover.spec.ts:27:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration
+[133/147] [host] › tests/e2e/entry-cover.spec.ts:27:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration
+[134/147] [host] › tests/e2e/entry-cover.spec.ts:57:1 › all eight existing editions enter actual RenPy through their stored book cover
+[135/147] [host] › tests/e2e/entry-cover.spec.ts:70:89 › existing book cover touch and keyboard editing at portrait
+[136/147] [host] › tests/e2e/entry-cover.spec.ts:70:89 › existing book cover touch and keyboard editing at landscape
+[137/147] [host] › tests/e2e/entry-cover.spec.ts:78:1 › cover title validation keeps the applied book intact and draft recoverable
+[138/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › seonnyeo-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[139/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › heungbu-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[140/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › onggojib-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[141/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › rabbit-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[142/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › seonnyeo: actual browser reads the existing scored work, resumes and preserves its archive
+[143/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive
+[144/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › onggojib: actual browser reads the existing scored work, resumes and preserves its archive
+[145/147] [host] › tests/e2e/existing-score-runtime.spec.ts:111:27 › rabbit: actual browser reads the existing scored work, resumes and preserves its archive
+[146/147] [host] › tests/e2e/existing-score-runtime.spec.ts:197:1 › Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py
+[147/147] [host] › tests/e2e/existing-score-runtime.spec.ts:238:1 › existing eight works: actual decoded music clock advances after the first unlocked cue
+  6 failed
+    [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1440x1000 
+    [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1024x768 
+    [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 768x1024 
+    [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 390x844 
+    [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 844x390 
+    [host] › tests/e2e/mobile-authoring.spec.ts:93:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change 
+  28 skipped
+  113 passed (9.9m)

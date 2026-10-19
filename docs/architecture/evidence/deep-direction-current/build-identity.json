@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-13",
+  "scope": "current local static build; no deployment",
+  "files": {
+    "apps/web/public/runtime/game.zip": {
+      "sha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6",
+      "bytes": 37641800
+    },
+    "apps/web/out/runtime/game.zip": {
+      "sha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6",
+      "bytes": 37641800
+    },
+    "apps/web/out/index.html": {
+      "sha256": "612b2de38bd91bae4f22a4fa23a7cb7f4bee910e9dfb05cbfe5ec850451ca330",
+      "bytes": 7217
+    },
+    "apps/web/public/runtime/knol-bridge.js": {
+      "sha256": "52602c1f0b6ada94466d11784a703633cfbc3736c691e925b42919b48111d52b",
+      "bytes": 3641
+    },
+    "apps/web/out/runtime/knol-bridge.js": {
+      "sha256": "52602c1f0b6ada94466d11784a703633cfbc3736c691e925b42919b48111d52b",
+      "bytes": 3641
+    }
+  },
+  "startupNewStagedAudio": [],
+  "stagedRuntimePathsChecked": 469
+}

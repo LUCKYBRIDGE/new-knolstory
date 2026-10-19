@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-18",
+  "status": "focused-native-fullscreen-verified",
+  "reason": "Previous maximum-fit checkpoint subscribed to fullscreenchange but had not directly exercised fullscreen transition",
+  "checks": {
+    "fullscreen": "Real browser requestFullscreen via product button -> document.fullscreenElement MAIN; native rendered scene matched, maximum contain geometry",
+    "exit": "Product full-screen exit -> document.fullscreenElement null; maximum contain recalculated",
+    "editorReturn": "Reader fixed position/size inline overrides removed; original project and iframe identity preserved",
+    "result": "1passed6.4s; fullscreen.log",
+    "typescript": "focused E2E passed",
+    "eslint": "passed with existing React detect notice only"
+  },
+  "preservation": "No product source, build, manuscript or old checkpoint changes. New focused test/evidence only. Previous6resize/2fixedformat/visualviewport tests not rerun.",
+  "limits": [
+    "Automated Chromium on Mac host with actual Fullscreen API; not physical phone/browser chrome fullscreen or target school device",
+    "No audible/screenreader/release completeness claim"
+  ],
+  "testSha256": "02ec096f4df0ed0e781e0b61248b03e6723adc0f23f2174fd43c0f0a1320b0b6",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Direct fullscreen enter/exit and full authoring preservation assertions; physical-device gate remains"
+  }
+}

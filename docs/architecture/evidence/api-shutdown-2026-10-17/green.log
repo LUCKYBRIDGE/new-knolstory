@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory/server
+      Coverage enabled with v8
+
+ ❯ http/api-shutdown.test.ts (4 tests | 1 failed) 1237ms
+     × drains an actual in-flight HTTP response before closing the pool, once 1022ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  http/api-shutdown.test.ts > bounded API shutdown > drains an actual in-flight HTTP response before closing the pool, once
+AssertionError: expected "vi.fn()" to be called once with arguments: [ +0 ]
+
+Number of calls: 0
+
+ ❯ http/api-shutdown.test.ts:12:187
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  13:45:23
+   Duration  1.43s (transform 16ms, setup 0ms, import 47ms, tests 1.24s, environment 0ms)
+

@@ -1,0 +1,47 @@
+
+Running 1 test using 1 worker
+
+(node:90288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels
+  1) [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/pixabay-audio.spec.ts:9:365
+
+    Error Context: ../../../../../tmp/knol-pixabay-native-final/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-pixabay-native-final/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-pixabay-native-final/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels 

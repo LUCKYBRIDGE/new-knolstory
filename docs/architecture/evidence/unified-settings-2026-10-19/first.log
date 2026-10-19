@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+(node:54905) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:78:1 › audio and direction require separate opt-in, persist real cut ranges and survive local-file reopen (48.1s)
+(node:55475) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

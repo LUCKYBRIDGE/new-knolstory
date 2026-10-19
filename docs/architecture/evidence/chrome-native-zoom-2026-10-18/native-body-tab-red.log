@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:68084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/native-body-tab.spec.ts:4:1 › native BODY and canvas Tab return to semantic reading controls after pointer audio unlock (9.3s)
+
+
+  1) tests/e2e/native-body-tab.spec.ts:4:1 › native BODY and canvas Tab return to semantic reading controls after pointer audio unlock 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('story-runtime-status')
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 5000ms
+      - waiting for getByTestId('story-runtime-status')
+        14 × locator resolved to <div role="status" data-music-path="" data-textbox-y="415" data-ambience-path="" data-sound-paths="[]" data-music-position="" data-scene-revision="7" data-scene-width="1280" data-scene-height="720" data-artwork-rect="null" data-engine-width="1280" data-engine-height="720" data-choices-rect="null" data-sound-play-count="0" data-rendered-revision="7" data-music-start-count="0" data-renderer-width="1280" data-renderer-height="720" data-audio-unlocked="false" data-ambience-start-count="0" data-testid="…>이야기 무대 연결됨</div>
+           - unexpected value "false"
+
+
+      20 |  const originalFrame=await frame.elementHandle();
+      21 |  await page.frameLocator('[data-testid="story-runtime-frame"]').locator('#overlayDiv').click({position:{x:10,y:10}});
+    > 22 |  await expect(status).toHaveAttribute('data-audio-unlocked','true');
+         |                       ^
+      23 |  const mirror=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})});
+      24 |  const summary=mirror.locator('summary'),menu=page.getByRole('button',{name:'읽기 메뉴',exact:true});
+      25 |  const initialText=await mirror.locator('[aria-live="polite"]>p').last().innerText();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/native-body-tab.spec.ts:22:23
+
+    Error Context: docs/architecture/evidence/chrome-native-zoom-2026-10-18/red-run/native-body-tab-native-BOD-50715--after-pointer-audio-unlock/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chrome-native-zoom-2026-10-18/red-run/native-body-tab-native-BOD-50715--after-pointer-audio-unlock/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chrome-native-zoom-2026-10-18/red-run/native-body-tab-native-BOD-50715--after-pointer-audio-unlock/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/native-body-tab.spec.ts:4:1 › native BODY and canvas Tab return to semantic reading controls after pointer audio unlock 

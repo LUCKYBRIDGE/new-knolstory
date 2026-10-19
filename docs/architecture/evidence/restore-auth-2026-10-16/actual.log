@@ -1,0 +1,18 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-eeb9f550f7b2 Creating 
+ Container knolstory-next-storage-test-runner-run-eeb9f550f7b2 Created 
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+
+[90mstdout[2m | operations/restore-fence.integration.ts[2m > [22m[2moffline restored authentication invalidation[2m > [22m[2mrejects historical cookies/flows while preserving every account, identity and authored record
+[22m[39m{"restoreAuthFence":{"historicalCookieBefore":200,"historicalCookieAfter":401,"historicalFlowRejected":true,"unrevokedSessions":0,"pendingFlows":0,"accountsIdentitiesDocumentsBlobsReceiptsAndJournalPreserved":true,"idempotent":true},"scope":"Actual isolated restored DB and HTTP only; source service not targeted."}
+
+ [32m✓[39m operations/restore-fence.integration.ts [2m([22m[2m1 test[22m[2m)[22m[32m 103[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 08:54:38
+[2m   Duration [22m 292ms[2m (transform 77ms, setup 0ms, import 120ms, tests 103ms, environment 0ms)[22m
+

@@ -1,0 +1,20 @@
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+[WebServer]     return _run_code(code, main_globals, None,
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/runpy.py", line 87, in _run_code
+[WebServer]     exec(code, run_globals)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 1297, in <module>
+[WebServer]     test(
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 1252, in test
+[WebServer]     with ServerClass(addr, HandlerClass) as httpd:
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 452, in __init__
+[WebServer]     self.server_bind()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 1295, in server_bind
+[WebServer]     return super().server_bind()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 138, in server_bind
+[WebServer]     socketserver.TCPServer.server_bind(self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 466, in server_bind
+[WebServer]     self.socket.bind(self.server_address)
+[WebServer] OSError: [Errno 48] Address already in use
+Error: Process from config.webServer was not able to start. Exit code: 1
+

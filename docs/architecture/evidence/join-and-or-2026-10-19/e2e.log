@@ -1,0 +1,87 @@
+
+Running 2 tests using 1 worker
+
+(node:97767) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work (50.3s)
+(node:98036) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/editing-workbench.spec.ts:350:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen (7.3s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 45000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+      19 | async function exported(page:Page){
+      20 |  await saved(page);await openWorkMenu(page);
+    > 21 |  const pending=page.waitForEvent('download');
+         |                     ^
+      22 |  await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+      23 |  const file=await pending,raw=await readFile((await file.path())!,'utf8');
+      24 |  return {raw,project:parseAuthoringFile(raw).project as StoryProject};
+        at exported (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:21:21)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:347:1059
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+
+      20 |  await saved(page);await openWorkMenu(page);
+      21 |  const pending=page.waitForEvent('download');
+    > 22 |  await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+         |                                                                ^
+      23 |  const file=await pending,raw=await readFile((await file.path())!,'utf8');
+      24 |  return {raw,project:parseAuthoringFile(raw).project as StoryProject};
+      25 | }
+        at exported (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:22:64)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:347:1059
+
+    Error Context: docs/architecture/evidence/join-and-or-2026-10-19/final-run/editing-workbench-connecti-734a2-s-without-altering-the-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/join-and-or-2026-10-19/final-run/editing-workbench-connecti-734a2-s-without-altering-the-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/join-and-or-2026-10-19/final-run/editing-workbench-connecti-734a2-s-without-altering-the-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/editing-workbench.spec.ts:350:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 1 조건 묶음', exact: true }).locator('option[value=all]')
+    Expected: "그리고 · 모든 조건을 만족할 때"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 1 조건 묶음', exact: true }).locator('option[value=all]') with timeout 5000ms
+      - waiting for getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 1 조건 묶음', exact: true }).locator('option[value=all]')
+
+
+      349 |
+      350 | test('score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen',async({page})=>{
+    > 351 |  await page.setViewportSize({width:390,height:844});await prepare(page);const source={...fixture,scores:[{id:'trust',name:'신뢰',description:'',initial:0},{id:'courage',name:'용기',description:'',initial:0}],lines:fixture.lines.map((line,index)=>index===0?{...line,flow:{type:'goto',targetLineId:cutIds[1],routes:[{id:'two-scores',targetLineId:cutIds[2],condition:{mode:'all',terms:[{scoreId:'trust',operator:'gte',value:3},{scoreId:'courage',operator:'gte',value:2}]}}]}}:line)};await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:source}));await settings(page);await page.getByRole('checkbox',{name:'점수 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.keyboard.press('Escape');const detail=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await detail.locator(':scope>summary').click();const combine=detail.getByRole('combobox',{name:'진행 1 조건 묶음',exact:true});await expect(combine.locator('option[value=all]')).toHaveText('그리고 · 모든 조건을 만족할 때');await expect(combine.locator('option[value=any]')).toHaveText('또는 · 하나 이상 만족할 때');await combine.selectOption('any');const after=(await exported(page)).project,flow=after.lines[0].flow;expect(flow).toEqual({...source.lines[0].flow,routes:[{...source.lines[0].flow!.routes![0],condition:{...source.lines[0].flow!.routes![0].condition,mode:'any'}}]});await importRaw(page,(await exported(page)).raw);const reopened=(await exported(page)).project;expect(reopened.lines).toEqual(after.lines);
+          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
+      352 | });
+      353 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:351:1131
+
+    Error Context: docs/architecture/evidence/join-and-or-2026-10-19/final-run/editing-workbench-score-br-df507--score-terms-on-file-reopen/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/join-and-or-2026-10-19/final-run/editing-workbench-score-br-df507--score-terms-on-file-reopen/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/join-and-or-2026-10-19/final-run/editing-workbench-score-br-df507--score-terms-on-file-reopen/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work 
+    tests/e2e/editing-workbench.spec.ts:350:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen 

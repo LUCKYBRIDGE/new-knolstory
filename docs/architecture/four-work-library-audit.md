@@ -100,3 +100,10 @@ KnolStory 장·컷의 별도 A4/Web Stage 렌더러, 오프라인 HTML 내보내
 ## 최종 로컬 판정
 
 초기 감사의 최종 검증 대기 항목은 네 작품·판본·사본·표지·숏스토리·파일·A4·native 실행의 최종 검사로 확인했다. 8원고 bytes는 전부 동일하며, 원작 전체/놀스토리 두 대표 갈래·독립 슬롯·사본 재열기를 실제 Ren’Py로 검사했다. 저장 실패/비동기 응답·SDK hover focus의 결함은 재현 후 수정했다. [검사 범위와 완료 감사](four-work-library-verification.md)를 현재 로컬 완료 근거로 삼고, SV/ST/X/QA/REL 목록은 구현 상태·의존성·종료 조건을 가진 후속 목표로 유지한다. 공개 GitHub delivery/CI는 push 후 별도 확인한다.
+
+
+## 2026-10-09 고정 기준 재조사와 구현 갱신
+
+초기 ‘대본/메모 구현됨’ 판정을 더 세밀하게 나눴다. 장/컷/Flow 핵심은 구현되어 있지만 fixed ScriptScreen의 split/merge/range clipboard와 메모 field 관리·검색은 깊이가 달랐다. 이번에 커서 split·안전 merge, 메모 field add/rename/reorder/delete undo·검색/종류/연결 필터를 구현했다. 범위 clipboard/전체 대본 일괄 조작, 메모 전체 삭제 undo·복수 연결 직접 편집은 부분 구현 후속이다.
+
+ST-01은 ‘동일 보관함 단일 writer WebLock + raw 비교 + 둘째 탭 초안 파일 보관/명시 재열기’로 **충돌 차단 구현** 상태다. 동시 병합은 ST-04로 별도 유지한다. ST-02는 ‘최근10/총2MB 작품별 명시 checkpoint·컷 삭제 전 기록·목록/파일/독립 사본 복구·손상 raw backup/새 보관함·원자적 개인 삭제 복구’로 **KnolStory 로컬 구현** 상태다. 숏스토리 임의 과거 revision은 ST-03이다. 상세 화면/저장/계약/검사는 [이번 구현 감사](legacy-parity-implementation.md)에 기록한다. SV/X/QA/REL의 미확정 정책과 출시 종료 조건은 그대로 유지한다.

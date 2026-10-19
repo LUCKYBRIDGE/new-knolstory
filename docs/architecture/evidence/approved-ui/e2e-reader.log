@@ -1,0 +1,147 @@
+
+Running 5 tests using 1 worker
+
+(node:71777) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core (769ms)
+(node:71789) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity (519ms)
+(node:71795) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [host] › tests/e2e/approved-reader.spec.ts:39:1 › reader failure cannot leave for library and preparing stage has an exit (797ms)
+(node:71802) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [host] › tests/e2e/approved-reader.spec.ts:44:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields (5.5s)
+(node:71826) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 [host] › tests/e2e/approved-reader.spec.ts:54:1 › native approved dialogue and host bar align on a real RenPy phone stage (3.9s)
+
+
+  1) [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "빠른 저장 기록이 없습니다"
+    Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+        1) <p role="alert" class="story-player-menu-module__VLhC_G__status">빠른 저장 기록이 없습니다. 먼저 빠른 저장을 해 주세요.</p> aka getByTestId('story-stage-viewport').getByRole('alert')
+        2) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('alert')
+
+
+      18 |  await ackRuntime(page);await start(page);
+      19 |  const bar=page.getByRole('button',{name:'지난기록',exact:true}).locator('..');expect(await bar.locator('button').allTextContents()).toEqual(labels);
+    > 20 |  await page.getByRole('button',{name:'빠른 불러오기',exact:true}).click();await expect(page.getByRole('alert')).toContainText('빠른 저장 기록이 없습니다');
+         |                                                                                                           ^
+      21 |  await page.getByRole('button',{name:'빠른 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'빠른 저장 완료'})).toBeVisible();
+      22 |  await page.getByRole('button',{name:'저장',exact:true}).click();await page.getByRole('button',{name:'1번 저장',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+      23 |  const slots=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-player-v1')!));expect(slots.version).toBe(2);const stored=Object.values(slots.works)[0] as Record<string,unknown>;expect(stored.quick).toBeTruthy();expect(stored['1']).toBeTruthy();expect(stored.auto).toBeTruthy();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:20:107
+
+    Error Context: test-results/approved-reader-approved-r-b3896-reopen-and-history-use-Core-host/error-context.md
+
+  2) [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity 
+
+    Error: expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 8
+    Received: -80.9375
+
+    Expected precision:    0
+    Expected difference: < 0.5
+    Received difference:   88.9375
+
+      32 |  const frame=await page.getByTestId('story-runtime-frame').elementHandle();await expect(page.getByRole('button',{name:'읽기 도구 펼치기'})).toBeEnabled();await expect(page.getByRole('button',{name:'저장',exact:true})).toBeHidden();
+      33 |  await page.getByRole('button',{name:'읽기 도구 펼치기'}).click();await expect(page.getByRole('button',{name:'저장',exact:true})).toBeVisible();
+    > 34 |  const first=await page.getByRole('button',{name:'지난기록',exact:true}).boundingBox(),second=await page.getByRole('button',{name:'자동',exact:true}).boundingBox();expect(second!.y-first!.y-first!.height).toBeCloseTo(2,0);const last=await page.getByRole('button',{name:'빠른 불러오기',exact:true}).boundingBox();expect(844-last!.y-last!.height).toBeCloseTo(8,0);
+         |                                                                                                                                                                                                                                                                                                                                              ^
+      35 |  await page.getByRole('button',{name:'읽기 도구 접기'}).click();expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);
+      36 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await expect(page.getByLabel('글 크기')).toBeVisible();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      37 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:34:334
+
+    Error Context: test-results/approved-reader-approved-p-9f926--and-keeps-runtime-identity-host/error-context.md
+
+  3) [host] › tests/e2e/approved-reader.spec.ts:39:1 › reader failure cannot leave for library and preparing stage has an exit 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "quota"
+    Error: strict mode violation: getByRole('alert') resolved to 3 elements:
+        1) <div role="alert" data-testid="workspace-error" class="story-workspace-module__gRDfJG__error">Error: quota injected</div> aka getByTestId('workspace-error')
+        2) <p role="alert" class="story-player-menu-module__VLhC_G__error">quota injected</p> aka getByTestId('story-stage-viewport').getByText('quota injected')
+        3) <div role="alert" aria-live="assertive" id="__next-route-announcer__"></div> aka locator('[id="__next-route-announcer__"]')
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('alert')
+
+
+      39 | test('reader failure cannot leave for library and preparing stage has an exit',async({page})=>{
+      40 |  await ackRuntime(page);await start(page);await page.evaluate(()=>{Storage.prototype.setItem=function(){throw Error('quota injected');};});
+    > 41 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();await page.getByRole('button',{name:'보관하고 서재로'}).click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('alert')).toContainText('quota');await expect(page.getByTestId('story-stage-viewport')).toBeVisible();
+         |                                                                                                                                                                                                                                                                                           ^
+      42 | });
+      43 |
+      44 | test('editor manuscript edit, file roundtrip, reopen and reading return preserve other fields',async({page})=>{
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:41:283
+
+    Error Context: test-results/approved-reader-reader-fai-0afe3-preparing-stage-has-an-exit-host/error-context.md
+
+  4) [host] › tests/e2e/approved-reader.spec.ts:44:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:46:332
+
+    Error Context: test-results/approved-reader-editor-man-6fac8-eturn-preserve-other-fields-host/error-context.md
+
+  5) [host] › tests/e2e/approved-reader.spec.ts:54:1 › native approved dialogue and host bar align on a real RenPy phone stage 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 28
+    Received: 44
+
+      55 |  await page.setViewportSize({width:390,height:844});await page.goto('/?view=editor');await page.getByText('보기·대본 도구',{exact:true}).click();await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-rendered-revision',/^[0-9]+$/,{timeout:120000});await expect(page.getByRole('button',{name:'읽기 도구 펼치기'})).toBeEnabled();await page.getByRole('button',{name:'읽기 도구 펼치기'}).click();
+      56 |  await expect.poll(async()=>{const report=page.getByTestId('story-runtime-status');return (await report.getAttribute('data-rendered-revision'))===(await report.getAttribute('data-scene-revision'));},{timeout:30000}).toBe(true);
+    > 57 |  const first=await page.getByRole('button',{name:'지난기록',exact:true}).boundingBox(),last=await page.getByRole('button',{name:'빠른 불러오기',exact:true}).boundingBox();expect(first!.height).toBe(28);expect(844-last!.y-last!.height).toBeCloseTo(8,0);await page.screenshot({path:info.outputPath('approved-phone-native.png')});
+         |                                                                                                                                                                                        ^
+      58 |  await edit(page);await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();
+      59 | });
+      60 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:57:184
+
+    Error Context: test-results/approved-reader-native-app-d49a5-on-a-real-RenPy-phone-stage-host/error-context.md
+
+  5 failed
+    [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core 
+    [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity 
+    [host] › tests/e2e/approved-reader.spec.ts:39:1 › reader failure cannot leave for library and preparing stage has an exit 
+    [host] › tests/e2e/approved-reader.spec.ts:44:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields 
+    [host] › tests/e2e/approved-reader.spec.ts:54:1 › native approved dialogue and host bar align on a real RenPy phone stage 

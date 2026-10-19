@@ -1,0 +1,224 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:45] "GET / HTTP/1.1" 200 -
+
+Running 3 tests using 1 worker
+
+(node:67228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/3gw6-wg3l7fu5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/3bbvmzoq289zv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:46] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/3gw6-wg3l7fu5.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/3bbvmzoq289zv.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:50] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 61923)
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 61922)
+  ✓  1 [host] › tests/e2e/work-menu-purpose.spec.ts:9:1 › import confirms independent work and preserves original when saving fails (10.0s)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/3gw6-wg3l7fu5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/3bbvmzoq289zv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:56] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:23:59] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/3gw6-wg3l7fu5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/3bbvmzoq289zv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:00] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 61967)
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 61968)
+[WebServer] Traceback (most recent call last):
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer] ----------------------------------------
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+  ✓  2 [host] › tests/e2e/work-menu-purpose.spec.ts:13:32 › public sheet import uses current edits and save guard false (9.8s)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/3gw6-wg3l7fu5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/3bbvmzoq289zv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:24:06] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  3 [host] › tests/e2e/work-menu-purpose.spec.ts:13:32 › public sheet import uses current edits and save guard true (3.5s)
+
+  3 passed (24.0s)

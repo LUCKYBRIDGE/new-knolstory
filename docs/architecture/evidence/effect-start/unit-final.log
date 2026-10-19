@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/effect-start.test.ts (3 tests | 1 failed) 27ms
+   × keeps whole work through all formats and resolves only from new start through inclusive endpoint 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/effect-start.test.ts > keeps whole work through all formats and resolves only from new start through inclusive endpoint
+AssertionError: expected undefined to be false // Object.is equality
+
+- Expected:
+false
+
++ Received:
+undefined
+
+ ❯ packages/runtime-core/tests/effect-start.test.ts:21:412
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  18:33:27
+   Duration  816ms (transform 473ms, setup 0ms, import 684ms, tests 27ms, environment 0ms)
+

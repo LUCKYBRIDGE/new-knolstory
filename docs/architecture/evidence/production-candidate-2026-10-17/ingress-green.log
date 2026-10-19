@@ -1,0 +1,63 @@
+TAP version 13
+# Subtest: configuration rejects unsafe origins, paths, ports and timeouts
+ok 1 - configuration rejects unsafe origins, paths, ports and timeouts
+  ---
+  duration_ms: 2.484
+  type: 'test'
+  ...
+# Subtest: static routes, HEAD, MIME, ranges and missing paths
+ok 2 - static routes, HEAD, MIME, ranges and missing paths
+  ---
+  duration_ms: 21.955709
+  type: 'test'
+  ...
+# Subtest: host, traversal, encoded separators, hidden files and symlinks fail closed
+ok 3 - host, traversal, encoded separators, hidden files and symlinks fail closed
+  ---
+  duration_ms: 4.948125
+  type: 'test'
+  ...
+# Subtest: API preserves streaming status, cookies and security headers while stripping proxy headers
+ok 4 - API preserves streaming status, cookies and security headers while stripping proxy headers
+  ---
+  duration_ms: 15.76675
+  type: 'test'
+  ...
+# Subtest: API unavailable and timeout fail closed without fabricated observation
+ok 5 - API unavailable and timeout fail closed without fabricated observation
+  ---
+  duration_ms: 30.143
+  type: 'test'
+  ...
+# Subtest: partial upstream response is terminated and cannot become success
+ok 6 - partial upstream response is terminated and cannot become success
+  ---
+  duration_ms: 15.906333
+  type: 'test'
+  ...
+# Subtest: CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+ok 7 - CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+  ---
+  duration_ms: 165.54675
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 347.32525
+# start of coverage report
+# -------------------------------------------------------------------------
+# file                     | line % | branch % | funcs % | uncovered lines
+# -------------------------------------------------------------------------
+# server                   |        |          |         | 
+#  operations              |        |          |         | 
+#   production-ingress.mjs |  97.64 |    89.36 |   86.67 | 83-85
+# -------------------------------------------------------------------------
+# all files                |  97.64 |    89.36 |   86.67 | 
+# -------------------------------------------------------------------------
+# end of coverage report

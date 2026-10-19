@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/auth-routes.test.ts (19 tests | 1 failed) 57ms
+     × only linked Google identities log into the same account; never signs Google up 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > only linked Google identities log into the same account; never signs Google up
+AssertionError: expected 302 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 302
+
+ ❯ server/http/auth-routes.test.ts:79:100
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 passed (19)
+   Start at  08:08:19
+   Duration  199ms (transform 28ms, setup 0ms, import 53ms, tests 57ms, environment 0ms)
+

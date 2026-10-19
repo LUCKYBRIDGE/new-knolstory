@@ -1,0 +1,93 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-contract/tests/dialogue-page.test.ts (10 tests | 1 failed) 7ms
+     × rejects malformed displayed boundaries rather than coercing them 3ms
+ ❯ packages/runtime-core/tests/playback-history.test.ts (8 tests | 3 failed) 11ms
+     × caps the current occurrence by Unicode code points without altering the manuscript 2ms
+     × does not reveal current text before valid renderer evidence is available 1ms
+     × caps only the latest occurrence on a repeated visit and preserves older decisions 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-contract/tests/dialogue-page.test.ts > displayed source end boundary > rejects malformed displayed boundaries rather than coercing them
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ packages/runtime-contract/tests/dialogue-page.test.ts:57:169
+     55|  });
+     56|  it('rejects malformed displayed boundaries rather than coercing them'…
+     57|   for(const endOffset of [-1,.5,'12',null,Infinity,NaN,Number.MAX_SAFE…
+       |                                                                                                                                                                         ^
+     58|  });
+     59| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  packages/runtime-core/tests/playback-history.test.ts > history uses actual visible text boundaries > caps the current occurrence by Unicode code points without altering the manuscript
+AssertionError: expected '첫🐇문장\n비밀' to be '첫🐇문' // Object.is equality
+
+- Expected
++ Received
+
+- 첫🐇문
++ 첫🐇문장
++ 비밀
+
+ ❯ packages/runtime-core/tests/playback-history.test.ts:17:65
+     15|  it('caps the current occurrence by Unicode code points without alteri…
+     16|   const base=story();const p={...base,lines:base.lines.map(l=>l.id==='…
+     17|   expect(playbackLog(p,state,{lineId:'a',endOffset:3})[0].text).toBe('…
+       |                                                                 ^
+     18|  });
+     19|  it('does not reveal current text before valid renderer evidence is av…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  packages/runtime-core/tests/playback-history.test.ts > history uses actual visible text boundaries > does not reveal current text before valid renderer evidence is available
+AssertionError: expected 'a' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ a
+
+ ❯ packages/runtime-core/tests/playback-history.test.ts:21:202
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  packages/runtime-core/tests/playback-history.test.ts > history uses actual visible text boundaries > caps only the latest occurrence on a repeated visit and preserves older decisions
+AssertionError: expected [ '앞🐇뒤', 'b', '앞🐇뒤' ] to deeply equal [ '앞🐇뒤', 'b', '앞🐇' ]
+
+- Expected
++ Received
+
+  [
+    "앞🐇뒤",
+    "b",
+-   "앞🐇",
++   "앞🐇뒤",
+  ]
+
+ ❯ packages/runtime-core/tests/playback-history.test.ts:26:90
+     24|   const base=story(),p={...base,lines:base.lines.map(l=>l.id==='a'?{..…
+     25|   const state=advancePlayback(p,advancePlayback(p,createPlayback(p),'s…
+     26|   const log=playbackLog(p,state,{lineId:'a',endOffset:2});expect(log.m…
+       |                                                                                          ^
+     27|  });
+     28|  it('clamps valid oversized bounds and preserves completed history aft…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  4 failed | 14 passed (18)
+   Start at  00:23:52
+   Duration  432ms (transform 247ms, setup 0ms, import 353ms, tests 18ms, environment 0ms)
+

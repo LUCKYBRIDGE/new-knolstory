@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:53446) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/approved-editor.spec.ts:100:1 › tool navigation tracks composition in choice labels (8.2s)
+
+
+  1) [host] › tests/e2e/approved-editor.spec.ts:100:1 › tool navigation tracks composition in choice labels 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('navigation', { name: '편집 도구', exact: true }).getByRole('button', { name: '글 편집', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByRole('navigation', { name: '편집 도구', exact: true }).getByRole('button', { name: '글 편집', exact: true }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: '편집 도구', exact: true }).getByRole('button', { name: '글 편집', exact: true })
+        13 × locator resolved to <button title="글 편집" aria-label="글 편집" aria-pressed="false">글</button>
+           - unexpected value "enabled"
+
+
+      102 |  await tools.locator('[data-additional-tools]>summary').click();await tools.getByRole('button',{name:'선택지 편집',exact:true}).click();await page.getByLabel('진행 방식',{exact:true}).selectOption('choice');
+      103 |  const label=page.getByLabel('선택지 1 문구',{exact:true});await label.fill('친구와 함께 돌아간다');await label.dispatchEvent('compositionstart');
+    > 104 |  await expect(tools.getByRole('button',{name:'글 편집',exact:true})).toBeDisabled();await expect(page.getByRole('button',{name:'글쓰기 화면으로 돌아가기',exact:true})).toBeDisabled();
+          |                                                                   ^
+      105 |  await expect(label).toBeVisible();await label.dispatchEvent('compositionend');await tools.getByRole('button',{name:'글 편집',exact:true}).click();
+      106 |  await tools.locator('[data-additional-tools]>summary').click();await tools.getByRole('button',{name:'선택지 편집',exact:true}).click();await expect(label).toHaveValue('친구와 함께 돌아간다');
+      107 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-editor.spec.ts:104:67
+
+    Error Context: test-results-tool-navigation/approved-editor-tool-navig-3894d-omposition-in-choice-labels-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-tool-navigation/approved-editor-tool-navig-3894d-omposition-in-choice-labels-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-tool-navigation/approved-editor-tool-navig-3894d-omposition-in-choice-labels-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/approved-editor.spec.ts:100:1 › tool navigation tracks composition in choice labels 

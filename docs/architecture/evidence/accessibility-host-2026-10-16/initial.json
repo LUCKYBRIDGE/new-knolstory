@@ -1,0 +1,3489 @@
+[
+  {
+    "name": "library",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "RGAAv4",
+          "RGAA-7.1.1"
+        ],
+        "description": "Ensure ARIA attributes are not prohibited for an element's role",
+        "help": "Elements must only use permitted ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI",
+        "nodes": [
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": {
+                  "role": null,
+                  "nodeName": "div",
+                  "messageKey": "noRoleSingular",
+                  "prohibited": [
+                    "aria-label"
+                  ]
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              }
+            ],
+            "impact": "serious",
+            "html": "<div class=\"local-bookshelf-module__E5KFCW__drawer\" aria-label=\"책장 서랍\" data-drawer-face=\"true\">",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__drawer"
+            ],
+            "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "20.3pt (27px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h1>놀스토리 서재</h1>",
+            "target": [
+              "h1"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>계정</summary>",
+            "target": [
+              ".account-menu-module__0a-q1a__menu > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>온라인 작품</summary>",
+            "target": [
+              ".online-works-panel-module__o0ehtG__menu > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__introLink\">책 소개</button>",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__introLink"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<select aria-label=\"책 분류\"><option value=\"all\">모든 책</option><option value=\"builtin\">기본 작품</option><option value=\"own\">내 작품</option><option value=\"imported\">가져온 작품</option></select>",
+            "target": [
+              "select[aria-label=\"책 분류\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>책 찾기·추가</summary>",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__tools > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">또 다른 이름, 토끼전</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">별주부전</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">진짜와 가짜가 벌이는 기묘한 다툼</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">옹고집전</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">하늘과 땅 사이에서 이어진 만남과 이별</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">선녀와 나무꾼</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">흥부와 놀부로 널리 알려진 이야기</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">흥부와 놀부</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span role=\"status\">1 / 1 선반 · 4권</span>",
+            "target": [
+              "span[role=\"status\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element's background color could not be determined because it is overlapped by another element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>삭제한 작품 복구</summary>",
+            "target": [
+              "body > details > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element's background color could not be determined because it is overlapped by another element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p data-testid=\"library-save-status\" role=\"status\">기기에 저장됨</p>",
+            "target": [
+              "p[data-testid=\"library-save-status\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button aria-label=\"이전 선반\" disabled=\"\">‹</button>",
+            "target": [
+              "button[aria-label=\"이전 선반\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button aria-label=\"다음 선반\" disabled=\"\">›</button>",
+            "target": [
+              "button[aria-label=\"다음 선반\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          }
+        ]
+      }
+    ],
+    "passes": [
+      "aria-allowed-attr",
+      "aria-conditional-attr",
+      "aria-deprecated-role",
+      "aria-hidden-body",
+      "aria-hidden-focus",
+      "aria-prohibited-attr",
+      "aria-required-attr",
+      "aria-roles",
+      "aria-valid-attr-value",
+      "aria-valid-attr",
+      "avoid-inline-spacing",
+      "button-name",
+      "bypass",
+      "color-contrast",
+      "document-title",
+      "form-field-multiple-labels",
+      "html-has-lang",
+      "html-lang-valid",
+      "meta-viewport",
+      "nested-interactive",
+      "select-name",
+      "summary-name",
+      "target-size"
+    ],
+    "version": "4.14.0"
+  },
+  {
+    "name": "account",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "RGAAv4",
+          "RGAA-7.1.1"
+        ],
+        "description": "Ensure ARIA attributes are not prohibited for an element's role",
+        "help": "Elements must only use permitted ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI",
+        "nodes": [
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": {
+                  "role": null,
+                  "nodeName": "div",
+                  "messageKey": "noRoleSingular",
+                  "prohibited": [
+                    "aria-label"
+                  ]
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              }
+            ],
+            "impact": "serious",
+            "html": "<div class=\"local-bookshelf-module__E5KFCW__drawer\" aria-label=\"책장 서랍\" data-drawer-face=\"true\">",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__drawer"
+            ],
+            "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "20.3pt (27px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h1>놀스토리 서재</h1>",
+            "target": [
+              "h1"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>계정</summary>",
+            "target": [
+              ".account-menu-module__0a-q1a__menu > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>로그인 상태 확인 필요</strong>",
+            "target": [
+              ".account-menu-module__0a-q1a__panel > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.2pt (13.6px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p>이 브라우저의 작품은 로그인이나 로그아웃 뒤에도 유지됩니다. 온라인 작품 메뉴에서 직접 보관할 수 있어요.</p>",
+            "target": [
+              ".account-menu-module__0a-q1a__panel > p:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.2pt (13.6px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p role=\"alert\">계정 서비스를 확인하지 못했어요. 기기의 작품은 계속 사용할 수 있어요.</p>",
+            "target": [
+              "p[role=\"alert\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.2pt (13.6px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p>Google 로그인은 카카오로 가입한 뒤 연결한 계정에서 사용할 수 있어요.</p>",
+            "target": [
+              "p:nth-child(6)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button>로그인 상태 다시 확인</button>",
+            "target": [
+              ".account-menu-module__0a-q1a__panel > button:nth-child(7)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>온라인 작품</summary>",
+            "target": [
+              ".online-works-panel-module__o0ehtG__menu > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__introLink\">책 소개</button>",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__introLink"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<select aria-label=\"책 분류\"><option value=\"all\">모든 책</option><option value=\"builtin\">기본 작품</option><option value=\"own\">내 작품</option><option value=\"imported\">가져온 작품</option></select>",
+            "target": [
+              "select[aria-label=\"책 분류\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>책 찾기·추가</summary>",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__tools > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">또 다른 이름, 토끼전</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">별주부전</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">진짜와 가짜가 벌이는 기묘한 다툼</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">옹고집전</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">하늘과 땅 사이에서 이어진 만남과 이별</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">선녀와 나무꾼</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">흥부와 놀부로 널리 알려진 이야기</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">흥부와 놀부</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span role=\"status\">1 / 1 선반 · 4권</span>",
+            "target": [
+              "span[role=\"status\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element's background color could not be determined because it is overlapped by another element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>삭제한 작품 복구</summary>",
+            "target": [
+              "body > details > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element's background color could not be determined because it is overlapped by another element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p data-testid=\"library-save-status\" role=\"status\">기기에 저장됨</p>",
+            "target": [
+              "p[data-testid=\"library-save-status\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button aria-label=\"이전 선반\" disabled=\"\">‹</button>",
+            "target": [
+              "button[aria-label=\"이전 선반\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button aria-label=\"다음 선반\" disabled=\"\">›</button>",
+            "target": [
+              "button[aria-label=\"다음 선반\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          }
+        ]
+      }
+    ],
+    "passes": [
+      "aria-allowed-attr",
+      "aria-conditional-attr",
+      "aria-deprecated-role",
+      "aria-hidden-body",
+      "aria-hidden-focus",
+      "aria-prohibited-attr",
+      "aria-required-attr",
+      "aria-roles",
+      "aria-valid-attr-value",
+      "aria-valid-attr",
+      "avoid-inline-spacing",
+      "button-name",
+      "bypass",
+      "color-contrast",
+      "document-title",
+      "form-field-multiple-labels",
+      "html-has-lang",
+      "html-lang-valid",
+      "meta-viewport",
+      "nested-interactive",
+      "select-name",
+      "summary-name",
+      "target-size"
+    ],
+    "version": "4.14.0"
+  },
+  {
+    "name": "online",
+    "violations": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Text inside the element is not included in the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+            "target": [
+              "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "tags": [
+          "cat.aria",
+          "wcag2a",
+          "wcag412",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "RGAAv4",
+          "RGAA-7.1.1"
+        ],
+        "description": "Ensure ARIA attributes are not prohibited for an element's role",
+        "help": "Elements must only use permitted ARIA attributes",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/aria-prohibited-attr?application=axeAPI",
+        "nodes": [
+          {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": {
+                  "role": null,
+                  "nodeName": "div",
+                  "messageKey": "noRoleSingular",
+                  "prohibited": [
+                    "aria-label"
+                  ]
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+              }
+            ],
+            "impact": "serious",
+            "html": "<div class=\"local-bookshelf-module__E5KFCW__drawer\" aria-label=\"책장 서랍\" data-drawer-face=\"true\">",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__drawer"
+            ],
+            "failureSummary": "Fix all of the following:\n  aria-label attribute is not well supported on \"div\" elements with no valid role attribute."
+          }
+        ]
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/color-contrast?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "20.3pt (27px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "3:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h1>놀스토리 서재</h1>",
+            "target": [
+              "h1"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>계정</summary>",
+            "target": [
+              ".account-menu-module__0a-q1a__menu > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>온라인 작품</summary>",
+            "target": [
+              ".online-works-panel-module__o0ehtG__menu > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<strong>내 온라인 작품</strong>",
+            "target": [
+              ".online-works-panel-module__o0ehtG__panel > strong"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.2pt (13.6px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p>직접 보관한 작품만 온라인에 저장합니다. 기기의 작품을 자동으로 올리거나 바꾸지 않아요.</p>",
+            "target": [
+              ".online-works-panel-module__o0ehtG__panel > p:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.2pt (13.6px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p>계정 서비스를 확인하지 못했어요. 기기의 작품은 계속 사용할 수 있어요.</p>",
+            "target": [
+              ".online-works-panel-module__o0ehtG__panel > p:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button>로그인 상태 다시 확인</button>",
+            "target": [
+              ".online-works-panel-module__o0ehtG__panel > button"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button class=\"local-bookshelf-module__E5KFCW__introLink\">책 소개</button>",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__introLink"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<select aria-label=\"책 분류\"><option value=\"all\">모든 책</option><option value=\"builtin\">기본 작품</option><option value=\"own\">내 작품</option><option value=\"imported\">가져온 작품</option></select>",
+            "target": [
+              "select[aria-label=\"책 분류\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<main class=\"local-bookshelf-module__E5KFCW__library\" aria-label=\"로컬 서재\" style=\"--room-image-height: 1042.2360248447205px;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__library"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>책 찾기·추가</summary>",
+            "target": [
+              ".local-bookshelf-module__E5KFCW__tools > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">또 다른 이름, 토끼전</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">별주부전</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"별주부전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"별주부전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">진짜와 가짜가 벌이는 기묘한 다툼</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">옹고집전</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"옹고집전 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"옹고집전 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">하늘과 땅 사이에서 이어진 만남과 이별</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">선녀와 나무꾼</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"선녀와 나무꾼 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "3.2pt (4.28512px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span class=\"book-cover-module__IX6-Iq__edition\">원작</span>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "5.5pt (7.325px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__tagline\">흥부와 놀부로 널리 알려진 이야기</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "13.7pt (18.3125px)",
+                  "fontWeight": "bold",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2 class=\"book-cover-module__IX6-Iq__title\" data-font=\"serif\">흥부와 놀부</h2>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "4.7pt (6.26288px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button class=\"local-bookshelf-module__E5KFCW__cover\" data-shelf-cover=\"true\" aria-label=\"흥부와 놀부 책 표지와 소개 보기\">",
+                    "target": [
+                      "button[aria-label=\"흥부와 놀부 책 표지와 소개 보기\"]"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p class=\"book-cover-module__IX6-Iq__author\">전래 이야기 지음</p>",
+            "target": [
+              "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fontSize": "9.0pt (12px)",
+                  "fontWeight": "normal",
+                  "messageKey": "pseudoContent",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"local-bookshelf-module__E5KFCW__bookcases\" style=\"--shelf-columns: 5; --shelf-rows: 2; --shelf-capacity-rows: 2;\">",
+                    "target": [
+                      ".local-bookshelf-module__E5KFCW__bookcases"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element's background color could not be determined due to a pseudo element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span role=\"status\">1 / 1 선반 · 4권</span>",
+            "target": [
+              "span[role=\"status\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined due to a pseudo element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element's background color could not be determined because it is overlapped by another element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<summary>삭제한 작품 복구</summary>",
+            "target": [
+              "body > details > summary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "contrastRatio": 0,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": "bgOverlap",
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element's background color could not be determined because it is overlapped by another element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<p data-testid=\"library-save-status\" role=\"status\">기기에 저장됨</p>",
+            "target": [
+              "p[data-testid=\"library-save-status\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element's background color could not be determined because it is overlapped by another element"
+          }
+        ]
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button aria-label=\"이전 선반\" disabled=\"\">‹</button>",
+            "target": [
+              "button[aria-label=\"이전 선반\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button aria-label=\"다음 선반\" disabled=\"\">›</button>",
+            "target": [
+              "button[aria-label=\"다음 선반\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          }
+        ]
+      }
+    ],
+    "passes": [
+      "aria-allowed-attr",
+      "aria-conditional-attr",
+      "aria-deprecated-role",
+      "aria-hidden-body",
+      "aria-hidden-focus",
+      "aria-prohibited-attr",
+      "aria-required-attr",
+      "aria-roles",
+      "aria-valid-attr-value",
+      "aria-valid-attr",
+      "avoid-inline-spacing",
+      "button-name",
+      "bypass",
+      "color-contrast",
+      "document-title",
+      "form-field-multiple-labels",
+      "html-has-lang",
+      "html-lang-valid",
+      "meta-viewport",
+      "nested-interactive",
+      "select-name",
+      "summary-name",
+      "target-size"
+    ],
+    "version": "4.14.0"
+  },
+  {
+    "name": "writer",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "tags": [
+          "cat.semantics",
+          "wcag21a",
+          "wcag253",
+          "EN-301-549",
+          "EN-9.2.5.3",
+          "RGAAv4",
+          "RGAA-6.1.5"
+        ],
+        "description": "Ensure that elements labelled through their content must have their visible text as part of their accessible name",
+        "help": "Elements must have their visible text as part of their accessible name",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.14/label-content-name-mismatch?application=axeAPI",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button aria-label=\"글 편집\" title=\"글 편집\" aria-pressed=\"true\">글</button>",
+            "target": [
+              "button[aria-label=\"글 편집\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" aria-label=\"미리보기 이전 컷\" title=\"원고 순서의 이전 컷\" disabled=\"\">‹</button>",
+            "target": [
+              "button[aria-label=\"미리보기 이전 컷\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          },
+          {
+            "any": [
+              {
+                "id": "label-content-name-mismatch",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Unable to determine if the visible text is part of the accessible name"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button type=\"button\" aria-label=\"미리보기 다음 컷\" title=\"원고 순서의 다음 컷\" disabled=\"\">›</button>",
+            "target": [
+              "button[aria-label=\"미리보기 다음 컷\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Unable to determine if the visible text is part of the accessible name"
+          }
+        ]
+      }
+    ],
+    "passes": [
+      "aria-allowed-attr",
+      "aria-conditional-attr",
+      "aria-deprecated-role",
+      "aria-hidden-body",
+      "aria-prohibited-attr",
+      "aria-required-attr",
+      "aria-roles",
+      "aria-valid-attr-value",
+      "aria-valid-attr",
+      "avoid-inline-spacing",
+      "button-name",
+      "color-contrast",
+      "document-title",
+      "form-field-multiple-labels",
+      "frame-title-unique",
+      "frame-title",
+      "html-has-lang",
+      "html-lang-valid",
+      "label-content-name-mismatch",
+      "label",
+      "meta-viewport",
+      "nested-interactive",
+      "select-name",
+      "summary-name",
+      "target-size"
+    ],
+    "version": "4.14.0"
+  },
+  {
+    "name": "short-writer",
+    "violations": [],
+    "incomplete": [],
+    "passes": [
+      "aria-allowed-attr",
+      "aria-conditional-attr",
+      "aria-deprecated-role",
+      "aria-hidden-body",
+      "aria-hidden-focus",
+      "aria-prohibited-attr",
+      "aria-required-attr",
+      "aria-roles",
+      "aria-valid-attr-value",
+      "aria-valid-attr",
+      "avoid-inline-spacing",
+      "button-name",
+      "bypass",
+      "color-contrast",
+      "document-title",
+      "form-field-multiple-labels",
+      "html-has-lang",
+      "html-lang-valid",
+      "label",
+      "link-name",
+      "meta-viewport",
+      "nested-interactive",
+      "role-img-alt",
+      "summary-name",
+      "target-size"
+    ],
+    "version": "4.14.0"
+  },
+  {
+    "name": "short-reader",
+    "violations": [],
+    "incomplete": [],
+    "passes": [
+      "aria-allowed-attr",
+      "aria-conditional-attr",
+      "aria-deprecated-role",
+      "aria-hidden-body",
+      "aria-hidden-focus",
+      "aria-prohibited-attr",
+      "aria-required-attr",
+      "aria-roles",
+      "aria-valid-attr-value",
+      "aria-valid-attr",
+      "avoid-inline-spacing",
+      "button-name",
+      "bypass",
+      "color-contrast",
+      "document-title",
+      "form-field-multiple-labels",
+      "html-has-lang",
+      "html-lang-valid",
+      "label",
+      "link-name",
+      "meta-viewport",
+      "nested-interactive",
+      "role-img-alt",
+      "summary-name",
+      "target-size"
+    ],
+    "version": "4.14.0"
+  }
+]

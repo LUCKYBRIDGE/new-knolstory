@@ -1,0 +1,94 @@
+{
+  "checkedAt": "2026-10-16T23:35:47.685400+00:00",
+  "scope": "PC06 real native keyboard-only initial audio activation at390 CSS width for two keys; not full product/AT/physical audio verification",
+  "sourceSha256": {
+    "spikes/renpy-web/bridge.js": "648028244f8e5234930359b15dec605337afde94f23b87eb780f838fd93dbb20",
+    "spikes/renpy-web/bridge.test.ts": "645db643450f7086772f1d3a97347a26b77f0eca2e7d3e254a952d47d05bd33f",
+    "renpy/responsive-spike/game/script.rpy": "4bcc2d651a32e3186fd8715e52a5e8e72a7f9bbb2f6e763317004d9c1d949db1",
+    "spikes/renpy-web/presenter-unit-test.py": "ef02314fbb77cad13ac55daa542cbcc4670dd97e22dce39c7e167b7c361dcb87",
+    "tests/e2e/accessibility-audio-keyboard.spec.ts": "8cb284ea1e01e47dbc883a03abc2aa88a6f07ab5f1c407f5aa53302460fd6327",
+    "playwright.config.ts": "fa497576fc49881d92b9951e5a624dd023963e1b2f84c1e060d9923df315248c",
+    "apps/web/public/runtime/knol-bridge.js": "648028244f8e5234930359b15dec605337afde94f23b87eb780f838fd93dbb20",
+    "apps/web/public/runtime/game.zip": "6714d677376eb8f0da942c45555ffe6341a7c20d195be322b46d2124d629209c",
+    "apps/web/out/index.html": "5008e1ff287587da0d1d27105e425c04a104e69e6295ec684bcfa22d38782917"
+  },
+  "verification": {
+    "native": {
+      "passed": 2,
+      "log": "observed.log",
+      "artifacts": "observed-run",
+      "results": [
+        {
+          "key": "Space",
+          "tabCount": 1,
+          "canvasFocused": true,
+          "audioContext": {
+            "state": "running",
+            "sampleRate": 48000,
+            "currentTime": 1.5466666666666666,
+            "observedContexts": 1
+          },
+          "musicStartCount": "1",
+          "unlocked": true,
+          "initialScenePreserved": true,
+          "canvasRestored": {
+            "tabindex": "-1",
+            "role": null,
+            "label": null
+          }
+        },
+        {
+          "key": "Enter",
+          "tabCount": 1,
+          "canvasFocused": true,
+          "audioContext": {
+            "state": "running",
+            "sampleRate": 48000,
+            "currentTime": 1.36,
+            "observedContexts": 1
+          },
+          "musicStartCount": "1",
+          "unlocked": true,
+          "initialScenePreserved": true,
+          "canvasRestored": {
+            "tabindex": "-1",
+            "role": null,
+            "label": null
+          }
+        }
+      ],
+      "instrumentation": "No runtime interception or synthesized click. AudioContext constructor Proxy observes real contexts without replacing behavior/resume. Sequential Tab from host keyboard entry, one trusted native key."
+    },
+    "bridge": {
+      "passed": 12,
+      "log": "bridge-final-green.log",
+      "coverageLimit": "VM script not instrumented; bridge-coverage.log has 0% and fails80% thresholds. Not claimed covered80%."
+    },
+    "presenter": {
+      "passed": 19,
+      "log": "presenter-repaired.log",
+      "scope": "Actual Python unlock helper idempotence and unchanged scene/seq/revision; current engine mocks repaired; original bytes/path tests retained."
+    },
+    "builds": [
+      "runtime-build.log",
+      "web-build.log"
+    ],
+    "lint": "lint-observed.log",
+    "review": "Read-only independent review found no additional P1/P2 in changed scope."
+  },
+  "retainedFailures": {
+    "initial.log": "Actual prior native Enter/Space cannotunlock, initial-run retained.",
+    "final.log": "After implementation real unlock/count/Tab passed but internal SDK AudioContext global lookup unavailable; final-run retained.",
+    "bridge-red.log": "Invalid initial test fixture missing version/fade fields, not trustworthy productRED.",
+    "bridge-green.log": "Same incomplete fixture; not green.",
+    "bridge-valid-green.log": "Fixture still missingversion, not green.",
+    "bridge-coverage.log": "12tests pass but VM coverage0%, threshold failure.",
+    "presenter-unit.log": "18tests/2errors due stale engine mocks, repaired separately."
+  },
+  "limits": [
+    "Two keys and one original first scene at390 CSS viewport.",
+    "No real screen reader/voice/physicaldevice, listening quality or full keyboard runtime audit.",
+    "Full native playback regression not rerun; focused changed gate only.",
+    "No StoryDocument/Flow/asset/palette/storage/API changes."
+  ]
+}

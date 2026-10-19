@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-16T23:00:51.259348+00:00",
+  "scope": "PC06 one builtin original service text/control reflow at three CSS viewports, not actual browser zoom",
+  "sourceSha256": {
+    "apps/web/components/library-book-focus.module.css": "f69e515e0875b6185a742c450995de51c39bf1335fcaa53744e7aaf1b8167b0c",
+    "tests/e2e/accessibility-reflow.spec.ts": "e87344495aabc8ed66cd50a1a973337c9049876fce9238191e60210ca172e51e",
+    "playwright.config.ts": "e67ac2c08a1bce9d758c5da4a05036b9c1da52210da05b658a2ed6a2511c8f55",
+    "apps/web/out/index.html": "22681ae13e0f86d640f5bf2de9a2e8c037a643c68a673a44585e3553a7e6ae27"
+  },
+  "change": "Removed only two short-height hide declarations for focus metadata and edition help; vertical scrolling retained. No authored content/cover layout mutation.",
+  "verification": {
+    "browser": {
+      "passed": 3,
+      "log": "final.log",
+      "viewports": [
+        {
+          "width": 320,
+          "height": 256,
+          "surfaces": 4,
+          "focusHorizontalOverflow": false
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "surfaces": 4,
+          "focusHorizontalOverflow": false
+        },
+        {
+          "width": 320,
+          "height": 740,
+          "surfaces": 4,
+          "focusHorizontalOverflow": false
+        }
+      ],
+      "scope": "Meta headings/paragraphs/author and edition help CSS visible; focus horizontal overflow and active controls trial actionability/x bounds after opening tools; start document overflow and active controls trial actionability; actual original-start and library return; whole selected project/works comparison and prior-work preservation."
+    },
+    "build": "build.log",
+    "lint": "lint.log",
+    "artifacts": "final-artifacts"
+  },
+  "initialEvidence": {
+    "log": "initial.log",
+    "actualProductFailure": "640x360 edition-help Received:hidden; code and observed initial raw also showed description/author/modified hidden.",
+    "fixtureErrors": "Initial meta relative locator wrongly nested dialog; initial prior works equality wrongly rejected intended builtin selection registration. Corrected before final.",
+    "artifactLoss": "Original initial-artifacts were removed by worker accidentally starting corrected test with same output path. Original images/traces/raw are unavailable; do not claim retained. Interrupted corrected run artifacts are diagnostic only; initial-corrected.log not pass evidence.",
+    "duplicateLog": "initial-locator-diagnostic.log"
+  },
+  "limits": [
+    "Only seonnyeo original default content; arbitrary long authored metadata not verified.",
+    "CSS visibility is not proof all text pixels unclipped or every long document reflows.",
+    "Viewport layout equivalents are not real Chrome zoom/text-only resizing/screen reader/physical-device evidence.",
+    "No runtime/auth/DB/deploy changes; full product remains incomplete."
+  ],
+  "review": "Read-only independent reviewer found no additional P1/P2 within narrow stated scope; highlighted visibility/long-content limits retained."
+}

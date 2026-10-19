@@ -1,0 +1,54 @@
+[WebServer] (node:24834) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24847) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24863) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:24869) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:24899) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/non-audio-transition.spec.ts:5:1 › author controls confirm transition and look intensity without changing manuscript or placement (6.5s)
+
+
+  1) [host] › tests/e2e/non-audio-transition.spec.ts:5:1 › author controls confirm transition and look intensity without changing manuscript or placement 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-transition.spec.ts:7:109
+
+    Error Context: test-results/non-audio-transition-autho-99396-ing-manuscript-or-placement-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-transition-autho-99396-ing-manuscript-or-placement-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-transition-autho-99396-ing-manuscript-or-placement-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/non-audio-transition.spec.ts:5:1 › author controls confirm transition and look intensity without changing manuscript or placement 

@@ -1,0 +1,8 @@
+
+Running 2 tests using 1 worker
+
+(node:98605) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work (50.3s)
+(node:98993) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

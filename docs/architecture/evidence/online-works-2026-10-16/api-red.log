@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/document-api.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/document-api.test.ts [ apps/web/lib/document-api.test.ts ]
+Error: Cannot find module './document-api' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/document-api.test.ts
+ ❯ apps/web/lib/document-api.test.ts:4:1
+      2| import {createAuthoringArchive,prepareJsonbSnapshot} from '@knolstory/…
+      3| import {newShortStory} from '@knolstory/compatibility';
+      4| import {documentCreate,documentSave,documentRead,documentList} from '.…
+       | ^
+      5| const id='12345678-1234-4123-8123-123456789012';
+      6| const meta={recordId:id,revision:1,format:'shortstory',clientProjectId…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:30:49
+   Duration  847ms (transform 516ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

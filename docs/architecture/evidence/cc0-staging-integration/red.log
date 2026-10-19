@@ -1,0 +1,57 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-contract/tests/service-audio.test.ts (2 tests | 2 failed) 4ms
+   × accepts versioned catalogue audio without admitting traversal or external paths 3ms
+   × binds service byte delivery to referenced scene paths and validates hashes and size 0ms
+ ❯ packages/asset-registry/tests/staged-audio.test.ts (1 test | 1 failed) 3ms
+   × adds the unique staged library while retaining old IDs and resolving byte-identical aliases 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/asset-registry/tests/staged-audio.test.ts > adds the unique staged library while retaining old IDs and resolving byte-identical aliases
+AssertionError: expected [ { …(10) }, …(60) ] to have a length of 530 but got 61
+
+- Expected
++ Received
+
+- 530
++ 61
+
+ ❯ packages/asset-registry/tests/staged-audio.test.ts:4:24
+      2| import {AUDIO_CATALOG,resolveAudioAsset,searchAudioAssets} from '../sr…
+      3| it('adds the unique staged library while retaining old IDs and resolvi…
+      4|  expect(AUDIO_CATALOG).toHaveLength(530);
+       |                        ^
+      5|  expect(resolveAudioAsset('audio.cc0.kenney-rpg.bookclose')).toBe(reso…
+      6|  expect(resolveAudioAsset('audio.cc0.kenney-impact.footstep-carpet-002…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  packages/runtime-contract/tests/service-audio.test.ts > accepts versioned catalogue audio without admitting traversal or external paths
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/runtime-contract/tests/service-audio.test.ts:5:35
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  packages/runtime-contract/tests/service-audio.test.ts > binds service byte delivery to referenced scene paths and validates hashes and size
+TypeError: isRuntimeServiceAudioResources is not a function
+ ❯ packages/runtime-contract/tests/service-audio.test.ts:11:9
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed (3)
+   Start at  18:25:00
+   Duration  145ms (transform 52ms, setup 0ms, import 68ms, tests 7ms, environment 0ms)
+

@@ -1,0 +1,138 @@
+[WebServer] (node:59593) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:59594) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:59600) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 3 tests using 1 worker
+
+(node:59646) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/3] tests/e2e/storage-recovery.spec.ts:10:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+  1) tests/e2e/storage-recovery.spec.ts:10:1 › previous manuscript opens as independent copy; both revisions survive reload and file export 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('preparation-save-status')
+    Expected: "기기에 저장됨"
+    Received: "저장 중"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('preparation-save-status') with timeout 5000ms
+      - waiting for getByTestId('preparation-save-status')
+        14 × locator resolved to <p role="status" data-testid="preparation-save-status">저장 중</p>
+           - unexpected value "저장 중"
+
+
+       5 |  await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
+       6 |  await page.getByLabel('새 작품 제목',{exact:true}).fill(title);await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
+    >  7 |  await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+         |                                                            ^
+       8 | }
+       9 | async function records(page:Page){await page.getByText('작품 복구 기록',{exact:true}).click();}
+      10 | test('previous manuscript opens as independent copy; both revisions survive reload and file export',async({page})=>{
+        at create (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:7:60)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:11:2
+
+    Error Context: test-results/storage-recovery-previous--a1e6c-vive-reload-and-file-export/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/storage-recovery-previous--a1e6c-vive-reload-and-file-export/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/storage-recovery-previous--a1e6c-vive-reload-and-file-export/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:59723) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/3] tests/e2e/storage-recovery.spec.ts:24:1 › second tab draft cannot overwrite first tab, even when using manual save
+  2) tests/e2e/storage-recovery.spec.ts:24:1 › second tab draft cannot overwrite first tab, even when using manual save 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('preparation-save-status')
+    Expected: "기기에 저장됨"
+    Received: "저장 중"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('preparation-save-status') with timeout 5000ms
+      - waiting for getByTestId('preparation-save-status')
+        14 × locator resolved to <p role="status" data-testid="preparation-save-status">저장 중</p>
+           - unexpected value "저장 중"
+
+
+       5 |  await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
+       6 |  await page.getByLabel('새 작품 제목',{exact:true}).fill(title);await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
+    >  7 |  await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+         |                                                            ^
+       8 | }
+       9 | async function records(page:Page){await page.getByText('작품 복구 기록',{exact:true}).click();}
+      10 | test('previous manuscript opens as independent copy; both revisions survive reload and file export',async({page})=>{
+        at create (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:7:60)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:25:2
+
+    Error: apiRequestContext._wrapApiCall: ENOENT: no such file or directory, copyfile '/Users/wan/ai_dev/apps/new-knolstory/test-results/.playwright-artifacts-1/traces/695384c4e23ea1a150cf-8c00af7f7ebed90e6a6b-recording1.network' -> '/Users/wan/ai_dev/apps/new-knolstory/test-results/.playwright-artifacts-1/traces/695384c4e23ea1a150cf-8c00af7f7ebed90e6a6b-recording1-pwnetcopy-1.network'
+
+    Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/Users/wan/ai_dev/apps/new-knolstory/test-results/.playwright-artifacts-1/traces/695384c4e23ea1a150cf-8c00af7f7ebed90e6a6b.trace'
+
+    Error: ENOENT: no such file or directory, open '/Users/wan/ai_dev/apps/new-knolstory/test-results/.playwright-artifacts-1/3c2abecf9cc6a7d4713f77697780847a.zip'
+
+
+(node:59749) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[3/3] tests/e2e/storage-recovery.spec.ts:35:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+  3) tests/e2e/storage-recovery.spec.ts:35:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('preparation-save-status')
+    Expected: "기기에 저장됨"
+    Received: "저장 중"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('preparation-save-status') with timeout 5000ms
+      - waiting for getByTestId('preparation-save-status')
+        14 × locator resolved to <p role="status" data-testid="preparation-save-status">저장 중</p>
+           - unexpected value "저장 중"
+
+
+       5 |  await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
+       6 |  await page.getByLabel('새 작품 제목',{exact:true}).fill(title);await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
+    >  7 |  await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+         |                                                            ^
+       8 | }
+       9 | async function records(page:Page){await page.getByText('작품 복구 기록',{exact:true}).click();}
+      10 | test('previous manuscript opens as independent copy; both revisions survive reload and file export',async({page})=>{
+        at create (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:7:60)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:36:2
+
+    Error Context: test-results/storage-recovery-corrupt-s-648fc-th-checkpoint-copy-retained/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/storage-recovery-corrupt-s-648fc-th-checkpoint-copy-retained/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/storage-recovery-corrupt-s-648fc-th-checkpoint-copy-retained/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  3 failed
+    tests/e2e/storage-recovery.spec.ts:10:1 › previous manuscript opens as independent copy; both revisions survive reload and file export 
+    tests/e2e/storage-recovery.spec.ts:24:1 › second tab draft cannot overwrite first tab, even when using manual save 
+    tests/e2e/storage-recovery.spec.ts:35:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained 

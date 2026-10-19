@@ -1,0 +1,17 @@
+knolstory: offline opening book
+knolstory: offline export clicked
+shortstory: offline save
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.waitForEvent: Timeout 60000ms exceeded while waiting for event "download"
+=========================== logs ===========================
+waiting for event "download"
+============================================================
+    at /Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-online-trash-browser.mjs:42:26 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v22.23.3

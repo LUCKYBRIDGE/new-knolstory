@@ -1,0 +1,81 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/book-cover.test.ts (45 tests | 4 failed) 17ms
+     × uses readable default ink on forest paper without changing the full cover 3ms
+     × uses readable default ink on night paper without changing the full cover 1ms
+     × uses readable default ink on rose paper without changing the full cover 0ms
+     × uses readable default ink on cream paper without changing the full cover 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > uses readable default ink on forest paper without changing the full cover
+AssertionError: expected '#d7bb79' to be '#fff4d8' // Object.is equality
+
+Expected: "#fff4d8"
+Received: "#d7bb79"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:23
+    129|   const theme=COVER_THEMES[themeId],project={...blank(),cover:{...DEFA…
+    130|   const compact=resolveBookCover(project,'front',{compact:true}),full=…
+    131|   expect(compact.ink).toBe(theme.ink);expect(contrastRatio(compact.ink…
+       |                       ^
+    132|   expect(full.ink).toBe(theme.accent);expect(resolveBookCover(project,…
+    133|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > uses readable default ink on night paper without changing the full cover
+AssertionError: expected '#dfbe77' to be '#f5eddd' // Object.is equality
+
+Expected: "#f5eddd"
+Received: "#dfbe77"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:23
+    129|   const theme=COVER_THEMES[themeId],project={...blank(),cover:{...DEFA…
+    130|   const compact=resolveBookCover(project,'front',{compact:true}),full=…
+    131|   expect(compact.ink).toBe(theme.ink);expect(contrastRatio(compact.ink…
+       |                       ^
+    132|   expect(full.ink).toBe(theme.accent);expect(resolveBookCover(project,…
+    133|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > uses readable default ink on rose paper without changing the full cover
+AssertionError: expected '#efc193' to be '#fff1dc' // Object.is equality
+
+Expected: "#fff1dc"
+Received: "#efc193"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:23
+    129|   const theme=COVER_THEMES[themeId],project={...blank(),cover:{...DEFA…
+    130|   const compact=resolveBookCover(project,'front',{compact:true}),full=…
+    131|   expect(compact.ink).toBe(theme.ink);expect(contrastRatio(compact.ink…
+       |                       ^
+    132|   expect(full.ink).toBe(theme.accent);expect(resolveBookCover(project,…
+    133|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > uses readable default ink on cream paper without changing the full cover
+AssertionError: expected '#866b40' to be '#342b26' // Object.is equality
+
+Expected: "#342b26"
+Received: "#866b40"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:23
+    129|   const theme=COVER_THEMES[themeId],project={...blank(),cover:{...DEFA…
+    130|   const compact=resolveBookCover(project,'front',{compact:true}),full=…
+    131|   expect(compact.ink).toBe(theme.ink);expect(contrastRatio(compact.ink…
+       |                       ^
+    132|   expect(full.ink).toBe(theme.accent);expect(resolveBookCover(project,…
+    133|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 41 passed (45)
+   Start at  00:32:55
+   Duration  466ms (transform 251ms, setup 0ms, import 357ms, tests 17ms, environment 0ms)
+

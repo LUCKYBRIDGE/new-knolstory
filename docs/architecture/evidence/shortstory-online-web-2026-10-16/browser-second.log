@@ -1,0 +1,47 @@
+
+Running 5 tests using 1 worker
+
+(node:50204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 1440 (741ms)
+  ✓  2 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 390 (692ms)
+  ✓  3 tests/e2e/shortstory-online.spec.ts:25:1 › ShortStory composition, cover drafts and failed local storage block online writes (670ms)
+  ✓  4 tests/e2e/shortstory-online.spec.ts:31:1 › ShortStory delayed online validation cannot revive a deleted book or replace its checkpoint (753ms)
+  ✘  5 tests/e2e/shortstory-online.spec.ts:36:1 › ShortStory login callback returns to the active book and page without writing KnolStory storage (6.1s)
+
+
+  1) tests/e2e/shortstory-online.spec.ts:36:1 › ShortStory login callback returns to the active book and page without writing KnolStory storage 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('이 쪽의 이야기', { exact: true })
+    Expected: "두 번째 쪽의 원고"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('이 쪽의 이야기', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('이 쪽의 이야기', { exact: true })
+
+
+      35 | });
+      36 | test('ShortStory login callback returns to the active book and page without writing KnolStory storage',async({page})=>{
+    > 37 |  await harness(page);await page.route('**/api/v1/me',route=>route.fulfill({status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}}));await page.route('**/api/v1/auth/kakao/start',route=>route.fulfill({status:302,headers:{location:'/?auth=success'}}));await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('로그인 전 그림책');await page.getByRole('button',{name:'현재 쪽 뒤에 빈 쪽 추가',exact:true}).click();await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('두 번째 쪽의 원고');const before=await local(page);await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('button',{name:'카카오로 가입·로그인',exact:true})).toBeEnabled();await page.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(page).toHaveURL(/\/shortstory/);await expect(page.getByLabel('이 쪽의 이야기',{exact:true})).toHaveValue('두 번째 쪽의 원고');expect((await local(page)).books).toEqual(before.books);expect((await local(page)).positions).toEqual(before.positions);expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBeNull();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+      38 | });
+      39 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/shortstory-online.spec.ts:37:840
+
+    Error Context: test-results/shortstory-online/shortstory-online-ShortSto-b01ee-t-writing-KnolStory-storage/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/shortstory-online/shortstory-online-ShortSto-b01ee-t-writing-KnolStory-storage/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/shortstory-online/shortstory-online-ShortSto-b01ee-t-writing-KnolStory-storage/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/shortstory-online.spec.ts:36:1 › ShortStory login callback returns to the active book and page without writing KnolStory storage 
+  4 passed (9.5s)

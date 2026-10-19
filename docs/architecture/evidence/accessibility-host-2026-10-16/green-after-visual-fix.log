@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:81842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 1440 (2.3s)
+  ✓  2 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 390 (2.3s)
+  ✓  3 tests/e2e/accessibility.spec.ts:23:1 › bookshelf drawer exposes its existing label through a supported group role (564ms)
+
+  3 passed (5.6s)

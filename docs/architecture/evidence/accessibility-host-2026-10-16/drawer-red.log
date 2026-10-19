@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+(node:81281) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/accessibility.spec.ts:23:1 › bookshelf drawer exposes its existing label through a supported group role (5.7s)
+
+
+  1) tests/e2e/accessibility.spec.ts:23:1 › bookshelf drawer exposes its existing label through a supported group role 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('group', { name: '책장 서랍', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('group', { name: '책장 서랍', exact: true }) with timeout 5000ms
+      - waiting for getByRole('group', { name: '책장 서랍', exact: true })
+
+
+      22 | });
+      23 | test('bookshelf drawer exposes its existing label through a supported group role',async({page})=>{
+    > 24 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');await expect(page.getByRole('group',{name:'책장 서랍',exact:true})).toBeVisible();
+         |                                                                                                                                                                                ^
+      25 | });
+      26 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility.spec.ts:24:176
+
+    Error Context: test-results/accessibility/accessibility-bookshelf-dr-d9e5c-ough-a-supported-group-role/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-bookshelf-dr-d9e5c-ough-a-supported-group-role/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-bookshelf-dr-d9e5c-ough-a-supported-group-role/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/accessibility.spec.ts:23:1 › bookshelf drawer exposes its existing label through a supported group role 

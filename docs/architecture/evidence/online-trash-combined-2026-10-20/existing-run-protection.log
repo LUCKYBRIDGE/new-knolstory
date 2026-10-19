@@ -1,0 +1,14 @@
+node:internal/fs/promises:858
+  return await PromisePrototypeThen(
+         ^
+
+Error: EEXIST: file already exists, mkdir 'docs/architecture/evidence/online-trash-combined-2026-10-20/reviewed-complete'
+    at async mkdir (node:internal/fs/promises:858:10)
+    at async file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-online-trash-browser.mjs:9:73 {
+  errno: -17,
+  code: 'EEXIST',
+  syscall: 'mkdir',
+  path: 'docs/architecture/evidence/online-trash-combined-2026-10-20/reviewed-complete'
+}
+
+Node.js v22.23.3

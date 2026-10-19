@@ -1,0 +1,15 @@
+tests/e2e/native-diagnostics.ts(20,11): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(event: "close", listener: (cdpSession: CDPSession) => any): CDPSession', gave the following error.
+    Argument of type '"Debugger.paused"' is not assignable to parameter of type '"close"'.
+  Overload 2 of 3, '(event: "event", listener: (data: { method: string; params?: Object | undefined; }) => any): CDPSession', gave the following error.
+    Argument of type '"Debugger.paused"' is not assignable to parameter of type '"event"'.
+  Overload 3 of 3, '(event: "Debugger.paused", listener: (payload: pausedPayload) => void): CDPSession', gave the following error.
+    Argument of type '(event: { reason: string; data?: Record<string, unknown>; callFrames: { functionName: string; location: { scriptId: string; lineNumber: number; columnNumber: number; }; }[]; }) => void' is not assignable to parameter of type '(payload: pausedPayload) => void'.
+      Types of parameters 'event' and 'payload' are incompatible.
+        Type 'pausedPayload' is not assignable to type '{ reason: string; data?: Record<string, unknown> | undefined; callFrames: { functionName: string; location: { scriptId: string; lineNumber: number; columnNumber: number; }; }[]; }'.
+          Types of property 'callFrames' are incompatible.
+            Type 'CallFrame[]' is not assignable to type '{ functionName: string; location: { scriptId: string; lineNumber: number; columnNumber: number; }; }[]'.
+              Type 'CallFrame' is not assignable to type '{ functionName: string; location: { scriptId: string; lineNumber: number; columnNumber: number; }; }'.
+                The types of 'location.columnNumber' are incompatible between these types.
+                  Type 'number | undefined' is not assignable to type 'number'.
+                    Type 'undefined' is not assignable to type 'number'.

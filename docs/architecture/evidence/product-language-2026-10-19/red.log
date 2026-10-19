@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:8321) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editor-term-guide.spec.ts:56:1 › current vocabulary distinguishes work files, browser recovery and optional companion views (5.6s)
+
+
+  1) tests/e2e/editor-term-guide.spec.ts:56:1 › current vocabulary distinguishes work files, browser recovery and optional companion views 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '편집 용어 안내', exact: true }).locator('dt').filter({ hasText: '기본편집' }).first()
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '편집 용어 안내', exact: true }).locator('dt').filter({ hasText: '기본편집' }).first() with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '편집 용어 안내', exact: true }).locator('dt').filter({ hasText: '기본편집' }).first()
+
+
+      62 |  const search=dialog.getByRole('searchbox',{name:'용어 검색',exact:true});
+      63 |  for(const term of ['기본편집','글 편집','배경 편집','인물 편집','음향 편집','연출 편집','함께 보기','작업파일 저장','온라인 업로드','브라우저 복구본']){
+    > 64 |   await search.fill(term);await expect(dialog.locator('dt').filter({hasText:term}).first()).toBeVisible();
+         |                                                                                             ^
+      65 |  }
+      66 |  await search.fill('Flow');
+      67 |  await expect(dialog.locator('dt')).toContainText('이야기 진행');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:64:93
+
+    Error Context: docs/architecture/evidence/product-language-2026-10-19/red-run/editor-term-guide-current--ffe34-nd-optional-companion-views/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/product-language-2026-10-19/red-run/editor-term-guide-current--ffe34-nd-optional-companion-views/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/product-language-2026-10-19/red-run/editor-term-guide-current--ffe34-nd-optional-companion-views/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editor-term-guide.spec.ts:56:1 › current vocabulary distinguishes work files, browser recovery and optional companion views 

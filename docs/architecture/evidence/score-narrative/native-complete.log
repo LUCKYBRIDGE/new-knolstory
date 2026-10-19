@@ -1,0 +1,15 @@
+
+Running 6 tests using 1 worker
+
+(node:73929) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/6] [stories-runtime] › tests/e2e/score-narrative.spec.ts:6:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening
+[2/6] [stories-runtime] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-story.knolstory
+[3/6] [stories-runtime] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 390 score-story.knolstory
+[4/6] [stories-runtime] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-excel-edited.xlsx
+[5/6] [stories-runtime] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-google-edited.xlsx
+[6/6] [stories-runtime] › tests/e2e/score-narrative.spec.ts:23:1 › invalid score references are rejected without replacing the current work and a valid file can be opened afterward
+  2 skipped
+  4 passed (53.3s)

@@ -1,0 +1,65 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:04] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:86026) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/0hhst3mw2pwgi.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:05] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:08] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:08] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:08] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:08] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:08] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:45:08] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/file-actions.spec.ts:4:39 › settings share one work menu and clear file actions 1440 (6.1s)
+
+
+  1) [host] › tests/e2e/file-actions.spec.ts:4:39 › settings share one work menu and clear file actions 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-work-menu]').getByRole('button', { name: '기기에 저장', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-work-menu]').getByRole('button', { name: '기기에 저장', exact: true }) with timeout 5000ms
+      - waiting for locator('[data-work-menu]').getByRole('button', { name: '기기에 저장', exact: true })
+
+
+      3 | import {enterLibrary,openBuiltinEdition} from './library-entry';
+      4 | for(const width of [1440,768,390,844])test(`settings share one work menu and clear file actions ${width}`,async({page},info)=>{
+    > 5 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const original=await page.getByLabel('대사 / 해설',{exact:true}).inputValue(),lineId=await page.getByLabel('현재 장과 컷 이동').inputValue(),frame=await page.getByTestId('story-runtime-frame').elementHandle();const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await expect(menu.getByRole('button',{name:'기기에 저장',exact:true})).toBeVisible();await menu.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(menu).toHaveCount(1);await expect(page.getByRole('region',{name:'작품 설정',exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'작품 파일 내보내기',exact:true})).toHaveCount(0);await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('작품 설정 항목')).toHaveValue('planning');await page.getByLabel('핵심 아이디어',{exact:true}).fill('파일과 기기 저장의 목적을 구분한다.');await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'기기에 저장',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');await menu.getByText('작품 복구 기록',{exact:true}).click();await menu.getByRole('button',{name:'현재 원고 기록하기',exact:true}).click();const recorded=page.waitForEvent('download');await menu.getByRole('button',{name:'기록 파일 내보내기',exact:true}).click();const snapshot=JSON.parse(readFileSync((await (await recorded).path())!,'utf8'));expect(snapshot.document.project.planning.premise).toBe('파일과 기기 저장의 목적을 구분한다.');await page.keyboard.press('Escape');await expect(menu.locator(':scope>summary')).toBeFocused();await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(lineId);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await menu.locator(':scope>summary').click();const exported=page.waitForEvent('download');await menu.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const saved=JSON.parse(readFileSync((await (await exported).path())!,'utf8'));expect(saved.document.project.lines).toEqual(snapshot.document.project.lines);expect(saved.document.project.chapters).toEqual(snapshot.document.project.chapters);await page.reload();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await menu.locator(':scope>summary').click();await page.screenshot({path:info.outputPath(`file-menu-${width}.png`),fullPage:true});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^
+      6 | });
+      7 | test('selected book exports through the same named file action',async({page})=>{
+      8 |  await page.goto('/');await enterLibrary(page);const download=page.waitForEvent('download');await openBuiltinEdition(page,'seonnyeo','original','export');const file=await download;expect(file.suggestedFilename()).toMatch(/\.knolstory$/);const saved=JSON.parse(readFileSync((await file.path())!,'utf8'));expect(saved.format).toBe('knolstory');expect(saved.document.project.lines.length).toBeGreaterThan(0);await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/file-actions.spec.ts:5:519
+
+    Error Context: test-results/file-actions-settings-shar-d0198-and-clear-file-actions-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/file-actions.spec.ts:4:39 › settings share one work menu and clear file actions 1440 

@@ -1,0 +1,20 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/asset-registry/tests/catalog-media-policy.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/asset-registry/tests/catalog-media-policy.test.ts [ packages/asset-registry/tests/catalog-media-policy.test.ts ]
+Error: Cannot find module '../src/catalog-media-policy' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/asset-registry/tests/catalog-media-policy.test.ts
+ ❯ packages/asset-registry/tests/catalog-media-policy.test.ts:3:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:19:46
+   Duration  363ms (transform 165ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

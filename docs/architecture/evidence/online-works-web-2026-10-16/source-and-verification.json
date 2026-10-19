@@ -1,0 +1,87 @@
+{
+  "sourceSha256": {
+    "apps/web/components/online-works-panel.tsx": "83743cf5c11e33930545c754f85f5fd604d4a9c146b5989723404130a819c2da",
+    "apps/web/components/online-works-panel.module.css": "e0895fba13aae2af337d565707d29ab2c1cc8c01aeacbd845e6e2eb1dee46c75",
+    "apps/web/components/story-workspace.tsx": "881548dfa4996b2d5281b755d30884b4e799b5be53a3004f3f6dd8c1b1db391d",
+    "tests/e2e/online-works.spec.ts": "204f9e1ff563e871dbd3b7e32852eefeb3ccb4129b88a6668daf0c597ea5e5ef",
+    "playwright.config.ts": "7c1698e0497324acac065fdfa56203085c86cdb6a70b49ae4b9fabe100848ce3",
+    "tests/e2e/account-menu.spec.ts": "d172724ae9c79f4a794e286339fc1c45fc7378a938389beadde41107d6be9a2d",
+    "apps/web/components/use-account-session.ts": "120613154086a7152deb9c187d9db0204e88d97959100c387ba570eb4f43cb9d",
+    "apps/web/lib/document-api.ts": "482d77f9493ccca3c9b560a2d5031d37249f151345da55d9412a2b27e688d563",
+    "apps/web/lib/online-work-bindings.ts": "b6a2515b2483c4f5c572b5104ef0ee940195c101acc318964e8e622ab1f5ba41"
+  },
+  "owner": "Web online bookshelf panel and workspace wiring only; document-api/bindings/hook shared changes parent-owned",
+  "commands": [
+    "pnpm exec playwright test --config=.cache/online-works-playwright.config.ts",
+    "pnpm exec playwright test --config=.cache/online-works-playwright.config.ts --grep response-lost",
+    "pnpm exec playwright test --config=.cache/online-works-playwright.config.ts --grep revision conflicts",
+    "pnpm exec playwright test --config=.cache/online-works-playwright.config.ts --grep logout invalidates",
+    "pnpm --filter @knolstory/web typecheck",
+    "pnpm exec eslint apps/web/components/online-works-panel.tsx apps/web/components/story-workspace.tsx tests/e2e/online-works.spec.ts playwright.config.ts"
+  ],
+  "results": {
+    "browser-first.log": {
+      "passed": 4,
+      "scope": "desktop/phone explicitcreate, independentcopy, remoteID-boundPUT and originalpreservation; late-readunmount; quota-noPOST"
+    },
+    "retry.log": {
+      "passed": 1,
+      "scope": "POST response lost thenreload retries identicalidempotencykey+snapshot"
+    },
+    "conflict.log": {
+      "passed": 1,
+      "scope": "409 onePUT leaveslocaloriginal and offerscompare"
+    },
+    "logout-first.log": {
+      "failed": 1,
+      "scope": "RED before cross-instance sessionlogoutbroadcast"
+    },
+    "logout-final.log": {
+      "passed": 1,
+      "scope": "logout broadcastinvalidatespendingread beforecopy"
+    },
+    "typecheck-final.log": "passed",
+    "lint-final.log": "passed",
+    "browser-final.log": {
+      "passed": 8,
+      "scope": "one final candidate run of all new online work host tests, after parent generation and session fixes"
+    },
+    "deletion-race.log": {
+      "failed": 1,
+      "scope": "RED paused root validation during same-view deletion; old callback lost deletion checkpoint"
+    },
+    "deletion-green.log": {
+      "passed": 1,
+      "scope": "exact RED reproduced then parent workspace generation guard preserved deleted-work checkpoint"
+    },
+    "account-logout-impact.log": {
+      "passed": 1,
+      "failed": 1,
+      "scope": "390 login/logout preservation passed; old focus test exact request-count assertion failed after legitimate second hook refresh"
+    },
+    "account-focus-final.log": {
+      "passed": 1,
+      "scope": "focus/logout invariant rechecked with anonymous401 and session UI, no request-count implementation assumption"
+    },
+    "account-isolation-red-second.log": {
+      "failed": 1,
+      "scope": "MutationObserver captured previous A title in first enabled frame after session changed to B"
+    },
+    "account-isolation-green.log": {
+      "passed": 1,
+      "scope": "loadedOwner and loading render gate removes A title before B frame; B list refresh independent"
+    },
+    "account-isolation-red.log": {
+      "passed": 1,
+      "scope": "initial observer selected any disabled button and missed transient; corrected test above is actual RED"
+    },
+    "account-isolation-types.log": "passed",
+    "account-isolation-lint.log": "passed"
+  },
+  "limits": [
+    "Mocked HTTP boundaries, not actual PostgreSQL/provider test",
+    "KnolStory personal works only; remote ShortStory entries are labeled pending and cannotopen here",
+    "No automatic upload, overwrite, forced revision, deletion or sharing",
+    "No broad runtime rebuild or native rerun"
+  ]
+}

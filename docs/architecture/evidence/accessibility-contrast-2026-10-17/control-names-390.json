@@ -1,0 +1,55 @@
+{
+  "width": 390,
+  "scope": "DOM accessible names and explicit programmatic focus plus Enter; no screen-reader, sequential Tab order or voice claims",
+  "controls": [
+    {
+      "role": "button",
+      "visibleText": "글",
+      "expectedName": "글 편집",
+      "computedAriaSnapshot": "- button \"글 편집\" [pressed]: 글",
+      "enabled": true
+    },
+    {
+      "role": "button",
+      "visibleText": "‹",
+      "expectedName": "미리보기 이전 컷",
+      "computedAriaSnapshot": "- button \"미리보기 이전 컷\" [disabled]: ‹",
+      "enabled": false
+    },
+    {
+      "role": "button",
+      "visibleText": "›",
+      "expectedName": "미리보기 다음 컷",
+      "computedAriaSnapshot": "- button \"미리보기 다음 컷\": ›",
+      "enabled": true
+    },
+    {
+      "role": "button",
+      "visibleText": "‹",
+      "expectedName": "이전 선반",
+      "computedAriaSnapshot": "- button \"이전 선반\" [disabled]: ‹",
+      "enabled": false
+    },
+    {
+      "role": "button",
+      "visibleText": "›",
+      "expectedName": "다음 선반",
+      "computedAriaSnapshot": "- button \"다음 선반\": ›",
+      "enabled": true
+    }
+  ],
+  "actions": {
+    "preview": {
+      "first": "P1-v166-1",
+      "second": "P1-v166-2",
+      "returned": "P1-v166-1",
+      "authoredPreserved": true
+    },
+    "shelf": {
+      "initialPage": "1 / 2 선반 · 7권",
+      "advancedPage": "2 / 2 선반 · 7권",
+      "returnedPage": "1 / 2 선반 · 7권",
+      "authoredPreserved": true
+    }
+  }
+}

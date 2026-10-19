@@ -17,3 +17,75 @@ describe('preparation and reading independence',()=>{
   expect(projectPlaybackFingerprint(changed)).toBe(slot.fingerprint);expect(loadPlayerSlot(changed,slot).changed).toBe(false);
  });
 });
+
+
+describe('v2 quick slots migration',()=>{
+ it('reads v1 without writing and upgrades on explicit write preserving all nine slots',()=>{
+  const project=p(),storage=memory();let original={version:1 as const,works:{}};
+  for(let id=1;id<=9;id++)original=savePlayerSlot(original,project,createPlayback(project),id) as typeof original;
+  storage.setItem(PLAYER_SAVES_KEY,JSON.stringify({...original,version:1}));const raw=storage.getItem(PLAYER_SAVES_KEY);
+  const read=readPlayerSaves(storage);expect(read.version).toBe(3);expect(storage.getItem(PLAYER_SAVES_KEY)).toBe(raw);
+  const next=savePlayerSlot(read,project,createPlayback(project),'quick');writePlayerSaves(storage,next);
+  expect(readPlayerSaves(storage).works.p.quick).toBeDefined();expect(Object.keys(next.works.p)).toHaveLength(10);
+ });
+ it('rejects unknown versions and quick slots injected into v1, preserving raw bytes',()=>{
+  const project=p(),quick=savePlayerSlot({version:2,works:{}},project,createPlayback(project),'quick');
+  for(const version of [1,4]){const storage=memory();const raw=JSON.stringify({...quick,version});storage.setItem(PLAYER_SAVES_KEY,raw);expect(()=>readPlayerSaves(storage)).toThrow();expect(storage.getItem(PLAYER_SAVES_KEY)).toBe(raw);}
+ });
+ it('rejects noncanonical slot ids and malformed choice records',()=>{
+  const project=p(),saves=savePlayerSlot({version:2,works:{}},project,createPlayback(project),1);
+  const slot=saves.works.p['1'];expect(()=>readPlayerSaves({getItem:()=>JSON.stringify({version:2,works:{p:{'01':slot}}})})).toThrow();
+  expect(()=>loadPlayerSlot(project,{...slot,playback:{...slot.playback,choiceHistory:[{pathIndex:-1,choiceId:'a'}]}})).toThrow();
+ });
+});
+
+
+describe('native thumbnail envelope v3',()=>{
+ const thumbnail={dataUrl:'data:image/webp;base64,UklGRgAAAABXRUJQ',width:320,height:180};
+ it('stores native thumbnail without changing playback and migrates v2 without writing',()=>{
+  const project=p(),storage=memory(),state=createPlayback(project);
+  const next=savePlayerSlot({version:2,works:{}},project,state,'quick','2026-10-07T00:00:00Z',thumbnail);
+  expect(next.version).toBe(3);expect(next.works.p.quick.thumbnail).toEqual(thumbnail);expect(loadPlayerSlot(project,next.works.p.quick).state).toEqual(state);
+  const old=JSON.stringify({...next,version:2,works:{p:{quick:{...next.works.p.quick,thumbnail:undefined}}}});storage.setItem(PLAYER_SAVES_KEY,old);
+  expect(readPlayerSaves(storage).version).toBe(3);expect(storage.getItem(PLAYER_SAVES_KEY)).toBe(old);
+ });
+ it('rejects injected urls, excessive bytes, bad dimensions and pre-v3 thumbnail fields without overwriting raw',()=>{
+  const project=p(),slot=savePlayerSlot({version:2,works:{}},project,createPlayback(project),1).works.p['1'];
+  for(const bad of [{...thumbnail,dataUrl:'https://example.com/picture.webp'},{...thumbnail,width:321},{...thumbnail,height:0},{...thumbnail,dataUrl:'data:image/webp;base64,'+'A'.repeat(60000)}]){
+   expect(()=>savePlayerSlot({version:2,works:{}},project,createPlayback(project),1,undefined,bad)).toThrow();
+   const storage=memory(),raw=JSON.stringify({version:3,works:{p:{1:{...slot,thumbnail:bad}}}});storage.setItem(PLAYER_SAVES_KEY,raw);expect(()=>readPlayerSaves(storage)).toThrow();expect(storage.getItem(PLAYER_SAVES_KEY)).toBe(raw);
+  }
+  expect(()=>readPlayerSaves({getItem:()=>JSON.stringify({version:2,works:{p:{1:{...slot,thumbnail}}}})})).toThrow();
+ });
+});
+
+ describe('source position saves',()=>{
+  const project=()=>{const blank=p();return {...blank,lines:blank.lines.map(line=>({...line,text:'첫 😀 문장. 다음 문장.'}))};};
+  it('round trips position additively and clamps it to the matching current text',()=>{
+   const story=project(),state=createPlayback(story),storage=memory();
+   const saves=savePlayerSlot({version:3,works:{}},story,state,'quick',undefined,undefined,{lineId:'a',offset:6});
+   writePlayerSaves(storage,saves);const slot=readPlayerSaves(storage).works.p.quick;
+   expect(loadPlayerSlot(story,slot).dialoguePosition).toEqual({lineId:'a',offset:6});
+   expect(savePlayerSlot(saves,story,state,1,undefined,undefined,{lineId:'a',offset:999}).works.p['1'].dialoguePosition).toEqual({lineId:'a',offset:Array.from(story.lines[0].text).length});
+   expect(saves.works.p.quick.dialoguePosition).toEqual({lineId:'a',offset:6});
+   expect(loadPlayerSlot(story,{...slot,dialoguePosition:{lineId:'a',offset:999}}).dialoguePosition?.offset).toBe(Array.from(story.lines[0].text).length);
+   expect(Array.from(story.lines[0].text).length).toBe(story.lines[0].text.length-1);
+  });
+  it('drops stale, changed and ended positions while keeping legacy slots readable',()=>{
+   const story=project(),state=createPlayback(story),slot=savePlayerSlot({version:3,works:{}},story,state,1,undefined,undefined,{lineId:'a',offset:6}).works.p['1'];
+   expect(loadPlayerSlot(story,{...slot,dialoguePosition:undefined}).dialoguePosition).toBeUndefined();
+   expect(loadPlayerSlot(story,{...slot,dialoguePosition:{lineId:'other',offset:6}}).dialoguePosition).toBeUndefined();
+   const changed={...story,lines:story.lines.map(line=>({...line,text:'수정됨'}))};
+   expect(loadPlayerSlot(changed,slot,true).dialoguePosition).toBeUndefined();
+   expect(savePlayerSlot({version:3,works:{}},story,state,1,undefined,undefined,{lineId:'other',offset:6}).works.p['1'].dialoguePosition).toBeUndefined();
+   expect(savePlayerSlot({version:3,works:{}},story,advancePlayback(story,state),1,undefined,undefined,{lineId:'a',offset:6}).works.p['1'].dialoguePosition).toBeUndefined();
+  });
+  it('rejects malformed positions and preserves rejected raw storage',()=>{
+   const story=project(),state=createPlayback(story),slot=savePlayerSlot({version:3,works:{}},story,state,1).works.p['1'];
+   for(const bad of [null,[],{}, {lineId:'',offset:1},{lineId:'a',offset:-1},{lineId:'a',offset:.5},{lineId:'a',offset:'3'},{lineId:'a',offset:Number.MAX_SAFE_INTEGER+1}]){
+    expect(()=>savePlayerSlot({version:3,works:{}},story,state,1,undefined,undefined,bad as never)).toThrow();
+    const storage=memory(),raw=JSON.stringify({version:3,works:{p:{1:{...slot,dialoguePosition:bad}}}});storage.setItem(PLAYER_SAVES_KEY,raw);
+    expect(()=>readPlayerSaves(storage)).toThrow();expect(storage.getItem(PLAYER_SAVES_KEY)).toBe(raw);
+   }
+  });
+ });

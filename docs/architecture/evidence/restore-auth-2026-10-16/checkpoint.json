@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-16T09:01:31.674312+00:00",
+  "scope": "Explicit offline restored-copy historical auth invalidation only; no live service or traffic activation",
+  "sourceSha256": {
+    "server/operations/restore-session-fence.mjs": "635e21ac7a105299c30c419de676cfef92a3e7189bdb381cb957699069619d34",
+    "server/operations/restore-session-fence-cli.mjs": "9353d3679f2da7e45ee3a6288431f61e430fb77de30b92c8ed29f61172b2156b",
+    "server/operations/restore-session-fence.test.mjs": "5306cb2c3aea5966c51bd189b475b58e14f58ef0cb713bef8bf112a1b9114dc3",
+    "server/operations/restore-session-fence.d.mts": "7371131caf86dff701d6ebf9f09121f7a506b3d659db730099e01e67921b136a",
+    "server/operations/backup-restore.d.mts": "f8ff1d26d62664e249d73a9a9e048e6f22c831aa71d6500b39a8b0dda96a6776",
+    "server/operations/restore-fence.integration.ts": "822a51dd9f68c6cf5902ffe1339733da6dcf8f64d735ee32bfd39c8c52f6b7c8",
+    "server/vitest.restore-fence.config.ts": "4c8443ce3c1a6e31e2fc1c37e33e0c605dcc7628575139e05367d921daa30803",
+    "server/tsconfig.integration.json": "5271e99e180929a2f1dc6d34884d9883886bf4c66b1598643c5f28ccf026562b"
+  },
+  "verification": {
+    "coreUnit": {
+      "passed": 5,
+      "log": "coverage.tap",
+      "coverage": {
+        "lines": 100,
+        "branches": 95.83,
+        "functions": 100
+      },
+      "scope": "Core MJS only; CLI coverage not measured"
+    },
+    "actualHTTPDB": {
+      "initialScenario": {
+        "passed": 1,
+        "log": "actual.log"
+      },
+      "laterFocusedScenarios": [
+        {
+          "passed": 1,
+          "log": "actual-activity-check.log",
+          "scope": "Other client prevents changes; old credential/flow remain usable"
+        },
+        {
+          "passed": 1,
+          "log": "actual-rollback-check.log",
+          "scope": "Real injected flow deletion failure rolls back session revocation"
+        }
+      ],
+      "notClaimedAsSingleFullRun": true
+    },
+    "actualCLI": "cli.log",
+    "typecheck": "types-final.log",
+    "lint": "lint-final.log",
+    "freshCopy": "rehearsal-copy.json",
+    "originalSourceUnchanged": "source-preservation.json"
+  },
+  "preservation": {
+    "protectedArtifacts": 483,
+    "changed": [],
+    "legacyContainers": 23,
+    "legacyMetadataChanged": []
+  },
+  "review": "Independent read-only review: no additional P1/P2 within offline fresh-copy precondition. Activity query is not traffic isolation. Later changes only add failure-injection tests.",
+  "remaining": [
+    "Offline candidate process/traffic shutdown is an operator precondition",
+    "Secrets/roles/static assets/runtime/off-host recovery and release activation",
+    "User retention/class/sharing decisions",
+    "Live OAuth and device/accessibility verification"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Historical-cookie rejection, content preservation and rollback actually checked; full product and production recovery remain incomplete."
+  }
+}

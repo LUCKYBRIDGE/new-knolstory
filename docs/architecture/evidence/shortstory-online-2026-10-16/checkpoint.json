@@ -1,0 +1,82 @@
+{
+  "checkedAt": "2026-10-16T08:32:56.326829+00:00",
+  "scope": "PC04 ShortStory online integration + two isolated browser contexts, not whole product/live OAuth/physical devices",
+  "sourceSha256": {
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "a517455b0a9bef1965e83fb67e38aa1af5f576ac7f7b8ea8b51cf2f4cef1f7cb",
+    "apps/web/components/online-works-panel.tsx": "e8ef650905d69b53b48eb243bfd1f30caeaea7607ffde5ec4c141bee4a5efcf9",
+    "apps/web/components/account-menu.tsx": "d66c8c5619e9be7edeaf93a837fa9476533f04b86bcb9bd24ede9dd746546f14",
+    "apps/web/components/story-workspace.tsx": "58cfe10b6aaca922a8008bf00f2c969e98f4497178637d1e6885aeda0771f824",
+    "apps/web/lib/account-return.ts": "772ecaaa86f349a14e9412eecddc5b44bdaa6c0e9c674ceb2cb31f7f0ebf9e24",
+    "apps/web/lib/account-return.test.ts": "167d6fd6243181fecaff1d0ba96a966059ae79bac09362c35cdf666c2729a025",
+    "apps/web/lib/shortstory-account-view.ts": "602c72cc98854a007c7e08d83a637a306235a9f38e5b2f0623ba240238334aec",
+    "apps/web/lib/shortstory-account-view.test.ts": "b3e8a415c709d43a81c27bcecc7863bdf71d7a96a8c12ed9df468b49fd236087",
+    "server/operations/verify-shortstory-browser.mjs": "8472768d263e8aceb4118188eed31c92a88be58fd514961f1f10677ec48c3a95",
+    "tests/e2e/shortstory-online.spec.ts": "a6119928b9b5a815af84956b407dddc09d3ead5e19f8baaf223db5884b3ada0d",
+    "playwright.config.ts": "0f77679535767b165827381e577301fdd47b9194661dcd1ff7f3557c35a1688d",
+    "apps/web/out/index.html": "16f731667bf487532673e7e6149056a8c51bacf2f8b53804186d6a4df6df93ca"
+  },
+  "verification": {
+    "mockedHTTPBrowser": {
+      "passed": 6,
+      "log": "browser-with-reading.log",
+      "subsequentChange": "in-flight acknowledgment reports additional edits as unsent",
+      "focusedPassed": 1,
+      "focusedLog": "in-flight-edit-green.log",
+      "notSummed": true
+    },
+    "returnUnit": {
+      "passed": 8,
+      "log": "view-green-coverage.log",
+      "coverage": {
+        "statements": 90.69,
+        "branches": 92.3,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "existingKnolCallback": {
+      "passed": 1,
+      "log": "knol-callback-impact.log",
+      "reason": "shared account return destination changed"
+    },
+    "actualProduction": "actual-two-context-final.json",
+    "actualLog": "actual-final.log",
+    "build": "build-final.log",
+    "typecheck": "types-final.log",
+    "lint": "lint-final.log"
+  },
+  "failureClassification": {
+    "product": [
+      "reading-return-red.log: login lost reading mode, fixed via one-use UI return record",
+      "in-flight-edit-red.log: acknowledgment claimed later edits saved, fixed by generation check"
+    ],
+    "harness": [
+      "actual-initial.log and actual-diagnostic.log: dynamic textarea exact label mismatch; diagnostic local copy existed with preserved content",
+      "actual-role-selector.log: local library accessed before initialization",
+      "actual-hydrated.log: open menu correctly intercepted editor clicks; closed with Escape"
+    ],
+    "allOriginalLogsRetained": true
+  },
+  "preservation": {
+    "protectedArtifacts": 483,
+    "changed": [],
+    "legacyContainers": 23,
+    "legacyMetadataChanged": []
+  },
+  "review": "Primary inspected transaction reuse/format boundary, latest-generation/composition and callback state. Delegated independent review attempt hit usage limit; no completed independent ShortStory review claimed.",
+  "remaining": [
+    "Online delete/recovery retention decision",
+    "Teacher/class/share policies and service",
+    "Live OAuth/provider configuration",
+    "Physical devices/accessibility/long-term offline recovery",
+    "Operational backup/restore/release"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual DB/context and UI behavior verified; final product requirements and independent review remain incomplete, retained in active goal"
+  }
+}

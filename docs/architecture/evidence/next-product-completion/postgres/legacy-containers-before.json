@@ -1,0 +1,434 @@
+[
+  {
+    "id": "8270e8212dbe57ea7bcef9a31db9ace7fcbc9665549efb9ab11f8fe44880b8a4",
+    "name": "/knolstory-audit-test-20261005",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-10-05T04:26:57.169996468Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "e567757fbe2c7da88e6d94f1c69f72d60166d2e2f4b437f662c9fd9b3e8553ab",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "de2be49d83e63811ef884a99890a9fd8f3c9609771ee5669a97d1ad96c1471a7",
+    "name": "/knolstory-restore-check-20261005",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-10-05T03:46:46.862935713Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "knolstory-restore-check-20261005_pg_data",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "226eb68d04bcae3384a536112e74a5e223e2dbf358ee856d21807de19e376542",
+    "name": "/knolstory-restore-check-20261001-final",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-10-01T03:41:30.27132043Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "knolstory-restore-check-20261001-final",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "41392717ffef9644bd2fc501607ef159e627e31c54f8c9cced277acca3cb3079",
+    "name": "/knolstory-stg-live-app-1",
+    "image": "sha256:aa2b85142ff5a7a6bb969636f8cbea216fefd5086603121f8950175856dff85f",
+    "startedAt": "2026-10-01T03:38:02.883949376Z",
+    "restartCount": 0,
+    "ports": {
+      "4000/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "4000"
+        }
+      ]
+    },
+    "mounts": [
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/kakao_client_id"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/kakao_client_secret"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/db_password"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/app_session_secret"
+      }
+    ]
+  },
+  {
+    "id": "43506ee700db785aa4f80840109ae45b8089c12b51fecaeaaa3a2ec925d3dd45",
+    "name": "/knolstory-restore-check-20261001-0330",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-10-01T03:27:34.816544335Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "knolstory-restore-check-20261001-0330",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "546816c5440c992010491ddcc94bfe2044035cb07e9492cdd56b37108aaf7426",
+    "name": "/knolstory-restore-check-20260930",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-09-30T12:37:17.49534025Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "knolstory-restore-check-20260930-data",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "e52c9cd979e21d37b8d3490909db9c5b9bb974e7049d987bfc501a276860e510",
+    "name": "/knolstory-stg-live-db-1",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-09-29T02:20:06.008940386Z",
+    "restartCount": 0,
+    "ports": {
+      "5432/tcp": null
+    },
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "knolstory-stg-live_pg_data",
+        "destination": "/var/lib/postgresql/data"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/db_password"
+      }
+    ]
+  },
+  {
+    "id": "b4af59fc75d638809c3f15284a8eba90f38b0bd802c18a6828cc953518be8e58",
+    "name": "/knolstory-restore-check-20260929",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-09-28T16:36:00.549041961Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": [
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/restore_password"
+      },
+      {
+        "type": "volume",
+        "name": "knolstory-restore-check-20260929",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "993ad2711920011e0a6382ef0427fdf856cceaa3629faf180d63975c51152c9e",
+    "name": "/knolstory-stg-verification-app-1",
+    "image": "sha256:18361eb0278f347ab11856645d886d0c7ce45cb6d98539d599031ce189727e80",
+    "startedAt": "2026-09-28T23:20:40.959547751Z",
+    "restartCount": 0,
+    "ports": {
+      "4000/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "14000"
+        }
+      ]
+    },
+    "mounts": [
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/kakao_client_id"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/kakao_client_secret"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/app_session_secret"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/db_password"
+      }
+    ]
+  },
+  {
+    "id": "ec1ba0d1ca3f348d5912c026513bac2ce22690a5c2c40f4466484cdf4b11909e",
+    "name": "/knolstory-stg-verification-admin-1",
+    "image": "sha256:18361eb0278f347ab11856645d886d0c7ce45cb6d98539d599031ce189727e80",
+    "startedAt": "2026-09-28T23:20:40.958357209Z",
+    "restartCount": 0,
+    "ports": {
+      "4000/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "14010"
+        }
+      ]
+    },
+    "mounts": [
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/admin_session_secret"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/db_password"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/google_client_id"
+      },
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/google_client_secret"
+      }
+    ]
+  },
+  {
+    "id": "7041df2e6b50d3560f4822523a442a22d691502dbaf5a3eff7eebfd72029add2",
+    "name": "/knolstory-stg-verification-db-1",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "startedAt": "2026-09-28T23:20:40.961454251Z",
+    "restartCount": 0,
+    "ports": {
+      "5432/tcp": null
+    },
+    "mounts": [
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/run/secrets/db_password"
+      },
+      {
+        "type": "volume",
+        "name": "knolstory-stg-verification_pg_data",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "ba18d64414aff410e10f8cfa6d5719a0be5f716089b28f0a43fac4aaa6a7f426",
+    "name": "/chatgpt-cloudflared",
+    "image": "sha256:51c9cefcb4569df44e1ad403ab1d3d8065aa8e84339bcfc6aee75502e1140339",
+    "startedAt": "2026-09-28T23:20:41.162646876Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": []
+  },
+  {
+    "id": "4877e44fbd440379ff893ae2fbe322a18ff9dd9cc47316cda0ad5e0d90086052",
+    "name": "/workmachine",
+    "image": "sha256:138ad3abbe93a2906aec4972df75ca204425c390d7223e73a969f35f904a1324",
+    "startedAt": "2026-09-28T23:20:40.956837542Z",
+    "restartCount": 0,
+    "ports": {
+      "2999/tcp": null
+    },
+    "mounts": [
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/shared"
+      },
+      {
+        "type": "volume",
+        "name": "workmachine_cokacremote-state",
+        "destination": "/var/lib/cokacremote"
+      }
+    ]
+  },
+  {
+    "id": "1d93e9ed38de73975108686fcb2f50a9ecc3868bf62052f2665cefff5c38adf2",
+    "name": "/supabase_db_scheduler-v2",
+    "image": "sha256:af083ef64d0408c8f098ee6f5c364a59b26f36fbc0f3a334a62c5c1d57362e9b",
+    "startedAt": "2026-09-28T23:20:40.995911876Z",
+    "restartCount": 0,
+    "ports": {
+      "5432/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "54322"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "54322"
+        }
+      ]
+    },
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "supabase_db_scheduler-v2",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  {
+    "id": "c76550f82dcfa11b460f18d300b2a71d4ebcb50ada07ab51f6d979a9ade2356c",
+    "name": "/supabase_pg_meta_scheduler-v2",
+    "image": "sha256:2559d20aaa50f2eb86a6cb2e5af4e847e87139673bc214b4655c126d96c160b2",
+    "startedAt": "2026-09-28T23:20:40.944790751Z",
+    "restartCount": 0,
+    "ports": {
+      "8080/tcp": null
+    },
+    "mounts": []
+  },
+  {
+    "id": "3239f833e614d7a654981d5a1a0f020dacab271604e2ba167f2461235a695126",
+    "name": "/supabase_edge_runtime_scheduler-v2",
+    "image": "sha256:3775cdbe86dab8cd7495157af69377dfedf208ba3cb4165031b58ed691514c22",
+    "startedAt": "2026-03-28T15:07:09.65988193Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": []
+  },
+  {
+    "id": "e3b7168c14c4569bdf442ed92e2db3e2cc1b4812dfbcf310c6cd909dcc6056e7",
+    "name": "/supabase_storage_scheduler-v2",
+    "image": "sha256:7c2baa572b6c75c5ba782ae3eef5762732b3905af83ae5202430fb0e02140cf2",
+    "startedAt": "2026-09-28T23:20:40.947745084Z",
+    "restartCount": 0,
+    "ports": {
+      "5000/tcp": null
+    },
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "supabase_storage_scheduler-v2",
+        "destination": "/mnt"
+      }
+    ]
+  },
+  {
+    "id": "0add69f192218ea44b4e6f77790226db274e7c45db03b6fb5e8d08bd22e69ebf",
+    "name": "/supabase_rest_scheduler-v2",
+    "image": "sha256:8b53afca2e239bc90a0facdb880710232886c38dae5743a57d66056e96d5596a",
+    "startedAt": "2026-09-28T23:20:40.952594501Z",
+    "restartCount": 0,
+    "ports": {
+      "3000/tcp": null
+    },
+    "mounts": []
+  },
+  {
+    "id": "054dea170e187c256f449e59bf09e8f275ce0fc3408f51b44baca4302c0ea4de",
+    "name": "/supabase_realtime_scheduler-v2",
+    "image": "sha256:6e62f186c14489ce10cc02fb0d3573f18eea2167473535ef893a91a82ded378e",
+    "startedAt": "2026-09-28T23:20:40.901326084Z",
+    "restartCount": 0,
+    "ports": {
+      "4000/tcp": null
+    },
+    "mounts": []
+  },
+  {
+    "id": "17da4f31a60e0c1752d6bfcb3bc30f3b793bb7a4e81289c7f73709967e3ae74e",
+    "name": "/supabase_auth_scheduler-v2",
+    "image": "sha256:87db8c737af49a64236c461882ed3925f8b1e5c2c47176c64694dedc65153573",
+    "startedAt": "2026-09-28T23:20:44.878928544Z",
+    "restartCount": 4,
+    "ports": {
+      "9999/tcp": null
+    },
+    "mounts": []
+  },
+  {
+    "id": "6232cafc00165db83480e9f05d3262fb293c7eaecd47f9c1596c97e051a7afea",
+    "name": "/supabase_kong_scheduler-v2",
+    "image": "sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d",
+    "startedAt": "2026-09-28T23:20:40.892033126Z",
+    "restartCount": 0,
+    "ports": {
+      "8000/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "54321"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "54321"
+        }
+      ]
+    },
+    "mounts": []
+  },
+  {
+    "id": "b00260c14689ab7a5f9a5be6c91c0a90757c6cb49d0b77c9f102a371b4197b58",
+    "name": "/supabase_vector_scheduler-v2",
+    "image": "sha256:ca92d617e905953c3f852e7e88061f7039460e733522e3f0c21bc6ae946b2558",
+    "startedAt": "2026-09-28T23:20:40.919900584Z",
+    "restartCount": 0,
+    "ports": {},
+    "mounts": [
+      {
+        "type": "bind",
+        "name": null,
+        "destination": "/var/run/docker.sock"
+      }
+    ]
+  },
+  {
+    "id": "9cd20535adbf883d234e32d802bb968885da4c6e45a45d245747f4f5edcc1ba0",
+    "name": "/supabase_analytics_scheduler-v2",
+    "image": "sha256:defea50664360bed3a6ea3ce1f080cb4ef15790d164c83d7a2726b38a88e2730",
+    "startedAt": "2026-09-28T23:20:40.956845167Z",
+    "restartCount": 0,
+    "ports": {
+      "4000/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "54327"
+        },
+        {
+          "HostIp": "::",
+          "HostPort": "54327"
+        }
+      ]
+    },
+    "mounts": []
+  }
+]

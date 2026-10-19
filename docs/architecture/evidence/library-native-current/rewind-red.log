@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/reader-rewind.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/reader-rewind.test.ts [ apps/web/lib/reader-rewind.test.ts ]
+Error: Cannot find module './reader-rewind' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/reader-rewind.test.ts
+ ❯ apps/web/lib/reader-rewind.test.ts:3:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {advancePlayback,createBlankStoryProject,createPlayback,insertS…
+      3| import {rewindReader} from './reader-rewind';
+       | ^
+      4| const work=()=>insertStoryCut(createBlankStoryProject({id:'rewind',cha…
+      5| describe('reader rewind event boundary',()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  21:03:22
+   Duration  330ms (transform 168ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

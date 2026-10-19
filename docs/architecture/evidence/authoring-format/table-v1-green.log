@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/table-formats.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  1 passed (1)
+      Tests  14 passed (14)
+   Start at  20:08:20
+   Duration  1.17s (transform 290ms, setup 0ms, import 483ms, tests 606ms, environment 0ms)
+

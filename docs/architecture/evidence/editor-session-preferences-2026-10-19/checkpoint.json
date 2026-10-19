@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-19",
+  "status": "local-per-work-session-preferences-implemented-focused-verified-not-deployed",
+  "scope": "PC-11 per-work browser tab session UI preferences; no authored document/codec/runtime geometry change",
+  "implementation": [
+    "Workspace owns one controlled preferences store: screen, independent enabled/logic switches and per-screen companions",
+    "Version1 per-project sessionStorage keys, allowlisted values and exact boolean opt-in",
+    "Stable useSyncExternalStore snapshots and basic server snapshot",
+    "Storage denied/quota/corrupt/unknown values fall back safely; in-memory editing continues",
+    "Closing optional screen normalizes basic; authored advanced data never auto-opens tools"
+  ],
+  "checks": {
+    "red": "red.log: existing text screen lost after reload",
+    "intermediate": "green.log 1pass/1fail: test input savedAt lacked required .000Z; fixed test timestamp/current schema, original failure retained",
+    "unit": "unit-coverage.log10passed; statements95.16 branches96 functions83.33 lines100 (module only)",
+    "browser": "final.log4passed20.6s; reload/all opt-ins/companions/file unchanged; otherwork+fresh context defaults; corrupt/blocked storage usable",
+    "integration": "integration.log2passed10.2s: direct text editing with companions, separate audio/direction opt-in and real ranges with file reopen; normal runtime route retained",
+    "build": "build-final.log passed after final store extraction",
+    "lint": "lint.log clean; worker web typecheck passed",
+    "review": "review.md independent source review no blockers",
+    "docs": "docs-check.log57active documents0link errors; git diff --check clean"
+  },
+  "limits": [
+    "Focused local Chromium host preference tests block runtime explicitly; no new physicaldevice or screenreader proof",
+    "Integration runs normal actual engine but no new geometry implementation or engine initialization claim",
+    "Tab duplicate/browser session restore may inherit sessionStorage; not guaranteed reset on every newtab/browser restart",
+    "Cursor/scroll and expanded detail are not reload-persisted; no file handles persisted",
+    "Not deployed; whole product and PC-11 longmanuscript/detailedchapter controls remain open"
+  ],
+  "sha256": {
+    "apps/web/lib/editor-preferences.ts": "8ddf9e8e525c2a373f89e56649ae9f55120d4e54f21bc923404f8c2cade5a36c",
+    "apps/web/lib/editor-preferences.test.ts": "f655c71d3843040c7b079b45b471df5966cf5b5029bed0cbc454c362c49bd2c7",
+    "apps/web/components/story-workspace.tsx": "a3f6c27ede68451666270dd932cb8050bd30dd56e26cc69bd43e507a29677b2c",
+    "apps/web/components/story-editing-workbench.tsx": "c7117f6b021c9ba3377f07300c7c0f5f15559eab0c9f9920a0a0863e8a35a27f",
+    "tests/e2e/editor-session-preferences.spec.ts": "405d64df7263885ad77101cfc815de3321b35b9a3820e24c173fa36d8e1591d6",
+    "playwright.config.ts": "625a0240f5e7af3bf76e09edea5160d8704a1402fed18270478197880291a1e7",
+    "DESIGN.md": "e4da6602322ca96d55282adcfd81912b7744c51c73c0eb0a8288db55dac847af",
+    "STATUS.md": "46c10d6c6219abd2c1d0d40c9ad723d8055221ead9ce695c31ed0b8603ca4f77",
+    "docs/architecture/product-completion-plan.md": "3c16954266814d5fa7d51e1756b3b76029c7df5fe95fb4b86f265a0638cc7a5e",
+    ".agents/skills/design-system/SKILL.md": "bdc23ffbf770b5bd5d8b2f119309febd2dd6caec7e59552ba01197f6f7b62ccb"
+  },
+  "selfEvaluation": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "Full exported project equality and focused reload/isolation assertions; no device claims"
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": "One remaining PC-11 implementation completed; longmanuscript/device and detailed chapter UX remain"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Session scope stated in UI and DESIGN; browser session restore caveat documented"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Code and retained failure/success logs with canonical next action"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Canonical resume row updated; evidence details in this checkpoint only"
+    }
+  }
+}

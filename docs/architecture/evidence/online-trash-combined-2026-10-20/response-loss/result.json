@@ -1,0 +1,31 @@
+{
+  "scope": "Actual static Web + loopback gateway + dedicated test API/PostgreSQL. No mocked HTTP and no live OAuth.",
+  "results": [
+    {
+      "format": "knolstory",
+      "recordId": "9cf13749-cc36-4701-9b62-c692a4c0402c",
+      "create": 201,
+      "trash": 200,
+      "restore": 200,
+      "revision": 1,
+      "stateVersion": 3,
+      "snapshotUnchanged": true,
+      "trashedReadDenied": 409,
+      "responseLossRetrySameKey": true,
+      "localUnchanged": true
+    },
+    {
+      "format": "shortstory",
+      "recordId": "e6a1bd30-9fdc-4f8d-b4fd-1ff482ee017d",
+      "create": 201,
+      "trash": 200,
+      "restore": 200,
+      "revision": 1,
+      "stateVersion": 3,
+      "snapshotUnchanged": true,
+      "trashedReadDenied": 409,
+      "responseLossRetrySameKey": true,
+      "localUnchanged": true
+    }
+  ]
+}

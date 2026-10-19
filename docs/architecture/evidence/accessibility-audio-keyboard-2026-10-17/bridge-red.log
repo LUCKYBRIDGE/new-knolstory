@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ spikes/renpy-web/bridge.test.ts (12 tests | 1 failed) 10ms
+   × makes only the current locked audio stage keyboard reachable and restores SDK attributes 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  spikes/renpy-web/bridge.test.ts > makes only the current locked audio stage keyboard reachable and restores SDK attributes
+AssertionError: expected '-1' to be '0' // Object.is equality
+
+Expected: "0"
+Received: "-1"
+
+ ❯ spikes/renpy-web/bridge.test.ts:88:42
+     86|  const playable={...scene,mode:'play',audio:{sessionId:'keyboard',musi…
+     87|  send(1,1,playable);api.emit({protocol:1,type:'sceneRendered',sceneId:…
+     88|  expect(canvas.getAttribute('tabindex')).toBe('0');expect(canvas.getAt…
+       |                                          ^
+     89|  api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:0,…
+     90|  api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:1,…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 11 passed (12)
+   Start at  08:32:18
+   Duration  146ms (transform 24ms, setup 0ms, import 31ms, tests 10ms, environment 0ms)
+

@@ -1,0 +1,17 @@
+
+Running 9 tests using 1 worker
+
+(node:39073) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/9] [host] › tests/e2e/authoring-audio-metadata.spec.ts:5:56 › per-work audio metadata changed never changes an existing work using the same audio ID
+[2/9] [host] › tests/e2e/authoring-audio-metadata.spec.ts:5:56 › per-work audio metadata omitted never changes an existing work using the same audio ID
+[3/9] [host] › tests/e2e/authoring-audio-metadata.spec.ts:5:56 › per-work audio metadata unused never changes an existing work using the same audio ID
+[4/9] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:3:1 › actual Excel exported story preserves extended values in UI and portable archive
+[5/9] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:9:1 › actual Excel picture book exported XLSX opens at its edited page
+[6/9] [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual excel edited ShortStory reopens and prints a complete A4 book
+[7/9] [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual google edited ShortStory reopens and prints a complete A4 book
+[8/9] [host] › tests/e2e/korean-authoring-roundtrip.spec.ts:2:40 › actual google Korean authoring choices apply, save and reopen as the same story
+[9/9] [host] › tests/e2e/korean-authoring-roundtrip.spec.ts:2:40 › actual excel Korean authoring choices apply, save and reopen as the same story
+  9 passed (47.5s)

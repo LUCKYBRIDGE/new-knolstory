@@ -1,0 +1,111 @@
+{
+  "reports": [
+    {
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "short": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "long": {
+        "x": 48,
+        "y": 273,
+        "width": 1184,
+        "height": 411
+      },
+      "body": {
+        "x": 72,
+        "y": 293,
+        "width": 1092,
+        "height": 371
+      },
+      "unchangedUpperActorPixels": 0
+    },
+    {
+      "size": {
+        "width": 720,
+        "height": 1280
+      },
+      "short": {
+        "x": 48,
+        "y": 1070,
+        "width": 624,
+        "height": 174
+      },
+      "long": {
+        "x": 48,
+        "y": 702,
+        "width": 624,
+        "height": 542
+      },
+      "body": {
+        "x": 72,
+        "y": 722,
+        "width": 532,
+        "height": 424
+      },
+      "unchangedUpperActorPixels": 0
+    },
+    {
+      "size": {
+        "width": 1280,
+        "height": 600
+      },
+      "short": {
+        "x": 48,
+        "y": 390,
+        "width": 1184,
+        "height": 174
+      },
+      "long": {
+        "x": 48,
+        "y": 181,
+        "width": 1184,
+        "height": 383
+      },
+      "body": {
+        "x": 72,
+        "y": 201,
+        "width": 1092,
+        "height": 265
+      },
+      "unchangedUpperActorPixels": 0
+    }
+  ],
+  "overflow": {
+    "textbox": {
+      "x": 48,
+      "y": 89,
+      "width": 1184,
+      "height": 595
+    },
+    "body": {
+      "x": 72,
+      "y": 109,
+      "width": 1092,
+      "height": 477
+    },
+    "pageInputsBeforeStoryAdvance": 8,
+    "firstPageAdvanceEvents": 0,
+    "textDifference": 90270
+  },
+  "choices": {
+    "rect": {
+      "x": 240,
+      "y": 60,
+      "width": 800,
+      "height": 193
+    },
+    "textbox": {
+      "x": 48,
+      "y": 301,
+      "width": 1184,
+      "height": 383
+    },
+    "pagesBeforeChoice": 14
+  }
+}

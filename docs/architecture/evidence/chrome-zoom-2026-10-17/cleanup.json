@@ -1,0 +1,15 @@
+{
+  "zoomReset100": true,
+  "verification": "Native Chrome button and popover both displayed100%; document client width differs by15px because scrollbar state changed between library and preparation.",
+  "baseline": {
+    "height": 777,
+    "scrollWidth": 1885,
+    "width": 1885
+  },
+  "restored": {
+    "height": 777,
+    "scrollWidth": 1900,
+    "width": 1900
+  },
+  "createdTabClosed": true
+}

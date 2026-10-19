@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-14",
+  "scope": "current protected work switching, full files, native path resume and old probe labels",
+  "sourceHashes": {
+    "tests/e2e/stories.spec.ts": "896c39f3d52218ed8acee1f7c1886f48b7d8df15ee093044b3dcb16d3f80984b",
+    "tests/e2e/responsive-editor.spec.ts": "f1e76b004223828c5a83d5b7e0786c624ebfeaa756393513695a9ddb92b99d4f",
+    "tests/e2e/runtime-unavailable.spec.ts": "889da1a3455736fb5fa0762ad953159c4ba184695a86562210adda8ca030c1b6",
+    "STATUS.md": "36cad88df46c13deadc959661b493b9816fab3d85a6ec6699de60e66cf342849",
+    "DESIGN.md": "2e1909ae5641c6567501c7e7cd9ede54061408317fc217be475db61608a12b50",
+    "docs/architecture/approved-ui-development-plan.md": "9e5d90e08badddb702bcd980172e1fde1ddf137e9c6e2b253595488c7575bb25",
+    "docs/architecture/authoring-storage-contract.md": "711c4f1af281f20763f8c9db748471f34119d50d08ef4387190de82a5069fbd7",
+    "docs/architecture/next-session-goal-2026-10-13.md": "4c0a6e928b93ad6597e4497e29dbd8242a39971c0a279076b69e55ee1cdf1616",
+    "docs/architecture/work-switch-current-regression-validation.md": "3f4d25cbe06c734d87be379c33b3ad67876327f29e30f3bddf3cd7783bbc2fed"
+  },
+  "checks": {
+    "baseline": {
+      "collected": 122,
+      "observedPassed": 3,
+      "observedFailed": 1,
+      "observedExcluded": 3,
+      "interrupted": 1,
+      "notRun": 114,
+      "intentionalSIGINT": true
+    },
+    "probeFinal": 3,
+    "storiesFinal": 12,
+    "relatedUnit": {
+      "files": 4,
+      "passed": 25
+    },
+    "e2eTsc": true,
+    "scopedLint": true,
+    "docs54": true,
+    "diffCheck": true,
+    "newBuild": false
+  },
+  "runtimeZip": {
+    "bytes": 37641800,
+    "sha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6",
+    "publicAndOutMatch": true,
+    "previousBranchManifestMatch": true,
+    "newRuntimeBuild": false
+  },
+  "limits": [
+    "remaining collection/full388 incomplete",
+    "physical Samsung/input unverified",
+    "fresh external-app edit/deployment not run",
+    "original Chrome error cause unresolved",
+    "Excel ChatGPT connection intentionally excluded"
+  ],
+  "artifacts": {
+    "self-evaluation.json": "a5db68f2d00d0a4a9707d99da18a42e9208210ae247db38bdb771045d92331e6",
+    "docs-final.log": "4001bc14868835a74cac07e4f4b386df6eb5e2edddac0ec5f0c0e5f3085930f2",
+    "e2e-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "runtime-unavailable.spec.ts.before.txt": "54cafa7286ab47e4c19e50ce3fee4fd29cf1f8d194b7ecccae16a12ef187134a",
+    "stories-first.log": "61d6b47c3af0ad9dd383217639a8a794321c6eb0cfc576ca8474718b40ad75cf",
+    "stories-baseline.log": "4db60dc4c2aac722a4df1bf235703d87a87fd6d9aedbf7868bf4ea714e9822bd",
+    "responsive-editor.spec.ts.before.txt": "2db57d924bed45faad1fecd091c15a5c8c482c9eff6de26caeff70fb70173257",
+    "probe-final.log": "69f117b9b8b5348274eb6a70670dac183357faf69b3a8eab9224adfdaafce6cb",
+    "stories-before.ts.txt": "f3e239a39b0b27e322977335d19c1080864f3f71bc06f45b0523fe6a2855733c",
+    "related-unit.log": "66b167a07682705a6f06ba7f0503e4050fc77d8529af2246398ea4d760871d10",
+    "review.json": "b39265486021a10d432c94be4233a00956cf26e452e3d5c265adec43168233d8",
+    "e2e-types-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs-first.log": "4001bc14868835a74cac07e4f4b386df6eb5e2edddac0ec5f0c0e5f3085930f2",
+    "host.log": "a7112235a47b2550b2a0ce7e1e9ccece2f8174da62f7c8c6561ab0ac87ab21de",
+    "stories-second.log": "036aac2146da1385fe5d5aa7bb0daeb198318f8174b3043d42511695ed0dffdb",
+    "selected-files.txt": "f4b6287f29b4ae482e1a6c435455fa12146fd84a2c4ca0818c27b3b247002966",
+    "baseline-artifacts/responsive-audio-authoring-58066-registered-copy-reopens-390-host/registered-copy-390.png": "e8b424561f54d1f6bae40bdcae783474d84deac660ef4fff3e3a005447876f96",
+    "baseline-artifacts/responsive-editor-draft-an-83129-d-portrait-landscape-resize-host/trace.zip": "40810b0fb834e840e33af4bd5f708ae78304d1e4337dad8cae36c8eb6ed3cbdc",
+    "baseline-artifacts/responsive-editor-draft-an-83129-d-portrait-landscape-resize-host/error-context.md": "f0e0db952ece492aefb1d29c76418b15b5b67eb924143c829b9f64975280bf03",
+    "baseline-artifacts/.playwright-artifacts-1/53c1172031e1b79c30d71e6129eab663.zip": "ee0ee33b2fc172d8ab3fdffb656fc60aa2606e410dc42c116f61a464d7bf0fc2",
+    "baseline-artifacts/.playwright-artifacts-1/38e4ceabc697ed3217c704a3546febec.zip": "9caa581afde292de32b53a1149cea7131d53eec6f8cca8c2268a295fe68be4c3",
+    "baseline-artifacts/responsive-audio-authoring-55e24-egistered-copy-reopens-1280-host/registered-copy-1280.png": "2b3da7022d606b42a8d34c712a2a6a960711da413a4d80dc1ec3c231b1892139",
+    "stories-first-artifacts/stories-선녀와-나무꾼-representa-e6002-e-reload-and-file-roundtrip-host/trace.zip": "40641376d8fb4af1b816925e82966b9a8f4f22325995572c2551f5b19b5973fe",
+    "stories-first-artifacts/stories-선녀와-나무꾼-representa-e6002-e-reload-and-file-roundtrip-host/error-context.md": "e07b735f429251fc40dc82f7baec202b00890a9b7575a637c46f6300d8ef4338",
+    "stories-first-artifacts/stories-흥부와-놀부-representat-0aded-e-reload-and-file-roundtrip-host/trace.zip": "ef14457e47f17cc545ea42e99679efcffaa81b12bb931bafaf72cfcce8be1229",
+    "stories-first-artifacts/stories-흥부와-놀부-representat-0aded-e-reload-and-file-roundtrip-host/error-context.md": "ff89c19cf1f87cb0cb76becedd4af66dff3c04cb1d8f61c5788e85f449829051",
+    "stories-first-artifacts/.playwright-artifacts-2/traces/resources/ff64037bedb4e7e44c70ec61aaf48dcf30a75331.png": "27b28f6b0d143b5f571055375454c0d34c013f39ea6e1ee36cd2c8aaea6f1ef3",
+    "stories-first-artifacts/stories-옹고집전-representativ-3c11b-e-reload-and-file-roundtrip-host/trace.zip": "d6c13bbbef114bacdd5f4e9ba85e76021d9fc3b42339cbab7708dc0426e2542c",
+    "stories-first-artifacts/stories-옹고집전-representativ-3c11b-e-reload-and-file-roundtrip-host/error-context.md": "cf7f77fd318dd38b72e69554b5f36135c315ff7e10f4e52bd7286f61e837fb98",
+    "stories-baseline-artifacts/stories-선녀와-나무꾼-representa-e6002-e-reload-and-file-roundtrip-host/trace.zip": "6cf093f67adfbdb16d38b1f2b497e3b1ab5376ef69d8b38f6b145bc2ed6f5884",
+    "stories-baseline-artifacts/stories-선녀와-나무꾼-representa-e6002-e-reload-and-file-roundtrip-host/error-context.md": "c0c572520653615299a5dbc913d1f69b1acbd4d70d249c2106b629b2a270b1dd"
+  }
+}

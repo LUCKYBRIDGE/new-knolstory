@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:27124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [native] › tests/e2e/accessibility-choice-native.spec.ts:8:1 › actual native keyboard choice rewind and alternate choice retain authored work (22.1s)
+
+
+  1) [native] › tests/e2e/accessibility-choice-native.spec.ts:8:1 › actual native keyboard choice rewind and alternate choice retain authored work 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('story-runtime-status')
+    Expected: "true"
+    Received: "false"
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 15000ms
+      - waiting for getByTestId('story-runtime-status')
+        34 × locator resolved to <div role="status" data-music-path="" data-ambience-path="" data-sound-paths="[]" data-scene-width="720" data-music-position="" data-scene-revision="6" data-engine-width="720" data-scene-height="1558" data-sound-play-count="0" data-engine-height="1558" data-renderer-width="720" data-rendered-revision="6" data-music-start-count="0" data-audio-unlocked="false" data-renderer-height="1558" data-ambience-start-count="0" data-testid="story-runtime-status" data-textbox-y="1351.2307692307693" class="story-…>이야기 무대 연결됨</div>
+           - unexpected value "false"
+
+
+      14 |  async function record(step:string){reports.push({step,playback:await playback(),focus:await page.evaluate(()=>({host:document.activeElement?.tagName,text:document.activeElement?.textContent?.slice(0,150)})),runtime:await status.evaluate(node=>Object.fromEntries([...node.attributes].map(item=>[item.name,item.value])))});await writeFile(info.outputPath('choice-native-diagnostic.json'),JSON.stringify({scope:'Actual native runtime with no interception; keyboard choices through the ADR0015 semantic mirror; no real screen-reader claim',reports,events},null,2)+'\n');}
+      15 |  async function tabTo(control:Locator){for(let attempt=0;attempt<35;attempt++){if(await control.evaluate(node=>node===document.activeElement))return true;await page.keyboard.press('Tab');}return control.evaluate(node=>node===document.activeElement);}
+    > 16 |  await ready();for(let attempt=0;attempt<20;attempt++){if(await frame.evaluate(node=>(node as HTMLIFrameElement).contentDocument?.activeElement?.id==='canvas'))break;await page.keyboard.press('Tab');}await page.keyboard.press('Enter');await expect(status).toHaveAttribute('data-audio-unlocked','true',{timeout:15000});await record('unlocked-first-choice');
+         |                                                                                                                                                                                                                                                                 ^
+      17 |  const mirror=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}),text=mirror.locator('[aria-live="polite"]>p').last(),left=mirror.getByRole('button',{name:'첫 번째 길을 선택합니다',exact:true});await expect(text).toHaveText(first.text);await expect(left).toBeEnabled();const reachable=await tabTo(left);await record('tab-to-first-choice');expect.soft(reachable,'semantic choice reachable by actual Tab').toBe(true);if(!reachable)await left.focus();await left.press('Enter');await ready();await expect(text).toHaveText(second.text);await expect.poll(async()=>(await playback()).lineId).toBe(second.id);await record('first-choice-applied');expect((await playback()).path).toEqual([first.id,second.id]);expect((await playback()).choiceHistory).toEqual([{pathIndex:0,choiceId:'left-path'}]);
+      18 |  const back=mirror.getByRole('button',{name:'이전 읽은 컷',exact:true});const backReachable=await tabTo(back);await record('tab-to-rewind');expect.soft(backReachable,'rewind reachable by actual Tab').toBe(true);if(!backReachable)await back.focus();await back.press('Enter');await ready();await expect(text).toHaveText(first.text);await expect.poll(async()=>(await playback()).path).toEqual([first.id]);await record('rewound-choice-discarded');expect((await playback()).choiceHistory??[]).toEqual([]);
+      19 |  const right=mirror.getByRole('button',{name:'다른 길을 선택합니다',exact:true});const alternateReachable=await tabTo(right);await record('tab-to-alternate');expect.soft(alternateReachable).toBe(true);if(!alternateReachable)await right.focus();await right.press('Enter');await ready();await expect(text).toHaveText(third.text);await expect.poll(async()=>(await playback()).lineId).toBe(third.id);await record('alternate-choice-applied');expect((await playback()).path).toEqual([first.id,third.id]);expect((await playback()).choiceHistory).toEqual([{pathIndex:0,choiceId:'right-path'}]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-choice-native.spec.ts:16:257
+
+    Error Context: docs/architecture/evidence/accessibility-choice-native-2026-10-17/first-run/accessibility-choice-nativ-c66b7-choice-retain-authored-work-native/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-choice-native-2026-10-17/first-run/accessibility-choice-nativ-c66b7-choice-retain-authored-work-native/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-choice-native-2026-10-17/first-run/accessibility-choice-nativ-c66b7-choice-retain-authored-work-native/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [native] › tests/e2e/accessibility-choice-native.spec.ts:8:1 › actual native keyboard choice rewind and alternate choice retain authored work 

@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:23804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/effect-start.spec.ts:4:31 › move effect start preserves end and text with undo 1440 (12.1s)
+  ✓  2 [host] › tests/e2e/effect-start.spec.ts:4:31 › move effect start preserves end and text with undo 390 (12.0s)
+
+  2 passed (24.9s)

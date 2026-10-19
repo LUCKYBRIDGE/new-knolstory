@@ -1,0 +1,138 @@
+
+Running 5 tests using 1 worker
+
+(node:3872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 (2.0s)
+(node:3887) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 768 (2.0s)
+(node:3894) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 390 (1.8s)
+(node:3901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 844 (1.9s)
+(node:3906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [host] › tests/e2e/editor-view-notes.spec.ts:20:1 › cut notes edit in both views, save, export, reimport and return from native reading (15.3s)
+
+
+  1) [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: locator('[data-writer-current="true"] textarea')
+    Expected: "앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다."
+    Error: strict mode violation: locator('[data-writer-current="true"] textarea') resolved to 4 elements:
+        1) <textarea rows="5" maxlength="20000" aria-label="1컷 대사 / 해설">앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.</textarea> aka getByRole('textbox', { name: '컷 대사 / 해설' })
+        2) <textarea rows="3" maxlength="20000" aria-label="이 컷의 목적"></textarea> aka getByLabel('이 컷의 목적')
+        3) <textarea rows="3" maxlength="20000" aria-label="인물의 감정"></textarea> aka getByLabel('인물의 감정')
+        4) <textarea rows="3" maxlength="20000" aria-label="연출 메모">원전 장면: P1↵원전 컷: P1-1↵배경: valley</textarea> aka getByLabel('연출 메모')
+
+    Call log:
+      - Expect "toHaveValue" locator('[data-writer-current="true"] textarea') with timeout 5000ms
+      - waiting for locator('[data-writer-current="true"] textarea')
+
+
+      10 |  await text.evaluate(node=>{(node as HTMLTextAreaElement).setSelectionRange(7,11);});
+      11 |  await views.getByRole('button',{name:'이 장 대본',exact:true}).click();
+    > 12 |  const manuscript=page.locator('[data-writer-current="true"] textarea');await expect(manuscript).toHaveValue('앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.');await expect(position).toHaveValue(id);
+         |                                                                                                  ^
+      13 |  await manuscript.fill('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');
+      14 |  await views.getByRole('button',{name:'현재 컷 편집',exact:true}).click();await expect(text).toHaveValue('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');await expect(text).toBeFocused();
+      15 |  expect(await text.evaluate(node=>[(node as HTMLTextAreaElement).selectionStart,(node as HTMLTextAreaElement).selectionEnd])).toEqual([7,11]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-view-notes.spec.ts:12:98
+
+    Error Context: test-results/editor-view-notes-nearby-w-966f7-ep-cut-text-and-cursor-1440-host/error-context.md
+
+  2) [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 768 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: locator('[data-writer-current="true"] textarea')
+    Expected: "앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다."
+    Error: strict mode violation: locator('[data-writer-current="true"] textarea') resolved to 4 elements:
+        1) <textarea rows="5" maxlength="20000" aria-label="1컷 대사 / 해설">앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.</textarea> aka getByRole('textbox', { name: '컷 대사 / 해설' })
+        2) <textarea rows="3" maxlength="20000" aria-label="이 컷의 목적"></textarea> aka getByLabel('이 컷의 목적')
+        3) <textarea rows="3" maxlength="20000" aria-label="인물의 감정"></textarea> aka getByLabel('인물의 감정')
+        4) <textarea rows="3" maxlength="20000" aria-label="연출 메모">원전 장면: P1↵원전 컷: P1-1↵배경: valley</textarea> aka getByLabel('연출 메모')
+
+    Call log:
+      - Expect "toHaveValue" locator('[data-writer-current="true"] textarea') with timeout 5000ms
+      - waiting for locator('[data-writer-current="true"] textarea')
+
+
+      10 |  await text.evaluate(node=>{(node as HTMLTextAreaElement).setSelectionRange(7,11);});
+      11 |  await views.getByRole('button',{name:'이 장 대본',exact:true}).click();
+    > 12 |  const manuscript=page.locator('[data-writer-current="true"] textarea');await expect(manuscript).toHaveValue('앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.');await expect(position).toHaveValue(id);
+         |                                                                                                  ^
+      13 |  await manuscript.fill('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');
+      14 |  await views.getByRole('button',{name:'현재 컷 편집',exact:true}).click();await expect(text).toHaveValue('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');await expect(text).toBeFocused();
+      15 |  expect(await text.evaluate(node=>[(node as HTMLTextAreaElement).selectionStart,(node as HTMLTextAreaElement).selectionEnd])).toEqual([7,11]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-view-notes.spec.ts:12:98
+
+    Error Context: test-results/editor-view-notes-nearby-w-2207a-eep-cut-text-and-cursor-768-host/error-context.md
+
+  3) [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 390 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: locator('[data-writer-current="true"] textarea')
+    Expected: "앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다."
+    Error: strict mode violation: locator('[data-writer-current="true"] textarea') resolved to 4 elements:
+        1) <textarea rows="5" maxlength="20000" aria-label="1컷 대사 / 해설">앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.</textarea> aka getByRole('textbox', { name: '컷 대사 / 해설' })
+        2) <textarea rows="3" maxlength="20000" aria-label="이 컷의 목적"></textarea> aka getByLabel('이 컷의 목적')
+        3) <textarea rows="3" maxlength="20000" aria-label="인물의 감정"></textarea> aka getByLabel('인물의 감정')
+        4) <textarea rows="3" maxlength="20000" aria-label="연출 메모">원전 장면: P1↵원전 컷: P1-1↵배경: valley</textarea> aka getByLabel('연출 메모')
+
+    Call log:
+      - Expect "toHaveValue" locator('[data-writer-current="true"] textarea') with timeout 5000ms
+      - waiting for locator('[data-writer-current="true"] textarea')
+
+
+      10 |  await text.evaluate(node=>{(node as HTMLTextAreaElement).setSelectionRange(7,11);});
+      11 |  await views.getByRole('button',{name:'이 장 대본',exact:true}).click();
+    > 12 |  const manuscript=page.locator('[data-writer-current="true"] textarea');await expect(manuscript).toHaveValue('앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.');await expect(position).toHaveValue(id);
+         |                                                                                                  ^
+      13 |  await manuscript.fill('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');
+      14 |  await views.getByRole('button',{name:'현재 컷 편집',exact:true}).click();await expect(text).toHaveValue('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');await expect(text).toBeFocused();
+      15 |  expect(await text.evaluate(node=>[(node as HTMLTextAreaElement).selectionStart,(node as HTMLTextAreaElement).selectionEnd])).toEqual([7,11]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-view-notes.spec.ts:12:98
+
+    Error Context: test-results/editor-view-notes-nearby-w-925ab-eep-cut-text-and-cursor-390-host/error-context.md
+
+  4) [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 844 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: locator('[data-writer-current="true"] textarea')
+    Expected: "앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다."
+    Error: strict mode violation: locator('[data-writer-current="true"] textarea') resolved to 4 elements:
+        1) <textarea rows="5" maxlength="20000" aria-label="1컷 대사 / 해설">앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.</textarea> aka getByRole('textbox', { name: '컷 대사 / 해설' })
+        2) <textarea rows="3" maxlength="20000" aria-label="이 컷의 목적"></textarea> aka getByLabel('이 컷의 목적')
+        3) <textarea rows="3" maxlength="20000" aria-label="인물의 감정"></textarea> aka getByLabel('인물의 감정')
+        4) <textarea rows="3" maxlength="20000" aria-label="연출 메모">원전 장면: P1↵원전 컷: P1-1↵배경: valley</textarea> aka getByLabel('연출 메모')
+
+    Call log:
+      - Expect "toHaveValue" locator('[data-writer-current="true"] textarea') with timeout 5000ms
+      - waiting for locator('[data-writer-current="true"] textarea')
+
+
+      10 |  await text.evaluate(node=>{(node as HTMLTextAreaElement).setSelectionRange(7,11);});
+      11 |  await views.getByRole('button',{name:'이 장 대본',exact:true}).click();
+    > 12 |  const manuscript=page.locator('[data-writer-current="true"] textarea');await expect(manuscript).toHaveValue('앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.');await expect(position).toHaveValue(id);
+         |                                                                                                  ^
+      13 |  await manuscript.fill('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');
+      14 |  await views.getByRole('button',{name:'현재 컷 편집',exact:true}).click();await expect(text).toHaveValue('장 대본에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');await expect(text).toBeFocused();
+      15 |  expect(await text.evaluate(node=>[(node as HTMLTextAreaElement).selectionStart,(node as HTMLTextAreaElement).selectionEnd])).toEqual([7,11]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-view-notes.spec.ts:12:98
+
+    Error Context: test-results/editor-view-notes-nearby-w-c103e-eep-cut-text-and-cursor-844-host/error-context.md
+
+  4 failed
+    [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 
+    [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 768 
+    [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 390 
+    [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 844 
+  1 passed (25.0s)

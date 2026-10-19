@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-18",
+  "status": "local-focused-verification-passed-not-deployed",
+  "user_decisions": [
+    "Font size is accessibility/reading preference; never changes page content or boundaries",
+    "4:3 consists of original16:9artwork plus bottom dialogue extension"
+  ],
+  "implementation": [
+    "Canonical paginationFontSize32; displayfont90–130% onlychangespanelgeometry",
+    "Defaultlogicalfont32stableacrossdisplay; typographycanvas scalingpreserveslayout",
+    "Classiccanvas1280x960 withartworkRect1280x720; actualactor/backgroundrectidentical16:9vs4:3",
+    "Nativeclipartwork/effects; backgroundfallbackhonorsartwork",
+    "Preferencesformat auto/landscape/classic/portrait, oldprefs defaultauto",
+    "Toolsreserve≥44displaypx exceptextremesbelowdeclaredscaleclamp"
+  ],
+  "checks": {
+    "vitest": "81tests/10filespassed",
+    "native_geometry_python": "17passed including1000seededpaginationcases, exactpagearraysfont16/30/42/64",
+    "presenter_python": "19passed",
+    "runtime_build": "passed",
+    "web_build": "passed",
+    "web_typecheck": "passed",
+    "eslint": "0errors1existingimagewarning",
+    "native_e2e": "3passed45.5s; font90/100/130 samepagecount/offset differentheights, actor/backgroundinvariance, sourcepositionquickload/reload,3formats, classicpanel+240,568x320130%filledpagecontained",
+    "review": "Readonlyreview no blockers/high; tools44px andbackgroundfallbackfollowupscoveredbytests"
+  },
+  "mockups": "mockups/index.html",
+  "preserved_attempts": [
+    "native-ui-before-tools-reserve",
+    "previousreader-reform-2026-10-18 retained"
+  ],
+  "limits": [
+    "No physical-device/screenreader validation",
+    "Not whole-product or release completion",
+    "Not deployed; previous production unchanged",
+    "Extreme directly-injected fontsize96 is outside current UI90–130%; arbitraryfontsupport notclaimed"
+  ],
+  "source_sha256": {
+    "packages/runtime-core/src/responsive-layout.ts": "8389e7ebc0726fdfe77bdf7086c2b9c40c945c536edf292b9c4c78bc8f1b3d43",
+    "packages/runtime-core/src/story-runtime.ts": "da5c83a9b3dea4a502e63b4182c65315d536d7c01ac9ac19698253ade62f60d1",
+    "packages/runtime-contract/src/index.ts": "4f7f0b9140de3e5cdfe978afbe331711c95b7aaf532cfb30664cccbe8f6f5d43",
+    "renpy/responsive-spike/game/script.rpy": "6255b64f85a503879db8c3dcdf67930ab66742139d01b5a8a3843b6d35a49f43",
+    "apps/web/components/story-workspace.tsx": "2e05692a0ed9777e4b1e78b8c31c0965421ecad6a827d9c80207ce13e1e27284",
+    "apps/web/components/story-player-menu.tsx": "8fec0734046d7ebb185d4c8b99fee946652b94842d80596f8b1964d16c3d442f",
+    "apps/web/lib/reader-preferences.ts": "c3c4e71734460c08729a8e751e008300d473765c36f197527fa606c1f40742cd",
+    "apps/web/lib/story-viewport.ts": "247aa24caee8de75938574fb803591fba96796de6c15cce26a4b076bff9ed118",
+    "tests/e2e/reader-reform.spec.ts": "857399dbbe54045d0bcc188bc3fee2ce3e66f2e7b46b03c7e2224306ffa9371d"
+  },
+  "self_evaluation": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "Native3testsfocusedunits; physicaldeviceunverified"
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": "Userclarificationimplementedincl4:3andfixedcontent; extremefontnotclaimed"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Naturalstorycapture plussamepagefontcomparison separatesstressfixtures"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Settingsformatandfonts worklocally; deploymentseparate"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Reusescurrentnative/runtime/menu; optionalcontractfields documented"
+    }
+  }
+}

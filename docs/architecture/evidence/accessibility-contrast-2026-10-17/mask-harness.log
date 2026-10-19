@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:94912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/accessibility-contrast.spec.ts:14:1 › contrast sampling includes glyphs matching their backdrop and rejects opacity groups (365ms)
+
+  1 passed (740ms)

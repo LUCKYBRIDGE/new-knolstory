@@ -1,0 +1,27 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/asset-registry/tests/audio-category.test.ts (2 tests | 1 failed) 3ms
+     × separates surrounding sounds from background music without changing stable IDs 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/asset-registry/tests/audio-category.test.ts > author-visible sound categories > separates surrounding sounds from background music without changing stable IDs
+TypeError: audioAssetCategory is not a function
+ ❯ packages/asset-registry/tests/audio-category.test.ts:5:34
+      3| describe('author-visible sound categories',()=>{
+      4|  it('separates surrounding sounds from background music without changi…
+      5|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='background')…
+       |                                  ^
+      6|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='ambience')).…
+      7|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='effect')).to…
+ ❯ packages/asset-registry/tests/audio-category.test.ts:5:24
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  11:27:50
+   Duration  107ms (transform 14ms, setup 0ms, import 19ms, tests 3ms, environment 0ms)
+

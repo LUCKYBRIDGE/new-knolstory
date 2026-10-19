@@ -1,0 +1,22 @@
+{
+  "authorization": "User explicitly requested final-domain cutover",
+  "origin": "https://story-next.knolquiz.com",
+  "dns": {
+    "story.knolquiz.com": {
+      "type": "CNAME",
+      "content": "story-maker-5b1.pages.dev",
+      "proxied": true,
+      "ttl": "Auto"
+    }
+  },
+  "newTunnelRouteAddedBeforeDnsSwitch": {
+    "hostname": "story.knolquiz.com",
+    "service": "http://127.0.0.1:15501",
+    "dnsAutoCreate": "Existing record prevented automatic DNS creation; original record unchanged"
+  },
+  "rollback": {
+    "dnsContent": "story-maker-5b1.pages.dev",
+    "candidateRestart": "KNOLSTORY_AUTH_ORIGIN=https://story-next.knolquiz.com node server/operations/production-compose.mjs start"
+  },
+  "legacyDeletionAuthorizedThisTurn": false
+}

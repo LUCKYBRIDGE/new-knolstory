@@ -1,0 +1,22 @@
+{
+  "accuracy": {
+    "score": 4,
+    "evidence": "final scoped host8/native5, unit44, exact returned PNG hash; partial baseline is explicitly not full success"
+  },
+  "completeness": {
+    "score": 3,
+    "evidence": "four confirmed stale paths plus existing private/responsive cases migrated; current384 collection remains partial; device/external/Chrome cause gates unverified"
+  },
+  "clarity": {
+    "score": 4,
+    "evidence": "old upload policy, retained private data, normalized projections and focus-only pixel differences documented separately"
+  },
+  "actionability": {
+    "score": 4,
+    "evidence": "real current edit/save/reload/registered-copy file/read-return paths tested, initial failures and fixtures preserved"
+  },
+  "conciseness": {
+    "score": 4,
+    "evidence": "one canonical validation owner with existing STATUS/DESIGN/plan/storage links"
+  }
+}

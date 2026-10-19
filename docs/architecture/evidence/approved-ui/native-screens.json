@@ -1,0 +1,229 @@
+{
+  "scope": "Real RenPy in Chromium viewports; not physical Samsung or screenshot pixel parity",
+  "results": [
+    {
+      "device": "web",
+      "width": 1440,
+      "height": 900,
+      "sameFrame": true,
+      "bottomGap": 16,
+      "rects": [
+        {
+          "name": "지난기록",
+          "x": 286.359375,
+          "y": 856,
+          "width": 49.53125,
+          "height": 28
+        },
+        {
+          "name": "저장",
+          "x": 452.65625,
+          "y": 856,
+          "width": 28.765625,
+          "height": 28
+        },
+        {
+          "name": "불러오기",
+          "x": 598.203125,
+          "y": 856,
+          "width": 49.53125,
+          "height": 28
+        },
+        {
+          "name": "자동",
+          "x": 764.5,
+          "y": 856,
+          "width": 28.765625,
+          "height": 28
+        },
+        {
+          "name": "빠른 저장",
+          "x": 910.046875,
+          "y": 856,
+          "width": 52.6875,
+          "height": 28
+        },
+        {
+          "name": "빠른 불러오기",
+          "x": 1079.5,
+          "y": 856,
+          "width": 73.4375,
+          "height": 28
+        }
+      ],
+      "renderedRevision": "4",
+      "sceneRevision": "4",
+      "engineWidth": "1280",
+      "engineHeight": "800",
+      "overflow": false
+    },
+    {
+      "device": "tablet",
+      "width": 1024,
+      "height": 768,
+      "sameFrame": true,
+      "bottomGap": 16,
+      "rects": [
+        {
+          "name": "지난기록",
+          "x": 192.796875,
+          "y": 724,
+          "width": 49.53125,
+          "height": 28
+        },
+        {
+          "name": "저장",
+          "x": 313.359375,
+          "y": 724,
+          "width": 28.765625,
+          "height": 28
+        },
+        {
+          "name": "불러오기",
+          "x": 413.171875,
+          "y": 724,
+          "width": 49.53125,
+          "height": 28
+        },
+        {
+          "name": "자동",
+          "x": 533.734375,
+          "y": 724,
+          "width": 28.765625,
+          "height": 28
+        },
+        {
+          "name": "빠른 저장",
+          "x": 633.546875,
+          "y": 724,
+          "width": 52.6875,
+          "height": 28
+        },
+        {
+          "name": "빠른 불러오기",
+          "x": 757.265625,
+          "y": 724,
+          "width": 73.4375,
+          "height": 28
+        }
+      ],
+      "renderedRevision": "4",
+      "sceneRevision": "4",
+      "engineWidth": "1280",
+      "engineHeight": "960",
+      "overflow": false
+    },
+    {
+      "device": "phone",
+      "width": 390,
+      "height": 844,
+      "sameFrame": true,
+      "bottomGap": 8.046875,
+      "rects": [
+        {
+          "name": "지난기록",
+          "x": 12,
+          "y": 777.953125,
+          "width": 122,
+          "height": 28
+        },
+        {
+          "name": "저장",
+          "x": 134,
+          "y": 777.953125,
+          "width": 122,
+          "height": 28
+        },
+        {
+          "name": "불러오기",
+          "x": 256,
+          "y": 777.953125,
+          "width": 122,
+          "height": 28
+        },
+        {
+          "name": "자동",
+          "x": 12,
+          "y": 807.953125,
+          "width": 122,
+          "height": 28
+        },
+        {
+          "name": "빠른 저장",
+          "x": 134,
+          "y": 807.953125,
+          "width": 122,
+          "height": 28
+        },
+        {
+          "name": "빠른 불러오기",
+          "x": 256,
+          "y": 807.953125,
+          "width": 122,
+          "height": 28
+        }
+      ],
+      "renderedRevision": "5",
+      "sceneRevision": "5",
+      "engineWidth": "720",
+      "engineHeight": "1558",
+      "overflow": false
+    },
+    {
+      "device": "phone-landscape",
+      "width": 844,
+      "height": 390,
+      "sameFrame": true,
+      "bottomGap": 8.15625,
+      "rects": [
+        {
+          "name": "지난기록",
+          "x": 118.15625,
+          "y": 353.84375,
+          "width": 101.203125,
+          "height": 28
+        },
+        {
+          "name": "저장",
+          "x": 219.359375,
+          "y": 353.84375,
+          "width": 101.21875,
+          "height": 28
+        },
+        {
+          "name": "불러오기",
+          "x": 320.578125,
+          "y": 353.84375,
+          "width": 101.203125,
+          "height": 28
+        },
+        {
+          "name": "자동",
+          "x": 421.78125,
+          "y": 353.84375,
+          "width": 101.21875,
+          "height": 28
+        },
+        {
+          "name": "빠른 저장",
+          "x": 523,
+          "y": 353.84375,
+          "width": 101.21875,
+          "height": 28
+        },
+        {
+          "name": "빠른 불러오기",
+          "x": 624.21875,
+          "y": 353.84375,
+          "width": 101.203125,
+          "height": 28
+        }
+      ],
+      "renderedRevision": "5",
+      "sceneRevision": "5",
+      "engineWidth": "1280",
+      "engineHeight": "591",
+      "overflow": false
+    }
+  ]
+}

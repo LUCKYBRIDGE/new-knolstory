@@ -1,0 +1,11 @@
+
+Running 3 tests using 1 worker
+
+(node:11211) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/3] [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+[2/3] [host] › tests/e2e/local-library.spec.ts:283:1 › example preparation makes an independent own copy and duplicate import keeps the original
+[3/3] [host] › tests/e2e/shortstory.spec.ts:31:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected
+  3 passed (24.6s)

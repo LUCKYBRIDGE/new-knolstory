@@ -1,0 +1,107 @@
+
+Running 4 tests using 1 worker
+
+(node:82656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 (5.1s)
+(node:82687) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 (5.0s)
+(node:82731) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 1440x740 (1.0s)
+  ✘  4 [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 (5.0s)
+
+
+  1) [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      13 |  for(const [selector,label] of [['[data-account-menu]','놀스토리 계정'],['[data-online-works]','온라인 작품']]){
+      14 |   await page.locator(`${selector}>summary`).click();const panel=page.getByRole('region',{name:label,exact:true});await expect(panel).toBeVisible();
+    > 15 |   await expect.poll(async()=>{const box=await panel.boundingBox();return !!box&&box.x>=15.5&&box.y>=15.5&&box.x+box.width<=width-15.5&&box.y+box.height<=height-15.5;}).toBe(true);
+         |                                                                                                                                                                         ^
+      16 |   await page.keyboard.press('Escape');
+      17 |  }
+      18 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:15:169
+
+    Error Context: docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-b4563-fit-the-viewport-at-320x740-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-b4563-fit-the-viewport-at-320x740-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-b4563-fit-the-viewport-at-320x740-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      13 |  for(const [selector,label] of [['[data-account-menu]','놀스토리 계정'],['[data-online-works]','온라인 작품']]){
+      14 |   await page.locator(`${selector}>summary`).click();const panel=page.getByRole('region',{name:label,exact:true});await expect(panel).toBeVisible();
+    > 15 |   await expect.poll(async()=>{const box=await panel.boundingBox();return !!box&&box.x>=15.5&&box.y>=15.5&&box.x+box.width<=width-15.5&&box.y+box.height<=height-15.5;}).toBe(true);
+         |                                                                                                                                                                         ^
+      16 |   await page.keyboard.press('Escape');
+      17 |  }
+      18 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:15:169
+
+    Error Context: docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-ab9ab-fit-the-viewport-at-390x740-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-ab9ab-fit-the-viewport-at-390x740-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-ab9ab-fit-the-viewport-at-390x740-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      13 |  for(const [selector,label] of [['[data-account-menu]','놀스토리 계정'],['[data-online-works]','온라인 작품']]){
+      14 |   await page.locator(`${selector}>summary`).click();const panel=page.getByRole('region',{name:label,exact:true});await expect(panel).toBeVisible();
+    > 15 |   await expect.poll(async()=>{const box=await panel.boundingBox();return !!box&&box.x>=15.5&&box.y>=15.5&&box.x+box.width<=width-15.5&&box.y+box.height<=height-15.5;}).toBe(true);
+         |                                                                                                                                                                         ^
+      16 |   await page.keyboard.press('Escape');
+      17 |  }
+      18 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:15:169
+
+    Error Context: docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-4c89b-fit-the-viewport-at-390x390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-4c89b-fit-the-viewport-at-390x390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-accou-4c89b-fit-the-viewport-at-390x390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 
+    [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 
+    [host] › tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 
+  1 passed (17.6s)

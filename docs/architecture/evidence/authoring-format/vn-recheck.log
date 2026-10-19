@@ -1,0 +1,13 @@
+
+Running 4 tests using 1 worker
+
+(node:14659) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/4] [host] › tests/e2e/vn-workflow.spec.ts:10:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields
+[2/4] [host] › tests/e2e/vn-workflow.spec.ts:22:1 › native portrait single speaker, slots and actual-path backlog restore both routes
+[3/4] [host] › tests/e2e/vn-workflow.spec.ts:38:1 › changed-work slots show saved excerpt and require explicit compatible restore
+[4/4] [host] › tests/e2e/vn-workflow.spec.ts:49:1 › numbered real-asset branch chapters play A and B then join without crossing routes
+  3 skipped
+  1 passed (4.1s)

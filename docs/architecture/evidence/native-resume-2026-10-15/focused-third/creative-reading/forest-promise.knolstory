@@ -1,0 +1,527 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-15T14:24:27.551Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "0c907d22-a640-4b09-aa79-a04c79d8730c",
+      "title": "숲의 약속 · 두 길에서 만나는 친구",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "audio": {
+            "music": {
+              "action": "play",
+              "assetId": "audio:music:forest",
+              "volume": 0.7,
+              "loop": true
+            }
+          },
+          "id": "06533bca-58c8-4cc5-9cff-d924f7ed1f93",
+          "order": 1,
+          "title": "여행의 시작",
+          "summary": "1장에서 친구를 만나는 이야기",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [
+            "흥부"
+          ],
+          "characterAssetIds": [
+            "heungbu.character.heungbu-young"
+          ],
+          "backgroundAssetIds": [
+            "seonnyeo.background.BG-forest-roots"
+          ],
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": ""
+        },
+        {
+          "chapterNumber": 2,
+          "id": "ee2daf27-d1a0-4077-8623-f0616752dc9c",
+          "order": 2,
+          "title": "두 길 앞에서",
+          "summary": "2장에서 친구를 만나는 이야기",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [
+            "흥부"
+          ],
+          "characterAssetIds": [
+            "heungbu.character.heungbu-young"
+          ],
+          "backgroundAssetIds": [
+            "seonnyeo.background.BG-forest-roots"
+          ],
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": ""
+        },
+        {
+          "chapterNumber": 3,
+          "branchLabel": "A",
+          "id": "5ee207ea-2327-4722-9529-b298bcb4aa19",
+          "order": 3,
+          "title": "햇빛의 길",
+          "summary": "3장A에서 친구를 만나는 이야기",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [
+            "흥부"
+          ],
+          "characterAssetIds": [
+            "heungbu.character.heungbu-young"
+          ],
+          "backgroundAssetIds": [
+            "seonnyeo.background.BG-forest-roots"
+          ],
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": ""
+        },
+        {
+          "chapterNumber": 3,
+          "branchLabel": "B",
+          "id": "7e0207e9-998b-4964-84c5-b15a46df5991",
+          "order": 4,
+          "title": "별빛의 길",
+          "summary": "3장B에서 친구를 만나는 이야기",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [
+            "흥부"
+          ],
+          "characterAssetIds": [
+            "heungbu.character.heungbu-young"
+          ],
+          "backgroundAssetIds": [
+            "seonnyeo.background.BG-forest-roots"
+          ],
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": ""
+        },
+        {
+          "chapterNumber": 4,
+          "id": "8d35718b-e9b0-4abc-8b87-a2b4803100b1",
+          "order": 5,
+          "title": "다시 만나는 다리",
+          "summary": "4장에서 친구를 만나는 이야기",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [
+            "흥부"
+          ],
+          "characterAssetIds": [
+            "heungbu.character.heungbu-young"
+          ],
+          "backgroundAssetIds": [
+            "seonnyeo.background.BG-forest-roots"
+          ],
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "c6e8eff8-537d-452c-9b27-eb6c474b3ea4",
+          "chapterId": "06533bca-58c8-4cc5-9cff-d924f7ed1f93",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "아침 빛이 작은 숲을 깨웠다.",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "sounds": [
+              {
+                "id": "sound-918e3ecd-1ca1-4fc5-b787-fd6fad21cae1",
+                "assetId": "audio:sound:chime",
+                "volume": 1,
+                "delayMs": 0
+              }
+            ]
+          },
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "left-1792074257067",
+                "assetId": "heungbu.character.heungbu-young",
+                "scaleMultiplier": 0.9,
+                "xAnchor": 32
+              }
+            ],
+            "rightActors": []
+          },
+          "presentation": {
+            "effects": [
+              {
+                "intensity": "soft",
+                "scope": "following",
+                "target": {
+                  "kind": "background"
+                },
+                "type": "shake"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cbd2bf90-0f2d-4f04-9fe2-ccb39636eb43",
+          "chapterId": "06533bca-58c8-4cc5-9cff-d924f7ed1f93",
+          "order": 2,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "흥부",
+          "text": "흥부는 친구에게 줄 선물을 챙겼다.",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "left-1792074259134",
+                "assetId": "heungbu.character.heungbu-young"
+              }
+            ],
+            "rightActors": [],
+            "speakerActorKey": "left-1792074259134",
+            "speakerActorKeys": [
+              "left-1792074259134"
+            ]
+          }
+        },
+        {
+          "id": "968731ac-3e1d-43e5-ab8e-11e26c598991",
+          "chapterId": "06533bca-58c8-4cc5-9cff-d924f7ed1f93",
+          "order": 3,
+          "type": "dialogue",
+          "speaker": "narration",
+          "speakerName": "흥부",
+          "text": "나는 흥부와 함께 숲 입구로 걸었다.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "62cffff5-fe1e-4015-9c46-77e0b1b0865a"
+          }
+        },
+        {
+          "id": "62cffff5-fe1e-4015-9c46-77e0b1b0865a",
+          "chapterId": "ee2daf27-d1a0-4077-8623-f0616752dc9c",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "숲 깊은 곳에서 두 길이 나타났다.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "presentation": {
+            "clearFollowingEffects": true
+          }
+        },
+        {
+          "id": "f2547513-3bb3-425d-86fb-bf5a257e009c",
+          "chapterId": "ee2daf27-d1a0-4077-8623-f0616752dc9c",
+          "order": 2,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "흥부",
+          "text": "밝은 길에서는 새가 노래하고, 밤길에서는 별이 빛났다.",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "left-1792074260051",
+                "assetId": "heungbu.character.heungbu-young"
+              }
+            ],
+            "rightActors": [],
+            "speakerActorKey": "left-1792074260051",
+            "speakerActorKeys": [
+              "left-1792074260051"
+            ]
+          }
+        },
+        {
+          "id": "fe6e303d-7d65-4544-b470-a444f060b697",
+          "chapterId": "ee2daf27-d1a0-4077-8623-f0616752dc9c",
+          "order": 3,
+          "type": "dialogue",
+          "speaker": "narration",
+          "speakerName": "흥부",
+          "text": "어느 길로 친구를 찾아갈까?",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "fe6e303d-7d65-4544-b470-a444f060b697-choice-1",
+                "label": "햇빛의 길로 가기",
+                "targetLineId": "5cd6d638-f3d1-4b31-8010-a431828bb05e"
+              },
+              {
+                "id": "fe6e303d-7d65-4544-b470-a444f060b697-choice-2",
+                "label": "별빛의 길로 가기",
+                "targetLineId": "4cb9afdf-379d-4b50-bb0c-70460bf9c071"
+              }
+            ]
+          }
+        },
+        {
+          "id": "5cd6d638-f3d1-4b31-8010-a431828bb05e",
+          "chapterId": "5ee207ea-2327-4722-9529-b298bcb4aa19",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "해설",
+          "coSpeakerNames": [],
+          "text": "햇빛 아래에서 작은 제비를 만났다.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "inheritActors": false,
+          "workingTitle": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "c0a82e65-4c22-4e4d-9948-f5dc16ea9e1f",
+          "chapterId": "5ee207ea-2327-4722-9529-b298bcb4aa19",
+          "order": 2,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "흥부",
+          "text": "제비가 알려 준 길을 따라 다리로 향했다.",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "left-1792074260833",
+                "assetId": "heungbu.character.heungbu-young"
+              }
+            ],
+            "rightActors": [],
+            "speakerActorKey": "left-1792074260833",
+            "speakerActorKeys": [
+              "left-1792074260833"
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "3be2f5ab-7044-4f0b-b068-501f306189d6"
+          }
+        },
+        {
+          "id": "4cb9afdf-379d-4b50-bb0c-70460bf9c071",
+          "chapterId": "7e0207e9-998b-4964-84c5-b15a46df5991",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "해설",
+          "coSpeakerNames": [],
+          "text": "별빛 아래에서 길 잃은 친구를 만났다.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "inheritActors": false,
+          "workingTitle": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "79386537-735e-4348-abcf-c9fa677976c2",
+          "chapterId": "7e0207e9-998b-4964-84c5-b15a46df5991",
+          "order": 2,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "흥부",
+          "text": "우리는 서로 손을 잡고 다리로 향했다.",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "left-1792074261652",
+                "assetId": "heungbu.character.heungbu-young"
+              }
+            ],
+            "rightActors": [],
+            "speakerActorKey": "left-1792074261652",
+            "speakerActorKeys": [
+              "left-1792074261652"
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "3be2f5ab-7044-4f0b-b068-501f306189d6"
+          }
+        },
+        {
+          "id": "3be2f5ab-7044-4f0b-b068-501f306189d6",
+          "chapterId": "8d35718b-e9b0-4abc-8b87-a2b4803100b1",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "서로 다른 길을 지나 같은 다리에서 만났다.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "e10f3046-dc5f-432c-b848-4d5ae42e9480",
+          "chapterId": "8d35718b-e9b0-4abc-8b87-a2b4803100b1",
+          "order": 2,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "흥부",
+          "text": "다음 여행에서도 서로의 이야기를 듣기로 약속했다.",
+          "leftAssetId": "heungbu.character.heungbu-young",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG-forest-roots",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "left-1792074262534",
+                "assetId": "heungbu.character.heungbu-young"
+              }
+            ],
+            "rightActors": [],
+            "speakerActorKey": "left-1792074262534",
+            "speakerActorKeys": [
+              "left-1792074262534"
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": null
+          }
+        }
+      ],
+      "updatedAt": "2026-10-15T14:24:22.651Z"
+    }
+  },
+  "audioResources": []
+}

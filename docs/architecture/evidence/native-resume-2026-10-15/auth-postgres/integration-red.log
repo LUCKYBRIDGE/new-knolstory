@@ -1,0 +1,13 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-7e8ced099a24 Creating 
+ Container knolstory-next-storage-test-runner-run-7e8ced099a24 Created 
+
+> @knolstory/storage-test@ typecheck /workspace/server
+> tsc --project tsconfig.integration.json
+
+auth/postgres-identity-port.integration.ts(6,42): error TS2307: Cannot find module './postgres-identity-port' or its corresponding type declarations.
+auth/postgres-identity-port.integration.ts(67,41): error TS7006: Parameter 'tx' implicitly has an 'any' type.
+ ELIFECYCLE  Command failed with exit code 2.
+

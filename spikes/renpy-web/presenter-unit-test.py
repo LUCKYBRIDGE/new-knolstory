@@ -6,6 +6,8 @@ import unittest
 import tempfile
 import hashlib
 import base64
+import sys
+import copy
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 
@@ -107,9 +109,55 @@ class ResourceAndViewportTests(unittest.TestCase):
     def setUp(self):
         source = (ROOT / 'renpy/responsive-spike/game/script.rpy').read_text()
         self.resize_calls = []
-        self.ns = {'config': types.SimpleNamespace(screen_width=1280, screen_height=720, keymap={}),
-            'renpy': types.SimpleNamespace(game=types.SimpleNamespace(interface=types.SimpleNamespace(set_mode=lambda: self.resize_calls.append(True))), free_memory=lambda:None)}
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        game = ROOT / 'renpy/responsive-spike/game'
+        prior_path = list(sys.path)
+        sys.path.insert(0, str(game))
+        self.addCleanup(lambda: sys.path.__setitem__(slice(None), prior_path))
+        adjustment = lambda: types.SimpleNamespace(change=lambda value: None)
+        self.ns = {'config': types.SimpleNamespace(screen_width=1280, screen_height=720, keymap={}, gamedir=self.directory.name),
+            'renpy': types.SimpleNamespace(ui=types.SimpleNamespace(adjustment=adjustment), game=types.SimpleNamespace(interface=types.SimpleNamespace(set_mode=lambda: self.resize_calls.append(True))), free_memory=lambda:None)}
         exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+    def test_displayed_page_end_uses_actual_pages_not_resume_anchor(self):
+        self.ns['knol_dialogue_metrics'] = lambda scene: {'pages':['첫🐇문', '나머지', '비밀']}
+        self.ns['knol_text_page'] = 0
+        self.ns['knol_text_offset'] = 2
+        self.assertEqual(self.ns['knol_dialogue_page_evidence']({}), {'index':0,'count':3,'offset':2,'endOffset':3})
+        self.ns['knol_text_page'] = 1
+        self.assertEqual(self.ns['knol_dialogue_page_evidence']({})['endOffset'],6)
+
+    def test_actual_audio_unlock_initializes_once_without_advancing_scene(self):
+        scene = {'sceneId':'locked-cut', 'revision':4, 'mode':'play',
+            'audio':{'music':{'action':'play'}, 'sounds':[]}}
+        self.ns['knol_scene'] = scene
+        before = copy.deepcopy(scene)
+        calls = []
+        self.ns['time'] = types.SimpleNamespace(monotonic=lambda: 10)
+        self.ns['knol_apply_audio'] = lambda value, entrance: calls.append(('audio', copy.deepcopy(value), entrance))
+        self.ns['knol_start_native_transition'] = lambda value: calls.append(('transition', copy.deepcopy(value)))
+        self.ns['knol_sync_effect_clocks'] = lambda value, reset: calls.append(('clocks', copy.deepcopy(value), reset))
+        self.ns['renpy'].restart_interaction = lambda: calls.append(('restart',))
+        self.assertTrue(self.ns['knol_waiting_for_audio']())
+        self.ns['knol_unlock_audio']()
+        self.assertTrue(self.ns['knol_audio_unlocked'])
+        self.assertFalse(self.ns['knol_waiting_for_audio']())
+        self.assertTrue(self.ns['knol_pending'])
+        self.assertEqual(self.ns['knol_presentation_started'], 10)
+        self.assertEqual(self.ns['knol_audio_started'], 10)
+        self.assertEqual([call[0] for call in calls], ['audio', 'transition', 'clocks', 'restart'])
+        self.assertTrue(calls[0][2])
+        self.assertTrue(calls[2][2])
+        self.ns['time'] = types.SimpleNamespace(monotonic=lambda: 20)
+        self.ns['knol_unlock_audio']()
+        self.assertEqual(len(calls), 4)
+        self.assertEqual(self.ns['knol_presentation_started'], 10)
+        self.assertEqual(self.ns['knol_audio_started'], 10)
+        self.assertIs(self.ns['knol_scene'], scene)
+        self.assertEqual(scene, before)
+        self.assertEqual(self.ns['knol_revision'], -1)
+        self.assertEqual(self.ns['knol_seq'], -1)
+
     def test_orientation_updates_same_engine_only_when_dimensions_change(self):
         self.ns['knol_resize']({'width':720,'height':1558})
         self.ns['knol_resize']({'width':720,'height':1558})
@@ -162,6 +210,82 @@ class NativeDirectionTests(unittest.TestCase):
         self.assertGreater(state.get('wait',0),.45)
         self.assertEqual(state['start_xoffset'],100)
         self.assertAlmostEqual(state['remaining'],.8,places=2)
+
+    def setup_effects(self, effects, reduced=False):
+        self.now = 10
+        self.ns['time'] = types.SimpleNamespace(monotonic=lambda: self.now)
+        self.ns['knol_scene'] = {'mode':'play','reducedMotion':reduced,'presentation':{'effects':effects}}
+        self.ns['knol_presentation_started'] = 10
+        self.ns['knol_transition_active'] = False
+        self.ns['knol_waiting_for_audio'] = lambda *args:False
+        self.ns['knol_sync_effect_clocks'](self.ns['knol_scene'], True)
+
+    def test_effect_duration_extends_shake_and_ends_overlay(self):
+        effect = {'type':'shake','durationMs':2000,'originEntry':'a'}
+        self.setup_effects([effect])
+        self.now = 11.1
+        trans = types.SimpleNamespace(xoffset=0,yoffset=0,alpha=0)
+        self.ns['knol_target_shake'](trans, 0, 0)
+        self.assertNotEqual(trans.xoffset,0)
+        self.now = 12.1
+        self.ns['knol_target_shake'](trans, 0, 0)
+        self.assertEqual(trans.xoffset,0)
+        overlay = {'type':'flash-red','durationMs':2000,'originEntry':'a'}
+        self.now = 11.1
+        self.ns['knol_effect_alpha'](trans,0,0,overlay)
+        self.assertGreater(trans.alpha,0)
+        self.now = 12.1
+        self.ns['knol_effect_alpha'](trans,0,0,overlay)
+        self.assertEqual(trans.alpha,0)
+
+    def test_effect_zero_duration_and_reduced_motion_loop(self):
+        self.setup_effects([])
+        trans=types.SimpleNamespace(alpha=1)
+        self.ns['knol_effect_alpha'](trans,0,0,{'type':'flash','durationMs':0})
+        self.assertEqual(trans.alpha,0)
+        self.setup_effects([{'type':'crack','durationMs':700,'repeat':'loop','periodMs':1000}],reduced=True)
+        self.now=12.2
+        self.ns['knol_effect_alpha'](trans,0,0,self.ns['knol_scene']['presentation']['effects'][0])
+        self.assertEqual(trans.alpha,0)
+
+    def test_explicit_delay_and_loop_duration_preserve_same_entry_clock(self):
+        effect={'type':'flash-red','durationMs':400,'delayMs':500,'repeat':'loop','periodMs':1000,'originEntry':'a'}
+        self.setup_effects([effect])
+        trans=types.SimpleNamespace(alpha=0)
+        self.now=10.3
+        self.ns['knol_effect_alpha'](trans,0,0,effect)
+        self.assertEqual(trans.alpha,0)
+        self.now=10.7
+        self.ns['knol_effect_alpha'](trans,0,0,effect)
+        self.assertGreater(trans.alpha,0)
+        self.ns['knol_sync_effect_clocks'](self.ns['knol_scene'])
+        self.now=11.1
+        self.ns['knol_effect_alpha'](trans,0,0,effect)
+        self.assertEqual(trans.alpha,0)
+        self.now=11.7
+        self.ns['knol_effect_alpha'](trans,0,0,effect)
+        self.assertGreater(trans.alpha,0)
+
+    def test_transition_finish_preserves_inherited_clock_and_starts_new_cue(self):
+        self.setup_effects([])
+        self.ns['knol_effect_clocks']={'following':9,'current':10}
+        self.ns['knol_revision']=1
+        self.ns['knol_scene']['sceneId']='current'
+        self.ns['knol_emit']=lambda event:None
+        self.ns['renpy'].restart_interaction=lambda:None
+        self.now=11
+        self.ns['knol_finish_transition']()
+        self.assertEqual(self.ns['knol_effect_clocks'],{'following':9,'current':11})
+
+    def test_default_durations_preserve_old_cues(self):
+        self.assertEqual(self.ns['knol_effect_duration']({'type':'shake'}),.6)
+        self.assertEqual(self.ns['knol_effect_duration']({'type':'crack'}),1.8)
+        self.assertEqual(self.ns['knol_effect_duration']({'type':'spotlight'}),.8)
+
+    def test_actor_atl_includes_authored_pause(self):
+        source=(ROOT/'renpy/responsive-spike/game/presentation.rpy').read_text()
+        atl=source.split('transform knol_actor_motion_atl(actor, scene):',1)[1]
+        self.assertLess(atl.index('pause knol_actor_motion_value(actor, scene, "wait")'), atl.index('linear knol_actor_motion_value'))
 
     def test_reduced_native_transition_keeps_short_clock(self):
         self.ns['knol_start_native_transition'](self.scene({'type':'white-fade','durationMs':900,'mode':'auto'}, reduced=True))

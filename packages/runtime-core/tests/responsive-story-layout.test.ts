@@ -11,9 +11,9 @@ const source = () => patchStoryLine(createBlankStoryProject({ id: 'responsive', 
 });
 
 describe('responsive story framing', () => {
-  it('uses actual viewport aspect ratios and rejects invalid measurements', () => {
-    expect(resolveStoryViewport({ width: 390, height: 844 })).toMatchObject({ width: 720, height: 1558 });
-    expect(resolveStoryViewport({ width: 1000, height: 450 })).toMatchObject({ width: 1280, height: 576 });
+  it('uses fixed portrait or landscape stages and rejects invalid measurements', () => {
+    expect(resolveStoryViewport({ width: 390, height: 844 })).toMatchObject({ width: 720, height: 1280 });
+    expect(resolveStoryViewport({ width: 1000, height: 450 })).toMatchObject({ width: 1280, height: 720 });
     for (const viewport of [{ width: 0, height: 400 }, { width: 400, height: NaN }]) expect(() => resolveStoryViewport(viewport)).toThrow();
   });
   it('covers portrait backgrounds and moves the crop toward the authored focal point', () => {
@@ -32,7 +32,7 @@ describe('responsive story framing', () => {
     const scene = compileStoryScene(project, 'cut', 1, { mode: 'edit', viewport });
     expect(scene.viewportVersion).toBe(1);
     expect(scene.textboxRect).toBeDefined();
-    expect(scene.dialogueStyle!.fontSize * viewport.width / scene.width).toBeGreaterThanOrEqual(16);
+    expect(scene.dialogueStyle!.fontSize).toBe(32);
     const painted = scene.actors.map((actor, i) => {
       const geometry = resolveAsset(i === 0 ? child : adult)!.geometry!;
       expect(actor.rect.y + actor.rect.height * geometry.top).toBeGreaterThanOrEqual(8);
@@ -77,7 +77,12 @@ it('fills the responsive viewport for scene artwork and allows explicit whole-pi
  expect(compileStoryScene(next,l.id,2,{mode:'edit',viewport:{width:390,height:844}}).background?.fit).toBe('contain');
 });
 
-it('keeps preview dialogue readable when a preset is fitted into a smaller actual display',()=>{
+it('keeps reference text and actors unchanged while reserving usable tools when the game canvas scales down',()=>{
  const viewport=resolveStoryViewport({width:1280,height:720},{width:374,height:440});
- expect(viewport.dialogueStyle.fontSize*Math.min(374/viewport.width,440/viewport.height)).toBeGreaterThanOrEqual(17);
+ const full=resolveStoryViewport({width:1280,height:720});
+ expect(viewport.dialogueStyle.fontSize).toBe(full.dialogueStyle.fontSize);
+ expect(viewport.dialogueStyle.paginationFontSize).toBe(full.dialogueStyle.paginationFontSize);
+ expect(viewport.actorBaseHeight).toBe(full.actorBaseHeight);
+ expect(viewport.actorBaseline).toBe(full.actorBaseline);
+ expect(viewport.dialogueStyle.toolsHeight).toBeGreaterThan(full.dialogueStyle.toolsHeight);
 });

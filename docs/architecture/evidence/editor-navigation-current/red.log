@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ apps/web/lib/editor-navigation.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/editor-navigation.test.ts [ apps/web/lib/editor-navigation.test.ts ]
+Error: Cannot find module './editor-navigation' imported from <repo>/apps/web/lib/editor-navigation.test.ts
+ ❯ apps/web/lib/editor-navigation.test.ts:2:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {normalizeEditingPath,visitEditingCut,returnToEditingVisit,MAX_…
+       | ^
+      3| describe('editing visits are derived UI state',()=>{
+      4|  const ids=['a','b','c'];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  19:57:22
+   Duration  114ms (transform 9ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

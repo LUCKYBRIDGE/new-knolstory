@@ -1,0 +1,28 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-6bcca4df6688 Creating 
+ Container knolstory-next-storage-test-runner-run-6bcca4df6688 Created 
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+ [32m✓[39m documents/service.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 369[2mms[22m[39m
+ [32m✓[39m http/document-service.integration.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 474[2mms[22m[39m
+ [32m✓[39m documents/trash.integration.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 182[2mms[22m[39m
+ [32m✓[39m documents/trash-state.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m documents/service.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m      Tests [22m [1m[32m30 passed[39m[22m[90m (30)[39m
+[2m   Start at [22m 14:16:43
+[2m   Duration [22m 3.15s[2m (transform 925ms, setup 0ms, import 1.64s, tests 1.03s, environment 0ms)[22m
+
+[34m % [39m[2mCoverage report from [22m[33mv8[39m
+----------------|---------|----------|---------|---------|-------------------
+File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------------|---------|----------|---------|---------|-------------------
+All files       |   91.19 |    90.83 |     100 |   99.03 |                   
+ service.ts     |   89.92 |       89 |     100 |   98.87 | 47                
+ trash-state.ts |     100 |      100 |     100 |     100 |                   
+----------------|---------|----------|---------|---------|-------------------

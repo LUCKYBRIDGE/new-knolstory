@@ -1,0 +1,30 @@
+{
+  "classified": [
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"1\"]",
+      "primary": "1번",
+      "description": "화면 이미지 없음 · 저장한 글로 확인 2026. 10. 17. 오전 8:10:18 1장 · 계곡 · 1컷 · 해설 — 깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다. 하지만 바위 너머에서는 웃음소리가 들렸다."
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"2\"]",
+      "primary": "2번",
+      "description": "빈 저장 위치"
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"3\"]",
+      "primary": "3번",
+      "description": "빈 저장 위치"
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"4\"]",
+      "primary": "4번",
+      "description": "빈 저장 위치"
+    }
+  ],
+  "unresolved": [],
+  "raw": "불러오기-axe.json"
+}

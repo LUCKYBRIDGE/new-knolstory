@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-19",
+  "scope": "Read-only diagnosis of one retained failing browser trace; fix not implemented",
+  "trace": "docs/architecture/evidence/join-and-or-2026-10-19/complete-run/editing-workbench-connecti-734a2-s-without-altering-the-work/trace.zip",
+  "counts": {
+    "zero_division_messages": 2,
+    "syncfs_overlap_warnings": 48088,
+    "secondary_none_update_messages": 10684
+  },
+  "firstException": [
+    "Full traceback:",
+    "  File \"//game/script.rpyc\", line 636, in script",
+    "  File \"renpy/ast.py\", line 2251, in execute",
+    "  File \"renpy/ast.py\", line 2205, in call",
+    "  File \"renpy/statements.py\", line 381, in call",
+    "  File \"renpy/common/000statements.rpy\", line 698, in execute_call_screen",
+    "    store._return = renpy.call_screen(name, *args, **kwargs)",
+    "  File \"renpy/exports/statementexports.py\", line 341, in call_screen",
+    "  File \"renpy/ui.py\", line 306, in interact",
+    "  File \"renpy/display/core.py\", line 2117, in interact",
+    "  File \"renpy/display/core.py\", line 932, in start",
+    "  File \"renpy/display/core.py\", line 1254, in set_mode",
+    "  File \"renpy/gl2/gl2draw.pyx\", line 522, in renpy.gl2.gl2draw.GL2Draw.init",
+    "  File \"renpy/gl2/gl2draw.pyx\", line 629, in renpy.gl2.gl2draw.GL2Draw.on_resize",
+    "ZeroDivisionError: float division by zero"
+  ],
+  "confirmed": [
+    "First error GL2Draw.init/on_resize ZeroDivisionError before syncfs warning growth",
+    "Subsequent error loop includes NoneType.update failures",
+    "Emscripten FS.syncfs warns when unfinished concurrent syncFSRequests exceeds1; count decremented in callback",
+    "48k overlap warnings in this trace explain diagnostic and browser load; this is not48kactualuserworkfile saves"
+  ],
+  "inference": "Likely asynchronous engine display initialization while multi-cut screen hides iframe via display:none, yielding zero drawing dimensions. Trace proves zero-division; exact hidden timing remains to be confirmed with targeted regression.",
+  "next": "Keep engine initialization/render surface nonzero while visually parked, or gate startup until measured nonzero geometry; stop repeated error/sync loop. Preserve one renderer and authored content. Do not merely suppress warnings."
+}

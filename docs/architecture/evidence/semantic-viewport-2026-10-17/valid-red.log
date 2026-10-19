@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:42139) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/accessibility-semantic-viewport.spec.ts:5:1 › focused semantic choice fits the short viewport and scrolls without clipping (3.4s)
+
+
+  1) tests/e2e/accessibility-semantic-viewport.spec.ts:5:1 › focused semantic choice fits the short viewport and scrolls without clipping 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "auto"
+    Received: "hidden"
+
+      12 |  const measure=await choice.evaluate(node=>{const button=node.getBoundingClientRect(),panel=node.closest('details')!,box=panel.getBoundingClientRect();return {button:{top:button.top,bottom:button.bottom,height:button.height},panel:{top:box.top,bottom:box.bottom,height:box.height,overflow:getComputedStyle(panel).overflowY},viewportHeight:innerHeight};});
+      13 |  await writeFile(info.outputPath('bounds.json'),JSON.stringify({scope:'Host acknowledgment harness at equivalent CSS layout dimensions; actual Chrome zoom has separate evidence',measure},null,2)+'\n');await page.screenshot({path:info.outputPath('focused-choice.png')});
+    > 14 |  expect(measure.panel.overflow).toBe('auto');expect(measure.button.top).toBeGreaterThanOrEqual(Math.max(0,measure.panel.top));expect(measure.button.bottom).toBeLessThanOrEqual(Math.min(measure.viewportHeight,measure.panel.bottom));
+         |                                 ^
+      15 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).focus();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).press('Enter');await expect(page.getByRole('group',{name:'읽기 메뉴',exact:true})).toBeVisible();
+      16 | });
+      17 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-semantic-viewport.spec.ts:14:33
+
+    Error Context: docs/architecture/evidence/semantic-viewport-2026-10-17/valid-red-run/accessibility-semantic-vie-e0d18-nd-scrolls-without-clipping/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/semantic-viewport-2026-10-17/valid-red-run/accessibility-semantic-vie-e0d18-nd-scrolls-without-clipping/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/semantic-viewport-2026-10-17/valid-red-run/accessibility-semantic-vie-e0d18-nd-scrolls-without-clipping/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/accessibility-semantic-viewport.spec.ts:5:1 › focused semantic choice fits the short viewport and scrolls without clipping 

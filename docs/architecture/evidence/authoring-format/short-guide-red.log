@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/authoring-workbook-readability.test.ts (2 tests | 1 failed) 258ms
+   × ShortStory guidance teaches pages and covers using only its supported picture assets 38ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/authoring-workbook-readability.test.ts > ShortStory guidance teaches pages and covers using only its supported picture assets
+AssertionError: expected [ undefined, '항목', '공식 양식', …(78) ] to include '새 쪽'
+ ❯ packages/compatibility/tests/authoring-workbook-readability.test.ts:16:17
+     14|  const bytes=await exportAuthoringExcel(await blankAuthoringArchive('s…
+     15|  const guide=book.getWorksheet('사용 안내')!;const labels=guide.getColumn(…
+     16|  expect(labels).toContain('새 쪽');expect(labels).not.toContain('새 컷');e…
+       |                 ^
+     17|  const reference=book.getWorksheet('자산 참고')!;expect(reference.getColum…
+     18| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  01:24:10
+   Duration  638ms (transform 164ms, setup 0ms, import 295ms, tests 258ms, environment 0ms)
+

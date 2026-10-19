@@ -1,0 +1,217 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:23] "GET / HTTP/1.1" 200 -
+
+Running 4 tests using 1 worker
+
+(node:27990) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/35x3sp69_nd7_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/31a351o0a_vwx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/1y5ilh4_3bawd.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /_next/static/chunks/1cuw84c-adpc4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:24] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:26] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:29] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:29] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:29] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:31] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:31] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:31] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:31] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:31] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:33] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+  ✓  1 [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 1440 (11.4s)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/35x3sp69_nd7_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/31a351o0a_vwx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/1y5ilh4_3bawd.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:35] "GET /_next/static/chunks/1cuw84c-adpc4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:36] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:37] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:40] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:40] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:40] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:42] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:42] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:42] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:42] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:43] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+  ✓  2 [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 768 (10.2s)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/35x3sp69_nd7_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/1y5ilh4_3bawd.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/31a351o0a_vwx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:45] "GET /_next/static/chunks/1cuw84c-adpc4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:46] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:48] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:50] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:50] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:50] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:52] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:52] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:53] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:53] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:53] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  3 [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 390 (13.3s)
+(node:28393) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/35x3sp69_nd7_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/31a351o0a_vwx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/1y5ilh4_3bawd.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:33:59] "GET /_next/static/chunks/1cuw84c-adpc4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:00] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:01] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:04] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:04] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:04] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:06] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:06] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:06] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:06] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 02:34:06] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  4 [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 844 (14.6s)
+
+
+  1) [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 390 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('story-runtime-status')
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 5000ms
+      - waiting for getByTestId('story-runtime-status')
+        14 × locator resolved to <div role="status" data-music-path="" data-ambience-path="" data-sound-paths="[]" data-scene-width="720" data-music-position="" data-scene-revision="6" data-engine-width="720" data-scene-height="1558" data-choices-rect="null" data-sound-play-count="0" data-engine-height="1558" data-renderer-width="720" data-rendered-revision="6" data-music-start-count="0" data-audio-unlocked="false" data-renderer-height="1558" data-ambience-start-count="0" data-testid="story-runtime-status" data-textbox-y="1351.230…>이야기 무대 연결됨 · 소리를 시작하려면 무대를 한 번 눌러 주세요.</div>
+           - unexpected value "false"
+
+
+      12 |  const restoredChapter={...saved.project.chapters[0],audio:baseline.chapters[0].audio};expect(JSON.parse(JSON.stringify({...saved.project,updatedAt:baseline.updatedAt,chapters:saved.project.chapters.map((ch:{id:string})=>ch.id===chapter.id?restoredChapter:ch)}))).toEqual(baseline);
+      13 |  await page.reload();await chapterSettings(page);await controls.getByLabel('조정할 소리',{exact:true}).selectOption('music');await expect(controls.getByLabel('장 배경음 종료 컷',{exact:true})).toHaveValue(end);await controls.getByLabel('조정할 소리',{exact:true}).selectOption('ambience');await expect(controls.getByLabel('장 주변 소리 종료 컷',{exact:true})).toHaveValue(end);await page.screenshot({path:info.outputPath(`chapter-range-${size.width}.png`),fullPage:true});
+    > 14 |  const frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>{(node as HTMLIFrameElement).contentWindow!.addEventListener('message',event=>{if(event.data?.type==='loadScene')node.setAttribute('data-chapter-scene',JSON.stringify(event.data.payload));});});const report=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await report.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await report.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);const box=(await frame.boundingBox())!;await page.mouse.click(box.x+30,box.y+30);await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const ready=async()=>{const state=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await state.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await state.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);};const audio=async()=>JSON.parse((await frame.getAttribute('data-chapter-scene'))!).audio;await ready();await expect(report).toHaveAttribute('data-audio-unlocked','true');await expect(report).toHaveAttribute('data-music-path',/forest/);await expect(report).toHaveAttribute('data-ambience-path',/forest/);expect(await audio()).toMatchObject({music:{action:'play'},ambience:{action:'play'}});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
+      15 |  for(const index of [1,2]){const next=page.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');await ready();expect(await audio()).toMatchObject({music:{action:index===1?'play':'stop'},ambience:{action:index===1?'play':'stop'}});await expect(report).toHaveAttribute('data-music-path',index===1?/forest/:'');await expect(report).toHaveAttribute('data-ambience-path',index===1?/forest/:'');}
+      16 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expect((await exportProject(page)).project).toEqual(saved.project);const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope > summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(saved.path);await confirmAuthoringImport(page);const reopened=(await exportProject(page)).project;expect(reopened).toEqual({...saved.project,id:reopened.id});
+      17 | });
+        at <repo>/tests/e2e/chapter-audio-range.spec.ts:14:1099
+
+    Error Context: test-results-current-ux/chapter-audio-range-chapte-7dc41-ter-native-end-boundary-390-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/chapter-audio-range-chapte-7dc41-ter-native-end-boundary-390-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/chapter-audio-range-chapte-7dc41-ter-native-end-boundary-390-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 844 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('story-runtime-status')
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 5000ms
+      - waiting for getByTestId('story-runtime-status')
+        14 × locator resolved to <div role="status" data-music-path="" data-ambience-path="" data-sound-paths="[]" data-music-position="" data-scene-revision="6" data-scene-width="1280" data-scene-height="591" data-engine-width="1280" data-engine-height="591" data-choices-rect="null" data-sound-play-count="0" data-rendered-revision="6" data-music-start-count="0" data-renderer-width="1280" data-renderer-height="591" data-audio-unlocked="false" data-ambience-start-count="0" data-testid="story-runtime-status" data-textbox-y="380.8672…>이야기 무대 연결됨 · 소리를 시작하려면 무대를 한 번 눌러 주세요.</div>
+           - unexpected value "false"
+
+
+      12 |  const restoredChapter={...saved.project.chapters[0],audio:baseline.chapters[0].audio};expect(JSON.parse(JSON.stringify({...saved.project,updatedAt:baseline.updatedAt,chapters:saved.project.chapters.map((ch:{id:string})=>ch.id===chapter.id?restoredChapter:ch)}))).toEqual(baseline);
+      13 |  await page.reload();await chapterSettings(page);await controls.getByLabel('조정할 소리',{exact:true}).selectOption('music');await expect(controls.getByLabel('장 배경음 종료 컷',{exact:true})).toHaveValue(end);await controls.getByLabel('조정할 소리',{exact:true}).selectOption('ambience');await expect(controls.getByLabel('장 주변 소리 종료 컷',{exact:true})).toHaveValue(end);await page.screenshot({path:info.outputPath(`chapter-range-${size.width}.png`),fullPage:true});
+    > 14 |  const frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>{(node as HTMLIFrameElement).contentWindow!.addEventListener('message',event=>{if(event.data?.type==='loadScene')node.setAttribute('data-chapter-scene',JSON.stringify(event.data.payload));});});const report=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await report.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await report.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);const box=(await frame.boundingBox())!;await page.mouse.click(box.x+30,box.y+30);await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const ready=async()=>{const state=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await state.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await state.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);};const audio=async()=>JSON.parse((await frame.getAttribute('data-chapter-scene'))!).audio;await ready();await expect(report).toHaveAttribute('data-audio-unlocked','true');await expect(report).toHaveAttribute('data-music-path',/forest/);await expect(report).toHaveAttribute('data-ambience-path',/forest/);expect(await audio()).toMatchObject({music:{action:'play'},ambience:{action:'play'}});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^
+      15 |  for(const index of [1,2]){const next=page.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');await ready();expect(await audio()).toMatchObject({music:{action:index===1?'play':'stop'},ambience:{action:index===1?'play':'stop'}});await expect(report).toHaveAttribute('data-music-path',index===1?/forest/:'');await expect(report).toHaveAttribute('data-ambience-path',index===1?/forest/:'');}
+      16 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expect((await exportProject(page)).project).toEqual(saved.project);const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope > summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(saved.path);await confirmAuthoringImport(page);const reopened=(await exportProject(page)).project;expect(reopened).toEqual({...saved.project,id:reopened.id});
+      17 | });
+        at <repo>/tests/e2e/chapter-audio-range.spec.ts:14:1099
+
+    Error Context: test-results-current-ux/chapter-audio-range-chapte-72160-ter-native-end-boundary-844-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/chapter-audio-range-chapte-72160-ter-native-end-boundary-844-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/chapter-audio-range-chapte-72160-ter-native-end-boundary-844-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 390 
+    [stories-runtime] › tests/e2e/chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 844 
+  2 passed (50.7s)

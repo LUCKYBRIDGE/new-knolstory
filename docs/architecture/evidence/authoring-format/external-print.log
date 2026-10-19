@@ -1,0 +1,10 @@
+
+Running 2 tests using 1 worker
+
+(node:16161) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual excel edited ShortStory reopens and prints a complete A4 book
+[2/2] [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual google edited ShortStory reopens and prints a complete A4 book
+  2 passed (2.3s)

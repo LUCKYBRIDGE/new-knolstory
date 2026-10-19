@@ -1,0 +1,30 @@
+Listing tests:
+  [stories-runtime] › authoring-format-runtime.spec.ts:6:1 › real google edited full-field work plays two RenPy choice endings after reopen
+  [stories-runtime] › authoring-format-runtime.spec.ts:6:1 › real excel edited full-field work plays two RenPy choice endings after reopen
+  [stories-runtime] › authoring-format-runtime.spec.ts:6:1 › real korean-google edited full-field work plays two RenPy choice endings after reopen
+  [stories-runtime] › authoring-format-runtime.spec.ts:6:1 › real korean-excel edited full-field work plays two RenPy choice endings after reopen
+  [stories-runtime] › authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 1280px
+  [stories-runtime] › authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 390px
+  [stories-runtime] › creative-reading-journey.spec.ts:51:1 › UI-authored twelve-cut story survives Chrome files and both actual RenPy reading paths
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › seonnyeo-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › heungbu-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › onggojib-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › rabbit-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › seonnyeo: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › onggojib: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:112:27 › rabbit: actual browser reads the existing scored work, resumes and preserves its archive
+  [stories-runtime] › existing-score-runtime.spec.ts:198:1 › Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py
+  [stories-runtime] › existing-score-runtime.spec.ts:239:1 › existing eight works: actual decoded music clock advances after the first unlocked cue
+  [stories-runtime] › four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+  [stories-runtime] › four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+  [stories-runtime] › four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+  [stories-runtime] › stories-runtime.spec.ts:45:1 › all four full manuscripts render actual image assets and edited text in one persistent Ren’Py instance
+  [stories-runtime] › stories-runtime.spec.ts:129:1 › representative native choices move to their linked cut and back restores choice
+  [stories-runtime] › stories-runtime.spec.ts:174:1 › Onggojib confirmation transition blocks host advance until native confirmation
+  [stories-runtime] › stories-runtime.spec.ts:203:1 › actual image placement and presentation edits survive document export and native playback
+  [stories-runtime] › vn-workflow.spec.ts:24:1 › prior private export stays intact while registered current Excel and mocked public sheet copies roundtrip complete content
+  [stories-runtime] › vn-workflow.spec.ts:37:1 › native portrait single speaker, slots and actual-path backlog restore both routes
+  [stories-runtime] › vn-workflow.spec.ts:52:1 › changed-work slots show saved excerpt and require explicit compatible restore
+  [stories-runtime] › vn-workflow.spec.ts:63:1 › numbered real-asset branch chapters play A and B then join without crossing routes
+Total: 28 tests in 6 files

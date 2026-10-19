@@ -1,0 +1,49 @@
+
+Running 3 tests using 1 worker
+
+(node:6228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:6:1 › excluded originals are unavailable from the public service (51ms)
+  -  2 [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:12:1 › excluded common audio has no preview and an approved replacement survives saving and reopening
+  ✘  3 [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:43:1 › old excluded cues preserve reading and editing without playing any blocked channel (24.9s)
+
+
+  1) [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:43:1 › old excluded cues preserve reading and editing without playing any blocked channel 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('story-runtime-status')
+    Expected: "true"
+    Received: "false"
+    Timeout:  20000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 20000ms
+      - waiting for getByTestId('story-runtime-status')
+        44 × locator resolved to <div role="status" data-music-path="" data-textbox-y="335" data-ambience-path="" data-sound-paths="[]" data-music-position="" data-scene-revision="5" data-scene-width="1280" data-scene-height="514" data-engine-width="1280" data-engine-height="514" data-sound-play-count="0" data-rendered-revision="5" data-music-start-count="0" data-renderer-width="1280" data-renderer-height="514" data-audio-unlocked="false" data-ambience-start-count="0" data-testid="story-runtime-status" class="story-workspace-modul…>이야기 무대 연결됨</div>
+           - unexpected value "false"
+
+
+      50 |  await ready();await page.getByRole('button',{name:'현재 컷부터 읽기',exact:true}).click();await ready();
+      51 |  const box=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(box.x+box.width*.5,box.y+box.height*.1);await ready();
+    > 52 |  await expect(status).toHaveAttribute('data-audio-unlocked','true',{timeout:20000});
+         |                       ^
+      53 |  await expect(status).toHaveAttribute('data-music-path','');await expect(status).toHaveAttribute('data-ambience-path','');await expect(status).toHaveAttribute('data-sound-play-count','0');
+      54 |  await expect(page.getByRole('alert').filter({hasText:'이 작품에 서비스에서 제외한 기본 소리'})).toBeVisible();
+      55 |  await page.getByRole('button',{name:'편집으로',exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/audio-service-rights.spec.ts:52:23
+
+    Error Context: ../../../../../tmp/knol-service-audio-native/audio-service-rights-old-e-60019-playing-any-blocked-channel-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-service-audio-native/audio-service-rights-old-e-60019-playing-any-blocked-channel-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-service-audio-native/audio-service-rights-old-e-60019-playing-any-blocked-channel-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:43:1 › old excluded cues preserve reading and editing without playing any blocked channel 
+  1 skipped
+  1 passed (25.8s)

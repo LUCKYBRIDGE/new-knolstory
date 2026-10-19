@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:45438) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/shortstory-menu-contrast.spec.ts:3:31 › ShortStory account and online popup text retains contrast against parent styles 390 (747ms)
+
+
+  1) tests/e2e/shortstory-menu-contrast.spec.ts:3:31 › ShortStory account and online popup text retains contrast against parent styles 390 
+
+    Error: {"info":{"style":null,"text":"이 브라우저의 작품은 로그인이나 로그아웃 뒤에도 유지됩니다. 작품은 로컬 작품 파일로 저장하고, 온라인 작품 메뉴에서 별도로 업로드할 수 있어요.","color":"rgb(76, 98, 95)","fill":"rgb(76, 98, 95)","fontSize":13.6,"fontWeight":400,"opacity":1,"filters":[],"box":{"width":306,"height":67.265625},"textRanges":[{"left":0,"top":3,"right":264.9375,"bottom":19},{"left":0,"top":25.421875,"right":286.421875,"bottom":41.421875},{"left":0,"top":47.84375,"right":220.953125,"bottom":63.84375}],"mixedTextStyle":false},"minimum":2.3195551418673714,"samples":5099,"worst":{"x":9,"y":4,"background":[24,41,41]},"scope":"Opaque CSS foreground against rendered backdrop at independently detected black/white mask pixels within actual text-node range rectangles (excluding borders). Nonopaque/filter/fill cases require manual review; not full-page/device conformance."}
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    2.3195551418673714
+
+       8 |   await page.locator(`[data-${key}]>summary`).click();const panel=page.getByRole('region',{name,exact:true});
+       9 |   const paragraph=panel.locator('p').first();await paragraph.scrollIntoViewIfNeeded();
+    > 10 |   const result=await renderedTextContrast(paragraph,info.outputPath(`${key}-paragraph`));expect(result.minimum,JSON.stringify(result)).toBeGreaterThanOrEqual(4.5);
+         |                                                                                                                                        ^
+      11 |   if(key==='online-works'){
+      12 |    const selected=panel.getByRole('button',{name:'업로드한 작품',exact:true});await selected.scrollIntoViewIfNeeded();const selectedResult=await renderedTextContrast(selected,info.outputPath('active-online-tab'));expect(selectedResult.minimum,JSON.stringify(selectedResult)).toBeGreaterThanOrEqual(4.5);
+      13 |   }
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/shortstory-menu-contrast.spec.ts:10:136
+
+    Error Context: docs/architecture/evidence/continuation-2026-10-20/contrast-red-run/shortstory-menu-contrast-S-2ed7e-t-against-parent-styles-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/continuation-2026-10-20/contrast-red-run/shortstory-menu-contrast-S-2ed7e-t-against-parent-styles-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/continuation-2026-10-20/contrast-red-run/shortstory-menu-contrast-S-2ed7e-t-against-parent-styles-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/shortstory-menu-contrast.spec.ts:3:31 › ShortStory account and online popup text retains contrast against parent styles 390 

@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-10-15T23:41:50.764927+00:00",
+  "scope": "PC04 KnolStory explicit online save/read-copy/update, not whole product or live OAuth",
+  "sourceSha256": {
+    "apps/web/lib/document-api.ts": "482d77f9493ccca3c9b560a2d5031d37249f151345da55d9412a2b27e688d563",
+    "apps/web/lib/document-api.test.ts": "a13c43a49224ae94b8b6fe4605d64f69a0cd3ba0aa332e477afbf409052417ff",
+    "apps/web/lib/online-work-bindings.ts": "b6a2515b2483c4f5c572b5104ef0ee940195c101acc318964e8e622ab1f5ba41",
+    "apps/web/lib/online-work-bindings.test.ts": "242b80e04e02dbb7e1c8f843385bebecbf894d1c137d0b4c154936bad92e6e1a",
+    "apps/web/components/online-works-panel.tsx": "83743cf5c11e33930545c754f85f5fd604d4a9c146b5989723404130a819c2da",
+    "apps/web/components/online-works-panel.module.css": "e0895fba13aae2af337d565707d29ab2c1cc8c01aeacbd845e6e2eb1dee46c75",
+    "apps/web/components/story-workspace.tsx": "881548dfa4996b2d5281b755d30884b4e799b5be53a3004f3f6dd8c1b1db391d",
+    "apps/web/components/use-account-session.ts": "120613154086a7152deb9c187d9db0204e88d97959100c387ba570eb4f43cb9d",
+    "apps/web/components/account-menu.tsx": "7a89b50a8ecd6487e0aa1b3b8a4c3f49d5a642be96c224bae2136a2bc0825b1c",
+    "tests/e2e/online-works.spec.ts": "204f9e1ff563e871dbd3b7e32852eefeb3ccb4129b88a6668daf0c597ea5e5ef",
+    "tests/e2e/account-menu.spec.ts": "d172724ae9c79f4a794e286339fc1c45fc7378a938389beadde41107d6be9a2d",
+    "playwright.config.ts": "7c1698e0497324acac065fdfa56203085c86cdb6a70b49ae4b9fabe100848ce3",
+    "server/operations/verify-online-browser.mjs": "bf03169e1b4a54fd4ff1e18976da7432d773ddd47c52cb9b7039d8d6e33a342e",
+    "apps/web/out/index.html": "4834591de0fe9c6a55b44620a1ebd3881e133f8dcd01e7367c7f5c86981d83e2"
+  },
+  "verification": {
+    "pure": {
+      "tests": 13,
+      "coverage": {
+        "statements": 89.79,
+        "branches": 89.1,
+        "functions": 100,
+        "lines": 100
+      },
+      "log": "unit-final-coverage.log"
+    },
+    "mockedHTTPBrowser": {
+      "tests": 8,
+      "log": "../online-works-web-2026-10-16/browser-final.log",
+      "subsequentOwnerGate": {
+        "focusedTests": 1,
+        "log": "../online-works-web-2026-10-16/account-isolation-green.log"
+      },
+      "notSummed": true
+    },
+    "realProductionBrowser": {
+      "log": "actual-browser-final.log",
+      "result": "actual-browser.json",
+      "scope": "Dedicated synthetic session; real Web/gateway/Docker API/PostgreSQL; no mocked routes"
+    },
+    "build": "build-final.log",
+    "testHarnessInitialFailure": "actual-browser-initial.log retained: missed collapsed creation-button step, corrected harness; not product failure",
+    "verifierArtifactOnlyChange": "After final successful run, output naming changed to unique run-suffixed evidence files; no product change or runtime rerun claimed"
+  },
+  "preservation": {
+    "protectedArtifacts": 483,
+    "changed": [],
+    "legacyContainers": 23,
+    "legacyMetadataChanged": []
+  },
+  "reviewFixes": [
+    "Definitive policy rejection allows corrected content; ambiguous responses keep exact pending request",
+    "Logout invalidates pending online reads synchronously",
+    "Digest4 same-library deletion race RED->generation guard->GREEN",
+    "Account switch old-title first-frame RED->owner/render guard->GREEN"
+  ],
+  "remaining": [
+    "ShortStory online authoring integration",
+    "Separate device/session/offline long-term recovery",
+    "Online deletion/recovery and retention decision",
+    "Live Kakao/Google setup",
+    "Class/submission/sharing policy and service",
+    "Physical device/accessibility/release backup-restore"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual product boundary proven with explicit limits; full goal remains active; no whole-product completion claim"
+  }
+}

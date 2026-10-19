@@ -1,0 +1,585 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:13] "GET / HTTP/1.1" 200 -
+
+
+Running 10 tests using 1 worker
+
+(node:55107) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/10] [host] › tests/e2e/audio-attributes.spec.ts:9:1 › existing private sound keeps Korean attributes and bytes while catalog filters never offer a new upload
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:14] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:16] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:16] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:16] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:16] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:16] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+
+  1) [host] › tests/e2e/audio-attributes.spec.ts:9:1 › existing private sound keeps Korean attributes and bytes while catalog filters never offer a new upload 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('1번 효과음', { exact: true }).locator('option:checked') with timeout 5000ms
+      - waiting for getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+        13 × locator resolved to <option disabled value="audio:custom:dc5f44569ddc781287c0efc77d5cb74c6f7767d0b05bb65f7b331fcaf047422a:wav">기존 외부 자료 · 이전 기기의 학교 종</option>
+           - unexpected value "enabled"
+
+
+      11 |  const project={...source,id:'prior-audio-attributes',lines:source.lines.map((line:typeof source.lines[number],index:number)=>index===0?{...line,audio:{...line.audio,sounds:[{id:'prior-sound',assetId:resource.id,volume:1,delayMs:0}]}}:line)};
+      12 |  await existingPrivateWorkspace(page,project,[resource]);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await sound(page);
+    > 13 |  const selector=page.getByLabel('1번 효과음',{exact:true});await expect(selector).toHaveValue(resource.id);await expect(selector.locator('option:checked')).toBeDisabled();await expect(page.getByLabel('1번 효과음 파일 등록',{exact:true})).toHaveCount(0);const baseline=(await exported(page)).archive;
+         |                                                                                                                                                         ^
+      14 |  await page.getByText('1번 효과음 이름·속성·원래 이름',{exact:true}).click();await page.getByLabel('1번 효과음 표시 이름').fill('학교종소리1');await page.getByLabel('1번 효과음 속성 태그').fill('학교 종, 교실, 피아노');await page.getByLabel('1번 효과음 출처 제공처').fill('이전 작품의 기록');await page.getByRole('button',{name:'소리 속성 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'소리 이름과 속성을 저장했습니다.'})).toBeVisible();
+      15 |  await page.getByText('자세히 찾기',{exact:true}).click();const tag=page.getByLabel('1번 효과음 속성 필터'),provider=page.getByLabel('1번 효과음 출처 필터');await tag.selectOption((await tag.locator('option').nth(1).getAttribute('value'))!);await provider.selectOption((await provider.locator('option').nth(1).getAttribute('value'))!);await page.getByLabel('1번 효과음 찾기').fill('교실');await expect(selector).toHaveValue(resource.id);await expect(selector.locator('option:checked')).toHaveText('기존 외부 자료 · 학교종소리1');await expect(selector.locator('option[value^="audio:custom:"]')).toHaveCount(1);await expect(selector.locator('option:checked')).toBeDisabled();await page.getByLabel('1번 효과음 찾기').fill('없는 소리');await expect(selector).toHaveValue(resource.id);
+      16 |  for(const size of [{width:1280,height:800},{width:820,height:1180},{width:390,height:844},{width:844,height:390}]){await page.setViewportSize(size);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await selector.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('private-attributes-'+size.width+'.png')});}
+        at <repo>/tests/e2e/audio-attributes.spec.ts:13:153
+
+    Error Context: test-results-current-ux/audio-attributes-existing--36706-rs-never-offer-a-new-upload-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/audio-attributes-existing--36706-rs-never-offer-a-new-upload-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/audio-attributes-existing--36706-rs-never-offer-a-new-upload-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:55155) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/10] [host] › tests/e2e/audio-attributes.spec.ts:23:1 › registered sound search retains selected ID and exposes read-only Korean source metadata
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:20] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:21] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:23] "GET /?view=editor HTTP/1.1" 304 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:28] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:28] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:28] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[3/10] [host] › tests/e2e/cc0-audio.spec.ts:6:1 › all 21 CC0 originals load and decode in the browser
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:29] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-bookOpen.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-bookClose.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-bookFlip1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-bookFlip2.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-bookPlace1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-cloth1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-cloth2.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-doorOpen_1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-doorClose_1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-creak1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-footstep00.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-footstep02.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-handleCoins.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:30] "GET /assets/audio/cc0/kenney-handleCoins2.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /assets/audio/cc0/kenney-metalPot1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /assets/audio/cc0/kenney-metalPot2.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /assets/audio/cc0/oga-rain-1.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /assets/audio/cc0/oga-rain-2.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /assets/audio/cc0/oga-rain-3.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /assets/audio/cc0/oga-rain-4.ogg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /assets/audio/cc0/oga-forest.mp3 HTTP/1.1" 200 -
+
+[4/10] [host] › tests/e2e/cc0-audio.spec.ts:26:1 › CC0 Korean labels and source facets select real files and native runtime plays all three channels
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:31] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+  2) [host] › tests/e2e/cc0-audio.spec.ts:26:1 › CC0 Korean labels and source facets select real files and native runtime plays all three channels 
+
+    Error: locator.click: Error: strict mode violation: getByText('자세히 찾기', { exact: true }) resolved to 3 elements:
+        1) <summary>자세히 찾기</summary> aka getByLabel('배경음 편집').getByText('자세히 찾기')
+        2) <summary>자세히 찾기</summary> aka getByLabel('주변 소리 편집').getByText('자세히 찾기')
+        3) <summary>자세히 찾기</summary> aka getByRole('region', { name: '효과음 편집' }).getByText('자세히 찾기')
+
+    Call log:
+      - waiting for getByText('자세히 찾기', { exact: true })
+
+
+      28 |  const project={...source,chapters:source.chapters.map((c:any)=>({...c,audio:undefined})),lines:source.lines.map((l:any,i:number)=>i?l:{...l,audio:{music:{action:'play',assetId:'audio:music:cc0-oga-forest',volume:.2,loop:true},ambience:{action:'play',assetId:'audio:music:cc0-oga-rain-1',volume:.15,loop:true},sounds:[{id:'bell',assetId:'audio:sound:cc0-kenney-bookFlip1',volume:.5}]}})};
+      29 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'cc0.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:'2026-10-10T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
+    > 30 |  await sound(page,'music');await expect(page.getByLabel('컷 배경음',{exact:true}).locator('option:checked')).toHaveText('숲분위기배경음1');await page.getByLabel('조정할 소리',{exact:true}).selectOption('sounds');await page.getByText('자세히 찾기',{exact:true}).click();await page.getByLabel('1번 효과음 출처 필터').selectOption('Kenney');await page.getByLabel('1번 효과음 속성 필터').selectOption('넘기기');await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toHaveText('책장넘기는소리1');await page.getByText('1번 효과음 이름·속성·원래 이름',{exact:true}).click();await expect(page.getByText('bookFlip1.ogg',{exact:true})).toBeVisible();await expect(page.getByRole('link',{name:'원래 소리와 출처 확인',exact:true})).toHaveAttribute('href',/kenney.nl/);
+         |                                                                                                                                                                                                                                                 ^
+      31 |  await page.getByLabel('1번 효과음',{exact:true}).selectOption('audio:sound:cc0-kenney-bookFlip2');
+      32 |  await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+      33 |  const management=page.locator('[data-work-menu]>summary');
+        at <repo>/tests/e2e/cc0-audio.spec.ts:30:241
+
+    Error Context: test-results-current-ux/cc0-audio-CC0-Korean-label-3e349-me-plays-all-three-channels-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/cc0-audio-CC0-Korean-label-3e349-me-plays-all-three-channels-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/cc0-audio-CC0-Korean-label-3e349-me-plays-all-three-channels-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:55232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[5/10] [host] › tests/e2e/chapter-branch-identity.spec.ts:10:1 › chapter identity and extended branch cuts survive editor, file export and reload
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:33] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:34] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:35] "GET /?view=editor HTTP/1.1" 304 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:38] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:38] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:38] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[6/10] [host] › tests/e2e/responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 1280
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:39] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:40] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:42] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:42] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:42] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:42] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:42] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+
+  3) [host] › tests/e2e/responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 1280 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('1번 효과음', { exact: true }).locator('option:checked') with timeout 5000ms
+      - waiting for getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+        13 × locator resolved to <option disabled value="audio:custom:dc5f44569ddc781287c0efc77d5cb74c6f7767d0b05bb65f7b331fcaf047422a:wav">기존 외부 자료 · 기존 내 종소리</option>
+           - unexpected value "enabled"
+
+
+      30 |  const writing=page.locator('[data-writing-tools]');if(!await writing.evaluate(node=>(node as HTMLDetailsElement).open))await writing.locator(':scope>summary').click();await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();await page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true}).click();const chapter=page.getByRole('group',{name:'장 소리 설정',exact:true});await chapter.getByLabel('조정할 소리',{exact:true}).selectOption('sounds');await chapter.getByLabel('장 1번 효과음',{exact:true}).selectOption('audio:sound:step');await chapter.getByLabel('장 1번 효과음 재생 대기 (초)').fill('0.175');await chapter.getByLabel('장 1번 효과음 재생 대기 (초)').blur();await page.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();
+      31 |  await sound(page,'music');await page.getByLabel('컷 배경음 동작').selectOption('play');await page.getByLabel('컷 배경음',{exact:true}).selectOption('audio:music:forest');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)').fill('0.4');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)').blur();await page.getByLabel('컷 배경음 기존 소리 사라짐 (초)').fill('0.3');await page.getByLabel('컷 배경음 기존 소리 사라짐 (초)').blur();await page.getByLabel('컷 배경음 반복').check();await expect(page.getByLabel('컷 배경음 파일 등록')).toHaveCount(0);
+    > 32 |  await sound(page,'sounds');await expect(page.getByLabel('1번 효과음',{exact:true})).toHaveValue(privateSound.id);await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toBeDisabled();const preview=page.getByLabel('1번 효과음 미리 듣기');await expect(preview).toHaveAttribute('src',/^data:audio\/wav;base64,/);await preview.evaluate(node=>(node as HTMLAudioElement).play());await expect.poll(()=>preview.evaluate(node=>(node as HTMLAudioElement).currentTime)).toBeGreaterThan(0);await preview.evaluate(node=>(node as HTMLAudioElement).pause());await page.getByLabel('1번 효과음 재생 대기 (초)').fill('0.12');await page.getByLabel('1번 효과음 재생 대기 (초)').blur();
+         |                                                                                                                                                                                              ^
+      33 |  await placement(page);await page.getByLabel('왼쪽 1번 인물 인물 동작').selectOption('fade-in');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').fill('0.8');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').blur();await page.getByLabel('왼쪽 1번 인물 동작 대기 (초)').fill('0.1');await page.getByLabel('왼쪽 1번 인물 동작 대기 (초)').blur();await page.getByText('배경 표시 조정',{exact:true}).click();await page.getByLabel('배경 표시').selectOption('cover');await page.getByLabel('배경 중심 가로').fill('0.7');await page.getByLabel('배경 중심 세로').fill('0.35');
+      34 |  await views(page);const preset=page.getByLabel('미리보기 화면 비율',{exact:true});for(const value of ['desktop','portrait','landscape']){await preset.selectOption(value);await expect(preset).toHaveValue(value);}await preset.selectOption('auto');const file=await exported(page),first=file.document.project.lines[0];expect(file.document.project.chapters[0].audio.sounds[0]).toMatchObject({assetId:'audio:sound:step',delayMs:175});expect(first.audio.music).toMatchObject({action:'play',assetId:'audio:music:forest',fadeInMs:400,fadeOutMs:300,loop:true});expect(first.audio.sounds[0]).toMatchObject({assetId:privateSound.id,delayMs:120});expect(first.presentation.backgroundFocal).toEqual({x:.7,y:.35});expect(first.stageComposition.leftActors[0].motion).toEqual({type:'fade-in',durationMs:800,delayMs:100});expect(file.document.audioResources).toEqual(baseline.audioResources);expect({...file.document.project,updatedAt:baseline.project.updatedAt,chapters:baseline.project.chapters,lines:file.document.project.lines.map((line:{id:string})=>line.id==='opening'?baseline.project.lines[0]:line)}).toEqual(baseline.project);await page.reload();expect((await exported(page)).document.project).toEqual(file.document.project);expect((await exported(page)).document.audioResources).toEqual(file.document.audioResources);
+      35 |  const fresh=await context.browser()!.newContext({viewport:{width,height:width===390?844:900}}),restored=await fresh.newPage();try{await restored.goto(new URL('/?view=editor',page.url()).href);await saved(restored);const before=(await exported(restored)).document;await management(restored);await restored.getByLabel('작품 파일 가져오기').setInputFiles({name:'prior-private.knolstory',mimeType:'application/json',buffer:readFileSync(file.path)});await expect(restored.getByTestId('workspace-error')).toContainText('외부 음원이 첨부된 작품');expect((await exported(restored)).document.project).toEqual(before.project);
+        at <repo>/tests/e2e/responsive-audio-authoring.spec.ts:32:190
+
+    Error Context: test-results-current-ux/responsive-audio-authoring-55e24-egistered-copy-reopens-1280-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/responsive-audio-authoring-55e24-egistered-copy-reopens-1280-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/responsive-audio-authoring-55e24-egistered-copy-reopens-1280-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:55308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[7/10] [host] › tests/e2e/responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 390
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:46] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:47] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:49] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:49] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:49] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:49] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:40:49] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+
+  4) [host] › tests/e2e/responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 390 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('1번 효과음', { exact: true }).locator('option:checked') with timeout 5000ms
+      - waiting for getByLabel('1번 효과음', { exact: true }).locator('option:checked')
+        13 × locator resolved to <option disabled value="audio:custom:dc5f44569ddc781287c0efc77d5cb74c6f7767d0b05bb65f7b331fcaf047422a:wav">기존 외부 자료 · 기존 내 종소리</option>
+           - unexpected value "enabled"
+
+
+      30 |  const writing=page.locator('[data-writing-tools]');if(!await writing.evaluate(node=>(node as HTMLDetailsElement).open))await writing.locator(':scope>summary').click();await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();await page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true}).click();const chapter=page.getByRole('group',{name:'장 소리 설정',exact:true});await chapter.getByLabel('조정할 소리',{exact:true}).selectOption('sounds');await chapter.getByLabel('장 1번 효과음',{exact:true}).selectOption('audio:sound:step');await chapter.getByLabel('장 1번 효과음 재생 대기 (초)').fill('0.175');await chapter.getByLabel('장 1번 효과음 재생 대기 (초)').blur();await page.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();
+      31 |  await sound(page,'music');await page.getByLabel('컷 배경음 동작').selectOption('play');await page.getByLabel('컷 배경음',{exact:true}).selectOption('audio:music:forest');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)').fill('0.4');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)').blur();await page.getByLabel('컷 배경음 기존 소리 사라짐 (초)').fill('0.3');await page.getByLabel('컷 배경음 기존 소리 사라짐 (초)').blur();await page.getByLabel('컷 배경음 반복').check();await expect(page.getByLabel('컷 배경음 파일 등록')).toHaveCount(0);
+    > 32 |  await sound(page,'sounds');await expect(page.getByLabel('1번 효과음',{exact:true})).toHaveValue(privateSound.id);await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toBeDisabled();const preview=page.getByLabel('1번 효과음 미리 듣기');await expect(preview).toHaveAttribute('src',/^data:audio\/wav;base64,/);await preview.evaluate(node=>(node as HTMLAudioElement).play());await expect.poll(()=>preview.evaluate(node=>(node as HTMLAudioElement).currentTime)).toBeGreaterThan(0);await preview.evaluate(node=>(node as HTMLAudioElement).pause());await page.getByLabel('1번 효과음 재생 대기 (초)').fill('0.12');await page.getByLabel('1번 효과음 재생 대기 (초)').blur();
+         |                                                                                                                                                                                              ^
+      33 |  await placement(page);await page.getByLabel('왼쪽 1번 인물 인물 동작').selectOption('fade-in');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').fill('0.8');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').blur();await page.getByLabel('왼쪽 1번 인물 동작 대기 (초)').fill('0.1');await page.getByLabel('왼쪽 1번 인물 동작 대기 (초)').blur();await page.getByText('배경 표시 조정',{exact:true}).click();await page.getByLabel('배경 표시').selectOption('cover');await page.getByLabel('배경 중심 가로').fill('0.7');await page.getByLabel('배경 중심 세로').fill('0.35');
+      34 |  await views(page);const preset=page.getByLabel('미리보기 화면 비율',{exact:true});for(const value of ['desktop','portrait','landscape']){await preset.selectOption(value);await expect(preset).toHaveValue(value);}await preset.selectOption('auto');const file=await exported(page),first=file.document.project.lines[0];expect(file.document.project.chapters[0].audio.sounds[0]).toMatchObject({assetId:'audio:sound:step',delayMs:175});expect(first.audio.music).toMatchObject({action:'play',assetId:'audio:music:forest',fadeInMs:400,fadeOutMs:300,loop:true});expect(first.audio.sounds[0]).toMatchObject({assetId:privateSound.id,delayMs:120});expect(first.presentation.backgroundFocal).toEqual({x:.7,y:.35});expect(first.stageComposition.leftActors[0].motion).toEqual({type:'fade-in',durationMs:800,delayMs:100});expect(file.document.audioResources).toEqual(baseline.audioResources);expect({...file.document.project,updatedAt:baseline.project.updatedAt,chapters:baseline.project.chapters,lines:file.document.project.lines.map((line:{id:string})=>line.id==='opening'?baseline.project.lines[0]:line)}).toEqual(baseline.project);await page.reload();expect((await exported(page)).document.project).toEqual(file.document.project);expect((await exported(page)).document.audioResources).toEqual(file.document.audioResources);
+      35 |  const fresh=await context.browser()!.newContext({viewport:{width,height:width===390?844:900}}),restored=await fresh.newPage();try{await restored.goto(new URL('/?view=editor',page.url()).href);await saved(restored);const before=(await exported(restored)).document;await management(restored);await restored.getByLabel('작품 파일 가져오기').setInputFiles({name:'prior-private.knolstory',mimeType:'application/json',buffer:readFileSync(file.path)});await expect(restored.getByTestId('workspace-error')).toContainText('외부 음원이 첨부된 작품');expect((await exported(restored)).document.project).toEqual(before.project);
+        at <repo>/tests/e2e/responsive-audio-authoring.spec.ts:32:190
+
+    Error Context: test-results-current-ux/responsive-audio-authoring-58066-registered-copy-reopens-390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/responsive-audio-authoring-58066-registered-copy-reopens-390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/responsive-audio-authoring-58066-registered-copy-reopens-390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:55373) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[8/10] [host] › tests/e2e/responsive-audio-authoring.spec.ts:38:1 › native prior private sounds stay deduplicated through responsive reading, both endings and resume
+[9/10] [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:1 › previous device branching demo retains private media and both native endings without permitting new attachments
+[10/10] [host] › tests/e2e/responsive-audio-authoring.spec.ts:51:1 › ending keeps the last native entrance confirmed and does not replay sounds
+  4 failed
+    [host] › tests/e2e/audio-attributes.spec.ts:9:1 › existing private sound keeps Korean attributes and bytes while catalog filters never offer a new upload 
+    [host] › tests/e2e/cc0-audio.spec.ts:26:1 › CC0 Korean labels and source facets select real files and native runtime plays all three channels 
+    [host] › tests/e2e/responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 1280 
+    [host] › tests/e2e/responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 390 
+  3 skipped
+  3 passed (40.4s)

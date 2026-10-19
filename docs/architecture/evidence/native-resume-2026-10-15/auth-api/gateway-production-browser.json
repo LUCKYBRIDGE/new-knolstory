@@ -1,0 +1,31 @@
+{
+  "origin": "http://127.0.0.1:15401",
+  "status": 200,
+  "kakaoDisabled": true,
+  "googleDisabled": true,
+  "config": {
+    "status": 200,
+    "data": {
+      "success": true,
+      "data": {
+        "signupProvider": "kakao",
+        "providers": {
+          "kakao": false,
+          "google": false
+        }
+      }
+    }
+  },
+  "me": {
+    "status": 401,
+    "data": {
+      "success": false,
+      "error": {
+        "code": "SESSION_REQUIRED"
+      }
+    }
+  },
+  "errors": [],
+  "webTarget": "static production export on loopback3126",
+  "scope": "Actual current production Web through local gateway and Docker API. Providers disabled; no mocked endpoint or live OAuth claim."
+}

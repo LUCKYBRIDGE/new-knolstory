@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:4509) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editor-session-preferences.spec.ts:29:1 › editor session restores screen, companion and explicit opt-ins without changing work files (11.5s)
+
+
+  1) tests/e2e/editor-session-preferences.spec.ts:29:1 › editor session restores screen, companion and explicit opt-ins without changing work files 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-editing-screen="text"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-editing-screen="text"]') with timeout 5000ms
+      - waiting for locator('[data-editing-screen="text"]')
+
+
+      32 |  await screen(page,'text');await page.getByRole('checkbox',{name:'배경 함께 보기',exact:true}).check();
+      33 |  await page.reload();await ready(page);
+    > 34 |  await expect(page.locator('[data-editing-screen="text"]')).toBeVisible();
+         |                                                             ^
+      35 |  await expect(page.getByRole('checkbox',{name:'배경 함께 보기',exact:true})).toBeChecked();
+      36 |  const restored=await settings(page);
+      37 |  for(const label of ['인물','음향','연출','선택지','점수','분기조건'])await expect(restored.getByRole('checkbox',{name:`${label} 편집 사용`,exact:true})).toBeChecked();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-session-preferences.spec.ts:34:61
+
+    Error Context: docs/architecture/evidence/editor-session-preferences-2026-10-19/red-run/editor-session-preferences-05f6d-without-changing-work-files/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editor-session-preferences-2026-10-19/red-run/editor-session-preferences-05f6d-without-changing-work-files/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editor-session-preferences-2026-10-19/red-run/editor-session-preferences-05f6d-without-changing-work-files/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editor-session-preferences.spec.ts:29:1 › editor session restores screen, companion and explicit opt-ins without changing work files 

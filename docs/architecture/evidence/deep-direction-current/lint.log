@@ -1,0 +1,50 @@
+
+> knolstory-next@ lint <repo>
+> eslint .
+
+
+<repo>/apps/web/components/story-player-menu.tsx
+  76:837  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+<repo>/apps/web/components/story-workspace.tsx
+  227:6  warning  React Hook useEffect has a missing dependency: 'editingPath'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+<repo>/docs/architecture/evidence/appearance-context/coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/appearance-context/coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/appearance-context/coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/cc0-staging-integration/coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/cc0-staging-integration/coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/cc0-staging-integration/coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/global-score-settings/coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/global-score-settings/coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/global-score-settings/coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/library-native-current/rewind-coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/library-native-current/rewind-coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+<repo>/docs/architecture/evidence/library-native-current/rewind-coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+✖ 14 problems (0 errors, 14 warnings)
+  0 errors and 12 warnings potentially fixable with the `--fix` option.
+

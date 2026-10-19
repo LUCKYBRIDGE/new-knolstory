@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-19",
+  "status": "local-header-compression-verified-not-deployed",
+  "userFeedback": "Editor top chrome occupies too much vertical room; screenshot showed three rows.",
+  "changes": [
+    "One toolbar row: shelf/work menu/current chapter-cut/add cut/more",
+    "Logo and duplicate current title/success recovery status do not consume visual rows; accessible title/status preserved",
+    "Work title/chapter add/preview settings in more disclosure; saving/error attention remains visible",
+    "DOM keyboard order and CSS visual order aligned;44px control height and44px more width retained"
+  ],
+  "checks": {
+    "header": "reviewed.log1pass; final.log4pass10.8s includes samecase",
+    "widths": [
+      360,
+      390,
+      768,
+      1280
+    ],
+    "height": "header <=52px assertion; actual48px vs earlier129.55px phone candidate",
+    "integration": "phone1:4:1 geometry; native render ack+landscape; sameframe read/edit return; manuscript unchanged after menu navigation",
+    "build": "build-reviewed.log passed",
+    "types": "types.log passed",
+    "lint": "lint.log passed",
+    "review": "Independent read-only reviewer identified mismatched nested selector and keyboardorder; both fixed"
+  },
+  "limits": [
+    "Actual physical-device keyboard/touch still pending",
+    "Capture uses test fixture; no provided manuscript changed",
+    "Only affected focused cases rerun; previous16checks remain earliercandidate evidence and not claimed allrerun",
+    "Repeated resize automation delays and longmanuscript UX remain priorPC11followups"
+  ],
+  "sha256": {
+    "apps/web/components/story-workspace.tsx": "92cca49b212c14dfa28ba729f232ef49e0188618b5cf017dd0a6c0338471433e",
+    "apps/web/components/story-workspace.module.css": "05442e69281b858532fddc24c09bbc0ebf97257ff49ac9c34278ca1a9da011af",
+    "tests/e2e/editing-workbench.spec.ts": "89d9b5ce6a792181d7005d032795daeb53f6eff1010773a4343272f1b7c67ffb",
+    "DESIGN.md": "b69ef9e775dda55fa69e6cffc25ea352de5d32a394eebdbc5a849aa4586a2a44",
+    "docs/architecture/product-completion-plan.md": "b0a22e3a86aa48fe431a845f0ceb959fc58d9e88fd2f6f5bcb146d24f0746bf4"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Measured header and4focusedgreen; devicekeyboard and broadUX outsideclaim"
+  }
+}

@@ -1,0 +1,17 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/responsive-layout.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/responsive-layout.test.ts [ packages/runtime-core/src/responsive-layout.test.ts ]
+Error: No test suite found in file /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core/src/responsive-layout.test.ts
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  9 passed (9)
+   Start at  19:10:21
+   Duration  144ms (transform 47ms, setup 0ms, import 70ms, tests 5ms, environment 0ms)
+

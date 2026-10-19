@@ -1,0 +1,558 @@
+{
+  "checkedAt": "2026-10-10",
+  "scope": "Built-in AUDIO_CATALOG only; excludes per-device user uploads",
+  "total": 26,
+  "counts": {
+    "배경음": 10,
+    "주변 소리(환경음)": 4,
+    "효과음": 12
+  },
+  "assets": [
+    {
+      "id": "audio:music:forest",
+      "name": "숲의 아침 · 잔잔한 배경음",
+      "kind": "music",
+      "src": "/assets/audio/forest.wav",
+      "runtimePath": "assets/audio/forest.wav",
+      "mime": "audio/wav",
+      "durationSeconds": 8.0,
+      "category": "배경음",
+      "fileBytes": 352844,
+      "sha256": "82baae888593db3095b6005d80be62eebb33eee154d68b85ee9229ff05495ff2",
+      "actualDurationSeconds": 8.0,
+      "streams": [
+        {
+          "codec_name": "pcm_s16le",
+          "sample_rate": "22050",
+          "channels": 1
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:night",
+      "name": "밤의 길 · 차분한 배경음",
+      "kind": "music",
+      "src": "/assets/audio/night.wav",
+      "runtimePath": "assets/audio/night.wav",
+      "mime": "audio/wav",
+      "durationSeconds": 8.0,
+      "category": "배경음",
+      "fileBytes": 352844,
+      "sha256": "dc71d776e81f994aa6cb52a585692cabcca3c22a8356284e49be6b4b76971024",
+      "actualDurationSeconds": 8.0,
+      "streams": [
+        {
+          "codec_name": "pcm_s16le",
+          "sample_rate": "22050",
+          "channels": 1
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:chime",
+      "name": "맑은 종소리",
+      "kind": "sound",
+      "src": "/assets/audio/chime.wav",
+      "runtimePath": "assets/audio/chime.wav",
+      "mime": "audio/wav",
+      "durationSeconds": 1.2,
+      "category": "효과음",
+      "fileBytes": 52964,
+      "sha256": "dc5f44569ddc781287c0efc77d5cb74c6f7767d0b05bb65f7b331fcaf047422a",
+      "actualDurationSeconds": 1.2,
+      "streams": [
+        {
+          "codec_name": "pcm_s16le",
+          "sample_rate": "22050",
+          "channels": 1
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:step",
+      "name": "가벼운 발걸음",
+      "kind": "sound",
+      "src": "/assets/audio/step.wav",
+      "runtimePath": "assets/audio/step.wav",
+      "mime": "audio/wav",
+      "durationSeconds": 0.5,
+      "category": "효과음",
+      "fileBytes": 22094,
+      "sha256": "ad342f360c51f8d76ca840cbc56f2210f4495a4bb4852126795843b04bd8375e",
+      "actualDurationSeconds": 0.5,
+      "streams": [
+        {
+          "codec_name": "pcm_s16le",
+          "sample_rate": "22050",
+          "channels": 1
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-calm",
+      "name": "계곡의 평온",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-calm.ogg",
+      "runtimePath": "assets/audio/story-score/score-calm.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 184609,
+      "sha256": "81a1db9afeabff635f32f8b77f40250476f66f55a1599fe03fe0a4f41dffd1a0",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-curiosity",
+      "name": "작은 발견",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-curiosity.ogg",
+      "runtimePath": "assets/audio/story-score/score-curiosity.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 221125,
+      "sha256": "c3e28f37e7a7004c67c3ba0bbc2589555df9464a41765483ed2cc9e2788cec2d",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-tension",
+      "name": "다가오는 위기",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-tension.ogg",
+      "runtimePath": "assets/audio/story-score/score-tension.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 163306,
+      "sha256": "6edb545c940236526525691a58cd49ba4d56928f0e50fa765f2bb7bcd9e72fa6",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-loss",
+      "name": "남겨진 마음",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-loss.ogg",
+      "runtimePath": "assets/audio/story-score/score-loss.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 187719,
+      "sha256": "73a81b62ef3e23ff935f7ed0242cd3cfd7e4df8f7de6ecbab9309e2de6983a00",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-warmth",
+      "name": "함께하는 온기",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-warmth.ogg",
+      "runtimePath": "assets/audio/story-score/score-warmth.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 200581,
+      "sha256": "b14b617072a7a2fd31df5cc6cf3478bbb8db74b6836470e7f850986c23a79af0",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-mystery",
+      "name": "기이한 징조",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-mystery.ogg",
+      "runtimePath": "assets/audio/story-score/score-mystery.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 176352,
+      "sha256": "556dca35e32cb9bdce78de1dfc4379053e30c6dd6eb7738f76fa125c54a04f3d",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-ocean",
+      "name": "깊은 물의 길",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-ocean.ogg",
+      "runtimePath": "assets/audio/story-score/score-ocean.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 170370,
+      "sha256": "26b3e2b16cff49f4d14e6cc06b736f35689b98268b812eb1fe36feee852fe35a",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:score-resolve",
+      "name": "새로운 아침",
+      "kind": "music",
+      "src": "/assets/audio/story-score/score-resolve.ogg",
+      "runtimePath": "assets/audio/story-score/score-resolve.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 32.0,
+      "category": "배경음",
+      "fileBytes": 218723,
+      "sha256": "f19af37e69c734822888aeadce3dd7da3df89c54a5bb5e2fb1942fe1c64af90b",
+      "actualDurationSeconds": 32.0,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:ambience-stream",
+      "name": "계곡 물소리",
+      "kind": "music",
+      "src": "/assets/audio/story-score/ambience-stream.ogg",
+      "runtimePath": "assets/audio/story-score/ambience-stream.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 24.000725623582767,
+      "category": "주변 소리(환경음)",
+      "fileBytes": 493014,
+      "sha256": "8c8b9180c2bdba641d03e148779bc34dc67ab2158bbf35f81bedf2b4b5004e71",
+      "actualDurationSeconds": 24.000726,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:ambience-rain",
+      "name": "잔잔한 비",
+      "kind": "music",
+      "src": "/assets/audio/story-score/ambience-rain.ogg",
+      "runtimePath": "assets/audio/story-score/ambience-rain.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 24.000725623582767,
+      "category": "주변 소리(환경음)",
+      "fileBytes": 671538,
+      "sha256": "11a9d8779134fdb4309395c5ba10abe4466013bbc664a89b923118830c0befdd",
+      "actualDurationSeconds": 24.000726,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:ambience-forest",
+      "name": "숲의 바람과 새",
+      "kind": "music",
+      "src": "/assets/audio/story-score/ambience-forest.ogg",
+      "runtimePath": "assets/audio/story-score/ambience-forest.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 24.000725623582767,
+      "category": "주변 소리(환경음)",
+      "fileBytes": 222379,
+      "sha256": "5e820c0f702b463732bfd6bc37d286869a1ffc68d712a33411cbbce336eac3d0",
+      "actualDurationSeconds": 24.000726,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:music:ambience-ocean",
+      "name": "바다의 파도",
+      "kind": "music",
+      "src": "/assets/audio/story-score/ambience-ocean.ogg",
+      "runtimePath": "assets/audio/story-score/ambience-ocean.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 24.000725623582767,
+      "category": "주변 소리(환경음)",
+      "fileBytes": 322703,
+      "sha256": "8beedfbeb635424e36c1bc270700478a87209c2d2608558a3665d3e7e31173f4",
+      "actualDurationSeconds": 24.000726,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-thunder",
+      "name": "멀리서 울리는 천둥",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-thunder.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-thunder.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 5.0009977324263035,
+      "category": "효과음",
+      "fileBytes": 26816,
+      "sha256": "fa880d2df6d072c66a5c98230766bb6c57e0c970577efbbed223847519490403",
+      "actualDurationSeconds": 5.000998,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-door",
+      "name": "나무 문 여닫기",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-door.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-door.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 1.8009977324263038,
+      "category": "효과음",
+      "fileBytes": 15827,
+      "sha256": "db0b11a795ab1bf974611d43766b97a3ce1d3adf776048da3508c5f2b5f43e21",
+      "actualDurationSeconds": 1.800998,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-cloth",
+      "name": "옷자락 움직임",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-cloth.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-cloth.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 1.2001814058956917,
+      "category": "효과음",
+      "fileBytes": 15701,
+      "sha256": "a10b6d33d53c36003ccf8db5f044cd7d6080c0496bad2c6949219aa82127af82",
+      "actualDurationSeconds": 1.200181,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-steps",
+      "name": "흙길 발걸음",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-steps.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-steps.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 2.4003628117913833,
+      "category": "효과음",
+      "fileBytes": 16557,
+      "sha256": "8d55f188a1c3e069fd2822155bed61585d3895390200c63fd885edaf4590bf79",
+      "actualDurationSeconds": 2.400363,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-bird",
+      "name": "새의 짧은 울음",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-bird.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-bird.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 1.5005895691609978,
+      "category": "효과음",
+      "fileBytes": 13050,
+      "sha256": "b3600f6ac4dcc3a0657467b68cde662700904c78533a05eb549f6604c58538ef",
+      "actualDurationSeconds": 1.50059,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-swallow",
+      "name": "제비의 재잘거림",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-swallow.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-swallow.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 1.8009977324263038,
+      "category": "효과음",
+      "fileBytes": 13995,
+      "sha256": "4c632852ca3e40a298edf19debb1398241edbc36fab542cd94bfc52f066fb2f7",
+      "actualDurationSeconds": 1.800998,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-gourd",
+      "name": "박을 두드리기",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-gourd.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-gourd.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 1.3003174603174603,
+      "category": "효과음",
+      "fileBytes": 10392,
+      "sha256": "a381f7ee178f6e9474d9e8a88612bde4c6baa8e605df6d151f162ecf652fcf4c",
+      "actualDurationSeconds": 1.300317,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-crack",
+      "name": "박이 갈라지는 순간",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-crack.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-crack.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 1.400453514739229,
+      "category": "효과음",
+      "fileBytes": 21101,
+      "sha256": "36410379ccbfc74b3bde45d0a9b6caa36523623b8fd83f228d55ba9e3cdd1663",
+      "actualDurationSeconds": 1.400454,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-water",
+      "name": "물에 들어가는 순간",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-water.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-water.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 2.001269841269841,
+      "category": "효과음",
+      "fileBytes": 25782,
+      "sha256": "566c45fe34b7e5dade9e7830434c10a934ac075fe17c5a8063ef6953f039ee17",
+      "actualDurationSeconds": 2.00127,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    },
+    {
+      "id": "audio:sound:sfx-sting",
+      "name": "놀라운 발견",
+      "kind": "sound",
+      "src": "/assets/audio/story-score/sfx-sting.ogg",
+      "runtimePath": "assets/audio/story-score/sfx-sting.ogg",
+      "mime": "audio/ogg",
+      "durationSeconds": 2.4003628117913833,
+      "category": "효과음",
+      "fileBytes": 14642,
+      "sha256": "13c68d9db73e2226285dd068b0d96799bb1cccdc3853df271ff2f89373bb7967",
+      "actualDurationSeconds": 2.400363,
+      "streams": [
+        {
+          "codec_name": "vorbis",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "decodePassed": true
+    }
+  ]
+}

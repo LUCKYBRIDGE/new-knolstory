@@ -2,6 +2,7 @@ import { isStoryAudio } from "./story-audio";
 import { isStageComposition, stageProjection } from "./story-stage-composition";
 import { isStoryPresentation, migrateLegacyPresentation, normalizePresentation } from "./story-presentation";
 import { isStorySource } from "./story-source";
+import { isStoryScoreDefinitions } from "./story-scores";
 import { isStoryFlow } from "./story-flow";
 import { isStoryCover } from "./story-cover";
 import { isStorySceneEffect } from "./story-scene-effect";
@@ -447,9 +448,11 @@ export function normalizeAndValidateStoryProject(value: unknown) {
     addIssue(issues, "invalid-value", "$.project.source", "작품 출처 정보를 읽을 수 없어요.");
   }
   if (record.choiceMode !== undefined && !["simple","choice","free"].includes(String(record.choiceMode))) addIssue(issues,"invalid-value","$.project.choiceMode","이야기 모드를 확인해 주세요.");
+  if (record.scores !== undefined && !isStoryScoreDefinitions(record.scores)) addIssue(issues, "invalid-value", "$.project.scores", "이야기 점수는 서로 다른 ID와 이름·설명·시작 값을 사용해 32개까지 작성해 주세요. 값은 -1000000부터 1000000까지의 정수여야 해요.");
   const stageDefaults = record.stageDefaults === undefined ? undefined : asRecord(record.stageDefaults);
   if (record.stageDefaults !== undefined && !stageDefaults) addIssue(issues, "invalid-type", "$.project.stageDefaults", "작품 기본 무대 설정을 확인해 주세요.");
   const project: StoryProject = {
+    ...(isStoryScoreDefinitions(record.scores) ? { scores: structuredClone(record.scores) } : {}),
     ...(isStorySource(record.source) ? { source: structuredClone(record.source) } : {}),
     ...(isStoryCover(record.cover) ? { cover: structuredClone(record.cover) } : {}),
     ...(record.choiceMode === "simple" || record.choiceMode === "choice" || record.choiceMode === "free" ? {choiceMode:record.choiceMode} : {}),
@@ -496,7 +499,14 @@ export function normalizeAndValidateStoryProject(value: unknown) {
     }
   });
   project.lines.forEach((line, index) => {
-    const targets = line.flow?.type === "choice" ? line.flow.options.map(option => option.targetLineId) : line.flow ? [line.flow.targetLineId] : [];
+    const targets = line.flow?.type === "choice" ? line.flow.options.map(option => option.targetLineId) : line.flow ? [...(line.flow.routes ?? []).map(route => route.targetLineId), line.flow.targetLineId] : [];
+    const scoreIds = new Set((project.scores ?? []).map(score => score.id));
+    const referencedScores = line.flow?.type === "choice"
+      ? line.flow.options.flatMap(option => [...(option.condition?.terms ?? []).map(term => term.scoreId), ...(option.effects ?? []).map(effect => effect.scoreId)])
+      : line.flow?.routes?.flatMap(route => route.condition.terms.map(term => term.scoreId)) ?? [];
+    for (const scoreId of referencedScores) {
+      if (!scoreIds.has(scoreId)) addIssue(issues, "broken-reference", `$.project.lines[${index}].flow`, `이야기 점수 '${scoreId}'을 찾을 수 없어요. 점수 항목을 먼저 만들어 주세요.`);
+    }
     for (const target of targets) {
       if (target && !linesById.has(target)) addIssue(issues, "broken-reference", `$.project.lines[${index}].flow`, "연결된 도착 컷을 찾을 수 없어요.");
     }
@@ -527,5 +537,30 @@ export function normalizeAndValidateStoryProject(value: unknown) {
       );
     }
   }
+  for(const [index,line] of project.lines.entries()){
+    const cues=[...(line.presentation?.effects??[]),line.audio?.music,line.audio?.ambience];
+    for(const cue of cues)if(cue&&'endLineId' in cue&&cue.endLineId!==undefined&&!linesById.has(cue.endLineId))addIssue(issues,'broken-reference',`$.project.lines[${index}]`,'연출·소리 범위의 종료 컷이 없습니다. 종료 컷을 다시 선택해 주세요.');
+  }
+  for(const chapter of project.chapters)for(const cue of [chapter.audio?.music,chapter.audio?.ambience])if(cue&&'endLineId' in cue&&cue.endLineId!==undefined&&!linesById.has(cue.endLineId))addIssue(issues,'broken-reference','$.project.chapters','소리 범위의 종료 컷이 없습니다.');
+  const validateBranchCue = (cue: unknown, path: string) => {
+    if (!cue || typeof cue !== 'object' || !('branchCondition' in cue)) return;
+    const branch = (cue as {branchCondition?: import('./story-branch-condition').StoryBranchCondition}).branchCondition;
+    if (!branch) return;
+    const source = linesById.get(branch.sourceLineId);
+    if (source?.flow?.type !== 'choice' || !source.flow.options.some(option => option.id === branch.choiceId)) {
+      addIssue(issues, 'broken-reference', `${path}.branchCondition`, '갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.');
+    }
+  };
+  project.lines.forEach((line, index) => {
+    line.presentation?.effects?.forEach((cue, cueIndex) => validateBranchCue(cue, `$.project.lines[${index}].presentation.effects[${cueIndex}]`));
+    validateBranchCue(line.audio?.music, `$.project.lines[${index}].audio.music`);
+    validateBranchCue(line.audio?.ambience, `$.project.lines[${index}].audio.ambience`);
+    line.audio?.sounds?.forEach((cue, cueIndex) => validateBranchCue(cue, `$.project.lines[${index}].audio.sounds[${cueIndex}]`));
+  });
+  project.chapters.forEach((chapter, index) => {
+    validateBranchCue(chapter.audio?.music, `$.project.chapters[${index}].audio.music`);
+    validateBranchCue(chapter.audio?.ambience, `$.project.chapters[${index}].audio.ambience`);
+    chapter.audio?.sounds?.forEach((cue, cueIndex) => validateBranchCue(cue, `$.project.chapters[${index}].audio.sounds[${cueIndex}]`));
+  });
   return issues.length > 0 ? { issues } : { project, issues };
 }

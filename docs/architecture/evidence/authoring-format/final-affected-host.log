@@ -1,0 +1,36 @@
+
+Running 27 tests using 1 worker
+
+(node:24098) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/27] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 1280x900
+[2/27] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 820x1180
+[3/27] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 390x844
+[4/27] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 844x390
+[5/27] [host] › tests/e2e/authoring-formats.spec.ts:36:1 › blank official template creates new work through validated preview
+[6/27] [host] › tests/e2e/composition-intent.spec.ts:109:1 › composition authoring separates body scale, center, original facing and actor exits through files
+[7/27] [host] › tests/e2e/composition-intent.spec.ts:136:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes
+[8/27] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:3:1 › actual Excel exported story preserves extended values in UI and portable archive
+[9/27] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:9:1 › actual Excel picture book exported XLSX opens at its edited page
+[10/27] [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual excel edited ShortStory reopens and prints a complete A4 book
+[11/27] [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual google edited ShortStory reopens and prints a complete A4 book
+[12/27] [host] › tests/e2e/google-authoring-roundtrip.spec.ts:3:1 › actual Google exported story preserves extended values in UI and portable archive
+[13/27] [host] › tests/e2e/google-authoring-roundtrip.spec.ts:9:1 › actual Google picture book exported XLSX opens at its edited page
+[14/27] [host] › tests/e2e/short-authoring-formats.spec.ts:5:1 › official shortstory Excel edits are previewed, cancellable and survive independent file reopening
+[15/27] [host] › tests/e2e/short-authoring-formats.spec.ts:29:1 › blank official shortstory workbook accepts a new book and rejects formulas without changing the draft
+[16/27] [host] › tests/e2e/stories.spec.ts:6:3 › 선녀와 나무꾼: representative text edits survive reload and file roundtrip
+[17/27] [host] › tests/e2e/stories.spec.ts:6:3 › 흥부와 놀부: representative text edits survive reload and file roundtrip
+[18/27] [host] › tests/e2e/stories.spec.ts:6:3 › 옹고집전: representative text edits survive reload and file roundtrip
+[19/27] [host] › tests/e2e/stories.spec.ts:6:3 › 별주부전: representative text edits survive reload and file roundtrip
+[20/27] [host] › tests/e2e/stories.spec.ts:31:1 › persistent story runtime and current edit survive narrow screen changes
+[21/27] [host] › tests/e2e/stories.spec.ts:55:1 › malformed import preserves current work and explains the error
+[22/27] [host] › tests/e2e/stories.spec.ts:73:1 › edits stay separate when switching representative works
+[23/27] [host] › tests/e2e/stories.spec.ts:86:1 › unfinished links and explicit endings remain distinct in playback
+[24/27] [host] › tests/e2e/stories.spec.ts:104:1 › importing a different work preserves edits in the outgoing representative work
+[25/27] [host] › tests/e2e/stories.spec.ts:127:3 › empty imported document leaves the editor intact
+[26/27] [host] › tests/e2e/stories.spec.ts:127:3 › unknown-asset imported document leaves the editor intact
+[27/27] [host] › tests/e2e/stories.spec.ts:162:1 › reading position and branch history resume after reload
+  1 skipped
+  26 passed (2.9m)

@@ -1,0 +1,48 @@
+
+Running 4 tests using 1 worker
+
+(node:53488) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/4] [host] › tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens
+  1) [host] › tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '작품 준비', exact: true })
+
+
+       8 |   await page.getByLabel('새 작품 제목',{exact:true}).fill('선택에 따라 쌓이는 이야기');
+       9 |   await page.getByRole('button',{name:'빈 작품 시작',exact:true}).click();
+    > 10 |   await page.getByRole('button',{name:'작품 준비',exact:true}).click();
+         |                                                            ^
+      11 |   const preparation=page.getByRole('region',{name:'작품 준비',exact:true});
+      12 |   const scores=preparation.getByRole('region',{name:'이야기 점수 설정',exact:true});
+      13 |   await scores.getByLabel('새 점수 이름',{exact:true}).fill('이웃에게 나눈 횟수');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/score-authoring.spec.ts:10:60
+
+    Error Context: ../../../../../tmp/knol-score-ui/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-score-ui/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-score-ui/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:54240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/4] [host] › tests/e2e/score-narrative.spec.ts:6:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening
+[3/4] [host] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 1280
+[4/4] [host] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 390
+  1 failed
+    [host] › tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens 
+  2 skipped
+  1 passed (2.1m)

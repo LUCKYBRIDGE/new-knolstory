@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-18",
+  "status": "local-focused-verified-not-deployed",
+  "task": "PC-06 actual Chrome400 native focus and semantic choice continuation",
+  "problem": "After AX/Enter audio start the native iframe BODY may retain focus. Existing host Tab exit handled canvas only, trapping Tab/ShiftTab in the engine.",
+  "fix": "Route native BODY/HTML as well as canvas Tab to semantic summary and ShiftTab to existing reader menu; leave actual native interactive controls alone.",
+  "checks": {
+    "nativeRed": "red-catalog-result.json: BODY forward/reverse failed, canvas forward/reverse passed; authored and iframe preserved",
+    "setupFailures": "Earlier red-run/red-focus-run had invalid no-audio direct-editor setup; red-key was intentionally interrupted waiting for nonexistent gate. Kept logs and corrected to actual catalog audio entry. These are not product-fix successes.",
+    "nativeGreen": "green-result.json:2passed/0failed/0skip; body/canvas forward/reverse and existing keyboard choice/rewind/alternate native flows at475x194CSS",
+    "actualChrome": "Native Chrome UI400%;475x194CSS;DPR8 vs restored100%1900x777/DPR2. No viewport override/CSS zoom",
+    "actualFocus": "AX canvas entry then real Enter leaves BODY; real Tab now focuses semantic summary; real ShiftTab returns reader menu",
+    "actualChoices": "Protected catalog copy, editor selects existing5th chapter choice; preview then Tab/Enter first choice, rewind, alternate choice. Native ack matches scene for both routes. Not full story-path traversal.",
+    "actualGeometry": "44px choice wholly inside90.25px auto-scroll panel; chrome-400-choice-bounds.json",
+    "build": "Web build passed; native runtime/source unchanged and reused",
+    "typecheck": "Web and new E2E passed",
+    "eslint": "changed component/spec/config passed; existing React detect warning",
+    "preservation": {
+      "previousFilesChecked": 8813,
+      "changed": [],
+      "missing": [],
+      "scope": "Prior fixtures/evidence/public runtime from prior session baseline; new evidence excluded"
+    },
+    "cleanup": "Actual100%native UI and1900px/DPR2 confirmed; task-created Chrome tab explicitly closed; static preview15401 remains available",
+    "docs": "57active documents0link errors; changed-file whitespace check passed"
+  },
+  "evidence": {
+    "actualBefore": "before-focus.json",
+    "actualAfter": "chrome-400-after-focus.json",
+    "choice": "chrome-400-choice-bounds.json",
+    "choiceScreen": "chrome-400-choice.png",
+    "firstRoute": "chrome-400-choice-settled.json",
+    "alternate": "chrome-400-alternate-settled.json",
+    "restored": "chrome-100-restored-ax.txt",
+    "focusedPatch": "focus-change.patch"
+  },
+  "limits": [
+    "Actual Mac Chrome with existing desktop keyboard; not Windows/Chromebook/Android physical device or actual screen reader",
+    "No whole product/whole story/entire WCAG or performance-budget completion claim",
+    "Full authored-project and iframe equality measured in automated native tests; actual Chrome created protected copy and navigated existing cuts without manuscript changes, not a separate whole-project export comparison",
+    "Old8edition/64focused manuscript evidence reused; no content/format/native-runtime changes; no push/deploy/deletion"
+  ],
+  "commands": {
+    "build": "pnpm build",
+    "nativeActual": "KNOL_SHORT_READER=1 pnpm exec playwright test -c .cache/native-body-tab-green.config.ts",
+    "reusable": "KNOL_TEST_STATIC=1 KNOL_SHORT_READER=1 pnpm exec playwright test --project=stories-runtime tests/e2e/native-body-tab.spec.ts tests/e2e/accessibility-choice-native.spec.ts --output=.cache/body-tab-new-run"
+  },
+  "sourceSha256": {
+    "apps/web/components/story-text-accessibility.tsx": "243b162408fbd4e9421c674ace4a386b1cc7f49133486e563fab81beeb3b068a",
+    "tests/e2e/native-body-tab.spec.ts": "e6b6742cdf6126d9e78d3008bbd9bbd2a9f42fb5792283f42552494fc9685d7d",
+    "playwright.config.ts": "e72e98d3df210b90d922b2b2a527a5d68595a12b2c4f8f2921f719409529d464"
+  },
+  "observedChromeScriptSha256": {
+    "/_next/static/chunks/0yxjehgvq3atv.js": "4c8184629bf35fd3b64f0dd7ce85056522096e2b489a867ee35b420d97450f2d",
+    "/_next/static/chunks/38he8-oivpovb.js": "083025057e5bda5ef6992096afa5fa75236b91498f18b4536862e1877a6f6d85",
+    "/_next/static/chunks/0quwexislonyx.js": "3d6b5b3df5be9a3f73b2ce7cb4d0c1e48af6e62ef49acee1e1c75dbc42f50471",
+    "/_next/static/chunks/turbopack-40w3n9mkp9fbq.js": "375fde351cf19bdd8c9b9614da42f24b84f70dfcc67a6869960bea1d39f711b6",
+    "/_next/static/chunks/3pn1a5dz9iuys.js": "7cd1fb39580fffe47843ca34b44fabbaf73715fa603a2bbe841f67e241470506",
+    "/_next/static/chunks/39cjp9pdxqlbt.js": "7a8324aa7dd887c6b63a04d4601eb0aeac039d1e84f155ed720ea0e69e94fa1f",
+    "/_next/static/chunks/2k0_cy7g6nq1z.js": "8c4b6f96aa9c5032e4f0e4109c028ab21f1826216a45d31feb1edadbfbc89226",
+    "/_next/static/chunks/235ft3fkyx2eg.js": "408f59adb7cdfb20a70c9e6974dbe7129e83fff9042b2795f76daa891f465872",
+    "/_next/static/chunks/0f26r3h07jyjs.js": "4af6c0422fcd8125e367f2c0564ed926caa4ad8bf5b749e9ed1cc7dbd29ebbd3",
+    "/_next/static/chunks/0cz1d0mv5g_q7.js": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+    "/_next/static/chunks/028j2jy7_zixt.js": "34ddff3149466f9072914d0014e580defdc68d8c23ccccbac50c2864508284b4"
+  },
+  "webIndexSha256": "2967002366778a515c208094e3ced986505f390d6c0ac831c9fd6b32b20f8e93",
+  "selfEvaluation": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "Actual Chrome400% plus RED/GREEN native evidence; physical school/screenreader excluded"
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": "Tab escape and400%choice gap resolved; fullPC06physical/assistive and product policies open"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Separate actual zoom vs CSS narrow test and failed setup vs actual RED"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Currentpreview/new native tests and actualscreens; no deployment"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Targeted listener change, canonical plan update; setup logs retained separately"
+    },
+    "average": 4,
+    "improvement": "Future native test setup should use catalog entry when audio is required; inspect actual reader gates before requiring unlock."
+  }
+}

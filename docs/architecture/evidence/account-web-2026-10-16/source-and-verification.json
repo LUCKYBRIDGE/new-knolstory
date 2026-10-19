@@ -1,0 +1,57 @@
+{
+  "sourceSha256": {
+    "apps/web/components/account-menu.tsx": "6bc2f897dadf35aa0961df48aa13415a7e42848c7a263587b6288691733a91c4",
+    "apps/web/components/account-menu.module.css": "ee47232e77184b21f6894af5191bbb9d974b6aa08b8a6de9ef7de3ff38da7b90",
+    "apps/web/components/use-account-session.ts": "60d6ac93ba8a8d341c4f7bc0f0dfba357661db5fd05a6dd80beb0430c5df9352",
+    "apps/web/components/local-bookshelf.tsx": "f3e2357680e169235177997a0de7256367f899ee33d1d49693278b97712839b1",
+    "apps/web/components/story-workspace.tsx": "2ec7b45b4b7a9ffefabdcf21a152ca2448fca9ee11acbc30f97c26e24f738f9a",
+    "apps/web/lib/account-api.ts": "cc61f251fc46ddc42f40688cd07c9473427e3be41bc19ad4e0e35dadd67ede4b",
+    "apps/web/lib/account-return.ts": "35b3627c80ba8117d193189d6100fa92b6cf06dc672e00111e5a50531c52697f",
+    "apps/web/lib/account-api.test.ts": "b9701aa85bf1872f1f6ea143aab482d13461b351f98d3d886d2ec25dea06fdb4",
+    "apps/web/lib/account-return.test.ts": "e0c7f546b8865c0f653deb0f08b2a174672913b2bd7955ec7e19ec3c85cfd3ec",
+    "tests/e2e/account-menu.spec.ts": "e292521ad478316d711e0f7ae4fb592d6a3a3034ea515e5d6bf98ddf118ab354",
+    "playwright.config.ts": "8c81c956aa37d12c3c9ee487ef431933caf25b40ffff8b069d4ff7c645827800"
+  },
+  "commands": {
+    "unit": "pnpm exec vitest run apps/web/lib/account-api.test.ts apps/web/lib/account-return.test.ts --coverage --coverage.include=apps/web/lib/account-api.ts --coverage.include=apps/web/lib/account-return.ts --coverage.reportsDirectory=.cache/account-web-coverage --maxWorkers=1",
+    "browserInitial": "pnpm exec playwright test --config=.cache/account-web-playwright.config.ts",
+    "browserAdditional": "pnpm exec playwright test --config=.cache/account-web-playwright.config.ts --grep 'delayed Google|blocked second|Google linking|unconfigured account'",
+    "typecheck": "pnpm --filter @knolstory/web typecheck",
+    "lint": "pnpm exec eslint <owned Web files, account spec, playwright config>"
+  },
+  "results": {
+    "unit": {
+      "tests": 12,
+      "statements": 93.22,
+      "branches": 94.28,
+      "functions": 100,
+      "lines": 100,
+      "scope": "two new pure modules only"
+    },
+    "browserSecond": {
+      "passed": 8,
+      "log": "browser-second.log",
+      "scope": "four viewports local create/edit/login return/logout; configuration failure; quota protection; delayed link leaving; logout focus",
+      "subsequentChange": "account error label and callback wording refined; additional run validates affected paths"
+    },
+    "browserAdditional": {
+      "passed": 4,
+      "log": "browser-additional.log",
+      "scope": "strengthened delayed response completion; blocked second writer; empty CSRF link POST/provider redirect/session requery; unavailable provider/error state"
+    },
+    "initialBrowser": {
+      "passed": 5,
+      "failed": 1,
+      "failure": "390 callback during active source HMR change emitted SyntaxError; unchanged final candidate rerun passed all eight; not combined into final total"
+    },
+    "typecheck": "passed",
+    "lint": "passed",
+    "gatewayBrowser": "pending actual gateway hydration fix; no success claimed"
+  },
+  "limits": [
+    "Mocked provider callbacks are not real Kakao/Google OAuth",
+    "No local document uploads, synchronization or ownership claiming added",
+    "Actual gateway API config/me browser integration pending; first attempt remained loading with HMR 404",
+    "No native runtime rebuild or broad regression rerun"
+  ]
+}

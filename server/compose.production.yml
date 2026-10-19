@@ -1,0 +1,104 @@
+name: knolstory-next-production
+services:
+  db:
+    image: postgres:16-bookworm
+    pull_policy: never
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: knolstory_next_owner
+      POSTGRES_DB: knolstory_next_production
+      POSTGRES_PASSWORD_FILE: /run/knolstory-production-owner/db-owner-password
+    volumes:
+      - production_data:/var/lib/postgresql/data
+      - ${KNOLSTORY_PRODUCTION_OWNER_DIR:?Use production-compose.mjs}:/run/knolstory-production-owner:ro
+    networks: [database]
+    mem_limit: 512m
+    cpus: 1
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U knolstory_next_owner -d knolstory_next_production']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  migration:
+    image: knolstory-next-api:production
+    profiles: [tools]
+    environment:
+      PGHOST: db
+      PGDATABASE: knolstory_next_production
+    volumes:
+      - ${KNOLSTORY_PRODUCTION_OWNER_DIR:?Use helper}:/run/knolstory-production-owner:ro
+      - ${KNOLSTORY_PRODUCTION_SECRET_DIR:?Use helper}:/run/knolstory-production:ro
+    user: '${KNOLSTORY_SECRET_UID:?Use helper}:${KNOLSTORY_SECRET_GID:?Use helper}'
+    networks: [database]
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    command: [node, migrate.mjs]
+  api:
+    image: knolstory-next-api:production
+    build:
+      context: ..
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    environment:
+      PORT: '4000'
+      KNOLSTORY_BIND_HOST: 0.0.0.0
+      KNOLSTORY_AUTH_ORIGIN: ${KNOLSTORY_AUTH_ORIGIN:?Use production-compose.mjs}
+      PGHOST: db
+      PGPORT: '5432'
+      PGUSER: knolstory_next_app
+      PGDATABASE: knolstory_next_production
+      PGPASSWORD_FILE: /run/knolstory-production/db-password
+      KNOLSTORY_CSRF_SECRET_FILE: /run/knolstory-production/csrf-secret
+      KAKAO_CLIENT_ID_FILE: ${KAKAO_CLIENT_ID_FILE:-}
+      KAKAO_CLIENT_SECRET_FILE: ${KAKAO_CLIENT_SECRET_FILE:-}
+      GOOGLE_CLIENT_ID_FILE: ${GOOGLE_CLIENT_ID_FILE:-}
+      GOOGLE_CLIENT_SECRET_FILE: ${GOOGLE_CLIENT_SECRET_FILE:-}
+    volumes:
+      - ${KNOLSTORY_PRODUCTION_SECRET_DIR:?Use production-compose.mjs}:/run/knolstory-production:ro
+    user: '${KNOLSTORY_SECRET_UID:?Use helper}:${KNOLSTORY_SECRET_GID:?Use helper}'
+    networks: [database, service, outbound]
+    depends_on:
+      db: {condition: service_healthy}
+    mem_limit: 384m
+    cpus: 1
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:4000/health/live').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+  ingress:
+    image: knolstory-next-ingress:production
+    build:
+      context: ..
+      dockerfile: server/Dockerfile.ingress
+    restart: unless-stopped
+    environment:
+      KNOLSTORY_PUBLIC_ORIGIN: ${KNOLSTORY_AUTH_ORIGIN:?Use production-compose.mjs}
+      KNOLSTORY_REDIRECT_FROM_ORIGIN: ${KNOLSTORY_REDIRECT_FROM_ORIGIN:-}
+      KNOLSTORY_API_ORIGIN: http://api:4000
+      KNOLSTORY_INGRESS_HOST: 0.0.0.0
+      KNOLSTORY_INGRESS_PORT: '8080'
+      KNOLSTORY_STATIC_ROOT: /site
+    ports: ['127.0.0.1:15501:8080']
+    networks: [service, edge]
+    depends_on:
+      api: {condition: service_healthy}
+    mem_limit: 256m
+    cpus: 1
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+networks:
+  database: {internal: true}
+  service: {internal: true}
+  edge: {}
+  outbound: {}
+volumes:
+  production_data: {}

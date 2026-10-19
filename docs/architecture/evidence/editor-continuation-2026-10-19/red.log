@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:59519) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:288:1 › background fit and focus edits preserve other presentation data and reset only focus (50.4s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:288:1 › background fit and focus edits preserve other presentation data and reset only focus 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByTestId('editing-cut-neutral').getByText('1컷 배경 표시 조정', { exact: true })
+
+
+      287 |
+      288 | test('background fit and focus edits preserve other presentation data and reset only focus',async({page})=>{
+    > 289 |  const before=await prepare(page);await mode(page,'배경 편집');await row(page,0).getByText('1컷 배경 표시 조정',{exact:true}).click();await row(page,0).getByRole('combobox',{name:'1컷 배경 표시',exact:true}).selectOption('contain');await row(page,0).getByRole('slider',{name:'1컷 배경 중심 가로',exact:true}).press('End');await row(page,0).getByRole('slider',{name:'1컷 배경 중심 세로',exact:true}).press('Home');
+          |                                                                                                                    ^
+      290 |  const after=(await exported(page)).project;expect(after.lines[0].presentation).toEqual({...before.lines[0].presentation,backgroundFit:'contain',backgroundFocal:{x:1,y:0}});expect(after.lines[0].stageComposition).toEqual(before.lines[0].stageComposition);expect(after.lines[0].audio).toEqual(before.lines[0].audio);expect(after.lines[0].flow).toEqual(before.lines[0].flow);expect(after.lines[1]).toEqual(before.lines[1]);
+      291 |  await row(page,0).getByRole('button',{name:'1컷 배경 중심 초기화',exact:true}).click();const reset=(await exported(page)).project;expect(reset.lines[0].presentation).toEqual({...before.lines[0].presentation,backgroundFit:'contain'});await page.reload();await mode(page,'배경 편집');await row(page,0).getByText('1컷 배경 표시 조정',{exact:true}).click();await expect(row(page,0).getByRole('combobox',{name:'1컷 배경 표시',exact:true})).toHaveValue('contain');
+      292 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:289:116
+
+    Error Context: docs/architecture/evidence/editor-continuation-2026-10-19/first-run/editing-workbench-backgrou-0208f-n-data-and-reset-only-focus/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editor-continuation-2026-10-19/first-run/editing-workbench-backgrou-0208f-n-data-and-reset-only-focus/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editor-continuation-2026-10-19/first-run/editing-workbench-backgrou-0208f-n-data-and-reset-only-focus/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:288:1 › background fit and focus edits preserve other presentation data and reset only focus 

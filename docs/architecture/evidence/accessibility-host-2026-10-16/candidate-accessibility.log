@@ -1,0 +1,305 @@
+
+Running 10 tests using 1 worker
+
+(node:92324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px (237ms)
+(node:92344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 390px (87ms)
+(node:92358) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   3 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 1440px (94ms)
+(node:92371) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   4 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 (87ms)
+(node:92388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   5 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 (88ms)
+(node:92400) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   6 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 1440x740 (94ms)
+(node:92414) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   7 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 (113ms)
+(node:92427) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   8 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 1440 (87ms)
+(node:92442) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   9 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 390 (83ms)
+(node:92455) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  10 tests/e2e/accessibility.spec.ts:45:1 › bookshelf drawer exposes its existing label through a supported group role (86ms)
+
+
+  1) tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      1 | import {test,expect} from '@playwright/test';
+      2 | for(const width of [320,390,1440])test(`library header controls remain reachable at ${width}px`,async({page})=>{
+    > 3 |  await page.setViewportSize({width,height:740});await page.goto('/?view=library');
+        |                                                            ^
+      4 |  const tools=page.getByText('책 찾기·추가',{exact:true});await expect(tools).toBeVisible();
+      5 |  const bounds=await tools.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
+      6 |  await tools.click();await expect(page.getByRole('searchbox',{name:'책 찾기',exact:true})).toBeVisible();await page.keyboard.press('Escape');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:3:60
+
+    Error Context: test-results/accessibility/accessibility-narrow-libra-68e3d-s-remain-reachable-at-320px/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-narrow-libra-68e3d-s-remain-reachable-at-320px/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-narrow-libra-68e3d-s-remain-reachable-at-320px/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 390px 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      1 | import {test,expect} from '@playwright/test';
+      2 | for(const width of [320,390,1440])test(`library header controls remain reachable at ${width}px`,async({page})=>{
+    > 3 |  await page.setViewportSize({width,height:740});await page.goto('/?view=library');
+        |                                                            ^
+      4 |  const tools=page.getByText('책 찾기·추가',{exact:true});await expect(tools).toBeVisible();
+      5 |  const bounds=await tools.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
+      6 |  await tools.click();await expect(page.getByRole('searchbox',{name:'책 찾기',exact:true})).toBeVisible();await page.keyboard.press('Escape');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:3:60
+
+    Error Context: test-results/accessibility/accessibility-narrow-libra-97fc9-s-remain-reachable-at-390px/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-narrow-libra-97fc9-s-remain-reachable-at-390px/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-narrow-libra-97fc9-s-remain-reachable-at-390px/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 1440px 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      1 | import {test,expect} from '@playwright/test';
+      2 | for(const width of [320,390,1440])test(`library header controls remain reachable at ${width}px`,async({page})=>{
+    > 3 |  await page.setViewportSize({width,height:740});await page.goto('/?view=library');
+        |                                                            ^
+      4 |  const tools=page.getByText('책 찾기·추가',{exact:true});await expect(tools).toBeVisible();
+      5 |  const bounds=await tools.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
+      6 |  await tools.click();await expect(page.getByRole('searchbox',{name:'책 찾기',exact:true})).toBeVisible();await page.keyboard.press('Escape');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:3:60
+
+    Error Context: test-results/accessibility/accessibility-narrow-libra-6b77b--remain-reachable-at-1440px/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-narrow-libra-6b77b--remain-reachable-at-1440px/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-narrow-libra-6b77b--remain-reachable-at-1440px/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      10 | });
+      11 | for(const [width,height] of [[320,740],[390,740],[1440,740],[390,390]])test(`account and online panels fit the viewport at ${width}x${height}`,async({page})=>{
+    > 12 |  await page.setViewportSize({width,height});await page.goto('/?view=library');
+         |                                                        ^
+      13 |  for(const [selector,label] of [['[data-account-menu]','놀스토리 계정'],['[data-online-works]','온라인 작품']]){
+      14 |   await page.locator(`${selector}>summary`).click();const panel=page.getByRole('region',{name:label,exact:true});await expect(panel).toBeVisible();
+      15 |   await expect.poll(async()=>{const box=await panel.boundingBox();return !!box&&box.x>=15.5&&box.y>=15.5&&box.x+box.width<=width-15.5&&box.y+box.height<=height-15.5;}).toBe(true);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:12:56
+
+    Error Context: test-results/accessibility/accessibility-narrow-accou-b4563-fit-the-viewport-at-320x740/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-narrow-accou-b4563-fit-the-viewport-at-320x740/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-narrow-accou-b4563-fit-the-viewport-at-320x740/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      10 | });
+      11 | for(const [width,height] of [[320,740],[390,740],[1440,740],[390,390]])test(`account and online panels fit the viewport at ${width}x${height}`,async({page})=>{
+    > 12 |  await page.setViewportSize({width,height});await page.goto('/?view=library');
+         |                                                        ^
+      13 |  for(const [selector,label] of [['[data-account-menu]','놀스토리 계정'],['[data-online-works]','온라인 작품']]){
+      14 |   await page.locator(`${selector}>summary`).click();const panel=page.getByRole('region',{name:label,exact:true});await expect(panel).toBeVisible();
+      15 |   await expect.poll(async()=>{const box=await panel.boundingBox();return !!box&&box.x>=15.5&&box.y>=15.5&&box.x+box.width<=width-15.5&&box.y+box.height<=height-15.5;}).toBe(true);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:12:56
+
+    Error Context: test-results/accessibility/accessibility-narrow-accou-ab9ab-fit-the-viewport-at-390x740/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-narrow-accou-ab9ab-fit-the-viewport-at-390x740/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-narrow-accou-ab9ab-fit-the-viewport-at-390x740/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 1440x740 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      10 | });
+      11 | for(const [width,height] of [[320,740],[390,740],[1440,740],[390,390]])test(`account and online panels fit the viewport at ${width}x${height}`,async({page})=>{
+    > 12 |  await page.setViewportSize({width,height});await page.goto('/?view=library');
+         |                                                        ^
+      13 |  for(const [selector,label] of [['[data-account-menu]','놀스토리 계정'],['[data-online-works]','온라인 작품']]){
+      14 |   await page.locator(`${selector}>summary`).click();const panel=page.getByRole('region',{name:label,exact:true});await expect(panel).toBeVisible();
+      15 |   await expect.poll(async()=>{const box=await panel.boundingBox();return !!box&&box.x>=15.5&&box.y>=15.5&&box.x+box.width<=width-15.5&&box.y+box.height<=height-15.5;}).toBe(true);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:12:56
+
+    Error Context: test-results/accessibility/accessibility-narrow-accou-2a104-it-the-viewport-at-1440x740/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-narrow-accou-2a104-it-the-viewport-at-1440x740/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-narrow-accou-2a104-it-the-viewport-at-1440x740/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      10 | });
+      11 | for(const [width,height] of [[320,740],[390,740],[1440,740],[390,390]])test(`account and online panels fit the viewport at ${width}x${height}`,async({page})=>{
+    > 12 |  await page.setViewportSize({width,height});await page.goto('/?view=library');
+         |                                                        ^
+      13 |  for(const [selector,label] of [['[data-account-menu]','놀스토리 계정'],['[data-online-works]','온라인 작품']]){
+      14 |   await page.locator(`${selector}>summary`).click();const panel=page.getByRole('region',{name:label,exact:true});await expect(panel).toBeVisible();
+      15 |   await expect.poll(async()=>{const box=await panel.boundingBox();return !!box&&box.x>=15.5&&box.y>=15.5&&box.x+box.width<=width-15.5&&box.y+box.height<=height-15.5;}).toBe(true);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:12:56
+
+    Error Context: test-results/accessibility/accessibility-narrow-accou-4c89b-fit-the-viewport-at-390x390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-narrow-accou-4c89b-fit-the-viewport-at-390x390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-narrow-accou-4c89b-fit-the-viewport-at-390x390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 1440 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      36 |   await persist();
+      37 |  }
+    > 38 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');await scan('library');
+         |             ^
+      39 |  await page.locator('[data-account-menu]>summary').click();await scan('account');await page.keyboard.press('Escape');await page.locator('[data-online-works]>summary').click();await scan('online');await page.keyboard.press('Escape');
+      40 |  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('접근성 검사 원고');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await scan('writer');
+      41 |  await page.goto('/shortstory');await expect(page.getByLabel('이야기 제목',{exact:true})).toBeVisible();await scan('short-writer');await page.getByRole('button',{name:'읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기',exact:true})).toBeVisible();await scan('short-reader');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility.spec.ts:38:13
+
+    Error Context: test-results/accessibility/accessibility-visible-host-ff2e9-d-report-A-AA-findings-1440/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-visible-host-ff2e9-d-report-A-AA-findings-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-visible-host-ff2e9-d-report-A-AA-findings-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 390 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      36 |   await persist();
+      37 |  }
+    > 38 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');await scan('library');
+         |             ^
+      39 |  await page.locator('[data-account-menu]>summary').click();await scan('account');await page.keyboard.press('Escape');await page.locator('[data-online-works]>summary').click();await scan('online');await page.keyboard.press('Escape');
+      40 |  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('접근성 검사 원고');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await scan('writer');
+      41 |  await page.goto('/shortstory');await expect(page.getByLabel('이야기 제목',{exact:true})).toBeVisible();await scan('short-writer');await page.getByRole('button',{name:'읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기',exact:true})).toBeVisible();await scan('short-reader');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility.spec.ts:38:13
+
+    Error Context: test-results/accessibility/accessibility-visible-host-4f18f-nd-report-A-AA-findings-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-visible-host-4f18f-nd-report-A-AA-findings-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-visible-host-4f18f-nd-report-A-AA-findings-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) tests/e2e/accessibility.spec.ts:45:1 › bookshelf drawer exposes its existing label through a supported group role 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3126/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:3126/?view=library", waiting until "load"
+
+
+      44 | });
+      45 | test('bookshelf drawer exposes its existing label through a supported group role',async({page})=>{
+    > 46 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');await expect(page.getByRole('group',{name:'책장 서랍',exact:true})).toBeVisible();
+         |             ^
+      47 | });
+      48 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility.spec.ts:46:13
+
+    Error Context: test-results/accessibility/accessibility-bookshelf-dr-d9e5c-ough-a-supported-group-role/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-bookshelf-dr-d9e5c-ough-a-supported-group-role/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-bookshelf-dr-d9e5c-ough-a-supported-group-role/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10 failed
+    tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px 
+    tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 390px 
+    tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 1440px 
+    tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 
+    tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 
+    tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 1440x740 
+    tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 
+    tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 1440 
+    tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 390 
+    tests/e2e/accessibility.spec.ts:45:1 › bookshelf drawer exposes its existing label through a supported group role 

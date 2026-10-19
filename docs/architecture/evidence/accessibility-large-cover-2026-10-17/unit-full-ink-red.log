@@ -1,0 +1,81 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/book-cover.test.ts (45 tests | 4 failed) 16ms
+     × uses readable default ink for fitted titles and captions on forest paper without rewriting the cover 3ms
+     × uses readable default ink for fitted titles and captions on night paper without rewriting the cover 1ms
+     × uses readable default ink for fitted titles and captions on rose paper without rewriting the cover 0ms
+     × uses readable default ink for fitted titles and captions on cream paper without rewriting the cover 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > default classic cover ink > uses readable default ink for fitted titles and captions on forest paper without rewriting the cover
+AssertionError: expected '#d7bb79' to be '#fff4d8' // Object.is equality
+
+Expected: "#fff4d8"
+Received: "#d7bb79"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:21
+    129|   const project={...blank(),cover:{...DEFAULT_COVER,theme,layout:'clas…
+    130|   const model=resolveBookCover(project);
+    131|   expect(model.ink).toBe(COVER_THEMES[theme].ink);
+       |                     ^
+    132|   expect(contrastRatio(model.ink,model.panel)).toBeGreaterThanOrEqual(…
+    133|   expect(project).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > default classic cover ink > uses readable default ink for fitted titles and captions on night paper without rewriting the cover
+AssertionError: expected '#dfbe77' to be '#f5eddd' // Object.is equality
+
+Expected: "#f5eddd"
+Received: "#dfbe77"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:21
+    129|   const project={...blank(),cover:{...DEFAULT_COVER,theme,layout:'clas…
+    130|   const model=resolveBookCover(project);
+    131|   expect(model.ink).toBe(COVER_THEMES[theme].ink);
+       |                     ^
+    132|   expect(contrastRatio(model.ink,model.panel)).toBeGreaterThanOrEqual(…
+    133|   expect(project).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > default classic cover ink > uses readable default ink for fitted titles and captions on rose paper without rewriting the cover
+AssertionError: expected '#efc193' to be '#fff1dc' // Object.is equality
+
+Expected: "#fff1dc"
+Received: "#efc193"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:21
+    129|   const project={...blank(),cover:{...DEFAULT_COVER,theme,layout:'clas…
+    130|   const model=resolveBookCover(project);
+    131|   expect(model.ink).toBe(COVER_THEMES[theme].ink);
+       |                     ^
+    132|   expect(contrastRatio(model.ink,model.panel)).toBeGreaterThanOrEqual(…
+    133|   expect(project).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > default classic cover ink > uses readable default ink for fitted titles and captions on cream paper without rewriting the cover
+AssertionError: expected '#866b40' to be '#342b26' // Object.is equality
+
+Expected: "#342b26"
+Received: "#866b40"
+
+ ❯ apps/web/lib/book-cover.test.ts:131:21
+    129|   const project={...blank(),cover:{...DEFAULT_COVER,theme,layout:'clas…
+    130|   const model=resolveBookCover(project);
+    131|   expect(model.ink).toBe(COVER_THEMES[theme].ink);
+       |                     ^
+    132|   expect(contrastRatio(model.ink,model.panel)).toBeGreaterThanOrEqual(…
+    133|   expect(project).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 41 passed (45)
+   Start at  01:06:08
+   Duration  434ms (transform 229ms, setup 0ms, import 329ms, tests 16ms, environment 0ms)
+

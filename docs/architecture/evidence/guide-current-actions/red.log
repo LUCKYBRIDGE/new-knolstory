@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/editor-terms.test.ts (3 tests | 1 failed) 4ms
+   × explains current file actions and catalog-only sounds using actual names 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/editor-terms.test.ts > explains current file actions and catalog-only sounds using actual names
+AssertionError: expected [] to include '기기에 저장'
+ ❯ apps/web/lib/editor-terms.test.ts:16:64
+     14| });
+     15| it('explains current file actions and catalog-only sounds using actual…
+     16|  expect(findEditorTerms('지금 저장','파일·표지').map(term=>term.name)).toConta…
+       |                                                                ^
+     17|  expect(findEditorTerms('파일로 보관','파일·표지').map(term=>term.name)).toCont…
+     18|  expect(findEditorTerms('소리 파일','소리')[0].example).toContain('등록된');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  08:49:19
+   Duration  117ms (transform 14ms, setup 0ms, import 19ms, tests 4ms, environment 0ms)
+

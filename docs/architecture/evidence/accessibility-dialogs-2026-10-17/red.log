@@ -1,0 +1,920 @@
+
+Running 6 tests using 1 worker
+
+(node:95721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions own 1440 (6.8s)
+(node:95742) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions builtin 1440 (6.2s)
+(node:95754) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions own 390 (6.4s)
+(node:95764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions builtin 390 (6.2s)
+(node:95769) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 tests/e2e/accessibility-dialogs.spec.ts:26:31 › preparation cover and recovery surfaces retain names and authored content 1440 (3.3s)
+(node:95775) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 tests/e2e/accessibility-dialogs.spec.ts:26:31 › preparation cover and recovery surfaces retain names and authored content 390 (3.2s)
+
+
+  1) tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions own 1440 
+
+    Error: expect(locator).toHaveAccessibleName(expected) failed
+
+    Locator:  getByRole('dialog').locator('header button')
+    Expected: "닫기 · 서재로 돌아가기"
+    Received: "서재로 돌아가기"
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleName" getByRole('dialog').locator('header button') with timeout 500ms
+      - waiting for getByRole('dialog').locator('header button')
+        5 × locator resolved to <button aria-label="서재로 돌아가기">닫기</button>
+          - unexpected value "서재로 돌아가기"
+
+
+      15 |  if(kind==='own'){await create(page);await page.getByRole('button',{name:'서재로',exact:true}).click();}else{await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');}
+      16 |  const opener=kind==='own'?shelfCoverButton(page,'열린 화면 접근성 검사'):builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/});const before=await authored(page);await opener.click();const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();
+    > 17 |  const close=dialog.locator('header button');await expect.soft(close).toHaveAccessibleName('닫기 · 서재로 돌아가기',{timeout:500});await expect(close).toHaveText('닫기');
+         |                                                                       ^
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+      20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:17:71
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+    Expected: "책 표지를 펼쳐 이야기를 만나요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').first() with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+        7 × locator resolved to <button aria-label="처음부터 읽기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+    Expected: "대본과 장면을 이어 써요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+        5 × locator resolved to <button aria-label="편집하기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+    Expected: "앞표지·책등·뒤표지를 직접 꾸며요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+        7 × locator resolved to <button aria-label="책 표지 편집">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+    Expected: "작품 정보·기획과 메모"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+        7 × locator resolved to <button aria-label="작품 정보·기획">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+    Expected: "이 책을 작품 파일로 내려받아요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+        7 × locator resolved to <button aria-label="작품 파일 내보내기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+    Expected: "원본을 보존하고 새 책으로 복사해요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+        7 × locator resolved to <button aria-label="사본 만들기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+    Expected: "삭제를 확인하고 복구할 수 있어요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+        7 × locator resolved to <button aria-label="내 작품 삭제">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    attachment #1: focus-open-tools-axe (application/json) ─────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-456c2-ction-descriptions-own-1440/attachments/focus-open-tools-axe-b5a804c2c1453b3e3fc60c7c4fdf6c280f68936e.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-book-456c2-ction-descriptions-own-1440/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-456c2-ction-descriptions-own-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-book-456c2-ction-descriptions-own-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions builtin 1440 
+
+    Error: expect(locator).toHaveAccessibleName(expected) failed
+
+    Locator:  getByRole('dialog').locator('header button')
+    Expected: "닫기 · 서재로 돌아가기"
+    Received: "서재로 돌아가기"
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleName" getByRole('dialog').locator('header button') with timeout 500ms
+      - waiting for getByRole('dialog').locator('header button')
+        6 × locator resolved to <button aria-label="서재로 돌아가기">닫기</button>
+          - unexpected value "서재로 돌아가기"
+
+
+      15 |  if(kind==='own'){await create(page);await page.getByRole('button',{name:'서재로',exact:true}).click();}else{await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');}
+      16 |  const opener=kind==='own'?shelfCoverButton(page,'열린 화면 접근성 검사'):builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/});const before=await authored(page);await opener.click();const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();
+    > 17 |  const close=dialog.locator('header button');await expect.soft(close).toHaveAccessibleName('닫기 · 서재로 돌아가기',{timeout:500});await expect(close).toHaveText('닫기');
+         |                                                                       ^
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+      20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:17:71
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+    Expected: "전래 이야기의 원문을 만나요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').first() with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+        6 × locator resolved to <button aria-label="원작 읽기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+    Expected: "선택하며 나만의 갈래를 따라가요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+        6 × locator resolved to <button aria-label="놀스토리 읽기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+    Expected: "글과 그림으로 만나는 그림책"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+        6 × locator resolved to <a aria-label="숏스토리 읽기" aria-disabled="false" href="/shortstory/?work=seonnyeo&mode=read" class="library-book-focus-module__m7TIFa__shortstoryLink">…</a>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+    Expected: "놀스토리을 바탕으로 내 사본을 만들어요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+        6 × locator resolved to <button aria-label="편집하기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+    Expected: "선택한 판본의 내 사본 표지를 꾸며요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+        6 × locator resolved to <button aria-label="책 표지 편집">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+    Expected: "작품 정보·기획과 메모"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+        6 × locator resolved to <button aria-label="작품 정보·기획">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+    Expected: "선택한 판본을 작품 파일로 내려받아요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+        6 × locator resolved to <button aria-label="작품 파일 내보내기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    attachment #1: focus-open-tools-axe (application/json) ─────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-7ba15-n-descriptions-builtin-1440/attachments/focus-open-tools-axe-7cb87f55cb4aea72a62f2f1133e33f3a6a0d0235.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-book-7ba15-n-descriptions-builtin-1440/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-7ba15-n-descriptions-builtin-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-book-7ba15-n-descriptions-builtin-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions own 390 
+
+    Error: expect(locator).toHaveAccessibleName(expected) failed
+
+    Locator:  getByRole('dialog').locator('header button')
+    Expected: "닫기 · 서재로 돌아가기"
+    Received: "서재로 돌아가기"
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleName" getByRole('dialog').locator('header button') with timeout 500ms
+      - waiting for getByRole('dialog').locator('header button')
+        5 × locator resolved to <button aria-label="서재로 돌아가기">닫기</button>
+          - unexpected value "서재로 돌아가기"
+
+
+      15 |  if(kind==='own'){await create(page);await page.getByRole('button',{name:'서재로',exact:true}).click();}else{await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');}
+      16 |  const opener=kind==='own'?shelfCoverButton(page,'열린 화면 접근성 검사'):builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/});const before=await authored(page);await opener.click();const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();
+    > 17 |  const close=dialog.locator('header button');await expect.soft(close).toHaveAccessibleName('닫기 · 서재로 돌아가기',{timeout:500});await expect(close).toHaveText('닫기');
+         |                                                                       ^
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+      20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:17:71
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+    Expected: "책 표지를 펼쳐 이야기를 만나요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').first() with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+        7 × locator resolved to <button aria-label="처음부터 읽기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+    Expected: "대본과 장면을 이어 써요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+        5 × locator resolved to <button aria-label="편집하기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+    Expected: "앞표지·책등·뒤표지를 직접 꾸며요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+        7 × locator resolved to <button aria-label="책 표지 편집">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+    Expected: "작품 정보·기획과 메모"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+        7 × locator resolved to <button aria-label="작품 정보·기획">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+    Expected: "이 책을 작품 파일로 내려받아요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+        7 × locator resolved to <button aria-label="작품 파일 내보내기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+    Expected: "원본을 보존하고 새 책으로 복사해요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+        7 × locator resolved to <button aria-label="사본 만들기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+    Expected: "삭제를 확인하고 복구할 수 있어요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+        7 × locator resolved to <button aria-label="내 작품 삭제">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    attachment #1: focus-open-tools-axe (application/json) ─────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-e5cf9-action-descriptions-own-390/attachments/focus-open-tools-axe-edc27b67e38fe6335a22ff0985bc14fcfd0c9d95.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-book-e5cf9-action-descriptions-own-390/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-e5cf9-action-descriptions-own-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-book-e5cf9-action-descriptions-own-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions builtin 390 
+
+    Error: expect(locator).toHaveAccessibleName(expected) failed
+
+    Locator:  getByRole('dialog').locator('header button')
+    Expected: "닫기 · 서재로 돌아가기"
+    Received: "서재로 돌아가기"
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleName" getByRole('dialog').locator('header button') with timeout 500ms
+      - waiting for getByRole('dialog').locator('header button')
+        6 × locator resolved to <button aria-label="서재로 돌아가기">닫기</button>
+          - unexpected value "서재로 돌아가기"
+
+
+      15 |  if(kind==='own'){await create(page);await page.getByRole('button',{name:'서재로',exact:true}).click();}else{await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');}
+      16 |  const opener=kind==='own'?shelfCoverButton(page,'열린 화면 접근성 검사'):builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/});const before=await authored(page);await opener.click();const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();
+    > 17 |  const close=dialog.locator('header button');await expect.soft(close).toHaveAccessibleName('닫기 · 서재로 돌아가기',{timeout:500});await expect(close).toHaveText('닫기');
+         |                                                                       ^
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+      20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:17:71
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+    Expected: "전래 이야기의 원문을 만나요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').first() with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').first()
+        6 × locator resolved to <button aria-label="원작 읽기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+    Expected: "선택하며 나만의 갈래를 따라가요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(1)
+        6 × locator resolved to <button aria-label="놀스토리 읽기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+    Expected: "글과 그림으로 만나는 그림책"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(2)
+        6 × locator resolved to <a aria-label="숏스토리 읽기" aria-disabled="false" href="/shortstory/?work=seonnyeo&mode=read" class="library-book-focus-module__m7TIFa__shortstoryLink">…</a>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+    Expected: "놀스토리을 바탕으로 내 사본을 만들어요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(3)
+        6 × locator resolved to <button aria-label="편집하기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+    Expected: "선택한 판본의 내 사본 표지를 꾸며요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(4)
+        6 × locator resolved to <button aria-label="책 표지 편집">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+    Expected: "작품 정보·기획과 메모"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(5)
+        6 × locator resolved to <button aria-label="작품 정보·기획">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+    Expected: "선택한 판본을 작품 파일로 내려받아요"
+    Received: ""
+    Timeout:  500ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6) with timeout 500ms
+      - waiting for getByRole('dialog').locator('button:has(strong),a:has(strong)').nth(6)
+        6 × locator resolved to <button aria-label="작품 파일 내보내기">…</button>
+          - unexpected value ""
+
+
+      18 |  await dialog.getByText('책 꾸미기·작품 도구',{exact:true}).click();const actions=dialog.locator('button:has(strong),a:has(strong)');expect(await actions.count()).toBeGreaterThanOrEqual(7);const descriptions=[];
+      19 |  for(const action of await actions.all()){
+    > 20 |   const name=await action.locator('strong').innerText(),description=await action.locator('small').innerText();await expect(action).toHaveAccessibleName(name);await expect.soft(action).toHaveAccessibleDescription(description,{timeout:500});descriptions.push({name,description,ids:await action.getAttribute('aria-describedby')});
+         |                                                                                                                                                                                         ^
+      21 |  }
+      22 |  await scan(page,dialog,'focus-open-tools',info);
+      23 |  const last=actions.last();await last.focus();await page.keyboard.press('Tab');await expect(close).toBeFocused();await page.keyboard.press('Shift+Tab');await expect(last).toBeFocused();await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();expect(await authored(page)).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:20:185
+
+    attachment #1: focus-open-tools-axe (application/json) ─────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-12b3d-on-descriptions-builtin-390/attachments/focus-open-tools-axe-65680e5e42c4911683310a51c5b7b13fc260e0c3.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-book-12b3d-on-descriptions-builtin-390/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-book-12b3d-on-descriptions-builtin-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-book-12b3d-on-descriptions-builtin-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/e2e/accessibility-dialogs.spec.ts:26:31 › preparation cover and recovery surfaces retain names and authored content 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true }).getByRole('group', { name: '표지 직접 조정', exact: true })
+    Expected: visible
+    Timeout: 500ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toBeVisible" getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true }).getByRole('group', { name: '표지 직접 조정', exact: true }) with timeout 500ms
+      - waiting for getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true }).getByRole('group', { name: '표지 직접 조정', exact: true })
+
+
+      26 | for(const width of [1440,390])test(`preparation cover and recovery surfaces retain names and authored content ${width}`,async({page},info)=>{
+      27 |  await page.setViewportSize({width,height:900});await create(page);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');const before=await authored(page),preparation=page.getByRole('region',{name:'작품 설정',exact:true});await scan(page,preparation,'preparation',info);
+    > 28 |  await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await expect(cover).toBeVisible();await expect.soft(cover.getByRole('group',{name:'표지 직접 조정',exact:true})).toBeVisible({timeout:500});await scan(page,cover,'cover-editor',info);await page.keyboard.press('Escape');await expect(cover).toHaveCount(0);expect(await authored(page)).toEqual(before);
+         |                                                                                                                                                                                                                                                    ^
+      29 |  if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const summary=page.getByText('작품 복구 기록',{exact:true});await summary.click();const recovery=summary.locator('..');const record=recovery.getByRole('button',{name:'현재 원고 기록하기',exact:true});await record.focus();await record.press('Enter');await expect(recovery.getByRole('button',{name:'이 기록을 사본으로 열기',exact:true})).toBeVisible();await scan(page,recovery,'recovery',info);expect(await authored(page)).toEqual(before);
+      30 | });
+      31 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:28:244
+
+    attachment #1: preparation-axe (application/json) ──────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-720ea-s-and-authored-content-1440/attachments/preparation-axe-a271e0cc005716aa84eb25aa2bc12fa3933207da.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: cover-editor-axe (application/json) ─────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-720ea-s-and-authored-content-1440/attachments/cover-editor-axe-6f3ea176a09ef6bb11ddc85620feba356bb6ada2.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: recovery-axe (application/json) ─────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-720ea-s-and-authored-content-1440/attachments/recovery-axe-ef2253d21f4a4267ab70c72ee9bf28bf54fc8b37.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-prep-720ea-s-and-authored-content-1440/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-720ea-s-and-authored-content-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-prep-720ea-s-and-authored-content-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests/e2e/accessibility-dialogs.spec.ts:26:31 › preparation cover and recovery surfaces retain names and authored content 390 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true }).getByRole('group', { name: '표지 직접 조정', exact: true })
+    Expected: visible
+    Timeout: 500ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toBeVisible" getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true }).getByRole('group', { name: '표지 직접 조정', exact: true }) with timeout 500ms
+      - waiting for getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true }).getByRole('group', { name: '표지 직접 조정', exact: true })
+
+
+      26 | for(const width of [1440,390])test(`preparation cover and recovery surfaces retain names and authored content ${width}`,async({page},info)=>{
+      27 |  await page.setViewportSize({width,height:900});await create(page);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');const before=await authored(page),preparation=page.getByRole('region',{name:'작품 설정',exact:true});await scan(page,preparation,'preparation',info);
+    > 28 |  await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await expect(cover).toBeVisible();await expect.soft(cover.getByRole('group',{name:'표지 직접 조정',exact:true})).toBeVisible({timeout:500});await scan(page,cover,'cover-editor',info);await page.keyboard.press('Escape');await expect(cover).toHaveCount(0);expect(await authored(page)).toEqual(before);
+         |                                                                                                                                                                                                                                                    ^
+      29 |  if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const summary=page.getByText('작품 복구 기록',{exact:true});await summary.click();const recovery=summary.locator('..');const record=recovery.getByRole('button',{name:'현재 원고 기록하기',exact:true});await record.focus();await record.press('Enter');await expect(recovery.getByRole('button',{name:'이 기록을 사본으로 열기',exact:true})).toBeVisible();await scan(page,recovery,'recovery',info);expect(await authored(page)).toEqual(before);
+      30 | });
+      31 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:28:244
+
+    attachment #1: preparation-axe (application/json) ──────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-12000-es-and-authored-content-390/attachments/preparation-axe-ad595d5e3bae0eacd4451da2a1d5164d6e30d1ea.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: cover-editor-axe (application/json) ─────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-12000-es-and-authored-content-390/attachments/cover-editor-axe-5c377c8494e613ea94e9fdbaff7a6dc4425fc5a6.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: recovery-axe (application/json) ─────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-12000-es-and-authored-content-390/attachments/recovery-axe-5a7a9b2e17a9a449da559a83fb1c322b4315fa43.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-prep-12000-es-and-authored-content-390/error-context.md
+
+    attachment #5: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-prep-12000-es-and-authored-content-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-prep-12000-es-and-authored-content-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions own 1440 
+    tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions builtin 1440 
+    tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions own 390 
+    tests/e2e/accessibility-dialogs.spec.ts:13:76 › book focus exposes visible close label and action descriptions builtin 390 
+    tests/e2e/accessibility-dialogs.spec.ts:26:31 › preparation cover and recovery surfaces retain names and authored content 1440 
+    tests/e2e/accessibility-dialogs.spec.ts:26:31 › preparation cover and recovery surfaces retain names and authored content 390 

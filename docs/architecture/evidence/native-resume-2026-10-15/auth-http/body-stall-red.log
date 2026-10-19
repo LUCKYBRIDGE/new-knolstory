@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/auth-routes.test.ts (17 tests | 1 failed) 576ms
+     × immediately closes incomplete chunked and fixed-length command bodies 507ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > immediately closes incomplete chunked and fixed-length command bodies
+Error: request waited for incomplete body
+ ❯ Timeout._onTimeout server/http/auth-routes.test.ts:130:69
+    128|       return new Promise<string>((resolve, reject) => {
+    129|         const socket = connect(port, '127.0.0.1'); let response = '';
+    130|         const timeout = setTimeout(() => { socket.destroy(); reject(ne…
+       |                                                                     ^
+    131|         socket.on('connect', () => socket.write('POST /api/v1/auth/log…
+    132|         socket.on('data', chunk => { response += chunk.toString(); });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  00:30:49
+   Duration  723ms (transform 25ms, setup 0ms, import 51ms, tests 576ms, environment 0ms)
+

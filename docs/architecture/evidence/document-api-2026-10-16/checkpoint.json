@@ -1,0 +1,83 @@
+{
+  "verifiedAt": "2026-10-15T23:29:27.130275+00:00",
+  "scope": "PC04 owner document API actual PostgreSQL/HTTP; Web synchronization and live OAuth incomplete",
+  "sourceSha256": {
+    "apps/web/lib/catalog-only-authoring.ts": "57b69675c893eef139653cb45f3a129e68dbfebcd42ab940f23c9f36dc356663",
+    "packages/asset-registry/src/catalog-media-policy.ts": "1b3937fd54f2498a2c9270efd4628b5f3b596d240530320af1f2af4f6678153f",
+    "packages/asset-registry/src/image-catalog.ts": "85651beb068968cd59eff5ba4657f51266e80b89456e587fed978b8e46d2c4b0",
+    "packages/asset-registry/src/index.ts": "a96fd69cf071b32fc56c3914523b73ce5ccebe7c989079f5f53923d5e6fbc0b0",
+    "server/Dockerfile": "8b13f921df6f2f93a7d78dc10f840713d3bcadcb137ec4a92f801dcfa5f94ac8",
+    "server/Dockerfile.dockerignore": "2455aa4d4b20ad4e4a68e0f64efea16776d5eec52a17dff4110c8d56b7585fe7",
+    "server/Dockerfile.storage-test": "1d02328faf437fc0a0b3c3e22e309944c134f3fb031f8a6e07bc55a71b2e4fea",
+    "server/Dockerfile.storage-test.dockerignore": "ac6e5e1bd8effc0d85b242517529286359beb9fa9fd5ebfa8444292572016f6e",
+    "server/auth/postgres-request-session.integration.ts": "bfebe36da68fb5fb5a711453aa9bfdfbefdc602a643c994b614ffaa327309c30",
+    "server/auth/postgres-request-session.test.ts": "aabbdebdd3b73f3a70a5d0c143c5e70793eff37aa5369192b61b60392b5b20ed",
+    "server/auth/postgres-request-session.ts": "0541b955e5106e81ce92887c6c4b58d90ff97778a428e9a9af74ed565d1e3767",
+    "server/config.test.ts": "b4c364fa3c16c672f3b0d91b021fe560f78738fa7b3b89bf9e9feabbdae5bc4d",
+    "server/config.ts": "46d096e94e402f9d16105436676c71a349473a6b765eff7e753fb0ae6f43eced",
+    "server/documents/service.integration.ts": "70c0b4797b62c75abd5e32325ce286b622aab11a63945081d4b392b5c6009f23",
+    "server/documents/service.test.ts": "2109950663bf2a1c249e35703000f9ef832a4d01bb30fec856ba9ccd52cb2a55",
+    "server/documents/service.ts": "514ca0836ecdb0f972a96191210c52eb81a432da11e7577a5813906e004c2e3d",
+    "server/documents/validation.test.ts": "f901bb1648fdf53c44cffa319913deae0a387610e049dcc802d9955ac559f432",
+    "server/documents/validation.ts": "fea36ba538e562cf76da610849822beca7d82f31560b805bf2ac11a24a586536",
+    "server/http/document-routes.test.ts": "0d1e20f4af51622586f9eac94bab57cacde0743d85da85a9c7004c45e4efef73",
+    "server/http/document-routes.ts": "b2b3942a4b9cae3816c6853e563c616b124d2ecca46f78fa2be547e0dc4450c8",
+    "server/http/document-service.integration.ts": "aa9724090a6d932758a5a982975750bda0784a66bc3c07753529190f4cb9b603",
+    "server/http/document-service.ts": "1232e9e882930b1948fd19e5c703252d2341d21b6aac94a5f4a2566e06e20a35",
+    "server/main.ts": "2ddb7978567b5b8bdbfbf688c6016ffd12269dcb0e2e4d95109e7f0e803426e0",
+    "server/migrations/001-storage.sql": "a94e974c7bc248b7c34ab7fd531fa8fd982f0488d509fc9cf3307136f90096d0",
+    "server/migrations/002-immutable-blobs.sql": "8a594f998bb332b151dc77ea0fec424b2b32a8be862ad7624e7274e39e66adc7",
+    "server/migrations/003-identity-links.sql": "244e28dce32e0d26551d1de814a60fd8a162d34f5464f16acafb8ec18d762045",
+    "server/migrations/004-auth-state.sql": "a1e042a327c43cda93bfb67f069ec6d0c7477cea441a8a13a292f67d86d94633",
+    "server/migrations/005-session-rotation.sql": "2aaf9ae2a62d8eeb0cfeb7f4e6f323187ec2c787193e48ac9bd134dbb547dcd4",
+    "server/migrations/006-private-documents.sql": "60eb613e270c9cddc80e3e4921ee01ea6937cbe2c81c9914c203ef717b2c1537",
+    "server/migrations/runner.ts": "1243a839d737c44652055a834dcf6676285239d925d4df0e621fef24ebf88f88",
+    "server/operations/build-api.mjs": "6870c50d80179aab6834e71a982222996211b5f792daf43955f9fa220b650ed4",
+    "server/storage/postgres-save-port.ts": "f879db621e2e14377db3927182182ca7a3bbd5179caf7fad7b27610822fafdc4",
+    "server/tsconfig.integration.json": "6100a0b38337e267be410b886a109fa3e5b67981aec45e160714403b57cb3321",
+    "server/tsconfig.json": "6485bc35f69ee7efb3cf6ea58f4c37ebac8054670cdbc6f8bd864e3ec3ac2bb1",
+    "server/vitest.config.ts": "c52e2d73b784d11734bfeee07b1a4f4ff4a6ea734758500343cecfc3b57a55d9"
+  },
+  "verification": {
+    "actualDBHTTP": {
+      "tests": 337,
+      "files": 22,
+      "log": "integration-final.log",
+      "coverage": {
+        "statements": 93.86,
+        "branches": 92.62,
+        "functions": 99.06,
+        "lines": 99.74
+      }
+    },
+    "subsequentHTTPBounds": {
+      "tests": 35,
+      "log": "http/bounds-green-coverage.log",
+      "scope": "two limits aligned after aggregate; not summed"
+    },
+    "catalog": "catalog/registry-regression.log",
+    "dockerBuild": "build-api-final.log",
+    "initialFailure": "integration-initial.log retained: stale five-migration assertion, fixed to canonical six checksums"
+  },
+  "preservation": {
+    "protectedArtifacts": 483,
+    "changed": [],
+    "legacyContainers": 23,
+    "legacyMetadataChanged": []
+  },
+  "review": "Independent read-only review found no P1/P2; pagination consistency aligned with service after review",
+  "remaining": [
+    "Web explicit save/open and account-scoped local binding outside authored format",
+    "Offline/retry/optimistic conflict recovery and device switching",
+    "Deletion/recovery/retention decisions",
+    "Live provider setup; classroom/sharing; device/accessibility/release backup-restore"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual API evidence scoped; entire product incomplete; next work retained in single plan"
+  }
+}

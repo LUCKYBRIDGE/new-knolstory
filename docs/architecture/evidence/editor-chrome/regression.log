@@ -1,0 +1,92 @@
+
+Running 34 tests using 1 worker
+
+(node:10143) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 1280 (2.4s)
+  ✓   2 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 820 (2.0s)
+  ✓   3 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 390 (2.2s)
+  ✓   4 [host] › tests/e2e/approved-editor.spec.ts:24:1 › manuscript navigation protects IME and failed storage (1.2s)
+  ✓   5 [host] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations (12.1s)
+  ✓   6 [host] › tests/e2e/approved-editor.spec.ts:52:1 › measured keyboard occlusion reduces editor projection without changing logical scene or iframe (5.4s)
+  ✘   7 [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core (1.3s)
+(node:10513) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity (1.2s)
+  ✘   9 [host] › tests/e2e/approved-reader.spec.ts:40:1 › reader failure cannot leave for library and preparing stage has an exit (6.3s)
+(node:10542) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 [host] › tests/e2e/approved-reader.spec.ts:45:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields (15.6s)
+  ✓  11 [host] › tests/e2e/approved-reader.spec.ts:59:1 › native approved dialogue and host bar align on a real RenPy phone stage (4.8s)
+  ✓  12 [host] › tests/e2e/approved-reader.spec.ts:66:1 › automatic reading pauses for menus and advances only after current native acknowledgement (4.4s)
+  ✓  13 [host] › tests/e2e/approved-reader.spec.ts:79:1 › reader top menu allows editing exit when native runtime is unavailable (1.0s)
+  ✓  14 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 1440 (1.9s)
+  ✓  15 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 768 (1.9s)
+  ✓  16 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 390 (1.9s)
+  ✓  17 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 844 (1.9s)
+  ✓  18 [host] › tests/e2e/editor-chrome-navigation.spec.ts:12:1 › preview arrows cross chapter boundaries in manuscript view and protect failed saves (2.4s)
+  ✓  19 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 1440 (7.3s)
+  ✓  20 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 768 (6.0s)
+  ✓  21 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 390 (6.7s)
+  ✓  22 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 844 (6.8s)
+  ✓  23 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 1440 (2.2s)
+  ✓  24 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 768 (2.1s)
+  ✓  25 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 390 (2.1s)
+  ✓  26 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 844 (2.1s)
+  ✓  27 [host] › tests/e2e/ui-clarity.spec.ts:39:1 › long Korean choice labels scroll inside their own area above dialogue (5.6s)
+  ✓  28 [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 1440 (2.4s)
+  ✓  29 [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 390 (2.4s)
+  ✓  30 [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 844 (2.4s)
+  ✓  31 [host] › tests/e2e/ui-clarity.spec.ts:58:2 › effect undo belongs to the cut that was edited (2.3s)
+  ✓  32 [host] › tests/e2e/ui-clarity.spec.ts:66:91 › cut range fields fit their panel 768 (2.0s)
+  ✓  33 [host] › tests/e2e/ui-clarity.spec.ts:66:91 › cut range fields fit their panel 390 (2.0s)
+  ✓  34 [host] › tests/e2e/ui-clarity.spec.ts:66:91 › cut range fields fit their panel 844 (2.0s)
+
+
+  1) [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 3
+
+      21 |  await page.getByRole('button',{name:'빠른 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'빠른 저장 완료'})).toBeVisible();
+      22 |  await page.getByRole('button',{name:'저장',exact:true}).click();await page.getByRole('button',{name:'1번 저장',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+    > 23 |  const slots=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-player-v1')!));expect(slots.version).toBe(2);const stored=Object.values(slots.works)[0] as Record<string,unknown>;expect(stored.quick).toBeTruthy();expect(stored['1']).toBeTruthy();expect(stored.auto).toBeTruthy();
+         |                                                                                                                      ^
+      24 |  await page.getByRole('button',{name:'불러오기',exact:true}).click();await page.getByRole('button',{name:'1번 불러오기',exact:true}).click();await page.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByRole('heading',{name:'불러오기',exact:true})).toBeVisible();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+      25 |  await page.getByRole('button',{name:'빠른 불러오기',exact:true}).click();await page.getByRole('button',{name:'확인',exact:true}).click();
+      26 |  await page.reload();await expect(page.getByRole('button',{name:'빠른 저장',exact:true})).toBeEnabled();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:23:118
+
+    Error Context: test-results/approved-reader-approved-r-b3896-reopen-and-history-use-Core-host/error-context.md
+
+  2) [host] › tests/e2e/approved-reader.spec.ts:40:1 › reader failure cannot leave for library and preparing stage has an exit 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog') with timeout 5000ms
+      - waiting for getByRole('dialog')
+
+
+      40 | test('reader failure cannot leave for library and preparing stage has an exit',async({page})=>{
+      41 |  await ackRuntime(page);await start(page);await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='knolstory-next-workspace-v1')throw Error('quota injected');original.call(this,key,value);};});
+    > 42 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();await page.getByRole('button',{name:'보관하고 서재로'}).click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.getByRole('dialog').getByRole('alert')).toContainText('quota');await expect(page.getByTestId('story-stage-viewport')).toBeVisible();
+         |                                                                                                                                                                                                                                       ^
+      43 | });
+      44 |
+      45 | test('editor manuscript edit, file roundtrip, reopen and reading return preserve other fields',async({page})=>{
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:42:231
+
+    Error Context: test-results/approved-reader-reader-fai-0afe3-preparing-stage-has-an-exit-host/error-context.md
+
+  2 failed
+    [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core 
+    [host] › tests/e2e/approved-reader.spec.ts:40:1 › reader failure cannot leave for library and preparing stage has an exit 
+  32 passed (2.1m)

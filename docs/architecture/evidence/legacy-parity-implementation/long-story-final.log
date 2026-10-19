@@ -1,0 +1,20 @@
+
+Running 11 tests using 1 worker
+
+(node:71044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/11] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:51:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+[2/11] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:51:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px
+[3/11] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:60:1 › new manuscript story survives files and reaches both endings in native RenPy
+[4/11] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:67:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+[5/11] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:67:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px
+[6/11] [host] › tests/e2e/storage-recovery.spec.ts:11:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+[7/11] [host] › tests/e2e/storage-recovery.spec.ts:26:1 › second tab draft cannot overwrite first tab, even when using manual save
+[8/11] [host] › tests/e2e/storage-recovery.spec.ts:37:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+[9/11] [host] › tests/e2e/storage-recovery.spec.ts:50:1 › failed deletion preserves the previous deleted book and the current draft together
+[10/11] [host] › tests/e2e/storage-recovery.spec.ts:64:1 › page restoration reacquires ownership before saving and preserves the draft
+[11/11] [host] › tests/e2e/storage-recovery.spec.ts:74:1 › the complete long Seonnyeo copy can delete and undo a cut beyond checkpoint capacity
+  1 skipped
+  10 passed (1.3m)

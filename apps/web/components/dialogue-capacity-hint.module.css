@@ -1,0 +1,4 @@
+.hint{font-size:.75rem;line-height:1.5;color:var(--ink-muted,#665647);margin-block:.35rem}
+.hint p{margin:.15rem 0}
+.hint summary{cursor:pointer;text-decoration:underline;text-underline-offset:.18em}
+.hint details p{max-width:65ch}

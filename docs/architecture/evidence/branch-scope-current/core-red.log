@@ -1,0 +1,125 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/runtime-core/tests/branch-conditions.test.ts (6 tests | 6 failed) 25ms
+   × uses exact completed option identities and strips authored conditions from scenes 9ms
+   × expires inclusively, invalidates at source reentry awaiting, and can activate again on reselection 3ms
+   × does not retrospectively activate or clear unrelated music at an inactive owner 3ms
+   × filters chapter cues at actual chapter entry and preserves unconditional sounds 3ms
+   × requires exact history for branch referenced sources while preserving older unconditioned inference 4ms
+   × guards surviving branch references and excludes cues removed with their owner 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/branch-conditions.test.ts > uses exact completed option identities and strips authored conditions from scenes
+AssertionError: expected [ { id: 'effect', …(4) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "branchCondition": {
++       "choiceId": "yes",
++       "sourceLineId": "source",
++     },
++     "durationMs": 600,
++     "id": "effect",
++     "originEntry": "owner:1:0",
++     "type": "shake",
++   },
++ ]
+
+ ❯ packages/runtime-core/tests/branch-conditions.test.ts:16:63
+     14|  const p=cues(),path=['source','owner'];
+     15|  expect(compileStoryPresentation(p,'owner',path,yes)?.effects).toHaveL…
+     16|  expect(compileStoryPresentation(p,'owner',path,no)?.effects).toEqual(…
+       |                                                               ^
+     17|  expect(compileStoryPresentation(p,'owner',path)?.effects).toEqual([]);
+     18|  expect(compileStoryAudio(p,'owner',resolve,path,yes).music.action).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  packages/runtime-core/tests/branch-conditions.test.ts > expires inclusively, invalidates at source reentry awaiting, and can activate again on reselection
+Error: 오디오 경로를 확인해 주세요: forest
+ ❯ assetPath packages/runtime-core/src/audio.ts:13:50
+     11| function assetPath(id:string, resolve:AudioAssetResolver) {
+     12|  const asset=resolve(id); if(!asset)throw new Error(`오디오 자산을 찾을 수 없어요:…
+     13|  if(!isRuntimeAudioPath(asset.runtimePath))throw new Error(`오디오 경로를 확인…
+       |                                                  ^
+     14|  return asset.runtimePath;
+     15| }
+ ❯ music packages/runtime-core/src/audio.ts:9:34
+ ❯ compileStoryAudio packages/runtime-core/src/audio.ts:45:26
+ ❯ packages/runtime-core/tests/branch-conditions.test.ts:26:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  packages/runtime-core/tests/branch-conditions.test.ts > does not retrospectively activate or clear unrelated music at an inactive owner
+Error: 오디오 경로를 확인해 주세요: forest
+ ❯ assetPath packages/runtime-core/src/audio.ts:13:50
+     11| function assetPath(id:string, resolve:AudioAssetResolver) {
+     12|  const asset=resolve(id); if(!asset)throw new Error(`오디오 자산을 찾을 수 없어요:…
+     13|  if(!isRuntimeAudioPath(asset.runtimePath))throw new Error(`오디오 경로를 확인…
+       |                                                  ^
+     14|  return asset.runtimePath;
+     15| }
+ ❯ music packages/runtime-core/src/audio.ts:9:34
+ ❯ compileStoryAudio packages/runtime-core/src/audio.ts:45:26
+ ❯ packages/runtime-core/tests/branch-conditions.test.ts:36:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  packages/runtime-core/tests/branch-conditions.test.ts > filters chapter cues at actual chapter entry and preserves unconditional sounds
+Error: 오디오 경로를 확인해 주세요: forest
+ ❯ assetPath packages/runtime-core/src/audio.ts:13:50
+     11| function assetPath(id:string, resolve:AudioAssetResolver) {
+     12|  const asset=resolve(id); if(!asset)throw new Error(`오디오 자산을 찾을 수 없어요:…
+     13|  if(!isRuntimeAudioPath(asset.runtimePath))throw new Error(`오디오 경로를 확인…
+       |                                                  ^
+     14|  return asset.runtimePath;
+     15| }
+ ❯ music packages/runtime-core/src/audio.ts:9:34
+ ❯ compileStoryAudio packages/runtime-core/src/audio.ts:45:26
+ ❯ packages/runtime-core/tests/branch-conditions.test.ts:41:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  packages/runtime-core/tests/branch-conditions.test.ts > requires exact history for branch referenced sources while preserving older unconditioned inference
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ packages/runtime-core/tests/branch-conditions.test.ts:47:39
+     45| it('requires exact history for branch referenced sources while preserv…
+     46|  const p=cues(),state={lineId:'owner',path:['source','owner'],status:'…
+     47|  expect(()=>restorePlayback(p,state)).toThrow('선택 기록');
+       |                                       ^
+     48|  expect(()=>restorePlayback(p,{...state,choiceHistory:[]})).toThrow('선…
+     49|  expect(restorePlayback(p,{...state,choiceHistory:yes}).choiceHistory)…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  packages/runtime-core/tests/branch-conditions.test.ts > guards surviving branch references and excludes cues removed with their owner
+TypeError: Cannot read properties of undefined (reading 'map')
+ ❯ packages/runtime-core/tests/branch-conditions.test.ts:56:33
+     54| it('guards surviving branch references and excludes cues removed with …
+     55|  const p=cues(),impact=getStoryCutDeletionImpact(p,'source');
+     56|  expect(impact.branchConditions.map(r=>r.kind).sort()).toEqual(['effec…
+       |                                 ^
+     57|  expect(()=>deleteStoryCut(p,'source')).toThrow('선택');
+     58|  expect(getStoryCutDeletionImpact(p,'owner').branchConditions).toEqual…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  03:02:10
+   Duration  837ms (transform 504ms, setup 0ms, import 726ms, tests 25ms, environment 0ms)
+

@@ -1,0 +1,101 @@
+{
+  "method": "TypeScript AST compares every expect, readFileSync, setInputFiles call and test title against preserved before source",
+  "records": [
+    {
+      "path": "tests/e2e/creative-reading-journey.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 70,
+      "inputCalls": 3,
+      "readFileCalls": 3,
+      "testTitles": 1
+    },
+    {
+      "path": "tests/e2e/authoring-format-runtime.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 26,
+      "inputCalls": 2,
+      "readFileCalls": 1,
+      "testTitles": 2
+    },
+    {
+      "path": "tests/e2e/existing-score-runtime.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 84,
+      "inputCalls": 0,
+      "readFileCalls": 7,
+      "testTitles": 3
+    },
+    {
+      "path": "tests/e2e/four-work-runtime.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 94,
+      "inputCalls": 0,
+      "readFileCalls": 0,
+      "testTitles": 3
+    },
+    {
+      "path": "tests/e2e/stories-runtime.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 52,
+      "inputCalls": 0,
+      "readFileCalls": 2,
+      "testTitles": 4
+    },
+    {
+      "path": "tests/e2e/walnut-library.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 50,
+      "inputCalls": 0,
+      "readFileCalls": 0,
+      "testTitles": 3
+    },
+    {
+      "path": "tests/e2e/library-design-parity.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 234,
+      "inputCalls": 0,
+      "readFileCalls": 1,
+      "testTitles": 17
+    },
+    {
+      "path": "tests/e2e/four-work-shortstory.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 110,
+      "inputCalls": 3,
+      "readFileCalls": 0,
+      "testTitles": 6
+    },
+    {
+      "path": "tests/e2e/local-library.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 216,
+      "inputCalls": 0,
+      "readFileCalls": 7,
+      "testTitles": 6
+    },
+    {
+      "path": "tests/e2e/entry-cover.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 74,
+      "inputCalls": 0,
+      "readFileCalls": 2,
+      "testTitles": 5
+    },
+    {
+      "path": "tests/e2e/vn-workflow.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 88,
+      "inputCalls": 3,
+      "readFileCalls": 16,
+      "testTitles": 4
+    },
+    {
+      "path": "tests/e2e/external-shortstory-print.spec.ts",
+      "unchanged": true,
+      "expectCallCount": 8,
+      "inputCalls": 1,
+      "readFileCalls": 0,
+      "testTitles": 1
+    }
+  ]
+}

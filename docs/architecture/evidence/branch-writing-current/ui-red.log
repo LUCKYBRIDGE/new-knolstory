@@ -1,0 +1,72 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:5480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/2n13u1_a90z_7.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:57] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:42:58] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:43:01] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:43:01] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:43:01] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:43:01] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 21:43:01] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/branch-writing.spec.ts:9:115 › new branch cancels safely, starts writing and returns to its origin at 1440 (7.0s)
+
+
+  1) [host] › tests/e2e/branch-writing.spec.ts:9:115 › new branch cancels safely, starts writing and returns to its origin at 1440 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('dialog', { name: '새 갈래 작성', exact: true })
+    Expected substring: "친구를 찾아가는 새 갈래"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByRole('dialog', { name: '새 갈래 작성', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '새 갈래 작성', exact: true })
+
+
+       9 | for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`new branch cancels safely, starts writing and returns to its origin at ${size.width}`,async({page},info)=>{
+      10 |  page.setDefaultTimeout(15000);await page.setViewportSize(size);await setup(page);const baseline=(await exportProject(page)).project;
+    > 11 |  const create=page.getByRole('button',{name:'선택지 1에 새 장 연결',exact:true});await create.click();const dialog=page.getByRole('dialog',{name:'새 갈래 작성',exact:true});await expect(dialog).toContainText('친구를 찾아가는 새 갈래');await expect(dialog).toContainText('기존 원고의 마지막');await dialog.getByRole('button',{name:'취소',exact:true}).click();expect((await exportProject(page)).project).toEqual(baseline);
+         |                                                                                                                                                                                      ^
+      12 |  await create.click();await dialog.getByRole('button',{name:'새 갈래 만들고 글쓰기',exact:true}).click();const text=page.getByLabel('대사 / 해설',{exact:true}),position=page.getByLabel('현재 장과 컷 이동',{exact:true});await expect(text).toBeFocused();await expect(text).toHaveValue('');await expect(page.getByLabel('진행 방식',{exact:true})).toBeHidden();const target=await position.inputValue();expect(target).not.toBe(cuts[0].id);await text.fill('새 갈래에서 친구를 만났다.\n한글 조합과 자유 배치를 지킨다. 🌳');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const saved=await exportProject(page);
+      13 |  expect(saved.project.lines).toHaveLength(4);expect(saved.project.lines[0].flow.options).toEqual([{...baseline.lines[0].flow.options[0],targetLineId:target},baseline.lines[0].flow.options[1]]);expect(saved.project.lines[1]).toEqual(baseline.lines[1]);expect(saved.project.lines[2]).toEqual({...baseline.lines[2],flow:{type:'goto',targetLineId:null}});expect(saved.project.lines[3].stageComposition).toEqual(baseline.lines[0].stageComposition);
+      14 |  await page.reload();await expect(text).toHaveValue(saved.project.lines[3].text);await page.locator('[data-writing-tools]>summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();const context=page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});await context.getByRole('button',{name:'이전 편집 컷으로 돌아가기',exact:true}).click();await expect(position).toHaveValue(cuts[0].id);await expect(text).toHaveValue(baseline.lines[0].text);
+        at <repo>/tests/e2e/branch-writing.spec.ts:11:182
+
+    Error Context: test-results-current-ux/branch-writing-new-branch--e1a9c-turns-to-its-origin-at-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/branch-writing-new-branch--e1a9c-turns-to-its-origin-at-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/branch-writing-new-branch--e1a9c-turns-to-its-origin-at-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/branch-writing.spec.ts:9:115 › new branch cancels safely, starts writing and returns to its origin at 1440 

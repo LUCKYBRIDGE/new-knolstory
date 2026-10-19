@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-17T04:42:26.068489+00:00",
+  "scope": "Changed semantic focus CSS actual native impact at475x194 CSS viewport; no real Chrome pagezoom claim",
+  "sourceSha256": {
+    "apps/web/components/story-workspace.module.css": "9ed2f294c7972d97d04bd5df555e156df30cd95883c36a6c238d74d9a5c72206",
+    "tests/e2e/accessibility-choice-native.spec.ts": "4bd54ae157f0a954868d482c0d657f06b92da81a04f1113ea6ed4b543ace9f0f",
+    "apps/web/out/index.html": "428648edd53f0472b994df6cd2a0e83674bf41e6b0ed4d5640eaf52b8a1bab11"
+  },
+  "verification": {
+    "passed": 1,
+    "log": "native-short.log",
+    "artifacts": "native-short-run",
+    "bounds": {
+      "button": {
+        "top": 47.984375,
+        "bottom": 91.984375,
+        "height": 44
+      },
+      "panel": {
+        "top": 24,
+        "bottom": 114,
+        "height": 90,
+        "overflow": "auto"
+      },
+      "viewportHeight": 194
+    },
+    "scope": "Actual RenPy keyboard audio entry/choice/back/alternate path, strict44pxchoice client containment in90px auto-scrollpanel,settingsEscape/editorreturn,exactauthoredproject/worksandiframeidentity preserved.",
+    "lint": "native-short-lint.log"
+  },
+  "actualChrome": "Work browser inventory still reports Local browser use is disabled in Work settings. No UI fallback/bypass attempted. Postfix400percent and100percent cleanup remain unverified.",
+  "previousCheckpoint": "checkpoint.json remains historical scoped fix evidence; not overwritten.",
+  "remaining": [
+    "Actual user Chrome400percent post-fix validation and reset/closeowned3145tab.",
+    "Physical hardware, real screenreader, live service/required policies/release remain incomplete."
+  ]
+}

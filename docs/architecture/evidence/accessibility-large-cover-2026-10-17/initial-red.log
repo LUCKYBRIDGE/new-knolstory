@@ -1,0 +1,346 @@
+
+Running 2 tests using 1 worker
+
+(node:97899) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-large-cover.spec.ts:5:31 › original large front cover contrast on actual backgrounds 390 (11.3s)
+(node:98016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/accessibility-large-cover.spec.ts:5:31 › original large front cover contrast on actual backgrounds 1440 (11.3s)
+
+
+  1) [host] › tests/e2e/accessibility-large-cover.spec.ts:5:31 › original large front cover contrast on actual backgrounds 390 
+
+    Error: seonnyeo-focus: 하늘과 땅 사이에서 이어진 만남과 이별; 5.89306px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: seonnyeo-focus: 선녀와 나무꾼; 14.7326px/700; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.71919439602001
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: seonnyeo-book-start: 하늘과 땅 사이에서 이어진 만남과 이별; 9.01319px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: heungbu-focus: 흥부와 놀부로 널리 알려진 이야기; 5.89306px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: heungbu-focus: 흥부와 놀부; 14.7326px/700; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: heungbu-book-start: 흥부와 놀부로 널리 알려진 이야기; 9.01319px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: onggojib-focus: 진짜와 가짜가 벌이는 기묘한 다툼; 5.89306px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: onggojib-focus: 옹고집전; 14.7326px/700; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: onggojib-book-start: 진짜와 가짜가 벌이는 기묘한 다툼; 9.01319px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: rabbit-focus: 또 다른 이름, 토끼전; 5.89306px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.7649452931104532
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: rabbit-focus: 별주부전; 14.7326px/700; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: rabbit-book-start: 또 다른 이름, 토끼전; 9.01319px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.7649452931104532
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    attachment #1: large-cover-initial (application/json) ──────────────────────────────────────────
+    docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--7eb87-t-on-actual-backgrounds-390-host/attachments/large-cover-initial-e0f3173e1e1fd9a12a90d8ed84418c2ae1dd80c1.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--7eb87-t-on-actual-backgrounds-390-host/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--7eb87-t-on-actual-backgrounds-390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--7eb87-t-on-actual-backgrounds-390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/accessibility-large-cover.spec.ts:5:31 › original large front cover contrast on actual backgrounds 1440 
+
+    Error: seonnyeo-focus: 하늘과 땅 사이에서 이어진 만남과 이별; 8.22222px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: seonnyeo-book-start: 하늘과 땅 사이에서 이어진 만남과 이별; 13.3333px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.626152202729163
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: heungbu-focus: 흥부와 놀부로 널리 알려진 이야기; 8.22222px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: heungbu-book-start: 흥부와 놀부로 널리 알려진 이야기; 13.3333px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.626152202729163
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: onggojib-focus: 진짜와 가짜가 벌이는 기묘한 다툼; 8.22222px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.729401366367855
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: onggojib-book-start: 진짜와 가짜가 벌이는 기묘한 다툼; 13.3333px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.626152202729163
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: rabbit-focus: 또 다른 이름, 토끼전; 8.22222px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.7649452931104532
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    Error: rabbit-book-start: 또 다른 이름, 토끼전; 13.3333px/400; threshold 4.5
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.7649452931104532
+
+      23 |  }
+      24 |  const path=info.outputPath('large-cover-initial.json');await writeFile(path,JSON.stringify({width,scope:'Actual default original front covers; classified by rendered CSS font size and weight; book-start only without native playback',reports},null,2)+'\n');await info.attach('large-cover-initial',{path,contentType:'application/json'});
+    > 25 |  for(const report of reports)expect.soft(report.minimum,`${report.surface}: ${report.info.text}; ${report.info.fontSize}px/${report.info.fontWeight}; threshold ${report.threshold}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                                                                       ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-large-cover.spec.ts:25:183
+
+    attachment #1: large-cover-initial (application/json) ──────────────────────────────────────────
+    docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--15519--on-actual-backgrounds-1440-host/attachments/large-cover-initial-b2a817c24cd2256fd554b90fd2a351419acdbe14.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--15519--on-actual-backgrounds-1440-host/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--15519--on-actual-backgrounds-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-large-cover-2026-10-17/initial-artifacts/accessibility-large-cover--15519--on-actual-backgrounds-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [host] › tests/e2e/accessibility-large-cover.spec.ts:5:31 › original large front cover contrast on actual backgrounds 390 
+    [host] › tests/e2e/accessibility-large-cover.spec.ts:5:31 › original large front cover contrast on actual backgrounds 1440 

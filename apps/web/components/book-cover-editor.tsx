@@ -1,4 +1,6 @@
 'use client';
+import dialogSurface from './story-dialog-surface.module.css';
+import {EditorTermGuide} from './editor-term-guide';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import { useEffect, useId, useRef, useState } from 'react';
 import { ASSET_CATALOG, isSelectableAsset } from '@knolstory/asset-registry';
@@ -62,8 +64,8 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
     commitDesign({...design,finish:{...design.finish,[key]:value},faces});
   };
   const apply=()=>{if(applying)return;setApplying(true);try{onApply(structuredClone(cover),title);}catch(error){setMessage(error instanceof Error?error.message:'표지를 적용하지 못했어요. 다시 시도해 주세요.');setApplying(false);}};
-  return <dialog ref={dialog} className={styles.dialog} aria-labelledby={headingId} onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={event=>{event.preventDefault();if(!applying)onCancel();}}>
-    <header className={styles.header}><div><small>한 권의 이야기를 직접 꾸며요</small><h2 id={headingId}>내 책 표지 꾸미기</h2></div><button type="button" onClick={onCancel} disabled={applying}>닫기</button></header>
+  return <dialog ref={dialog} className={`${styles.dialog} ${dialogSurface.surface}`} aria-labelledby={headingId} onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={event=>{event.preventDefault();if(event.target===event.currentTarget&&!applying)onCancel();}}>
+    <header className={styles.header}><div><small>한 권의 이야기를 직접 꾸며요</small><h2 id={headingId}>내 책 표지 꾸미기</h2></div><EditorTermGuide/><button type="button" onClick={onCancel} disabled={applying}>닫기</button></header>
     <div className={styles.body}>
       <section className={styles.preview} aria-label="표지 미리보기">
         <div className={styles.actions}>{(Object.keys(faceLabels) as CoverFaceId[]).map(id=><button key={id} type="button" aria-pressed={face===id} onClick={()=>{setFace(id);select('');}}>{faceLabels[id]}</button>)}</div>

@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:19686) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/accessibility-reflow.spec.ts:5:61 › book service text and actions reflow at CSS viewport 320x256 (3.5s)
+  ✓  2 [host] › tests/e2e/accessibility-reflow.spec.ts:5:61 › book service text and actions reflow at CSS viewport 640x360 (3.5s)
+  ✓  3 [host] › tests/e2e/accessibility-reflow.spec.ts:5:61 › book service text and actions reflow at CSS viewport 320x740 (3.5s)
+
+  3 passed (10.9s)

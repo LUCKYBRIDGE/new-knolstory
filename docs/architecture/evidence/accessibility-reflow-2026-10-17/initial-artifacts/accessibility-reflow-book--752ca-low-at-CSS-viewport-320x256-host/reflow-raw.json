@@ -1,0 +1,544 @@
+{
+  "width": 320,
+  "height": 256,
+  "scope": "CSS layout viewport equivalent only; not actual browser zoom",
+  "reports": [
+    {
+      "surface": "focus-initial",
+      "geometry": {
+        "box": {
+          "x": 19,
+          "y": 7.6875,
+          "width": 282,
+          "height": 240.625
+        },
+        "clientWidth": 282,
+        "scrollWidth": 282,
+        "clientHeight": 241,
+        "scrollHeight": 901,
+        "controls": [
+          {
+            "text": "닫기",
+            "x": 223.3125,
+            "y": 23.6875,
+            "width": 61.6875,
+            "height": 44,
+            "disabled": false
+          },
+          {
+            "text": "‹",
+            "x": 35,
+            "y": 165.328125,
+            "width": 44,
+            "height": 48.5,
+            "disabled": false
+          },
+          {
+            "text": "›",
+            "x": 241,
+            "y": 165.328125,
+            "width": 44,
+            "height": 48.5,
+            "disabled": false
+          },
+          {
+            "text": "원작 · 내 사본으로 편집놀스토리 · 내 사본으로 편집",
+            "x": 35,
+            "y": 513.1875,
+            "width": 250,
+            "height": 44,
+            "disabled": false
+          },
+          {
+            "text": "원작 읽기전래 이야기의 원문을 만나요",
+            "x": 35,
+            "y": 614.375,
+            "width": 121,
+            "height": 85.25,
+            "disabled": false
+          },
+          {
+            "text": "놀스토리 읽기선택하며 나만의 갈래를 따라가요",
+            "x": 164,
+            "y": 614.375,
+            "width": 121,
+            "height": 85.25,
+            "disabled": false
+          },
+          {
+            "text": "숏스토리 읽기글과 그림으로 만나는 그림책",
+            "x": 35,
+            "y": 707.625,
+            "width": 121,
+            "height": 85.25
+          },
+          {
+            "text": "편집하기원작을 바탕으로 내 사본을 만들어요",
+            "x": 164,
+            "y": 707.625,
+            "width": 121,
+            "height": 85.25,
+            "disabled": false
+          },
+          {
+            "text": "책 꾸미기·작품 도구",
+            "x": 35,
+            "y": 800.875,
+            "width": 250,
+            "height": 50.796875
+          },
+          {
+            "text": "책 표지 편집선택한 판본의 내 사본 표지를 꾸며요",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "disabled": false
+          },
+          {
+            "text": "작품 정보·기획작품 정보·기획과 메모",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "disabled": false
+          },
+          {
+            "text": "작품 파일 내보내기선택한 판본을 작품 파일로 내려받아요",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "disabled": false
+          }
+        ],
+        "texts": [
+          {
+            "text": "책을 펼치면 무대가 시작돼요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선녀와 나무꾼",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "전래 이야기 지음",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "원작",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선녀와 나무꾼",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "여러 「선녀와 나무꾼」 전승의 대표 서사를 바탕으로 오늘날의 독자가 읽기 쉽게 풀어 쓴 원작 읽기입니다.",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "지은이 · 전래 이야기",
+            "display": "inline",
+            "visible": true
+          },
+          {
+            "text": "최근 수정 · 수정 시점 정보 없음",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "읽기 기록과 저장은 판본별로 보관해요. 편집하면 선택한 판본의 내 사본을 만들어요.",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "전래 이야기의 원문을 만나요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선택하며 나만의 갈래를 따라가요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "글과 그림으로 만나는 그림책",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "원작을 바탕으로 내 사본을 만들어요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선택한 판본의 내 사본 표지를 꾸며요",
+            "display": "block",
+            "visible": false
+          },
+          {
+            "text": "작품 정보·기획과 메모",
+            "display": "block",
+            "visible": false
+          },
+          {
+            "text": "선택한 판본을 작품 파일로 내려받아요",
+            "display": "block",
+            "visible": false
+          },
+          {
+            "text": "방향키로 다른 책 보기 · Escape로 서재 돌아가기",
+            "display": "block",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "surface": "focus-action-scrolled",
+      "geometry": {
+        "box": {
+          "x": 19,
+          "y": 7.6875,
+          "width": 282,
+          "height": 240.625
+        },
+        "clientWidth": 282,
+        "scrollWidth": 282,
+        "clientHeight": 241,
+        "scrollHeight": 901,
+        "controls": [
+          {
+            "text": "닫기",
+            "x": 223.3125,
+            "y": -598.3125,
+            "width": 61.6875,
+            "height": 44,
+            "disabled": false
+          },
+          {
+            "text": "‹",
+            "x": 35,
+            "y": -456.671875,
+            "width": 44,
+            "height": 48.5,
+            "disabled": false
+          },
+          {
+            "text": "›",
+            "x": 241,
+            "y": -456.671875,
+            "width": 44,
+            "height": 48.5,
+            "disabled": false
+          },
+          {
+            "text": "원작 · 내 사본으로 편집놀스토리 · 내 사본으로 편집",
+            "x": 35,
+            "y": -108.8125,
+            "width": 250,
+            "height": 44,
+            "disabled": false
+          },
+          {
+            "text": "원작 읽기전래 이야기의 원문을 만나요",
+            "x": 35,
+            "y": -7.625,
+            "width": 121,
+            "height": 85.25,
+            "disabled": false
+          },
+          {
+            "text": "놀스토리 읽기선택하며 나만의 갈래를 따라가요",
+            "x": 164,
+            "y": -7.625,
+            "width": 121,
+            "height": 85.25,
+            "disabled": false
+          },
+          {
+            "text": "숏스토리 읽기글과 그림으로 만나는 그림책",
+            "x": 35,
+            "y": 85.625,
+            "width": 121,
+            "height": 85.25
+          },
+          {
+            "text": "편집하기원작을 바탕으로 내 사본을 만들어요",
+            "x": 164,
+            "y": 85.625,
+            "width": 121,
+            "height": 85.25,
+            "disabled": false
+          },
+          {
+            "text": "책 꾸미기·작품 도구",
+            "x": 35,
+            "y": 178.875,
+            "width": 250,
+            "height": 50.796875
+          },
+          {
+            "text": "책 표지 편집선택한 판본의 내 사본 표지를 꾸며요",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "disabled": false
+          },
+          {
+            "text": "작품 정보·기획작품 정보·기획과 메모",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "disabled": false
+          },
+          {
+            "text": "작품 파일 내보내기선택한 판본을 작품 파일로 내려받아요",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "disabled": false
+          }
+        ],
+        "texts": [
+          {
+            "text": "책을 펼치면 무대가 시작돼요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선녀와 나무꾼",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "전래 이야기 지음",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "원작",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선녀와 나무꾼",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "여러 「선녀와 나무꾼」 전승의 대표 서사를 바탕으로 오늘날의 독자가 읽기 쉽게 풀어 쓴 원작 읽기입니다.",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "지은이 · 전래 이야기",
+            "display": "inline",
+            "visible": true
+          },
+          {
+            "text": "최근 수정 · 수정 시점 정보 없음",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "읽기 기록과 저장은 판본별로 보관해요. 편집하면 선택한 판본의 내 사본을 만들어요.",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "전래 이야기의 원문을 만나요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선택하며 나만의 갈래를 따라가요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "글과 그림으로 만나는 그림책",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "원작을 바탕으로 내 사본을 만들어요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선택한 판본의 내 사본 표지를 꾸며요",
+            "display": "block",
+            "visible": false
+          },
+          {
+            "text": "작품 정보·기획과 메모",
+            "display": "block",
+            "visible": false
+          },
+          {
+            "text": "선택한 판본을 작품 파일로 내려받아요",
+            "display": "block",
+            "visible": false
+          },
+          {
+            "text": "방향키로 다른 책 보기 · Escape로 서재 돌아가기",
+            "display": "block",
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "surface": "book-start-initial",
+      "geometry": {
+        "box": {
+          "x": 0,
+          "y": -275,
+          "width": 320,
+          "height": 1072.109375
+        },
+        "clientWidth": 320,
+        "scrollWidth": 320,
+        "clientHeight": 1072,
+        "scrollHeight": 1072,
+        "controls": [
+          {
+            "text": "← 서재로",
+            "x": 208.96875,
+            "y": -257,
+            "width": 91.03125,
+            "height": 46.796875,
+            "disabled": false
+          },
+          {
+            "text": "작가의 말",
+            "x": 20,
+            "y": 421.75,
+            "width": 280,
+            "height": 44.140625
+          },
+          {
+            "text": "처음부터 읽기첫 장부터 이야기를 펼쳐요",
+            "x": 20,
+            "y": 487.890625,
+            "width": 134,
+            "height": 99.984375,
+            "disabled": false
+          },
+          {
+            "text": "이어읽기읽기 시작 후 이어갈 수 있어요",
+            "x": 166,
+            "y": 487.890625,
+            "width": 134,
+            "height": 99.984375,
+            "disabled": true
+          },
+          {
+            "text": "표지·작품 정보 편집",
+            "x": 20,
+            "y": 721.109375,
+            "width": 134.75,
+            "height": 44,
+            "disabled": false
+          },
+          {
+            "text": "대본 편집",
+            "x": 162.75,
+            "y": 721.109375,
+            "width": 82.40625,
+            "height": 44,
+            "disabled": false
+          }
+        ],
+        "texts": [
+          {
+            "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선녀와 나무꾼",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "전래 이야기 지음",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "원작 · 책을 펼칠 시간",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "원작 / 이야기 시작",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "선녀와 나무꾼",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "여러 「선녀와 나무꾼」 전승의 대표 서사를 바탕으로 오늘날의 독자가 읽기 쉽게 풀어 쓴 원작 읽기입니다.",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "지은이 · 전래 이야기",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "여러 전승의 대표 서사를 바탕으로 현대어로 재구성했습니다.",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "첫 장부터 이야기를 펼쳐요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "읽기 시작 후 이어갈 수 있어요",
+            "display": "block",
+            "visible": true
+          },
+          {
+            "text": "읽기 화면에서 무대를 한 번 누르면 소리와 이야기가 시작됩니다. 읽기 저장과 지난 기록은 읽기 메뉴에서 열 수 있어요.",
+            "display": "block",
+            "visible": true
+          }
+        ]
+      }
+    }
+  ]
+}

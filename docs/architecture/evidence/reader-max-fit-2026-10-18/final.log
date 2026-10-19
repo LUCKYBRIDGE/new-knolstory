@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:9820) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/reader-max-fit.spec.ts:2:1 › reader uses the largest contained fixed format after every window resize (9.9s)
+  ✓  2 tests/e2e/reader-max-fit.spec.ts:30:1 › visible viewport resize and pan keep the frame inside the currently visible rectangle (1.3s)
+
+  2 passed (11.6s)

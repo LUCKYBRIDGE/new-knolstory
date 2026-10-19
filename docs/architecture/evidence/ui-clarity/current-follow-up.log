@@ -1,0 +1,65 @@
+[WebServer] (node:1044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1058) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1074) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:1080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:1093) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/cut-range-authoring.spec.ts:4:1 › actual work cut-end authoring saves, exports and reopens unchanged unrelated fields (9.2s)
+  ✓   2 [host] › tests/e2e/cut-range-authoring.spec.ts:14:1 › native presenter receives bounded effect through end then stops it without clearing another cue (7.5s)
+  ✓   3 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 1440 (7.1s)
+  ✓   4 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 768 (5.7s)
+  ✓   5 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 390 (5.5s)
+  ✓   6 [host] › tests/e2e/ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 844 (5.5s)
+  ✓   7 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 1440 (2.1s)
+  ✓   8 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 768 (2.0s)
+  ✓   9 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 390 (2.1s)
+  ✓  10 [host] › tests/e2e/ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 844 (2.1s)
+  ✓  11 [host] › tests/e2e/ui-clarity.spec.ts:39:1 › long Korean choice labels scroll inside their own area above dialogue (5.4s)
+  ✓  12 [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 1440 (1.9s)
+  ✘  13 [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 390 (5.7s)
+(node:1248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 844 (1.9s)
+  ✓  15 [host] › tests/e2e/ui-clarity.spec.ts:57:2 › effect undo belongs to the cut that was edited (2.2s)
+  ✓  16 [host] › tests/e2e/ui-clarity.spec.ts:65:91 › cut range fields fit their panel 768 (1.9s)
+  ✓  17 [host] › tests/e2e/ui-clarity.spec.ts:65:91 › cut range fields fit their panel 390 (1.9s)
+  ✓  18 [host] › tests/e2e/ui-clarity.spec.ts:65:91 › cut range fields fit their panel 844 (1.9s)
+
+
+  1) [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 390 
+
+    Error: expect(locator).not.toHaveAttribute(expected) failed
+
+    Locator:  getByText('작품 관리', { exact: true }).locator('..')
+    Expected: not ""
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "not toHaveAttribute" getByText('작품 관리', { exact: true }).locator('..') with timeout 5000ms
+      - waiting for getByText('작품 관리', { exact: true }).locator('..')
+        13 × locator resolved to <details open="" data-work-menu="true" class="story-workspace-module__gRDfJG__management">…</details>
+           - unexpected value ""
+
+
+      48 |  await page.setViewportSize(size);await page.goto('/?view=editor');await page.getByText('화면·대본 설정',{exact:true}).click();await page.getByText('작품 관리',{exact:true}).click();
+      49 |  await expect(page.getByText('화면·대본 설정',{exact:true}).locator('..')).not.toHaveAttribute('open','');await page.keyboard.press('Escape');
+    > 50 |  await expect(page.getByText('작품 관리',{exact:true}).locator('..')).not.toHaveAttribute('open','');
+         |                                                                       ^
+      51 |  await page.getByRole('button',{name:'배경·인물 편집',exact:true}).click();await page.getByRole('button',{name:'배경 이미지 찾기',exact:true}).click();
+      52 |  const dialog=page.getByRole('dialog',{name:'이미지 선택 · 배경'});await expect(dialog).toBeVisible();const rect=await dialog.boundingBox();expect(rect!.x).toBeGreaterThanOrEqual(0);expect(rect!.y).toBeGreaterThanOrEqual(0);expect(rect!.x+rect!.width).toBeLessThanOrEqual(size.width);expect(rect!.y+rect!.height).toBeLessThanOrEqual(size.height);
+      53 |  const footer=dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true});await expect(footer).toBeVisible();await footer.scrollIntoViewIfNeeded();const footerRect=await footer.boundingBox();expect(footerRect!.y+footerRect!.height).toBeLessThanOrEqual(size.height);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/ui-clarity.spec.ts:50:71
+
+    Error Context: test-results/ui-clarity-work-settings-m-f0f75-og-remain-within-screen-390-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 390 
+  17 passed (1.2m)

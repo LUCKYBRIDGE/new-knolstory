@@ -1,0 +1,22 @@
+[WebServer] (node:61048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:61049) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:61055) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 5 tests using 1 worker
+
+(node:61073) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/5] tests/e2e/shortstory-conflict.spec.ts:4:1 › two ShortStory tabs preserve the saved book and export the blocked draft
+[2/5] tests/e2e/shortstory-conflict.spec.ts:24:1 › a read-only second tab never migrates or recovers storage over the writer
+[3/5] tests/e2e/storage-recovery.spec.ts:10:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+[4/5] tests/e2e/storage-recovery.spec.ts:24:1 › second tab draft cannot overwrite first tab, even when using manual save
+[5/5] tests/e2e/storage-recovery.spec.ts:35:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+  5 passed (16.5s)

@@ -1,0 +1,23 @@
+
+ RUN  v4.1.11 <repo>
+
+ ✓ packages/compatibility/tests/excel-native-roundtrip.test.ts > actual Microsoft Excel saves text and stage edits without losing any other authoring field or audio byte 293ms
+ ✓ packages/compatibility/tests/score-external-roundtrip.test.ts > actual excel score definition, choice increment and ending condition edits retain every other authored field 370ms
+ ✓ packages/compatibility/tests/excel-native-roundtrip.test.ts > actual Microsoft Excel preserves every ShortStory page and cover field after text editing 28ms
+ ✓ packages/compatibility/tests/google-native-roundtrip.test.ts > actual native Google Sheets XLSX preserves all tabs and applies Korean text edits 221ms
+ ✓ packages/compatibility/tests/google-native-roundtrip.test.ts > actual Google edits nested authored fields and retains all other content and audio bytes 215ms
+ ✓ packages/compatibility/tests/korean-native-roundtrip.test.ts > actual google Korean headings, notes and enum edits preserve the entire authored work 474ms
+ ✓ packages/compatibility/tests/score-external-roundtrip.test.ts > actual google score definition, choice increment and ending condition edits retain every other authored field 200ms
+ ✓ packages/compatibility/tests/seconds-external-roundtrip.test.ts > exports complete current seconds workbook without changing authored milliseconds 608ms
+ ✓ packages/compatibility/tests/korean-native-roundtrip.test.ts > actual excel Korean headings, notes and enum edits preserve the entire authored work 169ms
+ ✓ packages/compatibility/tests/seconds-external-roundtrip.test.ts > actual excel decimal second edits preserve all unrelated fields and JSONB 125ms
+ ✓ packages/compatibility/tests/audio-attributes-external.test.ts > exports new attribute workbook with real MP3 attachment without modifying bytes 839ms
+ ✓ packages/compatibility/tests/seconds-external-roundtrip.test.ts > actual google decimal second edits preserve all unrelated fields and JSONB 167ms
+ ✓ packages/compatibility/tests/audio-attributes-external.test.ts > actual excel name/tag edits preserve all fields, MP3 and JSONB 239ms
+ ✓ packages/compatibility/tests/audio-attributes-external.test.ts > actual google name/tag edits preserve all fields, MP3 and JSONB 286ms
+
+ Test Files  6 passed (6)
+      Tests  14 passed (14)
+   Start at  20:08:01
+   Duration  2.25s (transform 2.04s, setup 0ms, import 4.73s, tests 4.24s, environment 0ms)
+

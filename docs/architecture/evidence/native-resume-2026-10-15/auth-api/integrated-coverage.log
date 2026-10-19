@@ -1,0 +1,63 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-2e588244e741 Creating 
+ Container knolstory-next-storage-test-runner-run-2e588244e741 Created 
+
+> @knolstory/storage-test@ typecheck /workspace/server
+> tsc --project tsconfig.integration.json
+
+
+> @knolstory/storage-test@ test:integration /workspace/server
+> vitest run --config vitest.config.ts --coverage
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+ [32m✓[39m http/auth-routes.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+ [32m✓[39m http/auth-service.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 170[2mms[22m[39m
+ [32m✓[39m auth/identity-links.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m auth/oidc-provider.test.ts [2m([22m[2m44 tests[22m[2m)[22m[32m 150[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-completion.integration.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m storage/postgres-save-port.integration.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 780[2mms[22m[39m
+ [32m✓[39m auth/postgres-identity-port.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m auth/postgres-identity-port.integration.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 55[2mms[22m[39m
+ [32m✓[39m storage/snapshot-projection.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 268[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-state.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m auth/auth-state.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m storage/sql-client-lifecycle.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m config.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-completion.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m http/pool-errors.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m      Tests [22m [1m[32m226 passed[39m[22m[90m (226)[39m
+[2m   Start at [22m 23:09:30
+[2m   Duration [22m 3.30s[2m (transform 398ms, setup 0ms, import 673ms, tests 1.62s, environment 1ms)[22m
+
+[34m % [39m[2mCoverage report from [22m[33mv8[39m
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   94.18 |    92.86 |   98.65 |   99.65 |                   
+ server            |   88.57 |    88.63 |      80 |      95 |                   
+  config.ts        |   88.57 |    88.63 |      80 |      95 | 11                
+ server/auth       |   95.51 |    95.46 |   98.79 |   99.64 |                   
+  auth-state.ts    |   91.35 |    92.78 |     100 |     100 | 44-46,59,71,75,80 
+  ...tity-links.ts |     100 |      100 |     100 |     100 |                   
+  oidc-provider.ts |      97 |    97.84 |   94.73 |     100 | 91,112            
+  ...completion.ts |   96.82 |    95.89 |     100 |     100 | 45,64,74          
+  ...auth-state.ts |   90.38 |    85.71 |     100 |     100 | 4,7-12,40         
+  ...ntity-port.ts |   98.46 |      100 |     100 |      98 | 90                
+ server/http       |   96.36 |    94.48 |     100 |     100 |                   
+  auth-routes.ts   |   96.07 |    94.28 |     100 |     100 | ...72,121,128,146 
+  auth-service.ts  |     100 |      100 |     100 |     100 |                   
+  pool-errors.ts   |     100 |      100 |     100 |     100 |                   
+ server/migrations |   94.11 |     87.5 |     100 |     100 |                   
+  runner.ts        |   94.11 |     87.5 |     100 |     100 | 15-21             
+ server/storage    |   90.17 |    85.92 |     100 |     100 |                   
+  ...-save-port.ts |   89.53 |    82.25 |     100 |     100 | ...5,79-85,90-119 
+  save-existing.ts |   84.61 |    81.81 |     100 |     100 | 47-54,81,102-104  
+  ...projection.ts |     100 |      100 |     100 |     100 |                   
+-------------------|---------|----------|---------|---------|-------------------

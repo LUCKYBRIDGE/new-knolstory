@@ -1,4 +1,4 @@
-import {unknownUploadProvenance,validateMediaProvenance,type MediaProvenance} from './media-provenance';
+import {validateMediaProvenance,type MediaProvenance} from './media-provenance';
 import type {StoryProject} from '@knolstory/story-domain';
 export type PortableAudioResource = Readonly<{id:string;name:string;mime:string;data:string;kind:'music'|'sound';provenance?:MediaProvenance}>;
 export function referencedAudioIds(project:StoryProject):string[] {
@@ -26,5 +26,5 @@ export function portableAudioResources(value:unknown):PortableAudioResource[] {
     ids.add(item.id);total+=item.data.length;
   }
   if(total>20_000_000)throw new Error('작품 오디오 자료의 전체 크기가 너무 큽니다.');
-  return resources.map(item=>({...item,provenance:item.provenance===undefined?unknownUploadProvenance(item.id):validateMediaProvenance(item.provenance,item.id)}));
+  return resources.map(item=>({...item,...(item.provenance===undefined?{}:{provenance:validateMediaProvenance(item.provenance,item.id)})}));
 }

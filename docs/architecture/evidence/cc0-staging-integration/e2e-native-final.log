@@ -1,0 +1,49 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET / HTTP/1.1" 200 -
+
+Running 2 tests using 1 worker
+
+(node:83270) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/1-udlyp1h51ss.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:10] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:18] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:24] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:25] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:25] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:25] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:27] "GET /assets/audio/cc0/oga-tension/v1/komiku-it-s-time-for-adventure-vol-2-12-tension-0.mp3 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:27] "GET /assets/audio/cc0/oga-park/v1/park-ambience-river.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:27] "GET /assets/audio/cc0/kenney-impact/v1/footstep-carpet-001.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:28] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:28] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:28] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:28] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:28] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:28] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:34:31] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+  ✓  1 [stories-runtime] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback (22.1s)
+  -  2 [stories-runtime] › tests/e2e/staged-audio.spec.ts:22:1 › source name search resolves the existing forest recording without duplicate choices
+
+  1 skipped
+  1 passed (22.7s)

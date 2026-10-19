@@ -1,0 +1,192 @@
+
+Running 16 tests using 1 worker
+
+(node:77742) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/16] [host] › tests/e2e/editor-term-guide.spec.ts:29:1 › guide preserves author drafts and restores focus in four viewport layouts
+  1) [host] › tests/e2e/editor-term-guide.spec.ts:29:1 › guide preserves author drafts and restores focus in four viewport layouts 
+
+    Error: locator.fill: Error: strict mode violation: getByLabel('작품 제목', { exact: true }) resolved to 2 elements:
+        1) <input aria-label="작품 제목" value="용어 안내를 쓰는 작품"/> aka getByRole('textbox', { name: '작품 제목' })
+        2) <input maxlength="200" aria-label="작품 제목" value="용어 안내를 쓰는 작품"/> aka getByLabel('장과 컷 목록').getByLabel('작품 제목')
+
+    Call log:
+      - waiting for getByLabel('작품 제목', { exact: true })
+
+
+      33 |  if(!await page.getByRole('region',{name:'작품 준비',exact:true}).isVisible())await page.getByRole('button',{name:'작품 준비',exact:true}).click();
+      34 |  const title=page.getByLabel('작품 제목',{exact:true});
+    > 35 |  await title.fill('내가 쓴 긴 한국어 작품 제목을 유지합니다');
+         |              ^
+      36 |  for(const viewport of [{width:1280,height:800},{width:820,height:1180},{width:390,height:844},{width:844,height:390}]){
+      37 |   await page.setViewportSize(viewport);await checkGuide(page);
+      38 |   await expect(title).toHaveValue('내가 쓴 긴 한국어 작품 제목을 유지합니다');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:35:14
+
+    Error Context: ../../../../../tmp/knol-terms-host/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-host/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-host/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:77757) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/16] [host] › tests/e2e/editor-term-guide.spec.ts:45:1 › ShortStory guide leaves edited page text untouched
+  2) [host] › tests/e2e/editor-term-guide.spec.ts:45:1 › ShortStory guide leaves edited page text untouched 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('searchbox', { name: '용어 검색', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('searchbox', { name: '용어 검색', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('searchbox', { name: '용어 검색', exact: true })
+        14 × locator resolved to <input value="" type="search" placeholder="예: 환경음, 화자, 점수, 초"/>
+           - unexpected value "inactive"
+
+
+       8 |  await expect(dialog).toBeVisible();
+       9 |  const search=dialog.getByRole('searchbox',{name:'용어 검색',exact:true});
+    > 10 |  await expect(search).toBeFocused();
+         |                       ^
+      11 |  await search.fill('환경음');
+      12 |  await expect(dialog.locator('dt')).toHaveCount(1);
+      13 |  await expect(dialog.locator('dt')).toContainText('주변 소리');
+        at checkGuide (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:10:23)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:49:2
+
+    Error Context: ../../../../../tmp/knol-terms-host/editor-term-guide-ShortSto-004c2--edited-page-text-untouched-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-host/editor-term-guide-ShortSto-004c2--edited-page-text-untouched-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-host/editor-term-guide-ShortSto-004c2--edited-page-text-untouched-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:77775) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[3/16] [host] › tests/e2e/editor-time-seconds.spec.ts:6:1 › decimal seconds preserve exact milliseconds through save, reload and file reopening
+[4/16] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+  3) [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px 
+
+    TimeoutError: locator.selectOption: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByLabel('말하는 배치 인물')
+
+
+      37 |  await page.getByRole('button',{name:'기본 이미지를 무대에 배치',exact:true}).click();
+      38 |  const composed=(await exportProject(page)).project;const key=composed.lines[0].stageComposition.leftActors[0].key;
+    > 39 |  await page.getByLabel('말하는 배치 인물').selectOption(key);await tool(page,'작품 자료 편집');await page.getByLabel(`왼쪽 1번 인물 배치`,{exact:true}).selectOption('center');await page.getByLabel(`왼쪽 1번 인물 크기 배율`,{exact:true}).fill('0.9');await page.getByLabel(`왼쪽 1번 인물 방향`,{exact:true}).selectOption('original');
+         |                                     ^
+      40 |  // Draft selection and cancel must not mutate the current actor or its identity.
+      41 |  await page.getByRole('button',{name:`왼쪽 1번 인물 이미지 이미지 찾기`,exact:true}).click();
+      42 |  let dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'장 자료',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${hero}"]`)).toBeVisible();await dialog.getByRole('button',{name:'전체',exact:true}).click();await dialog.getByRole('button',{name:'같은 인물의 다른 모습',exact:true}).click();await dialog.locator(`[data-asset-id="${variant}"]`).click();await dialog.getByRole('button',{name:'취소',exact:true}).click();
+        at author (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:39:37)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:54:12
+
+    Error Context: ../../../../../tmp/knol-terms-host/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-host/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-host/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:77842) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[5/16] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px
+  4) [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px 
+
+    TimeoutError: locator.selectOption: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByLabel('말하는 배치 인물')
+
+
+      37 |  await page.getByRole('button',{name:'기본 이미지를 무대에 배치',exact:true}).click();
+      38 |  const composed=(await exportProject(page)).project;const key=composed.lines[0].stageComposition.leftActors[0].key;
+    > 39 |  await page.getByLabel('말하는 배치 인물').selectOption(key);await tool(page,'작품 자료 편집');await page.getByLabel(`왼쪽 1번 인물 배치`,{exact:true}).selectOption('center');await page.getByLabel(`왼쪽 1번 인물 크기 배율`,{exact:true}).fill('0.9');await page.getByLabel(`왼쪽 1번 인물 방향`,{exact:true}).selectOption('original');
+         |                                     ^
+      40 |  // Draft selection and cancel must not mutate the current actor or its identity.
+      41 |  await page.getByRole('button',{name:`왼쪽 1번 인물 이미지 이미지 찾기`,exact:true}).click();
+      42 |  let dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'장 자료',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${hero}"]`)).toBeVisible();await dialog.getByRole('button',{name:'전체',exact:true}).click();await dialog.getByRole('button',{name:'같은 인물의 다른 모습',exact:true}).click();await dialog.locator(`[data-asset-id="${variant}"]`).click();await dialog.getByRole('button',{name:'취소',exact:true}).click();
+        at author (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:39:37)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:54:12
+
+    Error Context: ../../../../../tmp/knol-terms-host/legacy-authoring-workspace-6089e-afe-cut-operations-at-390px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-host/legacy-authoring-workspace-6089e-afe-cut-operations-at-390px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-host/legacy-authoring-workspace-6089e-afe-cut-operations-at-390px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:77876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[6/16] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:61:1 › new manuscript story survives files and reaches both endings in native RenPy
+[7/16] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+[8/16] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px
+[9/16] [host] › tests/e2e/presentation-polish.spec.ts:78:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+[10/16] [host] › tests/e2e/presentation-polish.spec.ts:104:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+[11/16] [host] › tests/e2e/presentation-polish.spec.ts:147:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+[12/16] [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 1280px
+  5) [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 1280px 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.fill: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByLabel('컷 배경음 기존 소리가 사라지는 시간 (초)')
+
+
+      52 |   await tool(page, '연출 편집'); await page.getByLabel('컷 배경음 동작').selectOption('play');
+      53 |   await page.getByLabel('컷 배경음', { exact: true }).selectOption('audio:music:forest');
+    > 54 |   await page.getByLabel('컷 배경음 서서히 크게 시작 (초)').fill('0.4'); await page.getByLabel('컷 배경음 기존 소리 사라짐 (초)').fill('0.3');
+         |                                                                                                               ^
+      55 |   await page.getByLabel('컷 배경음 반복').check(); const customId = await uploadSound(page);
+      56 |   await page.getByLabel('1번 효과음 재생 대기 (초)').fill('0.12');
+      57 |   await tool(page, '작품 자료 편집'); await page.getByLabel('왼쪽 1번 인물 인물 동작').selectOption('fade-in'); await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').fill('0.8');await page.getByLabel('왼쪽 1번 인물 동작 대기 (초)').fill('0.1');await page.getByLabel('배경 표시').selectOption('cover'); await page.getByLabel('배경 중심 가로').fill('0.7'); await page.getByLabel('배경 중심 세로').fill('0.35');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/responsive-audio-authoring.spec.ts:54:111
+
+    Error Context: ../../../../../tmp/knol-terms-host/responsive-audio-authoring-c5e52-able-custom-audio-at-1280px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-host/responsive-audio-authoring-c5e52-able-custom-audio-at-1280px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-host/responsive-audio-authoring-c5e52-able-custom-audio-at-1280px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:78242) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[13/16] [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 390px

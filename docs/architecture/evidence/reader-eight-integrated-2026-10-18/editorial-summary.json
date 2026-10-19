@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-18",
+  "editions": 8,
+  "editedCuts": 261,
+  "previousCreative": 86,
+  "additional": 175,
+  "counts": {
+    "pinky-review-main-002": 33,
+    "heungbu-nolbu-nolstory": 35,
+    "pinky-review-main-004": 64,
+    "pinky-review-main-003": 37,
+    "classic-rabbit-tale": 22,
+    "classic-heungbu-tale": 21,
+    "classic-seonnyeo-tale": 24,
+    "classic-onggojib-tale": 25
+  },
+  "scope": "문장과 컷 안 문단 호흡 교정. 컷 분할·병합·ID·순서·Flow 변경 없음. 전체 2970컷 재작성이나 고전 원문 교감 완료 아님.",
+  "sourceManifests": [
+    "packages/compatibility/src/reader-text-rabbit-heungbu.json",
+    "packages/compatibility/src/reader-text-seonnyeo-onggojib.json",
+    "packages/compatibility/src/reader-edit-rabbit.json",
+    "packages/compatibility/src/reader-edit-heungbu.json",
+    "packages/compatibility/src/reader-edit-seonnyeo.json",
+    "packages/compatibility/src/reader-edit-onggojib.json"
+  ]
+}

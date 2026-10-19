@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-18",
+  "status": "local-focused-verified-not-deployed",
+  "decision": "16:9/9:16only; retire4:3, closerADV/VNcomposition; adequatebodytextandcompactpanel",
+  "changes": [
+    "Nativeinktranslucentpanel creamtext mintspeaker",
+    "Actualmaxpageheight insteadempty4/6rowminimum; samecutpagesfixedheight",
+    "Body32 speaker24; horizontal48portrait28padding;compactlinepitch/nav/tools",
+    "Classicpreferencesnormalizewidewithoutresetfont/delayorrawstorage",
+    "Choiceviewportendsabovepanel; lastadvancebuttonfitsownnavrow",
+    "Pagecontentpreservedfont90–130; actor/backgroundgeometryindependent"
+  ],
+  "checks": {
+    "focused_vitest": "62tests/7filespassed",
+    "native_geometry_python": "19passed, includingchoicesboundaryRED→GREEN",
+    "presenter_python": "19passed",
+    "native_web_e2e": "5passed50.4s: twoformats, fixedpagefontsettings, save/load/reload, bodytap/Enter, smalllandscape130%, day/night4choicesclicks",
+    "runtime_build": "passed",
+    "web_build": "passed",
+    "web_typecheck": "passed",
+    "eslint": "0errors1existingimagewarning",
+    "docs": "57active0linkerrors",
+    "review": "Readonlyreviewno blockers/high; navigationhitrowoverlapcorrected"
+  },
+  "preserved_attempts": [
+    "native-ui-before-line-pitch-and-fixture-repair",
+    "native-ui-before-choice-boundary-fix"
+  ],
+  "limits": [
+    "No physicaldevice/screenreaderverification",
+    "Notdeployed",
+    "Notwholeproduct/releasecompletion"
+  ],
+  "mockups": "mockups/index.html",
+  "source_sha256": {
+    "renpy/responsive-spike/game/script.rpy": "19ae71e6160b07ab548da350b2eafaf7a5b2717e08011dfd442aaa4157ba0b39",
+    "packages/runtime-core/src/responsive-layout.ts": "291ca2d3a320fa094a022c260c4e9233ddb7febb37486ef5030072d24a889962",
+    "packages/runtime-core/src/story-runtime.ts": "c8bbf4c3e0131be7db2ed28ff6712e6c5d32d1477f64e61323605d65cdaedd9b",
+    "apps/web/components/story-player-menu.tsx": "7994b06098af659278172950fae964a22de8d07d39583b17d0b397d0ded3dc0e",
+    "apps/web/components/story-player-menu.module.css": "dd381f091b3309a956c0a4862c4e72763bd65700af34226db41a27225ac1c682",
+    "apps/web/components/story-workspace.tsx": "b0eb6069e6e181c83bb2b6c03a6bcd6dc0334e46a2554f5b2b3b13029d65d55a",
+    "apps/web/lib/reader-preferences.ts": "3d88befd642ef3570cde7d6fa727ae31e8cb0b1367c2947b13c8862c7537b802",
+    "apps/web/lib/story-viewport.ts": "e3f9355c67993b4278ab6de29721399c6822aa471d7080b8ed3b856ed7aec6b7",
+    "tests/e2e/reader-reform.spec.ts": "86723a70a3c1d555ffc11280271998dc7eee0571250252697c7031c8bb16acc5"
+  },
+  "self_evaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actualnative5checks plusfocusedunit/review; aestheticpreferenceandphysicaldeviceverificationremainuserreview"
+  }
+}

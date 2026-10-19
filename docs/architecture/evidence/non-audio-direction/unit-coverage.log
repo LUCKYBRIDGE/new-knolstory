@@ -1,0 +1,72 @@
+
+> knolstory-next@ test:coverage /Users/wan/ai_dev/apps/new-knolstory
+> vitest run --coverage
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+ ❯ packages/compatibility/tests/audio-attributes.test.ts (4 tests | 1 failed) 5515ms
+   × preserves all searchable attributes through file, JSONB and editable workbook/XLSX 5005ms
+ ❯ packages/compatibility/tests/authoring-excel.test.ts (2 tests | 1 failed) 7785ms
+   × writes a real multi-tab editable XLSX with full story fidelity and no project JSON payload 5017ms
+ ❯ packages/compatibility/tests/audio-attributes-external.test.ts (3 tests | 1 failed) 9882ms
+   × exports new attribute workbook with real MP3 attachment without modifying bytes 5009ms
+ ❯ packages/compatibility/tests/effect-duration-roundtrip.test.ts (6 tests | 2 failed | 1 skipped) 15632ms
+   × preserves zero and unset duration and rejects invalid archive durations before storage 5005ms
+   × declares Korean seconds and default duration semantics on real XLSX headers and notes 5044ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/audio-attributes-external.test.ts > exports new attribute workbook with real MP3 attachment without modifying bytes
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/audio-attributes-external.test.ts:9:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  packages/compatibility/tests/audio-attributes.test.ts > preserves all searchable attributes through file, JSONB and editable workbook/XLSX
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/audio-attributes.test.ts:10:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  packages/compatibility/tests/authoring-excel.test.ts > writes a real multi-tab editable XLSX with full story fidelity and no project JSON payload
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/authoring-excel.test.ts:6:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  packages/compatibility/tests/effect-duration-roundtrip.test.ts > preserves zero and unset duration and rejects invalid archive durations before storage
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/effect-duration-roundtrip.test.ts:38:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  packages/compatibility/tests/effect-duration-roundtrip.test.ts > declares Korean seconds and default duration semantics on real XLSX headers and notes
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/effect-duration-roundtrip.test.ts:51:1
+     49|  }
+     50| });
+     51| it('declares Korean seconds and default duration semantics on real XLS…
+       | ^
+     52|  const ExcelJS=(await import('exceljs')).default,book=new ExcelJS.Work…
+     53|  const sheet=book.getWorksheet('연출 효과')!,columns=sheet.getRow(2).value…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  4 failed | 111 passed (115)
+      Tests  5 failed | 1100 passed | 1 skipped (1106)
+   Start at  18:07:57
+   Duration  31.75s (transform 11.36s, setup 0ms, import 68.81s, tests 201.40s, environment 8ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

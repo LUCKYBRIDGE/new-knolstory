@@ -1,0 +1,35 @@
+
+Running 1 test using 1 worker
+
+(node:48718) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/online-works.spec.ts:56:1 › deleting a local work while online copy validation awaits preserves the deletion checkpoint (4.0s)
+
+
+  1) tests/e2e/online-works.spec.ts:56:1 › deleting a local work while online copy validation awaits preserves the deletion checkpoint 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    Expected: {"context": {"activeTool": "text", "editingPath": ["b93e4d1f-9520-4e20-9a6a-882f4c7d53ec"], "editorView": "cut", "hasRead": false, "lineId": "b93e4d1f-9520-4e20-9a6a-882f4c7d53ec", "previewProfile": "auto", "writerChapterId": null}, "document": {"appVersion": "knolstory-next-0.1", "documentType": "story-maker-project", "project": {"chapters": [{"backgroundAssetIds": [], "backgroundId": "", "chapterNumber": 1, "chapterSpeakerNames": [], "characterAssetIds": [], "id": "f0d8e3ac-847a-4097-a3f1-c3a59d505852", "keyEvents": "", "leftAssetId": "", "mood": "", "nextChapterIdea": "", "order": 1, "purpose": "", "rightAssetId": "", "storyStageKeys": [], "summary": "", "title": "첫 번째 장"}], "choiceMode": "simple", "creativeMemos": [], "description": "", "id": "5bfa9f8c-cec7-4df8-9f02-ec93549461a0", "lines": [{"backgroundId": "", "chapterId": "f0d8e3ac-847a-4097-a3f1-c3a59d505852", "directionNote": "", "emotionNote": "", "id": "b93e4d1f-9520-4e20-9a6a-882f4c7d53ec", "leftAssetId": "", "order": 1, "purposeNote": "", "rightAssetId": "", "speaker": "narration", "speakerName": "", "stageComposition": {"leftActors": [], "rightActors": []}, "text": "", "type": "narration"}], "planning": {"centralProblem": "", "characterNotes": "", "climax": "", "crisis": "", "ending": "", "endingChange": "", "freeNotes": "", "mainCharacter": "", "mainGoal": "", "material": "", "middle": "", "mood": "", "openQuestions": "", "opening": "", "premise": "", "stakes": "", "structureMode": "free", "theme": "", "worldNotes": ""}, "sheetEditable": false, "sheetUrl": "", "speakerNames": [], "title": "삭제를 유지할 개인 작품", "updatedAt": "2026-10-15T23:36:47.234Z"}, "savedAt": "2026-10-15T23:36:48.794Z", "schemaVersion": 8}, "key": "new:5bfa9f8c-cec7-4df8-9f02-ec93549461a0"}
+    Received: undefined
+
+      60 |  await panel.getByRole('button',{name:'온라인에 보관한 원고 · 기기에 사본으로 열기',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as unknown as {onlineValidationPaused?:boolean}).onlineValidationPaused)).toBe(true);await page.keyboard.press('Escape');
+      61 |  await page.getByRole('button',{name:'삭제를 유지할 개인 작품 책 표지와 소개 보기',exact:true}).click();const focus=page.getByRole('dialog');await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();await focus.getByRole('button',{name:'내 작품 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).works).includes(before.storyId)).toBe(false);const deleted=await local(page);
+    > 62 |  await page.evaluate(()=>(window as unknown as {releaseOnlineValidation:()=>void}).releaseOnlineValidation());await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));expect((await local(page)).deletedWork).toEqual(deleted.deletedWork);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(deleted.works));await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+         |                                                                                                                                                                                                                                                                            ^
+      63 | });
+      64 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/online-works.spec.ts:62:268
+
+    Error Context: test-results/online-works/online-works-deleting-a-lo-3f9dc-ves-the-deletion-checkpoint/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/online-works/online-works-deleting-a-lo-3f9dc-ves-the-deletion-checkpoint/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/online-works/online-works-deleting-a-lo-3f9dc-ves-the-deletion-checkpoint/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/online-works.spec.ts:56:1 › deleting a local work while online copy validation awaits preserves the deletion checkpoint 

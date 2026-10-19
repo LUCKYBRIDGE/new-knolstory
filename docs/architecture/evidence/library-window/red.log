@@ -1,0 +1,31 @@
+
+Running 1 test using 1 worker
+
+(node:2637) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/library-design-parity.spec.ts:145:2 › window and cabinet have a visible strip of wall at every library width (6.4s)
+
+
+  1) [host] › tests/e2e/library-design-parity.spec.ts:145:2 › window and cabinet have a visible strip of wall at every library width 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 23
+    Received:    -8.400000000000006
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      147 |  for(const [width,height] of [[1500,1000],[1200,900],[820,1180],[390,844],[320,740],[844,390]]){
+      148 |  await page.setViewportSize({width,height});await page.evaluate(()=>scrollTo(0,0));
+    > 149 |  const cabinet=page.locator('[class*=bookcases]').first();await expect.poll(async()=>{const rect=await cabinet.boundingBox();return rect!.x-width*.082;}).toBeGreaterThanOrEqual(23);
+          |                                                                                                                                                           ^
+      150 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect(page.locator('[data-shelf-book]')).toHaveCount(4);
+      151 |  await page.screenshot({path:info.outputPath(`library-${width}.png`),fullPage:true});
+      152 |  }
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-design-parity.spec.ts:149:155
+
+    Error Context: test-results/library-design-parity-wind-0f337-wall-at-every-library-width-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/library-design-parity.spec.ts:145:2 › window and cabinet have a visible strip of wall at every library width 

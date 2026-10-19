@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ apps/web/lib/choice-writing.test.ts (4 tests | 1 failed) 275ms
+     × records the actual choice origin after a reader return changed the current cut 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/choice-writing.test.ts > new choice branch writing draft > records the actual choice origin after a reader return changed the current cut
+AssertionError: expected [ 'shake', 'return-1' ] to deeply equal [ 'shake', 'neutral', 'return-1' ]
+
+- Expected
++ Received
+
+  [
+    "shake",
+-   "neutral",
+    "return-1",
+  ]
+
+ ❯ apps/web/lib/choice-writing.test.ts:18:228
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  21:46:15
+   Duration  1.10s (transform 512ms, setup 0ms, import 738ms, tests 275ms, environment 0ms)
+

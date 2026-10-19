@@ -1,0 +1,70 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:19] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:53982) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/0dio_jpo5l853.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/1r375--a-vfwi.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:20] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:21] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:21] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:21] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:21] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:23] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:23] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:23] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:23] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:23] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 08:16:23] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/approved-editor.spec.ts:109:1 › internal direction jump respects composition and opens placement when input finishes (6.4s)
+
+
+  1) [host] › tests/e2e/approved-editor.spec.ts:109:1 › internal direction jump respects composition and opens placement when input finishes 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('workspace-error')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('workspace-error') with timeout 5000ms
+      - waiting for getByTestId('workspace-error')
+        13 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      111 |  const text=page.getByLabel('대사 / 해설',{exact:true}),kind=page.getByLabel('조정할 연출',{exact:true});await text.dispatchEvent('compositionstart');await kind.selectOption('motion');
+      112 |  await expect(page.locator('[data-inspector-section="presentation"]:visible')).toHaveCount(1);await expect(page.locator('[data-inspector-section="assets"]:visible')).toHaveCount(0);await expect(page.getByTestId('workspace-error')).toContainText('한글 입력을 마친 뒤 편집 도구');
+    > 113 |  await text.dispatchEvent('compositionend');await kind.selectOption('motion');await expect(page.locator('[data-inspector-section="assets"]:visible')).toHaveCount(1);await expect(page.locator('[data-placement-details]')).toHaveAttribute('open','');await expect(page.getByTestId('workspace-error')).toHaveCount(0);
+          |                                                                                                                                                                                                                                                                                                          ^
+      114 | });
+      115 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-editor.spec.ts:113:298
+
+    Error Context: test-results-tool-navigation/approved-editor-internal-d-721a2-acement-when-input-finishes-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/approved-editor.spec.ts:109:1 › internal direction jump respects composition and opens placement when input finishes 

@@ -1,0 +1,48 @@
+
+Running 2 tests using 1 worker
+
+(node:5385) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editor-session-preferences.spec.ts:29:1 › editor session restores screen, companion and explicit opt-ins without changing work files (12.6s)
+  ✘  2 tests/e2e/editor-session-preferences.spec.ts:47:1 › a separate work and a fresh browser session start with basic editing and closed advanced tools (6.3s)
+
+
+  1) tests/e2e/editor-session-preferences.spec.ts:47:1 › a separate work and a fresh browser session start with basic editing and closed advanced tools 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-session-preferences.spec.ts:52:8
+
+    Error Context: docs/architecture/evidence/editor-session-preferences-2026-10-19/green-run/editor-session-preferences-621d7-g-and-closed-advanced-tools/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editor-session-preferences-2026-10-19/green-run/editor-session-preferences-621d7-g-and-closed-advanced-tools/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editor-session-preferences-2026-10-19/green-run/editor-session-preferences-621d7-g-and-closed-advanced-tools/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editor-session-preferences.spec.ts:47:1 › a separate work and a fresh browser session start with basic editing and closed advanced tools 
+  1 passed (19.4s)

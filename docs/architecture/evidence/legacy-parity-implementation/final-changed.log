@@ -1,0 +1,126 @@
+[WebServer] (node:68275) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:68292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:68317) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+[WebServer] (node:68323) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+
+Running 15 tests using 1 worker
+
+(node:68339) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/15] [host] › tests/e2e/manuscript-operations.spec.ts:11:144 › manuscript split, merge and files preserve Korean at 1440x1000
+[2/15] [host] › tests/e2e/manuscript-operations.spec.ts:11:144 › manuscript split, merge and files preserve Korean at 1024x768
+[3/15] [host] › tests/e2e/manuscript-operations.spec.ts:11:144 › manuscript split, merge and files preserve Korean at 768x1024
+[4/15] [host] › tests/e2e/manuscript-operations.spec.ts:11:144 › manuscript split, merge and files preserve Korean at 390x844
+[5/15] [host] › tests/e2e/manuscript-operations.spec.ts:11:144 › manuscript split, merge and files preserve Korean at 844x390
+[6/15] [host] › tests/e2e/memo-authoring.spec.ts:13:1 › memo fields survive reorder, delete undo, filters, device save and fresh-context file import on five viewport sizes
+[7/15] [host] › tests/e2e/mobile-authoring.spec.ts:93:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change
+  1) [host] › tests/e2e/mobile-authoring.spec.ts:93:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 845
+    Received:    867.921875
+
+      146 |       const editorScroll = await page.getByRole('complementary', { name: '현재 컷 편집' }).locator('..').boundingBox();
+      147 |       expect(editorScroll!.y).toBeGreaterThanOrEqual(0);
+    > 148 |       expect(editorScroll!.y + editorScroll!.height).toBeLessThanOrEqual(viewport.height + 1);
+          |                                                      ^
+      149 |     }
+      150 |     await expect(input).toHaveValue(texts[0]!);
+      151 |   }
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/mobile-authoring.spec.ts:148:54
+
+    Error Context: ../../../../../tmp/knolstory-parity-final/mobile-authoring-phone-aut-c0107--files-and-cut-order-change-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-final/mobile-authoring-phone-aut-c0107--files-and-cut-order-change-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-final/mobile-authoring-phone-aut-c0107--files-and-cut-order-change-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:68411) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[8/15] [host] › tests/e2e/mobile-authoring.spec.ts:187:1 › phone file-restored work renders real assets and both native Ren’Py endings with one iframe
+[9/15] [host] › tests/e2e/shortstory-conflict.spec.ts:4:1 › two ShortStory tabs preserve the saved book and export the blocked draft
+[10/15] [host] › tests/e2e/shortstory-conflict.spec.ts:24:1 › a read-only second tab never migrates or recovers storage over the writer
+[11/15] [host] › tests/e2e/storage-recovery.spec.ts:11:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+[12/15] [host] › tests/e2e/storage-recovery.spec.ts:26:1 › second tab draft cannot overwrite first tab, even when using manual save
+[13/15] [host] › tests/e2e/storage-recovery.spec.ts:37:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+[14/15] [host] › tests/e2e/storage-recovery.spec.ts:50:1 › failed deletion preserves the previous deleted book and the current draft together
+  2) [host] › tests/e2e/storage-recovery.spec.ts:50:1 › failed deletion preserves the previous deleted book and the current draft together 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByText('삭제한 작품 복구', { exact: true })
+        - locator resolved to <summary>삭제한 작품 복구</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="_r_0_" data-selected-edition="own" class="library-book-focus-module__m7TIFa__dialog">…</dialog> from <main aria-label="로컬 서재" class="local-bookshelf-module__E5KFCW__library">…</main> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-labelledby="_r_0_" data-selected-edition="own" class="library-book-focus-module__m7TIFa__dialog">…</dialog> from <main aria-label="로컬 서재" class="local-bookshelf-module__E5KFCW__library">…</main> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        214 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <dialog open="" aria-labelledby="_r_0_" data-selected-edition="own" class="library-book-focus-module__m7TIFa__dialog">…</dialog> from <main aria-label="로컬 서재" class="local-bookshelf-module__E5KFCW__library">…</main> subtree intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+
+
+      58 |  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(before);
+      59 |  await page.getByRole('dialog',{name:'내 작품 삭제 확인'}).getByRole('button',{name:'취소',exact:true}).click();await page.keyboard.press('Escape');
+    > 60 |  await page.evaluate(()=>{(window as any).__rejectWorkspace=false;});await page.getByText('삭제한 작품 복구',{exact:true}).click();await page.getByRole('button',{name:'이전 삭제 원고 복구',exact:true}).click();
+         |                                                                                                                     ^
+      61 |  await expect(page.getByRole('article',{name:'내 작품 · 이전 삭제 원고',exact:true})).toBeVisible();await expect(page.getByRole('article',{name:'내 작품 · 삭제 실패 원고',exact:true})).toBeVisible();
+      62 | });
+      63 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:60:117
+
+    Error Context: ../../../../../tmp/knolstory-parity-final/storage-recovery-failed-de-47abe--the-current-draft-together-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-parity-final/storage-recovery-failed-de-47abe--the-current-draft-together-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-parity-final/storage-recovery-failed-de-47abe--the-current-draft-together-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:68883) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[15/15] [host] › tests/e2e/storage-recovery.spec.ts:64:1 › page restoration reacquires ownership before saving and preserves the draft
+  2 failed
+    [host] › tests/e2e/mobile-authoring.spec.ts:93:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change 
+    [host] › tests/e2e/storage-recovery.spec.ts:50:1 › failed deletion preserves the previous deleted book and the current draft together 
+  1 skipped
+  12 passed (3.5m)

@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/staging-import.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/staging-import.test.ts [ packages/runtime-core/tests/staging-import.test.ts ]
+Error: Cannot find module '../src/staging-import' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core/tests/staging-import.test.ts
+ ❯ packages/runtime-core/tests/staging-import.test.ts:3:1
+      1| import {it,expect} from 'vitest';
+      2| import {getRepresentativeStory} from '@knolstory/compatibility';
+      3| import {importStoryStaging,undoStoryStagingImport} from '../src/stagin…
+       | ^
+      4| it('copies chosen resolved background and placement, preserving target…
+      5|  const seed=getRepresentativeStory('rabbit').project,source=seed.lines…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  16:56:43
+   Duration  772ms (transform 458ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

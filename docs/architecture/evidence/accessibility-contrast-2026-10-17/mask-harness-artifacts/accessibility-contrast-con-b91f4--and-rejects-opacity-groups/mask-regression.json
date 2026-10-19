@@ -1,0 +1,24 @@
+{
+  "info": {
+    "style": "width:400px;font:700 32px/1.5 monospace;color:rgb(120,120,120);background:linear-gradient(90deg,rgb(120,120,120) 50%,white 50%)",
+    "text": "MMMMMMMMMMMMMMMM",
+    "color": "rgb(120, 120, 120)",
+    "fill": "rgb(120, 120, 120)",
+    "fontSize": 32,
+    "fontWeight": 700,
+    "opacity": 1,
+    "filters": []
+  },
+  "minimum": 1,
+  "samples": 4681,
+  "worst": {
+    "x": 0,
+    "y": 15,
+    "background": [
+      120,
+      120,
+      120
+    ]
+  },
+  "scope": "Opaque CSS foreground against rendered backdrop at independently detected black/white glyph-mask pixels. Nonopaque/filter/fill cases require manual review; not full-page/device conformance."
+}

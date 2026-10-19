@@ -1,0 +1,115 @@
+{
+  "exitCode": 0,
+  "summary": "10 passed (19.3m)",
+  "scope": "existing-score-runtime.spec.ts; actual 8 editions and initial 2 choice routes on VN editions, storm comparison, decoded clocks",
+  "browser": "Playwright Chromium153.0.8010.12",
+  "protectedHistoricalChanged": [],
+  "runtimeZipUnchanged": true,
+  "sourceSha256": "90e5eb5fabbf0fa784dc662258d514db60f91c97e902b2463152e0dcaf523489",
+  "routes": [
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/rabbit-classic.knolstory",
+      "authoredCuts": 56,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 56
+        }
+      ],
+      "exactProject": true
+    },
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/onggojib.knolstory",
+      "authoredCuts": 453,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 168
+        },
+        {
+          "route": 1,
+          "cutsRead": 170
+        }
+      ],
+      "exactProject": true
+    },
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/seonnyeo.knolstory",
+      "authoredCuts": 1613,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 336
+        },
+        {
+          "route": 1,
+          "cutsRead": 335
+        }
+      ],
+      "exactProject": true
+    },
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/onggojib-classic.knolstory",
+      "authoredCuts": 71,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 71
+        }
+      ],
+      "exactProject": true
+    },
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/seonnyeo-classic.knolstory",
+      "authoredCuts": 83,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 83
+        }
+      ],
+      "exactProject": true
+    },
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/heungbu.knolstory",
+      "authoredCuts": 277,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 227
+        },
+        {
+          "route": 1,
+          "cutsRead": 225
+        }
+      ],
+      "exactProject": true
+    },
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/heungbu-classic.knolstory",
+      "authoredCuts": 125,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 125
+        }
+      ],
+      "exactProject": true
+    },
+    {
+      "input": "docs/architecture/evidence/existing-story-enhancement/rabbit.knolstory",
+      "authoredCuts": 292,
+      "routes": [
+        {
+          "route": 0,
+          "cutsRead": 153
+        },
+        {
+          "route": 1,
+          "cutsRead": 153
+        }
+      ],
+      "exactProject": true
+    }
+  ]
+}

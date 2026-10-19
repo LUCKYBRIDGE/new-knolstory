@@ -1,0 +1,10 @@
+
+Running 2 tests using 1 worker
+
+(node:94022) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] [host] › tests/e2e/audio-attributes.spec.ts:5:1 › uploaded sound keeps Korean name, attributes and provenance through filters and file reload
+[2/2] [host] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels
+  2 passed (8.7s)

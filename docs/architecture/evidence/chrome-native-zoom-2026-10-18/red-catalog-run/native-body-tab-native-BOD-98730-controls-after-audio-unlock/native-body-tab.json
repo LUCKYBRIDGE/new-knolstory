@@ -1,0 +1,65 @@
+{
+  "scope": "Actual local RenPy, trusted Enter unlock and Tab keys; BODY focus modeled by real canvas blur. CSS viewport emulates narrow geometry, not actual browser zoom or a screen reader.",
+  "observations": [
+    {
+      "source": "body",
+      "key": "Tab",
+      "prepared": {
+        "iframeFocused": true,
+        "tag": "BODY",
+        "id": ""
+      },
+      "returned": false,
+      "focus": {
+        "tag": "IFRAME",
+        "text": ""
+      }
+    },
+    {
+      "source": "body",
+      "key": "Shift+Tab",
+      "prepared": {
+        "iframeFocused": true,
+        "tag": "BODY",
+        "id": ""
+      },
+      "returned": false,
+      "focus": {
+        "tag": "IFRAME",
+        "text": ""
+      }
+    },
+    {
+      "source": "canvas",
+      "key": "Tab",
+      "prepared": {
+        "iframeFocused": true,
+        "tag": "CANVAS",
+        "id": "canvas"
+      },
+      "returned": true,
+      "focus": {
+        "tag": "SUMMARY",
+        "text": "대사·해설 텍스트 보기"
+      }
+    },
+    {
+      "source": "canvas",
+      "key": "Shift+Tab",
+      "prepared": {
+        "iframeFocused": true,
+        "tag": "CANVAS",
+        "id": "canvas"
+      },
+      "returned": true,
+      "focus": {
+        "tag": "BUTTON",
+        "text": ""
+      }
+    }
+  ],
+  "initialText": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다.",
+  "finalText": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다.",
+  "authoredPreserved": true,
+  "iframePreserved": true
+}

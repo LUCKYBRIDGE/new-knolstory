@@ -1,0 +1,35 @@
+
+Running 5 tests using 1 worker
+
+(node:6604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 1440 (2.1s)
+  ✓  2 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 768 (1.9s)
+  ✘  3 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 390 (735ms)
+(node:6639) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 844 (2.1s)
+  ✓  5 [host] › tests/e2e/editor-chrome-navigation.spec.ts:12:1 › preview arrows cross chapter boundaries in manuscript view and protect failed saves (2.3s)
+
+
+  1) [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 390 
+
+    Error: expect(received).toBeLessThan(expected)
+
+    Expected: < 240
+    Received:   249.1875
+
+      2 | for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`compact header and bordered actions leave room for editing ${size.width}`,async({page},info)=>{
+      3 |  await page.setViewportSize(size);await page.goto('/?view=editor');await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();
+    > 4 |  const stage=page.getByTestId('story-stage-viewport');const top=(await stage.boundingBox())!.y;expect(top).toBeLessThan(size.width>1000?150:240);
+        |                                                                                                            ^
+      5 |  for(const label of ['작품 관리','화면·대본 설정']){const summary=page.getByText(label,{exact:true});expect(await summary.evaluate(node=>{const style=getComputedStyle(node);return parseFloat(style.borderTopWidth)>0&&style.borderTopStyle!=='none'&&style.borderTopColor!=='rgba(0, 0, 0, 0)';})).toBe(true);}
+      6 |  const next=page.getByRole('button',{name:'미리보기 다음 컷',exact:true}),previous=page.getByRole('button',{name:'미리보기 이전 컷',exact:true});await expect(next).toBeVisible();await expect(previous).toBeDisabled();
+      7 |  const box=(await stage.boundingBox())!,left=(await previous.boundingBox())!,right=(await next.boundingBox())!;expect(left.x+left.width).toBeLessThanOrEqual(box.x+1);expect(right.x).toBeGreaterThanOrEqual(box.x+box.width-1);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-chrome-navigation.spec.ts:4:108
+
+    Error Context: test-results/editor-chrome-navigation-c-a57cc--leave-room-for-editing-390-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 390 
+  4 passed (10.0s)

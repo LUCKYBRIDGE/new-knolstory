@@ -1,0 +1,39 @@
+
+Running 1 test using 1 worker
+
+(node:35635) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images (45.4s)
+
+
+  1) tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.evaluate: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for locator('[data-chapter-settings]').locator('details').filter({ has: locator('summary').filter({ hasText: /^장 자료 목록$/ }) })
+
+
+      60 |  await importFile(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project:source}));
+      61 |  const before=(await exportFile(page)).project;
+    > 62 |  async function resources(){const controls=await chapter(page),details=controls.locator('details').filter({has:page.locator('summary',{hasText:/^장 자료 목록$/})});if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();return details;}
+         |                                                                                                                                                                                  ^
+      63 |  let list=await resources();await expect(list.getByRole('button',{name:'장 자료에 인물 추가 이미지 찾기',exact:true})).toHaveCount(0);
+      64 |  await list.getByRole('button',{name:'장 자료에 배경 추가 이미지 찾기',exact:true}).click();
+      65 |  const dialog=page.getByRole('dialog'),candidate=dialog.locator('[data-asset-id]:visible').first(),id=(await candidate.getAttribute('data-asset-id'))!;
+        at resources (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/chapter-settings-access.spec.ts:62:178)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/chapter-settings-access.spec.ts:63:11
+
+    Error Context: docs/architecture/evidence/chapter-resources-2026-10-20/red-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chapter-resources-2026-10-20/red-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chapter-resources-2026-10-20/red-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images 

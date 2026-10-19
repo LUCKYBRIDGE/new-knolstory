@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:62923) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/storage-recovery.spec.ts:5:1 › direct editor exposes corrupt-storage download and preserves raw bytes before restarting (5.7s)
+
+
+  1) tests/e2e/storage-recovery.spec.ts:5:1 › direct editor exposes corrupt-storage download and preserves raw bytes before restarting 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('workspace-error')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('workspace-error') with timeout 5000ms
+      - waiting for getByTestId('workspace-error')
+        13 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+       8 |  await page.setViewportSize({width:390,height:844});await page.goto('/?view=editor');
+       9 |  const recovery=page.getByRole('region',{name:'기기 보관함 복구',exact:true});await expect(recovery).toBeVisible();
+    > 10 |  await expect(page.getByTestId('workspace-error')).toHaveCount(0);await expect(page.getByText('임시 보관을 읽지 못해 원본을 유지하고 자동 보관을 중지했어요. 현재 편집한 작품은 작품 파일로 저장해 주세요.',{exact:true})).toHaveCount(1);await expect(page.getByTestId('save-status')).toHaveText('임시 보관 중지 — 원본 보존됨');
+         |                                                    ^
+      11 |  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(raw);
+      12 |  const pending=page.waitForEvent('download');await recovery.getByRole('button',{name:'복구용 원본 보관',exact:true}).click({timeout:10000});const downloaded=await pending;
+      13 |  expect(await readFile((await downloaded.path())!,'utf8')).toBe(raw);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:10:52
+
+    Error Context: docs/architecture/evidence/corrupt-recovery-access-2026-10-20/wording-red-run/storage-recovery-direct-ed-88bab-raw-bytes-before-restarting/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/corrupt-recovery-access-2026-10-20/wording-red-run/storage-recovery-direct-ed-88bab-raw-bytes-before-restarting/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/corrupt-recovery-access-2026-10-20/wording-red-run/storage-recovery-direct-ed-88bab-raw-bytes-before-restarting/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/storage-recovery.spec.ts:5:1 › direct editor exposes corrupt-storage download and preserves raw bytes before restarting 

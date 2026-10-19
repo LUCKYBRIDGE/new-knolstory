@@ -18,7 +18,7 @@ describe('portable resource boundaries',()=>{
  const item={id:`audio:custom:${'a'.repeat(64)}:wav`,name:'종',mime:'audio/wav',kind:'sound',data:'UklGRg=='};
  it('copies valid attachments and rejects duplicates and excess payload',()=>{
   expect(portableAudioResources({audioResources:[item]})[0]).toMatchObject(item);
-  expect(portableAudioResources({audioResources:[item]})[0].provenance?.license).toBe('unknown');
+  expect(portableAudioResources({audioResources:[item]})[0]).not.toHaveProperty('provenance');
   expect(portableAudioResources({audioResources:[item]})[0]).not.toBe(item);
   expect(()=>portableAudioResources(null)).toThrow();
   expect(()=>portableAudioResources({audioResources:[item,item]})).toThrow();

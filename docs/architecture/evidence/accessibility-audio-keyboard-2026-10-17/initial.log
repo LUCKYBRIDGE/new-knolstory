@@ -1,0 +1,68 @@
+
+Running 2 tests using 1 worker
+
+(node:25613) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [native] › tests/e2e/accessibility-audio-keyboard.spec.ts:4:36 › actual native audio unlock by keyboard Enter (20.0s)
+(node:25757) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [native] › tests/e2e/accessibility-audio-keyboard.spec.ts:4:36 › actual native audio unlock by keyboard Space (19.9s)
+
+
+  1) [native] › tests/e2e/accessibility-audio-keyboard.spec.ts:4:36 › actual native audio unlock by keyboard Enter 
+
+    Error: keyboard-only activation unlocks native audio
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      14 |  let unlocked=false;try{await expect(status).toHaveAttribute('data-audio-unlocked','true',{timeout:15000});unlocked=true;}catch{/* Record diagnostic before the actual test assertion below. */}
+      15 |  const after=await snapshot(),state=await status.evaluate(node=>Object.fromEntries([...node.attributes].map(item=>[item.name,item.value])));await writeFile(info.outputPath('keyboard-audio-diagnostic.json'),JSON.stringify({key,scope:'Actual native runtime, no interception. Programmatic iframe focus then trusted keyboard event; not sequential Tab reachability or screen-reader claim.',active,state,unlocked,playbackBefore:before.playback,playbackAfter:after.playback,events},null,2)+'\n');await page.screenshot({path:info.outputPath('keyboard-audio.png'),fullPage:true});
+    > 16 |  expect.soft(unlocked,'keyboard-only activation unlocks native audio').toBe(true);expect.soft(after.playback,'unlock must preserve initial scene and choice path').toEqual(before.playback);expect(after.project).toEqual(before.project);expect(after.works).toEqual(before.works);
+         |                                                                        ^
+      17 | });
+      18 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-audio-keyboard.spec.ts:16:72
+
+    Error Context: docs/architecture/evidence/accessibility-audio-keyboard-2026-10-17/initial-run/accessibility-audio-keyboa-a29cd-io-unlock-by-keyboard-Enter-native/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-audio-keyboard-2026-10-17/initial-run/accessibility-audio-keyboa-a29cd-io-unlock-by-keyboard-Enter-native/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-audio-keyboard-2026-10-17/initial-run/accessibility-audio-keyboa-a29cd-io-unlock-by-keyboard-Enter-native/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [native] › tests/e2e/accessibility-audio-keyboard.spec.ts:4:36 › actual native audio unlock by keyboard Space 
+
+    Error: keyboard-only activation unlocks native audio
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      14 |  let unlocked=false;try{await expect(status).toHaveAttribute('data-audio-unlocked','true',{timeout:15000});unlocked=true;}catch{/* Record diagnostic before the actual test assertion below. */}
+      15 |  const after=await snapshot(),state=await status.evaluate(node=>Object.fromEntries([...node.attributes].map(item=>[item.name,item.value])));await writeFile(info.outputPath('keyboard-audio-diagnostic.json'),JSON.stringify({key,scope:'Actual native runtime, no interception. Programmatic iframe focus then trusted keyboard event; not sequential Tab reachability or screen-reader claim.',active,state,unlocked,playbackBefore:before.playback,playbackAfter:after.playback,events},null,2)+'\n');await page.screenshot({path:info.outputPath('keyboard-audio.png'),fullPage:true});
+    > 16 |  expect.soft(unlocked,'keyboard-only activation unlocks native audio').toBe(true);expect.soft(after.playback,'unlock must preserve initial scene and choice path').toEqual(before.playback);expect(after.project).toEqual(before.project);expect(after.works).toEqual(before.works);
+         |                                                                        ^
+      17 | });
+      18 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-audio-keyboard.spec.ts:16:72
+
+    Error Context: docs/architecture/evidence/accessibility-audio-keyboard-2026-10-17/initial-run/accessibility-audio-keyboa-47b0c-io-unlock-by-keyboard-Space-native/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-audio-keyboard-2026-10-17/initial-run/accessibility-audio-keyboa-47b0c-io-unlock-by-keyboard-Space-native/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-audio-keyboard-2026-10-17/initial-run/accessibility-audio-keyboa-47b0c-io-unlock-by-keyboard-Space-native/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [native] › tests/e2e/accessibility-audio-keyboard.spec.ts:4:36 › actual native audio unlock by keyboard Enter 
+    [native] › tests/e2e/accessibility-audio-keyboard.spec.ts:4:36 › actual native audio unlock by keyboard Space 

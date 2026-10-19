@@ -1,0 +1,117 @@
+
+Running 3 tests using 1 worker
+
+(node:20135) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 320x256 (7.9s)
+(node:20172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 640x360 (7.7s)
+(node:20199) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 390x740 (7.7s)
+
+
+  1) [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 320x256 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByTestId('save-status')
+    Expected: "기기에 저장됨"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByTestId('save-status') with timeout 5000ms
+      - waiting for getByTestId('save-status')
+
+
+       9 |  const project=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8'));Object.assign(project,{id:'long-service-metadata',title,description,cover:{...project.cover,titleColor:'',author,subtitle,authorNote}});
+      10 |  await importShelfFile(page,{name:'long-metadata.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-17T00:00:00.000Z',appVersion:'reflow-test',project}))});
+    > 11 |  await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});
+         |                                                ^
+      12 |  const baseline=await authored();await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');await shelfCoverButton(page,title).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:11:48
+
+    Error Context: docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-2f583-a-remains-reachable-320x256-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-2f583-a-remains-reachable-320x256-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-2f583-a-remains-reachable-320x256-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 640x360 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByTestId('save-status')
+    Expected: "기기에 저장됨"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByTestId('save-status') with timeout 5000ms
+      - waiting for getByTestId('save-status')
+
+
+       9 |  const project=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8'));Object.assign(project,{id:'long-service-metadata',title,description,cover:{...project.cover,titleColor:'',author,subtitle,authorNote}});
+      10 |  await importShelfFile(page,{name:'long-metadata.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-17T00:00:00.000Z',appVersion:'reflow-test',project}))});
+    > 11 |  await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});
+         |                                                ^
+      12 |  const baseline=await authored();await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');await shelfCoverButton(page,title).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:11:48
+
+    Error Context: docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-46b9f-a-remains-reachable-640x360-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-46b9f-a-remains-reachable-640x360-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-46b9f-a-remains-reachable-640x360-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 390x740 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: getByTestId('save-status')
+    Expected: "기기에 저장됨"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" getByTestId('save-status') with timeout 5000ms
+      - waiting for getByTestId('save-status')
+
+
+       9 |  const project=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8'));Object.assign(project,{id:'long-service-metadata',title,description,cover:{...project.cover,titleColor:'',author,subtitle,authorNote}});
+      10 |  await importShelfFile(page,{name:'long-metadata.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-17T00:00:00.000Z',appVersion:'reflow-test',project}))});
+    > 11 |  await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});
+         |                                                ^
+      12 |  const baseline=await authored();await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');await shelfCoverButton(page,title).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:11:48
+
+    Error Context: docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-7dfd6-a-remains-reachable-390x740-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-7dfd6-a-remains-reachable-390x740-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run/accessibility-authored-met-7dfd6-a-remains-reachable-390x740-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 320x256 
+    [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 640x360 
+    [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 390x740 

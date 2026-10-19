@@ -58,6 +58,13 @@ class EnvironmentTests(unittest.TestCase):
         self.assertIn(['pnpm', 'exec', 'playwright', 'install', 'chromium'], commands)
         self.assertEqual(commands[-1], ['pnpm', 'build'])
 
+    def test_prepare_checks_restored_audio_before_runtime_download_and_build(self):
+        commands = MODULE.prepare_commands(Path('authorized legacy'))
+        audio_check = commands.index(['pnpm', 'test:service-audio'])
+        self.assertLess(commands.index(['pnpm', 'install', '--frozen-lockfile']), audio_check)
+        self.assertLess(audio_check, commands.index([MODULE.sys.executable, 'scripts/prepare-runtime.py']))
+        self.assertLess(audio_check, commands.index([MODULE.sys.executable, 'spikes/renpy-web/build.py']))
+
 
 if __name__ == '__main__':
     unittest.main()

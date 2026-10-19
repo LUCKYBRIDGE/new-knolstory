@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:53189) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/approved-editor.spec.ts:81:115 › tool navigation protects Korean composition and has one text return 1440 (7.5s)
+
+
+  1) [host] › tests/e2e/approved-editor.spec.ts:81:115 › tool navigation protects Korean composition and has one text return 1440 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('navigation', { name: '편집 도구', exact: true }).getByRole('button', { name: '배경·인물 편집', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByRole('navigation', { name: '편집 도구', exact: true }).getByRole('button', { name: '배경·인물 편집', exact: true }) with timeout 5000ms
+      - waiting for getByRole('navigation', { name: '편집 도구', exact: true }).getByRole('button', { name: '배경·인물 편집', exact: true })
+        13 × locator resolved to <button title="배경·인물 편집" aria-pressed="false" aria-label="배경·인물 편집">배경·인물</button>
+           - unexpected value "enabled"
+
+
+      85 |  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+      86 |  await tools.locator('[data-additional-tools]>summary').click();await text.dispatchEvent('compositionstart');
+    > 87 |  await expect(tools.getByRole('button',{name:'배경·인물 편집',exact:true})).toBeDisabled();
+         |                                                                       ^
+      88 |  for(const name of ['글 편집','선택지 편집','연출 편집','컷 목록','소리 편집'])await expect(tools.getByRole('button',{name,exact:true,includeHidden:true})).toBeDisabled();
+      89 |  await expect(text).toBeVisible();await expect(tools.getByRole('button',{name:'글 편집',exact:true})).toHaveAttribute('aria-pressed','true');await text.dispatchEvent('compositionend');
+      90 |  await tools.getByRole('button',{name:'컷 목록',exact:true}).click();await expect(tools.getByRole('button',{name:'글로 돌아가기',exact:true})).toHaveCount(0);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-editor.spec.ts:87:71
+
+    Error Context: test-results-tool-navigation/approved-editor-tool-navig-d60d4-nd-has-one-text-return-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-tool-navigation/approved-editor-tool-navig-d60d4-nd-has-one-text-return-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-tool-navigation/approved-editor-tool-navig-d60d4-nd-has-one-text-return-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/approved-editor.spec.ts:81:115 › tool navigation protects Korean composition and has one text return 1440 

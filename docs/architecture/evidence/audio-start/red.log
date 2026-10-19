@@ -1,0 +1,20 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/audio-start.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/audio-start.test.ts [ packages/runtime-core/tests/audio-start.test.ts ]
+Error: Cannot find module '../src/audio-start' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core/tests/audio-start.test.ts
+ ❯ packages/runtime-core/tests/audio-start.test.ts:3:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  18:37:07
+   Duration  746ms (transform 448ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,56 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:22] "GET / HTTP/1.1" 200 -
+
+
+Running 1 test using 1 worker
+
+(node:46751) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [stories-runtime] › tests/e2e/branch-scope.spec.ts:46:1 › branch preview preserves draft during composition/save failure and source deletion stays guarded
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/15ommmref8qzx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 08:09:23] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+  1 passed (3.0s)

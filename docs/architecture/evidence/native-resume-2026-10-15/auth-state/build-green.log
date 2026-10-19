@@ -1,0 +1,66 @@
+ Image knolstory-next-storage-test:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 583B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.storage-test
+#2 transferring dockerfile: 1.39kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#3 DONE 0.0s
+
+#4 [ 1/12] FROM docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c
+#4 resolve docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 92.38kB 0.0s done
+#5 DONE 0.0s
+
+#6 [ 2/12] RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
+#6 CACHED
+
+#7 [ 4/12] COPY server/package.json server/pnpm-lock.yaml ./
+#7 CACHED
+
+#8 [ 5/12] RUN pnpm install --ignore-workspace --frozen-lockfile
+#8 CACHED
+
+#9 [ 3/12] WORKDIR /workspace/server
+#9 CACHED
+
+#10 [ 6/12] COPY tsconfig.base.json /workspace/tsconfig.base.json
+#10 CACHED
+
+#11 [ 7/12] COPY server /workspace/server
+#11 DONE 0.0s
+
+#12 [ 8/12] COPY packages/story-domain/src /workspace/packages/story-domain/src
+#12 DONE 0.0s
+
+#13 [ 9/12] COPY packages/compatibility/src /workspace/packages/compatibility/src
+#13 DONE 0.0s
+
+#14 [10/12] COPY packages/asset-registry/src /workspace/packages/asset-registry/src
+#14 DONE 0.0s
+
+#15 [11/12] COPY tests/fixtures/stories /workspace/tests/fixtures/stories
+#15 DONE 0.0s
+
+#16 [12/12] COPY apps/web/public/assets/audio/chime.wav /workspace/apps/web/public/assets/audio/chime.wav
+#16 DONE 0.0s
+
+#17 exporting to image
+#17 exporting layers 0.1s done
+#17 exporting manifest sha256:ab02c19ed0515e1de6eda8528c77e5e607b51097b64e60b9e32919cc6f9b8b90 done
+#17 exporting config sha256:04fb65992b0b6f4a27520001e3b7e87012222bbca43a6df1b09b93104e995258 done
+#17 exporting attestation manifest sha256:ea590636e559be80cc64b1877b02e442866324fb46cfbc40e5784402481312f0 done
+#17 exporting manifest list sha256:11cb05f6c3e3dc64d879c3199195ab9fb299ebf5ac4b16d1ee8e3a87cfe0da5e done
+#17 naming to docker.io/library/knolstory-next-storage-test:local done
+#17 unpacking to docker.io/library/knolstory-next-storage-test:local 0.0s done
+#17 DONE 0.2s
+
+#18 resolving provenance for metadata file
+#18 DONE 0.0s
+ Image knolstory-next-storage-test:local Built 

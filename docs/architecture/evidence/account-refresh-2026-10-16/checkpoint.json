@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-16T10:29:45.721339+00:00",
+  "scope": "Same-page session recheck propagation, renewed-CSRF exact pending retry and logout races. Mocked API browser checks; no live OAuth or real device claim.",
+  "sourceSha256": {
+    "apps/web/components/use-account-session.ts": "5735c33180663221471881c5fd8eb3521ee7cc90c1c0718f7b5ba0a4d9b0b92e",
+    "apps/web/components/online-works-panel.tsx": "5b679183e372de1a209917d23a9cd5a98369c5b49bd7f1d93c23e264186637da",
+    "tests/e2e/online-works.spec.ts": "8437a4e7972051f087a7d91be20c01678e4887b8fde0f5e5c94606a8e996cf9e",
+    "tests/e2e/shortstory-online.spec.ts": "c89254e2ffedbc8f25567b9b3705b074d20a76b16c41f65a2b2237cc06e46e89"
+  },
+  "verification": {
+    "devFocusedGroups": [
+      {
+        "passed": 4,
+        "log": "final-menu-logout-green.log"
+      },
+      {
+        "passed": 1,
+        "log": "final-short-green.log"
+      },
+      {
+        "passed": 1,
+        "log": "unmount-final-green.log"
+      }
+    ],
+    "build": "build.log",
+    "typecheck": "final-types.log",
+    "lint": "final-test-lint.log",
+    "red": [
+      "menu-refresh-red.log",
+      "short-retry-red.log",
+      "logout-race-red.log",
+      "logout-ambiguous-red.log"
+    ],
+    "testHarnessFailures": [
+      "menu-refresh-green.log: wrong grep selected no tests",
+      "unmount-green.log: autosave savedAt compared as authored content; corrected project comparison without product change"
+    ],
+    "productionBrowser": {
+      "passed": 6,
+      "log": "production-browser.log",
+      "scope": "New static export on loopback3126, mocked API"
+    },
+    "docs": "docs-check.log"
+  },
+  "review": "Independent final read-only review: no remaining P1/P2 after logout success/failure completion notifications moved outside mounted guard.",
+  "preservation": "Auth state remains memory-only. No document, pending journal, legacy container or external infrastructure changes. Explicit refresh only invalidates UI lists and session state.",
+  "limitations": [
+    "No cross-tab real-time broadcast",
+    "Current isolated Docker API not yet rebuilt for prior expected-account guard",
+    "Live OAuth, physical devices, online deletion/recovery, class/share/retention policy and release gates remain"
+  ],
+  "next": "Rebuild isolated local API candidate and verify static Web against actual HTTP/DB; retain provider-disabled/live OAuth boundary.",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4
+  }
+}

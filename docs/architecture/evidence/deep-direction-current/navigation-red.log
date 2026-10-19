@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+(node:86573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/editor-navigation.spec.ts:12:115 › chosen editing visits survive join, loop, reload and native reading without authoring content 1440 (1.3s)
+
+
+  1) [host] › tests/e2e/editor-navigation.spec.ts:12:115 › chosen editing visits survive join, loop, reload and native reading without authoring content 1440 
+
+    Error: locator.click: Error: strict mode violation: locator('[data-work-menu]').locator('summary') resolved to 4 elements:
+        1) <summary>작품</summary> aka getByText('작품', { exact: true })
+        2) <summary>Excel · Google 시트</summary> aka getByText('Excel · Google 시트')
+        3) <summary>간단 표 v1 · 공개 시트</summary> aka getByText('간단 표 v1 · 공개 시트')
+        4) <summary>작품 복구 기록</summary> aka getByText('작품 복구 기록')
+
+    Call log:
+      - waiting for locator('[data-work-menu]').locator('summary')
+
+
+       6 | const [a,b,join]=original.lines;
+       7 | const source={...original,id:'editing-path-story',lines:original.lines.map((line:{id:string})=>line.id===a.id?{...line,ending:undefined,flow:{type:'choice',options:[{id:'via-b',label:'옆 컷을 거쳐 만난다',targetLineId:b.id},{id:'direct',label:'바로 만난다',targetLineId:join.id}]}}:line.id===b.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:join.id}}:line.id===join.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:a.id}}:line)};
+    >  8 | async function menu(page:Page){const root=page.locator('[data-work-menu]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator('summary').click();}
+         |                                                                                                                                                                           ^
+       9 | async function exportProject(page:Page){await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(readFileSync((await(await pending).path())!,'utf8')).project;}
+      10 | async function context(page:Page){const tools=page.locator('[data-writing-tools]');if(!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator('summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();return page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});}
+      11 | async function loaded(page:Page){await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');}
+        at menu (<repo>/tests/e2e/editor-navigation.spec.ts:8:171)
+        at <repo>/tests/e2e/editor-navigation.spec.ts:13:87
+
+    Error Context: test-results/editor-navigation-chosen-e-a84ff-hout-authoring-content-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/editor-navigation-chosen-e-a84ff-hout-authoring-content-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/editor-navigation-chosen-e-a84ff-hout-authoring-content-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/editor-navigation.spec.ts:12:115 › chosen editing visits survive join, loop, reload and native reading without authoring content 1440 

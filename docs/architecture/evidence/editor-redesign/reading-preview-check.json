@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-11",
+  "scope": "mockup navigation only; no real fullscreen, playback, storage or device verification",
+  "count": 45,
+  "results": [
+    {
+      "name": "settings-close",
+      "passed": true
+    },
+    {
+      "name": "fullscreen-escape",
+      "passed": true
+    },
+    {
+      "name": "restart-confirm-first-cut",
+      "passed": true
+    },
+    {
+      "name": "library-confirm-continue",
+      "passed": true
+    },
+    {
+      "name": "phone-menu-settings-fold",
+      "passed": true
+    },
+    {
+      "name": "menu-outside-close",
+      "passed": true
+    },
+    {
+      "name": "restart-cancel",
+      "passed": true
+    },
+    {
+      "name": "phone-bottom-dock-spacing",
+      "passed": true,
+      "foldedBottomGap": 8,
+      "expandedBottomGap": 8,
+      "dialogueToolGap": 4,
+      "rowGap": 2
+    },
+    {
+      "name": "compact-bar-hit-regions",
+      "passed": true,
+      "visibleHeight": 28,
+      "targets": [
+        {
+          "label": "지난기록",
+          "x": 451.1875,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "저장",
+          "x": 550.546875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "불러오기",
+          "x": 627.828125,
+          "y": 785,
+          "width": 56.171875,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "자동",
+          "x": 727.1875,
+          "y": 785,
+          "width": 34.09375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 저장",
+          "x": 804.46875,
+          "y": 785,
+          "width": 59.53125,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        },
+        {
+          "label": "빠른 불러오기",
+          "x": 907.1875,
+          "y": 785,
+          "width": 81.609375,
+          "height": 44,
+          "disabled": false,
+          "visible": true
+        }
+      ]
+    }
+  ]
+}

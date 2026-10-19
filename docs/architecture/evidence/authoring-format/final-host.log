@@ -1,0 +1,313 @@
+
+Running 161 tests using 1 worker
+
+(node:15184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/161] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 1280x900
+[2/161] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 820x1180
+[3/161] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 390x844
+[4/161] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 844x390
+[5/161] [host] › tests/e2e/authoring-formats.spec.ts:36:1 › blank official template creates new work through validated preview
+[6/161] [host] › tests/e2e/authoring.spec.ts:63:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip
+[7/161] [host] › tests/e2e/authoring.spec.ts:96:1 › newly authored branching work renders real assets and both native Ren’Py choices reach endings
+[8/161] [host] › tests/e2e/authoring.spec.ts:138:1 › blank creation preserves existing work and structural editing retains choice identities
+[9/161] [host] › tests/e2e/authoring.spec.ts:186:1 › explicit save retries a failed device write while preserving the draft
+[10/161] [host] › tests/e2e/authoring.spec.ts:209:1 › corrupt stored workspace remains untouched while switching and importing file-only drafts
+[11/161] [host] › tests/e2e/chapter-branch-identity.spec.ts:7:1 › chapter identity and extended branch cuts survive editor, file export and reload
+[12/161] [host] › tests/e2e/composition-intent.spec.ts:109:1 › composition authoring separates body scale, center, original facing and actor exits through files
+  1) [host] › tests/e2e/composition-intent.spec.ts:109:1 › composition authoring separates body scale, center, original facing and actor exits through files 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('button', { name: /위치 편집$/ })
+    Expected: 2
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('button', { name: /위치 편집$/ }) with timeout 5000ms
+      - waiting for getByRole('button', { name: /위치 편집$/ })
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      62 |   await tool(page, '자산 편집');
+      63 |   await expect(page.getByLabel('인물 표시', { exact: true })).toHaveValue('inherit');
+    > 64 |   await expect(page.getByRole('button', { name: /위치 편집$/ })).toHaveCount(2);
+         |                                                              ^
+      65 |   await page.getByLabel('인물 표시', { exact: true }).selectOption('none');
+      66 |   await expect(page.getByRole('button', { name: /위치 편집$/ })).toHaveCount(0);
+      67 |   await page.getByLabel('인물 표시', { exact: true }).selectOption('inherit');
+        at author (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/composition-intent.spec.ts:64:62)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/composition-intent.spec.ts:111:15
+
+    Error Context: ../../../../../tmp/knol-format-final-host/composition-intent-composi-7c118-d-actor-exits-through-files-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-final-host/composition-intent-composi-7c118-d-actor-exits-through-files-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-final-host/composition-intent-composi-7c118-d-actor-exits-through-files-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:16883) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[13/161] [host] › tests/e2e/composition-intent.spec.ts:136:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes
+[14/161] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1440x900
+[15/161] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1024x768
+[16/161] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 768x1024
+[17/161] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 390x844
+[18/161] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 844x390
+[19/161] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:3:1 › actual Excel exported story preserves extended values in UI and portable archive
+[20/161] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:9:1 › actual Excel picture book exported XLSX opens at its edited page
+[21/161] [host] › tests/e2e/existing-story-enhancement.spec.ts:5:1 › existing originals are directly readable beside KnolStory works
+[22/161] [host] › tests/e2e/flow-authoring.spec.ts:78:1 › flow overview navigates nested branches and diagnoses pending and unreachable cuts without losing authored content
+[23/161] [host] › tests/e2e/flow-authoring.spec.ts:151:1 › native Ren’Py follows all six nested and merged routes to two independent endings with a persistent renderer
+[24/161] [host] › tests/e2e/flow-authoring.spec.ts:186:1 › large inherited work can find and edit a cut beyond the initial chapter page
+[25/161] [host] › tests/e2e/four-work-library.spec.ts:4:1 › the default library groups eight manuscripts into four independent work choices
+[26/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 원작: chosen manuscript opens and returns to its grouped book
+[27/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 놀스토리: chosen manuscript opens and returns to its grouped book
+[28/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 원작: chosen manuscript opens and returns to its grouped book
+[29/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 놀스토리: chosen manuscript opens and returns to its grouped book
+[30/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 원작: chosen manuscript opens and returns to its grouped book
+[31/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 놀스토리: chosen manuscript opens and returns to its grouped book
+[32/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 원작: chosen manuscript opens and returns to its grouped book
+[33/161] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 놀스토리: chosen manuscript opens and returns to its grouped book
+[34/161] [host] › tests/e2e/four-work-library.spec.ts:35:1 › all four shelf choices open their actual ShortStory and return to the same library
+[35/161] [host] › tests/e2e/four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+[36/161] [host] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+[37/161] [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+[38/161] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual rabbit picture book read, isolated position and complete A4 print
+[39/161] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual onggojib picture book read, isolated position and complete A4 print
+[40/161] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual seonnyeo picture book read, isolated position and complete A4 print
+[41/161] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual heungbu picture book read, isolated position and complete A4 print
+[42/161] [host] › tests/e2e/four-work-shortstory.spec.ts:30:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import
+[43/161] [host] › tests/e2e/four-work-shortstory.spec.ts:52:1 › old single workspace backs up, immediate new/import preserve it, unsupported v2 rejects and storage failure blocks switching
+[44/161] [host] › tests/e2e/four-work-shortstory.spec.ts:63:1 › delayed Google picture book import retains books created and edited while waiting
+[45/161] [host] › tests/e2e/four-work-shortstory.spec.ts:75:1 › failed picture book deletion preserves its editable draft for save retry and reload
+[46/161] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser
+[47/161] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser
+[48/161] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser
+[49/161] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser
+[50/161] [host] › tests/e2e/google-authoring-roundtrip.spec.ts:3:1 › actual Google exported story preserves extended values in UI and portable archive
+[51/161] [host] › tests/e2e/google-authoring-roundtrip.spec.ts:9:1 › actual Google picture book exported XLSX opens at its edited page
+[52/161] [host] › tests/e2e/introduction-stability.spec.ts:7:1 › introduction waits for a choice and stays open across reloads and new navigation
+[53/161] [host] › tests/e2e/introduction-stability.spec.ts:42:1 › my works leaves introduction only after an explicit choice
+[54/161] [host] › tests/e2e/introduction-stability.spec.ts:51:1 › a corrupt workspace stays intact while introduction waits for explicit navigation
+[55/161] [host] › tests/e2e/introduction-stability.spec.ts:64:1 › explicit ShortStory library return is consumed so later preparation survives reload
+[56/161] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+[57/161] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px
+[58/161] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:61:1 › new manuscript story survives files and reaches both endings in native RenPy
+[59/161] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+[60/161] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px
+[61/161] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 1365x900
+[62/161] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 820x1180
+[63/161] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 390x844
+[64/161] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 844x390
+[65/161] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740
+[66/161] [host] › tests/e2e/library-design-parity.spec.ts:19:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft
+[67/161] [host] › tests/e2e/library-design-parity.spec.ts:28:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book
+[68/161] [host] › tests/e2e/library-design-parity.spec.ts:42:1 › layered front, spine and back covers keep direct edits in the draft until apply
+[69/161] [host] › tests/e2e/library-design-parity.spec.ts:51:1 › all eight books start native RenPy from the library focus and retain the same runtime
+[70/161] [host] › tests/e2e/library-design-parity.spec.ts:63:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript
+[71/161] [host] › tests/e2e/library-design-parity.spec.ts:69:1 › tab browsing preferences survive book work and reload without entering the story file
+[72/161] [host] › tests/e2e/library-design-parity.spec.ts:74:1 › modal keyboard boundaries include collapsed settings and nested image selection
+[73/161] [host] › tests/e2e/library-design-parity.spec.ts:78:1 › cover title size changes the rendered typography without covering the whole artwork panel
+[74/161] [host] › tests/e2e/library-design-parity.spec.ts:82:1 › books physically rest on shelf faces and room decoration frames the focused shelves
+[75/161] [host] › tests/e2e/library-design-parity.spec.ts:94:1 › cabinet preserves shelf capacity and at least two rows around four books
+[76/161] [host] › tests/e2e/library-design-parity.spec.ts:101:1 › reference introduction uses exact rectangular posters and quiet library controls
+[77/161] [host] › tests/e2e/library-design-parity.spec.ts:109:1 › compact shelf keeps all four books and drawer near the first viewport
+[78/161] [host] › tests/e2e/library-design-parity.spec.ts:122:1 › cabinet joinery uses visible wood grain and preserves the book selection experience
+[79/161] [host] › tests/e2e/library-design-parity.spec.ts:130:1 › book page blocks stay narrow and rest above the shelf instead of protruding below the cover
+[80/161] [host] › tests/e2e/library-design-parity.spec.ts:136:1 › branded library shows word-safe cover titles and opens cover editing directly from the chosen book
+[81/161] [host] › tests/e2e/local-library.spec.ts:102:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome
+[82/161] [host] › tests/e2e/local-library.spec.ts:208:1 › library keeps blank planning optional and separates examples from a UI-created work
+[83/161] [host] › tests/e2e/local-library.spec.ts:229:1 › previous device workspace opens in library without changing its authored content or legacy keys
+[84/161] [host] › tests/e2e/local-library.spec.ts:258:1 › corrupt device storage is kept intact while UI-created recovery work can be exported
+[85/161] [host] › tests/e2e/local-library.spec.ts:283:1 › example preparation makes an independent own copy and duplicate import keeps the original
+[86/161] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1440x1000
+[87/161] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1024x768
+[88/161] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 768x1024
+[89/161] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 390x844
+[90/161] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 844x390
+[91/161] [host] › tests/e2e/media-provenance.spec.ts:5:1 › existing-work audio source and rights records travel with the original bytes
+[92/161] [host] › tests/e2e/memo-authoring.spec.ts:14:1 › memo fields survive reorder, delete undo, filters, device save and fresh-context file import on five viewport sizes
+[93/161] [host] › tests/e2e/mobile-authoring.spec.ts:94:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change
+[94/161] [host] › tests/e2e/mobile-authoring.spec.ts:188:1 › phone file-restored work renders real assets and both native Ren’Py endings with one iframe
+[95/161] [host] › tests/e2e/presentation-polish.spec.ts:78:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+[96/161] [host] › tests/e2e/presentation-polish.spec.ts:104:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+[97/161] [host] › tests/e2e/presentation-polish.spec.ts:147:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+[98/161] [host] › tests/e2e/reading-surface.spec.ts:4:1 › reading gives the stage full width and keeps an exit while runtime is preparing
+[99/161] [host] › tests/e2e/reading-surface.spec.ts:17:1 › current cut exposes outgoing destination and local chapter cut count
+[100/161] [host] › tests/e2e/reading-surface.spec.ts:27:1 › choice-created chapters receive branch identity immediately
+[101/161] [host] › tests/e2e/reading-surface.spec.ts:36:1 › landscape reading fits the complete runtime viewport above the screen edge
+[102/161] [host] › tests/e2e/reading-surface.spec.ts:42:1 › portrait reading keeps dialogue and choices inside the visible runtime area
+[103/161] [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 1280px
+[104/161] [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 390px
+[105/161] [host] › tests/e2e/responsive-audio-authoring.spec.ts:79:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches
+[106/161] [host] › tests/e2e/responsive-audio-authoring.spec.ts:160:1 › delivered portable branching demo opens with embedded audio and plays both native endings
+[107/161] [host] › tests/e2e/responsive-audio-authoring.spec.ts:185:1 › ending keeps the last entrance confirmed and does not replay its sounds
+[108/161] [host] › tests/e2e/responsive-editor.spec.ts:3:1 › draft and the same iframe survive panel changes and portrait/landscape resize
+[109/161] [host] › tests/e2e/responsive-editor.spec.ts:21:1 › logical actor coordinates survive viewport changes
+[110/161] [host] › tests/e2e/runtime-unavailable.spec.ts:3:1 › runtime load failure preserves authored text without a substitute stage
+[111/161] [host] › tests/e2e/short-authoring-formats.spec.ts:5:1 › official shortstory Excel edits are previewed, cancellable and survive independent file reopening
+[112/161] [host] › tests/e2e/short-authoring-formats.spec.ts:29:1 › blank official shortstory workbook accepts a new book and rejects formulas without changing the draft
+[113/161] [host] › tests/e2e/shortstory-conflict.spec.ts:4:1 › two ShortStory tabs preserve the saved book and export the blocked draft
+[114/161] [host] › tests/e2e/shortstory-conflict.spec.ts:24:1 › a read-only second tab never migrates or recovers storage over the writer
+[115/161] [host] › tests/e2e/shortstory.spec.ts:4:1 › ShortStory edits static pages, saves, restores files and prints without runtime
+[116/161] [host] › tests/e2e/shortstory.spec.ts:31:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected
+[117/161] [host] › tests/e2e/storage-recovery.spec.ts:11:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+[118/161] [host] › tests/e2e/storage-recovery.spec.ts:26:1 › second tab draft cannot overwrite first tab, even when using manual save
+[119/161] [host] › tests/e2e/storage-recovery.spec.ts:37:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+[120/161] [host] › tests/e2e/storage-recovery.spec.ts:50:1 › failed deletion preserves the previous deleted book and the current draft together
+[121/161] [host] › tests/e2e/storage-recovery.spec.ts:64:1 › page restoration reacquires ownership before saving and preserves the draft
+[122/161] [host] › tests/e2e/storage-recovery.spec.ts:74:1 › the complete long Seonnyeo copy can delete and undo a cut beyond checkpoint capacity
+[123/161] [host] › tests/e2e/stories.spec.ts:6:3 › 선녀와 나무꾼: representative text edits survive reload and file roundtrip
+[124/161] [host] › tests/e2e/stories.spec.ts:6:3 › 흥부와 놀부: representative text edits survive reload and file roundtrip
+[125/161] [host] › tests/e2e/stories.spec.ts:6:3 › 옹고집전: representative text edits survive reload and file roundtrip
+[126/161] [host] › tests/e2e/stories.spec.ts:6:3 › 별주부전: representative text edits survive reload and file roundtrip
+[127/161] [host] › tests/e2e/stories.spec.ts:31:1 › persistent story runtime and current edit survive narrow screen changes
+[128/161] [host] › tests/e2e/stories.spec.ts:55:1 › malformed import preserves current work and explains the error
+[129/161] [host] › tests/e2e/stories.spec.ts:73:1 › edits stay separate when switching representative works
+[130/161] [host] › tests/e2e/stories.spec.ts:86:1 › unfinished links and explicit endings remain distinct in playback
+  2) [host] › tests/e2e/stories.spec.ts:86:1 › unfinished links and explicit endings remain distinct in playback 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '다음으로', exact: true })
+        - locator resolved to <button disabled>다음으로</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        230 × waiting for element to be visible, enabled and stable
+            - element is not enabled
+          - retrying click action
+            - waiting 500ms
+
+
+      91 |   await page.getByLabel("도착 컷", { exact: true }).selectOption("");
+      92 |   await page.getByRole("button", { name: "현재 컷부터 읽기" }).click();
+    > 93 |   await page.getByRole("button", { name: "다음으로", exact: true }).click();
+         |                                                                 ^
+      94 |   await expect(page.getByTestId("playback-status")).toHaveText("연결 대기");
+      95 |   await page.getByRole("button", { name: "편집으로", exact: true }).click();
+      96 |   await page.getByLabel("도착 컷", { exact: true }).selectOption("__ending");
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/stories.spec.ts:93:65
+
+    Error Context: ../../../../../tmp/knol-format-final-host/stories-unfinished-links-a-bbdbe-remain-distinct-in-playback-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-final-host/stories-unfinished-links-a-bbdbe-remain-distinct-in-playback-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-final-host/stories-unfinished-links-a-bbdbe-remain-distinct-in-playback-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:22962) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[131/161] [host] › tests/e2e/stories.spec.ts:104:1 › importing a different work preserves edits in the outgoing representative work
+[132/161] [host] › tests/e2e/stories.spec.ts:127:3 › empty imported document leaves the editor intact
+[133/161] [host] › tests/e2e/stories.spec.ts:127:3 › unknown-asset imported document leaves the editor intact
+[134/161] [host] › tests/e2e/stories.spec.ts:162:1 › reading position and branch history resume after reload
+  3) [host] › tests/e2e/stories.spec.ts:162:1 › reading position and branch history resume after reload 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '다음으로', exact: true })
+        - locator resolved to <button disabled>다음으로</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        231 × waiting for element to be visible, enabled and stable
+            - element is not enabled
+          - retrying click action
+            - waiting 500ms
+
+
+      164 |   await page.getByLabel('작품 선택').selectOption('heungbu');
+      165 |   await page.getByRole('button', { name: '현재 컷부터 읽기' }).click();
+    > 166 |   await page.getByRole('button', { name: '다음으로', exact: true }).click();
+          |                                                                 ^
+      167 |   const current = await page.locator('[data-line-id][aria-current="true"]').getAttribute('data-line-id');
+      168 |   await expect.poll(async () => page.evaluate(() => JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path.length)).toBe(2);
+      169 |   await page.reload();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/stories.spec.ts:166:65
+
+    Error Context: ../../../../../tmp/knol-format-final-host/stories-reading-position-a-327f8-history-resume-after-reload-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-final-host/stories-reading-position-a-327f8-history-resume-after-reload-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-final-host/stories-reading-position-a-327f8-history-resume-after-reload-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:23237) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[135/161] [host] › tests/e2e/vn-workflow.spec.ts:10:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields
+[136/161] [host] › tests/e2e/vn-workflow.spec.ts:22:1 › native portrait single speaker, slots and actual-path backlog restore both routes
+[137/161] [host] › tests/e2e/vn-workflow.spec.ts:38:1 › changed-work slots show saved excerpt and require explicit compatible restore
+[138/161] [host] › tests/e2e/vn-workflow.spec.ts:49:1 › numbered real-asset branch chapters play A and B then join without crossing routes
+[139/161] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 1365x900
+[140/161] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 820x1180
+[141/161] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 390x844
+[142/161] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 844x390
+[143/161] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 320x740
+[144/161] [host] › tests/e2e/walnut-library.spec.ts:17:1 › cabinet keeps two shelf rows with four books, a single match or an empty collection
+(node:23274) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[145/161] [host] › tests/e2e/entry-cover.spec.ts:7:1 › fresh browser entry introduces existing books and explicit navigation enters library
+[146/161] [host] › tests/e2e/entry-cover.spec.ts:28:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration
+[147/161] [host] › tests/e2e/entry-cover.spec.ts:28:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration
+[148/161] [host] › tests/e2e/entry-cover.spec.ts:58:1 › all eight existing editions enter actual RenPy through their stored book cover
+[149/161] [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at portrait
+[150/161] [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at landscape
+[151/161] [host] › tests/e2e/entry-cover.spec.ts:79:1 › cover title validation keeps the applied book intact and draft recoverable
+[152/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › seonnyeo-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[153/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › heungbu-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[154/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › onggojib-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[155/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › rabbit-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[156/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › seonnyeo: actual browser reads the existing scored work, resumes and preserves its archive
+[157/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive
+[158/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › onggojib: actual browser reads the existing scored work, resumes and preserves its archive
+[159/161] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › rabbit: actual browser reads the existing scored work, resumes and preserves its archive
+[160/161] [host] › tests/e2e/existing-score-runtime.spec.ts:198:1 › Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py
+[161/161] [host] › tests/e2e/existing-score-runtime.spec.ts:239:1 › existing eight works: actual decoded music clock advances after the first unlocked cue
+  3 failed
+    [host] › tests/e2e/composition-intent.spec.ts:109:1 › composition authoring separates body scale, center, original facing and actor exits through files 
+    [host] › tests/e2e/stories.spec.ts:86:1 › unfinished links and explicit endings remain distinct in playback 
+    [host] › tests/e2e/stories.spec.ts:162:1 › reading position and branch history resume after reload 
+  28 skipped
+  130 passed (13.6m)

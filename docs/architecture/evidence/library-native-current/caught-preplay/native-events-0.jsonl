@@ -1,0 +1,23 @@
+{"at":"2026-10-12T22:46:34.477Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:34.688Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:34.688Z","type":"console-error","url":"http://127.0.0.1:3109/","message":"Failed to load resource: the server responded with a status of 404 (File not found)","location":{"url":"http://127.0.0.1:3109/favicon.ico","line":0,"column":0,"lineNumber":0,"columnNumber":0}}
+{"at":"2026-10-12T22:46:43.503Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:43.647Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:48.555Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:48.692Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:53.187Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:53.371Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:56.494Z","type":"debugger-exception","url":"http://127.0.0.1:3109/","reason":"exception","data":{"type":"object","subtype":"error","className":"Error","description":"Error: KnolStory caught-exception probe\n    at eval (knolstory-caught-exception-probe.js:1:22)\n    at eval (knolstory-caught-exception-probe.js:1:82)\n    at eval (<anonymous>)\n    at UtilityScript.evaluate (<anonymous>:311:30)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)","objectId":"7468283464081405406.3.1","uncaught":false},"frames":[{"functionName":"","url":"knolstory-caught-exception-probe.js","line":1,"column":16},{"functionName":"","url":"knolstory-caught-exception-probe.js","line":1,"column":82},{"functionName":"evaluate","url":"","line":311,"column":30},{"functionName":"","url":"","line":1,"column":44}]}
+{"at":"2026-10-12T22:46:56.496Z","type":"debugger-probe-verified","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:46:57.971Z","type":"console-error","url":"http://127.0.0.1:3109/","message":"Failed to load resource: the server responded with a status of 404 (File not found)","location":{"url":"http://127.0.0.1:3109/favicon.ico","line":0,"column":0,"lineNumber":0,"columnNumber":0}}
+{"at":"2026-10-12T22:46:58.170Z","type":"step","name":"fresh-next","index":0}
+{"at":"2026-10-12T22:46:58.356Z","type":"step","name":"fresh-next","index":1}
+{"at":"2026-10-12T22:46:58.517Z","type":"step","name":"fresh-next","index":2}
+{"at":"2026-10-12T22:46:58.943Z","type":"step","name":"fresh-next","index":3}
+{"at":"2026-10-12T22:46:59.355Z","type":"step","name":"fresh-next","index":4}
+{"at":"2026-10-12T22:47:01.280Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:47:01.480Z","type":"navigation","url":"http://127.0.0.1:3109/"}
+{"at":"2026-10-12T22:47:13.514Z","type":"navigation","url":"http://127.0.0.1:3109/shortstory"}
+{"at":"2026-10-12T22:47:13.612Z","type":"navigation","url":"http://127.0.0.1:3109/shortstory"}
+{"at":"2026-10-12T22:47:13.620Z","type":"request-failed","url":"http://127.0.0.1:3109/?view=library","failure":{"errorText":"net::ERR_ABORTED"}}
+{"at":"2026-10-12T22:47:13.642Z","type":"request-failed","url":"http://127.0.0.1:3109/","failure":{"errorText":"net::ERR_ABORTED"}}

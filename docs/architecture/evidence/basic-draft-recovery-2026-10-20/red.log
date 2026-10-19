@@ -1,0 +1,88 @@
+
+Running 3 tests using 1 worker
+
+(node:66039) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/basic-draft-recovery.spec.ts:11:55 › basic current-cut Korean draft survives blocked storage and exports without replacing the stored work (9.0s)
+(node:66127) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/basic-draft-recovery.spec.ts:11:55 › basic current-cut Korean draft survives unavailable storage and exports without replacing the stored work (8.3s)
+(node:66180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 tests/e2e/basic-draft-recovery.spec.ts:36:1 › owned basic current-cut text still autosaves (1.9s)
+
+
+  1) tests/e2e/basic-draft-recovery.spec.ts:11:55 › basic current-cut Korean draft survives blocked storage and exports without replacing the stored work 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  locator('[data-current-cut] textarea')
+    Expected: enabled
+    Received: disabled
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "toBeEnabled" locator('[data-current-cut] textarea') with timeout 2000ms
+      - waiting for locator('[data-current-cut] textarea')
+        18 × locator resolved to <textarea disabled aria-label="1컷 글" maxlength="20000" data-cut-id="P1-v166-1">기기에 보관한 원래 원고</textarea>
+           - unexpected value "disabled"
+
+
+      16 |  await expect(draftPage.getByRole('alert').filter({hasText:state==='blocked'?'다른 탭에서 보관함':'현재 원고를 임시 보관할 수 없어요'})).toBeVisible();
+      17 |  const field=draftPage.locator('[data-current-cut] textarea'),id=await field.getAttribute('data-cut-id');
+    > 18 |  await expect(field).toBeEnabled({timeout:2000});
+         |                      ^
+      19 |  await field.dispatchEvent('compositionstart');await expect(field).toBeEnabled();
+      20 |  const draft='저장소를 덮어쓰지 않는 한글 초안입니다.\n이 글은 작품 파일에 그대로 남습니다.';await field.fill(draft);
+      21 |  await expect(draftPage.getByRole('button',{name:/컷 배경 이미지 찾기/})).toBeDisabled();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/basic-draft-recovery.spec.ts:18:22
+
+    Error Context: docs/architecture/evidence/basic-draft-recovery-2026-10-20/red-run/basic-draft-recovery-basic-7d2e2-t-replacing-the-stored-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/basic-draft-recovery-2026-10-20/red-run/basic-draft-recovery-basic-7d2e2-t-replacing-the-stored-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/basic-draft-recovery-2026-10-20/red-run/basic-draft-recovery-basic-7d2e2-t-replacing-the-stored-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/basic-draft-recovery.spec.ts:11:55 › basic current-cut Korean draft survives unavailable storage and exports without replacing the stored work 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  locator('[data-current-cut] textarea')
+    Expected: enabled
+    Received: disabled
+    Timeout:  2000ms
+
+    Call log:
+      - Expect "toBeEnabled" locator('[data-current-cut] textarea') with timeout 2000ms
+      - waiting for locator('[data-current-cut] textarea')
+        16 × locator resolved to <textarea disabled aria-label="1컷 글" maxlength="20000" data-cut-id="P1-v166-1">기기에 보관한 원래 원고</textarea>
+           - unexpected value "disabled"
+
+
+      16 |  await expect(draftPage.getByRole('alert').filter({hasText:state==='blocked'?'다른 탭에서 보관함':'현재 원고를 임시 보관할 수 없어요'})).toBeVisible();
+      17 |  const field=draftPage.locator('[data-current-cut] textarea'),id=await field.getAttribute('data-cut-id');
+    > 18 |  await expect(field).toBeEnabled({timeout:2000});
+         |                      ^
+      19 |  await field.dispatchEvent('compositionstart');await expect(field).toBeEnabled();
+      20 |  const draft='저장소를 덮어쓰지 않는 한글 초안입니다.\n이 글은 작품 파일에 그대로 남습니다.';await field.fill(draft);
+      21 |  await expect(draftPage.getByRole('button',{name:/컷 배경 이미지 찾기/})).toBeDisabled();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/basic-draft-recovery.spec.ts:18:22
+
+    Error Context: docs/architecture/evidence/basic-draft-recovery-2026-10-20/red-run/basic-draft-recovery-basic-c3e28-t-replacing-the-stored-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/basic-draft-recovery-2026-10-20/red-run/basic-draft-recovery-basic-c3e28-t-replacing-the-stored-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/basic-draft-recovery-2026-10-20/red-run/basic-draft-recovery-basic-c3e28-t-replacing-the-stored-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/basic-draft-recovery.spec.ts:11:55 › basic current-cut Korean draft survives blocked storage and exports without replacing the stored work 
+    tests/e2e/basic-draft-recovery.spec.ts:11:55 › basic current-cut Korean draft survives unavailable storage and exports without replacing the stored work 
+  1 passed (20.6s)

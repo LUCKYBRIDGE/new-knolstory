@@ -1,0 +1,22 @@
+{
+  "scope": "Host acknowledgment harness; automatic Core advance only, no native rendering claim",
+  "focus": {
+    "tag": "BUTTON",
+    "label": "읽기 메뉴"
+  },
+  "playback": {
+    "lineId": "P1-v166-3",
+    "path": [
+      "P1-v166-1",
+      "P1-v166-2",
+      "P1-v166-3"
+    ],
+    "status": "reading",
+    "choiceHistory": [
+      {
+        "pathIndex": 0,
+        "choiceId": "one"
+      }
+    ]
+  }
+}

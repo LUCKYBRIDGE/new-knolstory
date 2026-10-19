@@ -2,6 +2,10 @@
 
 **Status:** Accepted (2026-10-06, 소유자 결정)
 
+## 2026-10-10 적용 범위 갱신
+
+현재 Next 저작 형식과 legacy 파일 호환 범위는 [ADR0016](0016-authoring-format-contract-and-scope.md)이 이 문서의 해당 부분을 대체한다. 아래는 2026-10-06 결정의 역사다. 현재 목표에 old story-maker 파일/이전 의무를 자동 적용하지 않는다. 원본 보호·namespace 경계는 유지한다.
+
 ## 배경
 
 Blueprint v1.3은 Ren'Py 단일 렌더러를 정의했지만, 레거시 baseline(`18da4fc`)에 이미 출시된 다음 기능의 처리 방침이 없었다.

@@ -1,0 +1,47 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/workbook-error-location.test.ts (2 tests | 2 failed) 4ms
+   × reports the actual worksheet row and Korean column name for duplicate IDs even after blank rows 3ms
+   × structural errors never tell users to find a nonexistent row zero 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/workbook-error-location.test.ts > reports the actual worksheet row and Korean column name for duplicate IDs even after blank rows
+AssertionError: expected [Function] to throw error including '컷 · 5행 · 컷 ID' but got '컷 · 0행 · id: ID가 비어 있거나 중복되었습니다.'
+
+Expected: "컷 · 5행 · 컷 ID"
+Received: "컷 · 0행 · id: ID가 비어 있거나 중복되었습니다."
+
+ ❯ packages/compatibility/tests/workbook-error-location.test.ts:6:50
+      4|  const spec:TableSpec={key:'cuts',title:'컷',columns:[{key:'id',label:'…
+      5|  const rows=readTable({cuts:{headers:['id'],rows:[['cut-1'],[],['cut-1…
+      6|  expect(()=>requireUnique(rows,'id',spec.title)).toThrow('컷 · 5행 · 컷 I…
+       |                                                  ^
+      7| });
+      8| it('structural errors never tell users to find a nonexistent row zero'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/compatibility/tests/workbook-error-location.test.ts > structural errors never tell users to find a nonexistent row zero
+AssertionError: expected '무대 구성 · 0행 · 연결: 컷 ID를 확인하세요.' to be '무대 구성 · 구조 확인 · 연결: 컷 ID를 확인하세요.' // Object.is equality
+
+Expected: "무대 구성 · 구조 확인 · 연결: 컷 ID를 확인하세요."
+Received: "무대 구성 · 0행 · 연결: 컷 ID를 확인하세요."
+
+ ❯ packages/compatibility/tests/workbook-error-location.test.ts:9:67
+      7| });
+      8| it('structural errors never tell users to find a nonexistent row zero'…
+      9|  expect(new WorkbookIssue('무대 구성',0,'연결','컷 ID를 확인하세요.').message).toBe…
+       |                                                                   ^
+     10| });
+     11|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  01:12:50
+   Duration  163ms (transform 55ms, setup 0ms, import 71ms, tests 4ms, environment 0ms)
+

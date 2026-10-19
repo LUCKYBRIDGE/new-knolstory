@@ -1,0 +1,12 @@
+
+Running 5 tests using 1 worker
+
+(node:27311) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 1440 (4.7s)
+  ✓  2 [host] › tests/e2e/editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 768 (4.6s)
+  ✓  3 [host] › tests/e2e/editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 390 (4.7s)
+  ✓  4 [host] › tests/e2e/editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 844 (4.4s)
+  ✓  5 [host] › tests/e2e/editor-flow-context.spec.ts:12:1 › unreachable and pending context opens repair without changing original links (4.0s)
+
+  5 passed (22.9s)

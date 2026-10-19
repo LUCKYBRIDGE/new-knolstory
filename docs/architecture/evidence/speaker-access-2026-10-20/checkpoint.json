@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-implementation-and-verification-complete-not-deployed",
+  "sha256": {
+    "apps/web/lib/local-work-file.ts": "10c7a1767614bddae9590874a96189e1e7ded826bd63a656d417d5802c1b2956",
+    "apps/web/lib/local-work-file.test.ts": "bfba417274f8dec420fa8cc9be9dce3b83f99b179aa7ae0176c32609c92a8c7f",
+    "apps/web/components/story-workspace-inspector.tsx": "bf77432c5aea82cd8bb510758524d897f62244f88171744b615949a395e15e04",
+    "apps/web/components/story-workspace.tsx": "248659a139314f213bd4f6ddf95f7f9a20ba5534c024175de428e3f306acaae6",
+    "apps/web/components/story-speaker-controls.tsx": "5ae8942b11ba347b28c1bc8a8e2bae17fe62d677f0f189ac6cf9f571cfaec51f",
+    "tests/e2e/editing-workbench.spec.ts": "49d19ece63a9bd6a513b80991ef49ccfd5ab09f58b1910eb6ce534fe17fe3fee",
+    "tests/e2e/local-work-files.spec.ts": "33f89106be203685fdc26fb42d953b1f7a380d4325036a84e5beabdb28d5bab6"
+  },
+  "limits": [
+    "Browser composition events are modeled; physical Korean keyboards and screen readers were not verified.",
+    "File stream and picker behavior uses a browser API model; not evidence of physical OS disk failure or atomic cross-process exclusion.",
+    "No manuscript schema, native renderer, production service or unanswered policy changed."
+  ],
+  "review": "Independent read-only agent feedback found no blocking defect in these changes; earlier unrelated writer-status behavior was not certified.",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Concrete failing paths reproduced, corrected and focused final-candidate integration passed; original data and prior evidence retained."
+  },
+  "scope": [
+    "Current cut speaker tools restored behind characters opt-in; existing character data does not auto-enable editing.",
+    "Link to existing stage actor, register a named speaker, protect registration IME and isolate detail drafts by project/cut.",
+    "Disabling tools leaves data unchanged; full local file reimport preserves document except independent copy ID."
+  ],
+  "checks": {
+    "red": "red-current.log: old candidate missing speaker detail entry after opt-in; timeout. red.log earlier no-tests-found setup invocation retained.",
+    "green": "green.log: 1 browser E2E passed (4.6s).",
+    "finalIntegration": "../input-file-safety-2026-10-20/integrated-ready.log: 6 focused tests passed together after final build.",
+    "unitIntegration": "unit-integration.log: 28 tests passed across Runtime Core authoring and file saver.",
+    "build": "build.log passed.",
+    "lint": "lint.log passed.",
+    "followUp": "../reload-draft-2026-10-20/final.log: first6focused passed after final wording/source build; later recovery-alert layout change affects blocked state and is separately verified in reload checkpoint. Historical earlier manifests retained."
+  }
+}

@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:48849) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/online-works.spec.ts:22:31 › explicit online new save and independent copy preserve local originals 1440 (3.6s)
+  ✓  2 tests/e2e/online-works.spec.ts:22:31 › explicit online new save and independent copy preserve local originals 390 (3.6s)
+  ✓  3 tests/e2e/online-works.spec.ts:28:1 › late online read never replaces a newly edited local work (2.0s)
+  ✓  4 tests/e2e/online-works.spec.ts:34:1 › local save failure prevents an online POST and preserves the original work (1.8s)
+  ✓  5 tests/e2e/online-works.spec.ts:39:1 › a response-lost create retries the exact request after reload without duplicating work (4.9s)
+  ✓  6 tests/e2e/online-works.spec.ts:45:1 › logout invalidates an in-flight online read before any local copy is applied (2.5s)
+  ✓  7 tests/e2e/online-works.spec.ts:52:1 › revision conflicts keep the local original and offer comparison without force overwrite (2.1s)
+  ✓  8 tests/e2e/online-works.spec.ts:56:1 › deleting a local work while online copy validation awaits preserves the deletion checkpoint (4.1s)
+
+  8 passed (25.1s)

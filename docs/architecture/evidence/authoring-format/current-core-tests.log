@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/authoring-archive.test.ts packages/compatibility/tests/authoring-fields.test.ts packages/compatibility/tests/authoring-workbook.test.ts packages/compatibility/tests/workbook-cover.test.ts packages/compatibility/tests/workbook-flow.test.ts packages/compatibility/tests/workbook-model.test.ts packages/compatibility/tests/workbook-preparation.test.ts packages/compatibility/tests/workbook-project.test.ts packages/compatibility/tests/workbook-stage-audio-presentation.test.ts packages/compatibility/tests/table-formats.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  10 passed (10)
+      Tests  66 passed (66)
+   Start at  20:28:47
+   Duration  1.35s (transform 2.06s, setup 0ms, import 4.57s, tests 1.30s, environment 0ms)
+

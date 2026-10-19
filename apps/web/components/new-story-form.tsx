@@ -18,8 +18,8 @@ export function NewStoryForm({ disabled, onCreate }: {
       }
     }}>
       <label>새 작품 제목<input autoFocus aria-label="새 작품 제목" maxLength={200} required value={title} onChange={event => setTitle(event.target.value)} /></label>
-      <p>기존 작품을 보관하고, 글과 자산이 없는 첫 컷부터 시작해요.</p>
-      <button type="submit" disabled={!title.trim()}>빈 작품 시작</button>
+      <p>첫 컷의 대사·해설을 바로 쓰기 시작합니다. 표지와 기획은 나중에 작품 메뉴에서 정할 수 있어요.</p>
+      <button type="submit" disabled={!title.trim()}>새 작품 생성</button>
       <button type="button" onClick={() => setOpen(false)}>취소</button>
     </form>}
   </div>;

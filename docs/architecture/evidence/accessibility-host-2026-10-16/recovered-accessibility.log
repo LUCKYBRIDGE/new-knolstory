@@ -1,0 +1,17 @@
+
+Running 10 tests using 1 worker
+
+(node:92739) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px (699ms)
+  ✓   2 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 390px (678ms)
+  ✓   3 tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 1440px (668ms)
+  ✓   4 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 320x740 (584ms)
+  ✓   5 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x740 (602ms)
+  ✓   6 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 1440x740 (590ms)
+  ✓   7 tests/e2e/accessibility-narrow.spec.ts:11:72 › account and online panels fit the viewport at 390x390 (563ms)
+  ✓   8 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 1440 (3.1s)
+  ✓   9 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces preserve label names and report A/AA findings 390 (3.0s)
+  ✓  10 tests/e2e/accessibility.spec.ts:45:1 › bookshelf drawer exposes its existing label through a supported group role (544ms)
+
+  10 passed (11.5s)

@@ -1,0 +1,97 @@
+{
+  "web": {
+    "status": 200,
+    "bytes": 7217,
+    "sha256": "428648edd53f0472b994df6cd2a0e83674bf41e6b0ed4d5640eaf52b8a1bab11"
+  },
+  "providers": {
+    "success": true,
+    "data": {
+      "signupProvider": "kakao",
+      "providers": {
+        "kakao": true,
+        "google": false
+      }
+    }
+  },
+  "anonymousMe": {
+    "status": 401,
+    "requestIdPresent": true
+  },
+  "anonymousDocuments": 401,
+  "kakaoStart": {
+    "status": 302,
+    "authorizationHost": "kauth.kakao.com",
+    "callback": "https://story.knolquiz.com/api/v1/auth/kakao/callback",
+    "pkce": "S256",
+    "secureHttpOnlyCookie": true
+  },
+  "wrongHostRejected": 400,
+  "wasmRange": {
+    "status": 206,
+    "bytes": 64,
+    "matchesExport": true
+  },
+  "databaseAndReadiness": {
+    "ready": 200,
+    "role": {
+      "rolsuper": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolreplication": false,
+      "rolbypassrls": false
+    },
+    "counts": {
+      "accounts": 0,
+      "identities": 0,
+      "migrations": 6
+    },
+    "ownerSecretAbsent": true,
+    "ddlAndJournalMutationDenied": true
+  },
+  "legacyStillRunning": [
+    {
+      "name": "knolstory-stg-live-app-1",
+      "running": true,
+      "startedAt": "2026-10-01T03:38:02.883949376Z"
+    },
+    {
+      "name": "knolstory-stg-live-db-1",
+      "running": true,
+      "startedAt": "2026-09-29T02:20:06.008940386Z"
+    },
+    {
+      "name": "knolstory-stg-verification-app-1",
+      "running": true,
+      "startedAt": "2026-09-28T23:20:40.959547751Z"
+    },
+    {
+      "name": "knolstory-stg-verification-admin-1",
+      "running": true,
+      "startedAt": "2026-09-28T23:20:40.958357209Z"
+    },
+    {
+      "name": "knolstory-stg-verification-db-1",
+      "running": true,
+      "startedAt": "2026-09-28T23:20:40.961454251Z"
+    }
+  ],
+  "sourceSha256": {
+    "server/operations/production-compose.mjs": "83002128a008f4d454303dbab152699a6f894e4c5d51ac91ee2c615a0f392870",
+    "server/operations/production-compose.test.mjs": "71ce303fc2540b0987f111ba503b97353ebc99b21fe2397243876cebdb3918ca",
+    "server/operations/production-ingress.mjs": "95fca3c554a2d14a9a3bfa6cb3463d87ae46b4c3a9437215873e417d01cf3a7e",
+    "server/operations/production-ingress.test.mjs": "c3a424ec7c8230a4b015647ed34b181b7b8913de70764a0d3fd142246c0e13cf",
+    "server/compose.production.yml": "dc8d6ef5c8de5640f8400cd3b401f3e2ec820f5f92f3c276413fa864bdb0bddf",
+    "server/Dockerfile.ingress": "f6dfe2b8da7eca7a295cef9b6164958151bcab6cf19f890b87c804a4acaa6c33",
+    "server/migrations/production.ts": "392c3c9812337c86f08525d99bec5e9b620aae2c18d5823b7095d3356a463a3e",
+    "server/operations/build-api.mjs": "2c8ab206baccae9f93577d55576d478a7be3b5d966825af7fc2c87ffc184eb9d"
+  },
+  "limits": [
+    "Local HTTP transport with explicit public Host; no public HTTPS/domain cutover",
+    "Kakao redirect generated but real consent/callback not completed",
+    "Google disabled",
+    "No legacy stop/deletion or Cloudflare writes",
+    "No production document mutations or synthetic accounts",
+    "Fresh DB migrated twice; failure injection coverage not measured"
+  ]
+}

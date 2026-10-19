@@ -1,0 +1,35 @@
+{
+  "request": "Keep introduction until explicit choice; legacy-informed seated plant, darker walnut depth and more space beside window/right wall",
+  "baseline": "story-maker@18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b app/globals.css warm oak and library-top-plant; exact existing plant image",
+  "entry": "Fresh / always introduction including return visits; reload restores saved active screen; explicit ShortStory library intent consumed once",
+  "plant": {
+    "imageSize": [
+      675,
+      900
+    ],
+    "potBaseFraction": 0.5711111111111111,
+    "beforeDesktopDeltaPx": 11.08,
+    "afterDeltaPx": "0..3 above/in the cap contact surface, checked all five viewports"
+  },
+  "spacing": {
+    "desktop": "7.5vw, clamped 20..120px",
+    "small": "20px each side"
+  },
+  "checks": {
+    "unitContractIntegration": 849,
+    "targetedEntryUnit": 14,
+    "targetedEntrySpacingBrowser": 9,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "mediaHashes": 1351,
+    "staticRelatedBrowser": 44,
+    "nativeOnlySkipped": 2
+  },
+  "review": "One-shot query reload regression found and reproduced RED; query-only consumption fixed; independent re-review found no additional concrete issue",
+  "limitations": [
+    "Chrome/Chromium viewport QA, not physical school hardware",
+    "No new or modified legacy media",
+    "No deployment or public-media release"
+  ]
+}

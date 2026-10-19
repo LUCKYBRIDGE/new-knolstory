@@ -1,0 +1,71 @@
+
+> knolstory-next@ typecheck /Users/wan/ai_dev/apps/new-knolstory
+> turbo run typecheck
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@knolstory/runtime-contract:typecheck: cache hit, replaying logs 4b98da788adc1828
+@knolstory/story-domain:typecheck: cache hit, replaying logs 8f2d5b5cb8a0c432
+@knolstory/asset-registry:typecheck: cache hit, replaying logs 78091bdf6ae34174
+@knolstory/runtime-contract:typecheck: 
+@knolstory/runtime-contract:typecheck: > @knolstory/runtime-contract@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-contract
+@knolstory/runtime-contract:typecheck: > tsc --noEmit
+@knolstory/runtime-contract:typecheck: 
+@knolstory/story-domain:typecheck: 
+@knolstory/story-domain:typecheck: > @knolstory/story-domain@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/story-domain
+@knolstory/asset-registry:typecheck: 
+@knolstory/asset-registry:typecheck: > @knolstory/asset-registry@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/asset-registry
+@knolstory/story-domain:typecheck: > tsc --noEmit
+@knolstory/story-domain:typecheck: 
+@knolstory/asset-registry:typecheck: > tsc --noEmit
+@knolstory/asset-registry:typecheck: 
+@knolstory/compatibility:typecheck: cache hit, replaying logs caf36a825dc851ab
+@knolstory/compatibility:typecheck: 
+@knolstory/compatibility:typecheck: > @knolstory/compatibility@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/compatibility
+@knolstory/compatibility:typecheck: > tsc --noEmit
+@knolstory/compatibility:typecheck: 
+@knolstory/runtime-core:typecheck: cache miss, executing 168a2fe9302ff4c9
+@knolstory/runtime-core:typecheck: 
+@knolstory/runtime-core:typecheck: > @knolstory/runtime-core@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core
+@knolstory/runtime-core:typecheck: > tsc --noEmit
+@knolstory/runtime-core:typecheck: 
+@knolstory/runtime-core:typecheck: tests/cut-range-delete.test.ts(11,35): error TS2345: Argument of type '{ lines: (StoryLine | { flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: import("/Users/wan/ai_dev/apps/new-knolstory/packages/story-domain/src/index").StoryAudio; ... 19 more ...; directionNote: string; })[]; ... 16 m...' is not assignable to parameter of type 'StoryProject'.
+@knolstory/runtime-core:typecheck:   Types of property 'lines' are incompatible.
+@knolstory/runtime-core:typecheck:     Type '(StoryLine | { flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: StoryAudio | undefined; ... 19 more ...; directionNote: string; })[]' is not assignable to type 'StoryLine[]'.
+@knolstory/runtime-core:typecheck:       Type 'StoryLine | { flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: StoryAudio | undefined; ... 19 more ...; directionNote: string; }' is not assignable to type 'StoryLine'.
+@knolstory/runtime-core:typecheck:         Type '{ flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: import("/Users/wan/ai_dev/apps/new-knolstory/packages/story-domain/src/index").StoryAudio; inheritActors?: boolean; ... 18 more ...; directionNote: string; }' is not assignable to type 'StoryLine'.
+@knolstory/runtime-core:typecheck:           Types of property 'flow' are incompatible.
+@knolstory/runtime-core:typecheck:             Type '{ type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }' is not assignable to type 'StoryFlow | undefined'.
+@knolstory/runtime-core:typecheck:               Type '{ type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }' is not assignable to type '{ type: "goto"; targetLineId: string | null; routes?: StoryScoreRoute[] | undefined; }'.
+@knolstory/runtime-core:typecheck:                 Types of property 'routes' are incompatible.
+@knolstory/runtime-core:typecheck:                   Type '{ id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]' is not assignable to type 'StoryScoreRoute[]'.
+@knolstory/runtime-core:typecheck:                     Type '{ id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }' is not assignable to type 'StoryScoreRoute'.
+@knolstory/runtime-core:typecheck:                       Types of property 'condition' are incompatible.
+@knolstory/runtime-core:typecheck:                         Property 'terms' is missing in type '{ mode: "all"; checks: never[]; }' but required in type 'StoryScoreCondition'.
+@knolstory/runtime-core:typecheck: tests/cut-range-delete.test.ts(11,103): error TS2345: Argument of type '{ lines: (StoryLine | { flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: import("/Users/wan/ai_dev/apps/new-knolstory/packages/story-domain/src/index").StoryAudio; ... 19 more ...; directionNote: string; })[]; ... 16 m...' is not assignable to parameter of type 'StoryProject'.
+@knolstory/runtime-core:typecheck:   Types of property 'lines' are incompatible.
+@knolstory/runtime-core:typecheck:     Type '(StoryLine | { flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: StoryAudio | undefined; ... 19 more ...; directionNote: string; })[]' is not assignable to type 'StoryLine[]'.
+@knolstory/runtime-core:typecheck:       Type 'StoryLine | { flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: StoryAudio | undefined; ... 19 more ...; directionNote: string; }' is not assignable to type 'StoryLine'.
+@knolstory/runtime-core:typecheck:         Type '{ flow: { type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }; audio?: import("/Users/wan/ai_dev/apps/new-knolstory/packages/story-domain/src/index").StoryAudio; inheritActors?: boolean; ... 18 more ...; directionNote: string; }' is not assignable to type 'StoryLine'.
+@knolstory/runtime-core:typecheck:           Types of property 'flow' are incompatible.
+@knolstory/runtime-core:typecheck:             Type '{ type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }' is not assignable to type 'StoryFlow | undefined'.
+@knolstory/runtime-core:typecheck:               Type '{ type: "goto"; targetLineId: null; routes: { id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]; }' is not assignable to type '{ type: "goto"; targetLineId: string | null; routes?: StoryScoreRoute[] | undefined; }'.
+@knolstory/runtime-core:typecheck:                 Types of property 'routes' are incompatible.
+@knolstory/runtime-core:typecheck:                   Type '{ id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }[]' is not assignable to type 'StoryScoreRoute[]'.
+@knolstory/runtime-core:typecheck:                     Type '{ id: string; condition: { mode: "all"; checks: never[]; }; targetLineId: string; }' is not assignable to type 'StoryScoreRoute'.
+@knolstory/runtime-core:typecheck:                       Types of property 'condition' are incompatible.
+@knolstory/runtime-core:typecheck:                         Property 'terms' is missing in type '{ mode: "all"; checks: never[]; }' but required in type 'StoryScoreCondition'.
+@knolstory/runtime-core:typecheck:  ELIFECYCLE  Command failed with exit code 2.
+@knolstory/runtime-core#typecheck:  ERROR  command (/Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core) /opt/homebrew/bin/pnpm run typecheck exited (2)
+
+ Tasks:    4 successful, 5 total
+Cached:    4 cached, 5 total
+  Time:    2.41s 
+Failed:    @knolstory/runtime-core#typecheck
+
+ ERROR  run failed: command  exited (2)
+ ELIFECYCLE  Command failed with exit code 2.

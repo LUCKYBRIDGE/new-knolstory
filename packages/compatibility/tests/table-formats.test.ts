@@ -107,3 +107,22 @@ describe('table boundaries and external spreadsheet edits',()=>{
     expect(importShortStoryTable(table).pages[0].text).toBe('표에서 고친 글');
   });
 });
+
+// Next table v1 is still an existing-user format, even after the editable workbook upgrade.
+describe('existing Next table header integrity',()=>{
+ it('resolves reordered named columns instead of changing the meaning of authored text',()=>{
+  const original=getRepresentativeStory('rabbit'),rows=exportStoryTable(original);
+  const reordered=rows.map((row,index)=>index===0?row:row.map((_v,column)=>row[column===5?6:column===6?5:column]??''));
+  expect(importStoryTable(reordered).document).toEqual(original);
+ });
+ it('rejects mislabeled, missing and duplicate headers before any data application',()=>{
+  const rows=exportStoryTable(getRepresentativeStory('rabbit'));
+  for(const header of [rows[1].map((h,i)=>i===6?'unknown-text':h),rows[1].slice(0,-1),rows[1].map((h,i)=>i===6?'speakerName':h)])expect(()=>importStoryTable([rows[0],header,...rows.slice(2)])).toThrow(/열|헤더/);
+ });
+ it('refuses foreign page rows and populated unsupported cells rather than silently discarding them',()=>{
+  const rows=exportStoryTable(getRepresentativeStory('rabbit'));
+  expect(()=>importStoryTable([...rows,['page','unrelated-page']])).toThrow();
+  const altered=structuredClone(rows);altered.find(r=>r[0]==='cut')![18]='작성한 추가 내용';
+  expect(()=>importStoryTable(altered)).toThrow(/열|셀/);
+ });
+});

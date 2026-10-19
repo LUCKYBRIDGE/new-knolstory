@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:79343) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/online-works.spec.ts:45:1 › logout invalidates an in-flight online read before any local copy is applied (2.2s)
+  ✓  2 tests/e2e/online-works.spec.ts:89:1 › account menu session recheck recovers the online panel after initial service failure (1.8s)
+  ✓  3 tests/e2e/online-works.spec.ts:98:41 › online recheck during delayed logout cannot retain a revoked session success (1.5s)
+  ✓  4 tests/e2e/online-works.spec.ts:98:41 › online recheck during delayed logout cannot retain a revoked session response failure (1.5s)
+  ✓  5 tests/e2e/online-works.spec.ts:104:1 › logout completion updates newly mounted menus after leaving and returning to the library (2.1s)
+  ✓  6 tests/e2e/shortstory-online.spec.ts:46:1 › ShortStory session recheck retries the exact pending save with renewed csrf and preserves the book (471ms)
+
+  6 passed (10.1s)

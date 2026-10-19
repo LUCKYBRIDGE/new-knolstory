@@ -1,0 +1,25 @@
+{
+  "container": "knolstory-next-api-dev-api-1",
+  "status": "running",
+  "health": "healthy",
+  "imageId": "sha256:e4d708997d87cd51a8a93a778cfbe3f9bd48c417645dd6cffdd03dd0a050fc09",
+  "ports": {
+    "4000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "15400"
+      }
+    ]
+  },
+  "networks": [
+    "knolstory-next-api-dev_outbound",
+    "knolstory-next-storage-test_storage_test"
+  ],
+  "readOnlyRoot": true,
+  "memoryBytes": 402653184,
+  "nanoCpus": 1000000000,
+  "user": "501:20",
+  "capDrop": [
+    "ALL"
+  ]
+}

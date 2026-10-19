@@ -1,0 +1,20 @@
+
+Running 12 tests using 1 worker
+
+(node:8097) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/12] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual rabbit picture book read, isolated position and complete A4 print
+[2/12] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual onggojib picture book read, isolated position and complete A4 print
+[3/12] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual seonnyeo picture book read, isolated position and complete A4 print
+[4/12] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual heungbu picture book read, isolated position and complete A4 print
+[5/12] [host] › tests/e2e/four-work-shortstory.spec.ts:30:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import
+[6/12] [host] › tests/e2e/four-work-shortstory.spec.ts:52:1 › old single workspace backs up, immediate new/import preserve it, unsupported v2 rejects and storage failure blocks switching
+[7/12] [host] › tests/e2e/four-work-shortstory.spec.ts:63:1 › delayed Google picture book import retains books created and edited while waiting
+[8/12] [host] › tests/e2e/four-work-shortstory.spec.ts:75:1 › failed picture book deletion preserves its editable draft for save retry and reload
+[9/12] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser
+[10/12] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser
+[11/12] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser
+[12/12] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser
+  12 passed (18.2s)

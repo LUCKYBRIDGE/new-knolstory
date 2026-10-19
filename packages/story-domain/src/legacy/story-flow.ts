@@ -1,20 +1,22 @@
+import { hasOnlyStoryKeys, isStoryScoreCondition, isStoryScoreEffects, isStoryScoreRoutes, type StoryScoreCondition, type StoryScoreEffect, type StoryScoreRoute } from "./story-scores";
 import { resolveStageComposition, stageProjection } from "./story-stage-composition";
 import type { StoryLine, StoryProject } from "./story-data";
 
-export type StoryChoice = { id: string; label: string; targetLineId: string | null };
+export type StoryChoice = { id: string; label: string; targetLineId: string | null; condition?: StoryScoreCondition; effects?: StoryScoreEffect[] };
 // No flow means the next ordered cut; null is an explicit ending, "" an unfinished link.
 export type StoryFlow =
   | { type: "choice"; options: StoryChoice[] }
-  | { type: "goto"; targetLineId: string | null };
+  | { type: "goto"; targetLineId: string | null; routes?: StoryScoreRoute[] };
 
 export function isStoryFlow(value: unknown): value is StoryFlow {
-  if (!value || typeof value !== "object") return false;
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
   const flow = value as StoryFlow;
   const target = (v: unknown) => v === null || typeof v === "string";
-  if (flow.type === "goto") return target(flow.targetLineId);
-  return flow.type === "choice" && Array.isArray(flow.options) &&
+  if (flow.type === "goto") return hasOnlyStoryKeys(value as Record<string, unknown>, ["type", "targetLineId", "routes"]) && target(flow.targetLineId) && (flow.routes === undefined || isStoryScoreRoutes(flow.routes));
+  return flow.type === "choice" && hasOnlyStoryKeys(value as Record<string, unknown>, ["type", "options"]) && Array.isArray(flow.options) &&
     [2, 3, 4].includes(flow.options.length) && flow.options.every(option =>
-      option && typeof option.id === "string" && !!option.id.trim() &&
+      option && typeof option === "object" && !Array.isArray(option) && hasOnlyStoryKeys(option as unknown as Record<string, unknown>, ["id", "label", "targetLineId", "condition", "effects"]) &&
+      (option.condition === undefined || isStoryScoreCondition(option.condition)) && (option.effects === undefined || isStoryScoreEffects(option.effects)) && typeof option.id === "string" && !!option.id.trim() &&
       typeof option.label === "string" && target(option.targetLineId)) &&
     new Set(flow.options.map(option => option.id)).size === flow.options.length;
 }
@@ -29,7 +31,7 @@ export function storyFlowTargets(lines: StoryLine[], index: number): (string | n
   if (!line) return [];
   if (line.ending?.endsStory) return [null];
   if (line.flow?.type === "choice") return line.flow.options.map(option => option.targetLineId);
-  if (line.flow?.type === "goto") return [line.flow.targetLineId];
+  if (line.flow?.type === "goto") return [...(line.flow.routes ?? []).map(route => route.targetLineId), line.flow.targetLineId];
   return [lines[index + 1]?.id ?? null];
 }
 
@@ -76,8 +78,10 @@ export function disconnectStoryFlowTargets(lines: StoryLine[], removedIds: Set<s
   return lines.map(line => {
     const flow = line.flow;
     if (!flow) return line;
-    if (flow.type === "goto") return flow.targetLineId && removedIds.has(flow.targetLineId)
-      ? { ...line, flow: { ...flow, targetLineId: "" } } : line;
+    if (flow.type === "goto") return { ...line, flow: {
+      ...flow, targetLineId: flow.targetLineId && removedIds.has(flow.targetLineId) ? "" : flow.targetLineId,
+      ...(flow.routes !== undefined ? { routes: flow.routes.map(route => route.targetLineId && removedIds.has(route.targetLineId) ? { ...route, targetLineId: "" } : route) } : {}),
+    } };
     return { ...line, flow: { ...flow, options: flow.options.map(option =>
       option.targetLineId && removedIds.has(option.targetLineId) ? { ...option, targetLineId: "" } : option) } };
   });
@@ -101,6 +105,7 @@ export function createStoryBranches(project: StoryProject, lineId: string, count
   const joinChapterId = nextId(), joinLineId = nextId();
   const branches = Array.from({ length: count }, (_, i) => ({ chapterId: nextId(), lineId: nextId(), optionId: nextId(), label: `선택 ${i + 1}` }));
   const oldNext = source.flow?.type === "goto" ? source.flow.targetLineId : ordered[sourceIndex + 1]?.id ?? null;
+  if (existingPlacement !== "join" && source.flow?.type === "goto" && source.flow.routes?.length) throw new Error("조건에 따른 연결을 보존하려면 기존 이야기를 ‘다시 만나는 이야기’에 연결해 주세요.");
   if (existingPlacement !== "join" && existingPlacement >= count) throw new Error("기존 이야기를 연결할 선택지가 없어요.");
   const assignedBranch = oldNext && existingPlacement !== "join" ? existingPlacement : null;
   const newBranches = branches.filter((_, index) => index !== assignedBranch);
@@ -119,7 +124,8 @@ export function createStoryBranches(project: StoryProject, lineId: string, count
     lines: [...project.lines.map((line): StoryLine => line.id === lineId
       ? { ...line, ...actorFields, ending: undefined, flow: { type: "choice", options: branches.map((branch, index) => ({ id: branch.optionId, label: branch.label, targetLineId: index === assignedBranch ? oldNext : branch.lineId })) } }
       : line.id === oldLast?.id && !line.flow ? { ...line, flow: { type: "goto", targetLineId: null } } : line),
-      ...newBranches.map(branch => newLine(branch.lineId, branch.chapterId, joinLineId)), newLine(joinLineId, joinChapterId, assignedBranch === null ? oldNext : null)],
+      ...newBranches.map(branch => newLine(branch.lineId, branch.chapterId, joinLineId)), { ...newLine(joinLineId, joinChapterId, assignedBranch === null ? oldNext : null),
+        ...(source.flow?.type === "goto" && source.flow.routes !== undefined ? { flow: structuredClone(source.flow) } : {}) }],
   };
 }
 

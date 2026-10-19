@@ -1,0 +1,140 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET / HTTP/1.1" 200 -
+
+Running 4 tests using 1 worker
+
+(node:80590) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/2z2lzueic7vj6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:46] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:47] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:47] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:47] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:18:55] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:01] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:01] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:01] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback (15.4s)
+(node:80645) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/2z2lzueic7vj6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:02] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  2 [host] › tests/e2e/staged-audio.spec.ts:22:1 › source name search resolves the existing forest recording without duplicate choices (2.2s)
+(node:80658) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/2z2lzueic7vj6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:04] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:05] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:13] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:19] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:19] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:19:19] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  3 [stories-runtime] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback (2.2m)
+(node:80895) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  4 [stories-runtime] › tests/e2e/staged-audio.spec.ts:22:1 › source name search resolves the existing forest recording without duplicate choices
+
+
+  1) [host] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      17 |  const file=info.outputPath('staged-reference.knolstory');await saved.download.saveAs(file);await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file);await confirmAuthoringImport(page);await page.reload();const reopened=(await exportWork(page)).archive;expect(reopened.document.project).toEqual({...after,id:reopened.document.project.id});expect(reopened.audioResources).toEqual([]);
+      18 |  if(native){await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await ready(page);await page.frameLocator('iframe').locator('canvas').first().click();const state=page.getByTestId('story-runtime-status');await expect.poll(()=>state.getAttribute('data-audio-unlocked')).toBe('true');await expect(state).toHaveAttribute('data-music-path',catalog.find(asset=>asset.id===music)!.runtimePath);await expect(state).toHaveAttribute('data-ambience-path',catalog.find(asset=>asset.id===ambience)!.runtimePath);await expect.poll(()=>state.getAttribute('data-sound-play-count')).toBe('1');await page.screenshot({path:info.outputPath('native-shared-channels.png'),fullPage:true});await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(current);}
+    > 19 |  expect(requested.size).toBeLessThanOrEqual(3);expect(requested.size).toBeGreaterThan(0);expect((await exportWork(page)).archive.document.project).toEqual(reopened.document.project);
+         |                                                                       ^
+      20 | });
+      21 |
+      22 | test('source name search resolves the existing forest recording without duplicate choices',async({page},info)=>{
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/staged-audio.spec.ts:19:71
+
+    Error Context: test-results-staged-audio/staged-audio-staged-shared-f9fe8-gh-file-and-native-playback-host/error-context.md
+
+  2) [stories-runtime] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 120000ms exceeded while waiting on the predicate
+
+       7 | async function exportWork(page:Page){await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨',{timeout:30000});await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return {download:await pending,archive:JSON.parse(readFileSync((await (await pending).path())!,'utf8'))};}
+       8 | async function soundTool(page:Page){await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();}
+    >  9 | async function ready(page:Page){await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status'),rendered=await state.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await state.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);}
+         |                                                                                                                                                                                                                                                                                         ^
+      10 | test('staged shared music ambience and effects preserve references through file and native playback',async({page},info)=>{
+      11 |  test.setTimeout(240000);const errors:string[]=[];page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});page.on('pageerror',error=>errors.push(error.message));page.on('console',()=>writeFileSync(info.outputPath('console-errors.json'),JSON.stringify(errors))); const native=info.project.name==='stories-runtime';await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨',{timeout:30000});const before=(await exportWork(page)).archive.document.project,current=await page.getByLabel('현재 장과 컷 이동').inputValue();
+      12 |  const requested=new Set<string>();page.on('request',request=>{if(request.url().includes('/assets/audio/cc0/')&&request.url().includes('/v1/'))requested.add(new URL(request.url()).pathname);});
+        at ready (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/staged-audio.spec.ts:9:281)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/staged-audio.spec.ts:18:87
+
+    Error Context: test-results-staged-audio/staged-audio-staged-shared-f9fe8-gh-file-and-native-playback-stories-runtime/error-context.md
+
+  2 failed
+    [host] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback 
+    [stories-runtime] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback 
+  1 skipped
+  1 passed (2.6m)

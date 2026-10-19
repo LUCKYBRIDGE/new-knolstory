@@ -1,0 +1,17 @@
+{
+  "scope": "Actual subprocess signals with production helper and real HTTP listener; fake pool only, not Docker/PostgreSQL cleanup",
+  "results": [
+    {
+      "stuckPool": false,
+      "code": 0,
+      "signal": null,
+      "poolCloseCalls": 1
+    },
+    {
+      "stuckPool": true,
+      "code": 1,
+      "signal": null,
+      "poolCloseCalls": 1
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+
+Running 15 tests using 1 worker
+
+(node:68906) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/15] [stories-runtime] › tests/e2e/entry-cover.spec.ts:6:1 › fresh browser entry introduces existing books and explicit navigation enters library
+[2/15] [stories-runtime] › tests/e2e/entry-cover.spec.ts:27:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration
+[3/15] [stories-runtime] › tests/e2e/entry-cover.spec.ts:27:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration
+[4/15] [stories-runtime] › tests/e2e/entry-cover.spec.ts:57:1 › all eight existing editions enter actual RenPy through their stored book cover
+[5/15] [stories-runtime] › tests/e2e/entry-cover.spec.ts:70:89 › existing book cover touch and keyboard editing at portrait
+[6/15] [stories-runtime] › tests/e2e/entry-cover.spec.ts:70:89 › existing book cover touch and keyboard editing at landscape
+[7/15] [stories-runtime] › tests/e2e/entry-cover.spec.ts:78:1 › cover title validation keeps the applied book intact and draft recoverable
+(node:69084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[8/15] [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+[9/15] [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+[10/15] [stories-runtime] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+[11/15] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 1280px
+[12/15] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:46:34 › responsive audiovisual authoring and portable custom audio at 390px
+[13/15] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches
+  1) [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3000/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:3000/?view=editor", waiting until "load"
+
+
+      87 |   const fresh = await context.browser()!.newContext(); const runtime = await fresh.newPage();
+      88 |   try {
+    > 89 |     await runtime.goto('http://127.0.0.1:3000/?view=editor'); await saved(runtime); await management(runtime);
+         |                   ^
+      90 |     await runtime.getByLabel('작품 파일 가져오기').setInputFiles(file.path); await saved(runtime); await rendered(runtime);
+      91 |     const frame = runtime.getByTestId('story-runtime-frame'); await frame.evaluate(n => n.setAttribute('data-av-instance', 'persistent'));
+      92 |     for (const [preset, width, height] of [['desktop',1280,720],['portrait',720,1600],['landscape',1280,576]] as const) {
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/responsive-audio-authoring.spec.ts:89:19
+
+    Error Context: ../../../../../tmp/knolstory-native-final/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knolstory-native-final/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knolstory-native-final/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:69278) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[14/15] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:159:1 › delivered portable branching demo opens with embedded audio and plays both native endings
+[15/15] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:184:1 › ending keeps the last entrance confirmed and does not replay its sounds
+  1 failed
+    [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:78:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches 
+  3 skipped
+  11 passed (2.0m)

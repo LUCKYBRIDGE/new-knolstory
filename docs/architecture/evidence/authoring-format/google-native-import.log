@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/google-native-roundtrip.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  20:42:00
+   Duration  837ms (transform 360ms, setup 0ms, import 516ms, tests 228ms, environment 0ms)
+

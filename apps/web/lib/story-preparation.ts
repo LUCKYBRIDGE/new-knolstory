@@ -42,3 +42,61 @@ export function memoDestinations(project:StoryProject,memo:PreparationMemo):{key
     return {key:`chapter:${id}`,label:chapter?chapterLabel(chapter):'연결한 장을 찾을 수 없어요',lineId:first?.id,missing:!chapter||!first};
   })];
 }
+
+export type MemoField = PreparationMemo['fields'][number];
+const orderedFields = (memo: PreparationMemo) => memo.fields.slice().sort((a,b)=>a.order-b.order);
+const numberedFields = (fields: MemoField[]) => fields.map((field,index)=>({...field,order:index+1}));
+function requireMemoField(memo:PreparationMemo,id:string):MemoField {
+  const field=memo.fields.find(f=>f.id===id);
+  if(!field) throw new Error('수정할 메모 항목을 찾을 수 없어요.');
+  return field;
+}
+function requireFieldLabel(label:string) {
+  if(!label.trim()) throw new Error('항목 이름을 입력해 주세요.');
+}
+export function addMemoField(memo:PreparationMemo,id:string,label:string):PreparationMemo {
+  requireFieldLabel(label);
+  if(!id.trim()||memo.fields.some(f=>f.id===id)) throw new Error('메모 항목 ID를 다시 확인해 주세요.');
+  return {...memo,fields:[...memo.fields,{id,label,value:'',order:Math.max(0,...memo.fields.map(f=>f.order))+1,source:'custom'}]};
+}
+export function renameMemoField(memo:PreparationMemo,id:string,label:string):PreparationMemo {
+  requireMemoField(memo,id);requireFieldLabel(label);
+  return {...memo,fields:memo.fields.map(f=>f.id===id?{...f,label}:f)};
+}
+export function moveMemoField(memo:PreparationMemo,id:string,direction:-1|1):PreparationMemo {
+  requireMemoField(memo,id);
+  const fields=orderedFields(memo),index=fields.findIndex(f=>f.id===id),target=index+direction;
+  if(target<0||target>=fields.length)return memo;
+  const moved=fields.map((field,i)=>i===index?fields[target]:i===target?fields[index]:field);
+  return {...memo,fields:numberedFields(moved)};
+}
+export function deleteMemoField(memo:PreparationMemo,id:string):PreparationMemo {
+  requireMemoField(memo,id);
+  return {...memo,fields:numberedFields(orderedFields(memo).filter(f=>f.id!==id))};
+}
+/** Restore only the removed field so edits made after deletion survive undo. */
+export function restoreMemoField(memo:PreparationMemo,field:MemoField,index:number):PreparationMemo {
+  if(memo.fields.some(f=>f.id===field.id))return memo;
+  const fields=orderedFields(memo),position=Math.max(0,Math.min(index,fields.length));
+  return {...memo,fields:numberedFields([...fields.slice(0,position),field,...fields.slice(position)])};
+}
+export type MemoFilter = {query?:string;kind?:PreparationMemo['kind']|'';scope?:'all'|'work'|'current';lineId?:string;chapterId?:string};
+/** A cut link's accompanying chapter is context, not a link to every cut in that chapter. */
+export function relatedPreparationMemos(memos:PreparationMemo[],lineId:string,chapterId:string):PreparationMemo[]{
+ return filterPreparationMemos(memos,{}).filter(memo=>{
+  const cuts=[memo.linkedLineId,...memo.linkedLineIds??[]].filter(Boolean);
+  return cuts.includes(lineId)||(memo.linkedChapterIds??[]).includes(chapterId)||(!cuts.length&&memo.linkedChapterId===chapterId);
+ });
+}
+export function filterPreparationMemos(memos:PreparationMemo[],filter:MemoFilter):PreparationMemo[] {
+  const query=(filter.query??'').trim().toLocaleLowerCase();
+  return memos.filter(memo=>{
+    if(filter.kind&&memo.kind!==filter.kind)return false;
+    const lineIds=[memo.linkedLineId,...memo.linkedLineIds??[]].filter(Boolean);
+    const chapterIds=[memo.linkedChapterId,...memo.linkedChapterIds??[]].filter(Boolean);
+    if(filter.scope==='work'&&(lineIds.length||chapterIds.length))return false;
+    if(filter.scope==='current'&&!((filter.lineId&&lineIds.includes(filter.lineId))||(filter.chapterId&&chapterIds.includes(filter.chapterId))))return false;
+    const content=[memo.title,...memo.linkedCharacterNames??[],...memo.fields.flatMap(f=>[f.label,f.value])].join('\n').toLocaleLowerCase();
+    return !query||content.includes(query);
+  }).slice().sort((a,b)=>a.order-b.order);
+}

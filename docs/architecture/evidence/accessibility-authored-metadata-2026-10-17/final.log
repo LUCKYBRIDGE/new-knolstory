@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:20775) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 320x256 (9.1s)
+  ✓  2 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 640x360 (8.8s)
+  ✓  3 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 390x740 (8.8s)
+
+  3 passed (27.4s)

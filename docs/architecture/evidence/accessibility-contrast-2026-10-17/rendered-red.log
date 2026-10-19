@@ -1,0 +1,76 @@
+
+Running 2 tests using 1 worker
+
+(node:94131) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 1440 (2.8s)
+(node:94160) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 390 (2.7s)
+
+
+  1) tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 1440 
+
+    Error: default compact title or subtitle: 또 다른 이름, 토끼전
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.7649452931104532
+
+      10 |  reports.push({kind:'shelf status',...await renderedTextContrast(page.locator('[data-drawer-face] [role="status"]'),info.outputPath('status'))});
+      11 |  const path=info.outputPath('rendered-contrast.json');await writeFile(path,JSON.stringify({width,reports},null,2)+'\n');await info.attach('rendered-contrast',{path,contentType:'application/json'});
+    > 12 |  for(const report of reports)expect(report.minimum,`${report.kind}: ${report.info.text}`).toBeGreaterThanOrEqual(4.5);
+         |                                                                                           ^
+      13 | });
+      14 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-contrast.spec.ts:12:91
+
+    attachment #1: rendered-contrast (application/json) ────────────────────────────────────────────
+    test-results/accessibility-contrast/accessibility-contrast-com-eff77--on-actual-backgrounds-1440/attachments/rendered-contrast-f8327fcc468d845eb79be923372a318b9cca004a.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-contrast/accessibility-contrast-com-eff77--on-actual-backgrounds-1440/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-contrast/accessibility-contrast-com-eff77--on-actual-backgrounds-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-contrast/accessibility-contrast-com-eff77--on-actual-backgrounds-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 390 
+
+    Error: default compact title or subtitle: 또 다른 이름, 토끼전
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.7649452931104532
+
+      10 |  reports.push({kind:'shelf status',...await renderedTextContrast(page.locator('[data-drawer-face] [role="status"]'),info.outputPath('status'))});
+      11 |  const path=info.outputPath('rendered-contrast.json');await writeFile(path,JSON.stringify({width,reports},null,2)+'\n');await info.attach('rendered-contrast',{path,contentType:'application/json'});
+    > 12 |  for(const report of reports)expect(report.minimum,`${report.kind}: ${report.info.text}`).toBeGreaterThanOrEqual(4.5);
+         |                                                                                           ^
+      13 | });
+      14 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-contrast.spec.ts:12:91
+
+    attachment #1: rendered-contrast (application/json) ────────────────────────────────────────────
+    test-results/accessibility-contrast/accessibility-contrast-com-dd113-t-on-actual-backgrounds-390/attachments/rendered-contrast-e8a8bf5535659550a7e3589257574a3cc652a526.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-contrast/accessibility-contrast-com-dd113-t-on-actual-backgrounds-390/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-contrast/accessibility-contrast-com-dd113-t-on-actual-backgrounds-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-contrast/accessibility-contrast-com-dd113-t-on-actual-backgrounds-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 1440 
+    tests/e2e/accessibility-contrast.spec.ts:4:31 › compact default cover and shelf status contrast on actual backgrounds 390 

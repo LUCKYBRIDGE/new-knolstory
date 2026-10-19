@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-18",
+  "status": "local-focused-verified-not-deployed",
+  "requirement": "Largest contained16:9or9:16 within current visible width AND height; automatic uses larger area, fixed selected ratio retained",
+  "cause": "fitStage formula already correct; ResizeObserver incorrectly rejected extreme display aspect ratios and rounded CSS fractions; reader used100dvh without visualViewport offsets/size",
+  "changes": [
+    "Accept all positive finite actual display dimensions, preserve fractional CSS pixels; keep logical scene validator unchanged",
+    "Read-mode root tracks visualViewport resize/scroll plus layout resize/fullscreenchange; viewport fills measured root height",
+    "Reuse RuntimeCore fitStage min(width/logicalWidth,height/logicalHeight); no new renderer or manuscript change"
+  ],
+  "checks": {
+    "unit": "35passed across geometry/presets/Core fit",
+    "coverage": "reader-display-viewport.ts pure geometry100%all4metrics; hook/wholeproduct coverage not claimed",
+    "native": "final.log2passed:6resize sizes,2fixedratio settings, native render acknowledgement and manuscript/iframe preservation; visible-viewport resize/pan modeled separately",
+    "webBuild": "passed",
+    "types": "Web and focused E2E passed",
+    "lint": "changed code passed"
+  },
+  "testLimits": [
+    "Visual viewport test is an explicit event/geometry model, not actual mobile pinch/keyboard proof",
+    "No new target physical-device/fullscreen UI test; handler subscribed but fullscreen transition not directly exercised",
+    "Initial E2E red failed due test closure ReferenceError; retained as test setup failure, not product RED. UnitRED missinghelper thenGREEN preserved. Source analysis identified old aspect rejection; nativeGREEN covers extremes.",
+    "Existing3/5lines/text/actor composition and8edition manuscript evidence reused, no runtime rebuild",
+    "Subagent usage limit prevented separate final reviewer; root reviewed ratio math, mode cleanup/listeners, unchanged scene contract and preservation tests"
+  ],
+  "sha256": {
+    "apps/web/lib/reader-display-viewport.ts": "0dd1d4a3cc2e1f466d7ac717b0af7cd61032eb6b8c4fc3366a0f226490a8a205",
+    "apps/web/lib/reader-display-viewport.test.ts": "2404e4b2f518fe667be4e5e6a59ac1a25bac056891319899a0beb53df81f5d2b",
+    "apps/web/components/use-reader-display-viewport.ts": "c6651e530a31447262b12fb009afbe3a1d118a0831b23d279444dee539dda91e",
+    "apps/web/components/story-workspace-runtime.ts": "6ba7418f46fcbd555234b5498b14da2aa597f6900ceca147012c658a6cb35979",
+    "apps/web/components/story-workspace.tsx": "91887a020bbc3e13a2fda7fb4658458ad3de5ba2af34122dbd5c4ddbccb7efda",
+    "apps/web/components/story-workspace.module.css": "fddc7da5a356cd8d9b30b6c19721d62663700a7a9fa688dd7c840f5d436e0394",
+    "tests/e2e/reader-max-fit.spec.ts": "a3d15d0396985730ffc97d7699e8945377c3aac7c1ef24a8d111ec5fcf9768b7"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Native8format/size cases plus modeled visualviewport pass; real mobile/fullscreen proof remains separate"
+  }
+}

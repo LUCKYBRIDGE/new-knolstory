@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-14",
+  "scope": "current file/private boundary, mocked public sheet guard, actual native slots/backlog/changedwork/branchjoin",
+  "sourceHashes": {
+    "tests/e2e/vn-workflow.spec.ts": "798a9646e6be310ea9849f0b1e0a135ecafaa0f440c3892eb1d4596c32b88b9a",
+    "tests/e2e/work-menu-purpose.spec.ts": "1a2ac9c941ddf2e6d3c42fa3be569be63aea84739ec6e026720c3e98580f6767",
+    "STATUS.md": "eb997b4aadd1f95ec524289fd168753b314201a055c3a6b746f3a42235c943cd",
+    "DESIGN.md": "0a31d188bb2a751aa3add0e78c4995ca7f0049ba1da150d077c99de549a3b181",
+    "docs/architecture/reader-file-current-regression-validation.md": "5ea7592dcc310972722ebe4dd2b2e0e2a02259c078c37c2ab8016dbbd16df492",
+    "docs/architecture/approved-ui-development-plan.md": "d445211e666a7056b161f9d280e3d553dbd20b5cb603ad25af14188849a3136c",
+    "docs/architecture/authoring-storage-contract.md": "ca59780823d02ef36ab83e359be613d416dd181bed893e17dff2517487ca8a14",
+    "docs/architecture/next-session-goal-2026-10-13.md": "f251f6db3ff03f33ffbcb51acdbd4166118fe87501e6747221e4802695a0e6e3"
+  },
+  "checks": {
+    "baseline": {
+      "collected": 40,
+      "passed": 34,
+      "failed": 3,
+      "nativeOnlySkipped": 3
+    },
+    "focusedHostPassed": 3,
+    "focusedNativePassed": 3,
+    "focusedNativeHostOnlySkipped": 1,
+    "relatedUnitFiles": 3,
+    "relatedUnitPassed": 17,
+    "notWholeHostOrPhysical": true
+  },
+  "originalArtifactHashes": {
+    "docs/architecture/evidence/responsive-audio/branching-demo.knolstory": "5129cfa3ef441c21930b83bab1edf97803c2f4e60d71ddc8f497aff88d773a43",
+    "docs/architecture/evidence/vn-workflow/branch-chapters-demo.knolstory": "c59be36c7c4fe48204aff3d3f7aaafe323f71de16efc7679d0e2e195aa15c2b0"
+  },
+  "runtimeZip": {
+    "path": "apps/web/public/runtime/game.zip",
+    "bytes": 37641800,
+    "sha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6"
+  },
+  "artifacts": {
+    "native-first.log": "9792a0720da90f15cbe8a0b5a6b87b3fc5303f9716a26a577100707c728e68b9",
+    "e2e-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "docs.log": "4001bc14868835a74cac07e4f4b386df6eb5e2edddac0ec5f0c0e5f3085930f2",
+    "related-unit.log": "f15768ae2389d5f90b0178d6be7ebde2c2b546ebd04e8560ce0a8f51e573aaa1",
+    "vn-workflow.before.ts": "4565bca551cd0dcdc9f655d5426ed1230360792d417c9eaa50502c0aef5808e8",
+    "host.log": "4c89cc168ba54f321438e940fa969bd6c3832d17f1d9adbbac6062baf99b78a5",
+    "work-menu-purpose.before.ts": "ce5c9c910201dc033273f518b1881132916778ec8148364582c469e39ce9a0d9",
+    "focused-host-first.log": "6567a72bc7d2db5c32abc7282eb0710c9d883044fb2d1f444888a6bc472c0846",
+    "selected-files.txt": "80b3ea07e114783f98fb1bda583288bbcc89900904d534b08cdc73d7904d4261",
+    "native-focused-artifacts/vn-workflow-native-portrai-96f69-backlog-restore-both-routes-stories-runtime/portrait-speaker.png": "e8ad1f624b26cbee1eb826770e6a13d0db5db252e22399a16f9d7be4382d7482",
+    "baseline-artifacts/vn-workflow-Next-Excel-and-61449-d-audio-and-extended-fields-host/trace.zip": "2d8b3687a912e9389a3a55a689a68601b25fd54ca429f62f728757b8a9fb1a95",
+    "baseline-artifacts/vn-workflow-Next-Excel-and-61449-d-audio-and-extended-fields-host/error-context.md": "7e75fd90fc6ffd65be38ae2fd1d27b353095c56873b8bb9189e8b6a9fef1ae61",
+    "baseline-artifacts/work-actions-work-menu-ope-725bf-returns-to-current-text-844-host/work-info-844.png": "1f2fe3f30d577e425994434ef44e849a8a2c63390d5d53b79f94208faf26e973",
+    "baseline-artifacts/work-actions-work-menu-ope-725bf-returns-to-current-text-844-host/work-menu-844.png": "6fad11c8b60c0313400cc20ad9e4356a0a975af28dc7aa9ba865b65616817b32",
+    "baseline-artifacts/writing-focus-writing-star-19e7f-t-and-brief-neighbours-1440-host/writing-1440.png": "69d02786ed190d7b92866e326a3d208c131b6d1967f4f42a46cc58ff25711f46",
+    "baseline-artifacts/writing-focus-writing-star-7a0db-xt-and-brief-neighbours-844-host/writing-844.png": "74543d8515035c702b4a45daeb4305631630ce2f8e2315b8e4bfeb14e5081e94",
+    "baseline-artifacts/work-menu-purpose-work-men-fdd18-ose-without-extra-steps-844-host/purpose-menu-844.png": "4f706fd2ba1efdbba7e68b43c44a72b6881c84e2d3c7b89d02ec19115b65e13b",
+    "baseline-artifacts/work-menu-purpose-work-men-439ae-ose-without-extra-steps-390-host/purpose-menu-390.png": "ac7fbfb333d7db3f2d9bc9ba0c857965b5176a0b269f7fbd1680ecd1a0c0f60d",
+    "baseline-artifacts/writing-focus-writing-star-f54b6-xt-and-brief-neighbours-390-host/writing-390.png": "5d3dcb19e9312d2eabc0aa4f2b9422ef25941b6671fa685911c24d226c481f95",
+    "baseline-artifacts/work-menu-purpose-one-glob-5e951-urns-to-choice-editing-1440-host/global-score-settings-1440.png": "1eeff171cc1927052678236c20fa9c5b2ee455084ce0d6d984547368065ea8b3",
+    "baseline-artifacts/work-menu-purpose-work-men-4fe44-se-without-extra-steps-1440-host/purpose-menu-1440.png": "2b405ce2f89e4ce9c6ef0b125d82b7c83df84440b833c4fbaf61689abed653d2",
+    "baseline-artifacts/work-menu-purpose-one-glob-12357-turns-to-choice-editing-768-host/global-score-settings-768.png": "fb1b4ca9f0b49787d8db675e66b349b502d10c5bdf1b2267228a86bdf2aa877d",
+    "baseline-artifacts/work-actions-work-menu-ope-20f8f-returns-to-current-text-390-host/work-menu-390.png": "1b203b4e4831ef1bd1df6038292af3c6dd2295152b4facc8a69d18f9fa839a84",
+    "baseline-artifacts/work-actions-work-menu-ope-20f8f-returns-to-current-text-390-host/work-info-390.png": "3baad2b0b9482fa9a52efd5459c0b3f0b600e5f5053522debe79b9d9d3120fd0",
+    "baseline-artifacts/work-menu-purpose-one-glob-ae937-turns-to-choice-editing-390-host/global-score-settings-390.png": "fc1843c1b893016c939b5f7477029846e40056f7c2fd8d8285c6fa7ca218f80d",
+    "baseline-artifacts/writing-focus-writing-star-79bd1-xt-and-brief-neighbours-768-host/writing-768.png": "a5e424abb6f1f06ba022d97bf136504a686a236f0ac690845393f7a00634f2c5",
+    "baseline-artifacts/work-menu-purpose-public-s-53cc6--edits-and-save-guard-false-host/trace.zip": "834ab7937f968581c6304473bdd9c51b8db2b334eb5520c4edd2dd76dcbb0c37",
+    "baseline-artifacts/work-menu-purpose-public-s-53cc6--edits-and-save-guard-false-host/error-context.md": "cdba7fb9d02538bab7b308282eb7f62d69a32a85471ad715c1903418af393783",
+    "baseline-artifacts/work-actions-work-menu-ope-86bb0-returns-to-current-text-768-host/work-menu-768.png": "aa4aca50ce6efa99d6105580f9afd23fa377b3a610dde0fea107c426e78f3b22",
+    "baseline-artifacts/work-actions-work-menu-ope-86bb0-returns-to-current-text-768-host/work-info-768.png": "75132fef9910ec788d1aa2c747348685f86fbdd8aa93578ff43da77ffe1c4952",
+    "baseline-artifacts/work-actions-work-menu-ope-aaac9-eturns-to-current-text-1440-host/work-info-1440.png": "65bafde665107c3c7c4ca4a22bd93eae1ec3edb45a4e7cd75c37a376235898ce",
+    "baseline-artifacts/work-actions-work-menu-ope-aaac9-eturns-to-current-text-1440-host/work-menu-1440.png": "d44ee6b8438c990420c0e03facb9eac938534b1d14dd210dffd1a76911a812bb",
+    "baseline-artifacts/walnut-library-owner-selec-1d20b-keeps-window-wall-clearance-host/legacy-honey-oak.png": "621414bd16f322b192f7fdc03374b0a10177a8912d6f28c9f40d4baf928eb2a0",
+    "baseline-artifacts/work-menu-purpose-work-men-15ab9-ose-without-extra-steps-768-host/purpose-menu-768.png": "17f41b2bc09051778b0817fd892fdd45450a2948d6cf5e4b775bb80958bcc135",
+    "baseline-artifacts/work-menu-purpose-public-s-58740-t-edits-and-save-guard-true-host/trace.zip": "2a5d9afe17d638cc9330fde8ef876cf4184e5c285eb09329535e9012078dbefc",
+    "baseline-artifacts/work-menu-purpose-public-s-58740-t-edits-and-save-guard-true-host/error-context.md": "55f1a9e3f9ea273dd1b15e15026fac5252e8bfb21688febad32270de6574f416",
+    "baseline-artifacts/work-menu-purpose-one-glob-34fff-turns-to-choice-editing-844-host/global-score-settings-844.png": "3cd2a7dce1ca65ad57ba650163ef2fcb96357c02875004c9db23c37e0369c0bd"
+  }
+}

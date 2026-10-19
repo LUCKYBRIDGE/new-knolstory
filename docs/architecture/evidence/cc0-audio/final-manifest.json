@@ -1,0 +1,90 @@
+{
+  "checkedAt": "2026-10-10",
+  "scope": "21 curated CC0 source assets, existing audio authoring/runtime adapters, 8 provider audit, 7 Suno and Google prompt pairs",
+  "catalog": {
+    "total": 61,
+    "background": 13,
+    "ambience": 13,
+    "effect": 35,
+    "added": 21
+  },
+  "versions": {
+    "archive": 2,
+    "storyDocument": 6,
+    "workbook": 5,
+    "jsonb": 1
+  },
+  "verification": {
+    "unitFiles": 108,
+    "unitTests": 1085,
+    "coverage": {
+      "statements": 93.43,
+      "branches": 91.01,
+      "functions": 96.73,
+      "lines": 98.67
+    },
+    "host": {
+      "passed": 2,
+      "fullByteDecodeFiles": 21,
+      "editSaveExportReimportReload": true
+    },
+    "native": {
+      "passed": 1,
+      "hostOnlyDuplicateSkipped": 1,
+      "channels": 3,
+      "soundPlayCount": 1,
+      "editReturn": true
+    },
+    "mediaFiles": 1421,
+    "typecheck": "passed",
+    "lint": "passed",
+    "runtimeThenWebBuild": "passed",
+    "docsLinks": "passed"
+  },
+  "limits": [
+    "No new actual Excel/Google manual edit in this catalog-only addition",
+    "No physical-device or speaker/headphone acceptance",
+    "No per-file human speech/loop seam review",
+    "Non-CC0 public-editor redistribution scope not blanket approved",
+    "Provider sites not paid/subscribed/contacted",
+    "Prompted music not generated"
+  ],
+  "sha256": {
+    "apps/web/public/assets/licenses/Kenney-RPG-Audio-CC0.txt": "5735dfd72cb64cbbceda4ebc00c380c41ca680edb82ff153aa7c9ab97614c539",
+    "docs/architecture/cc0-audio-import.md": "ec56bb67c49e3480a7ead01f8e431a2f59a0f130704baac4aff9febae8888c73",
+    "docs/architecture/commercial-audio-sources.md": "d0f83847c1a5cd7e8f2b33adda3d18f4d8936d568281eb67db678a72b1544922",
+    "docs/architecture/evidence/cc0-audio/browser-decode.json": "91f15d3592a20ef948bfb6089c2fee3f59209f5c3392c4d7ee241a8de988f999",
+    "docs/architecture/evidence/cc0-audio/docs-check.log": "9eb8c8f91219ac25501c3025762f6efeccb02c17f991e00b708d77a76cae2547",
+    "docs/architecture/evidence/cc0-audio/docs-test.log": "4350d23b61190c41ec5dd2dd482939ef76e076fc5cdf9a5ecf10d905266259f2",
+    "docs/architecture/evidence/cc0-audio/downloads.json": "e39ff2188c24a88120e64a82adc377ca45578bf60b7a6eed8b782e392e0c11ec",
+    "docs/architecture/evidence/cc0-audio/final-test-lint.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "docs/architecture/evidence/cc0-audio/host.log": "008522826ea0a0d5e07a837fb00c28c99f99314257dfc6fccfcb2bc885e3a9a5",
+    "docs/architecture/evidence/cc0-audio/kenney-rpg-page.html": "cb1a2d8ff6aee7b178fed6332dee5c4e7af076663d65b3c86e4876c8a245f9c5",
+    "docs/architecture/evidence/cc0-audio/lint.log": "15270e917301d6400edd01d02f84dffebc925caded12a0baac12af4628e78944",
+    "docs/architecture/evidence/cc0-audio/native.log": "b0ba5e6bc495e7ee0f2241a16dfd8a803354a4c1fb26715458b3fcdbabce5da8",
+    "docs/architecture/evidence/cc0-audio/oga-forest-page.html": "1373c0a01b3f74e3a251e13cd3e0b21f19a4a3bb27a238992a61c28917ca0b7b",
+    "docs/architecture/evidence/cc0-audio/oga-rain-page.html": "e7ebe5c9a5b3bdfc254cc5c0e35538a813e43d821488eee2a99acb3e26b0da77",
+    "docs/architecture/evidence/cc0-audio/paths-catalog-green.log": "3962f66cc3f1e44ab2e40b02de4c92e0020431ccea74f342e1b27eaac0f59934",
+    "docs/architecture/evidence/cc0-audio/paths-red.log": "e048c5d9beab9efa399e3ac62d1a97947b7dd6c5f494e0dd728e1a650dfeb3bc",
+    "docs/architecture/evidence/cc0-audio/provenance-check.log": "a24dcea528a3fc6ce8eeb14e6aacd15000afa4947ecb2b671d415dd4e87cd2b7",
+    "docs/architecture/evidence/cc0-audio/provenance-generate.log": "88b7f5de68cb92178b2788e202be0b01776fb9ce741eb161abb5bc194efbb8e0",
+    "docs/architecture/evidence/cc0-audio/provenance-rerun.log": "a24dcea528a3fc6ce8eeb14e6aacd15000afa4947ecb2b671d415dd4e87cd2b7",
+    "docs/architecture/evidence/cc0-audio/references-roundtrip.log": "40f932c6af0b1fd03aee6e03e15e5e220b2fcc66a04ebee156f17436fab18603",
+    "docs/architecture/evidence/cc0-audio/runtime-build.log": "5f304485f331b4db5155b448b7863831e29f8f3f0be56ff385ab6072df4e2de9",
+    "docs/architecture/evidence/cc0-audio/targeted-unit-rerun.log": "1251e26915715770d8dfb6f9f2f6954e6cd0a62e0918fbfc0bf5beb2044c19a8",
+    "docs/architecture/evidence/cc0-audio/typecheck.log": "0cf7e8a0389e6d560dbc0082625b063ca3e5744b6489af16953c3a35206f8717",
+    "docs/architecture/evidence/cc0-audio/unit-coverage.log": "466cbda0f623ad1b389053c765432d52c40c7ec0fd8c572bbfafdbf84e0a365f",
+    "docs/architecture/evidence/cc0-audio/web-build.log": "29b74dafaf83e74f6e0ab59a652304486de880787dcf771a1431b6d68d957015",
+    "docs/architecture/music-generation-prompts.md": "6d92fc41e0e19c0f681a4d0f25cd24cbac46c32b63bc17cfb6ec88603901b5b3",
+    "packages/asset-registry/src/audio.ts": "980eac63fbfee07586a7b50fa4a4c9d2b5ddcfa995321a02553b2551c87b3404",
+    "packages/asset-registry/src/external-cc0-audio.json": "1b85f0dcaea65dfc44e4419753136ffafe880c03e2feeb648f4345c6a13513c6",
+    "packages/asset-registry/src/media-provenance-overrides.json": "25f4e194597d8f156cb7ddff499ef7b13c83ca56795c29c9643b519a5bbc7dc4",
+    "packages/asset-registry/src/media-provenance.json": "bd2b7834334ecbecb3e861113a251fbaacb8fdd439c12f1f0034e28fb79fb0af",
+    "packages/asset-registry/tests/cc0-audio.test.ts": "31092484e79649bce9e9d017f7c42d720ea90bb3dd1ed34d5c9ca2eb646a424c",
+    "packages/compatibility/tests/cc0-audio-roundtrip.test.ts": "75153de54748a2c80dc46ef5b8d076192fb26ebdc29d6d1bf35f9d92d838c20c",
+    "packages/runtime-contract/src/audio.ts": "195eec1df236251bb84c565b5ebb5afa59cbdbf8d8fd0a028273c412fd50671b",
+    "packages/runtime-contract/src/index.ts": "e30b6bf54b19f1be3fc63466ea2e6f8fef2e7f81a903a9c7f00225512af2d471",
+    "packages/runtime-contract/tests/cc0-audio.test.ts": "e3c62113d85748e7b5facb528b4d66dc878f9b701290fe8b7a75531671f07b8a",
+    "tests/e2e/cc0-audio.spec.ts": "acb66e08d958ce89b82d9c96d6899b72ce43d16070b12fc5c06c955309903392"
+  }
+}

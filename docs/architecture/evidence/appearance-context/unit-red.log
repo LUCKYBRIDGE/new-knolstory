@@ -1,0 +1,21 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/actor-appearance.test.ts (5 tests | 1 failed) 3ms
+   × offers only occupied or authored actor groups without changing empty-stage settings 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/actor-appearance.test.ts > offers only occupied or authored actor groups without changing empty-stage settings
+TypeError: appearanceTargets is not a function
+ ❯ apps/web/lib/actor-appearance.test.ts:28:9
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  08:21:34
+   Duration  113ms (transform 11ms, setup 0ms, import 16ms, tests 3ms, environment 0ms)
+

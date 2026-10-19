@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-13",
+  "scope": "local branch writing; no deployment/physical device/fresh external app edit",
+  "source": {
+    "apps/web/lib/choice-writing.ts": "27d8f3261e794b4798dab02f81911c81689186fe5f92a9c87aed719e5fb04089",
+    "apps/web/lib/choice-writing.test.ts": "e4a307f5770a83d35940d76461f3506efaba138ce1f35cee5e668fe7b622b643",
+    "apps/web/components/story-choice-writing-dialog.tsx": "91e7c6798ffa77633bb900fa6630db3d8aeed0afbb7954fc1338f1ec9356212e",
+    "apps/web/components/story-workspace.tsx": "08ecb5815b0ef97699b820a38f317d20b285f6bf252490875476d3ef320d5ddd",
+    "tests/e2e/branch-writing.spec.ts": "372f64e9cb2a1d65d9f618dd1b1ebfab30325e7d2ac3849c225397f3ba032d66",
+    "tests/e2e/reading-surface.spec.ts": "bb5b2707838df2e9978956b66c8187a708d0725cc27e82a8f7ee6dd3368e1520",
+    "tests/e2e/authoring.spec.ts": "9fc53768655da6bc5b68102b0ff71272ece193e004c90dfd1c3ba5bd483ed0ae",
+    "tests/e2e/creative-reading-journey.spec.ts": "ec702ecb47e0a3e9d48e4a0c46a60c249499a689bde54ba1d2ec9939639b854a",
+    "playwright.config.ts": "8d3d4edc6884c95638aa0b1c51334f222d7eeefe3cc8468efdf05ac3d03167b9"
+  },
+  "artifacts": {
+    "ui-final.log": "061c4a7f225ac90c62ae92d7937f9b9bbf2bee0ec258aa9f8171967cbc304d5a",
+    "visual-final.log": "94aa7be3515a202d9f9c009c9ae8327114223bc5e6ca43fd48dfa1296e4bbcdc",
+    "branch-identity.log": "72b5d32a4e5274abdeb990e2694ad95299499eb202762466e0d6751efbb9fd09",
+    "coverage.log": "f4fc022338fbabb598e76dfe3dfa2a3b86ac06b69d122b08500df57657a07e9a",
+    "typecheck-final.log": "47ee8ffe922f5bf8a7340cc63def5656164132f3001af6904b03b9aa9d92cf19",
+    "last-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build-final.log": "86f3f42f51bcb13e59bf9264dd67435ff43e7089d36fe79d477b763160c3f7d1",
+    "docs.log": "38c6f0a4b60c4d727b12df25fbbb568613f14890a9fad8dba5dfb5e2cb756e67",
+    "unit-final.log": "4e3361b29c7bd34037a27df360f8f0980716216d27df9658e56e37df525549c9"
+  },
+  "results": {
+    "nativeTogether": 16,
+    "branchNativeFinal": 6,
+    "branchIdentityHost": 1,
+    "unitPassed": 1213,
+    "artifactWriterExcluded": 1,
+    "branches": 91.21,
+    "lines": 98.7
+  },
+  "runtimeZipSha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6",
+  "runtimeZipBytes": 37641800
+}

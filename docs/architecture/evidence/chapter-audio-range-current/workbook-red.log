@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/compatibility/tests/authoring-workbook-readability.test.ts (4 tests | 1 failed) 582ms
+   × explains chapter and cut sound range boundaries using the same preserved field 104ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/authoring-workbook-readability.test.ts > explains chapter and cut sound range boundaries using the same preserved field
+AssertionError: expected '종료 컷 ID (컷 소리만)' to be '종료 컷 ID' // Object.is equality
+
+Expected: "종료 컷 ID"
+Received: "종료 컷 ID (컷 소리만)"
+
+ ❯ packages/compatibility/tests/authoring-workbook-readability.test.ts:29:338
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  02:31:04
+   Duration  1.17s (transform 247ms, setup 0ms, import 499ms, tests 582ms, environment 0ms)
+

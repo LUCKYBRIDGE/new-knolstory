@@ -1,0 +1,53 @@
+
+Running 1 test using 1 worker
+
+(node:6133) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:4:1 › real Google edited full-field work plays two RenPy choice endings after reopen
+  1) [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:4:1 › real Google edited full-field work plays two RenPy choice endings after reopen 
+
+    Test timeout of 240000ms exceeded.
+
+    Error: locator.click: Test timeout of 240000ms exceeded.
+    Call log:
+      - waiting for locator('details').filter({ has: getByText('현재 컷을 글자로 읽기', { exact: true }) }).getByRole('button').first()
+        - locator resolved to <button disabled>첫 길</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        440 × waiting for element to be visible, enabled and stable
+            - element is not enabled
+          - retrying click action
+            - waiting 500ms
+
+
+       6 |  for(let option=0;option<2;option++){
+       7 |   await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await rendered(page);const frame=await page.getByTestId('story-runtime-frame').boundingBox();await page.mouse.click(frame!.x+frame!.width*.5,frame!.y+frame!.height*.1);await rendered(page);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','true');await confirmTransition(page);
+    >  8 |   const choices=page.locator('details').filter({has:page.getByText('현재 컷을 글자로 읽기',{exact:true})}).getByRole('button');await expect(choices).toHaveCount(2);await choices.nth(option).click();await rendered(page);await confirmTransition(page);await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+         |                                                                                                                                                                                      ^
+       9 |  }
+      10 |  await page.getByRole('button',{name:'편집으로',exact:true}).click();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await rendered(page);await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();
+      11 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-format-runtime.spec.ts:8:182
+
+    Error Context: ../../../../../tmp/knol-format-native/authoring-format-runtime-r-20c5a-choice-endings-after-reopen-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-native/authoring-format-runtime-r-20c5a-choice-endings-after-reopen-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-native/authoring-format-runtime-r-20c5a-choice-endings-after-reopen-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:4:1 › real Google edited full-field work plays two RenPy choice endings after reopen 

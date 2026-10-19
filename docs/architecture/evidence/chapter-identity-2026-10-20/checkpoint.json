@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-20",
+  "status": "local-chapter-display-identity-implemented-focused-verified-not-deployed",
+  "scope": "Sequential PC11 chapterNumber/branchLabel access in current single settings menu; independent chapter resource pool editing next",
+  "implementation": [
+    "Closed chapter display identity details; no extra permanent button",
+    "Existing updateStoryChapter validation and current archive fields",
+    "Numeric draft onblur rejects empty/zero/negative/fraction/exponent/unsafe integer without replacing authored number",
+    "Same legacy title identity respected before explicit edits; materialize displayednumber when branch changed, retain visiblebranch when number changed, explicitclear not resurrected",
+    "Input key scoped project/chapter/value; IME branch/title editable and numeric disabled",
+    "Workbench chapter filter uses canonical chapterLabel"
+  ],
+  "checks": {
+    "red": "red-current.log actual missingdetails; red.log earlier serverrefused retained",
+    "unit": "unit-final-reviewed-green.log21passed; earlier intermediate exact-shape assertion caught unnecessary branch normalization then corrected",
+    "browserPrior": "final.log2passed17.3s: existingdefaults and legacytitlebranchonly/invaliddraft/IME/reload/phonewidth/actualfilefreshcontextreopen",
+    "browserFinal": "complete.log2passed17.1s on final reviewed build",
+    "build": "build-complete.log passed",
+    "types": "types-complete.log passed",
+    "lint": "lint-complete.log clean",
+    "review": "Independent review found branchonly legacydisplay mismatch and numberonlybranch preservation edge; fixed locally with regressiontests, no globaldomain reinterpretation",
+    "docs": "docs.log check"
+  },
+  "preservation": [
+    "Lines, chapterorder, Flow, IDs, StageComposition and title text preserved",
+    "Only explicitly edited chapter display fields changed; no global migration",
+    "Existing manuscript/private media/evidence not rewritten; no runtime rebuild",
+    "Old inactive ChapterWriter not restored"
+  ],
+  "limits": [
+    "Focused local Chromium not physicaldevice/OSIME or wholeproduct release",
+    "Resource list editing, longmanuscript UX, online combined trash and other product queue remain",
+    "No persistent filehandle feature or new conditionsystem in this change",
+    "Invalidnumeric draft stays visible with error while original storednumber remains",
+    "No deployment"
+  ],
+  "sha256": {
+    "apps/web/components/story-chapter-settings.tsx": "44db3e35113657b5e6c66158538d9f2320782b64512c96e5dac6d6096434f14b",
+    "apps/web/components/story-chapter-settings.test.ts": "06b1181e30bab546d7b252942b25992d3960377604f3722c5d751e9053c3e111",
+    "apps/web/components/story-editing-workbench.tsx": "d213d69cee9399f0af082664e35ec8c787318d6dbe943866f276fa22fd905cc6",
+    "tests/e2e/chapter-settings-access.spec.ts": "be04fa68e10b84c90d1d40ea63b18f2f141216ebc5c643dcf0eb429e23a3b19d",
+    "DESIGN.md": "16c665308247eaf932afa29c38046b3ab6d1924c71eb1c2ebf5037356c60edc8",
+    "STATUS.md": "80294b8b6251ded01c5ddd9c7e6b55f0cb6e6dd3443fadb76e2b63cfe02e5b05",
+    "docs/architecture/product-completion-plan.md": "2943b64fbfe8c02c4155f4a6d19b31f994aed32dd7a0b9f8b4981835bee084e7"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Nextlive queue used, completedhistory not rerun; identitysemantic edges independently reviewed; resource/device scope explicit"
+  }
+}

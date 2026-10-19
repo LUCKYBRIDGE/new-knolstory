@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:36965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/chapter-settings-access.spec.ts:14:1 › chapter settings restore reachable defaults without opening advanced tools or changing cut overrides (10.0s)
+  ✓  2 tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections (7.9s)
+  ✓  3 tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images (5.9s)
+
+  3 passed (24.3s)

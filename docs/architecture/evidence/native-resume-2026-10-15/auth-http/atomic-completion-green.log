@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  00:32:20
+   Duration  219ms (transform 26ms, setup 0ms, import 53ms, tests 57ms, environment 0ms)
+
+ % Coverage report from v8
+----------------|---------|----------|---------|---------|----------------------
+File            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
+----------------|---------|----------|---------|---------|----------------------
+All files       |   96.02 |    92.75 |     100 |     100 |                      
+ auth-routes.ts |   96.02 |    92.75 |     100 |     100 | ...71-81,120,127,145 
+----------------|---------|----------|---------|---------|----------------------
+
+=============================== Coverage summary ===============================
+Statements   : 96.02% ( 145/151 )
+Branches     : 92.75% ( 128/138 )
+Functions    : 100% ( 19/19 )
+Lines        : 100% ( 108/108 )
+================================================================================

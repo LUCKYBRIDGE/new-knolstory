@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-complete-not-deployed",
+  "sha256": {
+    "apps/web/lib/local-work-file.ts": "e9689ded851f688d2c13012961032611037d6307b2381ed92ef9d357e55c76fd",
+    "apps/web/lib/local-work-file.test.ts": "a2e01ef95b0216680671a8bf011fa80513adb27fef0f02b87fed313d024c7a87",
+    "apps/web/components/local-work-file-actions.tsx": "c29ff8e326db8bd2be5686c1bdd82417450eee687e5b886f84234388ecfd1106",
+    "apps/web/components/story-workspace.tsx": "6394776e68611c9f2f5fdcc230f627a9479e782ba5eb0169474afa67062030ec",
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "aff4e402bfc38ca00b0befb0524201aea74b8f71806234b06a4ab5dc270f4eb2",
+    "tests/e2e/local-work-files.spec.ts": "69cf7a3d828538edbdff2da52f102cef0d2e24b5a33107ba27072cd0d418af86"
+  },
+  "limits": [
+    "Local browser/model or pure client tests only; no real Google OAuth, physical OS file dialog/disk failure, production or release verification.",
+    "Original manuscripts, IDs, file schemas and previous evidence preserved; account/online errors do not change retention/sharing policies."
+  ],
+  "checks": {
+    "red": "browser-red.log: prior built UI exposed native Permission denied and private path; unit-red.log and session-red.log retained.",
+    "unit": "unit-green.log:24passed local file module100%all4coverage; includes denied save-as retaining original verified association and session singlecreation/isolation.",
+    "browser": "combined.log:6 local-file cases passed on final combined build: both formats actual download/reopen, explicit picker/readback/external-change, settings association, late stream cancellation, permission/write failure+retry. Unrelated account tests in that run failed only stale selector or envelope timestamps, retained as incomplete combined suite.",
+    "build": "build.log passed.",
+    "lint": "final-lint.log0error/warning for all changed sources/tests including session facade; supersedes prior lint.log preexisting issue.",
+    "type": "final-types.log passed.",
+    "review": "Independent source review no blockers; request-scoped file/session semantics retained."
+  }
+}

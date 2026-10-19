@@ -1,0 +1,26 @@
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web/components/local-work-file-actions.tsx
+  12:130  warning  The ref value 'lifetime.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'lifetime.current' to a variable inside the effect, and use that variable in the cleanup function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               react-hooks/exhaustive-deps
+  29:116  error    Error: Cannot modify local variables after render completes
+
+This argument is a function which may reassign or mutate `saver` after render, which can cause inconsistent behavior on subsequent renders. Consider using state instead.
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web/components/local-work-file-actions.tsx:29:116
+  27 |   finally{saving.current=false;setBusy(false);}
+  28 |  }
+> 29 |  return <div data-local-file-actions role="group" aria-label="로컬 작품 파일"><button disabled={disabled||busy} onClick={()=>void save()}>작품 파일 저장</button><button disabled={disabled||busy} onClick={()=>void save(true)}>다른 파일로 저장</button><small>작품은 기기의 작품 파일로 저장해 주세요. 선택한 파일에 직접 저장하며, 지원하지 않는 브라우저에서는 새 파일을 다운로드해요. 브라우저의 복구본과 온라인 업로드는 작품 파일 저장을 대신하지 않아요.</small>{busy&&<p role="status">작품 파일 저장 중이에요.</p>}{notice&&messageWork===workKey&&<p role="status">{notice}</p>}{error&&messageWork===workKey&&<p role="alert">{error}</p>}</div>;
+     |                                                                                                                    ^^^^^^^^^^^^^^^ This function may (indirectly) reassign or modify `saver` after render
+  30 | }
+  31 |
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web/components/local-work-file-actions.tsx:19:4
+  17 |   if(!saver.current){
+  18 |    const browser=window as Window&{showSaveFilePicker?:LocalWorkFilePicker};
+> 19 |    saver.current=createLocalWorkFileSaver({pick:browser.showSaveFilePicker?options=>browser.showSaveFilePicker!(options):undefined,download:(text,fileName)=>downloadArtifact(text,fileName,'application/json')});
+     |    ^^^^^ This modifies `saver`
+  20 |   }
+  21 |   saving.current=true;setMessageWork(key);setBusy(true);setError('');setNotice('');
+  22 |   try{  react-hooks/immutability
+
+✖ 2 problems (1 error, 1 warning)
+

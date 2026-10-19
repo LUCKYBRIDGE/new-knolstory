@@ -1,0 +1,96 @@
+
+> knolstory-next@ test:coverage <repo>
+> vitest run --coverage
+
+
+ RUN  v4.1.11 <repo>
+      Coverage enabled with v8
+
+ ❯ packages/asset-registry/tests/pixabay-audio.test.ts (1 test | 1 failed) 7ms
+   × provisions exactly approved CC0 and conditional scene audio with item-level source evidence 6ms
+ ❯ packages/asset-registry/tests/audio-category.test.ts (2 tests | 2 failed) 6ms
+     × separates surrounding sounds from background music without changing stable IDs 4ms
+     × keeps user sound files selectable in either continuous sound channel 1ms
+ ❯ packages/asset-registry/tests/cc0-audio.test.ts (1 test | 1 failed) 5ms
+   × registers curated CC0 originals with Korean names, provider/author and matching source bytes 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/asset-registry/tests/audio-category.test.ts > author-visible sound categories > separates surrounding sounds from background music without changing stable IDs
+AssertionError: expected [ { …(10) }, …(77) ] to have a length of 13 but got 78
+
+- Expected
++ Received
+
+- 13
++ 78
+
+ ❯ packages/asset-registry/tests/audio-category.test.ts:5:73
+      3| describe('author-visible sound categories',()=>{
+      4|  it('separates surrounding sounds from background music without changi…
+      5|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='background')…
+       |                                                                         ^
+      6|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='ambience')).…
+      7|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='effect')).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  packages/asset-registry/tests/audio-category.test.ts > author-visible sound categories > keeps user sound files selectable in either continuous sound channel
+AssertionError: expected [ …(424) ] to have a length of 35 but got 424
+
+- Expected
++ Received
+
+- 35
++ 424
+
+ ❯ packages/asset-registry/tests/audio-category.test.ts:15:64
+     13|   expect(searchAudioAssets([custom],'music','','background')).toEqual(…
+     14|   expect(searchAudioAssets([custom],'music','','ambience')).toEqual([c…
+     15|   expect(searchAudioAssets(AUDIO_CATALOG,'sound','','effect')).toHaveL…
+       |                                                                ^
+     16|  });
+     17| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  packages/asset-registry/tests/cc0-audio.test.ts > registers curated CC0 originals with Korean names, provider/author and matching source bytes
+AssertionError: expected [ { …(10) }, { …(10) }, …(367) ] to have a length of 21 but got 369
+
+- Expected
++ Received
+
+- 21
++ 369
+
+ ❯ packages/asset-registry/tests/cc0-audio.test.ts:6:115
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  packages/asset-registry/tests/pixabay-audio.test.ts > provisions exactly approved CC0 and conditional scene audio with item-level source evidence
+AssertionError: expected [ { …(10) }, …(529) ] to have a length of 61 but got 530
+
+- Expected
++ Received
+
+- 61
++ 530
+
+ ❯ packages/asset-registry/tests/pixabay-audio.test.ts:7:24
+      5| import {AUDIO_CATALOG,searchAudioAssets,resolveAudioAsset,EXCLUDED_AUD…
+      6| it('provisions exactly approved CC0 and conditional scene audio with i…
+      7|  expect(AUDIO_CATALOG).toHaveLength(61);
+       |                        ^
+      8|  expect(AUDIO_CATALOG.map(a=>a.id).sort()).toEqual(approvals.assets.ma…
+      9|  for(const asset of AUDIO_CATALOG){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  3 failed | 144 passed (147)
+      Tests  4 failed | 1205 passed | 1 skipped (1210)
+   Start at  20:01:08
+   Duration  19.77s (transform 8.76s, setup 0ms, import 44.27s, tests 130.64s, environment 7ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

@@ -1,0 +1,9 @@
+
+> @knolstory/web@0.0.0 typecheck <repo>/apps/web
+> tsc --noEmit
+
+lib/choice-writing.test.ts(20,34): error TS2345: Argument of type 'Promise<Readonly<{ format: "knolstory-authoring-workbook"; formatVersion: 2 | 3 | 4 | 5 | 6 | 7; workKind: "knolstory" | "shortstory"; tables: Readonly<Record<string, Readonly<{ headers: readonly string[]; rows: readonly (readonly string[])[]; }>>>; }>>' is not assignable to parameter of type 'Readonly<{ format: "knolstory-authoring-workbook"; formatVersion: 2 | 3 | 4 | 5 | 6 | 7; workKind: "knolstory" | "shortstory"; tables: Readonly<Record<string, Readonly<{ headers: readonly string[]; rows: readonly (readonly string[])[]; }>>>; }>'.
+  Type 'Promise<Readonly<{ format: "knolstory-authoring-workbook"; formatVersion: 2 | 3 | 4 | 5 | 6 | 7; workKind: "knolstory" | "shortstory"; tables: Readonly<Record<string, Readonly<{ headers: readonly string[]; rows: readonly (readonly string[])[]; }>>>; }>>' is missing the following properties from type 'Readonly<{ format: "knolstory-authoring-workbook"; formatVersion: 2 | 3 | 4 | 5 | 6 | 7; workKind: "knolstory" | "shortstory"; tables: Readonly<Record<string, Readonly<{ headers: readonly string[]; rows: readonly (readonly string[])[]; }>>>; }>': format, formatVersion, workKind, tables
+<repo>/apps/web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @knolstory/web@0.0.0 typecheck: `tsc --noEmit`
+Exit status 2

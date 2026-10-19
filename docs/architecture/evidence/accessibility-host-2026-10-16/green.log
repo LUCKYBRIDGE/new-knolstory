@@ -1,0 +1,188 @@
+
+Running 2 tests using 1 worker
+
+(node:81129) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 1440 (3.0s)
+(node:81146) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 390 (2.6s)
+
+
+  1) tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 1440 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 56
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "surface": "library",
+    +     "targets": Array [
+    +       Array [
+    +         "article[data-work-id=\"rabbit\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"onggojib\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"seonnyeo\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"heungbu\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +     ],
+    +   },
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "surface": "account",
+    +     "targets": Array [
+    +       Array [
+    +         "article[data-work-id=\"rabbit\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"onggojib\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"seonnyeo\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"heungbu\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +     ],
+    +   },
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "surface": "online",
+    +     "targets": Array [
+    +       Array [
+    +         "article[data-work-id=\"rabbit\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"onggojib\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"seonnyeo\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"heungbu\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +     ],
+    +   },
+    + ]
+
+      19 |  await page.goto('/shortstory');await expect(page.getByLabel('이야기 제목',{exact:true})).toBeVisible();await scan('short-writer');await page.getByRole('button',{name:'읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기',exact:true})).toBeVisible();await scan('short-reader');
+      20 |  const path=info.outputPath('axe-host.json');await writeFile(path,JSON.stringify({scope:'Automated visible host DOM only. Iframes excluded; incomplete checks retained for manual review. No screen-reader/physical-device conformance claim.',width,reports},null,2)+'\n');await info.attach('axe-host',{path,contentType:'application/json'});
+    > 21 |  expect(violations).toEqual([]);
+         |                     ^
+      22 | });
+      23 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility.spec.ts:21:21
+
+    attachment #1: axe-host (application/json) ─────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-visible-host-31a31-omated-A-AA-violations-1440/attachments/axe-host-d707b8be0f98650720a9dd0acbf0bc4741411d36.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility/accessibility-visible-host-31a31-omated-A-AA-violations-1440/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-visible-host-31a31-omated-A-AA-violations-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-visible-host-31a31-omated-A-AA-violations-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 390 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 56
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "surface": "library",
+    +     "targets": Array [
+    +       Array [
+    +         "article[data-work-id=\"rabbit\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"onggojib\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"seonnyeo\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"heungbu\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +     ],
+    +   },
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "surface": "account",
+    +     "targets": Array [
+    +       Array [
+    +         "article[data-work-id=\"rabbit\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"onggojib\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"seonnyeo\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"heungbu\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +     ],
+    +   },
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "surface": "online",
+    +     "targets": Array [
+    +       Array [
+    +         "article[data-work-id=\"rabbit\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"onggojib\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"seonnyeo\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +       Array [
+    +         "article[data-work-id=\"heungbu\"] > .local-bookshelf-module__E5KFCW__cover[data-shelf-cover=\"true\"]",
+    +       ],
+    +     ],
+    +   },
+    + ]
+
+      19 |  await page.goto('/shortstory');await expect(page.getByLabel('이야기 제목',{exact:true})).toBeVisible();await scan('short-writer');await page.getByRole('button',{name:'읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기',exact:true})).toBeVisible();await scan('short-reader');
+      20 |  const path=info.outputPath('axe-host.json');await writeFile(path,JSON.stringify({scope:'Automated visible host DOM only. Iframes excluded; incomplete checks retained for manual review. No screen-reader/physical-device conformance claim.',width,reports},null,2)+'\n');await info.attach('axe-host',{path,contentType:'application/json'});
+    > 21 |  expect(violations).toEqual([]);
+         |                     ^
+      22 | });
+      23 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility.spec.ts:21:21
+
+    attachment #1: axe-host (application/json) ─────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-visible-host-49e15-tomated-A-AA-violations-390/attachments/axe-host-62bd3ba53752c1f12ad99e4d27983e6777f9ee21.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility/accessibility-visible-host-49e15-tomated-A-AA-violations-390/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility/accessibility-visible-host-49e15-tomated-A-AA-violations-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility/accessibility-visible-host-49e15-tomated-A-AA-violations-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 1440 
+    tests/e2e/accessibility.spec.ts:5:31 › visible host surfaces have no automated A/AA violations 390 

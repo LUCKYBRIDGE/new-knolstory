@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { describe, expect, it } from 'vitest';
-import { isRuntimeScene } from '../../packages/runtime-contract/src/index';
+import { isRuntimeScene,isRuntimeServiceAudioResources,runtimeServiceAudioPaths } from '../../packages/runtime-contract/src/index';
 
 const scene = { contractVersion: 1, sceneId: 'probe', revision: 1, width: 1280, height: 720,
   actors: [{ id: 'heungbu', name: '흥부', rect: { x: 20, y: 20, width: 100, height: 200 } }],
@@ -10,19 +10,21 @@ function bridge() {
   const listeners: Record<string, (event: unknown) => void> = {};
   const events: unknown[] = [];
   const frameElement = {};
+  const attrs=new Map<string,string>([['tabindex','-1']]);
+  const canvas={getBoundingClientRect:()=>({x:0,y:0,width:800,height:600}),getAttribute:(name:string)=>attrs.get(name)??null,setAttribute:(name:string,value:string)=>attrs.set(name,value),removeAttribute:(name:string)=>attrs.delete(name)};
   const parent = { postMessage: (event: unknown) => events.push(event), document: {activeElement: frameElement as unknown} };
-  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene }, frameElement };
+  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene,isRuntimeServiceAudioResources,runtimeServiceAudioPaths }, frameElement };
   runInNewContext(readFileSync('spikes/renpy-web/bridge.js', 'utf8'), {
     window, parent, location: { origin: 'https://story.knolquiz.com' }, structuredClone,
     addEventListener: (name: string, fn: (event: unknown) => void) => { listeners[name] = fn; },
-    document: { getElementById: () => ({ getBoundingClientRect: () => ({ x: 0, y: 0, width: 800, height: 600 }) }) },
+    document: { getElementById: () => canvas },
   });
   const api = window.knolBridge as { drain(): string; emit(event: unknown): void };
   const send = (revision = 1, seq = revision, payload: unknown = { ...scene, revision }, overrides = {}) => listeners.message({
     origin: 'https://story.knolquiz.com', source: parent,
     data: { protocol: 1, type: 'loadScene', seq, revision, payload }, ...overrides,
   });
-  return { api, events, send, parent, frameElement, listeners };
+  return { api, events, send, parent, frameElement, listeners,canvas };
 }
 describe('actual runtime iframe bridge', () => {
   it('accepts complete resolved scene and drains only once', () => {
@@ -77,4 +79,31 @@ it('does not let passive canvas hover take focus from the Web authoring controls
 it('preserves existing native focus and leaves noncanvas hover events intact',()=>{
  const {listeners,parent,frameElement}=bridge();let blocked=0;const event=(id:string)=>({target:{id},stopImmediatePropagation:()=>{blocked++;}});
  expect(listeners.mouseenter).toBeDefined();parent.document.activeElement=frameElement;listeners.mouseenter(event('canvas'));parent.document.activeElement={tagName:'INPUT'};listeners.mouseenter(event('presplash'));expect(blocked).toBe(0);
+});
+
+it('makes only the current locked audio stage keyboard reachable and restores SDK attributes',()=>{
+ const {api,send,canvas}=bridge();
+ const playable={...scene,mode:'play',audio:{version:1,sessionId:'keyboard',music:{action:'play',audioPath:'assets/audio/music.ogg',volume:1,loop:true,fadeInMs:0,fadeOutMs:0},sounds:[]}};
+ expect(isRuntimeScene(playable)).toBe(true);send(1,1,playable);api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:1,audioState:{unlocked:false}});
+ expect(canvas.getAttribute('tabindex')).toBe('0');expect(canvas.getAttribute('role')).toBe('button');expect(canvas.getAttribute('aria-label')).toContain('Enter');
+ api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:0,audioState:{unlocked:true}});expect(canvas.getAttribute('role')).toBe('button');
+ api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:1,audioState:{unlocked:true}});
+ expect(canvas.getAttribute('tabindex')).toBe('-1');expect(canvas.getAttribute('role')).toBeNull();expect(canvas.getAttribute('aria-label')).toBeNull();
+ send(2,2,{...playable,revision:2});api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:2,audioState:{unlocked:false}});expect(canvas.getAttribute('role')).toBe('button');
+ send(3,3,{...scene,revision:3,mode:'edit'});expect(canvas.getAttribute('role')).toBeNull();
+ api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:2,audioState:{unlocked:false}});expect(canvas.getAttribute('role')).toBeNull();
+});
+
+it('coalesces native page requests separately and clears them on a newer scene',()=>{
+ const {api,send,listeners,parent}=bridge();send(1,1,{...scene,mode:'play'});
+ const request=(overrides={})=>listeners.message({origin:'https://story.knolquiz.com',source:parent,data:{protocol:1,type:'nextDialoguePage',sceneId:'probe',revision:1},...overrides});
+ request({origin:'https://other.invalid'});request({source:{}});expect(JSON.parse(api.drain()).map((c:{type:string})=>c.type)).toEqual(['loadScene']);
+ request();request();expect(JSON.parse(api.drain())).toEqual([{protocol:1,type:'nextDialoguePage',sceneId:'probe',revision:1}]);expect(api.drain()).toBe('[]');
+ request();send(2,2,{...scene,revision:2,mode:'play'});expect(JSON.parse(api.drain()).map((c:{type:string})=>c.type)).toEqual(['loadScene']);request();expect(api.drain()).toBe('[]');
+});
+it('rejects page requests before a scene and for editing scenes or malformed revisions',()=>{
+ const {api,send,listeners,parent}=bridge();
+ const request=(revision:unknown=1)=>listeners.message({origin:'https://story.knolquiz.com',source:parent,data:{protocol:1,type:'nextDialoguePage',sceneId:'probe',revision}});
+ request();expect(api.drain()).toBe('[]');send();api.drain();request();expect(api.drain()).toBe('[]');
+ send(2,2,{...scene,revision:2,mode:'play'});api.drain();for(const revision of [-1,1,2.5,'2'])request(revision);expect(api.drain()).toBe('[]');
 });

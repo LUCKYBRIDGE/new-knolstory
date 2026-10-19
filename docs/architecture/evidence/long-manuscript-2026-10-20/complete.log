@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:37090) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/long-manuscript-workbench.spec.ts:11:1 › long manuscript keeps last-cut editing, cursor, file and internal scrolling across screen changes (6.5s)
+  ✓  2 tests/e2e/long-manuscript-workbench.spec.ts:25:1 › repeated resize and editor changes keep a single actual engine and intact manuscript (14.6s)
+
+  2 passed (21.5s)

@@ -1,0 +1,427 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:56] "GET / HTTP/1.1" 200 -
+
+Running 7 tests using 1 worker
+
+(node:89021) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:57] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 07:59:59] "GET / HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/storage-recovery.spec.ts:14:1 › previous manuscript opens as independent copy; both revisions survive reload and file export (5.7s)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:02] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:03] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:04] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:06] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:06] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:06] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:06] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:06] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:07] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:09] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:09] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:09] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:10] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 52816)
+[WebServer] ----------------------------------------
+[WebServer] Exception occurred during processing of request from ('127.0.0.1', 52817)
+  ✓  2 [host] › tests/e2e/storage-recovery.spec.ts:29:1 › second tab draft cannot overwrite first tab, even when using manual save (9.5s)
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 683, in process_request_thread
+[WebServer]     self.finish_request(request, client_address)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 360, in finish_request
+[WebServer]     self.RequestHandlerClass(request, client_address, self)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 660, in __init__
+[WebServer]     super().__init__(*args, **kwargs)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 747, in __init__
+[WebServer]     self.handle()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 434, in handle
+[WebServer]     self.handle_one_request()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 422, in handle_one_request
+[WebServer]     method()
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 667, in do_GET
+[WebServer]     self.copyfile(f, self.wfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/http/server.py", line 867, in copyfile
+[WebServer]     shutil.copyfileobj(source, outputfile)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/shutil.py", line 208, in copyfileobj
+[WebServer]     fdst_write(buf)
+[WebServer]   File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/socketserver.py", line 826, in write
+[WebServer]     self._sock.sendall(b)
+[WebServer] BrokenPipeError: [Errno 32] Broken pipe
+[WebServer] ----------------------------------------
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:12] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:13] "GET / HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET / HTTP/1.1" 304 -
+  ✓  3 [host] › tests/e2e/storage-recovery.spec.ts:38:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained (1.8s)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:14] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:15] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:20] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:20] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:20] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  4 [host] › tests/e2e/storage-recovery.spec.ts:51:1 › failed deletion preserves the previous deleted book and the current draft together (7.7s)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:22] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  5 [host] › tests/e2e/storage-recovery.spec.ts:65:1 › page restoration reacquires ownership before saving and preserves the draft (1.3s)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /assets/legacy-18da4fc/seonnyeo.poster.art.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:23] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:27] "GET / HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  6 [host] › tests/e2e/storage-recovery.spec.ts:76:1 › the complete long Seonnyeo copy can delete and undo a cut beyond checkpoint capacity (12.2s)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/0zgvyk5i8br8k.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:35] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:36] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:37] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:38] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:38] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:39] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:39] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:00:39] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  7 [host] › tests/e2e/storage-recovery.spec.ts:92:1 › resumed stale draft cannot overwrite a work changed while its writer was released (9.6s)
+
+
+  1) [host] › tests/e2e/storage-recovery.spec.ts:92:1 › resumed stale draft cannot overwrite a work changed while its writer was released 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('save-status')
+    Expected substring: "기기 저장 실패"
+    Received string:    "기기에 저장됨"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByTestId('save-status') with timeout 5000ms
+      - waiting for getByTestId('save-status')
+        14 × locator resolved to <p role="status" data-testid="save-status">기기에 저장됨</p>
+           - unexpected value "기기에 저장됨"
+
+
+      92 | test('resumed stale draft cannot overwrite a work changed while its writer was released',async({page,context})=>{
+      93 |  await create(page,'재개 충돌을 검증하는 원고');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();const firstText=page.getByLabel('대사 / 해설',{exact:true});await firstText.fill('첫 탭이 보관한 원고');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));await expect.poll(()=>page.evaluate(async key=>(await navigator.locks.query()).held?.filter(lock=>lock.name===`${key}-writer`).length,workspace)).toBe(0);
+    > 94 |  const second=await context.newPage();await second.goto('/?view=editor');await expect(second.getByTestId('save-status')).toHaveText('기기에 저장됨');await second.getByLabel('대사 / 해설',{exact:true}).fill('잠시 다른 탭에서 고친 새 원고');await expect(second.getByTestId('save-status')).toHaveText('기기에 저장됨');const latest=await second.evaluate(key=>localStorage.getItem(key),workspace);await second.close();await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));await expect(page.getByTestId('save-status')).toContainText('기기 저장 실패');await expect(firstText).toHaveValue('첫 탭이 보관한 원고');await menu(page);await page.getByRole('button',{name:'기기에 저장',exact:true}).click();expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(latest);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const saved=JSON.parse(await readFile((await (await download).path())!,'utf8'));expect(saved.document.project.lines[0].text).toBe('첫 탭이 보관한 원고');await page.reload();await expect(firstText).toHaveValue('잠시 다른 탭에서 고친 새 원고');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      95 | });
+      96 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:94:532
+
+    Error Context: test-results/storage-recovery-resumed-s-c8816-ile-its-writer-was-released-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/storage-recovery.spec.ts:92:1 › resumed stale draft cannot overwrite a work changed while its writer was released 
+  6 passed (48.5s)

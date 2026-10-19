@@ -1,0 +1,46 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-96927269604d Creating 
+ Container knolstory-next-storage-test-runner-run-96927269604d Created 
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+
+ [31m❯[39m auth/postgres-auth-completion.integration.ts [2m([22m[2m9 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 54[2mms[22m[39m
+     [32m✓[39m Kakao signup commits identity and only hashed session together; linked Google logs in to the same account[32m 8[2mms[22m[39m
+     [32m✓[39m unknown Google creates neither account nor session[32m 1[2mms[22m[39m
+     [32m✓[39m link conflicts and account mismatch preserve identity and all existing sessions[32m 4[2mms[22m[39m
+     [32m✓[39m authenticated login cannot switch accounts or create an orphan Kakao account[32m 3[2mms[22m[39m
+     [32m✓[39m logout committed while callback waits for original session lock prevents link and login[32m 9[2mms[22m[39m
+     [32m✓[39m queued logout revokes newly rotated descendants while unrelated device sessions survive[32m 3[2mms[22m[39m
+     [32m✓[39m failure revoking original rolls back issued session and preserves original validity[32m 2[2mms[22m[39m
+     [32m✓[39m ancestor logout serializes a child rotation and revokes the new grandchild[32m 4[2mms[22m[39m
+[31m     [31m×[31m checks expiry after a lock wait instead of the pre-wait timestamp[39m[32m 7[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m auth/postgres-auth-completion.integration.ts[2m > [22mreal PostgreSQL atomic identity and session completion[2m > [22mchecks expiry after a lock wait instead of the pre-wait timestamp
+[31m[1mAssertionError[22m: promise resolved "{ …(2) }" instead of rejecting[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- Error {[39m
+[32m-   "message": "rejected promise",[39m
+[31m+ {[39m
+[31m+   "accountId": "bc9a607b-cb80-424e-ac8a-245850aa3227",[39m
+[31m+   "linked": true,[39m
+[2m  }[22m
+
+[36m [2m❯[22m auth/postgres-auth-completion.integration.ts:[2m106:33[22m[39m
+
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m8 passed[39m[22m[90m (9)[39m
+[2m   Start at [22m 23:02:24
+[2m   Duration [22m 181ms[2m (transform 48ms, setup 0ms, import 68ms, tests 54ms, environment 0ms)[22m
+
+

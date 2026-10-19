@@ -1,0 +1,390 @@
+Listing tests:
+  [host] › approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 1280
+  [host] › approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 820
+  [host] › approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 390
+  [host] › approved-editor.spec.ts:24:1 › manuscript navigation protects IME and failed storage
+  [host] › approved-editor.spec.ts:34:74 › choice and project scores stay independent with choices=false, scores=false
+  [host] › approved-editor.spec.ts:34:74 › choice and project scores stay independent with choices=false, scores=true
+  [host] › approved-editor.spec.ts:34:74 › choice and project scores stay independent with choices=true, scores=false
+  [host] › approved-editor.spec.ts:34:74 › choice and project scores stay independent with choices=true, scores=true
+  [host] › approved-editor.spec.ts:77:1 › measured keyboard occlusion reduces editor projection without changing logical scene or iframe
+  [host] › approved-editor.spec.ts:97:1 › adding a score makes optional choice controls available and persists authored effects
+  [host] › approved-editor.spec.ts:103:115 › tool navigation protects Korean composition and has one text return 1440
+  [host] › approved-editor.spec.ts:103:115 › tool navigation protects Korean composition and has one text return 768
+  [host] › approved-editor.spec.ts:103:115 › tool navigation protects Korean composition and has one text return 390
+  [host] › approved-editor.spec.ts:103:115 › tool navigation protects Korean composition and has one text return 844
+  [host] › approved-editor.spec.ts:122:1 › tool navigation tracks composition in choice labels
+  [host] › approved-editor.spec.ts:131:1 › internal direction jump respects composition and opens placement when input finishes
+  [host] › approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core
+  [host] › approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity
+  [host] › approved-reader.spec.ts:40:1 › reader failure cannot leave for library and preparing stage has an exit
+  [host] › approved-reader.spec.ts:45:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields
+  [host] › approved-reader.spec.ts:59:1 › native approved dialogue and host bar align on a real RenPy phone stage
+  [host] › approved-reader.spec.ts:66:1 › automatic reading pauses for menus and advances only after current native acknowledgement
+  [host] › approved-reader.spec.ts:79:1 › reader top menu allows editing exit when native runtime is unavailable
+  [host] › audio-attributes.spec.ts:9:1 › existing private sound keeps Korean attributes and bytes while catalog filters never offer a new upload
+  [host] › audio-attributes.spec.ts:23:1 › registered sound search retains selected ID and exposes read-only Korean source metadata
+  [host] › audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 1440
+  [host] › audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 390
+  [host] › authoring-audio-metadata.spec.ts:6:56 › external audio changed is denied before changing current work or media storage
+  [host] › authoring-audio-metadata.spec.ts:6:56 › external audio omitted is denied before changing current work or media storage
+  [host] › authoring-audio-metadata.spec.ts:6:56 › external audio unused is denied before changing current work or media storage
+  [host] › authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 1280x900
+  [host] › authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 820x1180
+  [host] › authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 390x844
+  [host] › authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 844x390
+  [host] › authoring-formats.spec.ts:36:1 › blank official template creates new work through validated preview
+  [host] › authoring.spec.ts:58:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip
+  [host] › authoring.spec.ts:92:1 › newly authored branching work renders real assets and both native Ren’Py choices reach endings
+  [host] › authoring.spec.ts:140:1 › blank creation preserves existing work and structural editing retains choice identities
+  [host] › authoring.spec.ts:195:1 › explicit save retries a failed device write while preserving the draft
+  [host] › authoring.spec.ts:218:1 › corrupt stored workspace preserves raw bytes and blocks applying a pending import while drafts export
+  [host] › branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440
+  [host] › branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 768
+  [host] › branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 390
+  [host] › branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 844
+  [host] › branch-scope.spec.ts:47:1 › branch preview preserves draft during composition/save failure and source deletion stays guarded
+  [host] › branch-scope.spec.ts:55:1 › a work without choices keeps branch-only controls out of effect editing without changing content
+  [host] › branch-writing.spec.ts:9:115 › new branch cancels safely, starts writing and returns to its origin at 1440
+  [host] › branch-writing.spec.ts:9:115 › new branch cancels safely, starts writing and returns to its origin at 768
+  [host] › branch-writing.spec.ts:9:115 › new branch cancels safely, starts writing and returns to its origin at 390
+  [host] › branch-writing.spec.ts:9:115 › new branch cancels safely, starts writing and returns to its origin at 844
+  [host] › branch-writing.spec.ts:19:1 › branch creation retains source and pending draft when saving fails, then retries
+  [host] › branch-writing.spec.ts:22:1 › creating after a reader return still returns to the actual choice origin
+  [host] › catalog-only.spec.ts:3:1 › editor media pickers have no external upload and archive attachment cannot change manuscript
+  [host] › cc0-audio.spec.ts:6:1 › all 21 CC0 originals load and decode in the browser
+  [host] › cc0-audio.spec.ts:26:1 › CC0 Korean labels and source facets select real files and native runtime plays all three channels
+  [host] › chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 1440
+  [host] › chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 768
+  [host] › chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 390
+  [host] › chapter-audio-range.spec.ts:8:115 › chapter sound ranges preserve full work and return after native end boundary 844
+  [host] › chapter-branch-identity.spec.ts:10:1 › chapter identity and extended branch cuts survive editor, file export and reload
+  [host] › choice-density.spec.ts:3:39 › choice-only editing hides unavailable actions and preserves authored options 1440
+  [host] › choice-density.spec.ts:3:39 › choice-only editing hides unavailable actions and preserves authored options 768
+  [host] › choice-density.spec.ts:3:39 › choice-only editing hides unavailable actions and preserves authored options 390
+  [host] › choice-density.spec.ts:3:39 › choice-only editing hides unavailable actions and preserves authored options 844
+  [host] › composition-intent.spec.ts:118:1 › composition authoring separates body scale, center, original facing and actor exits through files
+  [host] › composition-intent.spec.ts:145:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes
+  [host] › create-writing.spec.ts:5:39 › new work starts writing without required settings 1440
+  [host] › create-writing.spec.ts:5:39 › new work starts writing without required settings 768
+  [host] › create-writing.spec.ts:5:39 › new work starts writing without required settings 390
+  [host] › create-writing.spec.ts:5:39 › new work starts writing without required settings 844
+  [host] › create-writing.spec.ts:9:1 › failed creation retains the title form and original work before another work is created
+  [host] › cut-range-authoring.spec.ts:7:1 › actual work cut-end authoring saves, exports and reopens unchanged unrelated fields
+  [host] › cut-range-authoring.spec.ts:19:1 › native presenter receives bounded effect through end then stops it without clearing another cue
+  [host] › cut-range-delete.spec.ts:4:1 › endpoint deletion names dependent effect and keeps manuscript until range is changed
+  [host] › direction-purpose.spec.ts:6:39 › direction purposes keep one editing group and preserve independent changes 1440
+  [host] › direction-purpose.spec.ts:6:39 › direction purposes keep one editing group and preserve independent changes 768
+  [host] › direction-purpose.spec.ts:6:39 › direction purposes keep one editing group and preserve independent changes 390
+  [host] › direction-purpose.spec.ts:6:39 › direction purposes keep one editing group and preserve independent changes 844
+  [host] › direction-purpose.spec.ts:9:1 › discovering purposes preserves authored clearing and placement without authoring defaults
+  [host] › direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 1440
+  [host] › direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 768
+  [host] › direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 390
+  [host] › direction-purpose.spec.ts:15:122 › appearance controls follow current actors and preserve saved absent groups 844
+  [host] › direction-purpose.spec.ts:38:1 › native side opacity hides both left actors and matches an empty left stage
+  [host] › editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 1440
+  [host] › editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 768
+  [host] › editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 390
+  [host] › editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 844
+  [host] › editor-chrome-navigation.spec.ts:12:1 › preview arrows cross chapter boundaries in manuscript view and protect failed saves
+  [host] › editor-density.spec.ts:15:25 › editor writing and preparation stay compact and preserve Korean input at 1440x900
+  [host] › editor-density.spec.ts:15:25 › editor writing and preparation stay compact and preserve Korean input at 1024x768
+  [host] › editor-density.spec.ts:15:25 › editor writing and preparation stay compact and preserve Korean input at 768x1024
+  [host] › editor-density.spec.ts:15:25 › editor writing and preparation stay compact and preserve Korean input at 390x844
+  [host] › editor-density.spec.ts:15:25 › editor writing and preparation stay compact and preserve Korean input at 844x390
+  [host] › editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 1440
+  [host] › editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 768
+  [host] › editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 390
+  [host] › editor-flow-context.spec.ts:4:115 › writing context shows joins and connected text without extra tools 844
+  [host] › editor-flow-context.spec.ts:12:1 › unreachable and pending context opens repair without changing original links
+  [host] › editor-navigation.spec.ts:12:115 › chosen editing visits survive join, loop, reload and native reading without authoring content 1440
+  [host] › editor-navigation.spec.ts:12:115 › chosen editing visits survive join, loop, reload and native reading without authoring content 768
+  [host] › editor-navigation.spec.ts:12:115 › chosen editing visits survive join, loop, reload and native reading without authoring content 390
+  [host] › editor-navigation.spec.ts:12:115 › chosen editing visits survive join, loop, reload and native reading without authoring content 844
+  [host] › editor-navigation.spec.ts:30:1 › editing return is atomic under save failure and IME, and imported works keep independent paths
+  [host] › editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 1440
+  [host] › editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 768
+  [host] › editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 390
+  [host] › editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 844
+  [host] › editor-term-guide.spec.ts:32:1 › guide preserves author drafts and restores focus in four viewport layouts
+  [host] › editor-term-guide.spec.ts:48:1 › ShortStory guide leaves edited page text untouched
+  [host] › editor-time-seconds.spec.ts:11:1 › decimal seconds preserve exact milliseconds through save, reload and file reopening
+  [host] › editor-time-seconds.spec.ts:23:37 › previous actual excel seconds artifact rejects new private attachment and its explicit registered copy preserves exact work
+  [host] › editor-time-seconds.spec.ts:23:37 › previous actual google seconds artifact rejects new private attachment and its explicit registered copy preserves exact work
+  [host] › editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440
+  [host] › editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 768
+  [host] › editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 390
+  [host] › editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 844
+  [host] › editor-view-notes.spec.ts:24:1 › cut notes edit in both views, save, export, reimport and return from native reading
+  [host] › editor-view-notes.spec.ts:40:1 › failed storage keeps the author in the current writing view
+  [host] › effect-start.spec.ts:4:31 › move effect start preserves end and text with undo 1440
+  [host] › effect-start.spec.ts:4:31 › move effect start preserves end and text with undo 390
+  [host] › entry-cover.spec.ts:7:1 › fresh browser entry introduces existing books and explicit navigation enters library
+  [host] › entry-cover.spec.ts:28:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration
+  [host] › entry-cover.spec.ts:28:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration
+  [host] › entry-cover.spec.ts:58:1 › all eight existing editions enter actual RenPy through their stored book cover
+  [host] › entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at portrait
+  [host] › entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at landscape
+  [host] › entry-cover.spec.ts:79:1 › cover title validation keeps the applied book intact and draft recoverable
+  [host] › excel-authoring-roundtrip.spec.ts:5:1 › previous actual Excel artifact rejects new private attachment and registered copy preserves extended values and complete archive
+  [host] › excel-authoring-roundtrip.spec.ts:17:1 › actual Excel picture book exported XLSX opens at its edited page
+  [host] › existing-score-runtime.spec.ts:112:27 › seonnyeo-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:112:27 › heungbu-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:112:27 › onggojib-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:112:27 › rabbit-classic: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:112:27 › seonnyeo: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:112:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:112:27 › onggojib: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:112:27 › rabbit: actual browser reads the existing scored work, resumes and preserves its archive
+  [host] › existing-score-runtime.spec.ts:198:1 › Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py
+  [host] › existing-score-runtime.spec.ts:239:1 › existing eight works: actual decoded music clock advances after the first unlocked cue
+  [host] › existing-story-enhancement.spec.ts:4:1 › existing originals are directly readable beside KnolStory works
+  [host] › external-shortstory-print.spec.ts:2:40 › actual excel edited ShortStory reopens and prints a complete A4 book
+  [host] › external-shortstory-print.spec.ts:2:40 › actual google edited ShortStory reopens and prints a complete A4 book
+  [host] › file-actions.spec.ts:4:39 › settings share one work menu and clear file actions 1440
+  [host] › file-actions.spec.ts:4:39 › settings share one work menu and clear file actions 768
+  [host] › file-actions.spec.ts:4:39 › settings share one work menu and clear file actions 390
+  [host] › file-actions.spec.ts:4:39 › settings share one work menu and clear file actions 844
+  [host] › file-actions.spec.ts:7:1 › selected book exports through the same named file action
+  [host] › file-actions.spec.ts:10:1 › settings IME protects shared menu recovery and linked memo navigation
+  [host] › file-actions.spec.ts:13:1 › corrupt workspace recovery still opens a protected copy without replacing raw storage
+  [host] › flow-authoring.spec.ts:55:1 › flow overview navigates nested branches and diagnoses pending and unreachable cuts without losing authored content
+  [host] › flow-authoring.spec.ts:130:1 › native Ren’Py follows all six nested and merged routes to two independent endings with a persistent renderer
+  [host] › flow-authoring.spec.ts:167:1 › large inherited work can find and edit a cut beyond the initial chapter page
+  [host] › four-work-library.spec.ts:4:1 › the default library groups eight manuscripts into four independent work choices
+  [host] › four-work-library.spec.ts:23:75 › 별주부전 원작: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:23:75 › 별주부전 놀스토리: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:23:75 › 옹고집전 원작: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:23:75 › 옹고집전 놀스토리: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:23:75 › 선녀와 나무꾼 원작: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:23:75 › 선녀와 나무꾼 놀스토리: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:23:75 › 흥부와 놀부 원작: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:23:75 › 흥부와 놀부 놀스토리: chosen manuscript opens and returns to its grouped book
+  [host] › four-work-library.spec.ts:35:1 › all four shelf choices open their actual ShortStory and return to the same library
+  [host] › four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+  [host] › four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+  [host] › four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+  [host] › four-work-shortstory.spec.ts:9:25 › actual rabbit picture book read, isolated position and complete A4 print
+  [host] › four-work-shortstory.spec.ts:9:25 › actual onggojib picture book read, isolated position and complete A4 print
+  [host] › four-work-shortstory.spec.ts:9:25 › actual seonnyeo picture book read, isolated position and complete A4 print
+  [host] › four-work-shortstory.spec.ts:9:25 › actual heungbu picture book read, isolated position and complete A4 print
+  [host] › four-work-shortstory.spec.ts:30:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import
+  [host] › four-work-shortstory.spec.ts:52:1 › old single workspace backs up, immediate new/import preserve it, unsupported v2 rejects and storage failure blocks switching
+  [host] › four-work-shortstory.spec.ts:63:1 › delayed Google picture book import retains books created and edited while waiting
+  [host] › four-work-shortstory.spec.ts:75:1 › failed picture book deletion preserves its editable draft for save retry and reload
+  [host] › four-work-shortstory.spec.ts:84:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser
+  [host] › four-work-shortstory.spec.ts:84:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser
+  [host] › four-work-shortstory.spec.ts:84:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser
+  [host] › four-work-shortstory.spec.ts:84:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser
+  [host] › google-authoring-roundtrip.spec.ts:5:1 › previous actual Google artifact rejects new private attachment and registered copy preserves extended values and complete archive
+  [host] › google-authoring-roundtrip.spec.ts:17:1 › actual Google picture book exported XLSX opens at its edited page
+  [host] › image-selection.spec.ts:4:39 › one image picker preserves apply cancel default and none 1440
+  [host] › image-selection.spec.ts:4:39 › one image picker preserves apply cancel default and none 768
+  [host] › image-selection.spec.ts:4:39 › one image picker preserves apply cancel default and none 390
+  [host] › image-selection.spec.ts:4:39 › one image picker preserves apply cancel default and none 844
+  [host] › image-selection.spec.ts:8:1 › actor images have no clearing choice and cover empty image is a cancellable draft
+  [host] › image-selection.spec.ts:13:1 › chapter blank selection is labelled as project inheritance
+  [host] › introduction-stability.spec.ts:7:1 › introduction waits for a choice and stays open across reloads and new navigation
+  [host] › introduction-stability.spec.ts:42:1 › my works leaves introduction only after an explicit choice
+  [host] › introduction-stability.spec.ts:51:1 › a corrupt workspace stays intact while introduction waits for explicit navigation
+  [host] › introduction-stability.spec.ts:64:1 › explicit ShortStory library return is consumed so later preparation survives reload
+  [host] › korean-authoring-roundtrip.spec.ts:7:40 › previous actual google Korean content uses a current registered copy and preserves the full work
+  [host] › korean-authoring-roundtrip.spec.ts:7:40 › previous actual excel Korean content uses a current registered copy and preserves the full work
+  [host] › legacy-authoring-workspace.spec.ts:53:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+  [host] › legacy-authoring-workspace.spec.ts:53:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px
+  [host] › legacy-authoring-workspace.spec.ts:62:1 › new manuscript story survives files and reaches both endings in native RenPy
+  [host] › legacy-authoring-workspace.spec.ts:76:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+  [host] › legacy-authoring-workspace.spec.ts:76:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px
+  [host] › library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 1365x900
+  [host] › library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 820x1180
+  [host] › library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 390x844
+  [host] › library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 844x390
+  [host] › library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740
+  [host] › library-design-parity.spec.ts:19:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft
+  [host] › library-design-parity.spec.ts:28:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book
+  [host] › library-design-parity.spec.ts:42:1 › layered front, spine and back covers keep direct edits in the draft until apply
+  [host] › library-design-parity.spec.ts:51:1 › all eight books start native RenPy from the library focus and retain the same runtime
+  [host] › library-design-parity.spec.ts:63:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript
+  [host] › library-design-parity.spec.ts:69:1 › tab browsing preferences survive book work and reload without entering the story file
+  [host] › library-design-parity.spec.ts:74:1 › modal keyboard boundaries include collapsed settings and nested image selection
+  [host] › library-design-parity.spec.ts:78:1 › cover title size changes the rendered typography without covering the whole artwork panel
+  [host] › library-design-parity.spec.ts:82:1 › books physically rest on shelf faces and room decoration frames the focused shelves
+  [host] › library-design-parity.spec.ts:94:1 › cabinet preserves shelf capacity and at least two rows around four books
+  [host] › library-design-parity.spec.ts:101:1 › reference introduction uses exact rectangular posters and quiet library controls
+  [host] › library-design-parity.spec.ts:109:1 › compact shelf keeps all four books and drawer near the first viewport
+  [host] › library-design-parity.spec.ts:122:1 › cabinet joinery uses visible wood grain and preserves the book selection experience
+  [host] › library-design-parity.spec.ts:130:1 › book page blocks stay narrow and rest above the shelf instead of protruding below the cover
+  [host] › library-design-parity.spec.ts:136:1 › branded library shows word-safe cover titles and opens cover editing directly from the chosen book
+  [host] › library-design-parity.spec.ts:145:2 › window and cabinet have a visible strip of wall at every library width
+  [host] › local-library.spec.ts:145:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome
+  [host] › local-library.spec.ts:288:31 › memo navigation does not cover text and field-add button matches input height 1440
+  [host] › local-library.spec.ts:288:31 › memo navigation does not cover text and field-add button matches input height 390
+  [host] › local-library.spec.ts:307:1 › library keeps blank planning optional and separates examples from a UI-created work
+  [host] › local-library.spec.ts:338:1 › previous device workspace opens in library without changing its authored content or legacy keys
+  [host] › local-library.spec.ts:368:1 › corrupt device storage preserves its raw bytes while a new draft and checkpoint copy can be exported
+  [host] › local-library.spec.ts:434:1 › example preparation makes an independent own copy and duplicate import keeps the original
+  [host] › manuscript-operations.spec.ts:13:144 › manuscript split, merge and files preserve Korean at 1440x1000
+  [host] › manuscript-operations.spec.ts:13:144 › manuscript split, merge and files preserve Korean at 1024x768
+  [host] › manuscript-operations.spec.ts:13:144 › manuscript split, merge and files preserve Korean at 768x1024
+  [host] › manuscript-operations.spec.ts:13:144 › manuscript split, merge and files preserve Korean at 390x844
+  [host] › manuscript-operations.spec.ts:13:144 › manuscript split, merge and files preserve Korean at 844x390
+  [host] › media-provenance.spec.ts:9:1 › existing private sound provenance keeps original bytes and full work while new attachment is refused
+  [host] › memo-authoring.spec.ts:15:1 › memo fields survive reorder, delete undo, filters, device save and fresh-context file import on five viewport sizes
+  [host] › mobile-authoring.spec.ts:87:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change
+  [host] › mobile-authoring.spec.ts:186:1 › phone file-restored work renders real assets and both native Ren’Py endings with one iframe
+  [host] › native-save-thumbnail.spec.ts:2:68 › manual and quick saves use actual native pixels and survive reopen and load 1440
+  [host] › native-save-thumbnail.spec.ts:2:68 › manual and quick saves use actual native pixels and survive reopen and load 390
+  [host] › non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440
+  [host] › non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768
+  [host] › non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390
+  [host] › non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844
+  [host] › non-audio-direction-ui.spec.ts:101:1 › effect cancellation restores absence and cannot copy undo into another work with the same cut ID
+  [host] › non-audio-external.spec.ts:16:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work
+  [host] › non-audio-external.spec.ts:16:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work
+  [host] › non-audio-transition.spec.ts:15:1 › author controls confirm transition and look intensity without changing manuscript or placement
+  [host] › pixabay-scene-audio.spec.ts:27:1 › Pixabay audio is selected with source terms, exported as scene references and played in Ren’Py
+  [host] › presentation-polish.spec.ts:79:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+  [host] › presentation-polish.spec.ts:103:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+  [host] › presentation-polish.spec.ts:146:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+  [host] › preview-context.spec.ts:3:39 › native preview returns to same direction tool and undo 1440
+  [host] › preview-context.spec.ts:3:39 › native preview returns to same direction tool and undo 768
+  [host] › preview-context.spec.ts:3:39 › native preview returns to same direction tool and undo 390
+  [host] › preview-context.spec.ts:3:39 › native preview returns to same direction tool and undo 844
+  [host] › preview-context.spec.ts:6:1 › text cursor and sound purpose survive same cut preview
+  [host] › preview-context.spec.ts:10:1 › return to a later read cut does not reuse prior cut undo or cursor
+  [host] › preview-context.spec.ts:13:1 › catalog-only sound preview pauses during native reading and preserves the registered cue
+  [host] › preview-context.spec.ts:17:1 › seconds validation and expanded settings remain after preview without writing invalid time
+  [host] › preview-context.spec.ts:20:1 › manuscript return follows the current read cut across chapter boundaries
+  [host] › reading-surface.spec.ts:12:1 › reading gives the stage full width and keeps an exit while runtime is preparing
+  [host] › reading-surface.spec.ts:18:1 › current cut exposes outgoing destination and local chapter cut count
+  [host] › reading-surface.spec.ts:23:1 › choice-created chapters receive branch identity immediately
+  [host] › reading-surface.spec.ts:27:99 › 844 reading keeps the complete runtime viewport inside the screen
+  [host] › reading-surface.spec.ts:27:99 › 390 reading keeps the complete runtime viewport inside the screen
+  [host] › reading-surface.spec.ts:30:119 › native reader keeps bottom dialogue and folded phone tools at 1280
+  [host] › reading-surface.spec.ts:30:119 › native reader keeps bottom dialogue and folded phone tools at 820
+  [host] › reading-surface.spec.ts:30:119 › native reader keeps bottom dialogue and folded phone tools at 390
+  [host] › reading-surface.spec.ts:30:119 › native reader keeps bottom dialogue and folded phone tools at 844
+  [host] › responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 1280
+  [host] › responsive-audio-authoring.spec.ts:28:31 › responsive editing preserves prior private media and a registered copy reopens 390
+  [host] › responsive-audio-authoring.spec.ts:38:1 › native prior private sounds stay deduplicated through responsive reading, both endings and resume
+  [host] › responsive-audio-authoring.spec.ts:47:1 › previous device branching demo retains private media and both native endings without permitting new attachments
+  [host] › responsive-audio-authoring.spec.ts:51:1 › ending keeps the last native entrance confirmed and does not replay sounds
+  [host] › responsive-editor.spec.ts:3:1 › draft and the same iframe survive panel changes and portrait/landscape resize
+  [host] › responsive-editor.spec.ts:21:1 › logical actor coordinates survive viewport changes
+  [host] › runtime-unavailable.spec.ts:3:1 › runtime load failure preserves authored text without a substitute stage
+  [host] › scene-resources.spec.ts:2:115 › scene resource summary targets existing controls 1440
+  [host] › scene-resources.spec.ts:2:115 › scene resource summary targets existing controls 768
+  [host] › scene-resources.spec.ts:2:115 › scene resource summary targets existing controls 390
+  [host] › scene-resources.spec.ts:2:115 › scene resource summary targets existing controls 844
+  [host] › scene-resources.spec.ts:8:1 › summary updates none states and does not recreate the native runtime
+  [host] › score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens
+  [host] › score-narrative.spec.ts:15:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening
+  [host] › score-narrative.spec.ts:51:1 › score route destinations distinguish repeated cut text in different chapters
+  [host] › score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-story.knolstory
+  [host] › score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 390 score-story.knolstory
+  [host] › score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-excel-edited.xlsx
+  [host] › score-narrative.spec.ts:64:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-google-edited.xlsx
+  [host] › score-narrative.spec.ts:74:1 › invalid score references are rejected without replacing the current work and a valid file can be opened afterward
+  [host] › sfx-list.spec.ts:3:39 › multiple sound cues expose only selected detail 1440
+  [host] › sfx-list.spec.ts:3:39 › multiple sound cues expose only selected detail 768
+  [host] › sfx-list.spec.ts:3:39 › multiple sound cues expose only selected detail 390
+  [host] › sfx-list.spec.ts:3:39 › multiple sound cues expose only selected detail 844
+  [host] › sfx-list.spec.ts:6:1 › registered effects and shared names refresh without discarding another cue draft
+  [host] › short-authoring-formats.spec.ts:5:1 › official shortstory Excel edits are previewed, cancellable and survive independent file reopening
+  [host] › short-authoring-formats.spec.ts:29:1 › blank official shortstory workbook accepts a new book and rejects formulas without changing the draft
+  [host] › shortstory-conflict.spec.ts:4:1 › two ShortStory tabs preserve the saved book and export the blocked draft
+  [host] › shortstory-conflict.spec.ts:24:1 › a read-only second tab never migrates or recovers storage over the writer
+  [host] › shortstory.spec.ts:4:1 › ShortStory edits static pages, saves, restores files and prints without runtime
+  [host] › shortstory.spec.ts:31:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected
+  [host] › sound-batch.spec.ts:4:31 › explicit sound batch applies and undoes without replacing existing sounds 1440
+  [host] › sound-batch.spec.ts:4:31 › explicit sound batch applies and undoes without replacing existing sounds 390
+  [host] › sound-pending.spec.ts:3:36 › pending local registration preserves current edit scope false
+  [host] › sound-pending.spec.ts:3:36 › pending local registration preserves current edit scope true
+  [host] › sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 1440
+  [host] › sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 768
+  [host] › sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 390
+  [host] › sound-purpose.spec.ts:4:39 › sound purpose switches retain independent cues undo and native playback 844
+  [host] › sound-purpose.spec.ts:7:1 › chapter audio scope changes cannot reuse another chapter undo
+  [host] › staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback
+  [host] › staged-audio.spec.ts:22:1 › source name search resolves the existing forest recording without duplicate choices
+  [host] › staging-import.spec.ts:4:115 › staging import cancel apply undo and reopen preserve script 1440
+  [host] › staging-import.spec.ts:4:115 › staging import cancel apply undo and reopen preserve script 768
+  [host] › staging-import.spec.ts:4:115 › staging import cancel apply undo and reopen preserve script 390
+  [host] › staging-import.spec.ts:4:115 › staging import cancel apply undo and reopen preserve script 844
+  [host] › storage-recovery.spec.ts:14:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+  [host] › storage-recovery.spec.ts:29:1 › second tab draft cannot overwrite first tab, even when using manual save
+  [host] › storage-recovery.spec.ts:38:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+  [host] › storage-recovery.spec.ts:51:1 › failed deletion preserves the previous deleted book and the current draft together
+  [host] › storage-recovery.spec.ts:65:1 › page restoration reacquires ownership before saving and preserves the draft
+  [host] › storage-recovery.spec.ts:76:1 › the complete long Seonnyeo copy can delete and undo a cut beyond checkpoint capacity
+  [host] › storage-recovery.spec.ts:92:1 › resumed stale draft cannot overwrite a work changed while its writer was released
+  [host] › stories.spec.ts:7:3 › 선녀와 나무꾼: representative text edits survive reload and file roundtrip
+  [host] › stories.spec.ts:7:3 › 흥부와 놀부: representative text edits survive reload and file roundtrip
+  [host] › stories.spec.ts:7:3 › 옹고집전: representative text edits survive reload and file roundtrip
+  [host] › stories.spec.ts:7:3 › 별주부전: representative text edits survive reload and file roundtrip
+  [host] › stories.spec.ts:32:1 › persistent story runtime and current edit survive narrow screen changes
+  [host] › stories.spec.ts:56:1 › malformed import preserves current work and explains the error
+  [host] › stories.spec.ts:74:1 › edits stay separate when switching representative works
+  [host] › stories.spec.ts:87:1 › unfinished links and explicit endings remain distinct in playback
+  [host] › stories.spec.ts:105:1 › importing a different work preserves edits in the outgoing representative work
+  [host] › stories.spec.ts:128:3 › empty imported document leaves the editor intact
+  [host] › stories.spec.ts:128:3 › unknown-asset imported document leaves the editor intact
+  [host] › stories.spec.ts:163:1 › reading position and branch history resume after reload
+  [host] › ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 1440
+  [host] › ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 768
+  [host] › ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 390
+  [host] › ui-clarity.spec.ts:16:115 › measured native label never overlaps original viewpoint text 844
+  [host] › ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 1440
+  [host] › ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 768
+  [host] › ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 390
+  [host] › ui-clarity.spec.ts:27:115 › clear tools stay reachable and form rows do not overlap 844
+  [host] › ui-clarity.spec.ts:39:1 › long Korean choice labels scroll inside their own area above dialogue
+  [host] › ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 1440
+  [host] › ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 390
+  [host] › ui-clarity.spec.ts:47:91 › work/settings menus and image dialog remain within screen 844
+  [host] › ui-clarity.spec.ts:58:2 › effect undo belongs to the cut that was edited
+  [host] › ui-clarity.spec.ts:66:91 › cut range fields fit their panel 768
+  [host] › ui-clarity.spec.ts:66:91 › cut range fields fit their panel 390
+  [host] › ui-clarity.spec.ts:66:91 › cut range fields fit their panel 844
+  [host] › view-actions.spec.ts:2:39 › view settings contain view controls without duplicate editing actions 1440
+  [host] › view-actions.spec.ts:2:39 › view settings contain view controls without duplicate editing actions 768
+  [host] › view-actions.spec.ts:2:39 › view settings contain view controls without duplicate editing actions 390
+  [host] › view-actions.spec.ts:2:39 › view settings contain view controls without duplicate editing actions 844
+  [host] › view-actions.spec.ts:5:1 › starting native reading respects composition and failed saves
+  [host] › vn-workflow.spec.ts:10:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields
+  [host] › vn-workflow.spec.ts:22:1 › native portrait single speaker, slots and actual-path backlog restore both routes
+  [host] › vn-workflow.spec.ts:38:1 › changed-work slots show saved excerpt and require explicit compatible restore
+  [host] › vn-workflow.spec.ts:49:1 › numbered real-asset branch chapters play A and B then join without crossing routes
+  [host] › walnut-library.spec.ts:5:1 › owner-selected legacy honey oak finish keeps window wall clearance
+  [host] › walnut-library.spec.ts:10:83 › walnut cabinet supports the plant and books at 1365x900
+  [host] › walnut-library.spec.ts:10:83 › walnut cabinet supports the plant and books at 820x1180
+  [host] › walnut-library.spec.ts:10:83 › walnut cabinet supports the plant and books at 390x844
+  [host] › walnut-library.spec.ts:10:83 › walnut cabinet supports the plant and books at 844x390
+  [host] › walnut-library.spec.ts:10:83 › walnut cabinet supports the plant and books at 320x740
+  [host] › walnut-library.spec.ts:22:1 › cabinet keeps two shelf rows with four books, a single match or an empty collection
+  [host] › work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440
+  [host] › work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 768
+  [host] › work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 390
+  [host] › work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 844
+  [host] › work-actions.spec.ts:7:1 › score settings are global and return to the originating choice editor
+  [host] › work-actions.spec.ts:10:1 › settings entry respects composition and a failed save
+  [host] › work-actions.spec.ts:13:1 › library settings do not invent an editor return when changing purpose
+  [host] › work-menu-purpose.spec.ts:6:39 › work menu groups purpose without extra steps 1440
+  [host] › work-menu-purpose.spec.ts:6:39 › work menu groups purpose without extra steps 768
+  [host] › work-menu-purpose.spec.ts:6:39 › work menu groups purpose without extra steps 390
+  [host] › work-menu-purpose.spec.ts:6:39 › work menu groups purpose without extra steps 844
+  [host] › work-menu-purpose.spec.ts:9:1 › import confirms independent work and preserves original when saving fails
+  [host] › work-menu-purpose.spec.ts:13:32 › public sheet import uses current edits and save guard false
+  [host] › work-menu-purpose.spec.ts:13:32 › public sheet import uses current edits and save guard true
+  [host] › work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440
+  [host] › work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 768
+  [host] › work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 390
+  [host] › work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 844
+  [host] › work-menu-purpose.spec.ts:40:1 › score settings return preserves editing context when composing or device saving fails
+  [host] › writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 1440
+  [host] › writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 768
+  [host] › writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 390
+  [host] › writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 844
+  [host] › writing-focus.spec.ts:15:1 › empty memo entry creates a cut memo and returns to the same text
+Total: 388 tests in 81 files

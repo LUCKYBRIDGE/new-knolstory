@@ -1,0 +1,7 @@
+
+> knolstory-next@ typecheck:server /Users/wan/ai_dev/apps/new-knolstory
+> tsc -p server/tsconfig.json
+
+server/http/document-routes.test.ts(36,76): error TS2493: Tuple type '[]' of length '0' has no element at index '0'.
+server/http/request-observation.test.ts(34,304): error TS2493: Tuple type '[]' of length '0' has no element at index '0'.
+ ELIFECYCLE  Command failed with exit code 2.

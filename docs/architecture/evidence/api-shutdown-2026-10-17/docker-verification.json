@@ -1,0 +1,28 @@
+{
+  "scope": "ActuallocalNextDocker readyAPI SIGTERM and restartwithexistingPostgreSQL; noheldproductionrequest/forcedpoolfailuretest",
+  "exitCode": 0,
+  "oomKilled": false,
+  "restart": [
+    {
+      "path": "/health/live",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "live": true
+        }
+      }
+    },
+    {
+      "path": "/health/ready",
+      "status": 503,
+      "body": {
+        "success": false,
+        "error": {
+          "code": "AUTH_PROVIDER_NOT_CONFIGURED"
+        }
+      }
+    }
+  ],
+  "initialStartupRace": "stopped-state.json exit143 beforelistenready notnormalshutdownproof"
+}

@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-20",
+  "status": "local-chapter-resource-shortcuts-implemented-focused-verified-not-deployed",
+  "scope": "PC11 next sequential current chapter resource list access plus narrow settings overflow correction",
+  "semantics": [
+    "Lists are picker shortcuts, not runtime usage inventory",
+    "Adding typecheckedcatalog asset deduplicates targetlist",
+    "Removing shortcut preserves chapterdefaults and all cutuses, unknown oldIDs retained unless explicitlyremoved",
+    "Character list independently gated; composition/disabled guards apply to callbacks",
+    "Closed details, bounded internal list scrolling; no uploads/newrenderer"
+  ],
+  "checks": {
+    "red": "red.log oldbuildmissingdetails",
+    "unit": "unit.log32passed chapter resources11+settings21",
+    "componentCoverage": "component-coverage-attempt.log wholecomponent probe below80 retained; not claimed as passing",
+    "logicCoverage": "logic-coverage.log extracted puremutationhelper lines/statements/functions100 branches91.66; Reactcallbacks exercised bybrowser separately",
+    "browser": "final.log3passed24.3s defaults,identity,resourceadd/remove,featuregates,IME model,phoneoverflow,freshcontextactualfile reopen",
+    "layout": "green.log/layout.log/layout-detail.log found settingslogic checkbox globalwidth100; fixed scoped checkbox +44px label; stale filegroup aria selector replacedwith stabledataattribute",
+    "build": "build-layout.log passed",
+    "lint": "lint.log clean",
+    "types": "types.log passed",
+    "review": "Independent reviewer no blocker for resources and followupCSS/helperextraction",
+    "visual": "Actual390px resource menu capture inspected"
+  },
+  "limits": [
+    "Focused localChromium not physicalkeyboard/device or wholeproduct",
+    "Resourceavailability naming does not delete/normalize old data",
+    "No save logic/codec/runtime changes",
+    "No deployment"
+  ],
+  "sha256": {
+    "apps/web/components/story-chapter-resources.tsx": "a2e5c5679784cc4d7f97bea12f97fdebbe6b6f4cd5906918748978de2d8a9743",
+    "apps/web/components/story-chapter-resources.test.ts": "b4948d88f96d45af05bebc5afdce403f44eb4498e70e401978a67db708724549",
+    "apps/web/components/story-chapter-resources.module.css": "486f4d9feb9f92ea99ae4a2bc563d16a55fe16917a4c7ba6200d0855153ac9f4",
+    "apps/web/lib/chapter-resources.ts": "90c0f23bed34e4decd49ecdc62e76848bf1ceb0c953ad7998e3d3397ef05eef3",
+    "apps/web/components/story-chapter-settings.tsx": "18f937b15873cd5ef0c6f711dba072ed8505836573bd0414dee558e5e179300b",
+    "apps/web/components/story-workspace.module.css": "19c16499a9887cfa9f9e5d1bf02c1196fb514b9230458bbd9268400d2c897cff",
+    "apps/web/components/local-work-file-actions.tsx": "5f4665c75c4ccf0c4e85521bac67ab3b6d300561c6d2195efd365fbc4c1c8f22",
+    "tests/e2e/chapter-settings-access.spec.ts": "11394eab4bb22bc82433db3fd3f8fdaaf5d26c2dccfeab628b70f7303a7810e5"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Real narrowoverflow reproduced/fixed, document preservation asserted; componentcoverage limit explicit"
+  }
+}

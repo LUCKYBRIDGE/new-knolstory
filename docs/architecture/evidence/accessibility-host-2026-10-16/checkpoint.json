@@ -1,0 +1,94 @@
+{
+  "checkedAt": "2026-10-16T15:26:57.912906+00:00",
+  "scope": "PC06 visible host DOM semantics and narrow account/library geometry on local Chromium. Physical-device, screen-reader, native iframe and WCAG conformance gates remain open.",
+  "sourceSha256": {
+    "package.json": "9daf256368cdb3069ed73beb6d55908d158d803f94f4cb1ca1823b0e6d1a882c",
+    "pnpm-lock.yaml": "36ab045b63c93ba32fe1b8c7e9e79675245871527e4f75bd6d845d46dfa2240b",
+    "playwright.config.ts": "4edf4a04123432d48167398999c00da9f159c87ad4d75e7fae6a2990c95030b4",
+    "apps/web/lib/shelf-cover-label.ts": "8b7dcc45b6f98c8a225fead32d47a8dc547c028f680b93d7073dc634e0f3f0f5",
+    "apps/web/lib/shelf-cover-label.test.ts": "07d5535cf806d6cbb19abc8779682071c40e8db07f54b0fc8d682ee973421b95",
+    "apps/web/lib/floating-panel-position.ts": "def7826a86e07ef7501bf7cf0588af4dbd0ee911093221e6709d1a20d9bb305f",
+    "apps/web/lib/floating-panel-position.test.ts": "56ec5000df4c03a306a4fb6bbc224e57a20f9d1e45ca98299ca50963102032a4",
+    "apps/web/components/book-cover.tsx": "8f642459b1e5057c16ed8f1b52ed3e2fa2f84a436356a4af2acf0b1dee6b6db9",
+    "apps/web/components/local-bookshelf.tsx": "8ecf711857398907611757819beb349b3821144829e311cf389ffc3c20c9c2a1",
+    "apps/web/components/local-bookshelf.module.css": "eab385a1c785c31730dda2902c58913e609e71e96581a6c49baa0a07eef16513",
+    "apps/web/components/use-bounded-account-panel.ts": "cfb388f427626d9906c0ef1bbbf604aada85a7339b40508d6f93503f3e17de92",
+    "apps/web/components/account-menu.tsx": "680641323502aa2dc95b0e67b0ea4064493037e929fa4b06e68f6d77ef192a0e",
+    "apps/web/components/online-works-panel.tsx": "65157aa48491da013ebd9ba3a9823002a62befcf52b5435086e2ea4716d4fa4f",
+    "tests/e2e/accessibility.spec.ts": "2ab878616f035cdb54d3b1a327c1fc5a4125551f410c8ad66540330251986659",
+    "tests/e2e/accessibility-narrow.spec.ts": "4056a30b1b7aa71e580aaf44f62a7e6aacd6b2c09f38d3278ff639f91b12093a",
+    "tests/e2e/library-entry.ts": "1140aef76994bf9013449e2ac7b55662488a949469a21d69d5dd64b3edbc5be8",
+    "tests/e2e/four-work-library.spec.ts": "3521a266607b7789d57a5b3acb759a3e33f5550930eb1e0e7bc592312f22a17b",
+    "tests/e2e/library-design-parity.spec.ts": "163896fa159cfc902db9ef56e78d98cbd1b7a3f9c54a03d5abb40d28e9a20068",
+    "tests/e2e/four-work-runtime.spec.ts": "2db0d775c7c9cfc2f56563787941cee7c74a22f31bd68f9ecd129ae930537f3d",
+    "tests/e2e/online-works.spec.ts": "f197036aa1ef3cafb306dfc45b7bbcad693346c43d183c912b2d8a5b95fc58af",
+    "tests/e2e/local-library.spec.ts": "c305ce245b1f2dd09bfa0465c41ce4e4dc11951b49ff852c82bd89f8bcd86195",
+    "tests/e2e/storage-recovery.spec.ts": "b1995a4eb4ee211055e301138c7120f299a08820b2122b4872918842bc6c2e26"
+  },
+  "verification": {
+    "unit": {
+      "passed": 10,
+      "log": "layout-unit-final.log",
+      "scopedCoverage": {
+        "statements": 100,
+        "branches": 86.36,
+        "functions": 100,
+        "lines": 100
+      },
+      "scope": "Two pure label/position helpers only; not React hook/component coverage"
+    },
+    "staticHost": {
+      "passed": 11,
+      "log": "final-static-accessibility.log",
+      "scope": "Six visible host surfaces at1440/390, drawer semantics, narrow controls/panels, actual Chromium CDP2x page-scale"
+    },
+    "impact": {
+      "passed": 8,
+      "log": "final-static-impact.log",
+      "scope": "Five viewport library focus paths, cover keyboard/cancel/undo/draft preservation, online save-preparation deletion guard"
+    },
+    "build": "build-visual-viewport-final.log",
+    "types": "final-types-all.log",
+    "lint": "final-lint-all.log",
+    "visual": "visual-restored-layout.json",
+    "rawScans": "final-static-artifacts",
+    "scannerSummary": "scanner-summary.json",
+    "docs": "docs-check.log",
+    "recoveredServices": "recovered-services.json"
+  },
+  "scannerPolicy": "Raw violations/incomplete retained. Only visible unique shelf buttons with full normalized rendered innerText in computed accessible name are recorded as scanner disagreements; no global rule disabled. Not an axe or WCAG pass.",
+  "retainedHistory": {
+    "initial": "initial.json",
+    "initialRed": "red.log",
+    "drawerRed": "drawer-red.log",
+    "narrowRed": [
+      "narrow-red.log",
+      "narrow-390-red.log",
+      "panel-red.log"
+    ],
+    "visualRegression": [
+      "visual-comparison.json",
+      "visual-comparison-final.json",
+      "after-1440.png",
+      "after2-1440.png"
+    ],
+    "visualResolution": "All whitespace-only BookCover changes removed; desktop1440 pixels identical, narrow390 intentionally reflows header with cover dimensions retained.",
+    "impactInitial": "impact.log:7pass/1fail, genuine320px clipped control later fixed",
+    "previewFailure": "candidate-accessibility.log/candidate-impact.log: connection refused; original server confirmed absent, local static preview recovered before rerun"
+  },
+  "review": "Independent final read-only code review: no remaining P1/P2 after visual viewport bounds and raw-result persistence fixes.",
+  "preservation": "StoryDocument, serializer, Flow, StageComposition, runtime interpreter and authored content unchanged. UI tests use separate fresh browser contexts. No new DB/migration/external service changes. Existing native results reused because renderer/interpretation unchanged.",
+  "remaining": [
+    "Raw scanner disagreements and incomplete contrast/name checks require manual review",
+    "Physical school devices, Samsung IME and screen readers",
+    "Live OAuth and pending deletion/class/share/retention decisions",
+    "Full release and operating restore"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4
+  }
+}

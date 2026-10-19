@@ -1,0 +1,16 @@
+
+Running 7 tests using 1 worker
+
+(node:73532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/7] [host] › tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens
+[2/7] [host] › tests/e2e/score-narrative.spec.ts:6:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening
+[3/7] [host] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-story.knolstory
+[4/7] [host] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 390 score-story.knolstory
+[5/7] [host] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-excel-edited.xlsx
+[6/7] [host] › tests/e2e/score-narrative.spec.ts:14:235 › native score choices accumulate through a shared scene, restore and reselect 1280 score-google-edited.xlsx
+[7/7] [host] › tests/e2e/score-narrative.spec.ts:22:1 › invalid score references are rejected without replacing the current work and a valid file can be opened afterward
+  4 skipped
+  3 passed (15.1s)

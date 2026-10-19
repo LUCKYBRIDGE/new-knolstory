@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-12",
+  "scope": "Source AST inventory only, not full suite execution",
+  "specFiles": 80,
+  "matches": {
+    "removed_direct_work_select": [
+      {
+        "path": "tests/e2e/authoring.spec.ts",
+        "line": 145
+      },
+      {
+        "path": "tests/e2e/authoring.spec.ts",
+        "line": 173
+      },
+      {
+        "path": "tests/e2e/authoring.spec.ts",
+        "line": 178
+      },
+      {
+        "path": "tests/e2e/authoring.spec.ts",
+        "line": 217
+      },
+      {
+        "path": "tests/e2e/authoring.spec.ts",
+        "line": 229
+      },
+      {
+        "path": "tests/e2e/stories-runtime.spec.ts",
+        "line": 53
+      },
+      {
+        "path": "tests/e2e/stories-runtime.spec.ts",
+        "line": 133
+      },
+      {
+        "path": "tests/e2e/stories-runtime.spec.ts",
+        "line": 176
+      },
+      {
+        "path": "tests/e2e/stories-runtime.spec.ts",
+        "line": 204
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 10
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 78
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 80
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 82
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 108
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 113
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 117
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 118
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 122
+      },
+      {
+        "path": "tests/e2e/stories.spec.ts",
+        "line": 164
+      }
+    ],
+    "removed_preparation_button": [
+      {
+        "path": "tests/e2e/editor-term-guide.spec.ts",
+        "line": 35
+      },
+      {
+        "path": "tests/e2e/local-library.spec.ts",
+        "line": 31
+      }
+    ]
+  },
+  "absenceAssertions": [
+    {
+      "kind": "removed_preparation_button",
+      "path": "tests/e2e/work-actions.spec.ts",
+      "line": 3
+    },
+    {
+      "kind": "removed_direct_work_select",
+      "path": "tests/e2e/work-actions.spec.ts",
+      "line": 3
+    }
+  ]
+}

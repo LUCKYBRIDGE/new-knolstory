@@ -1,0 +1,43 @@
+.dialog {
+ box-sizing: border-box;
+ width: min(34rem, calc(100vw - 24px));
+ max-width: calc(100vw - 24px);
+ max-height: calc(100dvh - 24px);
+ overflow: auto;
+ overscroll-behavior: contain;
+ padding: clamp(16px, 4vw, 24px);
+ border: 1px solid var(--story-menu-line);
+ border-radius: 5px;
+ background: var(--story-menu-bg);
+ color: var(--story-menu-ink);
+ color-scheme: dark;
+ box-shadow: 0 12px 36px #07141470, inset 0 0 0 3px #a58d6622;
+ word-break: keep-all;
+ overflow-wrap: anywhere;
+ line-break: strict;
+ line-height: 1.65;
+}
+.dialog::backdrop { background: #071617a8; }
+.dialog h2 { margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--story-menu-line); font-size: 1.2rem; font-weight: 600; line-height: 1.45; }
+.dialog p { margin: 12px 0; }
+.title { padding: 12px; border: 1px solid #a58d6655; background: var(--story-menu-surface); font-weight: 600; white-space: pre-wrap; max-height: min(10rem, 25dvh); overflow: auto; }
+.dialog dl { display: grid; grid-template-columns: minmax(5rem, auto) minmax(0, 1fr); gap: 8px 16px; margin: 16px 0; }
+.dialog dt { color: var(--story-menu-muted); }
+.dialog dd { margin: 0; min-width: 0; }
+.dialog [role="alert"] { color: var(--story-menu-danger); border-left: 2px solid currentColor; padding-left: 12px; }
+.dialog ul { padding-left: 20px; }
+.dialog li + li { margin-top: 8px; }
+.dialog [role="status"] { color: var(--story-menu-accent); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding-top: 12px; border-top: 1px solid #a58d6655; }
+.actions button { box-sizing: border-box; min-height: 44px; min-width: 0; flex: 1 1 12rem; padding: 10px 12px; color: var(--story-menu-ink); background: transparent; border: 1px solid var(--story-menu-line); border-radius: 3px; font: inherit; line-height: 1.5; white-space: normal; word-break: keep-all; overflow-wrap: anywhere; cursor: pointer; }
+.actions button:hover:not(:disabled) { color: var(--story-menu-accent); background: var(--story-menu-surface); }
+.actions button:focus-visible { outline: 2px solid var(--story-menu-accent); outline-offset: 2px; }
+.actions button:disabled { opacity: .5; cursor: default; }
+.actions .primary { color: var(--story-menu-accent); background: var(--story-menu-surface); }
+.actions .danger { color: var(--story-menu-danger); }
+@media (prefers-reduced-transparency: reduce) { .dialog { background: #112223; } }
+/* Legacy editor button chrome must not override a top-layer confirmation window. */
+.dialog.dialog { --ink:var(--story-menu-ink); --ink-soft:var(--story-menu-muted); --muted:var(--story-menu-muted); --white:var(--story-menu-surface); --paper:var(--story-menu-bg); --line:var(--story-menu-line); --mint:var(--story-menu-surface); --mint-strong:var(--story-menu-accent); }
+.dialog.dialog .actions button { background:transparent!important; color:var(--story-menu-ink)!important; border-color:var(--story-menu-line)!important; }
+.dialog.dialog .actions button:hover:not(:disabled),.dialog.dialog .actions .primary { background:var(--story-menu-surface)!important; color:var(--story-menu-accent)!important; }
+.dialog.dialog .actions .danger { color:var(--story-menu-danger)!important; }

@@ -1,0 +1,19 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-d972de1da977 Creating 
+ Container knolstory-next-storage-test-runner-run-d972de1da977 Created 
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+
+[90mstdout[2m | operations/restore-content.integration.ts[2m > [22m[2mrestored application content[2m > [22m[2mmatches every source record and read outcome, including pre-existing invalid fixtures
+[22m[39m{"restoreValidation":{"records":181,"valid":171,"invalid":10,"knolstory":126,"shortstory":45,"privateResources":11},"perRecordSourceAndRestoreEqual":true,"unexpectedReadErrorsRejected":true,"scope":"Actual shared validation compared record by record to unchanged source. Only counts are printed, not document or error payloads."}
+
+ [32m✓[39m operations/restore-content.integration.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 2029[2mms[22m[39m
+     [33m[2m✓[22m[39m matches every source record and read outcome, including pre-existing invalid fixtures [33m 2006[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m   Start at [22m 08:45:04
+[2m   Duration [22m 2.29s[2m (transform 139ms, setup 0ms, import 175ms, tests 2.03s, environment 0ms)[22m
+

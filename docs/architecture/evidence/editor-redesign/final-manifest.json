@@ -1,0 +1,871 @@
+{
+  "date": "2026-10-11",
+  "selected": "single final design; text-first with adjacent cut context",
+  "count": 51,
+  "checks": [
+    {
+      "id": "web-neither",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "basic",
+      "choiceScoreMode": {
+        "choices": false,
+        "scores": false
+      },
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 선택지 없음·점수 미사용",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-choice-only",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "basic",
+      "choiceScoreMode": {
+        "choices": true,
+        "scores": false
+      },
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 선택지만 사용·점수 미사용",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-score-only",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "basic",
+      "choiceScoreMode": {
+        "choices": false,
+        "scores": true
+      },
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 작품 점수 사용·현재 컷 선택지 없음",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-choice-and-score",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "basic",
+      "choiceScoreMode": {
+        "choices": true,
+        "scores": true
+      },
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 선택지와 점수 함께 사용",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-choice-result",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "choice-result",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 선택하면 달라지는 점수",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-choice-condition",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "choice-condition",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 선택지 표시 조건",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-project-scores",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "scores",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 작품의 점수 항목 관리",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-score-route",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "score-route",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 점수에 따른 조건 경로",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-score-check",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "score-check",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 읽기 경로에서 결과 확인",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-choice-no-scores",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "choice-no-scores",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 점수 없이 선택지 작성",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-choice-invalid",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "choice-invalid",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 미연결·모두 숨김 안내",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-choice-result",
+      "device": "tablet",
+      "input": "hardware",
+      "scenario": "choice-result",
+      "size": [
+        1024,
+        768
+      ],
+      "title": "태블릿 · 선택 점수 변화",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-choice-condition",
+      "device": "tablet",
+      "input": "hardware",
+      "scenario": "choice-condition",
+      "size": [
+        1024,
+        768
+      ],
+      "title": "태블릿 · 선택 조건",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-choice-result",
+      "device": "phone",
+      "input": "hardware",
+      "scenario": "choice-result",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 선택 점수 변화",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-choice-condition",
+      "device": "phone",
+      "input": "hardware",
+      "scenario": "choice-condition",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 선택 조건",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-choice-result-virtual",
+      "device": "phone",
+      "input": "virtual",
+      "scenario": "choice-result",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 점수 입력·삼성 키보드 가림",
+      "keyboardReference": {
+        "body": 241,
+        "suggestions": 40,
+        "total": 281,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-choice-condition-virtual",
+      "device": "tablet",
+      "input": "virtual",
+      "scenario": "choice-condition",
+      "size": [
+        1024,
+        768
+      ],
+      "title": "태블릿 · 조건 입력·삼성 키보드 가림",
+      "keyboardReference": {
+        "body": 353,
+        "suggestions": 44,
+        "total": 397,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-project-scores",
+      "device": "phone",
+      "input": "hardware",
+      "scenario": "scores",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 작품 점수 관리",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-cut-tools",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "management",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 글·컷 도구 전체",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-actor-settings",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "actor-settings",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 인물 관련 설정",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-background-settings",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "background-settings",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 배경 관련 설정",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-view-settings",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "view",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 보기·읽기·용어 안내",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-file-tools",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "file-tools",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 파일·저장·복구",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-chapter-jump",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "jump",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 장과 컷 직접 이동",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-save-error",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "save-error",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 저장 실패와 원고 보호",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-effect-details",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "effect-details",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 효과 강도·반복·순서·삭제",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-sound-continuity",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "sound-continuity",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 배경음 이어받기·시작·정지",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-virtual-large",
+      "device": "phone",
+      "input": "virtual",
+      "scenario": "basic",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 키보드 높이 확대 민감도",
+      "keyboardScale": 1.2,
+      "keyboardReference": {
+        "body": 289,
+        "suggestions": 40,
+        "total": 329,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1.2
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-virtual-large",
+      "device": "tablet",
+      "input": "virtual",
+      "scenario": "basic",
+      "size": [
+        1024,
+        768
+      ],
+      "title": "태블릿 가로 · 키보드 높이 확대 민감도",
+      "keyboardScale": 1.2,
+      "keyboardReference": {
+        "body": 424,
+        "suggestions": 44,
+        "total": 468,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1.2
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-choice-virtual",
+      "device": "phone",
+      "input": "virtual",
+      "scenario": "choice",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 선택지 입력과 가상 키보드",
+      "keyboardReference": {
+        "body": 241,
+        "suggestions": 40,
+        "total": 281,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-sound-virtual",
+      "device": "tablet",
+      "input": "virtual",
+      "scenario": "sound",
+      "size": [
+        1024,
+        768
+      ],
+      "title": "태블릿 · 소리 설정과 가상 키보드",
+      "keyboardReference": {
+        "body": 353,
+        "suggestions": 44,
+        "total": 397,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-basic",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "basic",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 기본 글 중심 편집",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-effect-range",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "effect",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 연출 시작·종료 컷과 시간",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-sound-range",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "sound",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 효과음 컷 범위·재생 시점",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-choice-branch",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "choice",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 선택 문구·도착 컷·갈림길",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-transition",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "transition",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 앞 컷에서 현재 컷으로 전환",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-actor",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "actor",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 인물 선택·배치·동작",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-long",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "long",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 긴 한국어 해설",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-management",
+      "device": "web",
+      "input": "hardware",
+      "scenario": "management",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "웹 · 글·컷·작품의 세부 도구",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-hardware",
+      "device": "tablet",
+      "input": "hardware",
+      "scenario": "basic",
+      "size": [
+        1024,
+        768
+      ],
+      "title": "태블릿 가로 · 외장 키보드 연결",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-virtual",
+      "device": "tablet",
+      "input": "virtual",
+      "scenario": "basic",
+      "size": [
+        1024,
+        768
+      ],
+      "title": "태블릿 가로 · 가상 키보드 입력",
+      "keyboardReference": {
+        "body": 353,
+        "suggestions": 44,
+        "total": 397,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-portrait-hardware",
+      "device": "tablet portrait",
+      "input": "hardware",
+      "scenario": "basic",
+      "size": [
+        768,
+        1024
+      ],
+      "title": "태블릿 세로 · 외장 키보드 연결",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "tablet-portrait-virtual",
+      "device": "tablet portrait",
+      "input": "virtual",
+      "scenario": "basic",
+      "size": [
+        768,
+        1024
+      ],
+      "title": "태블릿 세로 · 가상 키보드 입력",
+      "keyboardReference": {
+        "body": 302,
+        "suggestions": 44,
+        "total": 346,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-hardware",
+      "device": "phone",
+      "input": "hardware",
+      "scenario": "basic",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 세로 · 외장 키보드 연결",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-virtual",
+      "device": "phone",
+      "input": "virtual",
+      "scenario": "basic",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 세로 · 가상 키보드 입력",
+      "keyboardReference": {
+        "body": 241,
+        "suggestions": 40,
+        "total": 281,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-landscape-hardware",
+      "device": "phone landscape",
+      "input": "hardware",
+      "scenario": "basic",
+      "size": [
+        844,
+        390
+      ],
+      "title": "휴대폰 가로 · 외장 키보드 연결",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-landscape-virtual",
+      "device": "phone landscape",
+      "input": "virtual",
+      "scenario": "basic",
+      "size": [
+        844,
+        390
+      ],
+      "title": "휴대폰 가로 · 가상 키보드 입력",
+      "keyboardReference": {
+        "body": 176,
+        "suggestions": 36,
+        "total": 212,
+        "kind": "UNMEASURED occlusion sensitivity reference; no certified Samsung/Gboard size",
+        "scale": 1
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-effect-range",
+      "device": "phone",
+      "input": "hardware",
+      "scenario": "effect",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 연출 시점·컷 범위",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-choice",
+      "device": "phone",
+      "input": "hardware",
+      "scenario": "choice",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 선택지·도착 문맥",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "phone-empty",
+      "device": "phone",
+      "input": "hardware",
+      "scenario": "empty",
+      "size": [
+        390,
+        844
+      ],
+      "title": "휴대폰 · 빈 컷 첫 작성",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    },
+    {
+      "id": "web-reading",
+      "device": "web read",
+      "input": "hardware",
+      "scenario": "reading",
+      "size": [
+        1440,
+        900
+      ],
+      "title": "재생 목표 · 같은 장면과 글 상자",
+      "keyboardReference": null,
+      "loaded": true,
+      "overflow": false
+    }
+  ],
+  "renderer": "static design artifact, not actual RenPy playback",
+  "range": "proposed batch authoring; current contracts audited separately",
+  "keyboardProfiles": {
+    "date": "2026-10-10",
+    "provenance": "AOSP sensitivity reference only; not Samsung dimensions; Samsung baseline selected by user",
+    "unitAssumption": "dp approximately CSS px only for scale1 scenario; device density and viewport must be measured",
+    "baseUrl": "https://android.googlesource.com/platform/packages/inputmethods/LatinIME/+/refs/heads/main/java/res/",
+    "refs": {
+      "refs/heads/main": {
+        "value": "127336e9f29d69607eab55982324b210279ae8c5"
+      }
+    },
+    "profiles": {
+      "phonePortrait": {
+        "width": 390,
+        "height": 844,
+        "defaultDp": 205.6,
+        "min": "0.618 * width",
+        "max": "0.46 * height",
+        "bodyPx": 241,
+        "suggestionsPx": 40,
+        "totalPx": 281,
+        "source": "values/config.xml"
+      },
+      "phoneLandscape": {
+        "width": 844,
+        "height": 390,
+        "defaultDp": 176,
+        "min": "0.45 * height",
+        "max": "0.46 * height",
+        "bodyPx": 176,
+        "suggestionsPx": 36,
+        "totalPx": 212,
+        "source": "values-land/config.xml"
+      },
+      "tabletPortrait": {
+        "width": 768,
+        "height": 1024,
+        "defaultDp": 302.4,
+        "min": "0.35 * width",
+        "max": "0.46 * height",
+        "bodyPx": 302,
+        "suggestionsPx": 44,
+        "totalPx": 346,
+        "source": "values-sw768dp/config.xml"
+      },
+      "tabletLandscape": {
+        "width": 1024,
+        "height": 768,
+        "defaultDp": 365.4,
+        "min": "0.35 * height",
+        "max": "0.46 * height",
+        "bodyPx": 353,
+        "suggestionsPx": 44,
+        "totalPx": 397,
+        "source": "values-sw768dp-land/config.xml"
+      }
+    },
+    "excludedInsets": "browser chrome, system navigation safe area are separate and not assigned fabricated fixed values",
+    "resizeReference": "ResourceUtils.getKeyboardHeight debug scale0.5..1.2; high cases use1.2 for sensitivity only",
+    "targetKeyboard": "Samsung Keyboard",
+    "targetDecisionDate": "2026-10-11",
+    "samsungModes": [
+      "standard",
+      "split tablet",
+      "floating"
+    ]
+  },
+  "keyboardMeasured": false,
+  "keyboardArtwork": "Samsung Keyboard occlusion placeholder; actual shape/size pending device evidence",
+  "keyboardBaseline": "Samsung Keyboard, user decision2026-10-11",
+  "featureCoverage": "explicit choice/result/condition/project-score/route/check/error/keyboard plus existing cut/actor/background/view/files/effects/audio tools"
+}

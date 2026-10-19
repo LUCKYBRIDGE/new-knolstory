@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/reader-text.test.ts (3 tests | 1 failed) 125ms
+     × refreshes only recognized earlier provided editions and preserves all authored changes 12ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/reader-text.test.ts > provided original and creative editions edited reading text > refreshes only recognized earlier provided editions and preserves all authored changes
+TypeError: resolveProvidedCatalogStory is not a function
+ ❯ packages/compatibility/tests/reader-text.test.ts:29:11
+     27|   for(const entry of [...representativeStories,...classicStories]){
+     28|    const original=entry.project,oldDirected=enhanceExistingStory(origi…
+     29|    expect(resolveProvidedCatalogStory(original,oldDirected)).toEqual(c…
+       |           ^
+     30|    expect(resolveProvidedCatalogStory(original,current)).toEqual(curre…
+     31|    const userEdited={...oldDirected,description:'내가 수정한 설명'};
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  19:56:11
+   Duration  960ms (transform 494ms, setup 0ms, import 746ms, tests 125ms, environment 0ms)
+

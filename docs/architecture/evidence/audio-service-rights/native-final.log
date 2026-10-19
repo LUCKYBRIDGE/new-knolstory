@@ -1,0 +1,13 @@
+
+Running 5 tests using 1 worker
+
+(node:7095) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:6:1 › excluded originals are unavailable from the public service (45ms)
+  -  2 [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:12:1 › excluded common audio has no preview and an approved replacement survives saving and reopening
+  ✓  3 [stories-runtime] › tests/e2e/audio-service-rights.spec.ts:43:1 › old excluded cues preserve reading and editing without playing any blocked channel (4.6s)
+  -  4 [stories-runtime] › tests/e2e/cc0-audio.spec.ts:5:1 › all 21 CC0 originals load and decode in the browser
+  ✓  5 [stories-runtime] › tests/e2e/cc0-audio.spec.ts:25:1 › CC0 Korean labels and source facets select real files and native runtime plays all three channels (9.9s)
+
+  2 skipped
+  3 passed (15.0s)

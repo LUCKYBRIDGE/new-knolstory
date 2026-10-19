@@ -1,0 +1,48 @@
+
+Running 1 test using 1 worker
+
+(node:76612) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/restored-release.spec.ts:6:1 › restored deployment files run the actual library, ShortStory and RenPy reader (9.0s)
+
+
+  1) tests/e2e/restored-release.spec.ts:6:1 › restored deployment files run the actual library, ShortStory and RenPy reader 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  getByRole('button', { name: '다음으로', exact: true })
+    Expected: enabled
+    Received: disabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: '다음으로', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '다음으로', exact: true })
+        14 × locator resolved to <button disabled>다음으로</button>
+           - unexpected value "disabled"
+
+
+       at native-reader.ts:22
+
+      20 | export async function advanceReading(page:Page){
+      21 |  const button=page.getByRole('button',{name:'다음으로',exact:true});
+    > 22 |  await expect(button).toBeEnabled();await button.focus();await button.press('Enter');
+         |                       ^
+      23 | }
+      24 | export async function readerTools(page:Page){
+      25 |  const button=page.getByRole('button',{name:'읽기 도구 펼치기',exact:true});
+        at advanceReading (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/native-reader.ts:22:23)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/restored-release.spec.ts:16:8
+
+    Error Context: test-results/restored-release/restored-release-restored--f7c77-ShortStory-and-RenPy-reader/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/restored-release/restored-release-restored--f7c77-ShortStory-and-RenPy-reader/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/restored-release/restored-release-restored--f7c77-ShortStory-and-RenPy-reader/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/restored-release.spec.ts:6:1 › restored deployment files run the actual library, ShortStory and RenPy reader 

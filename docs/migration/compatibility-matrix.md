@@ -1,6 +1,12 @@
 # Compatibility Matrix
 
-기준: `story-maker@18da4fc`. 필수 지원 행은 M2(도메인과 호환) 이후 자동 테스트 1개 이상과 연결돼야 한다. 선택적 import 어댑터·자동 이전은 실제 구현할 때 해당 테스트를 추가한다.
+조사 기준: `story-maker@18da4fc`. 현재 필수 지원과 역사적 요구를 아래에서 구분한다.
+
+## 현재 적용 범위 (2026-10-10)
+
+[ADR0016](../decisions/0016-authoring-format-contract-and-scope.md)이 현재 gate다. 공식 archive/workbook v2와 현재 Next 문서·ID·Flow·Stage·첨부를 보호한다. `.nolstory`/original story-maker 파일 및 구형8/4탭은 현재 필수 지원이 아니다. 도메인 migration과 고정 baseline에서 계승한 실제 내용/의미 검사는 계속 사용한다.
+
+[현행 양식](../architecture/authoring-workbook-v2.md), [보존 계약](../architecture/authoring-storage-contract.md), [검증](../architecture/authoring-format-completion-audit.md). 아래 표와 dated 확장은 **초기 요구/이전 Next 표현의 조사 이력**이며 현재 파일/서비스 구현을 증명하지 않는다. 특히 teacher approval·게시/복제 권한은 콘텐츠 필드 보존과 별개이고 운영 정책은 미확정이다.
 
 | Area | Next requirement | 담당 | 근거 |
 |---|---|---|---|
@@ -38,3 +44,5 @@
 ## 2026-10-07 게임 저작/파일 확장
 
 Chapter.chapterNumber/branchLabel은 order와 별개이며 기존ID와Flow를 유지한다. PlaybackState.choiceHistory는 정확한 선택ID를 보관한다. RuntimePresentation.version2는 화면/배경/인물과 반복/지속을 Core에서 해석한다. 세로는 원본구도를 보존하며 주화자만 투영한다. Next 표1은 보존 자료와 편집 행을 함께 왕복하고 구형8탭/4탭 및 수식은 명확히 거부한다. .shortstory v1은 Web/A4 그림책으로 음악/연출을 포함하지 않는다. [검증 및 제한](../architecture/vn-workflow-verification.md).
+
+사용자에게 보이는 기능 이름과 설명은 [제품 용어 기준](../architecture/editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 내부 키·현재 파일 계약과 과거 검증 기록은 용어 정리로 바꾸지 않는다.

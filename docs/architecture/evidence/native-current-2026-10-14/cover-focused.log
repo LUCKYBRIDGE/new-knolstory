@@ -1,0 +1,165 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:24] "GET / HTTP/1.1" 200 -
+
+Running 2 tests using 1 worker
+
+(node:27578) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:25] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/legacy-18da4fc/seonnyeo.poster.art.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/cover-fonts/KnolStorySans-b75e6866.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/cover-fonts/Jua-Regular-cb995145.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:26] "GET /assets/cover-fonts/KnolStoryPen-Regular-d252740c.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:27] "GET / HTTP/1.1" 304 -
+  ✘  1 [host] › tests/e2e/entry-cover.spec.ts:28:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration (20.9s)
+(node:27663) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:47] "GET /assets/legacy-18da4fc/heungbu.background.heungbu-gourd-roof.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:48] "GET /assets/cover-fonts/Jua-Regular-cb995145.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:48] "GET /assets/cover-fonts/KnolStorySans-b75e6866.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:48] "GET /assets/cover-fonts/KnolStoryPen-Regular-d252740c.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:03:49] "GET / HTTP/1.1" 304 -
+  ✘  2 [host] › tests/e2e/entry-cover.spec.ts:28:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration (21.0s)
+
+
+  1) [host] › tests/e2e/entry-cover.spec.ts:28:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration 
+
+    TimeoutError: page.waitForEvent: Timeout 15000ms exceeded while waiting for event "download"
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+      47 |  await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+      48 |  await page.reload();await expect(page.getByRole('region',{name:'작품 설정'})).toBeVisible();
+    > 49 |  const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await pending;await download.saveAs(`${evidence}/${id}-cover.knolstory`);
+         |                     ^
+      50 |  const archive=parseAuthoringFile(readFileSync(`${evidence}/${id}-cover.knolstory`,'utf8'));expect({...archive.project,cover:before.cover,title:before.title,updatedAt:before.updatedAt}).toEqual(before);expect(archive.project.title).toBe(`${title} · 표지 적용 검토`);expect(archive.project.cover.design.faces.front.elements.some((e:{content?:{text?:string}})=>e.content?.text==='함께 읽는 우리 이야기')).toBe(true);
+      51 |  const fresh=await browser.newContext({viewport:{width:1280,height:900}});const restored=await fresh.newPage();await restored.goto('/');await enterLibrary(restored);await importShelfFile(restored,`${evidence}/${id}-cover.knolstory`);
+      52 |  const exportAgain=restored.waitForEvent('download');await restored.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();expect(parseAuthoringFile(readFileSync((await(await exportAgain).path())!,'utf8')).project).toEqual(archive.project);
+        at <repo>/tests/e2e/entry-cover.spec.ts:49:21
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '작품 파일 내보내기', exact: true })
+
+
+      47 |  await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+      48 |  await page.reload();await expect(page.getByRole('region',{name:'작품 설정'})).toBeVisible();
+    > 49 |  const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await pending;await download.saveAs(`${evidence}/${id}-cover.knolstory`);
+         |                                                                                                            ^
+      50 |  const archive=parseAuthoringFile(readFileSync(`${evidence}/${id}-cover.knolstory`,'utf8'));expect({...archive.project,cover:before.cover,title:before.title,updatedAt:before.updatedAt}).toEqual(before);expect(archive.project.title).toBe(`${title} · 표지 적용 검토`);expect(archive.project.cover.design.faces.front.elements.some((e:{content?:{text?:string}})=>e.content?.text==='함께 읽는 우리 이야기')).toBe(true);
+      51 |  const fresh=await browser.newContext({viewport:{width:1280,height:900}});const restored=await fresh.newPage();await restored.goto('/');await enterLibrary(restored);await importShelfFile(restored,`${evidence}/${id}-cover.knolstory`);
+      52 |  const exportAgain=restored.waitForEvent('download');await restored.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();expect(parseAuthoringFile(readFileSync((await(await exportAgain).path())!,'utf8')).project).toEqual(archive.project);
+        at <repo>/tests/e2e/entry-cover.spec.ts:49:108
+
+    Error Context: test-results-current-ux/entry-cover-seonnyeo-class-cdd11-ing-and-archive-restoration-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/entry-cover-seonnyeo-class-cdd11-ing-and-archive-restoration-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/entry-cover-seonnyeo-class-cdd11-ing-and-archive-restoration-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/entry-cover.spec.ts:28:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration 
+
+    TimeoutError: page.waitForEvent: Timeout 15000ms exceeded while waiting for event "download"
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+      47 |  await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+      48 |  await page.reload();await expect(page.getByRole('region',{name:'작품 설정'})).toBeVisible();
+    > 49 |  const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await pending;await download.saveAs(`${evidence}/${id}-cover.knolstory`);
+         |                     ^
+      50 |  const archive=parseAuthoringFile(readFileSync(`${evidence}/${id}-cover.knolstory`,'utf8'));expect({...archive.project,cover:before.cover,title:before.title,updatedAt:before.updatedAt}).toEqual(before);expect(archive.project.title).toBe(`${title} · 표지 적용 검토`);expect(archive.project.cover.design.faces.front.elements.some((e:{content?:{text?:string}})=>e.content?.text==='함께 읽는 우리 이야기')).toBe(true);
+      51 |  const fresh=await browser.newContext({viewport:{width:1280,height:900}});const restored=await fresh.newPage();await restored.goto('/');await enterLibrary(restored);await importShelfFile(restored,`${evidence}/${id}-cover.knolstory`);
+      52 |  const exportAgain=restored.waitForEvent('download');await restored.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();expect(parseAuthoringFile(readFileSync((await(await exportAgain).path())!,'utf8')).project).toEqual(archive.project);
+        at <repo>/tests/e2e/entry-cover.spec.ts:49:21
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '작품 파일 내보내기', exact: true })
+
+
+      47 |  await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+      48 |  await page.reload();await expect(page.getByRole('region',{name:'작품 설정'})).toBeVisible();
+    > 49 |  const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await pending;await download.saveAs(`${evidence}/${id}-cover.knolstory`);
+         |                                                                                                            ^
+      50 |  const archive=parseAuthoringFile(readFileSync(`${evidence}/${id}-cover.knolstory`,'utf8'));expect({...archive.project,cover:before.cover,title:before.title,updatedAt:before.updatedAt}).toEqual(before);expect(archive.project.title).toBe(`${title} · 표지 적용 검토`);expect(archive.project.cover.design.faces.front.elements.some((e:{content?:{text?:string}})=>e.content?.text==='함께 읽는 우리 이야기')).toBe(true);
+      51 |  const fresh=await browser.newContext({viewport:{width:1280,height:900}});const restored=await fresh.newPage();await restored.goto('/');await enterLibrary(restored);await importShelfFile(restored,`${evidence}/${id}-cover.knolstory`);
+      52 |  const exportAgain=restored.waitForEvent('download');await restored.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();expect(parseAuthoringFile(readFileSync((await(await exportAgain).path())!,'utf8')).project).toEqual(archive.project);
+        at <repo>/tests/e2e/entry-cover.spec.ts:49:108
+
+    Error Context: test-results-current-ux/entry-cover-heungbu-full-c-8cc13-ing-and-archive-restoration-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/entry-cover-heungbu-full-c-8cc13-ing-and-archive-restoration-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/entry-cover-heungbu-full-c-8cc13-ing-and-archive-restoration-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [host] › tests/e2e/entry-cover.spec.ts:28:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration 
+    [host] › tests/e2e/entry-cover.spec.ts:28:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration 

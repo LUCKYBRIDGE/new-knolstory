@@ -1,0 +1,77 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:54] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:28709) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/1y4xnczwlnktq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /_next/static/chunks/1_ug6e9sr05o5.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:55] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:29:57] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:30:00] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:30:00] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:30:00] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:30:02] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:30:02] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:30:02] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 21:30:02] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/score-narrative.spec.ts:15:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening (10.4s)
+
+
+  1) [host] › tests/e2e/score-narrative.spec.ts:15:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('button', { name: '조건 1 위로', exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('button', { name: '조건 1 위로', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '조건 1 위로', exact: true })
+        13 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      22 |  await page.reload();await flow(page);await page.locator('[class*="choiceCard"]').first().locator('summary').first().click();await expect(effect).toHaveValue('3');
+      23 |  await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption('score-join');await page.getByText('점수 조건에 따른 진행',{exact:true}).click();
+    > 24 |  await expect(page.getByRole('button',{name:'조건 1 위로',exact:true})).toHaveCount(0);
+         |                                                                     ^
+      25 |  await expect(page.getByRole('button',{name:'조건 2 아래로',exact:true})).toHaveCount(0);
+      26 |  await page.getByRole('button',{name:'조건 1 아래로',exact:true}).click();await page.getByRole('button',{name:'조건 2 위로',exact:true}).click();
+      27 |  await page.getByLabel('진행 1 조건 1 값',{exact:true}).fill('5');await page.getByLabel('진행 1 조건 1 값',{exact:true}).blur();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/score-narrative.spec.ts:24:69
+
+    Error Context: test-results/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/score-narrative.spec.ts:15:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening 

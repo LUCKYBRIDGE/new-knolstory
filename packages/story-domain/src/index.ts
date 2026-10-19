@@ -27,3 +27,7 @@ export function updateStoryLine(document: StoryDocumentEnvelope, lineId: string,
 export * from "./legacy/story-audio";
 
 export * from './legacy/chapter-identity';
+
+export * from "./legacy/story-scores";
+
+export * from './legacy/story-branch-condition';

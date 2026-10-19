@@ -1,0 +1,91 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/story-domain/tests/branch-condition.test.ts (17 tests | 6 failed) 10ms
+     × stores schema8 and preserves all cue locations without score or reachability requirements 5ms
+     × allows conditions only on play music and preserves cut effects 0ms
+     × rejects missing source choice or option {"sourceLineId":"missing","choiceId":"a"} 0ms
+     × rejects missing source choice or option {"sourceLineId":"join","choiceId":"a"} 0ms
+     × rejects missing source choice or option {"sourceLineId":"source","choiceId":"missing"} 0ms
+     × rejects source/option removal while retaining label and destination edits 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/story-domain/tests/branch-condition.test.ts > branch condition domain contract > stores schema8 and preserves all cue locations without score or reachability requirements
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/story-domain/tests/branch-condition.test.ts:18:23
+     16|   it('stores schema8 and preserves all cue locations without score or …
+     17|     const p=conditionalProject(); const loaded=parseStoryDocument({...…
+     18|     expect(loaded.ok).toBe(true); if(loaded.ok){expect(loaded.document…
+       |                       ^
+     19|     expect(document().schemaVersion).toBe(8);
+     20|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  packages/story-domain/tests/branch-condition.test.ts > branch condition domain contract > allows conditions only on play music and preserves cut effects
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/story-domain/tests/branch-condition.test.ts:34:89
+     32|     expect(isStoryAudio({music:{action:'stop',branchCondition}})).toBe…
+     33|     expect(isStoryAudio({ambience:{action:'maintain',branchCondition}}…
+     34|     expect(isStoryPresentation({effects:[{type:'shake',scope:'cut',bra…
+       |                                                                                         ^
+     35|   });
+     36|   it.each([{sourceLineId:'missing',choiceId:'a'},{sourceLineId:'join',…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  packages/story-domain/tests/branch-condition.test.ts > branch condition domain contract > rejects missing source choice or option {"sourceLineId":"missing","choiceId":"a"}
+ FAIL  packages/story-domain/tests/branch-condition.test.ts > branch condition domain contract > rejects missing source choice or option {"sourceLineId":"join","choiceId":"a"}
+ FAIL  packages/story-domain/tests/branch-condition.test.ts > branch condition domain contract > rejects missing source choice or option {"sourceLineId":"source","choiceId":"missing"}
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/story-domain/tests/branch-condition.test.ts:38:93
+     36|   it.each([{sourceLineId:'missing',choiceId:'a'},{sourceLineId:'join',…
+     37|     const p=conditionalProject();p.chapters[0].audio.sounds[0].branchC…
+     38|     expect(normalizeAndValidateStoryProject(p).issues.some(i=>i.code==…
+       |                                                                                             ^
+     39|   });
+     40|   it('rejects source/option removal while retaining label and destinat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  packages/story-domain/tests/branch-condition.test.ts > branch condition domain contract > rejects source/option removal while retaining label and destination edits
+Error: 지원하지 않는 작품 버전이에요. 원본 파일을 보관해 주세요.
+ ❯ updateStoryLine packages/story-domain/src/index.ts:23:25
+     21|   const candidate = { ...document, project: { ...document.project, lin…
+     22|   const loaded = parseStoryDocument(candidate);
+     23|   if (!loaded.ok) throw new Error(loaded.issues.map(issue => issue.mes…
+       |                         ^
+     24|   return loaded.document;
+     25| }
+ ❯ packages/story-domain/tests/branch-condition.test.ts:45:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 11 passed (17)
+   Start at  02:58:58
+   Duration  166ms (transform 52ms, setup 0ms, import 66ms, tests 10ms, environment 0ms)
+

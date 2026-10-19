@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:82473) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px (1.2s)
+  ✓  2 [host] › tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 390px (1.1s)
+  ✓  3 [host] › tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 1440px (1.1s)
+
+  3 passed (3.8s)

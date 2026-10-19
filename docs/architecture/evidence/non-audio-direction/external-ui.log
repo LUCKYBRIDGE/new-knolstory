@@ -1,0 +1,184 @@
+
+Running 4 tests using 1 worker
+
+(node:28359) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work (10.0s)
+(node:28493) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work (9.2s)
+(node:28553) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work (12.8s)
+(node:28688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work (12.1s)
+
+
+  1) [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -287,11 +287,11 @@
+          "titlePosition": "top",
+          "titleSize": 40,
+        },
+        "creativeMemos": Array [],
+        "description": "병든 용왕을 살려야 하는 자라가 토끼를 속여 데려오라는 명령을 받고, 은혜와 생명의 무게 사이에서 흔들리는 원작 각색 체험형 이야기.",
+    -   "id": "pinky-review-main-002",
+    +   "id": "c9acacc7-bad7-4aeb-8d4b-c77a29add685",
+        "lines": Array [
+          Object {
+            "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace-welcome",
+            "chapterId": "review-main-002:start",
+            "directionNote": "",
+
+      23 |  const restored=parseAuthoringFile(readFileSync(path,'utf8')).project;
+      24 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+    > 25 |  const content=(p:typeof before)=>{const{updatedAt:_time,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+         |                                                                                                             ^
+      26 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+      27 | });
+      28 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:25:109
+
+    Error Context: test-results/non-audio-external/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-external/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-external/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -287,11 +287,11 @@
+          "titlePosition": "top",
+          "titleSize": 40,
+        },
+        "creativeMemos": Array [],
+        "description": "병든 용왕을 살려야 하는 자라가 토끼를 속여 데려오라는 명령을 받고, 은혜와 생명의 무게 사이에서 흔들리는 원작 각색 체험형 이야기.",
+    -   "id": "pinky-review-main-002",
+    +   "id": "2935e394-c8d3-413e-a058-47a5be32a321",
+        "lines": Array [
+          Object {
+            "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace-welcome",
+            "chapterId": "review-main-002:start",
+            "directionNote": "",
+
+      23 |  const restored=parseAuthoringFile(readFileSync(path,'utf8')).project;
+      24 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+    > 25 |  const content=(p:typeof before)=>{const{updatedAt:_time,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+         |                                                                                                             ^
+      26 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+      27 | });
+      28 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:25:109
+
+    Error: apiRequestContext._wrapApiCall: ENOENT: no such file or directory, copyfile '/Users/wan/ai_dev/apps/new-knolstory/test-results/non-audio-external/.playwright-artifacts-1/traces/1781ab19003779404bfa-81d57467277e4988ad24-recording1.network' -> '/Users/wan/ai_dev/apps/new-knolstory/test-results/non-audio-external/.playwright-artifacts-1/traces/1781ab19003779404bfa-81d57467277e4988ad24-recording1-pwnetcopy-1.network'
+
+    Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/Users/wan/ai_dev/apps/new-knolstory/test-results/non-audio-external/.playwright-artifacts-1/traces/1781ab19003779404bfa-81d57467277e4988ad24.trace'
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-external/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-external/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -287,11 +287,11 @@
+          "titlePosition": "top",
+          "titleSize": 40,
+        },
+        "creativeMemos": Array [],
+        "description": "병든 용왕을 살려야 하는 자라가 토끼를 속여 데려오라는 명령을 받고, 은혜와 생명의 무게 사이에서 흔들리는 원작 각색 체험형 이야기.",
+    -   "id": "pinky-review-main-002",
+    +   "id": "4d9418ae-d727-4aa5-84a8-4de67eb30001",
+        "lines": Array [
+          Object {
+            "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace-welcome",
+            "chapterId": "review-main-002:start",
+            "directionNote": "",
+
+      23 |  const restored=parseAuthoringFile(readFileSync(path,'utf8')).project;
+      24 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+    > 25 |  const content=(p:typeof before)=>{const{updatedAt:_time,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+         |                                                                                                             ^
+      26 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+      27 | });
+      28 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:25:109
+
+    Error Context: test-results/non-audio-external/non-audio-external-actual--6aca8-eturns-with-exact-full-work-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-external/non-audio-external-actual--6aca8-eturns-with-exact-full-work-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-external/non-audio-external-actual--6aca8-eturns-with-exact-full-work-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -287,11 +287,11 @@
+          "titlePosition": "top",
+          "titleSize": 40,
+        },
+        "creativeMemos": Array [],
+        "description": "병든 용왕을 살려야 하는 자라가 토끼를 속여 데려오라는 명령을 받고, 은혜와 생명의 무게 사이에서 흔들리는 원작 각색 체험형 이야기.",
+    -   "id": "pinky-review-main-002",
+    +   "id": "15bc7b00-936c-41c4-84b5-7ab8adb10a75",
+        "lines": Array [
+          Object {
+            "backgroundId": "rabbit-turtle.background.rabbit-turtle-bg-palace-welcome",
+            "chapterId": "review-main-002:start",
+            "directionNote": "",
+
+      23 |  const restored=parseAuthoringFile(readFileSync(path,'utf8')).project;
+      24 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+    > 25 |  const content=(p:typeof before)=>{const{updatedAt:_time,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+         |                                                                                                             ^
+      26 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+      27 | });
+      28 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:25:109
+
+    Error Context: test-results/non-audio-external/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-external/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-external/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+    [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 
+    [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+    [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 

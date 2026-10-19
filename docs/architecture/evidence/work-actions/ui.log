@@ -1,0 +1,921 @@
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:53] "GET / HTTP/1.1" 200 -
+
+Running 26 tests using 1 worker
+
+(node:38969) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:54] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   1 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 1280 (2.0s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:56] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   2 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 820 (1.9s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:58] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   3 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 390 (1.9s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:00:59] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   4 [host] › tests/e2e/approved-editor.spec.ts:24:1 › manuscript navigation protects IME and failed storage (1.0s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:00] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:01] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:10] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:10] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:10] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:10] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:10] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:10] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓   5 [host] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations (17.4s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:18] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:20] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:21] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:21] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:21] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:21] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:21] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓   6 [host] › tests/e2e/approved-editor.spec.ts:55:1 › measured keyboard occlusion reduces editor projection without changing logical scene or iframe (3.9s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:22] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:25] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   7 [host] › tests/e2e/approved-editor.spec.ts:75:1 › adding a score makes optional choice controls available and persists authored effects (8.6s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:30] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:31] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   8 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 1440 (1.6s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:32] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓   9 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 768 (1.6s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:34] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  10 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 390 (1.6s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:35] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:36] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:36] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:36] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:36] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:36] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  11 [host] › tests/e2e/editor-chrome-navigation.spec.ts:2:115 › compact header and bordered actions leave room for editing 844 (1.6s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:37] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  12 [host] › tests/e2e/editor-chrome-navigation.spec.ts:12:1 › preview arrows cross chapter boundaries in manuscript view and protect failed saves (1.5s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:38] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:39] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:42] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:48] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:51] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:51] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:51] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:51] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:51] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:51] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  13 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 1440 (13.9s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:52] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:53] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:01:56] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:02] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:05] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:05] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:05] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  14 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 768 (13.7s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:06] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:10] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:16] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:19] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:19] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:19] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:19] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:19] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:19] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  15 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 390 (13.9s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:20] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:24] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:30] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:33] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:33] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:33] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:33] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:33] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:33] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  16 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 844 (13.9s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-ui/intro-onggojib.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-ui/knolstory-outline.png HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-ui/room.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-ui/plant.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-ui/shelf.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-ui/foreground-left.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-ui/foreground-right.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/onggojib.character.real-consistent-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/M01-celestial.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/legacy-18da4fc/heungbu.character.heungbu-default.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:34] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:35] "GET / HTTP/1.1" 304 -
+  ✓  17 [host] › tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens (3.7s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:38] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  18 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440 (1.2s)
+(node:39167) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:39] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  19 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 768 (1.2s)
+(node:39172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:41] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  20 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 390 (1.2s)
+(node:39182) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:42] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✘  21 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 844 (1.2s)
+(node:39187) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:44] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:45] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:49] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:49] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:49] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:50] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:50] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:50] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:50] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:52] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:52] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:52] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:52] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:52] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:52] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  22 [host] › tests/e2e/writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 1440 (10.1s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:54] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:55] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:59] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:59] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:02:59] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:00] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:00] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:00] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:00] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:02] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:02] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:02] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:02] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  23 [host] › tests/e2e/writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 768 (9.1s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:03] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:04] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:08] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:08] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:08] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:09] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:09] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:09] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:09] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  24 [host] › tests/e2e/writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 390 (9.0s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:12] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:13] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:17] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:17] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:17] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:18] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:18] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:18] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:18] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✓  25 [host] › tests/e2e/writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 844 (9.1s)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/319-2w294yi1p.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/1kgc0k8hw4tv8.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/3ruj7fc-cnwth.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/2dvih6amrvj8l.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /_next/static/chunks/0xsubzhc9yy66.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 21:03:21] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  26 [host] › tests/e2e/writing-focus.spec.ts:15:1 › empty memo entry creates a cut memo and returns to the same text (2.4s)
+
+
+  1) [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator: getByLabel('작품 제목', { exact: true })
+    Expected: focused
+    Error: strict mode violation: getByLabel('작품 제목', { exact: true }) resolved to 2 elements:
+        1) <input value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByRole('textbox', { name: '작품 제목' })
+        2) <input maxlength="200" value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByLabel('장과 컷 목록').getByLabel('작품 제목')
+
+    Call log:
+      - Expect "toBeFocused" getByLabel('작품 제목', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('작품 제목', { exact: true })
+
+
+      2 | for(const width of [1440,768,390,844])test(`work menu opens purpose-specific settings and returns to current text ${width}`,async({page},info)=>{
+      3 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const id=await page.getByLabel('현재 장과 컷 이동').inputValue(),text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await expect(page.getByRole('button',{name:'작품 준비',exact:true})).toHaveCount(0);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await expect(menu.locator(':scope>summary')).toHaveText('작품');await expect(menu.getByLabel('작품 선택',{exact:true})).toHaveCount(0);await expect(menu.getByText('숏스토리',{exact:true})).toHaveCount(0);
+    > 4 |  await menu.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toBeFocused();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeHidden();await expect(page.getByLabel('메모 검색',{exact:true})).toBeHidden();const title=await page.getByLabel('작품 제목',{exact:true}).inputValue();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await cover.getByLabel('작품 제목',{exact:true}).fill('취소한 표지 제목');await cover.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(title);await page.getByLabel('작품 소개',{exact:true}).fill('같은 원고를 유지하며 작품 정보를 수정합니다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(id);await expect(text).toHaveValue(original);
+        |                                                                                                                          ^
+      5 |  await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeFocused();await expect(page.getByLabel('작품 제목',{exact:true})).toBeHidden();await page.getByLabel('핵심 아이디어',{exact:true}).fill('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionstart');await expect(page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true})).toBeDisabled();await expect(page.getByLabel('작품 설정 항목')).toBeDisabled();await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionend');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(text).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await menu.locator(':scope>summary').click();const download=page.waitForEvent('download');await menu.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await download;expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`work-menu-${width}.png`),fullPage:true});
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-actions.spec.ts:4:122
+
+    Error Context: test-results/work-actions-work-menu-ope-aaac9-eturns-to-current-text-1440-host/error-context.md
+
+  2) [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 768 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator: getByLabel('작품 제목', { exact: true })
+    Expected: focused
+    Error: strict mode violation: getByLabel('작품 제목', { exact: true }) resolved to 2 elements:
+        1) <input value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByRole('textbox', { name: '작품 제목' })
+        2) <input maxlength="200" value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByLabel('장과 컷 목록').getByLabel('작품 제목')
+
+    Call log:
+      - Expect "toBeFocused" getByLabel('작품 제목', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('작품 제목', { exact: true })
+
+
+      2 | for(const width of [1440,768,390,844])test(`work menu opens purpose-specific settings and returns to current text ${width}`,async({page},info)=>{
+      3 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const id=await page.getByLabel('현재 장과 컷 이동').inputValue(),text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await expect(page.getByRole('button',{name:'작품 준비',exact:true})).toHaveCount(0);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await expect(menu.locator(':scope>summary')).toHaveText('작품');await expect(menu.getByLabel('작품 선택',{exact:true})).toHaveCount(0);await expect(menu.getByText('숏스토리',{exact:true})).toHaveCount(0);
+    > 4 |  await menu.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toBeFocused();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeHidden();await expect(page.getByLabel('메모 검색',{exact:true})).toBeHidden();const title=await page.getByLabel('작품 제목',{exact:true}).inputValue();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await cover.getByLabel('작품 제목',{exact:true}).fill('취소한 표지 제목');await cover.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(title);await page.getByLabel('작품 소개',{exact:true}).fill('같은 원고를 유지하며 작품 정보를 수정합니다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(id);await expect(text).toHaveValue(original);
+        |                                                                                                                          ^
+      5 |  await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeFocused();await expect(page.getByLabel('작품 제목',{exact:true})).toBeHidden();await page.getByLabel('핵심 아이디어',{exact:true}).fill('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionstart');await expect(page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true})).toBeDisabled();await expect(page.getByLabel('작품 설정 항목')).toBeDisabled();await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionend');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(text).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await menu.locator(':scope>summary').click();const download=page.waitForEvent('download');await menu.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await download;expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`work-menu-${width}.png`),fullPage:true});
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-actions.spec.ts:4:122
+
+    Error Context: test-results/work-actions-work-menu-ope-86bb0-returns-to-current-text-768-host/error-context.md
+
+  3) [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 390 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator: getByLabel('작품 제목', { exact: true })
+    Expected: focused
+    Error: strict mode violation: getByLabel('작품 제목', { exact: true }) resolved to 2 elements:
+        1) <input value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByRole('textbox', { name: '작품 제목' })
+        2) <input maxlength="200" value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByLabel('장과 컷 목록').getByLabel('작품 제목')
+
+    Call log:
+      - Expect "toBeFocused" getByLabel('작품 제목', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('작품 제목', { exact: true })
+
+
+      2 | for(const width of [1440,768,390,844])test(`work menu opens purpose-specific settings and returns to current text ${width}`,async({page},info)=>{
+      3 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const id=await page.getByLabel('현재 장과 컷 이동').inputValue(),text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await expect(page.getByRole('button',{name:'작품 준비',exact:true})).toHaveCount(0);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await expect(menu.locator(':scope>summary')).toHaveText('작품');await expect(menu.getByLabel('작품 선택',{exact:true})).toHaveCount(0);await expect(menu.getByText('숏스토리',{exact:true})).toHaveCount(0);
+    > 4 |  await menu.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toBeFocused();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeHidden();await expect(page.getByLabel('메모 검색',{exact:true})).toBeHidden();const title=await page.getByLabel('작품 제목',{exact:true}).inputValue();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await cover.getByLabel('작품 제목',{exact:true}).fill('취소한 표지 제목');await cover.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(title);await page.getByLabel('작품 소개',{exact:true}).fill('같은 원고를 유지하며 작품 정보를 수정합니다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(id);await expect(text).toHaveValue(original);
+        |                                                                                                                          ^
+      5 |  await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeFocused();await expect(page.getByLabel('작품 제목',{exact:true})).toBeHidden();await page.getByLabel('핵심 아이디어',{exact:true}).fill('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionstart');await expect(page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true})).toBeDisabled();await expect(page.getByLabel('작품 설정 항목')).toBeDisabled();await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionend');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(text).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await menu.locator(':scope>summary').click();const download=page.waitForEvent('download');await menu.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await download;expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`work-menu-${width}.png`),fullPage:true});
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-actions.spec.ts:4:122
+
+    Error Context: test-results/work-actions-work-menu-ope-20f8f-returns-to-current-text-390-host/error-context.md
+
+  4) [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 844 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator: getByLabel('작품 제목', { exact: true })
+    Expected: focused
+    Error: strict mode violation: getByLabel('작품 제목', { exact: true }) resolved to 2 elements:
+        1) <input value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByRole('textbox', { name: '작품 제목' })
+        2) <input maxlength="200" value="선녀와 나무꾼" aria-label="작품 제목"/> aka getByLabel('장과 컷 목록').getByLabel('작품 제목')
+
+    Call log:
+      - Expect "toBeFocused" getByLabel('작품 제목', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('작품 제목', { exact: true })
+
+
+      2 | for(const width of [1440,768,390,844])test(`work menu opens purpose-specific settings and returns to current text ${width}`,async({page},info)=>{
+      3 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const id=await page.getByLabel('현재 장과 컷 이동').inputValue(),text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await expect(page.getByRole('button',{name:'작품 준비',exact:true})).toHaveCount(0);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await expect(menu.locator(':scope>summary')).toHaveText('작품');await expect(menu.getByLabel('작품 선택',{exact:true})).toHaveCount(0);await expect(menu.getByText('숏스토리',{exact:true})).toHaveCount(0);
+    > 4 |  await menu.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toBeFocused();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeHidden();await expect(page.getByLabel('메모 검색',{exact:true})).toBeHidden();const title=await page.getByLabel('작품 제목',{exact:true}).inputValue();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await cover.getByLabel('작품 제목',{exact:true}).fill('취소한 표지 제목');await cover.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(title);await page.getByLabel('작품 소개',{exact:true}).fill('같은 원고를 유지하며 작품 정보를 수정합니다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(id);await expect(text).toHaveValue(original);
+        |                                                                                                                          ^
+      5 |  await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeFocused();await expect(page.getByLabel('작품 제목',{exact:true})).toBeHidden();await page.getByLabel('핵심 아이디어',{exact:true}).fill('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionstart');await expect(page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true})).toBeDisabled();await expect(page.getByLabel('작품 설정 항목')).toBeDisabled();await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionend');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(text).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await menu.locator(':scope>summary').click();const download=page.waitForEvent('download');await menu.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await download;expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`work-menu-${width}.png`),fullPage:true});
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-actions.spec.ts:4:122
+
+    Error Context: test-results/work-actions-work-menu-ope-725bf-returns-to-current-text-844-host/error-context.md
+
+  4 failed
+    [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440 
+    [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 768 
+    [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 390 
+    [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 844 
+  22 passed (2.5m)

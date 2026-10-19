@@ -1,0 +1,111 @@
+
+Running 12 tests using 1 worker
+
+(node:81407) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 320 (1.2s)
+(node:81420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 390 (1.1s)
+(node:81435) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 1280 (1.1s)
+  ✘   4 tests/e2e/editing-workbench.spec.ts:304:1 › popup audit: import confirmation traps focus, cancels without modifying the work (45.2s)
+(node:81715) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 320x640 (2.4s)
+  ✓   6 tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 640x360 (2.4s)
+  ✓   7 tests/e2e/editing-workbench.spec.ts:313:1 › popup audit: term search and flow map close back to settings without changing content (2.1s)
+  ✓   8 tests/e2e/editing-workbench.spec.ts:317:1 › popup audit: cut deletion opens compact and safe cancel keeps all authored data (1.9s)
+  ✓   9 tests/e2e/editing-workbench.spec.ts:321:51 › popup audit: book details and cover draft stay bounded 320x640 (3.0s)
+  ✓  10 tests/e2e/editing-workbench.spec.ts:321:51 › popup audit: book details and cover draft stay bounded 640x360 (3.0s)
+  ✓  11 tests/e2e/editing-workbench.spec.ts:325:1 › popup audit: staging import and current flow context cancel without authoring changes (2.3s)
+  ✓  12 tests/e2e/editing-workbench.spec.ts:330:1 › popup audit: ShortStory delete cancel preserves book and page (425ms)
+
+
+  1) tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 320 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 0
+    Received:    -50.296875
+
+      12 |  await account.locator('summary').click();await expect(account).toHaveAttribute('open','');
+      13 |  await online.locator('summary').click();await expect(online).toHaveAttribute('open','');await expect(account).not.toHaveAttribute('open','');
+    > 14 |  const panel=online.locator('section');const bounds=await panel.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
+         |                                                                                                                               ^
+      15 |  expect(await panel.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
+      16 |  await page.keyboard.press('Escape');await expect(online).not.toHaveAttribute('open','');await expect(online.locator('summary')).toBeFocused();
+      17 |  await account.locator('summary').click();await page.getByRole('main',{name:'로컬 서재',exact:true}).click({position:{x:4,y:400}});await expect(account).not.toHaveAttribute('open','');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-popup-dismiss.spec.ts:14:127
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/second-run/account-popup-dismiss-acco-40373-ut-changing-local-works-320/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/second-run/account-popup-dismiss-acco-40373-ut-changing-local-works-320/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/second-run/account-popup-dismiss-acco-40373-ut-changing-local-works-320/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 390 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 0
+    Received:    -138.296875
+
+      12 |  await account.locator('summary').click();await expect(account).toHaveAttribute('open','');
+      13 |  await online.locator('summary').click();await expect(online).toHaveAttribute('open','');await expect(account).not.toHaveAttribute('open','');
+    > 14 |  const panel=online.locator('section');const bounds=await panel.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
+         |                                                                                                                               ^
+      15 |  expect(await panel.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
+      16 |  await page.keyboard.press('Escape');await expect(online).not.toHaveAttribute('open','');await expect(online.locator('summary')).toBeFocused();
+      17 |  await account.locator('summary').click();await page.getByRole('main',{name:'로컬 서재',exact:true}).click({position:{x:4,y:400}});await expect(account).not.toHaveAttribute('open','');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-popup-dismiss.spec.ts:14:127
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/second-run/account-popup-dismiss-acco-d41d5-ut-changing-local-works-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/second-run/account-popup-dismiss-acco-d41d5-ut-changing-local-works-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/second-run/account-popup-dismiss-acco-d41d5-ut-changing-local-works-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/editing-workbench.spec.ts:304:1 › popup audit: import confirmation traps focus, cancels without modifying the work 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.boundingBox: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+      300 | });
+      301 |
+    > 302 | async function popupFits(dialog:Locator,page:Page){const b=(await dialog.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.x+b.width).toBeLessThanOrEqual(page.viewportSize()!.width+1);expect(b.y+b.height).toBeLessThanOrEqual(page.viewportSize()!.height+1);expect(await dialog.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);}
+          |                                                                          ^
+      303 |
+      304 | test('popup audit: import confirmation traps focus, cancels without modifying the work',async({page},info)=>{
+      305 |  await page.setViewportSize({width:320,height:640});const before=await prepare(page);await openWorkMenu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'long.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-19T00:00:00Z',appVersion:'test',project:{...fixture,title:'아주긴제목공백없이표시해도창밖으로넘치지않는작품제목'.repeat(3)}}))});
+        at popupFits (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:302:74)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:306:77
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/second-run/editing-workbench-popup-au-4f0b5--without-modifying-the-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/second-run/editing-workbench-popup-au-4f0b5--without-modifying-the-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/second-run/editing-workbench-popup-au-4f0b5--without-modifying-the-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 320 
+    tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 390 
+    tests/e2e/editing-workbench.spec.ts:304:1 › popup audit: import confirmation traps focus, cancels without modifying the work 
+  9 passed (1.1m)

@@ -1,0 +1,26 @@
+
+Running 13 tests using 1 worker
+
+(node:32824) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/13] [host] › tests/e2e/authoring-audio-metadata.spec.ts:5:56 › per-work audio metadata changed never changes an existing work using the same audio ID
+[2/13] [host] › tests/e2e/authoring-audio-metadata.spec.ts:5:56 › per-work audio metadata omitted never changes an existing work using the same audio ID
+[3/13] [host] › tests/e2e/authoring-audio-metadata.spec.ts:5:56 › per-work audio metadata unused never changes an existing work using the same audio ID
+[4/13] [host] › tests/e2e/four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+[5/13] [host] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+[6/13] [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+(node:33251) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[7/13] [host] › tests/e2e/entry-cover.spec.ts:7:1 › fresh browser entry introduces existing books and explicit navigation enters library
+[8/13] [host] › tests/e2e/entry-cover.spec.ts:28:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration
+[9/13] [host] › tests/e2e/entry-cover.spec.ts:28:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration
+[10/13] [host] › tests/e2e/entry-cover.spec.ts:58:1 › all eight existing editions enter actual RenPy through their stored book cover
+[11/13] [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at portrait
+[12/13] [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at landscape
+[13/13] [host] › tests/e2e/entry-cover.spec.ts:79:1 › cover title validation keeps the applied book intact and draft recoverable
+  3 skipped
+  10 passed (1.1m)

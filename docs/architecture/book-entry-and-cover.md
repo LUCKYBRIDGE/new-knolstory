@@ -70,3 +70,5 @@ GitHub 첫 source CI는 대형 원고 보존 test의 동일 컷 정렬/선형검
 다른 컴퓨터 준비 절차는 [재현 환경 안내](reproducible-test-environment.md)로 통합했다. 고정 SDK/Web/폰트의 다운로드·해시·안전 추출, 권한 있는421파일 복원, lockfile 설치, 브라우저 준비와 공유runtime/정적앱 build를 자동화한다. Web 표지 글꼴의 native 중복 복사를 제외하고 생성 asset을 교체해 미디어 목록과 재빌드를 일치시킨다. 정적 build를 실제 제공하는 preview에서 기존 E2E를 실행하며, 개발서버만의 성공과 구분한다.
 
 정적 검사에서 소개 재방문 직후 새로고침이100ms 저장 debounce보다 빠르면 서재로 돌아가던 결함을 재현했다. 현재 snapshot을 pagehide에서 저장하고 이전 timer/handler를 정리하도록 보완했다. 원고·cover schema·Ren’Py 해석 계약은 변경하지 않는다. 후속 검증 결과는 재현 환경 문서에 따로 기록하며 기존 완료 감사의 이전 실행 수치를 새 실행으로 바꾸지 않는다.
+
+사용자에게 보이는 기능 이름과 설명은 [제품 용어 기준](editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 내부 키·현재 파일 계약과 과거 검증 기록은 용어 정리로 바꾸지 않는다.

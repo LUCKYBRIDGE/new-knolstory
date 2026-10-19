@@ -1,0 +1,124 @@
+{
+  "width": 390,
+  "scope": "Host protocol acknowledgement harness only; no native rendering or real screen-reader claim",
+  "scene": {
+    "contractVersion": 1,
+    "sceneId": "reader-accessibility/P1-v166-1",
+    "revision": 6,
+    "width": 720,
+    "height": 1662,
+    "viewportVersion": 1,
+    "textboxRect": {
+      "x": 22.16,
+      "y": 1454.2266666666667,
+      "width": 675.68,
+      "height": 193
+    },
+    "dialogueStyle": {
+      "fontSize": 32,
+      "speakerFontSize": 30,
+      "padding": 24
+    },
+    "audio": {
+      "version": 1,
+      "music": {
+        "action": "stop",
+        "fadeOutMs": 0
+      },
+      "ambience": {
+        "action": "stop",
+        "fadeOutMs": 0
+      },
+      "sounds": [],
+      "sessionId": "reader-accessibility/1"
+    },
+    "actors": [],
+    "dialogue": {
+      "speaker": "해설",
+      "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다."
+    },
+    "background": {
+      "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+      "fit": "cover",
+      "rect": {
+        "x": -1116.41,
+        "y": 0,
+        "width": 2952.82,
+        "height": 1662
+      }
+    },
+    "choices": [
+      {
+        "id": "choose-next",
+        "text": "다음 장면 선택"
+      },
+      {
+        "id": "choose-other",
+        "text": "다른 장면 선택"
+      }
+    ],
+    "mode": "play",
+    "reducedMotion": false,
+    "presentationEntry": "1"
+  },
+  "raw": [
+    {
+      "name": "top-menu",
+      "violations": []
+    },
+    {
+      "name": "settings",
+      "violations": []
+    },
+    {
+      "name": "저장",
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "nodes": [
+            [
+              "button[aria-label=\"1번 저장\"]"
+            ],
+            [
+              "button[aria-label=\"2번 저장\"]"
+            ],
+            [
+              "button[aria-label=\"3번 저장\"]"
+            ],
+            [
+              "button[aria-label=\"4번 저장\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "불러오기",
+      "violations": [
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "nodes": [
+            [
+              "button[aria-label=\"1번 불러오기\"]"
+            ],
+            [
+              "button[aria-label=\"2번 불러오기\"]"
+            ],
+            [
+              "button[aria-label=\"3번 불러오기\"]"
+            ],
+            [
+              "button[aria-label=\"4번 불러오기\"]"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "지난기록",
+      "violations": []
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-19",
+  "status": "local-focused-verified-not-deployed",
+  "requirement": "Basic/text/background and optional editing screen selection belongs inside settings, not persistent buttons outside",
+  "changes": [
+    "Removed external tasknav buttonrow",
+    "Single 편집화면 선택 select in existing unifiedsettings portal; optional modes filtered by opt-in",
+    "Changing screen preserves existing remembered editingcontext, closesmenu and focuses visible settings trigger",
+    "Separate optional edit access and read-only companion semantics preserved"
+  ],
+  "checks": {
+    "types": "types.log passed",
+    "lint": "lint.log clean",
+    "build": "build.log passed",
+    "e2e": "final.log16passed/1testlocatorfailure; corrected composition.log1passed3.2s on unchanged productbuild. All17cases covered, no combined17-green run claimed.",
+    "review": "Independent readonly review found no blocking regressions; returned text focus intentionally restores cursor; storagefailure leaves original screen intact.",
+    "docs": "57active documents0link errors"
+  },
+  "limits": [
+    "Per-project feature/UI preferences remain mounted-session state as before",
+    "Existing physical keyboard/device/longmanuscript/rapidresize limits remain separate",
+    "No schema/runtime renderer/authoredtext or deployment change",
+    "Old composition assertion used visible role lookup for selector now inside closed settings; changed assertion to DOM disabled state. Product did not require a fix; failed log retained."
+  ],
+  "sha256": {
+    "apps/web/components/story-editing-workbench.tsx": "a573a0698007f7e42612b2e9488fe1621cfb9db9f028b243b76bf808214d28a7",
+    "apps/web/components/story-editing-workbench.module.css": "1d2fa0b3bbd13093ba2107292473d26bdb4bcba89efa235bd17462b9e374a43e",
+    "tests/e2e/editing-workbench.spec.ts": "19d7d52e96cdba320469e2a76580fa120ba69461468231000561631a267b9016",
+    "DESIGN.md": "69dd802ea1fe984d61cc90ed720ff167835382c0b2d99c9970f5d42d9084d71a",
+    ".agents/skills/design-system/SKILL.md": "11847978239077e1ccffed830e38c6300b6076823a4c7bf971928b55884bf9ce",
+    "docs/architecture/product-completion-plan.md": "548fcc5b84251f1b6db8eb0fad9a9afc5624e7753dcd0f0c9036737e9f3b6bb1"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "16 integration passes plus corrected composition focus/gating pass on same product candidate; no outside screen buttons, optional gates/file/native paths covered."
+  }
+}

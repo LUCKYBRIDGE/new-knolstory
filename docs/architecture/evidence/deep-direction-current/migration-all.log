@@ -1,0 +1,170 @@
+
+Running 5 tests using 1 worker
+
+(node:85625) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 (5.8s)
+(node:85649) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768 (5.5s)
+(node:85673) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390 (5.5s)
+(node:85686) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844 (5.7s)
+(node:85696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [host] › tests/e2e/non-audio-direction-ui.spec.ts:100:1 › effect cancellation restores absence and cannot copy undo into another work with the same cut ID (2.8s)
+
+
+  1) [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -912,7 +912,7 @@
+          "선녀의 기억",
+          "선녀의 과거 목소리",
+          "나무꾼의 과거 목소리",
+        ],
+        "title": "긴 한국어 문구를 읽으며 자유롭게 배치한 인물에게 연출을 만드는 작품",
+    -   "updatedAt": "pinky-ne-site 804fe9f",
+    +   "updatedAt": "2026-10-13T10:54:33.281Z",
+      }
+
+      90 |  expect(cut.presentation.actors).toEqual({left:{xAnchor:37,scaleMultiplier:1.1,facing:'left',emphasis:'dim',opacity:.65,spectral:true},right:{opacity:.9}});
+      91 |  expect(cut.presentation.effects).toEqual([{type:'shake',intensity:'strong',target:{kind:'actor',actorKey:'M01'},scope:'following',durationMs:1200,trigger:'scene-enter',delayMs:0},{type:'flash',intensity:'normal',target:{kind:'background'},trigger:'scene-enter',delayMs:1200,repeat:'loop',periodMs:2600}]);
+    > 92 |  expect({...saved.project,id:source.id,lines:saved.project.lines.map((line:{id:string;presentation?:unknown})=>line.id==='shake'?{...line,presentation:source.lines.find((item:{id:string})=>item.id==='shake').presentation}:line)}).toEqual(source);
+         |                                                                                                                                                                                                                                       ^
+      93 |  expect(saved.project.lines.map((line:{stageComposition:unknown})=>line.stageComposition)).toEqual(source.lines.map((line:{stageComposition:unknown})=>line.stageComposition));
+      94 |  expect(saved.project.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow}))).toEqual(source.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow})));
+      95 |  await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(saved.path);await confirmAuthoringImport(page);await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+        at <repo>/tests/e2e/non-audio-direction-ui.spec.ts:92:231
+
+    Error Context: test-results/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -912,7 +912,7 @@
+          "선녀의 기억",
+          "선녀의 과거 목소리",
+          "나무꾼의 과거 목소리",
+        ],
+        "title": "긴 한국어 문구를 읽으며 자유롭게 배치한 인물에게 연출을 만드는 작품",
+    -   "updatedAt": "pinky-ne-site 804fe9f",
+    +   "updatedAt": "2026-10-13T10:54:39.493Z",
+      }
+
+      90 |  expect(cut.presentation.actors).toEqual({left:{xAnchor:37,scaleMultiplier:1.1,facing:'left',emphasis:'dim',opacity:.65,spectral:true},right:{opacity:.9}});
+      91 |  expect(cut.presentation.effects).toEqual([{type:'shake',intensity:'strong',target:{kind:'actor',actorKey:'M01'},scope:'following',durationMs:1200,trigger:'scene-enter',delayMs:0},{type:'flash',intensity:'normal',target:{kind:'background'},trigger:'scene-enter',delayMs:1200,repeat:'loop',periodMs:2600}]);
+    > 92 |  expect({...saved.project,id:source.id,lines:saved.project.lines.map((line:{id:string;presentation?:unknown})=>line.id==='shake'?{...line,presentation:source.lines.find((item:{id:string})=>item.id==='shake').presentation}:line)}).toEqual(source);
+         |                                                                                                                                                                                                                                       ^
+      93 |  expect(saved.project.lines.map((line:{stageComposition:unknown})=>line.stageComposition)).toEqual(source.lines.map((line:{stageComposition:unknown})=>line.stageComposition));
+      94 |  expect(saved.project.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow}))).toEqual(source.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow})));
+      95 |  await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(saved.path);await confirmAuthoringImport(page);await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+        at <repo>/tests/e2e/non-audio-direction-ui.spec.ts:92:231
+
+    Error Context: test-results/non-audio-direction-ui-eff-5491d-t-and-free-placement-at-768-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-direction-ui-eff-5491d-t-and-free-placement-at-768-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-direction-ui-eff-5491d-t-and-free-placement-at-768-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -912,7 +912,7 @@
+          "선녀의 기억",
+          "선녀의 과거 목소리",
+          "나무꾼의 과거 목소리",
+        ],
+        "title": "긴 한국어 문구를 읽으며 자유롭게 배치한 인물에게 연출을 만드는 작품",
+    -   "updatedAt": "pinky-ne-site 804fe9f",
+    +   "updatedAt": "2026-10-13T10:54:45.446Z",
+      }
+
+      90 |  expect(cut.presentation.actors).toEqual({left:{xAnchor:37,scaleMultiplier:1.1,facing:'left',emphasis:'dim',opacity:.65,spectral:true},right:{opacity:.9}});
+      91 |  expect(cut.presentation.effects).toEqual([{type:'shake',intensity:'strong',target:{kind:'actor',actorKey:'M01'},scope:'following',durationMs:1200,trigger:'scene-enter',delayMs:0},{type:'flash',intensity:'normal',target:{kind:'background'},trigger:'scene-enter',delayMs:1200,repeat:'loop',periodMs:2600}]);
+    > 92 |  expect({...saved.project,id:source.id,lines:saved.project.lines.map((line:{id:string;presentation?:unknown})=>line.id==='shake'?{...line,presentation:source.lines.find((item:{id:string})=>item.id==='shake').presentation}:line)}).toEqual(source);
+         |                                                                                                                                                                                                                                       ^
+      93 |  expect(saved.project.lines.map((line:{stageComposition:unknown})=>line.stageComposition)).toEqual(source.lines.map((line:{stageComposition:unknown})=>line.stageComposition));
+      94 |  expect(saved.project.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow}))).toEqual(source.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow})));
+      95 |  await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(saved.path);await confirmAuthoringImport(page);await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+        at <repo>/tests/e2e/non-audio-direction-ui.spec.ts:92:231
+
+    Error Context: test-results/non-audio-direction-ui-eff-01a2a-t-and-free-placement-at-390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-direction-ui-eff-01a2a-t-and-free-placement-at-390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-direction-ui-eff-01a2a-t-and-free-placement-at-390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -912,7 +912,7 @@
+          "선녀의 기억",
+          "선녀의 과거 목소리",
+          "나무꾼의 과거 목소리",
+        ],
+        "title": "긴 한국어 문구를 읽으며 자유롭게 배치한 인물에게 연출을 만드는 작품",
+    -   "updatedAt": "pinky-ne-site 804fe9f",
+    +   "updatedAt": "2026-10-13T10:54:51.458Z",
+      }
+
+      90 |  expect(cut.presentation.actors).toEqual({left:{xAnchor:37,scaleMultiplier:1.1,facing:'left',emphasis:'dim',opacity:.65,spectral:true},right:{opacity:.9}});
+      91 |  expect(cut.presentation.effects).toEqual([{type:'shake',intensity:'strong',target:{kind:'actor',actorKey:'M01'},scope:'following',durationMs:1200,trigger:'scene-enter',delayMs:0},{type:'flash',intensity:'normal',target:{kind:'background'},trigger:'scene-enter',delayMs:1200,repeat:'loop',periodMs:2600}]);
+    > 92 |  expect({...saved.project,id:source.id,lines:saved.project.lines.map((line:{id:string;presentation?:unknown})=>line.id==='shake'?{...line,presentation:source.lines.find((item:{id:string})=>item.id==='shake').presentation}:line)}).toEqual(source);
+         |                                                                                                                                                                                                                                       ^
+      93 |  expect(saved.project.lines.map((line:{stageComposition:unknown})=>line.stageComposition)).toEqual(source.lines.map((line:{stageComposition:unknown})=>line.stageComposition));
+      94 |  expect(saved.project.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow}))).toEqual(source.lines.map((line:{text:string;flow:unknown})=>({text:line.text,flow:line.flow})));
+      95 |  await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(saved.path);await confirmAuthoringImport(page);await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+        at <repo>/tests/e2e/non-audio-direction-ui.spec.ts:92:231
+
+    Error Context: test-results/non-audio-direction-ui-eff-e2c2a-t-and-free-placement-at-844-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/non-audio-direction-ui-eff-e2c2a-t-and-free-placement-at-844-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/non-audio-direction-ui-eff-e2c2a-t-and-free-placement-at-844-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768 
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390 
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:38:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844 
+  1 passed (27.7s)

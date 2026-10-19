@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:66161) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 1440 (990ms)
+  ✓  2 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 390 (745ms)
+  ✓  3 tests/e2e/shortstory-online.spec.ts:25:1 › ShortStory composition, cover drafts and failed local storage block online writes (811ms)
+  ✓  4 tests/e2e/shortstory-online.spec.ts:31:1 › ShortStory delayed online validation cannot revive a deleted book or replace its checkpoint (806ms)
+  ✓  5 tests/e2e/shortstory-online.spec.ts:36:1 › ShortStory login callback returns to the active book and page without writing KnolStory storage (1.2s)
+  ✓  6 tests/e2e/shortstory-online.spec.ts:39:1 › ShortStory login returns to reading mode as well as the stored page (1.2s)
+
+  6 passed (6.5s)

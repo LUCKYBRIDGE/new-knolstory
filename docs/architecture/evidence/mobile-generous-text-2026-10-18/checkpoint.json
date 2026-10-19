@@ -1,0 +1,566 @@
+{
+  "status": "Local candidate, not deployed",
+  "date": "2026-10-18",
+  "decision": "Mobile textbox may grow roughly twice the earlier example; do not force two text pages",
+  "policy": {
+    "portraitMeasuredLineBudget": 8,
+    "compactLandscapeMeasuredLineBudget": 5,
+    "linePitch": "Actual native two-line minus single-line glyph height",
+    "textboxBottomGapPx": 8,
+    "shortText": "Fit naturally; no forced tall box",
+    "overflow": "Sentence, then word, then supported grapheme boundary; no authored cut split"
+  },
+  "checks": {
+    "unitTests": 12,
+    "seedCasesIncluded": 1000,
+    "nativeTextMatrix": 30,
+    "sampleComposition": 6,
+    "longComposition": 6,
+    "sampleOneTextPage": true,
+    "longExampleOneTextPage": true,
+    "overflowNativeCases": 5
+  },
+  "sampleReports": [
+    {
+      "format": "portrait",
+      "who": "child",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": -110.26672000000002,
+            "y": -27.716820000000098,
+            "width": 940.53344,
+            "height": 1410.80016
+          }
+        }
+      ],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1271.2307692307693,
+        "width": 675,
+        "height": 272
+      },
+      "physicalTextboxHeight": 147.33333333333331,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1291.2307692307693,
+        "width": 583.6923076923077,
+        "height": 232
+      }
+    },
+    {
+      "format": "portrait",
+      "who": "adult",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [
+        {
+          "id": "adult",
+          "rect": {
+            "x": -37.46311111111112,
+            "y": 181.59355555555544,
+            "width": 794.9262222222222,
+            "height": 1192.3893333333333
+          }
+        }
+      ],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1271.2307692307693,
+        "width": 675,
+        "height": 272
+      },
+      "physicalTextboxHeight": 147.33333333333331,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1291.2307692307693,
+        "width": 583.6923076923077,
+        "height": 232
+      }
+    },
+    {
+      "format": "portrait",
+      "who": "narration",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1271.2307692307693,
+        "width": 675,
+        "height": 272
+      },
+      "physicalTextboxHeight": 147.33333333333331,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1291.2307692307693,
+        "width": 583.6923076923077,
+        "height": 232
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "child",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 380.8672985781991,
+        "width": 921,
+        "height": 198
+      },
+      "physicalTextboxHeight": 130.55625,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 400.8672985781991,
+        "width": 829.5999999999999,
+        "height": 158
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "adult",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 380.8672985781991,
+        "width": 921,
+        "height": 198
+      },
+      "physicalTextboxHeight": 130.55625,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 400.8672985781991,
+        "width": 829.5999999999999,
+        "height": 158
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "narration",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 380.8672985781991,
+        "width": 921,
+        "height": 198
+      },
+      "physicalTextboxHeight": 130.55625,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 400.8672985781991,
+        "width": 829.5999999999999,
+        "height": 158
+      }
+    }
+  ],
+  "longReports": [
+    {
+      "format": "portrait",
+      "who": "child",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": -110.26672000000002,
+            "y": -27.716820000000098,
+            "width": 940.53344,
+            "height": 1410.80016
+          }
+        }
+      ],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1155.2307692307693,
+        "width": 675,
+        "height": 388
+      },
+      "physicalTextboxHeight": 210.16666666666666,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1175.2307692307693,
+        "width": 583.6923076923077,
+        "height": 348
+      }
+    },
+    {
+      "format": "portrait",
+      "who": "adult",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [
+        {
+          "id": "adult",
+          "rect": {
+            "x": -37.46311111111112,
+            "y": 181.59355555555544,
+            "width": 794.9262222222222,
+            "height": 1192.3893333333333
+          }
+        }
+      ],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1155.2307692307693,
+        "width": 675,
+        "height": 388
+      },
+      "physicalTextboxHeight": 210.16666666666666,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1175.2307692307693,
+        "width": 583.6923076923077,
+        "height": 348
+      }
+    },
+    {
+      "format": "portrait",
+      "who": "narration",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1155.2307692307693,
+        "width": 675,
+        "height": 388
+      },
+      "physicalTextboxHeight": 210.16666666666666,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1175.2307692307693,
+        "width": 583.6923076923077,
+        "height": 348
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "child",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 350.8672985781991,
+        "width": 921,
+        "height": 228
+      },
+      "physicalTextboxHeight": 150.3375,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 370.8672985781991,
+        "width": 829.5999999999999,
+        "height": 188
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "adult",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 350.8672985781991,
+        "width": 921,
+        "height": 228
+      },
+      "physicalTextboxHeight": 150.3375,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 370.8672985781991,
+        "width": 829.5999999999999,
+        "height": 188
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "narration",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 350.8672985781991,
+        "width": 921,
+        "height": 228
+      },
+      "physicalTextboxHeight": 150.3375,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 370.8672985781991,
+        "width": 829.5999999999999,
+        "height": 188
+      }
+    }
+  ],
+  "limits": [
+    "Not deployed; previous production textbox-fit unchanged",
+    "Viewport simulation on Mac, no physical phone validation",
+    "Characters unchanged; larger textbox can cover more of their lower bodies"
+  ],
+  "sourceSha256": {
+    "renpy/responsive-spike/game/script.rpy": "01bc6ee6b64dadb2af788fd939d04733492dc3282e1033f854d04e4808218441",
+    "scripts/tests/test_dialogue_geometry.py": "6a99b22c526c8874726eeef72ab90fe4db8356e7a7a989b2c9b9dc188b7e6e49",
+    "spikes/renpy-web/verify-mobile-composition.mjs": "eed03bd184f46b0e7f28305933094c3a5cd7d5926ca7b3fadbe714e33572a319"
+  },
+  "overflowRegression": {
+    "reports": [
+      {
+        "size": {
+          "width": 1280,
+          "height": 720
+        },
+        "short": {
+          "x": 48,
+          "y": 510,
+          "width": 1184,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 273,
+          "width": 1184,
+          "height": 411
+        },
+        "body": {
+          "x": 72,
+          "y": 293,
+          "width": 1092,
+          "height": 371
+        },
+        "unchangedUpperActorPixels": 0
+      },
+      {
+        "size": {
+          "width": 720,
+          "height": 1280
+        },
+        "short": {
+          "x": 48,
+          "y": 1070,
+          "width": 624,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 702,
+          "width": 624,
+          "height": 542
+        },
+        "body": {
+          "x": 72,
+          "y": 722,
+          "width": 532,
+          "height": 424
+        },
+        "unchangedUpperActorPixels": 0
+      },
+      {
+        "size": {
+          "width": 1280,
+          "height": 600
+        },
+        "short": {
+          "x": 48,
+          "y": 390,
+          "width": 1184,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 181,
+          "width": 1184,
+          "height": 383
+        },
+        "body": {
+          "x": 72,
+          "y": 201,
+          "width": 1092,
+          "height": 265
+        },
+        "unchangedUpperActorPixels": 0
+      }
+    ],
+    "overflow": {
+      "textbox": {
+        "x": 48,
+        "y": 89,
+        "width": 1184,
+        "height": 595
+      },
+      "body": {
+        "x": 72,
+        "y": 109,
+        "width": 1092,
+        "height": 477
+      },
+      "pageInputsBeforeStoryAdvance": 8,
+      "firstPageAdvanceEvents": 0,
+      "textDifference": 90270
+    },
+    "choices": {
+      "rect": {
+        "x": 240,
+        "y": 60,
+        "width": 800,
+        "height": 193
+      },
+      "textbox": {
+        "x": 48,
+        "y": 301,
+        "width": 1184,
+        "height": 383
+      },
+      "pagesBeforeChoice": 14
+    }
+  }
+}

@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:53700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:262:1 › compact editor header stays one touch-sized row and moves chapter settings into more menu (2.1s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:262:1 › compact editor header stays one touch-sized row and moves chapter settings into more menu 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 52
+    Received:    129.546875
+
+      262 | test('compact editor header stays one touch-sized row and moves chapter settings into more menu',async({page},info)=>{
+      263 |  await page.setViewportSize({width:390,height:844});const before=await prepare(page),header=page.locator('main[data-keyboard-occluded]>header');
+    > 264 |  await saved(page);const initial=(await header.boundingBox())!;expect(initial.height).toBeLessThanOrEqual(52);
+          |                                                                                       ^
+      265 |  for(const width of [360,390,768,1280]){
+      266 |   await page.setViewportSize({width,height:844});await expect.poll(async()=>Math.round((await header.boundingBox())!.height)).toBeLessThanOrEqual(52);
+      267 |   for(const target of [header.getByRole('button',{name:'서재로',exact:true}),header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true}),header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true}),header.getByLabel('보기 설정',{exact:true}),header.locator('[data-work-menu]>summary')]){
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:264:87
+
+    Error Context: docs/architecture/evidence/editor-header-2026-10-19/red-run/editing-workbench-compact--5a6ae-ter-settings-into-more-menu/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editor-header-2026-10-19/red-run/editing-workbench-compact--5a6ae-ter-settings-into-more-menu/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editor-header-2026-10-19/red-run/editing-workbench-compact--5a6ae-ter-settings-into-more-menu/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:262:1 › compact editor header stays one touch-sized row and moves chapter settings into more menu 

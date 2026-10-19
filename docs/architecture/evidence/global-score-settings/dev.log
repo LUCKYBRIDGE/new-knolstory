@@ -1,0 +1,39 @@
+
+Running 1 test using 1 worker
+
+(node:50781) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 (7.4s)
+
+
+  1) [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 
+
+    Error: locator.click: Error: strict mode violation: locator('[data-work-menu]').getByRole('button', { name: '이야기 점수', exact: true }) resolved to 2 elements:
+        1) <button>이야기 점수</button> aka getByRole('button', { name: '이야기 점수' }).first()
+        2) <button>이야기 점수</button> aka getByRole('button', { name: '이야기 점수' }).nth(1)
+
+    Call log:
+      - waiting for locator('[data-work-menu]').getByRole('button', { name: '이야기 점수', exact: true })
+
+
+      34 |  await expect(page.getByLabel('선택지 1 문구',{exact:true})).toHaveValue('이웃을 돕는다');await expect(text).toHaveValue('점수 설정을 다녀와도 이 컷과 선택을 보존한다.');
+      35 |  const saved=await exportProject();expect(saved).toEqual({...original,updatedAt:saved.updatedAt,scores:[{id:expect.any(String),name:'도움 횟수',description:'이웃을 도운 선택 수',initial:0}]});
+    > 36 |  const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 점수',exact:true}).click();await expect(settings.getByLabel('점수 1 이름')).toHaveValue('도움 횟수');
+         |                                                                                                                                                                                                                      ^
+      37 |  await settings.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await page.reload();await expect(page.getByLabel('선택지 1 문구',{exact:true})).toHaveValue('이웃을 돕는다');
+      38 | });
+      39 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts:36:214
+
+    Error Context: test-results/work-menu-purpose-one-glob-5e951-urns-to-choice-editing-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/work-menu-purpose-one-glob-5e951-urns-to-choice-editing-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/work-menu-purpose-one-glob-5e951-urns-to-choice-editing-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 

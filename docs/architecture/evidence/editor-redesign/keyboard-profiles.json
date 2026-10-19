@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-10",
+  "provenance": "AOSP sensitivity reference only; not Samsung dimensions; Samsung baseline selected by user",
+  "unitAssumption": "dp approximately CSS px only for scale1 scenario; device density and viewport must be measured",
+  "baseUrl": "https://android.googlesource.com/platform/packages/inputmethods/LatinIME/+/refs/heads/main/java/res/",
+  "refs": {
+    "refs/heads/main": {
+      "value": "127336e9f29d69607eab55982324b210279ae8c5"
+    }
+  },
+  "profiles": {
+    "phonePortrait": {
+      "width": 390,
+      "height": 844,
+      "defaultDp": 205.6,
+      "min": "0.618 * width",
+      "max": "0.46 * height",
+      "bodyPx": 241,
+      "suggestionsPx": 40,
+      "totalPx": 281,
+      "source": "values/config.xml"
+    },
+    "phoneLandscape": {
+      "width": 844,
+      "height": 390,
+      "defaultDp": 176,
+      "min": "0.45 * height",
+      "max": "0.46 * height",
+      "bodyPx": 176,
+      "suggestionsPx": 36,
+      "totalPx": 212,
+      "source": "values-land/config.xml"
+    },
+    "tabletPortrait": {
+      "width": 768,
+      "height": 1024,
+      "defaultDp": 302.4,
+      "min": "0.35 * width",
+      "max": "0.46 * height",
+      "bodyPx": 302,
+      "suggestionsPx": 44,
+      "totalPx": 346,
+      "source": "values-sw768dp/config.xml"
+    },
+    "tabletLandscape": {
+      "width": 1024,
+      "height": 768,
+      "defaultDp": 365.4,
+      "min": "0.35 * height",
+      "max": "0.46 * height",
+      "bodyPx": 353,
+      "suggestionsPx": 44,
+      "totalPx": 397,
+      "source": "values-sw768dp-land/config.xml"
+    }
+  },
+  "excludedInsets": "browser chrome, system navigation safe area are separate and not assigned fabricated fixed values",
+  "resizeReference": "ResourceUtils.getKeyboardHeight debug scale0.5..1.2; high cases use1.2 for sensitivity only",
+  "targetKeyboard": "Samsung Keyboard",
+  "targetDecisionDate": "2026-10-11",
+  "samsungModes": [
+    "standard",
+    "split tablet",
+    "floating"
+  ]
+}

@@ -1,0 +1,123 @@
+
+Running 12 tests using 1 worker
+
+(node:4833) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/chapter-branch-identity.spec.ts:7:1 › chapter identity and extended branch cuts survive editor, file export and reload (5.7s)
+  ✓   2 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 (3.0s)
+  ✓   3 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 768 (3.1s)
+  ✓   4 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 390 (3.0s)
+  ✓   5 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 844 (3.0s)
+  ✓   6 [host] › tests/e2e/editor-view-notes.spec.ts:23:1 › cut notes edit in both views, save, export, reimport and return from native reading (15.5s)
+  ✘   7 [host] › tests/e2e/editor-view-notes.spec.ts:39:1 › failed storage keeps the author in the current writing view (6.3s)
+(node:5029) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   8 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px (14.1s)
+(node:5081) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   9 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px (14.1s)
+(node:5097) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  10 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:61:1 › new manuscript story survives files and reaches both endings in native RenPy
+  ✓  11 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px (5.2s)
+  ✓  12 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px (5.1s)
+
+
+  1) [host] › tests/e2e/editor-view-notes.spec.ts:39:1 › failed storage keeps the author in the current writing view 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('workspace-error')
+    Expected substring: "보기 전환을 멈췄어요"
+    Received string:    "QuotaExceededError: test quota"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByTestId('workspace-error') with timeout 5000ms
+      - waiting for getByTestId('workspace-error')
+        13 × locator resolved to <div role="alert" data-testid="workspace-error" class="story-workspace-module__gRDfJG__error">QuotaExceededError: test quota</div>
+           - unexpected value "QuotaExceededError: test quota"
+
+
+      40 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByLabel('대사 / 해설',{exact:true}).fill('저장 실패 때도 현재 글을 유지합니다.');
+      41 |  await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});
+    > 42 |  await page.getByRole('button',{name:'이 장 대본',exact:true}).click();await expect(page.getByTestId('workspace-error')).toContainText('보기 전환을 멈췄어요');await expect(page.getByRole('button',{name:'현재 컷 편집',exact:true})).toHaveAttribute('aria-pressed','true');await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('저장 실패 때도 현재 글을 유지합니다.');
+         |                                                                                                                      ^
+      43 | });
+      44 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-view-notes.spec.ts:42:118
+
+    Error Context: test-results/editor-view-notes-failed-s-1f82c-in-the-current-writing-view-host/error-context.md
+
+  2) [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByText('말하는 인물 설정 · 기본 이미지', { exact: true })
+        - locator resolved to <summary>말하는 인물 설정 · 기본 이미지</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        18 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      32 |  await panel.getByLabel('1컷 글 종류').selectOption('dialogue');await panel.getByLabel('1컷 말하는 인물').selectOption('나');await panel.getByLabel('1컷 대사 / 해설').fill('나는 두 길 앞에서 흥부의 이야기를 들었다.');
+      33 |  await panel.locator(`[data-writer-cut-id="${first}"]`).click();await tool(page,'글 편집');
+    > 34 |  await page.getByText('말하는 인물 설정 · 기본 이미지',{exact:true}).click();await page.getByLabel('새 말하는 인물 이름').fill('흥부');await page.getByRole('button',{name:'말하는 인물 등록',exact:true}).click();await page.getByLabel('등록 말하는 인물').selectOption('흥부');
+         |                                                          ^
+      35 |  await pick(page,'말하는 인물 기본 이미지',hero,'흥부');
+      36 |  const before=(await exportProject(page)).project;expect(before.lines[0].stageComposition.leftActors).toEqual([]);
+      37 |  await page.getByRole('button',{name:'기본 이미지를 무대에 배치',exact:true}).click();
+        at author (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:34:58)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:54:12
+
+    Error Context: test-results/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/error-context.md
+
+  3) [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByText('말하는 인물 설정 · 기본 이미지', { exact: true })
+        - locator resolved to <summary>말하는 인물 설정 · 기본 이미지</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        18 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      32 |  await panel.getByLabel('1컷 글 종류').selectOption('dialogue');await panel.getByLabel('1컷 말하는 인물').selectOption('나');await panel.getByLabel('1컷 대사 / 해설').fill('나는 두 길 앞에서 흥부의 이야기를 들었다.');
+      33 |  await panel.locator(`[data-writer-cut-id="${first}"]`).click();await tool(page,'글 편집');
+    > 34 |  await page.getByText('말하는 인물 설정 · 기본 이미지',{exact:true}).click();await page.getByLabel('새 말하는 인물 이름').fill('흥부');await page.getByRole('button',{name:'말하는 인물 등록',exact:true}).click();await page.getByLabel('등록 말하는 인물').selectOption('흥부');
+         |                                                          ^
+      35 |  await pick(page,'말하는 인물 기본 이미지',hero,'흥부');
+      36 |  const before=(await exportProject(page)).project;expect(before.lines[0].stageComposition.leftActors).toEqual([]);
+      37 |  await page.getByRole('button',{name:'기본 이미지를 무대에 배치',exact:true}).click();
+        at author (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:34:58)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/legacy-authoring-workspace.spec.ts:54:12
+
+    Error Context: test-results/legacy-authoring-workspace-6089e-afe-cut-operations-at-390px-host/error-context.md
+
+  3 failed
+    [host] › tests/e2e/editor-view-notes.spec.ts:39:1 › failed storage keeps the author in the current writing view 
+    [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px 
+    [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px 
+  1 skipped
+  8 passed (1.3m)

@@ -1,0 +1,30 @@
+import {test,expect} from '@playwright/test';
+import {writeFileSync} from 'node:fs';
+import {beginSelectedBook,openBuiltinEdition} from './library-entry';
+import {advanceReading,readerLibrary} from './native-reader';
+test('restored deployment files run the actual library, ShortStory and RenPy reader',async({page},info)=>{
+ expect(process.env.KNOLSTORY_RESTORE_MANIFEST_SHA).toMatch(/^[a-f0-9]{64}$/);
+ const pageErrors:string[]=[],missingAssets:string[]=[],runtimeUrls:string[]=[],externalHttpRequests:string[]=[];
+ page.context().on('request',request=>{const url=new URL(request.url());if(['http:','https:'].includes(url.protocol)&&url.origin!==new URL(process.env.KNOLSTORY_RESTORE_URL??'http://127.0.0.1:3142').origin)externalHttpRequests.push(url.origin+url.pathname);});
+ page.on('pageerror',error=>pageErrors.push(error.message));
+ page.on('response',response=>{const url=new URL(response.url());if(url.pathname.startsWith('/runtime/'))runtimeUrls.push(url.pathname);if(response.status()>=400&&!url.pathname.startsWith('/api/'))missingAssets.push(url.pathname+':'+response.status());});
+ const response=await page.goto('/?view=library');expect(response?.headers()['x-knolstory-restored-manifest']).toBe(process.env.KNOLSTORY_RESTORE_MANIFEST_SHA);const restoreRun=response?.headers()['x-knolstory-restore-run'];expect(restoreRun).toMatch(/^[a-f0-9]{32}$/);await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ await openBuiltinEdition(page,'heungbu','original','start');await beginSelectedBook(page);
+ const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:120000});
+ await expect.poll(()=>status.evaluate(node=>Number(node.getAttribute('data-rendered-revision'))>=0&&node.getAttribute('data-rendered-revision')===node.getAttribute('data-scene-revision')),{timeout:60000}).toBe(true);
+ let keyboardAudioUnlocked=false;
+ await expect(status).toContainText('소리를 시작하려면');await expect(status).toHaveAttribute('data-audio-unlocked','false');
+ if((await status.textContent())?.includes('소리를 시작하려면')){const frame=page.getByTestId('story-runtime-frame');for(let attempt=0;attempt<30;attempt++){if(await frame.evaluate(node=>(node as HTMLIFrameElement).contentDocument?.activeElement?.id==='canvas'))break;await page.keyboard.press('Tab');}await expect(page.frameLocator('[data-testid="story-runtime-frame"]').getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true})).toBeFocused();await page.keyboard.press('Enter');await expect(status).toHaveAttribute('data-audio-unlocked','true',{timeout:15000});keyboardAudioUnlocked=true;}
+ expect(keyboardAudioUnlocked).toBe(true);
+ await expect(page.getByRole('button',{name:'다음으로',exact:true})).toBeEnabled({timeout:15000});
+ const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId);
+ await advanceReading(page);await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).not.toBe(before);
+ await expect.poll(()=>status.evaluate(node=>node.getAttribute('data-rendered-revision')===node.getAttribute('data-scene-revision')),{timeout:30000}).toBe(true);
+ await page.screenshot({path:info.outputPath('restored-native.png')});await readerLibrary(page);
+ await page.goto('/shortstory?work=heungbu&mode=read');const reading=page.getByRole('region',{name:'숏스토리 읽기',exact:true});await expect(reading).toBeVisible();
+ await expect.poll(()=>reading.locator('img').evaluateAll(images=>images.length>0&&images.every(image=>(image as HTMLImageElement).complete&&(image as HTMLImageElement).naturalWidth>0))).toBe(true);
+ await page.getByRole('button',{name:'다음 쪽',exact:true}).click();await expect(page.getByRole('button',{name:/2쪽 ·/}).first()).toHaveAttribute('aria-current','page');
+ await page.screenshot({path:info.outputPath('restored-shortstory.png')});
+ expect(runtimeUrls.some(path=>path.endsWith('.wasm'))).toBe(true);expect(missingAssets).toEqual([]);expect(pageErrors).toEqual([]);expect(externalHttpRequests).toEqual([]);
+ writeFileSync(info.outputPath('browser-result.json'),JSON.stringify({scope:'Actual restored file tree on a separate loopback origin; no source Web files, mocked renderer or live OAuth used.',origin:new URL(page.url()).origin,manifestSha256:process.env.KNOLSTORY_RESTORE_MANIFEST_SHA,restoreRun,library:true,nativeRuntimeAcknowledged:true,nativeAdvance:true,keyboardAudioUnlocked,shortStoryImageBytesLoaded:true,shortStoryNextPage:true,runtimeResponseCount:runtimeUrls.length,missingAssets,pageErrors,externalHttpRequests},null,2)+'\n');
+});

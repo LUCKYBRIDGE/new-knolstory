@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-16T10:34:17.473446+00:00",
+  "scope": "Isolated current local static Web/gateway/rebuilt Docker API/PostgreSQL with synthetic sessions. No live OAuth or public deployment.",
+  "sourceSha256": {
+    "server/operations/verify-account-candidate.mjs": "a27d6fc37c42d6639e2424af5b3c39a83b4bcfdfbd747cb17f27467c6954599f",
+    "server/http/document-routes.ts": "25ad8a697f0f10df65c9983847516b5c76362f82c3c059b4a457cf4f79e0f30f",
+    "apps/web/components/use-account-session.ts": "5735c33180663221471881c5fd8eb3521ee7cc90c1c0718f7b5ba0a4d9b0b92e",
+    "apps/web/components/online-works-panel.tsx": "5b679183e372de1a209917d23a9cd5a98369c5b49bd7f1d93c23e264186637da",
+    "apps/web/lib/document-api.ts": "88bf92d058e4a7a9216231323d174d083a8c71699da3c507df891654be40509d",
+    "apps/web/lib/online-work-bindings.ts": "120b09678a2492f449ec8e43be83dad2feb6beb8d3f0a1d44bee7c6fdcc6c683",
+    "server/Dockerfile": "8b13f921df6f2f93a7d78dc10f840713d3bcadcb137ec4a92f801dcfa5f94ac8",
+    "server/compose.api.local.yml": "4011342ad9324efbf86acf6d915bac8ab3f2c7714c03eeaf307c3e2faacf1ba6",
+    "apps/web/out/index.html": "f1658681e7cce22539bb018d285e68ee583629f393b306cd405fa8dbab4c34a3",
+    "apps/web/out/shortstory.html": "eea9d995266c3cc44e52122d1226b6c79de7596536a1af980d3d1d8433f3254a"
+  },
+  "api": {
+    "containerId": "0f3f5204174f23426c4f2243778eb312df34c6ea8fe37f7b9d8e346a3a2fac66",
+    "imageId": "sha256:8d04403a60bfbd1a0465d9a63354e85858ed9dd25b30619bc81b6d7f80d52a24",
+    "state": "running",
+    "health": "healthy",
+    "ports": {
+      "4000/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "15400"
+        }
+      ]
+    }
+  },
+  "actualAccountBoundary": "actual-409b8504-9682-41f3-a34a-8d7d72a68f83.json",
+  "actualKnol": "docs/architecture/evidence/online-works-2026-10-16/actual-browser-account-bound-candidate-06db0473-4cee-4af0-a5fa-018c7771c7fb.json",
+  "cleanup": {
+    "accounts": 2,
+    "activeAccounts": 0,
+    "sessions": 3,
+    "unrevokedSessions": 0
+  },
+  "legacyMetadata": "legacy-preservation-normalized.json",
+  "review": "Independent read-only review after cleanup fix: no remaining P1/P2. Existing DB whole-row preservation is not claimed.",
+  "verification": {
+    "build": "build-api.log",
+    "actualBoundaryLog": "actual-first.log",
+    "actualKnolLog": "knol-actual.log",
+    "syntax": "node --check server/operations/verify-account-candidate.mjs passed",
+    "lint": "lint.log",
+    "readiness": "readiness.log",
+    "providers": "provider-config.json"
+  },
+  "remaining": [
+    "Live provider credentials and OAuth callback verification",
+    "Online deletion/recovery and retention policy",
+    "Teacher/class/sharing policy and service implementation",
+    "Physical devices/accessibility and full release/operational restore"
+  ],
+  "next": "Separate retention-policy decisions from the online deletion/recovery contract and identify the next implementation whose policy dependencies are resolved.",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4
+  }
+}

@@ -1,0 +1,134 @@
+
+> knolstory-next@ test:coverage /Users/wan/ai_dev/apps/new-knolstory
+> vitest run --coverage
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+ ❯ packages/compatibility/tests/authoring-scores.test.ts (8 tests | 1 failed) 2520ms
+     × upgrades only the complete pre-score v2 layout and rejects partial new layouts 28ms
+ ❯ packages/asset-registry/tests/audio-category.test.ts (2 tests | 2 failed) 8ms
+     × separates surrounding sounds from background music without changing stable IDs 5ms
+     × keeps user sound files selectable in either continuous sound channel 1ms
+ ❯ packages/asset-registry/tests/audio.test.ts (2 tests | 2 failed) 5ms
+     × resolves stable portable built-in IDs and runtime paths 4ms
+     × finds Korean names by kind without affecting image registry 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/asset-registry/tests/audio-category.test.ts > author-visible sound categories > separates surrounding sounds from background music without changing stable IDs
+AssertionError: expected [ …(12) ] to have a length of 10 but got 12
+
+- Expected
++ Received
+
+- 10
++ 12
+
+ ❯ packages/asset-registry/tests/audio-category.test.ts:5:73
+      3| describe('author-visible sound categories',()=>{
+      4|  it('separates surrounding sounds from background music without changi…
+      5|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='background')…
+       |                                                                         ^
+      6|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='ambience')).…
+      7|   expect(AUDIO_CATALOG.filter(a=>audioAssetCategory(a)==='effect')).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  packages/asset-registry/tests/audio-category.test.ts > author-visible sound categories > keeps user sound files selectable in either continuous sound channel
+AssertionError: expected [] to deeply equal [ { …(8) } ]
+
+- Expected
++ Received
+
+- [
+-   {
+-     "durationSeconds": 8,
+-     "id": "audio:custom:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:wav",
+-     "kind": "music",
+-     "metadata": {
+-       "category": "background",
+-       "originalName": "숲의 아침 · 잔잔한 배경음",
+-       "source": "놀스토리 직접 제작",
+-       "tags": [
+-         "기본 제공",
+-       ],
+-     },
+-     "mime": "audio/wav",
+-     "name": "내 소리",
+-     "runtimePath": "assets/audio/forest.wav",
+-     "src": "/assets/audio/forest.wav",
+-   },
+- ]
++ []
+
+ ❯ packages/asset-registry/tests/audio-category.test.ts:14:61
+     12|   const custom={...AUDIO_CATALOG[0],id:`audio:custom:${'a'.repeat(64)}…
+     13|   expect(searchAudioAssets([custom],'music','','background')).toEqual(…
+     14|   expect(searchAudioAssets([custom],'music','','ambience')).toEqual([c…
+       |                                                             ^
+     15|   expect(searchAudioAssets(AUDIO_CATALOG,'sound','','effect')).toHaveL…
+     16|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  packages/asset-registry/tests/audio.test.ts > audio registry > resolves stable portable built-in IDs and runtime paths
+AssertionError: expected 40 to be 26 // Object.is equality
+
+- Expected
++ Received
+
+- 26
++ 40
+
+ ❯ packages/asset-registry/tests/audio.test.ts:5:34
+      3| describe('audio registry', () => {
+      4|   it('resolves stable portable built-in IDs and runtime paths', () => {
+      5|     expect(AUDIO_CATALOG.length).toBe(26);
+       |                                  ^
+      6|     expect(resolveAudioAsset('audio:music:forest')?.runtimePath).toBe(…
+      7|     expect(resolveAudioAsset('missing')).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  packages/asset-registry/tests/audio.test.ts > audio registry > finds Korean names by kind without affecting image registry
+AssertionError: expected 19 to be 12 // Object.is equality
+
+- Expected
++ Received
+
+- 12
++ 19
+
+ ❯ packages/asset-registry/tests/audio.test.ts:13:66
+     11|   it('finds Korean names by kind without affecting image registry', ()…
+     12|     expect(searchAudioAssets(AUDIO_CATALOG, 'music', '숲').map(item => …
+     13|     expect(searchAudioAssets(AUDIO_CATALOG, 'sound', '').length).toBe(…
+       |                                                                  ^
+     14|     expect(searchAudioAssets(AUDIO_CATALOG, 'music', '종소리')).toEqual([…
+     15|     const custom={...AUDIO_CATALOG[0],id:`audio:custom:${'b'.repeat(64…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  packages/compatibility/tests/authoring-scores.test.ts > score authoring contracts > upgrades only the complete pre-score v2 layout and rejects partial new layouts
+Error: 형식 정보 · 3행 · 표 버전: 소리 검색 속성은 표 버전 5로 작성하세요.
+ ❯ upgradeAudioAttributes packages/compatibility/src/authoring-workbook/index.ts:93:136
+     91|  if(input.workKind==='knolstory'){
+     92|   const table=tables.resources;
+     93|   if(tables.resourceTags||table?.headers.some(key=>['metadataPresent',…
+       |                                                                                                                                        ^
+     94|   if(table)tables.resources={headers:[...table.headers,'metadataPresen…
+     95|   tables.resourceTags=makeTable(tags,[]);
+ ❯ importAuthoringWorkbook packages/compatibility/src/authoring-workbook/index.ts:102:17
+ ❯ packages/compatibility/tests/authoring-scores.test.ts:17:76
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  3 failed | 99 passed (102)
+      Tests  5 failed | 1070 passed (1075)
+   Start at  12:43:49
+   Duration  13.46s (transform 5.56s, setup 0ms, import 25.30s, tests 67.63s, environment 6ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

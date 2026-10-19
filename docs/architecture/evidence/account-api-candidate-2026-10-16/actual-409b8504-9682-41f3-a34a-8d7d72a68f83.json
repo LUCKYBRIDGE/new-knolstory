@@ -1,0 +1,18 @@
+{
+  "origin": "http://127.0.0.1:15401",
+  "scope": "New static Web + gateway + rebuilt Docker API/PostgreSQL; real synthetic sessions and cookie changes. No mocked requests, no live OAuth.",
+  "create201": true,
+  "staleAccountList409": true,
+  "staleAccountRead409": true,
+  "staleAccountWrite409WithCurrentCsrf": true,
+  "otherAccountEmptyBeforeExplicitSave": true,
+  "accountBindingsIsolated": true,
+  "originalAccountUpdateRevision": 2,
+  "actualRevokedSession401": true,
+  "exactPendingRetryWithRenewedCsrf": true,
+  "finalRevision": 3,
+  "otherAccountRevision": 1,
+  "logoutPropagated": true,
+  "localBooksPreserved": true,
+  "pageErrors": []
+}

@@ -1,0 +1,49 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/document-routes.test.ts (32 tests | 2 failed) 103ms
+     × derives owner from session, creates and replays receipts, reads and saves exact snapshots 20ms
+     × exposes owner conflict revision only through sanitized service errors 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > derives owner from session, creates and replays receipts, reads and saves exact snapshots
+AssertionError: expected 400 to be 201 // Object.is equality
+
+- Expected
++ Received
+
+- 201
++ 400
+
+ ❯ server/http/document-routes.test.ts:27:93
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > exposes owner conflict revision only through sanitized service errors
+AssertionError: expected { success: false, …(1) } to deeply equal { success: false, error: { …(2) } }
+
+- Expected
++ Received
+
+  {
+    "error": {
+-     "actualRevision": 5,
+-     "code": "REVISION_CONFLICT",
++     "code": "INVALID_REQUEST",
+    },
+    "success": false,
+  }
+
+ ❯ server/http/document-routes.test.ts:80:237
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 30 passed (32)
+   Start at  08:23:12
+   Duration  565ms (transform 246ms, setup 0ms, import 378ms, tests 103ms, environment 0ms)
+

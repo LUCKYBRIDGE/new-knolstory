@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "existingRoot": "apps/web/public",
+  "existingAudioFileCount": 61,
+  "existingCatalog": "packages/asset-registry/src/audio-service-approvals.json",
+  "existingCatalogIdCount": 61,
+  "newAssetCount": 490,
+  "idCollisions": [],
+  "exactByteMatches": [
+    {
+      "newId": "audio.cc0.kenney-rpg.bookclose",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-bookClose.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-bookClose"
+          ],
+          "sha256": "81e976532565f4372abd14e83d2684195fa548d0a28d345de221e56052454f32"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.bookflip1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-bookFlip1.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-bookFlip1"
+          ],
+          "sha256": "fa81ac2fedc8c641661b87e349630a36c9800e795e0c800e029214efdbe26a7d"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.bookflip2",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-bookFlip2.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-bookFlip2"
+          ],
+          "sha256": "3409042acbfaebc24c1a6327dc073e36f9250841712e96c5040da566a97df73c"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.bookopen",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-bookOpen.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-bookOpen"
+          ],
+          "sha256": "953390534377222bee89ac8cd9e60a58fdc037c71a4d7c18c43cd647c7f34ba8"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.bookplace1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-bookPlace1.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-bookPlace1"
+          ],
+          "sha256": "26f3ce60fbde85b678b0ad7f6624d80535fe540d88232ad1e38e47a96662d977"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.cloth1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-cloth1.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-cloth1"
+          ],
+          "sha256": "ddb93a3671233f95da0e0b10367f082f7eb42fa6caaddcf776410aa8833c747d"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.cloth2",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-cloth2.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-cloth2"
+          ],
+          "sha256": "8a7451193c38bc05483aec25dd193e163a15d44cf7fff04ac7912573231b0201"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.creak1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-creak1.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-creak1"
+          ],
+          "sha256": "8a346186fd297254248cab8e8117060a52a5cf2a84f603153a762108550ea95e"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.doorclose-1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-doorClose_1.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-doorClose_1"
+          ],
+          "sha256": "834d29c60a8a8bfb50b158cdb6b7dfa8f02812a408a1ee9703d038dfab0b1aeb"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.dooropen-1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-doorOpen_1.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-doorOpen_1"
+          ],
+          "sha256": "4ab93bab96522d8eb109ff96dc57cb6765deb02448fe14c10472084be5bb2a0b"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.footstep00",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-footstep00.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-footstep00"
+          ],
+          "sha256": "6fe61ef1fc3bcf0e253bf2eb64759db6cb69e2fe452f4d88cc597ecf78a3d601"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.footstep02",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-footstep02.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-footstep02"
+          ],
+          "sha256": "2d9575b7dead6e1217ca113991fc5229e9b6d998ea0726ebbb277e7398ab888f"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.handlecoins",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-handleCoins.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-handleCoins"
+          ],
+          "sha256": "8a91f969e932df709df80ee124d86a51389eed9b67f22e5e716bc2bbf60d8dab"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.handlecoins2",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-handleCoins2.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-handleCoins2"
+          ],
+          "sha256": "4b857968d64f9ac9336a10ffac6694d7547e1f01566ad6857b30bc8db3ee6c32"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.metalpot1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-metalPot1.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-metalPot1"
+          ],
+          "sha256": "159def979e8e386c2c539f5e99cc30a080eb2dcb6c911fa2e4ccc0785b2522fd"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.kenney-rpg.metalpot2",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/kenney-metalPot2.ogg",
+          "existingIds": [
+            "audio:sound:cc0-kenney-metalPot2"
+          ],
+          "sha256": "8e1f820d217d380fde10e969d109db34303e3f4d11c3951926eddef813d04ae2"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.oga-forest-ambience.forest-ambience",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/oga-forest.mp3",
+          "existingIds": [
+            "audio:music:cc0-oga-forest"
+          ],
+          "sha256": "9850aa1d0d5d66bd9c5daf8bb77c6d852e01f2f4de22f283bd5621e8bed13b75"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.oga-rain.1",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/oga-rain-1.ogg",
+          "existingIds": [
+            "audio:music:cc0-oga-rain-1"
+          ],
+          "sha256": "4f659f68cf5219007d0bb0969a1862491ceee4057fda4c491c6001e8608fa2cb"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.oga-rain.2",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/oga-rain-2.ogg",
+          "existingIds": [
+            "audio:music:cc0-oga-rain-2"
+          ],
+          "sha256": "204bbdba67bd69f744bbb07d81155d0ee775960b979abd0a9b662b23dbc124fd"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.oga-rain.3",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/oga-rain-3.ogg",
+          "existingIds": [
+            "audio:music:cc0-oga-rain-3"
+          ],
+          "sha256": "73a0f5ef19ed9f64599c0425b1fb52d857acfc42c0fd5eab85c4577ace18f0ed"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    },
+    {
+      "newId": "audio.cc0.oga-rain.4",
+      "existing": [
+        {
+          "path": "assets/audio/cc0/oga-rain-4.ogg",
+          "existingIds": [
+            "audio:music:cc0-oga-rain-4"
+          ],
+          "sha256": "de24aeefd113daf0d12769c61adb1a262606e7df683e3bb52a27c4d0ff356549"
+        }
+      ],
+      "action": "Keep existing IDs; consider aliasing the new ID to the existing asset after confirming its provenance."
+    }
+  ],
+  "sameFilenameCandidates": [],
+  "scope": "Report only. Old licenses and IDs are untouched. Different encodings/edits require a separate listening or fingerprint comparison."
+}

@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:60119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:275:1 › library navigation is inside settings and returns to the same edited work (2.5s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:282:1 › failed recovery write keeps the editor open when library navigation is requested (2.1s)
+  ✓  3 tests/e2e/editing-workbench.spec.ts:288:1 › background fit and focus edits preserve other presentation data and reset only focus (5.9s)
+
+  3 passed (11.0s)

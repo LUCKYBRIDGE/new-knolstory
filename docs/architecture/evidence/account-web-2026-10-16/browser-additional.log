@@ -1,0 +1,17 @@
+[WebServer] (node:39958) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:39972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:39978) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:39990) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/account-menu.spec.ts:26:1 › unconfigured account providers remain optional and service failure is retryable (1.0s)
+  ✓  2 tests/e2e/account-menu.spec.ts:35:1 › a delayed Google link cannot redirect or write a work after leaving the account menu (2.3s)
+  ✓  3 tests/e2e/account-menu.spec.ts:50:1 › a blocked second writer cannot start login or replace the saved work (6.7s)
+  ✓  4 tests/e2e/account-menu.spec.ts:53:1 › Google linking uses an empty CSRF POST and rechecks session after returning (6.8s)
+
+  4 passed (19.1s)

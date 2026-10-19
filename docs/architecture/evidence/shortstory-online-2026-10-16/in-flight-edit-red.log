@@ -1,0 +1,44 @@
+
+Running 1 test using 1 worker
+
+(node:66532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/shortstory-online.spec.ts:42:1 › ShortStory edits during an in-flight save remain local and require a further save (5.6s)
+
+
+  1) tests/e2e/shortstory-online.spec.ts:42:1 › ShortStory edits during an in-flight save remain local and require a further save 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status')
+    Expected substring: "이후 바꾼 내용도 보관하려면 다시 저장"
+    Received string:    "온라인에 보관했어요. 기기의 원고도 그대로 유지됩니다."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status') with timeout 5000ms
+      - waiting for getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status')
+        14 × locator resolved to <p role="status">온라인에 보관했어요. 기기의 원고도 그대로 유지됩니다.</p>
+           - unexpected value "온라인에 보관했어요. 기기의 원고도 그대로 유지됩니다."
+
+
+      42 | test('ShortStory edits during an in-flight save remain local and require a further save',async({page})=>{
+      43 |  await harness(page);let release:()=>void=()=>{},sent=false;const gate=new Promise<void>(resolve=>{release=resolve;});await page.route('**/api/v1/documents',async route=>{if(route.request().method()!=='POST')return route.fallback();sent=true;const body=route.request().postDataJSON();await gate;return route.fulfill({json:{success:true,data:{recordId,revision:1,contentSha256:body.snapshot.contentSha256,replayed:false}}});});
+    > 44 |  await page.goto('/shortstory');await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('먼저 보낸 원고');const before=await local(page);await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();await panel.getByLabel('온라인에 보관할 기기 작품',{exact:true}).selectOption('shortstory:'+before.activeId);await panel.getByRole('button',{name:'선택한 작품 온라인에 보관',exact:true}).click();await expect.poll(()=>sent).toBe(true);await page.keyboard.press('Escape');await page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true}).fill('저장 응답을 기다리며 고친 원고');release();await page.locator('[data-online-works]>summary').click();await expect(panel.getByRole('status')).toContainText('이후 바꾼 내용도 보관하려면 다시 저장');expect((await local(page)).books.find((book:{id:string})=>book.id===before.activeId).pages[0].text).toBe('저장 응답을 기다리며 고친 원고');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^
+      45 | });
+      46 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/shortstory-online.spec.ts:44:775
+
+    Error Context: test-results/shortstory-online/shortstory-online-ShortSto-e2567--and-require-a-further-save/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/shortstory-online/shortstory-online-ShortSto-e2567--and-require-a-further-save/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/shortstory-online/shortstory-online-ShortSto-e2567--and-require-a-further-save/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/shortstory-online.spec.ts:42:1 › ShortStory edits during an in-flight save remain local and require a further save 

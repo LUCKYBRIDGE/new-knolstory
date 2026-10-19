@@ -1,0 +1,20 @@
+{
+  "review": "Read-only independent review, initial manual-context baseURL P1 fixed and reviewed again; no additional actionable P1/P2 findings. Runtime results remain owned by actual logs.",
+  "scopeLimits": [
+    "authoring-format choices use keyboard semantic controls; native confirmation is canvas click",
+    "advanceReading verifies keyboard Enter, not physical mouse/touch",
+    "native physical choice coordinates separately checked by creative/stories/score",
+    "No product code or authoring version changes"
+  ],
+  "diagnosticTypeFix": "CDP columnNumber optional; missing value maps to first column, caught-exception probe retained",
+  "sourceHashes": {
+    "tests/e2e/authoring-format-runtime.spec.ts": "03b48822ffa0da29a77a57a287494112d78fad1e854fc91725f8002983aa7ddd",
+    "tests/e2e/creative-reading-journey.spec.ts": "216e25bcd03d0c2b6d1615fc1fd6ae50b0324ca5b4b1e476700ac13a5ff33ad4",
+    "tests/e2e/existing-score-runtime.spec.ts": "90e5eb5fabbf0fa784dc662258d514db60f91c97e902b2463152e0dcaf523489",
+    "tests/e2e/four-work-runtime.spec.ts": "fdd46fc0b32051370a60caf9fdb1b4f103f741e5e80f996292cc614676feba72",
+    "tests/e2e/stories-runtime.spec.ts": "4dd6eea1d30d6d2276cfe8f52358eb7e3e56980565b89f0ebac64054989af2c0",
+    "tests/e2e/native-reader.ts": "6d56a87c7350e5f3e680c231281dccd419b1650fd2a2f0f31a3fb0d6486dfef7",
+    "tests/e2e/native-diagnostics.ts": "e7c851688b8fce7e7e08cdb0d2879cf97c45a5357bd283fd01dc9be8b8803d0e",
+    "tests/e2e/vn-workflow.spec.ts": "798a9646e6be310ea9849f0b1e0a135ecafaa0f440c3892eb1d4596c32b88b9a"
+  }
+}

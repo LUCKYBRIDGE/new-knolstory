@@ -1,0 +1,1079 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-15T14:56:39.456Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "scores": [
+        {
+          "id": "trust",
+          "name": "신뢰",
+          "description": "도움과 나눔으로 쌓이는 관계",
+          "initial": 0
+        },
+        {
+          "id": "greed",
+          "name": "욕심",
+          "description": "독차지한 선택을 기억하는 수치",
+          "initial": 0
+        }
+      ],
+      "source": {
+        "kind": "baseEdition",
+        "baseStoryId": "rabbit",
+        "baseEditionId": "rabbit",
+        "linearSetup": true,
+        "linearCreation": {
+          "mode": "rewrite",
+          "sourceStartChoiceLineId": "cut-001",
+          "writingStartLineId": "cut-002",
+          "prefixLineIds": [
+            "cut-001"
+          ],
+          "choices": [
+            {
+              "lineId": "cut-001",
+              "optionId": "choice-001",
+              "label": "첫 길"
+            }
+          ],
+          "sourceRevision": "fixture-v1"
+        }
+      },
+      "cover": {
+        "author": "검증 작가",
+        "subtitle": "부제",
+        "authorNote": "작가의 말",
+        "layout": "classic",
+        "theme": "forest",
+        "font": "serif",
+        "titlePosition": "top",
+        "authorPosition": "bottom",
+        "align": "center",
+        "titleSize": 36,
+        "titleColor": "#fff4d8",
+        "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+        "characterId": "rabbit-turtle.character.dragonking-command",
+        "characterPosition": "center",
+        "presetId": "poster",
+        "composition": {
+          "version": 1,
+          "backgroundFit": "complete",
+          "backgroundX": 45,
+          "backgroundY": 55,
+          "backgroundZoom": 1.1,
+          "characterX": 50,
+          "characterBottom": 10,
+          "characterScale": 1,
+          "titleX": 50,
+          "titleY": 15,
+          "titleWidth": 80,
+          "showEdition": true,
+          "textPanel": "auto"
+        },
+        "design": {
+          "version": 1,
+          "trim": "trade-300-435",
+          "finish": {
+            "stock": "cloth",
+            "color": "#173d35",
+            "ink": "#fff4d8",
+            "accent": "#d7bb79",
+            "texture": "subtle"
+          },
+          "band": {
+            "enabled": true,
+            "designId": "ruled"
+          },
+          "faces": {
+            "front": {
+              "preset": "poster",
+              "elements": [
+                {
+                  "id": "front-title",
+                  "type": "text",
+                  "role": "title",
+                  "region": "face",
+                  "content": {
+                    "bind": "project.title"
+                  },
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.1,
+                    "w": 0.8,
+                    "h": 0.15
+                  },
+                  "style": {
+                    "fontId": "serif",
+                    "fontSize": 0.04,
+                    "color": "#fff4d8",
+                    "align": "center",
+                    "writing": "horizontal"
+                  }
+                },
+                {
+                  "id": "front-custom",
+                  "type": "text",
+                  "role": "custom",
+                  "region": "band",
+                  "content": {
+                    "text": "직접 쓴 한국어\n띠지 🌱 001"
+                  },
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.7,
+                    "w": 0.8,
+                    "h": 0.15
+                  },
+                  "style": {
+                    "fontId": "handwriting",
+                    "fontSize": 0.03,
+                    "color": "#173d35",
+                    "align": "left",
+                    "writing": "horizontal"
+                  }
+                },
+                {
+                  "id": "front-image",
+                  "type": "image",
+                  "role": "scene",
+                  "assetId": "rabbit-turtle.background.rabbit-palace-reveal",
+                  "assetType": "background",
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.3,
+                    "w": 0.8,
+                    "h": 0.35
+                  },
+                  "frame": "arch",
+                  "crop": {
+                    "fit": "cover",
+                    "zoom": 1.2,
+                    "x": 40,
+                    "y": 60
+                  }
+                },
+                {
+                  "id": "front-actor",
+                  "type": "image",
+                  "role": "actor",
+                  "assetId": "rabbit-turtle.character.dragonking-command",
+                  "assetType": "character",
+                  "box": {
+                    "x": 0.3,
+                    "y": 0.3,
+                    "w": 0.35,
+                    "h": 0.35
+                  },
+                  "frame": "oval",
+                  "crop": {
+                    "fit": "contain",
+                    "zoom": 0.8,
+                    "x": 50,
+                    "y": 50
+                  }
+                }
+              ]
+            },
+            "spine": {
+              "preset": "poster",
+              "elements": [
+                {
+                  "id": "spine-title",
+                  "type": "text",
+                  "role": "title",
+                  "region": "face",
+                  "content": {
+                    "bind": "project.title"
+                  },
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.1,
+                    "w": 0.8,
+                    "h": 0.15
+                  },
+                  "style": {
+                    "fontId": "serif",
+                    "fontSize": 0.04,
+                    "color": "#fff4d8",
+                    "align": "center",
+                    "writing": "horizontal"
+                  }
+                },
+                {
+                  "id": "spine-custom",
+                  "type": "text",
+                  "role": "custom",
+                  "region": "band",
+                  "content": {
+                    "text": "직접 쓴 한국어\n띠지 🌱 001"
+                  },
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.7,
+                    "w": 0.8,
+                    "h": 0.15
+                  },
+                  "style": {
+                    "fontId": "handwriting",
+                    "fontSize": 0.03,
+                    "color": "#173d35",
+                    "align": "left",
+                    "writing": "vertical"
+                  }
+                },
+                {
+                  "id": "spine-image",
+                  "type": "image",
+                  "role": "scene",
+                  "assetId": "rabbit-turtle.background.rabbit-palace-reveal",
+                  "assetType": "background",
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.3,
+                    "w": 0.8,
+                    "h": 0.35
+                  },
+                  "frame": "arch",
+                  "crop": {
+                    "fit": "cover",
+                    "zoom": 1.2,
+                    "x": 40,
+                    "y": 60
+                  }
+                },
+                {
+                  "id": "spine-actor",
+                  "type": "image",
+                  "role": "actor",
+                  "assetId": "rabbit-turtle.character.dragonking-command",
+                  "assetType": "character",
+                  "box": {
+                    "x": 0.3,
+                    "y": 0.3,
+                    "w": 0.35,
+                    "h": 0.35
+                  },
+                  "frame": "oval",
+                  "crop": {
+                    "fit": "contain",
+                    "zoom": 0.8,
+                    "x": 50,
+                    "y": 50
+                  }
+                }
+              ]
+            },
+            "back": {
+              "preset": "poster",
+              "elements": [
+                {
+                  "id": "back-title",
+                  "type": "text",
+                  "role": "title",
+                  "region": "face",
+                  "content": {
+                    "bind": "project.title"
+                  },
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.1,
+                    "w": 0.8,
+                    "h": 0.15
+                  },
+                  "style": {
+                    "fontId": "serif",
+                    "fontSize": 0.04,
+                    "color": "#fff4d8",
+                    "align": "center",
+                    "writing": "horizontal"
+                  }
+                },
+                {
+                  "id": "back-custom",
+                  "type": "text",
+                  "role": "custom",
+                  "region": "band",
+                  "content": {
+                    "text": "직접 쓴 한국어\n띠지 🌱 001"
+                  },
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.7,
+                    "w": 0.8,
+                    "h": 0.15
+                  },
+                  "style": {
+                    "fontId": "handwriting",
+                    "fontSize": 0.03,
+                    "color": "#173d35",
+                    "align": "left",
+                    "writing": "horizontal"
+                  }
+                },
+                {
+                  "id": "back-image",
+                  "type": "image",
+                  "role": "scene",
+                  "assetId": "rabbit-turtle.background.rabbit-palace-reveal",
+                  "assetType": "background",
+                  "box": {
+                    "x": 0.1,
+                    "y": 0.3,
+                    "w": 0.8,
+                    "h": 0.35
+                  },
+                  "frame": "arch",
+                  "crop": {
+                    "fit": "cover",
+                    "zoom": 1.2,
+                    "x": 40,
+                    "y": 60
+                  }
+                },
+                {
+                  "id": "back-actor",
+                  "type": "image",
+                  "role": "actor",
+                  "assetId": "rabbit-turtle.character.dragonking-command",
+                  "assetType": "character",
+                  "box": {
+                    "x": 0.3,
+                    "y": 0.3,
+                    "w": 0.35,
+                    "h": 0.35
+                  },
+                  "frame": "oval",
+                  "crop": {
+                    "fit": "contain",
+                    "zoom": 0.8,
+                    "x": 50,
+                    "y": 50
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "choiceMode": "choice",
+      "stageDefaults": {
+        "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+        "leftAssetId": "rabbit-turtle.character.dragonking-command",
+        "rightAssetId": "rabbit-turtle.character.dragonking-command"
+      },
+      "id": "score-target-labels",
+      "title": "선택이 쌓이는 마을 이야기",
+      "description": "전체 필드 보존 검증",
+      "planning": {
+        "premise": "premise 기획\n둘째 줄",
+        "structureMode": "five",
+        "material": "material 기획\n둘째 줄",
+        "theme": "theme 기획\n둘째 줄",
+        "mainCharacter": "mainCharacter 기획\n둘째 줄",
+        "mainGoal": "mainGoal 기획\n둘째 줄",
+        "centralProblem": "centralProblem 기획\n둘째 줄",
+        "stakes": "stakes 기획\n둘째 줄",
+        "endingChange": "endingChange 기획\n둘째 줄",
+        "opening": "opening 기획\n둘째 줄",
+        "middle": "middle 기획\n둘째 줄",
+        "crisis": "crisis 기획\n둘째 줄",
+        "climax": "climax 기획\n둘째 줄",
+        "ending": "ending 기획\n둘째 줄",
+        "characterNotes": "characterNotes 기획\n둘째 줄",
+        "worldNotes": "worldNotes 기획\n둘째 줄",
+        "mood": "mood 기획\n둘째 줄",
+        "openQuestions": "openQuestions 기획\n둘째 줄",
+        "freeNotes": "freeNotes 기획\n둘째 줄"
+      },
+      "creativeMemos": [],
+      "characters": [
+        {
+          "id": "character-001",
+          "name": "검증 인물",
+          "role": "주인공",
+          "description": "설명",
+          "defaultImageId": "rabbit-turtle.character.dragonking-command"
+        }
+      ],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [
+        "검증 인물"
+      ],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "branchLabel": "갈래",
+          "id": "chapter-001",
+          "order": 1,
+          "title": "선택의 장",
+          "summary": "개요",
+          "purpose": "목적",
+          "mood": "분위기",
+          "keyEvents": "사건",
+          "nextChapterIdea": "다음 구상",
+          "storyStageKeys": [
+            "opening"
+          ],
+          "chapterSpeakerNames": [
+            "검증 인물"
+          ],
+          "characterAssetIds": [
+            "rabbit-turtle.character.dragonking-command"
+          ],
+          "backgroundAssetIds": [
+            "rabbit-turtle.background.rabbit-palace-reveal"
+          ],
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command"
+        },
+        {
+          "chapterNumber": 2,
+          "branchLabel": "갈래",
+          "id": "score-later-chapter",
+          "order": 2,
+          "title": "같은 말이 나오는 다른 장",
+          "summary": "개요",
+          "purpose": "목적",
+          "mood": "분위기",
+          "keyEvents": "사건",
+          "nextChapterIdea": "다음 구상",
+          "storyStageKeys": [
+            "opening"
+          ],
+          "chapterSpeakerNames": [
+            "검증 인물"
+          ],
+          "characterAssetIds": [
+            "rabbit-turtle.character.dragonking-command"
+          ],
+          "backgroundAssetIds": [
+            "rabbit-turtle.background.rabbit-palace-reveal"
+          ],
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command"
+        }
+      ],
+      "lines": [
+        {
+          "id": "score-first",
+          "chapterId": "chapter-001",
+          "order": 1,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "검증 인물",
+          "coSpeakerNames": [
+            "검증 인물"
+          ],
+          "text": "같은 대사",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command",
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "inheritActors": false,
+          "workingTitle": "선택",
+          "purposeNote": "목적",
+          "emotionNote": "감정",
+          "directionNote": "연출 노트",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "hero-left",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 1,
+                "placementPreset": "single-left",
+                "xAnchor": 35,
+                "scaleMultiplier": 1.1,
+                "facing": "original",
+                "baseDepth": 1,
+                "depthOverride": 3,
+                "motion": {
+                  "type": "move",
+                  "durationMs": 300,
+                  "delayMs": 50,
+                  "fromXAnchor": 20
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "hero-right",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 2,
+                "placementPreset": "single-right",
+                "xAnchor": 65,
+                "scaleMultiplier": 0.9,
+                "facing": "left",
+                "baseDepth": 2,
+                "depthOverride": 1,
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 400,
+                  "delayMs": 0,
+                  "fromXAnchor": 65
+                }
+              }
+            ],
+            "speakerActorKey": "hero-left",
+            "speakerActorKeys": [
+              "hero-left",
+              "hero-right"
+            ]
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "help",
+                "label": "이웃을 돕는다",
+                "targetLineId": "score-second",
+                "effects": [
+                  {
+                    "scoreId": "trust",
+                    "operation": "add",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "id": "ignore",
+                "label": "그냥 지나간다",
+                "targetLineId": "score-second",
+                "effects": [
+                  {
+                    "scoreId": "trust",
+                    "operation": "set",
+                    "value": 0
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "score-second",
+          "chapterId": "chapter-001",
+          "order": 2,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "검증 인물",
+          "coSpeakerNames": [
+            "검증 인물"
+          ],
+          "text": "다시 만난 이웃과 음식을 나눌까요?",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command",
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "inheritActors": false,
+          "workingTitle": "선택",
+          "purposeNote": "목적",
+          "emotionNote": "감정",
+          "directionNote": "연출 노트",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "hero-left",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 1,
+                "placementPreset": "single-left",
+                "xAnchor": 35,
+                "scaleMultiplier": 1.1,
+                "facing": "original",
+                "baseDepth": 1,
+                "depthOverride": 3,
+                "motion": {
+                  "type": "move",
+                  "durationMs": 300,
+                  "delayMs": 50,
+                  "fromXAnchor": 20
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "hero-right",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 2,
+                "placementPreset": "single-right",
+                "xAnchor": 65,
+                "scaleMultiplier": 0.9,
+                "facing": "left",
+                "baseDepth": 2,
+                "depthOverride": 1,
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 400,
+                  "delayMs": 0,
+                  "fromXAnchor": 65
+                }
+              }
+            ],
+            "speakerActorKey": "hero-left",
+            "speakerActorKeys": [
+              "hero-left",
+              "hero-right"
+            ]
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "share",
+                "label": "음식을 나눈다",
+                "targetLineId": "score-join",
+                "condition": {
+                  "mode": "all",
+                  "terms": [
+                    {
+                      "scoreId": "trust",
+                      "operator": "gte",
+                      "value": 2
+                    }
+                  ]
+                },
+                "effects": [
+                  {
+                    "scoreId": "trust",
+                    "operation": "add",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "id": "keep",
+                "label": "음식을 혼자 보관한다",
+                "targetLineId": "score-join",
+                "effects": [
+                  {
+                    "scoreId": "greed",
+                    "operation": "add",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "score-join",
+          "chapterId": "chapter-001",
+          "order": 3,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "검증 인물",
+          "coSpeakerNames": [
+            "검증 인물"
+          ],
+          "text": "모두 같은 마을에 도착했습니다. 앞선 선택이 다음 이야기를 바꿉니다.",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command",
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "inheritActors": false,
+          "workingTitle": "선택",
+          "purposeNote": "목적",
+          "emotionNote": "감정",
+          "directionNote": "연출 노트",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "hero-left",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 1,
+                "placementPreset": "single-left",
+                "xAnchor": 35,
+                "scaleMultiplier": 1.1,
+                "facing": "original",
+                "baseDepth": 1,
+                "depthOverride": 3,
+                "motion": {
+                  "type": "move",
+                  "durationMs": 300,
+                  "delayMs": 50,
+                  "fromXAnchor": 20
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "hero-right",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 2,
+                "placementPreset": "single-right",
+                "xAnchor": 65,
+                "scaleMultiplier": 0.9,
+                "facing": "left",
+                "baseDepth": 2,
+                "depthOverride": 1,
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 400,
+                  "delayMs": 0,
+                  "fromXAnchor": 65
+                }
+              }
+            ],
+            "speakerActorKey": "hero-left",
+            "speakerActorKeys": [
+              "hero-left",
+              "hero-right"
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "score-alone",
+            "routes": [
+              {
+                "id": "friends",
+                "condition": {
+                  "mode": "all",
+                  "terms": [
+                    {
+                      "scoreId": "trust",
+                      "operator": "gte",
+                      "value": 4
+                    },
+                    {
+                      "scoreId": "greed",
+                      "operator": "lte",
+                      "value": 0
+                    }
+                  ]
+                },
+                "targetLineId": "score-later-cut"
+              },
+              {
+                "id": "maybe",
+                "condition": {
+                  "mode": "any",
+                  "terms": [
+                    {
+                      "scoreId": "trust",
+                      "operator": "gte",
+                      "value": 2
+                    },
+                    {
+                      "scoreId": "greed",
+                      "operator": "lt",
+                      "value": 0
+                    }
+                  ]
+                },
+                "targetLineId": "score-maybe"
+              }
+            ]
+          }
+        },
+        {
+          "id": "score-together",
+          "chapterId": "chapter-001",
+          "order": 4,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "검증 인물",
+          "coSpeakerNames": [
+            "검증 인물"
+          ],
+          "text": "이웃들이 도우러 왔습니다. 나눈 선택이 함께하는 결말을 만들었습니다.",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command",
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "inheritActors": false,
+          "workingTitle": "선택",
+          "ending": {
+            "name": "함께하는 결말",
+            "description": "신뢰가 충분히 쌓였습니다.",
+            "endsStory": true
+          },
+          "purposeNote": "목적",
+          "emotionNote": "감정",
+          "directionNote": "연출 노트",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "hero-left",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 1,
+                "placementPreset": "single-left",
+                "xAnchor": 35,
+                "scaleMultiplier": 1.1,
+                "facing": "original",
+                "baseDepth": 1,
+                "depthOverride": 3,
+                "motion": {
+                  "type": "move",
+                  "durationMs": 300,
+                  "delayMs": 50,
+                  "fromXAnchor": 20
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "hero-right",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 2,
+                "placementPreset": "single-right",
+                "xAnchor": 65,
+                "scaleMultiplier": 0.9,
+                "facing": "left",
+                "baseDepth": 2,
+                "depthOverride": 1,
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 400,
+                  "delayMs": 0,
+                  "fromXAnchor": 65
+                }
+              }
+            ],
+            "speakerActorKey": "hero-left",
+            "speakerActorKeys": [
+              "hero-left",
+              "hero-right"
+            ]
+          }
+        },
+        {
+          "id": "score-alone",
+          "chapterId": "chapter-001",
+          "order": 5,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "검증 인물",
+          "coSpeakerNames": [
+            "검증 인물"
+          ],
+          "text": "이번에는 혼자 길을 찾습니다. 다음에는 다른 선택을 해 볼까요?",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command",
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "inheritActors": false,
+          "workingTitle": "선택",
+          "ending": {
+            "name": "혼자 찾는 결말",
+            "description": "나눔을 선택하지 않았습니다.",
+            "endsStory": true
+          },
+          "purposeNote": "목적",
+          "emotionNote": "감정",
+          "directionNote": "연출 노트",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "hero-left",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 1,
+                "placementPreset": "single-left",
+                "xAnchor": 35,
+                "scaleMultiplier": 1.1,
+                "facing": "original",
+                "baseDepth": 1,
+                "depthOverride": 3,
+                "motion": {
+                  "type": "move",
+                  "durationMs": 300,
+                  "delayMs": 50,
+                  "fromXAnchor": 20
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "hero-right",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 2,
+                "placementPreset": "single-right",
+                "xAnchor": 65,
+                "scaleMultiplier": 0.9,
+                "facing": "left",
+                "baseDepth": 2,
+                "depthOverride": 1,
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 400,
+                  "delayMs": 0,
+                  "fromXAnchor": 65
+                }
+              }
+            ],
+            "speakerActorKey": "hero-left",
+            "speakerActorKeys": [
+              "hero-left",
+              "hero-right"
+            ]
+          }
+        },
+        {
+          "id": "score-maybe",
+          "chapterId": "chapter-001",
+          "order": 6,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "검증 인물",
+          "coSpeakerNames": [
+            "검증 인물"
+          ],
+          "text": "한 번의 도움을 기억한 이웃이 인사를 건넵니다.",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command",
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "inheritActors": false,
+          "workingTitle": "선택",
+          "ending": {
+            "name": "다시 만나는 결말",
+            "description": "도움의 기억이 남았습니다.",
+            "endsStory": true
+          },
+          "purposeNote": "목적",
+          "emotionNote": "감정",
+          "directionNote": "연출 노트",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "hero-left",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 1,
+                "placementPreset": "single-left",
+                "xAnchor": 35,
+                "scaleMultiplier": 1.1,
+                "facing": "original",
+                "baseDepth": 1,
+                "depthOverride": 3,
+                "motion": {
+                  "type": "move",
+                  "durationMs": 300,
+                  "delayMs": 50,
+                  "fromXAnchor": 20
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "hero-right",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 2,
+                "placementPreset": "single-right",
+                "xAnchor": 65,
+                "scaleMultiplier": 0.9,
+                "facing": "left",
+                "baseDepth": 2,
+                "depthOverride": 1,
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 400,
+                  "delayMs": 0,
+                  "fromXAnchor": 65
+                }
+              }
+            ],
+            "speakerActorKey": "hero-left",
+            "speakerActorKeys": [
+              "hero-left",
+              "hero-right"
+            ]
+          }
+        },
+        {
+          "id": "score-later-cut",
+          "chapterId": "score-later-chapter",
+          "order": 1,
+          "type": "dialogue",
+          "speaker": "left",
+          "speakerName": "검증 인물",
+          "coSpeakerNames": [
+            "검증 인물"
+          ],
+          "text": "같은 대사",
+          "leftAssetId": "rabbit-turtle.character.dragonking-command",
+          "rightAssetId": "rabbit-turtle.character.dragonking-command",
+          "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+          "inheritActors": false,
+          "workingTitle": "선택",
+          "purposeNote": "목적",
+          "emotionNote": "감정",
+          "directionNote": "연출 노트",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "hero-left",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 1,
+                "placementPreset": "single-left",
+                "xAnchor": 35,
+                "scaleMultiplier": 1.1,
+                "facing": "original",
+                "baseDepth": 1,
+                "depthOverride": 3,
+                "motion": {
+                  "type": "move",
+                  "durationMs": 300,
+                  "delayMs": 50,
+                  "fromXAnchor": 20
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "hero-right",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "characterKey": "character-001",
+                "position": "center",
+                "positionOrder": 2,
+                "placementPreset": "single-right",
+                "xAnchor": 65,
+                "scaleMultiplier": 0.9,
+                "facing": "left",
+                "baseDepth": 2,
+                "depthOverride": 1,
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 400,
+                  "delayMs": 0,
+                  "fromXAnchor": 65
+                }
+              }
+            ],
+            "speakerActorKey": "hero-left",
+            "speakerActorKeys": [
+              "hero-left",
+              "hero-right"
+            ]
+          }
+        }
+      ],
+      "updatedAt": "2026-10-15T14:56:39.167Z"
+    }
+  },
+  "audioResources": []
+}

@@ -1,0 +1,467 @@
+
+Running 3 tests using 1 worker
+
+(node:20265) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 320x256 (22.4s)
+(node:20354) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 640x360 (22.5s)
+(node:20426) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 390x740 (22.5s)
+
+
+  1) [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 320x256 
+
+    Error: all prose text range rectangles fit horizontal viewport
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+    > 15 |  async function prose(target:Locator,text:string){await expect.soft(target).toHaveText(text);await expect.soft(target).toBeVisible();if(!await target.isVisible())return;await target.scrollIntoViewIfNeeded();const horizontal=await target.evaluate(node=>{const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);for(const r of range.getClientRects())if(r.left<-.5||r.right>innerWidth+.5)return false;}return true;});expect.soft(horizontal,'all prose text range rectangles fit horizontal viewport').toBe(true);for(const edge of ['start','end'] as const){await target.evaluate((node,edge)=>node.scrollIntoView({block:edge}),edge);const reachable=await target.evaluate((node,edge)=>{const range=document.createRange();range.selectNodeContents(node);const rects=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0),rect=edge==='start'?rects[0]:rects.at(-1);if(!rect)return false;let top=0,bottom=innerHeight;for(let parent=node.parentElement;parent;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowY)){const box=parent.getBoundingClientRect();top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);}}return rect.top>=top-.5&&rect.bottom<=bottom+.5;},edge);reports.push({surface:'prose-edge',text,edge,reachable});expect.soft(reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      16 |  await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').first(),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+        at prose (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:15:611)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:16:164
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toBeVisible" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true })
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                           ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:75
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true })
+    Expected: "첫 장부터 이야기를 펼쳐요"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true })
+        14 × locator resolved to <button type="button" aria-label="처음부터 읽기" class="book-start-module__cvHYGG__primary">…</button>
+           - unexpected value ""
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                                                                                                                                                                  ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:210
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true })
+    Expected: "읽기 시작 후 이어갈 수 있어요"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true })
+        14 × locator resolved to <button disabled type="button" aria-label="이어읽기">…</button>
+           - unexpected value ""
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                                                                                                                                                                  ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:210
+
+    Error: start prose line fits viewport and clipping ancestors
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+    > 15 |  async function prose(target:Locator,text:string){await expect.soft(target).toHaveText(text);await expect.soft(target).toBeVisible();if(!await target.isVisible())return;await target.scrollIntoViewIfNeeded();const horizontal=await target.evaluate(node=>{const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);for(const r of range.getClientRects())if(r.left<-.5||r.right>innerWidth+.5)return false;}return true;});expect.soft(horizontal,'all prose text range rectangles fit horizontal viewport').toBe(true);for(const edge of ['start','end'] as const){await target.evaluate((node,edge)=>node.scrollIntoView({block:edge}),edge);const reachable=await target.evaluate((node,edge)=>{const range=document.createRange();range.selectNodeContents(node);const rects=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0),rect=edge==='start'?rects[0]:rects.at(-1);if(!rect)return false;let top=0,bottom=innerHeight;for(let parent=node.parentElement;parent;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowY)){const box=parent.getBoundingClientRect();top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);}}return rect.top>=top-.5&&rect.bottom<=bottom+.5;},edge);reports.push({surface:'prose-edge',text,edge,reachable});expect.soft(reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      16 |  await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').first(),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+        at prose (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:15:1491)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:20:2
+
+    Error: end prose line fits viewport and clipping ancestors
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+    > 15 |  async function prose(target:Locator,text:string){await expect.soft(target).toHaveText(text);await expect.soft(target).toBeVisible();if(!await target.isVisible())return;await target.scrollIntoViewIfNeeded();const horizontal=await target.evaluate(node=>{const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);for(const r of range.getClientRects())if(r.left<-.5||r.right>innerWidth+.5)return false;}return true;});expect.soft(horizontal,'all prose text range rectangles fit horizontal viewport').toBe(true);for(const edge of ['start','end'] as const){await target.evaluate((node,edge)=>node.scrollIntoView({block:edge}),edge);const reachable=await target.evaluate((node,edge)=>{const range=document.createRange();range.selectNodeContents(node);const rects=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0),rect=edge==='start'?rects[0]:rects.at(-1);if(!rect)return false;let top=0,bottom=innerHeight;for(let parent=node.parentElement;parent;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowY)){const box=parent.getBoundingClientRect();top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);}}return rect.top>=top-.5&&rect.bottom<=bottom+.5;},edge);reports.push({surface:'prose-edge',text,edge,reachable});expect.soft(reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      16 |  await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').first(),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+        at prose (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:15:1491)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:20:2
+
+    Error: raw axe findings without exclusions
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Array [
+    +         ".book-start-module__cvHYGG__primary",
+    +       ],
+    +       Array [
+    +         "button[aria-label=\"이어읽기\"]",
+    +       ],
+    +     ],
+    +   },
+    + ]
+
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+    > 22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+         |                                                                                                                                                                                                                                                                                                             ^
+      23 | });
+      24 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:22:301
+
+    Error Context: docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-2f583-a-remains-reachable-320x256-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-2f583-a-remains-reachable-320x256-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-2f583-a-remains-reachable-320x256-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 640x360 
+
+    Error: all prose text range rectangles fit horizontal viewport
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+    > 15 |  async function prose(target:Locator,text:string){await expect.soft(target).toHaveText(text);await expect.soft(target).toBeVisible();if(!await target.isVisible())return;await target.scrollIntoViewIfNeeded();const horizontal=await target.evaluate(node=>{const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);for(const r of range.getClientRects())if(r.left<-.5||r.right>innerWidth+.5)return false;}return true;});expect.soft(horizontal,'all prose text range rectangles fit horizontal viewport').toBe(true);for(const edge of ['start','end'] as const){await target.evaluate((node,edge)=>node.scrollIntoView({block:edge}),edge);const reachable=await target.evaluate((node,edge)=>{const range=document.createRange();range.selectNodeContents(node);const rects=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0),rect=edge==='start'?rects[0]:rects.at(-1);if(!rect)return false;let top=0,bottom=innerHeight;for(let parent=node.parentElement;parent;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowY)){const box=parent.getBoundingClientRect();top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);}}return rect.top>=top-.5&&rect.bottom<=bottom+.5;},edge);reports.push({surface:'prose-edge',text,edge,reachable});expect.soft(reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      16 |  await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').first(),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+        at prose (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:15:611)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:16:164
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toBeVisible" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true })
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                           ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:75
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true })
+    Expected: "첫 장부터 이야기를 펼쳐요"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true })
+        14 × locator resolved to <button type="button" aria-label="처음부터 읽기" class="book-start-module__cvHYGG__primary">…</button>
+           - unexpected value ""
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                                                                                                                                                                  ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:210
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true })
+    Expected: "읽기 시작 후 이어갈 수 있어요"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true })
+        14 × locator resolved to <button disabled type="button" aria-label="이어읽기">…</button>
+           - unexpected value ""
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                                                                                                                                                                  ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:210
+
+    Error: start prose line fits viewport and clipping ancestors
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+    > 15 |  async function prose(target:Locator,text:string){await expect.soft(target).toHaveText(text);await expect.soft(target).toBeVisible();if(!await target.isVisible())return;await target.scrollIntoViewIfNeeded();const horizontal=await target.evaluate(node=>{const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);for(const r of range.getClientRects())if(r.left<-.5||r.right>innerWidth+.5)return false;}return true;});expect.soft(horizontal,'all prose text range rectangles fit horizontal viewport').toBe(true);for(const edge of ['start','end'] as const){await target.evaluate((node,edge)=>node.scrollIntoView({block:edge}),edge);const reachable=await target.evaluate((node,edge)=>{const range=document.createRange();range.selectNodeContents(node);const rects=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0),rect=edge==='start'?rects[0]:rects.at(-1);if(!rect)return false;let top=0,bottom=innerHeight;for(let parent=node.parentElement;parent;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowY)){const box=parent.getBoundingClientRect();top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);}}return rect.top>=top-.5&&rect.bottom<=bottom+.5;},edge);reports.push({surface:'prose-edge',text,edge,reachable});expect.soft(reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      16 |  await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').first(),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+        at prose (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:15:1491)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:20:2
+
+    Error: raw axe findings without exclusions
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Array [
+    +         ".book-start-module__cvHYGG__primary",
+    +       ],
+    +       Array [
+    +         "button[aria-label=\"이어읽기\"]",
+    +       ],
+    +     ],
+    +   },
+    + ]
+
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+    > 22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+         |                                                                                                                                                                                                                                                                                                             ^
+      23 | });
+      24 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:22:301
+
+    Error Context: docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-46b9f-a-remains-reachable-640x360-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-46b9f-a-remains-reachable-640x360-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-46b9f-a-remains-reachable-640x360-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 390x740 
+
+    Error: all prose text range rectangles fit horizontal viewport
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+    > 15 |  async function prose(target:Locator,text:string){await expect.soft(target).toHaveText(text);await expect.soft(target).toBeVisible();if(!await target.isVisible())return;await target.scrollIntoViewIfNeeded();const horizontal=await target.evaluate(node=>{const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);for(const r of range.getClientRects())if(r.left<-.5||r.right>innerWidth+.5)return false;}return true;});expect.soft(horizontal,'all prose text range rectangles fit horizontal viewport').toBe(true);for(const edge of ['start','end'] as const){await target.evaluate((node,edge)=>node.scrollIntoView({block:edge}),edge);const reachable=await target.evaluate((node,edge)=>{const range=document.createRange();range.selectNodeContents(node);const rects=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0),rect=edge==='start'?rects[0]:rects.at(-1);if(!rect)return false;let top=0,bottom=innerHeight;for(let parent=node.parentElement;parent;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowY)){const box=parent.getBoundingClientRect();top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);}}return rect.top>=top-.5&&rect.bottom<=bottom+.5;},edge);reports.push({surface:'prose-edge',text,edge,reachable});expect.soft(reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      16 |  await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').first(),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+        at prose (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:15:611)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:16:164
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "soft toBeVisible" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('group', { name: '이 책 고쳐쓰기', exact: true })
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                           ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:75
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true })
+    Expected: "첫 장부터 이야기를 펼쳐요"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '처음부터 읽기', exact: true })
+        14 × locator resolved to <button type="button" aria-label="처음부터 읽기" class="book-start-module__cvHYGG__primary">…</button>
+           - unexpected value ""
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                                                                                                                                                                  ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:210
+
+    Error: expect(locator).toHaveAccessibleDescription(expected) failed
+
+    Locator:  getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true })
+    Expected: "읽기 시작 후 이어갈 수 있어요"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "soft toHaveAccessibleDescription" getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '책 표지와 소개', exact: true }).getByRole('button', { name: '이어읽기', exact: true })
+        14 × locator resolved to <button disabled type="button" aria-label="이어읽기">…</button>
+           - unexpected value ""
+
+
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+    > 19 |  await expect.soft(start.getByRole('group',{name:'이 책 고쳐쓰기',exact:true})).toBeVisible();for(const name of ['처음부터 읽기','이어읽기']){const button=start.getByRole('button',{name,exact:true});await expect.soft(button).toHaveAccessibleDescription(await button.locator('small').innerText());}
+         |                                                                                                                                                                                                                  ^
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+      22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:19:210
+
+    Error: start prose line fits viewport and clipping ancestors
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      13 |  const reports:unknown[]=[];
+      14 |  async function capture(surface:string,root:Locator){const raw=await root.evaluate(node=>({texts:[...node.querySelectorAll('section h1,section h2,section p,section small,label small')].map(target=>{const box=target.getBoundingClientRect(),walker=document.createTreeWalker(target,NodeFilter.SHOW_TEXT),rects=[];while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);rects.push(...[...range.getClientRects()].map(r=>({x:r.x,y:r.y,right:r.right,bottom:r.bottom})));}return {text:target.textContent,display:getComputedStyle(target).display,box:{x:box.x,y:box.y,right:box.right,bottom:box.bottom},rects};}),controls:[...node.querySelectorAll('button,a,summary,select')].map(target=>({text:target.textContent,disabled:(target as HTMLButtonElement).disabled}))}));reports.push({surface,raw});await page.screenshot({path:info.outputPath(`${surface}.png`),fullPage:true});await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');}
+    > 15 |  async function prose(target:Locator,text:string){await expect.soft(target).toHaveText(text);await expect.soft(target).toBeVisible();if(!await target.isVisible())return;await target.scrollIntoViewIfNeeded();const horizontal=await target.evaluate(node=>{const walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const range=document.createRange();range.selectNodeContents(walker.currentNode);for(const r of range.getClientRects())if(r.left<-.5||r.right>innerWidth+.5)return false;}return true;});expect.soft(horizontal,'all prose text range rectangles fit horizontal viewport').toBe(true);for(const edge of ['start','end'] as const){await target.evaluate((node,edge)=>node.scrollIntoView({block:edge}),edge);const reachable=await target.evaluate((node,edge)=>{const range=document.createRange();range.selectNodeContents(node);const rects=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0),rect=edge==='start'?rects[0]:rects.at(-1);if(!rect)return false;let top=0,bottom=innerHeight;for(let parent=node.parentElement;parent;parent=parent.parentElement){const style=getComputedStyle(parent);if(/auto|scroll|hidden|clip/.test(style.overflowY)){const box=parent.getBoundingClientRect();top=Math.max(top,box.top);bottom=Math.min(bottom,box.bottom);}}return rect.top>=top-.5&&rect.bottom<=bottom+.5;},edge);reports.push({surface:'prose-edge',text,edge,reachable});expect.soft(reachable,`${edge} prose line fits viewport and clipping ancestors`).toBe(true);}}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      16 |  await capture('focus',focus);const meta=focus.locator('section').first();await prose(meta.locator('h2'),title);await prose(meta.locator('p').first(),description);await prose(meta.locator('small'),`지은이 · ${author}`);
+      17 |  await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();for(const control of await focus.locator('button:visible,a:visible,summary:visible,select:visible').all()){if(await control.isEnabled())await control.click({trial:true});}await focus.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();await expect.poll(async()=>(await authored()).project.id).toBe(baseline.project.id);
+      18 |  await page.addScriptTag({content:axe.source});const result=await start.evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']},iframes:false}));await writeFile(info.outputPath('book-start-axe-raw.json'),JSON.stringify(result,null,2)+'\n');await capture('book-start',start);
+        at prose (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:15:1491)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:20:2
+
+    Error: raw axe findings without exclusions
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 14
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "id": "label-content-name-mismatch",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Array [
+    +         ".book-start-module__cvHYGG__primary",
+    +       ],
+    +       Array [
+    +         "button[aria-label=\"이어읽기\"]",
+    +       ],
+    +     ],
+    +   },
+    + ]
+
+      20 |  await prose(start.locator('h1'),title);await prose(start.locator('section>p').filter({hasText:description}),description);await prose(start.locator('section>p').filter({hasText:subtitle}),subtitle);await prose(start.locator('section>p').filter({hasText:author}),`지은이 · ${author}`);await start.getByText('작가의 말',{exact:true}).click();await prose(start.locator('details p'),authorNote);for(const control of await start.locator('button:visible,a:visible,summary:visible').all()){if(await control.isEnabled())await control.click({trial:true});}
+      21 |  await writeFile(info.outputPath('metadata-raw.json'),JSON.stringify({width,height,scope:'CSS viewport only; service prose excludes graphical cover copy fitting; no actual zoom or screen-reader claim',reports},null,2)+'\n');
+    > 22 |  expect(await authored()).toEqual(baseline);expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);expect.soft(result.violations.map(issue=>({id:issue.id,impact:issue.impact,nodes:issue.nodes.map(node=>node.target)})),'raw axe findings without exclusions').toEqual([]);
+         |                                                                                                                                                                                                                                                                                                             ^
+      23 | });
+      24 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-authored-metadata.spec.ts:22:301
+
+    Error Context: docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-7dfd6-a-remains-reachable-390x740-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-7dfd6-a-remains-reachable-390x740-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-authored-metadata-2026-10-17/initial-run-v2/accessibility-authored-met-7dfd6-a-remains-reachable-390x740-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 320x256 
+    [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 640x360 
+    [host] › tests/e2e/accessibility-authored-metadata.spec.ts:7:61 › long authored service metadata remains reachable 390x740 

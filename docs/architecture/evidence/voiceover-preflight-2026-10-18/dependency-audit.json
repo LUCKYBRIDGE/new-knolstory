@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-18",
+  "status": "documentation-dependency-correction-only",
+  "sourceEvidence": "docs/architecture/evidence/production-cutover-2026-10-17/checkpoint.json",
+  "sourceEvidenceSha256": "e80a7d8ec11f3b0d8f67312a1b3ee66ae62938a5d5a77b380906afdc19e82787",
+  "findings": [
+    "STATUS live-provider-pending and loopback-provider-disabled-running wording conflated isolated test API with final-domain Kakao evidence",
+    "Product plan stageB gate still required actual Kakao setup despite Q05 row recording its completion",
+    "Authoring format SV-CONTRACT live OAuth remaining wording did not distinguish Kakao and Google"
+  ],
+  "changes": [
+    "Reference dated actual Kakao completion scope in STATUS/plan/format follow-up; no claim of current live-service revalidation",
+    "Keep only Google real linking/login environment under Q05; move completed Kakao decision/evidence outside unanswered decisions table",
+    "Keep class/sharing/delete/retention/device/release requirements incomplete and user decisions pending"
+  ],
+  "preservation": [
+    "No source/runtime/manuscript change",
+    "No historical evidence or test rerun",
+    "No external account/provider/infra writes",
+    "VoiceOver approval remains pending; initial off state unchanged"
+  ]
+}

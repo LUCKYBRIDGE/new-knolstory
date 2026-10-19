@@ -1,0 +1,187 @@
+
+Running 3 tests using 1 worker
+
+(node:28328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership waiting (5.6s)
+(node:28378) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other (5.3s)
+(node:28410) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other-then-body (5.3s)
+
+
+  1) [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership waiting 
+
+    Error: focus restoration waits for matching render acknowledgment
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      16 |  if(ownership!=='waiting'){await other.focus();if(ownership==='other-then-body')await other.evaluate(node=>(node as HTMLElement).blur());}
+      17 |  const snapshot=()=>page.evaluate(()=>({tag:document.activeElement?.tagName,text:document.activeElement?.textContent?.slice(0,100)}));const pending=await snapshot(),beforeAckSummary=await summary.evaluate(node=>node===document.activeElement),scene=await status.getAttribute('data-scene-revision'),rendered=await status.getAttribute('data-rendered-revision');
+    > 18 |  await writeFile(info.outputPath('pending-before-assert.json'),JSON.stringify({ownership,pending,beforeAckSummary,scene,rendered,scope:'Host held protocol acknowledgment harness; no native renderer or screen-reader evidence'},null,2)+'\n');expect.soft(scene).not.toBe(rendered);expect.soft(beforeAckSummary,'focus restoration waits for matching render acknowledgment').toBe(false);
+         |                                                                                                                                                                                                                                                                                                                                                                                  ^
+      19 |  await frame.locator('body').evaluate(()=>(window as unknown as {release:()=>void}).release());await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);
+      20 |  await writeFile(info.outputPath('released-before-assert.json'),JSON.stringify({ownership,focus:await snapshot(),summaryFocused:await summary.evaluate(node=>node===document.activeElement)},null,2)+'\n');if(ownership==='waiting')await expect.soft(summary).toBeFocused();else if(ownership==='other')await expect.soft(other).toBeFocused();else await expect.soft(summary,'historical explicit focus transfer cancels restoration even after blur').not.toBeFocused();expect(await authored()).toEqual(before);
+      21 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-focus-ownership.spec.ts:18:370
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+    @@ -128251,11 +128251,11 @@
+                "나무꾼의 과거 목소리",
+              ],
+              "title": "선녀와 나무꾼",
+              "updatedAt": "pinky-ne-site 804fe9f",
+            },
+    -       "savedAt": "2026-10-16T23:42:57.190Z",
+    +       "savedAt": "2026-10-16T23:42:57.958Z",
+            "schemaVersion": 8,
+          },
+          "seonnyeo": Object {
+            "appVersion": "knolstory-next-0.1",
+            "documentType": "story-maker-project",
+    @@ -192371,10 +192371,10 @@
+                "나무꾼의 과거 목소리",
+              ],
+              "title": "선녀와 나무꾼",
+              "updatedAt": "pinky-ne-site 804fe9f",
+            },
+    -       "savedAt": "2026-10-16T23:42:57.182Z",
+    +       "savedAt": "2026-10-16T23:42:57.950Z",
+            "schemaVersion": 8,
+          },
+        },
+      }
+
+      18 |  await writeFile(info.outputPath('pending-before-assert.json'),JSON.stringify({ownership,pending,beforeAckSummary,scene,rendered,scope:'Host held protocol acknowledgment harness; no native renderer or screen-reader evidence'},null,2)+'\n');expect.soft(scene).not.toBe(rendered);expect.soft(beforeAckSummary,'focus restoration waits for matching render acknowledgment').toBe(false);
+      19 |  await frame.locator('body').evaluate(()=>(window as unknown as {release:()=>void}).release());await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);
+    > 20 |  await writeFile(info.outputPath('released-before-assert.json'),JSON.stringify({ownership,focus:await snapshot(),summaryFocused:await summary.evaluate(node=>node===document.activeElement)},null,2)+'\n');if(ownership==='waiting')await expect.soft(summary).toBeFocused();else if(ownership==='other')await expect.soft(other).toBeFocused();else await expect.soft(summary,'historical explicit focus transfer cancels restoration even after blur').not.toBeFocused();expect(await authored()).toEqual(before);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+      21 | });
+      22 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-focus-ownership.spec.ts:20:485
+
+    Error Context: docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-1195f-ins-focus-ownership-waiting-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-1195f-ins-focus-ownership-waiting-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-1195f-ins-focus-ownership-waiting-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+    @@ -128251,11 +128251,11 @@
+                "나무꾼의 과거 목소리",
+              ],
+              "title": "선녀와 나무꾼",
+              "updatedAt": "pinky-ne-site 804fe9f",
+            },
+    -       "savedAt": "2026-10-16T23:43:03.027Z",
+    +       "savedAt": "2026-10-16T23:43:03.754Z",
+            "schemaVersion": 8,
+          },
+          "seonnyeo": Object {
+            "appVersion": "knolstory-next-0.1",
+            "documentType": "story-maker-project",
+    @@ -192371,10 +192371,10 @@
+                "나무꾼의 과거 목소리",
+              ],
+              "title": "선녀와 나무꾼",
+              "updatedAt": "pinky-ne-site 804fe9f",
+            },
+    -       "savedAt": "2026-10-16T23:43:03.019Z",
+    +       "savedAt": "2026-10-16T23:43:03.745Z",
+            "schemaVersion": 8,
+          },
+        },
+      }
+
+      18 |  await writeFile(info.outputPath('pending-before-assert.json'),JSON.stringify({ownership,pending,beforeAckSummary,scene,rendered,scope:'Host held protocol acknowledgment harness; no native renderer or screen-reader evidence'},null,2)+'\n');expect.soft(scene).not.toBe(rendered);expect.soft(beforeAckSummary,'focus restoration waits for matching render acknowledgment').toBe(false);
+      19 |  await frame.locator('body').evaluate(()=>(window as unknown as {release:()=>void}).release());await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);
+    > 20 |  await writeFile(info.outputPath('released-before-assert.json'),JSON.stringify({ownership,focus:await snapshot(),summaryFocused:await summary.evaluate(node=>node===document.activeElement)},null,2)+'\n');if(ownership==='waiting')await expect.soft(summary).toBeFocused();else if(ownership==='other')await expect.soft(other).toBeFocused();else await expect.soft(summary,'historical explicit focus transfer cancels restoration even after blur').not.toBeFocused();expect(await authored()).toEqual(before);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+      21 | });
+      22 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-focus-ownership.spec.ts:20:485
+
+    Error Context: docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-76b9a-tains-focus-ownership-other-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-76b9a-tains-focus-ownership-other-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-76b9a-tains-focus-ownership-other-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other-then-body 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+    @@ -128251,11 +128251,11 @@
+                "나무꾼의 과거 목소리",
+              ],
+              "title": "선녀와 나무꾼",
+              "updatedAt": "pinky-ne-site 804fe9f",
+            },
+    -       "savedAt": "2026-10-16T23:43:08.744Z",
+    +       "savedAt": "2026-10-16T23:43:09.479Z",
+            "schemaVersion": 8,
+          },
+          "seonnyeo": Object {
+            "appVersion": "knolstory-next-0.1",
+            "documentType": "story-maker-project",
+    @@ -192371,10 +192371,10 @@
+                "나무꾼의 과거 목소리",
+              ],
+              "title": "선녀와 나무꾼",
+              "updatedAt": "pinky-ne-site 804fe9f",
+            },
+    -       "savedAt": "2026-10-16T23:43:08.736Z",
+    +       "savedAt": "2026-10-16T23:43:09.470Z",
+            "schemaVersion": 8,
+          },
+        },
+      }
+
+      18 |  await writeFile(info.outputPath('pending-before-assert.json'),JSON.stringify({ownership,pending,beforeAckSummary,scene,rendered,scope:'Host held protocol acknowledgment harness; no native renderer or screen-reader evidence'},null,2)+'\n');expect.soft(scene).not.toBe(rendered);expect.soft(beforeAckSummary,'focus restoration waits for matching render acknowledgment').toBe(false);
+      19 |  await frame.locator('body').evaluate(()=>(window as unknown as {release:()=>void}).release());await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);
+    > 20 |  await writeFile(info.outputPath('released-before-assert.json'),JSON.stringify({ownership,focus:await snapshot(),summaryFocused:await summary.evaluate(node=>node===document.activeElement)},null,2)+'\n');if(ownership==='waiting')await expect.soft(summary).toBeFocused();else if(ownership==='other')await expect.soft(other).toBeFocused();else await expect.soft(summary,'historical explicit focus transfer cancels restoration even after blur').not.toBeFocused();expect(await authored()).toEqual(before);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+      21 | });
+      22 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-focus-ownership.spec.ts:20:485
+
+    Error Context: docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-c8ed2-s-ownership-other-then-body-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-c8ed2-s-ownership-other-then-body-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/initial-run/accessibility-focus-owners-c8ed2-s-ownership-other-then-body-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership waiting 
+    [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other 
+    [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other-then-body 

@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory/server
+      Coverage enabled with v8
+
+
+ Test Files  1 passed (1)
+      Tests  35 passed (35)
+   Start at  08:27:23
+   Duration  658ms (transform 238ms, setup 0ms, import 377ms, tests 161ms, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   92.61 |     90.5 |     100 |     100 |                   
+ ...ment-routes.ts |   92.61 |     90.5 |     100 |     100 | ...95,113,119,130 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 92.61% ( 163/176 )
+Branches     : 90.5% ( 143/158 )
+Functions    : 100% ( 24/24 )
+Lines        : 100% ( 97/97 )
+================================================================================

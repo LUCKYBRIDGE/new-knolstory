@@ -1,0 +1,96 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/auth-routes.test.ts (19 tests | 8 failed) 51ms
+     × creates Kakao membership via a browser-bound callback, returns me and revokes logout 16ms
+     × only linked Google identities log into the same account; never signs Google up 6ms
+     × rejects missing session, forged CSRF and cross-origin link and logout requests 3ms
+     × rejects missing, duplicate and incorrect state/browser cookies and replay, before exchange 5ms
+     × rejects expired flows, swapped sessions and callback provider mismatch 3ms
+     × rotates an existing same-account login and refuses silent account switching 1ms
+     × delegates callback effects to one required atomic completion call using stored purpose 1ms
+     × rejects duplicate cookies and a revoked linking session without writing identity 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > creates Kakao membership via a browser-bound callback, returns me and revokes logout
+TypeError: Cannot read properties of undefined (reading 'split')
+ ❯ Object.login server/http/auth-routes.test.ts:64:198
+
+ ❯ server/http/auth-routes.test.ts:69:47
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > only linked Google identities log into the same account; never signs Google up
+AssertionError: expected 'http://localhost:3000/?auth=error&rea…' to be 'http://localhost:3000/?auth=error&rea…' // Object.is equality
+
+Expected: "http://localhost:3000/?auth=error&reason=GOOGLE_NOT_LINKED"
+Received: "http://localhost:3000/?auth=error&reason=AUTH_FAILED"
+
+ ❯ server/http/auth-routes.test.ts:77:186
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > rejects missing session, forged CSRF and cross-origin link and logout requests
+TypeError: Cannot read properties of undefined (reading 'split')
+ ❯ Object.login server/http/auth-routes.test.ts:64:198
+
+ ❯ server/http/auth-routes.test.ts:85:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > rejects missing, duplicate and incorrect state/browser cookies and replay, before exchange
+AssertionError: expected 'http://localhost:3000/?auth=error&rea…' to contain 'auth=success'
+
+Expected: "auth=success"
+Received: "http://localhost:3000/?auth=error&reason=AUTH_FAILED"
+
+ ❯ server/http/auth-routes.test.ts:97:84
+     95|     }
+     96|     expect(h.exchanges).toHaveLength(0);
+     97|     expect((await h.callback('kakao', f.state, f.cookie)).headers.get(…
+       |                                                                                    ^
+     98|     expect((await h.callback('kakao', f.state, f.cookie)).headers.get(…
+     99|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > rejects expired flows, swapped sessions and callback provider mismatch
+TypeError: Cannot read properties of undefined (reading 'split')
+ ❯ Object.login server/http/auth-routes.test.ts:64:198
+
+ ❯ server/http/auth-routes.test.ts:102:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > rotates an existing same-account login and refuses silent account switching
+TypeError: Cannot read properties of undefined (reading 'split')
+ ❯ Object.login server/http/auth-routes.test.ts:64:198
+
+ ❯ server/http/auth-routes.test.ts:123:47
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > delegates callback effects to one required atomic completion call using stored purpose
+TypeError: Cannot read properties of undefined (reading 'split')
+ ❯ Object.login server/http/auth-routes.test.ts:64:198
+
+ ❯ server/http/auth-routes.test.ts:132:47
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > rejects duplicate cookies and a revoked linking session without writing identity
+TypeError: Cannot read properties of undefined (reading 'split')
+ ❯ Object.login server/http/auth-routes.test.ts:64:198
+
+ ❯ server/http/auth-routes.test.ts:148:47
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  8 failed | 11 passed (19)
+   Start at  00:32:09
+   Duration  210ms (transform 40ms, setup 0ms, import 66ms, tests 51ms, environment 0ms)
+

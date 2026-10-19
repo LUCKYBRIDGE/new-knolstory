@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-18",
+  "status": "Implemented and locally verified candidate; not deployed",
+  "requirements": {
+    "portraitTextbox": "Total height <=40% of stage in tested defaultfont",
+    "capacityHint": "390x844 reference, Korean18columns x9rows~162 characters withoutEnter, approximate only",
+    "newlines": "Consume newrow regardless of unused previouscolumns; blank/trailingrow included",
+    "tools": "Always visible24px bar; narrow3 andwide6; subtleborder/background/differenttextcolor; fontsizehalfbody",
+    "pagination": "Halfbodyfont bottomright, gap4logical, previous/next clickable andcounterplain",
+    "automatic": "Intermediate pages requested throughsameorigin scene/revision guarded pageonlycommand, lastpageCoreadvance"
+  },
+  "checks": {
+    "focusedTsTests": 31,
+    "pythonGeometry": 12,
+    "seedCasesIncluded": 1000,
+    "presenterUnit": 19,
+    "workerHostTests": 5,
+    "nativeIntegrated": 1,
+    "typecheck": "passed",
+    "eslint": "0errors,preexistingimgwarning",
+    "docsLinks": "passed"
+  },
+  "nativeIntegrated": "Actual RenPy firstpage40% cap, Enter12 guidance, compacttoolbarborder/font/height, settings4actions, AUTOon advances textpage, landscape6tools. Testbrowser viewport simulated, notphysicalphone.",
+  "sourceSha256": {
+    "renpy/responsive-spike/game/script.rpy": "530bf350f5533331d8fda9c6d205805c532b35d05a08600e4ece6fc709aa05c2",
+    "spikes/renpy-web/bridge.js": "017b6505f267529812b5fe3e0128790b43c71b07367971430506a33f2d4ae5d0",
+    "apps/web/components/story-workspace.tsx": "9c31a8b73abe32f5c6e1a5c660f8bb9c408062bab1b17e220a4df74c7322c143",
+    "apps/web/components/story-player-menu.tsx": "9079622141c8e5e8f0cbfddc91c56be7440c4f12cf9a48e202cd395a30f22c23",
+    "apps/web/components/story-player-menu.module.css": "7aa538edf9f6ba78ee2169b5e390c51691292d0879f2b1228cc3888ab127cf8d",
+    "apps/web/lib/dialogue-capacity.ts": "0782cd1316242b5477972deeb0dfae27533b32eae160898630e59761073582bf",
+    "apps/web/components/dialogue-capacity-hint.tsx": "e5ab7718f654776d5a35e65e72acc3420778f96d2726b09b65522a93045c8eef",
+    "packages/runtime-contract/src/index.ts": "abfc9d70d9065cd2dcefa5e0f554f26738bbdc510181faac99abaac6a42c6beb",
+    "tests/e2e/mobile-reader-capacity.spec.ts": "b6cce43bfa0d08c261ef87dcbaf0dafc01e0decc1bb01e0d78e4fd7f3729c596"
+  },
+  "limits": [
+    "Candidate is not public deployment",
+    "Editor character/line estimate differs by actualfont/proportionalwidth/sentencebreaks; nothardlimit",
+    "No physical device/AT certification",
+    "Earlier native UI probe used incorrectdialog accessible name; failure artifacts preserved",
+    "Original manuscript and existing Next/legacy server data untouched"
+  ]
+}

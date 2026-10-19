@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  08:34:26
+   Duration  163ms (transform 23ms, setup 0ms, import 33ms, tests 9ms, environment 0ms)
+
+ % Coverage report from v8
+-----------|---------|----------|---------|---------|-------------------
+File       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------|---------|----------|---------|---------|-------------------
+All files  |       0 |        0 |       0 |       0 |                   
+ bridge.js |       0 |        0 |       0 |       0 | 2-77              
+-----------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 0% ( 0/75 )
+Branches     : 0% ( 0/72 )
+Functions    : 0% ( 0/10 )
+Lines        : 0% ( 0/54 )
+================================================================================
+ERROR: Coverage for lines (0%) does not meet global threshold (80%)
+ERROR: Coverage for functions (0%) does not meet global threshold (80%)
+ERROR: Coverage for statements (0%) does not meet global threshold (80%)
+ERROR: Coverage for branches (0%) does not meet global threshold (80%)

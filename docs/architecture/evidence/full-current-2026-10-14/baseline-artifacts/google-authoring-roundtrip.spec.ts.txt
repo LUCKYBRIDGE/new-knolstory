@@ -1,0 +1,11 @@
+import {test,expect} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+test('actual Google exported story preserves extended values in UI and portable archive',async({page},info)=>{
+ await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+ await page.getByLabel('작품 파일 가져오기').setInputFiles('docs/architecture/evidence/authoring-format/story-google-edited.xlsx');const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인'});await expect(dialog).toBeVisible();await dialog.getByRole('button',{name:'내 사본으로 가져오기'}).click();
+ await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('Google 시트에서 고친 한국어\n001 =문구와 이모지 🌱');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('Google 시트에서 고친 한국어\n001 =문구와 이모지 🌱');
+ const detail=page.locator('[data-work-menu]>summary');if(await detail.isVisible()&&!await detail.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await detail.click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending;const path=info.outputPath('google-reopened.knolstory');await file.saveAs(path);const archive=JSON.parse(readFileSync(path,'utf8'));expect(archive.formatVersion).toBe(2);expect(archive.document.project.lines[0].stageComposition.leftActors[0].xAnchor).toBe(40);expect(archive.document.project.creativeMemos[0].fields[0].value).toBe('Google에서 편집한 메모\n🌱 001');expect(archive.audioResources).toHaveLength(1);
+});
+test('actual Google picture book exported XLSX opens at its edited page',async({page})=>{
+ await page.goto('/shortstory');await page.getByLabel('숏스토리 파일 가져오기').setInputFiles('docs/architecture/evidence/authoring-format/shortstory-google-edited.xlsx');const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인'});await expect(dialog).toBeVisible();await dialog.getByRole('button',{name:'내 사본으로 가져오기'}).click();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('001 한국어 첫 문장\n=문구와 이모지 🌳를 그대로 보존합니다.');await page.reload();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('001 한국어 첫 문장\n=문구와 이모지 🌳를 그대로 보존합니다.');await page.getByRole('button',{name:'읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText('001 한국어 첫 문장');
+});

@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-10-16T08:36:41.601Z",
+  "source": "knolstory_next_storage_test",
+  "target": "knolstory_next_restore_ad211133317340e0baf1a99c22e5970d",
+  "archiveBytes": 1100637,
+  "archiveSha256": "42a4ba12111451d1e6a12b0b2bd1a5d12a176363451669220cf3fb6c95e0c260",
+  "archivePermissions": "0600",
+  "directoryPermissions": "0700",
+  "sameExportedSnapshot": true,
+  "equal": true,
+  "tables": [
+    {
+      "rows": 332,
+      "table": "knolstory_auth.accounts",
+      "sha256": "61644340eed918dc9413e2357f402b06f4f270931a68c03c71a42cb6b8424505"
+    },
+    {
+      "rows": 32,
+      "table": "knolstory_auth.flows",
+      "sha256": "06c68b192f1ab83fe459f74a2baffebfcf165780b821bc9f4db07894e5c75869"
+    },
+    {
+      "rows": 305,
+      "table": "knolstory_auth.identities",
+      "sha256": "a82ee9d5183c20e44619c8cf6e0f8de0b9779f86ef3265a59326aeb9a5a57a4c"
+    },
+    {
+      "rows": 306,
+      "table": "knolstory_auth.sessions",
+      "sha256": "e67d82940c5d2ecd38e34da7071a60cee6d90340d7945b7b9a5b2c680b688413"
+    },
+    {
+      "rows": 1,
+      "table": "knolstory_storage.blobs",
+      "sha256": "d7714e22ae9d633fe56808380876fbaa95377191c88cd9f84630c72183553de3"
+    },
+    {
+      "rows": 39,
+      "table": "knolstory_storage.document_creations",
+      "sha256": "e569142330e093d93ea16720997951b69d4dfa8720c9bbc6bdae4fb6a0964e8f"
+    },
+    {
+      "rows": 6,
+      "table": "knolstory_storage.migrations",
+      "sha256": "8ba6e330d8e5cd52e4fbd7f59643028a96d18419192f147015782e94c3d32eb0"
+    },
+    {
+      "rows": 40,
+      "table": "knolstory_storage.private_documents",
+      "sha256": "bd47b6514db4b262c25e19f3ddeef598584defa6bb4f04005ad3b4a7ae027d24"
+    },
+    {
+      "rows": 112,
+      "table": "knolstory_storage.receipts",
+      "sha256": "2ff4833ecd624b1fd871c0531bdd63ddf4acbc31fbb657fb9d39df7545d3dacb"
+    },
+    {
+      "rows": 181,
+      "table": "knolstory_storage.records",
+      "sha256": "83776d465ccfd93dc46e7a3f6f1012f4721393b5d7e08df4c29584c8ab510b33"
+    }
+  ],
+  "schemaObjectCounts": {
+    "views": 0,
+    "columns": 50,
+    "indexes": 14,
+    "triggers": 1,
+    "functions": 1,
+    "sequences": 0,
+    "constraints": 55
+  },
+  "retained": true,
+  "scope": "Logical application database in isolated Next test PostgreSQL16 only. Roles/grants, secrets, catalog files, runtime, off-host durability and production release are separate."
+}

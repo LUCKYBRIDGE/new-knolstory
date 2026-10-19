@@ -1,0 +1,43 @@
+
+Running 16 tests using 1 worker
+
+(node:78491) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/16] [host] › tests/e2e/editor-term-guide.spec.ts:29:1 › guide preserves author drafts and restores focus in four viewport layouts
+  1) [host] › tests/e2e/editor-term-guide.spec.ts:29:1 › guide preserves author drafts and restores focus in four viewport layouts 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByLabel('분류', { exact: true })
+
+
+      12 |  await expect(dialog.locator('dt')).toHaveCount(1);
+      13 |  await expect(dialog.locator('dt')).toContainText('주변 소리');
+    > 14 |  await dialog.getByLabel('분류',{exact:true}).selectOption('원고');
+         |                                             ^
+      15 |  await expect(dialog).toContainText('찾는 용어가 없어요');
+      16 |  await dialog.getByRole('button',{name:'검색 초기화',exact:true}).click();
+      17 |  await search.fill('0.23');
+        at checkGuide (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:14:45)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:37:40
+
+    Error Context: ../../../../../tmp/knol-terms-host-final/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-host-final/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-host-final/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:78770) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/16] [host] › tests/e2e/editor-term-guide.spec.ts:45:1 › ShortStory guide leaves edited page text untouched

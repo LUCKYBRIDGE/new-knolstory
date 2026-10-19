@@ -1,0 +1,46 @@
+name: knolstory-next-storage-test
+services:
+  db:
+    image: postgres:16-bookworm
+    pull_policy: never
+    environment:
+      POSTGRES_USER: knolstory_next_storage_test
+      POSTGRES_DB: knolstory_next_storage_test
+      POSTGRES_PASSWORD_FILE: /run/secrets/storage_db_password
+    secrets: [storage_db_password]
+    volumes: [storage_test_data:/var/lib/postgresql/data]
+    networks: [storage_test]
+    mem_limit: 384m
+    cpus: 1
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U knolstory_next_storage_test -d knolstory_next_storage_test']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  runner:
+    build:
+      context: ..
+      dockerfile: server/Dockerfile.storage-test
+    image: knolstory-next-storage-test:local
+    environment:
+      PGHOST: db
+      PGPORT: '5432'
+      PGUSER: knolstory_next_storage_test
+      PGDATABASE: knolstory_next_storage_test
+      PGPASSWORD_FILE: /run/secrets/storage_db_password
+    secrets: [storage_db_password]
+    networks: [storage_test]
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 1g
+    cpus: 2
+    init: true
+networks:
+  storage_test:
+    internal: true
+volumes:
+  storage_test_data:
+secrets:
+  storage_db_password:
+    file: ${KNOLSTORY_STORAGE_SECRET_DIR:?Run node server/operations/storage-compose.mjs first}/storage-db-password

@@ -1,0 +1,45 @@
+
+> knolstory-next@ typecheck /Users/wan/ai_dev/apps/new-knolstory
+> turbo run typecheck
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@knolstory/story-domain:typecheck: cache hit, replaying logs 8f2d5b5cb8a0c432
+@knolstory/asset-registry:typecheck: cache hit, replaying logs 78091bdf6ae34174
+@knolstory/story-domain:typecheck: 
+@knolstory/story-domain:typecheck: > @knolstory/story-domain@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/story-domain
+@knolstory/story-domain:typecheck: > tsc --noEmit
+@knolstory/story-domain:typecheck: 
+@knolstory/runtime-contract:typecheck: cache hit, replaying logs 4b98da788adc1828
+@knolstory/asset-registry:typecheck: 
+@knolstory/asset-registry:typecheck: > @knolstory/asset-registry@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/asset-registry
+@knolstory/asset-registry:typecheck: > tsc --noEmit
+@knolstory/asset-registry:typecheck: 
+@knolstory/runtime-contract:typecheck: 
+@knolstory/runtime-contract:typecheck: > @knolstory/runtime-contract@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-contract
+@knolstory/runtime-contract:typecheck: > tsc --noEmit
+@knolstory/runtime-contract:typecheck: 
+@knolstory/compatibility:typecheck: cache hit, replaying logs caf36a825dc851ab
+@knolstory/compatibility:typecheck: 
+@knolstory/compatibility:typecheck: > @knolstory/compatibility@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/compatibility
+@knolstory/compatibility:typecheck: > tsc --noEmit
+@knolstory/compatibility:typecheck: 
+@knolstory/runtime-core:typecheck: cache hit, replaying logs d7b0b64c2bc35441
+@knolstory/runtime-core:typecheck: 
+@knolstory/runtime-core:typecheck: > @knolstory/runtime-core@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core
+@knolstory/runtime-core:typecheck: > tsc --noEmit
+@knolstory/runtime-core:typecheck: 
+@knolstory/web:typecheck: cache miss, executing 2184b31d47d8b847
+@knolstory/web:typecheck: 
+@knolstory/web:typecheck: > @knolstory/web@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/apps/web
+@knolstory/web:typecheck: > tsc --noEmit
+@knolstory/web:typecheck: 
+
+ Tasks:    6 successful, 6 total
+Cached:    5 cached, 6 total
+  Time:    1.303s 
+

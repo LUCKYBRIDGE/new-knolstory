@@ -1,0 +1,7 @@
+
+> knolstory-next@ docs:check /Users/wan/ai_dev/apps/new-knolstory
+> node scripts/check-project-docs.mjs
+
+docs/architecture/authoring-storage-contract.md:282 Local target missing: evidence/account-bound-documents-2026-10-16/checkpoint.json
+Project docs: 56 active documents checked; 1 link errors. Historical evidence excluded.
+ ELIFECYCLE  Command failed with exit code 1.

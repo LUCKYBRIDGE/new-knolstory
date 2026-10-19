@@ -1,0 +1,32 @@
+{
+  "summary": "Current protected work switching and full-file preservation verified; broad goal active",
+  "scores": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "stories12 and probe3 separate green runs;122 collection corrects prior121 estimate"
+    },
+    "completeness": {
+      "score": 3,
+      "evidence": "remaining full388 and physical/external/initialChrome gates incomplete"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "probe/mock distinction from actual storiesnative and current copies stated"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "current shelf/menu/helper and12 behavior preservation checks runnable"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "primary facts centralized in owner document with logs"
+    }
+  },
+  "overall": 3.8,
+  "improvements": [
+    "Run remaining collection and laterfull388",
+    "Keep actual after-import preparation state explicit",
+    "Keep full physical/external/initialChrome audit distinct"
+  ],
+  "selfCheck": "Concrete workflow and content preservation verified without broad completion claim"
+}

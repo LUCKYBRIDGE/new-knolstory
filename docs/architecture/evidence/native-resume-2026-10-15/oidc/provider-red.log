@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ server/auth/oidc-provider.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/auth/oidc-provider.test.ts [ server/auth/oidc-provider.test.ts ]
+Error: Cannot find module './oidc-provider' imported from <repo>/server/auth/oidc-provider.test.ts
+ ❯ server/auth/oidc-provider.test.ts:3:1
+      1| import { generateKeyPair, exportJWK, SignJWT } from 'jose';
+      2| import { beforeAll, describe, expect, it } from 'vitest';
+      3| import { createOidcProvider } from './oidc-provider';
+       | ^
+      4|
+      5| const config = { provider: 'kakao' as const, clientId: 'client-test', …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:25:25
+   Duration  126ms (transform 14ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,4 +1,4 @@
-import { isRuntimeAudio, type RuntimeAudio } from "./audio";
+import { isRuntimeAudioPath, isRuntimeAudio, type RuntimeAudio } from "./audio";
 export * from "./audio";
 /** Initial editing probe contract. This is not the final StoryDocument runtime schema. */
 export type Point = Readonly<{ x: number; y: number }>;
@@ -7,7 +7,7 @@ export type RuntimeActor = Readonly<{ handle?:Point; id: string; name: string; r
   motion?:Readonly<{version:1;type:"fade-in"|"fade-out"|"move";offsetX:number;durationMs:number;delayMs:number}>;
   flipX?: boolean; opacity?: number; emphasis?: 'normal' | 'dim'; spectral?: boolean; depth?: number }>;
 export type RuntimeEffect = Readonly<{ target?:Readonly<{kind:'screen'|'background'}|{kind:'actor';actorId:string}>; repeat?:'once'|'loop';periodMs?:number;originEntry?:string; id?: string; type: 'shake' | 'flash-red' | 'fade-black' | 'crack' | 'spotlight' | 'flash' | 'screen-crack';
-  intensity?: 'soft' | 'normal' | 'strong'; trigger?: 'scene-enter' | 'with-dialogue' | 'after-delay'; delayMs?: number }>;
+  intensity?: 'soft' | 'normal' | 'strong'; trigger?: 'scene-enter' | 'with-dialogue' | 'after-delay'; delayMs?: number; durationMs?: number }>;
 export type RuntimePresentation = Readonly<{ version?:2; effects?: readonly RuntimeEffect[];
   look?: Readonly<{ type: 'flashback' | 'fractured-reality'; intensity?: 'soft' | 'normal' | 'strong' }>;
   transition?: Readonly<{ type: 'fade-black' | 'white-fade' | 'dissolve' | 'perspective-blackout'; durationMs?: number;
@@ -15,7 +15,15 @@ export type RuntimePresentation = Readonly<{ version?:2; effects?: readonly Runt
 export type RuntimeScene = Readonly<{
   contractVersion: 1; sceneId: string; revision: number;
   viewportVersion?: 1; textboxRect?: Rect;
-  dialogueStyle?: Readonly<{fontSize:number;speakerFontSize:number;padding:number}>;
+  /** Artwork clip in canvas coordinates; extra canvas space does not scale or shift the original scene. */
+  artworkRect?: Rect;
+  /** Initial source position counted in Unicode code points, matching native Python text indices. */
+  dialogueOffset?: number;
+  dialogueStyle?: Readonly<{fontSize:number;speakerFontSize:number;padding:number;
+    /** Canonical pagination reference, independent of reader font scaling; native defaults to 32 when absent. */
+    paginationFontSize?:number;
+    /** Logical canvas height reserved for the host reader tools. */
+    toolsHeight?:number}>;
   width: number; height: number; actors: readonly RuntimeActor[];
   dialogue: Readonly<{ speaker: string; text: string }>;
   background?: Readonly<{ imagePath: string; fit?: 'contain' | 'cover'; rect?:Rect; focal?:Point }>;
@@ -27,7 +35,9 @@ export type RuntimeScene = Readonly<{
 export type RuntimeEvent =
   | Readonly<{ protocol: 1; type: 'ready'; runtimeVersion: string; contractVersion: 1 }>
   | Readonly<{ protocol: 1; type: 'sceneRendered'; revision: number; sceneId: string;
-      renderMs: number; rendererRect: Rect; textboxRect: Rect;
+      renderMs: number; rendererRect: Rect; textboxRect: Rect; dialogueRects?:Readonly<{speaker:Rect;body:Rect}>; choicesRect?:Rect;
+      /** offset is the resume anchor; endOffset is the exclusive displayed-page end in Unicode code points. */
+      dialoguePage?: Readonly<{index:number;count:number;offset?:number;endOffset?:number}>;
       engineLogicalSize?: Readonly<{width:number;height:number}>;
       audioState?: Readonly<{unlocked?:boolean;ambiencePath?:string|null;ambienceStartCount?:number;musicPath:string|null;musicPosition:number|null;musicStartCount:number;soundPlayCount:number;soundPaths?:readonly string[]}> }>
   | Readonly<{ protocol: 1; type: 'viewportChanged'; rendererRect: Rect }>
@@ -67,7 +77,7 @@ export function isRuntimePresentation(value: unknown): value is RuntimePresentat
   if (value.effects !== undefined && (!Array.isArray(value.effects) || value.effects.length > 12
     || !value.effects.every(e => record(e) && ['shake', 'flash-red', 'fade-black', 'crack', 'spotlight', 'flash', 'screen-crack'].includes(e.type as string)
       && optionalChoice(e.repeat,['once','loop']) && optionalNumber(e.periodMs,400,10000) && (e.originEntry===undefined || text(e.originEntry,200)) && (e.target===undefined || record(e.target) && (['screen','background'].includes(e.target.kind as string) || e.target.kind==='actor' && text(e.target.actorId,200) && !!e.target.actorId)) && intensity(e.intensity) && optionalChoice(e.trigger, ['scene-enter', 'with-dialogue', 'after-delay'])
-      && optionalNumber(e.delayMs, 0, 10000) && (e.id === undefined || text(e.id, 200))))) return false;
+      && optionalNumber(e.delayMs, 0, 10000) && optionalNumber(e.durationMs, 0, 10000) && (e.id === undefined || text(e.id, 200))))) return false;
   if (value.look !== undefined && (!record(value.look) || !['flashback', 'fractured-reality'].includes(value.look.type as string)
     || !intensity(value.look.intensity))) return false;
   if (value.transition !== undefined) {
@@ -79,9 +89,10 @@ export function isRuntimePresentation(value: unknown): value is RuntimePresentat
   return true;
 }
 function sceneExtras(value: Record<string, unknown>): boolean {
+  if(value.dialogueOffset !== undefined && !revision(value.dialogueOffset))return false;
   if(value.viewportVersion !== undefined && value.viewportVersion !== 1)return false;
   if(value.textboxRect !== undefined && !isRect(value.textboxRect))return false;
-  if(value.dialogueStyle !== undefined && (!record(value.dialogueStyle) || !finite(value.dialogueStyle.fontSize) || !optionalNumber(value.dialogueStyle.fontSize,16,96) || !finite(value.dialogueStyle.speakerFontSize) || !optionalNumber(value.dialogueStyle.speakerFontSize,16,96) || !finite(value.dialogueStyle.padding) || !optionalNumber(value.dialogueStyle.padding,0,64)))return false;
+  if(value.dialogueStyle !== undefined && (!record(value.dialogueStyle) || !finite(value.dialogueStyle.fontSize) || !optionalNumber(value.dialogueStyle.fontSize,16,96) || !finite(value.dialogueStyle.speakerFontSize) || !optionalNumber(value.dialogueStyle.speakerFontSize,16,96) || !finite(value.dialogueStyle.padding) || !optionalNumber(value.dialogueStyle.padding,0,64) || !optionalNumber(value.dialogueStyle.paginationFontSize,16,96) || !optionalNumber(value.dialogueStyle.toolsHeight,44,512)))return false;
   if(value.presentationEntry !== undefined && (!text(value.presentationEntry,200)||!value.presentationEntry))return false;
   if(value.audio !== undefined && !isRuntimeAudio(value.audio))return false;
   if (!optionalChoice(value.mode, ['edit', 'play']) || !optionalChoice(value.ended, [true, false]) || !optionalChoice(value.reducedMotion, [true, false])) return false;
@@ -103,6 +114,8 @@ export function isRuntimeScene(value: unknown): value is RuntimeScene {
     || value.actors.length > 4 || !record(value.dialogue)
     || !text(value.dialogue.speaker, 200) || !text(value.dialogue.text, 20_000)) return false;
   const { width, height } = value;
+  if(value.artworkRect !== undefined && (!isRect(value.artworkRect) || value.artworkRect.x < 0 || value.artworkRect.y < 0
+    || value.artworkRect.x + value.artworkRect.width > width || value.artworkRect.y + value.artworkRect.height > height))return false;
   const actors = value.actors;
   const valid = actors.every((actor: unknown) => record(actor) && text(actor.id, 200) && !!actor.id
     && text(actor.name, 200) && isRect(actor.rect)
@@ -127,6 +140,9 @@ export function isRuntimeEvent(value: unknown): value is RuntimeEvent {
     case 'advanceRequested':
     case 'presentationDone': return text(value.sceneId, 200) && !!value.sceneId && revision(value.revision);
     case 'sceneRendered': return (value.engineLogicalSize === undefined || record(value.engineLogicalSize) && optionalNumber(value.engineLogicalSize.width, 1, 4096) && value.engineLogicalSize.width !== undefined && optionalNumber(value.engineLogicalSize.height, 1, 4096) && value.engineLogicalSize.height !== undefined) && (value.audioState === undefined || isRuntimeAudioState(value.audioState)) && revision(value.revision) && text(value.sceneId, 200) && !!value.sceneId
+      && (value.dialogueRects===undefined || record(value.dialogueRects)&&isRect(value.dialogueRects.speaker)&&isRect(value.dialogueRects.body))
+      && (value.dialoguePage===undefined || record(value.dialoguePage) && revision(value.dialoguePage.index) && revision(value.dialoguePage.count) && value.dialoguePage.count > 0 && value.dialoguePage.count <= 20000 && value.dialoguePage.index < value.dialoguePage.count && (value.dialoguePage.offset===undefined || revision(value.dialoguePage.offset)) && (value.dialoguePage.endOffset===undefined || revision(value.dialoguePage.endOffset)))
+      && (value.choicesRect===undefined || isRect(value.choicesRect))
       && finite(value.renderMs) && value.renderMs >= 0 && isRect(value.textboxRect) && isRect(value.rendererRect);
     default: return false;
   }
@@ -135,4 +151,4 @@ export function isRuntimeEvent(value: unknown): value is RuntimeEvent {
 function isRuntimeAudioState(v:unknown):boolean {
   return record(v) && (v.ambiencePath === undefined || v.ambiencePath === null || isRuntimeAudioPathForState(v.ambiencePath)) && (v.ambienceStartCount === undefined || revision(v.ambienceStartCount)) && optionalChoice(v.unlocked,[true,false]) && (v.soundPaths === undefined || Array.isArray(v.soundPaths) && v.soundPaths.length <= 8 && v.soundPaths.every(isRuntimeAudioPathForState)) && (v.musicPath === null || isRuntimeAudioPathForState(v.musicPath)) && (v.musicPosition === null || finite(v.musicPosition) && v.musicPosition>=0) && revision(v.musicStartCount) && revision(v.soundPlayCount);
 }
-function isRuntimeAudioPathForState(v:unknown):boolean { return typeof v === "string" && /^assets\/audio\/(?:story-score\/)?[a-zA-Z0-9_-][a-zA-Z0-9._-]*\.(wav|ogg|mp3)$/.test(v); }
+function isRuntimeAudioPathForState(v:unknown):boolean { return isRuntimeAudioPath(v); }

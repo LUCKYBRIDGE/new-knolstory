@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:14769) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 1440 (11.8s)
+  ✓  2 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 768 (11.6s)
+  ✓  3 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 390 (11.6s)
+  ✓  4 [host] › tests/e2e/editor-related-memos.spec.ts:4:115 › related memo opens exact note and returns to the same cut 844 (11.7s)
+
+  4 passed (47.4s)

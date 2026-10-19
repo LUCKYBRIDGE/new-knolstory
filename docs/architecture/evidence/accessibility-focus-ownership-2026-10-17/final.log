@@ -1,0 +1,42 @@
+
+Running 4 tests using 1 worker
+
+(node:37643) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership waiting (4.6s)
+  ✓  2 [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other (4.3s)
+  ✓  3 [host] › tests/e2e/accessibility-focus-ownership.spec.ts:12:62 › delayed native acknowledgment retains focus ownership other-then-body (4.3s)
+  ✘  4 [host] › tests/e2e/accessibility-focus-ownership.spec.ts:22:1 › automatic reading does not take focus from a closed reader menu trigger (1.5m)
+
+
+  1) [host] › tests/e2e/accessibility-focus-ownership.spec.ts:22:1 › automatic reading does not take focus from a closed reader menu trigger 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.fill: Test timeout of 90000ms exceeded.
+    Call log:
+      - waiting for getByLabel('자동 넘기기 대기 시간', { exact: true })
+
+
+      25 |  const choice=page.getByRole('button',{name:'초점 소유권 검사 선택',exact:true});await choice.focus();await choice.press('Enter');
+      26 |  await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);
+    > 27 |  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await page.getByLabel('자동 넘기기 대기 시간',{exact:true}).fill('1');await page.keyboard.press('Escape');
+         |                                                                                                                                                                                                             ^
+      28 |  await page.getByRole('button',{name:'자동',exact:true}).click();await trigger.focus();
+      29 |  await expect.poll(async()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path.length),{timeout:10000}).toBeGreaterThanOrEqual(3);
+      30 |  const focus=await page.evaluate(()=>({tag:document.activeElement?.tagName,label:document.activeElement?.getAttribute('aria-label')}));
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-focus-ownership.spec.ts:27:205
+
+    Error Context: docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/final-run/accessibility-focus-owners-94fb0--closed-reader-menu-trigger-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/final-run/accessibility-focus-owners-94fb0--closed-reader-menu-trigger-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-focus-ownership-2026-10-17/final-run/accessibility-focus-owners-94fb0--closed-reader-menu-trigger-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/accessibility-focus-ownership.spec.ts:22:1 › automatic reading does not take focus from a closed reader menu trigger 
+  3 passed (1.7m)

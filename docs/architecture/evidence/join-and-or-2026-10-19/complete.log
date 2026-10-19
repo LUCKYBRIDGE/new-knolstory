@@ -1,0 +1,43 @@
+
+Running 2 tests using 1 worker
+
+(node:99073) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work (50.3s)
+(node:99365) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:350:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen (3.3s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 45000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+      19 | async function exported(page:Page){
+      20 |  await saved(page);await openWorkMenu(page);
+    > 21 |  const pending=page.waitForEvent('download');
+         |                     ^
+      22 |  await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+      23 |  const file=await pending,raw=await readFile((await file.path())!,'utf8');
+      24 |  return {raw,project:parseAuthoringFile(raw).project as StoryProject};
+        at exported (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:21:21)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:347:1095
+
+    Error Context: docs/architecture/evidence/join-and-or-2026-10-19/complete-run/editing-workbench-connecti-734a2-s-without-altering-the-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/join-and-or-2026-10-19/complete-run/editing-workbench-connecti-734a2-s-without-altering-the-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/join-and-or-2026-10-19/complete-run/editing-workbench-connecti-734a2-s-without-altering-the-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work 
+  1 passed (54.8s)

@@ -1,0 +1,129 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run apps/web/lib/workspace-storage.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/workspace-storage.test.ts (7 tests | 1 failed) 14ms
+   × atomically retains the prior deleted-work recovery if saving the next removal fails 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/workspace-storage.test.ts > atomically retains the prior deleted-work recovery if saving the next removal fails
+AssertionError: expected undefined to deeply equal { id: 'older', title: '새 이야기', …(10) }
+
+- Expected:
+{
+  "chapters": [
+    {
+      "backgroundAssetIds": [],
+      "backgroundId": "",
+      "chapterNumber": 1,
+      "chapterSpeakerNames": [],
+      "characterAssetIds": [],
+      "id": "older-chapter",
+      "keyEvents": "",
+      "leftAssetId": "",
+      "mood": "",
+      "nextChapterIdea": "",
+      "order": 1,
+      "purpose": "",
+      "rightAssetId": "",
+      "storyStageKeys": [],
+      "summary": "",
+      "title": "첫 번째 장",
+    },
+  ],
+  "choiceMode": "simple",
+  "creativeMemos": [],
+  "description": "",
+  "id": "older",
+  "lines": [
+    {
+      "backgroundId": "",
+      "chapterId": "older-chapter",
+      "directionNote": "",
+      "emotionNote": "",
+      "id": "older-first",
+      "leftAssetId": "",
+      "order": 1,
+      "purposeNote": "",
+      "rightAssetId": "",
+      "speaker": "narration",
+      "speakerName": "",
+      "stageComposition": {
+        "leftActors": [],
+        "rightActors": [],
+      },
+      "text": "",
+      "type": "narration",
+    },
+    {
+      "backgroundId": "",
+      "chapterId": "older-chapter",
+      "directionNote": "",
+      "emotionNote": "",
+      "id": "older-second",
+      "leftAssetId": "",
+      "order": 2,
+      "purposeNote": "",
+      "rightAssetId": "",
+      "speaker": "narration",
+      "speakerName": "",
+      "stageComposition": {
+        "leftActors": [],
+        "rightActors": [],
+      },
+      "text": "",
+      "type": "narration",
+    },
+  ],
+  "planning": {
+    "centralProblem": "",
+    "characterNotes": "",
+    "climax": "",
+    "crisis": "",
+    "ending": "",
+    "endingChange": "",
+    "freeNotes": "",
+    "mainCharacter": "",
+    "mainGoal": "",
+    "material": "",
+    "middle": "",
+    "mood": "",
+    "openQuestions": "",
+    "opening": "",
+    "premise": "",
+    "stakes": "",
+    "structureMode": "free",
+    "theme": "",
+    "worldNotes": "",
+  },
+  "sheetEditable": false,
+  "sheetUrl": "",
+  "speakerNames": [],
+  "title": "새 이야기",
+  "updatedAt": "2026-10-09T08:44:14.383Z",
+}
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/workspace-storage.test.ts:26:75
+     24|  writeWorkspace(storage,p,{}, {},{...state(p),deletedWork:{key:'new:ol…
+     25|  const before=raw;expect(()=>writeWorkspace({setItem:()=>{throw Error(…
+     26|  expect(raw).toBe(before);expect(readWorkspace(raw).deletedWork?.proje…
+       |                                                                           ^
+     27|  writeWorkspace(storage,p,{}, {},{...state(p),deletedWork:{key:'new:de…
+     28| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  17:44:14
+   Duration  338ms (transform 159ms, setup 0ms, import 225ms, tests 14ms, environment 0ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

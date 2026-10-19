@@ -1,0 +1,39 @@
+
+Running 3 tests using 1 worker
+
+(node:36457) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/chapter-settings-access.spec.ts:14:1 › chapter settings restore reachable defaults without opening advanced tools or changing cut overrides (9.3s)
+  ✓  2 tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections (7.5s)
+  ✘  3 tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images (4.4s)
+
+
+  1) tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      75 |  const settings=await optins(page);await settings.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();list=await resources();await expect(list.getByRole('button',{name:'장 자료에 인물 추가 이미지 찾기',exact:true})).toBeVisible();
+      76 |  await controlsComposition(page,true);await expect(list.getByRole('button',{name:'장 자료에 인물 추가 이미지 찾기',exact:true})).toBeDisabled();await controlsComposition(page,false);
+    > 77 |  await page.setViewportSize({width:390,height:844});expect(await page.locator('[data-system-menu=editor]').evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);await page.screenshot({path:info.outputPath('resource-list-phone.png')});
+         |                                                                                                                                                                  ^
+      78 |  const file=await exportFile(page),context=await browser.newContext();try{const opened=await context.newPage();await opened.route('**/api/**',route=>route.abort());await opened.goto('/?view=editor');await saved(opened);await importFile(opened,file.raw);const restored=(await exportFile(opened)).project;expect(restored).toEqual({...after,id:restored.id});}finally{await context.close();}
+      79 | });
+      80 | async function controlsComposition(page:Page,active:boolean){await page.locator('[data-chapter-settings]').locator('input').first().dispatchEvent(active?'compositionstart':'compositionend');}
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/chapter-settings-access.spec.ts:77:162
+
+    Error Context: docs/architecture/evidence/chapter-resources-2026-10-20/green-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chapter-resources-2026-10-20/green-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chapter-resources-2026-10-20/green-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images 
+  2 passed (22.4s)

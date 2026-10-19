@@ -1,0 +1,47 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/document-api.test.ts (6 tests | 1 failed) 30ms
+     × pins list and write requests to the account displayed by the caller 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/document-api.test.ts > online document client > pins list and write requests to the account displayed by the caller
+AssertionError: expected "vi.fn()" to be called with arguments: [ '/api/v1/documents', …(1) ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+    "/api/v1/documents",
+-   ObjectContaining {
+-     "headers": {
+-       "x-knolstory-account-id": "11111111-1111-4111-8111-111111111111",
+-     },
++   {
++     "cache": "no-store",
++     "credentials": "same-origin",
++     "redirect": "error",
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ apps/web/lib/document-api.test.ts:12:19
+     10|   const account='11111111-1111-4111-8111-111111111111',fetcher=reply({…
+     11|   await documentList(fetcher,undefined,account);
+     12|   expect(fetcher).toHaveBeenCalledWith('/api/v1/documents',expect.obje…
+       |                   ^
+     13|   await expect(documentList(fetcher,undefined,'bad')).rejects.toMatchO…
+     14|   await expect(documentRead(id,reply({code:'ACCOUNT_SESSION_CHANGED'},…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 5 passed (6)
+   Start at  19:20:17
+   Duration  859ms (transform 514ms, setup 0ms, import 739ms, tests 30ms, environment 0ms)
+

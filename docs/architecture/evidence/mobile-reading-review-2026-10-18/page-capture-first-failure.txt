@@ -1,0 +1,1 @@
+Initial additional page2 verifier reused the same sceneId and identical text across speaker examples. The new stable reading anchor correctly retained page2, so the next input advanced the cut. Corrected test assigns fresh read identity per speaker example; no runtime reset or source behavior was weakened.

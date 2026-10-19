@@ -1,0 +1,8 @@
+
+> @knolstory/compatibility@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/compatibility
+> tsc --noEmit
+
+src/authoring-workbook/excel.ts(20,68): error TS2339: Property 'displayName' does not exist on type 'Readonly<{ id: string; name: string; kind: "music" | "sound"; src: string; runtimePath: string; mime: string; durationSeconds?: number | undefined; }>'.
+/Users/wan/ai_dev/apps/new-knolstory/packages/compatibility:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @knolstory/compatibility@0.0.0 typecheck: `tsc --noEmit`
+Exit status 2

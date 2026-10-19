@@ -1,0 +1,75 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:14] "GET / HTTP/1.1" 200 -
+
+Running 5 tests using 1 worker
+
+(node:8451) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/35x3sp69_nd7_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/2n1qvcrhd0b5-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /_next/static/chunks/1cuw84c-adpc4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:15] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:18] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:18] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:18] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:18] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:18] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 22:04:18] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/authoring.spec.ts:64:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip (2.0m)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) [host] › tests/e2e/authoring.spec.ts:64:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '새 작품 만들기', exact: true })
+
+
+       at library-entry.ts:31
+
+      29 | }
+      30 | export async function startShelfCreation(page:Page){
+    > 31 |  await openLibraryTools(page);await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();
+         |                                                                                           ^
+      32 | }
+      33 | export async function selectShelfCollection(page:Page,kind:string){await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind);}
+      34 | export async function fillShelfSearch(page:Page,query:string){await openLibraryTools(page);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill(query);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');}
+        at startShelfCreation (<repo>/tests/e2e/library-entry.ts:31:91)
+        at createBranchingStory (<repo>/tests/e2e/authoring.spec.ts:17:3)
+        at <repo>/tests/e2e/authoring.spec.ts:66:46
+
+    Error Context: test-results-current-ux/authoring-blank-authoring--28265-s-it-through-file-roundtrip-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/authoring-blank-authoring--28265-s-it-through-file-roundtrip-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/authoring-blank-authoring--28265-s-it-through-file-roundtrip-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/authoring.spec.ts:64:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip 
+  4 did not run
+  1 error was not a part of any test, see above for details

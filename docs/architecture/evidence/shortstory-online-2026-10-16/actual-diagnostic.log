@@ -1,0 +1,126 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toHaveValue(expected) failed
+
+Locator: getByLabel('이 쪽의 이야기', { exact: true })
+Expected: "처음 보관한 그림책 원고 · 한글 😀"
+Timeout: 15000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toHaveValue" getByLabel('이 쪽의 이야기', { exact: true }) with timeout 15000ms
+  - waiting for getByLabel('이 쪽의 이야기', { exact: true })
+    - locator resolved to <textarea rows="7"></textarea>
+    - unexpected value ""
+
+    at captureRawStack (/Users/wan/ai_dev/apps/new-knolstory/node_modules/.pnpm/playwright-core@1.63.0/node_modules/playwright-core/lib/coreBundle.js:8588:17)
+    at callMatcherAsStep (/Users/wan/ai_dev/apps/new-knolstory/node_modules/.pnpm/playwright@1.63.0/node_modules/playwright/lib/matchers/expect.js:13310:57)
+    at Object.toHaveValue (/Users/wan/ai_dev/apps/new-knolstory/node_modules/.pnpm/playwright@1.63.0/node_modules/playwright/lib/matchers/expect.js:13302:23)
+    at /Users/wan/ai_dev/apps/new-knolstory/server/operations/verify-shortstory-browser.mjs:25:289 {
+  matcherResult: {
+    name: 'toHaveValue',
+    expected: '처음 보관한 그림책 원고 · 한글 😀',
+    message: 'expect(locator).toHaveValue(expected) failed\n' +
+      '\n' +
+      "Locator: getByLabel('이 쪽의 이야기', { exact: true })\n" +
+      'Expected: "처음 보관한 그림책 원고 · 한글 😀"\n' +
+      'Timeout: 15000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toHaveValue" getByLabel('이 쪽의 이야기', { exact: true }) with timeout 15000ms\n` +
+      "  - waiting for getByLabel('이 쪽의 이야기', { exact: true })\n" +
+      '    - locator resolved to <textarea rows="7"></textarea>\n' +
+      '    - unexpected value ""\n',
+    pass: false,
+    actual: undefined,
+    log: [
+      `  - Expect "toHaveValue" getByLabel('이 쪽의 이야기', { exact: true }) with timeout 15000ms`,
+      "  - waiting for getByLabel('이 쪽의 이야기', { exact: true })",
+      '    - locator resolved to <textarea rows="7"></textarea>',
+      '    - unexpected value ""'
+    ],
+    timeout: 15000,
+    ariaSnapshot: '- main:\n' +
+      '  - link "놀스토리 서재로 돌아가기":\n' +
+      '    - /url: /?view=library\n' +
+      '  - heading "숏스토리 그림책" [level=1]\n' +
+      '  - paragraph: 그림과 글을 구성하고 내 그림책으로 보관해요.\n' +
+      '  - button "편집 용어 안내"\n' +
+      '  - group: 계정\n' +
+      '  - group:\n' +
+      '    - text: 온라인 작품\n' +
+      '    - region "온라인 작품":\n' +
+      '      - strong: 내 온라인 작품\n' +
+      '      - paragraph: 직접 보관한 작품만 온라인에 저장합니다. 기기의 작품을 자동으로 올리거나 바꾸지 않아요.\n' +
+      '      - button "목록 새로고침"\n' +
+      '      - text: 온라인에 보관할 기기 작품\n' +
+      '      - combobox "온라인에 보관할 기기 작품":\n' +
+      '        - option "작품 선택" [selected]\n' +
+      '        - option "나의 짧은 이야기"\n' +
+      '        - option "실제 DB 그림책 두 기기"\n' +
+      '      - button "선택한 작품 온라인에 보관" [disabled]\n' +
+      '      - paragraph: 처음 보관하면 새 온라인 작품을 만들고, 연결된 기기 작품은 같은 온라인 작품을 갱신합니다. 온라인 작품을 열면 기기에 독립 사본을 만듭니다. 기존 원고는 유지돼요. 다른 곳의 수정과 충돌하면 온라인 사본을 열어 비교하거나, 서재에서 기기 사본을 만들어 새 온라인 작품으로 보관하세요.\n' +
+      '      - list:\n' +
+      '        - listitem:\n' +
+      '          - text: 실제 DB 그림책 두 기기\n' +
+      '          - button "실제 DB 그림책 두 기기 · 기기에 사본으로 열기": 기기에 사본으로 열기\n' +
+      '  - button "쓰기" [pressed]\n' +
+      '  - button "읽기"\n' +
+      '  - status: 이 기기에 저장했어요.\n' +
+      '  - group:\n' +
+      '    - text: 그림책 보관함 · 내 그림책 2권\n' +
+      '    - region "기본 그림책":\n' +
+      '      - heading "네 작품 원본" [level=2]\n' +
+      '      - button "별주부전 · 원본 읽기"\n' +
+      '      - button "옹고집전 · 원본 읽기"\n' +
+      '      - button "선녀와 나무꾼 · 원본 읽기"\n' +
+      '      - button "흥부와 놀부 · 원본 읽기"\n' +
+      '    - region "내 그림책 목록":\n' +
+      '      - heading "내 그림책" [level=2]\n' +
+      '      - button "나의 짧은 이야기"\n' +
+      '      - button "실제 DB 그림책 두 기기" [pressed]\n' +
+      '  - region "그림책 파일과 이름":\n' +
+      '    - text: 이야기 제목\n' +
+      '    - textbox "이야기 제목": 실제 DB 그림책 두 기기\n' +
+      '    - text: 지은이\n' +
+      '    - textbox "지은이"\n' +
+      '    - button "이 기기에 저장"\n' +
+      '    - button ".shortstory로 보관"\n' +
+      '    - button "Excel로 보관"\n' +
+      '    - button "간단 시트용 TSV 보관"\n' +
+      '    - button "빈 Excel·Google 시트 양식"\n' +
+      '    - button "파일 가져오기"\n' +
+      '    - button "새 그림책"\n' +
+      '    - button "내 사본 만들기"\n' +
+      '    - button "A4 인쇄"\n' +
+      '    - button "이 그림책 삭제"\n' +
+      '    - group: 표지·소개·Google 시트 편집\n' +
+      '  - navigation "그림책 쪽 목록":\n' +
+      '    - heading "전체 구성 · 1쪽" [level=2]\n' +
+      '    - button "1쪽 · 제목 없는 쪽"\n' +
+      '  - region "숏스토리 쓰기":\n' +
+      '    - heading "1쪽" [level=2]\n' +
+      '    - img "1쪽 삽화": 그림 없는 쪽\n' +
+      '    - group:\n' +
+      '      - text: 이 쪽 제목\n' +
+      '      - textbox "이 쪽 제목"\n' +
+      '      - text: 이 쪽의 이야기\n' +
+      '      - textbox "이 쪽의 이야기": 처음 보관한 그림책 원고 · 한글 😀\n' +
+      '      - group: 이 쪽 그림 고르기\n' +
+      '      - button "현재 쪽 뒤에 빈 쪽 추가"\n' +
+      '      - button "현재 쪽 복제"\n' +
+      '      - button "쪽 앞으로 이동" [disabled]\n' +
+      '      - button "쪽 뒤로 이동" [disabled]\n' +
+      '      - button "현재 쪽 삭제" [disabled]\n' +
+      '    - navigation "숏스토리 쪽 이동":\n' +
+      '      - button "이전 쪽" [disabled]\n' +
+      '      - text: 1 / 1\n' +
+      '      - button "다음 쪽" [disabled]\n' +
+      '- alert'
+  }
+}
+
+Node.js v22.23.3

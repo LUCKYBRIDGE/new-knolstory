@@ -1,0 +1,65 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET / HTTP/1.1" 200 -
+
+Running 2 tests using 1 worker
+
+(node:29111) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /shortstory HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/2llxky9h2_c_5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/1gox1njoi3325.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/2wk6096lvnya1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "HEAD /?view=library HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /__next._tree.txt?view=library&_rsc=oJhVAbqOto2LMFmK HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /__next.__PAGE__.txt?view=library&_rsc=TyncUG68q22h60dG HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "HEAD / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:35] "GET /__next._tree.txt?_rsc=oJhVAbqOto2LMFmK HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /assets/cover-fonts/KnolStoryPen-Regular-d252740c.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /shortstory HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "HEAD /?view=library HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "HEAD / HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual excel edited ShortStory reopens and prints a complete A4 book (841ms)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /shortstory HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/2llxky9h2_c_5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/1gox1njoi3325.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/2wk6096lvnya1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "HEAD /?view=library HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /__next._tree.txt?view=library&_rsc=oJhVAbqOto2LMFmK HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /__next.__PAGE__.txt?view=library&_rsc=TyncUG68q22h60dG HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "HEAD / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /__next._tree.txt?_rsc=oJhVAbqOto2LMFmK HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 23:13:36] "GET /shortstory HTTP/1.1" 304 -
+  ✓  2 [host] › tests/e2e/external-shortstory-print.spec.ts:2:40 › actual google edited ShortStory reopens and prints a complete A4 book (701ms)
+
+  2 passed (2.1s)

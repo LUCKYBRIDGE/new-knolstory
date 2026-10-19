@@ -1,0 +1,19 @@
+{
+  "comparedTo": "native-resume-2026-10-15/postgres/legacy-containers-before.json",
+  "count": 23,
+  "changed": [
+    {
+      "name": "/knolstory-stg-live-app-1",
+      "fields": [
+        "mounts"
+      ]
+    },
+    {
+      "name": "/knolstory-stg-verification-app-1",
+      "fields": [
+        "mounts"
+      ]
+    }
+  ],
+  "scope": "Container ID/image/start/restart/ports/mount metadata only; no legacy DB contents inspected"
+}

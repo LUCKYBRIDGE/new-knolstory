@@ -1,0 +1,165 @@
+{
+  "scope": "Raw axe findings retained. Label-in-name disagreements have separate rendered-text/computed-name assertions, not an axe/WCAG conformance pass.",
+  "viewports": [
+    {
+      "width": 1440,
+      "scannerDisagreementNodes": 12,
+      "surfaces": [
+        {
+          "name": "library",
+          "rawViolationRules": [
+            "label-content-name-mismatch"
+          ],
+          "rawViolationNodes": 4,
+          "manualIncomplete": [
+            {
+              "rule": "color-contrast",
+              "nodes": 25
+            },
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 2
+            }
+          ]
+        },
+        {
+          "name": "account",
+          "rawViolationRules": [
+            "label-content-name-mismatch"
+          ],
+          "rawViolationNodes": 4,
+          "manualIncomplete": [
+            {
+              "rule": "color-contrast",
+              "nodes": 30
+            },
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 2
+            }
+          ]
+        },
+        {
+          "name": "online",
+          "rawViolationRules": [
+            "label-content-name-mismatch"
+          ],
+          "rawViolationNodes": 4,
+          "manualIncomplete": [
+            {
+              "rule": "color-contrast",
+              "nodes": 29
+            },
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 2
+            }
+          ]
+        },
+        {
+          "name": "writer",
+          "rawViolationRules": [],
+          "rawViolationNodes": 0,
+          "manualIncomplete": [
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 3
+            }
+          ]
+        },
+        {
+          "name": "short-writer",
+          "rawViolationRules": [],
+          "rawViolationNodes": 0,
+          "manualIncomplete": []
+        },
+        {
+          "name": "short-reader",
+          "rawViolationRules": [],
+          "rawViolationNodes": 0,
+          "manualIncomplete": []
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scannerDisagreementNodes": 12,
+      "surfaces": [
+        {
+          "name": "library",
+          "rawViolationRules": [
+            "label-content-name-mismatch"
+          ],
+          "rawViolationNodes": 4,
+          "manualIncomplete": [
+            {
+              "rule": "color-contrast",
+              "nodes": 23
+            },
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 2
+            }
+          ]
+        },
+        {
+          "name": "account",
+          "rawViolationRules": [
+            "label-content-name-mismatch"
+          ],
+          "rawViolationNodes": 4,
+          "manualIncomplete": [
+            {
+              "rule": "color-contrast",
+              "nodes": 28
+            },
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 2
+            }
+          ]
+        },
+        {
+          "name": "online",
+          "rawViolationRules": [
+            "label-content-name-mismatch"
+          ],
+          "rawViolationNodes": 4,
+          "manualIncomplete": [
+            {
+              "rule": "color-contrast",
+              "nodes": 27
+            },
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 2
+            }
+          ]
+        },
+        {
+          "name": "writer",
+          "rawViolationRules": [],
+          "rawViolationNodes": 0,
+          "manualIncomplete": [
+            {
+              "rule": "label-content-name-mismatch",
+              "nodes": 3
+            }
+          ]
+        },
+        {
+          "name": "short-writer",
+          "rawViolationRules": [],
+          "rawViolationNodes": 0,
+          "manualIncomplete": []
+        },
+        {
+          "name": "short-reader",
+          "rawViolationRules": [],
+          "rawViolationNodes": 0,
+          "manualIncomplete": []
+        }
+      ]
+    }
+  ]
+}

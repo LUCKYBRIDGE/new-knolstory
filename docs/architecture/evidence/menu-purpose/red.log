@@ -1,0 +1,293 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:56] "GET / HTTP/1.1" 200 -
+
+Running 5 tests using 1 worker
+
+(node:65215) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/1mbkvlzvlpwye.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/2ik5lrt1z5kt4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:12:57] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:00] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:00] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:00] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:00] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:00] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:00] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 1440 (6.1s)
+(node:65246) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/1mbkvlzvlpwye.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/2ik5lrt1z5kt4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:03] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:06] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:06] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:06] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  2 [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 768 (5.7s)
+(node:65264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/1mbkvlzvlpwye.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/2ik5lrt1z5kt4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:09] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:12] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:12] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:12] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:12] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:12] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:12] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  3 [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 390 (5.8s)
+(node:65273) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/1mbkvlzvlpwye.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/2ik5lrt1z5kt4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:15] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:16] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:18] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:18] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:18] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:18] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:18] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:18] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  4 [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 844 (5.8s)
+(node:65290) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/1mbkvlzvlpwye.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/2ik5lrt1z5kt4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:21] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:22] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:26] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:26] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:26] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:26] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:26] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:13:26] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  5 [host] › tests/e2e/work-menu-purpose.spec.ts:6:1 › import confirms independent work and preserves original when saving fails (8.1s)
+
+
+  1) [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true }) with timeout 5000ms
+      - waiting for locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+
+
+      2 | import {readFileSync} from 'node:fs';
+      3 | for(const width of [1440,768,390,844])test(`work menu groups purpose without extra steps ${width}`,async({page},info)=>{
+    > 4 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();const settings=menu.getByRole('group',{name:'작품 설정',exact:true}),files=menu.getByRole('group',{name:'파일·저장',exact:true});await expect(settings.getByRole('button',{name:'작품 정보·표지',exact:true})).toBeVisible();await expect(files.getByRole('button',{name:'작품 파일 내보내기',exact:true})).toBeVisible();await expect(files.getByText('기기 저장은 이 브라우저에, 작품 파일은 다른 기기로 옮기거나 따로 보관할 때 사용해요.',{exact:true})).toBeVisible();await expect(files.getByText('다른 작품 파일을 확인한 뒤 내 사본으로 엽니다. 현재 원고는 먼저 저장합니다.',{exact:true})).toBeVisible();await expect(menu.getByRole('button',{name:'새 작품 생성',exact:true})).toHaveCount(0);await expect(menu.getByRole('button',{name:'지금 저장',exact:true})).toHaveText('지금 저장');expect(await menu.locator(':scope>div').evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth;})).toBe(true);await page.screenshot({path:info.outputPath(`purpose-menu-${width}.png`),fullPage:true});await menu.locator(':scope>summary').click();await expect(text).toHaveValue(original);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      5 | });
+      6 | test('import confirms independent work and preserves original when saving fails',async({page})=>{
+      7 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending;const archive=JSON.parse(readFileSync((await file.path())!,'utf8'));archive.document.project.title='다른 파일에서 가져온 작품';await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'independent.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(archive))});const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});await expect(dialog).toBeVisible();const original=await page.evaluateHandle(()=>Storage.prototype.setItem);await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('workspace-error')).toContainText('현재 원고를 저장하지 못해');await page.evaluate(fn=>{Storage.prototype.setItem=fn;},original);await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toHaveCount(0);await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts:4:532
+
+    Error Context: test-results/work-menu-purpose-work-men-4fe44-se-without-extra-steps-1440-host/error-context.md
+
+  2) [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 768 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true }) with timeout 5000ms
+      - waiting for locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+
+
+      2 | import {readFileSync} from 'node:fs';
+      3 | for(const width of [1440,768,390,844])test(`work menu groups purpose without extra steps ${width}`,async({page},info)=>{
+    > 4 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();const settings=menu.getByRole('group',{name:'작품 설정',exact:true}),files=menu.getByRole('group',{name:'파일·저장',exact:true});await expect(settings.getByRole('button',{name:'작품 정보·표지',exact:true})).toBeVisible();await expect(files.getByRole('button',{name:'작품 파일 내보내기',exact:true})).toBeVisible();await expect(files.getByText('기기 저장은 이 브라우저에, 작품 파일은 다른 기기로 옮기거나 따로 보관할 때 사용해요.',{exact:true})).toBeVisible();await expect(files.getByText('다른 작품 파일을 확인한 뒤 내 사본으로 엽니다. 현재 원고는 먼저 저장합니다.',{exact:true})).toBeVisible();await expect(menu.getByRole('button',{name:'새 작품 생성',exact:true})).toHaveCount(0);await expect(menu.getByRole('button',{name:'지금 저장',exact:true})).toHaveText('지금 저장');expect(await menu.locator(':scope>div').evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth;})).toBe(true);await page.screenshot({path:info.outputPath(`purpose-menu-${width}.png`),fullPage:true});await menu.locator(':scope>summary').click();await expect(text).toHaveValue(original);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      5 | });
+      6 | test('import confirms independent work and preserves original when saving fails',async({page})=>{
+      7 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending;const archive=JSON.parse(readFileSync((await file.path())!,'utf8'));archive.document.project.title='다른 파일에서 가져온 작품';await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'independent.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(archive))});const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});await expect(dialog).toBeVisible();const original=await page.evaluateHandle(()=>Storage.prototype.setItem);await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('workspace-error')).toContainText('현재 원고를 저장하지 못해');await page.evaluate(fn=>{Storage.prototype.setItem=fn;},original);await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toHaveCount(0);await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts:4:532
+
+    Error Context: test-results/work-menu-purpose-work-men-15ab9-ose-without-extra-steps-768-host/error-context.md
+
+  3) [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 390 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true }) with timeout 5000ms
+      - waiting for locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+
+
+      2 | import {readFileSync} from 'node:fs';
+      3 | for(const width of [1440,768,390,844])test(`work menu groups purpose without extra steps ${width}`,async({page},info)=>{
+    > 4 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();const settings=menu.getByRole('group',{name:'작품 설정',exact:true}),files=menu.getByRole('group',{name:'파일·저장',exact:true});await expect(settings.getByRole('button',{name:'작품 정보·표지',exact:true})).toBeVisible();await expect(files.getByRole('button',{name:'작품 파일 내보내기',exact:true})).toBeVisible();await expect(files.getByText('기기 저장은 이 브라우저에, 작품 파일은 다른 기기로 옮기거나 따로 보관할 때 사용해요.',{exact:true})).toBeVisible();await expect(files.getByText('다른 작품 파일을 확인한 뒤 내 사본으로 엽니다. 현재 원고는 먼저 저장합니다.',{exact:true})).toBeVisible();await expect(menu.getByRole('button',{name:'새 작품 생성',exact:true})).toHaveCount(0);await expect(menu.getByRole('button',{name:'지금 저장',exact:true})).toHaveText('지금 저장');expect(await menu.locator(':scope>div').evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth;})).toBe(true);await page.screenshot({path:info.outputPath(`purpose-menu-${width}.png`),fullPage:true});await menu.locator(':scope>summary').click();await expect(text).toHaveValue(original);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      5 | });
+      6 | test('import confirms independent work and preserves original when saving fails',async({page})=>{
+      7 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending;const archive=JSON.parse(readFileSync((await file.path())!,'utf8'));archive.document.project.title='다른 파일에서 가져온 작품';await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'independent.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(archive))});const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});await expect(dialog).toBeVisible();const original=await page.evaluateHandle(()=>Storage.prototype.setItem);await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('workspace-error')).toContainText('현재 원고를 저장하지 못해');await page.evaluate(fn=>{Storage.prototype.setItem=fn;},original);await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toHaveCount(0);await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts:4:532
+
+    Error Context: test-results/work-menu-purpose-work-men-439ae-ose-without-extra-steps-390-host/error-context.md
+
+  4) [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 844 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true }) with timeout 5000ms
+      - waiting for locator('[data-work-menu]').getByRole('group', { name: '작품 설정', exact: true }).getByRole('button', { name: '작품 정보·표지', exact: true })
+
+
+      2 | import {readFileSync} from 'node:fs';
+      3 | for(const width of [1440,768,390,844])test(`work menu groups purpose without extra steps ${width}`,async({page},info)=>{
+    > 4 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();const settings=menu.getByRole('group',{name:'작품 설정',exact:true}),files=menu.getByRole('group',{name:'파일·저장',exact:true});await expect(settings.getByRole('button',{name:'작품 정보·표지',exact:true})).toBeVisible();await expect(files.getByRole('button',{name:'작품 파일 내보내기',exact:true})).toBeVisible();await expect(files.getByText('기기 저장은 이 브라우저에, 작품 파일은 다른 기기로 옮기거나 따로 보관할 때 사용해요.',{exact:true})).toBeVisible();await expect(files.getByText('다른 작품 파일을 확인한 뒤 내 사본으로 엽니다. 현재 원고는 먼저 저장합니다.',{exact:true})).toBeVisible();await expect(menu.getByRole('button',{name:'새 작품 생성',exact:true})).toHaveCount(0);await expect(menu.getByRole('button',{name:'지금 저장',exact:true})).toHaveText('지금 저장');expect(await menu.locator(':scope>div').evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth;})).toBe(true);await page.screenshot({path:info.outputPath(`purpose-menu-${width}.png`),fullPage:true});await menu.locator(':scope>summary').click();await expect(text).toHaveValue(original);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      5 | });
+      6 | test('import confirms independent work and preserves original when saving fails',async({page})=>{
+      7 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending;const archive=JSON.parse(readFileSync((await file.path())!,'utf8'));archive.document.project.title='다른 파일에서 가져온 작품';await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'independent.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(archive))});const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});await expect(dialog).toBeVisible();const original=await page.evaluateHandle(()=>Storage.prototype.setItem);await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('workspace-error')).toContainText('현재 원고를 저장하지 못해');await page.evaluate(fn=>{Storage.prototype.setItem=fn;},original);await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toHaveCount(0);await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts:4:532
+
+    Error Context: test-results/work-menu-purpose-work-men-fdd18-ose-without-extra-steps-844-host/error-context.md
+
+  5) [host] › tests/e2e/work-menu-purpose.spec.ts:6:1 › import confirms independent work and preserves original when saving fails 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+      5 | });
+      6 | test('import confirms independent work and preserves original when saving fails',async({page})=>{
+    > 7 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending;const archive=JSON.parse(readFileSync((await file.path())!,'utf8'));archive.document.project.title='다른 파일에서 가져온 작품';await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'independent.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(archive))});const dialog=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});await expect(dialog).toBeVisible();const original=await page.evaluateHandle(()=>Storage.prototype.setItem);await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('workspace-error')).toContainText('현재 원고를 저장하지 못해');await page.evaluate(fn=>{Storage.prototype.setItem=fn;},original);await dialog.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();await expect(dialog).toHaveCount(0);await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(text).toHaveValue('가져오기 전 현재 원고를 보존한다.');await expect(page.getByRole('heading',{name:'다른 파일에서 가져온 작품',exact:true})).toBeVisible();
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+      8 | });
+      9 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts:7:1133
+
+    Error Context: test-results/work-menu-purpose-import-c-9026a--original-when-saving-fails-host/error-context.md
+
+  5 failed
+    [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 1440 
+    [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 768 
+    [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 390 
+    [host] › tests/e2e/work-menu-purpose.spec.ts:3:39 › work menu groups purpose without extra steps 844 
+    [host] › tests/e2e/work-menu-purpose.spec.ts:6:1 › import confirms independent work and preserves original when saving fails 

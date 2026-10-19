@@ -1,0 +1,46 @@
+[
+  {
+    "path": "/health/live",
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "live": true
+      }
+    }
+  },
+  {
+    "path": "/health/ready",
+    "status": 503,
+    "body": {
+      "success": false,
+      "error": {
+        "code": "AUTH_PROVIDER_NOT_CONFIGURED"
+      }
+    }
+  },
+  {
+    "path": "/api/v1/auth/config",
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "signupProvider": "kakao",
+        "providers": {
+          "kakao": false,
+          "google": false
+        }
+      }
+    }
+  },
+  {
+    "path": "/api/v1/auth/kakao/start",
+    "status": 503,
+    "body": {
+      "success": false,
+      "error": {
+        "code": "PROVIDER_UNAVAILABLE"
+      }
+    }
+  }
+]

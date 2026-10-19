@@ -1,0 +1,41 @@
+
+Running 1 test using 1 worker
+
+(node:91375) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels
+  1) [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 30000ms exceeded while waiting on the predicate
+
+      3 | import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+      4 | const source=parseAuthoringFile(readFileSync('tests/fixtures/responsive-audio.json','utf8'));
+    > 5 | async function ready(page:import('@playwright/test').Page){const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.evaluate(n=>n.getAttribute('data-scene-revision')===n.getAttribute('data-rendered-revision')),{timeout:30000}).toBe(true);return status;}
+        |                                                                                                                                                                                                                                                                                                                        ^
+      6 | test('Pixabay Korean labels and source facets select real files and native runtime plays all three channels',async({page},info)=>{
+      7 |  test.setTimeout(180000);const native=info.project.name==='stories-runtime';
+      8 |  const project={...source,chapters:source.chapters.map((c:any)=>({...c,audio:undefined})),lines:source.lines.map((l:any,i:number)=>i?l:{...l,audio:{music:{action:'play',assetId:'audio:music:pixabay-501446',volume:.2,loop:true},ambience:{action:'play',assetId:'audio:music:pixabay-22484',volume:.15,loop:true},sounds:[{id:'bell',assetId:'audio:sound:pixabay-199584',volume:.5}]}})};
+        at ready (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/pixabay-audio.spec.ts:5:312)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/pixabay-audio.spec.ts:12:340
+
+    Error Context: ../../../../../tmp/knol-pixabay-native-complete/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-pixabay-native-complete/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-pixabay-native-complete/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels 

@@ -1,0 +1,30 @@
+[WebServer] (node:25636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25655) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:25690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:25718) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] [browser] Uncaught RangeError: Story viewport ratio is outside the supported display range.
+[WebServer]     at resolveStoryViewport (../../packages/runtime-core/src/responsive-layout.ts:12:44)
+[WebServer]     at compileStoryScene (../../packages/runtime-core/src/story-runtime.ts:141:59)
+[WebServer]     at StoryWorkspace.useMemo[scene] (components/story-workspace.tsx:139:37)
+[WebServer]     at StoryWorkspace (components/story-workspace.tsx:138:24)
+[WebServer]     at Page (app/page.tsx:2:41)
+[WebServer]   10 |   const width = portrait ? 720 : 1280;
+[WebServer]   11 |   const height = Math.round(width * viewport.height / viewport.width);
+[WebServer] > 12 |   if (height < 240 || height > 2400) throw new RangeError('Story viewport ratio is outside the supported display range.');
+[WebServer]      |                                            ^
+[WebServer]   13 |   const scale = Math.min(display.width/width,display.height/height);
+[WebServer]   14 |   const fontSize = Math.max(30, Math.min(64, Math.ceil(17 / scale)));
+[WebServer]   15 |   const margin = portrait ? 24 : 48;
+[WebServer] ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+  ✓  1 [host] › tests/e2e/non-audio-transition.spec.ts:5:1 › author controls confirm transition and look intensity without changing manuscript or placement (22.6s)
+
+  1 passed (24.8s)

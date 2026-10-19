@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/online-work-bindings.test.ts (9 tests | 1 failed) 37ms
+     × keeps a durable pending command but does not send after the originating operation expires during preparation 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/online-work-bindings.test.ts > durable online work linkage > keeps a durable pending command but does not send after the originating operation expires during preparation
+AssertionError: expected [Function] to throw error including '작업 상태' but got '온라인 작품을 확인하지 못했어요. 기기의 원고는 유지됩니다.'
+
+Expected: "작업 상태"
+Received: "온라인 작품을 확인하지 못했어요. 기기의 원고는 유지됩니다."
+
+ ❯ apps/web/lib/online-work-bindings.test.ts:11:99
+      9|   const disk=storage(),base=createOnlineWorkStore(disk),value=await sn…
+     10|   const store={...base,prepare:async(...args:Parameters<typeof base.pr…
+     11|   await expect(saveOnlineWork(store,account,'local',value,'csrf',fetch…
+       |                                                                                                   ^
+     12|   expect(fetcher).not.toHaveBeenCalled();expect((await base.prepare(ac…
+     13|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 8 passed (9)
+   Start at  19:22:07
+   Duration  825ms (transform 481ms, setup 0ms, import 702ms, tests 37ms, environment 0ms)
+

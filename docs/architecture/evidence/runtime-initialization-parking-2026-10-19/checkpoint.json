@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-19",
+  "status": "local-root-cause-fixed-actual-native-focused-verified-not-deployed",
+  "cause": {
+    "originalTrace": "../runtime-sync-diagnosis-2026-10-19/checkpoint.json",
+    "failureChain": "previewSlot and nativeStage hidden/display:none -> iframe layout viewport0x0 during delayedGLinitialization -> GL2Draw.on_resize ZeroDivisionError -> repeated secondary exceptions and FS.syncfs request storm",
+    "reproduced": "red.log: hold runtime/index.html then navigate to text; iframeclientWidth/Height exactly0/0 before releasing anyenginecode"
+  },
+  "fix": [
+    "Removed both display-none hidden ancestors from persistent native preview",
+    "Inactive workbench previewSlot explicitly1280x720 fixed offscreen, visibilityhidden+inert+ariahidden; same iframe ancestry/key/src retained",
+    "Active slot minwidth/height1 guards collapse; visible reader/editor continue measuredviewport fit",
+    "No SDK/FS.syncfs patch, no warning suppression, no new renderer or manuscript format change"
+  ],
+  "checks": {
+    "nativeFirst": "first.log2passed11.8s earlytext/library actualnative sceneRendered; no targeterrors/warnings, sameiframe+authoreddata",
+    "actualIntegration": "integration.log7passed25.6s: phone1:4:1,readreturnidentity,nativevisiblelandscape, previouslyfailingjoin+scorefileediting with realengine enabled, delayedstartup2cases",
+    "canvas": "canvas.log2passed11.4s adds positive innerWidth/Height and canvaswidth/height asserts; engineerror/syncwarning diagnostic arrays empty",
+    "download": "native restoration+viewportportrait/landscape/portrait then real .knolstory browserdownload within10s; originalproject unchanged",
+    "build": "build.log passed",
+    "types": "types-final.log passed",
+    "lint": "lint.log clean",
+    "review": "Independent source reviewer found no blocking iframe/overflow/accessibility/audio regression; editmodeaudio stop contract unchanged"
+  },
+  "limits": [
+    "Focused local Chromium actualRenPyWeb evidence; no physicaldevice/OSscreenreader or longdurationperformance proof",
+    "Parking keeps engine alive; it does not suspend CPU and does not claim general errorhandler loop protection for unrelatedfuturefaults",
+    "Earlier native timeout traces and48k warning evidence retained unchanged; historical failed checkpoint not rewritten as passing",
+    "Firstandcanvas tests overlap intentionally: added inner viewport/canvas assertions justify final2rerun",
+    "No deployment or wholeproductcompletion claim"
+  ],
+  "sha256": {
+    "apps/web/components/story-workspace.tsx": "58b2e50c8ae4a485e440de5a956b0fe022b3e9560e3d94499f6219f8717cdfa8",
+    "apps/web/components/story-editing-workbench.tsx": "c1bc25327d66b351d6fd1633fe455b5e40487a793c3d6fdd14ff83d89d888740",
+    "apps/web/components/story-editing-workbench.module.css": "8f7aaeba9c64a187aa69a65f3b8a19ea67cb9e92b151e3c09d32ef1daa4c254a",
+    "tests/e2e/runtime-initialization-parking.spec.ts": "436b5b79cf9d350b35d895ee20c5a8f4c1f957f8328ed6fa430dfb27320e4998",
+    "tests/e2e/editing-workbench.spec.ts": "64c77f33febd6ee97ae64fc311a42073e8439d1cdef06b21e67b4f19676fa3c7",
+    "playwright.config.ts": "264b2f031a23e37535e5e1c6db65568c26ca49101ad28e4c252ec62c611a7f27",
+    "DESIGN.md": "aacaacefb75e4616887742b363ed2d9689e4f43fe5527d17f2689898d9ff9c35",
+    "STATUS.md": "cf19155d45cc63e7cae09a7c5ed3079037954b76d4766561c0b3d3e422c4794c",
+    ".agents/skills/design-system/SKILL.md": "975b5c89262394f0403837f88d51078cff76f6e35254fd9145a63ca43953b259",
+    "docs/architecture/product-completion-plan.md": "6d85c107a9b97a47d9dc56277180dab31009d9dfa785132e6c15b6794876561b"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Deterministic0x0RED then actualnativeGREEN; originalengineenabledjoin/filetimeout paths pass; longduration/device scopes explicit"
+  }
+}

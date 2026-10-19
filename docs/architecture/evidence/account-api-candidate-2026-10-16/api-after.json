@@ -1,0 +1,14 @@
+{
+  "containerId": "0f3f5204174f23426c4f2243778eb312df34c6ea8fe37f7b9d8e346a3a2fac66",
+  "imageId": "sha256:8d04403a60bfbd1a0465d9a63354e85858ed9dd25b30619bc81b6d7f80d52a24",
+  "state": "running",
+  "health": "healthy",
+  "ports": {
+    "4000/tcp": [
+      {
+        "HostIp": "127.0.0.1",
+        "HostPort": "15400"
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-18",
+  "status": "local-file-scope-verified-not-product-complete-not-deployed",
+  "changes": [
+    "Both authoring modes expose explicit work-file save/save-as using current archive2",
+    "Supported picker invokes on trusted click, reuses per-work session handle and verifies disk readback",
+    "Fallback requests a real downloadable file; import preview and independent-copy identity retained",
+    "Session handle survives workspace navigation; unmounted action cannot start delayed write",
+    "Canonical local goal, queue, storage contract and handoff updated"
+  ],
+  "checks": {
+    "unit": "15 passed; saver module 100% statements/branches/functions/lines; whole-product coverage not claimed",
+    "e2e": "4 passed final: two-format real download/reopen with fresh storage and API denied; modeled file streams/external edit/session navigation/deferred-picker cancellation",
+    "native": "Actual Mac Chrome OS Save dialog, ShortStory disk save, second edit and same-file resave; disk JSON body verified. Captured before final session-ref lift; final navigation fixes covered separately by final E2E",
+    "build": "Web production build passed; changed-source type/lint checks passed",
+    "review": "Reviewer confirmed session-ref and lifetime fixes; no further substantive findings; subsequent agent terminal reported usage limit",
+    "docs": "57 active documents checked, 0 link errors; historical evidence excluded",
+    "hostRegistration": "Default host project lists all four local-work-files cases; list only, passing tests not rerun"
+  },
+  "limits": [
+    "File handles are session-only; reload/import requires explicit file selection for next direct save",
+    "Import deliberately creates an independent work copy; never silently binds imported path",
+    "No automatic disk autosave; saved snapshot is from save-start time",
+    "Download-requested is not OS write/readback confirmation",
+    "External-change comparison cannot exclude another process racing after the final check",
+    "Actual native picker tested for ShortStory only; KnolStory download bytes/reopen and picker-model covered",
+    "First E2E failure was test reading before browser autosave; original failure retained, final waits for saved state",
+    "No target-device/long-term-offline/whole-product release claim; previous manuscript/runtime/design evidence reused"
+  ],
+  "sha256": {
+    "apps/web/lib/local-work-file.ts": "799674eb9c24248b707202a0eaf711dc2d44c5c073899f58ac03deb5ddedcb5b",
+    "apps/web/lib/local-work-file.test.ts": "d678009d109c161841ed9337f56ce2c9e85e9fec748f88f94ce440c9ca7e479e",
+    "apps/web/components/local-work-file-actions.tsx": "177af184744389fe1f36b5d7e30b6e47fb5ec9b4aa64988cd9b92151e154014a",
+    "apps/web/components/workspace-management.tsx": "0b5f9510937125fd96248b556c0cd746909472f5c22b6b659a4acc8e0dde82c8",
+    "apps/web/components/story-workspace.tsx": "754333a625a6414f32e57d92619c334b6ef6261f7ed8649795a3ea6161e776e2",
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "9283821a5807f05dad1b0e83c503d0af673e7d9f866672450ab8beda0cec0462",
+    "tests/e2e/local-work-files.spec.ts": "0edb722553ec4959bd6827c403217b0f1edd3c0749b9d87afcc32f66ced3ef76",
+    "playwright.config.ts": "7e9080662c48aca2812d322a7cbb1838664d9f06f0d2d39b0af81888ca50d4f7"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "average": 4.0,
+    "evidence": "15 saver unit tests and four final E2E cases passed; actual Mac disk resave verified; native KnolStory picker, persisted handles, and release remain outside this completed checkpoint. Canonical plan links exact next action and evidence.",
+    "improvements": [
+      "Exercise native picker for KnolStory when that environment gate is scheduled",
+      "Consider persistent file association only with explicit recovery and permission contract"
+    ],
+    "userCheck": "Local files and local continuation documents are both implemented and reviewable; whole goal remains open."
+  }
+}

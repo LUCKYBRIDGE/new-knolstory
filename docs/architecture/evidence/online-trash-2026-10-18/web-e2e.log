@@ -1,0 +1,82 @@
+
+Running 2 tests using 1 worker
+
+(node:12136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/online-trash.spec.ts:3:31 › online trash cancel, response loss retry and same-record restore preserve device manuscript 1440 (2.1s)
+(node:12161) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/online-trash.spec.ts:3:31 › online trash cancel, response loss retry and same-record restore preserve device manuscript 390 (1.8s)
+
+
+  1) tests/e2e/online-trash.spec.ts:3:31 › online trash cancel, response loss retry and same-record restore preserve device manuscript 1440 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status')
+    Expected substring: "온라인 휴지통으로 옮겼어요"
+    Error: strict mode violation: getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status') resolved to 2 elements:
+        1) <p role="status">온라인 작업 중이에요.</p> aka getByText('온라인 작업 중이에요')
+        2) <p role="status">온라인 휴지통으로 옮겼어요. 기기의 원고는 그대로 유지됩니다.</p> aka getByText('온라인 휴지통으로 옮겼어요. 기기의 원고는 그대로 유지됩니다')
+
+    Call log:
+      - Expect "toContainText" getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status') with timeout 5000ms
+      - waiting for getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status')
+
+
+      22 |  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();const confirmation=panel.getByRole('group',{name:'온라인 휴지통 이동 확인',exact:true});await confirmation.getByRole('button',{name:'취소',exact:true}).click();expect(sent).toEqual([]);
+      23 |  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();await confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true}).click();await expect(panel.getByRole('alert')).toBeVisible();
+    > 24 |  await confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true}).click();await expect(panel.getByRole('status')).toContainText('온라인 휴지통으로 옮겼어요');
+         |                                                                                                                               ^
+      25 |  expect(sent).toHaveLength(2);expect(sent[1]).toEqual(sent[0]);
+      26 |  await panel.getByRole('button',{name:'온라인 휴지통',exact:true}).click();await panel.getByRole('button',{name:'온라인 원고 · 온라인 작품 복구',exact:true}).click();await expect(panel.getByRole('status')).toContainText('같은 온라인 작품과 이력');
+      27 |  await panel.getByRole('button',{name:'보관한 작품',exact:true}).click();await expect(panel.getByRole('button',{name:'온라인 원고 · 기기에 사본으로 열기',exact:true})).toBeVisible();expect(await authored()).toEqual(before);expect(stateVersion).toBe(3);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/online-trash.spec.ts:24:127
+
+    Error Context: docs/architecture/evidence/online-trash-2026-10-18/web-run/online-trash-online-trash--bd088-erve-device-manuscript-1440/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/online-trash-2026-10-18/web-run/online-trash-online-trash--bd088-erve-device-manuscript-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/online-trash-2026-10-18/web-run/online-trash-online-trash--bd088-erve-device-manuscript-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/online-trash.spec.ts:3:31 › online trash cancel, response loss retry and same-record restore preserve device manuscript 390 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status')
+    Expected substring: "온라인 휴지통으로 옮겼어요"
+    Error: strict mode violation: getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status') resolved to 2 elements:
+        1) <p role="status">온라인 작업 중이에요.</p> aka getByText('온라인 작업 중이에요')
+        2) <p role="status">온라인 휴지통으로 옮겼어요. 기기의 원고는 그대로 유지됩니다.</p> aka getByText('온라인 휴지통으로 옮겼어요. 기기의 원고는 그대로 유지됩니다')
+
+    Call log:
+      - Expect "toContainText" getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status') with timeout 5000ms
+      - waiting for getByRole('region', { name: '온라인 작품', exact: true }).getByRole('status')
+
+
+      22 |  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();const confirmation=panel.getByRole('group',{name:'온라인 휴지통 이동 확인',exact:true});await confirmation.getByRole('button',{name:'취소',exact:true}).click();expect(sent).toEqual([]);
+      23 |  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();await confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true}).click();await expect(panel.getByRole('alert')).toBeVisible();
+    > 24 |  await confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true}).click();await expect(panel.getByRole('status')).toContainText('온라인 휴지통으로 옮겼어요');
+         |                                                                                                                               ^
+      25 |  expect(sent).toHaveLength(2);expect(sent[1]).toEqual(sent[0]);
+      26 |  await panel.getByRole('button',{name:'온라인 휴지통',exact:true}).click();await panel.getByRole('button',{name:'온라인 원고 · 온라인 작품 복구',exact:true}).click();await expect(panel.getByRole('status')).toContainText('같은 온라인 작품과 이력');
+      27 |  await panel.getByRole('button',{name:'보관한 작품',exact:true}).click();await expect(panel.getByRole('button',{name:'온라인 원고 · 기기에 사본으로 열기',exact:true})).toBeVisible();expect(await authored()).toEqual(before);expect(stateVersion).toBe(3);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/online-trash.spec.ts:24:127
+
+    Error Context: docs/architecture/evidence/online-trash-2026-10-18/web-run/online-trash-online-trash--e97a4-serve-device-manuscript-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/online-trash-2026-10-18/web-run/online-trash-online-trash--e97a4-serve-device-manuscript-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/online-trash-2026-10-18/web-run/online-trash-online-trash--e97a4-serve-device-manuscript-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/online-trash.spec.ts:3:31 › online trash cancel, response loss retry and same-record restore preserve device manuscript 1440 
+    tests/e2e/online-trash.spec.ts:3:31 › online trash cancel, response loss retry and same-record restore preserve device manuscript 390 

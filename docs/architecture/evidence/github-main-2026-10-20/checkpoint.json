@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-20",
+  "requestedAction": "Publish completed local development to public LUCKYBRIDGE/new-knolstory main for continuation on another computer.",
+  "status": "local-validation-complete-ready-to-commit",
+  "preservation": "No reset, clean or source deletion. Existing branch14commits ahead of origin/main, no incoming divergence at fetch. All authorized source, canonical manuscripts, contracts, tests and nonprivate evidence included.",
+  "publicationExclusions": [
+    "Private restored legacy illustrations/runtime and conditional Pixabay raw files",
+    "Native traces/extracted network artifacts and screenshots",
+    "Full raw workspace failure dumps and machine-local Office lockfiles",
+    "Generated HTML coverage mirrors; logs/checkpoints retained separately"
+  ],
+  "security": "Independent read-only scan found no known credential/private-key/token patterns in inspected text; operational configs use secret-file injection. Binary diagnostics excluded rather than certified. No credentials or production state changed.",
+  "validation": {
+    "typecheck": "pnpm typecheck passed including server",
+    "lint": "lint-final.log0errors1preexistingNextimagewarning; generatedcoverageHTML excluded fromlint.",
+    "audit": "pnpm audit --prod --audit-level=moderate: no known vulnerabilities",
+    "scripts": "pnpm test:scripts56passed after portable preparation gate update",
+    "docs": "docs-final.log and docs-tests-final.log passed afterfinalhandoffupdate.",
+    "build": "Websourcebuild passed. Actual audio/runtime/build checks remain separate from publiccheckoutCI.",
+    "unit": "unit-final.log196files1820passed2skipped; productioncoverage statements90.49 branches89.64 functions93.99 lines94.27. **/*.integration.ts excluded only because those are separate integration test sources, never production modules.",
+    "focusedBrowser": "Basicdraft3passed; stalelink6passed; files6passed+normalGooglereturn1passed in earlier sharedrun; rawBrowsertimestamps/hiddenfield setupassertions corrected and failures retained locally."
+  },
+  "continuation": "README main clone/frozenlockfile/sourcechecks; authorizedmedia restore and currentaudio requirements separate. next-session-goal-prompt.md -> product-completion-plan.md resume. Browser local works require actual .knolstory/.shortstory file transfer.",
+  "whitespace": "Source-only whitespace findings corrected. Historical logs, source-provider license files and evidence JSON CRLF retain original bytes; not autoformatted."
+}

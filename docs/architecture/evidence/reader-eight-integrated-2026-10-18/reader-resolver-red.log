@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/reader-text.test.ts (4 tests | 2 failed) 150ms
+     × refreshes every exact official edition of all eight stories without mutating the source 17ms
+     × preserves the same reference and every field after any authored edit to any official edition 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/reader-text.test.ts > provided original and creative editions edited reading text > refreshes every exact official edition of all eight stories without mutating the source
+TypeError: resolveProvidedCatalogStory is not a function
+ ❯ packages/compatibility/tests/reader-text.test.ts:49:11
+     47|    const original=entry.project,current=enhanceExistingStory(refinePro…
+     48|    const editions=[original,enhanceExistingStory(original),enhanceExis…
+     49|    expect(resolveProvidedCatalogStory(original)).toEqual(current);
+       |           ^
+     50|    for(const edition of editions){
+     51|     const before=structuredClone(edition);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/compatibility/tests/reader-text.test.ts > provided original and creative editions edited reading text > preserves the same reference and every field after any authored edit to any official edition
+TypeError: resolveProvidedCatalogStory is not a function
+ ❯ packages/compatibility/tests/reader-text.test.ts:74:13
+     72|     for(const [field,edited] of Object.entries(changes)){
+     73|      const before=structuredClone(edited);
+     74|      expect(resolveProvidedCatalogStory(original,edited),`${original.i…
+       |             ^
+     75|      expect(edited).toEqual(before);
+     76|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  19:56:13
+   Duration  988ms (transform 496ms, setup 0ms, import 748ms, tests 150ms, environment 0ms)
+

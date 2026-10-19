@@ -1,0 +1,32 @@
+{
+  "scope": "PC-04 provider/framework/DB-neutral existing-record save protocol preparation",
+  "red": "save-red.log",
+  "finalFocusedTests": 16,
+  "coverage": {
+    "statements": 100,
+    "branches": 100,
+    "functions": 100,
+    "lines": 100,
+    "scope": "server/storage/save-existing.ts only"
+  },
+  "review": "Independent read-only security/correctness review found no actionable P1/P2 in this preparation scope.",
+  "notImplemented": [
+    "HTTP/API",
+    "authentication/provider",
+    "actual catalog policy",
+    "DB adapter/migration",
+    "real DB transaction/concurrency",
+    "in-transaction mutable permission check",
+    "Web sync",
+    "create/delete/no-op policy"
+  ],
+  "sourceHashes": {
+    "server/storage/save-existing.ts": "fa23261a55d65d100ddafa079e5ad6b9afc2f26de48017b35444af96358f4fa7",
+    "server/storage/save-existing.test.ts": "1759e52cd762a294f56e8ce258fbb10d55fbbf9e8988b4ce599d23783b52b475",
+    "server/tsconfig.json": "e20407ef57cd0b8e7d173f0b51f2fc7cf02816d36a0819e42375882ea9e5e96e",
+    "server/README.md": "35534749382d961578873d8320f78bc97956b7a519197aaae08998001aadba27",
+    "package.json": "d8df431bbc7f3beac9e7d5a54a4fab0d9d0b8c7cbb5ef8339b2a7707dbb1b371",
+    "vitest.config.ts": "6bc61869676e469ad5a23b4c056e501137992e189cf6f9fa2a29449b8f945763",
+    "docs/architecture/authoring-storage-contract.md": "e47ad1886d5a6a63b55fde3e174b5fab4fe73d0bd9adb8af1be7fcc37574efd0"
+  }
+}

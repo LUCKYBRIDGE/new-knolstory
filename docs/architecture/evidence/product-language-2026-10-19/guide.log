@@ -1,0 +1,90 @@
+
+Running 3 tests using 1 worker
+
+(node:12504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editor-term-guide.spec.ts:32:1 › guide preserves author drafts and restores focus in four viewport layouts (7.7s)
+(node:12539) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/editor-term-guide.spec.ts:48:1 › ShortStory guide leaves edited page text untouched (5.5s)
+(node:12557) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 tests/e2e/editor-term-guide.spec.ts:56:1 › current vocabulary distinguishes work files, browser recovery and optional companion views (458ms)
+
+
+  1) tests/e2e/editor-term-guide.spec.ts:32:1 › guide preserves author drafts and restores focus in four viewport layouts 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('button', { name: '검색 초기화', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('button', { name: '검색 초기화', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('button', { name: '검색 초기화', exact: true })
+        13 × locator resolved to <button type="button">검색 초기화</button>
+           - unexpected value "inactive"
+
+
+      23 |  const close=dialog.getByRole('button',{name:'편집 용어 안내 닫기',exact:true});
+      24 |  await close.focus();await page.keyboard.press('Shift+Tab');
+    > 25 |  await expect(dialog.getByRole('button',{name:'검색 초기화',exact:true})).toBeFocused();await page.keyboard.press('Tab');await expect(close).toBeFocused();
+         |                                                                      ^
+      26 |  await search.focus();await page.keyboard.press('Shift+Tab');await page.keyboard.press('Tab');
+      27 |  await expect(search).toBeFocused();
+      28 |  expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
+        at checkGuide (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:25:70)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:40:40
+
+    Error Context: docs/architecture/evidence/product-language-2026-10-19/guide-run/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/product-language-2026-10-19/guide-run/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/product-language-2026-10-19/guide-run/editor-term-guide-guide-pr-9a88e-us-in-four-viewport-layouts/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/editor-term-guide.spec.ts:48:1 › ShortStory guide leaves edited page text untouched ─
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('button', { name: '검색 초기화', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('button', { name: '검색 초기화', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '편집 용어 안내', exact: true }).getByRole('button', { name: '검색 초기화', exact: true })
+        14 × locator resolved to <button type="button">검색 초기화</button>
+           - unexpected value "inactive"
+
+
+      23 |  const close=dialog.getByRole('button',{name:'편집 용어 안내 닫기',exact:true});
+      24 |  await close.focus();await page.keyboard.press('Shift+Tab');
+    > 25 |  await expect(dialog.getByRole('button',{name:'검색 초기화',exact:true})).toBeFocused();await page.keyboard.press('Tab');await expect(close).toBeFocused();
+         |                                                                      ^
+      26 |  await search.focus();await page.keyboard.press('Shift+Tab');await page.keyboard.press('Tab');
+      27 |  await expect(search).toBeFocused();
+      28 |  expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
+        at checkGuide (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:25:70)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:52:2
+
+    Error Context: docs/architecture/evidence/product-language-2026-10-19/guide-run/editor-term-guide-ShortSto-004c2--edited-page-text-untouched/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/product-language-2026-10-19/guide-run/editor-term-guide-ShortSto-004c2--edited-page-text-untouched/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/product-language-2026-10-19/guide-run/editor-term-guide-ShortSto-004c2--edited-page-text-untouched/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/editor-term-guide.spec.ts:32:1 › guide preserves author drafts and restores focus in four viewport layouts 
+    tests/e2e/editor-term-guide.spec.ts:48:1 › ShortStory guide leaves edited page text untouched ──
+  1 passed (15.0s)

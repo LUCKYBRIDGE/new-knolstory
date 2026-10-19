@@ -1,0 +1,4 @@
+.switch{display:flex;gap:4px;flex-wrap:wrap;min-width:0;margin:4px 0}
+.switch button{min-height:30px;padding:4px 8px;border:1px solid var(--line);border-radius:8px;font-size:12px;line-height:1.4;background:var(--white);color:var(--ink)}
+.switch button[aria-pressed=true]{background:var(--mint);border-color:var(--mint-strong)}
+@media(pointer:coarse),(max-width:720px){.switch button{min-height:44px;font-size:13px;padding:6px 10px}}

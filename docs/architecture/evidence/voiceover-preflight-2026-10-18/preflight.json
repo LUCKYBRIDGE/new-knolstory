@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-18",
+  "status": "prepared-awaiting-system-setting-permission-not-screenreader-verified",
+  "task": "PC-06 actual Mac VoiceOver reading validation",
+  "initialState": "initial-state.json",
+  "ready": {
+    "staticPreview": "http://127.0.0.1:15401/",
+    "voiceOver": "Installed, observed off through native System Settings AX_VOICEOVER_ENABLED",
+    "captionPanel": "Existing VoiceOver utility caption panel checkbox enabled, no change needed",
+    "control": "Native CUA keyboard/AX only; no AppleScript security access requested"
+  },
+  "permission": {
+    "questionAsked": true,
+    "state": "pending",
+    "action": "Temporarily enable VoiceOver for local reader tests then restore off",
+    "reason": "Computer-use tool confirmation policy for non-sensitive OS setting changes requires confirmation when the exact setting change was not explicitly requested",
+    "dependentWork": "Do not enable VoiceOver or claim real screen-reader results before user reply"
+  },
+  "casesPrepared": [
+    {
+      "id": "VO-01",
+      "state": "not-run",
+      "check": "Actual VoiceOver caption output announces native audio entry name/role; start via actual keyboard with no automatic unlock"
+    },
+    {
+      "id": "VO-02",
+      "state": "not-run",
+      "check": "Navigate actual semantic summary, speaker and manuscript with VoiceOver cursor; record caption text and native scene revision"
+    },
+    {
+      "id": "VO-03",
+      "state": "not-run",
+      "check": "Two exact provided choice names announced, disabled next unavailable; activate first choice and observe live-region output after native render"
+    },
+    {
+      "id": "VO-04",
+      "state": "not-run",
+      "check": "Rewind and alternate choice through VoiceOver, preserving manuscript and selected-route semantics"
+    },
+    {
+      "id": "VO-05",
+      "state": "not-run",
+      "check": "Reader menu/settings/confirmation cancellation announce name/state and return focus; restore initial VoiceOver off and close task-owned UI"
+    }
+  ],
+  "preservation": [
+    "No product source/build/manuscript change in this preflight",
+    "Do not overwrite earlier evidence or rerun current8edition/400percent tests",
+    "Use local protected copy for any reader/editor navigation",
+    "No publication/deployment/account or credential changes"
+  ],
+  "limits": [
+    "Caption output can prove actual screen-reader announcements; it does not prove audible pronunciation quality or listening comprehension",
+    "Actual Mac VoiceOver does not prove target Windows NVDA/ChromeOS/Android devices",
+    "Overall product policy/service/device/release queue remains active"
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-text-accessibility.tsx": "243b162408fbd4e9421c674ace4a386b1cc7f49133486e563fab81beeb3b068a",
+    "apps/web/components/story-player-menu.tsx": "7994b06098af659278172950fae964a22de8d07d39583b17d0b397d0ded3dc0e",
+    "apps/web/out/index.html": "2967002366778a515c208094e3ced986505f390d6c0ac831c9fd6b32b20f8e93"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "summary": "Current presentation regression migrated; native and authoring preservation verified",
+  "scores": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "host1/native2 same final run; source/log captures; first interrupted run and own locator timing mistakes recorded"
+    },
+    "completeness": {
+      "score": 3,
+      "evidence": "reading-surface interrupted and126 not run; physical/external/originalChrome gates remain"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "scenery sample difference explicitly distinguished from full RGBA and physical input"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "current selectors and standalone final log; next reading-surface run ready"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "details in owner document with short final outcome"
+    }
+  },
+  "overall": 3.8,
+  "improvements": [
+    "Continue current reader surface and126 remaining tests",
+    "Keep native scene transition arrival waits explicit",
+    "Preserve original error and device/external boundaries"
+  ],
+  "selfCheck": "Scoped verified progress, no whole-goal completion claim"
+}

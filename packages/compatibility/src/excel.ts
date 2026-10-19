@@ -2,19 +2,19 @@ import type { StoryDocumentEnvelope } from '@knolstory/story-domain';
 import { exportStoryTable, importStoryTable, TABLE_MAX_BYTES, TABLE_CELL_LIMIT } from './story-table';
 import { exportShortStoryTable, importShortStoryTable, type ShortStoryProject } from './shortstory';
 /** Browser-compatible ExcelJS document API, loaded only when an Excel action is invoked. */
-async function workbook() {
+export async function createExcelWorkbook() {
   const excel = await import('exceljs');
   return new excel.default.Workbook();
 }
 export async function exportTableExcel(rows: readonly (readonly string[])[]):Promise<Uint8Array> {
   if(rows.some(row=>row.some(cell=>cell.length>TABLE_CELL_LIMIT)))throw new Error('Excel의 한 셀에는 30,000자 이하로 입력해 주세요.');
-  const book=await workbook();const sheet=book.addWorksheet('KnolStory Next');
+  const book=await createExcelWorkbook();const sheet=book.addWorksheet('KnolStory Next');
   for(const row of rows)sheet.addRow([...row]);
   sheet.getRow(2).font={bold:true};sheet.views=[{state:'frozen',ySplit:2}];
   sheet.columns=[{width:16},{width:30},{width:30},{width:10},{width:28},{width:22},{width:65}];
   return new Uint8Array(await book.xlsx.writeBuffer());
 }
-function checkExcelArchive(bytes:Uint8Array):void {
+export function checkExcelArchive(bytes:Uint8Array):void {
   const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
   let footer=-1;
   for(let i=bytes.length-22;i>=Math.max(0,bytes.length-65557);i--) { if(view.getUint32(i,true)===0x06054b50){footer=i;break;} }
@@ -32,7 +32,7 @@ function checkExcelArchive(bytes:Uint8Array):void {
 export async function importTableExcel(bytes:Uint8Array):Promise<string[][]> {
   if(!bytes.length||bytes.length>TABLE_MAX_BYTES)throw new Error('Excel 파일은 25MB 이하로 선택하세요.');
   checkExcelArchive(bytes);
-  const book=await workbook();
+  const book=await createExcelWorkbook();
   try{await book.xlsx.load(bytes as never);}catch{throw new Error('Excel 파일을 읽지 못했습니다. .xlsx 파일을 선택하세요.');}
   const sheet=book.getWorksheet('KnolStory Next');
   if(!sheet||book.worksheets.length!==1)throw new Error('Next 표 형식의 KnolStory Next 시트 하나가 필요해요.');

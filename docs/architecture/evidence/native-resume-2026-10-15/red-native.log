@@ -1,0 +1,368 @@
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:35] "GET / HTTP/1.1" 200 -
+
+Running 28 tests using 1 worker
+
+(node:78409) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:36] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:37] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:39] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:39] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:39] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:39] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:39] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:39] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘   1 [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real google edited full-field work plays two RenPy choice endings after reopen (16.4s)
+(node:78789) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:53] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:54] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:56] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:56] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:56] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:56] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:56] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:53:56] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘   2 [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real excel edited full-field work plays two RenPy choice endings after reopen (16.2s)
+(node:78900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:09] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:10] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:12] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:12] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:12] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:12] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:12] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:12] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘   3 [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real korean-google edited full-field work plays two RenPy choice endings after reopen (16.2s)
+(node:79012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:26] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:27] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:27] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:29] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:29] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:29] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:29] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:29] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:29] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘   4 [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real korean-excel edited full-field work plays two RenPy choice endings after reopen (16.2s)
+(node:79117) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:43] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:46] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:46] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:46] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:46] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:46] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:54:46] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘   5 [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 1280px (16.2s)
+(node:79226) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:00] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:02] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:02] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:02] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:02] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:02] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [15/Oct/2026 22:55:02] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘   6 [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 390px (16.2s)
+Testing stopped early after 6 maximum allowed failures.
+
+
+  1) [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real google edited full-field work plays two RenPy choice endings after reopen 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인' }).getByRole('button', { name: '내 사본으로 가져오기' })
+
+
+       5 | for(const source of ['google','excel','korean-google','korean-excel']) {
+       6 | test(`real ${source} edited full-field work plays two RenPy choice endings after reopen`,async({page})=>{
+    >  7 |  test.setTimeout(240000);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByLabel('작품 파일 가져오기').setInputFiles(`docs/architecture/evidence/authoring-format/story-${source}-edited.xlsx`);await page.getByRole('dialog',{name:'작품 가져오기 확인'}).getByRole('button',{name:'내 사본으로 가져오기'}).click();await rendered(page);
+         |                                                                                                                                                                                                                                                                                                                                                        ^
+       8 |  for(let option=0;option<2;option++){
+       9 |   await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await rendered(page);const frame=await page.getByTestId('story-runtime-frame').boundingBox();await page.mouse.click(frame!.x+frame!.width*.5,frame!.y+frame!.height*.1);await rendered(page);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','true');await confirmTransition(page);
+      10 |   const choices=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}).getByRole('button');await expect(choices).toHaveCount(2);await choices.nth(option).click();await rendered(page);await confirmTransition(page);await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-format-runtime.spec.ts:7:344
+
+    Error Context: test-results-native-resume/authoring-format-runtime-r-9f1bd-choice-endings-after-reopen-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-native-resume/authoring-format-runtime-r-9f1bd-choice-endings-after-reopen-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-native-resume/authoring-format-runtime-r-9f1bd-choice-endings-after-reopen-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real excel edited full-field work plays two RenPy choice endings after reopen 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인' }).getByRole('button', { name: '내 사본으로 가져오기' })
+
+
+       5 | for(const source of ['google','excel','korean-google','korean-excel']) {
+       6 | test(`real ${source} edited full-field work plays two RenPy choice endings after reopen`,async({page})=>{
+    >  7 |  test.setTimeout(240000);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByLabel('작품 파일 가져오기').setInputFiles(`docs/architecture/evidence/authoring-format/story-${source}-edited.xlsx`);await page.getByRole('dialog',{name:'작품 가져오기 확인'}).getByRole('button',{name:'내 사본으로 가져오기'}).click();await rendered(page);
+         |                                                                                                                                                                                                                                                                                                                                                        ^
+       8 |  for(let option=0;option<2;option++){
+       9 |   await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await rendered(page);const frame=await page.getByTestId('story-runtime-frame').boundingBox();await page.mouse.click(frame!.x+frame!.width*.5,frame!.y+frame!.height*.1);await rendered(page);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','true');await confirmTransition(page);
+      10 |   const choices=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}).getByRole('button');await expect(choices).toHaveCount(2);await choices.nth(option).click();await rendered(page);await confirmTransition(page);await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-format-runtime.spec.ts:7:344
+
+    Error Context: test-results-native-resume/authoring-format-runtime-r-0a970-choice-endings-after-reopen-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-native-resume/authoring-format-runtime-r-0a970-choice-endings-after-reopen-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-native-resume/authoring-format-runtime-r-0a970-choice-endings-after-reopen-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real korean-google edited full-field work plays two RenPy choice endings after reopen 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인' }).getByRole('button', { name: '내 사본으로 가져오기' })
+
+
+       5 | for(const source of ['google','excel','korean-google','korean-excel']) {
+       6 | test(`real ${source} edited full-field work plays two RenPy choice endings after reopen`,async({page})=>{
+    >  7 |  test.setTimeout(240000);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByLabel('작품 파일 가져오기').setInputFiles(`docs/architecture/evidence/authoring-format/story-${source}-edited.xlsx`);await page.getByRole('dialog',{name:'작품 가져오기 확인'}).getByRole('button',{name:'내 사본으로 가져오기'}).click();await rendered(page);
+         |                                                                                                                                                                                                                                                                                                                                                        ^
+       8 |  for(let option=0;option<2;option++){
+       9 |   await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await rendered(page);const frame=await page.getByTestId('story-runtime-frame').boundingBox();await page.mouse.click(frame!.x+frame!.width*.5,frame!.y+frame!.height*.1);await rendered(page);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','true');await confirmTransition(page);
+      10 |   const choices=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}).getByRole('button');await expect(choices).toHaveCount(2);await choices.nth(option).click();await rendered(page);await confirmTransition(page);await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-format-runtime.spec.ts:7:344
+
+    Error Context: test-results-native-resume/authoring-format-runtime-r-43499-choice-endings-after-reopen-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-native-resume/authoring-format-runtime-r-43499-choice-endings-after-reopen-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-native-resume/authoring-format-runtime-r-43499-choice-endings-after-reopen-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real korean-excel edited full-field work plays two RenPy choice endings after reopen 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인' }).getByRole('button', { name: '내 사본으로 가져오기' })
+
+
+       5 | for(const source of ['google','excel','korean-google','korean-excel']) {
+       6 | test(`real ${source} edited full-field work plays two RenPy choice endings after reopen`,async({page})=>{
+    >  7 |  test.setTimeout(240000);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.getByLabel('작품 파일 가져오기').setInputFiles(`docs/architecture/evidence/authoring-format/story-${source}-edited.xlsx`);await page.getByRole('dialog',{name:'작품 가져오기 확인'}).getByRole('button',{name:'내 사본으로 가져오기'}).click();await rendered(page);
+         |                                                                                                                                                                                                                                                                                                                                                        ^
+       8 |  for(let option=0;option<2;option++){
+       9 |   await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await rendered(page);const frame=await page.getByTestId('story-runtime-frame').boundingBox();await page.mouse.click(frame!.x+frame!.width*.5,frame!.y+frame!.height*.1);await rendered(page);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','true');await confirmTransition(page);
+      10 |   const choices=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}).getByRole('button');await expect(choices).toHaveCount(2);await choices.nth(option).click();await rendered(page);await confirmTransition(page);await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-format-runtime.spec.ts:7:344
+
+    Error Context: test-results-native-resume/authoring-format-runtime-r-b7841-choice-endings-after-reopen-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-native-resume/authoring-format-runtime-r-b7841-choice-endings-after-reopen-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-native-resume/authoring-format-runtime-r-b7841-choice-endings-after-reopen-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 1280px 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인' }).getByRole('button', { name: '내 사본으로 가져오기' })
+
+
+      24 |   const choices=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}).getByRole('button');await expect(choices).toHaveCount(2);await choices.nth(option).click();await rendered(page);await confirmTransition(page);await advanceReading(page);await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+      25 |  }
+    > 26 |  await editReadCut(page);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await rendered(page);await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();
+         |                                                                                               ^
+      27 | });
+      28 | }
+      29 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-format-runtime.spec.ts:26:95
+
+    Error Context: test-results-native-resume/authoring-format-runtime-l-1b44a-ble-native-action-at-1280px-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-native-resume/authoring-format-runtime-l-1b44a-ble-native-action-at-1280px-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-native-resume/authoring-format-runtime-l-1b44a-ble-native-action-at-1280px-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 390px 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인' }).getByRole('button', { name: '내 사본으로 가져오기' })
+
+
+      24 |   const choices=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}).getByRole('button');await expect(choices).toHaveCount(2);await choices.nth(option).click();await rendered(page);await confirmTransition(page);await advanceReading(page);await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
+      25 |  }
+    > 26 |  await editReadCut(page);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await rendered(page);await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();
+         |                                                                                               ^
+      27 | });
+      28 | }
+      29 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-format-runtime.spec.ts:26:95
+
+    Error Context: test-results-native-resume/authoring-format-runtime-l-ec318-able-native-action-at-390px-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-native-resume/authoring-format-runtime-l-ec318-able-native-action-at-390px-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-native-resume/authoring-format-runtime-l-ec318-able-native-action-at-390px-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6 failed
+    [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real google edited full-field work plays two RenPy choice endings after reopen 
+    [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real excel edited full-field work plays two RenPy choice endings after reopen 
+    [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real korean-google edited full-field work plays two RenPy choice endings after reopen 
+    [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real korean-excel edited full-field work plays two RenPy choice endings after reopen 
+    [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 1280px 
+    [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 390px 
+  22 did not run
+  1 error was not a part of any test, see above for details

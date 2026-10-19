@@ -1,0 +1,98 @@
+{
+  "checkedAt": "2026-10-16T16:00:58.726243+00:00",
+  "scope": "PC06 active dialog/preparation/recovery semantics and selected plain-text service contrast; full accessibility and product remain incomplete.",
+  "sourceSha256": {
+    "apps/web/components/library-book-focus.tsx": "f4106fab223e682564e8d4fe547a2be565b86ddc71ad799e0f2e3f47df825a52",
+    "apps/web/components/library-book-focus.module.css": "7815c4fb972e06369fdb23f490f13f25329b24bf86b9026f7886450a2f1a3f77",
+    "apps/web/components/cover-editor-canvas.tsx": "6bbd5242d31beb7c48e279838b6f5aeb65de85f61a5c6f8e88d3c998b5a7c107",
+    "tests/e2e/accessibility-dialogs.spec.ts": "0f0195b34c3327fd6006e5c26bdf0f6ea71eeab2064ddd55e272dc1684035a31",
+    "tests/e2e/accessibility-contrast.spec.ts": "e57ee2dfda8cb7bb5918aa6b69591c8297bac27e145724eda0ca70f4e0491967",
+    "tests/e2e/rendered-contrast.ts": "a445fc6474c296e543c2d006f7207be15b933607fcc225c698f6b81c0a94e1fe",
+    "tests/e2e/four-work-library.spec.ts": "883f40a6b1b84d69d5f168063a3dba69c460c742d4b10127d95c4dba0b06a53b",
+    "tests/e2e/storage-recovery.spec.ts": "115b661a3e6e70ebc241e0f5c0e43cea765d6206521a937ed24dfadd9a01bbb8",
+    "playwright.config.ts": "50a38a6a6ae38613e2e4d2e9e246bcd1ca7b56d1511a8795893e90308975e982",
+    "apps/web/out/index.html": "da652fe7e33d20df8f8b135a90f7520093f3d904f7f026fb19cd9f5c7c57b23d"
+  },
+  "verification": {
+    "staticBrowser": {
+      "passed": 8,
+      "log": "final.log",
+      "scope": "Own and builtin action descriptions/name/unique IDs at1440/390; boundary Tab, Escape/Enter close, opener return; preparation/cover cancel/recovery save author preservation; selected chrome contrast"
+    },
+    "contrast": [
+      {
+        "width": 390,
+        "texts": 34,
+        "minimum": 5.026910974874338,
+        "allMeetOwnThreshold": true,
+        "changedChrome": [
+          {
+            "text": "\ucc45\uc744 \ud3bc\uce58\uba74 \ubb34\ub300\uac00 \uc2dc\uc791\ub3fc\uc694",
+            "minimum": 8.092605694003721
+          },
+          {
+            "text": "\ub0b4 \uc791\ud488",
+            "minimum": 8.238638916101312
+          },
+          {
+            "text": "\ud45c\uc9c0 \uc801\uc6a9",
+            "minimum": 7.689228091735296
+          }
+        ]
+      },
+      {
+        "width": 1440,
+        "texts": 34,
+        "minimum": 5.5986372228870565,
+        "allMeetOwnThreshold": true,
+        "changedChrome": [
+          {
+            "text": "\ucc45\uc744 \ud3bc\uce58\uba74 \ubb34\ub300\uac00 \uc2dc\uc791\ub3fc\uc694",
+            "minimum": 8.092605694003721
+          },
+          {
+            "text": "\ub0b4 \uc791\ud488",
+            "minimum": 8.238638916101312
+          },
+          {
+            "text": "\ud45c\uc9c0 \uc801\uc6a9",
+            "minimum": 7.689228091735296
+          }
+        ]
+      }
+    ],
+    "measurementSafetyCase": {
+      "passed": 1,
+      "log": "border-mask-green.log",
+      "initialAttempt": "border-mask-red.log actually passed; not RED evidence"
+    },
+    "build": "build-final.log",
+    "typecheck": "types.log",
+    "lint": "verified-lint.log",
+    "rawAndImages": "final-artifacts",
+    "docs": "docs-check.log"
+  },
+  "retainedFailures": [
+    "red.log:6 genuine name/description/group failures",
+    "red-artifacts",
+    "contrast-first.log:2 failures, includes real header/caption low contrast and nontext-corner measurement artifact",
+    "contrast-first-artifacts"
+  ],
+  "review": "Independent read-only review: no remaining P1/P2 in production delta and selected single-style measurement scope. Range rectangles constrain independent mask diagnostics; not a universal contrast proof.",
+  "preservation": "No authored document/Asset ID/Flow/StageComposition/layout/RenPy-RuntimeCore/API/DB changes. Existing callbacks and primary action names retained except close now includes visible word. Tests compare active project and every stored project after cancel/navigation/record creation. Prior unrelated native/file tests reused.",
+  "limitations": [
+    "Conditional resume descriptions source-reviewed; not activated by focused browser fixtures",
+    "Scanner raw label disagreements/incomplete retained; not WCAG pass",
+    "Not full sequential Tab order, screen reader, voice control or physical-device evidence",
+    "Large/authored cover colors and unselected fields/scene backgrounds remain separate",
+    "Pending delete/class/share/retention policy and live provider setup",
+    "Whole product/release/operating recovery incomplete"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4
+  }
+}

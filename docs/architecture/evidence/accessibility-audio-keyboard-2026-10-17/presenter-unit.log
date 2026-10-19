@@ -1,0 +1,23 @@
+................EE
+======================================================================
+ERROR: test_custom_bytes_verified_before_native_file_install (__main__.ResourceAndViewportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 112, in setUp
+    exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+  File "<string>", line 19, in <module>
+AttributeError: 'types.SimpleNamespace' object has no attribute 'ui'
+
+======================================================================
+ERROR: test_orientation_updates_same_engine_only_when_dimensions_change (__main__.ResourceAndViewportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 112, in setUp
+    exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+  File "<string>", line 19, in <module>
+AttributeError: 'types.SimpleNamespace' object has no attribute 'ui'
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.019s
+
+FAILED (errors=2)

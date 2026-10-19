@@ -10,7 +10,7 @@ describe('representative story compiler', () => {
       expect(scene.sceneId).toBe(`${project.id}/${line.id}`);
       expect(scene.actors.every(a => a.imagePath?.startsWith('assets/legacy-18da4fc/'))).toBe(true);
       if (line.flow?.type === 'choice') expect(scene.choices?.map(c => c.id)).toEqual(line.flow.options.map(c => c.id));
-      expect(scene.presentation?.effects?.map(({originEntry:_origin,...cue})=>cue)??[]).toEqual(line.presentation?.effects??[]);
+      expect(scene.presentation?.effects?.map(({originEntry:_origin,...cue})=>cue)??[]).toEqual(line.presentation?.effects?.map(cue=>({...cue,durationMs:cue.durationMs??(cue.type==='shake'?600:['crack','screen-crack'].includes(cue.type)?1800:800)}))??[]);
     }
   },15000);
   it('updates a cut without mutating other cuts, flow or presentation', () => {

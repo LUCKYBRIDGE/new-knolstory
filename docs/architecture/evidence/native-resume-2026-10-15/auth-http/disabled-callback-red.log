@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/auth-routes.test.ts (16 tests | 1 failed) 52ms
+     × rejects disabled providers, unknown routes, bad methods, nonempty bodies and adds no CORS 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/auth-routes.test.ts > actual Node auth HTTP boundary > rejects disabled providers, unknown routes, bad methods, nonempty bodies and adds no CORS
+AssertionError: expected 302 to be 503 // Object.is equality
+
+- Expected
++ Received
+
+- 503
++ 302
+
+ ❯ server/http/auth-routes.test.ts:92:84
+     90|   it('rejects disabled providers, unknown routes, bad methods, nonempt…
+     91|     const h = await harness({ providers: {} }); expect((await h.reques…
+     92|     expect((await h.request('/api/v1/auth/kakao/callback?state=x&code=…
+       |                                                                                    ^
+     93|     expect((await h.request('/unknown')).status).toBe(404); expect((aw…
+     94|     expect((await h.request('/api/v1/me', { method: 'POST', body: 'x'.…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 passed (16)
+   Start at  00:29:48
+   Duration  193ms (transform 25ms, setup 0ms, import 50ms, tests 52ms, environment 0ms)
+

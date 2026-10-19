@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-19",
+  "status": "local-join-and-score-and-or-focused-verified-not-deployed",
+  "changes": [
+    "Whole flow map lists structurally shared destinations and all exact incoming sourcechoices/scoreconditions",
+    "Current context calls out shared destination and impact across all incoming paths",
+    "ScoreConditionEditor explicitly labels all=그리고 모든 조건, any=또는 하나 이상; canonical modes unchanged"
+  ],
+  "checks": {
+    "runtime": "unit-final.log21passed, including actual Core playback none/one/both score terms and distinct paths joining, scores/restore preserved",
+    "webBuild": "build-final.log passed",
+    "types": "types-current.log passed before final menu-only shell adjustment; final Web build includes TypeScript gate",
+    "lint": "lint-final.log clean",
+    "e2e": "host.log2passed5.0s: actual UI joinlist/source rules and all->any editor change/file reopen; runtime requests explicitly aborted to isolate hostediting"
+  },
+  "limits": [
+    "Shared means >=2incoming authored edges, not distinct sourcecuts or guaranteed runtime reachability; same-source alternatives/fallback count",
+    "all/any is a flat named-score term list; compound pastchoice groups/nestedmix require explicit futurecontract migration",
+    "Single exact-choice audio/effect branchCondition remains independent and not silently broadened",
+    "Route priority remains firstmatching, then fallback; no ruleorder change",
+    "No physicaldevice/native rendering/fullproductcompletion claim",
+    "InitialE2E uncovered closed nested conditiondetails and expanded overlay intercept; correct real open/close steps retained; no forcedclick",
+    "During real UI verification, stale expanded details covered file menu; opening settings now closes other detail panes and launching flowmap closes parent settings. Earlier failed/interrupted logs retained.",
+    "With actual engine startup, complete.log1pass1timeout; trace contains a growing FS.syncfs operations warning storm and file download stalls. Host UI tests isolated engine requests; no native engine join/play completion claim. Issue is tracked in current plan/STATUS, prior logs preserved."
+  ],
+  "sha256": {
+    "apps/web/components/story-score-controls.tsx": "a5c14b0ab96bea177f0bb3e63803225c00af18f54d6e54f117b33eb0dccc2b8f",
+    "apps/web/components/story-flow-map.tsx": "4b8a5cf9ea17f745c89e1d5812e92d310454d35102b70b38ab0a212099cd2f3e",
+    "apps/web/components/editor-flow-context.tsx": "2f25a2b1a491cc30d5dab23f80fb5acac9deed61dc978ad160ff169a787eba90",
+    "packages/runtime-core/tests/join-score-conditions.test.ts": "a226ab5569a68154ea7798c7a2bddfe59e337aee7699bdd3d1f418ecf671f347",
+    "tests/e2e/editing-workbench.spec.ts": "2954112f36561e52b544c21ddfbebfb1a8879fa939fc62276b8d17dd6da8c850",
+    "DESIGN.md": "5e3a403dca3c3545a388569b6af36c0ab16fa6847f59b64bc04b0ea5553bf1bc",
+    "docs/architecture/product-completion-plan.md": "748b781603b723bb606afb440775d884fd400d28f605a5b8487a2a93be1ce2a1",
+    "apps/web/components/story-editing-workbench.tsx": "66764642b2913b4b2e5e6181688bfe0c4cba49dfd4259a24fa3a881c154ba857",
+    "apps/web/components/story-workspace.tsx": "47d72ca3119fcbe8576d28ced40d7efbc113a8fb5cb1214e4b63da79c241bd60",
+    "STATUS.md": "c2d2d219d6f95f62066948e9850785d0222ab894e53a38c57b42fc6488faba88"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Core21tests and engine-isolated hostUI2tests pass; actualengine-start FS.syncfs/hoststall is explicitly open, no native completion claim."
+  }
+}

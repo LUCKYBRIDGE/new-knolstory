@@ -1,11 +1,29 @@
 /* The runtime receives resolved RuntimeScene only; no StoryDocument or Flow. */
 (() => {
   let queued = null;
+  let queuedPageInput = null;
   let lastSeq = -1;
   let lastRevision = -1;
   let engineViewport = null;
   let logicalWidth=1280, logicalHeight=720;
   const origin = location.origin;
+  let currentScene = null;
+  let canvasAttributes = null;
+  function audioEntry(waiting) {
+    const canvas = document.getElementById('canvas');
+    if (!canvas) return;
+    if (waiting) {
+      if (!canvasAttributes) canvasAttributes = Object.fromEntries(['tabindex', 'role', 'aria-label'].map(name => [name, canvas.getAttribute(name)]));
+      canvas.setAttribute('tabindex', '0');
+      canvas.setAttribute('role', 'button');
+      canvas.setAttribute('aria-label', '소리 켜고 시작 · Enter 또는 Space');
+    } else if (canvasAttributes) {
+      for (const [name, value] of Object.entries(canvasAttributes)) {
+        if (value === null) canvas.removeAttribute(name); else canvas.setAttribute(name, value);
+      }
+      canvasAttributes = null;
+    }
+  }
   // The SDK focuses its window on canvas mouseenter. Resizing the editor can put
   // that canvas under the stationary pointer while a Web text field is active.
   // Passive hover must not steal host focus; intentional canvas clicks still work.
@@ -28,8 +46,13 @@
       width: logicalWidth * scale, height: logicalHeight * scale };
   }
   window.knolBridge = Object.freeze({
-    drain() { const command = queued; queued = null; return JSON.stringify(command ? [command] : []); },
+    drain() { const commands = [...(queued ? [queued] : []), ...(queuedPageInput ? [queuedPageInput] : [])]; queued = null; queuedPageInput = null; return JSON.stringify(commands); },
     emit(event) {
+      if (event.type === 'sceneRendered' && currentScene && event.sceneId === currentScene.sceneId && event.revision === currentScene.revision) {
+        const audio = currentScene.audio;
+        audioEntry(currentScene.mode === 'play' && event.audioState?.unlocked === false &&
+          (audio?.music?.action === 'play' || audio?.ambience?.action === 'play' || !!audio?.sounds?.length));
+      }
       if (event.engineViewport) engineViewport = event.engineViewport;
       parent.postMessage({ ...event, rendererRect: rendererRect() }, origin);
     },
@@ -37,7 +60,15 @@
   addEventListener('message', (event) => {
     if (event.origin !== origin || event.source !== parent) return;
     const c = event.data;
-    if (!c || c.protocol !== 1 || c.type !== 'loadScene' || !Number.isSafeInteger(c.seq) || !Number.isSafeInteger(c.revision)) return;
+    if (!c || c.protocol !== 1) return;
+    if (c.type === 'nextDialoguePage') {
+      if (currentScene?.mode === 'play' && !currentScene.ended && Number.isSafeInteger(c.revision) &&
+          c.revision === currentScene.revision && c.sceneId === currentScene.sceneId) {
+        queuedPageInput = { protocol: 1, type: 'nextDialoguePage', sceneId: c.sceneId, revision: c.revision };
+      }
+      return;
+    }
+    if (c.type !== 'loadScene' || !Number.isSafeInteger(c.seq) || !Number.isSafeInteger(c.revision)) return;
     if (!window.KnolRuntimeContract.isRuntimeScene(c.payload) || c.payload.width > 4096 || c.payload.height > 4096 || c.payload.revision !== c.revision) {
       window.knolBridge.emit({ protocol: 1, type: 'error', code: 'INVALID_SCENE', message: 'RuntimeScene 형식이 올바르지 않습니다.' }); return;
     }
@@ -48,6 +79,10 @@
         typeof r.data==='string' && r.data.length>0 && r.data.length<=7000000 && /^[A-Za-z0-9+/]*={0,2}$/.test(r.data)))) {
       window.knolBridge.emit({protocol:1,type:'error',message:'오디오 자료 형식이 올바르지 않습니다.'});return;
     }
+    if(!window.KnolRuntimeContract.isRuntimeServiceAudioResources(c.serviceAudioResources,window.KnolRuntimeContract.runtimeServiceAudioPaths(c.payload.audio))){window.knolBridge.emit({protocol:1,type:'error',message:'등록 음원 자료 형식이 올바르지 않습니다.'});return;}
+    audioEntry(false);
+    queuedPageInput = null;
+    currentScene=structuredClone(c.payload);
     logicalWidth=c.payload.width;logicalHeight=c.payload.height;
     lastSeq = c.seq; lastRevision = c.revision; queued = structuredClone(c);
   });

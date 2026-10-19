@@ -1,0 +1,18 @@
+--- before/apps/web/components/story-text-accessibility.tsx
++++ after/apps/web/components/story-text-accessibility.tsx
+@@ -20,7 +20,14 @@
+   if(mode!=='play'||!nativeFrame?.current)return;
+   const frame=nativeFrame.current;let detach=()=>{};
+   const attach=()=>{detach();const document=frame.contentDocument;if(!document)return;
+-   const exit=(event:KeyboardEvent)=>{if(event.key!=='Tab'||document.activeElement?.id!=='canvas')return;event.preventDefault();event.stopImmediatePropagation();if(event.shiftKey)backTab.current?.();else summary.current?.focus();};
++   const exit=(event:KeyboardEvent)=>{
++    const active=document.activeElement;
++    // Pointer/AX audio entry may leave focus on the native document, not canvas.
++    const stageFocused=active?.id==='canvas'||active===document.body||active===document.documentElement;
++    if(event.key!=='Tab'||!stageFocused)return;
++    event.preventDefault();event.stopImmediatePropagation();
++    if(event.shiftKey)backTab.current?.();else summary.current?.focus();
++   };
+    document.addEventListener('keydown',exit,true);detach=()=>document.removeEventListener('keydown',exit,true);
+   };
+   attach();frame.addEventListener('load',attach);return()=>{detach();frame.removeEventListener('load',attach);};

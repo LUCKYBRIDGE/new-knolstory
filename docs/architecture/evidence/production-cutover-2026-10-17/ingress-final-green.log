@@ -1,0 +1,75 @@
+TAP version 13
+# Subtest: configuration rejects unsafe origins, paths, ports and timeouts
+ok 1 - configuration rejects unsafe origins, paths, ports and timeouts
+  ---
+  duration_ms: 3.023334
+  type: 'test'
+  ...
+# Subtest: static routes, HEAD, MIME, ranges and missing paths
+ok 2 - static routes, HEAD, MIME, ranges and missing paths
+  ---
+  duration_ms: 26.518958
+  type: 'test'
+  ...
+# Subtest: alternate origin accepts only a distinct approved HTTPS origin
+ok 3 - alternate origin accepts only a distinct approved HTTPS origin
+  ---
+  duration_ms: 0.178583
+  type: 'test'
+  ...
+# Subtest: alternate host redirects safe GET and HEAD to canonical origin without forwarding writes
+ok 4 - alternate host redirects safe GET and HEAD to canonical origin without forwarding writes
+  ---
+  duration_ms: 6.433917
+  type: 'test'
+  ...
+# Subtest: host, traversal, encoded separators, hidden files and symlinks fail closed
+ok 5 - host, traversal, encoded separators, hidden files and symlinks fail closed
+  ---
+  duration_ms: 4.872958
+  type: 'test'
+  ...
+# Subtest: API preserves streaming status, cookies and security headers while stripping proxy headers
+ok 6 - API preserves streaming status, cookies and security headers while stripping proxy headers
+  ---
+  duration_ms: 16.102083
+  type: 'test'
+  ...
+# Subtest: API unavailable and timeout fail closed without fabricated observation
+ok 7 - API unavailable and timeout fail closed without fabricated observation
+  ---
+  duration_ms: 27.805083
+  type: 'test'
+  ...
+# Subtest: partial upstream response is terminated and cannot become success
+ok 8 - partial upstream response is terminated and cannot become success
+  ---
+  duration_ms: 13.970792
+  type: 'test'
+  ...
+# Subtest: CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+ok 9 - CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+  ---
+  duration_ms: 171.880083
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 368.662417
+# start of coverage report
+# -------------------------------------------------------------------------
+# file                     | line % | branch % | funcs % | uncovered lines
+# -------------------------------------------------------------------------
+# server                   |        |          |         | 
+#  operations              |        |          |         | 
+#   production-ingress.mjs |  97.79 |    90.38 |   86.67 | 87-89
+# -------------------------------------------------------------------------
+# all files                |  97.79 |    90.38 |   86.67 | 
+# -------------------------------------------------------------------------
+# end of coverage report

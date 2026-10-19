@@ -1,0 +1,37 @@
+
+Running 2 tests using 1 worker
+
+(node:50051) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 1440 (45.0s)
+(node:50176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 390 (745ms)
+
+
+  1) tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 1440 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: apiRequestContext._wrapApiCall: ENOENT: no such file or directory, copyfile '/Users/wan/ai_dev/apps/new-knolstory/test-results/shortstory-online/.playwright-artifacts-0/traces/5aa301151123f6c9353a-ebdba301307f4a42b421-recording1.network' -> '/Users/wan/ai_dev/apps/new-knolstory/test-results/shortstory-online/.playwright-artifacts-0/traces/5aa301151123f6c9353a-ebdba301307f4a42b421-recording1-pwnetcopy-1.network'
+
+    Error: browserContext._wrapApiCall: ENOENT: no such file or directory, open '/Users/wan/ai_dev/apps/new-knolstory/test-results/shortstory-online/.playwright-artifacts-0/traces/5aa301151123f6c9353a-ebdba301307f4a42b421.network'
+
+    Error: locator.fill: Test ended.
+    Call log:
+      - waiting for getByLabel('이 쪽의 이야기', { exact: true })
+
+
+      21 |  await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();expect(remote.posts).toHaveLength(0);await panel.getByLabel('온라인에 보관할 기기 작품',{exact:true}).selectOption('shortstory:'+before.activeId);await panel.getByRole('button',{name:'선택한 작품 온라인에 보관',exact:true}).click();await expect(panel.getByRole('status')).toContainText('보관했어요');expect((remote.posts[0] as {snapshot:{content:{project:unknown}}}).snapshot.content.project).toEqual(before.books[0]);
+      22 |  await panel.getByRole('button',{name:'목록 새로고침',exact:true}).click();await panel.getByRole('button',{name:'온라인 그림책 원고 · 기기에 사본으로 열기',exact:true}).click();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('온라인 그림책 원고');const after=await local(page),copy=after.books.find((book:{id:string})=>book.id===after.activeId);expect(copy).toEqual({...remote.content.project,id:copy.id});expect(copy.id).not.toBe(remote.content.project.id);expect(after.books.find((book:{id:string})=>book.id===before.activeId)).toEqual(before.books[0]);
+    > 23 |  await page.keyboard.press('Escape');await page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true}).fill('기기 사본에서 바꾼 글');await page.locator('[data-online-works]>summary').click();await panel.getByLabel('온라인에 보관할 기기 작품',{exact:true}).selectOption('shortstory:'+copy.id);await panel.getByRole('button',{name:'선택한 작품 온라인에 보관',exact:true}).click();await expect.poll(()=>remote.puts.length).toBe(1);expect((remote.puts[0] as {snapshot:{content:{project:{id:string}}}}).snapshot.content.project.id).toBe(remote.content.project.id);expect((await local(page)).activeId).toBe(copy.id);
+         |                                                 ^
+      24 | });
+      25 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/shortstory-online.spec.ts:23:49
+
+    Error: ENOENT: no such file or directory, open '/Users/wan/ai_dev/apps/new-knolstory/test-results/shortstory-online/.playwright-artifacts-0/88548e99d01a49221b9bc86dc4a5deea.zip'
+
+  1 failed
+    tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 1440 
+  1 passed (46.5s)

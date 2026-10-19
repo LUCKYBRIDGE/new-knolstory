@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/authoring-complete.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  20:46:20
+   Duration  1.27s (transform 454ms, setup 0ms, import 651ms, tests 530ms, environment 0ms)
+

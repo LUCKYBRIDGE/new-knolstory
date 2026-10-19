@@ -19,4 +19,16 @@ describe('runtime event boundary', () => {
     expect(parseRuntimeEvent({ protocol: 1, type: 'error', message: 'failed' })?.type).toBe('error');
     expect(parseRuntimeEvent({ protocol: 1, type: 'error' })).toBeNull();
   });
+  it('preserves page changes reported for the same scene revision', () => {
+    const rect = { x: 0, y: 10, width: 390, height: 330 };
+    const report = { protocol: 1, type: 'sceneRendered', revision: 3, sceneId: 'x', renderMs: 10, rendererRect: rect, textboxRect: rect };
+    for (const index of [0, 1, 2, 1]) {
+      const event = parseRuntimeEvent({ ...report, dialoguePage: { index, count: 3 } });
+      expect(event?.type === 'sceneRendered' && event.dialoguePage).toEqual({ index, count: 3 });
+    }
+    expect(parseRuntimeEvent({ ...report, dialoguePage: { index: 3, count: 3 } })).toBeNull();
+    const event = parseRuntimeEvent({ ...report, dialoguePage: { index: 1, count: 3, offset: 42 } });
+    expect(event?.type === 'sceneRendered' && event.dialoguePage?.offset).toBe(42);
+    for (const offset of [-1, 1.5, '42', Number.MAX_SAFE_INTEGER + 1]) expect(parseRuntimeEvent({ ...report, dialoguePage: { index: 1, count: 3, offset } })).toBeNull();
+  });
 });

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-20",
+  "status": "local-actual-native-history-boundary-fixed-and-verified-not-deployed",
+  "cause": "Whole visited-cut text returned before reader finished its transient native pages",
+  "fix": [
+    "Native optional exclusive Unicode endOffset from actual pages, independent of resume anchor",
+    "Core current final path occurrence limited; absent/stale bound hides current text with pending state",
+    "Host gates visible bound on exact sceneId/revision; no saved schema change"
+  ],
+  "checks": {
+    "red": "red.log actual firstpage history exposed finalsecret; unit-red.log4failures",
+    "focused": "focused-final.log13files79passed; history module lines/statements/functions100%, branches89.13%",
+    "presenter": "presenter-final.log20passed including actual helper source bounds after repagination anchor",
+    "runtime": "runtime-build.log passed before web-build-final.log passed",
+    "native": "roundtrip.log1passed6.5s: first/next native page, portrait resize exact end, quicksave/load and backlog restart, text unchanged",
+    "intermediate": "green.log overlay keyboard and final.log audio-unlock assumptions failed; verified.log1passed after real semantic Next user action; originals retained",
+    "types": "types.log passed",
+    "review": "Read-only review no spoiler blocker; pending wording issue corrected",
+    "preservation": {
+      "checked": 3497,
+      "changed": []
+    }
+  },
+  "limits": [
+    "Focused localChromium not physicaldevice/fullsuite/release",
+    "Older renderer reports without endOffset fail closed for active text",
+    "Underlying semantic fullcut text view and save preview separate UX scopes; this fixes backlog contract",
+    "No deployment or productcompletion"
+  ],
+  "sha256": {
+    "packages/runtime-core/src/playback-history.ts": "307f269f782abc940aa6d62b9897cac42d8ede85b631479a4f2ef9040c480262",
+    "packages/runtime-core/tests/playback-history.test.ts": "6c8658a4f2380063d16bd2e8f8e6573e9a991d2ce4f9a77d0e14150977834ac3",
+    "packages/runtime-contract/src/index.ts": "16b05622dc45ce9e68d3db211db0c324f97caade562c9329cd638eb8a9f427b9",
+    "packages/runtime-contract/tests/dialogue-page.test.ts": "321712f52ffaa33f4cb86e4d0faa16236efcf379e992b7c58c6a35fed3215158",
+    "renpy/responsive-spike/game/script.rpy": "f77708c6ac6fa9391f48c688d4e1174cf1acb9ad46e292726943f899efae9de0",
+    "spikes/renpy-web/presenter-unit-test.py": "7bf1237c0807d127b908ec26b0c9de99028af6c11377a148bee89b3b55043a9a",
+    "apps/web/components/story-workspace.tsx": "ff7c52a08fdbebbe223c36274110c01c325670e2557fa77e4fa9f5de88848bd2",
+    "apps/web/components/story-player-menu.tsx": "016fb1367d037398092d0dfbc2284668509a4df3f246d07ecf082ef7f5274c12",
+    "tests/e2e/history-visible-text.spec.ts": "25e8e1228384b1c5c59e4049826431f64dc7f05dd7f9cb5f253f2387dadb2fe1",
+    "docs/architecture/reading-interface-design.md": "88637b2519dbfc541375588b7d923394e0222ed1f877f7f5e0233c52b6b8a5a8",
+    "docs/architecture/authoring-storage-contract.md": "ca10bd030078108a42da72960cfced3324ac5484779e4d85caaf4e90982f41fc",
+    "docs/architecture/product-completion-plan.md": "5ec1f537c3b0e35f7f8a31c3c2a7e0f08f0473221cb7a5fe5f58cd1df053bb75",
+    "STATUS.md": "7a4cdb95e5d0e871bd731189e5f3cbfa103dc9cc3e4be438206895732d606a68"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Deterministic nativeRED->GREEN with unchanged manuscript; sequential nextPC11 now unblocked"
+  }
+}

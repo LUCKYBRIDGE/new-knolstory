@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-18",
+  "status": "attempted-incomplete-restored-off",
+  "authorization": "User explicitly approved temporary enable and restore",
+  "observed": "initial-off.txt/enabled-on.txt/restored-off.txt native switch evidence; actual VoiceOver process observed",
+  "limits": "VoiceOver app AX and browser debugger/clipboard timed out; no reliable spoken/caption evidence. No screenreader pass or defect claim. Before export exists but no after export so no roundtrip preservation claim.",
+  "cleanup": "Native off confirmed; own15403tab closed; own15403server PID71190terminated. Existing15401preview left running.",
+  "priority": "VoiceOver is optional verification tool, not product-development prerequisite; target assistive validation remains pre-release task"
+}

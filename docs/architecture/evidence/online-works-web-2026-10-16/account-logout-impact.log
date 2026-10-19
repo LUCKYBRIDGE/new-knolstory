@@ -1,0 +1,38 @@
+
+Running 2 tests using 1 worker
+
+(node:48529) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/account-menu.spec.ts:16:39 › account login return and logout preserve local authored work 390 (9.0s)
+  ✘  2 tests/e2e/account-menu.spec.ts:44:1 › focus refresh during delayed logout cannot retain the old session (1.1s)
+
+
+  1) tests/e2e/account-menu.spec.ts:44:1 › focus refresh during delayed logout cannot retain the old session 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 4
+
+      46 |  await page.route('**/api/v1/me',route=>{meRequests++;return route.fulfill(signedIn?{json:{success:true,data:{accountId:'same-account',csrf:'csrf'}}}:{status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});});
+      47 |  await page.route('**/api/v1/auth/logout',async route=>{await delayed;signedIn=false;await route.fulfill({json:{success:true,data:{loggedOut:true}}});});
+    > 48 |  await page.goto('/?view=library');const menu=await openAccount(page);const before=meRequests;await menu.getByRole('button',{name:'로그아웃',exact:true}).click();await expect(menu.getByRole('button',{name:'로그아웃',exact:true})).toBeDisabled();await page.evaluate(()=>window.dispatchEvent(new Event('focus')));release();await expect(menu.getByText('로그인 전',{exact:true})).toBeVisible();expect(meRequests).toBe(before);
+         |                                                                                                                                                                                                                                                                                                                                                                                                              ^
+      49 | });
+      50 | test('a blocked second writer cannot start login or replace the saved work',async({page,context})=>{
+      51 |  await mockedAccount(page);await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');const before=await authored(page),other=await context.newPage();const calls=await mockedAccount(other);await other.goto('/?view=library');const menu=await openAccount(other);await menu.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(other.getByRole('status').filter({hasText:'로그인 이동을 멈췄어요'})).toBeVisible();expect(calls.filter(path=>path.endsWith('/start'))).toEqual([]);expect(await authored(other)).toEqual(before);await other.close();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-menu.spec.ts:48:398
+
+    Error Context: test-results/account-web/account-menu-focus-refresh-819ab-nnot-retain-the-old-session/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/account-web/account-menu-focus-refresh-819ab-nnot-retain-the-old-session/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/account-web/account-menu-focus-refresh-819ab-nnot-retain-the-old-session/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/account-menu.spec.ts:44:1 › focus refresh during delayed logout cannot retain the old session 
+  1 passed (10.8s)

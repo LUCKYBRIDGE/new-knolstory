@@ -1,0 +1,75 @@
+
+Running 8 tests using 1 worker
+
+(node:81885) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 1365x900 (1.9s)
+  ✓  2 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 820x1180 (1.8s)
+  ✓  3 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 390x844 (1.5s)
+  ✓  4 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 844x390 (1.5s)
+  ✘  5 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740 (2.0m)
+(node:82130) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  6 tests/e2e/library-design-parity.spec.ts:19:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.3s)
+  ✓  7 tests/e2e/library-design-parity.spec.ts:42:1 › layered front, spine and back covers keep direct edits in the draft until apply (1.7s)
+  ✓  8 tests/e2e/online-works.spec.ts:72:1 › deleting the selected local work during online save preparation sends no request (3.4s)
+
+
+  1) tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test ended.
+    Call log:
+      - waiting for getByTestId('library-tools').locator('summary')
+        - locator resolved to <summary>책 찾기·추가</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - element is outside of the viewport
+        - retrying click action
+          - waiting 100ms
+        231 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - element is outside of the viewport
+          - retrying click action
+            - waiting 500ms
+
+
+       at library-entry.ts:30
+
+      28 | export async function openLibraryTools(page:Page){
+      29 |  const tools=page.getByTestId('library-tools');
+    > 30 |  if(await tools.isVisible()&&!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator('summary').click();
+         |                                                                                                                            ^
+      31 | }
+      32 | export async function importShelfFile(page:Page,...args:Parameters<import('@playwright/test').Locator['setInputFiles']>){
+      33 |  await openLibraryTools(page);await page.getByLabel('서재 작품 파일 가져오기',{exact:true}).setInputFiles(...args);await confirmAuthoringImport(page);
+        at openLibraryTools (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-entry.ts:30:124)
+        at fillShelfSearch (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-entry.ts:39:63)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-design-parity.spec.ts:15:2
+
+    Error Context: test-results/accessibility-impact/library-design-parity-lega-79abb-d-focus-browsing-at-320x740/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-impact/library-design-parity-lega-79abb-d-focus-browsing-at-320x740/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-impact/library-design-parity-lega-79abb-d-focus-browsing-at-320x740/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740 
+  7 passed (2.2m)

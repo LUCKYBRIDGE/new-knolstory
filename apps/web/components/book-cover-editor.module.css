@@ -286,3 +286,9 @@
 @media(max-width:720px) {
   .book[data-face=spine], .canvas[data-face=spine] {width:22px;max-width:22px;}
 }
+/* Keep cover art true to its authored design; utility preview surroundings are dark. */
+.dialog .preview { background:var(--story-menu-surface); color:var(--story-menu-ink); }
+.dialog .header,.dialog .footer { background:var(--story-menu-bg); color:var(--story-menu-ink); }
+.dialog .message { color:var(--story-menu-muted); }
+.dialog .fields fieldset { background:var(--story-menu-surface); color:var(--story-menu-ink); }
+.dialog .fields :is(input,select,textarea) { background:var(--story-menu-surface); color:var(--story-menu-ink); }

@@ -4,7 +4,12 @@ export * from './stage-layout';
 export * from './stage-view';
 export * from './authoring';
 export * from './editor-authoring';
+export * from './staging-import';
+export * from './effect-start';
+export * from './audio-start';
+export * from './sound-batch';
 export * from './flow-analysis';
+export * from './upstream-branches';
 
 export type Size = Readonly<{ width: number; height: number }>;
 export type StageViewport = Readonly<{
@@ -83,3 +88,10 @@ export * from './reset-actor-placement';
 export * from "./presentation-scopes";
 
 export * from "./playback-history";
+
+export * from "./manuscript-operations";
+
+export * from './story-scores';
+
+export * from './branch-conditions';
+export * from './branch-condition-references';

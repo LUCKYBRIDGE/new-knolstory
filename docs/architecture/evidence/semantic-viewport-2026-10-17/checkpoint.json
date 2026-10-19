@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-17T04:40:55.889111+00:00",
+  "scope": "PC06 actual400percentChrome clipping reproduced; CSS fix passes host equivalent475x194; actualChrome post-fix blocked",
+  "sourceSha256": {
+    "apps/web/components/story-workspace.module.css": "9ed2f294c7972d97d04bd5df555e156df30cd95883c36a6c238d74d9a5c72206",
+    "tests/e2e/accessibility-semantic-viewport.spec.ts": "c63600c3984a36ae217774475fedf926e8e0ab9643f41a92589ee1c7f6433bff",
+    "playwright.config.ts": "3c6d2a6046e4c9754701f58347bd4245e1754da09ea6bfeeeaee68f17f7262d9",
+    "apps/web/out/index.html": "428648edd53f0472b994df6cd2a0e83674bf41e6b0ed4d5640eaf52b8a1bab11"
+  },
+  "actualRed": "../chrome-native-zoom-2026-10-17/initial-clipping.json and choice-initial-400.png:44pxchoiceinside38.85pxhiddenpanel",
+  "change": "Focused semantic panel overrides prior20dvh max-height with viewport minus104px and overflow:auto. Native graphics/authored content unchanged.",
+  "verification": {
+    "hostPassed": 1,
+    "red": "valid-red.log",
+    "green": "green.log",
+    "build": "build.log",
+    "lint": "lint.log",
+    "artifacts": "green-run",
+    "actualChromePostFix": "NOT VERIFIED: local browser use disabled in Work settings at reload; no fallback UI control attempted."
+  },
+  "setupFailure": "red.log strict savedAt fixture format failure retained separately; valid-red confirmsactualoverflowhidden.",
+  "cleanupLimit": "Chrome lastobserved400percent, nativeZoomTab not explicitly reset/closed because browser access disabled; automatic ephemeral cleanup not confirmed. Dedicated3145server stopped separately.",
+  "remaining": [
+    "ActualChrome400postfixnativechoice/menu/back recheck.",
+    "Restore100percent on owned3145 tab/origin if still present.",
+    "Fullnative/physicalAT/productcompletion remainpending."
+  ]
+}

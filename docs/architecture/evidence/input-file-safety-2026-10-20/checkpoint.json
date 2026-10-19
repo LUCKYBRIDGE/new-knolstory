@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-implementation-and-verification-complete-not-deployed",
+  "sha256": {
+    "apps/web/lib/local-work-file.ts": "10c7a1767614bddae9590874a96189e1e7ded826bd63a656d417d5802c1b2956",
+    "apps/web/lib/local-work-file.test.ts": "bfba417274f8dec420fa8cc9be9dce3b83f99b179aa7ae0176c32609c92a8c7f",
+    "apps/web/components/story-workspace-inspector.tsx": "bf77432c5aea82cd8bb510758524d897f62244f88171744b615949a395e15e04",
+    "apps/web/components/story-workspace.tsx": "248659a139314f213bd4f6ddf95f7f9a20ba5534c024175de428e3f306acaae6",
+    "apps/web/components/story-speaker-controls.tsx": "5ae8942b11ba347b28c1bc8a8e2bae17fe62d677f0f189ac6cf9f571cfaec51f",
+    "tests/e2e/editing-workbench.spec.ts": "49d19ece63a9bd6a513b80991ef49ccfd5ab09f58b1910eb6ce534fe17fe3fee",
+    "tests/e2e/local-work-files.spec.ts": "33f89106be203685fdc26fb42d953b1f7a380d4325036a84e5beabdb28d5bab6"
+  },
+  "limits": [
+    "Browser composition events are modeled; physical Korean keyboards and screen readers were not verified.",
+    "File stream and picker behavior uses a browser API model; not evidence of physical OS disk failure or atomic cross-process exclusion.",
+    "No manuscript schema, native renderer, production service or unanswered policy changed."
+  ],
+  "review": "Independent read-only agent feedback found no blocking defect in these changes; earlier unrelated writer-status behavior was not certified.",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Concrete failing paths reproduced, corrected and focused final-candidate integration passed; original data and prior evidence retained."
+  },
+  "scope": [
+    "After createWritable awaits, stale work navigation cancels stream before new write; cancelled saveAs does not replace verified association.",
+    "Speaker-name and choice-label composition keeps the active input enabled and blocks navigation/nontext structural actions."
+  ],
+  "checks": {
+    "red": "red.log: prior candidate failed the two new browser cases; a late stream wrote after leaving and composition did not protect navigation.",
+    "green": "green.log: 2 passed before speaker-access follow-up.",
+    "finalIntegration": "integrated-ready.log: all 6 focused E2E passed on final build (16.4s), including explicit save/readback/external-edit protection/save-as, delayed picker, late stream, IME, speaker tool and audio/direction file reopen.",
+    "setupFailure": "integrated.log: 6 connection-refused setup failures while local preview was stopped; preserved, then restarted existing static export on loopback15401. Not product failures.",
+    "unitCoverage": "file-unit.log: 19 tests passed, local-work-file module statements/branches/functions/lines100%. Not whole-product coverage.",
+    "build": "build.log passed; final speaker-access follow-up build ../speaker-access-2026-10-20/build.log passed.",
+    "type": "types.log passed; speaker follow-up typecheck recorded separately.",
+    "lint": "../speaker-access-2026-10-20/lint.log passed for affected sources and E2E.",
+    "followUp": "../reload-draft-2026-10-20/final.log: first6focused passed after final wording/source build; later recovery-alert layout change affects blocked state and is separately verified in reload checkpoint. Historical earlier manifests retained."
+  }
+}

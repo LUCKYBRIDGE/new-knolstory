@@ -1,0 +1,17 @@
+{
+  "scope": "External input preparation only; not evidence of actual Excel/Google edits",
+  "instructions": [
+    {
+      "sheet": "연출 효과",
+      "cell": "M3",
+      "from": "review-main-002:start:1",
+      "to": "review-main-002:start:2"
+    },
+    {
+      "sheet": "배경음·주변 소리",
+      "cell": "J3",
+      "from": "review-main-002:start:1",
+      "to": "review-main-002:start:2"
+    }
+  ]
+}

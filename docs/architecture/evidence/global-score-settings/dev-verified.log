@@ -1,0 +1,31 @@
+
+Running 5 tests using 1 worker
+
+(node:50872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/approved-editor.spec.ts:75:1 › adding a score makes optional choice controls available and persists authored effects (1.3m)
+  ✓  2 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 (12.3s)
+  ✓  3 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 768 (12.5s)
+  ✘  4 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 390 (12.5s)
+(node:51162) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 844 (12.9s)
+
+
+  1) [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 390 
+
+    Error: browserContext.close: ENOENT: no such file or directory, open '/Users/wan/ai_dev/apps/new-knolstory/test-results/.playwright-artifacts-0/traces/2ed6539b545ce36b45b9-16b2af3d74acd92f67a1-recording6.trace'
+
+    Error Context: test-results/work-menu-purpose-one-glob-ae937-turns-to-choice-editing-390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/work-menu-purpose-one-glob-ae937-turns-to-choice-editing-390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/work-menu-purpose-one-glob-ae937-turns-to-choice-editing-390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 390 
+  4 passed (2.1m)

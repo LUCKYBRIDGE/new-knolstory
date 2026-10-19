@@ -1,0 +1,92 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-0874ef5109aa Creating 
+ Container knolstory-next-storage-test-runner-run-0874ef5109aa Created 
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+
+ [31m❯[39m documents/trash.integration.ts [2m([22m[2m6 tests[22m[2m | [22m[31m6 failed[39m[2m)[22m[32m 175[2mms[22m[39m
+[31m     [31m×[31m moves between active/trash lists and restores the exact snapshot, identity and content revision[39m[32m 40[2mms[22m[39m
+[31m     [31m×[31m serializes competing commands and rejects stale state/revision and reused command bodies[39m[32m 8[2mms[22m[39m
+[31m     [31m×[31m blocks both new saves and committed save replays while trashed without touching content history[39m[32m 13[2mms[22m[39m
+[31m     [31m×[31m checks ownership and revoked sessions before command receipt replay[39m[32m 6[2mms[22m[39m
+[31m     [31m×[31m rejects malformed input and list filters before any state mutation[39m[32m 4[2mms[22m[39m
+[31m     [31m×[31m rolls back state and command receipt when the session expires before commit[39m[32m 3[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 6 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m documents/trash.integration.ts[2m > [22monline trash preserves the same PostgreSQL document[2m > [22mmoves between active/trash lists and restores the exact snapshot, identity and content revision
+[31m[1mTypeError[22m: service(...).trash is not a function[39m
+[36m [2m❯[22m documents/trash.integration.ts:[2m23:33[22m[39m
+    [90m 21|[39m  it('moves between active/trash lists and restores the exact snapshot,…
+    [90m 22|[39m   [35mconst[39m {user[33m,[39msnapshot[33m,[39mrecord}[33m=[39m[35mawait[39m [34msetup[39m()[33m;[39m[35mconst[39m input[33m=[39m[34mcommand[39m()[33m;[39m
+    [90m 23|[39m   [35mconst[39m deleted[33m=[39m[35mawait[39m [34mservice[39m()[33m.[39m[34mtrash[39m(user[33m,[39mrecord[33m.[39mrecordId[33m,[39minput)[33m;[39m
+    [90m   |[39m                                 [31m^[39m
+    [90m 24|[39m   expect(deleted).toMatchObject({recordId:record.recordId,revision:1,s…
+    [90m 25|[39m   [34mexpect[39m(([35mawait[39m [34mservice[39m()[33m.[39m[34mlist[39m(user))[33m.[39mdocuments)[33m.[39m[34mtoEqual[39m([])[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m documents/trash.integration.ts[2m > [22monline trash preserves the same PostgreSQL document[2m > [22mserializes competing commands and rejects stale state/revision and reused command bodies
+[31m[1mTypeError[22m: service(...).trash is not a function[39m
+[36m [2m❯[22m documents/trash.integration.ts:[2m37:53[22m[39m
+    [90m 35|[39m  it('serializes competing commands and rejects stale state/revision an…
+    [90m 36|[39m   [35mconst[39m {user[33m,[39mrecord}[33m=[39m[35mawait[39m [34msetup[39m()[33m,[39ma[33m=[39m[34mcommand[39m()[33m,[39mb[33m=[39m[34mcommand[39m()[33m;[39m
+    [90m 37|[39m   const results=await Promise.allSettled([service().trash(user,record.…
+    [90m   |[39m                                                     [31m^[39m
+    [90m 38|[39m   expect(results.filter(value=>value.status==='fulfilled')).toHaveLeng…
+    [90m 39|[39m   expect(results.filter(value=>value.status==='rejected')).toMatchObje…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m documents/trash.integration.ts[2m > [22monline trash preserves the same PostgreSQL document[2m > [22mblocks both new saves and committed save replays while trashed without touching content history
+[31m[1mTypeError[22m: service(...).trash is not a function[39m
+[36m [2m❯[22m documents/trash.integration.ts:[2m47:67[22m[39m
+    [90m 45|[39m  it('blocks both new saves and committed save replays while trashed wi…
+    [90m 46|[39m   const {user,record,snapshot}=await setup(),save={payloadVersion:1 as…
+    [90m 47|[39m   await service().save(user,record.recordId,save);await service().tras…
+    [90m   |[39m                                                                   [31m^[39m
+    [90m 48|[39m   await expect(service().save(user,record.recordId,save)).rejects.toMa…
+    [90m 49|[39m   await expect(service().save(user,record.recordId,{...save,expectedRe…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m documents/trash.integration.ts[2m > [22monline trash preserves the same PostgreSQL document[2m > [22mchecks ownership and revoked sessions before command receipt replay
+[31m[1mTypeError[22m: service(...).trash is not a function[39m
+[36m [2m❯[22m documents/trash.integration.ts:[2m55:26[22m[39m
+    [90m 53|[39m  it('checks ownership and revoked sessions before command receipt repl…
+    [90m 54|[39m   const {user,record}=await setup(),other=await owner(),input=command(…
+    [90m 55|[39m   await expect(service().trash(other,record.recordId,input)).rejects.t…
+    [90m   |[39m                          [31m^[39m
+    [90m 56|[39m   [35mawait[39m [34mservice[39m()[33m.[39m[34mtrash[39m(user[33m,[39mrecord[33m.[39mrecordId[33m,[39minput)[33m;[39m
+    [90m 57|[39m   await expect(service().restore(other,record.recordId,command(1,2))).…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m documents/trash.integration.ts[2m > [22monline trash preserves the same PostgreSQL document[2m > [22mrejects malformed input and list filters before any state mutation
+[31m[1mTypeError[22m: service(...).trash is not a function[39m
+[36m [2m❯[22m documents/trash.integration.ts:[2m64:101[22m[39m
+
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m documents/trash.integration.ts[2m > [22monline trash preserves the same PostgreSQL document[2m > [22mrolls back state and command receipt when the session expires before commit
+[31m[1mTypeError[22m: expiring.trash is not a function[39m
+[36m [2m❯[22m documents/trash.integration.ts:[2m70:25[22m[39m
+    [90m 68|[39m  it('rolls back state and command receipt when the session expires bef…
+    [90m 69|[39m   const {user,record}=await setup();let checks=0;const expiring=create…
+    [90m 70|[39m   await expect(expiring.trash(user,record.recordId,input)).rejects.toM…
+    [90m   |[39m                         [31m^[39m
+    [90m 71|[39m   expect((await service().read(user,record.recordId)).stateVersion).to…
+    [90m 72|[39m   expect((await pool.query('SELECT * FROM knolstory_storage.document_s…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m6 failed[39m[22m[90m (6)[39m
+[2m   Start at [22m 14:13:32
+[2m   Duration [22m 2.04s[2m (transform 1.38s, setup 0ms, import 1.79s, tests 175ms, environment 0ms)[22m
+
+

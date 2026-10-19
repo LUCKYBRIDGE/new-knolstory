@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-complete-not-deployed",
+  "sha256": {
+    "apps/web/components/account-menu.tsx": "4a139f6d1c2e592283dad9ab88443d6d2e2ae229142f820d294be23d9dce4ce5",
+    "tests/e2e/account-menu.spec.ts": "7f325c8022c5332e8029f2319a5efcfc07fb3724dee93dd3017da3c851c3dee2"
+  },
+  "limits": [
+    "Local browser/model or pure client tests only; no real Google OAuth, physical OS file dialog/disk failure, production or release verification.",
+    "Original manuscripts, IDs, file schemas and previous evidence preserved; account/online errors do not change retention/sharing policies."
+  ],
+  "checks": {
+    "red": "red.log: prior implementation navigated to obsolete Google flow after same-mounted account change; same-account recheck kept old pending locked.",
+    "browser": "green.log6passed10.7s: same-mountedexplicit/focus/renewedcsrf/anonymous, oldfailure/newpending, delayedunmount. Normalreturn passed sharedcombinedlog.",
+    "intermediate": "../local-file-errors-2026-10-20/combined.log: normal Google return case passed. Newcases navigation assertions passed but preservation assertion found only document/works envelope.savedAt changed through normal hydration; helper now excludes precisely envelope.savedAt and retains all other workspace data. Existing delayed-unmount test used hidden legacy field, now current basic text.",
+    "lint": "lint.log and shared final-lint.log passed before selector/assertion follow-up; final check pending.",
+    "type": "typecheck.log and shared final-types.log passed.",
+    "review": "Independent source security/correctness review no blockers; no server auth behavior changed."
+  }
+}

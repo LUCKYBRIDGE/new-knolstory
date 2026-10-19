@@ -1,0 +1,12 @@
+
+Running 17 tests using 1 worker
+
+(node:55923) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/editing-workbench.spec.ts:50:1 › several cut texts edit directly and companion visibility never edits manuscript data (5.3s)
+  ✓   2 tests/e2e/editing-workbench.spec.ts:67:1 › background workbench updates separate cuts and preserves their text, stage, audio and effects (6.3s)
+  ✓   3 tests/e2e/editing-workbench.spec.ts:78:1 › audio and direction require separate opt-in, persist real cut ranges and survive local-file reopen (4.8s)
+  ✘   4 tests/e2e/editing-workbench.spec.ts:104:1 › character batch view changes placement across cuts without converting left/right speaker roles (50.3s)
+(node:56307) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 tests/e2e/editing-workbench.spec.ts:126:1 › basic editing keeps previous and next cut context beside a clear current editor at desktop and phone widths (2.3s)

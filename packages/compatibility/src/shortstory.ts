@@ -1,4 +1,4 @@
-import { tablePayload, readTablePayload } from './story-table';
+import { tablePayload, readTablePayload, normalizeTableRows } from './story-table';
 import { isCoverDesign, coverDesignAssetReferences, type CoverDesign } from '../../story-domain/src/legacy/cover-design';
 import { STORY_ASSETS } from '../../story-domain/src/legacy/story-assets';
 /** Static picture book format from fixed legacy baseline 18da4fc, refined strict keys. */
@@ -40,7 +40,8 @@ export function exportShortStoryTable(project:ShortStoryProject):string[][] {
   const checked=parseShortStory(project);
   return [...tablePayload('shortstory',checked),['project',checked.id,'','',checked.title,checked.authorDisplayName,checked.description],...checked.pages.map(page=>['page',page.id,'',String(page.order),page.title,'',page.text,page.backgroundId,page.leftAssetId,page.rightAssetId])];
 }
-export function importShortStoryTable(rows:readonly(readonly string[])[]):ShortStoryProject {
+export function importShortStoryTable(input:readonly(readonly string[])[]):ShortStoryProject {
+  const rows=normalizeTableRows(input);
   const original=parseShortStory(readTablePayload(rows,'shortstory'));
   if(rows.slice(2).some(row=>row.length&&(!['payload','project','page'].includes(row[0])||row[0]==='project'&&(row.slice(7).some(Boolean)||row[2]||row[3])||row[0]==='page'&&(row.slice(10).some(Boolean)||row[2]||row[5]))))throw new Error('지원하지 않는 숏스토리 표 행·셀입니다. 원본을 버리지 않고 가져오기를 중단했어요.');
   const projectRows=rows.filter(row=>row[0]==='project');

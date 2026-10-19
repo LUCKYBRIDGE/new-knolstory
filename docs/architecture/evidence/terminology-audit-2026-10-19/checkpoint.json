@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-19",
+  "status": "focused-source-and-ui-terminology-audit-complete-not-deployed",
+  "classification": [
+    "samefunction synonym drift corrected",
+    "distinct semantics clarified, no behavioral merge",
+    "unused historical components vs active UI checked",
+    "search aliases and historical evidence retained"
+  ],
+  "findings": [
+    "backgroundcontain 全体image label aligned",
+    "library readingrecords -> readinglocation/savedprogress",
+    "editorpath does not change readerprogress",
+    "recovery messages/filter use 이전 원고",
+    "busy message no longer claims loading for create/export",
+    "speakerrole vs actual position clarified",
+    "shared flag incoming>=2 described without inferring reader convergence",
+    "readerautosave vs author temporaryretention distinct",
+    "fileimport vs readerload vs copyrestore distinct",
+    "EditorViewSwitch/ChapterWriter no usages in current apps/web; preserved without restoring oldUI"
+  ],
+  "checks": {
+    "unit": "unit-final.log9passed; initial unit.log alias search expectation corrected to include new role term",
+    "browser": "browser.log4focused checks: background preservation, connection information fileparity, glossaryterms and earliermanuscript creation without workspace mutation",
+    "build": "build.log passed",
+    "types": "types.log passed",
+    "lint": "lint.log clean",
+    "docs": "docs.log link check"
+  },
+  "limits": [
+    "Focused local Chromium not fullsuite/physicaldevice/accessibility or wholeproduct completion",
+    "No domain/schema/sharedflag algorithm changes; statement based on existing incomingcount",
+    "Lowlevel exception details/externalworkbook cells not exhaustively rewritten",
+    "No deployment; prior evidence unchanged"
+  ],
+  "sha256": {
+    "apps/web/components/story-workspace-inspector.tsx": "fdfbc58406fc3ab50f8825321f490774a7e712b5401b02fcacbf12cfd8287687",
+    "apps/web/components/story-flow-context.tsx": "3572e7ebc40d46888f026160703716081acc9a9350dd69ec13e167718cdbb490",
+    "apps/web/components/editor-flow-context.tsx": "f09b2e113c1532b10bf4b1fa92cf608aafd26d2eecb4f9445cf73308660e1f83",
+    "apps/web/components/library-book-focus.tsx": "afa763be5172865c63bd0541c9b55f5bf888b728427e99a6b0d927e305a8f59e",
+    "apps/web/components/story-recovery-panel.tsx": "2026d54b6de880e28d55815e3ca3345d3024356b2a0ae278afb4e7b537ddc413",
+    "apps/web/components/story-workspace.tsx": "50e8d553adffeb218f06b363c4b3545d16e01b1c6131cbdec967af28d1e3793f",
+    "apps/web/lib/editor-terms.ts": "1ca37e4937d58ced0797730deff3a92664a4b5be36cc7f5eeecf0b958203b38d",
+    "apps/web/lib/editor-terms.test.ts": "3d42e4f32f69ea3e3184c1a9105c076e8abfb479591b5dae4114809929745656",
+    "tests/e2e/editor-term-guide.spec.ts": "95e63bc4e21c5cd233fa1ca32072a49adb4a87fa8b2e98832f3b6cc4aea74f5a",
+    "docs/architecture/editor-terminology-and-time.md": "f1c4ac317a05bd06cae1b972ea995ca0e1822e59067c9f62174dfc9bcf49ccb8",
+    "docs/architecture/product-completion-plan.md": "1444573dc14ce6b7a97c18369b1205d12d7135f242a62d8d7abc28d5f7383951",
+    ".agents/skills/design-system/SKILL.md": "0aba072e3e4384e549ff0c33111f1140a63729d3a018932284c38780e43be4bd"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Runtime source/usage checked before naming; focused data preservation tests; exhaustive scope not claimed"
+  }
+}

@@ -5,8 +5,8 @@ import { resolveAsset } from '@knolstory/asset-registry';
 import type { CoverBox, CoverTextElement, CoverImageElement, StoryProject } from '@knolstory/story-domain';
 import { COVER_BAND, COVER_FONTS, coverElementBox, coverElementText, coverImageGeometry, resolveBookCover, type CoverFaceId } from '../lib/book-cover';
 import styles from './book-cover.module.css';
-export type BookEdition = 'original' | 'knolstory' | 'own' | 'imported';
-export const BOOK_EDITION_LABELS:Record<BookEdition,string> = {original:'원작',knolstory:'놀스토리',own:'내 작품',imported:'가져온 작품'};
+import {BOOK_EDITION_LABELS,type BookEdition} from '../lib/shelf-cover-label';
+export {BOOK_EDITION_LABELS,type BookEdition} from '../lib/shelf-cover-label';
 function BookFinish() {
   return <><span className={styles.pageEdges} aria-hidden="true"/><span className={styles.binding} aria-hidden="true"/><span className={styles.surfaceFinish} aria-hidden="true"/></>;
 }

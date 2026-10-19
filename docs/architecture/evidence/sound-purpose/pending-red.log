@@ -1,0 +1,66 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:63047) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/1mbkvlzvlpwye.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/38j1s776v0hr1.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/3g1qpyc23t108.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:25] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:26] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:31] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:31] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:31] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:31] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:31] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:03:31] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/sound-pending.spec.ts:3:36 › pending local registration preserves current edit scope false (8.5s)
+
+
+  1) [host] › tests/e2e/sound-pending.spec.ts:3:36 › pending local registration preserves current edit scope false 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByLabel('컷 주변 소리 동작', { exact: true })
+    Expected: "play"
+    Received: "default"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('컷 주변 소리 동작', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('컷 주변 소리 동작', { exact: true })
+        12 × locator resolved to <select aria-label="컷 주변 소리 동작">…</select>
+           - unexpected value "default"
+
+
+      5 |  if(leaveCut){const position=page.getByLabel('현재 장과 컷 이동');await position.selectOption((await position.locator('option').nth(1).getAttribute('value'))!);await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('default');}else{await page.getByLabel('조정할 소리',{exact:true}).selectOption('ambience');await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');}
+      6 |  await page.evaluate(()=>(window as unknown as {releasePendingAudio:()=>void}).releasePendingAudio());await expect.poll(()=>page.evaluate(async()=>{const databases=await indexedDB.databases();return databases.some(item=>item.name?.includes('audio'));})).toBe(true);
+    > 7 |  if(leaveCut){await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('default');}else{await page.getByLabel('조정할 소리',{exact:true}).selectOption('music');await expect(page.getByLabel('컷 배경음',{exact:true})).toHaveValue(/^audio:custom:/);await page.getByLabel('조정할 소리',{exact:true}).selectOption('ambience');await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('play');}
+        |                                                                                                                                                                                                                                                                                                                                                                                       ^
+      8 | });
+      9 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sound-pending.spec.ts:7:375
+
+    Error Context: test-results/sound-pending-pending-loca-32b4a-es-current-edit-scope-false-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/sound-pending.spec.ts:3:36 › pending local registration preserves current edit scope false 

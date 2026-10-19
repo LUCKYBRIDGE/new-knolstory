@@ -4,6 +4,8 @@
 .management { min-width: 0; }
 .management > summary { display: none; }
 .editorPanel { min-width: 0; }
+.editorModes{display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0;margin-bottom:8px}
+.editorModes>[role=group]{margin-bottom:0}
 .editorPanel > label { display: block; padding: 8px; font-size: 13px; }
 @media (min-width:1101px) { .writing .grid { grid-template-columns:190px minmax(0,.9fr) minmax(380px,1.1fr); } .writing .editorPanel { max-height:72dvh; overflow:auto; } }
 @media (min-width:1101px) { .writing .viewport { height:clamp(200px,32dvh,420px); } }
@@ -14,9 +16,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 8px 12px;
   flex-wrap: wrap;
-  padding: 16px 24px;
+  padding: 8px 16px;
   background: var(--white);
   border-bottom: 1px solid var(--line);
 }
@@ -71,7 +73,7 @@
   justify-content: space-between;
   gap: 16px;
   align-items: center;
-  padding: 20px 24px;
+  padding: 10px 16px;
 }
 .context p {
   margin: 4px 0;
@@ -79,8 +81,8 @@
   font-size: 13px;
 }
 .flowContext {
-  margin: 0 24px 16px;
-  padding: 12px 16px;
+  margin: 0 16px 10px;
+  padding: 8px 12px;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius-panel);
@@ -94,8 +96,8 @@
 .grid {
   display: grid;
   grid-template-columns: 210px minmax(0, 1fr) 310px;
-  gap: 16px;
-  padding: 0 24px 24px;
+  gap: 10px;
+  padding: 0 16px 16px;
   align-items: start;
 }
 .closed {
@@ -111,7 +113,7 @@
 }
 .cuts,
 .inspector {
-  padding: 16px;
+  padding: 12px;
 }
 .cuts {
   max-height: 72dvh;
@@ -144,7 +146,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 12px 16px;
+  padding: 8px 12px;
 }
 .viewport {
   position: relative;
@@ -186,7 +188,7 @@
 .inspector fieldset {
   border: 0;
   padding: 0;
-  margin: 20px 0 0;
+  margin: 14px 0 0;
 }
 .inspector .inputBoundary { margin:0; padding:0; border:0; min-width:0; }
 .inspector legend {
@@ -246,10 +248,10 @@
   }
 }
 .compact { height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
-.compact .header { flex: 0 0 auto; padding: 4px 12px; }
+.compact .header { position: relative; flex: 0 0 auto; padding: 4px 12px; }
 .compact .brand { font-size: 20px; }
 .compact .management > summary { display: block; min-height: 44px; padding: 10px; cursor: pointer; }
-.compact .management[open] > .controls { position: absolute; top: 52px; left: 8px; right: 8px; z-index: 5; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-panel); padding: 12px; max-height: 70dvh; overflow: auto; box-shadow: 0 8px 24px #18333122; }
+.compact .management[open] > .controls { position: absolute; top: 100%; left: 8px; right: 8px; z-index: 5; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-panel); padding: 12px; max-height: 70dvh; overflow: auto; box-shadow: 0 8px 24px #18333122; }
 .compact .context { display: block; padding: 4px 12px; flex: 0 0 auto; }
 .compact .context h1 { font-size: 17px; }
 .compact .context > .controls { flex-wrap: nowrap; overflow-x: auto; width: 100%; padding: 2px 0; }
@@ -272,7 +274,7 @@
 .compact .inspector h2 { margin: 0; font-size: 15px; }
 .compact .inspector [hidden] { display: none; }
 .compact .inspector fieldset { margin-top: 8px; }
-.compact .stage > details.semantic:not([open]) { display: none; }
+.compact.playMode .stage > details.semantic:not([open]) { display: none; }
 .compact .stage > .semantic { max-height: 20dvh; overflow: auto; }
 .compact .error { flex: 0 0 auto; margin: 4px 8px; padding: 6px; max-height: 12dvh; overflow: auto; }
 @media (max-width: 1000px) and (max-height: 500px) {
@@ -345,7 +347,7 @@
   /* A readable portrait stage must not collapse the active editor to zero height. */
   .compact:not(.playMode) { height:auto;min-height:100dvh;overflow:visible; }
   .compact:not(.playMode) .grid { flex:0 0 auto; }
-  .compact:not(.playMode) .editorPanel, .compact:not(.playMode) .cuts { flex:0 0 auto;min-height:240px;max-height:60dvh; }
+  .compact:not(.playMode) .editorPanel, .compact:not(.playMode) .cuts { flex:0 0 auto;min-height:240px;max-height:52dvh; }
 }
 @media (max-width:1000px) and (max-height:500px) {
   .compact.playMode .grid { display:flex;flex-direction:column; }
@@ -395,3 +397,455 @@
 .shell[data-parked="true"]{position:fixed;left:-20000px;top:0;width:1280px;height:900px;visibility:hidden;pointer-events:none;overflow:hidden;}
 .preparationShell{min-height:100dvh;}
 .playMode .header>.controls{display:none;}
+
+/* Editor framing stays compact; authored titles and controls keep their full text. */
+.header > *, .context > *, .controls > *, .toolbar > *, .navigation > * { min-width: 0; }
+.header strong, .context h1, .context p, .toolbar, .navigation { overflow-wrap: anywhere; }
+.shell button, .preparationShell button { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.controls { max-width: 100%; }
+.shell:not(.playMode) .controls button { padding-inline: 10px; font-size: 14px; }
+.shell:not(.playMode) .context > div:first-child { flex: 1 1 220px; }
+.shell:not(.playMode) .context > .controls { flex: 1 1 360px; justify-content: flex-end; }
+.preparationShell > .header > strong { flex: 1 1 240px; }
+@media(max-width:720px) {
+ .shell:not(.playMode) .context > .controls { justify-content: flex-start; }
+}
+
+/* Author-defined plot state remains inspectable on compact readers. */
+.compact .stage > details.scoreSummary:not([open]) { display:block; }
+.scoreSummary summary { min-height:44px; display:flex;align-items:center;cursor:pointer; }
+
+/* Approved final: manuscript first, one optional tool, same persistent stage. */
+.shell:not(.playMode) .grid { grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:12px; }
+.shell:not(.playMode) .mobileTools { grid-column:1/-1;display:flex;gap:6px;overflow-x:auto;padding:0 0 4px; }
+.mobileTools button { flex-shrink:0;min-height:44px; }
+.mobileTools button[aria-pressed="true"] { background:var(--mint);border-color:var(--mint-strong); }
+.shell:not(.playMode) .cuts { grid-column:1/-1;max-height:38dvh;overflow:auto; }
+.shell:not(.playMode) .editorPanel { grid-column:2;min-width:0; }
+.shell:not(.playMode) .stage { grid-column:1;min-width:0; }
+.shell:not(.playMode) .management > summary { display:block;min-height:44px;padding:10px;cursor:pointer; }
+.shell:not(.playMode) .management { position:relative; }
+.shell:not(.playMode) .management[open] > .controls { position:absolute;right:0;top:100%;z-index:20;width:min(640px,calc(100vw - 32px));padding:12px;background:var(--white);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #18333122;max-height:70dvh;overflow:auto; }
+.viewTools { position:relative; }
+.viewTools > summary, .speakerDetails > summary { min-height:44px;padding:10px;cursor:pointer;font-size:13px; }
+.viewTools[open] > .controls { position:absolute;right:0;top:100%;z-index:15;background:var(--white);padding:12px;width:min(460px,calc(100vw - 32px));border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px #18333122; }
+.cutPosition { display:flex;align-items:center;gap:6px;font-size:12px; }
+.cutPosition select { min-width:0;max-width:240px; }
+.adjacentCut { padding:8px 12px;margin:6px 0;color:var(--ink-soft);font-size:12px;background:#eee5d566;border-radius:12px;min-width:0; }
+.adjacentCut > button { text-align:left;font-size:12px;background:transparent;border:0;padding:0;min-height:44px; }
+.adjacentCut > span { display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6; }
+.adjacentCut details summary { min-height:36px;padding:8px 0;cursor:pointer; }
+.adjacentCut details p { white-space:pre-wrap;overflow-wrap:anywhere; }
+.editorPanel > .inspector { background:var(--white);border:1px solid var(--line);border-radius:20px;padding:16px; }
+.editorPanel > .inspector h2 { font-size:16px;margin:0; }
+.editorPanel > .inspector textarea { min-height:180px;line-height:1.8;font-size:17px;background:#fffdf8;border-radius:14px; }
+.additionalTool { border-top:1px solid var(--line);margin-top:12px;padding-top:8px; }
+.additionalTool > .inspector { padding:12px;background:var(--paper);border-radius:12px;width:100%; }
+.choiceCard { padding:12px;margin:10px 0;background:var(--white);border:1px solid var(--line);border-radius:12px; }
+.choiceCard details summary { min-height:44px;padding:10px 0;cursor:pointer; }
+.inlineSettingAction { display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--paper); }
+.inlineSettingAction p { flex:1 1 180px;margin:0; }
+.shell:not(.playMode) .toolbar > small { display:none; }
+.shell:not(.playMode) .footer { padding-bottom:8px; }
+@media(max-width:720px) {
+ .compact:not(.playMode) .grid { display:flex;flex-direction:column; }
+ .compact:not(.playMode) .mobileTools { order:1; }
+ .compact:not(.playMode) .stage { order:0; }
+ .compact:not(.playMode) .editorPanel { order:2;max-height:none;overflow:visible; }
+ .compact:not(.playMode) .viewport { height:clamp(220px,34dvh,380px); }
+ .compact:not(.playMode) .management[open] > .controls { left:auto;right:0; }
+ .compact:not(.playMode) .context > .controls { flex-wrap:wrap;overflow:visible; }
+ .cutPosition { flex:1; }
+ .cutPosition select { flex:1;max-width:100%; }
+ .compact:not(.playMode) .editorPanel > .inspector { padding:12px; }
+}
+@media(max-width:1000px) {
+ .shell:not(.playMode)[data-keyboard-occluded="true"] .viewport { height:96px;min-height:0; }
+ .shell:not(.playMode)[data-keyboard-occluded="true"] .stage .toolbar,
+ .shell:not(.playMode)[data-keyboard-occluded="true"] .stage .status { display:none; }
+ .shell:not(.playMode)[data-keyboard-occluded="true"] .editorPanel textarea { min-height:120px; }
+}
+
+/* Approved reader: full stage, native bottom-docked dialogue, host controls only. */
+.shell.playMode{height:100dvh;min-height:0;overflow:hidden;}
+.playMode .context,.playMode .toolbar,.playMode .navigation{display:none;}
+.playMode .grid,.compact.playMode .grid{display:block;padding:0;height:100%;}
+.playMode .stage,.compact.playMode .stage{height:100%;display:block;overflow:hidden;}
+.playMode .viewport.playingViewport,.compact.playMode .viewport.playingViewport{height:100dvh;min-height:0;max-height:none;}
+.readerContext{position:absolute;left:12px;right:70px;top:16px;z-index:6;color:white;text-shadow:0 1px 4px #183331;font-size:12px;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.playMode .stage>.semantic,.playMode .stage>.status{position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip-path:inset(50%);}
+.playMode .stage>.semantic:focus-within{width:auto;height:auto;max-height:calc(100dvh - 104px);overflow:auto;clip-path:none;left:12px;right:12px;bottom:80px;padding:12px;z-index:10;background:var(--paper);border-radius:12px;}
+.shell [hidden] { display:none !important; }
+.editorPanel > .inspector [data-inspector-section="text"] { display:grid;grid-template-columns:1fr 1fr;gap:0 8px; }
+.editorPanel > .inspector [data-inspector-section="text"] > details,
+.editorPanel > .inspector [data-inspector-section="text"] > [data-primary-text],
+.editorPanel > .inspector [data-inspector-section="text"] > [data-speaker-position] { grid-column:1/-1; }
+.editorPanel > .inspector [data-cut-notes] textarea { min-height:72px;font-size:14px;line-height:1.6; }
+@media(max-width:720px) {
+ .compact:not(.playMode) .header { display:flex;align-items:center;gap:4px;padding:4px 10px; }
+ .compact:not(.playMode) .header > .controls { width:auto;gap:4px; }
+ .compact:not(.playMode) .header button { font-size:12px;padding:6px; }
+ .compact:not(.playMode) .brand { font-size:17px; }
+ .compact:not(.playMode) .management > summary { font-size:12px;padding:8px; }
+ .compact:not(.playMode) .toolbar { flex-wrap:wrap;padding:4px 8px; }
+ .compact:not(.playMode) .toolbar > strong { display:none; }
+ .compact:not(.playMode) .toolbar > label { flex:1;min-width:0;display:flex;align-items:center;gap:4px;font-size:12px; }
+ .compact:not(.playMode) .toolbar select { width:auto;min-width:0;max-width:160px; }
+ .compact:not(.playMode) .toolbar > button { font-size:12px;padding:4px 8px; }
+ .compact:not(.playMode) .viewport { height:clamp(180px,27dvh,300px); }
+}
+.shell.playMode>.header{display:none;}
+.playMode .stage,.compact.playMode .stage{border:0;border-radius:0;}
+
+.playMode>.error{position:absolute;top:58px;left:12px;right:12px;z-index:20;margin:0;background:var(--paper);max-height:30dvh;overflow:auto;}
+
+/* Scroll only the open settings menu when the screen is short. */
+.viewTools[open]>.controls{max-height:calc(100dvh - 140px);overflow:auto;}
+/* Remove inherited landscape grid row spans: tool row and stage must not share a cell. */
+.shell:not(.playMode) .grid{grid-template-rows:auto;align-items:start;}
+.shell:not(.playMode) .mobileTools,.shell:not(.playMode) .stage,.shell:not(.playMode) .editorPanel{grid-row:auto;}
+
+
+.shell:not(.playMode) .grid.closed{grid-template-columns:minmax(0,1fr);}
+/* Compact editing chrome; reading and manuscript typography retain their own sizes. */
+.shell:not(.playMode){--chrome-control-height:32px}
+.shell:not(.playMode)>.header{justify-content:flex-start;gap:4px 8px;padding:4px 10px;min-height:40px}
+.shell:not(.playMode) .brand{font-size:16px;line-height:1.4;white-space:nowrap}
+.shell:not(.playMode) .header>.controls{gap:4px;flex:none}
+.shell:not(.playMode) .header>.context{display:contents}
+.shell:not(.playMode) .context>div:first-child{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;flex:1 1 160px}
+.shell:not(.playMode) .context h1{font-size:14px;line-height:1.4;margin:0;max-width:30ch}
+.shell:not(.playMode) .context p{margin:0;font-size:11px;line-height:1.4}
+.shell:not(.playMode) .context>.controls{flex:0 1 auto;gap:4px;justify-content:flex-start;overflow:visible;max-width:100%}
+.shell:not(.playMode) .header>.management{margin-left:auto}
+.shell:not(.playMode) button:not(.handle),.shell:not(.playMode) summary{border:1px solid var(--line);border-radius:8px;background-color:var(--white)}
+.shell:not(.playMode) button[aria-pressed=true]{border-color:var(--mint-strong);background-color:var(--mint)}
+.shell:not(.playMode) summary{min-height:32px;padding:6px 8px;font-size:12px;line-height:1.5;cursor:pointer}
+.shell:not(.playMode) details[open]>summary{border-color:var(--mint-strong);background-color:var(--paper)}
+.shell:not(.playMode) .header button,.shell:not(.playMode) .header summary,.shell:not(.playMode) .header select{min-height:var(--chrome-control-height);font-size:12px;padding:4px 8px;line-height:1.5}
+.shell:not(.playMode) .header .management>summary,.shell:not(.playMode) .header .viewTools>summary{display:flex;align-items:center;list-style:none;gap:4px}
+.shell:not(.playMode) .header summary::after{content:'▾';font-size:10px}
+.shell:not(.playMode) .header details[open]>summary::after{content:'▴'}
+.shell:not(.playMode) .cutPosition{flex:0 1 auto}
+.shell:not(.playMode) .cutPosition select{width:clamp(160px,17vw,240px);max-width:100%;min-width:0}
+.shell:not(.playMode) .mobileTools{gap:4px;flex-wrap:wrap;overflow:visible;padding:4px 0;order:0}
+.shell:not(.playMode) .mobileTools button{min-height:var(--chrome-control-height);font-size:12px;padding:4px 6px;line-height:1.5;min-width:32px}
+.shell:not(.playMode) .toolbar{padding:4px 6px;gap:4px;font-size:12px}
+.shell:not(.playMode) .toolbar button,.shell:not(.playMode) .toolbar select{min-height:var(--chrome-control-height);font-size:12px;padding:4px 8px}
+.shell:not(.playMode) .toolbar strong{font-size:12px}
+.shell:not(.playMode) .toolbar>label{display:flex;align-items:center;gap:4px;font-size:12px;min-width:0;margin:0}
+.shell:not(.playMode) .toolbar select{width:auto;min-width:0;max-width:160px;margin:0}
+.shell:not(.playMode) .header .cutPosition{margin:0}
+.shell:not(.playMode) .header select{margin:0}
+.cutPositionLabel{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);padding:0;margin:0}
+.shell:not(.playMode) .context>.controls{padding:0}
+.shell:not(.playMode) .mobileTools{padding:2px 0}
+.shell:not(.playMode) .adjacentCut>button{padding:4px 8px;min-height:32px}
+@media(pointer:coarse),(max-width:720px){
+ .shell:not(.playMode){--chrome-control-height:44px}
+ .shell:not(.playMode) summary,.shell:not(.playMode) .adjacentCut>button{min-height:44px}
+ .shell:not(.playMode) .mobileTools button{min-width:44px}
+ .shell:not(.playMode) .context>div:first-child{flex-basis:100%;gap:4px 8px}
+ .shell:not(.playMode) .context>.controls{flex:1 1 240px;flex-wrap:wrap}
+ .shell:not(.playMode) .cutPosition{flex:1 1 140px}
+ .shell:not(.playMode) .cutPosition select{width:100%}
+}
+@media(max-width:1000px) and (max-height:500px){
+ .compact:not(.playMode){height:auto;min-height:100dvh;overflow:visible;}
+ .compact:not(.playMode) .grid{height:auto;flex:0 0 auto;}
+ .compact:not(.playMode) .mobileTools{order:0;}
+ .compact:not(.playMode) .stage,.compact:not(.playMode) .editorPanel{order:1;height:auto;max-height:none;}
+}
+
+.editorModes{display:block;margin:4px 0;min-width:0}
+.editorModes>summary{display:inline-flex;align-items:center;gap:6px;cursor:pointer;border:1px solid var(--line)}
+.editorModes>summary::before,.extraTools>summary::before{content:'▸';font-size:11px}
+.editorModes[open]>summary::before,.extraTools[open]>summary::before{content:'▾'}
+.editorModes[open]{padding:6px;border:1px solid var(--line);border-radius:8px}
+.editorModes>[role=group]{margin:6px 0}
+.extraTools{position:relative;min-width:0}
+.extraTools>summary{display:flex;gap:6px;align-items:center;cursor:pointer}
+.extraTools>div{position:absolute;z-index:10;left:0;right:auto;top:calc(100% + 4px);width:min(260px,calc(100vw - 180px));padding:8px;background:var(--white);border:1px solid var(--line);border-radius:8px;box-shadow:0 4px 16px #18333122}
+/* Writing-focus pass: keep the default editor quiet and reserve size for the manuscript. */
+.shell:not(.playMode){--chrome-control-height:32px;--chrome-font-size:12px}
+.shell:not(.playMode)>.header{gap:4px 6px;padding:4px 10px;min-height:36px}
+.shell:not(.playMode) .controls{gap:4px}
+.shell:not(.playMode) :is(button,summary){min-height:var(--chrome-control-height);font-size:var(--chrome-font-size);line-height:1.35;padding:4px 8px;border-radius:8px}
+.shell:not(.playMode) :is(input:not([type=checkbox]):not([type=range]),select){min-height:var(--chrome-control-height);font-size:13px;line-height:1.35;padding:4px 8px;margin:2px 0 5px;border-radius:8px}
+.shell:not(.playMode) .context h1{font-size:13px;line-height:1.35;max-width:24ch}
+.shell:not(.playMode) .context p{font-size:11px;line-height:1.35}
+.shell:not(.playMode) .header :is(button,summary,select){min-height:30px;padding:3px 7px;font-size:12px}
+.shell:not(.playMode) .header .management>summary,.shell:not(.playMode) .header .viewTools>summary{gap:3px}
+.shell:not(.playMode) .grid{gap:8px;padding:0 10px 10px;grid-template-columns:minmax(0,1.12fr) minmax(310px,.88fr)}
+.shell:not(.playMode) .mobileTools{gap:4px;padding:2px 0}
+.shell:not(.playMode) .mobileTools :is(button,summary){min-height:30px;padding:4px 7px;font-size:12px}
+.shell:not(.playMode) .toolbar{padding:3px 6px;gap:4px}
+.shell:not(.playMode) .toolbar :is(button,select){min-height:30px;padding:3px 7px;font-size:12px}
+.shell:not(.playMode) .editorPanel{font-size:13px}
+.shell:not(.playMode) .editorPanel>.inspector{border-radius:12px;padding:9px}
+.shell:not(.playMode) .editorPanel>.inspector h2{font-size:14px;margin:0 0 4px}
+.shell:not(.playMode) .inspector label{margin:3px 0;font-size:12px}
+.shell:not(.playMode) .inspector textarea{font-size:16px;line-height:1.65;padding:8px;min-height:150px}
+.shell:not(.playMode) .editorPanel>.inspector [data-primary-text] textarea{min-height:170px}
+.shell:not(.playMode) .editorPanel>.inspector [data-cut-notes] textarea{min-height:68px;font-size:13px}
+.shell:not(.playMode) .editorModes{margin:2px 0 4px}
+.shell:not(.playMode) .editorModes[open]{padding:5px}
+.shell:not(.playMode) .editorModes>[role=group]{margin:4px 0}
+.shell:not(.playMode) .adjacentCut{display:grid;gap:2px;margin:3px 0;padding:6px 8px;border-radius:8px;background:#eee5d555}
+.shell:not(.playMode) .adjacentCut>button{justify-self:start;min-height:28px;padding:2px 7px;font-size:12px;border:1px solid var(--line);background:var(--white);margin:0}
+.shell:not(.playMode) .adjacentCut>span{font-size:12px;line-height:1.45;-webkit-line-clamp:2}
+.shell:not(.playMode) .adjacentCut>strong{font-size:12px;line-height:1.4;color:var(--ink)}
+.shell:not(.playMode) .additionalTool{margin:4px 0 6px;padding:6px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.shell:not(.playMode) .additionalTool>.inspector{padding:8px;border-radius:8px;background:var(--white)}
+.shell:not(.playMode) .extraTools>summary{display:inline-flex}
+.shell:not(.playMode) .extraTools>div{width:min(236px,calc(100vw - 180px));padding:6px}
+@media(pointer:coarse),(max-width:720px){
+ .shell:not(.playMode){--chrome-control-height:44px;--chrome-font-size:13px}
+ .shell:not(.playMode) :is(button,summary){min-height:44px;padding:6px 10px}
+ .shell:not(.playMode) :is(input:not([type=checkbox]):not([type=range]),select){min-height:44px;font-size:16px}
+ .shell:not(.playMode) .header :is(button,summary,select),.shell:not(.playMode) .mobileTools :is(button,summary),.shell:not(.playMode) .toolbar :is(button,select){min-height:44px;padding:6px 9px;font-size:13px}
+ .shell:not(.playMode) .grid{padding:0 8px 10px}
+ .shell:not(.playMode) .adjacentCut>button{min-height:44px}
+ .compact:not(.playMode) .toolbar{display:flex}
+}
+.shell:not(.playMode) .speakerDetails>summary{width:fit-content;max-width:100%}
+
+@media(max-width:720px){.compact:not(.playMode) .stage{display:flex;flex-direction:column}.compact:not(.playMode) .toolbar{order:2}.compact:not(.playMode) .status{order:1}}
+.shell:not(.playMode) .editorPanel>.editorModes:not([open]),.shell:not(.playMode) .editorPanel>[data-related-memos]:not([open]){display:inline-block;vertical-align:top;margin:2px 4px 4px 0}
+.shell:not(.playMode) .editorPanel>.editorModes[open]{display:block}
+.workSettings{display:flex;gap:4px;flex-wrap:wrap;width:100%;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.shell:not(.playMode) .management[open]>.controls{width:min(440px,calc(100vw - 24px));max-height:75dvh;overflow:auto;padding:8px;align-items:flex-start}
+.shell:not(.playMode) .management>.controls>details{width:100%}
+.preparationShell>.header{padding:5px 10px;gap:4px 8px;font-size:13px}
+.preparationShell>.header button{min-height:32px;padding:5px 9px;font-size:12px;border:1px solid var(--line);border-radius:8px}
+@media(pointer:coarse),(max-width:720px){.preparationShell>.header button{min-height:44px;font-size:13px}}
+/* Popovers size against the viewport, not their narrow disclosure trigger. */
+.shell:not(.playMode) .management[open]>.controls{left:0;right:auto;max-width:calc(100vw - 24px)}
+.shell:not(.playMode) .viewTools[open]>.controls{left:auto;right:0;max-width:calc(100vw - 24px)}
+@media(max-width:720px){.shell:not(.playMode) .management[open]>.controls{position:fixed;left:12px;right:12px;top:var(--work-menu-top,52px);width:auto;max-width:none}}
+
+@media(max-width:1000px){.shell:not(.playMode) .viewTools[open]>.controls{position:fixed;left:12px;right:12px;top:var(--view-menu-top,100px);width:auto;max-width:none;max-height:calc(100dvh - var(--view-menu-top,100px) - 12px)}}
+.shell:not(.playMode) .import{min-height:var(--chrome-control-height);font-size:var(--chrome-font-size);line-height:1.35;padding:4px 8px;border-radius:8px}
+.shell:not(.playMode) .inspector .inputBoundary,.shell:not(.playMode) .inspector [data-inspector-section=presentation]{margin:0;padding:0}
+.shell:not(.playMode) .inspector [data-inspector-section=sound],.shell:not(.playMode) .inspector [data-inspector-section=sound]>fieldset{margin:0;padding:0}
+
+/* Purpose groups remain directly available inside the single work menu. */
+.workMenuGroup{display:flex;flex-wrap:wrap;align-items:center;gap:4px;width:100%;min-width:0}
+.workMenuGroup+.workMenuGroup{border-top:1px solid var(--line);padding-top:6px}
+.workMenuHeading{flex-basis:100%;font-size:var(--chrome-font-size,13px);font-weight:700;line-height:1.4}
+.workMenuHint{flex-basis:100%;font-size:12px;line-height:1.45;color:var(--muted);overflow-wrap:anywhere}
+.workMenuGroup>details{width:100%;min-width:0}
+
+/* Letterbox space is outside the two fixed story formats. */
+.playMode .viewport.playingViewport{background:#27322e;}
+
+/* Reading fills the measured visible rectangle; fitStage contains the fixed ratio. */
+.playMode .viewport.playingViewport,.compact.playMode .viewport.playingViewport{height:100%;min-height:0;}
+
+/* Multi-cut workspaces retain the one native current-scene preview. */
+.workbenchGrid, .compact .workbenchGrid, .writing .workbenchGrid { display:flex; flex-direction:column; align-items:stretch; gap:12px; }
+.workbenchPanel { min-width:0; width:100%; }
+.workbenchGrid > .stage { width:100%; max-width:960px; align-self:center; }
+.workbenchGrid > .stage[hidden] { display:none; }
+.workbenchGrid > .stage .viewport { height:clamp(180px,38dvh,420px); }
+.workbenchGrid > .stage { order:0; }
+.workbenchPanel { order:1; }
+@media (max-width:600px) { .workbenchGrid > .stage .viewport { height:clamp(150px,28dvh,260px); } }
+
+.workbenchPanel[hidden] { display:none; }
+
+/* Task editor overrides historical stacked inspector layouts. Reading keeps its own measured bounds. */
+.editorShell:not(.playMode),.compact.editorShell:not(.playMode) { height:100dvh; min-height:0; overflow:hidden; display:flex; flex-direction:column; }
+.editorShell .workbenchGrid,.compact.editorShell .workbenchGrid { flex:1; min-height:0; height:auto; overflow:hidden; display:flex; flex-direction:column; gap:0; padding:4px 8px; }
+.editorShell .workbenchPanel { flex:1; height:100%; min-height:0; overflow:hidden; }
+.editorShell .workbenchPanel .stage { width:100%; height:100%; min-height:0; margin:0; display:flex; flex-direction:column; overflow:hidden; border:0; }
+.editorShell:not(.playMode) .workbenchPanel .stage>.toolbar,.editorShell:not(.playMode) .workbenchPanel .stage>.status,.editorShell:not(.playMode) .workbenchPanel .stage>.navigation,.editorShell:not(.playMode) .workbenchPanel .stage>.semantic { display:none; }
+.editorShell:not(.playMode) .workbenchPanel .stage>div:has(>.viewport) { flex:1; min-height:0; height:100%; }
+.editorShell:not(.playMode) .workbenchPanel .viewport { height:100%; min-height:0; width:100%; background:#27322e; }
+.editorShell.playMode .workbenchPanel { height:100%; }
+.editorShell .footer { display:none; }
+
+/* Neighbor text panes navigate the basic editor; the native preview needs no duplicate gutters. */
+.editorShell:not(.playMode) .workbenchPanel .stage>div:has(>.viewport) { grid-template-columns:minmax(0,1fr); gap:0; }
+.editorShell:not(.playMode) .workbenchPanel .stage>div:has(>.viewport)>button { display:none; }
+/* When an on-screen keyboard covers the page, reserve room for the active input. */
+@media(max-width:700px) {
+ .editorShell:not(.playMode)[data-keyboard-occluded=true]>.header { max-height:48px; overflow:hidden; flex-shrink:0; }
+ .editorShell:not(.playMode)[data-keyboard-occluded=true]>.context { display:none; }
+}
+
+/* One compact editor bar: keep touch targets, remove three stacked title/tool rows. */
+.editorMoreIcon { display:none; }
+.editorShell:not(.playMode)>.header { display:flex; flex-wrap:nowrap; align-items:center; gap:4px; padding:2px 8px; min-height:48px; max-height:none; }
+.editorShell:not(.playMode)>.header>.brand { display:none; }
+.editorShell:not(.playMode)>.header>.context,.editorShell:not(.playMode)>.header>.context>.controls { display:contents; }
+.editorShell:not(.playMode) [data-editor-document-info] { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.editorShell:not(.playMode)>.header>button { order:0; flex:none; }
+.editorShell:not(.playMode)>.header .cutPosition { order:2; flex:1; min-width:0; width:auto; }
+.editorShell:not(.playMode)>.header .cutPosition select { width:100%; max-width:100%; text-overflow:ellipsis; margin:0; }
+.editorShell:not(.playMode)>.header>.context>.controls>button { order:3; flex:none; }
+.editorShell:not(.playMode)>.header .viewTools { order:4; flex:none; }
+.editorShell:not(.playMode)>.header>.management { order:1; flex:none; margin-left:0; }
+.editorShell:not(.playMode)>.header .editorMoreLabel { display:none; }
+.editorShell:not(.playMode)>.header .editorMoreIcon { display:inline; font-size:22px; line-height:1; }
+.editorShell:not(.playMode)>.header .viewTools>summary::after { display:none; }
+.editorShell:not(.playMode)>.header :is(button,summary,select) { min-height:44px; }
+.editorShell:not(.playMode)>.header .viewTools>summary { min-width:44px; justify-content:center; }
+.editorShell:not(.playMode) [data-editor-document-info]:has([data-save-attention=true]) { position:static; width:auto; height:auto; overflow:visible; clip-path:none; order:5; font-size:11px; }
+.editorShell:not(.playMode) [data-editor-document-info]:has([data-save-attention=true]) h1 { display:none; }
+.editorShell:not(.playMode) [data-editor-document-info] [data-save-attention=true] { margin:0; max-width:8em; }
+@media(max-width:700px) {
+ .editorShell:not(.playMode)>.header { padding:2px 6px; gap:3px; }
+ .editorShell:not(.playMode)>.header .cutPositionLabel { display:none; }
+ .editorShell:not(.playMode)>.header :is(button,summary,select) { padding:4px 7px; }
+ .editorShell:not(.playMode) [data-editor-document-info]:has([data-save-attention=true]) { position:absolute; top:48px; right:8px; z-index:10; background:var(--paper); border-radius:4px; padding:1px 4px; pointer-events:none; }
+}
+
+.shell.editorShell:not(.playMode)>.header :is(button,summary,select) { min-height:44px; }
+/* One grouped settings entry; only chapter/cut navigation stays alongside it. */
+.shell.editorShell:not(.playMode)>.header { justify-content:flex-start; }
+.shell.editorShell:not(.playMode)>.header>.management { order:0; }
+.shell.editorShell:not(.playMode)>.header>.management>summary { display:flex; align-items:center; gap:6px; min-width:76px; }
+.shell.editorShell:not(.playMode)>.header>.management>summary::after { display:none; }
+.shell.editorShell:not(.playMode)>.header .cutPosition { order:1; }
+.shell.editorShell:not(.playMode)>.header>.management>.controls { max-height:calc(100dvh - 64px); overflow:auto; }
+.shell.editorShell:not(.playMode) .viewTools .editorMoreIcon { display:none; }
+.shell.editorShell:not(.playMode)>.header .management .viewTools>summary { font-size:13px; justify-content:flex-start; }
+.shell.editorShell:not(.playMode)>.header .management .viewTools>.controls { position:static; width:auto; max-width:100%; box-shadow:none; border:0; }
+.shell.editorShell:not(.playMode)>.header .management>div>div>details>summary { min-height:44px; cursor:pointer; }
+
+/* Settings share the story game's ink-and-parchment frame without changing editor chrome. */
+.shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor] {
+ --ink:var(--story-menu-ink,#f5ead4);
+ --ink-soft:var(--story-menu-muted,#c1c9ba);
+ --muted:var(--story-menu-muted,#c1c9ba);
+ --line:var(--story-menu-line,#a58d66);
+ --paper:var(--story-menu-surface,#213b3b);
+ --white:var(--story-menu-surface,#213b3b);
+ --mint:var(--story-menu-surface,#213b3b);
+ --mint-strong:var(--story-menu-accent,#c6e3cf);
+ color-scheme:dark;
+ color:var(--story-menu-ink,#f5ead4);
+ background:var(--story-menu-bg,rgba(17,34,35,.96));
+ border:2px solid var(--story-menu-line,#a58d66);
+ border-radius:4px;
+ padding:16px;
+ gap:8px;
+ box-shadow:0 16px 48px #0009,inset 0 0 0 3px #f5ead40a;
+ scrollbar-color:var(--story-menu-line,#a58d66) transparent;
+ overscroll-behavior:contain;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,.import) {
+ min-height:44px;
+ padding:9px 12px;
+ font-size:14px;
+ line-height:1.5;
+ text-align:left;
+ color:var(--story-menu-ink,#f5ead4);
+ background:transparent;
+ border:1px solid transparent;
+ border-radius:2px;
+ box-shadow:none;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,.import):hover {
+ color:var(--story-menu-accent,#c6e3cf);
+ background:#c6e3cf0d;
+ border-color:#a58d6666;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,input,select,textarea,.import):focus-visible {
+ outline:2px solid var(--story-menu-accent,#c6e3cf);
+ outline-offset:2px;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] button[aria-pressed=true] {
+ color:var(--story-menu-accent,#c6e3cf);
+ background:#c6e3cf14;
+ border-color:var(--story-menu-line,#a58d66);
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,input,select):disabled {
+ color:var(--story-menu-muted,#c1c9ba);
+ opacity:.55;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(strong,legend,.workMenuHeading) {
+ color:var(--story-menu-ink,#f5ead4);
+ font-size:14px;
+ line-height:1.5;
+ letter-spacing:.035em;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup {
+ padding-top:12px;
+ margin-top:4px;
+ border-top:1px solid #a58d6670;
+ gap:4px;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(small,p,.workMenuHint) {
+ color:var(--story-menu-muted,#c1c9ba);
+ font-size:12px;
+ line-height:1.6;
+ overflow-wrap:anywhere;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] [role=alert] {
+ color:var(--story-menu-danger,#ffb5a6);
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(input:not([type=checkbox]):not([type=range]):not([type=file]),select,textarea) {
+ min-height:44px;
+ color:var(--story-menu-ink,#f5ead4);
+ background:var(--story-menu-surface,#213b3b);
+ border:1px solid var(--story-menu-line,#a58d66);
+ border-radius:2px;
+ font-size:16px;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] option {
+ color:var(--story-menu-ink,#f5ead4);
+ background:var(--story-menu-surface,#213b3b);
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] input:is([type=checkbox],[type=range]) {
+ accent-color:var(--story-menu-accent,#c6e3cf);
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] fieldset {
+ color:var(--story-menu-ink,#f5ead4);
+ background:transparent;
+ border:1px solid #a58d6670;
+ border-radius:2px;
+ min-width:0;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] details[open]>summary {
+ color:var(--story-menu-accent,#c6e3cf);
+ background:#c6e3cf0d;
+ border-color:#a58d6666;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .viewTools>.controls {
+ color:var(--story-menu-ink,#f5ead4);
+ background:transparent;
+ padding:8px 0;
+ gap:8px;
+}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] a {
+ color:var(--story-menu-accent,#c6e3cf);
+}
+@media(max-width:700px) {
+ .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor] { padding:12px; }
+}
+
+/* Settings groups use rows/grids instead of loose inline text and tiny labels. */
+.shell.editorShell:not(.playMode) [data-system-menu=editor] { display:flex; flex-direction:column; align-items:stretch; word-break:keep-all; overflow-wrap:anywhere; line-break:strict; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,label,p,small,strong,legend) { word-break:keep-all; overflow-wrap:anywhere; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; align-items:start; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup>:is(.workMenuHeading,small,details,label,[role=group]) { grid-column:1/-1; min-width:0; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions] { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions]>small { grid-column:1/-1; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>select) { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; align-items:start; min-width:0; margin:8px 0; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] label>select { width:100%; max-width:100%; min-width:0; margin:0; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>input[type=checkbox]) { display:flex; flex-wrap:nowrap; align-items:center; gap:8px; margin:8px 0; min-width:0; min-height:44px; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] input[type=checkbox] { flex:none; width:18px; height:18px; min-height:18px; padding:0; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary) { min-width:0; text-align:left; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(p,small) { margin:6px 0; }
+.shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor] { flex-wrap:nowrap; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>* { flex-shrink:0; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>div:has(>label>select[aria-label="편집화면 선택"]) { width:100%; min-width:0; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>select[aria-label="편집화면 선택"]) { width:100%; min-width:0; }
+.shell.editorShell:not(.playMode) [data-system-menu=editor] select[aria-label="편집화면 선택"] { width:100%; max-width:none; min-width:0; }
+
+/* A fixed viewport must keep recovery actions inside its own layout. */
+.shell .storageWarning { flex:0 0 auto; max-height:min(28dvh,12rem); overflow:auto; overscroll-behavior:contain; margin:4px 8px; padding:8px; }
+.shell .storageWarning p { margin:0 0 6px; }
+.shell .storageWarning button { min-height:44px; white-space:normal; word-break:keep-all; }

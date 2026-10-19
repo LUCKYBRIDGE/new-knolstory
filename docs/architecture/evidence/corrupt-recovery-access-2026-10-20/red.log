@@ -1,0 +1,73 @@
+
+Running 1 test using 1 worker
+
+(node:62371) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/storage-recovery.spec.ts:5:1 › direct editor exposes corrupt-storage download and preserves raw bytes before restarting (11.0s)
+
+
+  1) tests/e2e/storage-recovery.spec.ts:5:1 › direct editor exposes corrupt-storage download and preserves raw bytes before restarting 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '기기 보관함 복구', exact: true }).getByRole('button', { name: '복구용 원본 보관', exact: true })
+        - locator resolved to <button>복구용 원본 보관</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div role="alert" data-testid="workspace-error" class="story-workspace-module__gRDfJG__error">SyntaxError: Expected double-quoted property name…</div> from <main data-parked="false" aria-hidden="false" data-keyboard-occluded="false" class="story-workspace-module__gRDfJG__shell story-workspace-module__gRDfJG__editorShell story-workspace-module__gRDfJG__compact  ">…</main> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div role="alert" data-testid="workspace-error" class="story-workspace-module__gRDfJG__error">SyntaxError: Expected double-quoted property name…</div> from <main data-parked="false" aria-hidden="false" data-keyboard-occluded="false" class="story-workspace-module__gRDfJG__shell story-workspace-module__gRDfJG__editorShell story-workspace-module__gRDfJG__compact  ">…</main> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        18 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div role="alert" data-testid="workspace-error" class="story-workspace-module__gRDfJG__error">SyntaxError: Expected double-quoted property name…</div> from <main data-parked="false" aria-hidden="false" data-keyboard-occluded="false" class="story-workspace-module__gRDfJG__shell story-workspace-module__gRDfJG__editorShell story-workspace-module__gRDfJG__compact  ">…</main> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+       9 |  const recovery=page.getByRole('region',{name:'기기 보관함 복구',exact:true});await expect(recovery).toBeVisible();
+      10 |  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(raw);
+    > 11 |  const pending=page.waitForEvent('download');await recovery.getByRole('button',{name:'복구용 원본 보관',exact:true}).click({timeout:10000});const downloaded=await pending;
+         |                                                                                                               ^
+      12 |  expect(await readFile((await downloaded.path())!,'utf8')).toBe(raw);
+      13 |  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(raw);
+      14 |  await recovery.getByRole('button',{name:'손상 원본 보존하고 새 보관함 시작',exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:11:111
+
+    Error: page.waitForEvent: Test ended.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       9 |  const recovery=page.getByRole('region',{name:'기기 보관함 복구',exact:true});await expect(recovery).toBeVisible();
+      10 |  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(raw);
+    > 11 |  const pending=page.waitForEvent('download');await recovery.getByRole('button',{name:'복구용 원본 보관',exact:true}).click({timeout:10000});const downloaded=await pending;
+         |                     ^
+      12 |  expect(await readFile((await downloaded.path())!,'utf8')).toBe(raw);
+      13 |  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(raw);
+      14 |  await recovery.getByRole('button',{name:'손상 원본 보존하고 새 보관함 시작',exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:11:21
+
+    Error Context: docs/architecture/evidence/corrupt-recovery-access-2026-10-20/red-run/storage-recovery-direct-ed-88bab-raw-bytes-before-restarting/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/corrupt-recovery-access-2026-10-20/red-run/storage-recovery-direct-ed-88bab-raw-bytes-before-restarting/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/corrupt-recovery-access-2026-10-20/red-run/storage-recovery-direct-ed-88bab-raw-bytes-before-restarting/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/storage-recovery.spec.ts:5:1 › direct editor exposes corrupt-storage download and preserves raw bytes before restarting 

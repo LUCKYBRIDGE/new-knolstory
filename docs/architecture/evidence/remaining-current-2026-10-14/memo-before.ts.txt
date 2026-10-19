@@ -1,0 +1,82 @@
+import {parseAuthoringFile} from './authoring-file';
+import { test, expect, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+import { enterLibrary, startShelfCreation, importShelfFile, openShelfAction } from './library-entry';
+
+const title='같은 이름의 항목도 원고를 지키는 창작 메모';
+async function saved(page:Page) {await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');}
+async function prepare(page:Page) {
+ const pane=page.getByRole('region',{name:'작품 설정',exact:true});
+ if(!await pane.isVisible()){await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'이야기 기획',exact:true}).click();}await page.getByLabel('작품 설정 항목').selectOption('memos');
+ return pane;
+}
+
+test('memo fields survive reorder, delete undo, filters, device save and fresh-context file import on five viewport sizes',async({page,context,browser},info)=>{
+ test.setTimeout(180000);page.setDefaultTimeout(15000);
+ await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
+ await page.getByLabel('새 작품 제목',{exact:true}).fill(title);
+ await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
+ let pane=await prepare(page);
+ await pane.getByRole('button',{name:'현재 컷 메모 추가',exact:true}).click();
+ await pane.getByLabel('메모 1 제목',{exact:true}).fill('흥부의 약속과 다음 장면');
+ await pane.getByLabel('메모 1 메모 내용',{exact:true}).fill('원본 자유 메모는 남겨 둔다.');
+ for(const value of ['첫 번째 항목 원고','둘째 항목의 긴 한국어 원고를 줄바꿈해 보존한다.']) {
+  await pane.getByLabel('메모 1 새 항목 이름',{exact:true}).fill('같은 이름');
+  await pane.getByRole('button',{name:'메모 항목 추가',exact:true}).click();
+  await pane.getByLabel('메모 1 같은 이름',{exact:true}).last().fill(value);
+ }
+ await pane.getByText('같은 이름 항목 관리',{exact:true}).last().click();
+ const third=pane.getByLabel('메모 1 항목 3 이름',{exact:true});
+ await third.fill('변경한 이름');
+ await third.locator('..').locator('..').getByRole('button',{name:'항목 이름 적용',exact:true}).click();
+ const moved=pane.locator('details').filter({hasText:'변경한 이름 항목 관리'});
+ await moved.getByRole('button',{name:'항목 위로',exact:true}).click();
+ await moved.getByRole('button',{name:'항목 삭제',exact:true}).click();
+ await moved.getByRole('button',{name:'항목 삭제 확인',exact:true}).click();
+ await expect(pane.getByLabel('메모 1 변경한 이름',{exact:true})).toHaveCount(0);
+ await pane.getByLabel('메모 1 같은 이름',{exact:true}).fill('삭제 이후 수정도 보존');
+ await pane.getByRole('button',{name:'항목 삭제 되돌리기',exact:true}).click();
+ await expect(pane.getByLabel('메모 1 변경한 이름',{exact:true})).toHaveValue('둘째 항목의 긴 한국어 원고를 줄바꿈해 보존한다.');
+ await expect(pane.getByLabel('메모 1 같은 이름',{exact:true})).toHaveValue('삭제 이후 수정도 보존');
+ await pane.getByRole('button',{name:'작품 메모 추가',exact:true}).click();
+ await pane.getByLabel('메모 2 제목',{exact:true}).fill('내일 할 일');
+ await pane.getByLabel('메모 2 종류',{exact:true}).selectOption('task');
+ await saved(page);
+ for(const viewport of [{width:1440,height:900},{width:1024,height:768},{width:768,height:1024},{width:390,height:844},{width:844,height:390}]) {
+  await page.setViewportSize(viewport);
+  await pane.getByLabel('메모 검색',{exact:true}).fill('삭제 이후 수정');
+  await expect(pane.getByRole('article',{name:'메모 1',exact:true})).toBeVisible();
+  await expect(pane.getByRole('article',{name:'메모 2',exact:true})).toHaveCount(0);
+  await pane.getByRole('button',{name:'메모 검색 초기화',exact:true}).click();
+  await pane.getByLabel('메모 종류 필터',{exact:true}).selectOption('task');
+  await expect(pane.getByRole('article',{name:'메모 2',exact:true})).toBeVisible();
+  await pane.getByLabel('메모 연결 필터',{exact:true}).selectOption('current');
+  await expect(pane.getByText('조건에 맞는 메모가 없어요. 검색어나 필터를 바꿔 주세요.',{exact:true})).toBeVisible();
+  await pane.getByRole('button',{name:'메모 검색 초기화',exact:true}).click();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  await page.screenshot({path:info.outputPath(`memo-${viewport.width}x${viewport.height}.png`),fullPage:true});
+ }
+ await saved(page);await page.reload();pane=await prepare(page);
+ await expect(pane.getByLabel('메모 1 변경한 이름',{exact:true})).toHaveValue('둘째 항목의 긴 한국어 원고를 줄바꿈해 보존한다.');
+ const download=page.waitForEvent('download');
+ await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+ const path=info.outputPath('memo-roundtrip.knolstory');await(await download).saveAs(path);
+ const document=parseAuthoringFile(readFileSync(path,'utf8'));
+ const memos=document.project.creativeMemos;
+ expect(memos[0].fields.map((f:{label:string})=>f.label)).toEqual(['메모 내용','변경한 이름','같은 이름']);
+ expect(memos[0].fields.map((f:{source:string})=>f.source)).toEqual(['default','custom','custom']);
+ expect(memos[0].linkedLineId).toBeTruthy();
+ const fresh=await browser.newContext({viewport:{width:390,height:844}});
+ try {
+  const imported=await fresh.newPage();await imported.goto('/');await enterLibrary(imported);await importShelfFile(imported,path);
+  if(!await imported.getByRole('region',{name:'작품 설정',exact:true}).isVisible()) {
+   const book=imported.getByRole('article',{name:`가져온 작품 · ${title}`,exact:true});
+   await openShelfAction(imported,book,'작품 준비');
+  }
+  const restored=await prepare(imported);
+  await expect(restored.getByLabel('메모 1 같은 이름',{exact:true})).toHaveValue('삭제 이후 수정도 보존');
+  await expect(restored.getByLabel('메모 1 변경한 이름',{exact:true})).toHaveValue('둘째 항목의 긴 한국어 원고를 줄바꿈해 보존한다.');
+  await saved(imported);
+ } finally {await fresh.close();}
+ expect(context.pages()).toContain(page);
+});

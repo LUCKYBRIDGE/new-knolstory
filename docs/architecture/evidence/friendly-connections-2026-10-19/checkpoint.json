@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-19",
+  "status": "local-user-language-connections-verified-not-deployed",
+  "request": "Use source chapter/choice and named score thresholds instead of internal connection counts/jargon",
+  "changes": [
+    "Shared read-only descriptions resolve authored sourceLineId/choiceId/routeId exactly",
+    "Source chapter/cut+choice text, named score comparison and all/any grammar, fallback and sequential progress distinguished",
+    "Delete dialog lists actual incoming rules and explains reselecting destinations; current/upstream/map/list/search share descriptions",
+    "Shared/unreachable/pending wording simplified at UI boundary only; Core and authored conditions unchanged",
+    "Escape closes open detail pane after modal dismissed to unblock other connection tools"
+  ],
+  "checks": {
+    "unit": "4passed; focused helper coverage96statements/81.25branches/100functions/93.33lines",
+    "e2e": "final.log3passed7.2s: concrete choice+score source labels, cutcancel, flowmap/term context and fullproject preservation",
+    "build": "build-final.log passed",
+    "types": "types-final.log passed",
+    "lint": "lint-final.log clean",
+    "red": "unit-red missinghelper; unit firstexpectation omitted authoredchaptertitle corrected; earlier E2E uncovered blocking expanded detail and retainedlog; fixedEscape/dismiss path",
+    "review": "Worker checked graph semantics unchanged and longer maplabels sizing; root reviewed exactIDs, grouping/fallback and focused source coverage"
+  },
+  "limits": [
+    "Descriptions report authored rules, not actual reader score satisfaction or unique traversal",
+    "Only direct incoming edges listed in deletion; upstream routes shown separately in context",
+    "No schema/Runtime interpretation migration or provided manuscript edit; screenshots use labeled testfixture",
+    "No full native/device or whole-product completion claim; older E2E literal wording expectations may require planned migration"
+  ],
+  "sha256": {
+    "apps/web/lib/story-connection-labels.ts": "0fbac789363ea3ebeb2520caf54618a9461c73591476816e0eecc002d490f17d",
+    "apps/web/lib/story-connection-labels.test.ts": "53c3c2da92680ab753aea8998d9fcb329152bdb2a5f7b32784748798ffc820dc",
+    "apps/web/components/cut-delete-dialog.tsx": "5fecf5e08f7bb38b2df521efe1ee9ee5b03c3f3f6fb692be55e14f7958ee1cb0",
+    "apps/web/components/editor-flow-context.tsx": "2309e627316762c4e720ed4f0f846215b45e92bdebb71da577a3a956917f5502",
+    "apps/web/components/story-flow-map.tsx": "1cce1038417a63398c3e4e6dfd3648c5e30dcb977299e7ab14db5e315dc81994",
+    "apps/web/components/story-workspace.tsx": "13686e5e86e16bb28be1f2987c943099c29924617a5c83805fb0e547140aee25",
+    "apps/web/components/story-editing-workbench.tsx": "ad4d33083565f45fd8888b4079ce93b92affa611c036fc06c42a68e20d609c8c",
+    "tests/e2e/editing-workbench.spec.ts": "433d6a2c6f30a18ee040cf3852dee652048e5773085d6eba36356c69e7441fb6",
+    "DESIGN.md": "f63219dfe9669a3497b08af61bda45dda5611793aa3b789aa429ed334ec120dd",
+    ".agents/skills/design-system/SKILL.md": "86dff3110ea07ee9dd6c7660992c195805b13543c4e4c8b88ca1b017ebc1fb09",
+    "docs/architecture/product-completion-plan.md": "be2419cbd61a5a589e4d5160d720283ac59a32034b2343a6f7b2692e625f6a4d"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual UI contains sourcechoices and namedthresholds; all/any/fallback helper tested above80percent and fullproject comparisongreen."
+  }
+}

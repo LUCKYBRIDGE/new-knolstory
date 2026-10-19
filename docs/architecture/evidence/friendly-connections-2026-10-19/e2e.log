@@ -1,0 +1,57 @@
+
+Running 3 tests using 1 worker
+
+(node:96090) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:313:1 › popup audit: term search and flow map close back to settings without changing content (2.4s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:317:1 › popup audit: cut deletion opens compact and safe cancel keeps all authored data (1.9s)
+  ✘  3 tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work (50.3s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().locator(':scope>summary')
+        - locator resolved to <summary>현재 컷의 선택지·분기조건 편집</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <button>상세 글의 커서에서 컷 나누기</button> from <details open="">…</details> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <button>상세 글의 커서에서 컷 나누기</button> from <details open="">…</details> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        - waiting for element to be visible, enabled and stable
+
+
+      345 |  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:source}));const before=(await exported(page)).project;
+      346 |  await settings(page);await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await mode(page,'글 편집');await row(page,2).getByRole('button',{name:'이 컷 선택',exact:true}).click();const detail=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷 상세·메모·정리'})}).first();await detail.locator(':scope>summary').click();await detail.getByRole('button',{name:'현재 컷 삭제',exact:true}).click();const deletion=page.getByRole('dialog',{name:'컷 삭제 확인',exact:true});await expect(deletion).toContainText('‘친구를 돕는다’를 선택하면');await expect(deletion).toContainText('신뢰 3점 이상일 때');await expect(deletion).toContainText('2장');await expect(deletion).not.toContainText('명시 연결');await page.screenshot({path:info.outputPath('friendly-delete-connections.png'),fullPage:true});await page.keyboard.press('Escape');
+    > 347 |  const logic=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await logic.locator(':scope>summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();const context=page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});await expect(context).toContainText('‘친구를 돕는다’를 선택하면');await expect(context).toContainText('신뢰 3점 이상일 때');await page.screenshot({path:info.outputPath('friendly-connection-context.png'),fullPage:true});await page.keyboard.press('Escape');expect((await exported(page)).project).toEqual(before);
+          |                                                                                                                                                                   ^
+      348 | });
+      349 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:347:163
+
+    Error Context: docs/architecture/evidence/friendly-connections-2026-10-19/run/editing-workbench-connecti-734a2-s-without-altering-the-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/friendly-connections-2026-10-19/run/editing-workbench-connecti-734a2-s-without-altering-the-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/friendly-connections-2026-10-19/run/editing-workbench-connecti-734a2-s-without-altering-the-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work 
+  2 passed (55.7s)

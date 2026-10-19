@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-19",
+  "status": "local-product-vocabulary-implemented-focused-verified-not-deployed",
+  "scope": "Canonical Korean product language, latest searchable glossary and current authoring UI copy; manuscript/codec/Runtime semantics unchanged",
+  "owner": "../../editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19",
+  "changes": [
+    "Canonical vocabulary with meaning, naming, action/state/error and avoid/alias rules",
+    "Six editing screens and optional editor vs read-only companion descriptions",
+    "Actual work-file save vs browser recovery copy vs explicit online upload",
+    "Browser recovery status/action wording in KnolStory and ShortStory",
+    "AND/OR all/any readable labels, exact source choice vs named score condition semantics",
+    "Previous/technical aliases searchable but collapsed in glossary",
+    "Exact wording assertions updated in existing E2E sources; historical evidence unchanged"
+  ],
+  "checks": {
+    "red": "red.log current basic editor name absent in oldguide; original retained",
+    "unit": "unit-final.log7passed; glossary filter implementation100% statement/branch/function/line coverage (data descriptions not semantic proof)",
+    "guideIntermediate": "guide.log new vocabulary passed; two focus tests needed updated lastfocus assertion because collapsed alias summary is now tabbable",
+    "browser": "wording-final.log7passed25.7s: guide PC/tablet/phone portrait+landscape, focus/Escape/drafts, currentterms+collapsedaliases, sourcechoice/score labels, ANDORfile reopen, sessionrestore, failedrecoverynavigation",
+    "files": "files-current.log3passed8.0s actual downloaded knolstory/shortstory fresh-storage reopen; modeled file handle write/reuse/externaledit protection/saveas",
+    "olderFileTests": "final.log/files.log stopped when old current-cut textbox selector waited; selectors updated to current data-current-cut textarea, old logs retained",
+    "build": "build-final.log passed",
+    "types": "typecheck.log passed",
+    "lint": "lint-wording.log clean for other changed wording modules; broader lint.log retains local-work-file-actions pre-existing ref-mutation ESLint error/ref-cleanup warning and story-player-menu img warning; no save logic change in this task",
+    "docs": "docs-final.log57active documents0linkerrors; git diff --check clean"
+  },
+  "limits": [
+    "Focused local Chromium behavior only; not full98affected-testfiles run or physical-device/screenreader audit",
+    "No workbook enum/schema/key changes or new external Excel/Google verification; existing file semantics preserved",
+    "Technical low-level exception suffixes and development probe text are not fully rewritten; canonical rules now govern follow-ups",
+    "No conditional dialogue replacement or mixed nested choice+score support claimed",
+    "No deployment or whole product completion",
+    "Subagent usage limits prevented separate final reviewer pass; parent completed wording reconciliation and checks"
+  ],
+  "sha256": {
+    "apps/web/lib/editor-terms.ts": "1d2c12d9e840dc6d7639539e4f131dffd3274641daec1e6848ce455274857fcb",
+    "apps/web/lib/editor-terms.test.ts": "5143c761a740a012e03e35f694a7df18c1aef4d88a2d8e40e9ef9cc6b2a6c626",
+    "apps/web/components/editor-term-guide.tsx": "ca1a91c6858caa5b73d7ab13494c486292b472f11d7a45193b8b4a2e5fd98465",
+    "apps/web/components/story-workspace.tsx": "eda6cf18c17b33501bf58eb2dab9c71ec0f1579b89057259bd5c85f6fb826d62",
+    "apps/web/components/story-editing-workbench.tsx": "76a1bf033530126edbd5c80e049b14969555e374e5cc2df2837091323d16aaa7",
+    "apps/web/components/story-score-controls.tsx": "522836cc38b09f2d659de8e4c9535357fa41b58a37efcb426eed9251bbe9ce50",
+    "apps/web/components/workspace-management.tsx": "6774ecbb09e7ac8eddb31fff0160937bb26bbf6e5ced1b387ff75c5406c8be01",
+    "apps/web/components/local-work-file-actions.tsx": "af92c9dd31dee8d6a66282645c38b8cbb9be15694788f6a6504144513d6b6fdf",
+    "apps/web/components/story-transfer-panel.tsx": "621802cffebceb58a7c11df3a4a99fdbd3b9197969bb4c15ed4490d9ef30fa7f",
+    "apps/web/components/story-editor-tools.tsx": "f6f33e9a2698d36f63c701d372ca22416bebae1d413d0475ce264ce1afffdc3d",
+    "apps/web/components/story-player-menu.tsx": "7f449a8bad66f73c35fd6277bd60a98027a5343dea7069fac9abaf703b1cc59a",
+    "apps/web/components/online-works-panel.tsx": "5d021f5018daf37cebd807c387b7e92f60f4687f62d7111cf805ef55f414718a",
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "33e6ebb0f01281d7a2e3f9c77bc43a90b2d7d72a5e043bf491b9b291b5d1d8ec",
+    "tests/e2e/editor-term-guide.spec.ts": "1d72046d10aff25a89399bd3925f874c51197eabc10d30e4170f8db45a24e6be",
+    "tests/e2e/local-work-files.spec.ts": "1050e7a18bbd5cea2ac95258cbb70d45be6dededdba41c3f8c4b5e3861c9d621",
+    "DESIGN.md": "c6e7dd23bb0823d6468e018a8d4e637deee59c461eb68dba756170ae5fba14e3",
+    "STATUS.md": "e239e0e6f882dd39c14269c650a8dcb4c72956603d3d58efef095aa229f0b328",
+    "docs/architecture/editor-terminology-and-time.md": "d18de8b8bf31f0a79f677af3bfd41ff9694039da757f22577c0b74956a2d181f",
+    "docs/architecture/product-completion-plan.md": "6e574ba2cc42620771fa4509c9396ba6d4c7d6d4a7d458d6e3d99d27304593b3",
+    ".agents/skills/design-system/SKILL.md": "044920a409ed7438a4e4016c13dd6ea914ed786f7d9f47c9fa127d744d23d1c5"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Rules+glossary+actualbuttons/status aligned with focused filepreservation tests; wholeUI/physical/externalapp coverage and existing lint limitations explicit"
+  },
+  "guideEntries": 64
+}

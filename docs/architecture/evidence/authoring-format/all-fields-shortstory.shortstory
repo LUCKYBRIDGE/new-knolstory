@@ -1,0 +1,324 @@
+{
+  "format": "shortstory",
+  "formatVersion": 2,
+  "project": {
+    "id": "shortstory-complete",
+    "title": "여러 쪽의 한국어 그림책",
+    "description": "긴 소개와 줄바꿈\n🌱",
+    "authorDisplayName": "검증 작가",
+    "source": {
+      "kind": "preset",
+      "presetId": "rabbit"
+    },
+    "cover": {
+      "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+      "characterId": "rabbit-turtle.character.dragonking-command",
+      "authorNote": "마지막 인사\n다시 만나요",
+      "design": {
+        "version": 1,
+        "trim": "trade-300-435",
+        "finish": {
+          "stock": "cloth",
+          "color": "#173d35",
+          "ink": "#fff4d8",
+          "accent": "#d7bb79",
+          "texture": "subtle"
+        },
+        "band": {
+          "enabled": true,
+          "designId": "ruled"
+        },
+        "faces": {
+          "front": {
+            "preset": "poster",
+            "elements": [
+              {
+                "id": "front-title",
+                "type": "text",
+                "role": "title",
+                "region": "face",
+                "content": {
+                  "bind": "project.title"
+                },
+                "box": {
+                  "x": 0.1,
+                  "y": 0.1,
+                  "w": 0.8,
+                  "h": 0.15
+                },
+                "style": {
+                  "fontId": "serif",
+                  "fontSize": 0.04,
+                  "color": "#fff4d8",
+                  "align": "center",
+                  "writing": "horizontal"
+                }
+              },
+              {
+                "id": "front-custom",
+                "type": "text",
+                "role": "custom",
+                "region": "band",
+                "content": {
+                  "text": "직접 쓴 한국어\n띠지 🌱 001"
+                },
+                "box": {
+                  "x": 0.1,
+                  "y": 0.7,
+                  "w": 0.8,
+                  "h": 0.15
+                },
+                "style": {
+                  "fontId": "handwriting",
+                  "fontSize": 0.03,
+                  "color": "#173d35",
+                  "align": "left",
+                  "writing": "horizontal"
+                }
+              },
+              {
+                "id": "front-image",
+                "type": "image",
+                "role": "scene",
+                "assetId": "rabbit-turtle.background.rabbit-palace-reveal",
+                "assetType": "background",
+                "box": {
+                  "x": 0.1,
+                  "y": 0.3,
+                  "w": 0.8,
+                  "h": 0.35
+                },
+                "frame": "arch",
+                "crop": {
+                  "fit": "cover",
+                  "zoom": 1.2,
+                  "x": 40,
+                  "y": 60
+                }
+              },
+              {
+                "id": "front-actor",
+                "type": "image",
+                "role": "actor",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "assetType": "character",
+                "box": {
+                  "x": 0.3,
+                  "y": 0.3,
+                  "w": 0.35,
+                  "h": 0.35
+                },
+                "frame": "oval",
+                "crop": {
+                  "fit": "contain",
+                  "zoom": 0.8,
+                  "x": 50,
+                  "y": 50
+                }
+              }
+            ]
+          },
+          "spine": {
+            "preset": "poster",
+            "elements": [
+              {
+                "id": "spine-title",
+                "type": "text",
+                "role": "title",
+                "region": "face",
+                "content": {
+                  "bind": "project.title"
+                },
+                "box": {
+                  "x": 0.1,
+                  "y": 0.1,
+                  "w": 0.8,
+                  "h": 0.15
+                },
+                "style": {
+                  "fontId": "serif",
+                  "fontSize": 0.04,
+                  "color": "#fff4d8",
+                  "align": "center",
+                  "writing": "horizontal"
+                }
+              },
+              {
+                "id": "spine-custom",
+                "type": "text",
+                "role": "custom",
+                "region": "band",
+                "content": {
+                  "text": "직접 쓴 한국어\n띠지 🌱 001"
+                },
+                "box": {
+                  "x": 0.1,
+                  "y": 0.7,
+                  "w": 0.8,
+                  "h": 0.15
+                },
+                "style": {
+                  "fontId": "handwriting",
+                  "fontSize": 0.03,
+                  "color": "#173d35",
+                  "align": "left",
+                  "writing": "vertical"
+                }
+              },
+              {
+                "id": "spine-image",
+                "type": "image",
+                "role": "scene",
+                "assetId": "rabbit-turtle.background.rabbit-palace-reveal",
+                "assetType": "background",
+                "box": {
+                  "x": 0.1,
+                  "y": 0.3,
+                  "w": 0.8,
+                  "h": 0.35
+                },
+                "frame": "arch",
+                "crop": {
+                  "fit": "cover",
+                  "zoom": 1.2,
+                  "x": 40,
+                  "y": 60
+                }
+              },
+              {
+                "id": "spine-actor",
+                "type": "image",
+                "role": "actor",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "assetType": "character",
+                "box": {
+                  "x": 0.3,
+                  "y": 0.3,
+                  "w": 0.35,
+                  "h": 0.35
+                },
+                "frame": "oval",
+                "crop": {
+                  "fit": "contain",
+                  "zoom": 0.8,
+                  "x": 50,
+                  "y": 50
+                }
+              }
+            ]
+          },
+          "back": {
+            "preset": "poster",
+            "elements": [
+              {
+                "id": "back-title",
+                "type": "text",
+                "role": "title",
+                "region": "face",
+                "content": {
+                  "bind": "project.title"
+                },
+                "box": {
+                  "x": 0.1,
+                  "y": 0.1,
+                  "w": 0.8,
+                  "h": 0.15
+                },
+                "style": {
+                  "fontId": "serif",
+                  "fontSize": 0.04,
+                  "color": "#fff4d8",
+                  "align": "center",
+                  "writing": "horizontal"
+                }
+              },
+              {
+                "id": "back-custom",
+                "type": "text",
+                "role": "custom",
+                "region": "band",
+                "content": {
+                  "text": "직접 쓴 한국어\n띠지 🌱 001"
+                },
+                "box": {
+                  "x": 0.1,
+                  "y": 0.7,
+                  "w": 0.8,
+                  "h": 0.15
+                },
+                "style": {
+                  "fontId": "handwriting",
+                  "fontSize": 0.03,
+                  "color": "#173d35",
+                  "align": "left",
+                  "writing": "horizontal"
+                }
+              },
+              {
+                "id": "back-image",
+                "type": "image",
+                "role": "scene",
+                "assetId": "rabbit-turtle.background.rabbit-palace-reveal",
+                "assetType": "background",
+                "box": {
+                  "x": 0.1,
+                  "y": 0.3,
+                  "w": 0.8,
+                  "h": 0.35
+                },
+                "frame": "arch",
+                "crop": {
+                  "fit": "cover",
+                  "zoom": 1.2,
+                  "x": 40,
+                  "y": 60
+                }
+              },
+              {
+                "id": "back-actor",
+                "type": "image",
+                "role": "actor",
+                "assetId": "rabbit-turtle.character.dragonking-command",
+                "assetType": "character",
+                "box": {
+                  "x": 0.3,
+                  "y": 0.3,
+                  "w": 0.35,
+                  "h": 0.35
+                },
+                "frame": "oval",
+                "crop": {
+                  "fit": "contain",
+                  "zoom": 0.8,
+                  "x": 50,
+                  "y": 50
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "pages": [
+      {
+        "id": "page-001",
+        "order": 1,
+        "title": "001 첫 쪽",
+        "text": "긴 한국어 본문\n\"따옴표\"\t이모지 🌱",
+        "backgroundId": "rabbit-turtle.background.rabbit-palace-reveal",
+        "leftAssetId": "rabbit-turtle.character.dragonking-command",
+        "rightAssetId": "rabbit-turtle.character.dragonking-command"
+      },
+      {
+        "id": "page-002",
+        "order": 2,
+        "title": "둘째 쪽",
+        "text": "마지막 이야기",
+        "backgroundId": "",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      }
+    ],
+    "updatedAt": "2026-10-09T00:00:00.000Z"
+  }
+}

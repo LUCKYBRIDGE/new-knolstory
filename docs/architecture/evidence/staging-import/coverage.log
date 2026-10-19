@@ -1,0 +1,33 @@
+
+> knolstory-next@ test:coverage /Users/wan/ai_dev/apps/new-knolstory
+> vitest run --coverage
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+ ❯ packages/runtime-core/tests/staging-import.test.ts (3 tests | 1 failed) 5082ms
+   × explicit motion import and background-only selection roundtrip the whole authored work 5006ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/staging-import.test.ts > explicit motion import and background-only selection roundtrip the whole authored work
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/runtime-core/tests/staging-import.test.ts:24:1
+     22|  expect(()=>undoStoryStagingImport(modified,result.undo)).toThrow();
+     23| });
+     24| it('explicit motion import and background-only selection roundtrip the…
+       | ^
+     25|  const project=getRepresentativeStory('seonnyeo').project,source=proje…
+     26|  const copied=importStoryStaging(project,source,target,{background:tru…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 128 passed (129)
+      Tests  1 failed | 1149 passed | 1 skipped (1151)
+   Start at  16:59:57
+   Duration  21.94s (transform 7.63s, setup 0ms, import 44.49s, tests 140.42s, environment 12ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

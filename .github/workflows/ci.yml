@@ -13,6 +13,8 @@ jobs:
           node-version: '22'
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - run: pnpm docs:check
+      - run: pnpm test:docs
       - run: pnpm test:scripts
       - run: pnpm audit --prod --audit-level=moderate
       - run: pnpm typecheck
@@ -20,4 +22,6 @@ jobs:
       # Full asset corpus is private and unverified for public redistribution.
       # This public job validates source/contracts; local full media/Chrome gates are documented.
       - run: pnpm exec vitest run --coverage --maxWorkers=2 --exclude packages/asset-registry/tests/catalog.test.ts
-      - run: pnpm build
+      # Compile the Web source without claiming that ignored media or the native
+      # runtime are present. Full pnpm build retains its service-audio rights gate.
+      - run: pnpm --filter @knolstory/web build

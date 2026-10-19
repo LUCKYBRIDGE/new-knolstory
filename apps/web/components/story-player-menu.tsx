@@ -1,62 +1,101 @@
 'use client';
-import {useEffect,useMemo,useRef,useState} from 'react';
+import {useEffect,useId,useLayoutEffect,useMemo,useRef,useState,type CSSProperties} from 'react';
+import {createPortal} from 'react-dom';
 import {chapterLabel,cutLabel,type StoryProject} from '@knolstory/story-domain';
 import {jumpPlayback,playbackLog,type PlaybackState} from '@knolstory/runtime-core';
-import {loadPlayerSlot,isPlayerSlotChanged,projectPlaybackFingerprint,readPlayerSaves,savePlayerSlot,writePlayerSaves,type PlayerSaves,type PlayerSlot,type PlayerSlotId} from '../lib/player-saves';
+import {loadPlayerSlot,isPlayerSlotChanged,projectPlaybackFingerprint,readPlayerSaves,savePlayerSlot,writePlayerSaves,type PlayerSaves,type PlayerSlot,type PlayerSlotId,type PlayerThumbnail} from '../lib/player-saves';
+import {canAutoForward,autoForwardDelay} from '../lib/reader-auto-forward';
+import {trapDialogTab} from '../lib/dialog-keyboard';
+import {DEFAULT_READER_PREFERENCES,readReaderPreferences,writeReaderPreferences,type ReaderPreferences,type ReaderFormat} from '../lib/reader-preferences';
 import styles from './story-player-menu.module.css';
-type Props=Readonly<{project:StoryProject;playback:PlaybackState;onRestore:(state:PlaybackState)=>void;onRestart:()=>void;onExit?:()=>void;onLibrary?:()=>void;disabled?:boolean;onFullscreen?:()=>void;fullscreen?:boolean;onAdvance?:()=>void;advanceDisabled?:boolean;onReducedMotion?:()=>void;reducedMotion?:boolean;motionDisabled?:boolean}>;
+type Props=Readonly<{project:StoryProject;playback:PlaybackState;dialoguePosition?:Readonly<{lineId:string;offset:number}>;visibleDialogue?:Readonly<{lineId:string;endOffset:number}>;onRestore:(state:PlaybackState,position?:Readonly<{lineId:string;offset:number}>)=>void;onRestart:()=>void;onExit?:()=>void;onLibrary?:()=>void;disabled?:boolean;onFullscreen?:()=>void;fullscreen?:boolean;onAdvance?:()=>void;advanceDisabled?:boolean;hasMoreText?:boolean;onReducedMotion?:()=>void;reducedMotion?:boolean;motionDisabled?:boolean;presentationReady?:boolean;presentationKey?:string;onInteractionChange?:(busy:boolean)=>void;stageContainer?:HTMLElement|null;stageBounds?:Readonly<{x:number;y:number;width:number;height:number}>;textboxBounds?:Readonly<{x:number;y:number;width:number;height:number}>;onToolsExpandedChange?:(expanded:boolean)=>void;onFormatChange?:(format:ReaderFormat)=>void;format?:ReaderFormat;onTextScaleChange?:(scale:number)=>void;textScale?:number;toolFontSizePx?:number;thumbnailReady?:boolean;captureThumbnail?:()=>Promise<PlayerThumbnail|undefined>}>;
+type Panel='save'|'load'|'log'|'settings'|null;
+type Confirmation=Readonly<{kind:'load'|'overwrite'|'history'|'restart'|'library';id?:PlayerSlotId;pathIndex?:number;changed?:boolean}>|null;
 const reason=(error:unknown)=>error instanceof Error?error.message:'읽기 저장을 처리하지 못했습니다.';
 const date=(value:string)=>new Date(value).toLocaleString('ko-KR');
-export function StoryPlayerMenu({project,playback,onRestore,onRestart,onExit,onLibrary,onFullscreen,fullscreen=false,onAdvance,advanceDisabled=false,onReducedMotion,reducedMotion=false,motionDisabled=false,disabled=false}:Props){
- const [panel,setPanel]=useState<'saves'|'log'|null>(null),[saves,setSaves]=useState<PlayerSaves>({version:1,works:{}}),[error,setError]=useState(''),[notice,setNotice]=useState(''),[overwrite,setOverwrite]=useState<number|null>(null),[changedSlot,setChangedSlot]=useState<PlayerSlotId|null>(null);
- const dialog=useRef<HTMLDialogElement>(null);
- const fingerprint=useMemo(()=>projectPlaybackFingerprint(project),[project]);
- const progressKey=JSON.stringify(playback);
- // Read before each write: preserve other works, concurrent saves, and malformed original data.
+export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialogue,onRestore,onRestart,onExit,onLibrary,onFullscreen,fullscreen=false,onAdvance,advanceDisabled=false,hasMoreText=false,onReducedMotion,reducedMotion=false,motionDisabled=false,disabled=false,presentationReady=false,presentationKey='',onInteractionChange,stageContainer,stageBounds,textboxBounds,onToolsExpandedChange,onFormatChange,format='auto',onTextScaleChange,textScale=1,toolFontSizePx=10,thumbnailReady=presentationReady,captureThumbnail}:Props){
+ const id=useId(),topMenuId=`${id}-top-menu`,titleId=`${id}-title`;
+ const confirmationReturn=useRef<string|null>(null);
+ const [saving,setSaving]=useState(false),saveInFlight=useRef(false),saveContext=useRef('');
+ const [panel,setPanel]=useState<Panel>(null),[saves,setSaves]=useState<PlayerSaves>({version:2,works:{}}),[error,setError]=useState(''),[notice,setNotice]=useState('');
+ const [confirm,setConfirm]=useState<Confirmation>(null),[topOpen,setTopOpen]=useState(false),[viewportPhone,setViewportPhone]=useState(false),[page,setPage]=useState(1),[tab,setTab]=useState<'manual'|'auto'|'quick'>('manual');
+ const [auto,setAuto]=useState(false),[delay,setDelay]=useState(3),[visible,setVisible]=useState(true);
+ const preferences=useRef<ReaderPreferences>(DEFAULT_READER_PREFERENCES),preferencesLoaded=useRef(false),textScaleRef=useRef(onTextScaleChange),formatRef=useRef(onFormatChange);
+ useEffect(()=>{textScaleRef.current=onTextScaleChange;formatRef.current=onFormatChange;},[onTextScaleChange,onFormatChange]);
+ useEffect(()=>{const timer=window.setTimeout(()=>{if(preferencesLoaded.current)return;preferencesLoaded.current=true;try{const stored=readReaderPreferences(localStorage);preferences.current=stored;setDelay(stored.autoDelaySeconds);textScaleRef.current?.(stored.textScale);formatRef.current?.(stored.format);}catch{setError('읽기 설정을 불러오지 못했습니다. 이 화면에서는 기본 설정으로 읽을 수 있습니다.');}},0);return()=>clearTimeout(timer);},[]);
+ function updatePreferences(change:Partial<Omit<ReaderPreferences,'version'>>){preferencesLoaded.current=true;const next={...preferences.current,...change};preferences.current=next;if(change.textScale!==undefined)onTextScaleChange?.(change.textScale);if(change.format!==undefined)onFormatChange?.(change.format);if(change.autoDelaySeconds!==undefined)setDelay(change.autoDelaySeconds);try{writeReaderPreferences(localStorage,next);setError('');}catch{setError('읽기 설정을 이 기기에 보관하지 못했습니다. 현재 화면에는 적용했습니다.');}}
+ const dialog=useRef<HTMLDialogElement>(null),trigger=useRef<HTMLButtonElement>(null),topMenu=useRef<HTMLDivElement>(null),returnFocus=useRef<HTMLElement|null>(null),advancedKey=useRef(''),advanceRef=useRef(onAdvance),interactionRef=useRef(onInteractionChange),toolsRef=useRef(onToolsExpandedChange);
+ useEffect(()=>{advanceRef.current=onAdvance;interactionRef.current=onInteractionChange;toolsRef.current=onToolsExpandedChange;},[onAdvance,onInteractionChange,onToolsExpandedChange]);
+ const fingerprint=useMemo(()=>projectPlaybackFingerprint(project),[project]),progressKey=JSON.stringify([playback,dialoguePosition]),busy=!!panel||!!confirm||topOpen||saving;
+ useLayoutEffect(()=>{saveContext.current=JSON.stringify([project.id,fingerprint,progressKey,presentationKey]);},[project.id,fingerprint,progressKey,presentationKey]);
+ const phone=textboxBounds?textboxBounds.width<660:viewportPhone;
+ useEffect(()=>{const query=matchMedia('(max-width:720px)');const update=()=>setViewportPhone(query.matches);update();query.addEventListener('change',update);return()=>query.removeEventListener('change',update);},[]);
+ useEffect(()=>{toolsRef.current?.(phone);},[phone]);
+ useEffect(()=>()=>toolsRef.current?.(false),[]);
+ useEffect(()=>{interactionRef.current?.(busy);},[busy]);
+ useEffect(()=>()=>interactionRef.current?.(false),[]);
+ useEffect(()=>{const update=()=>setVisible(document.visibilityState==='visible');update();document.addEventListener('visibilitychange',update);return()=>document.removeEventListener('visibilitychange',update);},[]);
  useEffect(()=>{
-  const timer=window.setTimeout(()=>{
-   try{const current=readPlayerSaves(localStorage);const next=savePlayerSlot(current,project,playback,'auto');writePlayerSaves(localStorage,next);setSaves(next);setError('');}
-   catch(error){setError(reason(error));}
-  },150);
-  return ()=>window.clearTimeout(timer);
- },[project.id,fingerprint,progressKey]); // eslint-disable-line react-hooks/exhaustive-deps
- useEffect(()=>{if(panel&&!dialog.current?.open)dialog.current?.showModal();if(!panel&&dialog.current?.open)dialog.current?.close();},[panel]);
- function open(next:'saves'|'log'){
-  setOverwrite(null);setChangedSlot(null);setNotice('');
-  try{setSaves(readPlayerSaves(localStorage));setError('');}catch(error){setError(reason(error));}
-  setPanel(next);
+  if(!canAutoForward({enabled:auto,visible,blocked:busy||disabled||advanceDisabled,ready:presentationReady,status:playback.status==='choice'&&hasMoreText?'reading':playback.status,presentationKey})||!onAdvance||advancedKey.current===presentationKey)return;
+  const timer=window.setTimeout(()=>{advancedKey.current=presentationKey;advanceRef.current?.();},autoForwardDelay(delay));return()=>clearTimeout(timer);
+ },[auto,visible,busy,disabled,advanceDisabled,presentationReady,playback.status,presentationKey,delay,onAdvance,hasMoreText]);
+ useEffect(()=>{if(!presentationReady||!thumbnailReady)return;let cancelled=false;const timer=window.setTimeout(()=>{void (async()=>{try{
+   const thumbnail=await captureThumbnail?.();
+   if(cancelled)return;const next=savePlayerSlot(readPlayerSaves(localStorage),project,playback,'auto',undefined,thumbnail,dialoguePosition);writePlayerSaves(localStorage,next);setSaves(next);
+  }catch(error){if(!cancelled)setError(reason(error));}})();},150);return()=>{cancelled=true;clearTimeout(timer);};},[project.id,fingerprint,progressKey,presentationReady,presentationKey,thumbnailReady,captureThumbnail]); // eslint-disable-line react-hooks/exhaustive-deps
+ useEffect(()=>{if((panel||confirm)&&!dialog.current?.open)dialog.current?.showModal();if(!panel&&!confirm&&dialog.current?.open){dialog.current?.close();returnFocus.current?.focus();}},[panel,confirm]);
+ useLayoutEffect(()=>{if(!confirm&&panel&&confirmationReturn.current){dialog.current?.querySelector<HTMLElement>(confirmationReturn.current)?.focus();confirmationReturn.current=null;}},[panel,confirm]);
+ useEffect(()=>{if(!topOpen)return;topMenu.current?.querySelector<HTMLButtonElement>('button')?.focus();const close=(event:MouseEvent)=>{if(!topMenu.current?.contains(event.target as Node)&&!trigger.current?.contains(event.target as Node)){setTopOpen(false);trigger.current?.focus();}};const escape=(event:KeyboardEvent)=>{if(event.key==='Escape'){setTopOpen(false);trigger.current?.focus();}};document.addEventListener('pointerdown',close);document.addEventListener('keydown',escape);return()=>{document.removeEventListener('pointerdown',close);document.removeEventListener('keydown',escape);};},[topOpen]);
+ useEffect(()=>{if(!notice)return;const timer=setTimeout(()=>setNotice(''),3500);return()=>clearTimeout(timer);},[notice]);
+ function captureFocus(){if(!panel&&!confirm)returnFocus.current=topOpen?trigger.current:document.activeElement as HTMLElement;}
+ function close(){confirmationReturn.current=null;setPanel(null);setConfirm(null);setError('');}
+ function cancelConfirmation(){
+  if(!panel){close();return;}
+  confirmationReturn.current=confirm?.kind==='history'?`[data-player-history-index="${confirm.pathIndex}"]`:confirm?.id!==undefined?`[data-player-slot="${confirm.id}"]`:null;
+  setConfirm(null);
  }
- function save(id:number,confirmed=false){
-  try{const current=readPlayerSaves(localStorage);if(current.works[project.id]?.[id]&&!confirmed){setOverwrite(id);return;}
-   const next=savePlayerSlot(current,project,playback,id);writePlayerSaves(localStorage,next);setSaves(next);setOverwrite(null);setError('');setNotice(`${id}번에 읽기 위치와 선택 기록을 저장했습니다.`);
-  }catch(error){setError(reason(error));}
+ function open(next:Panel){captureFocus();setTopOpen(false);setConfirm(null);setPage(1);setTab('manual');setNotice('');try{setSaves(readPlayerSaves(localStorage));setError('');}catch(error){setError(reason(error));}setPanel(next);}
+ function request(value:NonNullable<Confirmation>){captureFocus();setTopOpen(false);if(value.kind==='load'){try{const current=readPlayerSaves(localStorage);setSaves(current);if(!current.works[project.id]?.[String(value.id)]){setError(value.id==='quick'?'빠른 저장한 진행이 없어요. 먼저 빠른 저장을 해 주세요.':'선택한 진행 저장을 찾을 수 없어요. 다른 저장 위치를 선택해 주세요.');return;}}catch(error){setError(reason(error));return;}}setConfirm(value);setError('');}
+ async function save(id:PlayerSlotId,approved=false,keepConfirmation=false):Promise<boolean>{
+  if(saveInFlight.current)return false;
+  const context=saveContext.current,clickedProject=project,clickedPlayback=playback;
+  try{const current=readPlayerSaves(localStorage);if(typeof id==='number'&&current.works[project.id]?.[id]&&!approved){setConfirm({kind:'overwrite',id});return false;}
+   saveInFlight.current=true;setSaving(true);
+   const thumbnail=await captureThumbnail?.();
+   if(saveContext.current!==context)throw Error('저장 중 장면이 바뀌었습니다. 현재 컷에서 다시 저장해 주세요.');
+   const next=savePlayerSlot(readPlayerSaves(localStorage),clickedProject,clickedPlayback,id,undefined,thumbnail,dialoguePosition);writePlayerSaves(localStorage,next);setSaves(next);if(!keepConfirmation)setConfirm(null);setError('');setNotice(id==='quick'?'빠른 저장 완료':id==='auto'?'읽기 위치를 보관했습니다.':`${id}번에 저장했습니다.`);return true;
+  }catch(error){setError(reason(error));return false;}finally{saveInFlight.current=false;setSaving(false);}
  }
- function load(id:PlayerSlotId,allowChanged=false){
-  try{const slot=readPlayerSaves(localStorage).works[project.id]?.[String(id)];if(!slot)throw Error('빈 저장 위치입니다.');
-   if(isPlayerSlotChanged(project,slot)&&!allowChanged){setChangedSlot(id);setError('저장 이후 작품이 변경되었습니다. 이전 내용으로 되돌리지 않고, 현재 작품의 연결이 유효할 때만 이어읽을 수 있습니다.');return;}
-   const result=loadPlayerSlot(project,slot,allowChanged);onRestore(result.state);setPanel(null);setChangedSlot(null);setError('');setNotice('읽기 위치와 선택 기록을 불러왔습니다.');
-  }catch(error){setError(reason(error));}
- }
- let log:ReturnType<typeof playbackLog>=[];
- try{if(panel==='log')log=playbackLog(project,playback);}catch{/* Error is surfaced when attempting restoration, not a render-time state write. */}
- const slotText=(slot:PlayerSlot)=>{
-  if(slot.summary)return `${slot.summary.location} · ${slot.playback.status==='ended'?'이야기 끝 · ':''}${slot.summary.speaker} — ${slot.summary.text}`;
-  const line=project.lines.find(item=>item.id===(slot.playback.lineId??slot.playback.path.at(-1))),chapter=project.chapters.find(item=>item.id===line?.chapterId);
-  return `${chapter&&line?cutLabel(chapter,line):'장·컷 정보 없음'} · ${slot.playback.status==='ended'?'이야기 끝':line?.workingTitle||''} · ${line?.speakerName||'해설'} — ${line?.text||'빈 글'}`;
- };
- return <div className={styles.menu} aria-label="읽기 메뉴">
-  {onAdvance&&<button disabled={disabled||advanceDisabled} onClick={onAdvance}>다음으로</button>}
-  <button disabled={disabled} onClick={()=>open('saves')}>읽기 저장</button><button disabled={disabled} onClick={()=>open('saves')}>읽기 불러오기</button><button disabled={disabled} onClick={()=>open('log')}>지난 기록</button><button disabled={disabled} onClick={onRestart}>처음부터 읽기</button>{onReducedMotion&&<button aria-pressed={reducedMotion} disabled={motionDisabled} onClick={onReducedMotion}>동작 줄이기</button>}{onFullscreen&&<button onClick={onFullscreen}>{fullscreen?'전체 화면 해제':'전체 화면'}</button>}{onExit&&<button onClick={onExit}>편집으로</button>}{onLibrary&&<button onClick={onLibrary}>서재로</button>}
-  <span className={styles.status} role="status">{notice||(!panel&&error?error:'')}</span>
-  <dialog ref={dialog} className={styles.dialog} onCancel={()=>setPanel(null)} onClose={()=>setPanel(null)} aria-labelledby="player-menu-title">
-   <div className={styles.header}><h2 id="player-menu-title">{panel==='log'?'지난 기록':'읽기 저장과 불러오기'}</h2><button onClick={()=>setPanel(null)} aria-label="읽기 메뉴 닫기">닫기</button></div>
-   {error&&<p role="alert" className={styles.error}>{error}</p>}{notice&&<p role="status">{notice}</p>}
-   {panel==='saves'&&<><p>작품 파일 저장과 별개로, 이 기기에 현재 컷과 지금까지 선택한 길을 보관합니다. 음원 재생 초 위치는 저장하지 않습니다.</p>
-    {changedSlot!==null&&<div className={styles.confirm}><button onClick={()=>load(changedSlot,true)}>변경된 작품에서 이어읽기</button><button onClick={()=>{setChangedSlot(null);setError('');}}>불러오기 취소</button></div>}
-    {overwrite!==null&&<div className={styles.confirm}><p>{overwrite}번의 이전 읽기 저장을 덮어씁니다.</p><button onClick={()=>save(overwrite,true)}>덮어쓰기</button><button onClick={()=>setOverwrite(null)}>저장 취소</button></div>}
-    <div className={styles.slots}>{(['auto',1,2,3,4,5,6,7,8,9] as const).map(id=>{const slot=saves.works[project.id]?.[String(id)];return <section key={id} className={styles.slot} aria-label={id==='auto'?'자동 읽기 저장':`${id}번 읽기 저장`}><h3>{id==='auto'?'자동 저장':`${id}번 저장`}</h3>{slot?<><time dateTime={slot.savedAt}>{date(slot.savedAt)}</time><p>{slotText(slot)}</p>{isPlayerSlotChanged(project,slot)&&<p className={styles.changed}>작품 변경됨 · 연결 확인 후 불러오기</p>}</>:<p>빈 저장 위치</p>}<div>{id!=='auto'&&<button onClick={()=>save(id)}>여기에 저장</button>}<button disabled={!slot} onClick={()=>load(id)}>불러오기</button></div></section>;})}</div>
+ function load(id:PlayerSlotId,allowChanged=false){try{const slot=readPlayerSaves(localStorage).works[project.id]?.[String(id)];if(!slot)throw Error(id==='quick'?'빠른 저장한 진행이 없어요. 먼저 빠른 저장을 해 주세요.':'선택한 진행 저장을 찾을 수 없어요. 다른 저장 위치를 선택해 주세요.');if(isPlayerSlotChanged(project,slot)&&!allowChanged){setConfirm({kind:'load',id,changed:true});return;}const restored=loadPlayerSlot(project,slot,allowChanged);onRestore(restored.state,restored.dialoguePosition);setAuto(false);close();setNotice('읽기 위치와 선택 기록을 불러왔습니다.');}catch(error){setError(reason(error));}}
+ async function confirmAction(){if(!confirm)return;switch(confirm.kind){case 'overwrite':save(confirm.id!,true);break;case 'load':load(confirm.id!,!!confirm.changed);break;case 'history':try{onRestore(jumpPlayback(project,playback,confirm.pathIndex!));setAuto(false);close();}catch(error){setError(reason(error));}break;case 'restart':try{onRestart();setAuto(false);advancedKey.current='';close();}catch(error){setError(reason(error));}break;case 'library':{const pending=confirm;if(await save('auto',false,true)){try{onLibrary?.();close();}catch(error){setConfirm(pending);setError(reason(error));}}break;}}}
+ const log=useMemo(()=>{try{return playbackLog(project,playback,visibleDialogue??null);}catch{return [];}},[project,playback,visibleDialogue]);
+ const slotText=(slot:PlayerSlot)=>slot.summary?`${slot.summary.location} · ${slot.summary.speaker} — ${slot.summary.text}`:(()=>{const line=project.lines.find(item=>item.id===(slot.playback.lineId??slot.playback.path.at(-1))),chapter=project.chapters.find(item=>item.id===line?.chapterId);return `${chapter&&line?cutLabel(chapter,line):'장·컷 정보 없음'} · ${line?.speakerName||'해설'} — ${line?.text||'빈 글'}`;})();
+ const pageSize=phone?4:6,maxPage=Math.ceil(9/pageSize),slotIds:PlayerSlotId[]=tab==='manual'?Array.from({length:Math.min(pageSize,9-(Math.min(page,maxPage)-1)*pageSize)},(_,index)=>(Math.min(page,maxPage)-1)*pageSize+index+1):[tab];
+ const barStyle:CSSProperties=textboxBounds?{left:textboxBounds.x,width:textboxBounds.width,top:textboxBounds.y+textboxBounds.height-44}:{};
+
+ const triggerStyle:CSSProperties=stageBounds?{left:stageBounds.x+stageBounds.width-52,top:stageBounds.y+8,right:'auto'}:{};
+ const popupStyle:CSSProperties=stageBounds?{left:stageBounds.x+Math.max(12,stageBounds.width-252),top:stageBounds.y+56,right:'auto',maxWidth:Math.max(0,stageBounds.width-24),maxHeight:Math.max(44,stageBounds.height-68)}:{};
+ const titles={save:'저장',load:'불러오기',log:'지난기록',settings:'읽기 설정'};
+ const confirmTitle=confirm?.kind==='overwrite'?'이 저장을 덮어쓸까요?':confirm?.kind==='load'?'이 기록을 불러올까요?':confirm?.kind==='history'?'이 지점부터 다시 읽을까요?':confirm?.kind==='restart'?'처음부터 읽을까요?':'서재로 돌아갈까요?';
+ const content=<div className={`${styles.menu} ${stageContainer?styles.overlay:''}`} role="group" aria-label="읽기 도구" data-phone={phone}>
+  <button className={styles.topTrigger} style={triggerStyle} ref={trigger} data-reader-menu-trigger="true" aria-label="읽기 메뉴" aria-expanded={topOpen} aria-controls={topMenuId} onClick={()=>setTopOpen(value=>!value)}><svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true" focusable="false"><path d="M2 3h18M2 9h18M2 15h18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg></button>
+  {topOpen&&<div ref={topMenu} id={topMenuId} data-system-menu="player" className={styles.topMenu} style={popupStyle} role="group" aria-label="읽기 메뉴" onBlurCapture={event=>{const next=event.relatedTarget as Node|null;if(!event.currentTarget.contains(next)&&!trigger.current?.contains(next))setTopOpen(false);}}><button onClick={()=>{setTopOpen(false);trigger.current?.focus();}}>계속 읽기</button><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button onClick={()=>open('settings')}>읽기 설정</button>{onFullscreen&&<button onClick={()=>{setTopOpen(false);onFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button>}<button disabled={disabled} onClick={()=>request({kind:'restart'})}>처음부터 읽기</button>{onLibrary&&<button onClick={()=>request({kind:'library'})}>서재로 돌아가기</button>}{onExit&&<button onClick={()=>{setTopOpen(false);onExit();}}>이 컷 편집하기</button>}<button onClick={()=>{setTopOpen(false);trigger.current?.focus();}} aria-label="읽기 메뉴 닫기">닫기</button></div>}
+  <div style={{...barStyle,'--reader-tool-font-size':`${Math.max(10,Math.min(12,toolFontSizePx))}px`} as CSSProperties} className={styles.quick}>
+   <button disabled={disabled} onClick={()=>open('log')}>지난기록</button>
+   {!phone&&<><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 {auto?'ON':'OFF'}</button></>}
+   <button disabled={disabled||saving} onClick={()=>save('quick')}>빠른 저장</button>
+   {phone?<button disabled={disabled} onClick={()=>open('settings')}>설정</button>:<button disabled={disabled} onClick={()=>request({kind:'load',id:'quick'})}>빠른 불러오기</button>}
+  </div>
+  {(notice||error&&!busy)&&<p className={styles.status} role={error?'alert':'status'}>{error||notice}</p>}
+  <dialog ref={dialog} data-system-menu="player-dialog" className={styles.dialog} onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={close} onClose={()=>{setPanel(null);setConfirm(null);returnFocus.current?.focus();}} aria-labelledby={titleId}>
+   <div className={styles.header}><h2 id={titleId}>{confirm?confirmTitle:panel?titles[panel]:''}</h2><button onClick={close} aria-label="읽기 메뉴 닫기">닫기</button></div>
+   {error&&<p role="alert" className={styles.error}>{error}</p>}{notice&&<p role="status">{notice}</p>}{saving&&<p role="status">읽던 진행을 저장하고 있어요.</p>}
+   {confirm?<div className={styles.confirm}><p>{confirm.kind==='library'?'읽던 진행을 이 브라우저에 저장한 뒤 서재로 돌아가요.':confirm.kind==='restart'?'현재 선택 경로를 처음부터 시작합니다. 별도로 저장한 기록은 유지합니다.':confirm.kind==='history'?'이 지점 뒤의 선택과 점수 결과를 되돌립니다.':confirm.changed?'저장 이후 작품이 변경되었습니다. 현재 작품의 연결을 확인하고 이어읽습니다.':confirm.kind==='overwrite'?'이 위치의 이전 저장 기록을 바꿉니다.':'현재 위치에서 저장된 컷과 선택 경로로 이동합니다.'}</p><div><button disabled={saving} autoFocus onClick={cancelConfirmation}>취소</button><button disabled={saving} onClick={confirmAction}>{confirm.kind==='overwrite'?'덮어쓰기':confirm.kind==='library'?'보관하고 서재로':confirm.kind==='restart'?'처음부터 읽기':confirm.changed?'변경된 작품에서 이어읽기':'확인'}</button></div></div>:<>
+    {(panel==='save'||panel==='load')&&<><p>읽던 위치와 선택·점수를 저장해 나중에 이어 읽어요. 작품 파일을 저장하는 기능은 아니며, 소리의 재생 위치는 포함하지 않아요.</p><nav className={styles.pages} aria-label="저장 종류">{(['manual','auto','quick'] as const).map(value=><button key={value} aria-pressed={tab===value} onClick={()=>{setTab(value);setPage(1);}}>{value==='manual'?'직접 저장':value==='auto'?'자동 저장':'빠른 저장'}</button>)}</nav><div className={styles.slots}>{slotIds.map(id=>{const slot=saves.works[project.id]?.[String(id)],slotId=`${topMenuId}-slot-${id}`,changed=!!slot&&isPlayerSlotChanged(project,slot),descriptionIds=slot?[`${slotId}-preview`,`${slotId}-time`,`${slotId}-summary`,...(changed?[`${slotId}-changed`]:[])]:[`${slotId}-empty`];return <button key={id} className={styles.slot} data-player-slot={id} aria-describedby={descriptionIds.join(' ')} aria-label={typeof id==='number'?`${id}번 ${panel==='save'?'저장':'불러오기'}`:`${id==='auto'?'자동':'빠른'} 저장${panel==='load'?' 불러오기':''}`} disabled={saving||panel==='load'&&!slot||panel==='save'&&id==='auto'} onClick={()=>panel==='save'?save(id):request({kind:'load',id})}><strong>{id==='auto'?'자동 저장':id==='quick'?'빠른 저장':`${id}번`}</strong>{slot?<>{slot.thumbnail?<img id={`${slotId}-preview`} className={styles.thumbnail} src={slot.thumbnail.dataUrl} width={slot.thumbnail.width} height={slot.thumbnail.height} alt={`${slot.summary?.location||'저장한 컷'}의 실제 재생 화면`}/>:<span id={`${slotId}-preview`} className={styles.thumbnailFallback}>화면 이미지 없음 · 저장한 글로 확인</span>}<time id={`${slotId}-time`} dateTime={slot.savedAt}>{date(slot.savedAt)}</time><span id={`${slotId}-summary`}>{slotText(slot)}</span>{changed&&<span id={`${slotId}-changed`} className={styles.changed}>작품 변경됨 · 연결 확인 필요</span>}</>:<span id={`${slotId}-empty`}>빈 저장 위치</span>}</button>;})}</div>{tab==='manual'&&<nav className={styles.pages} aria-label="저장 페이지">{Array.from({length:maxPage},(_,index)=><button key={index} aria-pressed={page===index+1} onClick={()=>setPage(index+1)}>{index+1}쪽</button>)}</nav>}</>}
+    {panel==='log'&&<><p>실제로 읽은 컷과 선택한 길입니다.</p><ol className={styles.log}>{log.map(entry=><li key={entry.pathIndex}><p className={styles.location}>{(()=>{const chapter=project.chapters.find(item=>item.id===entry.chapterId),line=project.lines.find(item=>item.id===entry.lineId);return chapter&&line?cutLabel(chapter,line):chapter?chapterLabel(chapter):'장 정보 없음';})()}</p><strong>{entry.speaker}</strong><p className={styles.text}>{entry.textPending?'본문 표시를 확인하고 있어요.':entry.text||'빈 글'}</p>{entry.choiceLabel&&<p className={styles.choice}>선택: {entry.choiceLabel}</p>}<button data-player-history-index={entry.pathIndex} onClick={()=>request({kind:'history',pathIndex:entry.pathIndex})}>이 지점부터 다시 읽기</button></li>)}</ol>{!log.length&&<p>읽기 경로를 확인할 수 없습니다.</p>}</>}
+    {panel==='settings'&&<div className={styles.settings}><div className={styles.settingsActions} aria-label="읽기 작업"><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 {auto?'ON':'OFF'}</button><button disabled={disabled} onClick={()=>request({kind:'load',id:'quick'})}>빠른 불러오기</button></div>{onFormatChange&&<label><span>화면 비율</span><select value={format} onChange={event=>updatePreferences({format:event.target.value as ReaderFormat})}><option value="auto">자동</option><option value="landscape">가로 · 16:9</option><option value="portrait">세로 · 9:16</option></select></label>}{onTextScaleChange&&<label><span>본문 글씨 크기</span><select value={textScale} onChange={event=>updatePreferences({textScale:Number(event.target.value)})}><option value={.9}>작게 · 90%</option><option value={1}>보통 · 100%</option><option value={1.15}>크게 · 115%</option><option value={1.3}>더 크게 · 130%</option></select></label>}<label><span>자동 넘기기 대기 시간</span><span className={styles.unitField}><input type="number" min="1" max="30" step=".5" value={delay} onChange={event=>updatePreferences({autoDelaySeconds:autoForwardDelay(Number(event.target.value))/1000})}/><span>초</span></span></label><p>연출이 끝난 뒤 기다립니다. 선택지는 직접 고릅니다.</p><p>글씨 크기는 이야기 본문에 적용돼요. 메뉴의 글씨와 인물·배경의 크기 및 위치는 바뀌지 않아요. 읽기 설정은 이 브라우저에 보관해요.</p><button onClick={()=>updatePreferences({textScale:1,autoDelaySeconds:3})}>글씨 크기·대기 시간 기본값으로</button>{onReducedMotion&&<button aria-pressed={reducedMotion} disabled={motionDisabled} onClick={onReducedMotion}>동작 줄이기 · {reducedMotion?'켜짐':'꺼짐'}</button>}</div>}
    </>}
-   {panel==='log'&&<><p>실제로 읽은 컷과 선택만 표시합니다. 이 지점으로 돌아가면 그 뒤의 읽기 기록을 지우고 다시 선택할 수 있습니다.</p><ol className={styles.log}>{log.map(entry=><li key={entry.pathIndex}><p className={styles.location}>{(()=>{const chapter=project.chapters.find(item=>item.id===entry.chapterId);const line=project.lines.find(item=>item.id===entry.lineId);return chapter&&line?cutLabel(chapter,line):chapter?chapterLabel(chapter):'장 정보 없음';})()}</p><p className={styles.speaker}>{entry.speaker}</p><p className={styles.text}>{entry.text||'빈 글'}</p>{entry.choiceLabel&&<p className={styles.choice}>선택: {entry.choiceLabel}</p>}<button onClick={()=>{try{onRestore(jumpPlayback(project,playback,entry.pathIndex));setPanel(null);}catch(error){setError(reason(error));}}}>이 지점부터 읽기</button></li>)}</ol>{!log.length&&<p>현재 작품의 읽기 경로를 확인할 수 없습니다. 연결을 확인하거나 처음부터 읽어 주세요.</p>}</>}
   </dialog>
  </div>;
+ return stageContainer?createPortal(content,stageContainer):content;
 }

@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 <repo>
+      Coverage enabled with v8
+
+ ❯ packages/runtime-core/tests/editor-authoring.test.ts (9 tests | 1 failed) 20ms
+     × removes incoming links explicitly and clears continuation without losing other cuts 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/editor-authoring.test.ts > editor authoring > removes incoming links explicitly and clears continuation without losing other cuts
+AssertionError: expected { incomingLinks: 1, …(3) } to deeply equal { incomingLinks: 1, …(2) }
+
+- Expected
++ Received
+
+  {
++   "branchConditions": [],
+    "incomingLinks": 1,
+    "isContinuation": true,
+    "rangeEnds": [],
+  }
+
+ ❯ packages/runtime-core/tests/editor-authoring.test.ts:28:49
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 151 passed (152)
+      Tests  1 failed | 1254 passed | 2 skipped (1257)
+   Start at  08:04:20
+   Duration  20.16s (transform 8.70s, setup 0ms, import 48.67s, tests 134.57s, environment 9ms)
+

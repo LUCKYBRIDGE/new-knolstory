@@ -1,0 +1,9 @@
+.entry{display:flex;flex-wrap:wrap;gap:6px;min-width:0}.entry p{font-size:12px;line-height:1.5;margin:0;flex-basis:100%}
+.body .check{display:flex;margin:0;gap:8px;align-items:flex-start;min-height:44px;padding:6px 0}
+.body .check input{flex:0 0 18px;width:18px;min-width:18px;min-height:18px;height:18px;padding:0;margin:3px 0 0}
+.dialog{width:min(640px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:var(--radius-panel);color:var(--ink);background:var(--white)}
+.dialog::backdrop{background:#18333155}.shell{display:flex;flex-direction:column;max-height:calc(100dvh - 28px);min-width:0}
+.shell header,.shell footer{display:flex;gap:8px;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid var(--line);flex:none}.shell h2{font-size:16px;line-height:1.5;margin:0;overflow-wrap:anywhere}.shell footer{justify-content:flex-end;border-bottom:0;border-top:1px solid var(--line)}
+.body{padding:10px;overflow:auto;min-width:0}.body p,.body label,.body legend{font-size:13px;line-height:1.6;overflow-wrap:anywhere}.body label:not(.check){display:grid;gap:4px}.body select{min-width:0;width:100%}.body fieldset{min-width:0;border:1px solid var(--line);border-radius:8px}.check{display:flex;gap:8px;align-items:flex-start;min-height:44px;padding:6px 0}.check input{width:18px;min-width:18px;height:18px;margin-top:3px}.assets{display:flex;gap:8px;overflow:auto}.assets figure{margin:0;flex:0 0 100px}.assets img{width:100px;height:90px;object-fit:contain}.assets figcaption{font-size:12px;overflow-wrap:anywhere}.sourceText{white-space:pre-wrap}
+.dialog :is(p,label,summary,strong) { word-break:keep-all; overflow-wrap:anywhere; }
+@media(max-width:460px) { .dialog header { gap:8px; align-items:start; }.dialog header h2 { min-width:0; font-size:18px; }.dialog header>button { flex:none; } }

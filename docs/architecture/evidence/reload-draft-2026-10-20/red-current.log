@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:59334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text (30.3s)
+
+
+  1) tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '현재 컷으로 돌아가기', exact: true })
+
+
+       97 |
+       98 | test('blocked draft reload requires explicit confirmation and cancellation preserves unexported text',async({page,context})=>{
+    >  99 |  await create(page,'보관함의 원고');const second=await context.newPage();await second.goto('/?view=editor');await second.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();
+          |                                                                                                                                                                        ^
+      100 |  await expect(second.getByRole('alert').filter({hasText:'다른 탭에서 보관함'})).toBeVisible();
+      101 |  const text=second.locator('textarea[data-cut-id]'),draft='아직 파일로 내보내지 않은 둘째 탭의 초안';await text.fill(draft);
+      102 |  const before=await page.evaluate(key=>localStorage.getItem(key),workspace);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:99:168
+
+    Error Context: docs/architecture/evidence/reload-draft-2026-10-20/red-current-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/reload-draft-2026-10-20/red-current-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/reload-draft-2026-10-20/red-current-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text 

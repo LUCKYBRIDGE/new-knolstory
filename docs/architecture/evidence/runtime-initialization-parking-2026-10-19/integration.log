@@ -1,0 +1,14 @@
+
+Running 7 tests using 1 worker
+
+(node:3173) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:209:1 › phone basic editor fits previous current next in 1:4:1 with landscape native scene (2.0s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:234:1 › native frame remains mounted and interactive through editor read return (1.9s)
+  ✓  3 tests/e2e/editing-workbench.spec.ts:243:1 › actual native basic preview renders landscape inside the phone center without changing manuscript (3.8s)
+  ✓  4 tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work (3.0s)
+  ✓  5 tests/e2e/editing-workbench.spec.ts:351:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen (3.5s)
+  ✓  6 tests/e2e/runtime-initialization-parking.spec.ts:2:54 › native engine initializes with nonzero surface after early text navigation (6.1s)
+  ✓  7 tests/e2e/runtime-initialization-parking.spec.ts:2:54 › native engine initializes with nonzero surface after early library navigation (4.7s)
+
+  7 passed (25.6s)

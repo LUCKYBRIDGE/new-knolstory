@@ -1,0 +1,23 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-a8c7091bced0 Creating 
+ Container knolstory-next-storage-test-runner-run-a8c7091bced0 Created 
+
+> @knolstory/storage-test@ typecheck /workspace/server
+> tsc --project tsconfig.integration.json
+
+
+> @knolstory/storage-test@ test:integration /workspace/server
+> vitest run --config vitest.config.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+
+ [32m✓[39m storage/postgres-save-port.integration.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 437[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m12 passed[39m[22m[90m (12)[39m
+[2m   Start at [22m 14:48:09
+[2m   Duration [22m 830ms[2m (transform 289ms, setup 0ms, import 332ms, tests 437ms, environment 0ms)[22m
+

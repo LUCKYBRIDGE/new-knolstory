@@ -1,0 +1,29 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/account-return.test.ts (6 tests | 2 failed) 5ms
+     × restores only a known workspace destination and consumes it once 2ms
+     × does not accept arbitrary destination paths from stored data 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/account-return.test.ts > one-use account return > restores only a known workspace destination and consumes it once
+TypeError: consumeAccountReturnDestination is not a function
+ ❯ apps/web/lib/account-return.test.ts:9:144
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  apps/web/lib/account-return.test.ts > one-use account return > does not accept arbitrary destination paths from stored data
+TypeError: consumeAccountReturnDestination is not a function
+ ❯ apps/web/lib/account-return.test.ts:10:197
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  08:43:11
+   Duration  140ms (transform 19ms, setup 0ms, import 28ms, tests 5ms, environment 0ms)
+

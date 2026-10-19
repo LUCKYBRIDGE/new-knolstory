@@ -1,0 +1,14 @@
+
+Running 7 tests using 1 worker
+
+(node:13329) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:282:1 › failed recovery write keeps the editor open when library navigation is requested (1.8s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work (3.1s)
+  ✓  3 tests/e2e/editing-workbench.spec.ts:351:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen (3.1s)
+  ✓  4 tests/e2e/editor-session-preferences.spec.ts:29:1 › editor session restores screen, companion and explicit opt-ins without changing work files (12.6s)
+  ✓  5 tests/e2e/editor-term-guide.spec.ts:32:1 › guide preserves author drafts and restores focus in four viewport layouts (3.7s)
+  ✓  6 tests/e2e/editor-term-guide.spec.ts:48:1 › ShortStory guide leaves edited page text untouched (465ms)
+  ✓  7 tests/e2e/editor-term-guide.spec.ts:56:1 › current vocabulary distinguishes work files, browser recovery and optional companion views (447ms)
+
+  7 passed (25.7s)

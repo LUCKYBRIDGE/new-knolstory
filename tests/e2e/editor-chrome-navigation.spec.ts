@@ -1,0 +1,15 @@
+import {test,expect} from '@playwright/test';
+for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`compact header and bordered actions leave room for editing ${size.width}`,async({page},info)=>{
+ await page.setViewportSize(size);await page.goto('/?view=editor');await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();
+ const stage=page.getByTestId('story-stage-viewport');const top=(await stage.boundingBox())!.y;expect(top).toBeLessThan(size.width>1000?150:240);
+ for(const label of ['작품','보기 설정']){const summary=page.getByText(label,{exact:true});expect(await summary.evaluate(node=>{const style=getComputedStyle(node);return parseFloat(style.borderTopWidth)>0&&style.borderTopStyle!=='none'&&style.borderTopColor!=='rgba(0, 0, 0, 0)';})).toBe(true);}
+ const next=page.getByRole('button',{name:'미리보기 다음 컷',exact:true}),previous=page.getByRole('button',{name:'미리보기 이전 컷',exact:true});await expect(next).toBeVisible();await expect(previous).toBeDisabled();
+ const box=(await stage.boundingBox())!,left=(await previous.boundingBox())!,right=(await next.boundingBox())!;expect(left.x+left.width).toBeLessThanOrEqual(box.x+1);expect(right.x).toBeGreaterThanOrEqual(box.x+box.width-1);
+ const position=page.getByLabel('현재 장과 컷 이동'),ids=await position.locator('option').evaluateAll(options=>options.map(node=>(node as HTMLOptionElement).value));await next.click();await expect(position).toHaveValue(ids[1]);await previous.click();await expect(position).toHaveValue(ids[0]);
+ const text=page.getByLabel('대사 / 해설',{exact:true});await text.dispatchEvent('compositionstart');await expect(next).toBeDisabled();await text.dispatchEvent('compositionend');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`compact-editor-${size.width}.png`),fullPage:true});
+});
+test('preview arrows cross chapter boundaries in manuscript view and protect failed saves',async({page})=>{
+ await page.goto('/?view=editor');await page.locator('[data-writing-tools]').evaluate(node=>(node as HTMLDetailsElement).open=true);await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();const position=page.getByLabel('현재 장과 컷 이동');const boundary=await position.locator('optgroup').evaluateAll(groups=>({last:(groups[0].lastElementChild as HTMLOptionElement).value,next:(groups[1].firstElementChild as HTMLOptionElement).value}));await position.selectOption(boundary.last);await page.getByRole('button',{name:'미리보기 다음 컷',exact:true}).click();await expect(position).toHaveValue(boundary.next);await expect(page.locator('[data-writer-current="true"]')).toHaveCount(1);
+ const before=await position.inputValue();await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});await page.locator('[data-writer-current="true"] textarea').first().fill('저장 실패 때 이동하지 않을 글');await page.getByRole('button',{name:'미리보기 다음 컷',exact:true}).click();await expect(position).toHaveValue(before);await expect(page.getByTestId('save-status')).toContainText('임시 보관 실패');
+});

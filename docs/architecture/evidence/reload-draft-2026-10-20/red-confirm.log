@@ -1,0 +1,68 @@
+
+Running 1 test using 1 worker
+
+(node:60212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text (32.6s)
+
+
+  1) tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '저장된 보관함 다시 열기', exact: true })
+        - locator resolved to <button>저장된 보관함 다시 열기</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div role="status" class="story-workspace-module__gRDfJG__runtimePreparing">이야기 무대를 준비하고 있어요. 잠시 기다리거나 편집으로 돌아가 작품을 저장할 수 있어요.</div> from <main data-parked="false" aria-hidden="false" data-keyboard-occluded="false" class="story-workspace-module__gRDfJG__shell story-workspace-module__gRDfJG__editorShell   ">…</main> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div role="status" class="story-workspace-module__gRDfJG__runtimePreparing">이야기 무대를 준비하고 있어요. 잠시 기다리거나 편집으로 돌아가 작품을 저장할 수 있어요.</div> from <main data-parked="false" aria-hidden="false" data-keyboard-occluded="false" class="story-workspace-module__gRDfJG__shell story-workspace-module__gRDfJG__editorShell   ">…</main> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        3 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div role="status" class="story-workspace-module__gRDfJG__runtimePreparing">이야기 무대를 준비하고 있어요. 잠시 기다리거나 편집으로 돌아가 작품을 저장할 수 있어요.</div> from <main data-parked="false" aria-hidden="false" data-keyboard-occluded="false" class="story-workspace-module__gRDfJG__shell story-workspace-module__gRDfJG__editorShell   ">…</main> subtree intercepts pointer events
+        - retrying click action
+          - waiting 500ms
+        46 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div data-testid="story-stage-viewport" class="story-workspace-module__gRDfJG__viewport  ">…</div> from <main data-parked="false" aria-hidden="false" data-keyboard-occluded="false" class="story-workspace-module__gRDfJG__shell story-workspace-module__gRDfJG__editorShell   ">…</main> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      103 |  const reopen=second.getByRole('button',{name:'저장된 보관함 다시 열기',exact:true});
+      104 |  await text.dispatchEvent('compositionstart');await expect(reopen).toBeDisabled();await text.dispatchEvent('compositionend');
+    > 105 |  await reopen.click();const dialog=second.getByRole('dialog',{name:'저장된 보관함 다시 열기',exact:true});
+          |               ^
+      106 |  await expect(dialog).toBeVisible();await second.setViewportSize({width:390,height:844});await second.screenshot({path:testInfo.outputPath('reload-confirmation-390.png')});await expect(dialog).toContainText('현재 초안은 사라집니다');await expect(dialog.getByRole('button',{name:'취소',exact:true})).toBeFocused();
+      107 |  await text.dispatchEvent('compositionstart');await expect(dialog.getByRole('button',{name:'현재 초안을 닫고 다시 열기',exact:true})).toBeDisabled();await text.dispatchEvent('compositionend');
+      108 |  await second.keyboard.press('Shift+Tab');await expect(dialog.getByRole('button',{name:'현재 초안을 닫고 다시 열기',exact:true})).toBeFocused();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/storage-recovery.spec.ts:105:15
+
+    Error Context: docs/architecture/evidence/reload-draft-2026-10-20/red-confirm-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/reload-draft-2026-10-20/red-confirm-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/reload-draft-2026-10-20/red-confirm-run/storage-recovery-blocked-d-88e81-n-preserves-unexported-text/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/storage-recovery.spec.ts:98:1 › blocked draft reload requires explicit confirmation and cancellation preserves unexported text 

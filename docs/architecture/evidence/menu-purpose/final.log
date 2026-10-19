@@ -1,0 +1,7 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:15:59] "GET / HTTP/1.1" 200 -
+Error: Cannot find package '@knolstory/compatibility' imported from /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts
+Did you mean to import "file:///Users/wan/ai_dev/apps/new-knolstory/packages/compatibility/src/index.ts"?
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+

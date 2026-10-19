@@ -1,0 +1,26 @@
+
+Running 16 tests using 1 worker
+
+(node:37764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 (7.5s)
+  ✓   2 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768 (7.3s)
+  ✓   3 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390 (8.2s)
+  ✓   4 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844 (7.8s)
+  ✓   5 [host] › tests/e2e/non-audio-direction-ui.spec.ts:83:1 › effect cancellation restores absence and cannot copy undo into another work with the same cut ID (2.1s)
+  ✓   6 [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work (6.6s)
+  ✓   7 [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work (7.4s)
+  ✓   8 [host] › tests/e2e/non-audio-transition.spec.ts:5:1 › author controls confirm transition and look intensity without changing manuscript or placement (4.8s)
+  ✓   9 [host] › tests/e2e/presentation-polish.spec.ts:78:1 › presentation controls provide an explicit current-cut preview action without changing stored composition (2.0s)
+  -  10 [host] › tests/e2e/presentation-polish.spec.ts:104:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+  -  11 [host] › tests/e2e/presentation-polish.spec.ts:147:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+(node:37992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work (10.1s)
+  ✓  13 [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work (10.7s)
+  -  14 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:78:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+  ✓  15 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:104:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape (12.1s)
+  ✓  16 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:147:1 › presentation preview visibly renders both native looks then restores neutral on back and restart (12.8s)
+
+  3 skipped
+  13 passed (1.7m)

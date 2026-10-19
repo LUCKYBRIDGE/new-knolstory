@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-16T10:18:47.192781+00:00",
+  "scope": "Same-Mac private static backup and isolated restored Web/native reader execution; full operating recovery remains incomplete",
+  "sourceSha256": {
+    "server/operations/static_release.py": "80f909e6235d7ff5c12aa66abddc5dea70ff4d027dd670158d64495dbbfef42d",
+    "server/operations/static_release_test.py": "73a4b71a9f6ccfe0e45d50e598123b423c2af0196418025082d8b6e83008a38e",
+    "server/operations/serve_static_restore.py": "31a708b690a79f950bde194ad881fcbbd55a041a06b36106df0aa559a151b3dc",
+    "server/operations/serve_static_restore_test.py": "3e9223208ce4f2edb3e6bfc46de1ecf4be34d421fcb2f9a829b6ab8e95c13107",
+    "server/operations/static-release.playwright.config.ts": "f300393ab8a0cf72f46d87c11a5ce8c30d06b0170cf9b984313597c37415c7cd",
+    "tests/e2e/restored-release.spec.ts": "afb7a21abb961900197dd64ce439fd306d53acfb68367df89c8eaf0ea9e589c0"
+  },
+  "copy": {
+    "bytes": 807636285,
+    "files": 1479,
+    "manifestSha256": "74d3eb3409ca0dc329765bbdb026237a417ffb66e7a700e921c2ff5469a8f7de",
+    "restoreRun": "8d312f2acaee4338b5126a058425901e",
+    "run": "141084b901934391b80dad103239a177"
+  },
+  "browser": {
+    "scope": "Actual restored file tree on a separate loopback origin; no source Web files, mocked renderer or live OAuth used.",
+    "origin": "http://127.0.0.1:3142",
+    "manifestSha256": "74d3eb3409ca0dc329765bbdb026237a417ffb66e7a700e921c2ff5469a8f7de",
+    "restoreRun": "8d312f2acaee4338b5126a058425901e",
+    "library": true,
+    "nativeRuntimeAcknowledged": true,
+    "nativeAdvance": true,
+    "shortStoryImageBytesLoaded": true,
+    "shortStoryNextPage": true,
+    "runtimeResponseCount": 17,
+    "missingAssets": [],
+    "pageErrors": [],
+    "externalHttpRequests": []
+  },
+  "verification": {
+    "copyTests": 12,
+    "copyLineCoverage": 96,
+    "copyBranchCoverage": "not measured",
+    "httpTests": 3,
+    "browserPassed": 1,
+    "browserLog": "browser-unlocked.log",
+    "retainedFailures": [
+      "browser-initial.log",
+      "browser-initial-artifacts",
+      "browser-final.log",
+      "browser-audio-locked-artifacts"
+    ],
+    "review": "Independent review after trailing slash fix: no remaining P1/P2 in reviewed scope",
+    "finalTree": "final-tree-verification.json",
+    "docs": "docs-check-final.log"
+  },
+  "remaining": [
+    "off-host durability/encryption",
+    "roles/secrets and whole operating restore",
+    "live OAuth",
+    "physical devices and accessibility",
+    "retention/class/sharing decisions"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4
+  },
+  "previewLifecycle": "Owned loopback preview stopped after verification; backup and restored files retained"
+}

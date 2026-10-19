@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:21353) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:51:1 › several cut texts edit directly and companion visibility never edits manuscript data (5.2s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:79:1 › audio and direction require separate opt-in, persist real cut ranges and survive local-file reopen (4.5s)
+  ✓  3 tests/e2e/editing-workbench.spec.ts:351:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen (3.1s)
+  ✓  4 tests/e2e/manual-reader-wording.spec.ts:2:1 › reader save and load labels describe the action actually performed (3.7s)
+
+  4 passed (17.0s)

@@ -1,0 +1,201 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:51] "GET / HTTP/1.1" 200 -
+
+Running 16 tests using 1 worker
+
+(node:82088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:52] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:55] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:55] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.child-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:55] "GET /runtime/game/assets/legacy-18da4fc/onggojib.character.classic-master.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:55] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:29:55] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘   1 [host] › tests/e2e/editor-time-seconds.spec.ts:10:1 › decimal seconds preserve exact milliseconds through save, reload and file reopening (7.3s)
+(node:82147) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:00] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:01] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:03] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:03] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:03] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:03] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:03] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:03] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:05] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:05] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+  ✘   2 [host] › tests/e2e/editor-time-seconds.spec.ts:22:37 › previous actual excel seconds artifact rejects new private attachment and its explicit registered copy preserves exact work (20.6s)
+(node:82266) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /_next/static/chunks/0krmxyngj0fh4.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:21] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:22] "GET /_next/static/chunks/1ubgb8e8qhuuh.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:24] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:24] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:24] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:24] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:24] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:24] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:27] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.background.rabbit-palace-reveal.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 17:30:27] "GET /runtime/game/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-command.webp HTTP/1.1" 200 -
+  ✘   3 [host] › tests/e2e/editor-time-seconds.spec.ts:22:37 › previous actual google seconds artifact rejects new private attachment and its explicit registered copy preserves exact work (21.2s)
+Testing stopped early after 3 maximum allowed failures.
+
+
+  1) [host] › tests/e2e/editor-time-seconds.spec.ts:10:1 › decimal seconds preserve exact milliseconds through save, reload and file reopening 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByLabel('컷 배경음 동작', { exact: true })
+    Expected: "play"
+    Received: "default"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('컷 배경음 동작', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('컷 배경음 동작', { exact: true })
+        14 × locator resolved to <select aria-label="컷 배경음 동작">…</select>
+           - unexpected value "default"
+
+
+      12 |  await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'seconds.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:'2026-10-10T00:00:00.000Z',appVersion:'test',project:source}))});await confirmAuthoringImport(page);
+      13 |  const before=(await exported(page)).document.project;
+    > 14 |  await sound(page,'music');await expect(page.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('play');await edit(page,'컷 배경음 서서히 크게 시작 (초)','0.23');await edit(page,'컷 배경음 기존 소리 사라짐 (초)','0.1');
+         |                                                                                   ^
+      15 |  await sound(page,'sounds');await edit(page,'1번 효과음 재생 대기 (초)','0.001');await sound(page,'music');await edit(page,'컷 배경음 서서히 크게 시작 (초)','');
+      16 |  await expect(page.getByRole('alert').filter({hasText:'기존 값은 유지됩니다'})).toBeVisible();await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+      17 |  await page.reload();await sound(page,'music');await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');const {path,document}=await exported(page);
+        at <repo>/tests/e2e/editor-time-seconds.spec.ts:14:83
+
+    Error Context: test-results-current-ux/editor-time-seconds-decima-e777a-e-reload-and-file-reopening-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/editor-time-seconds-decima-e777a-e-reload-and-file-reopening-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/editor-time-seconds-decima-e777a-e-reload-and-file-reopening-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/editor-time-seconds.spec.ts:22:37 › previous actual excel seconds artifact rejects new private attachment and its explicit registered copy preserves exact work 
+
+    TimeoutError: locator.evaluate: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('[data-placement-details]')
+
+
+      25 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await expect(page.getByTestId('workspace-error')).toContainText('외부 음원이 첨부된 작품');await expect(page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true})).toHaveCount(0);expect((await exported(page)).document.project).toEqual(before);
+      26 |  await page.getByLabel('작품 파일 가져오기').setInputFiles({name:`registered-${app}.xlsx`,mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',buffer:copy.buffer});await confirmAuthoringImport(page);
+    > 27 |  const placement=page.locator('[data-placement-details]');if(!await placement.evaluate(n=>(n as HTMLDetailsElement).open))await placement.locator(':scope>summary').click();await page.getByRole('button',{name:'배경·인물 편집',exact:true}).click();await expect(page.getByLabel('왼쪽 1번 인물 동작 시간 (초)',{exact:true})).toHaveValue('0.45');
+         |                                                                               ^
+      28 |  await page.locator('[data-writing-tools]>summary').click();await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();const setting=page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true});if(!await setting.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await setting.click();
+      29 |  await expect(page.getByLabel('장 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');
+      30 |  const exportedCopy=(await exported(page)).document;expect(exportedCopy.project).toEqual({...copy.archive.document.project,id:exportedCopy.project.id});expect(exportedCopy.audioResources).toEqual([]);
+        at <repo>/tests/e2e/editor-time-seconds.spec.ts:27:79
+
+    Error Context: test-results-current-ux/editor-time-seconds-previo-af494-d-copy-preserves-exact-work-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/editor-time-seconds-previo-af494-d-copy-preserves-exact-work-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/editor-time-seconds-previo-af494-d-copy-preserves-exact-work-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [host] › tests/e2e/editor-time-seconds.spec.ts:22:37 › previous actual google seconds artifact rejects new private attachment and its explicit registered copy preserves exact work 
+
+    TimeoutError: locator.evaluate: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('[data-placement-details]')
+
+
+      25 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await expect(page.getByTestId('workspace-error')).toContainText('외부 음원이 첨부된 작품');await expect(page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true})).toHaveCount(0);expect((await exported(page)).document.project).toEqual(before);
+      26 |  await page.getByLabel('작품 파일 가져오기').setInputFiles({name:`registered-${app}.xlsx`,mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',buffer:copy.buffer});await confirmAuthoringImport(page);
+    > 27 |  const placement=page.locator('[data-placement-details]');if(!await placement.evaluate(n=>(n as HTMLDetailsElement).open))await placement.locator(':scope>summary').click();await page.getByRole('button',{name:'배경·인물 편집',exact:true}).click();await expect(page.getByLabel('왼쪽 1번 인물 동작 시간 (초)',{exact:true})).toHaveValue('0.45');
+         |                                                                               ^
+      28 |  await page.locator('[data-writing-tools]>summary').click();await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();const setting=page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true});if(!await setting.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await setting.click();
+      29 |  await expect(page.getByLabel('장 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');
+      30 |  const exportedCopy=(await exported(page)).document;expect(exportedCopy.project).toEqual({...copy.archive.document.project,id:exportedCopy.project.id});expect(exportedCopy.audioResources).toEqual([]);
+        at <repo>/tests/e2e/editor-time-seconds.spec.ts:27:79
+
+    Error Context: test-results-current-ux/editor-time-seconds-previo-be1ef-d-copy-preserves-exact-work-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/editor-time-seconds-previo-be1ef-d-copy-preserves-exact-work-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/editor-time-seconds-previo-be1ef-d-copy-preserves-exact-work-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [host] › tests/e2e/editor-time-seconds.spec.ts:10:1 › decimal seconds preserve exact milliseconds through save, reload and file reopening 
+    [host] › tests/e2e/editor-time-seconds.spec.ts:22:37 › previous actual excel seconds artifact rejects new private attachment and its explicit registered copy preserves exact work 
+    [host] › tests/e2e/editor-time-seconds.spec.ts:22:37 › previous actual google seconds artifact rejects new private attachment and its explicit registered copy preserves exact work 
+  13 did not run
+  1 error was not a part of any test, see above for details

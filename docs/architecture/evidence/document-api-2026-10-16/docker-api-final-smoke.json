@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "path": "/health/ready",
+      "status": 503,
+      "body": {
+        "success": false,
+        "error": {
+          "code": "AUTH_PROVIDER_NOT_CONFIGURED"
+        }
+      }
+    },
+    {
+      "path": "/api/v1/documents",
+      "status": 401,
+      "body": {
+        "success": false,
+        "error": {
+          "code": "SESSION_REQUIRED"
+        }
+      }
+    }
+  ],
+  "scope": "Latest bundled candidate; readiness checked six migration hashes before provider-disabled503. No authenticated provider credentials used."
+}

@@ -1,0 +1,124 @@
+
+Running 9 tests using 1 worker
+
+(node:85344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 1440 (6.4s)
+  ✓  2 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 768 (6.0s)
+  ✓  3 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 390 (5.8s)
+  ✘  4 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 844 (2.0m)
+(node:85889) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 1440 (1.6s)
+  ✓  6 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 768 (1.6s)
+  ✘  7 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 390 (5.2s)
+(node:85905) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  8 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 844 (5.2s)
+(node:85917) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  9 [host] › tests/e2e/ui-clarity.spec.ts:31:1 › long Korean choice labels scroll inside their own area above dialogue (4.8s)
+
+
+  1) [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 844 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '이 컷부터 재생', exact: true })
+        - locator resolved to <button>이 컷부터 재생</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <button aria-pressed="true">글 편집</button> from <nav aria-label="편집 도구" class="story-workspace-module__gRDfJG__mobileTools">…</nav> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <button aria-pressed="true">글 편집</button> from <nav aria-label="편집 도구" class="story-workspace-module__gRDfJG__mobileTools">…</nav> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        215 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <button aria-pressed="true">글 편집</button> from <nav aria-label="편집 도구" class="story-workspace-module__gRDfJG__mobileTools">…</nav> subtree intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+
+
+      13 |  await page.getByLabel('말하는 인물 이름',{exact:true}).fill('긴 화자 이름을 읽기 쉽게 표시합니다 '.repeat(6));await nativeReady(page);rects=JSON.parse((await report())!);expect(rects.speaker.y).toBeGreaterThanOrEqual(0);expect(rects.speaker.y+rects.speaker.height).toBeLessThanOrEqual(rects.body.y-8);
+      14 |  await page.getByLabel('말하는 인물 이름',{exact:true}).fill(cut.speakerName);await nativeReady(page);await page.screenshot({path:info.outputPath('viewpoint-edit.png'),fullPage:true});
+    > 15 |  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await nativeReady(page);await page.screenshot({path:info.outputPath('viewpoint-read.png')});
+         |                                                              ^
+      16 |  rects=JSON.parse((await report())!);expect(rects.speaker.y+rects.speaker.height).toBeLessThanOrEqual(rects.body.y-8);
+      17 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(cut.text);
+      18 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/ui-clarity.spec.ts:15:62
+
+    Error Context: test-results/ui-clarity-measured-native-2717d-original-viewpoint-text-844-host/error-context.md
+
+  2) [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 390 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('대사·해설 텍스트 보기', { exact: true })
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" getByText('대사·해설 텍스트 보기', { exact: true }) with timeout 5000ms
+      - waiting for getByText('대사·해설 텍스트 보기', { exact: true })
+        13 × locator resolved to <summary>대사·해설 텍스트 보기</summary>
+           - unexpected value "hidden"
+
+
+      19 | for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`clear tools stay reachable and form rows do not overlap ${size.width}`,async({page})=>{
+      20 |  await page.setViewportSize(size);await page.goto('/?view=editor');
+    > 21 |  await expect(page.getByText('현재 컷을 글자로 읽기',{exact:true})).toHaveCount(0);await expect(page.getByText('대사·해설 텍스트 보기',{exact:true})).toBeVisible();
+         |                                                                                                                                     ^
+      22 |  for(const tool of ['배경·인물 편집','선택지 편집','연출 편집','소리 편집']){
+      23 |   await page.getByRole('button',{name:tool,exact:true}).click();const panel=page.locator('[data-inspector-section]:visible').last();
+      24 |   const overlap=await panel.evaluate(node=>{const controls=[...node.querySelectorAll('input:not([type=hidden]),select,textarea,button')].filter(el=>{const r=el.getBoundingClientRect();return el.checkVisibility()&&r.width>0&&r.height>0});const bad=[];for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++){const a=controls[i].getBoundingClientRect(),b=controls[j].getBoundingClientRect();if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>2&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>2)bad.push([controls[i].getAttribute('aria-label')||controls[i].textContent,controls[j].getAttribute('aria-label')||controls[j].textContent]);}return bad;});expect(overlap).toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/ui-clarity.spec.ts:21:133
+
+    Error Context: test-results/ui-clarity-clear-tools-sta-eb712-orm-rows-do-not-overlap-390-host/error-context.md
+
+  3) [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 844 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('대사·해설 텍스트 보기', { exact: true })
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" getByText('대사·해설 텍스트 보기', { exact: true }) with timeout 5000ms
+      - waiting for getByText('대사·해설 텍스트 보기', { exact: true })
+        13 × locator resolved to <summary>대사·해설 텍스트 보기</summary>
+           - unexpected value "hidden"
+
+
+      19 | for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`clear tools stay reachable and form rows do not overlap ${size.width}`,async({page})=>{
+      20 |  await page.setViewportSize(size);await page.goto('/?view=editor');
+    > 21 |  await expect(page.getByText('현재 컷을 글자로 읽기',{exact:true})).toHaveCount(0);await expect(page.getByText('대사·해설 텍스트 보기',{exact:true})).toBeVisible();
+         |                                                                                                                                     ^
+      22 |  for(const tool of ['배경·인물 편집','선택지 편집','연출 편집','소리 편집']){
+      23 |   await page.getByRole('button',{name:tool,exact:true}).click();const panel=page.locator('[data-inspector-section]:visible').last();
+      24 |   const overlap=await panel.evaluate(node=>{const controls=[...node.querySelectorAll('input:not([type=hidden]),select,textarea,button')].filter(el=>{const r=el.getBoundingClientRect();return el.checkVisibility()&&r.width>0&&r.height>0});const bad=[];for(let i=0;i<controls.length;i++)for(let j=i+1;j<controls.length;j++){const a=controls[i].getBoundingClientRect(),b=controls[j].getBoundingClientRect();if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>2&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>2)bad.push([controls[i].getAttribute('aria-label')||controls[i].textContent,controls[j].getAttribute('aria-label')||controls[j].textContent]);}return bad;});expect(overlap).toEqual([]);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/ui-clarity.spec.ts:21:133
+
+    Error Context: test-results/ui-clarity-clear-tools-sta-ca38e-orm-rows-do-not-overlap-844-host/error-context.md
+
+  3 failed
+    [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 844 
+    [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 390 
+    [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 844 
+  6 passed (2.6m)

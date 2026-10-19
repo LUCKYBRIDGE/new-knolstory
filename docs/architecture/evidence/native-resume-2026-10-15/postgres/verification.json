@@ -1,0 +1,93 @@
+{
+  "timestampUtc": "2026-10-15T14:48:37.112076+00:00",
+  "project": "knolstory-next-storage-test",
+  "database": "knolstory_next_storage_test",
+  "beforeInventoryOrigin": "docs/architecture/evidence/next-product-completion/postgres/legacy-containers-before.json",
+  "legacyContainersCompared": 23,
+  "legacyMetadataUnchanged": false,
+  "images": [
+    {
+      "tags": [
+        "knolstory-next-storage-test:local"
+      ],
+      "id": "sha256:0717acb71d4afd203288527122101c1ba105b4fcb4aa337e1a5a82277b4f74ac",
+      "repoDigests": [
+        "knolstory-next-storage-test@sha256:0717acb71d4afd203288527122101c1ba105b4fcb4aa337e1a5a82277b4f74ac"
+      ]
+    },
+    {
+      "tags": [
+        "postgres:16-bookworm"
+      ],
+      "id": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+      "repoDigests": [
+        "postgres@sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67"
+      ]
+    },
+    {
+      "tags": [
+        "node:22-bookworm-slim"
+      ],
+      "id": "sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c",
+      "repoDigests": [
+        "node@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c"
+      ]
+    }
+  ],
+  "db": {
+    "id": "e35ba4df4497bb36f023613048d6f7c058a527c3253a3c4634919dbd7941f733",
+    "image": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "status": "running",
+    "health": "healthy",
+    "ports": {
+      "5432/tcp": null
+    },
+    "memory": 402653184,
+    "mounts": [
+      {
+        "type": "volume",
+        "name": "knolstory-next-storage-test_storage_test_data",
+        "destination": "/var/lib/postgresql/data"
+      }
+    ]
+  },
+  "network": {
+    "name": "knolstory-next-storage-test_storage_test",
+    "internal": true
+  },
+  "sourceSha256": {
+    "server/Dockerfile.storage-test": "1d02328faf437fc0a0b3c3e22e309944c134f3fb031f8a6e07bc55a71b2e4fea",
+    "server/Dockerfile.storage-test.dockerignore": "ac6e5e1bd8effc0d85b242517529286359beb9fa9fd5ebfa8444292572016f6e",
+    "server/README.md": "35534749382d961578873d8320f78bc97956b7a519197aaae08998001aadba27",
+    "server/compose.storage-test.yml": "bb572f92747fd7a4b11a5c2e82433bfab0aca2a0b8d276f8d1fd23599e88e4e1",
+    "server/migrations/001-storage.sql": "cb9de69c2c64b7faf3169375de28f6f8795dd2c157197be198f6de1437b55745",
+    "server/migrations/runner.ts": "a21154673f38b15c81668151b3ed6e143bafd91ddbb828aaa692fc46f8539e12",
+    "server/operations/run-storage-tests.mjs": "4df101e73b9cc6568812f032cf0f295e370a5eff246c9f06e439727b5d01614a",
+    "server/operations/storage-compose.mjs": "4402b49cb3ec4da16830f737ce507ca5d0cf64391ef55405748b0e843d1c8ffd",
+    "server/package.json": "5abbcd2b7c77145b422280831d53f62c3cccc26532fb46f9fa4abe31aef9abae",
+    "server/pnpm-lock.yaml": "31221854467026cf3a9ace0c8ec82a1149e0b04de1955e0341f3ba67a2701636",
+    "server/storage/postgres-save-port.integration.ts": "2bd8b0d912c53a1df85fcc6461df154800c596f654db0dce813a674a5c5e1b83",
+    "server/storage/postgres-save-port.ts": "ffd20d4b0000b2f8f72b8c0d6e963e576aa2fcc581a2a36f0b2e67a5748a7586",
+    "server/storage/save-existing.test.ts": "1759e52cd762a294f56e8ce258fbb10d55fbbf9e8988b4ce599d23783b52b475",
+    "server/storage/save-existing.ts": "fa23261a55d65d100ddafa079e5ad6b9afc2f26de48017b35444af96358f4fa7",
+    "server/storage/snapshot-projection.test.ts": "a2f84685808e888097e39e98f577d9c2f37fd12feb2cbb2d8034b51ab8590fa4",
+    "server/storage/snapshot-projection.ts": "781cd28423fa2f846e912af081e720b9c332ba0a4acd466f0af4890c5a36fe10",
+    "server/tsconfig.integration.json": "fd17da3232c943138184465a698fd9e8f83f900d2a518fa373ca3038cd92d3a1",
+    "server/tsconfig.json": "c9e8c35decf35a9a877e5eab883002f7af7a15c56c733ac9e40adf28b65594b9",
+    "server/vitest.config.ts": "d594c5a70d0479b780040b6129585ad869aff4116370dc211930ae079fbe35d0"
+  },
+  "commands": [
+    "node server/operations/storage-compose.mjs config --quiet",
+    "node server/operations/storage-compose.mjs build runner",
+    "node server/operations/storage-compose.mjs up -d --wait db",
+    "node server/operations/storage-compose.mjs run --rm runner"
+  ],
+  "firstRun": {
+    "preImplementationRedExecuted": false,
+    "tsc": "passed",
+    "tests": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "lifecycle": "New database retained; runner removed automatically; no volumes removed."
+}

@@ -1,0 +1,40 @@
+
+Running 2 tests using 1 worker
+
+(node:32362) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/chapter-settings-access.spec.ts:14:1 › chapter settings restore reachable defaults without opening advanced tools or changing cut overrides (9.7s)
+  ✘  2 tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections (1.5m)
+
+
+  1) tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections 
+
+    Test timeout of 90000ms exceeded.
+
+    Error: locator.fill: Test timeout of 90000ms exceeded.
+    Call log:
+      - waiting for locator('[data-chapter-settings]').locator('details').filter({ has: locator('summary').filter({ hasText: '장 번호·갈래 표시' }) }).getByRole('spinbutton', { name: '장 번호', exact: true })
+
+
+      44 |  expect(after.chapters[0]).toEqual({...before.chapters[0],chapterNumber:3,branchLabel:'A'});
+      45 |  expect(after.lines).toEqual(before.lines);expect(after.chapters.slice(1)).toEqual(before.chapters.slice(1));
+    > 46 |  await number.fill('');await number.blur();expect((await exportFile(page)).project).toEqual(after);
+         |               ^
+      47 |  await branch.dispatchEvent('compositionstart');await expect(branch).toBeEnabled();await expect(number).toBeDisabled();await branch.dispatchEvent('compositionend');
+      48 |  const file=await exportFile(page);await page.reload();await saved(page);await chapter(page);
+      49 |  await page.locator('[data-chapter-settings]').getByText('장 번호·갈래 표시',{exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/chapter-settings-access.spec.ts:46:15
+
+    Error Context: docs/architecture/evidence/chapter-identity-2026-10-20/green-run/chapter-settings-access-ch-03fee-or-change-story-connections/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chapter-identity-2026-10-20/green-run/chapter-settings-access-ch-03fee-or-change-story-connections/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chapter-identity-2026-10-20/green-run/chapter-settings-access-ch-03fee-or-change-story-connections/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections 
+  1 passed (1.7m)

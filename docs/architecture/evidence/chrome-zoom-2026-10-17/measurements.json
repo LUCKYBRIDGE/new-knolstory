@@ -1,0 +1,161 @@
+{
+  "baseline": {
+    "height": 777,
+    "scrollWidth": 1885,
+    "width": 1885
+  },
+  "results": [
+    {
+      "zoom": 200,
+      "surface": "account",
+      "geometry": {
+        "clientHeight": 355,
+        "clientWidth": 311,
+        "height": 356.5,
+        "scrollHeight": 372,
+        "scrollWidth": 311,
+        "viewportHeight": 388,
+        "viewportWidth": 942,
+        "width": 320,
+        "x": 134.2734375,
+        "y": 16
+      }
+    },
+    {
+      "zoom": 200,
+      "surface": "book-focus",
+      "geometry": {
+        "clientHeight": 365,
+        "clientWidth": 886,
+        "height": 365.1875,
+        "scrollHeight": 651,
+        "scrollWidth": 886,
+        "viewportHeight": 388,
+        "viewportWidth": 942,
+        "width": 893,
+        "x": 24.75,
+        "y": 11.65625
+      }
+    },
+    {
+      "zoom": 200,
+      "surface": "book-start",
+      "geometry": {
+        "contentHeight": 682,
+        "height": 388,
+        "scrollWidth": 942,
+        "width": 942
+      }
+    },
+    {
+      "zoom": 400,
+      "surface": "book-start",
+      "geometry": {
+        "contentHeight": 1106,
+        "height": 194,
+        "prose": [
+          {
+            "clientWidth": 431,
+            "scrollWidth": 431,
+            "text": "원작 / 이야기 시작",
+            "width": 431.25
+          },
+          {
+            "clientWidth": 431,
+            "scrollWidth": 431,
+            "text": "선녀와 나무꾼",
+            "width": 431.25
+          },
+          {
+            "clientWidth": 431,
+            "scrollWidth": 431,
+            "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+            "width": 431.25
+          },
+          {
+            "clientWidth": 431,
+            "scrollWidth": 431,
+            "text": "여러 「선녀와 나무꾼」 전승의 대표 서사를 바탕으로 오늘날의 독자가 읽기 쉽게 풀어 쓴 원작 읽기입니다.",
+            "width": 431.25
+          },
+          {
+            "clientWidth": 431,
+            "scrollWidth": 431,
+            "text": "지은이 · 전래 이야기",
+            "width": 431.25
+          },
+          {
+            "clientWidth": 431,
+            "scrollWidth": 431,
+            "text": "읽기 화면에서 무대를 한 번 누르면 소리와 이야기가 시작됩니다. 읽기 저장과 지난 기록은 읽기 메뉴에서 열 수 있어요.",
+            "width": 431.25
+          }
+        ],
+        "scrollWidth": 471,
+        "width": 471
+      }
+    },
+    {
+      "zoom": 400,
+      "surface": "writer",
+      "geometry": {
+        "documentScrollWidth": 471,
+        "focused": true,
+        "height": 170,
+        "value": "옛날 어느 산골 마을에 가난한 나무꾼이 살았다. 나무꾼은 늙은 어머니를 모시고 살며 날마다 산에 올라 나무를 해다 팔았다.",
+        "viewportHeight": 194,
+        "viewportWidth": 471,
+        "width": 435.25,
+        "x": 18,
+        "y": 12.14453125
+      }
+    },
+    {
+      "zoom": 400,
+      "surface": "account",
+      "geometry": {
+        "clientHeight": 160,
+        "clientWidth": 314,
+        "height": 162.25,
+        "scrollHeight": 372,
+        "scrollWidth": 314,
+        "viewportHeight": 194,
+        "viewportWidth": 471,
+        "width": 320,
+        "x": 16,
+        "y": 16
+      }
+    },
+    {
+      "zoom": 400,
+      "surface": "book-focus",
+      "geometry": {
+        "clientHeight": 183,
+        "clientWidth": 430,
+        "height": 182.59375,
+        "scrollHeight": 1033,
+        "scrollWidth": 430,
+        "viewportHeight": 194,
+        "viewportWidth": 471,
+        "width": 433.25,
+        "x": 19,
+        "y": 5.828125
+      }
+    }
+  ],
+  "actions": {
+    "accountRefresh200": true,
+    "bookTools200": true,
+    "originalBookStart200": true,
+    "bookStart400": true,
+    "protectedCopyEditor400": true,
+    "writerFocus400": true,
+    "nextCut400": true,
+    "libraryReturn400": true,
+    "accountRefresh400": true,
+    "accountEscape400": true,
+    "bookTools400": true,
+    "preparationEntry400": true
+  },
+  "scope": "Native macOS Chrome UI zoom with browser 200%/400% label; no viewport override or CSS zoom, fresh loopback origin, no real screen reader or target physical-device claim"
+}

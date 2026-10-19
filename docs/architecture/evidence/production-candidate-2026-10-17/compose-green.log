@@ -1,0 +1,51 @@
+TAP version 13
+# Subtest: creates private independent secrets once and never changes existing values
+ok 1 - creates private independent secrets once and never changes existing values
+  ---
+  duration_ms: 3.399541
+  type: 'test'
+  ...
+# Subtest: refuses symlink directories and unsafe private files without overwriting
+ok 2 - refuses symlink directories and unsafe private files without overwriting
+  ---
+  duration_ms: 1.214375
+  type: 'test'
+  ...
+# Subtest: provider pairs stay private; rejects partial, empty, symlink or world-readable provider files
+ok 3 - provider pairs stay private; rejects partial, empty, symlink or world-readable provider files
+  ---
+  duration_ms: 2.512291
+  type: 'test'
+  ...
+# Subtest: accepts only the production origin or explicitly selected Knolstory staging origin
+ok 4 - accepts only the production origin or explicitly selected Knolstory staging origin
+  ---
+  duration_ms: 1.074584
+  type: 'test'
+  ...
+# Subtest: fixed lifecycle actions never forward arbitrary Compose or destructive arguments
+ok 5 - fixed lifecycle actions never forward arbitrary Compose or destructive arguments
+  ---
+  duration_ms: 0.683292
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 80.800625
+# start of coverage report
+# -------------------------------------------------------------------------
+# file                     | line % | branch % | funcs % | uncovered lines
+# -------------------------------------------------------------------------
+# server                   |        |          |         | 
+#  operations              |        |          |         | 
+#   production-compose.mjs |  87.27 |    92.11 |  100.00 | 49-55
+# -------------------------------------------------------------------------
+# all files                |  87.27 |    92.11 |  100.00 | 
+# -------------------------------------------------------------------------
+# end of coverage report

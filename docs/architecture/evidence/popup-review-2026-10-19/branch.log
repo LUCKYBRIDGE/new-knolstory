@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:82281) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:334:1 › popup audit: new branch preview and local-work deletion cancel safely (3.0s)
+
+  1 passed (3.5s)

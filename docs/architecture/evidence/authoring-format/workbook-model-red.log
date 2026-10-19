@@ -1,0 +1,33 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/workbook-model.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/workbook-model.test.ts (3 tests | 1 failed) 4ms
+   × rejects an exporter field that has no declared editable column instead of silently losing it 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/workbook-model.test.ts > rejects an exporter field that has no declared editable column instead of silently losing it
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ packages/compatibility/tests/workbook-model.test.ts:6:198
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  20:21:09
+   Duration  117ms (transform 12ms, setup 0ms, import 18ms, tests 4ms, environment 0ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

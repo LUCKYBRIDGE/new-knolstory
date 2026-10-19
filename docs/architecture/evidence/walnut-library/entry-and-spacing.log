@@ -1,0 +1,16 @@
+
+Running 9 tests using 1 worker
+
+(node:42476) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/introduction-stability.spec.ts:7:1 › introduction waits for a choice and stays open across reloads and new navigation (22.4s)
+  ✓  2 [host] › tests/e2e/introduction-stability.spec.ts:42:1 › my works leaves introduction only after an explicit choice (3.7s)
+  ✓  3 [host] › tests/e2e/introduction-stability.spec.ts:51:1 › a corrupt workspace stays intact while introduction waits for explicit navigation (1.0s)
+  ✓  4 [host] › tests/e2e/introduction-stability.spec.ts:64:1 › explicit ShortStory library return is consumed so later preparation survives reload (3.6s)
+  ✓  5 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 1365x900 (1.7s)
+  ✓  6 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 820x1180 (1.7s)
+  ✓  7 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 390x844 (1.4s)
+  ✓  8 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 844x390 (1.4s)
+  ✓  9 [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 320x740 (1.4s)
+
+  9 passed (39.1s)

@@ -84,6 +84,7 @@ export type StoryPlanning = {
 export type StoryCharacter = { id: string; name: string; role: string; description: string; defaultImageId: string };
 
 export type StoryProject = {
+  scores?: import("./story-scores").StoryScoreDefinition[];
   choiceMode?: "simple" | "choice" | "free";
   stageDefaults?: Pick<Chapter, "backgroundId" | "leftAssetId" | "rightAssetId">;
   characters?: StoryCharacter[];

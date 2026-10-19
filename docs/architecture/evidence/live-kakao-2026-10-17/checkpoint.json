@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-17",
+  "authorization": "User approved route and callback addition at action time",
+  "url": "https://story-next.knolquiz.com",
+  "providerAppId": "1589616",
+  "callbackPersistedAfterReopen": "https://story-next.knolquiz.com/api/v1/auth/kakao/callback",
+  "cloudflare": {
+    "tunnel": "knolstory-stg",
+    "route": "story-next.knolquiz.com",
+    "service": "http://127.0.0.1:15501",
+    "dnsCreated": true,
+    "preserved": [
+      "story.knolquiz.com",
+      "story-stg.knolquiz.com",
+      "story-stg-origin.knolquiz.com",
+      "mini-ssh.knolquiz.com"
+    ]
+  },
+  "actualChrome": {
+    "firstKakaoCallbackSuccess": true,
+    "accountMenuLoggedIn": true,
+    "protectedCopyCreated": true,
+    "onlineCreateSuccessUi": true,
+    "onlineListAfterRefresh": true,
+    "onlineReadAsIndependentCopy": true,
+    "readManuscriptMarkerMatched": true,
+    "logoutUiLoggedOut": true,
+    "secondKakaoLoginUiLoggedIn": true,
+    "onlineDocumentListedAfterReloginAndExplicitRefresh": true
+  },
+  "databaseAfterRelogin": {
+    "accounts": 1,
+    "identities": 1,
+    "privateDocuments": 1,
+    "records": 1
+  },
+  "apiReady": 200,
+  "dns": {
+    "chromeNormalDnsAndHttps": true,
+    "cloudflare1111": [
+      "172.67.189.108",
+      "104.21.49.86"
+    ],
+    "systemCurlResolver": "negative cache resolution failure observed",
+    "curlWithAuthoritativeResolvedAddress": "TLS validation enabled; API kakao=true google=false"
+  },
+  "limits": [
+    "One real Kakao account on one Mac Chrome browser, no second physical device",
+    "Google not configured",
+    "Full native playback on this new origin not yet proven",
+    "Final production hostname not switched",
+    "Legacy containers/databases/backups not deleted",
+    "Validation account and document retained in Next candidate DB"
+  ],
+  "restartCommand": "KNOLSTORY_AUTH_ORIGIN=https://story-next.knolquiz.com node server/operations/production-compose.mjs start"
+}

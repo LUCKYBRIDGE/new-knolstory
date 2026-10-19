@@ -1,0 +1,407 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@22/22.23.3/bin/node",
+      "/Users/wan/ai_dev/apps/new-knolstory/node_modules/@playwright/test/cli.js",
+      "test",
+      "-c",
+      ".cache/reader-eight-continuation/playwright.config.ts"
+    ],
+    "configFile": "/Users/wan/ai_dev/apps/new-knolstory/.cache/reader-eight-continuation/playwright.config.ts",
+    "rootDir": "/Users/wan/ai_dev/apps/new-knolstory/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/reader-eight-integrated-2026-10-18/native-run",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/wan/ai_dev/apps/new-knolstory/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "reader-eight-editions.spec.ts"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/architecture/evidence/reader-eight-integrated-2026-10-18/native-result.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "reader-eight-editions.spec.ts",
+      "file": "reader-eight-editions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "seonnyeo original: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21899,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T10:58:18.374Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAic2Vvbm55ZW8iLAogICJlZGl0aW9uIjogIm9yaWdpbmFsIiwKICAicHJvamVjdElkIjogImNsYXNzaWMtc2Vvbm55ZW8tdGFsZSIsCiAgImNoZWNrZWRDb3JyZWN0aW9ucyI6IDI0LAogICJyZXByZXNlbnRhdGl2ZSI6IHsKICAgICJwcm9qZWN0SWQiOiAiY2xhc3NpYy1zZW9ubnllby10YWxlIiwKICAgICJsaW5lSWQiOiAiY2xhc3NpYy1zZW9ubnllby0yLWxpbmUtMDgiLAogICAgImJlZm9yZSI6ICLqt7jrn7DrjbAg7ZWcIOyEoOuFgOunjOydgCDsl7DrqrvqsIDrpbwg65ag64KY7KeAIOuqu+2WiOuLpC4g7J6Q7Iug7J20IOuyl+yWtCDrkZQg64Kg6rCc7Ji37J20IOyVhOustOumrCDssL7slYTrj4Qg67O07J207KeAIOyViuyVmOq4sCDrlYzrrLjsnbTri6QuIiwKICAgICJhZnRlciI6ICLtlZwg7ISg64WA66eMIOyXsOuqu+qwgOyXkCDrgqjslZjri6QuIOyVhOustOumrCDssL7slYTrj4Qg7J6Q7Iug7J2YIOuCoOqwnOyYt+ydtCDrs7TsnbTsp4Ag7JWK7JWY64ukLiIsCiAgICAicmVhc29uIjogIuyghOyKueydmCDsgqzqsbTqs7wg7J2466y8IOq0gOqzhOulvCDsnKDsp4DtlZjqs6Ag67CY67O1IO2RnO2YhOqzvCDquLQg7Jew6rKw66y47J2EIOynp+ydgCDshJzsgqwg7Zi47Z2h7Jy866GcIOygleumrCIKICB9LAogICJxdWlja0xpbmVJZCI6ICJjbGFzc2ljLXNlb25ueWVvLTItbGluZS0wOCIsCiAgInJlb3BlbmVkTGluZUlkIjogImNsYXNzaWMtc2Vvbm55ZW8tMi1saW5lLTA4Igp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-191b998508a110b5418a",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        },
+        {
+          "title": "seonnyeo knolstory: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 26981,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T10:58:40.645Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAic2Vvbm55ZW8iLAogICJlZGl0aW9uIjogImtub2xzdG9yeSIsCiAgInByb2plY3RJZCI6ICJwaW5reS1yZXZpZXctbWFpbi0wMDQiLAogICJjaGVja2VkQ29ycmVjdGlvbnMiOiA2NCwKICAicmVwcmVzZW50YXRpdmUiOiB7CiAgICAicHJvamVjdElkIjogInBpbmt5LXJldmlldy1tYWluLTAwNCIsCiAgICAibGluZUlkIjogIlAyLXYxNjUtMSIsCiAgICAiYmVmb3JlIjogIuu5l+uwqeyauCDrqocg6rCc6rCAIOuWqOyWtOyngOuKlOqwgCDsi7brjZTri4gg7Iic7Iud6rCE7JeQIOqxsOyEvCDrsJTrnozsnbQg6rOE6rOh7J2EIO2cqeyTuOyXiOuLpC4iLAogICAgImFmdGVyIjogIuu5l+uwqeyauCDrqocg6rCc6rCAIOuWqOyWtOyhjOuLpC4g7Iic7Iud6rCE7JeQIOqxsOyEvCDrsJTrnozsnbQg6rOE6rOh7J2EIO2cqeyTuOyXiOuLpC4iLAogICAgInJlYXNvbiI6ICLrj5nsnbwg7J6l66m07J2YIOu2hOq4sOuzhCDrrLjqtazrpbwg7ZWo6ruYIOygleumrO2VmOqzoCDtlonrj5nCt+uwnOqyrMK36rCQ7KCVIOyghO2ZmOuniOuLpCDsp6fqsowg7Zi47Z2h7J2EIOuCmOuIlCIKICB9LAogICJxdWlja0xpbmVJZCI6ICJQMi12MTY1LTEiLAogICJyZW9wZW5lZExpbmVJZCI6ICJQMi12MTY1LTEiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-bbd6bd4762fa77ed6d5f",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        },
+        {
+          "title": "heungbu original: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20865,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T10:59:07.635Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAiaGV1bmdidSIsCiAgImVkaXRpb24iOiAib3JpZ2luYWwiLAogICJwcm9qZWN0SWQiOiAiY2xhc3NpYy1oZXVuZ2J1LXRhbGUiLAogICJjaGVja2VkQ29ycmVjdGlvbnMiOiAyMSwKICAicmVwcmVzZW50YXRpdmUiOiB7CiAgICAicHJvamVjdElkIjogImNsYXNzaWMtaGV1bmdidS10YWxlIiwKICAgICJsaW5lSWQiOiAiY2xhc3NpYy1oZXVuZ2J1LTMtbGluZS0xMSIsCiAgICAiYmVmb3JlIjogIuupsOy5oOydtCDsp4DrgpjsnpAg7KCc67mE7J2YIOuLpOumrOuKlCDri6Tsi5wg64KY7JWY64ukLiDsg4jrgbwg7KCc67mE64qUIOuLpOuluCDsoJzruYTrk6Tqs7wg7ZWo6ruYIO2emOywqOqyjCDrgqDslYTri6Tri4jquLAg7Iuc7J6R7ZaI64ukLiIsCiAgICAiYWZ0ZXIiOiAi66mw7LmgIOuSpCDsoJzruYTsnZgg64uk66as6rCAIOuCmOyVmOuLpC4g7IOI64G8IOygnOu5hOuKlCDri6Trpbgg7KCc67mE65Ok6rO8IO2emOywqOqyjCDrgqDslYTri6TrhZTri6QuIiwKICAgICJyZWFzb24iOiAi7ZqM67O17J2YIOyLnOqwhOqzvCDrrLTrpqzsl5Ag64+M7JWE6rCEIOyCrOqxtOydhCDsp6fqsowg7ZGc7ZiELiIKICB9LAogICJxdWlja0xpbmVJZCI6ICJjbGFzc2ljLWhldW5nYnUtMy1saW5lLTExIiwKICAicmVvcGVuZWRMaW5lSWQiOiAiY2xhc3NpYy1oZXVuZ2J1LTMtbGluZS0xMSIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-c23e1959171c44d02f04",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        },
+        {
+          "title": "heungbu knolstory: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 22193,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T10:59:28.505Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAiaGV1bmdidSIsCiAgImVkaXRpb24iOiAia25vbHN0b3J5IiwKICAicHJvamVjdElkIjogImhldW5nYnUtbm9sYnUtbm9sc3RvcnkiLAogICJjaGVja2VkQ29ycmVjdGlvbnMiOiAzNSwKICAicmVwcmVzZW50YXRpdmUiOiB7CiAgICAicHJvamVjdElkIjogImhldW5nYnUtbm9sYnUtbm9sc3RvcnkiLAogICAgImxpbmVJZCI6ICJzY2VuZS0zLTExIiwKICAgICJiZWZvcmUiOiAi7LKY7J2M7JeQ64qUIOyerOyCsOydhCDslrTrlrvqsowg64KY64iM7KeAIOydtOyVvOq4sO2WiOydhCDrv5DsnbTsl4jri6QuXG5cbuq3uOufrOuCmCDsmKTrnpjrkJwg6rCQ7KCV7J20IO2VmOuCmOuRmCDrgbzslrTrk6Tsl4jri6QuIiwKICAgICJhZnRlciI6ICLsspjsnYzsl5DripQg7J6s7IKw7J2EIOuCmOuIhOuKlCDsnbTslbzquLDsmIDri6QuXG5cbuq3uOufrOuLpCDrrLXsnYAg6rCQ7KCV7J20IO2VmOuCmOuRmCDrgbzslrTrk6Tsl4jri6QuIiwKICAgICJyZWFzb24iOiAi7J6s7IKwIOuFvOydmOyXkOyEnCDqsJDsoJUg6rCI65Ox7Jy866GcIOuwlOuAjOuKlCDsoITtmZjsnYQg66qF66OM7ZmULiIKICB9LAogICJxdWlja0xpbmVJZCI6ICJzY2VuZS0zLTExIiwKICAicmVvcGVuZWRMaW5lSWQiOiAic2NlbmUtMy0xMSIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-3022c86de45a8b0dc4b2",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        },
+        {
+          "title": "onggojib original: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 22930,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T10:59:50.706Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAib25nZ29qaWIiLAogICJlZGl0aW9uIjogIm9yaWdpbmFsIiwKICAicHJvamVjdElkIjogImNsYXNzaWMtb25nZ29qaWItdGFsZSIsCiAgImNoZWNrZWRDb3JyZWN0aW9ucyI6IDI1LAogICJyZXByZXNlbnRhdGl2ZSI6IHsKICAgICJwcm9qZWN0SWQiOiAiY2xhc3NpYy1vbmdnb2ppYi10YWxlIiwKICAgICJsaW5lSWQiOiAiY2xhc3NpYy1vbmdnb2ppYi0xLWxpbmUtMDgiLAogICAgImJlZm9yZSI6ICLqsJnsnYAg7KeR7JeQ64qUIOuCmOydtCDrp47snYAg7Ja066i464uI64+EIOyCtOqzoCDsnojsl4jri6QuIOy2lOyatCDqsqjsmrjrgqDsl5Drj4Qg7Ja066i464uI7J2YIOuwqeyXkOuKlCDrtojquLDsmrTsnbQg6rGw7J2YIOuCqOyVhCDsnojsp4Ag7JWK7JWY64ukLiIsCiAgICAiYWZ0ZXIiOiAi6re4IOynkeyXkOuKlCDrgpjsnbQg66eO7J2AIOyWtOuouOuLiOuPhCDsgrTslZjri6QuIOy2lOyatCDqsqjsmrjrgqDsl5Drj4Qg7Ja066i464uIIOuwqeyXkOuKlCDrtojquLDsmrTsnbQg6rGw7J2YIOyXhuyXiOuLpC4iLAogICAgInJlYXNvbiI6ICLslrTrqLjri4jsnZgg7LKY7KeA66W8IOuTnOufrOuCtOuKlCDtlbTshKTsnYQg6rCE6rKw7ZWY6rKMIOygleumrCIKICB9LAogICJxdWlja0xpbmVJZCI6ICJjbGFzc2ljLW9uZ2dvamliLTEtbGluZS0wOCIsCiAgInJlb3BlbmVkTGluZUlkIjogImNsYXNzaWMtb25nZ29qaWItMS1saW5lLTA4Igp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-41e7d2629ccbcb751bb2",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        },
+        {
+          "title": "onggojib knolstory: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20543,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T11:00:13.643Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAib25nZ29qaWIiLAogICJlZGl0aW9uIjogImtub2xzdG9yeSIsCiAgInByb2plY3RJZCI6ICJwaW5reS1yZXZpZXctbWFpbi0wMDMiLAogICJjaGVja2VkQ29ycmVjdGlvbnMiOiAzNywKICAicmVwcmVzZW50YXRpdmUiOiB7CiAgICAicHJvamVjdElkIjogInBpbmt5LXJldmlldy1tYWluLTAwMyIsCiAgICAibGluZUlkIjogInJldmlldy1tYWluLTAwMzpiLW1lYWwtYWN0OjEiLAogICAgImJlZm9yZSI6ICLquYzsuZjqsIAg7J6l64+F64yAIOychOyXkOyEnCDrgpjrrYfqsIDsp4Drpbwg66y86rOgIOyeiOyXiOyWtOyalC4iLAogICAgImFmdGVyIjogIuq5jOy5mOqwgCDsnqXrj4XrjIAg7JyE7JeQIOyeiOyXiOyWtOyalC4g64KY662H6rCA7KeA66W8IOusvOqzoCDsnojsl4jslrTsmpQuIiwKICAgICJyZWFzb24iOiAi7JWE7J207J2YIOunkO2IrOulvCDsnKDsp4DtlZjrqbTshJwg6rSA7LCwIOuCtOyaqeydhCDsp6fqsowg64KY64iUIgogIH0sCiAgInF1aWNrTGluZUlkIjogInJldmlldy1tYWluLTAwMzpiLW1lYWwtYWN0OjEiLAogICJyZW9wZW5lZExpbmVJZCI6ICJyZXZpZXctbWFpbi0wMDM6Yi1tZWFsLWFjdDoxIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-99a63336e565f6184bb4",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        },
+        {
+          "title": "rabbit original: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21241,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T11:00:34.191Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAicmFiYml0IiwKICAiZWRpdGlvbiI6ICJvcmlnaW5hbCIsCiAgInByb2plY3RJZCI6ICJjbGFzc2ljLXJhYmJpdC10YWxlIiwKICAiY2hlY2tlZENvcnJlY3Rpb25zIjogMjIsCiAgInJlcHJlc2VudGF0aXZlIjogewogICAgInByb2plY3RJZCI6ICJjbGFzc2ljLXJhYmJpdC10YWxlIiwKICAgICJsaW5lSWQiOiAiY2xhc3NpYy1yYWJiaXQtNC1saW5lLTA2IiwKICAgICJiZWZvcmUiOiAi6re465+s642U64uIIO2GoOuBvOuKlCDsobDquIgg7KCE6rmM7KeA7J2YIOuRkOugpOyatCDslrzqtbTsnYQg6rCQ7LaU6rOgIOqwkeyekOq4sCDrsLDrpbwg7J6h6rOgIOybg+q4sCDsi5zsnpHtlojri6QuXG5cbuKAnO2VmO2VmO2VmO2VmCHigJ0iLAogICAgImFmdGVyIjogIu2GoOuBvOuKlCDrkZDroKTsmrQg7ZGc7KCV7J2EIOqwkOy3hOuLpC4g6re465+s642U64uIIOqwkeyekOq4sCDrsLDrpbwg7J6h6rOgIOybg+q4sCDsi5zsnpHtlojri6QuXG5cbuKAnO2VmO2VmO2VmO2VmCHigJ0iLAogICAgInJlYXNvbiI6ICLsm4PsnYwg7KeB7KCE7J2YIOydmOuPhOyggSDtkZzsoJUg7KCE7ZmY7J2EIOynp+qyjCDsoJXrpqztlZjqs6Ag7JuD7J2MIOyduOyaqcK366y464uo7J2EIOuztOyhtO2VqC4iCiAgfSwKICAicXVpY2tMaW5lSWQiOiAiY2xhc3NpYy1yYWJiaXQtNC1saW5lLTA2IiwKICAicmVvcGVuZWRMaW5lSWQiOiAiY2xhc3NpYy1yYWJiaXQtNC1saW5lLTA2Igp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-4d051bce99ca91531b24",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        },
+        {
+          "title": "rabbit knolstory: corrected catalog manuscript renders and survives save, reload and reopen",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21838,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-18T11:00:55.437Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "edition-manuscript-verification",
+                      "contentType": "application/json",
+                      "body": "ewogICJ3b3JrSWQiOiAicmFiYml0IiwKICAiZWRpdGlvbiI6ICJrbm9sc3RvcnkiLAogICJwcm9qZWN0SWQiOiAicGlua3ktcmV2aWV3LW1haW4tMDAyIiwKICAiY2hlY2tlZENvcnJlY3Rpb25zIjogMzMsCiAgInJlcHJlc2VudGF0aXZlIjogewogICAgInByb2plY3RJZCI6ICJwaW5reS1yZXZpZXctbWFpbi0wMDIiLAogICAgImxpbmVJZCI6ICJyZXZpZXctbWFpbi0wMDI6c2hvcmVBZnRlclNoaWVsZDoxOSIsCiAgICAiYmVmb3JlIjogIuq3uCDrp5Dsl5Ag64KY64qUIOyVhOustOufsCDrjIDri7Xrj4Qg7ZWgIOyImCDsl4bsl4jri6QuIiwKICAgICJhZnRlciI6ICLrgpjripQg7JWE66y0IOuMgOuLteuPhCDtlaAg7IiYIOyXhuyXiOuLpC4iLAogICAgInJlYXNvbiI6ICLslZ7shKAg7Yag64G87J2YIOunkOydhCDsnqzshKTrqoXtlZjsp4Ag7JWK6rOgIOyekOudvOydmCDrsJjsnZEg7ZWcIO2YuO2doeycvOuhnCDsnbTslrQg6rCQLiIKICB9LAogICJxdWlja0xpbmVJZCI6ICJyZXZpZXctbWFpbi0wMDI6c2hvcmVBZnRlclNoaWVsZDoxOSIsCiAgInJlb3BlbmVkTGluZUlkIjogInJldmlldy1tYWluLTAwMjpzaG9yZUFmdGVyU2hpZWxkOjE5Igp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bd97c0a644fb6e6eacce-92892e5ef722ca734f86",
+          "file": "reader-eight-editions.spec.ts",
+          "line": 44,
+          "column": 2
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-18T10:58:18.095Z",
+    "duration": 179296.09699999998,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

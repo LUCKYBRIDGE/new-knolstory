@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/document-routes.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/document-routes.test.ts [ server/http/document-routes.test.ts ]
+Error: Cannot find module './document-routes' imported from /Users/wan/ai_dev/apps/new-knolstory/server/http/document-routes.test.ts
+ ❯ server/http/document-routes.test.ts:4:1
+      2| import { connect } from 'node:net';
+      3| import { afterEach, describe, expect, it, vi } from 'vitest';
+      4| import { createDocumentRouter, type DocumentRouterOptions } from './do…
+       | ^
+      5| import { DocumentServiceError, type DocumentService } from '../documen…
+      6| const origin = 'http://localhost:3000', token = 't'.repeat(43), record…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:22:13
+   Duration  128ms (transform 16ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

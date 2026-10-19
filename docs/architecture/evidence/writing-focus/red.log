@@ -1,0 +1,45 @@
+[WebServer] (node:33556) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33569) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33585) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:33591) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:33607) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 1440 (5.8s)
+
+
+  1) [host] › tests/e2e/writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 1440 
+
+    Error: expect(locator).toBeHidden() failed
+
+    Locator:  getByRole('button', { name: '이 장 대본', exact: true })
+    Expected: hidden
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeHidden" getByRole('button', { name: '이 장 대본', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '이 장 대본', exact: true })
+        13 × locator resolved to <button type="button" aria-pressed="false">이 장 대본</button>
+           - unexpected value "visible"
+
+
+      3 |  await page.setViewportSize(size);await page.goto('/?view=editor');
+      4 |  const text=page.getByLabel('대사 / 해설',{exact:true});await expect(text).toBeVisible();
+    > 5 |  await expect(page.getByRole('button',{name:'이 장 대본',exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'현재 컷 연결 맥락',exact:true})).toBeHidden();
+        |                                                                    ^
+      6 |  await expect(page.getByRole('button',{name:'연출 편집',exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'소리 편집',exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'배경·인물 편집',exact:true})).toBeVisible();
+      7 |  await expect(page.locator('[data-related-memos] summary').first()).toBeVisible();
+      8 |  await page.getByRole('button',{name:'미리보기 다음 컷',exact:true}).click();const original=await text.inputValue();await expect(page.locator('[data-adjacent-cut="previous"]')).toBeVisible();await expect(page.locator('[data-adjacent-cut="next"]')).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/writing-focus.spec.ts:5:68
+
+    Error Context: test-results/writing-focus-writing-star-19e7f-t-and-brief-neighbours-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/writing-focus.spec.ts:2:115 › writing starts with current text and brief neighbours 1440 

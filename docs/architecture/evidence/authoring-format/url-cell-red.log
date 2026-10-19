@@ -1,0 +1,47 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/workbook-url-cells.test.ts (2 tests | 2 failed) 192ms
+   × accepts Excel auto-linked plain URLs without changing the authored address 127ms
+   × rejects hidden differing URL targets so link information is never silently dropped 65ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/workbook-url-cells.test.ts > accepts Excel auto-linked plain URLs without changing the authored address
+Error: 그림책 정보 · 3행 · 3: 수식·날짜·리치 텍스트 대신 원래 양식의 일반 값을 사용해 주세요.
+ ❯ text packages/compatibility/src/authoring-workbook/excel.ts:47:87
+
+ ❯ packages/compatibility/src/authoring-workbook/excel.ts:51:134
+ ❯ Row.eachCell node_modules/.pnpm/exceljs@4.4.0/node_modules/exceljs/lib/doc/row.js:138:9
+ ❯ values packages/compatibility/src/authoring-workbook/excel.ts:51:75
+ ❯ importLoadedAuthoringExcel packages/compatibility/src/authoring-workbook/excel.ts:67:89
+ ❯ importAuthoringExcel packages/compatibility/src/authoring-workbook/excel.ts:58:9
+ ❯ packages/compatibility/tests/workbook-url-cells.test.ts:8:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/compatibility/tests/workbook-url-cells.test.ts > rejects hidden differing URL targets so link information is never silently dropped
+AssertionError: expected [Function] to throw error matching /링크/ but got '그림책 정보 · 3행 · 3: 수식·날짜·리치 텍스트 대신 원래 양…'
+
+- Expected:
+/링크/
+
++ Received:
+"그림책 정보 · 3행 · 3: 수식·날짜·리치 텍스트 대신 원래 양식의 일반 값을 사용해 주세요."
+
+ ❯ packages/compatibility/tests/workbook-url-cells.test.ts:13:83
+     11|  const archive=await blankAuthoringArchive('shortstory'),book=new Exce…
+     12|  book.getWorksheet('그림책 정보')!.getCell('C3').value={text:'출처 보기',hyperl…
+     13|  await expect(importAuthoringExcel(new Uint8Array(await book.xlsx.writ…
+       |                                                                                   ^
+     14| });
+     15|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  01:18:07
+   Duration  621ms (transform 166ms, setup 0ms, import 340ms, tests 192ms, environment 0ms)
+

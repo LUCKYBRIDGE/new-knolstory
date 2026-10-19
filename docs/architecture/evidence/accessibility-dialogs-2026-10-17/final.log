@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:97265) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/accessibility-dialogs.spec.ts:27:76 › book focus exposes visible close label and action descriptions own 1440 (3.3s)
+  ✓  2 tests/e2e/accessibility-dialogs.spec.ts:27:76 › book focus exposes visible close label and action descriptions builtin 1440 (2.8s)
+  ✓  3 tests/e2e/accessibility-dialogs.spec.ts:27:76 › book focus exposes visible close label and action descriptions own 390 (2.8s)
+  ✓  4 tests/e2e/accessibility-dialogs.spec.ts:27:76 › book focus exposes visible close label and action descriptions builtin 390 (2.8s)
+  ✓  5 tests/e2e/accessibility-dialogs.spec.ts:41:31 › preparation cover and recovery surfaces retain names and authored content 1440 (2.8s)
+  ✓  6 tests/e2e/accessibility-dialogs.spec.ts:41:31 › preparation cover and recovery surfaces retain names and authored content 390 (2.8s)
+  ✓  7 tests/e2e/accessibility-dialogs.spec.ts:46:31 › open surface chrome contrast against actual backgrounds 1440 (12.6s)
+  ✓  8 tests/e2e/accessibility-dialogs.spec.ts:46:31 › open surface chrome contrast against actual backgrounds 390 (12.1s)
+
+  8 passed (42.6s)

@@ -1,0 +1,37 @@
+
+Running 1 test using 1 worker
+
+(node:39795) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+composition-layout {"before":{"panelScroll":0,"windowScroll":960,"start":24,"fieldTop":236.9375,"bodyHeight":1964,"headers":[129.546875,44,44,44]},"after":{"panelScroll":0,"windowScroll":1020,"start":31,"end":31,"focused":true,"fieldTop":176.9375,"bodyHeight":1964,"headers":[129.546875,44,44,44]}}
+  ✘  1 tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait (2.0s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 2
+    Received:    60
+
+      160 |  const after=await field.evaluate(element=>{const input=element as HTMLTextAreaElement,panel=input.closest('[data-writer-scroll]');return {panelScroll:panel?.scrollTop??0,windowScroll:scrollY,start:input.selectionStart,end:input.selectionEnd,focused:document.activeElement===input,fieldTop:input.getBoundingClientRect().top,bodyHeight:document.body.scrollHeight,headers:Array.from(document.querySelectorAll('header')).map(x=>x.getBoundingClientRect().height)};});
+      161 |  console.log('composition-layout',JSON.stringify({before,after}));expect(after.focused).toBe(true);expect(after.start).toBe(before.start+'한글 조합 중'.length);expect(after.end).toBe(after.start);
+    > 162 |  expect(Math.abs(after.panelScroll-before.panelScroll)).toBeLessThanOrEqual(2);expect(Math.abs(after.windowScroll-before.windowScroll)).toBeLessThanOrEqual(2);
+          |                                                                                                                                         ^
+      163 |  await field.dispatchEvent('compositionend',{data:'한글 조합 중'});
+      164 |  await expect(workbench(page).getByRole('button',{name:'배경 편집',exact:true})).toBeEnabled();await saved(page);
+      165 |  await field.evaluate(element=>(element as HTMLTextAreaElement).setSelectionRange(3,6));
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:162:137
+
+    Error Context: docs/architecture/evidence/editing-workbench-2026-10-19/diagnostic-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-workbench-2026-10-19/diagnostic-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-workbench-2026-10-19/diagnostic-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait 

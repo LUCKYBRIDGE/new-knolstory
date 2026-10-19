@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-10-16T22:57:51.089822+00:00",
+  "scope": "PC06 default original classic front cover contrast at390/1440 in book focus and book-start; no native playback or full accessibility completion",
+  "sourceSha256": {
+    "apps/web/lib/book-cover.ts": "b2a383e26e5a81521a0b00a519ef1feadf48146e5fc5cc801d79b122288bdddc",
+    "apps/web/lib/book-cover.test.ts": "69d57239aec60917772de237f7764ee165ba3034d0b963179244b5aec3743126",
+    "apps/web/components/book-cover.tsx": "8f642459b1e5057c16ed8f1b52ed3e2fa2f84a436356a4af2acf0b1dee6b6db9",
+    "tests/e2e/accessibility-large-cover.spec.ts": "a77fa7b537b8d7be169477ea31b215c0db568ee99fe9871bf60bd2c6343ff785",
+    "tests/e2e/rendered-contrast.ts": "a445fc6474c296e543c2d006f7207be15b933607fcc225c698f6b81c0a94e1fe",
+    "playwright.config.ts": "b71a2cecbd85d315f9dc337b6775eaff06a4c31f101a4e85552a7a3053e35afe",
+    "apps/web/out/index.html": "6259ca7f71c84e371a422402bd64091784afe4e888df93667d816b5f59ef55d8"
+  },
+  "change": "Default classic without explicit titleColor/design uses theme.ink at all sizes. Stored cover/content/geometry and authored colors preserved. Compact-only resolver option removed.",
+  "verification": {
+    "browser": {
+      "passed": 2,
+      "texts": 64,
+      "log": "final.log",
+      "contrast": [
+        {
+          "width": 1440,
+          "texts": 32,
+          "minimum": 9.899010021612217,
+          "allMeetOwnThreshold": true
+        },
+        {
+          "width": 390,
+          "texts": 32,
+          "minimum": 9.972884716298271,
+          "allMeetOwnThreshold": true
+        }
+      ],
+      "authoredPreservation": "Full active document.project and all works project values equal before/after each measurement after canonical original project ID persistence."
+    },
+    "unit": {
+      "passed": 45,
+      "statements": 97.59,
+      "branches": 93.52,
+      "functions": 96,
+      "lines": 100,
+      "log": "unit-green.log"
+    },
+    "build": "build.log",
+    "typecheck": "types.log",
+    "lint": "lint.log",
+    "artifacts": "final-artifacts"
+  },
+  "retainedFailures": {
+    "initial-red.log": "Actual prior gold default contrast failures, both widths.",
+    "unit-full-ink-red.log": "Four theme default full-cover ink failures before implementation.",
+    "unit-red.log": "Earlier caption-only approach experiment before measured mobile title failure expanded scope; not final approach.",
+    "persistence-race.log": "First green attempt captured intended debounced selected project change inside preservation window; fixture waits canonical original ID before snapshot.",
+    "initial-artifacts": "Original screenshots/backdrops/masks and raw ratios, immutable.",
+    "persistence-race-artifacts": "Failed preservation timing trace; not authored content corruption."
+  },
+  "limits": [
+    "Opaque selected plain text only; no arbitrary user palette contrast promise.",
+    "Rendered fitting produces very small subtitle text in previews; contrast success does not establish legibility/zoom/reflow compliance.",
+    "No screen reader, voice control, physical device, live OAuth, public deployment or whole-product completion."
+  ]
+}

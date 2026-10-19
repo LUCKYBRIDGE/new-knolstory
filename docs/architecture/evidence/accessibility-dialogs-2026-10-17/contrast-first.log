@@ -1,0 +1,76 @@
+
+Running 2 tests using 1 worker
+
+(node:96215) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/accessibility-dialogs.spec.ts:45:31 › open surface chrome contrast against actual backgrounds 1440 (13.3s)
+(node:96258) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/accessibility-dialogs.spec.ts:45:31 › open surface chrome contrast against actual backgrounds 390 (12.6s)
+
+
+  1) tests/e2e/accessibility-dialogs.spec.ts:45:31 › open surface chrome contrast against actual backgrounds 1440 
+
+    Error: book-focus: 내 작품
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.5992092131690283
+
+      51 |  await page.keyboard.press('Escape');const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const summary=page.getByText('작품 복구 기록',{exact:true});await summary.click();const recovery=summary.locator('..');await recovery.getByRole('button',{name:'현재 원고 기록하기',exact:true}).click();await expect(recovery.getByRole('button',{name:'이 기록을 사본으로 열기',exact:true})).toBeVisible();await measure('recovery',recovery.locator('p,button,strong,time,li span'));
+      52 |  const path=info.outputPath('open-surface-contrast.json');await writeFile(path,JSON.stringify({width,reports,scope:'Selected plain-text service chrome on actual rendered backgrounds; authored cover preview colors and all fields are not covered.'},null,2)+'\n');await info.attach('open-surface-contrast',{path,contentType:'application/json'});
+    > 53 |  expect(reports.length).toBeGreaterThan(10);for(const report of reports)expect(report.minimum,`${report.surface}: ${report.info.text}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                         ^
+      54 | });
+      55 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:53:137
+
+    attachment #1: open-surface-contrast (application/json) ────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-open-9bc11-nst-actual-backgrounds-1440/attachments/open-surface-contrast-b0f3aae6926735ad58f70d02c2a5a1499defda0f.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-open-9bc11-nst-actual-backgrounds-1440/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-open-9bc11-nst-actual-backgrounds-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-open-9bc11-nst-actual-backgrounds-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/accessibility-dialogs.spec.ts:45:31 › open surface chrome contrast against actual backgrounds 390 
+
+    Error: book-focus: 책을 펼치면 무대가 시작돼요
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 4.5
+    Received:    3.699897131748622
+
+      51 |  await page.keyboard.press('Escape');const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const summary=page.getByText('작품 복구 기록',{exact:true});await summary.click();const recovery=summary.locator('..');await recovery.getByRole('button',{name:'현재 원고 기록하기',exact:true}).click();await expect(recovery.getByRole('button',{name:'이 기록을 사본으로 열기',exact:true})).toBeVisible();await measure('recovery',recovery.locator('p,button,strong,time,li span'));
+      52 |  const path=info.outputPath('open-surface-contrast.json');await writeFile(path,JSON.stringify({width,reports,scope:'Selected plain-text service chrome on actual rendered backgrounds; authored cover preview colors and all fields are not covered.'},null,2)+'\n');await info.attach('open-surface-contrast',{path,contentType:'application/json'});
+    > 53 |  expect(reports.length).toBeGreaterThan(10);for(const report of reports)expect(report.minimum,`${report.surface}: ${report.info.text}`).toBeGreaterThanOrEqual(report.threshold);
+         |                                                                                                                                         ^
+      54 | });
+      55 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-dialogs.spec.ts:53:137
+
+    attachment #1: open-surface-contrast (application/json) ────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-open-1d970-inst-actual-backgrounds-390/attachments/open-surface-contrast-970500cbc6e44bffa10d50bbd12e39708aafc174.json
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/accessibility-dialogs/accessibility-dialogs-open-1d970-inst-actual-backgrounds-390/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/accessibility-dialogs/accessibility-dialogs-open-1d970-inst-actual-backgrounds-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/accessibility-dialogs/accessibility-dialogs-open-1d970-inst-actual-backgrounds-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/accessibility-dialogs.spec.ts:45:31 › open surface chrome contrast against actual backgrounds 1440 
+    tests/e2e/accessibility-dialogs.spec.ts:45:31 › open surface chrome contrast against actual backgrounds 390 

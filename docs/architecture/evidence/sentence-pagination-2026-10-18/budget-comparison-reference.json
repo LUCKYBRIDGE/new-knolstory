@@ -1,0 +1,116 @@
+{
+  "scope": "Reference-width candidate comparison only; Unicode width estimator is not native font evidence. Native screenshots and pagination tests separately establish rendered behavior.",
+  "results": [
+    {
+      "case": "dialogue",
+      "referenceLineBudget": 3,
+      "pages": [
+        "토끼는 자라를 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “용궁에 가면 무엇을 볼 수 있나요?” 자라는 바다를 가리켰다. ",
+        "토끼는 고개를 끄덕였다."
+      ],
+      "pageCount": 2,
+      "estimatedRows": [
+        3,
+        1
+      ]
+    },
+    {
+      "case": "dialogue",
+      "referenceLineBudget": 4,
+      "pages": [
+        "토끼는 자라를 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “용궁에 가면 무엇을 볼 수 있나요?” 자라는 바다를 가리켰다. 토끼는 고개를 끄덕였다."
+      ],
+      "pageCount": 1,
+      "estimatedRows": [
+        4
+      ]
+    },
+    {
+      "case": "dialogue",
+      "referenceLineBudget": 5,
+      "pages": [
+        "토끼는 자라를 바라보았다. 잠시 생각하더니 천천히 입을 열었다. “용궁에 가면 무엇을 볼 수 있나요?” 자라는 바다를 가리켰다. 토끼는 고개를 끄덕였다."
+      ],
+      "pageCount": 1,
+      "estimatedRows": [
+        4
+      ]
+    },
+    {
+      "case": "long_sentence",
+      "referenceLineBudget": 3,
+      "pages": [
+        "토끼는 바닷가에서 불어오는 차가운 바람과 멀리서 들려오는 물결 소리를 느끼면서도 자라가 들려주는 신기한 용궁 이야기의 ",
+        "뒷부분이 너무나 궁금해서 조금도 움직이지 않고 긴 귀를 쫑긋 세운 채 끝까지 이야기를 들으려고 마음먹었다."
+      ],
+      "pageCount": 2,
+      "estimatedRows": [
+        3,
+        3
+      ]
+    },
+    {
+      "case": "long_sentence",
+      "referenceLineBudget": 4,
+      "pages": [
+        "토끼는 바닷가에서 불어오는 차가운 바람과 멀리서 들려오는 물결 소리를 느끼면서도 자라가 들려주는 신기한 용궁 이야기의 뒷부분이 너무나 궁금해서 조금도 움직이지 ",
+        "않고 긴 귀를 쫑긋 세운 채 끝까지 이야기를 들으려고 마음먹었다."
+      ],
+      "pageCount": 2,
+      "estimatedRows": [
+        4,
+        2
+      ]
+    },
+    {
+      "case": "long_sentence",
+      "referenceLineBudget": 5,
+      "pages": [
+        "토끼는 바닷가에서 불어오는 차가운 바람과 멀리서 들려오는 물결 소리를 느끼면서도 자라가 들려주는 신기한 용궁 이야기의 뒷부분이 너무나 궁금해서 조금도 움직이지 않고 긴 귀를 쫑긋 세운 채 끝까지 이야기를 ",
+        "들으려고 마음먹었다."
+      ],
+      "pageCount": 2,
+      "estimatedRows": [
+        5,
+        1
+      ]
+    },
+    {
+      "case": "paragraphs",
+      "referenceLineBudget": 3,
+      "pages": [
+        "첫 번째 문단이다. 토끼는 바다를 바라보았다.\n",
+        "\n두 번째 문단은 용궁에 관한 이야기다.\n자라는 천천히 설명했다."
+      ],
+      "pageCount": 2,
+      "estimatedRows": [
+        3,
+        3
+      ]
+    },
+    {
+      "case": "paragraphs",
+      "referenceLineBudget": 4,
+      "pages": [
+        "첫 번째 문단이다. 토끼는 바다를 바라보았다.\n\n두 번째 문단은 용궁에 관한 이야기다.",
+        "\n자라는 천천히 설명했다."
+      ],
+      "pageCount": 2,
+      "estimatedRows": [
+        4,
+        2
+      ]
+    },
+    {
+      "case": "paragraphs",
+      "referenceLineBudget": 5,
+      "pages": [
+        "첫 번째 문단이다. 토끼는 바다를 바라보았다.\n\n두 번째 문단은 용궁에 관한 이야기다.\n자라는 천천히 설명했다."
+      ],
+      "pageCount": 1,
+      "estimatedRows": [
+        5
+      ]
+    }
+  ]
+}

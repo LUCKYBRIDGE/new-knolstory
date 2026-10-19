@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/table-formats.test.ts packages/compatibility/tests/authoring-fields.test.ts packages/compatibility/tests/authoring-archive.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  3 passed (3)
+      Tests  32 passed (32)
+   Start at  20:14:48
+   Duration  1.32s (transform 938ms, setup 0ms, import 1.53s, tests 857ms, environment 0ms)
+

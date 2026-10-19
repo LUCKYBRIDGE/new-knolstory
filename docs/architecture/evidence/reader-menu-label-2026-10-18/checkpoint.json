@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-18",
+  "status": "local-verified-not-deployed",
+  "previous": "../reader-short-landscape-2026-10-18/checkpoint.json",
+  "changes": [
+    "Replace tiny top-right dots and white box with12px menu label;44px input retained",
+    "Transparent label uses white text and soft shadow"
+  ],
+  "checks": {
+    "build": "passed",
+    "native_e2e": "1 passed; menu text/nowrap/transparent/open/close, native reader assertions"
+  },
+  "mockups": "mockups/index.html",
+  "preserved_attempt": "native-ui-before-nowrap"
+}

@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:78811) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/online-works.spec.ts:45:1 › logout invalidates an in-flight online read before any local copy is applied (2.4s)
+  ✓  2 tests/e2e/online-works.spec.ts:89:1 › account menu session recheck recovers the online panel after initial service failure (2.3s)
+  ✓  3 tests/e2e/online-works.spec.ts:98:1 › online recheck during delayed logout cannot retain a revoked session (1.9s)
+
+  3 passed (7.1s)

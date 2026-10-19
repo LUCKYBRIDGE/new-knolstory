@@ -1,0 +1,10 @@
+import {describe,it,expect} from 'vitest';
+import {createStorageGuard} from './storage-guard';
+const store=()=>{const values=new Map<string,string>();return {getItem:(key:string)=>values.get(key)??null,setItem:(key:string,value:string)=>{values.set(key,value);}};};
+describe('exclusive local workspace writer',()=>{
+ it('blocks writes without ownership and preserves both drafts and the stored raw',()=>{const storage=store();storage.setItem('workspace','original');const guard=createStorageGuard(storage,'workspace');expect(()=>guard.setItem('workspace','draft')).toThrow(/다른 탭/);expect(storage.getItem('workspace')).toBe('original');});
+ it('writes only with ownership and advances its expected revision after success',()=>{const storage=store();const guard=createStorageGuard(storage,'workspace');guard.setOwned(true);guard.setItem('workspace','a');guard.setItem('workspace','b');expect(storage.getItem('workspace')).toBe('b');});
+ it('detects changes even if no storage event was delivered and refuses stale takeover',()=>{const storage=store();storage.setItem('workspace','a');const guard=createStorageGuard(storage,'workspace');storage.setItem('workspace','other-tab');guard.setOwned(true);expect(()=>guard.setItem('workspace','stale')).toThrow(/새로고침/);expect(storage.getItem('workspace')).toBe('other-tab');});
+ it('never advances the expected raw after quota failure',()=>{const storage=store();let fail=true;const guard=createStorageGuard({...storage,setItem:(k,v)=>{if(fail)throw Error('quota');storage.setItem(k,v);}},'workspace');guard.setOwned(true);expect(()=>guard.setItem('workspace','draft')).toThrow('quota');fail=false;guard.setItem('workspace','retry');expect(storage.getItem('workspace')).toBe('retry');});
+ it('guards auxiliary writes and rejects arbitrary keys',()=>{const storage=store();const guard=createStorageGuard(storage,'workspace');guard.setOwned(true);expect(()=>guard.setItem('storygame:draft:v1','bad')).toThrow();expect(storage.getItem('storygame:draft:v1')).toBeNull();});
+});

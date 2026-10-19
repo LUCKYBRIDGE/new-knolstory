@@ -1,0 +1,69 @@
+{
+  "checkedAt": "2026-10-16T23:05:39.396482+00:00",
+  "scope": "PC06 long own authored service metadata and BookStart DOM semantics at three CSS viewports; not real zoom/AT/full accessibility",
+  "sourceSha256": {
+    "apps/web/components/book-start.tsx": "873074ff38a20db526ad2f958fc774adc1f8936c209bf572276215a017f3b74f",
+    "apps/web/components/library-book-focus.module.css": "6480c05170aaaddd8bed2e4cc565bef1ccb00cae6597cdf54bffa643a69684da",
+    "tests/e2e/accessibility-authored-metadata.spec.ts": "251e391c1ba2487f4c39223882fff186a7d9991ff860645dd4b1c3c2e280cfbf",
+    "playwright.config.ts": "5767237585d74f88773ee6fffdab776fb5cc5127aea3b62cb1ed83c60f56f425",
+    "apps/web/out/index.html": "fd58a3fbbcdf1c6e9d8eba4668e8a94d52606fe6e0273ae510418be2a84230a8"
+  },
+  "change": [
+    "Focus author small text wraps unbroken strings with overflow-wrap:anywhere.",
+    "BookStart edit controls expose named group; read buttons retain primary names and gain unique visible-hint descriptions; title-section association uses useId.",
+    "No stored authored text/palette/cover geometry/event handlers changed."
+  ],
+  "verification": {
+    "browser": {
+      "passed": 3,
+      "log": "final.log",
+      "summaries": [
+        {
+          "width": 320,
+          "height": 256,
+          "proseEdges": 16,
+          "allReachable": true,
+          "classifiedScannerNodes": 2,
+          "unresolved": 0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "proseEdges": 16,
+          "allReachable": true,
+          "classifiedScannerNodes": 2,
+          "unresolved": 0
+        },
+        {
+          "width": 390,
+          "height": 740,
+          "proseEdges": 16,
+          "allReachable": true,
+          "classifiedScannerNodes": 2,
+          "unresolved": 0
+        }
+      ],
+      "scope": "Validated imported own copy with long title/description/subtitle/author/note; full exact prose; all line horizontal bounds; first/last line reachability within viewport and ancestor client clips after bounded scroll; active controls trial; actual prepare/edit entry and full project/works unchanged."
+    },
+    "build": "build.log",
+    "types": "types.log",
+    "lint": "final-lint.log",
+    "rawImagesTraces": "final-run",
+    "review": "Independent read-only reviewer found no remaining P1/P2 in stated scope."
+  },
+  "retainedInitials": {
+    "initial.log": "Setup failure after UI import selected preparation; incorrect save-status selector. Not product RED.",
+    "initial-run": "Original setup trace retained.",
+    "initial-v2.log": "Actual long author overflow, missing group/descriptions, raw name/hint mismatch; title edge alignment failures separated as test diagnostic issue.",
+    "initial-run-v2": "Original raw/screens/traces retained, never reused.",
+    "rangeDiagnosticCorrection": "Element scrollIntoView aligns element border box rather than glyph range; final test allows bounded client-clip-aware line centering and retains strict final reachability."
+  },
+  "scannerPolicy": "Raw axe is immutable. Only visible unique button[data-book-start-action] nodes with verified computed strong label name, visible small hint description and unique description ID are classified as scanner disagreement. All other findings unresolved. Not global rule exclusion or full axe/WCAG pass.",
+  "limits": [
+    "One long authored fixture, three CSS viewports; not arbitrary all lengths/languages.",
+    "Horizontal bounds check all lines, vertical reachability first/last line only; middle-line occlusion not proven.",
+    "Graphical cover fitting excluded from service prose test.",
+    "Resume description disabled branch exercised; actual native resume unchanged/not rerun.",
+    "No real Chrome zoom, screen-reader/voice/physical-device, provider OAuth, server or deployment verification."
+  ]
+}

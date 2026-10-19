@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:70231) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/restored-release.spec.ts:6:1 › restored deployment files run the actual library, ShortStory and RenPy reader (2.0m)
+
+
+  1) tests/e2e/restored-release.spec.ts:6:1 › restored deployment files run the actual library, ShortStory and RenPy reader 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('story-runtime-status')
+    Expected substring: "연결됨"
+    Timeout: 120000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByTestId('story-runtime-status') with timeout 120000ms
+      - waiting for getByTestId('story-runtime-status')
+
+
+      11 |  const response=await page.goto('/?view=library');expect(response?.headers()['x-knolstory-restored-manifest']).toBe(process.env.KNOLSTORY_RESTORE_MANIFEST_SHA);const restoreRun=response?.headers()['x-knolstory-restore-run'];expect(restoreRun).toBeTruthy();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+      12 |  await openBuiltinEdition(page,'heungbu','original','start');
+    > 13 |  const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:120000});
+         |                                                                             ^
+      14 |  await expect.poll(()=>status.evaluate(node=>Number(node.getAttribute('data-rendered-revision'))>=0&&node.getAttribute('data-rendered-revision')===node.getAttribute('data-scene-revision')),{timeout:60000}).toBe(true);
+      15 |  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId);
+      16 |  await advanceReading(page);await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).not.toBe(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/restored-release.spec.ts:13:77
+
+    Error Context: test-results/restored-release/restored-release-restored--f7c77-ShortStory-and-RenPy-reader/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/restored-release/restored-release-restored--f7c77-ShortStory-and-RenPy-reader/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/restored-release/restored-release-restored--f7c77-ShortStory-and-RenPy-reader/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/restored-release.spec.ts:6:1 › restored deployment files run the actual library, ShortStory and RenPy reader 

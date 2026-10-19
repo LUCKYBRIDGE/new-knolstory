@@ -1,0 +1,11 @@
+
+Running 3 tests using 1 worker
+
+(node:6194) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/audio-service-rights.spec.ts:6:1 › excluded originals are unavailable from the public service (42ms)
+  ✓  2 [host] › tests/e2e/audio-service-rights.spec.ts:12:1 › excluded common audio has no preview and an approved replacement survives saving and reopening (5.6s)
+  -  3 [host] › tests/e2e/audio-service-rights.spec.ts:43:1 › old excluded cues preserve reading and editing without playing any blocked channel
+
+  1 skipped
+  2 passed (6.2s)

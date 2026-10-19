@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:64404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/local-work-files.spec.ts:73:1 › file permission and disk failures keep the draft, hide native details and allow a safe retry (6.3s)
+
+
+  1) tests/e2e/local-work-files.spec.ts:73:1 › file permission and disk failures keep the draft, hide native details and allow a safe retry 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('group', { name: '로컬 작품 파일', exact: true }).getByRole('alert')
+    Expected substring: "파일을 사용할 권한"
+    Received string:    "작품 파일을 저장하지 못했어요. 현재 원고는 유지됩니다. Permission denied /private/author-name/story"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('group', { name: '로컬 작품 파일', exact: true }).getByRole('alert') with timeout 5000ms
+      - waiting for getByRole('group', { name: '로컬 작품 파일', exact: true }).getByRole('alert')
+        13 × locator resolved to <p role="alert">작품 파일을 저장하지 못했어요. 현재 원고는 유지됩니다. Permission denied…</p>
+           - unexpected value "작품 파일을 저장하지 못했어요. 현재 원고는 유지됩니다. Permission denied /private/author-name/story"
+
+
+      89 |  await field.fill(draft);await page.locator('[data-work-menu]>summary').click();
+      90 |  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true}),save=group.getByRole('button',{name:'작품 파일 저장',exact:true});
+    > 91 |  await save.click();await expect(group.getByRole('alert')).toContainText('파일을 사용할 권한');await expect(group.getByRole('alert')).not.toContainText(/Permission|private|author-name/);await expect(field).toHaveValue(draft);
+         |                                                            ^
+      92 |  await save.click();await expect(group.getByRole('status')).toContainText('retry-2.knolstory');
+      93 |  const revised=`${draft}\n저장 후 덧붙인 한글도 보존합니다.`;await field.fill(revised);
+      94 |  await page.evaluate(()=>(window as unknown as {fileFailure:{failWrite:boolean}}).fileFailure.failWrite=true);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-work-files.spec.ts:91:60
+
+    Error Context: docs/architecture/evidence/local-file-errors-2026-10-20/red-run/local-work-files-file-perm-24983-ails-and-allow-a-safe-retry/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/local-file-errors-2026-10-20/red-run/local-work-files-file-perm-24983-ails-and-allow-a-safe-retry/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/local-file-errors-2026-10-20/red-run/local-work-files-file-perm-24983-ails-and-allow-a-safe-retry/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/local-work-files.spec.ts:73:1 › file permission and disk failures keep the draft, hide native details and allow a safe retry 

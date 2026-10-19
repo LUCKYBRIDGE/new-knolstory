@@ -1,0 +1,32 @@
+{
+  "summary": "Scoped manuscript/copy defect fixed and verified; whole UX goal remains active",
+  "scores": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "Final source reviewed; host4/native1/adjacent7 and codecs pass; original Chrome cause remains unresolved"
+    },
+    "completeness": {
+      "score": 3,
+      "evidence": "Duplicate invariants complete in this slice, but remaining full E2E and optional UX/physical-device gates remain"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Contract separates newly authored clone remapping from existing-document migration; long historical plan remains"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Implementation in local app and proof logs linked; next goals have priority/dependency/done conditions"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Primary outcome and verification reported; evidence logs intentionally retained separately"
+    }
+  },
+  "overall": 3.8,
+  "improvements": [
+    "Continue remaining current-navigation regression and optional controls audit",
+    "Keep physical-device/external-app/deploy claims separate from local passes",
+    "Resolve original Chrome error only with reproducible evidence"
+  ],
+  "selfCheck": "User can verify concrete local defect fix; should not read this as whole-goal completion"
+}

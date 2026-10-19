@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-19",
+  "status": "local-grouped-settings-verified-not-deployed",
+  "requirement": "Remove ellipsis and scattered always-visible controls; group auxiliary features under hamburger settings",
+  "changes": [
+    "One visible SVG three-line Settings menu and currentcut selector in editorbar",
+    "Library,file save/import/recovery,work info,chapter/cutadd,display and advanced opt-ins inside single menu",
+    "Feature settings rendered through portal into settings group, workbench state retained",
+    "Escape closes parent and nested display menu then focuses visible parenttrigger",
+    "Existing direct task screen switching and authored content/file behavior retained"
+  ],
+  "checks": {
+    "focused": "reviewed.log2passed8.9s: independent audio/direction opt-in and actual local-file reopen; grouped menu and full project unchanged",
+    "build": "build-reviewed.log passed",
+    "types": "types.log passed",
+    "lint": "lint-final.log clean",
+    "review": "Read-only review checked portalhost ref/state/no renderloop, found Escape focusing hidden nestedtrigger, corrected",
+    "integration": "final.log all17passed53.6s: direct edits/companions, advanced gates, file/reopen, actoridentity/motion, phone1:4:1, fourviewport sizes, composition/caret, nativeframe/readreturn and actualnative ack, visualviewport, groupedmenu",
+    "docs": "57active docs0link errors; changed-file whitespace clean"
+  },
+  "limits": [
+    "Earlier tests assumed opt-in checkboxes remained accessible outside menu. Updated real click flows explicitly reopen settings/close via Escape; retained failed/interrupted logs. No force click used.",
+    "No device/native keyboard or deployment claim",
+    "Session UI preferences unchanged; previous longmanuscript/resize concerns remain"
+  ],
+  "sha256": {
+    "apps/web/components/workspace-management.tsx": "34e0f70c77326b48fc916971252ffef0c315a660353a9710978d40e204e76510",
+    "apps/web/components/story-workspace.tsx": "587d15e81ad2b07a844831c02c37d958b4674726fb9bdd275db769586653eec5",
+    "apps/web/components/story-workspace.module.css": "482b59a65e6737053a2cd10d95ab35ac8d1852683fe1e44ad9af0d49cba5e075",
+    "apps/web/components/story-editing-workbench.tsx": "7b62512c9961d9940c9985a32565d4604e7f452a2a8db453ad0e74973edb3683",
+    "apps/web/components/use-editor-menus.ts": "f4964c3a7c2f19631275c8c502ded30b93ceadf318206afca1669ad7c53d8606",
+    "tests/e2e/editing-workbench.spec.ts": "bcb9ab40fb800cbe7d38239a0c0548b7e10fa03c7ff6727f91f0aaed9859d9d7",
+    "DESIGN.md": "76892648a65ad3689693a92adab1380dfa88b248b4ea4bb1126c2c5f7075ba1d",
+    ".agents/skills/design-system/SKILL.md": "46d074a8c58d1e886b9082158aee32eba3d990d0e7dcbd43740fc63e4dbde125",
+    "docs/architecture/product-completion-plan.md": "f7e50eb9048e6a7134630be090117d504aaf8cc11c4d24b704c1ce996c2aa23a"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Single grouped settings menu and full17E2E pass; physical device and longmanuscript limits stay explicit."
+  }
+}

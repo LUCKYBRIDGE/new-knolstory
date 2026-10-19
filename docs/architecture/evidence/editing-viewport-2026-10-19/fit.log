@@ -1,0 +1,48 @@
+
+Running 1 test using 1 worker
+
+(node:43551) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:223:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls (50.3s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:223:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('save-status')
+    Expected: "기기에 저장됨"
+    Received: "저장 중"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" getByTestId('save-status') with timeout 5000ms
+      - waiting for getByTestId('save-status')
+        2 × locator resolved to <p role="status" data-testid="save-status">저장 중</p>
+          - unexpected value "저장 중"
+
+
+      15 |  if(!await menu.evaluate(element=>(element as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+      16 | }
+    > 17 | async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');}
+         |                                                                               ^
+      18 | async function exported(page:Page){
+      19 |  await saved(page);await openWorkMenu(page);
+      20 |  const pending=page.waitForEvent('download');
+        at saved (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:17:79)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:228:131
+
+    Error Context: docs/architecture/evidence/editing-viewport-2026-10-19/fit-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-viewport-2026-10-19/fit-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-viewport-2026-10-19/fit-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:223:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls 

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-complete-not-deployed",
+  "scope": "Basic current cut text may remain an in-memory draft without shared-browser ownership. Other workbench gates unchanged. No autosave or ownership takeover while blocked/unavailable.",
+  "checks": {
+    "red": "red.log2failed disabled textfield,owned1passed.",
+    "green": "final.log3passed18.1s blocked actualtwo-pages / modeledWebLocksabsence / ownedautosave. Exact exportedproject differs only text+updatedAt; raw baseline after entering protected state unchanged.",
+    "setupFailures": "green.log actualdownloadwait lacked disabling browserpicker; download.log unavailable case differed only pre-reload envelope.savedAt. Fixed test to force downloadfallback explicitly and capture exactprotectedraw on protected-state entry. No productfix to hide either failure.",
+    "build": "final-build.log passed.",
+    "review": "Independent review no blockers; onlybasiccurrenttext unlocked, background/nav/optionaltools remain guarded.",
+    "limits": "Modeled IME/locksabsence, actualdownloadbytes. Not realOSkeyboard/disk/physicaldevice or fullownershipguard audit."
+  },
+  "sha256": {
+    "apps/web/components/story-workspace.tsx": "6394776e68611c9f2f5fdcc230f627a9479e782ba5eb0169474afa67062030ec",
+    "apps/web/components/story-editing-workbench.tsx": "3391c5032b6b3e789e76e1ff70a3c38ca2987a4d98a58dbd90c11e2a2575c5d1",
+    "tests/e2e/basic-draft-recovery.spec.ts": "ead68db18c04bfd412836678c688546a30c8b1e245607d8badc55a3e010afd94",
+    "playwright.config.ts": "38b672daec6ba8f5f1a766929f488cd47c9293e62042e162b435d18f2b2928b9"
+  }
+}

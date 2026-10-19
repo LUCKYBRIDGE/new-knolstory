@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:18197) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:288:1 › background fit and focus edits preserve other presentation data and reset only focus (5.8s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:342:1 › connection information names source chapters choices and score thresholds without altering the work (3.0s)
+  ✓  3 tests/e2e/editor-term-guide.spec.ts:58:1 › current vocabulary distinguishes work files, browser recovery and optional companion views (458ms)
+  ✓  4 tests/e2e/editor-term-guide.spec.ts:75:1 › authoring labels distinguish file save, temporary retention and earlier manuscripts (1.2s)
+
+  4 passed (11.1s)

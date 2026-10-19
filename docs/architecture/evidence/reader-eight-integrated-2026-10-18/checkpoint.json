@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-18",
+  "status": "local-integrated-focused-verified-not-deployed",
+  "scope": "PC-09 eight-edition editorial continuation; full product queue active",
+  "editorial": "editorial-summary.json",
+  "textReview": "text-review.html",
+  "screens": "screens.html",
+  "checks": {
+    "focusedVitest": "4files64passed; final-focused.log",
+    "roundtrip": "8current editions full project archive/workbook/XLSX/JSONB equality; programmatic, no new external-app session",
+    "coverage": "reader-text.ts only:97.43statements/96.29branches/100functions/100lines; coverage-final.log",
+    "native": "8/8passed one terminal run, no skips/retries; native.log/native-result.json",
+    "typecheck": "compatibility/web/new E2E passed",
+    "eslint": "changed TS/TSX/config passed; existing React detect warning",
+    "webBuild": "passed; web-build-canonical.log",
+    "runtimeBuild": "existing verified3/5runtime reused; no native-source changes",
+    "preservation": "8813 previous fixture/evidence/public-runtime files unchanged/missing0; preservation-after.json",
+    "review": "5editorial findings fixed across29 records; JSON object-key order P1fixed and regression verified; final read-only review no further substantive finding",
+    "docs": "57 active documents;0link errors; final changed-file diff check passed"
+  },
+  "nativeScope": [
+    "All8 catalog selections/all261 applicable manuscript replacements checked in loaded projects",
+    "One additional corrected cut per edition actually rendered; only editor position context seeded, manuscript never injected",
+    "Native quick save thumbnail/text/line/path, advance, quick load, reload, library return/resume"
+  ],
+  "preservation": [
+    "Raw8 fixture manuscripts untouched",
+    "Any actual JSON field difference in personal/edited project preserved; only object key order ignored; array order strict",
+    "No cut ID/order/Flow/score/stage/audio asset mutation by text adapter; existing direction enhancement preserved separately",
+    "Earlier evidence and raw manuscripts preserved; no commit/push/deploy/deletion"
+  ],
+  "commands": {
+    "focused": "pnpm exec vitest run packages/compatibility/tests/reader-text.test.ts packages/compatibility/tests/story-direction.test.ts packages/compatibility/tests/authoring-real-works.test.ts packages/compatibility/tests/authoring-archive.test.ts",
+    "nativeActual": "pnpm exec playwright test -c .cache/reader-eight-continuation/playwright.config.ts",
+    "nativeReusable": "KNOL_TEST_STATIC=1 pnpm exec playwright test --project=stories-runtime tests/e2e/reader-eight-editions.spec.ts --output=.cache/reader-eight-new-run",
+    "preview": "python3 scripts/serve-test-build.py --port 15401"
+  },
+  "preview": {
+    "url": "http://127.0.0.1:15401/",
+    "scope": "static Web export HTTP200; no API proxy claim",
+    "servedIndexMatchesBuild": true
+  },
+  "limits": [
+    "261selected text/paragraph edits; not all2970cuts rewritten or classical critical edition",
+    "No cut split/merge/Flow reorder; notes remain follow-up comparison candidates",
+    "Representative native cuts do not prove all branches/cuts traversed",
+    "Physical/screenreader/long-offline/external-app/whole-release gates and existingPC03/04/05/06/07 dependencies retained"
+  ],
+  "sha256": {
+    "packages/compatibility/src/reader-text.ts": "14c57e6a8a79f67028ed4dd335f9a5d99d968ca9a0874e872e079044c34ff9dd",
+    "packages/compatibility/tests/reader-text.test.ts": "34f7a6b8d76ca04e6d7530db08b9f7d1909572457fe2750520ded51d410620fe",
+    "apps/web/components/story-workspace.tsx": "6379dd4654f10c6acf5504d01b7ad34b97cca0a52ca8bd48c8831fb332d4827e",
+    "tests/e2e/reader-eight-editions.spec.ts": "83d989c26ccb471e10394defa11bfe82ebf04883216da83fc8bbdbbe2bd5b887",
+    "playwright.config.ts": "5e014be2cf433aba891b603d5b5d6b7f21aa7ee686eda2a1bb1bc1990712f70e",
+    "packages/compatibility/src/reader-text-seonnyeo-onggojib.json": "0d1beaa6ad1f925d6eb663909b436c247718bf0d8c54ae894867bc31388b287d",
+    "packages/compatibility/src/reader-edit-seonnyeo.json": "68707a8f1ed11e122ad84a08807016b7e60dd4495927f194d1babc90c764fdae",
+    "packages/compatibility/src/reader-edit-heungbu.json": "81609c19498514f546779d1cc1d61e33773d9935e111b99439143d5b442d1ac2",
+    "packages/compatibility/src/reader-edit-onggojib.json": "5eff4d702d7573641d192dd8b1367eb49c13f6fb26e66812fc140dc02b8dfb45",
+    "packages/compatibility/src/reader-edit-rabbit.json": "a8dff7899eb129fb25bdc3a80800e02b0fe4a67305ab38a6a1f23351dc5af4a8",
+    "packages/compatibility/src/reader-text-rabbit-heungbu.json": "4d75bba4baf30fce48522aabd01109f3be0484c5b8fdd3a050c7714b5f6ce34a"
+  },
+  "webExportSha256": "deec9087570be408d7ab4c08e8a7ccdb91a01949843e32650e19db67f0100458",
+  "selfEvaluation": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "64focused/8native passed; not all branches played"
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": "Handoff integration done; full product and physical gates remain"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Current checkpoint links separate old design and new manuscript evidence"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Static preview/261before-after/8native screens available; no external-service preview claim"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Single resume section replaces prior action; logs kept outside plan"
+    },
+    "average": 4,
+    "improvements": [
+      "Verify target physical/assistive reading when available",
+      "Apply structural note candidates only with actual reading evidence"
+    ],
+    "userPerspective": "Concrete reviewable manuscripts and preserved personal works; whole product remains active"
+  },
+  "webAssetsSha256": {
+    "apps/web/out/_next/static/EKQaOwYOGTvNY6qeVE-kY/_ssgManifest.js": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00",
+    "apps/web/out/_next/static/EKQaOwYOGTvNY6qeVE-kY/_clientMiddlewareManifest.js": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+    "apps/web/out/_next/static/EKQaOwYOGTvNY6qeVE-kY/_buildManifest.js": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+    "apps/web/out/_next/static/chunks/0f26r3h07jyjs.js": "4af6c0422fcd8125e367f2c0564ed926caa4ad8bf5b749e9ed1cc7dbd29ebbd3",
+    "apps/web/out/_next/static/chunks/3pn1a5dz9iuys.js": "7cd1fb39580fffe47843ca34b44fabbaf73715fa603a2bbe841f67e241470506",
+    "apps/web/out/_next/static/chunks/0o06an68cyjah.js": "e242f687221644f3241638a2ca8300222298c060054af8a9e9bd9ad3eb880886",
+    "apps/web/out/_next/static/chunks/3ovt4nagz7n9-.js": "9d2c0e9a36c7eddeed75500eae8ca0a689e1fbd2a5c2f5050da26723ec79f70d",
+    "apps/web/out/_next/static/chunks/1ubgb8e8qhuuh.js": "ef5b3ef57e7b9860477f37b753453610b4ff486b4c3d3613f8f0b4efc011d8d0",
+    "apps/web/out/_next/static/chunks/2ktrpggv47uze.js": "72d9a6407890d9053704ef698ab576c45aafb8c1282fb8eb42a06de1edd516cc",
+    "apps/web/out/_next/static/chunks/38he8-oivpovb.js": "083025057e5bda5ef6992096afa5fa75236b91498f18b4536862e1877a6f6d85",
+    "apps/web/out/_next/static/chunks/33e5kfw4cp5f7.js": "fab89290f92f13a8f96311f2e011265f5eb567c8dc695f551f9aacf69ff3be18",
+    "apps/web/out/_next/static/chunks/028j2jy7_zixt.js": "34ddff3149466f9072914d0014e580defdc68d8c23ccccbac50c2864508284b4",
+    "apps/web/out/_next/static/chunks/35_ps72ika8wx.css": "29a10677bcbaf3e3f9a2648f75e0b01d5aab2a5f3153e0eeb7e4c3ffaf3b6971",
+    "apps/web/out/_next/static/chunks/2cnnhkdyusa_y.css": "27b54ab7efe7a5d146d113778f30f9ec7b04a2763cebe875fcd1c940f8301cb0",
+    "apps/web/out/_next/static/chunks/turbopack-40w3n9mkp9fbq.js": "375fde351cf19bdd8c9b9614da42f24b84f70dfcc67a6869960bea1d39f711b6",
+    "apps/web/out/_next/static/chunks/0cz1d0mv5g_q7.js": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+    "apps/web/out/_next/static/chunks/2xs7yfcz_rfzu.css": "70679bd8a4fad484eedd7a5ad27c93e5d897623b46d3c6ac35c0f3c9977501ec",
+    "apps/web/out/_next/static/chunks/39cjp9pdxqlbt.js": "7a8324aa7dd887c6b63a04d4601eb0aeac039d1e84f155ed720ea0e69e94fa1f",
+    "apps/web/out/_next/static/chunks/235ft3fkyx2eg.js": "408f59adb7cdfb20a70c9e6974dbe7129e83fff9042b2795f76daa891f465872",
+    "apps/web/out/_next/static/chunks/0quwexislonyx.js": "3d6b5b3df5be9a3f73b2ce7cb4d0c1e48af6e62ef49acee1e1c75dbc42f50471",
+    "apps/web/out/_next/static/chunks/0yxjehgvq3atv.js": "4c8184629bf35fd3b64f0dd7ce85056522096e2b489a867ee35b420d97450f2d"
+  }
+}

@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/upstream-branches.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/upstream-branches.test.ts [ packages/runtime-core/tests/upstream-branches.test.ts ]
+Error: Cannot find module '../src/upstream-branches' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core/tests/upstream-branches.test.ts
+ ❯ packages/runtime-core/tests/upstream-branches.test.ts:2:1
+      1| import {it,expect} from 'vitest';
+      2| import {findUpstreamBranches} from '../src/upstream-branches';
+       | ^
+      3| import {analyzeStoryFlow} from '../src/flow-analysis';
+      4| import {getRepresentativeStory} from '@knolstory/compatibility';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  18:50:27
+   Duration  121ms (transform 10ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,39 @@
+
+Running 3 tests using 1 worker
+
+(node:54181) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:208:1 › phone basic editor fits previous current next in 1:4:1 with landscape native scene (2.5s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:233:1 › native frame remains mounted and interactive through editor read return (2.2s)
+  ✘  3 tests/e2e/editing-workbench.spec.ts:262:1 › compact editor header stays one touch-sized row and moves chapter settings into more menu (2.0s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:262:1 › compact editor header stays one touch-sized row and moves chapter settings into more menu 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    32
+
+      266 |   await page.setViewportSize({width,height:844});await expect.poll(async()=>Math.round((await header.boundingBox())!.height)).toBeLessThanOrEqual(52);
+      267 |   for(const target of [header.getByRole('button',{name:'서재로',exact:true}),header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true}),header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true}),header.getByLabel('보기 설정',{exact:true}),header.locator('[data-work-menu]>summary')]){
+    > 268 |    await expect(target).toBeVisible();const box=(await target.boundingBox())!;expect(box.height).toBeGreaterThanOrEqual(44);expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(width+1);
+          |                                                                                                  ^
+      269 |   }
+      270 |  }
+      271 |  await page.setViewportSize({width:390,height:844});await header.getByLabel('보기 설정',{exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:268:98
+
+    Error Context: docs/architecture/evidence/editor-header-2026-10-19/focused-run/editing-workbench-compact--5a6ae-ter-settings-into-more-menu/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editor-header-2026-10-19/focused-run/editing-workbench-compact--5a6ae-ter-settings-into-more-menu/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editor-header-2026-10-19/focused-run/editing-workbench-compact--5a6ae-ter-settings-into-more-menu/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:262:1 › compact editor header stays one touch-sized row and moves chapter settings into more menu 
+  2 passed (7.4s)

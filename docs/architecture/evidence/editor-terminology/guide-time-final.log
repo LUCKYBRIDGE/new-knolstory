@@ -1,0 +1,74 @@
+
+Running 5 tests using 1 worker
+
+(node:79613) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/5] [host] › tests/e2e/editor-term-guide.spec.ts:31:1 › guide preserves author drafts and restores focus in four viewport layouts
+[2/5] [host] › tests/e2e/editor-term-guide.spec.ts:47:1 › ShortStory guide leaves edited page text untouched
+[3/5] [host] › tests/e2e/editor-time-seconds.spec.ts:6:1 › decimal seconds preserve exact milliseconds through save, reload and file reopening
+[4/5] [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual excel edited seconds workbook opens with exact authoring values
+  1) [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual excel edited seconds workbook opens with exact authoring values 
+
+    TimeoutError: locator.evaluate: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByText('장 설정 · 말하는 인물과 기본 자료', { exact: true }).locator('..')
+
+
+      35 |  await expect(page.getByLabel('왼쪽 1번 인물 동작 시간 (초)',{exact:true})).toHaveValue('0.45');
+      36 |  await page.getByRole('button',{name:'이 장 대본',exact:true}).click();
+    > 37 |  const setting=page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true});if(!await setting.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await setting.click();
+         |                                                                                                    ^
+      38 |  await expect(page.getByLabel('장 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');
+      39 |  await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');
+      40 |  await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-time-seconds.spec.ts:37:100
+
+    Error Context: ../../../../../tmp/knol-terms-guide-complete/editor-time-seconds-actual-ab017-with-exact-authoring-values-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-guide-complete/editor-time-seconds-actual-ab017-with-exact-authoring-values-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-guide-complete/editor-time-seconds-actual-ab017-with-exact-authoring-values-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:79767) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[5/5] [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual google edited seconds workbook opens with exact authoring values
+  2) [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual google edited seconds workbook opens with exact authoring values 
+
+    TimeoutError: locator.evaluate: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByText('장 설정 · 말하는 인물과 기본 자료', { exact: true }).locator('..')
+
+
+      35 |  await expect(page.getByLabel('왼쪽 1번 인물 동작 시간 (초)',{exact:true})).toHaveValue('0.45');
+      36 |  await page.getByRole('button',{name:'이 장 대본',exact:true}).click();
+    > 37 |  const setting=page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true});if(!await setting.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await setting.click();
+         |                                                                                                    ^
+      38 |  await expect(page.getByLabel('장 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');
+      39 |  await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');
+      40 |  await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-time-seconds.spec.ts:37:100
+
+    Error Context: ../../../../../tmp/knol-terms-guide-complete/editor-time-seconds-actual-97988-with-exact-authoring-values-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-terms-guide-complete/editor-time-seconds-actual-97988-with-exact-authoring-values-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-terms-guide-complete/editor-time-seconds-actual-97988-with-exact-authoring-values-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  2 failed
+    [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual excel edited seconds workbook opens with exact authoring values 
+    [host] › tests/e2e/editor-time-seconds.spec.ts:30:37 › actual google edited seconds workbook opens with exact authoring values 
+  3 passed (51.8s)

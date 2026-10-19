@@ -1,0 +1,8 @@
+
+Running 8 tests using 1 worker
+
+(node:84775) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 1440 (6.1s)
+  ✓  2 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 768 (4.7s)
+  ✓  3 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 390 (4.9s)

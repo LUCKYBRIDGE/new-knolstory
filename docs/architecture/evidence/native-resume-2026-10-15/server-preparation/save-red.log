@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/storage/save-existing.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/storage/save-existing.test.ts [ server/storage/save-existing.test.ts ]
+Error: Cannot find module './save-existing' imported from /Users/wan/ai_dev/apps/new-knolstory/server/storage/save-existing.test.ts
+ ❯ server/storage/save-existing.test.ts:5:1
+      3| import {scoreNarrativeDocument} from '../../packages/compatibility/tes…
+      4| import {newShortStory} from '../../packages/compatibility/src/shortsto…
+      5| import {saveExisting, type SaveRequest, type SaveReceipt, type SaveTra…
+       | ^
+      6|
+      7| // Test-only serial, rollback-capable transaction harness. It is not a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  23:12:32
+   Duration  955ms (transform 583ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

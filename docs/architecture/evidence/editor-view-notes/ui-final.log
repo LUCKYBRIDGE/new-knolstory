@@ -1,0 +1,18 @@
+
+Running 11 tests using 1 worker
+
+(node:4364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 1280 (2.4s)
+  ✓   2 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 820 (2.1s)
+  ✓   3 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 390 (2.1s)
+  ✓   4 [host] › tests/e2e/approved-editor.spec.ts:24:1 › manuscript navigation protects IME and failed storage (1.4s)
+  ✓   5 [host] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations (12.2s)
+  ✓   6 [host] › tests/e2e/approved-editor.spec.ts:52:1 › measured keyboard occlusion reduces editor projection without changing logical scene or iframe (5.3s)
+  ✓   7 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 (2.7s)
+  ✓   8 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 768 (2.6s)
+  ✓   9 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 390 (2.5s)
+  ✓  10 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 844 (2.6s)
+  ✓  11 [host] › tests/e2e/editor-view-notes.spec.ts:20:1 › cut notes edit in both views, save, export, reimport and return from native reading (14.4s)
+
+  11 passed (51.1s)

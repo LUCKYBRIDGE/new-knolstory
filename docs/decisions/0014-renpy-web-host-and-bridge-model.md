@@ -2,6 +2,12 @@
 
 **Status:** Proposed — Ren'Py Web spike 결과로 세부 확정 후 Accepted
 
+## 현재 구현과 제안의 구분 (2026-10-10)
+
+Core의 재생 상태/레이아웃 소유, 한 Ren’Py presenter, StoryDocument 미전달은 프로젝트의 현행 규칙이며 구현돼 있다. 현재 장면은 동적 RuntimeScene 크기를 사용한다. 실제 명령/guard는 [runtime-contract 코드](../../packages/runtime-contract/src/index.ts), 동작 증거는 [반응형 제작 계약](../architecture/responsive-audio-authoring.md)을 확인한다.
+
+아래 고정1280×720 투영과 init/patchScene/preload·자산 공급 후보는 초기 probe/설계 이력이다. 현재 구현 명령으로 자동 추가하지 않는다. 전체 성능 수치·실기기·배포/운영의 Proposed 범위는 그대로 미확정이며 일괄 Accepted로 바꾸지 않는다.
+
 ## 배경
 
 ADR 0002·0003은 “Ren'Py가 RuntimeScene을 소비한다”까지만 정했다. 구현을 시작하려면 다음이 정해져야 한다.
@@ -132,3 +138,27 @@ logicalY = (clientY - containerTop - stageTop) / scale
 ### 2026-10-07 표시 영역 구도 확장
 
 사용자가 고정16:9 축소 대신 실제 표시 영역에 맞는 구도를 요청했다. M1b 고정 Stage probe는 역사적 측정 기준으로 유지하되, 현재 작품 편집·재생은 Runtime Core가 표시 영역 비율에서 논리 Stage 크기·배경 rect·글상자·인물 좌표를 계산한다. Ren’Py8.5.3의 동일 인스턴스에서 가상 화면 크기를 갱신하며 iframe은 계산된 논리 크기에서 Web 투영으로 표시한다. 별도 Web renderer는 없다. 구도보기와 DPR 변경은 문서 좌표를 수정하지 않는다. RuntimeScene의 선택적 viewportVersion1/audio version1/actor motion version1을 양쪽에서 검증한다. 구체 규칙·파일 첨부·검증은 [반응형 오디오 제작](../architecture/responsive-audio-authoring.md)에 기록한다. ADR 전체의 성능·운영 미확정 항목을 이 확장으로 완료로 간주하지 않는다.
+
+## 2026-10-18 승인: 두 고정 구도와 하단 오버레이
+
+사용자가 [읽기 종합 개편안](../architecture/reading-interface-design.md)을 승인했다. 앞선 실제 표시 비율로 논리 무대를 늘리는 확장을 읽기/편집 미리보기에서 부분 대체한다. Core는1280×720 또는720×1280을 해석하고 Web은contain 투영과 바깥 여백을 소유한다. Ren’Py는 동일 인스턴스에서 실제 글꼴로 측정한 가로4줄/세로6줄의 전체 폭 하단 패널을 장면 위에 겹친다. 배경/인물을 패널 때문에 축소하거나 이동하지 않는다.
+
+StoryDocument·원고·자유 배치·Flow SSOT는 유지한다. 선택적인RuntimeScene.dialogueOffset과sceneRendered.dialoguePage.offset은 원문의Unicode code-point 위치다. 본문 글씨 크기는 Web의 기기 설정이며 배우rect를 수정하지 않는다. 계약v1의 optional확장과 v3슬롯의 optional dialoguePosition으로 기존 필드없는 기록을 읽고 컷 처음으로 호환한다. 기존 증거를 새개편native/출시 완료 근거로 바꾸지 않는다.
+
+### 2026-10-18 후속: 접근성 글씨와 페이지 내용 독립
+
+사용자의 명시 수정에 따라 optional `dialogueStyle.paginationFontSize`(유한16–96, 없으면32)는 페이지 분량 기준이고 표시 `fontSize`와 독립한다. 표시 글씨 크기만 바꿀 때 페이지 문장·경계·개수는 유지하고 실제 높이로 패널을 조정한다. 앞 절의4/6줄은 기준 글꼴에서의 분량이며 사용자 확대 후 실제 줄 수를 제한하는 뜻이 아니다. 이 선택 필드는 기존v1원문/이전consumer와 호환하며 StoryDocument에 기기 설정을 저장하지 않는다.
+
+### 2026-10-18 후속: 4:3의 하단 확장
+
+사용자는16:9배경/인물 장면을 그대로 두고 아래 글 영역을 더해4:3을 완성하는 방식을 확정했다. 1280×960캔버스에optional`artworkRect:{x:0,y:0,width:1280,height:720}`를 전달한다. Core의 인물/배경 계산은720높이를 쓰며 Ren’Py가 그 영역으로clip한다. 패널만 전체960바닥을 기준으로240아래에 놓인다. 자동선택은portrait9:16,landscape ratio1.55미만4:3,그외16:9이며 설정에서 직접선택/기기보관한다. 기본표시font32와paginationFont32를 구분해 고정한다. 같은페이지의 글은 사용자 글씨 설정으로변하지않는다.
+
+### 2026-10-18 재결정: classic폐기와 컴팩트ADV대사창
+
+사용자가4:3을폐기하고16:9/9:16만선택했다. Core제품생성에서classic/artworkRect추가경로를제거하고Web설정/preview에서classic선택을없앤다. 선택적RuntimeScene.artworkRect계약/기존consumer는이미읽을수있는장면의호환성으로유지할수있지만제품4:3지원으로노출하지않는다. 구기기설정classic은landscape로해석하되원고·다른설정·저장원본을보존한다.
+
+대사패널의최소4/6빈줄예약을제거하고현재font에서실제페이지최대높이(최소한줄)를사용한다. 기준font32페이지경계는독자font와독립한다. 배경/인물/연출배치와무관한하단전체폭반투명패널이며실제높이는native렌더응답으로Web도구와맞춘다.
+
+### 2026-10-18 최종 수정: 두 양식과 비주얼노벨 표현
+
+사용자는4:3을폐기하고16:9/9:16만 사용하기로 했다. Core는1280×720/720×1280만 생성하며 구형classic 설정은landscape로 읽어 기존글씨/대기설정을보존한다. 기존optionalartworkRect계약은과거호환용으로남기되현재Core에서생성하지않는다. 대사창은장면위하단반투명ink/밝은본문/민트화자로표현하고 실제페이지높이에맞춘다. 글씨크기가페이지내용을바꾸지않는원칙과장면좌표독립은유지한다. 앞선4:3추가절은당시결정으로보존하며현재요구로재적용하지않는다.

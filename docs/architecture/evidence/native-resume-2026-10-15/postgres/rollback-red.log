@@ -1,0 +1,65 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/storage/sql-client-lifecycle.test.ts (6 tests | 2 failed) 7ms
+     × destroys a client after failed rollback and the next borrower gets a fresh client 3ms
+     × destroys the migration client and retains both errors when rollback fails 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/storage/sql-client-lifecycle.test.ts > SQL connection lifecycle > destroys a client after failed rollback and the next borrower gets a fresh client
+AssertionError: expected "vi.fn()" to be called once with arguments: [ true ]
+
+Received:
+
+  1st vi.fn() call:
+
+- [
+-   true,
+- ]
++ []
+
+
+Number of calls: 1
+
+ ❯ server/storage/sql-client-lifecycle.test.ts:40:27
+     38|   const adapter=createPostgresSavePort(pool,{authorize:async()=>true});
+     39|   await expect(adapter.transaction(async()=>{throw original;})).reject…
+     40|   expect(damaged.release).toHaveBeenCalledExactlyOnceWith(true);
+       |                           ^
+     41|   await expect(adapter.transaction(async()=>42)).resolves.toBe(42);
+     42|   expect(fresh.query).toHaveBeenCalledWith('COMMIT');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  server/storage/sql-client-lifecycle.test.ts > SQL connection lifecycle > destroys the migration client and retains both errors when rollback fails
+AssertionError: expected "vi.fn()" to be called once with arguments: [ true ]
+
+Received:
+
+  1st vi.fn() call:
+
+- [
+-   true,
+- ]
++ []
+
+
+Number of calls: 1
+
+ ❯ server/storage/sql-client-lifecycle.test.ts:61:30
+     59|   const connection=client({'SELECT version,sha256 FROM knolstory_stora…
+     60|   await expect(runStorageMigrations({connect:async()=>connection})).re…
+     61|   expect(connection.release).toHaveBeenCalledExactlyOnceWith(true);
+       |                              ^
+     62|  });
+     63| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  00:15:49
+   Duration  213ms (transform 88ms, setup 0ms, import 114ms, tests 7ms, environment 0ms)
+

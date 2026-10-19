@@ -1,0 +1,32 @@
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:22] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:23268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/1ak0g8rss7bvb.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/2f8uygxano1ta.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/3p4_2rqgvn6hp.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/2pm49gvwbwkoo.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /_next/static/chunks/292p5ssu69fja.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:29:23] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/cut-range-delete.spec.ts:2:1 › endpoint deletion names dependent effect and keeps manuscript until range is changed (4.3s)
+
+  1 passed (4.9s)

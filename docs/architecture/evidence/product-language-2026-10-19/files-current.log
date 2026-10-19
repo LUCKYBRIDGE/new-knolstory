@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:13273) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/local-work-files.spec.ts:4:57 › knolstory: real downloaded work file reopens without server or previous browser storage (4.7s)
+  ✓  2 tests/e2e/local-work-files.spec.ts:4:57 › shortstory: real downloaded work file reopens without server or previous browser storage (738ms)
+  ✓  3 tests/e2e/local-work-files.spec.ts:28:1 › explicit file handle save verifies write, reuses selected file, protects external edits and allows save as (2.1s)
+
+  3 passed (8.0s)

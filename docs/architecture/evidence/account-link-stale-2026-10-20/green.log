@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:66192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/account-menu.spec.ts:37:1 › a delayed Google link cannot redirect or write a work after leaving the account menu (2.4s)
+  ✓  2 tests/e2e/account-menu.spec.ts:63:78 › a delayed Google link cannot navigate after a same-mounted explicit account change (1.5s)
+  ✓  3 tests/e2e/account-menu.spec.ts:63:78 › a delayed Google link cannot navigate after a same-mounted focus account change (1.5s)
+  ✓  4 tests/e2e/account-menu.spec.ts:63:78 › a delayed Google link cannot navigate after a same-mounted renewed-csrf account change (1.5s)
+  ✓  5 tests/e2e/account-menu.spec.ts:63:78 › a delayed Google link cannot navigate after a same-mounted anonymous account change (1.6s)
+  ✓  6 tests/e2e/account-menu.spec.ts:74:1 › an obsolete Google link failure cannot refresh or unlock a newer pending link (1.6s)
+
+  6 passed (10.7s)

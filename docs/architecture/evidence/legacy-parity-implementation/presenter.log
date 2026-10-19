@@ -1,0 +1,1091 @@
+
+> knolstory-next@ test:presenter /Users/wan/ai_dev/apps/new-knolstory
+> node spikes/renpy-web/verify-presenter.mjs
+
+{
+  "events": [
+    {
+      "protocol": 1,
+      "type": "ready",
+      "runtimeVersion": "8.5.3",
+      "contractVersion": 1,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "viewportChanged",
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 1,
+      "sceneId": "actual-assets",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 137.20000100000007,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "presentationDone",
+      "sceneId": "actual-assets",
+      "revision": 1,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "advanceRequested",
+      "sceneId": "actual-assets",
+      "revision": 1,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 2,
+      "sceneId": "choices",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 63.80000000000008,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "choiceSelected",
+      "sceneId": "choices",
+      "revision": 2,
+      "choiceId": "first",
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 3,
+      "sceneId": "effect-shake",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 39.200000000000124,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 4,
+      "sceneId": "effect-flash-red",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 37.59999899999977,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 5,
+      "sceneId": "effect-fade-black",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 50.19999900000016,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 6,
+      "sceneId": "effect-crack",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 53.49999999999966,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 7,
+      "sceneId": "effect-spotlight",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 69.20000000000037,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 8,
+      "sceneId": "effect-flash",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 57.10000000000015,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 9,
+      "sceneId": "effect-screen-crack",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 33.80000100000036,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 10,
+      "sceneId": "default-intensity-shake",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 36.60000100000005,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 11,
+      "sceneId": "default-intensity-crack",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 34.89999999999949,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 12,
+      "sceneId": "look-flashback",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 66.20000000000026,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 13,
+      "sceneId": "look-soft-flashback",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 32.30000099999941,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 14,
+      "sceneId": "look-strong-flashback",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 46.30000000000045,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 15,
+      "sceneId": "look-fractured-reality",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 38.899999999999935,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 16,
+      "sceneId": "look-soft-fractured-reality",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 49.80000000000029,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 17,
+      "sceneId": "look-strong-fractured-reality",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 61.09999999999971,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 18,
+      "sceneId": "reduced-motion",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 33.800000000000274,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 19,
+      "sceneId": "transition-white-fade",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 87.50000000000036,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "presentationDone",
+      "sceneId": "transition-white-fade",
+      "revision": 19,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 20,
+      "sceneId": "transition-fade-black",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 42.09999999999958,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "presentationDone",
+      "sceneId": "transition-fade-black",
+      "revision": 20,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 21,
+      "sceneId": "contain-fit",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 45.700000000000074,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 22,
+      "sceneId": "cover-fit",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 62.40000000000023,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 23,
+      "sceneId": "ended",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "renderMs": 44.99999999999993,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "physicalWidth": 1280,
+        "physicalHeight": 720
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      }
+    }
+  ],
+  "progressiveImageRequests": 2
+}

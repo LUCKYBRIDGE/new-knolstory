@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-14",
+  "scope": "current manuscript/registered images/duplicate source Flow and clone self references",
+  "sourceHashes": {
+    "packages/runtime-core/src/editor-authoring.ts": "3bed8983453334545aefc9db833b4f8d78005153cffb84a49b1ccd4a78d2947f",
+    "packages/runtime-core/src/clone-cut-references.ts": "ba620abf6b4480e93da1c37119e9be2e04b8e7683665d054336ec5d24fc274e3",
+    "packages/runtime-core/tests/duplicate-flow-preservation.test.ts": "4dcd396a90546b43bdcf2bf2f4b3f683751851d0252392e36915f0867c037b74",
+    "packages/runtime-core/tests/duplicate-reference-remap.test.ts": "c76fd1e36442c9e8e740757e9a0991bad93422d9acb7561db9ddcb1b00b5bc99",
+    "packages/compatibility/tests/duplicate-cut-roundtrip.test.ts": "6edae869e9b203fbc407cc3c3e3203c4cb43b8b103e25ea65b2f5475d680fb9e",
+    "tests/e2e/legacy-authoring-workspace.spec.ts": "a3387e280249855a97e83879bacfd89bc54a029b3096bd42e94e569e8276b94f",
+    "STATUS.md": "4e5e453c3babb1b7d061455d5f643a7188c3943174162b92dc92c5da853e15c7",
+    "DESIGN.md": "022459a36d7bf126059264cbf00b3740d70fd41911169f4bcc7f56862bdf2d77",
+    "docs/architecture/authoring-storage-contract.md": "6d1fbb2845e4fc6a471748df19a87b492caea1ab376f969a3863dcf18a1dadac",
+    "docs/architecture/approved-ui-development-plan.md": "749891889f4f1ff16e84fe5b10235fb3a1ad7d43dd3516b69a39a93df01a16b6",
+    "docs/architecture/next-session-goal-2026-10-13.md": "9944c3a117a8b6d3ddc787bb8d07ef9e81f127e16b006317274317d1ad6d99bd",
+    "docs/architecture/manuscript-authoring-continuation-validation.md": "7eea9d7b77cd69e88df8d5315b8e09d21eba75824bbaa7c7e186a4b31f82ab26"
+  },
+  "checks": {
+    "fullUnit": {
+      "filesPassed": 155,
+      "passed": 1263,
+      "skipped": 2,
+      "statements": 93.89,
+      "branches": 91.33,
+      "functions": 96.7,
+      "lines": 98.72
+    },
+    "extraFormatRoundtrip": {
+      "passed": 1,
+      "scope": "local codecs only; later full run includes this test, no double count"
+    },
+    "host": {
+      "passed": 4,
+      "nativeExclusions": 1
+    },
+    "native": {
+      "passed": 1,
+      "hostExclusions": 4
+    },
+    "typecheck": true,
+    "webBuildAndMediaGate": true,
+    "scopedLint": true,
+    "newValidationLinks": true,
+    "docsActive54": true,
+    "adjacentRegression": {
+      "passed": 7,
+      "scope": "five manuscript viewports plus two cut-end tests, including native effect expiry"
+    },
+    "diffCheck": true
+  },
+  "runtimeZip": {
+    "bytes": 37641800,
+    "sha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6",
+    "publicAndOutMatch": true,
+    "previousBranchManifestMatch": true,
+    "newRuntimeBuild": false
+  },
+  "limits": [
+    "remaining full E2E collection not completed",
+    "physical Samsung/input not verified",
+    "fresh external-app edit/deployment not run",
+    "Excel ChatGPT connection intentionally excluded",
+    "original Chrome error cause unresolved"
+  ],
+  "artifacts": {
+    "coverage.log": "7f6fea02e0d380cc54c83efce53adb79b6112af0258c4d765eb2d1bbf4e1773b",
+    "duplicate-unit.log": "6f6acc9e04d090bfdd2ec8cae51b9b2251dc89aa7ea514e068216e5a38fe4477",
+    "self-evaluation.json": "67ae0256d7586e91607c8bd77750b1b05fbeddff98866c8fbdd355840303ec99",
+    "docs-check.log": "4001bc14868835a74cac07e4f4b386df6eb5e2edddac0ec5f0c0e5f3085930f2",
+    "docs-final.log": "4001bc14868835a74cac07e4f4b386df6eb5e2edddac0ec5f0c0e5f3085930f2",
+    "host-first.log": "e949974f53aa9b57e986d412f33204977f92a8d3b0d2ef4f37cb1d9a159b9be9",
+    "native-first.log": "0092903736b6657cab59702e26907d7f9647ce9c90c8c5300aeeb0980d78a937",
+    "legacy-authoring-before.ts.txt": "2cb465574732d78a485a3cb9ea3dc0e04699fdc15cf1f987e12ccd7852cad9b7",
+    "red.log": "4a81230115e805f8952851c91cd4199240292a74cc44879091072cdf92765bc2",
+    "lint.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "reference-red.log": "e7de0544442d296244a8913be202a7bdf2a10eefa4fdba906fe76502a4664fed",
+    "typecheck.log": "e2204f7be5e913677b76c3f4f645effb0804d69688296650fe1d4f06aa827062",
+    "duplicate-combined.log": "f28857a21f8b85a726dca438f6a6daeac7afaa7107e1a3fe97e270786d26fb28",
+    "host-second.log": "b5fa3663cb9be3d5d4f13f002fccdb2f279a1c029b2c5a7ec71e56463c1f647d",
+    "format-roundtrip.log": "098a4c8e0c4836deba5a70cf23895fbe265516c1c96201e8e362ee55b45830d0",
+    "build-final.log": "5b7d0d6e7913cac2af750a61f6d9472f19e9d354ad832efb2d5912fc97b81b39",
+    "duplicate-red.log": "a7a330800c5579e1e6cbc7d70ec92300cbb9c3408685edae205ced91bf5a3c57",
+    "lint-final.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "duplicate-unit-final.log": "ecb17dd9a315a2f46e9b549d7cab9fb6721b4ce410fd6431190b1483846b84b0",
+    "adjacent-host.log": "843cfbee3b8b68b40d08ecf8ce3e2310bbb93f856f83884cdb942212816d2d86",
+    "native-final.log": "23150f70acca8388bef8e0dacd59ef85b9275423263b5478ce5c7cf02267e3c9",
+    "host-final.log": "cd6375ec1bc34ea5e1c5cd949e17c48b813b92fef01e89c7bb5f481e139d11f9",
+    "review.json": "8888a846651b78b14950d6528198f3f478f4b59b6c9ccbe5e830c218adc63f08",
+    "coverage-final.log": "85d9af8266b8bd1dae33432b0636b5dc749e2d51613409565715d08737b70cd8",
+    "build.log": "7625746cf972d31f83b2a0a1e7c2fcc3fcad5b5a64ed61810c5f9f6858144972",
+    "host-artifacts/legacy-authoring-workspace-96ebd-rve-authored-work-at-1280px-host/asset-browser-1280.png": "402ed3bd59ed9ed9447c0f445cacd388f741b7e169639f8ff367383a7a0d8b98",
+    "host-artifacts/legacy-authoring-workspace-10375-erve-authored-work-at-390px-host/asset-browser-390.png": "7c46537e5f0a057dc5a62f7aa2ac208c07c042021600cbab617af89fcbd14b24",
+    "host-artifacts/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/writer-1280.png": "410f5ed89ce75351a4c4543abab1f3ec544dba898b2417945ca3a44e7be9f2f0",
+    "host-artifacts/legacy-authoring-workspace-6089e-afe-cut-operations-at-390px-host/writer-390.png": "5aa05a3e05bacd457dc8fc0487aa9e101f297f67d93dd94daa5452dcf69eaf47",
+    "native-artifacts/legacy-authoring-workspace-51d48-oth-endings-in-native-RenPy-stories-runtime/native-manuscript.png": "17438fceeed9ca88f5c2440563bd2d316f0d397956e428545362c0eb5dbe3934",
+    "native-artifacts/legacy-authoring-workspace-51d48-oth-endings-in-native-RenPy-stories-runtime/native-authored-ending.png": "75cb7a3851f0731ab6dc0ee415593a5909020de4514750922568d4b35cd6259c",
+    "adjacent-artifacts/manuscript-operations-manu-75cf8-preserve-Korean-at-1024x768-host/manuscript.png": "d1e46b14fd1338e42111985364a98604571185d8763fae0c099bcdc65dd11236",
+    "adjacent-artifacts/manuscript-operations-manu-67ef0--preserve-Korean-at-390x844-host/manuscript.png": "af1243855fb6a90fceee67eccac7f37cf9d5ce8ccdb615392ca44f8c175ba76e",
+    "adjacent-artifacts/manuscript-operations-manu-c2026--preserve-Korean-at-844x390-host/manuscript.png": "ed76c676d22abb21bf49d8f633acb3bf21e001887265d750befe303d0eb32c15",
+    "adjacent-artifacts/manuscript-operations-manu-0c833-reserve-Korean-at-1440x1000-host/manuscript.png": "cdfc408681a4c688c9ad17d97a09d2a8e527fa4865bb3429d2065ab90fbd38bf",
+    "adjacent-artifacts/manuscript-operations-manu-d6721-preserve-Korean-at-768x1024-host/manuscript.png": "91f70d8a29d7c37f7afed7ed40df41aad1eda21d8340b47f4cf51afeb2ca88a1"
+  }
+}

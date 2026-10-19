@@ -1,0 +1,11 @@
+
+Running 3 tests using 1 worker
+
+(node:78669) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/3] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:79:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches
+[2/3] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:160:1 › delivered portable branching demo opens with embedded audio and plays both native endings
+[3/3] [stories-runtime] › tests/e2e/responsive-audio-authoring.spec.ts:185:1 › ending keeps the last entrance confirmed and does not replay its sounds
+  3 passed (36.0s)

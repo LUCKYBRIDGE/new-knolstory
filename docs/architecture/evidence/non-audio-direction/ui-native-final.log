@@ -1,0 +1,323 @@
+
+Running 15 tests using 1 worker
+
+(node:37148) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 (2.1s)
+(node:37162) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768 (1.8s)
+(node:37178) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   3 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390 (1.8s)
+(node:37191) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   4 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844 (1.8s)
+(node:37198) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   5 [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work (7.1s)
+(node:37248) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   6 [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work (7.9s)
+(node:37347) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [host] › tests/e2e/non-audio-transition.spec.ts:5:1 › author controls confirm transition and look intensity without changing manuscript or placement (5.0s)
+  ✓   8 [host] › tests/e2e/presentation-polish.spec.ts:78:1 › presentation controls provide an explicit current-cut preview action without changing stored composition (2.0s)
+  -   9 [host] › tests/e2e/presentation-polish.spec.ts:104:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+  -  10 [host] › tests/e2e/presentation-polish.spec.ts:147:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+(node:37370) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  11 [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work (10.2s)
+(node:37388) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  12 [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work (11.4s)
+(node:37537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  13 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:78:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+  ✓  14 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:104:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape (11.2s)
+  ✓  15 [stories-runtime] › tests/e2e/presentation-polish.spec.ts:147:1 › presentation preview visibly renders both native looks then restores neutral on back and restart (11.9s)
+
+
+  1) [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('story-effect-controls')
+    Expected: visible
+    Error: strict mode violation: getByTestId('story-effect-controls') resolved to 3 elements:
+        1) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').first()
+        2) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(1)
+        3) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(2)
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('story-effect-controls') with timeout 5000ms
+      - waiting for getByTestId('story-effect-controls')
+
+
+      24 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(file);await confirmAuthoringImport(page);
+      25 |  await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(source.title);
+    > 26 |  const panel=await controls(page);await expect(panel).toBeVisible();
+         |                                                       ^
+      27 |  const appearance=page.getByTestId('story-actor-appearance-controls');
+      28 |  await appearance.locator('summary').click();
+      29 |  // Merely discovering or opening controls does not author display defaults.
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-direction-ui.spec.ts:26:55
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('story-effect-controls')
+    Expected: visible
+    Error: strict mode violation: getByTestId('story-effect-controls') resolved to 3 elements:
+        1) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').first()
+        2) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(1)
+        3) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(2)
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('story-effect-controls') with timeout 5000ms
+      - waiting for getByTestId('story-effect-controls')
+
+
+      24 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(file);await confirmAuthoringImport(page);
+      25 |  await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(source.title);
+    > 26 |  const panel=await controls(page);await expect(panel).toBeVisible();
+         |                                                       ^
+      27 |  const appearance=page.getByTestId('story-actor-appearance-controls');
+      28 |  await appearance.locator('summary').click();
+      29 |  // Merely discovering or opening controls does not author display defaults.
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-direction-ui.spec.ts:26:55
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-5491d-t-and-free-placement-at-768-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-5491d-t-and-free-placement-at-768-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-5491d-t-and-free-placement-at-768-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('story-effect-controls')
+    Expected: visible
+    Error: strict mode violation: getByTestId('story-effect-controls') resolved to 3 elements:
+        1) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').first()
+        2) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(1)
+        3) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(2)
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('story-effect-controls') with timeout 5000ms
+      - waiting for getByTestId('story-effect-controls')
+
+
+      24 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(file);await confirmAuthoringImport(page);
+      25 |  await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(source.title);
+    > 26 |  const panel=await controls(page);await expect(panel).toBeVisible();
+         |                                                       ^
+      27 |  const appearance=page.getByTestId('story-actor-appearance-controls');
+      28 |  await appearance.locator('summary').click();
+      29 |  // Merely discovering or opening controls does not author display defaults.
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-direction-ui.spec.ts:26:55
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-01a2a-t-and-free-placement-at-390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-01a2a-t-and-free-placement-at-390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-01a2a-t-and-free-placement-at-390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('story-effect-controls')
+    Expected: visible
+    Error: strict mode violation: getByTestId('story-effect-controls') resolved to 3 elements:
+        1) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').first()
+        2) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(1)
+        3) <div data-testid="story-effect-controls" class="story-effect-controls-module__YZEtua__controls">…</div> aka getByTestId('story-effect-controls').nth(2)
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('story-effect-controls') with timeout 5000ms
+      - waiting for getByTestId('story-effect-controls')
+
+
+      24 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(file);await confirmAuthoringImport(page);
+      25 |  await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(source.title);
+    > 26 |  const panel=await controls(page);await expect(panel).toBeVisible();
+         |                                                       ^
+      27 |  const appearance=page.getByTestId('story-actor-appearance-controls');
+      28 |  await appearance.locator('summary').click();
+      29 |  // Merely discovering or opening controls does not author display defaults.
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-direction-ui.spec.ts:26:55
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-e2c2a-t-and-free-placement-at-844-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-e2c2a-t-and-free-placement-at-844-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-direction-ui-eff-e2c2a-t-and-free-placement-at-844-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('효과 지속 시간 (초)', { exact: true })
+    Expected: "0.6"
+    Error: strict mode violation: getByLabel('효과 지속 시간 (초)', { exact: true }) resolved to 2 elements:
+        1) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).first()
+        2) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).nth(1)
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('효과 지속 시간 (초)', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('효과 지속 시간 (초)', { exact: true })
+
+
+      25 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+      26 |  const content=(p:typeof before)=>{const{updatedAt:_time,id:_workId,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+    > 27 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+         |                                                                                                                                                                                                     ^
+      28 | });
+      29 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:27:197
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('효과 지속 시간 (초)', { exact: true })
+    Expected: "0.6"
+    Error: strict mode violation: getByLabel('효과 지속 시간 (초)', { exact: true }) resolved to 2 elements:
+        1) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).first()
+        2) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).nth(1)
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('효과 지속 시간 (초)', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('효과 지속 시간 (초)', { exact: true })
+
+
+      25 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+      26 |  const content=(p:typeof before)=>{const{updatedAt:_time,id:_workId,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+    > 27 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+         |                                                                                                                                                                                                     ^
+      28 | });
+      29 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:27:197
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('효과 지속 시간 (초)', { exact: true })
+    Expected: "0.6"
+    Error: strict mode violation: getByLabel('효과 지속 시간 (초)', { exact: true }) resolved to 2 elements:
+        1) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).first()
+        2) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).nth(1)
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('효과 지속 시간 (초)', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('효과 지속 시간 (초)', { exact: true })
+
+
+      25 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+      26 |  const content=(p:typeof before)=>{const{updatedAt:_time,id:_workId,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+    > 27 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+         |                                                                                                                                                                                                     ^
+      28 | });
+      29 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:27:197
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-external-actual--6aca8-eturns-with-exact-full-work-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-external-actual--6aca8-eturns-with-exact-full-work-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-external-actual--6aca8-eturns-with-exact-full-work-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('효과 지속 시간 (초)', { exact: true })
+    Expected: "0.6"
+    Error: strict mode violation: getByLabel('효과 지속 시간 (초)', { exact: true }) resolved to 2 elements:
+        1) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).first()
+        2) <input min="0" max="10" value="0.6" step="0.001" type="number" inputmode="decimal" aria-label="효과 지속 시간 (초)"/> aka getByRole('spinbutton', { name: '효과 지속 시간 (초)' }).nth(1)
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('효과 지속 시간 (초)', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('효과 지속 시간 (초)', { exact: true })
+
+
+      25 |  const expected={...before,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation.effects.map((effect:typeof line.presentation.effects[number])=>({...effect,durationMs:600}))}})};
+      26 |  const content=(p:typeof before)=>{const{updatedAt:_time,id:_workId,...rest}=p;return rest;};expect(content(restored)).toEqual(content(expected));
+    > 27 |  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);if(await tool.isVisible())await tool.click();await expect(page.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');
+         |                                                                                                                                                                                                     ^
+      28 | });
+      29 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-external.spec.ts:27:197
+
+    Error Context: ../../../../../tmp/knol-direction-final/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-direction-final/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-direction-final/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8 failed
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 768 
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 390 
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 844 
+    [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+    [host] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 
+    [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual excel effect duration edit reopens, plays in RenPy and returns with exact full work 
+    [stories-runtime] › tests/e2e/non-audio-external.spec.ts:5:37 › actual google effect duration edit reopens, plays in RenPy and returns with exact full work 
+  3 skipped
+  4 passed (1.3m)

@@ -1,0 +1,19 @@
+
+Running 11 tests using 1 worker
+
+(node:5288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 1440 (3.4s)
+  ✓   2 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 768 (3.0s)
+  ✓   3 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 390 (2.9s)
+  ✓   4 [host] › tests/e2e/editor-view-notes.spec.ts:5:119 › nearby writing views keep cut text and cursor 844 (3.1s)
+  ✓   5 [host] › tests/e2e/editor-view-notes.spec.ts:23:1 › cut notes edit in both views, save, export, reimport and return from native reading (15.7s)
+  ✓   6 [host] › tests/e2e/editor-view-notes.spec.ts:39:1 › failed storage keeps the author in the current writing view (2.4s)
+  ✓   7 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px (19.7s)
+  ✓   8 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px (17.0s)
+  -   9 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:61:1 › new manuscript story survives files and reaches both endings in native RenPy
+  ✓  10 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px (4.8s)
+  ✓  11 [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px (4.9s)
+
+  1 skipped
+  10 passed (1.3m)

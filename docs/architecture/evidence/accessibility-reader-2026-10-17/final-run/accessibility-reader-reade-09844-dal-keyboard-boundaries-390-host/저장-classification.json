@@ -1,0 +1,30 @@
+{
+  "classified": [
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"1\"]",
+      "primary": "1번",
+      "description": "빈 저장 위치"
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"2\"]",
+      "primary": "2번",
+      "description": "빈 저장 위치"
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"3\"]",
+      "primary": "3번",
+      "description": "빈 저장 위치"
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[data-player-slot=\"4\"]",
+      "primary": "4번",
+      "description": "빈 저장 위치"
+    }
+  ],
+  "unresolved": [],
+  "raw": "저장-axe.json"
+}

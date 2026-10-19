@@ -1,0 +1,21 @@
+import {test,expect} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+const source=parseAuthoringFile(readFileSync('tests/fixtures/responsive-audio.json','utf8'));
+test('uploaded sound keeps Korean name, attributes and provenance through filters and file reload',async({page},info)=>{
+ await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+ const management=page.locator('[data-work-menu]>summary');if(!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();
+ await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'attributes.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:'2026-10-10T00:00:00.000Z',appVersion:'test',project:source}))});await confirmAuthoringImport(page);
+ const editor=page.getByRole('button',{name:'연출 편집',exact:true});if(await editor.isVisible())await editor.click();
+ await page.getByLabel('1번 효과음 파일 등록').setInputFiles({name:'School Bell.wav',mimeType:'audio/wav',buffer:readFileSync('apps/web/public/assets/audio/chime.wav')});
+ const selector=page.getByLabel('1번 효과음',{exact:true});await expect(selector).toHaveValue(/^audio:custom:/);const id=await selector.inputValue();
+ await page.getByText('1번 효과음 이름·속성·원래 이름',{exact:true}).click();
+ await page.getByLabel('1번 효과음 표시 이름').fill('학교종소리1');await page.getByLabel('1번 효과음 속성 태그').fill('학교 종, 교실, 피아노');await page.getByLabel('1번 효과음 출처 제공처').fill('Pixabay');
+ await page.getByRole('button',{name:'소리 속성 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'소리 이름과 속성을 저장했습니다.'})).toBeVisible();
+ await page.getByLabel('1번 효과음 속성 필터').selectOption('학교 종');await page.getByLabel('1번 효과음 출처 필터').selectOption('Pixabay');await page.getByLabel('1번 효과음 찾기').fill('교실');await expect(selector).toHaveValue(id);await expect(selector.locator('option:checked')).toHaveText('학교종소리1');
+ await page.getByLabel('1번 효과음 찾기').fill('없는 소리');await expect(selector).toHaveValue(id);
+ for(const size of [{width:1280,height:800},{width:820,height:1180},{width:390,height:844},{width:844,height:390}]){await page.setViewportSize(size);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
+ if(!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=info.outputPath('attributes.knolstory');await(await pending).saveAs(path);const document=parseAuthoringFile(readFileSync(path,'utf8'));
+ expect(document.audioResources.find((item:{id:string})=>item.id===id)).toMatchObject({name:'학교종소리1',metadata:{category:'effect',tags:['학교 종','교실','피아노'],source:'Pixabay',originalName:'School Bell.wav'}});
+ await page.reload();const button=page.getByRole('button',{name:'연출 편집',exact:true});if(await button.isVisible())await button.click();await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toHaveText('학교종소리1');
+});

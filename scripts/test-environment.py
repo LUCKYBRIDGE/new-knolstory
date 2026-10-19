@@ -59,6 +59,7 @@ def tool_versions():
 def prepare_commands(legacy):
     return [[sys.executable, 'scripts/restore-legacy-media.py', str(legacy)],
             ['pnpm', 'install', '--frozen-lockfile'],
+            ['pnpm', 'test:service-audio'],
             [sys.executable, 'scripts/prepare-runtime.py'],
             ['pnpm', 'exec', 'playwright', 'install', 'chromium'],
             [sys.executable, 'spikes/renpy-web/build.py'], ['pnpm', 'build']]

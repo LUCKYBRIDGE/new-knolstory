@@ -1,0 +1,27 @@
+
+Running 1 test using 1 worker
+
+(node:17218) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/native-save-thumbnail.spec.ts:2:1 › manual and quick saves use actual native pixels and survive reopen and load (4.8s)
+
+
+  1) [host] › tests/e2e/native-save-thumbnail.spec.ts:2:1 › manual and quick saves use actual native pixels and survive reopen and load 
+
+    Error: expect(received).toBeTruthy()
+
+    Received: undefined
+
+      3 |  await page.goto('/?view=editor');await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const s=page.getByTestId('story-runtime-status');return Number(await s.getAttribute('data-rendered-revision'))>=0&&(await s.getAttribute('data-rendered-revision'))===(await s.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);
+      4 |  await expect(page.getByRole('button',{name:'빠른 저장',exact:true})).toBeEnabled();await page.getByRole('button',{name:'빠른 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'빠른 저장 완료'})).toBeVisible();
+    > 5 |  const quick=await page.evaluate(()=>Object.values(JSON.parse(localStorage.getItem('knolstory-player-v1')!).works)[0] as {quick:{thumbnail?:{dataUrl:string;width:number;height:number}}});expect(quick.quick.thumbnail).toBeTruthy();expect(quick.quick.thumbnail!.dataUrl).toMatch(/^data:image\/webp;base64,/);expect(Math.max(quick.quick.thumbnail!.width,quick.quick.thumbnail!.height)).toBeLessThanOrEqual(320);
+        |                                                                                                                                                                                                                          ^
+      6 |  await page.getByRole('button',{name:'저장',exact:true}).click();await page.getByRole('button',{name:'1번 저장',exact:true}).click();const image=page.getByRole('button',{name:'1번 저장',exact:true}).getByRole('img');await expect(image).toBeVisible();expect(await image.evaluate(async node=>{const img=node as HTMLImageElement;await img.decode();const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;const context=canvas.getContext('2d')!;context.drawImage(img,0,0);const data=context.getImageData(0,0,canvas.width,canvas.height).data;const colors=new Set<string>();for(let i=0;i<data.length;i+=80)colors.add(`${data[i]}/${data[i+1]}/${data[i+2]}`);return colors.size;})).toBeGreaterThan(30);await image.screenshot({path:info.outputPath('native-saved-thumbnail.png')});await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await page.reload();await page.getByRole('button',{name:'불러오기',exact:true}).click();await expect(page.getByRole('button',{name:'1번 불러오기',exact:true}).getByRole('img')).toBeVisible();await page.getByRole('button',{name:'1번 불러오기',exact:true}).click();await page.getByRole('button',{name:'확인',exact:true}).click();await expect(page.getByTestId('story-stage-viewport')).toBeVisible();
+      7 | });
+      8 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/native-save-thumbnail.spec.ts:5:218
+
+    Error Context: test-results/native-save-thumbnail-manu-4294b-and-survive-reopen-and-load-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/native-save-thumbnail.spec.ts:2:1 › manual and quick saves use actual native pixels and survive reopen and load 

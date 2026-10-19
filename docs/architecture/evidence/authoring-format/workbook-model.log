@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/workbook-model.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  20:21:10
+   Duration  101ms (transform 12ms, setup 0ms, import 17ms, tests 2ms, environment 0ms)
+

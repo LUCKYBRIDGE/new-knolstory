@@ -1,0 +1,39 @@
+
+Running 1 test using 1 worker
+
+(node:23722) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut (9.6s)
+
+
+  1) tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      16 |  await page.screenshot({path:info.outputPath('first-page-history.png')});await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+      17 |  await frame.contentFrame().locator('#overlayDiv').press('Enter');
+    > 18 |  await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).index).toBe(1);
+         |                                                                                                   ^
+      19 |  const second=JSON.parse((await status.getAttribute('data-dialogue-page'))!);expect(second.endOffset).toBeGreaterThan(first.endOffset);
+      20 |  dialog=await history(page);await expect(dialog).not.toContainText(secret);await expect(dialog.locator('ol li').last()).toContainText(Array.from(manuscript).slice(0,second.endOffset).join(''));
+      21 |  await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/history-visible-text.spec.ts:18:99
+
+    Error Context: docs/architecture/evidence/history-visible-text-2026-10-20/green-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/history-visible-text-2026-10-20/green-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/history-visible-text-2026-10-20/green-run/history-visible-text-nativ-1d719-er-pages-of-the-current-cut/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut 

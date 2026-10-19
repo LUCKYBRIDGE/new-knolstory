@@ -1,0 +1,31 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run apps/web/lib/story-checkpoints.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/story-checkpoints.test.ts (10 tests | 1 failed) 38ms
+   × keeps oversized manuscript deletion available with explicit file-backup warning and existing undo 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/story-checkpoints.test.ts > keeps oversized manuscript deletion available with explicit file-backup warning and existing undo
+TypeError: recordBeforeCutDeletion is not a function
+ ❯ apps/web/lib/story-checkpoints.test.ts:22:9
+     20| it('keeps oversized manuscript deletion available with explicit file-b…
+     21|  const s=storage();const project={...work(),title:'가'.repeat(1_050_000…
+     22|  expect(recordBeforeCutDeletion(s,project)).toMatch(/용량.*파일/);
+       |         ^
+     23|  expect(s.setItem).not.toHaveBeenCalled();
+     24|  const broken=storage('broken');expect(()=>recordBeforeCutDeletion(bro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  18:49:02
+   Duration  347ms (transform 151ms, setup 0ms, import 214ms, tests 38ms, environment 0ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

@@ -1,0 +1,13 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/generate-authoring-artifacts.test.ts packages/compatibility/tests/authoring-workbook.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+
+ Test Files  2 passed (2)
+      Tests  5 passed (5)
+   Start at  20:39:27
+   Duration  628ms (transform 528ms, setup 0ms, import 695ms, tests 296ms, environment 0ms)
+

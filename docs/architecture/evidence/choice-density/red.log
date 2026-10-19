@@ -1,0 +1,66 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:97282) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/44sc6_ljab4t2.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/2s08bb23yikha.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /_next/static/chunks/2nx2j8t9__-2-.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:43] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:47] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:47] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:47] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:47] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:47] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 08:33:47] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/choice-density.spec.ts:3:39 › choice-only editing hides unavailable actions and preserves authored options 1440 (6.4s)
+
+
+  1) [host] › tests/e2e/choice-density.spec.ts:3:39 › choice-only editing hides unavailable actions and preserves authored options 1440 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('button', { name: '선택지 1 삭제', exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('button', { name: '선택지 1 삭제', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '선택지 1 삭제', exact: true })
+        13 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      2 | import {readFileSync} from 'node:fs';
+      3 | for(const width of [1440,768,390,844])test(`choice-only editing hides unavailable actions and preserves authored options ${width}`,async({page},info)=>{
+    > 4 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'선택지 편집',exact:true}).click();await page.getByLabel('진행 방식',{exact:true}).selectOption('choice');await expect(page.getByRole('button',{name:'선택지 1 삭제',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:'선택지 2 삭제',exact:true})).toHaveCount(0);await expect(page.getByText('선택 결과·표시 조건',{exact:true})).toHaveCount(0);await page.getByLabel('선택지 1 문구',{exact:true}).fill('점수 없이 이웃을 도와준다');await page.getByLabel('선택지 1 도착 컷',{exact:true}).selectOption('__end__');await page.getByRole('button',{name:'선택지 추가',exact:true}).click();await expect(page.getByRole('button',{name:'선택지 3 삭제',exact:true})).toBeVisible();await page.getByLabel('선택지 3 문구',{exact:true}).fill('다른 길을 먼저 살핀다');await page.getByRole('button',{name:'선택지 추가',exact:true}).click();await expect(page.getByRole('button',{name:'선택지 추가',exact:true})).toHaveCount(0);await expect(page.getByText('선택지는 2~4개로 구성할 수 있어요.',{exact:true})).toBeVisible();await page.getByRole('button',{name:'선택지 4 삭제',exact:true}).click();await page.getByRole('button',{name:'선택지 3 삭제',exact:true}).click();await expect(page.getByRole('button',{name:/선택지 [12] 삭제/})).toHaveCount(0);await expect(text).toHaveValue(original);await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const saved=JSON.parse(readFileSync((await (await pending).path())!,'utf8'));const cut=saved.document.project.lines.find((line:{text:string})=>line.text===original);expect(cut.flow.options).toHaveLength(2);expect(cut.flow.options[0]).toMatchObject({label:'점수 없이 이웃을 도와준다',targetLineId:null});expect(cut.flow.options.every((option:{effects?:unknown;condition?:unknown})=>option.effects===undefined&&option.condition===undefined)).toBe(true);expect(saved.document.project.scores??[]).toHaveLength(0);await page.reload();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'선택지 편집',exact:true}).click();await expect(page.getByLabel('선택지 1 문구',{exact:true})).toHaveValue('점수 없이 이웃을 도와준다');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`choice-only-${width}.png`),fullPage:true});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+      5 | });
+      6 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/choice-density.spec.ts:4:513
+
+    Error Context: test-results/choice-density-choice-only-bfcba-erves-authored-options-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/choice-density.spec.ts:3:39 › choice-only editing hides unavailable actions and preserves authored options 1440 

@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/local-work-file.test.ts (24 tests | 1 failed) 146ms
+   × creates one file saver per session and retains it when settings remount 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/local-work-file.test.ts > creates one file saver per session and retains it when settings remount
+TypeError: createLocalWorkFileSession is not a function
+ ❯ apps/web/lib/local-work-file.test.ts:221:19
+    219|
+    220| it('creates one file saver per session and retains it when settings re…
+    221|   const session = createLocalWorkFileSession(), other = createLocalWor…
+       |                   ^
+    222|   const first = createLocalWorkFileSaver({download: vi.fn()}), second …
+    223|   const factory = vi.fn(() => first);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 23 passed (24)
+   Start at  08:20:11
+   Duration  260ms (transform 19ms, setup 0ms, import 25ms, tests 146ms, environment 0ms)
+

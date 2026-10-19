@@ -72,7 +72,7 @@ export function CoverEditorCanvas({project,cover,face,selectedId,onSelect,onChan
         style={{left:`clamp(0px, calc(${(selection.x+selection.w)*100}% - 22px), calc(100% - 44px))`,top:`clamp(0px, calc(${(selection.y+selection.h)*100}% - 22px), calc(100% - 44px))`}}
         onPointerDown={event=>begin(event,{id:cover.design?selectedId:basic,action:resizeAction})} onPointerMove={move} onPointerUp={()=>end(false)} onPointerCancel={()=>end(true)} onLostPointerCapture={()=>end(false)} onKeyDown={event=>keyboard(event,{id:cover.design?selectedId:basic,action:resizeAction})}>↘</button>}
     </div>
-    {!cover.design&&face==='front'&&<div className={styles.canvasTools} aria-label="표지 직접 조정">{(['title','character','background'] as const).filter(id=>id==='title'||(id==='character'?cover.characterId:cover.backgroundId)).map(id=><button type="button" key={id} aria-pressed={basic===id&&!!cover.composition} onClick={()=>{if(!cover.composition)onChange({...cover,composition:defaultCoverComposition(cover)});setBasic(id);}}>{labels[id]} 선택</button>)}</div>}
+    {!cover.design&&face==='front'&&<div className={styles.canvasTools} role="group" aria-label="표지 직접 조정">{(['title','character','background'] as const).filter(id=>id==='title'||(id==='character'?cover.characterId:cover.backgroundId)).map(id=><button type="button" key={id} aria-pressed={basic===id&&!!cover.composition} onClick={()=>{if(!cover.composition)onChange({...cover,composition:defaultCoverComposition(cover)});setBasic(id);}}>{labels[id]} 선택</button>)}</div>}
     <p className={styles.canvasHint}>{cover.design?'상자를 눌러 선택하고 끌어 옮겨요.':'제목·인물·배경을 선택해 직접 움직여요.'}<br/>방향키로 한 칸 · Shift + 방향키로 다섯 칸 · ↘ 크기 조절</p>
   </>;
 }

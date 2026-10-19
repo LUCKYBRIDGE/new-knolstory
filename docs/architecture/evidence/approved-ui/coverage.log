@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  4 passed (4)
+      Tests  14 passed (14)
+   Start at  10:28:30
+   Duration  963ms (transform 799ms, setup 0ms, import 1.16s, tests 21ms, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   94.87 |    92.74 |     100 |     100 |                   
+ lib               |   94.59 |    92.43 |     100 |     100 |                   
+  player-saves.ts  |   94.36 |    91.42 |     100 |     100 | 25,30-33,39,43,52 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 94.87% ( 74/78 )
+Branches     : 92.74% ( 115/124 )
+Functions    : 100% ( 24/24 )
+Lines        : 100% ( 43/43 )
+================================================================================

@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-10-17T04:19:58.382959+00:00",
+  "scope": "PC04/07 private HTTP request observations in isolated local API; full product/service remains incomplete",
+  "sourceSha256": {
+    "server/main.ts": "7b0d4151e00d7b704d4fafafbd630cf349d0e09f1c3671b6d536d8d2a9047377",
+    "server/http/request-observation.ts": "ed682e666ef0af7ff4297139c5c7193e0f2680cd75d735a3e3f848a0d1096589",
+    "server/http/request-observation.test.ts": "85b5ca46e85d90b98597eb9b0ff4d6476c57261b2810e5a43a2aa32cd122ee4a",
+    "server/http/document-routes.test.ts": "f33a6c4433b38ae5fbd22735403e92516ebd434b5a620e42ac2b3e17a5dafaf3",
+    "server/dist/main.mjs": "9f5a1e7279def7145d1658afe378be67f61bf349e4953de6441f84f7e3e6c540"
+  },
+  "verification": {
+    "requestTests": {
+      "passed": 8,
+      "log": "green.log",
+      "statements": 100,
+      "branches": 92.1,
+      "functions": 100,
+      "lines": 100,
+      "scope": "Actual Node HTTP privacy, response correlation,503,prefix discrimination,aborted response; mocked close/finish duplicate and sink exception."
+    },
+    "focusedFinal": {
+      "passed": 53,
+      "log": "focused-final.log",
+      "scope": "Request observer plus existing document HTTP boundary; existing mock-call tuple inference corrected without changing runtime assertions."
+    },
+    "typecheck": "types-final.log",
+    "lint": "lint.log",
+    "build": "build.log",
+    "dockerBuild": "docker-build.log",
+    "dockerApply": "docker-up.log",
+    "actualDocker": "docker-verification.json",
+    "review": "Independent security review found no remaining P1/P2 for fixed schema and current synchronous sink."
+  },
+  "retainedFailures": {
+    "red.log": "Missing implementation test-first failure.",
+    "types.log": "New and existing no-argument mock tuple indexing typing errors; declarations/read-only call-array typing repaired."
+  },
+  "privacy": "No rawURL/query/IP/account/document identifiers/cookie/authorization/body/exception or suppliedrequestid. Fresh random UUID per request. Fixed method/family/outcome schema only. No body consumption.",
+  "deploymentBoundary": "Only owned local Next API recreated with unchanged origin and disabled provider settings. No migrations, DB writes, legacy resources or public traffic changes.16other container metadata hashes identical.",
+  "remaining": [
+    "Provider callbacks/roles/classes/submissions/sharing/deletion policies remain pending.",
+    "No persistent account audit trail, external log collection or retention policy configured.",
+    "Node parser rejected requests not observed.",
+    "Target devices/AT/offhostbackup/live release unproven."
+  ]
+}

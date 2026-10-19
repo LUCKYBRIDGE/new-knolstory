@@ -1,0 +1,93 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:58] "GET / HTTP/1.1" 200 -
+
+
+Running 1 test using 1 worker
+
+(node:34816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [stories-runtime] › tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/35x3sp69_nd7_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/31a351o0a_vwx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/1cuw84c-adpc4.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /_next/static/chunks/1y5ilh4_3bawd.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:03:59] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:04:02] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:04:02] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:04:02] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:04:02] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 03:04:02] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+
+  1) [stories-runtime] › tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440 
+
+    TimeoutError: locator.getAttribute: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('효과 갈래 조건', { exact: true }).locator('option').filter({ hasText: '따뜻한 갈래를 골라 같은 컷으로 간다' })
+
+
+      26 |  page.setDefaultTimeout(15000);await page.setViewportSize(size);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await fileMenu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'branch-scope.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-14T00:00:00.000Z',appVersion:'test',project:source}))});await confirmAuthoringImport(page);
+      27 |  const baseline=(await exportWork(page)).project,position=page.getByLabel('현재 장과 컷 이동',{exact:true});await position.selectOption('shake');await tool(page,'연출 편집');await page.getByLabel('조정할 연출',{exact:true}).selectOption('effects');
+    > 28 |  const condition=page.getByLabel('효과 갈래 조건',{exact:true}),warm=await condition.locator('option').filter({hasText:choiceA}).getAttribute('value');expect(warm).toBeTruthy();await condition.selectOption(warm!);await page.getByRole('button',{name:'마지막 효과 변경 취소',exact:true}).click();await expect(condition).toHaveValue('');await condition.selectOption(warm!);
+         |                                                                                                                            ^
+      29 |  const bounds=(await condition.boundingBox())!;expect(bounds.x).toBeGreaterThanOrEqual(0);expect(bounds.x+bounds.width).toBeLessThanOrEqual(size.width);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await condition.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath(`branch-condition-${size.width}.png`)});
+      30 |  await tool(page,'소리 편집');const kind=page.getByLabel('조정할 소리',{exact:true});await kind.selectOption('music');await page.getByLabel('컷 배경음 갈래 조건',{exact:true}).selectOption(warm!);await page.getByRole('button',{name:'배경음 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 배경음 갈래 조건',{exact:true})).toHaveValue('');await page.getByLabel('컷 배경음 갈래 조건',{exact:true}).selectOption(warm!);await kind.selectOption('ambience');await page.getByLabel('컷 주변 소리 갈래 조건',{exact:true}).selectOption(warm!);await kind.selectOption('sounds');await page.getByLabel('1번 효과음 갈래 조건',{exact:true}).selectOption(warm!);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+      31 |  const saved=await exportWork(page),cut=saved.project.lines[1],branchCondition={sourceLineId:'neutral',choiceId:'warm'};expect(cut.presentation.effects[0].branchCondition).toEqual(branchCondition);for(const cue of [cut.audio.music,cut.audio.ambience,cut.audio.sounds[0]])expect(cue.branchCondition).toEqual(branchCondition);
+        at <repo>/tests/e2e/branch-scope.spec.ts:28:124
+
+    Error Context: test-results-current-ux/branch-scope-exact-same-ta-c4caa-iews-loops-and-reopens-1440-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/branch-scope-exact-same-ta-c4caa-iews-loops-and-reopens-1440-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/branch-scope-exact-same-ta-c4caa-iews-loops-and-reopens-1440-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    [stories-runtime] › tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440 

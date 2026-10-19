@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-18",
+  "status": "handoff-in-progress-not-built-not-deployed",
+  "user_scope": "Applylocaldesign/format; nowedit BOTH originalandcreative editions, preservingpersonalworks",
+  "completed_evidence": "../reader-vn-three-five-2026-10-18/checkpoint.json",
+  "new_manuscripts": {
+    "seonnyeo": {
+      "original": 24,
+      "creative": 42
+    },
+    "heungbu": {
+      "original": 21,
+      "creative": 13
+    },
+    "onggojib": {
+      "original": 25,
+      "creative": 15
+    },
+    "rabbit": {
+      "original": 22,
+      "creative": 13
+    },
+    "newTotal": 175,
+    "previousCreative": 86,
+    "combined": 261
+  },
+  "source_state": [
+    "4newreader-edit manifests importedinto reader-text.ts",
+    "pristinegateexpandedto8baselines",
+    "2existing reader-text tests expandedto8editions passedbeforeaddingthird REDtest",
+    "thirdREDtest imports resolveProvidedCatalogStory which is NOTimplemented/exported",
+    "workspace stilloldcatalogProject gate: recognized priorprovidededitions not yet refreshed",
+    "apps/web/out is previousverified3/5+86creativecandidate; notcurrent175additional source"
+  ],
+  "pending_review_findings": [
+    {
+      "file": "reader-edit-heungbu.json",
+      "lineId": "scene-8-7",
+      "issue": "after ambiguouslymakesHeungbusubject",
+      "suggestion": "놀부에게 흥부는 늘 돌봐야 할 철없는 동생이었다. 그 생각이 흔들리는 것은 싫었다."
+    },
+    {
+      "file": "reader-edit-seonnyeo.json",
+      "lineIds": "E4-8-v32-7 and14-v*-2/-6/-8",
+      "issue": "piecemeal present-to-past tense conversions; comparebeforeandneighborcutstenserestore"
+    },
+    {
+      "file": "reader-edit-onggojib.json",
+      "lineId": "classic-onggojib-5-line-12",
+      "suggestion": "알지도 몰랐다→알고 있을지도 몰랐다"
+    },
+    {
+      "file": "reader-edit-onggojib.json",
+      "lineId": "classic-onggojib-4-line-04",
+      "suggestion": "집안에서 있었던 일도 거침없이 이었다→집안에서 있었던 일도 거침없이 말했다"
+    },
+    {
+      "file": "reader-edit-onggojib.json",
+      "lineId": "review-main-003:start:6",
+      "issue": "reason 장면분리 is onlysentenceparagraph restructuring; relabel 한 컷 안의 문장 호흡 분리"
+    }
+  ],
+  "next_steps": [
+    "Fixidentifiededitorialfindingswithoutrewritingrawfixtures",
+    "Implement/export resolveProvidedCatalogStory(original,stored?) torecognizeonlyexactknownprovidedbaselines andearlierofficialdirection/refinedversions; preserveallpersonal-editedvariants",
+    "RoutecatalogProject throughresolver; keepdirectEditor/rawlegacybaseline behaviorintentional",
+    "Extend8edition unit/integration tests; validatealltextmatchandnontextfields unchanged",
+    "BuildWeb ONLY unlessnativechanges; existingRenPy3/5buildverified",
+    "Freshnativeoutputfolder;8editioncatalog→read→save/reopen representative tests",
+    "Generateall261before-afterreview andsummary; currentnotesarestructuralcandidates, nocutID/order/Flowchange implemented",
+    "Startlocalpreview127.0.0.1:15401iffree; do notclaimAPIsproxywithoutverification",
+    "Updatecanonicalstatus/plan/evidence andprovideconcretereview"
+  ],
+  "processes": "No task-ownedPlaywright/3150previewrunning at handoff;15400DockerAPI observed earlier",
+  "preservation": [
+    "Dirtyworktree~743paths; no reset/clean/checkout/commit/push",
+    "Raw8fixtures unchanged",
+    "Personal/editedworks andolder evidence preserved",
+    "Production unchanged; no deployment/deletion",
+    "Wholeproductcompletionqueue remains"
+  ],
+  "limitations": [
+    "New175not integrated/native-verified yet",
+    "No whole2970cutstructuralrewriteclaim",
+    "Some childagents hitusage limits; proceedrootifneeded, do notrelyontheminnextsession"
+  ],
+  "sha256": {
+    "packages/compatibility/src/reader-text.ts": "bd9165f84016701ceeccb3bc8229eea039c11f078666166d720c0e92a8f683c2",
+    "packages/compatibility/tests/reader-text.test.ts": "d2a66ccedfd4e77debebe55e24b9f5860a6398c624d67a3768a80cef5bd26d7f",
+    "packages/compatibility/src/reader-edit-seonnyeo.json": "cd25b44eb23e4c61f1d0492463f02764ab22c3c7c4f75a1feaba9935a9af464c",
+    "packages/compatibility/src/reader-edit-heungbu.json": "919e28620be24d6ac6e98cae8cc99e9791163ccc966a44070deb45bccec9d2c2",
+    "packages/compatibility/src/reader-edit-onggojib.json": "67ac7a4e7c75d00938511761691d0dab414c5f23d2cc39a7560dc533d1a40eae",
+    "packages/compatibility/src/reader-edit-rabbit.json": "a8dff7899eb129fb25bdc3a80800e02b0fe4a67305ab38a6a1f23351dc5af4a8",
+    "apps/web/components/story-workspace.tsx": "5b7a16c8f5301493a4d5e58633d26935a0f950530af627b564b849eb13f337e7"
+  }
+}

@@ -1,197 +1,53 @@
-import { test, expect, type Page } from '@playwright/test';
-import { readFileSync } from 'node:fs';
-
-const source = JSON.parse(readFileSync('tests/fixtures/responsive-audio.json', 'utf8'));
-const fixture = { name: 'responsive-audio.knolstory', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ documentType: 'story-maker-project', schemaVersion: 5, savedAt: '2026-10-06T00:00:00.000Z', appVersion: 'knolstory-next-test', project: source })) };
-async function management(page: Page) {
-  const summary = page.getByText('작품 관리', { exact: true });
-  if (!(await summary.locator('..').evaluate(n => (n as HTMLDetailsElement).open))) await summary.click();
-}
-async function saved(page: Page) { await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨'); }
-async function tool(page: Page, name: string) { const button = page.getByRole('button', { name, exact: true }); if (await button.isVisible()) await button.click(); }
-async function load(page: Page) {
-  await page.goto('/?view=editor'); await saved(page); await management(page);
-  await page.getByLabel('작품 파일 가져오기').setInputFiles(fixture); await saved(page);
-  await expect(page.getByLabel('작품 제목', { exact: true })).toHaveValue(source.title);
-}
-async function exported(page: Page) {
-  await saved(page); await management(page); const pending = page.waitForEvent('download');
-  await page.getByRole('button', { name: '작품 파일 내보내기', exact: true }).click();
-  const path = (await (await pending).path())!;
-  return { path, document: JSON.parse(readFileSync(path, 'utf8')) };
-}
-async function selectCut(page: Page, id: string) {
-  await tool(page, '컷 목록'); const cut = page.locator(`[data-line-id="${id}"]`);
-  await cut.evaluate(n => { const detail = n.closest('details'); if (detail) detail.open = true; }); await cut.click();
-}
-async function rendered(page: Page) {
-  const status = page.getByTestId('story-runtime-status');
-  await expect(status).toContainText('연결됨', { timeout: 90000 });
-  await expect.poll(() => status.evaluate(n => n.getAttribute('data-scene-revision') === n.getAttribute('data-rendered-revision')), { timeout: 30000 }).toBe(true);
-  return status;
-}
-async function uploadSound(page: Page) {
-  await tool(page, '연출 편집');
-  // A different filename forces custom registration, while real WAV bytes remain audible.
-  await page.getByLabel('1번 효과음 파일 등록').setInputFiles({ name: '내-종소리.wav', mimeType: 'audio/wav', buffer: readFileSync('apps/web/public/assets/audio/chime.wav') });
-  await expect(page.getByLabel('1번 효과음', { exact: true })).toHaveValue(/^audio:custom:[a-f0-9]{64}:wav$/);
-  const id = await page.getByLabel('1번 효과음', { exact: true }).inputValue();
-  const preview = page.getByLabel('1번 효과음 미리 듣기');
-  await expect(preview).toHaveAttribute('src', /^data:audio\/wav;base64,/);
-  await preview.evaluate(async n => { const audio = n as HTMLAudioElement; await audio.play(); });
-  await expect.poll(() => preview.evaluate(n => (n as HTMLAudioElement).currentTime)).toBeGreaterThan(0);
-  await preview.evaluate(n => (n as HTMLAudioElement).pause());
-  return id;
-}
-for (const width of [1280, 390]) test(`responsive audiovisual authoring and portable custom audio at ${width}px`, async ({ page, context }, info) => {
-  test.skip(info.project.name !== 'host'); await page.setViewportSize({ width, height: width === 390 ? 844 : 900 }); await load(page);
-  await page.getByRole('button',{name:'이 장 대본',exact:true}).click();await page.getByText('장 설정 · 화자와 기본 자료',{exact:true}).click();
-  await page.getByLabel('장 1번 효과음',{exact:true}).selectOption('audio:sound:step');await page.getByLabel('장 1번 효과음 지연').fill('175');
-  await page.getByRole('button',{name:'현재 컷 꾸미기',exact:true}).click();
-  await tool(page, '연출 편집'); await page.getByLabel('컷 배경음 동작').selectOption('play');
-  await page.getByLabel('컷 배경음', { exact: true }).selectOption('audio:music:forest');
-  await page.getByLabel('컷 배경음 시작 페이드').fill('400'); await page.getByLabel('컷 배경음 변경 페이드').fill('300');
-  await page.getByLabel('컷 배경음 반복').check(); const customId = await uploadSound(page);
-  await page.getByLabel('1번 효과음 지연').fill('120');
-  await tool(page, '자산 편집'); await page.getByLabel('왼쪽 1번 인물 인물 동작').selectOption('fade-in'); await page.getByLabel('왼쪽 1번 인물 동작 시간').fill('800');await page.getByLabel('왼쪽 1번 인물 동작 대기').fill('100');await page.getByLabel('배경 표시').selectOption('cover'); await page.getByLabel('배경 중심 가로').fill('0.7'); await page.getByLabel('배경 중심 세로').fill('0.35');
-  const preset = page.getByLabel('화면 구도', { exact: true });
-  for (const value of ['desktop', 'portrait', 'landscape']) { await preset.selectOption(value); await expect(preset).toHaveValue(value); }
-  await preset.selectOption('auto');
-  const file = await exported(page); const first = file.document.project.lines[0];expect(file.document.project.chapters[0].audio.sounds[0]).toMatchObject({assetId:'audio:sound:step',delayMs:175});
-  expect(first.audio.music).toMatchObject({ action: 'play', assetId: 'audio:music:forest', fadeInMs: 400, fadeOutMs: 300, loop: true });
-  expect(first.audio.sounds[0]).toMatchObject({ assetId: customId, delayMs: 120 }); expect(first.presentation.backgroundFocal).toEqual({ x: .7, y: .35 });expect(first.stageComposition.leftActors[0].motion).toEqual({type:'fade-in',durationMs:800,delayMs:100});
-  await page.reload(); expect((await exported(page)).document.project).toEqual(file.document.project);
-  // Restore into an isolated browser: no original IDB audio remains to mask missing file data.
-  const fresh = await context.browser()!.newContext({ viewport: { width, height: width === 390 ? 844 : 900 } }); const restored = await fresh.newPage();
-  try {
-    await restored.goto('http://127.0.0.1:3000/?view=editor'); await saved(restored); await management(restored);
-    await restored.getByLabel('작품 파일 가져오기').setInputFiles(file.path); await saved(restored);
-    expect((await exported(restored)).document.project).toEqual(file.document.project); await tool(restored, '연출 편집');
-    await expect(restored.getByLabel('1번 효과음', { exact: true })).toHaveValue(customId);
-    const preview = restored.getByLabel('1번 효과음 미리 듣기'); await preview.evaluate(async n => { await (n as HTMLAudioElement).play(); });
-    await expect.poll(() => preview.evaluate(n => (n as HTMLAudioElement).currentTime)).toBeGreaterThan(0);
-    expect(await restored.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await restored.screenshot({ path: info.outputPath(`portable-audio-${width}.png`) });
-  } finally { await fresh.close(); }
+import {previousReadCut} from './reader-actions';
+import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {existingPrivateWorkspace,priorAudioResource} from './existing-private-audio';
+import {test,expect,type Page} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+const source=parseAuthoringFile(readFileSync('tests/fixtures/responsive-audio.json','utf8'));
+const fixture={name:'responsive-audio.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:'2026-10-06T00:00:00.000Z',appVersion:'test',project:source}))};
+const privateSound=priorAudioResource(readFileSync('apps/web/public/assets/audio/chime.wav'),'기존 내 종소리','sound','내-종소리.wav');
+const privateMusic=priorAudioResource(readFileSync('apps/web/public/assets/audio/forest.wav'),'기존 내 숲 음악','music','내-숲의-음악.wav');
+const priorProject={...source,id:'prior-responsive-audio',lines:source.lines.map((line:typeof source.lines[number])=>line.id==='opening'?{...line,audio:{...line.audio,sounds:line.audio.sounds.map((cue:{assetId:string})=>({...cue,assetId:privateSound.id}))}}:line.id==='end-night'?{...line,audio:{...line.audio,music:{...line.audio.music,assetId:privateMusic.id}}}:line)};
+async function management(page:Page){const summary=page.locator('[data-work-menu]>summary');if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await summary.click();}
+async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
+async function tool(page:Page,name:string){const details=page.locator('[data-additional-tools]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();await page.getByRole('button',{name,exact:true}).click();}
+async function sound(page:Page,kind:'music'|'sounds'){await tool(page,'소리 편집');await page.getByLabel('조정할 소리',{exact:true}).selectOption(kind);}
+function registeredCopy(project:typeof source){const replacements=new Map([[privateSound.id,'audio:sound:chime'],[privateMusic.id,'audio:music:night']]);const replace=(node:typeof project.lines[number])=>node.audio?{...node,audio:{...node.audio,...Object.fromEntries(['music','ambience'].filter(channel=>node.audio[channel]?.action==='play').map(channel=>[channel,{...node.audio[channel],assetId:replacements.get(node.audio[channel].assetId)??node.audio[channel].assetId}])),...(node.audio.sounds?{sounds:node.audio.sounds.map((cue:{assetId:string})=>({...cue,assetId:replacements.get(cue.assetId)??cue.assetId}))}:{})}}:node;return {...project,chapters:project.chapters.map(replace),lines:project.lines.map(replace)};}
+async function prior(page:Page){await existingPrivateWorkspace(page,priorProject,[privateSound,privateMusic]);await page.goto('/?view=editor');await saved(page);}
+async function exported(page:Page){await saved(page);await management(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,document:parseAuthoringFile(readFileSync(path,'utf8'))};}
+async function rendered(page:Page){const report=page.getByTestId('story-runtime-status');await expect(report).toContainText('연결됨',{timeout:120000});await expect.poll(async()=>{const rev=await report.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await report.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);return report;}
+async function views(page:Page){const details=page.getByText('보기 설정',{exact:true}).locator('..');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}
+async function read(page:Page){await views(page);await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();return rendered(page);}
+async function restart(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await page.getByRole('dialog',{name:'처음부터 읽을까요?',exact:true}).getByRole('button',{name:'처음부터 읽기',exact:true}).click();return rendered(page);}
+async function next(page:Page){const button=page.getByRole('button',{name:'다음으로',exact:true});await expect(button).toBeEnabled();await button.focus();await button.press('Enter');return rendered(page);}
+async function reduced(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await page.getByRole('button',{name:/^동작 줄이기 · /}).click();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();return rendered(page);}
+async function edit(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();}
+async function choose(page:Page,index:number,target:string){await rendered(page);const frame=page.getByTestId('story-runtime-frame');await frame.scrollIntoViewIfNeeded();const b=(await frame.boundingBox())!,status=page.getByTestId('story-runtime-status'),r=JSON.parse((await status.getAttribute('data-choices-rect'))!) as {x:number;y:number;width:number;height:number};expect(r).not.toBeNull();const w=Number(await status.getAttribute('data-scene-width')),h=Number(await status.getAttribute('data-scene-height')),s=Math.min(b.width/w,b.height/h);await page.mouse.click(b.x+(b.width-w*s)/2+(r.x+r.width/2)*s,b.y+(b.height-h*s)/2+(r.y+Math.min(20,Math.floor(r.height/8))+25+index*50)*s);await expect(page.locator('[data-line-id="'+target+'"]')).toHaveAttribute('aria-current','true');return rendered(page);}
+async function placement(page:Page){await tool(page,'배경·인물 편집');await page.getByText('추가 인물·세부 배치',{exact:true}).click();}
+async function unlock(page:Page){await page.getByTestId('story-runtime-frame').click({position:{x:30,y:30}});await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','true');}
+for(const width of [1280,390])test('responsive editing preserves prior private media and a registered copy reopens '+width,async({page,context},info)=>{
+ test.skip(info.project.name!=='host');await page.setViewportSize({width,height:width===390?844:900});await prior(page);const baseline=(await exported(page)).document;
+ const writing=page.locator('[data-writing-tools]');if(!await writing.evaluate(node=>(node as HTMLDetailsElement).open))await writing.locator(':scope>summary').click();await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();await page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true}).click();const chapter=page.getByRole('group',{name:'장 소리 설정',exact:true});await chapter.getByLabel('조정할 소리',{exact:true}).selectOption('sounds');await chapter.getByLabel('장 1번 효과음',{exact:true}).selectOption('audio:sound:step');await chapter.getByLabel('장 1번 효과음 재생 대기 (초)').fill('0.175');await chapter.getByLabel('장 1번 효과음 재생 대기 (초)').blur();await page.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();
+ await sound(page,'music');await page.getByLabel('컷 배경음 동작').selectOption('play');await page.getByLabel('컷 배경음',{exact:true}).selectOption('audio:music:forest');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)').fill('0.4');await page.getByLabel('컷 배경음 서서히 크게 시작 (초)').blur();await page.getByLabel('컷 배경음 기존 소리 사라짐 (초)').fill('0.3');await page.getByLabel('컷 배경음 기존 소리 사라짐 (초)').blur();await page.getByLabel('컷 배경음 반복').check();await expect(page.getByLabel('컷 배경음 파일 등록')).toHaveCount(0);
+ await sound(page,'sounds');await expect(page.getByLabel('1번 효과음',{exact:true})).toHaveValue(privateSound.id);await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toHaveJSProperty('disabled',true);const preview=page.getByLabel('1번 효과음 미리 듣기');await expect(preview).toHaveAttribute('src',/^data:audio\/wav;base64,/);await preview.evaluate(node=>(node as HTMLAudioElement).play());await expect.poll(()=>preview.evaluate(node=>(node as HTMLAudioElement).currentTime)).toBeGreaterThan(0);await preview.evaluate(node=>(node as HTMLAudioElement).pause());await page.getByLabel('1번 효과음 재생 대기 (초)').fill('0.12');await page.getByLabel('1번 효과음 재생 대기 (초)').blur();
+ await placement(page);await page.getByLabel('왼쪽 1번 인물 인물 동작').selectOption('fade-in');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').fill('0.8');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').blur();await page.getByLabel('왼쪽 1번 인물 동작 대기 (초)').fill('0.1');await page.getByLabel('왼쪽 1번 인물 동작 대기 (초)').blur();await page.getByText('배경 표시 조정',{exact:true}).click();await page.getByLabel('배경 표시').selectOption('cover');await page.getByLabel('배경 중심 가로').fill('0.7');await page.getByLabel('배경 중심 세로').fill('0.35');
+ await views(page);const preset=page.getByLabel('미리보기 화면 비율',{exact:true});for(const value of ['desktop','portrait','landscape']){await preset.selectOption(value);await expect(preset).toHaveValue(value);}await preset.selectOption('auto');const file=await exported(page),first=file.document.project.lines[0];expect(file.document.project.chapters[0].audio.sounds[0]).toMatchObject({assetId:'audio:sound:step',delayMs:175});expect(first.audio.music).toMatchObject({action:'play',assetId:'audio:music:forest',fadeInMs:400,fadeOutMs:300,loop:true});expect(first.audio.sounds[0]).toMatchObject({assetId:privateSound.id,delayMs:120});expect(first.presentation.backgroundFocal).toEqual({x:.7,y:.35});expect(first.stageComposition.leftActors[0].motion).toEqual({type:'fade-in',durationMs:800,delayMs:100});expect(file.document.audioResources).toEqual(baseline.audioResources);expect({...file.document.project,updatedAt:baseline.project.updatedAt,chapters:baseline.project.chapters,lines:file.document.project.lines.map((line:{id:string})=>line.id==='opening'?baseline.project.lines[0]:line)}).toEqual(baseline.project);await page.reload();expect((await exported(page)).document.project).toEqual(file.document.project);expect((await exported(page)).document.audioResources).toEqual(file.document.audioResources);
+ const fresh=await context.browser()!.newContext({viewport:{width,height:width===390?844:900}}),restored=await fresh.newPage();try{await restored.goto(new URL('/?view=editor',page.url()).href);await saved(restored);const before=(await exported(restored)).document;await management(restored);await restored.getByLabel('작품 파일 가져오기').setInputFiles({name:'prior-private.knolstory',mimeType:'application/json',buffer:readFileSync(file.path)});await expect(restored.getByTestId('workspace-error')).toContainText('외부 음원이 첨부된 작품');expect((await exported(restored)).document.project).toEqual(before.project);
+ const catalog=JSON.parse(readFileSync(file.path,'utf8'));catalog.document.project=registeredCopy(file.document.project);catalog.audioResources=[];await management(restored);await restored.getByLabel('작품 파일 가져오기').setInputFiles({name:'registered-copy.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(catalog))});await confirmAuthoringImport(restored);const actual=(await exported(restored)).document;expect(actual.project).toEqual({...catalog.document.project,id:actual.project.id});expect(actual.audioResources).toEqual([]);await sound(restored,'sounds');await expect(restored.getByLabel('1번 효과음',{exact:true})).toHaveValue('audio:sound:chime');const audible=restored.getByLabel('1번 효과음 미리 듣기');await audible.evaluate(node=>(node as HTMLAudioElement).play());await expect.poll(()=>audible.evaluate(node=>(node as HTMLAudioElement).currentTime)).toBeGreaterThan(0);expect(await restored.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await restored.screenshot({path:info.outputPath('registered-copy-'+width+'.png')});}finally{await fresh.close();}
 });
-
-test('native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches', async ({ page, context }, info) => {
-  test.skip(info.project.name !== 'stories-runtime'); test.setTimeout(240000); await load(page); const customId = await uploadSound(page);
-  await selectCut(page, 'end-night'); await tool(page, '연출 편집');
-  await page.getByLabel('컷 배경음 파일 등록').setInputFiles({ name: '내-숲의-음악.wav', mimeType: 'audio/wav', buffer: readFileSync('apps/web/public/assets/audio/forest.wav') });
-  await expect(page.getByLabel('컷 배경음', { exact: true })).toHaveValue(/^audio:custom:[a-f0-9]{64}:wav$/);
-  const customMusicId = await page.getByLabel('컷 배경음', { exact: true }).inputValue();
-  const customMusicPath = `assets/audio/${customMusicId.split(':')[2]}.wav`;
-  await selectCut(page, 'opening');await tool(page,'자산 편집');await page.getByLabel('왼쪽 1번 인물 인물 동작').selectOption('move');await page.getByLabel('왼쪽 1번 인물 출발 위치').fill('25');await page.getByLabel('왼쪽 1번 인물 동작 시간').fill('800'); const file = await exported(page);
-  // Native playback also happens after restoring custom bytes into a clean browser.
-  const fresh = await context.browser()!.newContext(); const runtime = await fresh.newPage();
-  try {
-    await runtime.goto('http://127.0.0.1:3000/?view=editor'); await saved(runtime); await management(runtime);
-    await runtime.getByLabel('작품 파일 가져오기').setInputFiles(file.path); await saved(runtime); await rendered(runtime);
-    const frame = runtime.getByTestId('story-runtime-frame'); await frame.evaluate(n => n.setAttribute('data-av-instance', 'persistent'));
-    for (const [preset, width, height] of [['desktop',1280,720],['portrait',720,1600],['landscape',1280,576]] as const) {
-      await runtime.getByLabel('화면 구도', { exact: true }).selectOption(preset); const status = await rendered(runtime);
-      await expect(status).toHaveAttribute('data-scene-width', String(width)); await expect(status).toHaveAttribute('data-scene-height', String(height));
-      const actualRatio = Number(await status.getAttribute('data-renderer-width')) / Number(await status.getAttribute('data-renderer-height'));
-      expect(actualRatio).toBeCloseTo(width / height, 2);
-      await runtime.getByTestId('story-stage-viewport').screenshot({ path: info.outputPath(`native-${preset}.png`) });
-    }
-    await runtime.setViewportSize({ width: 390, height: 844 });
-    await runtime.getByLabel('화면 구도', { exact: true }).selectOption('auto'); await rendered(runtime);
-    await expect.poll(async () => Number(await runtime.getByTestId('story-runtime-status').getAttribute('data-scene-height'))).toBeGreaterThan(720);
-    expect(await runtime.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await runtime.getByTestId('story-stage-viewport').screenshot({ path: info.outputPath('native-phone-auto.png') });
-    await runtime.setViewportSize({width:844,height:390});await rendered(runtime);
-    await runtime.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('native-phone-landscape.png')});
-    await runtime.setViewportSize({ width: 1280, height: 900 });
-    await runtime.getByLabel('화면 구도', { exact: true }).selectOption('desktop');
-    await runtime.getByRole('button', { name: '처음부터 읽기', exact: true }).click(); const status = await rendered(runtime);
-    await expect(status).toHaveAttribute('data-audio-unlocked','false');
-    await expect(status).toHaveAttribute('data-music-start-count','0');
-    // A real game click unlocks native WebAudio and starts the presentation clock.
-    const bounds = (await frame.boundingBox())!; await runtime.mouse.click(bounds.x + bounds.width * .5, bounds.y + bounds.height * .1);
-    await runtime.getByRole('button', { name: '동작 줄이기', exact: true }).click(); await rendered(runtime);
-    await expect(status).toHaveAttribute('data-audio-unlocked','true');
-    await expect(status).toHaveAttribute('data-music-path', 'assets/audio/forest.wav');
-    const starts = Number(await status.getAttribute('data-music-start-count')); const sounds = Number(await status.getAttribute('data-sound-play-count'));
-    expect(starts).toBeGreaterThan(0); expect(sounds).toBeGreaterThanOrEqual(2); // Chapter entry and the authored cut sound both execute.
-    await runtime.getByRole('button', { name: '다음으로', exact: true }).click(); await rendered(runtime);
-    await expect(runtime.locator('[data-line-id="center"]')).toHaveAttribute('aria-current', 'true');
-    expect(Number(await status.getAttribute('data-music-start-count'))).toBe(starts);
-    expect(Number(await status.getAttribute('data-sound-play-count'))).toBe(sounds);
-    await runtime.screenshot({ path: info.outputPath('native-center.png') });
-    await runtime.getByLabel('화면 구도').selectOption('auto');await runtime.setViewportSize({width:844,height:390});await rendered(runtime);
-    const readingBox=(await runtime.getByTestId('story-stage-viewport').boundingBox())!;expect(readingBox.width).toBeGreaterThan(760);
-    await runtime.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('native-phone-landscape-reading.png')});
-    await runtime.setViewportSize({width:1280,height:900});await runtime.getByLabel('화면 구도').selectOption('desktop');await rendered(runtime);
-    // Same-scene updates must not restart BGM or emit the sound again.
-    await runtime.getByRole('button', { name: '동작 줄이기', exact: true }).click(); await rendered(runtime);
-    expect(Number(await status.getAttribute('data-music-start-count'))).toBe(starts); expect(Number(await status.getAttribute('data-sound-play-count'))).toBe(sounds);
-    for (const ending of ['end-light','end-night']) {
-      await runtime.getByRole('button', { name: '처음부터 읽기', exact: true }).click(); await rendered(runtime);
-      for (let i=0;i<3;i++) { await runtime.getByRole('button', { name: '다음으로', exact: true }).click(); await rendered(runtime); }
-      await expect(runtime.locator('[data-line-id="pov"]')).toHaveAttribute('aria-current', 'true');
-      await runtime.screenshot({ path: info.outputPath(`native-pov-${ending}.png`) });
-      const box = (await frame.boundingBox())!; await runtime.mouse.click(box.x+box.width*.5,box.y+box.height*(ending==='end-light'?155:210)/720);
-      await expect(runtime.locator(`[data-line-id="${ending}"]`)).toHaveAttribute('aria-current', 'true'); await rendered(runtime);
-      await expect(status).toHaveAttribute('data-music-path', ending==='end-light'?'':customMusicPath);
-      if(ending==='end-night') {
-        await runtime.getByRole('button',{name:'이전으로',exact:true}).click();await rendered(runtime);
-        await expect(status).toHaveAttribute('data-music-path','assets/audio/forest.wav');
-        const choiceBox=(await frame.boundingBox())!;await runtime.mouse.click(choiceBox.x+choiceBox.width*.5,choiceBox.y+choiceBox.height*210/720);
-        await rendered(runtime);await expect(status).toHaveAttribute('data-music-path',customMusicPath);
-        await expect(frame).toHaveAttribute('data-av-instance','persistent');
-        await saved(runtime);await runtime.reload();await rendered(runtime);
-        await expect(runtime.locator('[data-line-id="end-night"]')).toHaveAttribute('aria-current','true');
-        await expect(runtime.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','false');
-        const resumeFrame=(await frame.boundingBox())!;await runtime.mouse.click(resumeFrame.x+resumeFrame.width*.5,resumeFrame.y+resumeFrame.height*.5);
-        await expect(runtime.getByTestId('story-runtime-status')).toHaveAttribute('data-music-path',customMusicPath);
-      }
-      await runtime.getByRole('button', { name: '다음으로', exact: true }).click(); await expect(runtime.getByTestId('playback-status')).toHaveText('이야기 끝');
-    }
-    await expect(frame).toHaveCount(1);
-    await runtime.getByRole('button', { name: '편집으로', exact: true }).click();
-    const result = await exported(runtime); expect(result.document.project).toEqual(file.document.project);
-    expect(result.document.project.lines[0].audio.sounds[0].assetId).toBe(customId);
-  } finally { await fresh.close(); }
+test('native prior private sounds stay deduplicated through responsive reading, both endings and resume',async({page,context},info)=>{
+ test.skip(info.project.name!=='stories-runtime');test.setTimeout(240000);await prior(page);await placement(page);await page.getByLabel('왼쪽 1번 인물 인물 동작').selectOption('move');await page.getByLabel('왼쪽 1번 인물 출발 위치').fill('25');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').fill('0.8');await page.getByLabel('왼쪽 1번 인물 동작 시간 (초)').blur();const file=await exported(page),fresh=await context.browser()!.newContext(),runtime=await fresh.newPage();
+ try{await existingPrivateWorkspace(runtime,file.document.project,file.document.audioResources);await runtime.goto(new URL('/?view=editor',page.url()).href);await saved(runtime);await rendered(runtime);const frame=runtime.getByTestId('story-runtime-frame');await frame.evaluate(node=>node.setAttribute('data-av-instance','persistent'));
+ for(const [preset,width,height] of [['desktop',1280,720],['portrait',720,1600],['landscape',1280,576]] as const){await views(runtime);await runtime.getByLabel('미리보기 화면 비율',{exact:true}).selectOption(preset);const status=await rendered(runtime);await expect(status).toHaveAttribute('data-scene-width',String(width));await expect(status).toHaveAttribute('data-scene-height',String(height));expect(Number(await status.getAttribute('data-renderer-width'))/Number(await status.getAttribute('data-renderer-height'))).toBeCloseTo(width/height,2);await frame.screenshot({path:info.outputPath('native-'+preset+'.png')});}
+ await views(runtime);await runtime.getByLabel('미리보기 화면 비율').selectOption('auto');await runtime.setViewportSize({width:390,height:844});await rendered(runtime);expect(Number(await runtime.getByTestId('story-runtime-status').getAttribute('data-scene-height'))).toBeGreaterThan(720);expect(await runtime.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await frame.screenshot({path:info.outputPath('native-phone-auto.png')});await runtime.setViewportSize({width:844,height:390});await rendered(runtime);await frame.screenshot({path:info.outputPath('native-phone-landscape.png')});await runtime.setViewportSize({width:1280,height:900});await views(runtime);await runtime.getByLabel('미리보기 화면 비율').selectOption('auto');
+ const status=await read(runtime);await expect(status).toHaveAttribute('data-audio-unlocked','false');await expect(status).toHaveAttribute('data-music-start-count','0');await unlock(runtime);await reduced(runtime);await expect(status).toHaveAttribute('data-music-path','assets/audio/forest.wav');const starts=Number(await status.getAttribute('data-music-start-count')),sounds=Number(await status.getAttribute('data-sound-play-count'));expect(starts).toBeGreaterThan(0);expect(sounds).toBeGreaterThanOrEqual(2);await next(runtime);await expect(runtime.locator('[data-line-id="center"]')).toHaveAttribute('aria-current','true');expect(Number(await status.getAttribute('data-music-start-count'))).toBe(starts);expect(Number(await status.getAttribute('data-sound-play-count'))).toBe(sounds);await frame.screenshot({path:info.outputPath('native-center.png')});await runtime.setViewportSize({width:844,height:390});await rendered(runtime);expect((await runtime.getByTestId('story-stage-viewport').boundingBox())!.width).toBeGreaterThan(760);await frame.screenshot({path:info.outputPath('native-phone-landscape-reading.png')});await runtime.setViewportSize({width:1280,height:900});await rendered(runtime);await reduced(runtime);expect(Number(await status.getAttribute('data-music-start-count'))).toBe(starts);expect(Number(await status.getAttribute('data-sound-play-count'))).toBe(sounds);
+ const privatePath='assets/audio/'+privateMusic.id.split(':')[2]+'.wav';for(const [index,ending] of ['end-light','end-night'].entries()){await restart(runtime);for(let i=0;i<3;i++)await next(runtime);await expect(runtime.locator('[data-line-id="pov"]')).toHaveAttribute('aria-current','true');await frame.screenshot({path:info.outputPath('native-pov-'+ending+'.png')});await choose(runtime,index,ending);await expect(status).toHaveAttribute('data-music-path',index===0?'':privatePath);if(index===1){await previousReadCut(runtime);await rendered(runtime);await expect(status).toHaveAttribute('data-music-path','assets/audio/forest.wav');await choose(runtime,1,ending);await expect(status).toHaveAttribute('data-music-path',privatePath);await expect(frame).toHaveAttribute('data-av-instance','persistent');await saved(runtime);await runtime.reload();await rendered(runtime);await expect(runtime.locator('[data-line-id="end-night"]')).toHaveAttribute('aria-current','true');await expect(status).toHaveAttribute('data-audio-unlocked','false');await unlock(runtime);await expect(status).toHaveAttribute('data-music-path',privatePath);}await next(runtime);await expect(runtime.getByTestId('playback-status')).toHaveText('이야기 끝');}await expect(frame).toHaveCount(1);await edit(runtime);const result=await exported(runtime);expect(result.document.project).toEqual(file.document.project);expect(result.document.audioResources).toEqual(file.document.audioResources);
+ }finally{await fresh.close();}
 });
-
-test('delivered portable branching demo opens with embedded audio and plays both native endings',async({page},info)=>{
- test.skip(info.project.name!=='stories-runtime');
- const demo=JSON.parse(readFileSync('docs/architecture/evidence/responsive-audio/branching-demo.knolstory','utf8'));
- await page.goto('/?view=editor');await saved(page);await management(page);
- await page.getByLabel('작품 파일 가져오기').setInputFiles('docs/architecture/evidence/responsive-audio/branching-demo.knolstory');await saved(page);
- await expect(page.getByRole('heading',{name:demo.project.title,exact:true})).toBeVisible();
- await page.getByLabel('화면 구도').selectOption('desktop');
- const frame=page.getByTestId('story-runtime-frame');
- for(const option of ['light','night']) {
-  await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const status=await rendered(page);
-  if(option==='light') {
-   await expect(status).toHaveAttribute('data-audio-unlocked','false');
-   const box=(await frame.boundingBox())!;await page.mouse.click(box.x+box.width*.5,box.y+box.height*.5);
-  }
-  await expect(status).toHaveAttribute('data-music-path','assets/audio/forest.wav');
-  for(let i=0;i<3;i++){await page.getByRole('button',{name:'다음으로',exact:true}).click();await rendered(page);}
-  const box=(await frame.boundingBox())!;await page.mouse.click(box.x+box.width*.5,box.y+box.height*(option==='light'?155:210)/720);
-  await expect(page.locator(`[data-line-id="end-${option}"]`)).toHaveAttribute('aria-current','true');await rendered(page);
-  const music=demo.audioResources.find((r:{kind:string})=>r.kind==='music');
-  await expect(status).toHaveAttribute('data-music-path',option==='light'?'':`assets/audio/${music.id.split(':')[2]}.wav`);
-  await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
- }
- await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('delivered-demo-ending.png')});
+test('previous device branching demo retains private media and both native endings without permitting new attachments',async({page},info)=>{
+ test.skip(info.project.name!=='stories-runtime');const demo=parseAuthoringFile(readFileSync('docs/architecture/evidence/responsive-audio/branching-demo.knolstory','utf8'));const prior=await existingPrivateWorkspace(page,demo.project,demo.audioResources);expect({...prior.project,lines:prior.project.lines.map(line=>{const original=demo.project.lines.find((cut:{id:string})=>cut.id===line.id);return {...line,leftAssetId:original.leftAssetId,rightAssetId:original.rightAssetId};})}).toEqual(demo.project);await page.goto('/?view=editor');await saved(page);const baseline=(await exported(page)).document;expect(baseline.project).toEqual(prior.project);expect(baseline.audioResources).toEqual(demo.audioResources);const frame=page.getByTestId('story-runtime-frame');let status=await read(page);
+ for(const [index,option]of ['light','night'].entries()){if(index===0){await expect(status).toHaveAttribute('data-audio-unlocked','false');await unlock(page);}else status=await restart(page);await expect(status).toHaveAttribute('data-music-path','assets/audio/forest.wav');for(let i=0;i<3;i++)await next(page);await choose(page,index,'end-'+option);const music=demo.audioResources.find((r:{kind:string})=>r.kind==='music');await expect(status).toHaveAttribute('data-music-path',index===0?'':'assets/audio/'+music.id.split(':')[2]+'.wav');await next(page);await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');}await frame.screenshot({path:info.outputPath('prior-demo-ending.png')});await edit(page);expect((await exported(page)).document.audioResources).toEqual(demo.audioResources);await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles('docs/architecture/evidence/responsive-audio/branching-demo.knolstory');await expect(page.getByTestId('workspace-error')).toContainText('외부 음원이 첨부된 작품');expect((await exported(page)).document.project).toEqual(baseline.project);
 });
-
-test('ending keeps the last entrance confirmed and does not replay its sounds',async({page},info)=>{
- test.skip(info.project.name!=='stories-runtime');
- const project={...source,lines:source.lines.map((line:{id:string})=>line.id==='opening'?{...line,flow:{type:'goto',targetLineId:null}}:line)};
- await page.goto('/?view=editor');await saved(page);await management(page);
- await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'single-ending.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({...JSON.parse(fixture.buffer.toString()),project}))});
- await saved(page);await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();const status=await rendered(page);
- const box=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(box.x+box.width*.5,box.y+box.height*.1);
- await expect.poll(async()=>Number(await status.getAttribute('data-sound-play-count'))).toBe(2);
- await page.getByRole('button',{name:'다음으로',exact:true}).click();await rendered(page);
- await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
- await expect(status).toHaveAttribute('data-sound-play-count','2');
- await page.getByRole('button',{name:'동작 줄이기',exact:true}).click();await rendered(page);
- await expect(status).toHaveAttribute('data-sound-play-count','2');
+test('ending keeps the last native entrance confirmed and does not replay sounds',async({page},info)=>{
+ test.skip(info.project.name!=='stories-runtime');const project={...source,lines:source.lines.map((line:{id:string})=>line.id==='opening'?{...line,flow:{type:'goto',targetLineId:null}}:line)};await page.goto('/?view=editor');await saved(page);await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles({...fixture,buffer:Buffer.from(JSON.stringify({...JSON.parse(fixture.buffer.toString()),project}))});await confirmAuthoringImport(page);await saved(page);const status=await read(page);await unlock(page);await expect.poll(async()=>Number(await status.getAttribute('data-sound-play-count'))).toBe(2);await next(page);await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');await expect(status).toHaveAttribute('data-sound-play-count','2');await reduced(page);await expect(status).toHaveAttribute('data-sound-play-count','2');
 });

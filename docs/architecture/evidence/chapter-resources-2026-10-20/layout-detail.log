@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:36681) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images (4.5s)
+
+
+  1) tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images 
+
+    Error: {"width":362,"scroll":378,"left":0,"rect":{"x":12,"y":50,"width":366,"height":780,"top":50,"right":378,"bottom":830,"left":12},"overflow":[{"tag":"DIV","class":"","client":338,"scroll":366},{"tag":"DETAILS","class":"","client":338,"scroll":366},{"tag":"FIELDSET","class":"","client":336,"scroll":365},{"tag":"LABEL","class":"","client":336,"scroll":365},{"tag":"LABEL","class":"","client":336,"scroll":365},{"tag":"LABEL","class":"","client":336,"scroll":365},{"tag":"INPUT","class":"","client":16,"scroll":209}],"wide":[]}
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 363
+    Received:    378
+
+      77 |  await page.setViewportSize({width:390,height:844});
+      78 |  const layout=await page.locator('[data-system-menu=editor]').evaluate(node=>({width:node.clientWidth,scroll:node.scrollWidth,left:node.scrollLeft,rect:node.getBoundingClientRect().toJSON(),overflow:[...node.querySelectorAll('*')].filter(item=>item.scrollWidth>item.clientWidth+1).map(item=>({tag:item.tagName,class:item.className,client:item.clientWidth,scroll:item.scrollWidth})).slice(0,12),wide:[...node.querySelectorAll('*')].filter(item=>item.getBoundingClientRect().right>node.getBoundingClientRect().right+1).map(item=>({tag:item.tagName,class:item.className,text:item.textContent?.slice(0,60),width:item.getBoundingClientRect().width})).slice(0,12)}));
+    > 79 |  expect(layout.scroll,JSON.stringify(layout)).toBeLessThanOrEqual(layout.width+1);await page.screenshot({path:info.outputPath('resource-list-phone.png')});
+         |                                               ^
+      80 |  const file=await exportFile(page),context=await browser.newContext();try{const opened=await context.newPage();await opened.route('**/api/**',route=>route.abort());await opened.goto('/?view=editor');await saved(opened);await importFile(opened,file.raw);const restored=(await exportFile(opened)).project;expect(restored).toEqual({...after,id:restored.id});}finally{await context.close();}
+      81 | });
+      82 | async function controlsComposition(page:Page,active:boolean){await page.locator('[data-chapter-settings]').locator('input').first().dispatchEvent(active?'compositionstart':'compositionend');}
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/chapter-settings-access.spec.ts:79:47
+
+    Error Context: docs/architecture/evidence/chapter-resources-2026-10-20/layout-detail-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chapter-resources-2026-10-20/layout-detail-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chapter-resources-2026-10-20/layout-detail-run/chapter-settings-access-ch-e4e01-lts-and-all-used-cut-images/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/chapter-settings-access.spec.ts:58:1 › chapter resource list edits preserve defaults and all used cut images 

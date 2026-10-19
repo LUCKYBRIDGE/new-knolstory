@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-19",
+  "status": "local-popup-typography-focused-verified-not-deployed",
+  "userRequest": "Inspect/fix alignment, wrapping and odd word splitting",
+  "found": [
+    "Reader wait-time unit 초 wrapped alone due flat wrapping flex label",
+    "Editor action groups flowed inconsistently; screen selection used too narrow content width",
+    "Existing controls flex-wrap inherited with new column menu caused extra horizontal columns at maxheight",
+    "Korean UI explanations inherited anywhere-style character wrapping"
+  ],
+  "changes": [
+    "Word-based Korean wrapping with emergency long-unbroken-string fallback; no authored text mutation",
+    "Reader desktop aligned label/control grid, narrow stacked label+control, two-column action grid",
+    "Number and unit flex wrapper retains implicit accessible label",
+    "Editor consistent two-column groups and fullwidth file actions/descriptions/select; checkbox alignment",
+    "Single menu column nowrap with nonshrinking children, vertical scrolling instead of horizontal spill"
+  ],
+  "checks": {
+    "red": "final.log3failed editor horizontal overflow; diagnostic.log isolated inherited flexwrap; logs retained",
+    "green": "verified.log3passed15.3s; final reviewed.log adds explicit fullwidthselector assertion on same menu pathways after width fix",
+    "build": "build-reviewed.log passed",
+    "types": "types.log passed",
+    "lint": "lint-final.log0errors, existing readerthumbnail img warning1",
+    "review": "Readonly reviewer confirmed label semantics and identified flex-wrap column inheritance; corrected",
+    "scope": "320/390/1280 widths: no menu horizontal overflow, visiblebuttonbounds, fullwidthscreen selector, numericunit aligned; actual native sceneack, fontchange, Escape and editor return; full authoredproject unchanged"
+  },
+  "limits": [
+    "Focused current editor/player popup UI only; not full all-screen/physical-device/OS native popup audit",
+    "No authoring schema/scene renderer change; no deployment"
+  ],
+  "sha256": {
+    "apps/web/components/story-player-menu.tsx": "562d4e5c8677b9189e5220a2db98340c6bc3b7ba466de29e3818639719405067",
+    "apps/web/components/story-player-menu.module.css": "24d3c89a67b4de8184242243b16e5f1855f3c11510fcf94d41f71b5794ca767a",
+    "apps/web/components/story-workspace.module.css": "bebcaff427126e04b2dc4bdb05a553d46f3b0eec837aa0ad69bc906d1f71e9f3",
+    "tests/e2e/editing-workbench.spec.ts": "220bfa8e7a7e6d1751a75d9390a8174624bb2a71c84985dadbcac54538253116",
+    "DESIGN.md": "97cd69ff0dea9665d94221c340d246ea18ba69aa9a849fd50ab19f6b2c6a32a8",
+    "docs/architecture/product-completion-plan.md": "1d4a594f44fdf87255745e34cd09f2dcb352625b6163060aa67f41734858adab"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Overflow, labels and unit arrangement verified through actual menus at3widths; no broaddevice claim"
+  }
+}

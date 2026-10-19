@@ -1,0 +1,5 @@
+import {it,expect} from 'vitest';
+import {createBlankStoryProject} from '@knolstory/runtime-core';
+import {independentImportedWork} from './imported-authoring-work';
+it('edited spreadsheet carrying a current ID opens independently without renaming authored title or cut IDs',()=>{const source=createBlankStoryProject({id:'source',chapterId:'chapter',lineId:'cut',title:'제목'}),edited={...source,lines:source.lines.map(l=>({...l,text:'표에서 수정'}))};const result=independentImportedWork(edited,{'new:source':source},[],'copy');expect(result.id).toBe('copy');expect(result.title).toBe('제목');expect(result.lines).toEqual(edited.lines);expect(source.lines[0].text).toBe('');expect(independentImportedWork(edited,{},[],'unused')).toBe(edited);});
+it('copies imported built-in identity even when an editor deep link is used',()=>{const p=createBlankStoryProject({id:'builtin',chapterId:'chapter',lineId:'cut',title:'원작'});expect(independentImportedWork(p,{},['builtin'],'owned').id).toBe('owned');expect(p.id).toBe('builtin');});

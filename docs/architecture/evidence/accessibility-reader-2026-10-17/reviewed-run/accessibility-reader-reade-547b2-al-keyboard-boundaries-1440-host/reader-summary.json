@@ -1,0 +1,151 @@
+{
+  "width": 1440,
+  "scope": "Host protocol acknowledgement harness only; no native rendering or real screen-reader claim",
+  "scene": {
+    "contractVersion": 1,
+    "sceneId": "reader-accessibility/P1-v166-1",
+    "revision": 6,
+    "width": 1280,
+    "height": 800,
+    "viewportVersion": 1,
+    "textboxRect": {
+      "x": 179.20000000000002,
+      "y": 641.3333333333334,
+      "width": 921.5999999999999,
+      "height": 116
+    },
+    "dialogueStyle": {
+      "fontSize": 20,
+      "speakerFontSize": 18,
+      "padding": 24
+    },
+    "audio": {
+      "version": 1,
+      "music": {
+        "action": "stop",
+        "fadeOutMs": 0
+      },
+      "ambience": {
+        "action": "stop",
+        "fadeOutMs": 0
+      },
+      "sounds": [],
+      "sessionId": "reader-accessibility/1"
+    },
+    "actors": [
+      {
+        "handle": {
+          "x": 287.20000000000005,
+          "y": 180.48
+        },
+        "id": "M01",
+        "name": "M01-base.webp",
+        "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+        "rect": {
+          "x": 111.34809190809196,
+          "y": 115.05694305694306,
+          "width": 351.26473526473524,
+          "height": 526.8971028971029
+        },
+        "flipX": true,
+        "opacity": 1,
+        "spectral": false,
+        "emphasis": "normal",
+        "depth": 1
+      },
+      {
+        "handle": {
+          "x": 836.0835964035964,
+          "y": 180.48
+        },
+        "id": "M03",
+        "name": "M03-neutral.webp",
+        "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+        "rect": {
+          "x": 660.2316883116883,
+          "y": 115.05694305694306,
+          "width": 351.26473526473524,
+          "height": 526.8971028971029
+        },
+        "flipX": false,
+        "opacity": 1,
+        "spectral": false,
+        "emphasis": "normal",
+        "depth": 1
+      },
+      {
+        "handle": {
+          "x": 1006.815984015984,
+          "y": 180.48
+        },
+        "id": "M04",
+        "name": "M04-neutral.webp",
+        "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+        "rect": {
+          "x": 831.1836163836164,
+          "y": 115.05694305694306,
+          "width": 351.26473526473524,
+          "height": 526.8971028971029
+        },
+        "flipX": false,
+        "opacity": 1,
+        "spectral": false,
+        "emphasis": "normal",
+        "depth": 2
+      }
+    ],
+    "dialogue": {
+      "speaker": "해설",
+      "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다."
+    },
+    "background": {
+      "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+      "fit": "cover",
+      "rect": {
+        "x": -70.66666666666663,
+        "y": 0,
+        "width": 1421.3333333333333,
+        "height": 800
+      }
+    },
+    "choices": [
+      {
+        "id": "choose-next",
+        "text": "다음 장면 선택"
+      },
+      {
+        "id": "choose-other",
+        "text": "다른 장면 선택"
+      }
+    ],
+    "mode": "play",
+    "reducedMotion": false,
+    "presentationEntry": "1"
+  },
+  "raw": [
+    {
+      "name": "top-menu",
+      "violations": []
+    },
+    {
+      "name": "settings",
+      "violations": []
+    },
+    {
+      "name": "저장",
+      "violations": []
+    },
+    {
+      "name": "filled-save-slot",
+      "violations": []
+    },
+    {
+      "name": "불러오기",
+      "violations": []
+    },
+    {
+      "name": "지난기록",
+      "violations": []
+    }
+  ]
+}

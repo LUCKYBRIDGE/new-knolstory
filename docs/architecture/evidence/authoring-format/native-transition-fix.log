@@ -1,0 +1,12 @@
+
+Running 4 tests using 1 worker
+
+(node:17289) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/4] [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real google edited full-field work plays two RenPy choice endings after reopen
+[2/4] [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:6:1 › real excel edited full-field work plays two RenPy choice endings after reopen
+[3/4] [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 1280px
+[4/4] [stories-runtime] › tests/e2e/authoring-format-runtime.spec.ts:17:2 › long transition preserves a reachable native action at 390px
+  4 passed (34.8s)

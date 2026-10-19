@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-11",
+  "approvedReferences": "approved-manifest.json",
+  "source": [
+    {
+      "path": "apps/web/components/story-workspace.tsx",
+      "sha256": "8bb1dbfb0e6551ce83b13f4e360066fd55bba020c593da5a345956084118068f"
+    },
+    {
+      "path": "apps/web/components/story-player-menu.tsx",
+      "sha256": "11b33bbdf53a2a6d7ce94a1af498bfcbbd782eb2ba74c34c6f071e5d45e868e9"
+    },
+    {
+      "path": "apps/web/components/story-workspace-runtime.ts",
+      "sha256": "c0cdd11789be2c50d739bc536edab24a2eb51c15835be208fd510fb5c188c300"
+    },
+    {
+      "path": "packages/runtime-core/src/responsive-layout.ts",
+      "sha256": "9401c9cea0302fabb763993503967112377c56b8b637cab8ccbdc134078d2efb"
+    },
+    {
+      "path": "packages/story-domain/src/legacy/story-stage-composition.ts",
+      "sha256": "8c8ef06684814410a2dfa72a1d232a8576f3084b139813caaadaed22d2ae83bc"
+    },
+    {
+      "path": "renpy/responsive-spike/game/script.rpy",
+      "sha256": "753f00296a30adc7b897600067254b21fe7d9c997f09b9d1e62abe1c8cfbf1de"
+    },
+    {
+      "path": "spikes/renpy-web/build.py",
+      "sha256": "26e56aaf042cb0d3e841e1688e4d8c557fba881765e0a4bc2e213ee9596e77a0"
+    }
+  ],
+  "checks": {
+    "e2e": 13,
+    "domainCore": 653,
+    "externalContract": 11,
+    "scopedCoverage": {
+      "statements": 94.87,
+      "branches": 92.74,
+      "functions": 100,
+      "lines": 100
+    }
+  },
+  "scope": "priority editor/reader implementation; physical Samsung, exact cue ranges and native thumbnails pending",
+  "actualScreens": "native-screens.json",
+  "logs": [
+    "runtime-build.log",
+    "web-build.log",
+    "typecheck.log",
+    "lint.log",
+    "e2e-verified.log",
+    "domain-core-regression.log",
+    "contracts.log",
+    "coverage.log"
+  ]
+}

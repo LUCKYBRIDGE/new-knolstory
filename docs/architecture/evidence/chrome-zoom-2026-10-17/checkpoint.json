@@ -1,0 +1,222 @@
+{
+  "checkedAt": "2026-10-17T04:26:06.689637+00:00",
+  "scope": "PC06 actual macOS Chrome UI200/400percent zoom, observed actions and DOM geometry; not target physical-device/screen-reader conformance",
+  "sourceSha256": {
+    "apps/web/out/index.html": "d40211734f9faf9184965bef1c3ad727afc9b60d30c4606def5d02117c6be4da",
+    "apps/web/components/local-bookshelf.module.css": "675def9a7bc3736292219b36c83568b2478c25ac81873a48cabf0db5b7bd9f88",
+    "apps/web/components/book-start.module.css": "52b088c1b91e1aa295b014d14d421f94e78a2ef8df726a5a89e7ddad82152e13",
+    "apps/web/components/library-book-focus.module.css": "6480c05170aaaddd8bed2e4cc565bef1ccb00cae6597cdf54bffa643a69684da",
+    "apps/web/components/story-workspace.module.css": "772cb1bb9351bce471a3be73c1107166a551cd24c5e090acd6fdd0fde080f007"
+  },
+  "method": "Dedicated agent-created Chrome tab on fresh loopback3144 origin; native Chrome shortcuts changed real page zoom, verified by native menu labels200/400 and CSS viewport width942/471 from baseline1885. No CSS zoom/viewport override.",
+  "measurements": {
+    "baseline": {
+      "height": 777,
+      "scrollWidth": 1885,
+      "width": 1885
+    },
+    "results": [
+      {
+        "zoom": 200,
+        "surface": "account",
+        "geometry": {
+          "clientHeight": 355,
+          "clientWidth": 311,
+          "height": 356.5,
+          "scrollHeight": 372,
+          "scrollWidth": 311,
+          "viewportHeight": 388,
+          "viewportWidth": 942,
+          "width": 320,
+          "x": 134.2734375,
+          "y": 16
+        }
+      },
+      {
+        "zoom": 200,
+        "surface": "book-focus",
+        "geometry": {
+          "clientHeight": 365,
+          "clientWidth": 886,
+          "height": 365.1875,
+          "scrollHeight": 651,
+          "scrollWidth": 886,
+          "viewportHeight": 388,
+          "viewportWidth": 942,
+          "width": 893,
+          "x": 24.75,
+          "y": 11.65625
+        }
+      },
+      {
+        "zoom": 200,
+        "surface": "book-start",
+        "geometry": {
+          "contentHeight": 682,
+          "height": 388,
+          "scrollWidth": 942,
+          "width": 942
+        }
+      },
+      {
+        "zoom": 400,
+        "surface": "book-start",
+        "geometry": {
+          "contentHeight": 1106,
+          "height": 194,
+          "prose": [
+            {
+              "clientWidth": 431,
+              "scrollWidth": 431,
+              "text": "\uc6d0\uc791 / \uc774\uc57c\uae30 \uc2dc\uc791",
+              "width": 431.25
+            },
+            {
+              "clientWidth": 431,
+              "scrollWidth": 431,
+              "text": "\uc120\ub140\uc640 \ub098\ubb34\uafbc",
+              "width": 431.25
+            },
+            {
+              "clientWidth": 431,
+              "scrollWidth": 431,
+              "text": "\ud558\ub298\uacfc \ub545 \uc0ac\uc774\uc5d0\uc11c \uc774\uc5b4\uc9c4 \ub9cc\ub0a8\uacfc \uc774\ubcc4",
+              "width": 431.25
+            },
+            {
+              "clientWidth": 431,
+              "scrollWidth": 431,
+              "text": "\uc5ec\ub7ec \u300c\uc120\ub140\uc640 \ub098\ubb34\uafbc\u300d \uc804\uc2b9\uc758 \ub300\ud45c \uc11c\uc0ac\ub97c \ubc14\ud0d5\uc73c\ub85c \uc624\ub298\ub0a0\uc758 \ub3c5\uc790\uac00 \uc77d\uae30 \uc27d\uac8c \ud480\uc5b4 \uc4f4 \uc6d0\uc791 \uc77d\uae30\uc785\ub2c8\ub2e4.",
+              "width": 431.25
+            },
+            {
+              "clientWidth": 431,
+              "scrollWidth": 431,
+              "text": "\uc9c0\uc740\uc774 \u00b7 \uc804\ub798 \uc774\uc57c\uae30",
+              "width": 431.25
+            },
+            {
+              "clientWidth": 431,
+              "scrollWidth": 431,
+              "text": "\uc77d\uae30 \ud654\uba74\uc5d0\uc11c \ubb34\ub300\ub97c \ud55c \ubc88 \ub204\ub974\uba74 \uc18c\ub9ac\uc640 \uc774\uc57c\uae30\uac00 \uc2dc\uc791\ub429\ub2c8\ub2e4. \uc77d\uae30 \uc800\uc7a5\uacfc \uc9c0\ub09c \uae30\ub85d\uc740 \uc77d\uae30 \uba54\ub274\uc5d0\uc11c \uc5f4 \uc218 \uc788\uc5b4\uc694.",
+              "width": 431.25
+            }
+          ],
+          "scrollWidth": 471,
+          "width": 471
+        }
+      },
+      {
+        "zoom": 400,
+        "surface": "writer",
+        "geometry": {
+          "documentScrollWidth": 471,
+          "focused": true,
+          "height": 170,
+          "value": "\uc61b\ub0a0 \uc5b4\ub290 \uc0b0\uace8 \ub9c8\uc744\uc5d0 \uac00\ub09c\ud55c \ub098\ubb34\uafbc\uc774 \uc0b4\uc558\ub2e4. \ub098\ubb34\uafbc\uc740 \ub299\uc740 \uc5b4\uba38\ub2c8\ub97c \ubaa8\uc2dc\uace0 \uc0b4\uba70 \ub0a0\ub9c8\ub2e4 \uc0b0\uc5d0 \uc62c\ub77c \ub098\ubb34\ub97c \ud574\ub2e4 \ud314\uc558\ub2e4.",
+          "viewportHeight": 194,
+          "viewportWidth": 471,
+          "width": 435.25,
+          "x": 18,
+          "y": 12.14453125
+        }
+      },
+      {
+        "zoom": 400,
+        "surface": "account",
+        "geometry": {
+          "clientHeight": 160,
+          "clientWidth": 314,
+          "height": 162.25,
+          "scrollHeight": 372,
+          "scrollWidth": 314,
+          "viewportHeight": 194,
+          "viewportWidth": 471,
+          "width": 320,
+          "x": 16,
+          "y": 16
+        }
+      },
+      {
+        "zoom": 400,
+        "surface": "book-focus",
+        "geometry": {
+          "clientHeight": 183,
+          "clientWidth": 430,
+          "height": 182.59375,
+          "scrollHeight": 1033,
+          "scrollWidth": 430,
+          "viewportHeight": 194,
+          "viewportWidth": 471,
+          "width": 433.25,
+          "x": 19,
+          "y": 5.828125
+        }
+      }
+    ],
+    "actions": {
+      "accountRefresh200": true,
+      "bookTools200": true,
+      "originalBookStart200": true,
+      "bookStart400": true,
+      "protectedCopyEditor400": true,
+      "writerFocus400": true,
+      "nextCut400": true,
+      "libraryReturn400": true,
+      "accountRefresh400": true,
+      "accountEscape400": true,
+      "bookTools400": true,
+      "preparationEntry400": true
+    },
+    "scope": "Native macOS Chrome UI zoom with browser 200%/400% label; no viewport override or CSS zoom, fresh loopback origin, no real screen reader or target physical-device claim"
+  },
+  "verification": {
+    "nativeZoomLabels": [
+      "native-200.txt",
+      "native-400.txt"
+    ],
+    "surfaces": [
+      "library/account200",
+      "book-focus/tools200",
+      "book-start200/400",
+      "writerfocus/nextcut400",
+      "library/account/escape400",
+      "book-focus/tools/preparation400"
+    ],
+    "geometry": "All measured main document widths and panel scrollWidths fit their current CSS viewport/client width; vertical scrolling used. See measurements.json for actual numbers.",
+    "visualArtifacts": [
+      "library-200.png",
+      "book-focus-200.png",
+      "book-start-200.png",
+      "book-start-400.png",
+      "writer-400.png",
+      "account-400.png",
+      "book-focus-400.png"
+    ],
+    "cleanup": {
+      "zoomReset100": true,
+      "verification": "Native Chrome button and popover both displayed100%; document client width differs by15px because scrollbar state changed between library and preparation.",
+      "baseline": {
+        "height": 777,
+        "scrollWidth": 1885,
+        "width": 1885
+      },
+      "restored": {
+        "height": 777,
+        "scrollWidth": 1900,
+        "width": 1900
+      },
+      "createdTabClosed": true
+    },
+    "server": "Owned3144staticpreviewstopped; other servers/windows/tabs not closed.",
+    "productChanges": "None needed in this scoped check."
+  },
+  "limits": [
+    "Mac Chrome actual zoom only; not Windows/Chromebook/Android hardware or screen reader.",
+    "Baseline1885 CSSwidth means400percent produced471CSSpx, not320; earlier separate320CSS reflow evidence retained.",
+    "Page screenshot API captures CSS viewport bitmap, not proof of physical display pixel magnification; native Chrome UI label is authoritative scale evidence.",
+    "APIproxy absent on3144; account error/offline controls tested, no live provider login.",
+    "Only selected default work/protected test copy and navigation; no editing/manuscript mutation or whole-project deepcomparison claim in this UI check.",
+    "Native playback at400percent not tested here."
+  ]
+}

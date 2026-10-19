@@ -1,0 +1,14 @@
+
+Running 12 tests using 1 worker
+
+(node:86708) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 1440 (6.1s)
+  ✓   2 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 768 (5.9s)
+  ✓   3 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 390 (5.7s)
+  ✓   4 [host] › tests/e2e/ui-clarity.spec.ts:8:115 › measured native label never overlaps original viewpoint text 844 (5.6s)
+  ✓   5 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 1440 (1.6s)
+  ✓   6 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 768 (1.6s)
+  ✓   7 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 390 (1.5s)
+  ✓   8 [host] › tests/e2e/ui-clarity.spec.ts:19:115 › clear tools stay reachable and form rows do not overlap 844 (1.6s)
+  ✓   9 [host] › tests/e2e/ui-clarity.spec.ts:31:1 › long Korean choice labels scroll inside their own area above dialogue (4.8s)

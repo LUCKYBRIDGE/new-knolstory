@@ -1,0 +1,33 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@knolstory/story-domain": [
+        "../packages/story-domain/src/index.ts"
+      ],
+      "@knolstory/asset-registry": [
+        "../packages/asset-registry/src/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "storage/**/*.ts",
+    "auth/**/*.ts",
+    "migrations/**/*.ts",
+    "http/**/*.ts",
+    "config.ts",
+    "config.test.ts",
+    "main.ts",
+    "documents/**/*.ts"
+  ],
+  "exclude": [
+    "storage/**/*.integration.ts",
+    "auth/**/*.integration.ts",
+    "http/**/*.integration.ts",
+    "documents/**/*.integration.ts"
+  ]
+}

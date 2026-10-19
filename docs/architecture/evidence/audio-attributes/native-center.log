@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:91953) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/1] [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels
+  1) [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('story-runtime-status')
+    Expected: "true"
+    Received: "false"
+    Timeout:  20000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 20000ms
+      - waiting for getByTestId('story-runtime-status')
+        44 × locator resolved to <div role="status" data-music-path="" data-textbox-y="335" data-ambience-path="" data-sound-paths="[]" data-music-position="" data-scene-revision="5" data-scene-width="1280" data-scene-height="514" data-engine-width="1280" data-engine-height="514" data-sound-play-count="0" data-rendered-revision="5" data-music-start-count="0" data-renderer-width="1280" data-renderer-height="514" data-audio-unlocked="false" data-ambience-start-count="0" data-testid="story-runtime-status" class="story-workspace-modul…>이야기 무대 연결됨 · 소리를 시작하려면 무대를 한 번 눌러 주세요.</div>
+           - unexpected value "false"
+
+
+      10 |  const tool=page.getByRole('button',{name:'연출 편집',exact:true});if(await tool.isVisible())await tool.click();await expect(page.getByLabel('컷 배경음',{exact:true}).locator('option:checked')).toHaveText('잔잔한피아노1');await page.getByLabel('1번 효과음 출처 필터').selectOption('Pixabay');await page.getByLabel('1번 효과음 속성 필터').selectOption('학교 종');await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toHaveText('학교종소리1');await page.getByText('1번 효과음 이름·속성·원래 이름',{exact:true}).click();await expect(page.getByText('School Bell',{exact:true})).toBeVisible();await expect(page.getByRole('link',{name:'원래 소리와 출처 확인',exact:true})).toHaveAttribute('href',/pixabay.com/);
+      11 |  if(!native)return;
+    > 12 |  await ready(page);await page.getByRole('button',{name:'현재 컷부터 읽기',exact:true}).click();const status=await ready(page);const frame=page.getByTestId('story-runtime-frame');const box=(await frame.boundingBox())!;await frame.scrollIntoViewIfNeeded();const visible=(await page.getByTestId('story-stage-viewport').boundingBox())!;await page.mouse.click(visible.x+visible.width*.5,visible.y+visible.height*.5);await expect(status).toHaveAttribute('data-audio-unlocked','true',{timeout:20000});await ready(page);await expect(status).toHaveAttribute('data-audio-unlocked','true');await expect(status).toHaveAttribute('data-music-path','assets/audio/pixabay/501446.mp3');await expect(status).toHaveAttribute('data-ambience-path','assets/audio/pixabay/22484.mp3');await expect.poll(async()=>Number(await status.getAttribute('data-sound-play-count'))).toBeGreaterThan(0);await expect(page.getByTestId('story-runtime-status')).not.toContainText('찾을 수 없습니다');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+      13 | });
+      14 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/pixabay-audio.spec.ts:12:426
+
+    Error Context: ../../../../../tmp/knol-pixabay-native-center/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-pixabay-native-center/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-pixabay-native-center/pixabay-audio-Pixabay-Kore-3cfff-me-plays-all-three-channels-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  1 failed
+    [stories-runtime] › tests/e2e/pixabay-audio.spec.ts:6:1 › Pixabay Korean labels and source facets select real files and native runtime plays all three channels 

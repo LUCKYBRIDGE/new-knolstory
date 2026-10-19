@@ -1,0 +1,2453 @@
+{
+  "scope": "Diagnostic CSS foreground versus actual rendered background after temporarily hiding text; samples selected by paint differences. Does not prove every glyph/background/device/state.",
+  "results": [
+    {
+      "surface": "library",
+      "target": [
+        "h1"
+      ],
+      "info": {
+        "style": null,
+        "text": "놀스토리 서재",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 27,
+        "weight": 500,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 1374,
+      "minimumContrast": 7.686658216200609,
+      "threshold": 3,
+      "worst": {
+        "x": 0,
+        "y": 18,
+        "background": [
+          209,
+          193,
+          176
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        ".account-menu-module__0a-q1a__menu > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "계정",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 181,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 21,
+        "y": 14,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        ".online-works-panel-module__o0ehtG__menu > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "온라인 작품",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 433,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 34,
+        "y": 14,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        ".local-bookshelf-module__E5KFCW__introLink"
+      ],
+      "info": {
+        "style": null,
+        "text": "책 소개",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 196,
+      "minimumContrast": 6.588577290814965,
+      "threshold": 4.5,
+      "worst": {
+        "x": 43,
+        "y": 15,
+        "background": [
+          199,
+          178,
+          153
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "select[aria-label=\"책 분류\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "모든 책\n기본 작품\n내 작품\n가져온 작품",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 266,
+      "minimumContrast": 11.598199527466578,
+      "threshold": 4.5,
+      "worst": {
+        "x": 131,
+        "y": 23,
+        "background": [
+          246,
+          237,
+          219
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        ".local-bookshelf-module__E5KFCW__tools > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "책 찾기·추가",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 346,
+      "minimumContrast": 11.500838190316466,
+      "threshold": 4.5,
+      "worst": {
+        "x": 62,
+        "y": 14,
+        "background": [
+          245,
+          236,
+          219
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 30,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "또 다른 이름, 토끼전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 251,
+      "minimumContrast": 3.7649452931104532,
+      "threshold": 4.5,
+      "worst": {
+        "x": 93,
+        "y": 2,
+        "background": [
+          235,
+          222,
+          196
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "별주부전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 642,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 94,
+        "y": 19,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 165,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 31,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 10,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "진짜와 가짜가 벌이는 기묘한 다툼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 406,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 107,
+        "y": 3,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "옹고집전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 571,
+      "minimumContrast": 3.7213462019477115,
+      "threshold": 4.5,
+      "worst": {
+        "x": 37,
+        "y": 21,
+        "background": [
+          233,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 161,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 33,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 479,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 113,
+        "y": 2,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "선녀와 나무꾼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 847,
+      "minimumContrast": 3.71919439602001,
+      "threshold": 4.5,
+      "worst": {
+        "x": 113,
+        "y": 6,
+        "background": [
+          233,
+          221,
+          194
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 159,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 36,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부로 널리 알려진 이야기",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 407,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 113,
+        "y": 2,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 774,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 101,
+        "y": 4,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 171,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "span[role=\"status\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "1 / 1 선반 · 4권",
+        "color": "rgb(255, 240, 211)",
+        "fill": "rgb(255, 240, 211)",
+        "fontSize": 12,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 310,
+      "minimumContrast": 3.3824333359706147,
+      "threshold": 4.5,
+      "worst": {
+        "x": 17,
+        "y": 3,
+        "background": [
+          168,
+          121,
+          80
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "body > details > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "삭제한 작품 복구",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 16,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 812,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 27,
+        "y": 2,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    },
+    {
+      "surface": "library",
+      "target": [
+        "p[data-testid=\"library-save-status\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "기기에 저장됨",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 16,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 619,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 10,
+        "y": 3,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "h1"
+      ],
+      "info": {
+        "style": null,
+        "text": "놀스토리 서재",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 27,
+        "weight": 500,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 1374,
+      "minimumContrast": 7.686658216200609,
+      "threshold": 3,
+      "worst": {
+        "x": 0,
+        "y": 18,
+        "background": [
+          209,
+          193,
+          176
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        ".account-menu-module__0a-q1a__menu > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "계정",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 181,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 21,
+        "y": 14,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        ".account-menu-module__0a-q1a__panel > strong"
+      ],
+      "info": {
+        "style": null,
+        "text": "로그인 상태 확인 필요",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 916,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 33,
+        "y": 1,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        ".account-menu-module__0a-q1a__panel > p:nth-child(2)"
+      ],
+      "info": {
+        "style": null,
+        "text": "이 브라우저의 작품은 로그인이나 로그아웃 뒤에도 유지됩니다. 온라인 작품 메뉴에서 직접 보관할 수 있어요.",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13.6,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 3418,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 4,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "p[role=\"alert\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "계정 서비스를 확인하지 못했어요. 기기의 작품은 계속 사용할 수 있어요.",
+        "color": "rgb(180, 35, 24)",
+        "fill": "rgb(180, 35, 24)",
+        "fontSize": 13.6,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 2287,
+      "minimumContrast": 6.467088285402974,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "p:nth-child(6)"
+      ],
+      "info": {
+        "style": null,
+        "text": "Google 로그인은 카카오로 가입한 뒤 연결한 계정에서 사용할 수 있어요.",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13.6,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 2301,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 76,
+        "y": 3,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        ".account-menu-module__0a-q1a__panel > button:nth-child(7)"
+      ],
+      "info": {
+        "style": null,
+        "text": "로그인 상태 다시 확인",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 709,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 116,
+        "y": 15,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        ".online-works-panel-module__o0ehtG__menu > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "온라인 작품",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 433,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 34,
+        "y": 14,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        ".local-bookshelf-module__E5KFCW__introLink"
+      ],
+      "info": {
+        "style": null,
+        "text": "책 소개",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 196,
+      "minimumContrast": 6.588577290814965,
+      "threshold": 4.5,
+      "worst": {
+        "x": 43,
+        "y": 15,
+        "background": [
+          199,
+          178,
+          153
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "select[aria-label=\"책 분류\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "모든 책\n기본 작품\n내 작품\n가져온 작품",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 266,
+      "minimumContrast": 11.598199527466578,
+      "threshold": 4.5,
+      "worst": {
+        "x": 131,
+        "y": 23,
+        "background": [
+          246,
+          237,
+          219
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        ".local-bookshelf-module__E5KFCW__tools > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "책 찾기·추가",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 346,
+      "minimumContrast": 11.500838190316466,
+      "threshold": 4.5,
+      "worst": {
+        "x": 62,
+        "y": 14,
+        "background": [
+          245,
+          236,
+          219
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 30,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "또 다른 이름, 토끼전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 250,
+      "minimumContrast": 3.7649452931104532,
+      "threshold": 4.5,
+      "worst": {
+        "x": 93,
+        "y": 2,
+        "background": [
+          235,
+          222,
+          196
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "별주부전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 642,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 94,
+        "y": 19,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 165,
+      "minimumContrast": 9.80387169223149,
+      "threshold": 4.5,
+      "worst": {
+        "x": 63,
+        "y": 2,
+        "background": [
+          229,
+          216,
+          190
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "진짜와 가짜가 벌이는 기묘한 다툼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "옹고집전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 174,
+      "minimumContrast": 3.4613282401315715,
+      "threshold": 4.5,
+      "worst": {
+        "x": 71,
+        "y": 4,
+        "background": [
+          224,
+          214,
+          187
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "선녀와 나무꾼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 389,
+      "minimumContrast": 3.3316782648546193,
+      "threshold": 4.5,
+      "worst": {
+        "x": 68,
+        "y": 8,
+        "background": [
+          220,
+          210,
+          185
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 50,
+      "minimumContrast": 9.007402803030002,
+      "threshold": 4.5,
+      "worst": {
+        "x": 71,
+        "y": 2,
+        "background": [
+          218,
+          208,
+          183
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 36,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부로 널리 알려진 이야기",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 407,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 113,
+        "y": 2,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 774,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 101,
+        "y": 4,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 171,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "span[role=\"status\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "1 / 1 선반 · 4권",
+        "color": "rgb(255, 240, 211)",
+        "fill": "rgb(255, 240, 211)",
+        "fontSize": 12,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 310,
+      "minimumContrast": 3.3824333359706147,
+      "threshold": 4.5,
+      "worst": {
+        "x": 17,
+        "y": 3,
+        "background": [
+          168,
+          121,
+          80
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "body > details > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "삭제한 작품 복구",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 16,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 812,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 27,
+        "y": 2,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    },
+    {
+      "surface": "account",
+      "target": [
+        "p[data-testid=\"library-save-status\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "기기에 저장됨",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 16,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 619,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 10,
+        "y": 3,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "h1"
+      ],
+      "info": {
+        "style": null,
+        "text": "놀스토리 서재",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 27,
+        "weight": 500,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 1374,
+      "minimumContrast": 7.686658216200609,
+      "threshold": 3,
+      "worst": {
+        "x": 0,
+        "y": 18,
+        "background": [
+          209,
+          193,
+          176
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".account-menu-module__0a-q1a__menu > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "계정",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 181,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 21,
+        "y": 14,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".online-works-panel-module__o0ehtG__menu > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "온라인 작품",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 433,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 34,
+        "y": 14,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".online-works-panel-module__o0ehtG__panel > strong"
+      ],
+      "info": {
+        "style": null,
+        "text": "내 온라인 작품",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 627,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 7,
+        "y": 1,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".online-works-panel-module__o0ehtG__panel > p:nth-child(2)"
+      ],
+      "info": {
+        "style": null,
+        "text": "직접 보관한 작품만 온라인에 저장합니다. 기기의 작품을 자동으로 올리거나 바꾸지 않아요.",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13.6,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 2968,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 21,
+        "y": 4,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".online-works-panel-module__o0ehtG__panel > p:nth-child(3)"
+      ],
+      "info": {
+        "style": null,
+        "text": "계정 서비스를 확인하지 못했어요. 기기의 작품은 계속 사용할 수 있어요.",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13.6,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 2304,
+      "minimumContrast": 13.26994567857508,
+      "threshold": 4.5,
+      "worst": {
+        "x": 10,
+        "y": 4,
+        "background": [
+          255,
+          253,
+          248
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".online-works-panel-module__o0ehtG__panel > button"
+      ],
+      "info": {
+        "style": null,
+        "text": "로그인 상태 다시 확인",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 14,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 704,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 117,
+        "y": 14,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".local-bookshelf-module__E5KFCW__introLink"
+      ],
+      "info": {
+        "style": null,
+        "text": "책 소개",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 196,
+      "minimumContrast": 6.588577290814965,
+      "threshold": 4.5,
+      "worst": {
+        "x": 43,
+        "y": 15,
+        "background": [
+          199,
+          178,
+          153
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "select[aria-label=\"책 분류\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "모든 책\n기본 작품\n내 작품\n가져온 작품",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 266,
+      "minimumContrast": 11.598199527466578,
+      "threshold": 4.5,
+      "worst": {
+        "x": 131,
+        "y": 23,
+        "background": [
+          246,
+          237,
+          219
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        ".local-bookshelf-module__E5KFCW__tools > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "책 찾기·추가",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 13,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 346,
+      "minimumContrast": 11.500838190316466,
+      "threshold": 4.5,
+      "worst": {
+        "x": 62,
+        "y": 14,
+        "background": [
+          245,
+          236,
+          219
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 30,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "또 다른 이름, 토끼전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 250,
+      "minimumContrast": 3.7649452931104532,
+      "threshold": 4.5,
+      "worst": {
+        "x": 93,
+        "y": 2,
+        "background": [
+          235,
+          222,
+          196
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "별주부전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 642,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 94,
+        "y": 19,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 별주부전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 165,
+      "minimumContrast": 9.80387169223149,
+      "threshold": 4.5,
+      "worst": {
+        "x": 63,
+        "y": 2,
+        "background": [
+          229,
+          216,
+          190
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 31,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 10,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "진짜와 가짜가 벌이는 기묘한 다툼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 245,
+      "minimumContrast": 3.3668472134848044,
+      "threshold": 4.5,
+      "worst": {
+        "x": 67,
+        "y": 3,
+        "background": [
+          221,
+          211,
+          187
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "옹고집전",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 291,
+      "minimumContrast": 3.3337011814932453,
+      "threshold": 4.5,
+      "worst": {
+        "x": 67,
+        "y": 7,
+        "background": [
+          220,
+          210,
+          186
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 옹고집전\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 161,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "하늘과 땅 사이에서 이어진 만남과 이별",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "선녀와 나무꾼",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "no-paint-difference",
+      "samples": 0,
+      "minimumContrast": null,
+      "threshold": 4.5
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 선녀와 나무꾼\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 159,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__edition"
+      ],
+      "info": {
+        "style": null,
+        "text": "원작",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 4.28512,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 36,
+      "minimumContrast": 10.764608831176892,
+      "threshold": 4.5,
+      "worst": {
+        "x": 9,
+        "y": 3,
+        "background": [
+          238,
+          226,
+          201
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__tagline"
+      ],
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부로 널리 알려진 이야기",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 7.325,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 407,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 113,
+        "y": 2,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__titleBox.book-cover-module__IX6-Iq__copyBox[data-role=\"title\"] > div[data-cover-copy-size=\"11.11111111111111cqw\"] > .book-cover-module__IX6-Iq__title[data-font=\"serif\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "흥부와 놀부",
+        "color": "rgb(134, 107, 64)",
+        "fill": "rgb(134, 107, 64)",
+        "fontSize": 18.3125,
+        "weight": 700,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 774,
+      "minimumContrast": 3.729401366367855,
+      "threshold": 4.5,
+      "worst": {
+        "x": 101,
+        "y": 4,
+        "background": [
+          234,
+          221,
+          195
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "div[aria-label=\"앞표지 · 흥부와 놀부\"] > .book-cover-module__IX6-Iq__legacyFace > .book-cover-module__IX6-Iq__bottomAuthor.book-cover-module__IX6-Iq__copyBox[data-writing=\"horizontal\"] > .book-cover-module__IX6-Iq__author"
+      ],
+      "info": {
+        "style": null,
+        "text": "전래 이야기 지음",
+        "color": "rgb(52, 43, 38)",
+        "fill": "rgb(52, 43, 38)",
+        "fontSize": 6.26288,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 171,
+      "minimumContrast": 9.994724051137613,
+      "threshold": 4.5,
+      "worst": {
+        "x": 80,
+        "y": 2,
+        "background": [
+          231,
+          218,
+          192
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "span[role=\"status\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "1 / 1 선반 · 4권",
+        "color": "rgb(255, 240, 211)",
+        "fill": "rgb(255, 240, 211)",
+        "fontSize": 12,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 310,
+      "minimumContrast": 3.3824333359706147,
+      "threshold": 4.5,
+      "worst": {
+        "x": 17,
+        "y": 3,
+        "background": [
+          168,
+          121,
+          80
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "body > details > summary"
+      ],
+      "info": {
+        "style": null,
+        "text": "삭제한 작품 복구",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 16,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 812,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 27,
+        "y": 2,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    },
+    {
+      "surface": "online",
+      "target": [
+        "p[data-testid=\"library-save-status\"]"
+      ],
+      "info": {
+        "style": null,
+        "text": "기기에 저장됨",
+        "color": "rgb(24, 51, 49)",
+        "fill": "rgb(24, 51, 49)",
+        "fontSize": 16,
+        "weight": 400,
+        "opacity": 1,
+        "filters": [],
+        "disabled": false
+      },
+      "status": "measured",
+      "samples": 619,
+      "minimumContrast": 12.17413608173107,
+      "threshold": 4.5,
+      "worst": {
+        "x": 10,
+        "y": 3,
+        "background": [
+          247,
+          243,
+          233
+        ]
+      }
+    }
+  ]
+}

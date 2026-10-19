@@ -1,0 +1,86 @@
+
+Running 2 tests using 1 worker
+
+(node:21331) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-reader.spec.ts:7:31 › reader semantic mirrors and modal keyboard boundaries 1440 (6.1s)
+(node:21352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/accessibility-reader.spec.ts:7:31 › reader semantic mirrors and modal keyboard boundaries 390 (5.9s)
+
+
+  1) [host] › tests/e2e/accessibility-reader.spec.ts:7:31 › reader semantic mirrors and modal keyboard boundaries 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:10:345
+
+    Error Context: docs/architecture/evidence/accessibility-reader-2026-10-17/initial-run-v2/accessibility-reader-reade-547b2-al-keyboard-boundaries-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-reader-2026-10-17/initial-run-v2/accessibility-reader-reade-547b2-al-keyboard-boundaries-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-reader-2026-10-17/initial-run-v2/accessibility-reader-reade-547b2-al-keyboard-boundaries-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/accessibility-reader.spec.ts:7:31 › reader semantic mirrors and modal keyboard boundaries 390 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:10:345
+
+    Error Context: docs/architecture/evidence/accessibility-reader-2026-10-17/initial-run-v2/accessibility-reader-reade-09844-dal-keyboard-boundaries-390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-reader-2026-10-17/initial-run-v2/accessibility-reader-reade-09844-dal-keyboard-boundaries-390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-reader-2026-10-17/initial-run-v2/accessibility-reader-reade-09844-dal-keyboard-boundaries-390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [host] › tests/e2e/accessibility-reader.spec.ts:7:31 › reader semantic mirrors and modal keyboard boundaries 1440 
+    [host] › tests/e2e/accessibility-reader.spec.ts:7:31 › reader semantic mirrors and modal keyboard boundaries 390 

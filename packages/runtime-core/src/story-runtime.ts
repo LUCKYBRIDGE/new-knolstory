@@ -2,11 +2,15 @@ import { getBackgroundSize, customAudioRuntimePath, resolveAudioAsset, resolveAs
 import { activeStageSpeaker, createStoryDocument, orderedStoryFlowLines, parseStoryDocument, patchStageLine,
   resolveStageComposition, stageActorDepth, type StoryLine, type StoryProject } from '@knolstory/story-domain';
 import { isRuntimeScene, type RuntimeActor, type RuntimeScene } from '@knolstory/runtime-contract';
+import {mergeActorOverride} from './actor-overrides';
 import { resolveStageLayout } from './stage-layout';
 import { stageCharacterScale, stageReadableCharacterScale, stageSharedActor, stageShouldMirror } from './stage-view';
-import { resolveBackgroundRect, resolveStoryViewport, type StoryViewportSize } from './responsive-layout';
+import { resolveBackgroundRect, resolveStoryViewport, type StoryViewportSize, type DialogueDock } from './responsive-layout';
 import {compileStoryPresentation} from './presentation-scopes';
+import { initialStoryScores, type StoryScoreValues, availableStoryChoices, playbackScores, storyScoreCondition, applyStoryScoreEffects } from './story-scores';
 import { audioPreviewPath, compileStoryAudio, type AudioAssetResolver } from './audio';
+
+import {storyBranchConditionReferences} from './branch-condition-references';
 
 export const orderedLines = orderedStoryFlowLines;
 export type PlaybackState = Readonly<{ lineId: string | null; path: readonly string[];
@@ -18,86 +22,110 @@ function requireLine(project: StoryProject, lineId: string): StoryLine {
   if (!line) throw new Error('이야기 컷을 찾을 수 없어요.');
   return line;
 }
-function lineStatus(line: StoryLine): PlaybackState['status'] {
-  return !line.ending?.endsStory && line.flow?.type === 'choice' ? 'choice' : 'reading';
+function lineStatus(project:StoryProject,line:StoryLine,state:PlaybackState,values?:StoryScoreValues):PlaybackState['status'] {
+  if(line.ending?.endsStory || line.flow?.type!=='choice')return 'reading';
+  return (values?line.flow.options.filter(option=>storyScoreCondition(values,option.condition)):availableStoryChoices(project,line.id,state)).length?'choice':'pending';
 }
 export function createPlayback(project: StoryProject, lineId?: string): PlaybackState {
   const initial = lineId ?? orderedLines(project)[0]?.id;
   if (!initial) return { lineId: null, path: [], status: 'ended' };
-  return { lineId: initial, path: [initial], status: lineStatus(requireLine(project, initial)) };
+  const state:PlaybackState={lineId:initial,path:[initial],status:'reading'};
+  return {...state,status:lineStatus(project,requireLine(project,initial),state)};
+}
+function targetForLine(project:StoryProject,state:PlaybackState,choiceId?:string,knownScores?:StoryScoreValues):string|null|undefined{
+  const line=requireLine(project,state.lineId!);
+  if(line.ending?.endsStory)return null;
+  const values=knownScores??playbackScores(project,state);
+  if(line.flow?.type==='choice'){
+    if(choiceId===undefined)return undefined;
+    const option=line.flow.options.find(item=>item.id===choiceId);
+    if(!option)throw new Error('선택지를 찾을 수 없어요.');
+    if(!storyScoreCondition(values,option.condition))throw new Error('이 선택지는 현재 점수 조건을 만족하지 않아요.');
+    applyStoryScoreEffects(values,option.effects); // Reject overflow before recording a decision or moving.
+    return option.targetLineId;
+  }
+  if(line.flow?.type==='goto'){const route=line.flow.routes?.find(route=>storyScoreCondition(values,route.condition));return route?route.targetLineId:line.flow.targetLineId;}
+  const lines=orderedLines(project);
+  return lines[lines.findIndex(item=>item.id===line.id)+1]?.id??null;
 }
 export function advancePlayback(project: StoryProject, state: PlaybackState, choiceId?: string): PlaybackState {
+  return advanceKnownScores(project,state,choiceId);
+}
+function advanceKnownScores(project:StoryProject,state:PlaybackState,choiceId?:string,values?:StoryScoreValues):PlaybackState{
   if (state.lineId === null) return state;
-  const line = requireLine(project, state.lineId);
-  let target: string | null;
-  let choiceHistory = state.choiceHistory;
-  if (line.ending?.endsStory) target = null;
-  else if (line.flow?.type === 'choice') {
-    if (choiceId === undefined) return { ...state, status: 'choice' };
-    const option = line.flow.options.find(item => item.id === choiceId);
-    if (!option) throw new Error('선택지를 찾을 수 없어요.');
-    target = option.targetLineId;
-    if (target !== '' && (target === null || project.lines.some(item => item.id === target)))
-      choiceHistory = [...(state.choiceHistory ?? []).filter(item => item.pathIndex !== state.path.length - 1), {pathIndex:state.path.length - 1, choiceId:option.id}];
-  } else if (line.flow?.type === 'goto') target = line.flow.targetLineId;
-  else {
-    const lines = orderedLines(project);
-    target = lines[lines.findIndex(item => item.id === line.id) + 1]?.id ?? null;
-  }
-  if (target === null) return { ...state, ...(choiceHistory ? {choiceHistory} : {}), lineId: null, status: 'ended' };
-  if (target === '' || !project.lines.some(item => item.id === target)) return { ...state, status: 'pending' };
-  return { lineId: target, path: [...state.path, target], status: lineStatus(requireLine(project, target)), ...(choiceHistory ? {choiceHistory} : {}) };
+  const line=requireLine(project,state.lineId),target=targetForLine(project,state,choiceId,values);
+  if(target===undefined)return {...state,status:lineStatus(project,line,state,values)};
+  if(target==='' || target!==null&&!project.lines.some(item=>item.id===target))return {...state,status:'pending'};
+  const history=line.flow?.type==='choice'&&!line.ending?.endsStory
+    ? [...(state.choiceHistory??[]).filter(item=>item.pathIndex<state.path.length-1),{pathIndex:state.path.length-1,choiceId:choiceId!}]
+    :state.choiceHistory;
+  const decisions=history?{choiceHistory:history}:{};
+  if(target===null)return {...state,...decisions,lineId:null,status:'ended'};
+  const next:PlaybackState={lineId:target,path:[...state.path,target],status:'reading',...decisions};
+  const option=line.flow?.type==='choice'?line.flow.options.find(item=>item.id===choiceId):undefined;
+  const nextValues=values?applyStoryScoreEffects(values,option?.effects):undefined;
+  return {...next,status:lineStatus(project,requireLine(project,target),next,nextValues)};
 }
 export function backPlayback(project: StoryProject, state: PlaybackState): PlaybackState {
-  const path = state.lineId === null ? [...state.path] : state.path.slice(0, -1);
-  const previous = path.at(-1);
-  if (!previous) return state;
-  const choices = state.choiceHistory?.filter(item => item.pathIndex < path.length - 1);
-  return { lineId: previous, path, status: lineStatus(requireLine(project, previous)), ...(choices?.length ? {choiceHistory:choices} : {}) };
+  const path=state.lineId===null?[...state.path]:state.path.slice(0,-1),previous=path.at(-1);
+  if(!previous)return state;
+  const choices=state.choiceHistory?.filter(item=>item.pathIndex<path.length-1);
+  const next:PlaybackState={lineId:previous,path,status:'reading',...(choices?.length?{choiceHistory:choices}:{})};
+  return {...next,status:lineStatus(project,requireLine(project,previous),next)};
 }
 
-/** Restore only paths whose edges still exist in the current authored document. */
+/** Replay every edge and recorded decision using the same interpreter as live reading. */
 export function restorePlayback(project: StoryProject, value: unknown): PlaybackState {
-  if (!value || typeof value !== 'object') throw new Error('이어읽기 상태를 확인해 주세요.');
-  const stored = value as Record<string, unknown>;
-  if (!Array.isArray(stored.path) || stored.path.length > 10000 || !stored.path.every(id => typeof id === 'string'))
-    throw new Error('이어읽기 경로를 확인해 주세요.');
-  const path = stored.path as string[];
-  if (!path.length) return createPlayback(project);
-  const ordered = orderedLines(project);
-  const targets = (id: string): (string | null)[] => {
-    const line = requireLine(project, id);
-    return line.ending?.endsStory ? [null] : line.flow?.type === 'choice' ? line.flow.options.map(c => c.targetLineId)
-      : line.flow?.type === 'goto' ? [line.flow.targetLineId] : [ordered[ordered.findIndex(c => c.id === id) + 1]?.id ?? null];
-  };
-  for (const [index, id] of path.entries()) {
-    requireLine(project, id);
-    if (index && !targets(path[index - 1]).includes(id)) throw new Error('이야기 연결이 바뀌어 이전 경로를 이어 읽을 수 없어요.');
+  if(!value||typeof value!=='object')throw new Error('이어읽기 상태를 확인해 주세요.');
+  const stored=value as Record<string,unknown>;
+  if(!Array.isArray(stored.path)||stored.path.length>10000||!Array.from(stored.path).every(id=>typeof id==='string'))throw new Error('이어읽기 경로를 확인해 주세요.');
+  const path=stored.path as string[];
+  if(!path.length)return createPlayback(project);
+  const choices=readStoredChoices(stored.choiceHistory,path);
+  const referencedSources=new Set(storyBranchConditionReferences(project).map(ref=>ref.condition.sourceLineId));
+  let current=createPlayback(project,path[0]);
+  let scores=initialStoryScores(project);
+  for(let index=0;index<path.length;index++){
+    if(current.lineId!==path[index])throw new Error('이야기 연결이 바뀌어 이전 경로를 이어 읽을 수 없어요.');
+    const destination=path[index+1]??(stored.status==='ended'&&stored.lineId===null?null:undefined);
+    const recorded=choices?.find(entry=>entry.pathIndex===index);
+    if(destination===undefined){if(recorded)throw new Error('저장된 선택 기록을 확인해 주세요.');break;}
+    const line=requireLine(project,current.lineId!);
+    let choiceId=recorded?.choiceId;
+    if(line.flow?.type==='choice'&&!line.ending?.endsStory){
+      if(!choiceId){
+        if(referencedSources.has(line.id))throw new Error('분기 연출을 복원할 정확한 선택 기록이 없어요. 다시 읽기를 시작해 주세요.');
+        if(line.flow.options.some(option=>option.condition||option.effects?.length))throw new Error('점수 이야기를 복원할 정확한 선택 기록이 없어요. 다시 읽기를 시작해 주세요.');
+        const matches=line.flow.options.filter(option=>option.targetLineId===destination);
+        if(!matches.length)throw new Error('이야기 연결이 바뀌어 이전 경로를 이어 읽을 수 없어요.');
+        choiceId=matches[0].id;
+      }
+    }else if(recorded)throw new Error('저장된 선택 기록을 확인해 주세요.');
+    current=advanceKnownScores(project,current,choiceId,scores);
+    const option=line.flow?.type==='choice'&&!line.ending?.endsStory?line.flow.options.find(item=>item.id===choiceId):undefined;
+    scores=applyStoryScoreEffects(scores,option?.effects);
+    if(current.lineId!==destination)throw new Error('이야기 연결이나 점수 조건이 바뀌어 이전 경로를 이어 읽을 수 없어요.');
   }
-  let choiceHistory: PlaybackState['choiceHistory'];
-  if (stored.choiceHistory !== undefined) {
-    if (!Array.isArray(stored.choiceHistory) || stored.choiceHistory.length > path.length) throw new Error('저장된 선택 기록을 확인해 주세요.');
-    const seen = new Set<number>();
-    choiceHistory = stored.choiceHistory.map((entry: unknown) => {
-      if (!entry || typeof entry !== 'object') throw new Error('저장된 선택 기록을 확인해 주세요.');
-      const decision = entry as Record<string, unknown>;
-      if (!Number.isInteger(decision.pathIndex) || (decision.pathIndex as number) < 0 || (decision.pathIndex as number) >= path.length || typeof decision.choiceId !== 'string') throw new Error('저장된 선택 기록을 확인해 주세요.');
-      const index = decision.pathIndex as number, source = requireLine(project, path[index]);
-      const option = source.flow?.type === 'choice' ? source.flow.options.find(item => item.id === decision.choiceId) : undefined;
-      const destination = path[index + 1] ?? (stored.status === 'ended' && stored.lineId === null ? null : undefined);
-      if (!option || option.targetLineId !== destination || seen.has(index)) throw new Error('선택지가 바뀌어 이전 기록을 불러올 수 없어요.');
-      seen.add(index);
-      return {pathIndex:index, choiceId:decision.choiceId};
-    });
-  }
-  const decisions = choiceHistory ? {choiceHistory} : {};
-  const last = path.at(-1)!;
-  if (stored.status === 'ended' && stored.lineId === null && targets(last).includes(null)) return { lineId: null, path: [...path], status: 'ended', ...decisions };
-  if (stored.lineId !== last) throw new Error('이어읽기 위치를 확인해 주세요.');
-  if (stored.status === 'pending' && targets(last).includes('')) return { lineId: last, path: [...path], status: 'pending', ...decisions };
-  const status = lineStatus(requireLine(project, last));
-  if (stored.status !== status) throw new Error('이어읽기 진행 상태를 확인해 주세요.');
-  return { lineId: last, path: [...path], status, ...decisions };
+  if(current.lineId!==stored.lineId)throw new Error('이어읽기 위치를 확인해 주세요.');
+  const last=requireLine(project,path.at(-1)!);
+  if(stored.status==='pending'&&current.lineId!==null){
+    const target=last.flow?.type==='choice'?undefined:targetForLine(project,current);
+    if(last.flow?.type==='choice'&&(current.status==='pending'||last.flow.options.some(option=>option.targetLineId==='')) || target==='' || target!==undefined&&target!==null&&!project.lines.some(line=>line.id===target))current={...current,status:'pending'};
+    else if(last.flow?.type==='choice'&&last.flow.options.some(option=>option.condition))current={...current,status:lineStatus(project,last,current,scores)};
+    else throw new Error('이어읽기 진행 상태를 확인해 주세요.');
+  }else if(current.status!==stored.status)throw new Error('이어읽기 진행 상태를 확인해 주세요.');
+  // Preserve absent historic decisions for unscored documents; never invent their labels.
+  const {choiceHistory:_derived,...base}=current;
+  return {...base,...(choices?{choiceHistory:choices}:{})};
+}
+function readStoredChoices(value:unknown,path:readonly string[]):PlaybackState['choiceHistory']{
+  if(value===undefined)return undefined;
+  if(!Array.isArray(value)||value.length>path.length)throw new Error('저장된 선택 기록을 확인해 주세요.');
+  const seen=new Set<number>();
+  return Array.from(value).map(entry=>{
+    if(!entry||typeof entry!=='object'||!Number.isInteger(entry.pathIndex)||entry.pathIndex<0||entry.pathIndex>=path.length||typeof entry.choiceId!=='string'||seen.has(entry.pathIndex))throw new Error('저장된 선택 기록을 확인해 주세요.');
+    seen.add(entry.pathIndex);return {pathIndex:entry.pathIndex,choiceId:entry.choiceId};
+  });
 }
 
 export function patchStoryLine(project: StoryProject, lineId: string, patch: Partial<StoryLine>): StoryProject {
@@ -113,9 +141,9 @@ export function patchStoryLine(project: StoryProject, lineId: string, patch: Par
 }
 
 export function compileStoryScene(project: StoryProject, lineId: string, revision: number,
-  options: Readonly<{ mode: 'edit' | 'play'; reducedMotion?: boolean; viewport?: StoryViewportSize; displaySize?:StoryViewportSize; playbackPath?: readonly string[]; audioResolver?: AudioAssetResolver; presentationEntry?: string }> = { mode: 'edit' }): RuntimeScene {
+  options: Readonly<{ mode: 'edit' | 'play'; reducedMotion?: boolean; viewport?: StoryViewportSize; displaySize?:StoryViewportSize; dialogueDock?:DialogueDock; playbackPath?: readonly string[]; playbackState?:PlaybackState; audioResolver?: AudioAssetResolver; presentationEntry?: string }> = { mode: 'edit' }): RuntimeScene {
   const line = requireLine(project, lineId);
-  const viewport = options.viewport ? resolveStoryViewport(options.viewport,options.displaySize) : undefined;
+  const viewport = options.viewport ? resolveStoryViewport(options.viewport,options.displaySize,options.dialogueDock) : undefined;
   const width = viewport?.width ?? 1280, height = viewport?.height ?? 720;
   const chapter = project.chapters.find(item => item.id === line.chapterId);
   const stage = resolveStageComposition(chapter, line, project);
@@ -123,7 +151,7 @@ export function compileStoryScene(project: StoryProject, lineId: string, revisio
   const sourceActors = (['left', 'right'] as const).flatMap(side => stage[side === 'left' ? 'leftActors' : 'rightActors'].filter(actor=>!viewport?.portrait || actor.key===speaker).map((actor, index, group) => {
     const asset = resolveAsset(actor.assetId);
     if (!asset?.geometry) throw new Error(`인물 자산을 찾을 수 없어요: ${actor.assetId}`);
-    const override = { ...(index === 0 ? line.presentation?.actors?.[side] : undefined), ...actor };
+    const override = mergeActorOverride(actor,index,line.presentation?.actors?.[side]);
     const originalMirror = stageShouldMirror(actor.assetId, side);
     const mirrored = override.facing === 'original' ? false : override.facing ? originalMirror !== (override.facing !== (side === 'left' ? 'right' : 'left')) : originalMirror;
     return { actor, asset, side, index, groupSize: group.length, override, mirrored };
@@ -149,14 +177,14 @@ export function compileStoryScene(project: StoryProject, lineId: string, revisio
   const sourceSize = background ? getBackgroundSize(background.id) : undefined;
   const backgroundFit = line.presentation?.backgroundFit ?? (viewport || background?.backgroundRole === 'scenery' ? 'cover' as const : 'contain' as const);
   const focal = line.presentation?.backgroundFocal;
-  const path=options.playbackPath??audioPreviewPath(project,lineId);const presentation=compileStoryPresentation(project,lineId,path);
+  const path=options.playbackState?.path??options.playbackPath??audioPreviewPath(project,lineId);const presentation=compileStoryPresentation(project,lineId,path,options.playbackState?.choiceHistory);
   const scene: RuntimeScene = { contractVersion: 1, sceneId: `${project.id}/${line.id}`, revision, width, height,
     ...(viewport ? { viewportVersion: 1 as const, textboxRect: viewport.textboxRect, dialogueStyle: viewport.dialogueStyle } : {}),
     ...(options.presentationEntry ? { presentationEntry: options.presentationEntry } : {}),
-    audio: compileStoryAudio(project, lineId, options.audioResolver ?? (id => resolveAudioAsset(id) ?? (customAudioRuntimePath(id) ? {runtimePath:customAudioRuntimePath(id)!} : undefined)), path),
+    audio: compileStoryAudio(project, lineId, options.audioResolver ?? (id => resolveAudioAsset(id) ?? (customAudioRuntimePath(id) ? {runtimePath:customAudioRuntimePath(id)!} : undefined)), path,options.playbackState?.choiceHistory),
     actors, dialogue: { speaker: line.speakerName || (line.type === 'narration' ? '해설' : '화자'), text: line.text },
     ...(background ? { background: { imagePath: background.runtimePath, fit: backgroundFit, ...(focal ? { focal } : {}), ...(viewport && sourceSize ? { rect: resolveBackgroundRect(sourceSize, { width, height }, backgroundFit, focal) } : {}) } } : {}),
-    choices: !line.ending?.endsStory && line.flow?.type === 'choice' ? line.flow.options.map(option => ({ id: option.id, text: option.label })) : [],
+    choices: !line.ending?.endsStory && line.flow?.type === 'choice' ? (options.mode==='play'?availableStoryChoices(project,lineId,options.playbackState):line.flow.options).map(option => ({ id: option.id, text: option.label })) : [],
     mode: options.mode, reducedMotion: options.reducedMotion ?? false,
     ...(presentation?{presentation}:{}) };
   if (!isRuntimeScene(scene)) throw new Error(`장면 계약을 확인해 주세요: ${line.id}`);

@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:31789) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections (6.9s)
+
+
+  1) tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections 
+
+    Error: expect(locator).not.toHaveAttribute(expected) failed
+
+    Locator: locator('[data-chapter-settings]').locator('details').filter({ has: locator('summary').filter({ hasText: '장 번호·갈래 표시' }) })
+    Expected: not ""
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "not toHaveAttribute" locator('[data-chapter-settings]').locator('details').filter({ has: locator('summary').filter({ hasText: '장 번호·갈래 표시' }) }) with timeout 5000ms
+      - waiting for locator('[data-chapter-settings]').locator('details').filter({ has: locator('summary').filter({ hasText: '장 번호·갈래 표시' }) })
+
+
+      38 |  const before=(await exportFile(page)).project;const controls=await chapter(page);
+      39 |  const detail=controls.locator('details').filter({has:page.locator('summary',{hasText:'장 번호·갈래 표시'})});
+    > 40 |  await expect(detail).not.toHaveAttribute('open','');await detail.locator(':scope>summary').click();
+         |                           ^
+      41 |  const number=detail.getByRole('spinbutton',{name:'장 번호',exact:true}),branch=detail.getByRole('textbox',{name:'장 갈래 표시',exact:true});
+      42 |  await number.fill('3');await number.blur();await branch.fill('A');await branch.blur();
+      43 |  const after=(await exportFile(page)).project;
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/chapter-settings-access.spec.ts:40:27
+
+    Error Context: docs/architecture/evidence/chapter-identity-2026-10-20/red-current-run/chapter-settings-access-ch-03fee-or-change-story-connections/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chapter-identity-2026-10-20/red-current-run/chapter-settings-access-ch-03fee-or-change-story-connections/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chapter-identity-2026-10-20/red-current-run/chapter-settings-access-ch-03fee-or-change-story-connections/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/chapter-settings-access.spec.ts:35:1 › chapter display identity edits never reorder chapters or change story connections 

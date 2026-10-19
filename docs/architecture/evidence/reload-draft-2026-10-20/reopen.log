@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:61507) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/storage-recovery.spec.ts:29:1 › second tab draft cannot overwrite first tab, even when using manual save (11.8s)
+
+  1 passed (12.3s)

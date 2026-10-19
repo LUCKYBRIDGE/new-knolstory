@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-18",
+  "status": "local-verified-not-deployed",
+  "changes": [
+    "Landscape body2 measured lines; dock base88px vs130px; width84% preserved",
+    "Portrait40% unchanged; manuscript and actors unchanged",
+    "Individual and toolbar backgrounds removed; active/hover also transparent; focus retained",
+    "Nonrepeating natural demo replaces repetitive stress manuscript"
+  ],
+  "checks": {
+    "vitest": "2 passed, red before implementation",
+    "python_geometry": "12 passed",
+    "runtime_build": "passed",
+    "web_build": "passed",
+    "native_e2e": "1 passed; controls default/hover/active transparent; settings4actions transparent; landscape height<125px; portrait40%; auto page advance",
+    "review": "No blocking issues; added requested state assertions and removed toolbar backing"
+  },
+  "preserved_attempts": [
+    "native-ui-before-transparent-strip",
+    "native-ui-initial-selector-failure: selector included existing top menu trigger; narrowed to quick bar"
+  ],
+  "limits": [
+    "No physical device testing",
+    "Not deployed"
+  ],
+  "mockups": "mockups/index.html",
+  "sha256": {
+    "packages/runtime-core/src/responsive-layout.ts": "19fef623ffcd8417308501db8d2c62920a533f877581a21c79888565faf2079a",
+    "renpy/responsive-spike/game/script.rpy": "3028ad68c18c99a2e2f09896ef99fe4e346cd165c0744b9012044496400724a3",
+    "apps/web/components/story-player-menu.module.css": "57cfedfa089d728b6b60fadd3c46b36bc5cb1b41c1a94ea0cff6e680a178b324",
+    "tests/e2e/mobile-reader-capacity.spec.ts": "5eb26e94c2c973b6a8778574826c1d77e2a10c1e102e4bc48356714c5f821848"
+  },
+  "self_evaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Focused native and unit checks pass; screenshot review available; physical-device appearance and deployment remain outside current evidence"
+  }
+}

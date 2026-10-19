@@ -1,0 +1,42 @@
+import {test,expect,type Page} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+
+const original=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8'));
+const [a,b,join]=original.lines;
+const source={...original,id:'editing-path-story',lines:original.lines.map((line:{id:string})=>line.id===a.id?{...line,ending:undefined,flow:{type:'choice',options:[{id:'via-b',label:'옆 컷을 거쳐 만난다',targetLineId:b.id},{id:'direct',label:'바로 만난다',targetLineId:join.id}]}}:line.id===b.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:join.id}}:line.id===join.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:a.id}}:line)};
+async function menu(page:Page){const root=page.locator('[data-work-menu]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope > summary').click();}
+async function exportProject(page:Page){await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(readFileSync((await(await pending).path())!,'utf8')).project;}
+async function context(page:Page){const tools=page.locator('[data-writing-tools]');if(!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator(':scope > summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();return page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});}
+async function loaded(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨',{timeout:15000});}
+for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`chosen editing visits survive join, loop, reload and native reading without authoring content ${size.width}`,async({page},info)=>{
+ page.setDefaultTimeout(15000);await page.setViewportSize(size);await page.goto('/?view=editor');await loaded(page);await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'navigation.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-13T00:00:00.000Z',appVersion:'test',project:source}))});await confirmAuthoringImport(page);await loaded(page);
+ const baseline=await exportProject(page),position=page.getByLabel('현재 장과 컷 이동',{exact:true});
+ await position.selectOption(b.id);let dialog=await context(page);await dialog.getByLabel('나가는 연결').locator(`[data-flow-cut="${join.id}"]`).click();await expect(position).toHaveValue(join.id);
+ dialog=await context(page);await expect(dialog.getByLabel('내 편집 이동 경로',{exact:true})).toContainText(b.text);await dialog.getByRole('button',{name:'이전 편집 컷으로 돌아가기',exact:true}).click();await expect(position).toHaveValue(b.id);
+ await position.selectOption(a.id);dialog=await context(page);await dialog.getByLabel('나가는 연결').locator(`[data-flow-cut="${join.id}"]`).click();await expect(position).toHaveValue(join.id);await loaded(page);await page.reload();await loaded(page);
+ dialog=await context(page);await dialog.getByRole('button',{name:'이전 편집 컷으로 돌아가기',exact:true}).click();await expect(position).toHaveValue(a.id);
+ // The loop is a sequence of visits, not an inferred unique graph path.
+ dialog=await context(page);await dialog.getByLabel('나가는 연결').locator(`[data-flow-cut="${join.id}"]`).click();dialog=await context(page);await dialog.getByLabel('나가는 연결').locator(`[data-flow-cut="${a.id}"]`).click();dialog=await context(page);await dialog.getByRole('button',{name:'이전 편집 컷으로 돌아가기',exact:true}).click();await expect(position).toHaveValue(join.id);
+ await loaded(page);const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).contexts);
+ await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rendered=await status.getAttribute('data-rendered-revision');return Number(rendered)>=0&&rendered===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
+ const next=page.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');await expect(page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})})).toContainText(a.text);
+ await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await loaded(page);
+ const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).contexts);const key=Object.keys(after).find(key=>after[key].lineId===a.id&&key.startsWith('import:'))!;expect(after[key].editingPath).toEqual(before[key].editingPath);
+ expect(await exportProject(page)).toEqual(baseline);await expect(position).toHaveValue(a.id);
+ dialog=await context(page);await dialog.getByText(`내 편집 이동 경로 · ${after[key].editingPath.length}컷`,{exact:true}).click();await expect(dialog.locator('[data-editing-path-index="0"]')).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`editing-path-${size.width}.png`),fullPage:true});await dialog.locator('[data-editing-path-index="0"]').click();await expect(position).toHaveValue(a.id);await loaded(page);dialog=await context(page);await expect(dialog.getByRole('button',{name:'이전 편집 컷으로 돌아가기',exact:true})).toHaveCount(0);
+});
+
+test('editing return is atomic under save failure and IME, and imported works keep independent paths',async({page})=>{
+ await page.goto('/?view=editor');await loaded(page);await menu(page);
+ const upload=async(id:string)=>{await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'navigation.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-13T00:00:00.000Z',appVersion:'test',project:{...source,id}}))});await confirmAuthoringImport(page);await loaded(page);};
+ await upload('path-a');const position=page.getByLabel('현재 장과 컷 이동',{exact:true});await position.selectOption(b.id);await position.selectOption(join.id);await loaded(page);
+ const baseline=await exportProject(page);const before=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+ let dialog=await context(page);const back=dialog.getByRole('button',{name:'이전 편집 컷으로 돌아가기',exact:true});const text=page.getByLabel('대사 / 해설',{exact:true});await text.dispatchEvent('compositionstart');await expect(back).toBeDisabled();await expect(position).toHaveValue(join.id);await text.dispatchEvent('compositionend');await expect(back).toBeEnabled();
+ await page.evaluate(()=>{const old=Storage.prototype.setItem;(window as unknown as {restoreNavigationStorage:()=>void}).restoreNavigationStorage=()=>{Storage.prototype.setItem=old;};Storage.prototype.setItem=function(key,value){if(key==='knolstory-next-workspace-v1')throw new DOMException('navigation quota test','QuotaExceededError');old.call(this,key,value);};});
+ await back.click();await expect(dialog).toBeVisible();await expect(position).toHaveValue(join.id);expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(before);await expect(page.getByTestId('workspace-error')).toContainText('이동을 멈췄어요');
+ await page.evaluate(()=>(window as unknown as {restoreNavigationStorage:()=>void}).restoreNavigationStorage());await back.click();await expect(position).toHaveValue(b.id);await loaded(page);expect(await exportProject(page)).toEqual(baseline);
+ await upload('path-b');dialog=await context(page);await expect(dialog.getByRole('button',{name:'이전 편집 컷으로 돌아가기',exact:true})).toHaveCount(0);await dialog.getByRole('button',{name:'연결 살펴보기 닫기',exact:true}).click();await position.selectOption(join.id);await loaded(page);
+ const contexts=await page.evaluate(()=>{const stored=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return Object.entries(stored.works).filter(([,value])=>['path-a','path-b'].includes((value as {project:{id:string}}).project.id)).map(([key])=>stored.contexts[key]);});
+ expect(contexts).toHaveLength(2);expect(contexts[0].editingPath).toEqual([a.id,b.id]);expect(contexts[1].editingPath).toEqual([a.id,join.id]);
+});

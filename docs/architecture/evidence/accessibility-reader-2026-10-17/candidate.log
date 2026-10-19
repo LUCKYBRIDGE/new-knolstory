@@ -1,0 +1,188 @@
+
+Running 2 tests using 1 worker
+
+(node:21838) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 1440 (23.2s)
+(node:21930) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 390 (22.2s)
+
+
+  1) [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 1440 
+
+    Error: settings backward boundary wraps
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').last()
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - settings backward boundary wraps getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').last() with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').last()
+        14 × locator resolved to <button aria-pressed="false">동작 줄이기 · 꺼짐</button>
+           - unexpected value "inactive"
+
+
+      21 |  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.focus();await trigger.press('Enter');const top=page.getByRole('group',{name:'읽기 메뉴',exact:true});await scan('top-menu',top);await expect(top.getByRole('button',{name:'읽기 설정',exact:true})).toBeFocused();await expect.soft(mirror.getByRole('button',{name:'다음 장면 선택',exact:true}),'choice blocked while top menu busy').toBeDisabled();await expect(mirror.getByRole('button',{name:'다음으로',exact:true})).toBeDisabled();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+      22 |  await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect.soft(top,'top menu closes when keyboard focus leaves').toHaveCount(0);await expect.soft(trigger,'Tab exit does not force trigger focus').not.toBeFocused();if(await top.count())await page.keyboard.press('Escape');
+    > 23 |  await expect.soft(page.getByRole('group',{name:'읽기 도구',exact:true})).toBeVisible();await trigger.focus();await trigger.press('Enter');await page.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await scan('settings',dialog);const enabled=dialog.locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)');await enabled.first().focus();await page.keyboard.press('Shift+Tab');await expect.soft(enabled.last(),'settings backward boundary wraps').toBeFocused();await enabled.last().focus();await page.keyboard.press('Tab');await expect.soft(enabled.first(),'settings forward boundary wraps').toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+      24 |  if(width===390)await page.getByRole('button',{name:'읽기 도구 펼치기',exact:true}).click();for(const name of ['저장','불러오기','지난기록']){const button=page.getByRole('button',{name,exact:true});await button.click();const panel=page.getByRole('dialog',{name,exact:true});await scan(name,panel);if(name==='저장'){await panel.getByRole('button',{name:'1번 저장',exact:true}).click();await expect(panel.getByRole('status')).toContainText('1번에 저장했습니다.');await scan('filled-save-slot',panel);}if(name==='불러오기'){await panel.getByRole('button',{name:'1번 불러오기',exact:true}).click();const confirmation=page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(panel).toBeVisible();await expect.soft(panel.getByRole('button',{name:'1번 불러오기',exact:true}),'confirmation cancel restores original slot focus').toBeFocused();}await page.keyboard.press('Escape');await expect(button).toBeFocused();}
+      25 |  expect(await authored()).toEqual(baseline);await writeFile(info.outputPath('reader-summary.json'),JSON.stringify({width,scope:'Host protocol acknowledgement harness only; no native rendering or real screen-reader claim',scene,raw},null,2)+'\n');for(const report of raw)expect.soft(report.violations,report.name).toEqual([]);
+      26 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:23:530
+
+    Error: settings forward boundary wraps
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').first()
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - settings forward boundary wraps getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').first() with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').first()
+        14 × locator resolved to <button aria-label="읽기 메뉴 닫기">닫기</button>
+           - unexpected value "inactive"
+
+
+      21 |  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.focus();await trigger.press('Enter');const top=page.getByRole('group',{name:'읽기 메뉴',exact:true});await scan('top-menu',top);await expect(top.getByRole('button',{name:'읽기 설정',exact:true})).toBeFocused();await expect.soft(mirror.getByRole('button',{name:'다음 장면 선택',exact:true}),'choice blocked while top menu busy').toBeDisabled();await expect(mirror.getByRole('button',{name:'다음으로',exact:true})).toBeDisabled();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+      22 |  await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect.soft(top,'top menu closes when keyboard focus leaves').toHaveCount(0);await expect.soft(trigger,'Tab exit does not force trigger focus').not.toBeFocused();if(await top.count())await page.keyboard.press('Escape');
+    > 23 |  await expect.soft(page.getByRole('group',{name:'읽기 도구',exact:true})).toBeVisible();await trigger.focus();await trigger.press('Enter');await page.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await scan('settings',dialog);const enabled=dialog.locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)');await enabled.first().focus();await page.keyboard.press('Shift+Tab');await expect.soft(enabled.last(),'settings backward boundary wraps').toBeFocused();await enabled.last().focus();await page.keyboard.press('Tab');await expect.soft(enabled.first(),'settings forward boundary wraps').toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      24 |  if(width===390)await page.getByRole('button',{name:'읽기 도구 펼치기',exact:true}).click();for(const name of ['저장','불러오기','지난기록']){const button=page.getByRole('button',{name,exact:true});await button.click();const panel=page.getByRole('dialog',{name,exact:true});await scan(name,panel);if(name==='저장'){await panel.getByRole('button',{name:'1번 저장',exact:true}).click();await expect(panel.getByRole('status')).toContainText('1번에 저장했습니다.');await scan('filled-save-slot',panel);}if(name==='불러오기'){await panel.getByRole('button',{name:'1번 불러오기',exact:true}).click();const confirmation=page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(panel).toBeVisible();await expect.soft(panel.getByRole('button',{name:'1번 불러오기',exact:true}),'confirmation cancel restores original slot focus').toBeFocused();}await page.keyboard.press('Escape');await expect(button).toBeFocused();}
+      25 |  expect(await authored()).toEqual(baseline);await writeFile(info.outputPath('reader-summary.json'),JSON.stringify({width,scope:'Host protocol acknowledgement harness only; no native rendering or real screen-reader claim',scene,raw},null,2)+'\n');for(const report of raw)expect.soft(report.violations,report.name).toEqual([]);
+      26 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:23:675
+
+    Error: confirmation cancel restores original slot focus
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '불러오기', exact: true }).getByRole('button', { name: '1번 불러오기', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - confirmation cancel restores original slot focus getByRole('dialog', { name: '불러오기', exact: true }).getByRole('button', { name: '1번 불러오기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '불러오기', exact: true }).getByRole('button', { name: '1번 불러오기', exact: true })
+        14 × locator resolved to <button data-player-slot="1" aria-label="1번 불러오기" class="story-player-menu-module__VLhC_G__slot" aria-describedby="_r_0_-top-menu-slot-1-preview _r_0_-top-menu-slot-1-time _r_0_-top-menu-slot-1-summary">…</button>
+           - unexpected value "inactive"
+
+
+      22 |  await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect.soft(top,'top menu closes when keyboard focus leaves').toHaveCount(0);await expect.soft(trigger,'Tab exit does not force trigger focus').not.toBeFocused();if(await top.count())await page.keyboard.press('Escape');
+      23 |  await expect.soft(page.getByRole('group',{name:'읽기 도구',exact:true})).toBeVisible();await trigger.focus();await trigger.press('Enter');await page.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await scan('settings',dialog);const enabled=dialog.locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)');await enabled.first().focus();await page.keyboard.press('Shift+Tab');await expect.soft(enabled.last(),'settings backward boundary wraps').toBeFocused();await enabled.last().focus();await page.keyboard.press('Tab');await expect.soft(enabled.first(),'settings forward boundary wraps').toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+    > 24 |  if(width===390)await page.getByRole('button',{name:'읽기 도구 펼치기',exact:true}).click();for(const name of ['저장','불러오기','지난기록']){const button=page.getByRole('button',{name,exact:true});await button.click();const panel=page.getByRole('dialog',{name,exact:true});await scan(name,panel);if(name==='저장'){await panel.getByRole('button',{name:'1번 저장',exact:true}).click();await expect(panel.getByRole('status')).toContainText('1번에 저장했습니다.');await scan('filled-save-slot',panel);}if(name==='불러오기'){await panel.getByRole('button',{name:'1번 불러오기',exact:true}).click();const confirmation=page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(panel).toBeVisible();await expect.soft(panel.getByRole('button',{name:'1번 불러오기',exact:true}),'confirmation cancel restores original slot focus').toBeFocused();}await page.keyboard.press('Escape');await expect(button).toBeFocused();}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+      25 |  expect(await authored()).toEqual(baseline);await writeFile(info.outputPath('reader-summary.json'),JSON.stringify({width,scope:'Host protocol acknowledgement harness only; no native rendering or real screen-reader claim',scene,raw},null,2)+'\n');for(const report of raw)expect.soft(report.violations,report.name).toEqual([]);
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:24:902
+
+    Error Context: docs/architecture/evidence/accessibility-reader-2026-10-17/candidate-run/accessibility-reader-reade-547b2-al-keyboard-boundaries-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-reader-2026-10-17/candidate-run/accessibility-reader-reade-547b2-al-keyboard-boundaries-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-reader-2026-10-17/candidate-run/accessibility-reader-reade-547b2-al-keyboard-boundaries-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 390 
+
+    Error: settings backward boundary wraps
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').last()
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - settings backward boundary wraps getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').last() with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').last()
+        14 × locator resolved to <button aria-pressed="false">동작 줄이기 · 꺼짐</button>
+           - unexpected value "inactive"
+
+
+      21 |  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.focus();await trigger.press('Enter');const top=page.getByRole('group',{name:'읽기 메뉴',exact:true});await scan('top-menu',top);await expect(top.getByRole('button',{name:'읽기 설정',exact:true})).toBeFocused();await expect.soft(mirror.getByRole('button',{name:'다음 장면 선택',exact:true}),'choice blocked while top menu busy').toBeDisabled();await expect(mirror.getByRole('button',{name:'다음으로',exact:true})).toBeDisabled();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+      22 |  await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect.soft(top,'top menu closes when keyboard focus leaves').toHaveCount(0);await expect.soft(trigger,'Tab exit does not force trigger focus').not.toBeFocused();if(await top.count())await page.keyboard.press('Escape');
+    > 23 |  await expect.soft(page.getByRole('group',{name:'읽기 도구',exact:true})).toBeVisible();await trigger.focus();await trigger.press('Enter');await page.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await scan('settings',dialog);const enabled=dialog.locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)');await enabled.first().focus();await page.keyboard.press('Shift+Tab');await expect.soft(enabled.last(),'settings backward boundary wraps').toBeFocused();await enabled.last().focus();await page.keyboard.press('Tab');await expect.soft(enabled.first(),'settings forward boundary wraps').toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+      24 |  if(width===390)await page.getByRole('button',{name:'읽기 도구 펼치기',exact:true}).click();for(const name of ['저장','불러오기','지난기록']){const button=page.getByRole('button',{name,exact:true});await button.click();const panel=page.getByRole('dialog',{name,exact:true});await scan(name,panel);if(name==='저장'){await panel.getByRole('button',{name:'1번 저장',exact:true}).click();await expect(panel.getByRole('status')).toContainText('1번에 저장했습니다.');await scan('filled-save-slot',panel);}if(name==='불러오기'){await panel.getByRole('button',{name:'1번 불러오기',exact:true}).click();const confirmation=page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(panel).toBeVisible();await expect.soft(panel.getByRole('button',{name:'1번 불러오기',exact:true}),'confirmation cancel restores original slot focus').toBeFocused();}await page.keyboard.press('Escape');await expect(button).toBeFocused();}
+      25 |  expect(await authored()).toEqual(baseline);await writeFile(info.outputPath('reader-summary.json'),JSON.stringify({width,scope:'Host protocol acknowledgement harness only; no native rendering or real screen-reader claim',scene,raw},null,2)+'\n');for(const report of raw)expect.soft(report.violations,report.name).toEqual([]);
+      26 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:23:530
+
+    Error: settings forward boundary wraps
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').first()
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - settings forward boundary wraps getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').first() with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '읽기 설정', exact: true }).locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)').first()
+        14 × locator resolved to <button aria-label="읽기 메뉴 닫기">닫기</button>
+           - unexpected value "inactive"
+
+
+      21 |  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.focus();await trigger.press('Enter');const top=page.getByRole('group',{name:'읽기 메뉴',exact:true});await scan('top-menu',top);await expect(top.getByRole('button',{name:'읽기 설정',exact:true})).toBeFocused();await expect.soft(mirror.getByRole('button',{name:'다음 장면 선택',exact:true}),'choice blocked while top menu busy').toBeDisabled();await expect(mirror.getByRole('button',{name:'다음으로',exact:true})).toBeDisabled();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+      22 |  await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect.soft(top,'top menu closes when keyboard focus leaves').toHaveCount(0);await expect.soft(trigger,'Tab exit does not force trigger focus').not.toBeFocused();if(await top.count())await page.keyboard.press('Escape');
+    > 23 |  await expect.soft(page.getByRole('group',{name:'읽기 도구',exact:true})).toBeVisible();await trigger.focus();await trigger.press('Enter');await page.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await scan('settings',dialog);const enabled=dialog.locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)');await enabled.first().focus();await page.keyboard.press('Shift+Tab');await expect.soft(enabled.last(),'settings backward boundary wraps').toBeFocused();await enabled.last().focus();await page.keyboard.press('Tab');await expect.soft(enabled.first(),'settings forward boundary wraps').toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+      24 |  if(width===390)await page.getByRole('button',{name:'읽기 도구 펼치기',exact:true}).click();for(const name of ['저장','불러오기','지난기록']){const button=page.getByRole('button',{name,exact:true});await button.click();const panel=page.getByRole('dialog',{name,exact:true});await scan(name,panel);if(name==='저장'){await panel.getByRole('button',{name:'1번 저장',exact:true}).click();await expect(panel.getByRole('status')).toContainText('1번에 저장했습니다.');await scan('filled-save-slot',panel);}if(name==='불러오기'){await panel.getByRole('button',{name:'1번 불러오기',exact:true}).click();const confirmation=page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(panel).toBeVisible();await expect.soft(panel.getByRole('button',{name:'1번 불러오기',exact:true}),'confirmation cancel restores original slot focus').toBeFocused();}await page.keyboard.press('Escape');await expect(button).toBeFocused();}
+      25 |  expect(await authored()).toEqual(baseline);await writeFile(info.outputPath('reader-summary.json'),JSON.stringify({width,scope:'Host protocol acknowledgement harness only; no native rendering or real screen-reader claim',scene,raw},null,2)+'\n');for(const report of raw)expect.soft(report.violations,report.name).toEqual([]);
+      26 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:23:675
+
+    Error: confirmation cancel restores original slot focus
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('dialog', { name: '불러오기', exact: true }).getByRole('button', { name: '1번 불러오기', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - confirmation cancel restores original slot focus getByRole('dialog', { name: '불러오기', exact: true }).getByRole('button', { name: '1번 불러오기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '불러오기', exact: true }).getByRole('button', { name: '1번 불러오기', exact: true })
+        14 × locator resolved to <button data-player-slot="1" aria-label="1번 불러오기" class="story-player-menu-module__VLhC_G__slot" aria-describedby="_r_0_-top-menu-slot-1-preview _r_0_-top-menu-slot-1-time _r_0_-top-menu-slot-1-summary">…</button>
+           - unexpected value "inactive"
+
+
+      22 |  await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect.soft(top,'top menu closes when keyboard focus leaves').toHaveCount(0);await expect.soft(trigger,'Tab exit does not force trigger focus').not.toBeFocused();if(await top.count())await page.keyboard.press('Escape');
+      23 |  await expect.soft(page.getByRole('group',{name:'읽기 도구',exact:true})).toBeVisible();await trigger.focus();await trigger.press('Enter');await page.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await scan('settings',dialog);const enabled=dialog.locator('button:not(:disabled),select:not(:disabled),input:not(:disabled)');await enabled.first().focus();await page.keyboard.press('Shift+Tab');await expect.soft(enabled.last(),'settings backward boundary wraps').toBeFocused();await enabled.last().focus();await page.keyboard.press('Tab');await expect.soft(enabled.first(),'settings forward boundary wraps').toBeFocused();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+    > 24 |  if(width===390)await page.getByRole('button',{name:'읽기 도구 펼치기',exact:true}).click();for(const name of ['저장','불러오기','지난기록']){const button=page.getByRole('button',{name,exact:true});await button.click();const panel=page.getByRole('dialog',{name,exact:true});await scan(name,panel);if(name==='저장'){await panel.getByRole('button',{name:'1번 저장',exact:true}).click();await expect(panel.getByRole('status')).toContainText('1번에 저장했습니다.');await scan('filled-save-slot',panel);}if(name==='불러오기'){await panel.getByRole('button',{name:'1번 불러오기',exact:true}).click();const confirmation=page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(panel).toBeVisible();await expect.soft(panel.getByRole('button',{name:'1번 불러오기',exact:true}),'confirmation cancel restores original slot focus').toBeFocused();}await page.keyboard.press('Escape');await expect(button).toBeFocused();}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+      25 |  expect(await authored()).toEqual(baseline);await writeFile(info.outputPath('reader-summary.json'),JSON.stringify({width,scope:'Host protocol acknowledgement harness only; no native rendering or real screen-reader claim',scene,raw},null,2)+'\n');for(const report of raw)expect.soft(report.violations,report.name).toEqual([]);
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader.spec.ts:24:902
+
+    Error Context: docs/architecture/evidence/accessibility-reader-2026-10-17/candidate-run/accessibility-reader-reade-09844-dal-keyboard-boundaries-390-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-reader-2026-10-17/candidate-run/accessibility-reader-reade-09844-dal-keyboard-boundaries-390-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-reader-2026-10-17/candidate-run/accessibility-reader-reade-09844-dal-keyboard-boundaries-390-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 1440 
+    [host] › tests/e2e/accessibility-reader.spec.ts:8:31 › reader semantic mirrors and modal keyboard boundaries 390 

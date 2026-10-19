@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/storage/snapshot-projection.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/storage/snapshot-projection.test.ts [ server/storage/snapshot-projection.test.ts ]
+Error: Cannot find module './snapshot-projection' imported from /Users/wan/ai_dev/apps/new-knolstory/server/storage/snapshot-projection.test.ts
+ ❯ server/storage/snapshot-projection.test.ts:6:1
+      4| import {createAuthoringArchive,prepareJsonbSnapshot,type AuthoringAudi…
+      5| import {newShortStory} from '../../packages/compatibility/src/shortsto…
+      6| import {projectSnapshot,restoreProjectedSnapshot} from './snapshot-pro…
+       | ^
+      7|
+      8| async function resource(variant=0):Promise<AuthoringAudioResource> {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  23:46:21
+   Duration  250ms (transform 89ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,33 @@
+127.0.0.1 - - [16/Oct/2026 19:16:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2026 19:16:27] "GET /shortstory HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2026 19:16:27] code 404, message Not Found
+127.0.0.1 - - [16/Oct/2026 19:16:27] "GET /shortstory/ HTTP/1.1" 404 -
+E127.0.0.1 - - [16/Oct/2026 19:16:28] code 409, message Restored file integrity mismatch.
+127.0.0.1 - - [16/Oct/2026 19:16:28] "GET / HTTP/1.1" 409 -
+.127.0.0.1 - - [16/Oct/2026 19:16:28] code 409, message Restored file integrity mismatch.
+127.0.0.1 - - [16/Oct/2026 19:16:28] "GET / HTTP/1.1" 409 -
+.
+======================================================================
+ERROR: test_only_verified_files_receive_provenance_headers (serve_static_restore_test.RestorePreviewTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/server/operations/serve_static_restore_test.py", line 38, in test_only_verified_files_receive_provenance_headers
+    with urllib.request.urlopen(self.origin + route) as response:
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 214, in urlopen
+    return opener.open(url, data, timeout)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 523, in open
+    response = meth(req, response)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 632, in http_response
+    response = self.parent.error(
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 561, in error
+    return self._call_chain(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 494, in _call_chain
+    result = func(*args)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/urllib/request.py", line 641, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.545s
+
+FAILED (errors=1)

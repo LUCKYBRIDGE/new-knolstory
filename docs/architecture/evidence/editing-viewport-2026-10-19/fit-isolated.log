@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:53000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:223:73 › editor chrome fits 360x640 while only cut list scrolls (2.6s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:223:73 › editor chrome fits 640x360 while only cut list scrolls (2.3s)
+  ✓  3 tests/e2e/editing-workbench.spec.ts:223:73 › editor chrome fits 768x1024 while only cut list scrolls (2.3s)
+  ✓  4 tests/e2e/editing-workbench.spec.ts:223:73 › editor chrome fits 1280x720 while only cut list scrolls (2.3s)
+
+  4 passed (10.0s)

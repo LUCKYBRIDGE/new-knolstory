@@ -1,0 +1,37 @@
+
+Running 1 test using 1 worker
+
+(node:38474) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440 (5.9s)
+
+
+  1) [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('button', { name: '작품 준비', exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('button', { name: '작품 준비', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '작품 준비', exact: true })
+        13 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      1 | import {test,expect} from '@playwright/test';
+      2 | for(const width of [1440,768,390,844])test(`work menu opens purpose-specific settings and returns to current text ${width}`,async({page},info)=>{
+    > 3 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const id=await page.getByLabel('현재 장과 컷 이동').inputValue(),text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await expect(page.getByRole('button',{name:'작품 준비',exact:true})).toHaveCount(0);const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await expect(menu.locator(':scope>summary')).toHaveText('작품');await expect(menu.getByLabel('작품 선택',{exact:true})).toHaveCount(0);await expect(menu.getByText('숏스토리',{exact:true})).toHaveCount(0);
+        |                                                                                                                                                                                                                                                                                                                                                                               ^
+      4 |  await menu.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByLabel('작품 제목',{exact:true})).toBeFocused();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeHidden();await expect(page.getByLabel('메모 검색',{exact:true})).toBeHidden();await page.getByLabel('작품 소개',{exact:true}).fill('같은 원고를 유지하며 작품 정보를 수정합니다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(id);await expect(text).toHaveValue(original);
+      5 |  await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toBeFocused();await expect(page.getByLabel('작품 제목',{exact:true})).toBeHidden();await page.getByLabel('핵심 아이디어',{exact:true}).fill('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionstart');await expect(page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true})).toBeDisabled();await expect(page.getByLabel('작품 설정 항목')).toBeDisabled();await page.getByLabel('핵심 아이디어',{exact:true}).dispatchEvent('compositionend');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await expect(text).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await menu.locator(':scope>summary').click();await menu.getByRole('button',{name:'이야기 기획',exact:true}).click();await expect(page.getByLabel('핵심 아이디어',{exact:true})).toHaveValue('서로 다른 생각을 가진 인물이 약속을 지킨다.');await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await menu.locator(':scope>summary').click();const download=page.waitForEvent('download');await menu.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await download;expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`work-menu-${width}.png`),fullPage:true});
+      6 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-actions.spec.ts:3:367
+
+    Error Context: test-results/work-actions-work-menu-ope-aaac9-eturns-to-current-text-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440 

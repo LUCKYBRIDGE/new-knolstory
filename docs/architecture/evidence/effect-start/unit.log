@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/effect-start.test.ts (2 tests | 1 failed) 13ms
+   × moves exactly one cue, keeps its end and all unrelated authoring, then undoes around later text edits 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/effect-start.test.ts > moves exactly one cue, keeps its end and all unrelated authoring, then undoes around later text edits
+Error: Invalid presentation.
+ ❯ packages/story-domain/src/legacy/story-presentation.ts:49:90
+     47|     const {effect, ...rest} = legacy;
+     48|     if(effect !== undefined && !isStorySceneEffect(effect)) throw new …
+     49|     if(line.presentation !== undefined && !isStoryPresentation(line.pr…
+       |                                                                                          ^
+     50|     if(effect !== undefined && line.presentation !== undefined) throw …
+     51|     const p = line.presentation ?? migrateLegacyPresentation(effect);
+ ❯ canonicalizeProjectPresentation packages/story-domain/src/legacy/story-presentation.ts:45:44
+ ❯ createStoryDocument packages/story-domain/src/legacy/story-project-document.ts:84:39
+ ❯ validated packages/runtime-core/src/effect-start.ts:5:74
+ ❯ moveStoryEffectStart packages/runtime-core/src/effect-start.ts:16:13
+ ❯ packages/runtime-core/tests/effect-start.test.ts:6:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  18:31:09
+   Duration  769ms (transform 454ms, setup 0ms, import 658ms, tests 13ms, environment 0ms)
+

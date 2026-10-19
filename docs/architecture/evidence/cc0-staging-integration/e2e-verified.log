@@ -1,0 +1,191 @@
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET / HTTP/1.1" 200 -
+
+Running 4 tests using 1 worker
+
+(node:82107) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/1-udlyp1h51ss.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:47] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/1-udlyp1h51ss.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:24:56] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:02] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback (15.8s)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/1-udlyp1h51ss.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:03] "GET /runtime/game.zip HTTP/1.1" 200 -
+  ✓  2 [host] › tests/e2e/staged-audio.spec.ts:22:1 › source name search resolves the existing forest recording without duplicate choices (2.0s)
+(node:82144) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/1-udlyp1h51ss.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:05] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/0-eadp9g-z4gn.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/0y5vuyfzledi_.css HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/1-udlyp1h51ss.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/019qdk1ik1_v6.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:14] "GET /_next/static/chunks/2eodmmdazv1yg.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:20] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:22] "GET /assets/audio/cc0/oga-tension/v1/komiku-it-s-time-for-adventure-vol-2-12-tension-0.mp3 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:22] "GET /assets/audio/cc0/oga-park/v1/park-ambience-river.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:22] "GET /assets/audio/cc0/kenney-impact/v1/footstep-carpet-001.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:23] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:23] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:23] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:23] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:23] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:25:23] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [13/Oct/2026 19:28:27] "GET / HTTP/1.1" 200 -
+  ✘  3 [stories-runtime] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback (4.0m)
+(node:82653) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  4 [stories-runtime] › tests/e2e/staged-audio.spec.ts:22:1 › source name search resolves the existing forest recording without duplicate choices
+
+
+  1) [stories-runtime] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback 
+
+    Test timeout of 240000ms exceeded.
+
+    Error: locator.click: Test timeout of 240000ms exceeded.
+    Call log:
+      - waiting for locator('iframe').contentFrame().locator('canvas').first()
+        - locator resolved to <canvas id="canvas" width="1280" height="720" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - performing click action
+          - <div id="overlayDiv"></div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - performing click action
+          - <div id="overlayDiv"></div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        408 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - performing click action
+            - <div id="overlayDiv"></div> intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+
+
+      16 |  const saved=await exportWork(page),after=saved.archive.document.project;expect(saved.archive.audioResources).toEqual([]);expect(after.lines.filter((line:{id:string})=>line.id!==current)).toEqual(before.lines.filter((line:{id:string})=>line.id!==current));const old=before.lines.find((line:{id:string})=>line.id===current),cut=after.lines.find((line:{id:string})=>line.id===current);expect({...cut,audio:old.audio}).toEqual(old);expect(cut.audio).toMatchObject({music:{assetId:music,loop:false},ambience:{assetId:ambience,loop:false},sounds:[{assetId:sound}]});
+      17 |  const file=info.outputPath('staged-reference.knolstory');await saved.download.saveAs(file);await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file);await confirmAuthoringImport(page);await page.reload();const reopened=(await exportWork(page)).archive;expect(reopened.document.project).toEqual({...after,id:reopened.document.project.id});expect(reopened.audioResources).toEqual([]);
+    > 18 |  if(native){await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await ready(page);await page.frameLocator('iframe').locator('canvas').first().click();const state=page.getByTestId('story-runtime-status');await expect.poll(()=>state.getAttribute('data-audio-unlocked')).toBe('true');await expect(state).toHaveAttribute('data-music-path',catalog.find(asset=>asset.id===music)!.runtimePath);await expect(state).toHaveAttribute('data-ambience-path',catalog.find(asset=>asset.id===ambience)!.runtimePath);await expect.poll(()=>state.getAttribute('data-sound-play-count')).toBe('1');await page.screenshot({path:info.outputPath('native-shared-channels.png'),fullPage:true});await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(current);}
+         |                                                                                                                                                               ^
+      19 |  expect(requested.size).toBeLessThanOrEqual(3);if(native)expect(requested.size).toBeGreaterThan(0);expect((await exportWork(page)).archive.document.project).toEqual(reopened.document.project);
+      20 | });
+      21 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/staged-audio.spec.ts:18:159
+
+    Error Context: test-results-staged-audio/staged-audio-staged-shared-f9fe8-gh-file-and-native-playback-stories-runtime/error-context.md
+
+  1 failed
+    [stories-runtime] › tests/e2e/staged-audio.spec.ts:10:1 › staged shared music ambience and effects preserve references through file and native playback 
+  1 skipped
+  2 passed (4.3m)

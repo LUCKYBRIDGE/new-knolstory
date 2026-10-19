@@ -70,3 +70,7 @@ it('restores independent ambience from the actual visited path without changing 
  const loaded=parseStoryDocument(serializeStoryDocument(doc));expect(loaded.ok).toBe(true);if(loaded.ok)expect(loaded.document.project).toEqual(next);
  for(const ambience of [null,{action:'play',assetId:''},{action:'play',assetId:'sound',volume:2}])expect(parseStoryDocument({...doc,project:{...next,chapters:[{...next.chapters[0],audio:{ambience}}]}}).ok).toBe(false);
 });
+it('bounds chapter defaults from the actual entry, includes the ending cut and reapplies after chapter reentry',()=>{
+ const p=project(),[a,b,c]=p.lines;const first=p.chapters[0];const away={...first,id:'away-range',order:99};const next={...p,chapters:[{...first,audio:{music:{action:'play' as const,assetId:'music',endLineId:b.id},ambience:{action:'play' as const,assetId:'sound',endLineId:b.id}}},away],lines:[{...a,audio:undefined},{...b,audio:undefined},{...c,audio:undefined},{...c,id:'away-cut',chapterId:away.id,audio:undefined}]};
+ expect(compileStoryAudio(next,b.id,resolve,[b.id])).toMatchObject({music:{action:'play'},ambience:{action:'play'}});expect(compileStoryAudio(next,c.id,resolve,[b.id,c.id])).toMatchObject({music:{action:'stop'},ambience:{action:'stop'}});expect(compileStoryAudio(next,c.id,resolve,[a.id,c.id])).toMatchObject({music:{action:'play'},ambience:{action:'play'}});expect(compileStoryAudio(next,a.id,resolve,[a.id,b.id,c.id,'away-cut',a.id])).toMatchObject({music:{action:'play'},ambience:{action:'play'}});
+});

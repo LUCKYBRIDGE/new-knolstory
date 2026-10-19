@@ -1,0 +1,37 @@
+
+Running 1 test using 1 worker
+
+(node:78413) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/shortstory-online.spec.ts:46:1 › ShortStory session recheck retries the exact pending save with renewed csrf and preserves the book (45.1s)
+
+
+  1) tests/e2e/shortstory-online.spec.ts:46:1 › ShortStory session recheck retries the exact pending save with renewed csrf and preserves the book 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '온라인 작품', exact: true }).getByRole('button', { name: '로그인 상태 다시 확인', exact: true })
+
+
+      49 |  await page.route('**/api/v1/documents',route=>{if(route.request().method()!=='POST')return route.fallback();const body=route.request().postDataJSON();requests.push({key:route.request().headers()['idempotency-key'],body,csrf:route.request().headers()['x-csrf-token']});return route.fulfill(renewed?{json:{success:true,data:{recordId,revision:1,contentSha256:body.snapshot.contentSha256,replayed:false}}}:{status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});});
+      50 |  await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('다시 로그인해도 남는 그림책');await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();const before=await local(page);await panel.getByLabel('온라인에 보관할 기기 작품',{exact:true}).selectOption(`shortstory:${before.activeId}`);await panel.getByRole('button',{name:'선택한 작품 온라인에 보관',exact:true}).click();await expect(panel.getByRole('alert')).toContainText('로그인을 다시 확인');
+    > 51 |  renewed=true;await panel.getByRole('button',{name:'로그인 상태 다시 확인',exact:true}).click();await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();await panel.getByRole('button',{name:'선택한 작품 온라인에 보관',exact:true}).click();await expect(panel.getByRole('status')).toContainText('보관했어요');expect(requests).toHaveLength(2);expect(requests[1]!.key).toBe(requests[0]!.key);expect(requests[1]!.body).toEqual(requests[0]!.body);expect(requests.map(item=>item.csrf)).toEqual(['expired-csrf','renewed-csrf']);expect((await local(page)).books).toEqual(before.books);
+         |                                                                                ^
+      52 | });
+      53 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/shortstory-online.spec.ts:51:80
+
+    Error Context: test-results/shortstory-online/shortstory-online-ShortSto-07bb1-csrf-and-preserves-the-book/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/shortstory-online/shortstory-online-ShortSto-07bb1-csrf-and-preserves-the-book/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/shortstory-online/shortstory-online-ShortSto-07bb1-csrf-and-preserves-the-book/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/shortstory-online.spec.ts:46:1 › ShortStory session recheck retries the exact pending save with renewed csrf and preserves the book 

@@ -1,0 +1,30 @@
+
+Running 23 tests using 1 worker
+
+(node:34152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/online-works.spec.ts:22:31 › explicit online new save and independent copy preserve local originals 1440 (3.9s)
+  ✓   2 tests/e2e/online-works.spec.ts:22:31 › explicit online new save and independent copy preserve local originals 390 (3.7s)
+  ✓   3 tests/e2e/online-works.spec.ts:28:1 › late online read never replaces a newly edited local work (2.2s)
+  ✓   4 tests/e2e/online-works.spec.ts:34:1 › local save failure prevents an online POST and preserves the original work (2.1s)
+  ✓   5 tests/e2e/online-works.spec.ts:39:1 › a response-lost create retries the exact request after reload without duplicating work (5.4s)
+  ✓   6 tests/e2e/online-works.spec.ts:45:1 › logout invalidates an in-flight online read before any local copy is applied (2.3s)
+  ✓   7 tests/e2e/online-works.spec.ts:52:1 › revision conflicts keep the local original and offer comparison without force overwrite (2.5s)
+  ✓   8 tests/e2e/online-works.spec.ts:56:1 › deleting a local work while online copy validation awaits preserves the deletion checkpoint (4.4s)
+  ✓   9 tests/e2e/online-works.spec.ts:64:1 › switching accounts hides the previous owner online titles until the new list is requested (931ms)
+  ✓  10 tests/e2e/online-works.spec.ts:72:1 › deleting the selected local work during online save preparation sends no request (4.3s)
+  ✓  11 tests/e2e/online-works.spec.ts:82:1 › stale account expectation rejects an online list without changing device manuscripts (2.0s)
+  ✓  12 tests/e2e/online-works.spec.ts:89:1 › account menu session recheck recovers the online panel after initial service failure (2.3s)
+  ✓  13 tests/e2e/online-works.spec.ts:98:41 › online recheck during delayed logout cannot retain a revoked session success (1.8s)
+  ✓  14 tests/e2e/online-works.spec.ts:98:41 › online recheck during delayed logout cannot retain a revoked session response failure (1.8s)
+  ✓  15 tests/e2e/online-works.spec.ts:104:1 › logout completion updates newly mounted menus after leaving and returning to the library (2.6s)
+  ✓  16 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 1440 (655ms)
+  ✓  17 tests/e2e/shortstory-online.spec.ts:19:31 › ShortStory explicit online create, independent copy and bound update preserve whole books 390 (623ms)
+  ✓  18 tests/e2e/shortstory-online.spec.ts:25:1 › ShortStory composition, cover drafts and failed local storage block online writes (908ms)
+  ✓  19 tests/e2e/shortstory-online.spec.ts:31:1 › ShortStory delayed online validation cannot revive a deleted book or replace its checkpoint (629ms)
+  ✓  20 tests/e2e/shortstory-online.spec.ts:36:1 › ShortStory login callback returns to the active book and page without writing KnolStory storage (1.0s)
+  ✓  21 tests/e2e/shortstory-online.spec.ts:39:1 › ShortStory login returns to reading mode as well as the stored page (991ms)
+  ✓  22 tests/e2e/shortstory-online.spec.ts:42:1 › ShortStory edits during an in-flight save remain local and require a further save (423ms)
+  ✓  23 tests/e2e/shortstory-online.spec.ts:46:1 › ShortStory session recheck retries the exact pending save with renewed csrf and preserves the book (539ms)
+
+  23 passed (48.7s)

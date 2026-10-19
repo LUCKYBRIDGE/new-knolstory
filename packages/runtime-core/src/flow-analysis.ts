@@ -6,6 +6,8 @@ export type FlowEdge = Readonly<{
   sourceLineId: string;
   targetLineId: string | null;
   choiceId?: string;
+  routeId?: string;
+  conditional?: boolean;
   label: string;
   kind: FlowKind;
   status: 'connected' | 'pending' | 'ending' | 'missing';
@@ -39,7 +41,7 @@ export type StoryFlowGraph = Readonly<{
 function lineKind(line: StoryLine, targets: readonly (string | null)[]): FlowKind {
   if (line.ending?.endsStory) return 'ending';
   if (line.flow?.type === 'choice') return 'choice';
-  if (targets[0] === null) return 'ending';
+  if (targets.every(target=>target===null)) return 'ending';
   if (line.flow) return line.flow.type;
   return 'linear';
 }
@@ -47,14 +49,16 @@ function lineKind(line: StoryLine, targets: readonly (string | null)[]): FlowKin
 function createEdges(line: StoryLine, targets: readonly (string | null)[], ids: ReadonlySet<string>): FlowEdge[] {
   const kind = lineKind(line, targets);
   return targets.map((target, index) => {
+    const route = line.flow?.type==='goto' ? line.flow.routes?.[index] : undefined;
     const option = kind === 'choice' && line.flow?.type === 'choice' ? line.flow.options[index] : undefined;
     const status = target === null ? 'ending' : target === '' ? 'pending' : ids.has(target) ? 'connected' : 'missing';
     return {
       id: JSON.stringify([line.id, index]), sourceLineId: line.id,
       // Invalid targets never participate in graph traversal; preserve strings for repair UI.
       targetLineId: typeof target === 'string' || target === null ? target : null,
-      ...(option ? { choiceId: option.id } : {}),
-      label: option ? option.label.trim() ? option.label : `선택 ${index + 1}`
+      ...(option ? { choiceId: option.id, ...(option.condition?{conditional:true}:{}) } : {}),
+      ...(route?{routeId:route.id,conditional:true}:{}),
+      label: route ? `점수 조건 ${index+1}` : line.flow?.type==='goto'&&line.flow.routes?.length ? '기본 경로 (조건 불일치)' : option ? option.label.trim() ? option.label : `선택 ${index + 1}`
         : status === 'ending' ? '이야기 끝' : kind === 'goto' ? '도착 컷' : '다음 컷',
       kind, status,
     };

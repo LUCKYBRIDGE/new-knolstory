@@ -1,0 +1,25 @@
+Browser tab: 15245377, Title: "놀스토리 · 반응형 편집 실험", URL: "http://127.0.0.1:15401/".
+0 AXWebArea 놀스토리 · 반응형 편집 실험, URL: 127.0.0.1:15401/
+	1 container 이야기 무대
+		2 container
+			3 container Ren’Py 이야기 무대
+				4 AXWebArea KnolStory Responsive Spike, URL: 127.0.0.1:15401/runtime/index.html
+					5 container
+						6 image canvas
+			7 container 읽기 도구
+				8 button (collapsed) Description: 읽기 메뉴, Secondary Actions: Expand
+				9 container
+					10 button 지난기록
+					11 button 빠른 저장
+					12 button 설정
+			13 text 6장 · 선택 1-A 반응
+		14 container
+			15 button (expanded) 대사·해설 텍스트 보기, Secondary Actions: Collapse
+				16 text 대사·해설 텍스트 보기
+			17 text 장면에 표시된 글을 읽거나 복사할 수 있어요.
+			18 text 나무꾼
+			19 text “가까이 가지 않겠소.”
+			21 button 이전 읽은 컷
+			20 button 다음으로
+
+The focused UI element is 0 AXWebArea 놀스토리 · 반응형 편집 실험, URL: 127.0.0.1:15401/

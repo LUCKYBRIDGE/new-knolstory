@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:45661) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 320 (1.5s)
+  ✓  2 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 390 (1.2s)
+  ✓  3 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 1280 (1.1s)
+  ✓  4 tests/e2e/account-popup-dismiss.spec.ts:22:1 › signed-in account and online popup actions remain usable after outside-dismiss changes (1.2s)
+  ✓  5 tests/e2e/shortstory-menu-contrast.spec.ts:3:31 › ShortStory account and online popup text retains contrast against parent styles 390 (1.4s)
+  ✓  6 tests/e2e/shortstory-menu-contrast.spec.ts:3:31 › ShortStory account and online popup text retains contrast against parent styles 1280 (1.3s)
+
+  6 passed (8.3s)

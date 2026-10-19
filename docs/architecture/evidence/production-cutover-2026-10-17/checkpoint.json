@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-17",
+  "authorization": "Explicit user request to switch final domain",
+  "publicOrigin": "https://story.knolquiz.com",
+  "cloudflare": {
+    "dnsBefore": "story-maker-5b1.pages.dev",
+    "dnsAfter": "a5a75f65-c72d-49e4-bda2-ecc1b4ef8eab.cfargotunnel.com",
+    "proxied": true,
+    "tunnelRoute": "story.knolquiz.com -> http://127.0.0.1:15501",
+    "legacyPagesCustomDomainDetached": "story.knolquiz.com only",
+    "legacyPagesStagingDomainPreserved": true,
+    "sshAndLegacyOriginRoutesPreserved": true
+  },
+  "actualChrome": {
+    "finalDomainKakaoCallbackSuccess": true,
+    "existingOnlineDocumentListed": true,
+    "documentOpenedAsIndependentCopy": true,
+    "validationManuscriptMatched": true,
+    "nativeSceneRendered": true,
+    "nativeAudioGateEnterAccepted": true,
+    "nativeNextCutViaVisibleCanvasIndicator": 2,
+    "returnToEditAtCut2Matched": true,
+    "logoutConfirmed": true,
+    "reloginViaFreshAuthStartTabSuccess": true,
+    "multiTabStorageGuardPreserved": true
+  },
+  "alias": {
+    "from": "https://story-next.knolquiz.com",
+    "status": 308,
+    "to": "https://story.knolquiz.com/",
+    "writesRejected": true
+  },
+  "review": {
+    "found": "P2 staging rollback rejected empty alias env",
+    "fixed": "Empty optional env now treated absent; regression passed and fixed image deployed",
+    "focusedTests": "ingress9 + compose5 passed, per-module coverage80 thresholds"
+  },
+  "activeImages": [
+    "/knolstory-next-production-api-1 sha256:ca232540469ca7731f353f3797c5bba3ef9632362e30b7fc37fff450b0448bac",
+    "/knolstory-next-production-ingress-1 sha256:ba9b17409be7c3228396c891cf223b2f42da470584b4ec8583572ddcb7e2d511"
+  ],
+  "limits": [
+    "Legacy server/DB/backup deletion not performed",
+    "One Mac Chrome real account; no physical multi-device verification",
+    "Canvas next indicator progressed; DOM-only automation clicks did not establish progression",
+    "No claim of full product release or Google/class/sharing completion",
+    "Final-origin update write not separately exercised; staging create and final-origin read proven"
+  ]
+}

@@ -1,0 +1,11 @@
+
+Running 2 tests using 1 worker
+
+(node:22746) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] [host] › tests/e2e/composition-intent.spec.ts:109:1 › composition authoring separates body scale, center, original facing and actor exits through files
+[2/2] [host] › tests/e2e/composition-intent.spec.ts:136:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes
+  1 skipped
+  1 passed (10.0s)

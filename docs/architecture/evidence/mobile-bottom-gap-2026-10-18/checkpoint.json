@@ -1,0 +1,51 @@
+{
+  "status": "Corrected mockup of existing folded-tool layout; sentence pagination candidate remains unshipped",
+  "beforeExpandedPortraitReserve": 70,
+  "afterFoldedReserve": 8,
+  "expandedPortraitReserveStillRequired": 70,
+  "rejectedAttempt": "40px expanded reserve rejected because real portrait quickbar is58px high; code change reverted",
+  "nativeChecks": [
+    {
+      "format": "portrait",
+      "who": "child",
+      "textboxMovedDownPx": 62.00000000000005,
+      "actorsUnchanged": true
+    },
+    {
+      "format": "portrait",
+      "who": "adult",
+      "textboxMovedDownPx": 62.00000000000005,
+      "actorsUnchanged": true
+    },
+    {
+      "format": "portrait",
+      "who": "narration",
+      "textboxMovedDownPx": 62.00000000000005,
+      "actorsUnchanged": true
+    },
+    {
+      "format": "landscape",
+      "who": "child",
+      "textboxMovedDownPx": 32.000000000000036,
+      "actorsUnchanged": true
+    },
+    {
+      "format": "landscape",
+      "who": "adult",
+      "textboxMovedDownPx": 32.000000000000036,
+      "actorsUnchanged": true
+    },
+    {
+      "format": "landscape",
+      "who": "narration",
+      "textboxMovedDownPx": 32.000000000000036,
+      "actorsUnchanged": true
+    }
+  ],
+  "runtimeSourceChangeForGap": false,
+  "actualApplicationDefault": "readerExpanded=false; compact dialogueDock bottomInset0 +safe8",
+  "limits": [
+    "Native stage capture excludes Web read controls",
+    "No physical phone safe-area verification"
+  ]
+}

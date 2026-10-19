@@ -1,0 +1,39 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/seconds-external-roundtrip.test.ts (3 tests | 1 failed) 655ms
+   × actual excel decimal second edits preserve all unrelated fields and JSONB 95ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/seconds-external-roundtrip.test.ts > actual excel decimal second edits preserve all unrelated fields and JSONB
+AssertionError: expected { format: 'knolstory', …(3) } to deeply equal { format: 'knolstory', …(3) }
+
+- Expected
++ Received
+
+@@ -596,11 +596,11 @@
+                  "depthOverride": 3,
+                  "facing": "original",
+                  "key": "hero-left",
+                  "motion": {
+                    "delayMs": 50,
+-                   "durationMs": 450,
++                   "durationMs": 300,
+                    "fromXAnchor": 20,
+                    "type": "move",
+                  },
+                  "placementPreset": "single-left",
+                  "position": "center",
+
+ ❯ packages/compatibility/tests/seconds-external-roundtrip.test.ts:16:134
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  11:35:38
+   Duration  1.44s (transform 476ms, setup 0ms, import 683ms, tests 655ms, environment 0ms)
+

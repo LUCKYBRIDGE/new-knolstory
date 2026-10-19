@@ -11,7 +11,20 @@ export function tablePayload(format: string, value: unknown): string[][] {
   const chunks:string[][]=[];for(let start=0;start<payload.length;){let end=Math.min(payload.length,start+TABLE_CELL_LIMIT-5);if(end<payload.length&&/[\uD800-\uDBFF]/.test(payload[end-1]))end--;chunks.push(['payload',String(chunks.length),'json:'+payload.slice(start,end),'json-prefix-v1']);start=end;}
   return [['knolstory-next-table','1',format],HEADER,...chunks];
 }
-export function readTablePayload(rows: readonly (readonly string[])[], format: string): unknown {
+/** Resolve names before applying a v1 projection; never reinterpret moved columns by position. */
+export function normalizeTableRows(input:readonly(readonly string[])[]):string[][] {
+ const header=input[1];
+ if(!header||header.length!==HEADER.length||new Set(header).size!==HEADER.length||header.some(name=>!HEADER.includes(name)))throw new Error('표 헤더의 열 이름·중복·누락을 확인해 주세요.');
+ const indexes=HEADER.map(name=>header.indexOf(name));
+ return input.map((row,index)=>{
+  if(index===0)return [...row];
+  if(index===1)return [...HEADER];
+  if(row.slice(header.length).some(value=>value!==''))throw new Error(`${index+1}행에 지원하지 않는 추가 열의 셀이 있습니다.`);
+  return indexes.map(column=>row[column]??'');
+ });
+}
+export function readTablePayload(input: readonly (readonly string[])[], format: string): unknown {
+  const rows=normalizeTableRows(input);
   if (rows[0]?.[0] !== 'knolstory-next-table' || rows[0][1] !== '1' || rows[0][2] !== format) throw new Error('지원하는 Next 표 형식과 버전을 확인해 주세요.');
   if (JSON.stringify(rows).length > TABLE_MAX_BYTES * 2) throw new Error('표 자료가 너무 큽니다.');
   if(rows.slice(2).some(row=>row.length&& !['payload','project','chapter','cut','page'].includes(row[0])))throw new Error('지원하지 않는 표 행이 있습니다. 내용을 버리지 않고 가져오기를 중단했어요.');
@@ -45,7 +58,10 @@ function uniqueRows(rows: readonly (readonly string[])[], kind: string) {
   if (selected.some(row => !row[1]?.trim()) || new Set(selected.map(row => row[1])).size !== selected.length) throw new Error('장과 컷 ID는 비어 있거나 중복될 수 없어요.');
   return selected;
 }
-export function importStoryTable(rows: readonly (readonly string[])[]): StoryTableArchive {
+export function importStoryTable(input: readonly (readonly string[])[]): StoryTableArchive {
+  const rows=normalizeTableRows(input);
+  const allowed:Record<string,number[]>={project:[0,1,4,6],chapter:[0,1,3,4,6,7,8,9,13,16,17],cut:Array.from({length:16},(_,i)=>i),payload:[0,1,2,3]};
+  for(const [i,row] of rows.slice(2).entries()){if(!row.some(Boolean))continue;const columns=allowed[row[0]];if(!columns||row.some((value,index)=>value!==''&&!columns.includes(index)))throw new Error(`${i+3}행에 지원하지 않는 행·열·셀이 있습니다.`);}
   const raw = readTablePayload(rows, 'knolstory') as StoryTableArchive;
   const loaded = parseStoryDocument(raw?.document);
   if (!loaded.ok || !Array.isArray(raw.audioResources)) throw new Error('표 안의 작품 보존 자료가 올바르지 않아요.');

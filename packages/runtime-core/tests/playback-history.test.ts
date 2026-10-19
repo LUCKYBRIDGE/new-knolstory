@@ -10,3 +10,24 @@ describe('actual playback history',()=>{
  it('keeps end-choice label and does not invent ambiguous legacy labels',()=>{const p=story();p.lines[0]={...p.lines[0],flow:{type:'choice',options:[{id:'end',label:'여기서 끝',targetLineId:null}]}};const end=advancePlayback(p,createPlayback(p),'end');expect(playbackLog(p,end)[0].choiceLabel).toBe('여기서 끝');expect(restorePlayback(p,end).status).toBe('ended');const legacy=story();expect(playbackLog(legacy,{lineId:'b',path:['a','b'],status:'reading'})[0].choiceLabel).toBe('선택한 길 (이전 저장)');});
  it('rejects tampered stored decision and stale choice labels',()=>{const p=story();const s=advancePlayback(p,createPlayback(p),'first');expect(()=>restorePlayback(p,{...s,choiceHistory:[{pathIndex:0,choiceId:'missing'}]})).toThrow();expect(()=>restorePlayback(p,{...s,choiceHistory:[{pathIndex:1,choiceId:'first'}]})).toThrow();});
 });
+
+describe('history uses actual visible text boundaries',()=>{
+ it('caps the current occurrence by Unicode code points without altering the manuscript',()=>{
+  const base=story();const p={...base,lines:base.lines.map(l=>l.id==='a'?{...l,text:'첫🐇문장\n비밀'}:l)};const state=createPlayback(p),before=JSON.stringify(p);
+  expect(playbackLog(p,state,{lineId:'a',endOffset:3})[0].text).toBe('첫🐇문');expect(JSON.stringify(p)).toBe(before);
+ });
+ it('does not reveal current text before valid renderer evidence is available',()=>{
+  const p=story(),state=createPlayback(p);
+  for(const evidence of [undefined,null,{lineId:'other',endOffset:10},{lineId:'a',endOffset:-1},{lineId:'a',endOffset:Infinity},{lineId:'a',endOffset:.5}]){expect(playbackLog(p,state,evidence)[0].text).toBe('');expect(playbackLog(p,state,evidence)[0].textPending).toBe(true);}
+ });
+ it('caps only the latest occurrence on a repeated visit and preserves older decisions',()=>{
+  const base=story(),p={...base,lines:base.lines.map(l=>l.id==='a'?{...l,text:'앞🐇뒤'}:l.id==='b'?{...l,flow:{type:'goto' as const,targetLineId:'a'}}:l)};
+  const state=advancePlayback(p,advancePlayback(p,createPlayback(p),'second'));
+  const log=playbackLog(p,state,{lineId:'a',endOffset:2});expect(log.map(row=>row.text)).toEqual(['앞🐇뒤','b','앞🐇']);expect(log[0].choiceLabel).toBe('둘째 길');
+ });
+ it('clamps valid oversized bounds and preserves completed history after the end',()=>{
+  const base=story(),p={...base,lines:base.lines.map(l=>l.id==='a'?{...l,flow:{type:'goto' as const,targetLineId:null}}:l)};
+  const state=createPlayback(p);expect(playbackLog(p,state,{lineId:'a',endOffset:Number.MAX_SAFE_INTEGER})[0].text).toBe('a');
+  expect(playbackLog(p,advancePlayback(p,state))[0].text).toBe('a');
+ });
+});

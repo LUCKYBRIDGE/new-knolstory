@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory/server
+
+ ❯ http/document-service.integration.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  http/document-service.integration.ts [ http/document-service.integration.ts ]
+Error: Cannot find module './document-service' imported from /Users/wan/ai_dev/apps/new-knolstory/server/http/document-service.integration.ts
+ ❯ http/document-service.integration.ts:12:1
+     10| import {createPostgresAuthStatePort} from '../auth/postgres-auth-state…
+     11| import {runStorageMigrations} from '../migrations/runner';
+     12| import {createDocumentHttpService} from './document-service';
+       | ^
+     13| const pool=new Pool({max:8});
+     14| let server:Server,origin:string,config:{origin:string;flowTtlMs:number…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:22:59
+   Duration  225ms (transform 86ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

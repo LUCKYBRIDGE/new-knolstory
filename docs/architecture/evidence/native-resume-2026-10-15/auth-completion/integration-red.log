@@ -1,0 +1,15 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-e77984d4fa8b Creating 
+ Container knolstory-next-storage-test-runner-run-e77984d4fa8b Created 
+
+> @knolstory/storage-test@ typecheck /workspace/server
+> tsc --project tsconfig.integration.json
+
+auth/postgres-auth-completion.integration.ts(6,44): error TS2307: Cannot find module './postgres-auth-completion' or its corresponding type declarations.
+http/auth-routes.test.ts(7,41): error TS2307: Cannot find module '../auth/postgres-auth-completion' or its corresponding type declarations.
+http/auth-routes.test.ts(32,63): error TS7006: Parameter 'input' implicitly has an 'any' type.
+http/auth-routes.ts(5,41): error TS2307: Cannot find module '../auth/postgres-auth-completion' or its corresponding type declarations.
+ ELIFECYCLE  Command failed with exit code 2.
+

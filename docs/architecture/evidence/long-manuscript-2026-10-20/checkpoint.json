@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-20",
+  "status": "bounded-long-manuscript-and-resize-verified-no-source-fix-needed",
+  "scope": "PC11 existing implementation evaluated, no new productbehavior needed in tested cases",
+  "checks": {
+    "longmanuscript": "initial.log1pass6.9s; complete.log final2pass21.5s includes120cuts~305kKoreancharacters, lastcutediting, selections7:12 acrossscreen changes, internal scroll,4viewports,wholeprojectfileequality except intendedtext/updatedAt,reload",
+    "boundedResize": "complete.log actualnative12resizecycles36screenchanges; sameiframe, positiveinnerviewport, matchingrenderedrevision, targetsyncerrorwarning0, exportedprojectunchanged"
+  },
+  "limits": [
+    "Bounded desktopChromiumsequence not hourslong/physicaldevice/OSIME/performancebudget proof",
+    "No runtime/editor redesign from tests passing",
+    "No false wholeproduct completion"
+  ],
+  "sha256": {
+    "tests/e2e/long-manuscript-workbench.spec.ts": "a5ecad27c69de1bf9f612af40dc94f3d3c52b3f92aa426dae1c55a69cd7ca3ab"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "own",
+  "width": 1440,
+  "descriptions": [
+    {
+      "name": "처음부터 읽기",
+      "description": "책 표지를 펼쳐 이야기를 만나요",
+      "ids": "_r_0_-action-read"
+    },
+    {
+      "name": "편집하기",
+      "description": "대본과 장면을 이어 써요",
+      "ids": "_r_0_-action-edit"
+    },
+    {
+      "name": "책 표지 편집",
+      "description": "앞표지·책등·뒤표지를 직접 꾸며요",
+      "ids": "_r_0_-action-cover"
+    },
+    {
+      "name": "작품 정보·기획",
+      "description": "작품 정보·기획과 메모",
+      "ids": "_r_0_-action-prepare"
+    },
+    {
+      "name": "작품 파일 내보내기",
+      "description": "이 책을 작품 파일로 내려받아요",
+      "ids": "_r_0_-action-export"
+    },
+    {
+      "name": "사본 만들기",
+      "description": "원본을 보존하고 새 책으로 복사해요",
+      "ids": "_r_0_-action-duplicate"
+    },
+    {
+      "name": "내 작품 삭제",
+      "description": "삭제를 확인하고 복구할 수 있어요",
+      "ids": "_r_0_-action-delete"
+    }
+  ],
+  "scope": "Computed names/descriptions, explicit boundary Tab traversal and Escape return; no real screen-reader/voice claim."
+}

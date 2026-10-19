@@ -1,0 +1,51 @@
+
+Running 1 test using 1 worker
+
+(node:57743) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 (17.3s)
+
+
+  1) [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('[data-line-id="shake"]')
+        - locator resolved to <button data-line-id="shake" class="story-workspace-module__gRDfJG__cut ">2컷 · 선녀 · 소중한 인물의 표정과 자유 배치를 지키면서 화면의 연출 순서를 바꾸어 …</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        27 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      16 | }
+      17 | async function controls(page:Page){
+    > 18 |  await tool(page,'컷 목록');await page.locator('[data-line-id="shake"]').click();await tool(page,'연출 편집');
+         |                                                                       ^
+      19 |  return page.getByTestId('story-effect-controls');
+      20 | }
+      21 | for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`effect editing, timing, undo and file reopen preserve manuscript and free placement at ${size.width}`,async({page},testInfo)=>{
+        at controls (<repo>/tests/e2e/non-audio-direction-ui.spec.ts:18:71)
+        at <repo>/tests/e2e/non-audio-direction-ui.spec.ts:26:14
+
+    Error Context: test-results-deep-direction/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-deep-direction/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-deep-direction/non-audio-direction-ui-eff-18f50--and-free-placement-at-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/non-audio-direction-ui.spec.ts:21:115 › effect editing, timing, undo and file reopen preserve manuscript and free placement at 1440 

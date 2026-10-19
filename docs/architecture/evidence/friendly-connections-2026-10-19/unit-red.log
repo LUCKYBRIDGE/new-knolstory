@@ -1,0 +1,20 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/story-connection-labels.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/story-connection-labels.test.ts [ apps/web/lib/story-connection-labels.test.ts ]
+Error: Cannot find module './story-connection-labels' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/story-connection-labels.test.ts
+ ❯ apps/web/lib/story-connection-labels.test.ts:4:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  17:15:56
+   Duration  424ms (transform 232ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

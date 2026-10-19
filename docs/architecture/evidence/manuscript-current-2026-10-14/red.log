@@ -1,0 +1,420 @@
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:28] "GET / HTTP/1.1" 200 -
+
+
+Running 2 tests using 1 worker
+
+(node:59209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:29] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:32] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:32] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:32] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:32] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:32] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:32] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+
+  1) [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '새 작품 만들기', exact: true })
+
+
+       at library-entry.ts:31
+
+      29 | }
+      30 | export async function startShelfCreation(page:Page){
+    > 31 |  await openLibraryTools(page);await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();
+         |                                                                                           ^
+      32 | }
+      33 | export async function selectShelfCollection(page:Page,kind:string){await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind);}
+      34 | export async function fillShelfSearch(page:Page,query:string){await openLibraryTools(page);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill(query);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');}
+        at startShelfCreation (<repo>/tests/e2e/library-entry.ts:31:91)
+        at author (<repo>/tests/e2e/legacy-authoring-workspace.spec.ts:27:2)
+        at <repo>/tests/e2e/legacy-authoring-workspace.spec.ts:54:12
+
+    Error Context: test-results-current-ux/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/legacy-authoring-workspace-5ba19-fe-cut-operations-at-1280px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:59410) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[2/2] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /?view=editor HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/1valht5xhea_t.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/22_z3xm4enj0k.css HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/2wvjlgv5e4do-.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/2ulm-hf4pw9zn.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /_next/static/chunks/36zqiwmi0yll_.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/index.html HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/renpy.js HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/renpy.data HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:41] "GET /runtime/game.zip HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.family-dinner-night.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.family-room.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.family-storehouse-yard.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.heungbu-gourd-roof.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.heungbu-swallow-eaves.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.nolbu-mansion.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.nolbu-ruined-yard.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.nolbu-swallow-eaves.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.poor-house-winter.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.spring-field.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.two-houses-path.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.background.village-road-childhood.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.snow-road-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.gourd-treasure-burst.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.nolbu-broken-goods.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.nolbu-storm-collapse.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.nolbu-goblin-chaos.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.magistrate-yard-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.winter-courtyard-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.spring-room-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.snow-village-road-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.warm-room-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-flashback-rescue.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.spring-courtyard-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-grassland.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace-confession.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-grassland-night.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace-welcome.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-palace-trap.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG-cottage-night.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-shore-herb.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-shore.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-shore-escape.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-shore-discussion.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/rabbit-turtle.background.rabbit-turtle-bg-river-winter.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG-wardrobe-robe.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG-empty-wardrobe.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG-room-night.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG-roots-robe.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG-woodshed.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG-forest-roots.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG02-valley-storm.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG03-valley-moon-gate.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG04-cottage-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG05-cottage-snow.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG06-cottage-autumn.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/BG09-room-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/seonnyeo.background.classic-sky-realm.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.autumn-market.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.heungbu-autumn-market-v2.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.moon-lake.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.flower-meadow.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.onggojib-winter-pixel-v2.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.rabbit-meadow-pixel-v2.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-01.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-02.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.seonnyeo-moon-pond-v2.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/creative.background.winter-lane.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-03.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-04.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-05.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-06.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-01.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-07.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-classic-08.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-02.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-03.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-04.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-06.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-05.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-07.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-08.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-09.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-10.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-11.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-13.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-12.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-15.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-14.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-creative-16.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-01.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-04.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-03.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-02.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-06.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-05.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-07.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-09.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.broken-celadon-cg-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-10.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.child-carry-cg-pixel.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/heungbu.scene.shortstory-knolstory-08.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.child-distance-cg-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.child-fever-cg-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-cold-room.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-closed-house.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-court-records.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-eaves.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-gate-outside.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-gate-threshold.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-hermitage.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-open-house-empty.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.confession-folded-coat-cg-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.classic-poor-threshold.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.court-child-choice-cg-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:42] "GET /assets/legacy-18da4fc/onggojib.background.exiled-mirror-cg-pixel.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:44] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:44] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:44] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:44] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:44] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+
+[WebServer] 127.0.0.1 - - [14/Oct/2026 09:09:44] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+
+  2) [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog', { name: '이미지 선택 · 배경' }).getByText('작품', { exact: true })
+        - locator resolved to <summary>작품</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        18 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+      70 |  await page.getByRole('button',{name:'배경 이미지 찾기',exact:true}).click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 배경'});await expect(dialog).toContainText('현재 이미지');await expect(dialog).toContainText('선택 미리보기');await expect(dialog).toContainText('적용 대상: 배경');
+      71 |  for(const label of ['작품','장소','시간','분위기']){
+    > 72 |   const summary=dialog.getByText(label,{exact:true});if(await summary.count()){await summary.click();const group=dialog.getByRole('group',{name:`${label} 조건`});await group.getByRole('button').first().click();await expect(dialog.getByLabel('현재 찾는 조건')).toBeVisible();await dialog.getByRole('button',{name:'모두 지우기',exact:true}).click();}
+         |                                                                                              ^
+      73 |  }
+      74 |  await dialog.getByLabel('이미지 검색').fill('용궁');const candidate=dialog.locator(`[data-asset-id="${bg}"]`);await expect(candidate).toBeVisible();await candidate.click();await page.screenshot({path:info.outputPath(`asset-browser-${width}.png`)});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(page.getByRole('button',{name:'배경 이미지 찾기',exact:true})).toBeFocused();expect((await exportProject(page)).project).toEqual(before.project);
+      75 | });
+        at <repo>/tests/e2e/legacy-authoring-workspace.spec.ts:72:94
+
+    Error Context: test-results-current-ux/legacy-authoring-workspace-96ebd-rve-authored-work-at-1280px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-current-ux/legacy-authoring-workspace-96ebd-rve-authored-work-at-1280px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-current-ux/legacy-authoring-workspace-96ebd-rve-authored-work-at-1280px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  2 failed
+    [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px 
+    [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px 

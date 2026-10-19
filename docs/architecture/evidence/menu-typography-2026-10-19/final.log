@@ -1,0 +1,96 @@
+
+Running 3 tests using 1 worker
+
+(node:62350) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 320 (2.3s)
+(node:62376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 390 (2.0s)
+(node:62399) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 1280 (2.0s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 320 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      295 |  test.setTimeout(150000);await page.setViewportSize({width,height:width===390?844:720});const before=await prepare(page);await openWorkMenu(page);
+      296 |  const editor=page.locator('[data-system-menu=editor]');await expect(editor).toBeVisible();await expect(editor.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(editor.getByRole('button',{name:'작업파일 저장',exact:true})).toBeVisible();
+    > 297 |  await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).focus();expect(await editor.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);for(const button of await editor.getByRole('button').all()){if(await button.isVisible()){const b=(await button.boundingBox())!,e=(await editor.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(e.x);expect(b.x+b.width).toBeLessThanOrEqual(e.x+e.width+1);}}await page.screenshot({path:info.outputPath(`editor-system-menu-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(editor).not.toBeVisible();await expect(page.locator('[data-work-menu]>summary')).toBeFocused();
+          |                                                                                                                                                 ^
+      298 |  await mode(page,'기본편집');await workbench(page).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-rendered-revision');return revision!==null&&Number(revision)>=0&&revision===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
+      299 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();const player=page.locator('[data-system-menu=player]');await expect(player).toBeVisible();await page.screenshot({path:info.outputPath(`player-system-menu-${width}.png`),fullPage:true});await player.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await expect(dialog).toBeVisible();const waitField=dialog.getByRole('spinbutton');const inputBox=(await waitField.boundingBox())!,unitBox=(await waitField.locator('..').locator(':scope>span').boundingBox())!;expect(Math.abs((inputBox.y+inputBox.height/2)-(unitBox.y+unitBox.height/2))).toBeLessThanOrEqual(2);expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);await dialog.getByRole('combobox',{name:'본문 글씨 크기',exact:true}).selectOption('1.15');await page.screenshot({path:info.outputPath(`player-settings-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await player.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expect((await exported(page)).project).toEqual(before);
+      300 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:297:145
+
+    Error Context: docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-216a5-itor-and-reader-actions-320/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-216a5-itor-and-reader-actions-320/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-216a5-itor-and-reader-actions-320/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 390 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      295 |  test.setTimeout(150000);await page.setViewportSize({width,height:width===390?844:720});const before=await prepare(page);await openWorkMenu(page);
+      296 |  const editor=page.locator('[data-system-menu=editor]');await expect(editor).toBeVisible();await expect(editor.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(editor.getByRole('button',{name:'작업파일 저장',exact:true})).toBeVisible();
+    > 297 |  await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).focus();expect(await editor.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);for(const button of await editor.getByRole('button').all()){if(await button.isVisible()){const b=(await button.boundingBox())!,e=(await editor.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(e.x);expect(b.x+b.width).toBeLessThanOrEqual(e.x+e.width+1);}}await page.screenshot({path:info.outputPath(`editor-system-menu-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(editor).not.toBeVisible();await expect(page.locator('[data-work-menu]>summary')).toBeFocused();
+          |                                                                                                                                                 ^
+      298 |  await mode(page,'기본편집');await workbench(page).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-rendered-revision');return revision!==null&&Number(revision)>=0&&revision===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
+      299 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();const player=page.locator('[data-system-menu=player]');await expect(player).toBeVisible();await page.screenshot({path:info.outputPath(`player-system-menu-${width}.png`),fullPage:true});await player.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await expect(dialog).toBeVisible();const waitField=dialog.getByRole('spinbutton');const inputBox=(await waitField.boundingBox())!,unitBox=(await waitField.locator('..').locator(':scope>span').boundingBox())!;expect(Math.abs((inputBox.y+inputBox.height/2)-(unitBox.y+unitBox.height/2))).toBeLessThanOrEqual(2);expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);await dialog.getByRole('combobox',{name:'본문 글씨 크기',exact:true}).selectOption('1.15');await page.screenshot({path:info.outputPath(`player-settings-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await player.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expect((await exported(page)).project).toEqual(before);
+      300 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:297:145
+
+    Error Context: docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-4664d-itor-and-reader-actions-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-4664d-itor-and-reader-actions-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-4664d-itor-and-reader-actions-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 1280 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      295 |  test.setTimeout(150000);await page.setViewportSize({width,height:width===390?844:720});const before=await prepare(page);await openWorkMenu(page);
+      296 |  const editor=page.locator('[data-system-menu=editor]');await expect(editor).toBeVisible();await expect(editor.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(editor.getByRole('button',{name:'작업파일 저장',exact:true})).toBeVisible();
+    > 297 |  await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).focus();expect(await editor.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);for(const button of await editor.getByRole('button').all()){if(await button.isVisible()){const b=(await button.boundingBox())!,e=(await editor.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(e.x);expect(b.x+b.width).toBeLessThanOrEqual(e.x+e.width+1);}}await page.screenshot({path:info.outputPath(`editor-system-menu-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(editor).not.toBeVisible();await expect(page.locator('[data-work-menu]>summary')).toBeFocused();
+          |                                                                                                                                                 ^
+      298 |  await mode(page,'기본편집');await workbench(page).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-rendered-revision');return revision!==null&&Number(revision)>=0&&revision===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
+      299 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();const player=page.locator('[data-system-menu=player]');await expect(player).toBeVisible();await page.screenshot({path:info.outputPath(`player-system-menu-${width}.png`),fullPage:true});await player.getByRole('button',{name:'읽기 설정',exact:true}).click();const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await expect(dialog).toBeVisible();const waitField=dialog.getByRole('spinbutton');const inputBox=(await waitField.boundingBox())!,unitBox=(await waitField.locator('..').locator(':scope>span').boundingBox())!;expect(Math.abs((inputBox.y+inputBox.height/2)-(unitBox.y+unitBox.height/2))).toBeLessThanOrEqual(2);expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);await dialog.getByRole('combobox',{name:'본문 글씨 크기',exact:true}).selectOption('1.15');await page.screenshot({path:info.outputPath(`player-settings-${width}.png`),fullPage:true});await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await player.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expect((await exported(page)).project).toEqual(before);
+      300 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:297:145
+
+    Error Context: docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-e6b8a-tor-and-reader-actions-1280/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-e6b8a-tor-and-reader-actions-1280/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/menu-typography-2026-10-19/reviewed-run/editing-workbench-story-ga-e6b8a-tor-and-reader-actions-1280/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 320 
+    tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 390 
+    tests/e2e/editing-workbench.spec.ts:294:35 › story-game system menus preserve editor and reader actions 1280 

@@ -1,0 +1,35 @@
+{
+  "scope": "Actual static Web + loopback gateway + dedicated test API/PostgreSQL. Real upstream HTTP throughout; first trash response deliberately dropped after server commit, then exact retry. Bounded browser offline file save. No live OAuth.",
+  "results": [
+    {
+      "format": "knolstory",
+      "recordId": "5a982446-556b-4a38-879d-4ea6683e31f1",
+      "create": 201,
+      "trash": 200,
+      "restore": 200,
+      "revision": 1,
+      "stateVersion": 3,
+      "snapshotUnchanged": true,
+      "trashedReadDenied": 409,
+      "responseLossRetrySameKey": true,
+      "offlineUploadFailurePreservesLocal": true,
+      "offlineFileDownloadMatchesProject": true,
+      "localUnchanged": true
+    },
+    {
+      "format": "shortstory",
+      "recordId": "95ab6ee7-d1b8-4c28-98e3-5e38208cd7d8",
+      "create": 201,
+      "trash": 200,
+      "restore": 200,
+      "revision": 1,
+      "stateVersion": 3,
+      "snapshotUnchanged": true,
+      "trashedReadDenied": 409,
+      "responseLossRetrySameKey": true,
+      "offlineUploadFailurePreservesLocal": true,
+      "offlineFileDownloadMatchesProject": true,
+      "localUnchanged": true
+    }
+  ]
+}

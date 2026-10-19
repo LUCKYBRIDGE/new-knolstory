@@ -1,0 +1,13 @@
+F....
+======================================================================
+FAIL: test_duplicate_archive_entries_cannot_hide_changed_audio (scripts.tests.test_service_audio.ServiceAudioTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_service_audio.py", line 91, in test_duplicate_archive_entries_cannot_hide_changed_audio
+    self.assertTrue(module.audit(root))
+AssertionError: [] is not true
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.034s
+
+FAILED (failures=1)

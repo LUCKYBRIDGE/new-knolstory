@@ -1,0 +1,53 @@
+{
+  "scope": "Actual owned local gateway to existing isolated Docker API;401/503real,429onlysyntheticupstreamtest",
+  "responses": [
+    {
+      "status": 200,
+      "requestId": "e31d25cc-b790-4898-a0cd-13de7ec61d71",
+      "cacheControl": "no-store",
+      "success": true
+    },
+    {
+      "status": 401,
+      "requestId": "4ea0a73c-5f4a-4108-a0ca-480ba6ff803c",
+      "cacheControl": "no-store",
+      "success": false
+    },
+    {
+      "status": 503,
+      "requestId": "506d995e-334f-45b9-a05f-c0115849cce9",
+      "cacheControl": "no-store",
+      "success": false
+    }
+  ],
+  "apiRecords": [
+    {
+      "event": "http_request",
+      "requestId": "e31d25cc-b790-4898-a0cd-13de7ec61d71",
+      "method": "GET",
+      "route": "auth",
+      "status": 200,
+      "outcome": "completed",
+      "durationMs": 0.218
+    },
+    {
+      "event": "http_request",
+      "requestId": "4ea0a73c-5f4a-4108-a0ca-480ba6ff803c",
+      "method": "GET",
+      "route": "documents",
+      "status": 401,
+      "outcome": "completed",
+      "durationMs": 3.169
+    },
+    {
+      "event": "http_request",
+      "requestId": "506d995e-334f-45b9-a05f-c0115849cce9",
+      "method": "GET",
+      "route": "auth",
+      "status": 503,
+      "outcome": "completed",
+      "durationMs": 1.798
+    }
+  ],
+  "privateCanaryAbsent": true
+}

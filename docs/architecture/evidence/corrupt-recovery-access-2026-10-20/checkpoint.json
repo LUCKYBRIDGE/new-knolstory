@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-complete-not-deployed",
+  "scope": "Direct fixed editor with malformed recovery storage: recovery action panel moved inside active main, outside on other screens; existing raw download/restart behavior preserved.",
+  "checks": {
+    "red": "red.log:10second actual pointer interception by editor main; raw preserved.",
+    "green": "green.log:1passed7.2s actual raw download/restart/reload.",
+    "build": "build.log passed.",
+    "lint": "lint.log passed.",
+    "type": "typecheck.log passed.",
+    "preservation": "Isolated test context seeds malformed Korean/space/CRLF raw; checks exact real downloaded bytes before reset, raw storage unchanged, recovery key exact after explicit restart, valid project ID retained on reload.",
+    "wordingRed": "wording-red.log: raw parser error still present in workspace-error; reproduced before wording fix.",
+    "wordingGreen": "wording-green.log:1passed7.2s no parser snippet, exactly one friendly recovery notice, byteexact preservation still passes.",
+    "wordingBuild": "wording-build.log passed; wording-lint.log and wording-types.log passed.",
+    "review": "Independent source review found no blockers in panel placement/preservation or friendly-error deduplication.",
+    "visual": "Manually inspected390px wording screenshot; recovery actions clearly visible and body fits. Found narrow status split; final follow-up shortens status to 임시 보관 중지 while recovery body explains raw preservation.",
+    "finalStatus": "status-build.log passed; status.log1passed7.1s; manually inspected final390px capture: short status fits one line, recovery actions and text unobstructed. No forced click.",
+    "finalChecks": "docs.log0links/retired terms, docs-tests.log10passed, final-lint.log clean, diff.log clean. Final status-only text edit introduces no new types; prior wording-types.log and final build passed."
+  },
+  "limits": [
+    "No real user storage or manuscript touched.",
+    "Physical file dialog/disk recovery, OS keyboard, screen reader and production not verified."
+  ],
+  "sha256": {
+    "apps/web/components/story-workspace.tsx": "86683fda39dcefa4907d45d59fe2dc59e0713cafa2bd378e992436ab80c35ca0",
+    "apps/web/components/story-workspace.module.css": "fb7ecbca6efd78e6d403d73983a8253c7bfa52de34853252c03a9aad4c8f66ad",
+    "tests/e2e/storage-recovery.spec.ts": "7a26cd5f623a0208f806cc2ce1a84c3b0bb2e21937aa9c65103c0992ea579d23"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual pointer failure and raw parser display reproduced separately; corrected without altering raw recovery semantics; downloaded bytes/recovery key/reload exact, manual390px visual follow-up fixed status wrap."
+  }
+}

@@ -1,0 +1,41 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/components/story-chapter-settings.test.ts (21 tests | 1 failed) 31ms
+     × changes only the displayed number and preserves routes, authored identity and order 5ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/components/story-chapter-settings.test.ts > chapter settings > changes only the displayed number and preserves routes, authored identity and order
+AssertionError: expected { id: 'polish', order: 1, …(15) } to deeply equal { id: 'polish', order: 1, …(14) }
+
+- Expected
++ Received
+
+@@ -1,8 +1,9 @@
+  {
+    "backgroundAssetIds": [],
+    "backgroundId": "",
++   "branchLabel": "",
+    "chapterNumber": 12,
+    "chapterSpeakerNames": [
+      "선녀 1",
+      "선녀",
+      "선녀 2",
+
+ ❯ apps/web/components/story-chapter-settings.test.ts:60:28
+     58|   const next=changeChapterNumber(project,id,'12');
+     59|   expect(project).toEqual(before);expect(next.lines).toBe(project.line…
+     60|   expect(next.chapters[0]).toEqual({...before.chapters[0],chapterNumbe…
+       |                            ^
+     61|   expect(next.chapters.slice(1)).toEqual(before.chapters.slice(1));
+     62|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 20 passed (21)
+   Start at  00:57:04
+   Duration  563ms (transform 311ms, setup 0ms, import 440ms, tests 31ms, environment 0ms)
+

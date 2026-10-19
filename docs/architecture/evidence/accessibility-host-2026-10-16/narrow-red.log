@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:82344) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px (1.2s)
+
+
+  1) [host] › tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 320
+    Received:    447.703125
+
+      3 |  await page.setViewportSize({width,height:740});await page.goto('/?view=library');
+      4 |  const tools=page.getByText('책 찾기·추가',{exact:true});await expect(tools).toBeVisible();
+    > 5 |  const bounds=await tools.boundingBox();expect(bounds).not.toBeNull();expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
+        |                                                                                                                                                   ^
+      6 |  await tools.click();await expect(page.getByRole('searchbox',{name:'책 찾기',exact:true})).toBeVisible();await page.keyboard.press('Escape');
+      7 |  await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('region',{name:'놀스토리 계정',exact:true})).toBeVisible();await page.keyboard.press('Escape');
+      8 |  await page.locator('[data-online-works]>summary').click();await expect(page.getByRole('region',{name:'온라인 작품',exact:true})).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-narrow.spec.ts:5:147
+
+    Error Context: docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-libra-68e3d-s-remain-reachable-at-320px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-libra-68e3d-s-remain-reachable-at-320px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-host-2026-10-16/narrow-artifacts/accessibility-narrow-libra-68e3d-s-remain-reachable-at-320px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/accessibility-narrow.spec.ts:2:35 › library header controls remain reachable at 320px 

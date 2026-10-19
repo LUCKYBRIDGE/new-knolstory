@@ -1,0 +1,10 @@
+{
+  "onlyApiCandidateRebuilt": "knolstory-next-api-dev-api-1",
+  "environment": [
+    "PGHOST=knolstory-next-storage-test-db-1",
+    "PGDATABASE=knolstory_next_storage_test",
+    "KNOLSTORY_AUTH_ORIGIN=http://127.0.0.1:15401"
+  ],
+  "liveProvidersDisabled": true,
+  "productionAndLegacyContainers": "not modified by this task"
+}

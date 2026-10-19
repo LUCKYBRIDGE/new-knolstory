@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/staged-audio-roundtrip.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/staged-audio-roundtrip.test.ts [ packages/compatibility/tests/staged-audio-roundtrip.test.ts ]
+Error: Cannot find package '@knolstory/asset-registry' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/compatibility/tests/staged-audio-roundtrip.test.ts
+ ❯ packages/compatibility/tests/staged-audio-roundtrip.test.ts:3:1
+      1| import {it,expect} from 'vitest';
+      2| import {getRepresentativeStory} from '../src';
+      3| import {AUDIO_CATALOG} from '@knolstory/asset-registry';
+       | ^
+      4| import aliases from '../../asset-registry/src/staged-cc0-audio-aliases…
+      5| import {createAuthoringArchive,encodeAuthoringArchive,decodeAuthoringA…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  4 passed (4)
+   Start at  19:20:10
+   Duration  846ms (transform 709ms, setup 0ms, import 418ms, tests 23ms, environment 0ms)
+

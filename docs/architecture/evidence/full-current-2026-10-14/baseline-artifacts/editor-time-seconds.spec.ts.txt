@@ -1,0 +1,42 @@
+import {expect,test,type Page} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+const source=parseAuthoringFile(readFileSync('tests/fixtures/responsive-audio.json','utf8'));
+async function edit(page:Page,label:string,value:string){const input=page.getByLabel(label,{exact:true});await input.fill(value);await input.blur();}
+test('decimal seconds preserve exact milliseconds through save, reload and file reopening',async({page},info)=>{
+  test.skip(info.project.name!=='host');
+  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+  await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'seconds.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:'2026-10-10T00:00:00.000Z',appVersion:'test',project:source}))});
+  await confirmAuthoringImport(page);
+  const tool=page.getByRole('button',{name:'연출 편집',exact:true});if(await tool.isVisible())await tool.click();
+  await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');
+  await edit(page,'컷 배경음 서서히 크게 시작 (초)','0.23');
+  await edit(page,'컷 배경음 기존 소리 사라짐 (초)','0.1');
+  await edit(page,'1번 효과음 재생 대기 (초)','0.001');
+  await edit(page,'컷 배경음 서서히 크게 시작 (초)','');
+  await expect(page.getByRole('alert').filter({hasText:'기존 값은 유지됩니다'})).toBeVisible();
+  await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');
+  await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+  await page.reload();if(await tool.isVisible())await tool.click();
+  await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');
+  const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+  const path=info.outputPath('seconds.knolstory');await(await download).saveAs(path);
+  const document=parseAuthoringFile(readFileSync(path,'utf8'));
+  expect(document.project.lines[0].audio.music).toMatchObject({fadeInMs:230,fadeOutMs:100});
+  expect(document.project.lines[0].audio.sounds[0].delayMs).toBe(1);
+  await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);
+  if(await tool.isVisible())await tool.click();await expect(page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');
+});
+for(const app of ['excel','google'])test(`actual ${app} edited seconds workbook opens with exact authoring values`,async({page},info)=>{
+ test.skip(info.project.name!=='host');page.setDefaultTimeout(15000);
+ await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+ await page.getByLabel('작품 파일 가져오기').setInputFiles(`docs/architecture/evidence/editor-terminology/seconds-${app}-edited.xlsx`);await confirmAuthoringImport(page);
+ const assets=page.getByRole('button',{name:'배경·인물 편집',exact:true});if(await assets.isVisible())await assets.click();
+ await expect(page.getByLabel('왼쪽 1번 인물 동작 시간 (초)',{exact:true})).toHaveValue('0.45');
+ await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();
+ const setting=page.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true});if(!await setting.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await setting.click();
+ await expect(page.getByLabel('장 배경음 서서히 크게 시작 (초)',{exact:true})).toHaveValue('0.23');
+ await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');
+ await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');
+ await expect(page.getByLabel('장 1번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.1');
+});

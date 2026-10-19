@@ -1,0 +1,52 @@
+
+Running 7 tests using 1 worker
+
+(node:15873) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editor-term-guide.spec.ts:32:1 › guide preserves author drafts and restores focus in four viewport layouts (4.1s)
+  ✓  2 tests/e2e/editor-term-guide.spec.ts:48:1 › ShortStory guide leaves edited page text untouched (507ms)
+  ✓  3 tests/e2e/editor-term-guide.spec.ts:56:1 › current vocabulary distinguishes work files, browser recovery and optional companion views (428ms)
+  ✘  4 tests/e2e/editor-term-guide.spec.ts:73:1 › authoring labels distinguish file save, temporary retention and earlier manuscripts (7.1s)
+(node:16008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 tests/e2e/local-work-files.spec.ts:4:57 › knolstory: real downloaded work file reopens without server or previous browser storage (4.8s)
+  ✓  6 tests/e2e/local-work-files.spec.ts:4:57 › shortstory: real downloaded work file reopens without server or previous browser storage (761ms)
+  ✓  7 tests/e2e/local-work-files.spec.ts:28:1 › explicit file handle save verifies write, reuses selected file, protects external edits and allows save as (2.1s)
+
+
+  1) tests/e2e/editor-term-guide.spec.ts:73:1 › authoring labels distinguish file save, temporary retention and earlier manuscripts 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: '이 원고를 사본으로 열기', exact: true }).first()
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: '이 원고를 사본으로 열기', exact: true }).first() with timeout 5000ms
+      - waiting for getByRole('button', { name: '이 원고를 사본으로 열기', exact: true }).first()
+
+
+      82 |  await expect(page.getByRole('button',{name:'현재 원고 보관',exact:true})).toBeVisible();
+      83 |  await page.getByRole('button',{name:'현재 원고 보관',exact:true}).click();
+    > 84 |  await expect(page.getByRole('button',{name:'이 원고를 사본으로 열기',exact:true}).first()).toBeVisible();
+         |                                                                                   ^
+      85 |  expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toEqual(before);
+      86 | });
+      87 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-term-guide.spec.ts:84:83
+
+    Error Context: docs/architecture/evidence/product-language-refinement-2026-10-19/browser-run/editor-term-guide-authorin-9c8f4-ion-and-earlier-manuscripts/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/product-language-refinement-2026-10-19/browser-run/editor-term-guide-authorin-9c8f4-ion-and-earlier-manuscripts/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/product-language-refinement-2026-10-19/browser-run/editor-term-guide-authorin-9c8f4-ion-and-earlier-manuscripts/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editor-term-guide.spec.ts:73:1 › authoring labels distinguish file save, temporary retention and earlier manuscripts 
+  6 passed (20.7s)

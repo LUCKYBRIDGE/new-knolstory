@@ -1,0 +1,9 @@
+.resources { min-width:0; }
+.resources fieldset { margin:10px 0; }
+.list { display:grid; gap:8px; margin:10px 0 0; padding:0; list-style:none; max-height:240px; overflow:auto; overscroll-behavior:contain; }
+.list li { display:flex; align-items:center; gap:8px; min-width:0; padding:5px 0; }
+.list img { width:48px; height:36px; object-fit:contain; flex:none; }
+.list span { flex:1; min-width:0; overflow-wrap:anywhere; word-break:keep-all; font-size:13px; }
+.list button { flex:none; max-width:110px; min-height:44px; font:inherit; font-size:12px; color:inherit; border:1px solid var(--line); background:var(--paper); border-radius:var(--radius-control); padding:6px 8px; white-space:normal; word-break:keep-all; cursor:pointer; }
+.list button:disabled { cursor:default; opacity:.5; }
+.list button:focus-visible { outline:2px solid var(--ink); outline-offset:2px; }

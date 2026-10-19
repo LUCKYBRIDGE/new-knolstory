@@ -43,12 +43,12 @@ describe('fixed legacy manuscript fidelity', () => {
       const candidate = { ...document, schemaVersion: version, project: { ...document.project, lines } };
       const loaded = parseStoryDocument(candidate);
       expect(loaded.ok).toBe(true);
-      if (loaded.ok) expect(loaded.document.schemaVersion).toBe(5);
+      if (loaded.ok) expect(loaded.document.schemaVersion).toBe(8);
     });
   }
   it('rejects future versions and broken references without changing source', () => {
     const original = getRepresentativeStory('rabbit');
-    const invalid = { ...original, schemaVersion: 6 };
+    const invalid = { ...original, schemaVersion: 9 };
     expect(parseStoryDocument(invalid).ok).toBe(false);
     expect(() => updateStoryLine(original, original.project.lines[0].id, {flow:{type:'goto',targetLineId:'missing'}})).toThrow();
   });

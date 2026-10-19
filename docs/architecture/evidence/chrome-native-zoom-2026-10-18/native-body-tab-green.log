@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:69206) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/accessibility-choice-native.spec.ts:8:1 › actual native keyboard choice rewind and alternate choice retain authored work (13.5s)
+  ✓  2 tests/e2e/native-body-tab.spec.ts:5:1 › native BODY and canvas Tab return to semantic reading controls after audio unlock (7.4s)
+
+  2 passed (21.7s)

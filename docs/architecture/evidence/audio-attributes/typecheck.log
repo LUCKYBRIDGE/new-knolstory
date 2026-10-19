@@ -1,0 +1,44 @@
+
+> knolstory-next@ typecheck /Users/wan/ai_dev/apps/new-knolstory
+> turbo run typecheck
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@knolstory/asset-registry:typecheck: cache miss, executing 18bafa00f662a58b
+@knolstory/runtime-contract:typecheck: cache hit, replaying logs 672200e368f56c82
+@knolstory/story-domain:typecheck: cache hit, replaying logs 4be55dccf807db8f
+@knolstory/runtime-contract:typecheck: 
+@knolstory/runtime-contract:typecheck: > @knolstory/runtime-contract@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-contract
+@knolstory/runtime-contract:typecheck: > tsc --noEmit
+@knolstory/runtime-contract:typecheck: 
+@knolstory/story-domain:typecheck: 
+@knolstory/story-domain:typecheck: > @knolstory/story-domain@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/story-domain
+@knolstory/story-domain:typecheck: > tsc --noEmit
+@knolstory/story-domain:typecheck: 
+@knolstory/compatibility:typecheck: cache miss, executing 5bc13db003ff3578
+@knolstory/compatibility:typecheck: 
+@knolstory/compatibility:typecheck: > @knolstory/compatibility@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/compatibility
+@knolstory/compatibility:typecheck: > tsc --noEmit
+@knolstory/compatibility:typecheck: 
+@knolstory/asset-registry:typecheck: 
+@knolstory/asset-registry:typecheck: > @knolstory/asset-registry@0.0.0 typecheck /Users/wan/ai_dev/apps/new-knolstory/packages/asset-registry
+@knolstory/asset-registry:typecheck: > tsc --noEmit
+@knolstory/asset-registry:typecheck: 
+@knolstory/asset-registry:typecheck: src/audio.ts(13,55): error TS2339: Property 'metadata' does not exist on type '{ id: string; name: string; kind: string; src: string; runtimePath: string; mime: string; durationSeconds: number; } | Readonly<{ id: string; name: string; kind: "music" | "sound"; src: string; runtimePath: string; ... 4 more ...; origin?: Readonly<...> | undefined; }>'.
+@knolstory/asset-registry:typecheck:   Property 'metadata' does not exist on type '{ id: string; name: string; kind: string; src: string; runtimePath: string; mime: string; durationSeconds: number; }'.
+@knolstory/asset-registry:typecheck:  ELIFECYCLE  Command failed with exit code 2.
+@knolstory/asset-registry:typecheck:  WARN   Local package.json exists, but node_modules missing, did you mean to install?
+@knolstory/compatibility:typecheck:  ELIFECYCLE  Command failed.
+@knolstory/asset-registry#typecheck:  ERROR  command (/Users/wan/ai_dev/apps/new-knolstory/packages/asset-registry) /opt/homebrew/bin/pnpm run typecheck exited (2)
+
+ Tasks:    2 successful, 4 total
+Cached:    2 cached, 4 total
+  Time:    1.325s 
+Failed:    @knolstory/asset-registry#typecheck
+
+ ERROR  run failed: command  exited (2)
+ ELIFECYCLE  Command failed with exit code 2.

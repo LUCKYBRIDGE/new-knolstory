@@ -1,0 +1,10 @@
+
+Running 2 tests using 1 worker
+
+(node:14438) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/2] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:3:1 › actual Excel exported story preserves extended values in UI and portable archive
+[2/2] [host] › tests/e2e/excel-authoring-roundtrip.spec.ts:9:1 › actual Excel picture book exported XLSX opens at its edited page
+  2 passed (6.7s)

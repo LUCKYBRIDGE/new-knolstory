@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-19",
+  "status": "local-vocabulary-refined-focused-verified-not-deployed",
+  "decision": [
+    "One editable file kind: 작품 파일. 작업파일 remains historical/search alias only",
+    "Normal UI calls browser recovery retention 임시 보관; help explains browser scope and file save necessity",
+    "Reader save/load means 진행 저장; dialogue history remains previously approved 지난기록 with clear description",
+    "Author snapshot UI: 이전 원고, 현재 원고 보관, 이 원고를 사본으로 열기, 이전 원고 파일로 저장",
+    "No save implementation/schema/runtime changes; previous evidence and manuscripts preserved"
+  ],
+  "sources": [
+    "https://www.renpy.org/doc/html/save_load_rollback.html",
+    "https://www.renpy.org/doc/html/history.html",
+    "https://github.com/renpy/renpy/blob/master/launcher/game/tl/korean/screens.rpy",
+    "https://www.nitroplus.co.jp/support/sp20/sp20a/"
+  ],
+  "checks": {
+    "unit": "unit-current.log8passed",
+    "browser": "browser.log6passed/1failed: default builtin work exceeded existing2MBcheckpoint limit; no limit change",
+    "checkpoint": "checkpoint-test.log1passed1.6s after valid smallwork import; creates earlier manuscript without changing active workspace raw",
+    "files": "browser.log includes actual knolstory/shortstory download+freshstorage reopen and modeled filehandle protection",
+    "build": "build-current.log passed",
+    "types": "types.log passed",
+    "lint": "lint.log scoped clean; known earlier local-work-file-actions lint issue not changed by wording",
+    "docs": "docs.log final links check; whitespace clean"
+  },
+  "limits": [
+    "Focused local Chromium; no physical-device or whole-suite claim",
+    "Game reference sources establish save/history separation; they do not provide this authoring apps file terminology",
+    "Historical docs can contain superseded names; current language owner explicitly supersedes them",
+    "Large builtin work existing checkpoint capacity issue retained as limit, not silently bypassed in product",
+    "No publishing/deployment"
+  ],
+  "sha256": {
+    "apps/web/lib/editor-terms.ts": "3e00243c71730f3b0d363449e2985c0cb62d9a3af2a97e7803a11d89d91e8c32",
+    "apps/web/lib/editor-terms.test.ts": "ed04923865a49543a5632563a10550771502ea532f60d349d878c5230da11d9b",
+    "apps/web/components/local-work-file-actions.tsx": "7839f7f738878f2e8bb90054df901a2a02122d2730c7eabb927670ee7567b486",
+    "apps/web/components/story-workspace.tsx": "49e0f2cb579db111a4079854c41f44f0096e3d85112d79cbc71f4d3cf9504c82",
+    "apps/web/components/story-recovery-panel.tsx": "1486fab2331e3d25303282793596ff9df4c4c30ed1f92319efee663f4033775c",
+    "apps/web/components/workspace-management.tsx": "8ed0108d6800a6ad9fe222b56b89776954381426e99d601da98077ae7a1b1817",
+    "apps/web/components/story-player-menu.tsx": "6f0709b89616f45ab3ce2a082097a66489ff698ba3d1fc510260e0da11a67890",
+    "tests/e2e/editor-term-guide.spec.ts": "be736d9c76e9cadb0552ed8ae48abb111bb3291a8dd1b9d2f37b3e20ef2fd106",
+    "tests/e2e/local-work-files.spec.ts": "73d93f78e4b4893f2a5c31d777abe4f81710b0a1cc398de36cc6b77d95be61f2",
+    "docs/architecture/editor-terminology-and-time.md": "49f5817f648cabe7df1d92f0aea68ac08a85d34a450b4527c5a613d8921800c4",
+    "docs/architecture/product-completion-plan.md": "a0ea9c875b73c0e396c2594657ac66ddd75ce0ac9f5b304d68697d358657c00d",
+    "DESIGN.md": "1b7ee61991acc18eaded548d348d9d5dbe0d4e0dec4e1951b2bf2796b3122c11",
+    ".agents/skills/design-system/SKILL.md": "cf75f90243ec028a56cbb488661f06e6d542c6d20534ec1a548482d7b90731c5"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Role/object table replaces synonyms; UI/glossary/test match; limits explicit"
+  }
+}

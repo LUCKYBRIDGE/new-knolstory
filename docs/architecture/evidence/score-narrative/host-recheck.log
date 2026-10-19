@@ -1,0 +1,13 @@
+
+Running 4 tests using 1 worker
+
+(node:54436) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/4] [host] › tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens
+[2/4] [host] › tests/e2e/score-narrative.spec.ts:6:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening
+[3/4] [host] › tests/e2e/score-narrative.spec.ts:14:72 › native score choices accumulate through a shared scene, restore and reselect 1280
+[4/4] [host] › tests/e2e/score-narrative.spec.ts:14:72 › native score choices accumulate through a shared scene, restore and reselect 390
+  2 skipped
+  2 passed (10.8s)

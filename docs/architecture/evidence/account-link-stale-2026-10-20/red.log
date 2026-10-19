@@ -1,0 +1,115 @@
+
+Running 3 tests using 1 worker
+
+(node:64508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/account-menu.spec.ts:61:52 › a delayed Google link cannot navigate after a same-mounted explicit account change (1.2s)
+(node:64523) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/account-menu.spec.ts:61:52 › a delayed Google link cannot navigate after a same-mounted focus account change (1.1s)
+(node:64537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/e2e/account-menu.spec.ts:72:1 › an obsolete Google link failure cannot refresh or unlock a newer pending link (6.1s)
+
+
+  1) tests/e2e/account-menu.spec.ts:61:52 › a delayed Google link cannot navigate after a same-mounted explicit account change 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "https://accounts.google.com/o/oauth2/v2/auth?state=obsolete",
+    + ]
+
+      68 |  const checked=page.waitForResponse('**/api/v1/me');await page.evaluate(refresh=>window.dispatchEvent(new Event(refresh==='explicit'?'knolstory-account-session-changed':'focus')),refresh);await(await checked).finished();await expect(menu.getByText('로그인됨',{exact:true})).toBeVisible();
+      69 |  const response=page.waitForResponse('**/api/v1/auth/google/link/start');release();await(await response).finished();await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+    > 70 |  expect(navigations).toEqual([]);expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(before);await expect(menu.getByRole('button',{name:'Google 계정 연결',exact:true})).toBeEnabled();
+         |                      ^
+      71 | });
+      72 | test('an obsolete Google link failure cannot refresh or unlock a newer pending link',async({page})=>{
+      73 |  await mockedAccount(page);let meRequests=0;const releases:(()=>void)[]=[];
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-menu.spec.ts:70:22
+
+    Error Context: docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-a-delayed-Goo-4c009-ted-explicit-account-change/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-a-delayed-Goo-4c009-ted-explicit-account-change/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-a-delayed-Goo-4c009-ted-explicit-account-change/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/account-menu.spec.ts:61:52 › a delayed Google link cannot navigate after a same-mounted focus account change 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 3
+
+    - Array []
+    + Array [
+    +   "https://accounts.google.com/o/oauth2/v2/auth?state=obsolete",
+    + ]
+
+      68 |  const checked=page.waitForResponse('**/api/v1/me');await page.evaluate(refresh=>window.dispatchEvent(new Event(refresh==='explicit'?'knolstory-account-session-changed':'focus')),refresh);await(await checked).finished();await expect(menu.getByText('로그인됨',{exact:true})).toBeVisible();
+      69 |  const response=page.waitForResponse('**/api/v1/auth/google/link/start');release();await(await response).finished();await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+    > 70 |  expect(navigations).toEqual([]);expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(before);await expect(menu.getByRole('button',{name:'Google 계정 연결',exact:true})).toBeEnabled();
+         |                      ^
+      71 | });
+      72 | test('an obsolete Google link failure cannot refresh or unlock a newer pending link',async({page})=>{
+      73 |  await mockedAccount(page);let meRequests=0;const releases:(()=>void)[]=[];
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-menu.spec.ts:70:22
+
+    Error Context: docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-a-delayed-Goo-b36ad-ounted-focus-account-change/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-a-delayed-Goo-b36ad-ounted-focus-account-change/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-a-delayed-Goo-b36ad-ounted-focus-account-change/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/account-menu.spec.ts:72:1 › an obsolete Google link failure cannot refresh or unlock a newer pending link 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  locator('[data-account-menu]').getByRole('button', { name: 'Google 계정 연결', exact: true })
+    Expected: enabled
+    Received: disabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeEnabled" locator('[data-account-menu]').getByRole('button', { name: 'Google 계정 연결', exact: true }) with timeout 5000ms
+      - waiting for locator('[data-account-menu]').getByRole('button', { name: 'Google 계정 연결', exact: true })
+        14 × locator resolved to <button disabled>Google 계정 연결</button>
+           - unexpected value "disabled"
+
+
+      75 |  await page.route('**/api/v1/auth/google/link/start',async route=>{await new Promise<void>(resolve=>releases.push(resolve));await route.fulfill({status:503,json:{success:false,error:{code:'PROVIDER_UNAVAILABLE'}}});});
+      76 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const menu=await openAccount(page),link=menu.getByRole('button',{name:'Google 계정 연결',exact:true}),before=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+    > 77 |  await link.click();await expect.poll(()=>releases.length).toBe(1);await page.evaluate(()=>window.dispatchEvent(new Event('knolstory-account-session-changed')));await expect(link).toBeEnabled();await link.click();await expect.poll(()=>releases.length).toBe(2);const checked=meRequests;
+         |                                                                                                                                                                                     ^
+      78 |  const old=page.waitForResponse('**/api/v1/auth/google/link/start');releases[0]!();await(await old).finished();await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));await expect(link).toBeDisabled();expect(meRequests).toBe(checked);await expect(menu.getByRole('alert')).toHaveCount(0);expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(before);
+      79 |  await page.evaluate(()=>window.dispatchEvent(new Event('knolstory-account-session-changed')));await expect(link).toBeEnabled();const latest=page.waitForResponse('**/api/v1/auth/google/link/start');releases[1]!();await(await latest).finished();
+      80 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-menu.spec.ts:77:181
+
+    Error Context: docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-an-obsolete-G-ac03a-unlock-a-newer-pending-link/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-an-obsolete-G-ac03a-unlock-a-newer-pending-link/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/account-link-stale-2026-10-20/red-run/account-menu-an-obsolete-G-ac03a-unlock-a-newer-pending-link/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests/e2e/account-menu.spec.ts:61:52 › a delayed Google link cannot navigate after a same-mounted explicit account change 
+    tests/e2e/account-menu.spec.ts:61:52 › a delayed Google link cannot navigate after a same-mounted focus account change 
+    tests/e2e/account-menu.spec.ts:72:1 › an obsolete Google link failure cannot refresh or unlock a newer pending link 

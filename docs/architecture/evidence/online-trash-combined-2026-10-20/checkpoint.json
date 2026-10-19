@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-20",
+  "status": "actual-local-browser-api-postgresql-trash-restore-offline-retry-verified-not-deployed",
+  "scope": "PC04 combined boundary verification with actual loopback gateway, current dedicated test API and isolated Next PostgreSQL",
+  "checks": {
+    "normal": "combined-final.log+combined-final/result.json bothformats actualcreate/trash/restore",
+    "responseLoss": "response-loss.log real servercommit then droppedresponse samekey/body retry200replayedtrue stateversion increasesonlyonce",
+    "offline": "final-copy-reopen.log+final-copy-reopen/result.json bothformats390px boundedofflineuploadfailure,actualdownloadfullprojectmatch,reconnectupload,postcommitloss/exactretry,sameworkrestore",
+    "readDenial": "actual409 DOCUMENT_TRASHED before restore",
+    "preservation": "Originalremote snapshot+recordId+contentrevision unchanged; stateversion1->3; full localauthored content/list/selection unchanged except regenerated envelope savedAt (not rawstorage byteequality)",
+    "cleanup": "final-copy-reopen/cleanup.json accountinactiveand sessionsrevoked",
+    "environment": "test-environment.json currenttestcontainer exactPGHOST/PGDATABASE/origin; providersdisabled; api-current-build.log onlytestAPIrebuild",
+    "evidenceGuard": "existing-run-protection.log existingrun EEXIST beforeDB/session creation; earlier result preserved",
+    "review": "Independent source review no blocker after cleanup fixes; missingversion integer guard added",
+    "lint": "../continuation-2026-10-20/lint-final-source.log0errors",
+    "restoredCopy": "final-copy-reopen/result.json restoredremote opens independentlocalproject equal except id; every previously localproject preserved"
+  },
+  "failureHistory": {
+    "first": "first.log badscope selector; selector-fixed.log currentWeb received oldAPI metadata missingstateVersion; rebuilttestAPIonly",
+    "currentApi": "current-api.log comparedregenerated envelope savedAt; changed onlytechnicalwrappercomparison, retained wholeprojects",
+    "offline": "offline-file/offline-diagnosis/offline-final/offline-current logs retained: closeonlinepopup beforebook action; selectcurrentimportcollection; explicitly choose download fallback, not OS picker. No product network workaround."
+  },
+  "limits": [
+    "No liveKakao/Google login, actualproduction migration/deploy or legacyservice modification",
+    "Syntheticaccount/session only in namedtestDB; no authoreduserrecorddeleted",
+    "Bounded browseroffline and postcommitresponse loss, not longoffline/multiplephysicaldevices",
+    "Downloadbranch explicit showSaveFilePicker unavailable; not realOSpickerproof",
+    "No retention/automaticpurge/class/share policy assumed",
+    "New CSScontrastfix verified separately, previousrestoredscreenshots retained"
+  ],
+  "sha256": {
+    "server/operations/verify-online-trash-browser.mjs": "b584570a6e444f20f8d34b51984b06b0af0e659c1d3b700fbc10b0b8b2b2260d",
+    "server/README.md": "66c6d87e778d14c1ae31746bc362509129f59b974f8f9d89d172c428d289b0d4"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actualpairedformats with unchangedcontent/stateids, negativefaultpaths and cleanup; remaining service decisions explicit"
+  }
+}

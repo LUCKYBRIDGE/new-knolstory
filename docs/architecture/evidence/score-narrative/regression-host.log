@@ -1,0 +1,24 @@
+
+Running 16 tests using 1 worker
+
+(node:73637) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/16] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 1280x900
+[2/16] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 820x1180
+[3/16] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 390x844
+[4/16] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 844x390
+[5/16] [host] › tests/e2e/authoring-formats.spec.ts:36:1 › blank official template creates new work through validated preview
+[6/16] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1440x1000
+[7/16] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1024x768
+[8/16] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 768x1024
+[9/16] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 390x844
+[10/16] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 844x390
+[11/16] [host] › tests/e2e/storage-recovery.spec.ts:11:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+[12/16] [host] › tests/e2e/storage-recovery.spec.ts:26:1 › second tab draft cannot overwrite first tab, even when using manual save
+[13/16] [host] › tests/e2e/storage-recovery.spec.ts:37:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+[14/16] [host] › tests/e2e/storage-recovery.spec.ts:50:1 › failed deletion preserves the previous deleted book and the current draft together
+[15/16] [host] › tests/e2e/storage-recovery.spec.ts:64:1 › page restoration reacquires ownership before saving and preserves the draft
+[16/16] [host] › tests/e2e/storage-recovery.spec.ts:74:1 › the complete long Seonnyeo copy can delete and undo a cut beyond checkpoint capacity
+  16 passed (3.3m)

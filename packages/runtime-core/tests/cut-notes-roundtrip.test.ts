@@ -1,0 +1,20 @@
+import {it,expect} from 'vitest';
+import {getRepresentativeStory} from '@knolstory/compatibility';
+import {patchStoryLine} from '../src';
+import {createStoryDocument} from '@knolstory/story-domain';
+import {createAuthoringArchive,encodeAuthoringArchive,decodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot} from '../../compatibility/src/authoring-archive';
+import {exportAuthoringWorkbook,importAuthoringWorkbook} from '../../compatibility/src/authoring-workbook';
+import {exportAuthoringExcel,importAuthoringExcel} from '../../compatibility/src/authoring-workbook/excel';
+it('edits existing cut notes while preserving a full work through every current format',async()=>{
+ const before=getRepresentativeStory('rabbit').project,id=before.lines[0].id;
+ const notes={workingTitle:'길을 찾는 컷',purposeNote:'서로의 의도를 확인한다.',emotionNote:'안도와 걱정\n함께 느낀다. 🌱',directionNote:'앞 장면에서 이어진 자유 배치를 유지한다.\n이 메모는 실제 효과 설정이 아니다.'};
+ const project=patchStoryLine(before,id,notes);
+ expect(project.lines.map(line=>line.id===id?{...line,...Object.fromEntries(Object.keys(notes).map(key=>[key,before.lines[0][key as keyof typeof before.lines[0]]]))}:line)).toEqual(before.lines);
+ const archive=await createAuthoringArchive({format:'knolstory',document:createStoryDocument({project,savedAt:'2026-10-11T00:00:00.000Z',appVersion:'cut-notes-test'})});
+ expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
+ const workbook=await exportAuthoringWorkbook(archive);
+ for(const field of Object.keys(notes))expect(workbook.tables.cuts.headers).toContain(field);
+ expect(await importAuthoringWorkbook(workbook)).toEqual(archive);
+ expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);
+ expect(await restoreJsonbSnapshot(await prepareJsonbSnapshot(archive))).toEqual(archive);
+});

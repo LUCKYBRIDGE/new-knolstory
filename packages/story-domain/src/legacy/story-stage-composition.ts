@@ -63,6 +63,8 @@ export function patchStageLine(line: StoryLine, patch: Partial<StoryLine>, chapt
   if ('backgroundId' in patch && !('backgroundMode' in patch)) delete next.backgroundMode;
   if (patch.inheritActors === true) return {...next, stageComposition:undefined, leftAssetId:'', rightAssetId:''};
   if (patch.stageComposition) return {...next, inheritActors:false, ...stageProjection(patch.stageComposition)};
+  // Text, sound, effects and Flow changes must not author stage defaults.
+  if (!['inheritActors','leftAssetId','rightAssetId','speaker'].some(field => field in patch)) return next;
   if (line.inheritActors && !('leftAssetId' in patch) && !('rightAssetId' in patch)) return next;
   if (!line.stageComposition && !line.inheritActors && !patch.flow) return next;
   const stage = resolveStageComposition(chapter, line, project);

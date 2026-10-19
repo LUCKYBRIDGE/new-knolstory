@@ -1,0 +1,34 @@
+
+Running 1 test using 1 worker
+
+(node:49326) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/online-works.spec.ts:64:1 › switching accounts hides the previous owner online titles until the new list is requested (1.1s)
+
+
+  1) tests/e2e/online-works.spec.ts:64:1 › switching accounts hides the previous owner online titles until the new list is requested 
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not true
+
+      68 |  account='33333333-3333-4333-8333-333333333333';await page.route('**/api/v1/documents',route=>route.fulfill({json:{success:true,data:{documents:[],nextCursor:null}}}));
+      69 |  await page.evaluate(()=>{const target=window as unknown as {leakedOnlineTitle?:boolean};const observer=new MutationObserver(()=>{const panel=document.querySelector('[data-online-works]');if(panel&&!panel.textContent?.includes('로그인 확인 중')&&!(Array.from(panel.querySelectorAll('button')).find(button=>button.textContent==='목록 새로고침')?.disabled)&&panel.textContent?.includes('온라인에 보관한 원고'))target.leakedOnlineTitle=true;});observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true});window.dispatchEvent(new Event('focus'));});
+    > 70 |  await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();await expect(panel.getByText('온라인에 보관한 원고',{exact:true})).toHaveCount(0);expect(await page.evaluate(()=>(window as unknown as {leakedOnlineTitle?:boolean}).leakedOnlineTitle)).not.toBe(true);await panel.getByRole('button',{name:'목록 새로고침',exact:true}).click();await expect(panel.getByText('온라인에 보관한 원고',{exact:true})).toHaveCount(0);
+         |                                                                                                                                                                                                                                                                        ^
+      71 | });
+      72 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/online-works.spec.ts:70:264
+
+    Error Context: test-results/online-works/online-works-switching-acc-9f9d0-l-the-new-list-is-requested/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/online-works/online-works-switching-acc-9f9d0-l-the-new-list-is-requested/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/online-works/online-works-switching-acc-9f9d0-l-the-new-list-is-requested/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/online-works.spec.ts:64:1 › switching accounts hides the previous owner online titles until the new list is requested 

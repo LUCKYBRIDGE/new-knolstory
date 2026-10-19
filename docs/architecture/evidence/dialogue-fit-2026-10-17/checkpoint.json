@@ -1,0 +1,253 @@
+{
+  "date": "2026-10-18",
+  "sourceSha256": {
+    "renpy/responsive-spike/game/script.rpy": "b75a3e844f7e30439c18b859731f6895e23f7e54ef3a7239f4a8b3a52583fe82",
+    "scripts/tests/test_dialogue_geometry.py": "76718578cd392d4408ef43de8edd4c3288c974d0b965b482461f6abd622f9e9f",
+    "spikes/renpy-web/verify-dialogue-fit.mjs": "b63b4bae0a3f8d6183ea2d2c40fb2f59ada76f71d9a3df1c16b715eae343b073",
+    "apps/web/out/runtime/game.zip": "659df5cfc10ff1e84fed2813b0f5c81e8d5902edb4dc7fb1f127a49b0dfd6a87"
+  },
+  "scope": "Native intrinsic textbox height; same actor/stage geometry; no manuscript changes",
+  "unitChecks": {
+    "dialogueGeometry": 7,
+    "presenter": 19
+  },
+  "localNative": {
+    "reports": [
+      {
+        "size": {
+          "width": 1280,
+          "height": 720
+        },
+        "short": {
+          "x": 48,
+          "y": 510,
+          "width": 1184,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 273,
+          "width": 1184,
+          "height": 411
+        },
+        "body": {
+          "x": 72,
+          "y": 293,
+          "width": 1092,
+          "height": 371
+        },
+        "unchangedUpperActorPixels": 0
+      },
+      {
+        "size": {
+          "width": 720,
+          "height": 1280
+        },
+        "short": {
+          "x": 48,
+          "y": 1070,
+          "width": 624,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 462,
+          "width": 624,
+          "height": 782
+        },
+        "body": {
+          "x": 72,
+          "y": 482,
+          "width": 532,
+          "height": 742
+        },
+        "unchangedUpperActorPixels": 0
+      },
+      {
+        "size": {
+          "width": 1280,
+          "height": 600
+        },
+        "short": {
+          "x": 48,
+          "y": 390,
+          "width": 1184,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 153,
+          "width": 1184,
+          "height": 411
+        },
+        "body": {
+          "x": 72,
+          "y": 173,
+          "width": 1092,
+          "height": 371
+        },
+        "unchangedUpperActorPixels": 0
+      }
+    ],
+    "overflow": {
+      "textbox": {
+        "x": 48,
+        "y": 70,
+        "width": 1184,
+        "height": 614
+      },
+      "body": {
+        "x": 72,
+        "y": 90,
+        "width": 1092,
+        "height": 530
+      },
+      "pageInputsBeforeStoryAdvance": 7,
+      "firstPageAdvanceEvents": 0,
+      "textDifference": 90949
+    },
+    "choices": {
+      "rect": {
+        "x": 240,
+        "y": 56,
+        "width": 800,
+        "height": 178
+      },
+      "textbox": {
+        "x": 48,
+        "y": 282,
+        "width": 1184,
+        "height": 402
+      },
+      "pagesBeforeChoice": 11
+    }
+  },
+  "review": "Read-only reviewer found no confirmed P1/P2 in inspected scope",
+  "initialFailures": [
+    "Native old-build assertion: measured multiline text expands textbox",
+    "First server probe on stopped3126 refused; dedicated3150 used"
+  ],
+  "limits": [
+    "No physical Android/Chromebook or screen-reader verification",
+    "Pixel invariance proves visible actor area above textbox; actor rendering path not modified",
+    "Native paging is transient presentation; accessible host text retains full manuscript",
+    "No full product release or deletion claim"
+  ],
+  "productionNative": {
+    "reports": [
+      {
+        "size": {
+          "width": 1280,
+          "height": 720
+        },
+        "short": {
+          "x": 48,
+          "y": 510,
+          "width": 1184,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 273,
+          "width": 1184,
+          "height": 411
+        },
+        "body": {
+          "x": 72,
+          "y": 293,
+          "width": 1092,
+          "height": 371
+        },
+        "unchangedUpperActorPixels": 0
+      },
+      {
+        "size": {
+          "width": 720,
+          "height": 1280
+        },
+        "short": {
+          "x": 48,
+          "y": 1070,
+          "width": 624,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 462,
+          "width": 624,
+          "height": 782
+        },
+        "body": {
+          "x": 72,
+          "y": 482,
+          "width": 532,
+          "height": 742
+        },
+        "unchangedUpperActorPixels": 0
+      },
+      {
+        "size": {
+          "width": 1280,
+          "height": 600
+        },
+        "short": {
+          "x": 48,
+          "y": 390,
+          "width": 1184,
+          "height": 174
+        },
+        "long": {
+          "x": 48,
+          "y": 153,
+          "width": 1184,
+          "height": 411
+        },
+        "body": {
+          "x": 72,
+          "y": 173,
+          "width": 1092,
+          "height": 371
+        },
+        "unchangedUpperActorPixels": 0
+      }
+    ],
+    "overflow": {
+      "textbox": {
+        "x": 48,
+        "y": 70,
+        "width": 1184,
+        "height": 614
+      },
+      "body": {
+        "x": 72,
+        "y": 90,
+        "width": 1092,
+        "height": 530
+      },
+      "pageInputsBeforeStoryAdvance": 7,
+      "firstPageAdvanceEvents": 0,
+      "textDifference": 90949
+    },
+    "choices": {
+      "rect": {
+        "x": 240,
+        "y": 56,
+        "width": 800,
+        "height": 178
+      },
+      "textbox": {
+        "x": 48,
+        "y": 282,
+        "width": 1184,
+        "height": 402
+      },
+      "pagesBeforeChoice": 11
+    }
+  },
+  "deployedOrigin": "https://story.knolquiz.com",
+  "cachePurgeUrls": [
+    "https://story.knolquiz.com/runtime/game.zip",
+    "https://story.knolquiz.com/runtime/index.html",
+    "https://story.knolquiz.com/runtime/runtime-contract.js"
+  ]
+}

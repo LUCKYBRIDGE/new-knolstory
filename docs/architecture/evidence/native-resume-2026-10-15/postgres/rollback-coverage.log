@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  3 passed (3)
+      Tests  32 passed (32)
+   Start at  00:16:03
+   Duration  1.65s (transform 557ms, setup 0ms, import 852ms, tests 452ms, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   41.88 |    15.78 |      35 |   44.94 |                   
+ migrations        |   87.09 |    64.28 |      50 |     100 |                   
+  runner.ts        |   87.09 |    64.28 |      50 |     100 | 13-22             
+ storage           |   25.58 |     4.83 |   33.33 |   24.61 |                   
+  ...-save-port.ts |   25.58 |     4.83 |   33.33 |   24.61 | ...,67-94,112-124 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 41.88% ( 49/117 )
+Branches     : 15.78% ( 12/76 )
+Functions    : 35% ( 7/20 )
+Lines        : 44.94% ( 40/89 )
+================================================================================
+ERROR: Coverage for lines (44.94%) does not meet global threshold (80%)
+ERROR: Coverage for functions (35%) does not meet global threshold (80%)
+ERROR: Coverage for statements (41.88%) does not meet global threshold (80%)
+ERROR: Coverage for branches (15.78%) does not meet global threshold (80%)

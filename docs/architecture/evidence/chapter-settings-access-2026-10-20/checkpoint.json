@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-20",
+  "status": "local-chapter-settings-access-implemented-focused-verified-not-deployed",
+  "problem": "Current six-screen editor no longer mounts old ChapterWriter; existing chapter defaults had no current UI access",
+  "implementation": [
+    "One closed disclosure inside existing Settings, current selected cut chapter identity shown once",
+    "Existing title/summary/default background; character/audio defaults require their independent opt-in",
+    "Uses existing chapter immutable patch and catalog picker/audio range components",
+    "Default image registers deduplicated chapter resource; clear preserves pools and cut overrides",
+    "IME metadata remains editable; images/audio and screen switching blocked while composing",
+    "Existing manuscript/IDs/cuts/Flow/Stage/workbook contracts preserved"
+  ],
+  "checks": {
+    "unit": "unit-final.log8passed",
+    "browser": "browser-final.log1passed10.0s metadata, IMEmodel, image, optins, audioendrange, featureclosuredata, reload, actualexport/freshcontextreopen; 4viewports nohorizontaloverflow",
+    "integration": "integration.log2passed15.5s current chapter path + actual native history save/load/restart together",
+    "build": "build-final.log passed; build-wording.log final help-copy consistency build",
+    "type": "types.log passed",
+    "lint": "lint.log clean",
+    "review": "Independent source review no blocker; chapter-local error text may remain until nextsuccessful change when switching chapters, nonblocking UI followup",
+    "visual": "Desktop and390px actual app captures inspected, reduced duplicate chapter labels",
+    "preservation": {
+      "checked": 3497,
+      "changed": []
+    }
+  },
+  "limits": [
+    "Focused localChromium, modeled IME not physicalOSkeyboard proof",
+    "Chapter number/branchlabel and independent resource-list editing still nextPC11 scope",
+    "Longmanuscript usability, physicaldevices, online combinedtrash and release remain",
+    "No new domain fields, no new renderer, no online mutation/deployment",
+    "Final wording-only help changes do not alter tested behavior; old captures retained"
+  ],
+  "sha256": {
+    "apps/web/components/story-chapter-settings.tsx": "cb70bd33204e9af64a8806a64afcaff942c88eb59f0bc0d3ca428b80382c975a",
+    "apps/web/components/story-chapter-settings.module.css": "26b9851266d5e057e7b230d88a1cef4d38e13175f9281ae3b537d3f0a1a85582",
+    "apps/web/components/story-chapter-settings.test.ts": "217e85bc59c4c952477f343c0fb33f15775310399dfad0247b5eb8204a56d821",
+    "apps/web/components/story-workspace.tsx": "16fa3df4e30e5825ec49298cf2b97919c8e00a9af76d0b65c573ad984dd8e62f",
+    "apps/web/components/story-editing-workbench.tsx": "2bffee4e8c6a088d7788f9117b2fa6f243a3c1f6ecaee8d9bc26339c1c2cdf25",
+    "tests/e2e/chapter-settings-access.spec.ts": "99f1661d73a0b99f021ac6af68a0742f449c7008846f4e4674f92952eaad648c",
+    "tests/e2e/history-visible-text.spec.ts": "25e8e1228384b1c5c59e4049826431f64dc7f05dd7f9cb5f253f2387dadb2fe1",
+    "playwright.config.ts": "223b435448740df2e3328357574a3cfe88a94f68778b90deb2eb53f8b209f9dc",
+    "DESIGN.md": "802bfe6ce038cd8750a7b3fee37e43dc7b56086d7c3f2a04d49870712e438861",
+    "STATUS.md": "d180d632d96e6b1e75311f65fbdab26a1f82ccd9134cb7775757aef038303813",
+    "docs/architecture/product-completion-plan.md": "fa8e075324560ab65d24dcc27e4bb416b10eba4b5e37d08607c3f2c3fadeda8f",
+    "docs/architecture/authoring-storage-contract.md": "6b779d855956ffb586130b528fb9f3b0b920f31905cc0c353e5c816e4a678ab1"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Two sequential priorities delivered, full file preservation and real native integration evidence, remainingscope explicit"
+  }
+}

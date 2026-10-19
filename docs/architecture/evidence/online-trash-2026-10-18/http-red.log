@@ -1,0 +1,53 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/document-routes.test.ts (47 tests | 2 failed) 174ms
+     × routes state commands with CSRF, exact envelope and expected state version 3ms
+     × forwards the explicit trash listing scope and rejects unknown states 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/document-routes.test.ts > online trash HTTP boundary > routes state commands with CSRF, exact envelope and expected state version
+AssertionError: expected 400 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 400
+
+ ❯ server/http/document-routes.test.ts:133:78
+    131|   const h=await harness({documents:{trash:change,restore:change} as un…
+    132|   const body={payloadVersion:1,expectedRevision:1,expectedStateVersion…
+    133|   expect((await h.write(body,`/api/v1/documents/${recordId}/trash`)).s…
+       |                                                                              ^
+    134|   expect(change).toHaveBeenCalledWith(context,recordId,body);
+    135|   expect((await h.write({...body,expectedStateVersion:0},`/api/v1/docu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  server/http/document-routes.test.ts > online trash HTTP boundary > forwards the explicit trash listing scope and rejects unknown states
+AssertionError: expected 400 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 400
+
+ ❯ server/http/document-routes.test.ts:140:93
+    138|  });
+    139|  it('forwards the explicit trash listing scope and rejects unknown sta…
+    140|   const h=await harness();expect((await h.request('/api/v1/documents?s…
+       |                                                                                             ^
+    141|   expect(h.documents.list).toHaveBeenCalledWith(context,{state:'trash'…
+    142|   expect((await h.request('/api/v1/documents?state=all')).status).toBe…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 45 passed (47)
+   Start at  23:12:48
+   Duration  632ms (transform 237ms, setup 0ms, import 364ms, tests 174ms, environment 0ms)
+

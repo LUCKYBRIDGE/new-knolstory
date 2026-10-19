@@ -1,8 +1,10 @@
 "use client";
+import dialogSurface from './story-dialog-surface.module.css';
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { StoryProject } from "@knolstory/story-domain";
 import { analyzeStoryFlow } from "@knolstory/runtime-core";
+import { describeStoryEdge } from "../lib/story-connection-labels";
 import styles from "./story-flow-map.module.css";
 
 type Props = {
@@ -14,13 +16,18 @@ type Props = {
 type FlowGraph = ReturnType<typeof analyzeStoryFlow>;
 type FlowNode = FlowGraph["nodes"][number];
 type FlowEdge = FlowGraph["edges"][number];
+function issueDescription(issue: FlowGraph["issues"][number]) {
+  if (issue.kind === "pending") return "도착 컷을 정해 주세요. 이야기를 마칠 곳이라면 이야기 끝을 선택해 주세요.";
+  if (issue.kind === "unreachable") return "시작부터 이 컷까지 이어지는 길이 없습니다. 앞의 컷이나 선택지에서 이 컷으로 오는 길을 정해 주세요.";
+  return issue.message;
+}
 type Scope = "all" | "issues" | "unreachable";
 
 function location(node: FlowNode) {
   return `${node.chapterLabel} · ${node.order}컷`;
 }
 function edgeDestination(edge: FlowEdge, nodes: Map<string, FlowNode>) {
-  if (edge.status === "pending") return "연결 대기";
+  if (edge.status === "pending") return "도착 컷을 정해 주세요";
   if (edge.status === "ending") return "이야기 끝";
   const target = edge.targetLineId ? nodes.get(edge.targetLineId) : undefined;
   return target ? location(target) : "도착 컷 없음";
@@ -30,9 +37,9 @@ function NodeBadges({ node, current, start }: { node: FlowNode; current: boolean
     {current && <span className={styles.currentBadge}>현재 편집</span>}
     {start && <span>시작</span>}
     {node.kind === "choice" && <span>선택 · 분기</span>}
-    {node.shared && <span className={styles.sharedBadge}>합류 · 공유 컷</span>}
+    {node.shared && <span className={styles.sharedBadge}>여러 갈래에서 함께 쓰는 컷</span>}
     {node.kind === "ending" && <span>이야기 끝 · 엔딩</span>}
-    {!node.reachable && <span className={styles.issueBadge}>도달 불가</span>}
+    {!node.reachable && <span className={styles.issueBadge}>시작부터 이어지는 길 없음</span>}
   </span>;
 }
 
@@ -66,7 +73,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
   const issueIds = useMemo(() => new Set(graph.issues.map(issue => issue.lineId)), [graph]);
   const search = query.trim().toLocaleLowerCase();
   const matches = (node: FlowNode) => (scope === "all" || (scope === "issues" ? issueIds.has(node.lineId) : !node.reachable))
-    && (!search || [node.chapterLabel, node.text, node.lineId, ...(outgoing.get(node.lineId) ?? []).map(edge => edge.label)].join(" ").toLocaleLowerCase().includes(search));
+    && (!search || [node.chapterLabel, node.text, node.lineId, ...(outgoing.get(node.lineId) ?? []).map(edge => describeStoryEdge(project, edge))].join(" ").toLocaleLowerCase().includes(search));
   const visible = graph.nodes.filter(matches);
   const chapters = [...new Set(visible.map(node => node.chapterId))].map(id => ({
     id, title: visible.find(node => node.chapterId === id)!.chapterLabel,
@@ -81,7 +88,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
   function toggleChapter(id: string) {
     setExpanded(previous => previous.includes(id) ? previous.filter(value => value !== id) : [...previous, id]);
   }
-  return <dialog ref={dialogRef} className={styles.dialog} aria-labelledby={titleId} aria-describedby={legendId}
+  return <dialog ref={dialogRef} className={`${styles.dialog} ${dialogSurface.surface}`} aria-labelledby={titleId} aria-describedby={legendId}
     onCancel={event => { event.preventDefault(); onClose(); }}
     onClick={event => {
       const bounds = event.currentTarget.getBoundingClientRect();
@@ -92,21 +99,22 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
       <button ref={closeRef} onClick={onClose} aria-label="전체 흐름 닫기">닫기</button>
     </header>
     <div className={styles.body}>
-      <p className={styles.context}>현재 위치: <strong>{current ? location(current) : "선택한 컷 없음"}</strong> · 전체 {graph.nodes.length}컷 · 합류 {graph.nodes.filter(node => node.shared).length}곳 · 확인할 항목 {graph.issues.length}개</p>
-      <p id={legendId} className={styles.legend}>화살표는 이야기 진행 방향입니다. 분기는 선택지에 따라 길이 나뉘고, 합류 · 공유 컷은 여러 연결이 만나는 장면입니다. 공유 컷을 수정하면 그 컷을 지나는 모든 경로에 반영됩니다.</p>
+      <p className={styles.context}>현재 위치: <strong>{current ? location(current) : "선택한 컷 없음"}</strong> · 전체 {graph.nodes.length}컷 · 여러 갈래에서 함께 쓰는 컷 {graph.nodes.filter(node => node.shared).length}개 · 확인할 항목 {graph.issues.length}개</p>
+      {graph.nodes.some(node=>node.shared)&&<details><summary>여러 길이 다시 만나는 지점 · {graph.nodes.filter(node=>node.shared).length}곳</summary><p>둘 이상의 선택이나 이동이 같은 컷으로 이어지는 곳입니다. 같은 갈림길의 서로 다른 선택도 포함해요.</p><ul>{graph.nodes.filter(node=>node.shared).map(node=><li key={node.lineId}><button type="button" onClick={()=>openCut(node.lineId)}>{location(node)} · {node.text.slice(0,40)||'아직 글이 없는 컷'}</button><ul>{node.incoming.map(edge=><li key={edge.id}>{describeStoryEdge(project,edge)}</li>)}</ul></li>)}</ul></details>}
+      <p id={legendId} className={styles.legend}>화살표는 이야기 진행 방향입니다. 선택지나 점수 조건에 따라 길이 나뉠 수 있습니다. 여러 갈래에서 함께 쓰는 컷을 수정하면 그 컷을 지나는 모든 길에 반영됩니다.</p>
       <div className={styles.filters}>
         <label>흐름 검색<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="장 제목, 컷 내용, 선택지" /></label>
-        <label>표시 범위<select value={scope} onChange={event => setScope(event.target.value as Scope)}><option value="all">전체 컷</option><option value="issues">확인할 연결</option><option value="unreachable">도달할 수 없는 컷</option></select></label>
+        <label>표시 범위<select value={scope} onChange={event => setScope(event.target.value as Scope)}><option value="all">전체 컷</option><option value="issues">확인할 연결</option><option value="unreachable">시작부터 이어지는 길이 없는 컷</option></select></label>
       </div>
       <p role="status" className={styles.result}>{visible.length}컷 표시 · 컷을 선택하면 편집 화면으로 이동합니다.</p>
-      {graph.nodes.length <= 80 && scope === "all" && !search && <FlowDiagram graph={graph} currentLineId={currentLineId} onSelectCut={openCut} />}
+      {graph.nodes.length <= 80 && scope === "all" && !search && <FlowDiagram project={project} graph={graph} currentLineId={currentLineId} onSelectCut={openCut} />}
       {graph.nodes.length > 80 && <p className={styles.legend}>긴 작품은 장별로 펼쳐 살펴보세요. 검색하거나 표시 범위를 바꾸면 해당 컷을 모아 볼 수 있습니다.</p>}
       <section className={styles.issues} aria-label="흐름 확인 항목">
         <h3>확인할 연결과 컷</h3>
-        {visibleIssues.length === 0 ? <p>{graph.issues.length === 0 ? "연결 대기나 도달할 수 없는 컷이 없습니다." : "현재 검색·표시 범위에 확인할 항목이 없습니다."}</p> : <>
+        {visibleIssues.length === 0 ? <p>{graph.issues.length === 0 ? "도착 컷이 비어 있거나 시작부터 이어지는 길이 없는 컷이 없습니다." : "현재 검색·표시 범위에 확인할 항목이 없습니다."}</p> : <>
           <ul>{visibleIssues.slice(0, issueLimit).map((issue, index) => <li key={`${issue.lineId}:${issue.choiceId ?? issue.kind}:${index}`}>
             <button data-flow-issue-line-id={issue.lineId} onClick={() => onSelectCut(issue.lineId, { choiceId: issue.choiceId, kind: issue.kind })}>
-              <strong>{location(nodeById.get(issue.lineId)!)}</strong><span>{issue.message}</span><span className={styles.editHint}>이 컷에서 수정 →</span>
+              <strong>{location(nodeById.get(issue.lineId)!)}</strong><span>{issueDescription(issue)}</span><span className={styles.editHint}>이 컷에서 수정 →</span>
             </button>
           </li>)}</ul>
           {visibleIssues.length > issueLimit && <button onClick={() => setIssueLimit(previous => previous + 50)}>확인 항목 50개 더 보기 ({visibleIssues.length - issueLimit}개 남음)</button>}
@@ -127,7 +135,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
                 <span className={styles.authoredText}>{node.text || "아직 글이 없는 컷"}</span>
               </button>
               <ul className={styles.connections}>{(outgoing.get(node.lineId) ?? []).map(edge => <li key={edge.id}>
-                <span className={styles.arrow} aria-hidden="true">↳ →</span><span className={styles.connectionLabel}>{edge.label || "다음"}</span>
+                <span className={styles.arrow} aria-hidden="true">↳ →</span><span className={styles.connectionLabel}>{describeStoryEdge(project, edge)}</span>
                 {edge.status === "connected" && edge.targetLineId ? <button onClick={() => openCut(edge.targetLineId!)} aria-label={`도착 컷 ${edgeDestination(edge, nodeById)} 편집`}>{edgeDestination(edge, nodeById)}</button> : <span className={edge.status === "ending" ? styles.terminal : styles.issueBadge}>{edgeDestination(edge, nodeById)}</span>}
               </li>)}</ul>
             </li>)}</ol>{chapter.nodes.length > limit && <button className={styles.moreCuts} onClick={() => setChapterLimits(previous => ({ ...previous, [chapter.id]: limit + 100 }))}>이 장의 컷 100개 더 보기 ({chapter.nodes.length - limit}컷 남음)</button>}</>}
@@ -138,7 +146,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
   </dialog>;
 }
 
-function diagramLayout(graph: FlowGraph) {
+function diagramLayout(graph: FlowGraph, project: StoryProject) {
   const nodeWidth = 164;
   const columnGap = 25;
   const rowGap = 28;
@@ -170,8 +178,11 @@ function diagramLayout(graph: FlowGraph) {
     let top = margin;
     const left = margin + columnIndex * (nodeWidth + columnGap);
     for (const node of column) {
-      const nodeHeight = 72 + Math.ceil(location(node).length / 14) * 20
-        + node.outgoing.reduce((sum, edge) => sum + Math.ceil(`${edge.label} → ${edgeDestination(edge, nodeById)}`.length / 18) * 18 + 4, 0);
+      const badgeHeight = (node.shared ? 40 : 0) + (!node.reachable ? 40 : 0)
+        + (node.kind === "choice" || node.kind === "ending" ? 28 : 0)
+        + (node.lineId === graph.startLineId ? 28 : 0);
+      const nodeHeight = 100 + badgeHeight + Math.ceil(location(node).length / 12) * 20
+        + node.outgoing.reduce((sum, edge) => sum + Math.ceil(`${describeStoryEdge(project, edge)} → ${edgeDestination(edge, nodeById)}`.length / 12) * 20 + 4, 0);
       positions.set(node.lineId, { x: left, y: top, height: nodeHeight });
       top += nodeHeight + rowGap;
       width = Math.max(width, left + nodeWidth + margin);
@@ -181,9 +192,9 @@ function diagramLayout(graph: FlowGraph) {
   return { positions, width: Math.max(300, width), height: Math.max(180, height), nodeById, nodeWidth };
 }
 
-function FlowDiagram({ graph, currentLineId, onSelectCut }: { graph: FlowGraph; currentLineId: string; onSelectCut: (id: string) => void }) {
+function FlowDiagram({ project, graph, currentLineId, onSelectCut }: { project: StoryProject; graph: FlowGraph; currentLineId: string; onSelectCut: (id: string) => void }) {
   const arrowId = useId().replace(/:/g, "");
-  const { positions, width, height, nodeById, nodeWidth } = diagramLayout(graph);
+  const { positions, width, height, nodeById, nodeWidth } = diagramLayout(graph, project);
   return <section aria-label="이야기 연결 지도" className={styles.diagramSection}>
     <h3>이야기 연결 지도</h3>
     <div className={styles.diagramScroll} tabIndex={0} aria-label="이야기 연결 지도 스크롤 영역" data-testid="story-flow-diagram-scroll">
@@ -208,7 +219,7 @@ function FlowDiagram({ graph, currentLineId, onSelectCut }: { graph: FlowGraph; 
           return <button key={node.lineId} data-flow-map-line-id={node.lineId} className={`${styles.mapNode} ${node.lineId === currentLineId ? styles.mapCurrent : ""}`} style={{ left: position.x, top: position.y, width: nodeWidth, minHeight: position.height }}
             onClick={() => onSelectCut(node.lineId)} aria-current={node.lineId === currentLineId ? "true" : undefined} aria-label={`지도 ${location(node)} 편집`}>
             <strong>{location(node)}</strong><NodeBadges node={node} current={node.lineId === currentLineId} start={node.lineId === graph.startLineId} />
-            {node.outgoing.map(edge => <span key={edge.id} className={styles.mapConnection}>{edge.label || "다음"} → {edgeDestination(edge, nodeById)}</span>)}
+            {node.outgoing.map(edge => <span key={edge.id} className={styles.mapConnection}>{describeStoryEdge(project, edge)} → {edgeDestination(edge, nodeById)}</span>)}
           </button>;
         })}
       </div>

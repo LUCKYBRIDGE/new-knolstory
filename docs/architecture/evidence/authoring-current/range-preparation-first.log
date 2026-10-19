@@ -1,0 +1,22 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/compatibility/tests/range-external-preparation.test.ts (2 tests | 1 failed | 1 skipped) 53ms
+   × exports editable v7 range columns from a real work and precisely preserves unrelated authoring 53ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/range-external-preparation.test.ts > exports editable v7 range columns from a real work and precisely preserves unrelated authoring
+TypeError: Cannot read properties of undefined (reading 'headers')
+ ❯ withEnd packages/compatibility/tests/range-external-preparation.test.ts:15:112
+
+ ❯ packages/compatibility/tests/range-external-preparation.test.ts:16:152
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 skipped (2)
+   Start at  22:06:14
+   Duration  1.07s (transform 631ms, setup 0ms, import 900ms, tests 53ms, environment 0ms)
+

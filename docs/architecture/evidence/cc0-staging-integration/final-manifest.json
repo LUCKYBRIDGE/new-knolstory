@@ -1,0 +1,23 @@
+{
+  "scope": "local staged CC0 library integration; no push/deployment/device/listening approval",
+  "sourceCommit": "8ec4c7cda0da51087e8c5ce354648fa9a3b02ced",
+  "counts": {
+    "existing": 61,
+    "added": 469,
+    "catalogue": 530,
+    "aliases": 23
+  },
+  "artifacts": {
+    "e2e-final-reviewed.log": "26065793b0a39f5dc1cda3b32aa4b1ef6d0d6e7552099c74e1d23619cd1bbfe6",
+    "unit-final-confirmed.log": "5de2e184d190a7fb1484ecb5ae25fb6178834e93b4ce215776cde22d6b0761e7",
+    "native-audio-state.json": "d4086e479f8f0c7a932063ade64bd3efc7f7b226a84e10d39142d132d854db62",
+    "native-shared-channels.png": "96b05fe3449242041ea7aff61ad3e6657133fa94fff0570a6dc01eff5ea92ee7",
+    "runtime-build-final.log": "1578de452b436ae4d9835ab791ceca5e2283211bd2e325236fcf7cbfc859e0c1",
+    "web-build-verified.log": "188c64cd225f46bcd59652aa07d61b6b9d028dd7b6afe25a2b1cd5db1422f8e7",
+    "coverage-final.log": "9af582e7db1e5b8fb58061dab4cb01c8d8652111ec903d5f66ace6cfc534ee94",
+    "service-gate-final.log": "d0abd3f45dc1832cad63b5f2c547e45d7842bbfb96dc9a5dc610765df8a67985",
+    "provenance-final.log": "6ba695d4e9c7693c3546a32e928aacdacd16098cb61c6b277b2ac6f1ecce5e79",
+    "scripts-final.log": "b2df6ee4495ee32157b52d2d55dc6c1c1cd9a2f925201faa1135ab790539cbf0"
+  },
+  "gameZipBytes": 37641800
+}

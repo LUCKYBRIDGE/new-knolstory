@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-10-16T08:42:44.942604+00:00",
+  "scope": "Current isolated Next PostgreSQL16 logical backup/restore; not complete production recovery",
+  "sourceSha256": {
+    "server/operations/backup-restore.mjs": "0772a4b27719861f27878fbd2345596e8373c9aa807db9a43fe9b8641e94572f",
+    "server/operations/backup-restore.test.mjs": "9e4213dd47b00cc525f122cfb1503412e3bfd652e67fab7d512972aa55be2876",
+    "server/operations/backup-restore.integration.test.mjs": "ec663b78185f415a4b5cefc12016611d1f52130ef9c8581b61f169a6a86a1f3c",
+    "server/operations/restore-content.integration.ts": "70d9e6b2094e247d733e057121d22832738d9f9e31e7166883abad3478173ffc",
+    "server/vitest.restore.config.ts": "7e7b0677dea70a8f325bdd0e61d1bbd815a1c6681b8bceaf7ffcce07facc7be0"
+  },
+  "verification": {
+    "operatorTests": {
+      "passed": 4,
+      "evidence": "actual-coverage.tap",
+      "coverage": {
+        "lines": 100,
+        "branches": 86.11,
+        "functions": 81.82
+      }
+    },
+    "exactRestore": "restore-2026-10-16T08-38-41-466Z-c5a2fe4f.json",
+    "applicationProbe": {
+      "passed": 3,
+      "log": "restored-content-final.log",
+      "records": 181,
+      "valid": 171,
+      "invalidPreserved": 10,
+      "knolstory": 126,
+      "shortstory": 45,
+      "privateResources": 11
+    },
+    "sourceUnchanged": "source-after.json",
+    "lint": "lint-final.log"
+  },
+  "executionCorrection": "First restore probe used mergeConfig and seeded ordinary tests into its disposable restore DB; source untouched. Literal include and a fresh restore DB used for final3. Original logs and both verification DBs retained. No aggregate342-test completion claim.",
+  "preservation": {
+    "protectedArtifacts": 483,
+    "changed": [],
+    "legacyContainers": 23,
+    "legacyMetadataChanged": []
+  },
+  "privateArtifacts": "Logical custom archives and detailed inventory outside checkout; run directory0700/files0600; no payload/secret/private path in public report.",
+  "remaining": [
+    "Off-host durable/encrypted backups and retention decision",
+    "Roles/grants/secrets and static assets/runtime recovery",
+    "Historical-session revocation procedure before traffic activation",
+    "Full service/class/sharing/device/accessibility/release requirements"
+  ],
+  "review": "Primary review complete; delegated read-only review requested, result pending.",
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actual consistent restore and source preservation proven; operating restore and full product remain incomplete."
+  }
+}

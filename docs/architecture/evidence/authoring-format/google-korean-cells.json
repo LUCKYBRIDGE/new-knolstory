@@ -1,0 +1,170 @@
+{
+  "spreadsheetId": "1RwRqGnAmiZUoXJFMixgy1H4MbsVlDIATLKLo8u9rz_8",
+  "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1RwRqGnAmiZUoXJFMixgy1H4MbsVlDIATLKLo8u9rz_8/edit",
+  "properties": {
+    "title": "뉴놀스토리 한글 편집 양식 검증 2026-10-10",
+    "locale": "ko_KR",
+    "timeZone": "America/Los_Angeles"
+  },
+  "sheets": [
+    {
+      "properties": {
+        "sheetId": 1281079410,
+        "title": "컷",
+        "index": 5,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 2,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "data": [
+        {
+          "startColumn": 1,
+          "rowData": [
+            {
+              "values": [
+                {
+                  "formattedValue": "장 ID",
+                  "note": "‘장’ 탭의 장 ID와 연결합니다. 이 행의 컷·무대·소리 설정이 어느 장에 속하는지 정합니다.\n필수 입력\n입력 방법: 다른 탭의 동일 ID/키와 정확히 연결. 앞자리 0 보존.\n자동 연결 키: chapterId"
+                },
+                {
+                  "formattedValue": "대사 종류",
+                  "note": "‘컷’의 ‘대사 종류’에 적용됩니다. 안내에 적힌 허용 값과 단위를 사용하세요.\n필수 입력\n입력 방법: 대사 / 해설\n자동 연결 키: type"
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "chapterId"
+                },
+                {
+                  "formattedValue": "type"
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "chapter-001"
+                },
+                {
+                  "formattedValue": "대사",
+                  "dataValidation": {
+                    "condition": {
+                      "type": "ONE_OF_LIST",
+                      "values": [
+                        {
+                          "userEnteredValue": "대사"
+                        },
+                        {
+                          "userEnteredValue": "해설"
+                        }
+                      ]
+                    },
+                    "inputMessage": "대사 종류 - ‘컷’의 ‘대사 종류’에 적용됩니다. 안내에 적힌 허용 값과 단위를 사용하세요.",
+                    "strict": true,
+                    "showCustomUi": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "properties": {
+        "sheetId": 2015145464,
+        "title": "음악 환경음",
+        "index": 21,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26,
+          "frozenRowCount": 2,
+          "rowGroupControlAfter": true,
+          "columnGroupControlAfter": true
+        }
+      },
+      "data": [
+        {
+          "startColumn": 2,
+          "rowData": [
+            {
+              "values": [
+                {
+                  "formattedValue": "소리 종류",
+                  "note": "장 또는 컷의 음악·환경음·효과음에 적용됩니다. 장 설정에서 컷 ID는 미설정입니다.\n필수 입력\n입력 방법: 배경 음악 / 환경음\n자동 연결 키: channel"
+                },
+                {
+                  "formattedValue": "소리 처리",
+                  "note": "장 또는 컷의 음악·환경음·효과음에 적용됩니다. 장 설정에서 컷 ID는 미설정입니다.\n필수 입력\n입력 방법: 이전 소리 유지 / 소리 중지 / 소리 재생\n자동 연결 키: action"
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "channel"
+                },
+                {
+                  "formattedValue": "action"
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "배경 음악",
+                  "dataValidation": {
+                    "condition": {
+                      "type": "ONE_OF_LIST",
+                      "values": [
+                        {
+                          "userEnteredValue": "배경 음악"
+                        },
+                        {
+                          "userEnteredValue": "환경음"
+                        }
+                      ]
+                    },
+                    "inputMessage": "소리 종류 - 장 또는 컷의 음악·환경음·효과음에 적용됩니다. 장 설정에서 컷 ID는 미설정입니다.",
+                    "strict": true,
+                    "showCustomUi": true
+                  }
+                },
+                {
+                  "formattedValue": "소리 재생",
+                  "dataValidation": {
+                    "condition": {
+                      "type": "ONE_OF_LIST",
+                      "values": [
+                        {
+                          "userEnteredValue": "이전 소리 유지"
+                        },
+                        {
+                          "userEnteredValue": "소리 중지"
+                        },
+                        {
+                          "userEnteredValue": "소리 재생"
+                        }
+                      ]
+                    },
+                    "inputMessage": "소리 처리 - 장 또는 컷의 음악·환경음·효과음에 적용됩니다. 장 설정에서 컷 ID는 미설정입니다.",
+                    "strict": true,
+                    "showCustomUi": true
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

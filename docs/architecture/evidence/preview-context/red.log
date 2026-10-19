@@ -1,0 +1,68 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:67857) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/3gw6-wg3l7fu5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/2sssj0z2tce41.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/3dyvn5_9ujzmq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/0_4uq_px4hxxt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /_next/static/chunks/3bbvmzoq289zv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:22] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:23] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:23] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:23] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:26] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:26] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:26] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:26] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:26] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:26] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [12/Oct/2026 02:27:26] "GET /runtime/game/ui/dialogue-next.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/preview-context.spec.ts:2:39 › native preview returns to same direction tool and undo 1440 (10.0s)
+
+
+  1) [host] › tests/e2e/preview-context.spec.ts:2:39 › native preview returns to same direction tool and undo 1440 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByLabel('조정할 연출', { exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByLabel('조정할 연출', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('조정할 연출', { exact: true })
+        13 × locator resolved to <select aria-label="조정할 연출">…</select>
+           - unexpected value "inactive"
+
+
+      1 | import {test,expect} from '@playwright/test';
+      2 | for(const width of [1440,768,390,844])test(`native preview returns to same direction tool and undo ${width}`,async({page})=>{
+    > 3 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'연출 편집',exact:true}).click();await page.getByLabel('조정할 연출',{exact:true}).selectOption('look');await page.getByLabel('분위기',{exact:true}).selectOption('flashback');const kind=page.getByLabel('조정할 연출',{exact:true});await kind.focus();const frame=await page.getByTestId('story-runtime-frame').elementHandle();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect(page.locator('[data-editor-inputs]')).toBeHidden();await expect(page.getByRole('button',{name:'마지막 분위기 변경 취소',exact:true})).toHaveCount(0);await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');return Number(await state.getAttribute('data-rendered-revision'))>=0&&(await state.getAttribute('data-rendered-revision'))===(await state.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('look');await expect(kind).toBeFocused();await expect(page.getByRole('button',{name:'마지막 분위기 변경 취소',exact:true})).toBeVisible();await page.getByRole('button',{name:'마지막 분위기 변경 취소',exact:true}).click();await expect(page.getByLabel('분위기',{exact:true})).toHaveValue('none');await expect(text).toHaveValue(original);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+      4 | });
+      5 | test('text cursor and sound purpose survive same cut preview',async({page})=>{
+      6 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('첫 문장을 쓴다. 다음 문장을 고친다.');await text.evaluate((node:HTMLTextAreaElement)=>{node.focus();node.setSelectionRange(4,9);node.scrollTop=0;});await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(text).toBeFocused();expect(await text.evaluate((node:HTMLTextAreaElement)=>[node.selectionStart,node.selectionEnd])).toEqual([4,9]);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await kind.selectOption('ambience');await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.focus();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('ambience');await expect(kind).toBeFocused();await page.getByRole('button',{name:'주변 소리 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('default');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/preview-context.spec.ts:3:1352
+
+    Error Context: test-results/preview-context-native-pre-ed503-irection-tool-and-undo-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/preview-context.spec.ts:2:39 › native preview returns to same direction tool and undo 1440 

@@ -1,0 +1,7 @@
+.notes{min-width:0;grid-column:1/-1}
+.notes summary{min-height:44px;padding:8px 0;cursor:pointer;line-height:1.5;font-size:13px;overflow-wrap:anywhere}
+.notes fieldset{min-width:0;margin:0;padding:8px;border:1px solid var(--line);border-radius:var(--radius-control)}
+.notes legend,.notes p{font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+.notes p{margin:0 0 8px;color:var(--ink-soft)}
+.notes label{display:grid;gap:4px;min-width:0;font-size:13px;margin:8px 0}
+.notes input,.notes textarea{width:100%;min-width:0;max-width:100%}

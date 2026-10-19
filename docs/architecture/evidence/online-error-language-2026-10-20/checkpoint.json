@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-complete-not-deployed",
+  "sha256": {
+    "apps/web/lib/document-api.ts": "f604341e979b61bc84d486d7a3a4e629838d7a4c7d6e8f76ad82336e7ee3ae3b",
+    "apps/web/lib/document-api.test.ts": "e6e11510835390e3f96dcd4f77e331363f1d043cf334e1cd3ca59281418b4824"
+  },
+  "limits": [
+    "Local browser/model or pure client tests only; no real Google OAuth, physical OS file dialog/disk failure, production or release verification.",
+    "Original manuscripts, IDs, file schemas and previous evidence preserved; account/online errors do not change retention/sharing policies."
+  ],
+  "checks": {
+    "red": "red.log: API response boundary test failed old mixed/unspecific wording.",
+    "green": "green.log10passed; four actual allowlisted server failure responses keep code/status, show actionable Korean and never echo server private message.",
+    "scope": "DOCUMENT_TRASHED says 복구/다시 업로드; CATALOG_MEDIA_REQUIRED explains registered media without deletion advice; RATE_LIMITED suggests later retry; INVALID_SNAPSHOT explains no upload and retained draft.",
+    "build": "../local-file-errors-2026-10-20/build.log includes this candidate.",
+    "lint": "../local-file-errors-2026-10-20/final-lint.log passed.",
+    "review": "Independent source review no blockers; allowlisted code parsing remains unchanged."
+  }
+}

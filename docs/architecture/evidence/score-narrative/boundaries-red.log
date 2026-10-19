@@ -1,0 +1,72 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/score-boundaries.test.ts (3 tests | 3 failed) 12ms
+   × malformed earlier documents report validation issues instead of throwing during score version detection 7ms
+   × malformed earlier documents report validation issues instead of throwing during score version detection 3ms
+   × score operators require a real string without coercing array input 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/score-boundaries.test.ts > malformed earlier documents report validation issues instead of throwing during score version detection
+AssertionError: expected [Function] to not throw an error but 'TypeError: rawProject.lines?.some is …' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"TypeError: rawProject.lines?.some is not a function"
+
+ ❯ packages/compatibility/tests/score-boundaries.test.ts:5:114
+      3| import {getRepresentativeStory} from '../src';
+      4| for(const project of [{lines:{}},{lines:[{flow:{options:{}}}]}])it('ma…
+      5|  const old={...getRepresentativeStory('rabbit'),schemaVersion:5,projec…
+       |                                                                                                                  ^
+      6| });
+      7| it('score operators require a real string without coercing array input…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  packages/compatibility/tests/score-boundaries.test.ts > malformed earlier documents report validation issues instead of throwing during score version detection
+AssertionError: expected [Function] to not throw an error but 'TypeError: flow?.options?.some is not…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"TypeError: flow?.options?.some is not a function"
+
+ ❯ packages/compatibility/tests/score-boundaries.test.ts:5:114
+      3| import {getRepresentativeStory} from '../src';
+      4| for(const project of [{lines:{}},{lines:[{flow:{options:{}}}]}])it('ma…
+      5|  const old={...getRepresentativeStory('rabbit'),schemaVersion:5,projec…
+       |                                                                                                                  ^
+      6| });
+      7| it('score operators require a real string without coercing array input…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  packages/compatibility/tests/score-boundaries.test.ts > score operators require a real string without coercing array input
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ packages/compatibility/tests/score-boundaries.test.ts:7:173
+      5|  const old={...getRepresentativeStory('rabbit'),schemaVersion:5,projec…
+      6| });
+      7| it('score operators require a real string without coercing array input…
+       |                                                                                                                                                                             ^
+      8|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  02:43:22
+   Duration  809ms (transform 472ms, setup 0ms, import 687ms, tests 12ms, environment 0ms)
+

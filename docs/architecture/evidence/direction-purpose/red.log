@@ -1,0 +1,34 @@
+
+Running 1 test using 1 worker
+
+(node:54603) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/direction-purpose.spec.ts:4:39 › direction purposes keep one editing group and preserve independent changes 1440 (5.9s)
+
+
+  1) [host] › tests/e2e/direction-purpose.spec.ts:4:39 › direction purposes keep one editing group and preserve independent changes 1440 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('조정할 연출', { exact: true })
+    Expected: "transition"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('조정할 연출', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('조정할 연출', { exact: true })
+
+
+      3 | import {parseAuthoringFile} from './authoring-file';
+      4 | for(const width of [1440,768,390,844])test(`direction purposes keep one editing group and preserve independent changes ${width}`,async({page},info)=>{
+    > 5 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const original=await page.getByLabel('대사 / 해설',{exact:true}).inputValue();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'연출 편집',exact:true}).click();const kind=page.getByLabel('조정할 연출',{exact:true});await expect(kind).toHaveValue('transition');await expect(page.getByLabel('효과',{exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'마지막 전환 변경 취소',exact:true})).toHaveCount(0);await page.getByLabel('화면 전환',{exact:true}).selectOption('dissolve');await page.getByLabel('화면 전환 시간',{exact:true}).fill('0.7');await page.getByLabel('화면 전환 시간',{exact:true}).blur();await kind.selectOption('look');await page.getByLabel('분위기',{exact:true}).selectOption('flashback');await expect(page.getByLabel('화면 전환',{exact:true})).toBeHidden();await kind.selectOption('transition');await page.getByRole('button',{name:'마지막 전환 변경 취소',exact:true}).click();await expect(page.getByLabel('화면 전환 시간',{exact:true})).toHaveValue('0.9');await kind.selectOption('look');await expect(page.getByLabel('분위기',{exact:true})).toHaveValue('flashback');await kind.selectOption('effects');await page.getByLabel('효과',{exact:true}).selectOption('shake');await expect(page.getByRole('button',{name:'마지막 효과 변경 취소',exact:true})).toBeVisible();await kind.selectOption('actors');await expect(page.getByLabel('왼쪽 인물 전체 강조',{exact:true})).toBeVisible();await page.getByLabel('왼쪽 인물 전체 강조',{exact:true}).selectOption('dim');await expect(page.getByLabel('효과',{exact:true})).toBeHidden();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue(original);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'연출 편집',exact:true}).click();await expect(kind).toHaveValue('effects');await expect(page.getByLabel('효과',{exact:true})).toHaveValue('shake');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,project=parseAuthoringFile(readFileSync((await file.path())!,'utf8')).project;const line=project.lines.find((cut:{text:string})=>cut.text===original);expect(line.presentation).toMatchObject({transition:{type:'dissolve',durationMs:900},look:{type:'flashback'},effects:[{type:'shake'}],actors:{left:{emphasis:'dim'}}});await kind.selectOption('motion');await expect(page.getByLabel('왼쪽 1번 인물 인물 동작',{exact:true})).toBeVisible();await expect(page.getByLabel('왼쪽 1번 인물 인물 동작',{exact:true})).toBeFocused();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`direction-${width}.png`),fullPage:true});
+        |                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^
+      6 | });
+      7 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-purpose.spec.ts:5:436
+
+    Error Context: test-results/direction-purpose-directio-095ec-ve-independent-changes-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/direction-purpose.spec.ts:4:39 › direction purposes keep one editing group and preserve independent changes 1440 

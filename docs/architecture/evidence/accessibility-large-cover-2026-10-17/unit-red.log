@@ -1,0 +1,113 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/book-cover.test.ts (50 tests | 5 failed) 18ms
+     × keeps default small classic captions readable on forest paper without rewriting the cover 3ms
+     × keeps default small classic captions readable on night paper without rewriting the cover 0ms
+     × keeps default small classic captions readable on rose paper without rewriting the cover 0ms
+     × keeps default small classic captions readable on cream paper without rewriting the cover 0ms
+     × retains explicit caption ink and custom layer colors 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > keeps default small classic captions readable on forest paper without rewriting the cover
+AssertionError: expected undefined to be '#fff4d8' // Object.is equality
+
+- Expected:
+"#fff4d8"
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/book-cover.test.ts:132:29
+    130|   for(const compact of [false,true]){
+    131|    const model=resolveBookCover(project,'front',{compact});
+    132|    expect(model.captionInk).toBe(COVER_THEMES[theme].ink);
+       |                             ^
+    133|    expect(contrastRatio(model.captionInk,model.panel)).toBeGreaterThan…
+    134|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > keeps default small classic captions readable on night paper without rewriting the cover
+AssertionError: expected undefined to be '#f5eddd' // Object.is equality
+
+- Expected:
+"#f5eddd"
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/book-cover.test.ts:132:29
+    130|   for(const compact of [false,true]){
+    131|    const model=resolveBookCover(project,'front',{compact});
+    132|    expect(model.captionInk).toBe(COVER_THEMES[theme].ink);
+       |                             ^
+    133|    expect(contrastRatio(model.captionInk,model.panel)).toBeGreaterThan…
+    134|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > keeps default small classic captions readable on rose paper without rewriting the cover
+AssertionError: expected undefined to be '#fff1dc' // Object.is equality
+
+- Expected:
+"#fff1dc"
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/book-cover.test.ts:132:29
+    130|   for(const compact of [false,true]){
+    131|    const model=resolveBookCover(project,'front',{compact});
+    132|    expect(model.captionInk).toBe(COVER_THEMES[theme].ink);
+       |                             ^
+    133|    expect(contrastRatio(model.captionInk,model.panel)).toBeGreaterThan…
+    134|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > keeps default small classic captions readable on cream paper without rewriting the cover
+AssertionError: expected undefined to be '#342b26' // Object.is equality
+
+- Expected:
+"#342b26"
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/book-cover.test.ts:132:29
+    130|   for(const compact of [false,true]){
+    131|    const model=resolveBookCover(project,'front',{compact});
+    132|    expect(model.captionInk).toBe(COVER_THEMES[theme].ink);
+       |                             ^
+    133|    expect(contrastRatio(model.captionInk,model.panel)).toBeGreaterThan…
+    134|   }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  apps/web/lib/book-cover.test.ts > compact default classic cover ink > retains explicit caption ink and custom layer colors
+AssertionError: expected undefined to be '#123456' // Object.is equality
+
+- Expected:
+"#123456"
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/book-cover.test.ts:139:48
+    137|  it('retains explicit caption ink and custom layer colors',()=>{
+    138|   const project={...blank(),cover:{...DEFAULT_COVER,titleColor:'#12345…
+    139|   expect(resolveBookCover(project).captionInk).toBe('#123456');
+       |                                                ^
+    140|   const layered={...project,cover:{...project.cover,titleColor:'',desi…
+    141|   const model=resolveBookCover(layered);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 45 passed (50)
+   Start at  01:05:32
+   Duration  515ms (transform 278ms, setup 0ms, import 391ms, tests 18ms, environment 0ms)
+

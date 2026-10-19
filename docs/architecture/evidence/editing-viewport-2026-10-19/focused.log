@@ -1,0 +1,43 @@
+
+Running 6 tests using 1 worker
+
+(node:43030) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait (2.8s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:208:1 › phone basic editor fits previous current next in 1:4:1 with landscape native scene (2.2s)
+  ✘  3 tests/e2e/editing-workbench.spec.ts:223:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls (50.3s)
+(node:43450) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 tests/e2e/editing-workbench.spec.ts:235:1 › native frame remains mounted and interactive through editor read return (2.0s)
+  ✓  5 tests/e2e/editing-workbench.spec.ts:244:1 › actual native basic preview renders landscape inside the phone center without changing manuscript (3.9s)
+  ✓  6 tests/e2e/editing-workbench.spec.ts:253:1 › editing follows modeled visible viewport shrink and pan while keeping text accessible (2.1s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:223:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: page.setViewportSize: Target page, context or browser has been closed
+
+      224 |  await prepare(page);await mode(page,'글 편집');
+      225 |  for(const [width,height] of [[360,640],[640,360],[768,1024],[1280,720]]){
+    > 226 |   await page.setViewportSize({width,height});await expect(workbench(page).getByRole('button',{name:'기본편집',exact:true})).toBeVisible();
+          |              ^
+      227 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1&&document.documentElement.scrollHeight<=innerHeight+2)).toBe(true);
+      228 |   const field=row(page,0).getByRole('textbox',{name:'1컷 글',exact:true});await field.fill(`가용 화면 ${width}×${height}에서 고친 글`);await saved(page);
+      229 |   const last=row(page,2).getByRole('textbox',{name:'3컷 글',exact:true});const list=workbench(page).locator('[data-writer-scroll]');await list.hover();await page.mouse.wheel(0,1600);await expect(last).toBeInViewport();await last.fill('목록 안에서 내려와 고친 마지막 컷');await saved(page);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:226:14
+
+    Error Context: docs/architecture/evidence/editing-viewport-2026-10-19/focused-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-viewport-2026-10-19/focused-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-viewport-2026-10-19/focused-run/editing-workbench-editor-c-ced86-while-only-cut-list-scrolls/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:223:1 › editor chrome fits portrait landscape and tablet while only cut list scrolls 
+  5 passed (1.1m)

@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:63204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/storage-recovery.spec.ts:5:1 › direct editor exposes corrupt-storage download and preserves raw bytes before restarting (6.8s)
+
+  1 passed (7.2s)

@@ -1,0 +1,81 @@
+
+Running 7 tests using 1 worker
+
+(node:39105) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editing-workbench.spec.ts:50:1 › several cut texts edit directly and companion visibility never edits manuscript data (5.8s)
+  ✓  2 tests/e2e/editing-workbench.spec.ts:67:1 › background workbench updates separate cuts and preserves their text, stage, audio and effects (6.4s)
+  ✓  3 tests/e2e/editing-workbench.spec.ts:78:1 › audio and direction require separate opt-in, persist real cut ranges and survive local-file reopen (4.7s)
+  ✓  4 tests/e2e/editing-workbench.spec.ts:104:1 › character batch view changes placement across cuts without converting left/right speaker roles (5.5s)
+  ✓  5 tests/e2e/editing-workbench.spec.ts:126:1 › basic editing keeps previous and next cut context beside a clear current editor at desktop and phone widths (2.2s)
+  ✘  6 tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait (1.9s)
+(node:39244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  7 tests/e2e/editing-workbench.spec.ts:172:1 › legacy advanced controls remain separately opt-in and preserve existing choices (7.0s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 2
+    Received:    24
+
+      159 |  const after=await field.evaluate(element=>{const input=element as HTMLTextAreaElement,panel=input.closest('[data-writer-scroll]');return {panelScroll:panel?.scrollTop??0,windowScroll:scrollY,start:input.selectionStart,end:input.selectionEnd,focused:document.activeElement===input};});
+      160 |  expect(after.focused).toBe(true);expect(after.start).toBe(before.start+'한글 조합 중'.length);expect(after.end).toBe(after.start);
+    > 161 |  expect(Math.abs(after.panelScroll-before.panelScroll)).toBeLessThanOrEqual(2);expect(Math.abs(after.windowScroll-before.windowScroll)).toBeLessThanOrEqual(2);
+          |                                                                                                                                         ^
+      162 |  await field.dispatchEvent('compositionend',{data:'한글 조합 중'});
+      163 |  await expect(workbench(page).getByRole('button',{name:'배경 편집',exact:true})).toBeEnabled();await saved(page);
+      164 |  await mode(page,'배경 편집');await mode(page,'글 편집');await expect(companion).toBeChecked();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:161:137
+
+    Error Context: docs/architecture/evidence/editing-workbench-2026-10-19/reviewed-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-workbench-2026-10-19/reviewed-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-workbench-2026-10-19/reviewed-run/editing-workbench-multi-cu-b1250--and-screen-navigation-wait/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/editing-workbench.spec.ts:172:1 › legacy advanced controls remain separately opt-in and preserve existing choices 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 방식', exact: true }).locator('option[value="goto"]')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 방식', exact: true }).locator('option[value="goto"]') with timeout 5000ms
+      - waiting for getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 방식', exact: true }).locator('option[value="goto"]')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      179 |  const logic=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await logic.locator(':scope>summary').click();
+      180 |  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true})).toBeVisible();
+    > 181 |  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true}).locator('option[value="goto"]')).toHaveCount(0);
+          |                                                                                                      ^
+      182 |  await workbench(page).getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();
+      183 |  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true}).locator('option[value="goto"]')).toHaveCount(1);
+      184 |  await workbench(page).getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).uncheck();await workbench(page).getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).uncheck();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:181:102
+
+    Error Context: docs/architecture/evidence/editing-workbench-2026-10-19/reviewed-run/editing-workbench-legacy-a-e8121-d-preserve-existing-choices/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-workbench-2026-10-19/reviewed-run/editing-workbench-legacy-a-e8121-d-preserve-existing-choices/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-workbench-2026-10-19/reviewed-run/editing-workbench-legacy-a-e8121-d-preserve-existing-choices/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/editing-workbench.spec.ts:147:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait 
+    tests/e2e/editing-workbench.spec.ts:172:1 › legacy advanced controls remain separately opt-in and preserve existing choices 
+  5 passed (34.7s)

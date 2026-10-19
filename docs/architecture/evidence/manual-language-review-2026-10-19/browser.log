@@ -1,0 +1,7 @@
+
+Running 4 tests using 1 worker
+
+(node:21240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+undefined
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command was killed with SIGTERM (Termination): playwright test -c .cache/manual-language-review-2026-10-19/playwright.config.ts

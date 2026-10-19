@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:52152) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens (5.6s)
+  ✓  2 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 1440 (12.4s)
+  ✓  3 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 768 (12.4s)
+  ✓  4 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 390 (12.6s)
+  ✓  5 [host] › tests/e2e/work-actions.spec.ts:2:39 › work menu opens purpose-specific settings and returns to current text 844 (12.6s)
+  ✓  6 [host] › tests/e2e/work-actions.spec.ts:7:1 › score settings are global and return to the originating choice editor (4.3s)
+  ✓  7 [host] › tests/e2e/work-actions.spec.ts:10:1 › settings entry respects composition and a failed save (2.3s)
+  ✓  8 [host] › tests/e2e/work-actions.spec.ts:13:1 › library settings do not invent an editor return when changing purpose (1.6s)
+
+  8 passed (1.1m)

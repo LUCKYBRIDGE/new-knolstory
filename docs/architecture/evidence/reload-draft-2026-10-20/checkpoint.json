@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-complete-not-deployed",
+  "scope": [
+    "Blocked/unavailable store reopen is explicit discard confirmation, never a silent save. Cancel/Escape keeps draft and authoritative raw untouched.",
+    "Composition guards open and confirm; cancel autofocus, Tab boundary, Escape and opener restoration.",
+    "Fixed actual pointer interception: recovery alert moved inside active fixed viewport, bounded internal scroll, no forced clicks.",
+    "Current terminology in recovery alert and speaker selector; no manuscript/storage/native schema change."
+  ],
+  "checks": {
+    "setupAttempts": "red.log, red-current.log, red-guard.log are obsolete test setup failures (stored prepare view / blocked main text); not claimed as product RED.",
+    "actualFailure": "red-confirm.log: new confirmation connected, but old alert outside fixed editor covered by native viewport; real pointer click failed.",
+    "intermediate": "final.log: 6 unaffected focused cases and new reload case passed, affected older test failed before layout/corrected interaction. Mixed build timing, not a final whole-suite claim.",
+    "layout": "layout.log: new reload guard case passed incl390px screenshot, keyboard/composition/cancel/raw-preservation/download-content/confirm. Existing test failed only attempting fill on hidden detail after reload; corrected to visible current-cut field.",
+    "reopen": "reopen.log: 1 passed12.3s; blocked manual save cannot overwrite first tab, exact draft export, explicit confirmation reopen and renewed editing persist across reload.",
+    "build": "layout-build.log passed on final source.",
+    "unit": "unit.log: 28 passed across Core authoring and file saver.",
+    "lint": "final-lint.log clean before final layout; final checks to follow.",
+    "visual": "Manually inspected actual390px reload-confirmation screenshot: clear Korean word wrapping, title/body/actions within viewport, cancel and destructive confirm readable; recovery buttons visible above editor.",
+    "review": "Independent read-only default agent found no blocking issue in new confirmation/connection/test; parent additionally fixed actual pointer interception found in E2E.",
+    "finalChecks": "final-types.log, layout-lint.log, docs.log, docs-tests.log10passed, diff.log all passed."
+  },
+  "limits": [
+    "Earlier RED attempts retained as setup failures, not implementation reproduction.",
+    "Modeled composition events; real OS IME/screen reader/physical devices not verified.",
+    "Downloads validated through actual Playwright downloaded bytes, not physical disk/OS save dialog evidence.",
+    "Whole product, policies, deployment and release not complete."
+  ],
+  "sha256": {
+    "apps/web/components/storage-reload-dialog.tsx": "ff59648588fcecf25beccdc3c4e002f3df280882fe5c0176ecf57b84d973af18",
+    "apps/web/components/story-workspace.tsx": "248659a139314f213bd4f6ddf95f7f9a20ba5534c024175de428e3f306acaae6",
+    "apps/web/components/story-workspace.module.css": "fb7ecbca6efd78e6d403d73983a8253c7bfa52de34853252c03a9aad4c8f66ad",
+    "tests/e2e/storage-recovery.spec.ts": "7b9d62b5bcd5532ae7e00aaa15d89284dd90488b27e1e37967516276e89bebcc"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Original immediate-reload defect corrected; real pointer interception found and fixed rather than force-clicking; obsolete hidden-input test updated, exact draft/raw and actual download bytes verified. No release claim."
+  }
+}

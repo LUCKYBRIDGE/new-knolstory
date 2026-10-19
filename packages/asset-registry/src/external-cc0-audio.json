@@ -1,0 +1,587 @@
+[
+  {
+    "id": "audio:sound:cc0-kenney-bookOpen",
+    "name": "책여는소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-bookOpen.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-bookOpen.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.153729,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "책",
+        "열기",
+        "CC0"
+      ],
+      "originalName": "bookOpen.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-bookClose",
+    "name": "책닫는소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-bookClose.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-bookClose.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.230604,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "책",
+        "닫기",
+        "CC0"
+      ],
+      "originalName": "bookClose.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-bookFlip1",
+    "name": "책장넘기는소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-bookFlip1.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-bookFlip1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.768646,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "책",
+        "종이",
+        "넘기기",
+        "CC0"
+      ],
+      "originalName": "bookFlip1.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-bookFlip2",
+    "name": "책장넘기는소리2",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-bookFlip2.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-bookFlip2.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.430438,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "책",
+        "종이",
+        "넘기기",
+        "CC0"
+      ],
+      "originalName": "bookFlip2.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-bookPlace1",
+    "name": "책놓는소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-bookPlace1.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-bookPlace1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.276708,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "책",
+        "내려놓기",
+        "CC0"
+      ],
+      "originalName": "bookPlace1.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-cloth1",
+    "name": "옷자락소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-cloth1.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-cloth1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.661042,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "옷",
+        "천",
+        "움직임",
+        "CC0"
+      ],
+      "originalName": "cloth1.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-cloth2",
+    "name": "옷자락소리2",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-cloth2.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-cloth2.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.415063,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "옷",
+        "천",
+        "움직임",
+        "CC0"
+      ],
+      "originalName": "cloth2.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-doorOpen_1",
+    "name": "문여는소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-doorOpen_1.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-doorOpen_1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.918958,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "문",
+        "열기",
+        "CC0"
+      ],
+      "originalName": "doorOpen_1.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-doorClose_1",
+    "name": "문닫는소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-doorClose_1.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-doorClose_1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.675042,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "문",
+        "닫기",
+        "CC0"
+      ],
+      "originalName": "doorClose_1.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-creak1",
+    "name": "삐걱소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-creak1.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-creak1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.661042,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "삐걱",
+        "생활",
+        "CC0"
+      ],
+      "originalName": "creak1.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-footstep00",
+    "name": "발걸음소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-footstep00.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-footstep00.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.248854,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "발걸음",
+        "걷기",
+        "CC0"
+      ],
+      "originalName": "footstep00.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-footstep02",
+    "name": "발걸음소리2",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-footstep02.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-footstep02.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.242146,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "발걸음",
+        "걷기",
+        "CC0"
+      ],
+      "originalName": "footstep02.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-handleCoins",
+    "name": "동전소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-handleCoins.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-handleCoins.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.845521,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "동전",
+        "돈",
+        "움직임",
+        "CC0"
+      ],
+      "originalName": "handleCoins.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-handleCoins2",
+    "name": "동전소리2",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-handleCoins2.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-handleCoins2.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.338208,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "동전",
+        "돈",
+        "움직임",
+        "CC0"
+      ],
+      "originalName": "handleCoins2.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-metalPot1",
+    "name": "냄비소리1",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-metalPot1.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-metalPot1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 1.460458,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "냄비",
+        "금속",
+        "부엌",
+        "CC0"
+      ],
+      "originalName": "metalPot1.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:sound:cc0-kenney-metalPot2",
+    "name": "냄비소리2",
+    "kind": "sound",
+    "src": "/assets/audio/cc0/kenney-metalPot2.ogg",
+    "runtimePath": "assets/audio/cc0/kenney-metalPot2.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 0.937771,
+    "metadata": {
+      "category": "effect",
+      "tags": [
+        "냄비",
+        "금속",
+        "부엌",
+        "CC0"
+      ],
+      "originalName": "metalPot2.ogg",
+      "source": "Kenney"
+    },
+    "origin": {
+      "url": "https://kenney.nl/assets/rpg-audio",
+      "author": "Kenney Vleugels",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:music:cc0-oga-rain-1",
+    "name": "비소리1",
+    "kind": "music",
+    "src": "/assets/audio/cc0/oga-rain-1.ogg",
+    "runtimePath": "assets/audio/cc0/oga-rain-1.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 27.0,
+    "metadata": {
+      "category": "ambience",
+      "tags": [
+        "비",
+        "물",
+        "자연",
+        "반복",
+        "CC0"
+      ],
+      "originalName": "1.ogg (Rain loopable)",
+      "source": "OpenGameArt"
+    },
+    "origin": {
+      "url": "https://opengameart.org/content/rain-loopable",
+      "author": "Ylmir",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:music:cc0-oga-rain-2",
+    "name": "비소리2",
+    "kind": "music",
+    "src": "/assets/audio/cc0/oga-rain-2.ogg",
+    "runtimePath": "assets/audio/cc0/oga-rain-2.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 26.0,
+    "metadata": {
+      "category": "ambience",
+      "tags": [
+        "비",
+        "물",
+        "자연",
+        "반복",
+        "CC0"
+      ],
+      "originalName": "2.ogg (Rain loopable)",
+      "source": "OpenGameArt"
+    },
+    "origin": {
+      "url": "https://opengameart.org/content/rain-loopable",
+      "author": "Ylmir",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:music:cc0-oga-rain-3",
+    "name": "비소리3",
+    "kind": "music",
+    "src": "/assets/audio/cc0/oga-rain-3.ogg",
+    "runtimePath": "assets/audio/cc0/oga-rain-3.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 45.0,
+    "metadata": {
+      "category": "ambience",
+      "tags": [
+        "비",
+        "물",
+        "자연",
+        "반복",
+        "CC0"
+      ],
+      "originalName": "3.ogg (Rain loopable)",
+      "source": "OpenGameArt"
+    },
+    "origin": {
+      "url": "https://opengameart.org/content/rain-loopable",
+      "author": "Ylmir",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:music:cc0-oga-rain-4",
+    "name": "비소리4",
+    "kind": "music",
+    "src": "/assets/audio/cc0/oga-rain-4.ogg",
+    "runtimePath": "assets/audio/cc0/oga-rain-4.ogg",
+    "mime": "audio/ogg",
+    "durationSeconds": 37.5,
+    "metadata": {
+      "category": "ambience",
+      "tags": [
+        "비",
+        "물",
+        "자연",
+        "반복",
+        "CC0"
+      ],
+      "originalName": "4.ogg (Rain loopable)",
+      "source": "OpenGameArt"
+    },
+    "origin": {
+      "url": "https://opengameart.org/content/rain-loopable",
+      "author": "Ylmir",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  },
+  {
+    "id": "audio:music:cc0-oga-forest",
+    "name": "숲분위기배경음1",
+    "kind": "music",
+    "src": "/assets/audio/cc0/oga-forest.mp3",
+    "runtimePath": "assets/audio/cc0/oga-forest.mp3",
+    "mime": "audio/mpeg",
+    "durationSeconds": 44.736,
+    "metadata": {
+      "category": "background",
+      "tags": [
+        "숲",
+        "차분함",
+        "분위기",
+        "반복",
+        "CC0"
+      ],
+      "originalName": "Forest_Ambience.mp3",
+      "source": "OpenGameArt"
+    },
+    "origin": {
+      "url": "https://opengameart.org/node/23888",
+      "author": "TinyWorlds",
+      "license": "CC0-1.0",
+      "termsUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "commercialUse": "permitted",
+      "usageNote": "CC0：상업적 사용·수정·복사·재배포 허용. 출처 표시는 필수가 아니며 원명과 제작자를 기록합니다."
+    }
+  }
+]

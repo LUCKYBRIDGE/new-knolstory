@@ -1,0 +1,284 @@
+{
+  "baseline": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+  "state": "local-implementation-and-verification-complete",
+  "implemented": [
+    "caret cut split",
+    "safe adjacent cut merge",
+    "memo fields and search",
+    "bounded explicit checkpoints",
+    "checkpoint as personal copy",
+    "single-writer collection guard",
+    "raw recovery",
+    "atomic personal delete recovery",
+    "editor density and popup correction"
+  ],
+  "requirements": [
+    {
+      "requirement": "fixed-baseline-audit",
+      "status": "verified",
+      "evidence": [
+        "legacy-surface-inventory.txt",
+        "docs/architecture/legacy-parity-implementation.md"
+      ]
+    },
+    {
+      "requirement": "reuse-existing-four-work-flows",
+      "status": "verified",
+      "evidence": [
+        "host.log",
+        "native-final.log"
+      ]
+    },
+    {
+      "requirement": "long-script-split-merge",
+      "status": "verified",
+      "evidence": [
+        "coverage.log",
+        "static-final.log"
+      ]
+    },
+    {
+      "requirement": "rich-memo-fields-search",
+      "status": "verified",
+      "evidence": [
+        "coverage.log",
+        "static-final.log",
+        "memo-roundtrip.knolstory"
+      ]
+    },
+    {
+      "requirement": "revision-recovery-and-raw-preservation",
+      "status": "verified",
+      "evidence": [
+        "atomic-delete-green.log",
+        "static-final.log"
+      ]
+    },
+    {
+      "requirement": "two-tab-write-protection",
+      "status": "verified",
+      "evidence": [
+        "storage-green.log",
+        "static-final.log"
+      ]
+    },
+    {
+      "requirement": "responsive-editor-density",
+      "status": "verified",
+      "evidence": [
+        "static-final.log",
+        "screens"
+      ]
+    },
+    {
+      "requirement": "introduction-walnut-shelf",
+      "status": "verified-existing-changes",
+      "evidence": [
+        "host.log",
+        "docs/architecture/evidence/walnut-library/verification.json"
+      ]
+    },
+    {
+      "requirement": "original-manuscript-identity",
+      "status": "verified",
+      "evidence": [
+        "manuscript-preservation.json"
+      ]
+    },
+    {
+      "requirement": "renpy-only-story-and-web-shortstory",
+      "status": "verified",
+      "evidence": [
+        "native-final.log",
+        "native-audio-final.log",
+        "host.log"
+      ]
+    },
+    {
+      "requirement": "shortstory-files-print-excel-sheets",
+      "status": "verified-existing",
+      "evidence": [
+        "host.log"
+      ]
+    },
+    {
+      "requirement": "server-operating-policy-boundary",
+      "status": "deferred-as-requested",
+      "evidence": [
+        "docs/architecture/legacy-parity-implementation.md"
+      ]
+    },
+    {
+      "requirement": "physical-device-screen-reader-release",
+      "status": "not-verified-follow-up",
+      "evidence": [
+        "docs/architecture/legacy-parity-implementation.md"
+      ]
+    },
+    {
+      "requirement": "all-host-suite-final",
+      "status": "verified",
+      "evidence": [
+        "host-final.log"
+      ]
+    },
+    {
+      "requirement": "complete-long-manuscript-deletion-undo-and-reload",
+      "status": "verified",
+      "evidence": [
+        "large-checkpoint-green.log",
+        "long-story-final.log"
+      ]
+    }
+  ],
+  "remainingGoals": [
+    "AU-01",
+    "AU-02",
+    "ST-03",
+    "ST-04",
+    "X-01",
+    "X-02",
+    "X-03",
+    "SV-01",
+    "SV-02",
+    "SV-03",
+    "SV-04",
+    "SV-05",
+    "QA-01",
+    "QA-02",
+    "REL-01"
+  ],
+  "evidenceSha256": {
+    "coverage.log": "daf226980184eeef1be59f6a2dc7a46d11517279e96bc5e13e855bbdc792797a",
+    "presenter.log": "ca1e9c62cd98359b8872c1d46755924fc5ab705282fb70a363437639cfcf8957",
+    "recovery-first.log": "16eb69513ef43b1011692a6896cb4bd27871d12ca2395a0a0d23535cd9d167c6",
+    "storage-green.log": "737e6df7f788effd225b5969d302ebdfa16f88ec0604bd3e6a366d368d08db5d",
+    "atomic-delete-red.log": "7f7779c361ff3e74a988f8a69db68a2e8c707bb7ba04bbab0bc39b5d0cea4d4a",
+    "media-check.log": "f1fd14825ee0b7121d7b24da8473878bf41425ac590ab7ab7790b3987d72fd5d",
+    "large-checkpoint-green.log": "6c46ed0dfc35a1e92e6ca18372fd6f31763a075b190ba3a9aae4a161a62f4688",
+    "long-story-final.log": "6a822a52ef27564ad4a65c76fe65e865d148100257a4d63f5e4e1561fb73307c",
+    "lint.log": "15270e917301d6400edd01d02f84dffebc925caded12a0baac12af4628e78944",
+    "static-final.log": "3f237985977e058538c93a9f92ed75d8b8a96c342e565d7758bed6e58f93c464",
+    "atomic-delete-green.log": "5d135b43ce35fee58b2159ba4e9c47aff786f3cb4cbdf5da272943fce7287111",
+    "native-audio-final.log": "b43d3d17f3273c7c68b03d8b4dbaf9f3b9eb562e6744ddac692f677a28083fc6",
+    "final-changed.log": "a11a7f9d66bc5ad1559a72a195cf982737b56f98b6172f3bc8f520e7a0bdd409",
+    "typecheck.log": "5d57b93a6e11c358872ed2972954fcc7b4572520e6be3ffd035fb74da355c5e7",
+    "manuscript-preservation.json": "d74b61a404fe02c5b34d75b7fd9ee4e2e34fd54762dc91f022076ee0bd6febbf",
+    "recovery-green.log": "b65476480a21f12cef40cf5260f471e63856d4971c2c7b71d8caff12ac3f1426",
+    "storage-red.log": "ee538106a435446d747ede8b3ff67bf8d0675097a273e0299f58ca3af207ea8d",
+    "next-surface-inventory.txt": "7d51f9dfb6ced49c224907db3419ef01ef665e6427d4292cfeba302ee9fcfa5a",
+    "memo-roundtrip.knolstory": "9fe2de1bfb896dd98ec37a924d947391cafb3fd34cd5249dec8bf7f7efa17e6d",
+    "large-checkpoint-red.log": "80edf4401b1c824fc7d9d4cdab8930106672c3a3a12c5c7c4e5eb8fb16b095c7",
+    "legacy-surface-inventory.txt": "073eef2cedf8d5a5fb25ebca9f214d6e53b35eea6dc4ac10494ae315a9732bcc",
+    "native-final.log": "2840735363a25d560649737840edc7229c72c4ee6a443f40fd6db5d7554a9117",
+    "delete-final.log": "1b48ce9b36d60d1d54e74d6d1208867833d0767c50e6e40601e43fe4f7ccd41a",
+    "host-final.log": "d0a9a3f722dac358516ba1ae13517a1d902e120541b9053f4a01912abb712053",
+    "recovery-final.log": "7abfdd9bd599afcb034709df622e52c4ecbf0c88f6b59987b3e9f3a7b75e03d8",
+    "host.log": "178c033a3d18b0454d92646b06256e9624330c80c8cb6f9c9c9aadb7458b72fa",
+    "script-tests.log": "3b26ec7baaa5d1f4cc106e519f79fd5df73edd46b49dd5059eb96ae3612ea63d",
+    "build.log": "2a2a65ac46c65a7d4d6a15e0a31c2e81f55086c4c19654b7b0cb0821880c25be",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-center.png": "ca61d895a1737beb6fed3139534051a2bf38e238bf3bd8b2c586c9e3c61c3502",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-portrait.png": "ca7d9b2e4cf204fb120a2f1eca6fe363762f72867263411434fe53b0aee285b7",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-landscape.png": "7dc98b6edf4e4694e135dc285bd49a5e9045e1674107ba226bb2ed08fc144830",
+    "screens/memo-memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-768x1024.png": "b2a8e2b9fb917901e16238f27f6d481f63ebadcfa90a5961995bb836665b42bd",
+    "screens/editor-density-editor-writ-2c50d-ve-Korean-input-at-1024x768-host-writer.png": "edc43a8b8191970fdb1be253489c0bc8d9d02b288f1f2632a8c17a4294c7c786",
+    "screens/editor-density-editor-writ-822ee-ve-Korean-input-at-1440x900-host-preparation.png": "eaa16b9005eff72b05258e9e307f8a574ab385904e6bc7b173e54a9c9ebb281c",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-phone-landscape.png": "ee8b649d828e291021e083e1d1d6cf18cc331a020899c7141866b5b24a154374",
+    "screens/manuscript-operations-manu-d6721-preserve-Korean-at-768x1024-host-manuscript.png": "bb2c887a1a9aa3e28d9b65d07920497a9956ab988cca2893f9d2fd643de80525",
+    "screens/density-editor-density-editor-writ-2c50d-ve-Korean-input-at-1024x768-preparation.png": "40a136215ab4dea35b2a5145e3e7523a2461febb3709dd0ec21fd35323e1aac4",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-phone-landscape-reading.png": "ee02a3fe8037bcbf3b4236a1dc8d4cba580f3a33c260278b132257eac5500c50",
+    "screens/density-editor-density-editor-writ-216d2-rve-Korean-input-at-844x390-writer.png": "a9d2f6ccc2b58fe868c6e8be4927b3dda47d03869da70e0f15e6aa064080f26e",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-desktop.png": "98327f2afc87370a3f1bd844e9de6cefa564b314026fb73bf4842ef9039f587b",
+    "screens/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-844x390.png": "5ee8a2b3bdc3574978d7fbbf8738bb0b4923ccefc1a508015f86f00ab2875647",
+    "screens/memo-memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-1440x900.png": "721d0f5368e61e27dc6a6f00fae0e26da137ddf5153d2d91402e699102af6bf3",
+    "screens/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-390x844.png": "d4f86d655c9b9e7f8d12f8371572b4f8ccdbf509aa17b8de36efa04a70f6435d",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-pov-end-light.png": "65e7fd3297d93ac3eaaec4180070b1c12c854c287b238d24e58f73d1e9414226",
+    "screens/manuscript-operations-manu-75cf8-preserve-Korean-at-1024x768-host-manuscript.png": "7b04f2f1c1c724a040dff609a0ade8054a7a4b153d88a75f1269367e6da6fe1f",
+    "screens/manuscript-operations-manu-c2026--preserve-Korean-at-844x390-host-manuscript.png": "a52182b50054de0d55ea6b1915faee11e84cf17af0fb6fc98afa701d5bf9c804",
+    "screens/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-1024x768.png": "02cf6fe48c219e3ac1a92d1a0f6d6d80bedec1ea0cc2455050437615fe3ef15a",
+    "screens/manuscript-operations-manu-67ef0--preserve-Korean-at-390x844-host-manuscript.png": "79f6c1c06eb2e9912d907b7ebfe078f18637ca2eacb9f59f281bb158b27d9fb6",
+    "screens/memo-memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-844x390.png": "5ee8a2b3bdc3574978d7fbbf8738bb0b4923ccefc1a508015f86f00ab2875647",
+    "screens/editor-density-editor-writ-216d2-rve-Korean-input-at-844x390-host-preparation.png": "84716795f7231677afeca4f5438c9405efd5d1ce14a1ef74dc6d3ca1abebad79",
+    "screens/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-1440x900.png": "721d0f5368e61e27dc6a6f00fae0e26da137ddf5153d2d91402e699102af6bf3",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-pov-end-night.png": "65e7fd3297d93ac3eaaec4180070b1c12c854c287b238d24e58f73d1e9414226",
+    "screens/memo-memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-390x844.png": "d4f86d655c9b9e7f8d12f8371572b4f8ccdbf509aa17b8de36efa04a70f6435d",
+    "screens/memo-memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-1024x768.png": "02cf6fe48c219e3ac1a92d1a0f6d6d80bedec1ea0cc2455050437615fe3ef15a",
+    "screens/editor-density-editor-writ-109dc-ve-Korean-input-at-768x1024-host-writer.png": "7eed0265ee9ff282f9a8b355274a1cc8dede76dfe0487b5ada3447ed9f633c83",
+    "screens/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host-memo-768x1024.png": "b2a8e2b9fb917901e16238f27f6d481f63ebadcfa90a5961995bb836665b42bd",
+    "screens/density-editor-density-editor-writ-822ee-ve-Korean-input-at-1440x900-writer.png": "9e6e4652e342a4fef53b7e0bf310de55f2d57cdec8e1d560608ec56454c8da1a",
+    "screens/density-editor-density-editor-writ-109dc-ve-Korean-input-at-768x1024-preparation.png": "2c8914bcad404e5c99adc54212bdcb2526ccc1e3be3056d113a60b3e8715631e",
+    "screens/editor-density-editor-writ-109dc-ve-Korean-input-at-768x1024-host-preparation.png": "2c8914bcad404e5c99adc54212bdcb2526ccc1e3be3056d113a60b3e8715631e",
+    "screens/density-editor-density-editor-writ-109dc-ve-Korean-input-at-768x1024-writer.png": "4c0a4e350a05d402d06f5d7917d84846bd1970d305000c391a259782da515336",
+    "screens/editor-density-editor-writ-2c50d-ve-Korean-input-at-1024x768-host-preparation.png": "40a136215ab4dea35b2a5145e3e7523a2461febb3709dd0ec21fd35323e1aac4",
+    "screens/editor-density-editor-writ-216d2-rve-Korean-input-at-844x390-host-writer.png": "1af148aeb421f029bb25925e8d0d5f7f31e04b8b63c72dc599be0364fbfa84d8",
+    "screens/editor-density-editor-writ-822ee-ve-Korean-input-at-1440x900-host-writer.png": "27986e9f61e5d33f74011f60834df0afd8c6ee55fd138ec3547767b5a7c5023e",
+    "screens/editor-density-editor-writ-77284-rve-Korean-input-at-390x844-host-preparation.png": "bb80a4f2920000ed5b84638993d1715fb2e4354873d9ac3aea809c07ef7ac724",
+    "screens/density-editor-density-editor-writ-822ee-ve-Korean-input-at-1440x900-preparation.png": "eaa16b9005eff72b05258e9e307f8a574ab385904e6bc7b173e54a9c9ebb281c",
+    "screens/mobile-authoring-phone-aut-c0107--files-and-cut-order-change-host-phone-authoring.png": "d7f90cf43213d5191d260a6255aa50cf7e373e0369353110c4861e89c76c0613",
+    "screens/density-editor-density-editor-writ-216d2-rve-Korean-input-at-844x390-preparation.png": "84716795f7231677afeca4f5438c9405efd5d1ce14a1ef74dc6d3ca1abebad79",
+    "screens/density-editor-density-editor-writ-77284-rve-Korean-input-at-390x844-writer.png": "267200aa826a725c25dd0926cb4ed16f7f8417283d3fbd63d956dee056fc73b6",
+    "screens/responsive-audio-authoring-6b761-d-plays-both-native-endings-stories-runtime-delivered-demo-ending.png": "3014679babc340a322fbb12cca2bc6e91cf51775869645ccc0119cc369cab643",
+    "screens/density-editor-density-editor-writ-77284-rve-Korean-input-at-390x844-preparation.png": "bb80a4f2920000ed5b84638993d1715fb2e4354873d9ac3aea809c07ef7ac724",
+    "screens/manuscript-operations-manu-0c833-reserve-Korean-at-1440x1000-host-manuscript.png": "88778a37cf4d6febf3f235a2ee822e980fa58f24bb37eec18ec3be54ea1abb34",
+    "screens/density-editor-density-editor-writ-2c50d-ve-Korean-input-at-1024x768-writer.png": "df1494544aac21f66dfff571fbe6dc6a1ccad3c0cc98cff820fcea2053b1502c",
+    "screens/responsive-audio-authoring-63c50-s-and-reaches-both-branches-stories-runtime-native-phone-auto.png": "ecbc5b9842dfd65b4a52ddfe13233574a4908c882a2c9fa1d6cc180471efa939",
+    "screens/editor-density-editor-writ-77284-rve-Korean-input-at-390x844-host-writer.png": "f6396fe6137452aa7d542d049c8638877006d673966fd773c2bbc609920f8e6b"
+  },
+  "review": {
+    "storage": "prior deleted recovery replacement fixed by one workspace setItem; stale raw and owned writer checks verified",
+    "authoring": "root reviewed exact text preservation, flow destinations, graphemes, memo IDs/source/links and undo; targeted unit and browser journeys verified",
+    "knownLimitations": [
+      "safe merge deliberately rejects per-cut audio/presentation or external entry references",
+      "memo whole-delete undo and multi-link direct editing deferred AU-02",
+      "range clipboard deferred AU-01",
+      "screen reader and physical devices not available"
+    ]
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 5,
+    "conciseness": 4,
+    "evidence": "actual static UI/file/native tests plus explicit lower-priority follow-up goals; physical device and server scope not falsely claimed"
+  },
+  "testResults": {
+    "typescript": 886,
+    "python": 24,
+    "hostFull": {
+      "passed": 121,
+      "skipped": 28,
+      "failed": 0
+    },
+    "changedStatic": {
+      "passed": 20,
+      "skipped": 3,
+      "failed": 0
+    },
+    "finalLongStorageAuthoring": {
+      "passed": 10,
+      "skipped": 1,
+      "failed": 0
+    },
+    "nativeUniqueCasesPassed": 12,
+    "coverage": {
+      "statements": 93.56,
+      "branches": 90.76,
+      "functions": 95.3,
+      "lines": 97.69
+    },
+    "mediaHashesChecked": 1351,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "diffWhitespace": "passed"
+  },
+  "sourceSha256": {
+    "apps/web/components/story-workspace.tsx": "cf52369ae0048da7093bd8cd89c2b4865f72c9fd936129fb136e81ba104f929b",
+    "apps/web/components/use-storage-writer.ts": "d1257f24350e731dd2bb6bcb2d25c207f7623ca2a3a64ad0837940582e4d027e",
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "ff47e8d5c8f3a70ef25d686ede730acca08e0a3d633ae9e1874c205122286794",
+    "apps/web/lib/story-checkpoints.ts": "befd9b7c706641d7bd525d4cf8fd4891ed890c259d47cb2cbc52a81cff820402",
+    "packages/runtime-core/src/manuscript-operations.ts": "e1825d7256a016417709de45f7f001728a285dd1df0c8e0615cba0af06ea7fa3",
+    "apps/web/components/story-preparation.tsx": "8af1a96463d28ebeea37f345ef6e5ed28f5270637e6000b03d9f5eabb477309e"
+  }
+}

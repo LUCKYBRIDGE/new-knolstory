@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:66596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/shortstory-online.spec.ts:42:1 › ShortStory edits during an in-flight save remain local and require a further save (544ms)
+
+  1 passed (968ms)

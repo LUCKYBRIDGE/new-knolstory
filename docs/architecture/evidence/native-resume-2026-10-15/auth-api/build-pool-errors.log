@@ -1,0 +1,90 @@
+ Image knolstory-next-api:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 547B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.17kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#3 DONE 0.0s
+
+#4 [build  1/13] FROM docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c
+#4 resolve docker.io/library/node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 4.45kB done
+#5 DONE 0.0s
+
+#6 [build  4/13] COPY server/package.json server/pnpm-lock.yaml ./
+#6 CACHED
+
+#7 [build  2/13] RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
+#7 CACHED
+
+#8 [build  3/13] WORKDIR /workspace/server
+#8 CACHED
+
+#9 [build  5/13] RUN pnpm install --ignore-workspace --frozen-lockfile
+#9 CACHED
+
+#10 [build  6/13] COPY server/config.ts server/main.ts ./
+#10 DONE 0.0s
+
+#11 [build  7/13] COPY server/auth ./auth
+#11 DONE 0.0s
+
+#12 [build  8/13] COPY server/http ./http
+#12 DONE 0.0s
+
+#13 [build  9/13] COPY server/storage ./storage
+#13 DONE 0.0s
+
+#14 [build 10/13] COPY server/migrations ./migrations
+#14 DONE 0.0s
+
+#15 [build 11/13] COPY server/operations/build-api.mjs ./operations/build-api.mjs
+#15 DONE 0.0s
+
+#16 [build 12/13] RUN node operations/build-api.mjs
+#16 DONE 0.2s
+
+#17 [build 13/13] RUN pnpm prune --prod --ignore-scripts
+#17 0.332 Lockfile is up to date, resolution step is skipped
+#17 0.345 Packages: -69
+#17 0.345 ---------------------------------------------------------------------
+#17 0.705 
+#17 0.705 devDependencies:
+#17 0.705 - @types/node 22.20.5
+#17 0.705 - @types/pg 8.23.1
+#17 0.705 - @vitest/coverage-v8 4.1.11
+#17 0.705 - esbuild 0.28.2
+#17 0.705 - typescript 5.9.3
+#17 0.705 - vitest 4.1.11
+#17 0.705 
+#17 DONE 0.7s
+
+#18 [stage-1 2/4] WORKDIR /app
+#18 CACHED
+
+#19 [stage-1 3/4] COPY --from=build /workspace/server/dist ./
+#19 DONE 0.0s
+
+#20 [stage-1 4/4] COPY --from=build /workspace/server/node_modules ./node_modules
+#20 DONE 0.0s
+
+#21 exporting to image
+#21 exporting layers 0.0s done
+#21 exporting manifest sha256:2819ae64b988bed2848f5a20268052c66441d8b289616d7f750e548b0daf75fb done
+#21 exporting config sha256:6805b04a47a39c13eafcd6a8afe1a9f1821c4f3045b6113d5f83e42f44346376 done
+#21 exporting attestation manifest sha256:80bcd5dfef17bf827557ccd7d51c0e42cfec6be4197ceb4aa99e34c010c834b3 done
+#21 exporting manifest list sha256:82cd47e37dde06577a5f44c14eae2d3fe4061bf8b9d8b869267d1c022ac7dcde done
+#21 naming to docker.io/library/knolstory-next-api:local done
+#21 unpacking to docker.io/library/knolstory-next-api:local 0.0s done
+#21 DONE 0.1s
+
+#22 resolving provenance for metadata file
+#22 DONE 0.0s
+ Image knolstory-next-api:local Built 

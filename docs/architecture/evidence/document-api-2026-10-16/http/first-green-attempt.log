@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/document-routes.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/document-routes.test.ts [ server/http/document-routes.test.ts ]
+Error: Cannot find module '../documents/service' imported from /Users/wan/ai_dev/apps/new-knolstory/server/http/document-routes.ts
+ ❯ server/http/document-routes.ts:3:1
+      1| import type { IncomingMessage, ServerResponse } from 'node:http';
+      2| import { authCookieNames, validateAuthOrigin, type createAuthStateServ…
+      3| import { DocumentServiceError, type DocumentService } from '../documen…
+       | ^
+      4| export type DocumentRouterOptions = Readonly<{
+      5|   origin: string;
+ ❯ server/http/document-routes.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:22:57
+   Duration  138ms (transform 25ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,115 @@
+[WebServer] 127.0.0.1 - - [12/Oct/2026 20:58:26] "GET / HTTP/1.1" 200 -
+
+Running 4 tests using 1 worker
+
+(node:25984) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome (657ms)
+(node:26012) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome (179ms)
+(node:26022) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome (184ms)
+(node:26038) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome (193ms)
+
+
+  1) [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 
+
+    Error: tracing.start: Tracing has been already started
+
+      149 |   const diagnostics=nativeDiagnostics(`${evidence}/native-events-${info.repeatEachIndex}.jsonl`);
+      150 |   diagnostics.attach(context);
+    > 151 |   await context.tracing.start({screenshots:true,snapshots:true,sources:true});
+          |                         ^
+      152 |   const errors:string[]=[];
+      153 |   const observe=(page:Page)=>{page.on('pageerror',error=>errors.push(error.stack??error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});};
+      154 |   context.on('page',observe);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-library.spec.ts:151:25
+
+    Error Context: test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 
+
+    Error: tracing.start: Tracing has been already started
+
+      149 |   const diagnostics=nativeDiagnostics(`${evidence}/native-events-${info.repeatEachIndex}.jsonl`);
+      150 |   diagnostics.attach(context);
+    > 151 |   await context.tracing.start({screenshots:true,snapshots:true,sources:true});
+          |                         ^
+      152 |   const errors:string[]=[];
+      153 |   const observe=(page:Page)=>{page.on('pageerror',error=>errors.push(error.stack??error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});};
+      154 |   context.on('page',observe);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-library.spec.ts:151:25
+
+    Error Context: test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat1/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 
+
+    Error: tracing.start: Tracing has been already started
+
+      149 |   const diagnostics=nativeDiagnostics(`${evidence}/native-events-${info.repeatEachIndex}.jsonl`);
+      150 |   diagnostics.attach(context);
+    > 151 |   await context.tracing.start({screenshots:true,snapshots:true,sources:true});
+          |                         ^
+      152 |   const errors:string[]=[];
+      153 |   const observe=(page:Page)=>{page.on('pageerror',error=>errors.push(error.stack??error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});};
+      154 |   context.on('page',observe);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-library.spec.ts:151:25
+
+    Error Context: test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat2/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat2/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat2/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 
+
+    Error: tracing.start: Tracing has been already started
+
+      149 |   const diagnostics=nativeDiagnostics(`${evidence}/native-events-${info.repeatEachIndex}.jsonl`);
+      150 |   diagnostics.attach(context);
+    > 151 |   await context.tracing.start({screenshots:true,snapshots:true,sources:true});
+          |                         ^
+      152 |   const errors:string[]=[];
+      153 |   const observe=(page:Page)=>{page.on('pageerror',error=>errors.push(error.stack??error.message));page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});};
+      154 |   context.on('page',observe);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-library.spec.ts:151:25
+
+    Error Context: test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat3/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat3/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/local-library-local-librar-64956-ng-content-in-actual-Chrome-stories-runtime-repeat3/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 
+    [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 
+    [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 
+    [stories-runtime] › tests/e2e/local-library.spec.ts:144:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome 

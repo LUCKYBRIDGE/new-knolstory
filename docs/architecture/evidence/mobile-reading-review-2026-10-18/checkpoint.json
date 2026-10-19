@@ -1,0 +1,650 @@
+{
+  "date": "2026-10-18",
+  "status": "Review candidate only; not deployed",
+  "request": "Compare mobile orientations, sentence-first pagination and speaker-only centered portrait; preserve mockup images for review",
+  "images": {
+    "overview": "mockups/orientation-comparison.png",
+    "narration": "mockups/narration-comparison.png",
+    "gallery": "mockups/index.html",
+    "originalCaptures": "current-host-dock/",
+    "pages": "mockups/pages-comparison.png",
+    "guide": "README.md"
+  },
+  "fixture": "Compiled real Runtime Core scenes from responsive-audio.json, same left/right actors and text; current host dialogueDock expanded-tool values62/32px +safe8px; no author manuscripts modified",
+  "coreExistingBehavior": {
+    "portraitLinkedSpeaker": "Only linked actor centered",
+    "portraitNarration": "No linked actor: background only",
+    "landscape": "Both stage actors maintained, speaker emphasis changes"
+  },
+  "checks": {
+    "pureTests": 12,
+    "fixedSeedRandomCases": 1000,
+    "nativeTextCases": 30,
+    "nativeCompositionCases": 6,
+    "presenterTests": 19
+  },
+  "nativeTextReports": [
+    {
+      "format": "phone-portrait",
+      "case": "short",
+      "textLength": 11,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 22,
+        "y": 1210,
+        "width": 676,
+        "height": 192
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "sentences",
+      "textLength": 85,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "quotes",
+      "textLength": 88,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "numbers",
+      "textLength": 77,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "ellipsis",
+      "textLength": 71,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "paragraphs",
+      "textLength": 75,
+      "pageAdvanceClicks": 4,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "long-sentence",
+      "textLength": 125,
+      "pageAdvanceClicks": 3,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "unicode",
+      "textLength": 99,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "url",
+      "textLength": 78,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-portrait",
+      "case": "unbroken",
+      "textLength": 167,
+      "pageAdvanceClicks": 3,
+      "textbox": {
+        "x": 22,
+        "y": 1162,
+        "width": 676,
+        "height": 240
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "short",
+      "textLength": 11,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "sentences",
+      "textLength": 85,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "quotes",
+      "textLength": 88,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "numbers",
+      "textLength": 77,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "ellipsis",
+      "textLength": 71,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "paragraphs",
+      "textLength": 75,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 179,
+        "y": 279,
+        "width": 922,
+        "height": 249
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "long-sentence",
+      "textLength": 125,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "unicode",
+      "textLength": 99,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "url",
+      "textLength": 78,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 179,
+        "y": 330,
+        "width": 922,
+        "height": 198
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "phone-landscape",
+      "case": "unbroken",
+      "textLength": 167,
+      "pageAdvanceClicks": 2,
+      "textbox": {
+        "x": 179,
+        "y": 279,
+        "width": 922,
+        "height": 249
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "short",
+      "textLength": 11,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "sentences",
+      "textLength": 85,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "quotes",
+      "textLength": 88,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "numbers",
+      "textLength": 77,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "ellipsis",
+      "textLength": 71,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "paragraphs",
+      "textLength": 75,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 432,
+        "width": 1184,
+        "height": 252
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "long-sentence",
+      "textLength": 125,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 485,
+        "width": 1184,
+        "height": 199
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "unicode",
+      "textLength": 99,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "url",
+      "textLength": 78,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 510,
+        "width": 1184,
+        "height": 174
+      },
+      "upperActorPixelDifference": 0
+    },
+    {
+      "format": "desktop",
+      "case": "unbroken",
+      "textLength": 167,
+      "pageAdvanceClicks": 1,
+      "textbox": {
+        "x": 48,
+        "y": 485,
+        "width": 1184,
+        "height": 199
+      },
+      "upperActorPixelDifference": 0
+    }
+  ],
+  "composition": [
+    {
+      "format": "portrait",
+      "who": "child",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": -110.26672000000002,
+            "y": -27.716820000000098,
+            "width": 940.53344,
+            "height": 1410.80016
+          }
+        }
+      ],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1188.7692307692307,
+        "width": 675,
+        "height": 240
+      },
+      "physicalTextboxHeight": 130,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1208.7692307692307,
+        "width": 583.6923076923077,
+        "height": 116
+      }
+    },
+    {
+      "format": "portrait",
+      "who": "adult",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [
+        {
+          "id": "adult",
+          "rect": {
+            "x": -37.46311111111112,
+            "y": 181.59355555555544,
+            "width": 794.9262222222222,
+            "height": 1192.3893333333333
+          }
+        }
+      ],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1188.7692307692307,
+        "width": 675,
+        "height": 240
+      },
+      "physicalTextboxHeight": 130,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1208.7692307692307,
+        "width": 583.6923076923077,
+        "height": 116
+      }
+    },
+    {
+      "format": "portrait",
+      "who": "narration",
+      "display": {
+        "width": 390,
+        "height": 844
+      },
+      "actors": [],
+      "textbox": {
+        "x": 22.153846153846157,
+        "y": 1188.7692307692307,
+        "width": 675,
+        "height": 240
+      },
+      "physicalTextboxHeight": 130,
+      "body": {
+        "x": 46.15384615384616,
+        "y": 1208.7692307692307,
+        "width": 583.6923076923077,
+        "height": 116
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "child",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 332.33649289099526,
+        "width": 921,
+        "height": 198
+      },
+      "physicalTextboxHeight": 130.55625,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 352.33649289099526,
+        "width": 829.5999999999999,
+        "height": 158
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "adult",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 332.33649289099526,
+        "width": 921,
+        "height": 198
+      },
+      "physicalTextboxHeight": 130.55625,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 352.33649289099526,
+        "width": 829.5999999999999,
+        "height": 158
+      }
+    },
+    {
+      "format": "landscape",
+      "who": "narration",
+      "display": {
+        "width": 844,
+        "height": 390
+      },
+      "actors": [
+        {
+          "id": "child",
+          "rect": {
+            "x": 131.97976000000006,
+            "y": 11.766809999999964,
+            "width": 310.44048,
+            "height": 465.66072
+          }
+        },
+        {
+          "id": "adult",
+          "rect": {
+            "x": 861.6099393939394,
+            "y": 80.85357575757581,
+            "width": 262.38012121212114,
+            "height": 393.57018181818177
+          }
+        }
+      ],
+      "textbox": {
+        "x": 179.20000000000002,
+        "y": 332.33649289099526,
+        "width": 921,
+        "height": 198
+      },
+      "physicalTextboxHeight": 130.55625,
+      "body": {
+        "x": 203.20000000000002,
+        "y": 352.33649289099526,
+        "width": 829.5999999999999,
+        "height": 158
+      }
+    }
+  ],
+  "finding": "This sample Korean passage needs2portrait pages,1landscape page. Orientation alone does not determine capacity: width and chosen readable box height matter.",
+  "recommendation": "Support both; portrait focuses one speaker, landscape preserves conversation pair. Review narration and exact textbox budget visually before deployment.",
+  "limits": [
+    "Chromium viewport simulation on Mac; no physical mobile device or browser-rotation validation",
+    "3/4/5 budget reference comparison uses approximate Unicode widths; native tests independently validate actual font behavior",
+    "Sentence punctuation heuristic, not universal language segmentation",
+    "Unicode cluster support covers tested Korean/combining/ZWJ/flags, not full Unicode UAX implementation",
+    "Mockups show native stage without Web read toolbar; authoring editor flow is separate",
+    "Current production keeps earlier full-fit pagination; candidate not deployed"
+  ],
+  "sourceSha256": {
+    "renpy/responsive-spike/game/script.rpy": "717bacd079361caa6b63ae6e0ea84dc36f57de72621650de814acb08162bfdae",
+    "scripts/tests/test_dialogue_geometry.py": "56033e096593b9f352148e49b51c467b23d51c34978e6c2431fe7c9d861d8210",
+    "spikes/renpy-web/verify-sentence-pages.mjs": "3a625997ae2de9dad89dc8c29a82e3d7c19226f639a13aacce8af2123288bc10",
+    "spikes/renpy-web/verify-mobile-composition.mjs": "e302ea2912fd23a82c9a7063f78b6ef35c166fd8ef88a4c960c3df77984eb1c1"
+  },
+  "additionalChecks": {
+    "portraitPageTransitions": 3,
+    "correctedCaptureSet": "final-captures-corrected/",
+    "initialCaptureFailure": "Same scene read identity intentionally preserved source offset; test fixed without runtime weakening"
+  }
+}

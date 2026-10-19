@@ -25,7 +25,7 @@ describe('editor authoring', () => {
  });
  it('removes incoming links explicitly and clears continuation without losing other cuts', () => {
   const p=addTypedStoryCut(blank(),'a','b','narration'); const linked={...p,continuation:{chapterId:'c',lineId:'b',label:'계속'},lines:p.lines.map(l=>l.id==='a'?{...l,flow:{type:'goto' as const,targetLineId:'b'}}:l)};
-  expect(getStoryCutDeletionImpact(linked,'b')).toEqual({incomingLinks:1,isContinuation:true});
+  expect(getStoryCutDeletionImpact(linked,'b')).toEqual({incomingLinks:1,isContinuation:true,rangeEnds:[],branchConditions:[]});
   const n=deleteStoryCut(linked,'b'); expect(n.lines[0].flow).toEqual({type:'goto',targetLineId:''}); expect(n.continuation).toBeUndefined();
   expect(() => deleteStoryCut(blank(),'a')).toThrow(); expect(() => deleteStoryCut(p,'unknown')).toThrow();
  });

@@ -1,0 +1,20 @@
+
+Running 13 tests using 1 worker
+
+(node:82996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 1280 (1.9s)
+  ✓   2 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 820 (1.6s)
+  ✓   3 [host] › tests/e2e/approved-editor.spec.ts:3:2 › approved editor retains text and one additional tool 390 (1.8s)
+  ✓   4 [host] › tests/e2e/approved-editor.spec.ts:24:1 › manuscript navigation protects IME and failed storage (1.1s)
+  ✓   5 [host] › tests/e2e/approved-editor.spec.ts:34:1 › choice and project scores stay independent in all four combinations (9.9s)
+  ✓   6 [host] › tests/e2e/approved-editor.spec.ts:52:1 › measured keyboard occlusion reduces editor projection without changing logical scene or iframe (4.1s)
+  ✓   7 [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core (5.6s)
+  ✓   8 [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity (697ms)
+  ✓   9 [host] › tests/e2e/approved-reader.spec.ts:40:1 › reader failure cannot leave for library and preparing stage has an exit (685ms)
+  ✓  10 [host] › tests/e2e/approved-reader.spec.ts:45:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields (13.2s)
+  ✓  11 [host] › tests/e2e/approved-reader.spec.ts:59:1 › native approved dialogue and host bar align on a real RenPy phone stage (4.0s)
+  ✓  12 [host] › tests/e2e/approved-reader.spec.ts:66:1 › automatic reading pauses for menus and advances only after current native acknowledgement (4.0s)
+  ✓  13 [host] › tests/e2e/approved-reader.spec.ts:79:1 › reader top menu allows editing exit when native runtime is unavailable (627ms)
+
+  13 passed (49.9s)

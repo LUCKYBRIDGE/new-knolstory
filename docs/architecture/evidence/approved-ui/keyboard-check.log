@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:82288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/approved-editor.spec.ts:52:1 › measured keyboard occlusion reduces editor projection without changing logical scene or iframe (3.9s)
+
+  1 passed (4.3s)

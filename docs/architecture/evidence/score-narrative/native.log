@@ -1,0 +1,97 @@
+
+Running 3 tests using 1 worker
+
+(node:53554) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/3] [stories-runtime] › tests/e2e/score-narrative.spec.ts:6:1 › score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening
+[2/3] [stories-runtime] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 1280
+  1) [stories-runtime] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 1280 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('story-stage-viewport')
+    Expected substring: "이웃들이 도우러 왔습니다."
+    Received string:    ""
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByTestId('story-stage-viewport') with timeout 5000ms
+      - waiting for getByTestId('story-stage-viewport')
+        14 × locator resolved to <div data-testid="story-stage-viewport" class="story-workspace-module__gRDfJG__viewport  story-workspace-module__gRDfJG__playingViewport">…</div>
+           - unexpected value ""
+
+
+      16 |  test.skip(info.project.name!=='stories-runtime');test.setTimeout(240000);await page.setViewportSize(viewport);await load(page);await ready(page);await page.getByRole('button',{name:'현재 컷부터 읽기',exact:true}).click();await ready(page);
+      17 |  await choose(page,'이웃을 돕는다');await choose(page,'음식을 나눈다');await expect(page.getByTestId('playback-status')).toHaveText('읽는 중');await page.getByText('이야기 점수 확인',{exact:true}).click();await expect(page.getByLabel('신뢰 현재 점수')).toHaveText('4');
+    > 18 |  await page.reload();await ready(page);await page.getByText('이야기 점수 확인',{exact:true}).click();await expect(page.getByLabel('신뢰 현재 점수')).toHaveText('4');await page.getByRole('button',{name:'다음으로',exact:true}).click();await ready(page);await expect(page.getByTestId('story-stage-viewport')).toContainText('이웃들이 도우러 왔습니다.');
+         |                                                                                                                                                                                                                                                                                                  ^
+      19 |  await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');await expect(page.getByRole('region',{name:'이야기 엔딩'})).toContainText('함께하는 결말');
+      20 |  await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await ready(page);await choose(page,'그냥 지나간다');const semantic=page.locator('details').filter({has:page.getByText('현재 컷을 글자로 읽기',{exact:true})});await expect(semantic.getByRole('button',{name:'음식을 나눈다',exact:true})).toHaveCount(0);await choose(page,'음식을 혼자 보관한다');await page.getByRole('button',{name:'다음으로',exact:true}).click();await ready(page);await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByRole('region',{name:'이야기 엔딩'})).toContainText('혼자 찾는 결말');
+      21 |  await page.getByRole('button',{name:'이전으로',exact:true}).click();await page.getByRole('button',{name:'이전으로',exact:true}).click();await page.getByRole('button',{name:'이전으로',exact:true}).click();await ready(page);await page.getByText('이야기 점수 확인',{exact:true}).click();await expect(page.getByLabel('욕심 현재 점수')).toHaveText('0');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/score-narrative.spec.ts:18:290
+
+    Error Context: ../../../../../tmp/knol-score-native/score-narrative-native-sco-ad172-e-restore-and-reselect-1280-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-score-native/score-narrative-native-sco-ad172-e-restore-and-reselect-1280-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-score-native/score-narrative-native-sco-ad172-e-restore-and-reselect-1280-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:53705) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[3/3] [stories-runtime] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 390
+  2) [stories-runtime] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 390 
+
+    Test timeout of 240000ms exceeded.
+
+    Error: locator.click: Test timeout of 240000ms exceeded.
+    Call log:
+      - waiting for getByText('이야기 점수 확인', { exact: true })
+        - locator resolved to <summary>이야기 점수 확인</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        442 × waiting for element to be visible, enabled and stable
+            - element is not visible
+          - retrying click action
+            - waiting 500ms
+
+
+      15 |  test.skip(info.project.name!=='stories-runtime');test.setTimeout(240000);await page.setViewportSize(viewport);await load(page);await ready(page);await page.getByRole('button',{name:'현재 컷부터 읽기',exact:true}).click();await ready(page);
+      16 |  await choose(page,'이웃을 돕는다');await choose(page,'음식을 나눈다');await expect(page.getByTestId('playback-status')).toHaveText('읽는 중');await page.getByText('이야기 점수 확인',{exact:true}).click();await expect(page.getByLabel('신뢰 현재 점수')).toHaveText('4');
+    > 17 |  await page.reload();await ready(page);await page.getByText('이야기 점수 확인',{exact:true}).click();await expect(page.getByLabel('신뢰 현재 점수')).toHaveText('4');await page.getByRole('button',{name:'다음으로',exact:true}).click();await ready(page);await expect(page.locator('details').filter({has:page.getByText('현재 컷을 글자로 읽기',{exact:true})})).toContainText('이웃들이 도우러 왔습니다.');
+         |                                                                                                                                                                                ^
+      18 |  await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');await expect(page.getByRole('region',{name:'이야기 엔딩'})).toContainText('함께하는 결말');
+      19 |  await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await ready(page);await choose(page,'그냥 지나간다');const semantic=page.locator('details').filter({has:page.getByText('현재 컷을 글자로 읽기',{exact:true})});await expect(semantic.getByRole('button',{name:'음식을 나눈다',exact:true})).toHaveCount(0);await choose(page,'음식을 혼자 보관한다');await page.getByRole('button',{name:'다음으로',exact:true}).click();await ready(page);await page.getByRole('button',{name:'다음으로',exact:true}).click();await expect(page.getByRole('region',{name:'이야기 엔딩'})).toContainText('혼자 찾는 결말');
+      20 |  await page.getByRole('button',{name:'이전으로',exact:true}).click();await page.getByRole('button',{name:'이전으로',exact:true}).click();await page.getByRole('button',{name:'이전으로',exact:true}).click();await ready(page);await page.getByText('이야기 점수 확인',{exact:true}).click();await expect(page.getByLabel('욕심 현재 점수')).toHaveText('0');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/score-narrative.spec.ts:17:176
+
+    Error Context: ../../../../../tmp/knol-score-native/score-narrative-native-sco-177cf-ne-restore-and-reselect-390-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-score-native/score-narrative-native-sco-177cf-ne-restore-and-reselect-390-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-score-native/score-narrative-native-sco-177cf-ne-restore-and-reselect-390-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+  2 failed
+    [stories-runtime] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 1280 
+    [stories-runtime] › tests/e2e/score-narrative.spec.ts:15:72 › native score choices accumulate through a shared scene, restore and reselect 390 
+  1 skipped

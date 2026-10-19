@@ -1,0 +1,52 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/local-work-file.test.ts (22 tests | 3 failed) 120ms
+     × gives permission advice without exposing native paths or English details 2ms
+     × gives storage and generic retry advice without treating stream abort as picker cancellation 0ms
+     × preserves trusted product validation and current file vocabulary 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/local-work-file.test.ts > local file failure guidance > gives permission advice without exposing native paths or English details
+TypeError: localWorkFileErrorMessage is not a function
+ ❯ apps/web/lib/local-work-file.test.ts:184:21
+    182| describe('local file failure guidance', () => {
+    183|   it('gives permission advice without exposing native paths or English…
+    184|     const message = localWorkFileErrorMessage(new DOMException('Permis…
+       |                     ^
+    185|     expect(message).toContain('파일을 사용할 권한');
+    186|     expect(message).toContain('다른 파일로 저장');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  apps/web/lib/local-work-file.test.ts > local file failure guidance > gives storage and generic retry advice without treating stream abort as picker cancellation
+TypeError: localWorkFileErrorMessage is not a function
+ ❯ apps/web/lib/local-work-file.test.ts:191:12
+    189|   });
+    190|   it('gives storage and generic retry advice without treating stream a…
+    191|     expect(localWorkFileErrorMessage(new DOMException('disk quota /pri…
+       |            ^
+    192|     for (const issue of [new Error('disk full /private'), new DOMExcep…
+    193|       expect(localWorkFileErrorMessage(issue)).toContain('다시 시도');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  apps/web/lib/local-work-file.test.ts > local file failure guidance > preserves trusted product validation and current file vocabulary
+TypeError: localWorkFileErrorMessage is not a function
+ ❯ apps/web/lib/local-work-file.test.ts:201:27
+    199|     await saver.save(input()); selected.edit('external');
+    200|     try {await saver.save(input()); throw new Error('expected conflict…
+    201|     catch (issue) {expect(localWorkFileErrorMessage(issue)).toContain(…
+       |                           ^
+    202|     try {await saver.save({...input(), serialize: async () => 'a'.repe…
+    203|     catch (issue) {expect(localWorkFileErrorMessage(issue)).toContain(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 19 passed (22)
+   Start at  08:18:12
+   Duration  239ms (transform 19ms, setup 0ms, import 25ms, tests 120ms, environment 0ms)
+

@@ -1,0 +1,251 @@
+
+Running 8 tests using 1 worker
+
+(node:81147) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 320 (190ms)
+(node:81161) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 390 (92ms)
+(node:81175) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 1280 (94ms)
+(node:81191) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/e2e/editing-workbench.spec.ts:304:1 › popup audit: import confirmation traps focus, cancels without modifying the work (93ms)
+(node:81208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 320x640 (90ms)
+(node:81220) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 640x360 (89ms)
+(node:81231) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  7 tests/e2e/editing-workbench.spec.ts:313:1 › popup audit: term search and flow map close back to settings without changing content (90ms)
+(node:81237) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  8 tests/e2e/editing-workbench.spec.ts:317:1 › popup audit: cut deletion opens compact and safe cancel keeps all authored data (88ms)
+
+
+  1) tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 320 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=library", waiting until "load"
+
+
+       7 |   return route.fulfill({status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});
+       8 |  });
+    >  9 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');
+         |             ^
+      10 |  const before=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+      11 |  const account=page.locator('[data-account-menu]'),online=page.locator('[data-online-works]');
+      12 |  await account.locator('summary').click();await expect(account).toHaveAttribute('open','');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-popup-dismiss.spec.ts:9:13
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-40373-ut-changing-local-works-320/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-40373-ut-changing-local-works-320/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-40373-ut-changing-local-works-320/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 390 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=library", waiting until "load"
+
+
+       7 |   return route.fulfill({status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});
+       8 |  });
+    >  9 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');
+         |             ^
+      10 |  const before=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+      11 |  const account=page.locator('[data-account-menu]'),online=page.locator('[data-online-works]');
+      12 |  await account.locator('summary').click();await expect(account).toHaveAttribute('open','');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-popup-dismiss.spec.ts:9:13
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-d41d5-ut-changing-local-works-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-d41d5-ut-changing-local-works-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-d41d5-ut-changing-local-works-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 1280 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=library
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=library", waiting until "load"
+
+
+       7 |   return route.fulfill({status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});
+       8 |  });
+    >  9 |  await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('기기에 저장됨');
+         |             ^
+      10 |  const before=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+      11 |  const account=page.locator('[data-account-menu]'),online=page.locator('[data-online-works]');
+      12 |  await account.locator('summary').click();await expect(account).toHaveAttribute('open','');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/account-popup-dismiss.spec.ts:9:13
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-cbde9-t-changing-local-works-1280/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-cbde9-t-changing-local-works-1280/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/account-popup-dismiss-acco-cbde9-t-changing-local-works-1280/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/editing-workbench.spec.ts:304:1 › popup audit: import confirmation traps focus, cancels without modifying the work 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      29 | }
+      30 | async function prepare(page:Page){
+    > 31 |  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+         |                                                                ^
+      32 |  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:fixture}));
+      33 |  await expect(workbench(page)).toBeVisible();
+      34 |  return (await exported(page)).project;
+        at prepare (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:31:64)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:305:66
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-4f0b5--without-modifying-the-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-4f0b5--without-modifying-the-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-4f0b5--without-modifying-the-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 320x640 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      29 | }
+      30 | async function prepare(page:Page){
+    > 31 |  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+         |                                                                ^
+      32 |  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:fixture}));
+      33 |  await expect(workbench(page)).toBeVisible();
+      34 |  return (await exported(page)).project;
+        at prepare (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:31:64)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:310:58
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-f0187-g-cancel-stays-safe-320x640/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-f0187-g-cancel-stays-safe-320x640/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-f0187-g-cancel-stays-safe-320x640/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 640x360 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      29 | }
+      30 | async function prepare(page:Page){
+    > 31 |  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+         |                                                                ^
+      32 |  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:fixture}));
+      33 |  await expect(workbench(page)).toBeVisible();
+      34 |  return (await exported(page)).project;
+        at prepare (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:31:64)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:310:58
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-9c7ed-g-cancel-stays-safe-640x360/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-9c7ed-g-cancel-stays-safe-640x360/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-9c7ed-g-cancel-stays-safe-640x360/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) tests/e2e/editing-workbench.spec.ts:313:1 › popup audit: term search and flow map close back to settings without changing content 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      29 | }
+      30 | async function prepare(page:Page){
+    > 31 |  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+         |                                                                ^
+      32 |  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:fixture}));
+      33 |  await expect(workbench(page)).toBeVisible();
+      34 |  return (await exported(page)).project;
+        at prepare (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:31:64)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:314:66
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-83f93-gs-without-changing-content/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-83f93-gs-without-changing-content/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-83f93-gs-without-changing-content/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) tests/e2e/editing-workbench.spec.ts:317:1 › popup audit: cut deletion opens compact and safe cancel keeps all authored data 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      29 | }
+      30 | async function prepare(page:Page){
+    > 31 |  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+         |                                                                ^
+      32 |  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:fixture}));
+      33 |  await expect(workbench(page)).toBeVisible();
+      34 |  return (await exported(page)).project;
+        at prepare (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:31:64)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:318:66
+
+    Error Context: docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-b349e-cel-keeps-all-authored-data/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-b349e-cel-keeps-all-authored-data/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/popup-review-2026-10-19/first-run/editing-workbench-popup-au-b349e-cel-keeps-all-authored-data/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8 failed
+    tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 320 
+    tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 390 
+    tests/e2e/account-popup-dismiss.spec.ts:2:35 › account popovers coordinate and dismiss without changing local works 1280 
+    tests/e2e/editing-workbench.spec.ts:304:1 › popup audit: import confirmation traps focus, cancels without modifying the work 
+    tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 320x640 
+    tests/e2e/editing-workbench.spec.ts:309:51 › popup audit: image selection pending cancel stays safe 640x360 
+    tests/e2e/editing-workbench.spec.ts:313:1 › popup audit: term search and flow map close back to settings without changing content 
+    tests/e2e/editing-workbench.spec.ts:317:1 › popup audit: cut deletion opens compact and safe cancel keeps all authored data 

@@ -50,3 +50,6 @@
 
 .mapConnection { font-size: 12px; white-space: pre-wrap; overflow-wrap: anywhere; }
 .moreCuts { margin: 0 16px 16px; max-width: calc(100% - 32px); text-align: left; }
+.dialog :is(.context,.legend,.result,.chapter summary,.cutButton,.authoredText,.connectionLabel,.connections button,.mapConnection) { word-break:keep-all; overflow-wrap:anywhere; }
+.dialog .filters :is(input,select) { width:100%; min-width:0; }
+@media(max-width:460px) { .dialog .header { gap:8px; }.dialog .header h2 { font-size:18px; }.dialog .header>button { flex:none; } }

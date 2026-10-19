@@ -1,0 +1,62 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-3a8ac2208a62 Creating 
+ Container knolstory-next-storage-test-runner-run-3a8ac2208a62 Created 
+
+> @knolstory/storage-test@ typecheck /workspace/server
+> tsc --project tsconfig.integration.json
+
+
+> @knolstory/storage-test@ test:integration /workspace/server
+> vitest run --config vitest.config.ts --coverage
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/server[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+ [32m✓[39m http/auth-routes.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+ [32m✓[39m http/auth-service.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 216[2mms[22m[39m
+ [32m✓[39m auth/identity-links.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m auth/oidc-provider.test.ts [2m([22m[2m44 tests[22m[2m)[22m[32m 139[2mms[22m[39m
+ [32m✓[39m storage/postgres-save-port.integration.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 753[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-completion.integration.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m auth/postgres-identity-port.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m auth/postgres-identity-port.integration.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 55[2mms[22m[39m
+ [32m✓[39m storage/snapshot-projection.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 269[2mms[22m[39m
+ [32m✓[39m auth/auth-state.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [31m❯[39m auth/postgres-auth-state.integration.ts [2m([22m[2m8 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 36[2mms[22m[39m
+     [32m✓[39m stores hashes, persists sessions and consumes one flow exactly once across connections[32m 10[2mms[22m[39m
+     [32m✓[39m preserves a genuine flow after browser mismatch and rejects revoked starting sessions[32m 4[2mms[22m[39m
+     [32m✓[39m rejects expired flows and sessions at exact expiry[32m 1[2mms[22m[39m
+     [32m✓[39m rejects inactive accounts during session issue/authentication and flow consumption[32m 2[2mms[22m[39m
+     [32m✓[39m rejects deleted accounts during session issue/authentication and flow consumption[32m 2[2mms[22m[39m
+[31m     [31m×[31m revokes an entire rotated session family while preserving unrelated device sessions[39m[32m 4[2mms[22m[39m
+   [32m✓[39m rolls back a failed revocation; rollback failure=false[32m 0[2mms[22m[39m
+   [32m✓[39m rolls back a failed revocation; rollback failure=true[32m 0[2mms[22m[39m
+ [32m✓[39m storage/sql-client-lifecycle.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m auth/postgres-auth-completion.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m auth/postgres-auth-state.integration.ts[2m > [22mreal PostgreSQL opaque auth state[2m > [22mrevokes an entire rotated session family while preserving unrelated device sessions
+[31m[1merror[22m: duplicate key value violates unique constraint "sessions_pkey"[39m
+[90m [2m❯[22m node_modules/.pnpm/pg-pool@3.14.0_pg@8.23.1/node_modules/pg-pool/index.js:[2m45:11[22m[39m
+[36m [2m❯[22m auth/postgres-auth-state.integration.ts:[2m45:3[22m[39m
+    [90m 43|[39m   const digest=(token:string)=>createHash('sha256').update(token).dige…
+    [90m 44|[39m   [35mconst[39m child[33m=[39m[32m'c'[39m[33m.[39m[34mrepeat[39m([34m43[39m)[33m,[39mgrandchild[33m=[39m[32m'g'[39m[33m.[39m[34mrepeat[39m([34m43[39m)[33m;[39m
+    [90m 45|[39m   await pool.query('INSERT INTO knolstory_auth.sessions(token_hash,acc…
+    [90m   |[39m   [31m^[39m
+    [90m 46|[39m   await pool.query('INSERT INTO knolstory_auth.sessions(token_hash,acc…
+    [90m 47|[39m   [35mawait[39m [34mservice[39m()[33m.[39m[34mrevokeSession[39m(original[33m.[39mtoken)[33m;[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m12 passed[39m[22m[90m (13)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m204 passed[39m[22m[90m (205)[39m
+[2m   Start at [22m 23:01:14
+[2m   Duration [22m 3.16s[2m (transform 324ms, setup 0ms, import 569ms, tests 1.61s, environment 0ms)[22m
+
+ ELIFECYCLE  Command failed with exit code 1.
+

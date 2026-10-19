@@ -1,0 +1,50 @@
+...F.FF
+======================================================================
+FAIL: test_only_approved_exact_bytes_with_rights_and_evidence_pass (scripts.tests.test_service_audio.ServiceAudioTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_service_audio.py", line 38, in test_only_approved_exact_bytes_with_rights_and_evidence_pass
+    self.assertEqual(module.audit(root), [])
+AssertionError: Lists differ: ['Missing or unsupported service audio approvals.'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'Missing or unsupported service audio approvals.'
+
+- ['Missing or unsupported service audio approvals.']
++ []
+
+======================================================================
+FAIL: test_scene_integrated_licence_requires_all_capability_limits (scripts.tests.test_service_audio.ServiceAudioTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_service_audio.py", line 113, in test_scene_integrated_licence_requires_all_capability_limits
+    self.assertEqual(module.audit(root), [])
+AssertionError: Lists differ: ['Missing or unsupported service audio approvals.'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'Missing or unsupported service audio approvals.'
+
+- ['Missing or unsupported service audio approvals.']
++ []
+
+======================================================================
+FAIL: test_stale_runtime_zip_is_rejected_before_web_publication (scripts.tests.test_service_audio.ServiceAudioTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_service_audio.py", line 76, in test_stale_runtime_zip_is_rejected_before_web_publication
+    self.assertEqual(module.audit(root), [])
+AssertionError: Lists differ: ['Missing or unsupported service audio approvals.'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'Missing or unsupported service audio approvals.'
+
+- ['Missing or unsupported service audio approvals.']
++ []
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.017s
+
+FAILED (failures=3)

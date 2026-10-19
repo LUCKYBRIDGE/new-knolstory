@@ -1,0 +1,72 @@
+
+Running 1 test using 1 worker
+
+(node:68575) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/native-body-tab.spec.ts:5:1 › native BODY and canvas Tab return to semantic reading controls after audio unlock (17.6s)
+
+
+  1) tests/e2e/native-body-tab.spec.ts:5:1 › native BODY and canvas Tab return to semantic reading controls after audio unlock 
+
+    Error: body Tab returns to the host reading control
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  locator('details').filter({ has: getByText('대사·해설 텍스트 보기', { exact: true }) }).locator('summary')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - body Tab returns to the host reading control locator('details').filter({ has: getByText('대사·해설 텍스트 보기', { exact: true }) }).locator('summary') with timeout 5000ms
+      - waiting for locator('details').filter({ has: getByText('대사·해설 텍스트 보기', { exact: true }) }).locator('summary')
+        14 × locator resolved to <summary>대사·해설 텍스트 보기</summary>
+           - unexpected value "inactive"
+
+
+      41 |    await page.keyboard.press(key);
+      42 |    const target=key==='Tab'?summary:menu;
+    > 43 |    await expect.soft(target,`${source} ${key} returns to the host reading control`).toBeFocused();
+         |                                                                                     ^
+      44 |    observations.push({source,key,prepared,returned:await target.evaluate(node=>node===document.activeElement),focus:await page.evaluate(()=>({tag:document.activeElement?.tagName,text:document.activeElement?.textContent?.slice(0,120)}))});
+      45 |   }
+      46 |  }
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/native-body-tab.spec.ts:43:85
+
+    Error: body Shift+Tab returns to the host reading control
+
+    expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('button', { name: '읽기 메뉴', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - body Shift+Tab returns to the host reading control getByRole('button', { name: '읽기 메뉴', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '읽기 메뉴', exact: true })
+        14 × locator resolved to <button aria-label="읽기 메뉴" aria-expanded="false" aria-controls="_r_2_-top-menu" data-reader-menu-trigger="true" class="story-player-menu-module__VLhC_G__topTrigger">…</button>
+           - unexpected value "inactive"
+
+
+      41 |    await page.keyboard.press(key);
+      42 |    const target=key==='Tab'?summary:menu;
+    > 43 |    await expect.soft(target,`${source} ${key} returns to the host reading control`).toBeFocused();
+         |                                                                                     ^
+      44 |    observations.push({source,key,prepared,returned:await target.evaluate(node=>node===document.activeElement),focus:await page.evaluate(()=>({tag:document.activeElement?.tagName,text:document.activeElement?.textContent?.slice(0,120)}))});
+      45 |   }
+      46 |  }
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/native-body-tab.spec.ts:43:85
+
+    Error Context: docs/architecture/evidence/chrome-native-zoom-2026-10-18/red-catalog-run/native-body-tab-native-BOD-98730-controls-after-audio-unlock/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/chrome-native-zoom-2026-10-18/red-catalog-run/native-body-tab-native-BOD-98730-controls-after-audio-unlock/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/chrome-native-zoom-2026-10-18/red-catalog-run/native-body-tab-native-BOD-98730-controls-after-audio-unlock/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/native-body-tab.spec.ts:5:1 › native BODY and canvas Tab return to semantic reading controls after audio unlock 

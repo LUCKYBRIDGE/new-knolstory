@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/online-work-bindings.test.ts (8 tests | 1 failed) 33ms
+     × allows corrected content after a definitive noncommitting policy rejection 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/online-work-bindings.test.ts > durable online work linkage > allows corrected content after a definitive noncommitting policy rejection
+AssertionError: expected '03b84243-a79e-4c75-94e8-dd6fb2c3b8f2' not to be '03b84243-a79e-4c75-94e8-dd6fb2c3b8f2' // Object.is equality
+ ❯ apps/web/lib/online-work-bindings.test.ts:59:89
+     57|   const fail=vi.fn(async()=>new Response(JSON.stringify({success:false…
+     58|   await expect(saveOnlineWork(store,account,'local',value,'csrf',fail)…
+     59|   const next=await store.prepare(account,'local',await snapshot());exp…
+       |                                                                                         ^
+     60|  });
+     61|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  08:35:05
+   Duration  844ms (transform 489ms, setup 0ms, import 713ms, tests 33ms, environment 0ms)
+

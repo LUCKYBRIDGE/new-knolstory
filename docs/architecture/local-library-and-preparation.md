@@ -70,3 +70,14 @@ A는 실제 UI의 내 작품2개+가져온 작품1개와 예제4개 카드/재�
 ## 첫 접속·재접속 구분에 대한 정정 (2026-10-08)
 
 위 `/`의 서재 진입은 현재 Next 구현을 설명한다. 기존 놀스토리와 동일한 전체 첫 진입 흐름을 완료했다는 뜻은 아니다. 사용자 확인 및 고정18da4fc의 `StoryStudio.tsx`/`story-landing-visit.ts` 확인 결과, 최초 접속은 책 소개 home, 방문 기록이 있는 재접속은 서재 library가 기본이며 이후 저장된 탐색 위치 복원도 있다. Next에는 아직 책 소개 첫 화면과 방문 구분이 없다. 책 소개 home, 서재, 개별 작품의 표지/게임 시작 화면을 서로 구분해 후속 작업에서 연결한다. 방문 기록은 작품 파일과 분리하고 레거시 저장 키는 변경하지 않는다.
+
+
+## 2026-10-09 로컬 기록과 충돌 보호
+
+작품 복구 기록(`knolstory-checkpoints-v1`)은 명시 생성/컷 삭제 전 원고의 StoryDocument를 최근10개·UTF16 2MB까지 보관한다. 복구는 내 사본으로 열며 현재 원고·다른 작품·Asset ID/Flow/StageComposition을 보존한다. 파일 보관은 기존 portableStory를 이용해 사용자 오디오 bytes를 포함한다.
+
+workspace/shortstory collection별 WebLock 단일 writer와 저장 직전 raw 비교를 사용한다. 둘째 탭은 현재 초안을 편집·파일 보관할 수 있지만 저장된 원고를 덮지 않는다. 다른 탭을 닫은 뒤 명시적으로 보관함을 재열어 최신 상태부터 작성한다. 정상 기록을 읽을 수 없는 workspace에서는 raw 파일 보관·독립 정상본 사본 열기·손상 raw를 별도 key에 보존한 새 보관함 시작을 제공한다. 기존 삭제복구 key는 읽기 fallback이고, 새 개인 작품 삭제/복구는 workspace의 optional deletedWork envelope와 동일 setItem으로 commit한다. quota 실패가 이전 삭제복구본을 바꾸지 않는다.
+
+계약·제한·현재 실행 결과: [고정 legacy 보완](legacy-parity-implementation.md).
+
+사용자에게 보이는 기능 이름과 설명은 [제품 용어 기준](editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 내부 키·현재 파일 계약과 과거 검증 기록은 용어 정리로 바꾸지 않는다.

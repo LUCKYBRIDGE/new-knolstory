@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:25051) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/accessibility-reader-native.spec.ts:5:1 › actual native reading retains menu focus and semantic advance at phone width (9.6s)
+
+
+  1) tests/e2e/accessibility-reader-native.spec.ts:5:1 › actual native reading retains menu focus and semantic advance at phone width 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator:  locator('details').filter({ has: getByText('대사·해설 텍스트 보기', { exact: true }) }).getByRole('button', { name: '다음으로', exact: true })
+    Expected: enabled
+    Received: disabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeEnabled" locator('details').filter({ has: getByText('대사·해설 텍스트 보기', { exact: true }) }).getByRole('button', { name: '다음으로', exact: true }) with timeout 5000ms
+      - waiting for locator('details').filter({ has: getByText('대사·해설 텍스트 보기', { exact: true }) }).getByRole('button', { name: '다음으로', exact: true })
+        14 × locator resolved to <button disabled>다음으로</button>
+           - unexpected value "disabled"
+
+
+      18 |  const dialog=page.getByRole('dialog',{name:'읽기 설정',exact:true});await expect(dialog).toBeVisible();await page.keyboard.press('Escape');await expect(trigger).toBeFocused();
+      19 |  await trigger.press('Enter');await top.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).focus();await page.keyboard.press('Tab');await expect(top).toHaveCount(0);
+    > 20 |  const next=mirror.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');await expect(text).not.toHaveText(initial);
+         |                                                                                    ^
+      21 |  await expect.poll(async()=>await state.getAttribute('data-rendered-revision')===await state.getAttribute('data-scene-revision'),{timeout:30000}).toBe(true);
+      22 |  expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);expect(await authored()).toEqual(before);
+      23 |  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('native-stage.png')});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/accessibility-reader-native.spec.ts:20:84
+
+    Error Context: docs/architecture/evidence/accessibility-reader-2026-10-17/native-run/accessibility-reader-nativ-55986-ntic-advance-at-phone-width/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/accessibility-reader-2026-10-17/native-run/accessibility-reader-nativ-55986-ntic-advance-at-phone-width/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/accessibility-reader-2026-10-17/native-run/accessibility-reader-nativ-55986-ntic-advance-at-phone-width/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/accessibility-reader-native.spec.ts:5:1 › actual native reading retains menu focus and semantic advance at phone width 

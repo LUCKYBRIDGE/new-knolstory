@@ -1,0 +1,39 @@
+
+Running 5 tests using 1 worker
+
+(node:72328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core (5.8s)
+  ✘  2 [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity (506ms)
+(node:72452) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [host] › tests/e2e/approved-reader.spec.ts:39:1 › reader failure cannot leave for library and preparing stage has an exit (696ms)
+  ✓  4 [host] › tests/e2e/approved-reader.spec.ts:44:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields (13.0s)
+  ✓  5 [host] › tests/e2e/approved-reader.spec.ts:54:1 › native approved dialogue and host bar align on a real RenPy phone stage (3.9s)
+
+
+  1) [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity 
+
+    Error: expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 2
+    Received: -56
+
+    Expected precision:    0
+    Expected difference: < 0.5
+    Received difference:   58
+
+      32 |  const frame=await page.getByTestId('story-runtime-frame').elementHandle();await expect(page.getByRole('button',{name:'읽기 도구 펼치기'})).toBeEnabled();await expect(page.getByRole('button',{name:'저장',exact:true})).toBeHidden();
+      33 |  await page.getByRole('button',{name:'읽기 도구 펼치기'}).click();await expect(page.getByRole('button',{name:'저장',exact:true})).toBeVisible();
+    > 34 |  const first=await page.getByRole('button',{name:'지난기록',exact:true}).boundingBox(),second=await page.getByRole('button',{name:'자동',exact:true}).boundingBox();expect(second!.y-first!.y-first!.height).toBeCloseTo(2,0);const last=await page.getByRole('button',{name:'빠른 불러오기',exact:true}).boundingBox();expect(844-last!.y-last!.height).toBeCloseTo(8,0);
+         |                                                                                                                                                                                                        ^
+      35 |  await page.getByRole('button',{name:'읽기 도구 접기'}).click();expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);
+      36 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await expect(page.getByLabel('글 크기')).toBeVisible();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      37 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/approved-reader.spec.ts:34:200
+
+    Error Context: test-results/approved-reader-approved-p-9f926--and-keeps-runtime-identity-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity 
+  4 passed (24.8s)

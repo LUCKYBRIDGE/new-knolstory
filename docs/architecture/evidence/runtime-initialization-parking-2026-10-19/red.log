@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:2863) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/runtime-initialization-parking.spec.ts:2:54 › native engine initializes with nonzero surface after early text navigation (1.3s)
+
+
+  1) tests/e2e/runtime-initialization-parking.spec.ts:2:54 › native engine initializes with nonzero surface after early text navigation 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+      Object {
+    -   "height": 720,
+    -   "width": 1280,
+    +   "height": 0,
+    +   "width": 0,
+      }
+
+       9 |  if(destination==='text')await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('text');else await page.getByRole('button',{name:'서재로',exact:true}).click();
+      10 |  // Prove the engine's iframe document has a positive layout viewport BEFORE allowing any engine startup.
+    > 11 |  expect(await frame.evaluate(node=>({width:(node as HTMLIFrameElement).clientWidth,height:(node as HTMLIFrameElement).clientHeight}))).toEqual({width:1280,height:720});await expect(frame).toHaveCount(1);await expect(frame).toHaveAttribute('data-engine-identity','single-native');
+         |                                                                                                                                        ^
+      12 |  if(destination==='text'){const parked=page.locator('[data-runtime-parked=true]');await expect(parked).toHaveAttribute('aria-hidden','true');expect(await parked.evaluate(node=>node.hasAttribute('inert'))).toBe(true);}
+      13 |  release();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rendered=await status.getAttribute('data-rendered-revision');return rendered!==null&&Number(rendered)>=0&&rendered===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);
+      14 |  expect(errors).toEqual([]);expect(await authored()).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/runtime-initialization-parking.spec.ts:11:136
+
+    Error Context: docs/architecture/evidence/runtime-initialization-parking-2026-10-19/red-run/runtime-initialization-par-717c1-after-early-text-navigation/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/runtime-initialization-parking-2026-10-19/red-run/runtime-initialization-par-717c1-after-early-text-navigation/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/runtime-initialization-parking-2026-10-19/red-run/runtime-initialization-par-717c1-after-early-text-navigation/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/runtime-initialization-parking.spec.ts:2:54 › native engine initializes with nonzero surface after early text navigation 

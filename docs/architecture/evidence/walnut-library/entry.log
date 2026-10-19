@@ -1,0 +1,33 @@
+Entry stability regression — 2026-10-09
+
+RED: pnpm test apps/web/lib/landing-visit.test.ts
+Saved introduction on fresh navigation: expected home, received library.
+1 failed, 4 passed.
+
+RED: pnpm exec playwright test --project=host introduction-stability.spec.ts
+Old production preview, before corrected source was loaded:
+1. Introduction wrote {"visited":true,"version":1} without user navigation.
+2. Corrupt landing preference was overwritten while corrupt workspace was preserved.
+2 failed.
+
+GREEN: pnpm test apps/web/lib/landing-visit.test.ts apps/web/lib/workspace-storage.test.ts apps/web/lib/workspace-autosave.test.ts
+3 files passed; 14 tests passed.
+
+GREEN: pnpm exec eslint apps/web/lib/landing-visit.ts apps/web/lib/landing-visit.test.ts apps/web/components/story-workspace.tsx tests/e2e/introduction-stability.spec.ts
+Exit 0.
+
+GREEN: pnpm exec playwright test --project=host introduction-stability.spec.ts --output=.cache/walnut-entry-tests
+Updated source served through Next dev at 127.0.0.1:3000:
+✓ introduction waits for a choice and stays open across reloads and new navigation (20.0s)
+✓ my works leaves introduction only after an explicit choice (4.1s)
+✓ a corrupt workspace stays intact while introduction waits for explicit navigation (1.3s)
+3 passed (26.5s).
+
+This first GREEN captured the minimal saved-home correction. Its fresh-return policy was subsequently expanded to follow the owner's latest requested introduction behavior; see entry-final.log.
+
+Expanded policy RED: pnpm test apps/web/lib/landing-visit.test.ts
+3 failed, 3 passed: visited + saved non-home fresh entry returned library; visited empty reload returned library; explicit library route with saved home returned home.
+
+Expanded policy GREEN: 14 targeted entry/workspace/autosave tests passed; focused ESLint passed (including ShortStory return and existing entry-cover test).
+Browser final: 4 passed (35.3s), including updated existing entry-cover entry test.
+Verified: every fresh '/' opens introduction even with saved library/preparation and visited=true; reload restores saved preparation/library/home; introduction idle/manual poster switch does not mark visited; explicit library/read/my-works controls work; ShortStory's explicit library return reaches library; introduction selected after that return clears route intent and reload stays home; corrupt workspace/preference and legacy key remain unchanged. Direct editor override covered by unit test. The initial hydration screen is neutral rather than briefly showing introduction before an editor/library reload.

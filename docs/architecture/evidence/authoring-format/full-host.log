@@ -1,0 +1,573 @@
+
+Running 159 tests using 1 worker
+
+(node:6235) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[1/159] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 1280x900
+[2/159] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 820x1180
+[3/159] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 390x844
+[4/159] [host] › tests/e2e/authoring-formats.spec.ts:11:2 › official multi-tab Excel edits preview and save without replacing original 844x390
+[5/159] [host] › tests/e2e/authoring-formats.spec.ts:36:1 › blank official template creates new work through validated preview
+[6/159] [host] › tests/e2e/authoring.spec.ts:63:1 › blank authoring saves a real-asset branching work and preserves it through file roundtrip
+[7/159] [host] › tests/e2e/authoring.spec.ts:96:1 › newly authored branching work renders real assets and both native Ren’Py choices reach endings
+[8/159] [host] › tests/e2e/authoring.spec.ts:138:1 › blank creation preserves existing work and structural editing retains choice identities
+[9/159] [host] › tests/e2e/authoring.spec.ts:186:1 › explicit save retries a failed device write while preserving the draft
+[10/159] [host] › tests/e2e/authoring.spec.ts:209:1 › corrupt stored workspace remains untouched while switching and importing file-only drafts
+[11/159] [host] › tests/e2e/chapter-branch-identity.spec.ts:7:1 › chapter identity and extended branch cuts survive editor, file export and reload
+[12/159] [host] › tests/e2e/composition-intent.spec.ts:109:1 › composition authoring separates body scale, center, original facing and actor exits through files
+[13/159] [host] › tests/e2e/composition-intent.spec.ts:136:1 › actual Ren’Py preserves authored bodies, front center and empty POV across back and viewport changes
+[14/159] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1440x900
+[15/159] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 1024x768
+[16/159] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 768x1024
+[17/159] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 390x844
+[18/159] [host] › tests/e2e/editor-density.spec.ts:16:25 › editor writing and preparation stay compact and preserve Korean input at 844x390
+[19/159] [host] › tests/e2e/existing-story-enhancement.spec.ts:5:1 › existing originals are directly readable beside KnolStory works
+[20/159] [host] › tests/e2e/flow-authoring.spec.ts:78:1 › flow overview navigates nested branches and diagnoses pending and unreachable cuts without losing authored content
+[21/159] [host] › tests/e2e/flow-authoring.spec.ts:151:1 › native Ren’Py follows all six nested and merged routes to two independent endings with a persistent renderer
+[22/159] [host] › tests/e2e/flow-authoring.spec.ts:186:1 › large inherited work can find and edit a cut beyond the initial chapter page
+[23/159] [host] › tests/e2e/four-work-library.spec.ts:4:1 › the default library groups eight manuscripts into four independent work choices
+[24/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 원작: chosen manuscript opens and returns to its grouped book
+[25/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 별주부전 놀스토리: chosen manuscript opens and returns to its grouped book
+[26/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 원작: chosen manuscript opens and returns to its grouped book
+[27/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 옹고집전 놀스토리: chosen manuscript opens and returns to its grouped book
+[28/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 원작: chosen manuscript opens and returns to its grouped book
+[29/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 선녀와 나무꾼 놀스토리: chosen manuscript opens and returns to its grouped book
+[30/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 원작: chosen manuscript opens and returns to its grouped book
+[31/159] [host] › tests/e2e/four-work-library.spec.ts:23:75 › 흥부와 놀부 놀스토리: chosen manuscript opens and returns to its grouped book
+[32/159] [host] › tests/e2e/four-work-library.spec.ts:35:1 › all four shelf choices open their actual ShortStory and return to the same library
+[33/159] [host] › tests/e2e/four-work-runtime.spec.ts:7:1 › four books retain eight independent native reading paths and manual save slots across reload
+[34/159] [host] › tests/e2e/four-work-runtime.spec.ts:26:1 › reading an original then editing the current cut creates a preserved personal copy
+[35/159] [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage
+  1) [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage 
+
+    Error: Timeout 5000ms exceeded while waiting on the predicate
+
+       at library-entry.ts:5
+
+      3 | /** Exercise actual first-visit introduction when a test needs the library. */
+      4 | export async function enterLibrary(page:Page){
+    > 5 |  await expect.poll(async()=>await page.getByRole('main',{name:'로컬 서재',exact:true}).isVisible()||await page.getByRole('button',{name:'서재로 가기',exact:true}).isEnabled().catch(()=>false)).toBe(true);
+        |                                                                                                                                                                                         ^
+      6 |  if(await page.getByRole('main',{name:'책 소개',exact:true}).isVisible())await page.getByRole('button',{name:'서재로 가기',exact:true}).click();
+      7 |  await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+      8 | }
+        at enterLibrary (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/library-entry.ts:5:185)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/four-work-runtime.spec.ts:37:453
+
+    Error Context: ../../../../../tmp/knol-format-full-host/four-work-runtime-personal-87a2f-load-in-recoverable-storage-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/four-work-runtime-personal-87a2f-load-in-recoverable-storage-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/four-work-runtime-personal-87a2f-load-in-recoverable-storage-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:7479) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[36/159] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual rabbit picture book read, isolated position and complete A4 print
+[37/159] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual onggojib picture book read, isolated position and complete A4 print
+[38/159] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual seonnyeo picture book read, isolated position and complete A4 print
+[39/159] [host] › tests/e2e/four-work-shortstory.spec.ts:9:25 › actual heungbu picture book read, isolated position and complete A4 print
+[40/159] [host] › tests/e2e/four-work-shortstory.spec.ts:30:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import
+  2) [host] › tests/e2e/four-work-shortstory.spec.ts:30:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3000/shortstory/
+    Call log:
+      - navigating to "http://127.0.0.1:3000/shortstory/", waiting until "load"
+
+
+      45 |  await page.getByRole('button',{name:'선녀와 나무꾼 · 원본 읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(getShortStoryOriginal('seonnyeo').pages[2].text);
+      46 |  await page.getByRole('button',{name:'별주부전 · 원본 읽기',exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(getShortStoryOriginal('rabbit').pages[0].text);
+    > 47 |  const other=await browser.newContext(),imported=await other.newPage();await imported.goto('http://127.0.0.1:3000/shortstory/');await imported.getByLabel('숏스토리 파일 가져오기').setInputFiles({name:'rabbit.shortstory',mimeType:'application/json',buffer:bytes}); await confirmAuthoringImport(imported);await expect(imported.getByLabel('이야기 제목',{exact:true})).toHaveValue(exported.title);
+         |                                                                                       ^
+      48 |  await imported.getByRole('button',{name:'읽기',exact:true}).click();await expect(imported.getByRole('region',{name:'숏스토리 읽기'})).toContainText('내가 직접 고쳐 쓴 첫 쪽');await imported.reload();await expect(imported.getByLabel('이야기 제목',{exact:true})).toHaveValue(exported.title);
+      49 |  const restored=await imported.evaluate(()=>{const library=JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);return library.books.find((book:{id:string})=>book.id===library.activeId);});expect(restored).toEqual(exported);await other.close();
+      50 |  await mkdir(evidence,{recursive:true});await page.screenshot({path:`${evidence}/multi-book-original-preserved.png`,fullPage:true});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/four-work-shortstory.spec.ts:47:87
+
+    Error Context: ../../../../../tmp/knol-format-full-host/four-work-shortstory-origi-abed8-and-independent-file-import-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/four-work-shortstory-origi-abed8-and-independent-file-import-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/four-work-shortstory-origi-abed8-and-independent-file-import-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:7593) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[41/159] [host] › tests/e2e/four-work-shortstory.spec.ts:52:1 › old single workspace backs up, immediate new/import preserve it, unsupported v2 rejects and storage failure blocks switching
+[42/159] [host] › tests/e2e/four-work-shortstory.spec.ts:63:1 › delayed Google picture book import retains books created and edited while waiting
+[43/159] [host] › tests/e2e/four-work-shortstory.spec.ts:75:1 › failed picture book deletion preserves its editable draft for save retry and reload
+[44/159] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser
+  3) [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3000/shortstory/
+    Call log:
+      - navigating to "http://127.0.0.1:3000/shortstory/", waiting until "load"
+
+
+      87 |  const downloading=page.waitForEvent('download');await page.getByRole('button',{name:'.shortstory로 보관',exact:true}).click();const saved=await downloading,bytes=await readFile((await saved.path())!),project=JSON.parse(bytes.toString()).project;expect(project.id).not.toBe(original.id);expect(project.pages.map((p:{text:string},i:number)=>i===0?original.pages[0].text:p.text)).toEqual(original.pages.map(p=>p.text));
+      88 |  await page.getByRole('button',{name:`${original.title} · 원본 읽기`,exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(original.pages[0].text);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).not.toContainText('나의 새로운 첫 장면');
+    > 89 |  const context=await browser.newContext(),restored=await context.newPage();await restored.goto('http://127.0.0.1:3000/shortstory/');await restored.getByLabel('숏스토리 파일 가져오기').setInputFiles({name:`${work}.shortstory`,mimeType:'application/json',buffer:bytes}); await confirmAuthoringImport(restored);await expect(restored.getByLabel('이야기 제목',{exact:true})).toHaveValue(title);await restored.getByRole('button',{name:'읽기',exact:true}).click();await expect(restored.getByRole('region',{name:'숏스토리 읽기'})).toContainText(text);await restored.reload();
+         |                                                                                           ^
+      90 |  const loaded=await restored.evaluate(()=>{const library=JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);return library.books.find((book:{id:string})=>book.id===library.activeId);});expect(loaded).toEqual(project);await context.close();await mkdir(evidence,{recursive:true});await writeFile(`${evidence}/${work}-copy.shortstory`,bytes);await writeFile(`${evidence}/${work}-copy-roundtrip.json`,JSON.stringify({sourceId:original.id,copyId:project.id,fullProjectMatchesAfterFreshContextAndReload:true,sourceReadingUnmodified:true,pages:project.pages.length},null,2));
+      91 | });
+      92 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/four-work-shortstory.spec.ts:89:91
+
+    Error Context: ../../../../../tmp/knol-format-full-host/four-work-shortstory-rabbi-c3015--travels-to-a-fresh-browser-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/four-work-shortstory-rabbi-c3015--travels-to-a-fresh-browser-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/four-work-shortstory-rabbi-c3015--travels-to-a-fresh-browser-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:7627) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[45/159] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser
+  4) [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3000/shortstory/
+    Call log:
+      - navigating to "http://127.0.0.1:3000/shortstory/", waiting until "load"
+
+
+      87 |  const downloading=page.waitForEvent('download');await page.getByRole('button',{name:'.shortstory로 보관',exact:true}).click();const saved=await downloading,bytes=await readFile((await saved.path())!),project=JSON.parse(bytes.toString()).project;expect(project.id).not.toBe(original.id);expect(project.pages.map((p:{text:string},i:number)=>i===0?original.pages[0].text:p.text)).toEqual(original.pages.map(p=>p.text));
+      88 |  await page.getByRole('button',{name:`${original.title} · 원본 읽기`,exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(original.pages[0].text);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).not.toContainText('나의 새로운 첫 장면');
+    > 89 |  const context=await browser.newContext(),restored=await context.newPage();await restored.goto('http://127.0.0.1:3000/shortstory/');await restored.getByLabel('숏스토리 파일 가져오기').setInputFiles({name:`${work}.shortstory`,mimeType:'application/json',buffer:bytes}); await confirmAuthoringImport(restored);await expect(restored.getByLabel('이야기 제목',{exact:true})).toHaveValue(title);await restored.getByRole('button',{name:'읽기',exact:true}).click();await expect(restored.getByRole('region',{name:'숏스토리 읽기'})).toContainText(text);await restored.reload();
+         |                                                                                           ^
+      90 |  const loaded=await restored.evaluate(()=>{const library=JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);return library.books.find((book:{id:string})=>book.id===library.activeId);});expect(loaded).toEqual(project);await context.close();await mkdir(evidence,{recursive:true});await writeFile(`${evidence}/${work}-copy.shortstory`,bytes);await writeFile(`${evidence}/${work}-copy-roundtrip.json`,JSON.stringify({sourceId:original.id,copyId:project.id,fullProjectMatchesAfterFreshContextAndReload:true,sourceReadingUnmodified:true,pages:project.pages.length},null,2));
+      91 | });
+      92 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/four-work-shortstory.spec.ts:89:91
+
+    Error Context: ../../../../../tmp/knol-format-full-host/four-work-shortstory-onggo-dd23a--travels-to-a-fresh-browser-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/four-work-shortstory-onggo-dd23a--travels-to-a-fresh-browser-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/four-work-shortstory-onggo-dd23a--travels-to-a-fresh-browser-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:7642) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[46/159] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser
+  5) [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3000/shortstory/
+    Call log:
+      - navigating to "http://127.0.0.1:3000/shortstory/", waiting until "load"
+
+
+      87 |  const downloading=page.waitForEvent('download');await page.getByRole('button',{name:'.shortstory로 보관',exact:true}).click();const saved=await downloading,bytes=await readFile((await saved.path())!),project=JSON.parse(bytes.toString()).project;expect(project.id).not.toBe(original.id);expect(project.pages.map((p:{text:string},i:number)=>i===0?original.pages[0].text:p.text)).toEqual(original.pages.map(p=>p.text));
+      88 |  await page.getByRole('button',{name:`${original.title} · 원본 읽기`,exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(original.pages[0].text);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).not.toContainText('나의 새로운 첫 장면');
+    > 89 |  const context=await browser.newContext(),restored=await context.newPage();await restored.goto('http://127.0.0.1:3000/shortstory/');await restored.getByLabel('숏스토리 파일 가져오기').setInputFiles({name:`${work}.shortstory`,mimeType:'application/json',buffer:bytes}); await confirmAuthoringImport(restored);await expect(restored.getByLabel('이야기 제목',{exact:true})).toHaveValue(title);await restored.getByRole('button',{name:'읽기',exact:true}).click();await expect(restored.getByRole('region',{name:'숏스토리 읽기'})).toContainText(text);await restored.reload();
+         |                                                                                           ^
+      90 |  const loaded=await restored.evaluate(()=>{const library=JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);return library.books.find((book:{id:string})=>book.id===library.activeId);});expect(loaded).toEqual(project);await context.close();await mkdir(evidence,{recursive:true});await writeFile(`${evidence}/${work}-copy.shortstory`,bytes);await writeFile(`${evidence}/${work}-copy-roundtrip.json`,JSON.stringify({sourceId:original.id,copyId:project.id,fullProjectMatchesAfterFreshContextAndReload:true,sourceReadingUnmodified:true,pages:project.pages.length},null,2));
+      91 | });
+      92 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/four-work-shortstory.spec.ts:89:91
+
+    Error Context: ../../../../../tmp/knol-format-full-host/four-work-shortstory-seonn-898c8--travels-to-a-fresh-browser-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/four-work-shortstory-seonn-898c8--travels-to-a-fresh-browser-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/four-work-shortstory-seonn-898c8--travels-to-a-fresh-browser-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:7650) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[47/159] [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser
+  6) [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3000/shortstory/
+    Call log:
+      - navigating to "http://127.0.0.1:3000/shortstory/", waiting until "load"
+
+
+      87 |  const downloading=page.waitForEvent('download');await page.getByRole('button',{name:'.shortstory로 보관',exact:true}).click();const saved=await downloading,bytes=await readFile((await saved.path())!),project=JSON.parse(bytes.toString()).project;expect(project.id).not.toBe(original.id);expect(project.pages.map((p:{text:string},i:number)=>i===0?original.pages[0].text:p.text)).toEqual(original.pages.map(p=>p.text));
+      88 |  await page.getByRole('button',{name:`${original.title} · 원본 읽기`,exact:true}).click();await expect(page.getByRole('region',{name:'숏스토리 읽기'})).toContainText(original.pages[0].text);await expect(page.getByRole('region',{name:'숏스토리 읽기'})).not.toContainText('나의 새로운 첫 장면');
+    > 89 |  const context=await browser.newContext(),restored=await context.newPage();await restored.goto('http://127.0.0.1:3000/shortstory/');await restored.getByLabel('숏스토리 파일 가져오기').setInputFiles({name:`${work}.shortstory`,mimeType:'application/json',buffer:bytes}); await confirmAuthoringImport(restored);await expect(restored.getByLabel('이야기 제목',{exact:true})).toHaveValue(title);await restored.getByRole('button',{name:'읽기',exact:true}).click();await expect(restored.getByRole('region',{name:'숏스토리 읽기'})).toContainText(text);await restored.reload();
+         |                                                                                           ^
+      90 |  const loaded=await restored.evaluate(()=>{const library=JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);return library.books.find((book:{id:string})=>book.id===library.activeId);});expect(loaded).toEqual(project);await context.close();await mkdir(evidence,{recursive:true});await writeFile(`${evidence}/${work}-copy.shortstory`,bytes);await writeFile(`${evidence}/${work}-copy-roundtrip.json`,JSON.stringify({sourceId:original.id,copyId:project.id,fullProjectMatchesAfterFreshContextAndReload:true,sourceReadingUnmodified:true,pages:project.pages.length},null,2));
+      91 | });
+      92 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/four-work-shortstory.spec.ts:89:91
+
+    Error Context: ../../../../../tmp/knol-format-full-host/four-work-shortstory-heung-bb2d2--travels-to-a-fresh-browser-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/four-work-shortstory-heung-bb2d2--travels-to-a-fresh-browser-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/four-work-shortstory-heung-bb2d2--travels-to-a-fresh-browser-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:7658) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[48/159] [host] › tests/e2e/google-authoring-roundtrip.spec.ts:3:1 › actual Google exported story preserves extended values in UI and portable archive
+[49/159] [host] › tests/e2e/google-authoring-roundtrip.spec.ts:9:1 › actual Google picture book exported XLSX opens at its edited page
+[50/159] [host] › tests/e2e/introduction-stability.spec.ts:7:1 › introduction waits for a choice and stays open across reloads and new navigation
+[51/159] [host] › tests/e2e/introduction-stability.spec.ts:42:1 › my works leaves introduction only after an explicit choice
+[52/159] [host] › tests/e2e/introduction-stability.spec.ts:51:1 › a corrupt workspace stays intact while introduction waits for explicit navigation
+[53/159] [host] › tests/e2e/introduction-stability.spec.ts:64:1 › explicit ShortStory library return is consumed so later preparation survives reload
+[54/159] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 1280px
+[55/159] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:52:32 › legacy authoring integrates manuscript, speakers, assets and safe cut operations at 390px
+[56/159] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:61:1 › new manuscript story survives files and reaches both endings in native RenPy
+[57/159] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 1280px
+[58/159] [host] › tests/e2e/legacy-authoring-workspace.spec.ts:68:31 › thumbnail facets, target comparison and cancel preserve authored work at 390px
+[59/159] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 1365x900
+[60/159] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 820x1180
+[61/159] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 390x844
+[62/159] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 844x390
+[63/159] [host] › tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740
+[64/159] [host] › tests/e2e/library-design-parity.spec.ts:19:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft
+[65/159] [host] › tests/e2e/library-design-parity.spec.ts:28:1 › imported shelf pages retain all existing-book copies and filter back to the first matching book
+[66/159] [host] › tests/e2e/library-design-parity.spec.ts:42:1 › layered front, spine and back covers keep direct edits in the draft until apply
+[67/159] [host] › tests/e2e/library-design-parity.spec.ts:51:1 › all eight books start native RenPy from the library focus and retain the same runtime
+[68/159] [host] › tests/e2e/library-design-parity.spec.ts:63:1 › one pointer drag can undo, redo and apply while preserving the existing manuscript
+[69/159] [host] › tests/e2e/library-design-parity.spec.ts:69:1 › tab browsing preferences survive book work and reload without entering the story file
+[70/159] [host] › tests/e2e/library-design-parity.spec.ts:74:1 › modal keyboard boundaries include collapsed settings and nested image selection
+[71/159] [host] › tests/e2e/library-design-parity.spec.ts:78:1 › cover title size changes the rendered typography without covering the whole artwork panel
+[72/159] [host] › tests/e2e/library-design-parity.spec.ts:82:1 › books physically rest on shelf faces and room decoration frames the focused shelves
+[73/159] [host] › tests/e2e/library-design-parity.spec.ts:94:1 › cabinet preserves shelf capacity and at least two rows around four books
+[74/159] [host] › tests/e2e/library-design-parity.spec.ts:101:1 › reference introduction uses exact rectangular posters and quiet library controls
+[75/159] [host] › tests/e2e/library-design-parity.spec.ts:109:1 › compact shelf keeps all four books and drawer near the first viewport
+[76/159] [host] › tests/e2e/library-design-parity.spec.ts:122:1 › cabinet joinery uses visible wood grain and preserves the book selection experience
+[77/159] [host] › tests/e2e/library-design-parity.spec.ts:130:1 › book page blocks stay narrow and rest above the shelf instead of protruding below the cover
+[78/159] [host] › tests/e2e/library-design-parity.spec.ts:136:1 › branded library shows word-safe cover titles and opens cover editing directly from the chosen book
+[79/159] [host] › tests/e2e/local-library.spec.ts:102:1 › local library prepares three separate works and roundtrips preparation with rich existing content in actual Chrome
+[80/159] [host] › tests/e2e/local-library.spec.ts:208:1 › library keeps blank planning optional and separates examples from a UI-created work
+[81/159] [host] › tests/e2e/local-library.spec.ts:229:1 › previous device workspace opens in library without changing its authored content or legacy keys
+[82/159] [host] › tests/e2e/local-library.spec.ts:258:1 › corrupt device storage is kept intact while UI-created recovery work can be exported
+[83/159] [host] › tests/e2e/local-library.spec.ts:283:1 › example preparation makes an independent own copy and duplicate import keeps the original
+  7) [host] › tests/e2e/local-library.spec.ts:283:1 › example preparation makes an independent own copy and duplicate import keeps the original 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('main', { name: '로컬 서재' })
+    Expected substring: "같은 작품이 이미"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByRole('main', { name: '로컬 서재' }) with timeout 5000ms
+      - waiting for getByRole('main', { name: '로컬 서재' })
+
+
+      285 |  const originalTitle='선녀와 나무꾼';await openBuiltinEdition(page,'seonnyeo','knolstory','prepare');
+      286 |  await expect(page.getByRole('region',{name:'작품 준비',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`${originalTitle} · 내 사본`);await library(page);await expect(builtinShelfCard(page,'seonnyeo')).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
+    > 287 |  await importShelfFile(page,forestFile);await saved(page);await library(page);const raw=await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])));await importShelfFile(page,forestFile);await expect(page.getByRole('main',{name:'로컬 서재'})).toContainText('같은 작품이 이미');await expect(page.getByRole('region',{name:'가져온 작품'}).getByRole('article')).toHaveCount(1);expect(await page.evaluate(()=>Object.fromEntries(Object.entries(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(([key,value])=>[key,(value as {project:unknown}).project])))).toEqual(raw);
+          |                                                                                                                                                                                                                                                                                                                                                                                       ^
+      288 | });
+      289 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/local-library.spec.ts:287:375
+
+    Error Context: ../../../../../tmp/knol-format-full-host/local-library-example-prep-858d9-e-import-keeps-the-original-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/local-library-example-prep-858d9-e-import-keeps-the-original-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/local-library-example-prep-858d9-e-import-keeps-the-original-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:8448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[84/159] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1440x1000
+[85/159] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 1024x768
+[86/159] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 768x1024
+[87/159] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 390x844
+[88/159] [host] › tests/e2e/manuscript-operations.spec.ts:12:144 › manuscript split, merge and files preserve Korean at 844x390
+[89/159] [host] › tests/e2e/media-provenance.spec.ts:5:1 › existing-work audio source and rights records travel with the original bytes
+[90/159] [host] › tests/e2e/memo-authoring.spec.ts:14:1 › memo fields survive reorder, delete undo, filters, device save and fresh-context file import on five viewport sizes
+[91/159] [host] › tests/e2e/mobile-authoring.spec.ts:94:1 › phone authoring keeps drafts and runtime while tools, orientation, files and cut order change
+[92/159] [host] › tests/e2e/mobile-authoring.spec.ts:188:1 › phone file-restored work renders real assets and both native Ren’Py endings with one iframe
+[93/159] [host] › tests/e2e/presentation-polish.spec.ts:78:1 › presentation controls provide an explicit current-cut preview action without changing stored composition
+[94/159] [host] › tests/e2e/presentation-polish.spec.ts:104:1 › actual auto actors leave a wider center and inverse drag remains correct at desktop, portrait and landscape
+[95/159] [host] › tests/e2e/presentation-polish.spec.ts:147:1 › presentation preview visibly renders both native looks then restores neutral on back and restart
+[96/159] [host] › tests/e2e/reading-surface.spec.ts:4:1 › reading gives the stage full width and keeps an exit while runtime is preparing
+[97/159] [host] › tests/e2e/reading-surface.spec.ts:17:1 › current cut exposes outgoing destination and local chapter cut count
+[98/159] [host] › tests/e2e/reading-surface.spec.ts:27:1 › choice-created chapters receive branch identity immediately
+[99/159] [host] › tests/e2e/reading-surface.spec.ts:36:1 › landscape reading fits the complete runtime viewport above the screen edge
+[100/159] [host] › tests/e2e/reading-surface.spec.ts:42:1 › portrait reading keeps dialogue and choices inside the visible runtime area
+[101/159] [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 1280px
+  8) [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 1280px 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at load (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/responsive-audio-authoring.spec.ts:15:69)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/responsive-audio-authoring.spec.ts:48:118
+
+    Error Context: ../../../../../tmp/knol-format-full-host/responsive-audio-authoring-c5e52-able-custom-audio-at-1280px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/responsive-audio-authoring-c5e52-able-custom-audio-at-1280px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/responsive-audio-authoring-c5e52-able-custom-audio-at-1280px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:8804) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[102/159] [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 390px
+  9) [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 390px 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at load (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/responsive-audio-authoring.spec.ts:15:69)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/responsive-audio-authoring.spec.ts:48:118
+
+    Error Context: ../../../../../tmp/knol-format-full-host/responsive-audio-authoring-75c7f-table-custom-audio-at-390px-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/responsive-audio-authoring-75c7f-table-custom-audio-at-390px-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/responsive-audio-authoring-75c7f-table-custom-audio-at-390px-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:8828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[103/159] [host] › tests/e2e/responsive-audio-authoring.spec.ts:79:1 › native RenPy preserves music, runs custom sound once, adapts viewports and reaches both branches
+[104/159] [host] › tests/e2e/responsive-audio-authoring.spec.ts:160:1 › delivered portable branching demo opens with embedded audio and plays both native endings
+[105/159] [host] › tests/e2e/responsive-audio-authoring.spec.ts:185:1 › ending keeps the last entrance confirmed and does not replay its sounds
+[106/159] [host] › tests/e2e/responsive-editor.spec.ts:3:1 › draft and the same iframe survive panel changes and portrait/landscape resize
+[107/159] [host] › tests/e2e/responsive-editor.spec.ts:21:1 › logical actor coordinates survive viewport changes
+[108/159] [host] › tests/e2e/runtime-unavailable.spec.ts:3:1 › runtime load failure preserves authored text without a substitute stage
+[109/159] [host] › tests/e2e/short-authoring-formats.spec.ts:5:1 › official shortstory Excel edits are previewed, cancellable and survive independent file reopening
+[110/159] [host] › tests/e2e/short-authoring-formats.spec.ts:29:1 › blank official shortstory workbook accepts a new book and rejects formulas without changing the draft
+[111/159] [host] › tests/e2e/shortstory-conflict.spec.ts:4:1 › two ShortStory tabs preserve the saved book and export the blocked draft
+[112/159] [host] › tests/e2e/shortstory-conflict.spec.ts:24:1 › a read-only second tab never migrates or recovers storage over the writer
+[113/159] [host] › tests/e2e/shortstory.spec.ts:4:1 › ShortStory edits static pages, saves, restores files and prints without runtime
+[114/159] [host] › tests/e2e/shortstory.spec.ts:31:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected
+  10) [host] › tests/e2e/shortstory.spec.ts:31:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('main [role=alert]')
+    Expected substring: "숏스토리"
+    Received string:    "$.music: 지원하지 않는 작성 항목입니다."
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('main [role=alert]') with timeout 5000ms
+      - waiting for locator('main [role=alert]')
+        14 × locator resolved to <p role="alert" class="shortstory-module__fDYFaa__error">$.music: 지원하지 않는 작성 항목입니다.</p>
+           - unexpected value "$.music: 지원하지 않는 작성 항목입니다."
+
+
+      42 |  const project=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!).books.at(-1));
+      43 |  await page.locator('input[type=file]').setInputFiles({name:'unsupported.shortstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({manifest:{format:'shortstory',version:1,kind:'project'},project:{...project,music:{assetId:'fake'}}}))});
+    > 44 |  await expect(page.locator('main [role=alert]')).toContainText('숏스토리');await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('그림과 글을 엑셀로 보관해요.');
+         |                                                  ^
+      45 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+      46 | });
+      47 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/shortstory.spec.ts:44:50
+
+    Error Context: ../../../../../tmp/knol-format-full-host/shortstory-ShortStory-pict-55522-supported-audio-is-rejected-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/shortstory-ShortStory-pict-55522-supported-audio-is-rejected-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/shortstory-ShortStory-pict-55522-supported-audio-is-rejected-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:9077) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[115/159] [host] › tests/e2e/storage-recovery.spec.ts:11:1 › previous manuscript opens as independent copy; both revisions survive reload and file export
+[116/159] [host] › tests/e2e/storage-recovery.spec.ts:26:1 › second tab draft cannot overwrite first tab, even when using manual save
+[117/159] [host] › tests/e2e/storage-recovery.spec.ts:37:1 › corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained
+[118/159] [host] › tests/e2e/storage-recovery.spec.ts:50:1 › failed deletion preserves the previous deleted book and the current draft together
+[119/159] [host] › tests/e2e/storage-recovery.spec.ts:64:1 › page restoration reacquires ownership before saving and preserves the draft
+[120/159] [host] › tests/e2e/storage-recovery.spec.ts:74:1 › the complete long Seonnyeo copy can delete and undo a cut beyond checkpoint capacity
+[121/159] [host] › tests/e2e/stories.spec.ts:6:3 › 선녀와 나무꾼: representative text edits survive reload and file roundtrip
+[122/159] [host] › tests/e2e/stories.spec.ts:6:3 › 흥부와 놀부: representative text edits survive reload and file roundtrip
+[123/159] [host] › tests/e2e/stories.spec.ts:6:3 › 옹고집전: representative text edits survive reload and file roundtrip
+[124/159] [host] › tests/e2e/stories.spec.ts:6:3 › 별주부전: representative text edits survive reload and file roundtrip
+[125/159] [host] › tests/e2e/stories.spec.ts:31:1 › persistent story runtime and current edit survive narrow screen changes
+[126/159] [host] › tests/e2e/stories.spec.ts:55:1 › malformed import preserves current work and explains the error
+[127/159] [host] › tests/e2e/stories.spec.ts:73:1 › edits stay separate when switching representative works
+[128/159] [host] › tests/e2e/stories.spec.ts:86:1 › unfinished links and explicit endings remain distinct in playback
+[129/159] [host] › tests/e2e/stories.spec.ts:104:1 › importing a different work preserves edits in the outgoing representative work
+[130/159] [host] › tests/e2e/stories.spec.ts:127:3 › empty imported document leaves the editor intact
+[131/159] [host] › tests/e2e/stories.spec.ts:127:3 › unknown-asset imported document leaves the editor intact
+[132/159] [host] › tests/e2e/stories.spec.ts:162:1 › reading position and branch history resume after reload
+[133/159] [host] › tests/e2e/vn-workflow.spec.ts:9:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields
+  11) [host] › tests/e2e/vn-workflow.spec.ts:9:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '작품 가져오기 확인', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '작품 가져오기 확인', exact: true })
+
+
+       at authoring-file.ts:14
+
+      12 | export async function confirmAuthoringImport(page:Page){
+      13 |  const preview=page.getByRole('dialog',{name:'작품 가져오기 확인',exact:true});
+    > 14 |  await expect(preview).toBeVisible();
+         |                        ^
+      15 |  await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
+      16 |  await expect(preview).toHaveCount(0);
+      17 | }
+        at confirmAuthoringImport (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/authoring-file.ts:14:24)
+        at load (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/vn-workflow.spec.ts:6:219)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/vn-workflow.spec.ts:10:40
+
+    Error Context: ../../../../../tmp/knol-format-full-host/vn-workflow-Next-Excel-and-61449-d-audio-and-extended-fields-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../../tmp/knol-format-full-host/vn-workflow-Next-Excel-and-61449-d-audio-and-extended-fields-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../../tmp/knol-format-full-host/vn-workflow-Next-Excel-and-61449-d-audio-and-extended-fields-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+(node:9457) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[134/159] [host] › tests/e2e/vn-workflow.spec.ts:21:1 › native portrait single speaker, slots and actual-path backlog restore both routes
+[135/159] [host] › tests/e2e/vn-workflow.spec.ts:37:1 › changed-work slots show saved excerpt and require explicit compatible restore
+[136/159] [host] › tests/e2e/vn-workflow.spec.ts:48:1 › numbered real-asset branch chapters play A and B then join without crossing routes
+[137/159] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 1365x900
+[138/159] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 820x1180
+[139/159] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 390x844
+[140/159] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 844x390
+[141/159] [host] › tests/e2e/walnut-library.spec.ts:5:83 › walnut cabinet supports the plant and books at 320x740
+[142/159] [host] › tests/e2e/walnut-library.spec.ts:17:1 › cabinet keeps two shelf rows with four books, a single match or an empty collection
+(node:9508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+
+[143/159] [host] › tests/e2e/entry-cover.spec.ts:7:1 › fresh browser entry introduces existing books and explicit navigation enters library
+[144/159] [host] › tests/e2e/entry-cover.spec.ts:28:95 › seonnyeo-classic: full cover draft, cancellation, layered editing and archive restoration
+[145/159] [host] › tests/e2e/entry-cover.spec.ts:28:95 › heungbu: full cover draft, cancellation, layered editing and archive restoration
+[146/159] [host] › tests/e2e/entry-cover.spec.ts:58:1 › all eight existing editions enter actual RenPy through their stored book cover
+[147/159] [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at portrait
+[148/159] [host] › tests/e2e/entry-cover.spec.ts:71:89 › existing book cover touch and keyboard editing at landscape
+[149/159] [host] › tests/e2e/entry-cover.spec.ts:79:1 › cover title validation keeps the applied book intact and draft recoverable
+[150/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › seonnyeo-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[151/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › heungbu-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[152/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › onggojib-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[153/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › rabbit-classic: actual browser reads the existing scored work, resumes and preserves its archive
+[154/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › seonnyeo: actual browser reads the existing scored work, resumes and preserves its archive
+[155/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › heungbu: actual browser reads the existing scored work, resumes and preserves its archive
+[156/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › onggojib: actual browser reads the existing scored work, resumes and preserves its archive
+[157/159] [host] › tests/e2e/existing-score-runtime.spec.ts:112:27 › rabbit: actual browser reads the existing scored work, resumes and preserves its archive
+[158/159] [host] › tests/e2e/existing-score-runtime.spec.ts:198:1 › Seonnyeo existing storm: fixed original versus scored cut in actual browser Ren’Py
+[159/159] [host] › tests/e2e/existing-score-runtime.spec.ts:239:1 › existing eight works: actual decoded music clock advances after the first unlocked cue
+  11 failed
+    [host] › tests/e2e/four-work-runtime.spec.ts:34:1 › personal book deletion needs confirmation and survives reload in recoverable storage 
+    [host] › tests/e2e/four-work-shortstory.spec.ts:30:1 › original copy, three-face cover, multiple books, page operations, reload and independent file import 
+    [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › rabbit personal picture book copy preserves its original and travels to a fresh browser 
+    [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › onggojib personal picture book copy preserves its original and travels to a fresh browser 
+    [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › seonnyeo personal picture book copy preserves its original and travels to a fresh browser 
+    [host] › tests/e2e/four-work-shortstory.spec.ts:84:25 › heungbu personal picture book copy preserves its original and travels to a fresh browser 
+    [host] › tests/e2e/local-library.spec.ts:283:1 › example preparation makes an independent own copy and duplicate import keeps the original 
+    [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 1280px 
+    [host] › tests/e2e/responsive-audio-authoring.spec.ts:47:34 › responsive audiovisual authoring and portable custom audio at 390px 
+    [host] › tests/e2e/shortstory.spec.ts:31:1 › ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected 
+    [host] › tests/e2e/vn-workflow.spec.ts:9:1 › Next Excel and public Google sheet roundtrip preserves actual attached audio and extended fields 
+  28 skipped
+  120 passed (10.8m)

@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  13 passed (13)
+      Tests  79 passed (79)
+   Start at  00:26:54
+   Duration  512ms (transform 710ms, setup 0ms, import 1.10s, tests 57ms, environment 1ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |     100 |    89.13 |     100 |     100 |                   
+ ...ack-history.ts |     100 |    89.13 |     100 |     100 | 14,19,27-29       
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 100% ( 28/28 )
+Branches     : 89.13% ( 41/46 )
+Functions    : 100% ( 9/9 )
+Lines        : 100% ( 20/20 )
+================================================================================

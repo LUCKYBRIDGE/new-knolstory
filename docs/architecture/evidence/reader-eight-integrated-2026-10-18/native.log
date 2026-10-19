@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:66216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/reader-eight-editions.spec.ts:44:2 › seonnyeo original: corrected catalog manuscript renders and survives save, reload and reopen (21.9s)
+  ✓  2 tests/e2e/reader-eight-editions.spec.ts:44:2 › seonnyeo knolstory: corrected catalog manuscript renders and survives save, reload and reopen (27.0s)
+  ✓  3 tests/e2e/reader-eight-editions.spec.ts:44:2 › heungbu original: corrected catalog manuscript renders and survives save, reload and reopen (20.9s)
+  ✓  4 tests/e2e/reader-eight-editions.spec.ts:44:2 › heungbu knolstory: corrected catalog manuscript renders and survives save, reload and reopen (22.2s)
+  ✓  5 tests/e2e/reader-eight-editions.spec.ts:44:2 › onggojib original: corrected catalog manuscript renders and survives save, reload and reopen (22.9s)
+  ✓  6 tests/e2e/reader-eight-editions.spec.ts:44:2 › onggojib knolstory: corrected catalog manuscript renders and survives save, reload and reopen (20.5s)
+  ✓  7 tests/e2e/reader-eight-editions.spec.ts:44:2 › rabbit original: corrected catalog manuscript renders and survives save, reload and reopen (21.2s)
+  ✓  8 tests/e2e/reader-eight-editions.spec.ts:44:2 › rabbit knolstory: corrected catalog manuscript renders and survives save, reload and reopen (21.8s)
+
+  8 passed (3.0m)

@@ -1,0 +1,2342 @@
+{
+  "scope": "Actual native runtime with no interception; keyboard choices through the ADR0015 semantic mirror; no real screen-reader claim",
+  "reports": [
+    {
+      "step": "first-choice-before-audio-entry",
+      "playback": {
+        "lineId": "P1-v166-1",
+        "path": [
+          "P1-v166-1"
+        ],
+        "status": "choice"
+      },
+      "focus": {
+        "host": "BODY",
+        "text": "놀스토리서재로작품작품 설정작품 정보·표지이야기 기획창작 메모이야기 점수파일·저장기기 저장은 이 브라우저에, 작품 파일은 다른 기기로 옮기거나 따로 보관할 때 사용해요.작품 파일 내보내기기기에 저장작품 파일 가져오기다른 작품 파일을 확인한 뒤 내 사본으로 엽니다. 현재 "
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "6",
+        "data-scene-revision": "6",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "",
+        "data-audio-unlocked": "false",
+        "data-music-start-count": "0",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "{\"x\":240,\"y\":21,\"width\":800,\"height\":58}",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "audio-entry-key-sent",
+      "playback": {
+        "lineId": "P1-v166-1",
+        "path": [
+          "P1-v166-1"
+        ],
+        "status": "choice"
+      },
+      "focus": {
+        "host": "IFRAME",
+        "text": ""
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "6",
+        "data-scene-revision": "6",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "{\"x\":240,\"y\":21,\"width\":800,\"height\":58}",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "first-choice-ready",
+      "playback": {
+        "lineId": "P1-v166-1",
+        "path": [
+          "P1-v166-1"
+        ],
+        "status": "choice"
+      },
+      "focus": {
+        "host": "IFRAME",
+        "text": ""
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "6",
+        "data-scene-revision": "6",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "{\"x\":240,\"y\":21,\"width\":800,\"height\":58}",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "tab-to-first-choice",
+      "playback": {
+        "lineId": "P1-v166-1",
+        "path": [
+          "P1-v166-1"
+        ],
+        "status": "choice"
+      },
+      "focus": {
+        "host": "BUTTON",
+        "text": "첫 번째 길을 선택합니다"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "6",
+        "data-scene-revision": "6",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "{\"x\":240,\"y\":21,\"width\":800,\"height\":58}",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "first-choice-applied",
+      "playback": {
+        "lineId": "P1-v166-2",
+        "path": [
+          "P1-v166-1",
+          "P1-v166-2"
+        ],
+        "status": "reading",
+        "choiceHistory": [
+          {
+            "pathIndex": 0,
+            "choiceId": "left-path"
+          }
+        ]
+      },
+      "focus": {
+        "host": "SUMMARY",
+        "text": "대사·해설 텍스트 보기"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "7",
+        "data-scene-revision": "7",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "0.832",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":138,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "null",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "tab-to-rewind",
+      "playback": {
+        "lineId": "P1-v166-2",
+        "path": [
+          "P1-v166-1",
+          "P1-v166-2"
+        ],
+        "status": "reading",
+        "choiceHistory": [
+          {
+            "pathIndex": 0,
+            "choiceId": "left-path"
+          }
+        ]
+      },
+      "focus": {
+        "host": "BUTTON",
+        "text": "이전 읽은 컷"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "7",
+        "data-scene-revision": "7",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "0.832",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":138,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "null",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "rewound-choice-discarded",
+      "playback": {
+        "lineId": "P1-v166-1",
+        "path": [
+          "P1-v166-1"
+        ],
+        "status": "choice"
+      },
+      "focus": {
+        "host": "SUMMARY",
+        "text": "대사·해설 텍스트 보기"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "8",
+        "data-scene-revision": "8",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "1.557",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "{\"x\":240,\"y\":21,\"width\":800,\"height\":58}",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "tab-to-alternate",
+      "playback": {
+        "lineId": "P1-v166-1",
+        "path": [
+          "P1-v166-1"
+        ],
+        "status": "choice"
+      },
+      "focus": {
+        "host": "BUTTON",
+        "text": "다른 길을 선택합니다"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "8",
+        "data-scene-revision": "8",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "1.557",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "{\"x\":240,\"y\":21,\"width\":800,\"height\":58}",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "alternate-choice-applied",
+      "playback": {
+        "lineId": "P1-v166-3",
+        "path": [
+          "P1-v166-1",
+          "P1-v166-3"
+        ],
+        "status": "reading",
+        "choiceHistory": [
+          {
+            "pathIndex": 0,
+            "choiceId": "right-path"
+          }
+        ]
+      },
+      "focus": {
+        "host": "SUMMARY",
+        "text": "대사·해설 텍스트 보기"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "9",
+        "data-scene-revision": "9",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "2.277",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "null",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "pointer-choice-keeps-own-focus",
+      "playback": {
+        "lineId": "P1-v166-2",
+        "path": [
+          "P1-v166-1",
+          "P1-v166-2"
+        ],
+        "status": "reading",
+        "choiceHistory": [
+          {
+            "pathIndex": 0,
+            "choiceId": "left-path"
+          }
+        ]
+      },
+      "focus": {
+        "host": "BODY",
+        "text": "놀스토리서재로작품작품 설정작품 정보·표지이야기 기획창작 메모이야기 점수파일·저장기기 저장은 이 브라우저에, 작품 파일은 다른 기기로 옮기거나 따로 보관할 때 사용해요.작품 파일 내보내기기기에 저장작품 파일 가져오기다른 작품 파일을 확인한 뒤 내 사본으로 엽니다. 현재 "
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "11",
+        "data-scene-revision": "11",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "3.477",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":138,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "null",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "negative-pointer-before",
+      "playback": {
+        "lineId": "P1-v166-1",
+        "path": [
+          "P1-v166-1"
+        ],
+        "status": "choice"
+      },
+      "focus": {
+        "host": "SUMMARY",
+        "text": "대사·해설 텍스트 보기"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "12",
+        "data-scene-revision": "12",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "3.882",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":104,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "{\"x\":240,\"y\":21,\"width\":800,\"height\":58}",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "negative-pointer-after",
+      "playback": {
+        "lineId": "P1-v166-2",
+        "path": [
+          "P1-v166-1",
+          "P1-v166-2"
+        ],
+        "status": "reading",
+        "choiceHistory": [
+          {
+            "pathIndex": 0,
+            "choiceId": "left-path"
+          }
+        ]
+      },
+      "focus": {
+        "host": "BODY",
+        "text": "놀스토리서재로작품작품 설정작품 정보·표지이야기 기획창작 메모이야기 점수파일·저장기기 저장은 이 브라우저에, 작품 파일은 다른 기기로 옮기거나 따로 보관할 때 사용해요.작품 파일 내보내기기기에 저장작품 파일 가져오기다른 작품 파일을 확인한 뒤 내 사본으로 엽니다. 현재 "
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "13",
+        "data-scene-revision": "13",
+        "data-scene-width": "1280",
+        "data-scene-height": "523",
+        "data-music-path": "assets/audio/story-score/score-calm.ogg",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "4.426",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "523",
+        "data-textbox-y": "150.43298969072163",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":85.43298969072163,\"width\":138,\"height\":71},\"body\":{\"x\":203.20000000000002,\"y\":170.43298969072163,\"width\":829.5999999999999,\"height\":311}}",
+        "data-choices-rect": "null",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "523"
+      }
+    },
+    {
+      "step": "returned-editor",
+      "playback": {
+        "lineId": "P1-v166-2",
+        "path": [
+          "P1-v166-2"
+        ],
+        "status": "reading"
+      },
+      "focus": {
+        "host": "TEXTAREA",
+        "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
+      },
+      "runtime": {
+        "class": "story-workspace-module__gRDfJG__status",
+        "role": "status",
+        "data-testid": "story-runtime-status",
+        "data-rendered-revision": "15",
+        "data-scene-revision": "15",
+        "data-scene-width": "1280",
+        "data-scene-height": "631",
+        "data-music-path": "",
+        "data-ambience-path": "",
+        "data-ambience-start-count": "0",
+        "data-music-position": "",
+        "data-audio-unlocked": "true",
+        "data-music-start-count": "1",
+        "data-sound-play-count": "0",
+        "data-sound-paths": "[]",
+        "data-engine-width": "1280",
+        "data-engine-height": "631",
+        "data-textbox-y": "146.94520547945206",
+        "data-dialogue-rects": "{\"speaker\":{\"x\":203.20000000000002,\"y\":61.945205479452056,\"width\":175,\"height\":91},\"body\":{\"x\":203.20000000000002,\"y\":166.94520547945206,\"width\":829.5999999999999,\"height\":416}}",
+        "data-choices-rect": "null",
+        "data-renderer-width": "1280",
+        "data-renderer-height": "631"
+      }
+    }
+  ],
+  "events": [
+    {
+      "protocol": 1,
+      "type": "ready",
+      "runtimeVersion": "8.5.3",
+      "contractVersion": 1,
+      "engineViewport": {
+        "x": 175,
+        "y": 0,
+        "width": 929,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 175,
+        "y": 0,
+        "width": 929,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "viewportChanged",
+      "engineViewport": {
+        "x": 175,
+        "y": 0,
+        "width": 929,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 175,
+        "y": 0,
+        "width": 929,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 1,
+      "revision": 6,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-1",
+        "revision": 6,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "해설",
+          "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다."
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [
+          {
+            "id": "left-path",
+            "text": "첫 번째 길을 선택합니다"
+          },
+          {
+            "id": "right-path",
+            "text": "다른 길을 선택합니다"
+          }
+        ],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "1"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "viewportChanged",
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 6,
+      "sceneId": "native-keyboard-choices/P1-v166-1",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": false,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 0,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 104,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "choicesRect": {
+        "x": 240,
+        "y": 21,
+        "width": 800,
+        "height": 58
+      },
+      "renderMs": 201.69999999999976,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 6,
+      "sceneId": "native-keyboard-choices/P1-v166-1",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 104,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "choicesRect": {
+        "x": 240,
+        "y": 21,
+        "width": 800,
+        "height": 58
+      },
+      "renderMs": 1121.899999,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 2,
+      "revision": 7,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-2",
+        "revision": 7,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 3
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "선녀 1",
+          "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "2"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 7,
+      "sceneId": "native-keyboard-choices/P1-v166-2",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": 0.832,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 138,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "renderMs": 50.29999999999912,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 3,
+      "revision": 8,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-1",
+        "revision": 8,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "해설",
+          "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다."
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [
+          {
+            "id": "left-path",
+            "text": "첫 번째 길을 선택합니다"
+          },
+          {
+            "id": "right-path",
+            "text": "다른 길을 선택합니다"
+          }
+        ],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "3"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 8,
+      "sceneId": "native-keyboard-choices/P1-v166-1",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": 1.557,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 104,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "choicesRect": {
+        "x": 240,
+        "y": 21,
+        "width": 800,
+        "height": 58
+      },
+      "renderMs": 73.70000000000054,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 4,
+      "revision": 9,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-3",
+        "revision": 9,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "선녀",
+          "text": "“조금만 더 있다 가면 안 돼요?”"
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "4"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 9,
+      "sceneId": "native-keyboard-choices/P1-v166-3",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": 2.277,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 104,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "renderMs": 85.70000100000108,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 5,
+      "revision": 10,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-1",
+        "revision": 10,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "해설",
+          "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다."
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [
+          {
+            "id": "left-path",
+            "text": "첫 번째 길을 선택합니다"
+          },
+          {
+            "id": "right-path",
+            "text": "다른 길을 선택합니다"
+          }
+        ],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "5"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 10,
+      "sceneId": "native-keyboard-choices/P1-v166-1",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": 2.949,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 104,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "choicesRect": {
+        "x": 240,
+        "y": 21,
+        "width": 800,
+        "height": 58
+      },
+      "renderMs": 77.79999999999987,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 6,
+      "revision": 11,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-2",
+        "revision": 11,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 3
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "선녀 1",
+          "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "6"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 11,
+      "sceneId": "native-keyboard-choices/P1-v166-2",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": 3.477,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 138,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "renderMs": 92.99999999999997,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 7,
+      "revision": 12,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-1",
+        "revision": 12,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "해설",
+          "text": "깊은 산속 계곡에는 사람의 발자국 하나 보이지 않았다.\n하지만 바위 너머에서는 웃음소리가 들렸다."
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [
+          {
+            "id": "left-path",
+            "text": "첫 번째 길을 선택합니다"
+          },
+          {
+            "id": "right-path",
+            "text": "다른 길을 선택합니다"
+          }
+        ],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "7"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 12,
+      "sceneId": "native-keyboard-choices/P1-v166-1",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": 3.882,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 104,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "choicesRect": {
+        "x": 240,
+        "y": 21,
+        "width": 800,
+        "height": 58
+      },
+      "renderMs": 55.10000000000126,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 8,
+      "revision": 13,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-2",
+        "revision": 13,
+        "width": 1280,
+        "height": 523,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 150.43298969072163,
+          "width": 921.5999999999999,
+          "height": 351
+        },
+        "dialogueStyle": {
+          "fontSize": 46,
+          "speakerFontSize": 44,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 117.9888
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 172.23681508491512,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 895.1209117432567,
+              "y": 117.9888
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 780.1577268281717,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 3
+          },
+          {
+            "handle": {
+              "x": 1004.4722857592407,
+              "y": 117.9888
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 889.6526254195803,
+              "y": 75.21847652347651,
+              "width": 229.63932067932072,
+              "height": 344.45898101898104
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "선녀 1",
+          "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -98.72514071294557,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [],
+        "mode": "play",
+        "reducedMotion": false,
+        "presentationEntry": "8"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 13,
+      "sceneId": "native-keyboard-choices/P1-v166-2",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 523
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": "assets/audio/story-score/score-calm.ogg",
+        "musicPosition": 4.426,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 150.43298969072163,
+        "width": 921,
+        "height": 351
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 85.43298969072163,
+          "width": 138,
+          "height": 71
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 170.43298969072163,
+          "width": 829.5999999999999,
+          "height": 311
+        }
+      },
+      "renderMs": 85.29999999999838,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523,
+        "physicalWidth": 1280,
+        "physicalHeight": 523
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 523
+      }
+    },
+    {
+      "protocol": 1,
+      "seq": 9,
+      "revision": 15,
+      "type": "loadScene",
+      "payload": {
+        "contractVersion": 1,
+        "sceneId": "native-keyboard-choices/P1-v166-2",
+        "revision": 15,
+        "width": 1280,
+        "height": 631,
+        "viewportVersion": 1,
+        "textboxRect": {
+          "x": 179.20000000000002,
+          "y": 146.94520547945206,
+          "width": 921.5999999999999,
+          "height": 456
+        },
+        "dialogueStyle": {
+          "fontSize": 60,
+          "speakerFontSize": 58,
+          "padding": 24
+        },
+        "audio": {
+          "version": 1,
+          "music": {
+            "action": "play",
+            "audioPath": "assets/audio/story-score/score-calm.ogg",
+            "volume": 0.2,
+            "loop": true,
+            "fadeInMs": 0,
+            "fadeOutMs": 0
+          },
+          "ambience": {
+            "action": "stop",
+            "fadeOutMs": 0
+          },
+          "sounds": [],
+          "sessionId": "native-keyboard-choices/1"
+        },
+        "actors": [
+          {
+            "handle": {
+              "x": 287.20000000000005,
+              "y": 142.35360000000003
+            },
+            "id": "M01",
+            "name": "M01-base.webp",
+            "imagePath": "assets/legacy-18da4fc/M01-base.webp",
+            "rect": {
+              "x": 148.49680749250754,
+              "y": 90.75116383616387,
+              "width": 277.06005994005994,
+              "height": 415.5900899100899
+            },
+            "flipX": true,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 1
+          },
+          {
+            "handle": {
+              "x": 883.044924110889,
+              "y": 142.35360000000003
+            },
+            "id": "M03",
+            "name": "M03-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M03-neutral.webp",
+            "rect": {
+              "x": 744.3417316033965,
+              "y": 90.75116383616387,
+              "width": 277.06005994005994,
+              "height": 415.5900899100899
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "normal",
+            "depth": 3
+          },
+          {
+            "handle": {
+              "x": 1014.9774614035964,
+              "y": 142.35360000000003
+            },
+            "id": "M04",
+            "name": "M04-neutral.webp",
+            "imagePath": "assets/legacy-18da4fc/M04-neutral.webp",
+            "rect": {
+              "x": 876.4474314335664,
+              "y": 90.75116383616387,
+              "width": 277.06005994005994,
+              "height": 415.5900899100899
+            },
+            "flipX": false,
+            "opacity": 1,
+            "spectral": false,
+            "emphasis": "dim",
+            "depth": 2
+          }
+        ],
+        "dialogue": {
+          "speaker": "선녀 1",
+          "text": "“막내야. 하늘길이 열린다고 제일 먼저 나서더니, 돌아갈 생각은 없니?”"
+        },
+        "background": {
+          "imagePath": "assets/legacy-18da4fc/BG01-valley-day.webp",
+          "fit": "cover",
+          "rect": {
+            "x": 0,
+            "y": -44.725140712945574,
+            "width": 1280,
+            "height": 720.4502814258911
+          }
+        },
+        "choices": [],
+        "mode": "edit",
+        "reducedMotion": false,
+        "presentationEntry": "9"
+      },
+      "audioResources": [],
+      "serviceAudioResources": []
+    },
+    {
+      "protocol": 1,
+      "type": "viewportChanged",
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 631,
+        "physicalWidth": 1280,
+        "physicalHeight": 631
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 631
+      }
+    },
+    {
+      "protocol": 1,
+      "type": "sceneRendered",
+      "revision": 15,
+      "sceneId": "native-keyboard-choices/P1-v166-2",
+      "engineLogicalSize": {
+        "width": 1280,
+        "height": 631
+      },
+      "audioState": {
+        "unlocked": true,
+        "musicPath": null,
+        "musicPosition": null,
+        "ambiencePath": null,
+        "ambienceStartCount": 0,
+        "musicStartCount": 1,
+        "soundPlayCount": 0,
+        "soundPaths": []
+      },
+      "textboxRect": {
+        "x": 179.20000000000002,
+        "y": 146.94520547945206,
+        "width": 921,
+        "height": 456
+      },
+      "dialogueRects": {
+        "speaker": {
+          "x": 203.20000000000002,
+          "y": 61.945205479452056,
+          "width": 175,
+          "height": 91
+        },
+        "body": {
+          "x": 203.20000000000002,
+          "y": 166.94520547945206,
+          "width": 829.5999999999999,
+          "height": 416
+        }
+      },
+      "renderMs": 279.90000100000145,
+      "engineViewport": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 631,
+        "physicalWidth": 1280,
+        "physicalHeight": 631
+      },
+      "rendererRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 631
+      }
+    }
+  ]
+}

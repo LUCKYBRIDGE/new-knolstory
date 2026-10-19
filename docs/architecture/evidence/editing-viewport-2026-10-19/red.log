@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:40631) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:209:1 › phone basic editor fits previous current next in 1:4:1 with landscape native scene (2.3s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:209:1 › phone basic editor fits previous current next in 1:4:1 with landscape native scene 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 132.546875
+    Received:    1378.296875
+
+      213 |  const boxes=await Promise.all([previous,scene,current,next].map(locator=>locator.boundingBox()));const [p,s,c,n]=boxes as {x:number;y:number;width:number;height:number}[];
+      214 |  const top=Math.min(s.y,c.y),bottom=Math.max(s.y+s.height,c.y+c.height),height=bottom-top;
+    > 215 |  expect(p.y+p.height).toBeLessThanOrEqual(top+2);expect(n.y).toBeGreaterThanOrEqual(bottom-2);
+          |                       ^
+      216 |  expect(height/p.height).toBeGreaterThan(3.5);expect(height/p.height).toBeLessThan(4.6);expect(Math.abs(p.height-n.height)).toBeLessThanOrEqual(3);
+      217 |  await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-width','1280');await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-height','720');
+      218 |  expect(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight+2&&document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:215:23
+
+    Error Context: docs/architecture/evidence/editing-viewport-2026-10-19/red-run/editing-workbench-phone-ba-2434f-with-landscape-native-scene/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-viewport-2026-10-19/red-run/editing-workbench-phone-ba-2434f-with-landscape-native-scene/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-viewport-2026-10-19/red-run/editing-workbench-phone-ba-2434f-with-landscape-native-scene/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:209:1 › phone basic editor fits previous current next in 1:4:1 with landscape native scene 

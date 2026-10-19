@@ -1,0 +1,27 @@
+import {test,expect,type Page} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+async function importArchive(page:Page,archive:unknown){await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'audio-metadata.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(archive))});await page.getByRole('dialog',{name:'작품 가져오기 확인'}).getByRole('button',{name:'내 사본으로 가져오기'}).click();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');}
+async function exported(page:Page){const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending;return JSON.parse(readFileSync((await file.path())!,'utf8'));}
+for(const provenance of ['changed','omitted','unused'])test(`per-work audio metadata ${provenance} never changes an existing work using the same audio ID`,async({page})=>{
+ const archive=JSON.parse(readFileSync('docs/architecture/evidence/authoring-format/all-fields-story.knolstory','utf8'));
+ await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await importArchive(page,archive);
+ const firstKey=await page.getByLabel('작품 선택').inputValue(),first=(await exported(page)).audioResources;
+ const second=structuredClone(archive);second.document.project.title='음원 메모를 바꾼 두 번째 사본';second.audioResources[0].name='두 번째 작품의 음원 이름 🌳';second.audioResources[0].kind=second.audioResources[0].kind==='sound'?'music':'sound';
+ if(provenance==='omitted')delete second.audioResources[0].provenance;else second.audioResources[0].provenance.attribution='두 번째 사본의 출처 표시';
+ if(provenance==='unused'){for(const item of [...second.document.project.chapters,...second.document.project.lines])if(item.audio?.sounds)item.audio.sounds=item.audio.sounds.filter((cue:{assetId:string})=>cue.assetId!==second.audioResources[0].id);}
+ await importArchive(page,second);
+ if(provenance==='changed'){const tool=page.getByRole('button',{name:'연출 편집',exact:true});if(await tool.isVisible())await tool.click();await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toContainText(second.audioResources[0].name);}
+ const secondKey=await page.getByLabel('작품 선택').inputValue();expect((await exported(page)).audioResources).toEqual(second.audioResources);
+ await page.reload();expect((await exported(page)).audioResources).toEqual(second.audioResources);
+ await page.getByLabel('작품 선택').selectOption(firstKey);
+ if(provenance==='changed'){const tool=page.getByRole('button',{name:'연출 편집',exact:true});if(await tool.isVisible())await tool.click();await expect(page.getByLabel('1번 효과음',{exact:true}).locator('option:checked')).toContainText(first[0].name);}
+ expect((await exported(page)).audioResources).toEqual(first);
+ await page.reload();expect((await exported(page)).audioResources).toEqual(first);
+ if(provenance==='changed'){
+  await page.getByLabel('작품 선택').selectOption(secondKey);await page.getByRole('button',{name:'서재로',exact:true}).click();
+  await page.getByLabel('책 분류').selectOption('imported');await page.getByRole('button',{name:`${second.document.project.title} 책 표지와 소개 보기`,exact:true}).click();
+  await page.getByText('책 꾸미기·작품 도구',{exact:true}).click();await page.getByRole('button',{name:'사본 만들기',exact:true}).click();
+  await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');expect((await exported(page)).audioResources).toEqual(second.audioResources);
+  await page.reload();expect((await exported(page)).audioResources).toEqual(second.audioResources);
+ }
+});

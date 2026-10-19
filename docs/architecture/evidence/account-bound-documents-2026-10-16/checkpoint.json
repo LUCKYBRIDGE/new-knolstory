@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-16T10:23:33.981947+00:00",
+  "scope": "Expected-account session guard and canceled online save preparation; full PC04 remains incomplete",
+  "sourceSha256": {
+    "server/http/document-routes.ts": "25ad8a697f0f10df65c9983847516b5c76362f82c3c059b4a457cf4f79e0f30f",
+    "server/http/document-routes.test.ts": "32179a567bbd4940f901a0cf4655d6aab27f4457209313625d649c28ccd8d9fe",
+    "server/http/document-service.integration.ts": "6a6820cc604b5105035d8df3d26c2eb90e309b271ea7fbdbba8b0de05a5ab67d",
+    "apps/web/lib/document-api.ts": "88bf92d058e4a7a9216231323d174d083a8c71699da3c507df891654be40509d",
+    "apps/web/lib/document-api.test.ts": "0edea1c14ae1be15e860545ce8c91dcfa25159b6d77c099414c4a554cbb4b6fb",
+    "apps/web/lib/online-work-bindings.ts": "120b09678a2492f449ec8e43be83dad2feb6beb8d3f0a1d44bee7c6fdcc6c683",
+    "apps/web/lib/online-work-bindings.test.ts": "0fd25fcb31ad809609c57bb7939b39e4178696bf5e20b203c73f31eb20848007",
+    "apps/web/components/online-works-panel.tsx": "4ab3c2532f5c773aa7c5850095cbb7f9ee98fb4b6906e20dc051b2d617ef98c6",
+    "apps/web/components/story-workspace.tsx": "e5f29727bf06f83f89133a996ddb9d8e8d5a3ed4dc3aba2bef17d18fabea1477",
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "e9825b1373acca0ed3bc65b85a36ceb17a1c24cd99b99a5db66c06ca3f732a9c",
+    "tests/e2e/online-works.spec.ts": "0d80e8a5002bfc3c7f377af391aaa1b5b3a192e558a6db325699b0ef8b9a7fca"
+  },
+  "verification": {
+    "backendUnit": {
+      "passed": 45,
+      "log": "backend-green.log"
+    },
+    "clientUnit": {
+      "passed": 15,
+      "log": "final-client-coverage.log",
+      "coverage": {
+        "statements": 90.19,
+        "branches": 89.76,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "realPostgresHTTP": {
+      "passed": 1,
+      "skippedUnchanged": 3,
+      "log": "actual-db.log"
+    },
+    "devMockedAPIBrowser": {
+      "passed": 2,
+      "log": "final-browser.log"
+    },
+    "build": "build.log",
+    "typecheck": "final-web-types.log",
+    "lint": "final-lint.log",
+    "retainedRed": [
+      "backend-red.log",
+      "client-red.log",
+      "story-save-red.log",
+      "late-current-red.log"
+    ],
+    "productionMockedAPIBrowser": {
+      "passed": 2,
+      "log": "production-browser.log",
+      "scope": "New static export on loopback3126, mocked API; not live OAuth or current Docker API activation"
+    },
+    "docs": "docs-check-final.log"
+  },
+  "review": "Independent read-only final review including final pre-HTTP predicate: no remaining P1/P2 in reviewed changes",
+  "preservation": "No authored manuscript or legacy service changes. Synthetic integration accounts/documents retained; synthetic sessions revoked. Pending commands retained on account mismatch/cancel. Previous static backup/restore retained as its original candidate evidence.",
+  "remaining": [
+    "session refresh propagation between account and online hooks",
+    "live provider OAuth",
+    "online delete/restore and physical-device transfer",
+    "class/sharing/retention policies",
+    "release and full operational recovery"
+  ],
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 3,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4
+  }
+}

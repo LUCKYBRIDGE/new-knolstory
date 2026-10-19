@@ -1,0 +1,135 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-14T09:09:39.472Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "3f3d1244-e631-4cf9-952f-30b3909016c1",
+      "title": "같은 이름의 항목도 원고를 지키는 창작 메모",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [
+        {
+          "id": "79803480-bf57-4216-9d52-923a38201e6c",
+          "kind": "free",
+          "title": "흥부의 약속과 다음 장면",
+          "linkedChapterId": "09f0faec-7001-43eb-af41-ce65455e7885",
+          "linkedLineId": "f0469bb3-4d4c-4485-9aa4-1fe37fe25c83",
+          "fields": [
+            {
+              "id": "79803480-bf57-4216-9d52-923a38201e6c-body",
+              "label": "메모 내용",
+              "value": "원본 자유 메모는 남겨 둔다.",
+              "order": 1,
+              "source": "default"
+            },
+            {
+              "id": "40311e98-4642-4616-99a3-a0acd49fd919",
+              "label": "변경한 이름",
+              "value": "둘째 항목의 긴 한국어 원고를 줄바꿈해 보존한다.",
+              "order": 2,
+              "source": "custom"
+            },
+            {
+              "id": "36960284-6f59-41f3-b4ea-feb731d6e18a",
+              "label": "같은 이름",
+              "value": "삭제 이후 수정도 보존",
+              "order": 3,
+              "source": "custom"
+            }
+          ],
+          "order": 1,
+          "createdAt": "2026-10-14T09:09:34.424Z",
+          "updatedAt": "2026-10-14T09:09:35.287Z"
+        },
+        {
+          "id": "d366af5c-bdbc-4450-b4ca-9574af306077",
+          "kind": "task",
+          "title": "내일 할 일",
+          "fields": [
+            {
+              "id": "d366af5c-bdbc-4450-b4ca-9574af306077-body",
+              "label": "메모 내용",
+              "value": "",
+              "order": 1,
+              "source": "default"
+            }
+          ],
+          "order": 2,
+          "createdAt": "2026-10-14T09:09:35.353Z",
+          "updatedAt": "2026-10-14T09:09:35.408Z"
+        }
+      ],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "09f0faec-7001-43eb-af41-ce65455e7885",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "f0469bb3-4d4c-4485-9aa4-1fe37fe25c83",
+          "chapterId": "09f0faec-7001-43eb-af41-ce65455e7885",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-14T09:09:35.408Z"
+    }
+  },
+  "audioResources": []
+}

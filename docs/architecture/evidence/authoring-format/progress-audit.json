@@ -1,0 +1,36 @@
+{
+  "status": "complete-current-authoring-format-goal",
+  "formatVersion": 2,
+  "workbookVersion": 2,
+  "checks": {
+    "unitIntegration": 1007,
+    "statementCoverage": 93.33,
+    "branchCoverage": 90.58,
+    "python": 24,
+    "finalActionsHostPassed": 9,
+    "nativePassed": 6,
+    "koreanFormatHostPassed": 9,
+    "perWorkAudioMetadataPassed": 3,
+    "fullHostOriginal": {
+      "passed": 130,
+      "skipped": 28,
+      "failed": 3
+    },
+    "fullHostFailuresRechecked": {
+      "passed": 26,
+      "skipped": 1,
+      "failed": 0
+    }
+  },
+  "externalApps": {
+    "actualExcel": true,
+    "actualGoogleSheets": true,
+    "koreanSpreadsheetId": "1RwRqGnAmiZUoXJFMixgy1H4MbsVlDIATLKLo8u9rz_8"
+  },
+  "followups": [
+    "SV-CONTRACT: API/PostgreSQL/permissions/revision/assets",
+    "SV-CLASS: accounts/classes/assignments/submissions/sharing policy",
+    "QA-DEVICE: physical devices and assistive technology"
+  ],
+  "manifest": "final-manifest.json"
+}

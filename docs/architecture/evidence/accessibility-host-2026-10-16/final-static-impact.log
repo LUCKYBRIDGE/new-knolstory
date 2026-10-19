@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:93064) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 1365x900 (2.2s)
+  ✓  2 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 820x1180 (2.1s)
+  ✓  3 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 390x844 (1.5s)
+  ✓  4 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 844x390 (1.6s)
+  ✓  5 tests/e2e/library-design-parity.spec.ts:9:83 › legacy book surfaces and focus browsing at 320x740 (1.5s)
+  ✓  6 tests/e2e/library-design-parity.spec.ts:19:1 › cover canvas supports keyboard, drag cancellation and one-operation undo without applying a draft (1.3s)
+  ✓  7 tests/e2e/library-design-parity.spec.ts:42:1 › layered front, spine and back covers keep direct edits in the draft until apply (1.8s)
+  ✓  8 tests/e2e/online-works.spec.ts:72:1 › deleting the selected local work during online save preparation sends no request (3.6s)
+
+  8 passed (15.9s)

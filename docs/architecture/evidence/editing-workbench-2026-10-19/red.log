@@ -1,0 +1,47 @@
+
+Running 2 tests using 1 worker
+
+(node:37321) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editing-workbench.spec.ts:50:1 › several cut texts edit directly and companion visibility never edits manuscript data (7.2s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) tests/e2e/editing-workbench.spec.ts:50:1 › several cut texts edit directly and companion visibility never edits manuscript data 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('region', { name: '여러 컷 편집', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('region', { name: '여러 컷 편집', exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: '여러 컷 편집', exact: true })
+
+
+      30 |  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+      31 |  await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-19T00:00:00.000Z',appVersion:'test',project:fixture}));
+    > 32 |  await expect(workbench(page)).toBeVisible();
+         |                                ^
+      33 |  return (await exported(page)).project;
+      34 | }
+      35 | async function settings(page:Page){
+        at prepare (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:32:32)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:51:15
+
+    Error Context: docs/architecture/evidence/editing-workbench-2026-10-19/red-run/editing-workbench-several--9a30d-never-edits-manuscript-data/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/editing-workbench-2026-10-19/red-run/editing-workbench-several--9a30d-never-edits-manuscript-data/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/editing-workbench-2026-10-19/red-run/editing-workbench-several--9a30d-never-edits-manuscript-data/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editing-workbench.spec.ts:50:1 › several cut texts edit directly and companion visibility never edits manuscript data 
+  1 did not run
+  1 error was not a part of any test, see above for details

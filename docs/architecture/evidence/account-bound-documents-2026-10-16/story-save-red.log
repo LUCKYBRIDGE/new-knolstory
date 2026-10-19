@@ -1,0 +1,35 @@
+
+Running 1 test using 1 worker
+
+(node:77366) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/online-works.spec.ts:72:1 › deleting the selected local work during online save preparation sends no request (3.7s)
+
+
+  1) [host] › tests/e2e/online-works.spec.ts:72:1 › deleting the selected local work during online save preparation sends no request 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      78 |  await panel.getByRole('button',{name:'선택한 작품 온라인에 보관',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as unknown as {savePreparationPaused?:boolean}).savePreparationPaused)).toBe(true);await page.keyboard.press('Escape');
+      79 |  await page.getByRole('button',{name:'준비 중 삭제할 원고 책 표지와 소개 보기',exact:true}).click();const focus=page.getByRole('dialog');await focus.getByText('책 꾸미기·작품 도구',{exact:true}).click();await focus.getByRole('button',{name:'내 작품 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).works).includes(before.storyId)).toBe(false);const deleted=await local(page);
+    > 80 |  await page.evaluate(()=>(window as unknown as {releaseSavePreparation:()=>void}).releaseSavePreparation());await page.locator('[data-online-works]>summary').click();await expect(panel.getByRole('status')).toHaveCount(0);await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();expect(posts).toBe(0);expect((await local(page)).deletedWork).toEqual(deleted.deletedWork);expect(Object.keys((await local(page)).works)).toEqual(Object.keys(deleted.works));
+         |                                                                                                                                                                                                                                                                                                                              ^
+      81 | });
+      82 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/online-works.spec.ts:80:318
+
+    Error Context: docs/architecture/evidence/account-bound-documents-2026-10-16/story-save-artifacts/online-works-deleting-the--fb97d-reparation-sends-no-request-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    docs/architecture/evidence/account-bound-documents-2026-10-16/story-save-artifacts/online-works-deleting-the--fb97d-reparation-sends-no-request-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace docs/architecture/evidence/account-bound-documents-2026-10-16/story-save-artifacts/online-works-deleting-the--fb97d-reparation-sends-no-request-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/online-works.spec.ts:72:1 › deleting the selected local work during online save preparation sends no request 

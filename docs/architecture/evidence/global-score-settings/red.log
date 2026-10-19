@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:50511) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 (2.0m)
+
+
+  1) [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '작품 점수 설정', exact: true })
+
+
+      25 |  const original=await exportProject();
+      26 |  await expect(page.locator('[data-additional-panel]').getByRole('region',{name:'이야기 점수 설정',exact:true})).toHaveCount(0);
+    > 27 |  await page.getByRole('button',{name:'작품 점수 설정',exact:true}).click();
+         |                                                              ^
+      28 |  const settings=page.getByRole('region',{name:'작품 설정',exact:true});await expect(settings.getByLabel('작품 설정 항목')).toHaveValue('scores');
+      29 |  await settings.getByLabel('새 점수 이름',{exact:true}).fill('도움 횟수');await settings.getByLabel('새 점수 설명',{exact:true}).fill('이웃을 도운 선택 수');await settings.getByRole('button',{name:'점수 만들기',exact:true}).click();
+      30 |  await expect(page.getByTestId('preparation-save-status')).toHaveText('기기에 저장됨');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/work-menu-purpose.spec.ts:27:62
+
+    Error Context: test-results/work-menu-purpose-one-glob-5e951-urns-to-choice-editing-1440-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/work-menu-purpose-one-glob-5e951-urns-to-choice-editing-1440-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/work-menu-purpose-one-glob-5e951-urns-to-choice-editing-1440-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/work-menu-purpose.spec.ts:18:39 › one global score settings screen returns to choice editing 1440 

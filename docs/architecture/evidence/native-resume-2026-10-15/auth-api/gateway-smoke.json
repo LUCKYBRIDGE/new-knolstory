@@ -1,0 +1,32 @@
+{
+  "publicOrigin": "http://127.0.0.1:15401",
+  "apiTarget": "http://127.0.0.1:15400",
+  "webTarget": "http://127.0.0.1:3126",
+  "hostileHostStatus": 400,
+  "results": [
+    {
+      "path": "/api/v1/auth/config",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"success\":true,\"data\":{\"signupProvider\":\"kakao\",\"providers\":{\"kakao\":false,\"google\":false}}}"
+    },
+    {
+      "path": "/api/v1/me",
+      "status": 401,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"success\":false,\"error\":{\"code\":\"SESSION_REQUIRED\"}}"
+    },
+    {
+      "path": "/api/v1/auth/kakao/start",
+      "status": 503,
+      "contentType": "application/json; charset=utf-8",
+      "body": "{\"success\":false,\"error\":{\"code\":\"PROVIDER_UNAVAILABLE\"}}"
+    },
+    {
+      "path": "/?view=library",
+      "status": 200,
+      "contentType": "text/html",
+      "bodyBytes": 7217
+    }
+  ]
+}

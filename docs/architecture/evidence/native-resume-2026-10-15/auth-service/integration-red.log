@@ -1,0 +1,12 @@
+ Container knolstory-next-storage-test-db-1 Running 
+ Container knolstory-next-storage-test-db-1 Waiting 
+ Container knolstory-next-storage-test-db-1 Healthy 
+ Container knolstory-next-storage-test-runner-run-9beec100e0fc Creating 
+ Container knolstory-next-storage-test-runner-run-9beec100e0fc Created 
+
+> @knolstory/storage-test@ typecheck /workspace/server
+> tsc --project tsconfig.integration.json
+
+http/auth-service.integration.ts(7,35): error TS2307: Cannot find module './auth-service' or its corresponding type declarations.
+ ELIFECYCLE  Command failed with exit code 2.
+

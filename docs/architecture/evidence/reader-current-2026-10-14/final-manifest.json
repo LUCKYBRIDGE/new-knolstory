@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-14",
+  "scope": "current reader-surface mock fallback plus actualnative4viewport",
+  "sourceHashes": {
+    "tests/e2e/reading-surface.spec.ts": "eb9466b3a50352b8ca80308fffd7e0988f92f1f6a4fcfee08b00e10d902cfcec",
+    "playwright.config.ts": "e4c6453b5bbdf2dfaa64a3274b159b9855cfc7011074d1d72ecdabf5b963b1e4",
+    "STATUS.md": "9bfffc29f8c9637ef0aaf5229f8ab77a00d1a14bcad9ee1a3160d34c75b9ace5",
+    "DESIGN.md": "6f7f4a0f8c037cd0fde367813771b3850313f3103623c25ca4775e8f4bfabe01",
+    "docs/architecture/approved-ui-development-plan.md": "849dff3da105503db6d62c6b7c8133f122470e9959be349d812fa15a0aef26ac",
+    "docs/architecture/non-audio-direction-contract.md": "d2815caf2fa5f7cb19af0ea88fb2ceb5e41c7093c46d69c34217c92870c2d0c4",
+    "docs/architecture/next-session-goal-2026-10-13.md": "95321047a33866ee800826737dfe97c2692564ff483fbf0bbfee55c4d0f97c90",
+    "docs/architecture/reader-current-regression-validation.md": "c15c71e83d363984cedde276c3b49f1f8d3a2b50ae10218a7cd152709156e972"
+  },
+  "checks": {
+    "baseline": {
+      "collected": 5,
+      "failed": 2,
+      "passed": 1,
+      "interrupted": 1,
+      "notRun": 1,
+      "intentionalSIGINT": true
+    },
+    "finalCombined": {
+      "hostPassed": 5,
+      "nativePassed": 4,
+      "oppositeProjectExclusions": 9
+    },
+    "relatedWebUnit": {
+      "files": 4,
+      "passed": 13
+    },
+    "separateCoreLayoutUnit": {
+      "files": 3,
+      "passed": 20
+    },
+    "e2eTsc": true,
+    "scopedLint": true,
+    "docs54": true,
+    "newOwnerLinks": true,
+    "diffCheck": true,
+    "newProductBuild": false,
+    "hostCollection": 388
+  },
+  "runtimeZip": {
+    "bytes": 37641800,
+    "sha256": "825d02f960675c5c7169acbd24d279115c4244a0f8ff8219ace046e8a787c6e6",
+    "publicAndOutMatch": true,
+    "previousBranchManifestMatch": true,
+    "newRuntimeBuild": false
+  },
+  "limits": [
+    "remaining121/full388 not complete",
+    "physical Samsung/input not verified",
+    "fresh external-app editing/deployment not run",
+    "original Chrome error cause unresolved",
+    "Excel ChatGPT connection intentionally excluded"
+  ],
+  "artifacts": {
+    "self-evaluation.json": "d2595438f37c701565869e499694980eeb4888ab89ab648a39d8d514feeaa6ff",
+    "docs-final.log": "4001bc14868835a74cac07e4f4b386df6eb5e2edddac0ec5f0c0e5f3085930f2",
+    "host-first.log": "87f46c5443bd1f7f52a60bd00cc94a5fac0527fceb92e55dc51be50f39d9cebc",
+    "native-first.log": "7d74155cdd46beb2f7083818e79aed35d9b34e3c9d289b4adab06082fdc6c2a6",
+    "e2e-types.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reading-before.ts.txt": "bb5b2707838df2e9978956b66c8187a708d0725cc27e82a8f7ee6dd3368e1520",
+    "lint.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "baseline.log": "832a0dda57f0ad154e1adfd23e044aa943fa4e8d91082eb25f80e0d398f4dc55",
+    "unit.log": "190f384192c4e4e27cea18e2974d0c99c848b3d57606a1c68a6955a409c5f5c6",
+    "lint-final.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "core-layout-unit.log": "16a908bd60309afb5a4b8c3294fb27302fb80ddb92ad44982b4d81453c0b7854",
+    "final.log": "9a5b5a8327718e864245ef827ca9b33960345b866fa86b2cc53831df7ae9abf8",
+    "host-collection.log": "386aacc07f78ae132b34f2725a0264506e85c4c803043864db82e1b6a9e17c1c",
+    "review.json": "14f245faa4b92752285ad0d6d10ee12f5f5b7118482189bda7408a4618c625e4",
+    "e2e-types-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-first-artifacts/reading-surface-native-rea-72a09-d-folded-phone-tools-at-844-stories-runtime/native-reader.png": "453d8e012db494bf4f7b784e346aa98b21fc9239ca89cd8d311a801e2718f7a2",
+    "native-first-artifacts/reading-surface-native-rea-99c0a-d-folded-phone-tools-at-390-stories-runtime/native-reader.png": "7f0f3b13dd7e5565b468250874d00aef4074006b67be8f99c3007a382d9b7056",
+    "native-first-artifacts/reading-surface-native-rea-60a5a--folded-phone-tools-at-1280-stories-runtime/native-reader.png": "d94c9a4f9fef739f80acd3cb3800e0b52ef334ede40d11ef1ea46545deeab861",
+    "native-first-artifacts/reading-surface-native-rea-31976-d-folded-phone-tools-at-820-stories-runtime/native-reader.png": "d1ff0248569e020ee7afb17e41b3473375a7745f6fa361423f86fa318b06b1dd",
+    "baseline-artifacts/reading-surface-current-cu-64b33-and-local-chapter-cut-count-host/trace.zip": "0546d9ab286535df3aeb0c49b1205b8cee2e4fd24056341f6db39429346c0752",
+    "baseline-artifacts/reading-surface-current-cu-64b33-and-local-chapter-cut-count-host/error-context.md": "3b4dd9ab664c45f599d3ec065eac24821ecda7454395b9fad985660034e10488",
+    "baseline-artifacts/reading-surface-reading-gi-32e72--while-runtime-is-preparing-host/trace.zip": "660c48492635d4029b9140248a14a6c5c31fbc060d2a79dc9b65f7e26aaa1345",
+    "baseline-artifacts/reading-surface-reading-gi-32e72--while-runtime-is-preparing-host/error-context.md": "feefe01957005331fd1f66fbbf0782b1f2e51bdf6024e9cc55f8e62fead3b6b8",
+    "final-artifacts/reading-surface-native-rea-72a09-d-folded-phone-tools-at-844-stories-runtime/native-reader.png": "e45b954b9bbfe9f582f7947207162d06d242e1db1bc81d2e4d98b44b14a37a0b",
+    "final-artifacts/reading-surface-native-rea-99c0a-d-folded-phone-tools-at-390-stories-runtime/native-reader.png": "7f0f3b13dd7e5565b468250874d00aef4074006b67be8f99c3007a382d9b7056",
+    "final-artifacts/reading-surface-native-rea-60a5a--folded-phone-tools-at-1280-stories-runtime/native-reader.png": "d94c9a4f9fef739f80acd3cb3800e0b52ef334ede40d11ef1ea46545deeab861",
+    "final-artifacts/reading-surface-native-rea-31976-d-folded-phone-tools-at-820-stories-runtime/native-reader.png": "d1ff0248569e020ee7afb17e41b3473375a7745f6fa361423f86fa318b06b1dd"
+  }
+}

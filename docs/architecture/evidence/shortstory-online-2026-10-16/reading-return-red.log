@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+(node:65973) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/shortstory-online.spec.ts:39:1 › ShortStory login returns to reading mode as well as the stored page (6.1s)
+
+
+  1) tests/e2e/shortstory-online.spec.ts:39:1 › ShortStory login returns to reading mode as well as the stored page 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('region', { name: '숏스토리 읽기', exact: true })
+    Expected substring: "로그인 뒤에도 읽던 그림책"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByRole('region', { name: '숏스토리 읽기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: '숏스토리 읽기', exact: true })
+
+
+      38 | });
+      39 | test('ShortStory login returns to reading mode as well as the stored page',async({page})=>{
+    > 40 |  await harness(page);await page.route('**/api/v1/me',route=>route.fulfill({status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}}));await page.route('**/api/v1/auth/kakao/start',route=>route.fulfill({status:302,headers:{location:'/?auth=success'}}));await page.goto('/shortstory');await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('로그인 뒤에도 읽던 그림책');await page.getByRole('button',{name:'읽기',exact:true}).click();await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('button',{name:'카카오로 가입·로그인',exact:true})).toBeEnabled();await page.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(page).toHaveURL(/\/shortstory/);await expect(page.getByRole('region',{name:'숏스토리 읽기',exact:true})).toContainText('로그인 뒤에도 읽던 그림책');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^
+      41 | });
+      42 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/shortstory-online.spec.ts:40:750
+
+    Error Context: test-results/shortstory-online/shortstory-online-ShortSto-5bbdc--as-well-as-the-stored-page/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/shortstory-online/shortstory-online-ShortSto-5bbdc--as-well-as-the-stored-page/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/shortstory-online/shortstory-online-ShortSto-5bbdc--as-well-as-the-stored-page/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/shortstory-online.spec.ts:39:1 › ShortStory login returns to reading mode as well as the stored page 

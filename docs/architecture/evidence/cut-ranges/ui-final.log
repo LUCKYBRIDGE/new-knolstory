@@ -1,0 +1,41 @@
+[WebServer] (node:99915) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:99928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:99944) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:99956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:99993) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/cut-range-authoring.spec.ts:4:1 › actual work cut-end authoring saves, exports and reopens unchanged unrelated fields (9.5s)
+  ✘  2 [host] › tests/e2e/cut-range-authoring.spec.ts:14:1 › native presenter receives bounded effect through end then stops it without clearing another cue (2.0m)
+
+
+  1) [host] › tests/e2e/cut-range-authoring.spec.ts:14:1 › native presenter receives bounded effect through end then stops it without clearing another cue 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.waitFor: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for locator('iframe').contentFrame().locator('body') to be visible
+        232 × locator resolved to hidden <body>…</body>
+
+
+      18 |  await page.getByRole('button',{name:'연출 편집',exact:true}).click();await page.getByLabel('효과',{exact:true}).selectOption('shake');await page.getByLabel('효과 적용 범위',{exact:true}).selectOption('following');await page.getByLabel('효과 종료 컷',{exact:true}).selectOption(end);
+      19 |  await page.getByRole('button',{name:'효과 추가',exact:true}).click();await page.getByTestId('story-effect-controls').locator('details').nth(1).locator('summary').click();await page.getByLabel('2번째 효과',{exact:true}).selectOption('flash');await page.getByLabel('2번째 효과 적용 범위',{exact:true}).selectOption('following');
+    > 20 |  await page.frameLocator('iframe').locator('body').waitFor();await page.getByTestId('story-runtime-frame').evaluate(frame=>{(frame as HTMLIFrameElement).contentWindow!.addEventListener('message',event=>{if(event.data?.type==='loadScene')(frame as HTMLIFrameElement).dataset.scene=JSON.stringify(event.data.payload);});});
+         |                                                    ^
+      21 |  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
+      22 |  const rendered=async()=>{await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);};
+      23 |  const effects=async()=>JSON.parse((await page.getByTestId('story-runtime-frame').getAttribute('data-scene'))!).presentation.effects;
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/cut-range-authoring.spec.ts:20:52
+
+    Error Context: test-results/cut-range-authoring-native-df521-ithout-clearing-another-cue-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/cut-range-authoring.spec.ts:14:1 › native presenter receives bounded effect through end then stops it without clearing another cue 
+  1 passed (2.2m)

@@ -1,0 +1,9 @@
+.editor { display:grid; gap:6px; margin-block:6px; min-width:0; overflow-wrap:anywhere; }
+.editor p { margin:0; font-size:13px; }
+.editor fieldset { display:grid; gap:8px; min-width:0; border:1px solid var(--line,#d8d0c2); padding:8px; }
+.editor label { display:grid; gap:4px; min-width:0; font-size:13px; }
+.editor input,.editor select,.editor button,.editor summary { min-height:var(--chrome-control-height,44px); min-width:0; max-width:100%; }
+.editor button { white-space:normal; overflow-wrap:anywhere; }
+.row { display:flex; flex-wrap:wrap; gap:8px; align-items:end; min-width:0; }
+.row label { flex:1 1 125px; }
+.editor small { color:var(--ink-soft,#4c625f); }

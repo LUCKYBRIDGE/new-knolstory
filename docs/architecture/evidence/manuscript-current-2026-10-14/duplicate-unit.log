@@ -1,0 +1,105 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts (4 tests | 3 failed) 14ms
+   × duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b"} 9ms
+   × duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":null} 2ms
+   × duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b","routes":[{"id":"route","condition":{"mode":"all","terms":[]},"targetLineId":"b"}]} 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-flow-preservation.test.ts > duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b"}
+ FAIL  packages/runtime-core/tests/duplicate-flow-preservation.test.ts > duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":null}
+AssertionError: expected { id: 'work', title: '새 이야기', …(10) } to deeply equal { id: 'work', title: '새 이야기', …(10) }
+
+- Expected
++ Received
+
+@@ -41,10 +41,29 @@
+    "creativeMemos": [],
+    "description": "",
+    "id": "work",
+    "lines": [
+      {
++       "backgroundId": "",
++       "chapterId": "other",
++       "directionNote": "",
++       "emotionNote": "",
++       "id": "other-first",
++       "leftAssetId": "",
++       "order": 1,
++       "purposeNote": "",
++       "rightAssetId": "",
++       "speaker": "narration",
++       "speakerName": "",
++       "stageComposition": {
++         "leftActors": [],
++         "rightActors": [],
++       },
++       "text": "",
++       "type": "narration",
++     },
++     {
+        "audio": {
+          "music": {
+            "action": "play",
+            "assetId": "audio:music:forest",
+            "endLineId": "b",
+@@ -90,29 +109,10 @@
+        "directionNote": "",
+        "emotionNote": "",
+        "id": "b",
+        "leftAssetId": "",
+        "order": 2,
+-       "purposeNote": "",
+-       "rightAssetId": "",
+-       "speaker": "narration",
+-       "speakerName": "",
+-       "stageComposition": {
+-         "leftActors": [],
+-         "rightActors": [],
+-       },
+-       "text": "",
+-       "type": "narration",
+-     },
+-     {
+-       "backgroundId": "",
+-       "chapterId": "other",
+-       "directionNote": "",
+-       "emotionNote": "",
+-       "id": "other-first",
+-       "leftAssetId": "",
+-       "order": 1,
+        "purposeNote": "",
+        "rightAssetId": "",
+        "speaker": "narration",
+        "speakerName": "",
+        "stageComposition": {
+
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts:14:186
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  packages/runtime-core/tests/duplicate-flow-preservation.test.ts > duplication preserves the full source goto and copy through a later move: {"type":"goto","targetLineId":"b","routes":[{"id":"route","condition":{"mode":"all","terms":[]},"targetLineId":"b"}]}
+Error: 선택지는 2개 또는 3개이며 문구와 도착 컷이 있어야 해요.
+ ❯ validated packages/runtime-core/src/authoring.ts:20:25
+     18|   const candidate = touch ? { ...project, updatedAt: new Date().toISOS…
+     19|   const loaded = parseStoryDocument(createStoryDocument({ project: can…
+     20|   if (!loaded.ok) throw new Error(loaded.issues.map(issue => issue.mes…
+       |                         ^
+     21|   return candidate;
+     22| }
+ ❯ replaceChapterCuts packages/runtime-core/src/authoring.ts:76:10
+ ❯ insertStoryCut packages/runtime-core/src/authoring.ts:94:10
+ ❯ duplicateStoryCut packages/runtime-core/src/editor-authoring.ts:30:46
+ ❯ packages/runtime-core/tests/duplicate-flow-preservation.test.ts:11:83
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  3 failed | 26 passed (29)
+   Start at  09:13:19
+   Duration  430ms (transform 367ms, setup 0ms, import 504ms, tests 40ms, environment 0ms)
+

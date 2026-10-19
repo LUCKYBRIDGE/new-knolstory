@@ -1,0 +1,4 @@
+tests/e2e/presentation-polish.spec.ts(98,119): error TS2345: Argument of type '(line: { stageComposition: unknown; }) => unknown' is not assignable to parameter of type '(value: StoryLine, index: number, array: StoryLine[]) => unknown'.
+  Types of parameters 'line' and 'value' are incompatible.
+    Type 'StoryLine' is not assignable to type '{ stageComposition: unknown; }'.
+      Property 'stageComposition' is optional in type 'StoryLine' but required in type '{ stageComposition: unknown; }'.

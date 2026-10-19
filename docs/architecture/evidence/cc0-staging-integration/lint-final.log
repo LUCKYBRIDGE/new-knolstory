@@ -1,0 +1,47 @@
+
+> knolstory-next@ lint /Users/wan/ai_dev/apps/new-knolstory
+> eslint .
+
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web/components/story-player-menu.tsx
+  76:837  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/appearance-context/coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/appearance-context/coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/appearance-context/coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/cc0-staging-integration/coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/cc0-staging-integration/coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/cc0-staging-integration/coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/global-score-settings/coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/global-score-settings/coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/global-score-settings/coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/library-native-current/rewind-coverage/block-navigation.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/library-native-current/rewind-coverage/prettify.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/library-native-current/rewind-coverage/sorter.js
+  1:1  warning  Unused eslint-disable directive (no problems were reported)
+
+✖ 13 problems (0 errors, 13 warnings)
+  0 errors and 12 warnings potentially fixable with the `--fix` option.
+

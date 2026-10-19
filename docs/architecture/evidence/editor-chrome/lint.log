@@ -1,0 +1,18 @@
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web/components/story-player-menu.tsx
+  22:2    error    Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+/Users/wan/ai_dev/apps/new-knolstory/apps/web/components/story-player-menu.tsx:22:2
+  20 |  useEffect(()=>{advanceRef.current=onAdvance;interactionRef.current=onInteractionChange;toolsRef.current=onToolsExpandedChange;},[onAdvance,onInteractionChange,onToolsExpandedChange]);
+  21 |  const fingerprint=useMemo(()=>projectPlaybackFingerprint(project),[project]),progressKey=JSON.stringify(playback),busy=!!panel||!!confirm||topOpen||saving;
+> 22 |  saveContext.current=JSON.stringify([project.id,fingerprint,progressKey,presentationKey]);
+     |  ^^^^^^^^^^^^^^^^^^^ Cannot update ref during render
+  23 |  useEffect(()=>{const query=matchMedia('(max-width:720px), (max-width:1000px) and (max-height:500px)');const update=()=>setPhone(query.matches);update();query.addEventListener('change',update);return()=>query.removeEventListener('change',update);},[]);
+  24 |  useEffect(()=>{toolsRef.current?.(phone&&expanded);},[phone,expanded]);
+  25 |  useEffect(()=>()=>toolsRef.current?.(false),[]);  react-hooks/refs
+  76:837  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @next/next/no-img-element
+
+✖ 2 problems (1 error, 1 warning)
+

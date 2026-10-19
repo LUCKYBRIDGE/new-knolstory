@@ -1,0 +1,42 @@
+
+> knolstory-next@ typecheck <repo>
+> turbo run typecheck
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@knolstory/runtime-contract:typecheck: cache miss, executing 69fa0810c7d3a954
+@knolstory/asset-registry:typecheck: cache miss, executing 3c73b0bc50b2215b
+@knolstory/story-domain:typecheck: cache hit, replaying logs 8f2d5b5cb8a0c432
+@knolstory/story-domain:typecheck: 
+@knolstory/story-domain:typecheck: > @knolstory/story-domain@0.0.0 typecheck <repo>/packages/story-domain
+@knolstory/story-domain:typecheck: > tsc --noEmit
+@knolstory/story-domain:typecheck: 
+@knolstory/compatibility:typecheck: cache miss, executing 2a454e6149a394f8
+@knolstory/runtime-contract:typecheck: 
+@knolstory/runtime-contract:typecheck: > @knolstory/runtime-contract@0.0.0 typecheck <repo>/packages/runtime-contract
+@knolstory/runtime-contract:typecheck: > tsc --noEmit
+@knolstory/runtime-contract:typecheck: 
+@knolstory/compatibility:typecheck: 
+@knolstory/compatibility:typecheck: > @knolstory/compatibility@0.0.0 typecheck <repo>/packages/compatibility
+@knolstory/compatibility:typecheck: > tsc --noEmit
+@knolstory/compatibility:typecheck: 
+@knolstory/asset-registry:typecheck: 
+@knolstory/asset-registry:typecheck: > @knolstory/asset-registry@0.0.0 typecheck <repo>/packages/asset-registry
+@knolstory/asset-registry:typecheck: > tsc --noEmit
+@knolstory/asset-registry:typecheck: 
+@knolstory/compatibility:typecheck: tests/staged-audio-roundtrip.test.ts(12,17): error TS2339: Property 'audioResources' does not exist on type 'AuthoringArchive'.
+@knolstory/compatibility:typecheck:   Property 'audioResources' does not exist on type '{ format: "shortstory"; formatVersion: 2; project: ShortStoryProject; }'.
+@knolstory/compatibility:typecheck:  ELIFECYCLE  Command failed with exit code 2.
+@knolstory/compatibility#typecheck:  ERROR  command (<repo>/packages/compatibility) /opt/homebrew/bin/pnpm run typecheck exited (2)
+
+ Tasks:    3 successful, 4 total
+Cached:    1 cached, 4 total
+  Time:    5.444s 
+Failed:    @knolstory/compatibility#typecheck
+
+ ERROR  run failed: command  exited (2)
+ ELIFECYCLE  Command failed with exit code 2.

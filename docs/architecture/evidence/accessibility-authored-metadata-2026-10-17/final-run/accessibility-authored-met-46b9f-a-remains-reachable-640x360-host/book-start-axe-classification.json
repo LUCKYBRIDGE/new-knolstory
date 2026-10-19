@@ -1,0 +1,20 @@
+{
+  "classified": [
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": ".book-start-module__cvHYGG__primary",
+      "label": "처음부터 읽기",
+      "hint": "첫 장부터 이야기를 펼쳐요",
+      "reason": "Verified primary name with separate hint description"
+    },
+    {
+      "rule": "label-content-name-mismatch",
+      "selector": "button[aria-label=\"이어읽기\"]",
+      "label": "이어읽기",
+      "hint": "읽기 시작 후 이어갈 수 있어요",
+      "reason": "Verified primary name with separate hint description"
+    }
+  ],
+  "unresolved": [],
+  "raw": "book-start-axe-raw.json"
+}

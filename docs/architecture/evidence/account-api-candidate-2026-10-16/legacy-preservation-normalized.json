@@ -1,0 +1,6 @@
+{
+  "count": 23,
+  "changed": [],
+  "normalization": "Mount list order is not semantic. First raw comparison reported only Docker-returned mount ordering in two containers; sorted mount identities match.",
+  "scope": "ID/image/start/restart/ports/mount metadata only; no legacy database contents read"
+}

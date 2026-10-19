@@ -1,0 +1,62 @@
+{
+  "scope": "Actual isolated local Docker API stdout and HTTP only; providers remain disabled, no live OAuth/DB mutation",
+  "responses": [
+    {
+      "status": 200,
+      "requestId": "c1b6c752-1248-4336-98c5-876362f6aa49"
+    },
+    {
+      "status": 503,
+      "requestId": "4c5a1db8-0862-4e13-9bc1-4a4d3d498609"
+    },
+    {
+      "status": 404,
+      "requestId": "0edce3d9-fdc0-477a-9aaf-5ba4a7264727"
+    },
+    {
+      "status": 401,
+      "requestId": "94f223ea-a08f-46c1-b851-3e44ab0e292e"
+    }
+  ],
+  "records": [
+    {
+      "event": "http_request",
+      "requestId": "c1b6c752-1248-4336-98c5-876362f6aa49",
+      "method": "GET",
+      "route": "health",
+      "status": 200,
+      "outcome": "completed",
+      "durationMs": 2.644
+    },
+    {
+      "event": "http_request",
+      "requestId": "4c5a1db8-0862-4e13-9bc1-4a4d3d498609",
+      "method": "GET",
+      "route": "health",
+      "status": 503,
+      "outcome": "completed",
+      "durationMs": 15.264
+    },
+    {
+      "event": "http_request",
+      "requestId": "0edce3d9-fdc0-477a-9aaf-5ba4a7264727",
+      "method": "GET",
+      "route": "auth",
+      "status": 404,
+      "outcome": "completed",
+      "durationMs": 0.695
+    },
+    {
+      "event": "http_request",
+      "requestId": "94f223ea-a08f-46c1-b851-3e44ab0e292e",
+      "method": "GET",
+      "route": "documents",
+      "status": 401,
+      "outcome": "completed",
+      "durationMs": 0.779
+    }
+  ],
+  "privateCanaryAbsent": true,
+  "fixedSchemaOnly": true,
+  "otherContainerMetadataUnchanged": 16
+}

@@ -1,0 +1,60 @@
+
+Running 1 test using 1 worker
+
+(node:79037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/online-works.spec.ts:104:1 › logout completion updates newly mounted menus after leaving and returning to the library (2.3s)
+
+
+  1) tests/e2e/online-works.spec.ts:104:1 › logout completion updates newly mounted menus after leaving and returning to the library 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 2
+    + Received  + 2
+
+    @@ -73,11 +73,11 @@
+            "sheetUrl": "",
+            "speakerNames": Array [],
+            "title": "로그아웃 중에도 남는 원고",
+            "updatedAt": "2026-10-16T10:28:28.538Z",
+          },
+    -     "savedAt": "2026-10-16T10:28:28.716Z",
+    +     "savedAt": "2026-10-16T10:28:28.981Z",
+          "schemaVersion": 8,
+        },
+        "seonnyeo": Object {
+          "appVersion": "knolstory-next-0.1",
+          "documentType": "story-maker-project",
+    @@ -64193,9 +64193,9 @@
+              "나무꾼의 과거 목소리",
+            ],
+            "title": "선녀와 나무꾼",
+            "updatedAt": "pinky-ne-site 804fe9f",
+          },
+    -     "savedAt": "2026-10-16T10:28:28.708Z",
+    +     "savedAt": "2026-10-16T10:28:28.972Z",
+          "schemaVersion": 8,
+        },
+      }
+
+      106 |  await page.route('**/api/v1/me',route=>route.fulfill(signedIn?{json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}}:{status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}}));
+      107 |  await page.route('**/api/v1/auth/logout',async route=>{started=true;await gate;signedIn=false;await route.fulfill({json:{success:true,data:{loggedOut:true}}});});
+    > 108 |  await page.goto('/?view=library');await page.locator('[data-account-menu]>summary').click();await page.getByRole('button',{name:'로그아웃',exact:true}).click();await expect.poll(()=>started).toBe(true);await page.keyboard.press('Escape');await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('로그아웃 중에도 남는 원고');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await expect(page.locator('[data-account-menu]')).toHaveCount(0);await page.getByRole('button',{name:'서재로',exact:true}).click();await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();const before=await local(page);release();await expect(panel).toContainText('계정 메뉴에서 로그인한 뒤 이용할 수 있어요.');await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toHaveCount(0);expect((await local(page)).works).toEqual(before.works);expect((await local(page)).document.project).toEqual(before.document.project);
+          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+      109 | });
+      110 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/online-works.spec.ts:108:1024
+
+    Error Context: test-results/online-works/online-works-logout-comple-7b163-nd-returning-to-the-library/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/online-works/online-works-logout-comple-7b163-nd-returning-to-the-library/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/online-works/online-works-logout-comple-7b163-nd-returning-to-the-library/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/online-works.spec.ts:104:1 › logout completion updates newly mounted menus after leaving and returning to the library 

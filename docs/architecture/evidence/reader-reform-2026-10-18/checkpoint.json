@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-18",
+  "status": "local-focused-verification-passed-not-deployed",
+  "approval": "User finalized consolidated proposal and requested font-size settings",
+  "features": [
+    "Two fixed stage shapes1280x720/720x1280 with contain",
+    "Fullwidth fixedheight native bottom overlay,4/6measuredbody rows; samefont independentmanuscript",
+    "Actors/background never shrink or move because panel/textsize changes",
+    "Hamburger/chapteronly and compacttransparent3/6tools insidepanel",
+    "Font90/100/115/130%, resetdefault, localprefspersistence",
+    "Bodytap/Enter/Space andoverflow-only controls; auto pages beforechoices",
+    "Unicodecodepoint position inoptionalv3slots; existing slots preserved"
+  ],
+  "checks": {
+    "focused_vitest": "65 tests across10files passed",
+    "native_geometry_python": "14 passed including1000seededpagination cases",
+    "presenter_python": "19 passed",
+    "native_web_e2e": "2 passed (27.8s): fontchange/reset/reload, quicksave/loadpageposition,4/6formats/letterbox, bodytap/Enter, visibleactors/backgroundrect invariance",
+    "runtime_build": "passed",
+    "web_build": "passed",
+    "web_typecheck": "passed",
+    "review": "Independent review findings fixed; rereview no blockers/high issues",
+    "focused_coverage": "reader-preferences anddialogue-capacity only:100% statements/branches/functions/lines; not repository coverage",
+    "eslint": "0 errors;1 existing img warning"
+  },
+  "preserved_attempts": [
+    "native-ui-initial-label-selector-failure",
+    "native-ui-second-notice-selector-failure",
+    "native-ui-before-clean-capture"
+  ],
+  "limits": [
+    "Physical-device/screenreader verification remains separate",
+    "Not fullproduct or release completion",
+    "No production deploy; previous production preserved"
+  ],
+  "mockups": "mockups/index.html",
+  "source_sha256": {
+    "packages/runtime-core/src/responsive-layout.ts": "c933eed80c10265ef5c70270c2d08bc31be13b064223bf5429e05eb024374a24",
+    "packages/runtime-contract/src/index.ts": "16d427e16205f677943c0f48191cf7195536de1f8a44226bf8e993cffca9dfa7",
+    "renpy/responsive-spike/game/script.rpy": "7bfbd6964a6ade049cca11180e51293b9237c313347d6a4782ed15b2916ae3af",
+    "apps/web/components/story-workspace.tsx": "40e318be3b32e259399d13917ed9589649fa91016d860e8cc22bf0be04391487",
+    "apps/web/components/story-player-menu.tsx": "58e6590ab52160fec56044f348a7821a3e678502a79916132fac25734a71bf4d",
+    "apps/web/components/story-player-menu.module.css": "a554fbb99e901c4644a81f3aec6a610ba35dd430981b3b9a9b86aae58e3b800e",
+    "apps/web/lib/reader-preferences.ts": "aced287dd6799f988a5584d3300ef24a615c29525231fddbc0805a4dad11380b",
+    "apps/web/lib/player-saves.ts": "ede7fe3d2a438b4ba659adeb48acedf92f73e1edf1d73910099b00a4f6fe5b24",
+    "apps/web/lib/story-viewport.ts": "dd753d357bbd68ddfd4190ebfe2548c49912acf4dfd46eb4317d8968bbd91f1c",
+    "apps/web/lib/dialogue-capacity.ts": "91cd919efca06566bbbac8639350f697df40d42557e682b85a20333af6f6d9de",
+    "tests/e2e/reader-reform.spec.ts": "86e3890cca373c3174755f1dc4424dc1f21007224c24d1c56060a53f4cd525c1"
+  },
+  "self_evaluation": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "Actualnative tests plus focused unit checks; physical device remains unverified"
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": "Requestedfontsettings andapprovedlocalreform implemented; broadmatrix andrelease remainseparate"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Current screenshots andcanonicalproposal linked; previouscandidate records preserved"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Reviewable actualcaptures andreproducible testconfig available; no unapproved deployment"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Existing controls/storage reused; large inheritedworkspace component remains"
+    }
+  }
+}

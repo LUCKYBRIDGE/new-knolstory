@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/audio-metadata-draft.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/audio-metadata-draft.test.ts [ apps/web/lib/audio-metadata-draft.test.ts ]
+Error: Cannot find module './audio-metadata-draft' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/audio-metadata-draft.test.ts
+ ❯ apps/web/lib/audio-metadata-draft.test.ts:2:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {reconcileAudioMetadataDraft} from './audio-metadata-draft';
+       | ^
+      3| describe('shared audio metadata draft refresh',()=>{
+      4|  const baseline={name:'원래 이름',category:'effect' as const,tags:'종',orig…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  07:34:10
+   Duration  107ms (transform 8ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,91 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/document-routes.test.ts (45 tests | 9 failed) 782ms
+     × rejects changed account before service or body processing: GET  7ms
+     × rejects changed account before service or body processing: GET /12345678-1234-4123-8123-123456789012 1ms
+     × rejects changed account before service or body processing: POST  2ms
+     × rejects changed account before service or body processing: PUT /12345678-1234-4123-8123-123456789012 1ms
+     × rejects malformed expected account "" 2ms
+     × rejects malformed expected account "owner" 1ms
+     × rejects malformed expected account "123" 1ms
+     × rejects malformed expected account "12345678-1234-4123-8123-123456789012, 12345678-1234-4123-8123-123456789012" 1ms
+     × rejects duplicate expected account headers and does not authorize from a matching header alone 602ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects changed account before service or body processing: GET 
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects changed account before service or body processing: GET /12345678-1234-4123-8123-123456789012
+AssertionError: expected 200 to be 409 // Object.is equality
+
+- Expected
++ Received
+
+- 409
++ 200
+
+ ❯ server/http/document-routes.test.ts:43:29
+     41|     const expected = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+     42|     const response = await h.request('/api/v1/documents' + suffix, { m…
+     43|     expect(response.status).toBe(409); expect(await response.json()).t…
+       |                             ^
+     44|     for (const fn of Object.values(h.documents)) expect(fn).not.toHave…
+     45|     expect(h.authState.verifyCsrf).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects changed account before service or body processing: POST 
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects changed account before service or body processing: PUT /12345678-1234-4123-8123-123456789012
+AssertionError: expected 415 to be 409 // Object.is equality
+
+- Expected
++ Received
+
+- 409
++ 415
+
+ ❯ server/http/document-routes.test.ts:43:29
+     41|     const expected = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa';
+     42|     const response = await h.request('/api/v1/documents' + suffix, { m…
+     43|     expect(response.status).toBe(409); expect(await response.json()).t…
+       |                             ^
+     44|     for (const fn of Object.values(h.documents)) expect(fn).not.toHave…
+     45|     expect(h.authState.verifyCsrf).not.toHaveBeenCalled();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects malformed expected account ""
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects malformed expected account "owner"
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects malformed expected account "123"
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects malformed expected account "12345678-1234-4123-8123-123456789012, 12345678-1234-4123-8123-123456789012"
+AssertionError: expected 200 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 200
+
+ ❯ server/http/document-routes.test.ts:49:29
+     47|   it.each(['', 'owner', '123', recordId + ', ' + recordId])('rejects m…
+     48|     const h = await harness(); const response = await h.request(undefi…
+     49|     expect(response.status).toBe(400); expect(await response.json()).t…
+       |                             ^
+     50|     expect(h.documents.list).not.toHaveBeenCalled();
+     51|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  server/http/document-routes.test.ts > document HTTP boundary > rejects duplicate expected account headers and does not authorize from a matching header alone
+Error: socket did not close
+ ❯ Timeout._onTimeout server/http/document-routes.test.ts:23:207
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 36 passed (45)
+   Start at  19:20:28
+   Duration  1.23s (transform 230ms, setup 0ms, import 355ms, tests 782ms, environment 0ms)
+

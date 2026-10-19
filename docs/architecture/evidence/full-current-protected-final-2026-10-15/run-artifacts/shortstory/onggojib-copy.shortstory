@@ -1,0 +1,94 @@
+{
+  "format": "shortstory",
+  "formatVersion": 2,
+  "project": {
+    "id": "8fd88290-ee48-4637-baf7-30eee6b50b4a",
+    "title": "옹고집전 · 나의 그림책",
+    "description": "8장면의 삽화와 편집 줄거리로 읽고 나의 이야기를 쓰는 전래 이야기",
+    "authorDisplayName": "전래 이야기 · 놀퀴즈",
+    "source": {
+      "kind": "preset",
+      "presetId": "onggojib-classic"
+    },
+    "cover": {
+      "backgroundId": "onggojib.scene.shortstory-classic-01",
+      "characterId": "",
+      "authorNote": "그림을 보고 인물의 마음과 다음 사건을 상상해 보세요."
+    },
+    "pages": [
+      {
+        "id": "d1d0d642-a2fc-49df-ae52-21cd4f0e2364",
+        "order": 1,
+        "title": "닫힌 대문",
+        "text": "재산이 많은 옹고집은 가난한 이웃이 도움을 청해도 매정하게 내쫓았어요. 곡식이 쌓인 집 안과 추운 대문 밖 사이에 굳게 닫힌 마음이 놓여 있었지요.\n나의 새로운 첫 장면입니다.",
+        "backgroundId": "onggojib.scene.shortstory-classic-01",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "e9fcb09c-9a13-40b7-90f9-34a5dc8c7b3c",
+        "order": 2,
+        "title": "쫓겨난 승려",
+        "text": "어느 날 승려가 옹고집의 집을 찾아왔어요. 옹고집은 먹을 것을 나누기는커녕 승려를 꾸짖어 쫓아냈지요. 이 일은 산속 도승에게 전해졌어요.",
+        "backgroundId": "onggojib.scene.shortstory-classic-02",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "afbacf23-9991-42b7-90c5-a3e42c77ba42",
+        "order": 3,
+        "title": "또 다른 옹고집",
+        "text": "이야기를 들은 도승은 풀과 짚으로 옹고집과 똑같이 생긴 사람을 만들었어요. 가짜 옹고집은 진짜 옹고집의 집으로 향했지요.",
+        "backgroundId": "onggojib.scene.shortstory-classic-03",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "4673b9f3-d3a1-47ad-a737-25a5d7460f5b",
+        "order": 4,
+        "title": "두 옹고집의 다툼",
+        "text": "집에 돌아온 진짜 옹고집은 자기 자리에 앉은 또 다른 옹고집을 보고 놀랐어요. 둘은 서로 진짜라고 우겼고, 가족도 누구를 믿어야 할지 몰랐지요.",
+        "backgroundId": "onggojib.scene.shortstory-classic-04",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "6751545f-5359-471f-9e88-efa4e25b8465",
+        "order": 5,
+        "title": "관아의 판결",
+        "text": "두 옹고집은 관아에서 시비를 가렸어요. 가짜가 집안 내력과 문서를 더 잘 설명하자 사또는 가짜의 말을 믿었고, 진짜 옹고집은 집에서 쫓겨났지요.",
+        "backgroundId": "onggojib.scene.shortstory-classic-05",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "83da1cea-3b45-4a6a-a7ea-873cc078dfac",
+        "order": 6,
+        "title": "추운 문밖에서",
+        "text": "떠돌던 옹고집은 추위와 배고픔을 견디며 남의 집에 도움을 청했어요. 문밖에서 거절당하자 자신이 내쫓았던 이웃들의 마음이 떠올랐지요.",
+        "backgroundId": "onggojib.scene.shortstory-classic-06",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "f83146f2-a49b-41cd-ba5a-29788fb96b8c",
+        "order": 7,
+        "title": "풀과 짚으로 돌아가다",
+        "text": "잘못을 뉘우친 옹고집은 도승에게 부적을 받아 집으로 돌아왔어요. 부적을 내밀자 가짜 옹고집은 다시 풀과 짚으로 변했고, 가족은 진짜 옹고집을 알아보았지요.",
+        "backgroundId": "onggojib.scene.shortstory-classic-07",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      },
+      {
+        "id": "b1d97a9d-0644-4e4c-b684-f289c49082fa",
+        "order": 8,
+        "title": "열린 대문",
+        "text": "집을 되찾은 옹고집은 이웃에게 곡식을 나누고 어머니를 정성껏 보살폈어요. 굳게 닫혔던 대문이 열리고, 옹고집의 마음도 조금씩 달라졌지요.",
+        "backgroundId": "onggojib.scene.shortstory-classic-08",
+        "leftAssetId": "",
+        "rightAssetId": ""
+      }
+    ],
+    "updatedAt": "2026-10-14T15:45:22.973Z"
+  }
+}

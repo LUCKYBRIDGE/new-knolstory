@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:72663) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [host] › tests/e2e/approved-reader.spec.ts:17:1 › approved reader manual/quick slots, load confirmation, reopen and history use Core (5.5s)
+  ✓  2 [host] › tests/e2e/approved-reader.spec.ts:30:1 › approved phone bar is bottom docked, tight and keeps runtime identity (706ms)
+  ✓  3 [host] › tests/e2e/approved-reader.spec.ts:40:1 › reader failure cannot leave for library and preparing stage has an exit (656ms)
+  ✓  4 [host] › tests/e2e/approved-reader.spec.ts:45:1 › editor manuscript edit, file roundtrip, reopen and reading return preserve other fields (13.0s)
+  ✓  5 [host] › tests/e2e/approved-reader.spec.ts:55:1 › native approved dialogue and host bar align on a real RenPy phone stage (3.9s)
+  ✓  6 [host] › tests/e2e/approved-reader.spec.ts:62:1 › automatic reading pauses for menus and advances only after current native acknowledgement (4.0s)
+
+  6 passed (28.3s)

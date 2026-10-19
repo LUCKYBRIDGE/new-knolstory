@@ -1,0 +1,13 @@
+..F.
+======================================================================
+FAIL: test_symlink_and_version_conflict_leave_other_files_unchanged (scripts.tests.test_service_audio_cache.CacheTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_service_audio_cache.py", line 24, in test_symlink_and_version_conflict_leave_other_files_unchanged
+    self.assertFalse((Path(root)/a['path']).exists());self.assertEqual(target.read_bytes(),b'changed')
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.006s
+
+FAILED (failures=1)

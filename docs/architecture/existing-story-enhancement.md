@@ -88,3 +88,9 @@ ElevenLabs 무료 생성물을 앞으로 시험할 때는 음원별 provider/gen
 `node scripts/export-directed-stories.cjs --runtime-cues`는 현재 강화본8개의 project가 원고와 기준표에서 다시 계산한 값과 동일함을 먼저 검사하고, 정확한131개 연출 참조를 Core에서 play RuntimeScene으로 compile한다. `node spikes/renpy-web/verify-existing-cues.mjs`는 동일 Chrome/Ren’Py 인스턴스에서 그131개 컷을 직접 진입해 전환 완료, 실제 음악/환경음 채널 경로, 총102회의 정확한 효과음 시작 수를 확인했다. 같은 컷의 글 revision을 다시 보내도 음악·환경음·효과음 시작 수가 증가하지 않았다. 실제 페이드아웃 완료 전에 이전 곡이 보이는 정상 상태는 최종 채널 경로까지 기다려 검증했다.
 
 [전체131컷 native 결과](evidence/existing-story-enhancement/all-cues-native.json). 이는 모든 지정 연출 컷의 실제 실행 검사이며, 모든 분기 조합을 읽었다는 의미가 아니다. 기존2102컷의 실제 경로/슬롯/기록/파일 검사와 함께 적용 범위를 입증한다. [목표 항목별 완료 감사](evidence/existing-story-enhancement/completion-audit.json). 음원의 자연음 현실감·음악 취향은 사람의 청취 승인으로 표시하지 않고, 공개 출시 권리 차단도 유지한다.
+
+## 2026-10-18 사용자 요청: 제공 창작 예시의 짧은 문장
+
+사용자는 읽기3/5줄 기준에 맞춰 제공 스토리를 짧은 호흡으로 다듬도록 요청했다. 앞 절의원고보존은원전/개인편집본/과거증거에서유지한다. 새제공창작예시에한해4작품2635컷중86컷의본문을선별교정한다. `refineProvidedStory`는전체프로젝트가원래제공본과정확히같은경우만적용하고,그후기존`enhanceExistingStory`연출을적용한다. 기존fixture·ID·Flow·점수·선택지·배치는변경하지않는다. [원고전후비교](evidence/reader-vn-three-five-2026-10-18/text-review.html)와 [범위/수치](evidence/reader-vn-three-five-2026-10-18/editorial-summary.json)를참고한다. 전체2635컷재작성이나기존개인작품자동갱신이아니다.
+
+사용자에게 보이는 기능 이름과 설명은 [제품 용어 기준](editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 내부 키·현재 파일 계약과 과거 검증 기록은 용어 정리로 바꾸지 않는다.

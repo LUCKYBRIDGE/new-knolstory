@@ -1,0 +1,64 @@
+{
+  "verifiedAt": "2026-10-15T23:17:36.396595+00:00",
+  "phase": "PC-04 account Web + local same-origin candidate",
+  "sources": {
+    "server/operations/web-api-proxy.mjs": "382fc11697afd4061b659a9280d9bfaed26e9ac1dd21a2e2382d8455fb724a32",
+    "server/operations/web-api-proxy.test.mjs": "495cf06f10882d0055efdbf584a6a3acb7779f14dacd931822ab5dba5c9e11d7",
+    "server/compose.api.local.yml": "4011342ad9324efbf86acf6d915bac8ab3f2c7714c03eeaf307c3e2faacf1ba6",
+    "server/main.ts": "c7ea02be6a81a7e9c741f9e6e59dd090d091a65d9e3e73fa607c436301c0e820",
+    "server/config.ts": "46d096e94e402f9d16105436676c71a349473a6b765eff7e753fb0ae6f43eced",
+    "server/Dockerfile": "c39af86fc43f9dfa56bfb3a5b1e3e0ef370e2e91f16d379e21237cfd8973d07d",
+    "server/operations/build-api.mjs": "abe6306e6b60beda5a44bd0b0fcedc71fe2156b2114910810b87de58a0ba7866",
+    "apps/web/out/index.html": "d157320934261346035a0a1ba910927d85beaa8e345a81d2040aded8ae590cff"
+  },
+  "serverTests": {
+    "passed": 226,
+    "files": 15,
+    "evidence": "../native-resume-2026-10-15/auth-api/integrated-coverage.log",
+    "scope": "OIDC/state/session/atomic PostgreSQL/HTTP/storage/config; outbound provider transport replaced"
+  },
+  "webEvidence": "source-and-verification.json",
+  "productionBuild": "build.log",
+  "gatewayTests": {
+    "passed": 6,
+    "evidence": "../native-resume-2026-10-15/auth-api/gateway-tests.tap"
+  },
+  "actualProductionBrowser": "../native-resume-2026-10-15/auth-api/gateway-production-browser.json",
+  "protectedArtifacts": {
+    "checked": 483,
+    "changed": []
+  },
+  "remaining": [
+    "Live Kakao/Google app credentials and callback configuration + actual login",
+    "Document API/ownership/catalog and online sync/conflict/recovery",
+    "Class/submission/sharing/retention policy and service",
+    "Physical device/accessibility/release backup restore"
+  ],
+  "evaluation": {
+    "accuracy": {
+      "score": 4,
+      "evidence": "Real HTTP/PostgreSQL/RSA and browser evidence; live provider unverified"
+    },
+    "completeness": {
+      "score": 3,
+      "evidence": "Account checkpoint fulfilled; document service and release gates remain in active goal"
+    },
+    "clarity": {
+      "score": 4,
+      "evidence": "Source/command manifests and actual-vs-mocked scope; historical failure logs retained"
+    },
+    "actionability": {
+      "score": 4,
+      "evidence": "Local production candidate15401; canonical next action document API"
+    },
+    "conciseness": {
+      "score": 4,
+      "evidence": "Detailed evidence lives in files; report limited to outcomes and next dependencies"
+    },
+    "improvements": [
+      "Continue document API and local-first synchronization under PC-04",
+      "Configure provider applications only at concrete external setup boundary",
+      "Keep live OAuth and release claims tied to actual environment evidence"
+    ]
+  }
+}

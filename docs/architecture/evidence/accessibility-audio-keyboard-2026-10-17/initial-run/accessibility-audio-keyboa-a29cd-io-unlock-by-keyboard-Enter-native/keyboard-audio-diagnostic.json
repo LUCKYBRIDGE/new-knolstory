@@ -1,0 +1,179 @@
+{
+  "key": "Enter",
+  "scope": "Actual native runtime, no interception. Programmatic iframe focus then trusted keyboard event; not sequential Tab reachability or screen-reader claim.",
+  "active": {
+    "hostActive": "IFRAME",
+    "iframeFocused": true,
+    "frameActive": "BODY",
+    "canvasTabIndex": "-1"
+  },
+  "state": {
+    "class": "story-workspace-module__gRDfJG__status",
+    "role": "status",
+    "data-testid": "story-runtime-status",
+    "data-rendered-revision": "5",
+    "data-scene-revision": "5",
+    "data-scene-width": "720",
+    "data-scene-height": "1558",
+    "data-music-path": "",
+    "data-ambience-path": "",
+    "data-ambience-start-count": "0",
+    "data-music-position": "",
+    "data-audio-unlocked": "false",
+    "data-music-start-count": "0",
+    "data-sound-play-count": "0",
+    "data-sound-paths": "[]",
+    "data-engine-width": "720",
+    "data-engine-height": "1558",
+    "data-textbox-y": "1351.2307692307693",
+    "data-dialogue-rects": "{\"speaker\":{\"x\":46.15384615384616,\"y\":1307.2307692307693,\"width\":80,\"height\":50},\"body\":{\"x\":46.15384615384616,\"y\":1371.2307692307693,\"width\":583.6923076923077,\"height\":152}}",
+    "data-choices-rect": "null",
+    "data-renderer-width": "720",
+    "data-renderer-height": "1558"
+  },
+  "unlocked": false,
+  "playbackBefore": {
+    "lineId": "classic-seonnyeo-1-line-01",
+    "path": [
+      "classic-seonnyeo-1-line-01"
+    ],
+    "status": "reading"
+  },
+  "playbackAfter": {
+    "lineId": "classic-seonnyeo-1-line-01",
+    "path": [
+      "classic-seonnyeo-1-line-01"
+    ],
+    "status": "reading"
+  },
+  "events": [
+    {
+      "origin": "http://127.0.0.1:3126",
+      "payload": {
+        "protocol": 1,
+        "seq": 1,
+        "revision": 5,
+        "type": "loadScene",
+        "payload": {
+          "contractVersion": 1,
+          "sceneId": "classic-seonnyeo-tale/classic-seonnyeo-1-line-01",
+          "revision": 5,
+          "width": 720,
+          "height": 1558,
+          "viewportVersion": 1,
+          "textboxRect": {
+            "x": 22.153846153846157,
+            "y": 1351.2307692307693,
+            "width": 675.6923076923077,
+            "height": 192
+          },
+          "dialogueStyle": {
+            "fontSize": 32,
+            "speakerFontSize": 30,
+            "padding": 24
+          },
+          "audio": {
+            "version": 1,
+            "music": {
+              "action": "play",
+              "audioPath": "assets/audio/story-score/score-curiosity.ogg",
+              "volume": 0.26,
+              "loop": true,
+              "fadeInMs": 700,
+              "fadeOutMs": 500
+            },
+            "ambience": {
+              "action": "play",
+              "audioPath": "assets/audio/story-score/ambience-forest.ogg",
+              "volume": 0.19,
+              "loop": true,
+              "fadeInMs": 700,
+              "fadeOutMs": 500
+            },
+            "sounds": [],
+            "sessionId": "classic-seonnyeo-tale/2"
+          },
+          "actors": [],
+          "dialogue": {
+            "speaker": "해설",
+            "text": "옛날 어느 산골 마을에 가난한 나무꾼이 살았다. 나무꾼은 늙은 어머니를 모시고 살며 날마다 산에 올라 나무를 해다 팔았다."
+          },
+          "background": {
+            "imagePath": "assets/legacy-18da4fc/BG04-cottage-day.webp",
+            "fit": "cover",
+            "rect": {
+              "x": -1024.0233333333333,
+              "y": 0,
+              "width": 2768.0466666666666,
+              "height": 1558
+            }
+          },
+          "choices": [],
+          "mode": "play",
+          "reducedMotion": false,
+          "presentationEntry": "2"
+        },
+        "audioResources": [],
+        "serviceAudioResources": []
+      }
+    },
+    {
+      "origin": "http://127.0.0.1:3126",
+      "payload": {
+        "protocol": 1,
+        "type": "sceneRendered",
+        "revision": 5,
+        "sceneId": "classic-seonnyeo-tale/classic-seonnyeo-1-line-01",
+        "engineLogicalSize": {
+          "width": 720,
+          "height": 1558
+        },
+        "audioState": {
+          "unlocked": false,
+          "musicPath": null,
+          "musicPosition": null,
+          "ambiencePath": null,
+          "ambienceStartCount": 0,
+          "musicStartCount": 0,
+          "soundPlayCount": 0,
+          "soundPaths": []
+        },
+        "textboxRect": {
+          "x": 22.153846153846157,
+          "y": 1351.2307692307693,
+          "width": 675,
+          "height": 192
+        },
+        "dialogueRects": {
+          "speaker": {
+            "x": 46.15384615384616,
+            "y": 1307.2307692307693,
+            "width": 80,
+            "height": 50
+          },
+          "body": {
+            "x": 46.15384615384616,
+            "y": 1371.2307692307693,
+            "width": 583.6923076923077,
+            "height": 152
+          }
+        },
+        "renderMs": 156.70000000000027,
+        "engineViewport": {
+          "x": 0,
+          "y": 0,
+          "width": 720,
+          "height": 1558,
+          "physicalWidth": 720,
+          "physicalHeight": 1558
+        },
+        "rendererRect": {
+          "x": 0,
+          "y": 0,
+          "width": 720,
+          "height": 1558
+        }
+      }
+    }
+  ]
+}

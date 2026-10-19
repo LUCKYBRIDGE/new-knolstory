@@ -1,0 +1,137 @@
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:10] "GET / HTTP/1.1" 200 -
+
+Running 2 tests using 1 worker
+
+(node:25654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/3wp-4hnigpzga.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/2f8uygxano1ta.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/1o1cucgk1be4y.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/04lnmyzhszboj.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /_next/static/chunks/292p5ssu69fja.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:11] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:16] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/index.html HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/web-presplash.jpg HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/runtime-contract.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/renpy-pre.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/knol-bridge.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/renpy.js HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:21] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:24] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:24] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:24] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:24] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:24] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:24] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 1440 (29.3s)
+(node:25747) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/3wp-4hnigpzga.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/35_ps72ika8wx.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/2f8uygxano1ta.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/0yxjehgvq3atv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/38he8-oivpovb.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/028j2jy7_zixt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/0quwexislonyx.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/turbopack-40w3n9mkp9fbq.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/1o1cucgk1be4y.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/292p5ssu69fja.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /_next/static/chunks/04lnmyzhszboj.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:40] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/web-presplash.jpg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/runtime-contract.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/knol-bridge.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/renpy-pre.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/renpy.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:41] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:46] "GET /?view=editor HTTP/1.1" 304 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:50] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:50] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:50] "GET /runtime/game.zip HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:53] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:53] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:53] "GET /runtime/game/ui/dialogue-paper.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [11/Oct/2026 18:40:53] "GET /runtime/game/ui/dialogue-speaker.svg HTTP/1.1" 200 -
+  ✘  2 [host] › tests/e2e/audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 390 (29.2s)
+
+
+  1) [host] › tests/e2e/audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 1440 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByTestId('story-runtime-status')
+    Expected pattern: /forest/
+    Received string:  ""
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 15000ms
+      - waiting for getByTestId('story-runtime-status')
+        34 × locator resolved to <div role="status" data-music-path="" data-ambience-path="" data-sound-paths="[]" data-music-position="" data-scene-revision="6" data-scene-width="1280" data-scene-height="800" data-engine-width="1280" data-engine-height="800" data-choices-rect="null" data-sound-play-count="0" data-rendered-revision="6" data-music-start-count="0" data-renderer-width="1280" data-renderer-height="800" data-audio-unlocked="false" data-ambience-start-count="0" data-testid="story-runtime-status" data-textbox-y="641.3333…>이야기 무대 연결됨 · 소리를 시작하려면 무대를 한 번 눌러 주세요.</div>
+           - unexpected value ""
+
+
+       8 |  await page.getByLabel('소리 새 시작 컷',{exact:true}).selectOption(target!);await page.getByRole('button',{name:'선택한 컷으로 소리 옮기기',exact:true}).click();await position.selectOption(target!);await expect(page.getByLabel('배경음 종료 컷',{exact:true})).toHaveValue(end!);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(page.getByLabel('배경음 종료 컷',{exact:true})).toHaveValue(end!);
+       9 |  await page.getByText('작품 관리',{exact:true}).click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,doc=parseAuthoringFile(readFileSync((await file.path())!,'utf8'));expect(doc.project.lines.find((line:{id:string})=>line.id===source).audio.music).toBeUndefined();expect(doc.project.lines.find((line:{id:string})=>line.id===target).audio.music).toMatchObject({action:'play',endLineId:end});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    > 10 |  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-music-path',/forest/,{timeout:15000});await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(page.getByLabel('배경음 종료 컷',{exact:true})).toHaveValue(end!);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+      11 | });
+      12 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/audio-start.spec.ts:10:416
+
+    Error Context: test-results/audio-start-continuous-aud-47220-t-and-unrelated-script-1440-host/error-context.md
+
+  2) [host] › tests/e2e/audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 390 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: getByTestId('story-runtime-status')
+    Expected pattern: /forest/
+    Received string:  ""
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('story-runtime-status') with timeout 15000ms
+      - waiting for getByTestId('story-runtime-status')
+        34 × locator resolved to <div role="status" data-music-path="" data-ambience-path="" data-sound-paths="[]" data-scene-width="720" data-music-position="" data-scene-revision="6" data-engine-width="720" data-scene-height="1662" data-choices-rect="null" data-sound-play-count="0" data-engine-height="1662" data-renderer-width="720" data-rendered-revision="6" data-music-start-count="0" data-audio-unlocked="false" data-renderer-height="1662" data-ambience-start-count="0" data-testid="story-runtime-status" data-textbox-y="1454.226…>이야기 무대 연결됨 · 소리를 시작하려면 무대를 한 번 눌러 주세요.</div>
+           - unexpected value ""
+
+
+       8 |  await page.getByLabel('소리 새 시작 컷',{exact:true}).selectOption(target!);await page.getByRole('button',{name:'선택한 컷으로 소리 옮기기',exact:true}).click();await position.selectOption(target!);await expect(page.getByLabel('배경음 종료 컷',{exact:true})).toHaveValue(end!);await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(page.getByLabel('배경음 종료 컷',{exact:true})).toHaveValue(end!);
+       9 |  await page.getByText('작품 관리',{exact:true}).click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,doc=parseAuthoringFile(readFileSync((await file.path())!,'utf8'));expect(doc.project.lines.find((line:{id:string})=>line.id===source).audio.music).toBeUndefined();expect(doc.project.lines.find((line:{id:string})=>line.id===target).audio.music).toMatchObject({action:'play',endLineId:end});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+    > 10 |  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.frameLocator('iframe').locator('#canvas').waitFor({state:'attached'});const frame=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(frame.x+frame.width*.5,frame.y+frame.height*.1);await expect.poll(async()=>{const status=page.getByTestId('story-runtime-status');return Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-music-path',/forest/,{timeout:15000});await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await expect(page.getByLabel('배경음 종료 컷',{exact:true})).toHaveValue(end!);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+      11 | });
+      12 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/audio-start.spec.ts:10:416
+
+    Error Context: test-results/audio-start-continuous-aud-a8845-nt-and-unrelated-script-390-host/error-context.md
+
+  2 failed
+    [host] › tests/e2e/audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 1440 
+    [host] › tests/e2e/audio-start.spec.ts:4:31 › continuous audio start move keeps endpoint and unrelated script 390 

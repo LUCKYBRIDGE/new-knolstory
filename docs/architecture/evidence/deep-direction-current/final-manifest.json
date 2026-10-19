@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-13",
+  "scope": "local compact authoring/reading continuation; static native verification; no physical device, new external app edit, commit/push/deployment",
+  "source": {
+    "apps/web/lib/editor-navigation.ts": "d43596a7c19bac55aacf08be36adfd0b28fc1598630f9f1f32b9cf3455ec4b0c",
+    "apps/web/lib/editor-navigation.test.ts": "1695df28f5a5b34e37a7dcc2f2d72c75d1fef6dc68d20f9ea0e67237f525c2e0",
+    "apps/web/lib/workspace-storage.ts": "e8a1d77188eb0efb4c7ebabcc31a28528cacd26708c6ccf94c43e7c84f113c85",
+    "apps/web/lib/workspace-storage.test.ts": "3db635b2ba3078ebbea4d61fa2760cbb3fb4d516950cde3c4ff3aba84ff729c0",
+    "apps/web/components/story-workspace.tsx": "bfd99322354dbb6945a7ccfe76ff7a7480958d1cc19839c59abb4aea03897c16",
+    "apps/web/components/editor-flow-context.tsx": "d08d214043aaa7f52cf1b9884490cd71399140e5eea2c90d36beb864bec1daea",
+    "apps/web/components/editor-flow-context.module.css": "f930131f900322f3f7e1e2924448c691cd01b8dffcbee493fbb3a687a124676c",
+    "playwright.config.ts": "d0538494134fccbfc443729be6982665d48f21bbcfb72c2d708449dff720f826",
+    "tests/e2e/editor-navigation.spec.ts": "d8cb2eb8401f31edaff88024a824040c52305ba6989647b68190f78e85d1b013",
+    "tests/e2e/non-audio-direction-ui.spec.ts": "1a8673cc69e180bf139de8b1cc33d2316cea875fe209fc6cebc8e92751f43d60",
+    "tests/e2e/non-audio-external.spec.ts": "5e741213e50aaa01c1ea16d13b3d3e63493f0ecc3d6b715b9361608d3ee15717",
+    "tests/e2e/non-audio-transition.spec.ts": "356f3e319042ae10454ec5b008f0f778d80276c2356d07ac1b0344b820e519a1",
+    "tests/e2e/approved-editor.spec.ts": "03a234e117fd122438f2651ba71e7f17591de2b32396d23df976dc2e736f75c1",
+    "tests/e2e/cut-range-authoring.spec.ts": "3598973253e3945a1bf7bb13eb4402c9243c3b5cfcb73da5f9647a1c8a619809",
+    "tests/e2e/preview-context.spec.ts": "db16216194789961f126d33f669bad1843dfb4c805e84b1d7633e698e2d0b1cf",
+    "tests/e2e/view-actions.spec.ts": "0cf364f68817ad3008e78f0cb799a815b80b8374a17addc7013f1749701616df",
+    "packages/asset-registry/tests/audio-category.test.ts": "eb5605351011c7912640ab8fb3340825514b77bf7dc8a4ec0614b5575aa967de",
+    "packages/asset-registry/tests/cc0-audio.test.ts": "7945b693d71fe16c6885a06a574789ff616d0b062ccbbac8b6dc228f71c9b7e6",
+    "packages/asset-registry/tests/pixabay-audio.test.ts": "8f507485a7ef829c327c891e19ec677f3e1125ef5e245c06cafe755ce12efb8b",
+    "packages/compatibility/tests/staged-audio-roundtrip.test.ts": "cc46e6c4621b0b865be55e2aa43fa4bb1bbe2364648f1e3ebb68f9233ea31a19"
+  },
+  "artifacts": {
+    "verified-final-build.log": "ff8755ab42c3d2487469825d9a4a0770fba4b8eeb81678e86446259f42318e9e",
+    "coverage-final.log": "3414c6ee5f7a073f894e799538518994df5b57748d90b336532d0e3693b798ad",
+    "build-final.log": "d76bb3460c577930fd6494c88d7ee4391f517b8ce9fc029ebde71941199577e2",
+    "build-identity.json": "f66cc01bb44fed92eb933e53d5a1ed1616082fc468e040279213677554583787",
+    "typecheck-last.log": "74421d070a83c8069523633e16cd0caf36cee75caa15e1ed80aa28ecd3d28c32",
+    "last-lint.log": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+    "docs-last.log": "38c6f0a4b60c4d727b12df25fbbb568613f14890a9fad8dba5dfb5e2cb756e67",
+    "final-path-unit.log": "ec0227a379bc92c8e05e1f2dbdc59fc8656db75fc518fc7218c0f7bc0d1407ee",
+    "external-artifact-contracts.log": "81e77010b59ca3c3c84310e9ba1d4b2439c08d994ab572daf1cd1d449d8aa0c5",
+    "service-audio.log": "2769004b496ab9a74ddf2b2b15ec96fd4dd8f39fe712b4cbee49fea4a1c76f4c",
+    "affected-regression.log": "ef1d84399dec95d42f60e1d903231eb1705b96dc64bbd83414e633ed25dd53ff",
+    "failures-migrated.log": "f51a12c4ff7d13b16ce7284ddb2f2193dd7d6f57f6f6b99d3e2afdd2d4a9bcdb",
+    "four-combinations-isolated.log": "7dd4959681f7962c49e4d697e37b6c90d73cfc9bfddb4df3c709a69f98f3c87c"
+  },
+  "results": {
+    "finalStaticNative": {
+      "passed": 52,
+      "failed": 0,
+      "skipped": 0
+    },
+    "unit": {
+      "passed": 1209,
+      "failed": 0,
+      "skippedArtifactWriter": 1
+    },
+    "coverage": {
+      "statements": 93.71,
+      "branches": 91.19,
+      "functions": 96.66,
+      "lines": 98.7
+    },
+    "catalog": 530,
+    "aliases": 23
+  },
+  "limits": [
+    "physical Samsung keyboards/devices",
+    "fresh actual Excel/Google app edits",
+    "deployment/server/release",
+    "original Chrome error cause",
+    "unrun entire unrelated E2E suite"
+  ]
+}

@@ -1,0 +1,25 @@
+
+> knolstory-next@ test /Users/wan/ai_dev/apps/new-knolstory
+> vitest run packages/compatibility/tests/authoring-fields.test.ts
+
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/authoring-fields.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/authoring-fields.test.ts [ packages/compatibility/tests/authoring-fields.test.ts ]
+Error: Cannot find module '../src/authoring-fields' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/compatibility/tests/authoring-fields.test.ts
+ ❯ packages/compatibility/tests/authoring-fields.test.ts:4:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  20:11:03
+   Duration  512ms (transform 291ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

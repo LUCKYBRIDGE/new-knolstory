@@ -1,0 +1,36 @@
+import {test,expect} from '@playwright/test';
+import {readFile} from 'node:fs/promises';
+const key='knolstory-shortstory-library-v1';
+test('two ShortStory tabs preserve the saved book and export the blocked draft',async({page,context})=>{
+ await page.goto('/shortstory');
+ await page.getByLabel('이야기 제목',{exact:true}).fill('첫 탭의 그림책');
+ await page.getByLabel('이 쪽의 이야기').fill('먼저 저장한 글');
+ const other=await context.newPage();await other.goto('/shortstory');
+ await expect(other.getByRole('alert').filter({hasText:'다른 탭'})).toBeVisible();
+ await other.getByLabel('이 쪽의 이야기').fill('두 번째 탭의 초안');
+ await expect(other.getByLabel('이 쪽의 이야기')).toHaveValue('두 번째 탭의 초안');
+ expect(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)!).books[0].pages[0].text,key)).toBe('먼저 저장한 글');
+ const downloadPromise=other.waitForEvent('download');await other.getByRole('button',{name:'작품 파일 내보내기'}).click();
+ const download=await downloadPromise;expect(await readFile((await download.path())!,'utf8')).toContain('두 번째 탭의 초안');
+ await page.close();
+ await other.getByRole('button',{name:'임시 보관',exact:true}).click();
+ expect(await other.evaluate(key=>JSON.parse(localStorage.getItem(key)!).books[0].pages[0].text,key)).toBe('먼저 저장한 글');
+ await other.getByRole('button',{name:'저장된 보관함 다시 열기',exact:true}).click();
+ const confirmation=other.getByRole('dialog',{name:'저장된 보관함 다시 열기',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(other.getByLabel('이 쪽의 이야기')).toHaveValue('두 번째 탭의 초안');await other.getByRole('button',{name:'저장된 보관함 다시 열기',exact:true}).click();await confirmation.getByRole('button',{name:'보관함 다시 열기',exact:true}).click();
+ await expect(other.getByLabel('이 쪽의 이야기')).toHaveValue('먼저 저장한 글');
+ await other.getByLabel('이 쪽의 이야기').fill('새로 연 뒤 저장한 글');
+ expect(await other.evaluate(key=>JSON.parse(localStorage.getItem(key)!).books[0].pages[0].text,key)).toBe('새로 연 뒤 저장한 글');
+});
+test('a read-only second tab never migrates or recovers storage over the writer',async({page,context})=>{
+ await page.goto('/shortstory?work=rabbit&mode=read');
+ const original=await page.getByLabel('이야기 제목',{exact:true}).inputValue();
+ await page.getByRole('button',{name:'내 사본으로 쓰기',exact:true}).click();
+ await page.getByLabel('이 쪽의 이야기').fill('원본을 지키는 내 사본');
+ const saved=await page.evaluate(key=>localStorage.getItem(key),key);
+ const other=await context.newPage();await other.goto('/shortstory?work=rabbit&mode=read');
+ await expect(other.getByRole('alert').filter({hasText:'다른 탭'})).toBeVisible();
+ await expect(other.getByLabel('이야기 제목',{exact:true})).toHaveValue(original);
+ await expect(other.getByRole('button',{name:'보관함 새로 시작'})).toHaveCount(0);
+ expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
+ await other.reload();expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
+});

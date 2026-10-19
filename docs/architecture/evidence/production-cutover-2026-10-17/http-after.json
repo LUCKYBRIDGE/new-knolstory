@@ -1,0 +1,37 @@
+{
+  "/": {
+    "status": 200,
+    "type": "text/html; charset=utf-8",
+    "bytes": 7584
+  },
+  "/api/v1/auth/config": {
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "bytes": 92,
+    "data": {
+      "success": true,
+      "data": {
+        "signupProvider": "kakao",
+        "providers": {
+          "kakao": true,
+          "google": false
+        }
+      }
+    }
+  },
+  "/api/v1/me": {
+    "status": 401
+  },
+  "/runtime/renpy.wasm": {
+    "status": 206,
+    "type": "application/wasm",
+    "bytes": 64,
+    "bytesMatch": true
+  },
+  "originalProbeFailure": "Python default User-Agent WASM range request returned403; ordinary browser User-Agent returned206. No security protection disabled.",
+  "databaseCounts": [
+    "accounts=1",
+    "identities=1",
+    "documents=1"
+  ]
+}

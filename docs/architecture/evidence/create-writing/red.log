@@ -1,0 +1,37 @@
+
+Running 1 test using 1 worker
+
+(node:51534) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [host] › tests/e2e/create-writing.spec.ts:5:39 › new work starts writing without required settings 1440 (6.0s)
+
+
+  1) [host] › tests/e2e/create-writing.spec.ts:5:39 › new work starts writing without required settings 1440 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByLabel('대사 / 해설', { exact: true })
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" getByLabel('대사 / 해설', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('대사 / 해설', { exact: true })
+        14 × locator resolved to <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설"></textarea>
+           - unexpected value "hidden"
+
+
+      4 | import {parseAuthoringFile} from './authoring-file';
+      5 | for(const width of [1440,768,390,844])test(`new work starts writing without required settings ${width}`,async({page},info)=>{
+    > 6 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/');await enterLibrary(page);await startShelfCreation(page);const title=`첫 문장을 바로 쓰는 작품 ${width}`;await page.getByLabel('새 작품 제목',{exact:true}).fill(title);await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();const text=page.getByLabel('대사 / 해설',{exact:true});await expect(text).toBeVisible();await expect(page.getByRole('region',{name:'작품 설정',exact:true})).toHaveCount(0);await expect(text).toHaveValue('');await expect(page.getByLabel('진행 방식',{exact:true})).toBeHidden();await expect(page.getByRole('button',{name:'소리 편집',exact:true})).toBeHidden();await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');const id=await page.getByLabel('현재 장과 컷 이동').inputValue();await text.fill('첫 문장을 바로 쓴다.\n다음 장면을 생각한다.');await expect(page.getByTestId('save-status')).toHaveText('기기에 저장됨');await page.reload();await expect(text).toHaveValue('첫 문장을 바로 쓴다.\n다음 장면을 생각한다.');await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(id);
+        |                                                                                                                                                                                                                                                                                                                                                                                       ^
+      7 |  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();const book=page.locator('article[data-book-id]').filter({has:page.getByRole('heading',{name:title,exact:true})});await openShelfAction(page,book,'편집하기');await expect(text).toHaveValue('첫 문장을 바로 쓴다.\n다음 장면을 생각한다.');await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,saved=parseAuthoringFile(readFileSync((await file.path())!,'utf8'));expect(saved.project.title).toBe(title);expect(saved.project.lines).toHaveLength(1);expect(saved.project.lines[0].id).toBe(id);expect(saved.project.lines[0].text).toBe('첫 문장을 바로 쓴다.\n다음 장면을 생각한다.');expect(saved.project.scores??[]).toHaveLength(0);expect(saved.project.creativeMemos).toHaveLength(0);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');return Number(await state.getAttribute('data-rendered-revision'))>=0&&(await state.getAttribute('data-rendered-revision'))===(await state.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.screenshot({path:info.outputPath(`create-writing-${width}.png`),fullPage:true});
+      8 | });
+      9 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/create-writing.spec.ts:6:375
+
+    Error Context: test-results/create-writing-new-work-st-54c0e-hout-required-settings-1440-host/error-context.md
+
+  1 failed
+    [host] › tests/e2e/create-writing.spec.ts:5:39 › new work starts writing without required settings 1440 

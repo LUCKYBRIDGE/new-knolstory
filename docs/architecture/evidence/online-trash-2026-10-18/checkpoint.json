@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-18",
+  "status": "local-implemented-focused-verified-not-deployed",
+  "task": "PC04/Q04 online trash same-record restore",
+  "decision": "User explicitly selected online trash then same work restore; device originals retained; retention and permanent purge not decided",
+  "implemented": [
+    "Forward migration007 adds nullabledeleted_at,state_version1 and immutable-command receipts; no record/blob/snapshot history deleted",
+    "POST documents/:id/trash and /restore requireCSRF/session/expectedaccount/idempotency plus strict expectedcontentrevision andstateversion",
+    "Active default and explicittrash list with scopeboundpagination; trashed read/save including oldsave replay rejected",
+    "SameID/snapshot/contentrevision preserved; stateversion increments; oldcommandreplay doesnotmutate lateropposite state",
+    "BothWebworkspaces share onlinepanel: active/trash list, confirm/cancel,restore,retry notice; localmanuscript unmodified"
+  ],
+  "verification": {
+    "httpRed": "2newtests failed before route implementation,45existingpassed",
+    "dbRed": "6realDB cases failed missingtrash method aftermigration successful",
+    "dbFinal": "5files75passed incl9trash/concurrency andactualHTTP lifecycle forKnolStory/ShortStory; db-final.log",
+    "dbCoverage": "Separate5files30passed; service.ts+trash-state.ts91.19statements90.83branches100functions99.03lines; db-coverage.log",
+    "boundaryCoverage": "trash helper/HTTProuter/Webclient focused combined92.5statements93.15branches100functions99.42lines; coverage.log",
+    "web": "KnolStory1440/3902passed web-reviewed.log; ShortStory1440/3902passed web-shortstory.log; browserHTTP mocked, device content entirecompare",
+    "webSetupFailure": "Initial2browser failures were strict status locator matchingbusy+success; fixed selector, initial logs retained",
+    "review": "Read-onlyreview found replaynoticeP2; fixed to priorrequestconfirmation and currentlistrecheck; owner/CSRF/locks/oldreceipt/cursor no other findings",
+    "migration": "All7current SQLhashes match isolatedDBjournal; prior applied001-006 checksums retained",
+    "typecheck": "web/server/newE2E passed",
+    "eslint": "changed source/tests passed; existingReactdetectnotice",
+    "webBuild": "passed; lateststatic15401candidate, APIproxy notclaimed"
+  },
+  "limits": [
+    "No production DBmigration/APIdeploy/remotechange executed; staticpreview uses no new backendproxy",
+    "Webpending command key lives incomponent for in-sessionretry; reload rechecksserver state, no durable lifecycle outbox claim",
+    "Actual browser through realHTTP/DB combined E2E not yet collected; realHTTP/DB and mockedbrowser evidence kept distinct",
+    "No automaticpurge/retention policy/class/share/physicalmulti-device completion",
+    "Runtime/manuscriptformat/native source unaffected; previous261cut/design/maxfit evidence reused"
+  ],
+  "sha256": {
+    "server/migrations/007-document-trash.sql": "779593992ded36350113a739e82003011c02a06fd378758cb08b459244a957f8",
+    "server/migrations/runner.ts": "7722ba7aecaaa4a024c7aa4922ca6f37a6ae33b0155ebbd0aa740a2ebc4d2ece",
+    "server/documents/service.ts": "24a03b22b1c962f5313d0035e97bd971c134b441692c25cc324458b5d54deea4",
+    "server/documents/trash-state.ts": "25257da56ae7614261367e2a3d628ebc592140e698254a42060715473d465e9b",
+    "server/documents/trash.integration.ts": "9d3974a974ae1983903a78dd8e84f09ad463bee61252dd36e99bde9946f65567",
+    "server/http/document-routes.ts": "cbd3d8876040b2064f4366ca74294f11a0f8887348adab66a2e3fe29212fdd16",
+    "server/http/document-routes.test.ts": "5939062fb22b087aed169556fdd2a5eeeae598c0c7251138d02d25365b736640",
+    "server/http/document-service.integration.ts": "294b45ed677f69439074349ba89ca35600737702bf0a3fcaeaa9d30beeaa1f85",
+    "apps/web/lib/document-api.ts": "4d2667827bcd803a4cb58358aaed45dbab93ce284b7c7cd8262aeabab9f2499c",
+    "apps/web/lib/document-api.test.ts": "612a400c849d24317a72d8fb76a7cda4de11b528aede7a7d68dadbc1e23ad008",
+    "apps/web/components/online-works-panel.tsx": "d6051dc144db11895628520bf26a2b3014d73c3c7df702e5d73d1bfced2047ca",
+    "tests/e2e/online-trash.spec.ts": "7788906cb7d8302d731b8eff4c20b8384016d77f9cfa9378e3cab3b29f4970d7"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "75realDB/HTTP,programmaticcoverages and4mockWeb flows; deployment/realbrowserDB combined path pending"
+  }
+}
