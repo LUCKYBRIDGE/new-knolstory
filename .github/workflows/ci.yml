@@ -13,6 +13,8 @@ jobs:
           node-version: '22'
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      # Server intentionally owns a separate lockfile (same installation as Docker).
+      - run: pnpm --dir server install --ignore-workspace --frozen-lockfile
       - run: pnpm docs:check
       - run: pnpm test:docs
       - run: pnpm test:scripts

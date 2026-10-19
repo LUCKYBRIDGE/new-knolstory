@@ -1,0 +1,83 @@
+checks	Run pnpm typecheck	﻿2026-10-19T23:44:53.1908954Z ##[group]Run pnpm typecheck
+checks	Run pnpm typecheck	2026-10-19T23:44:53.1909346Z ^[[36;1mpnpm typecheck^[[0m
+checks	Run pnpm typecheck	2026-10-19T23:44:53.1949493Z shell: /usr/bin/bash -e {0}
+checks	Run pnpm typecheck	2026-10-19T23:44:53.1949774Z env:
+checks	Run pnpm typecheck	2026-10-19T23:44:53.1950028Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+checks	Run pnpm typecheck	2026-10-19T23:44:53.1950318Z ##[endgroup]
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4359065Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4360120Z > knolstory-next@ typecheck /home/runner/work/new-knolstory/new-knolstory
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4360923Z > turbo run typecheck && pnpm typecheck:server
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4361256Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4751084Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4751818Z Attention:
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4769859Z Turborepo now collects completely anonymous telemetry regarding usage.
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4800069Z This information is used to shape the Turborepo roadmap and prioritize features.
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4801802Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4829576Z https://turborepo.dev/docs/telemetry
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4830356Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4896719Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4898364Z    • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4899701Z    • Running typecheck in 6 packages
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4900190Z    • Remote caching disabled
+checks	Run pnpm typecheck	2026-10-19T23:44:53.4900434Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:56.4480071Z ##[group]@knolstory/runtime-contract:typecheck
+checks	Run pnpm typecheck	2026-10-19T23:44:56.4495907Z cache miss, executing 07050cb8caf5542d
+checks	Run pnpm typecheck	2026-10-19T23:44:56.4519504Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:56.4520379Z > @knolstory/runtime-contract@0.0.0 typecheck /home/runner/work/new-knolstory/new-knolstory/packages/runtime-contract
+checks	Run pnpm typecheck	2026-10-19T23:44:56.4520897Z > tsc --noEmit
+checks	Run pnpm typecheck	2026-10-19T23:44:56.4521018Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:56.4521555Z ##[endgroup]
+checks	Run pnpm typecheck	2026-10-19T23:44:56.9444630Z ##[group]@knolstory/story-domain:typecheck
+checks	Run pnpm typecheck	2026-10-19T23:44:56.9445352Z cache miss, executing 50287ce6d3e6e968
+checks	Run pnpm typecheck	2026-10-19T23:44:56.9445652Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:56.9446084Z > @knolstory/story-domain@0.0.0 typecheck /home/runner/work/new-knolstory/new-knolstory/packages/story-domain
+checks	Run pnpm typecheck	2026-10-19T23:44:56.9446647Z > tsc --noEmit
+checks	Run pnpm typecheck	2026-10-19T23:44:56.9446769Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:56.9447296Z ##[endgroup]
+checks	Run pnpm typecheck	2026-10-19T23:44:58.2001016Z ##[group]@knolstory/asset-registry:typecheck
+checks	Run pnpm typecheck	2026-10-19T23:44:58.2013563Z cache miss, executing ddef029885d8b5c2
+checks	Run pnpm typecheck	2026-10-19T23:44:58.2014134Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:58.2014932Z > @knolstory/asset-registry@0.0.0 typecheck /home/runner/work/new-knolstory/new-knolstory/packages/asset-registry
+checks	Run pnpm typecheck	2026-10-19T23:44:58.2015858Z > tsc --noEmit
+checks	Run pnpm typecheck	2026-10-19T23:44:58.2016176Z 
+checks	Run pnpm typecheck	2026-10-19T23:44:58.2016747Z ##[endgroup]
+checks	Run pnpm typecheck	2026-10-19T23:45:02.8968299Z ##[group]@knolstory/compatibility:typecheck
+checks	Run pnpm typecheck	2026-10-19T23:45:02.8969866Z cache miss, executing 82bb16832f419989
+checks	Run pnpm typecheck	2026-10-19T23:45:02.8970098Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:02.8970595Z > @knolstory/compatibility@0.0.0 typecheck /home/runner/work/new-knolstory/new-knolstory/packages/compatibility
+checks	Run pnpm typecheck	2026-10-19T23:45:02.8971206Z > tsc --noEmit
+checks	Run pnpm typecheck	2026-10-19T23:45:02.8971358Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:02.8971712Z ##[endgroup]
+checks	Run pnpm typecheck	2026-10-19T23:45:08.4915555Z ##[group]@knolstory/runtime-core:typecheck
+checks	Run pnpm typecheck	2026-10-19T23:45:08.4916107Z cache miss, executing 161481d97fdae1e5
+checks	Run pnpm typecheck	2026-10-19T23:45:08.4916294Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:08.4916685Z > @knolstory/runtime-core@0.0.0 typecheck /home/runner/work/new-knolstory/new-knolstory/packages/runtime-core
+checks	Run pnpm typecheck	2026-10-19T23:45:08.4917162Z > tsc --noEmit
+checks	Run pnpm typecheck	2026-10-19T23:45:08.4917281Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:08.4917520Z ##[endgroup]
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0274737Z ##[group]@knolstory/web:typecheck
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0275727Z cache miss, executing 9310bba6b95491c5
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0275986Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0276436Z > @knolstory/web@0.0.0 typecheck /home/runner/work/new-knolstory/new-knolstory/apps/web
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0277047Z > tsc --noEmit
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0277233Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0277593Z ##[endgroup]
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0277772Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0284263Z  Tasks:    6 successful, 6 total
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0285184Z Cached:    0 cached, 6 total
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0285685Z   Time:    25.552s 
+checks	Run pnpm typecheck	2026-10-19T23:45:19.0286025Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:19.2873399Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:19.2874535Z > knolstory-next@ typecheck:server /home/runner/work/new-knolstory/new-knolstory
+checks	Run pnpm typecheck	2026-10-19T23:45:19.2875287Z > tsc -p server/tsconfig.json
+checks	Run pnpm typecheck	2026-10-19T23:45:19.2875552Z 
+checks	Run pnpm typecheck	2026-10-19T23:45:24.3884292Z ##[error]server/auth/oidc-provider.test.ts(1,53): error TS2307: Cannot find module 'jose' or its corresponding type declarations.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.3893918Z ##[error]server/auth/oidc-provider.ts(2,74): error TS2307: Cannot find module 'jose' or its corresponding type declarations.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.3896071Z ##[error]server/auth/oidc-provider.ts(128,78): error TS7006: Parameter 'error' implicitly has an 'any' type.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.3897875Z ##[error]server/main.ts(4,16): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.3899683Z ##[error]server/main.ts(28,67): error TS7006: Parameter 'row' implicitly has an 'any' type.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.3901113Z ##[error]server/main.ts(28,71): error TS7006: Parameter 'index' implicitly has an 'any' type.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.3903062Z ##[error]server/migrations/production.ts(2,16): error TS2307: Cannot find module 'pg' or its corresponding type declarations.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.4246926Z  ELIFECYCLE  Command failed with exit code 2.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.4695497Z  ELIFECYCLE  Command failed with exit code 2.
+checks	Run pnpm typecheck	2026-10-19T23:45:24.4841746Z ##[error]Process completed with exit code 2.

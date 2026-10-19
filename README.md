@@ -71,6 +71,7 @@ git clone --branch main https://github.com/LUCKYBRIDGE/new-knolstory.git
 cd new-knolstory
 corepack enable
 pnpm install --frozen-lockfile
+pnpm --dir server install --ignore-workspace --frozen-lockfile
 pnpm docs:check
 pnpm test:docs
 pnpm typecheck
