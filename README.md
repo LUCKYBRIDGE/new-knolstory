@@ -75,7 +75,7 @@ pnpm --dir server install --ignore-workspace --frozen-lockfile
 pnpm docs:check
 pnpm test:docs
 pnpm typecheck
-pnpm --filter @knolstory/web build
+pnpm --filter @knolstory/web run build:source
 ```
 
 마지막 명령은 Web 소스의 정적 컴파일 검사다. 별도 복원이 필요한 자료와 Ren’Py 실행 파일까지 준비됐다는 뜻은 아니다. 전체 제품 개발은 [단일 실행 계획](docs/architecture/product-completion-plan.md)의 현재 재개 지점과 [다음 세션 진입점](docs/architecture/next-session-goal-prompt.md)을 따른다. 실제 작품 파일은 별도로 옮겨 다시 열며, 다른 컴퓨터의 브라우저 임시 보관은 Git으로 이동하지 않는다.
@@ -115,8 +115,10 @@ Library and book-design continuity, direct cover editing and validation: [legacy
 
 The original/forked manuscripts' project data and audio cues are in [existing-work evidence](docs/architecture/existing-story-enhancement.md). Cover and entry workflow evidence and remaining limitations are in [book-entry verification](docs/architecture/book-entry-and-cover.md).
 
-`story-maker` is a private repository. Use your existing authorized GitHub account to check it out beside Next; no new repository secret or access grant is installed by this task. Public GitHub CI runs source/type/lint/contract checks and the Web-only static compilation (`pnpm --filter @knolstory/web build`), and explicitly excludes the private-media file-by-file test. It does not run the full media-gated `pnpm build` or prove native playback readiness. Full local `pnpm test:coverage` and Chrome/Ren’Py verification require the restored private media and are recorded in the verification documents.
+`story-maker` is a private repository. Use your existing authorized GitHub account to check it out beside Next; no new repository secret or access grant is installed by this task. Public GitHub CI runs source/type/lint/contract checks and the Web-only static compilation (`pnpm --filter @knolstory/web run build:source`), and explicitly excludes the private-media file-by-file test. It does not run the full media-gated `pnpm build` or prove native playback readiness. Full local `pnpm test:coverage` and Chrome/Ren’Py verification require the restored private media and are recorded in the verification documents.
 
 제품 문구와 개발 문서의 기능 이름은 [제품 용어 기준](docs/architecture/editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 문서·UI 변경 시 `pnpm docs:check`와 `pnpm test:docs`로 링크와 명확한 이전 이름의 재유입을 확인한다.
 
 공개 CI는 별도 복원 원본이 필요한 `catalog.test.ts`와 `approved-audio-bytes.test.ts`를 제외하고, 음원 등록·권리 정책 메타데이터 검사는 계속 실행한다. 로컬 전체 검사는 승인된 원음의 해시까지 확인한다. 원음 파일을 소스에 공개하거나 해시 검사를 제거해 CI를 통과시키지 않는다.
+
+`build:source`는 공개 소스의 정적 컴파일 검사 전용이다. 실제 실행/배포 후보는 승인 자료를 복원한 뒤 일반 `pnpm build`를 사용하며, 그 명령의 음원 해시·권리 검사는 유지된다.

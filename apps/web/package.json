@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
     "build": "python3 ../../scripts/check-service-audio.py && next build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:source": "next build"
   },
   "dependencies": {
     "@knolstory/runtime-core": "workspace:*",
