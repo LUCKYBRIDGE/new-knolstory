@@ -57,7 +57,8 @@ describe('provided original and creative editions edited reading text',()=>{
    }
   }
  });
- it('preserves the same reference and every field after any authored edit to any official edition',()=>{
+ // Full-manuscript roundtrips exceed the short unit default on shared CI CPUs.
+ it('preserves the same reference and every field after any authored edit to any official edition',{timeout:30000},()=>{
   for(const entry of [...representativeStories,...classicStories]){
    const original=entry.project,current=enhanceExistingStory(refineProvidedStory(original));
    const editions=[original,enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original)),current];

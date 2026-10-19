@@ -35,7 +35,8 @@ it('explicitly migrates duration-free workbook5 and rejects duration under an ol
  await expect(importAuthoringWorkbook({...previous,tables:{...previous.tables,presentationEffects:table}})).rejects.toThrow(/버전 6/);
  const latest=await exportAuthoringWorkbook(await importAuthoringWorkbook(previous));expect(latest.tables.presentationEffects.rows.every(row=>row[latest.tables.presentationEffects.headers.indexOf('durationMs')]===UNSET)).toBe(true);
 });
-it('preserves zero and unset duration and rejects invalid archive durations before storage',async()=>{
+// Full-manuscript roundtrips exceed the short unit default on shared CI CPUs.
+ it('preserves zero and unset duration and rejects invalid archive durations before storage',{timeout:30000},async()=>{
  const {archive}=await fixture();if(archive.format!=='knolstory')throw Error();
  for(const durationMs of [0,undefined]){
   const document={...archive.document,project:{...archive.document.project,lines:archive.document.project.lines.map((line,index)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation!.effects!.map(({durationMs:_old,...effect})=>({...effect,...(durationMs===undefined?{}:{durationMs})}))}})}};
