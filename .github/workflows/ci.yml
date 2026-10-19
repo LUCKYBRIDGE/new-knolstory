@@ -21,7 +21,7 @@ jobs:
       - run: pnpm lint
       # Full asset corpus is private and unverified for public redistribution.
       # This public job validates source/contracts; local full media/Chrome gates are documented.
-      - run: pnpm exec vitest run --coverage --maxWorkers=2 --exclude packages/asset-registry/tests/catalog.test.ts
+      - run: pnpm exec vitest run --coverage --maxWorkers=2 --exclude packages/asset-registry/tests/catalog.test.ts --exclude packages/asset-registry/tests/approved-audio-bytes.test.ts
       # Compile the Web source without claiming that ignored media or the native
       # runtime are present. Full pnpm build retains its service-audio rights gate.
       - run: pnpm --filter @knolstory/web build
