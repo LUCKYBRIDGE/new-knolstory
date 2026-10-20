@@ -8,7 +8,7 @@
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | 편집화면 구성 목표 로컬 완료. 반응형 여섯 화면·가로/세로 배열·현재 및 이전/다음 컷의 실제 장면 미리보기·읽기 복귀·보조 패널·파일 보존을 검증했다. [현재 기능 감사](editor-redesign-completeness-audit.md#2026-10-20-편집-화면-구성-완료-작업--검증-완료), [최종 checkpoint](evidence/editor-completion-2026-10-20/checkpoint.json). 현재 dirty 변경은 미게시이며 제품 출시 전체 완료가 아니다. |
+| 현재 작업 | 편집화면 구성 목표 로컬 완료. 반응형 여섯 화면·가로/세로 배열·현재 및 이전/다음 컷의 실제 장면 미리보기·읽기 복귀·보조 패널·파일 보존을 검증했다. [현재 기능 감사](editor-redesign-completeness-audit.md#2026-10-20-편집-화면-구성-완료-작업--검증-완료), [최종 checkpoint](evidence/editor-completion-2026-10-20/checkpoint.json). 현재 소스는 최신 원격499a131을 보존해 main에 반영했다. [전달·검증 기록](evidence/editor-main-2026-10-20/checkpoint.json). 제품 출시 전체 완료가 아니다. |
 | 종료된 로컬 checkpoint | PC-01 host389 종료:352통과/37native 전용 제외, source/보호artifact 변경0. 필수 native 동선 이행은 [실행별 결과](evidence/native-resume-2026-10-15/native-result.json). PC-02 네 제작 모드 대조와 점수 전용 native 빈 셀 보완. 물리 기기·출시 전체 완료 아님 |
 | 우선 읽을 증거 | [로컬 작품 파일 현재 checkpoint](evidence/local-work-files-2026-10-18/checkpoint.json), [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [온라인 휴지통 후속](evidence/online-trash-2026-10-18/checkpoint.json). 원고/최대 화면/접근성의 기존 근거는 해당 소유 문서에서 재사용. |
 | 다음 행동 | 현재 편집화면 목표는 종료한다. 다음 사용자 요청 또는 기존 작업 큐의 정확한 의존성이 충족된 범위로 이어간다. 물리 기기/OS IME/스크린리더·장기 안정성·운영/학급/공유·공개 배포를 이번 화면 검증으로 완료 처리하지 않는다. 원고/Asset ID/Flow·미커밋 변경과 과거 검증 기록을 보존한다. |

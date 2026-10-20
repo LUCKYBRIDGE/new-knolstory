@@ -1,5 +1,5 @@
 {
-  "status": "local-verified-ready-for-main",
+  "status": "delivered-main-local-verified-ci-pending",
   "scope": "Retired act-prefix cleanup and owner-authorized delivery of current editor changes to latest GitHub main",
   "remoteBase": "499a1313fcce64237a69c08d128eae1e7716feba",
   "browserLimit": "Latest chapter-title UI check rejected: Local browser use disabled in Work settings. Earlier native editor evidence retains its original scope.",
@@ -49,5 +49,16 @@
     "packages/story-domain/src/legacy/chapter-identity.ts": "66f01ea52e1376fd41c9c5e7c69cd12e172205c852017fed182a9e711c73f050",
     "packages/story-domain/src/legacy/story-project-validation.ts": "5886a756ef9552577aeee40e5b405a79edf6a1bebc71d77c5786db0128569732",
     "packages/compatibility/src/authoring-archive.ts": "91136bb1a69a009f4bb7a34a0d443e27dc6777fb1f18ee8d24d7d1c35d7cc3f9"
+  },
+  "delivery": {
+    "sourceCommit": "749d2e3",
+    "regressionCommit": "852af9b685fbc322fb22fa3a34cfee7e153216e3",
+    "preservedUpstream": "499a1313fcce64237a69c08d128eae1e7716feba",
+    "remote": "https://github.com/LUCKYBRIDGE/new-knolstory",
+    "branch": "main",
+    "pushVerified": true,
+    "ciRun": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/39393124381",
+    "ciStatusAtRecord": "queued",
+    "publicationScope": "GitHub source main only; no service deployment or media redistribution."
   }
 }
