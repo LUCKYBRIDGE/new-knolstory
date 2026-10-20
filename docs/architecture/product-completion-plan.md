@@ -63,7 +63,7 @@ PC-03은 ADR0011의 서버 추천안과 [저장 계약](authoring-storage-contra
 | Q-01 · PC-04/05 | 로그인은 [ADR0023](../decisions/0023-mac-mini-docker-and-linked-login.md)으로 확정: 카카오 가입·로그인, 계정에 Google 연결 후 동일 계정 Google 로그인. 교사/학급 승인만 미결 | 로그인 확정; 2026-10-16 교사/학급 승인 세 선택지 질문 후 답변 대기 |
 | Q-02 · PC-04/05 | 개인 원본 작성자 전용·교사는 제출 고정본 열람·재제출 새 고정본·기본 비공개와 공유 취소. 로그인/학급 공유 또는 비로그인 링크, 학생 공개 교사 승인 여부 | 비로그인 읽기의 뜻 설명 후 2026-10-16 공유 범위를 다시 선택 질문 · 답변 대기 |
 | Q-03 · PC-04/07 | 현재 Mac mini Docker 호스팅은 [ADR0023](../decisions/0023-mac-mini-docker-and-linked-login.md)으로 확정. 삭제 작품·제출·탈퇴 계정·백업 보관 기간만 별도 확정 | 호스팅 확정; 보관 기간 미결(2026-10-16 복구함 무기한/30/90일 선택 질문) |
-| Q-05 · PC-04/07 | Google 실제 제공자 설정 및 연결/연결 후 로그인 왕복 환경 | 승인된 Google 연결 정책은 유지. 실제 Google 환경은 후속. 기존 Kakao 앱/최종 도메인 callback 및 실제 로그인은 아래 완료 근거로 분리하며 재질문하지 않음. |
+| Q-05 · PC-04/07 | Google 실제 제공자 설정 및 연결/연결 후 로그인 왕복 환경 | 2026-10-20 사용자 콘솔 확인: 기존 Google Cloud 프로젝트 `knolstory-admin`에서 기존 `놀스토리 관리자 웹` 클라이언트는 보존하고 신규 웹 OAuth 클라이언트 `뉴놀스토리`를 생성했다고 보고함. 프로젝트 OAuth 게시 상태는 `테스트 중`, 테스트 사용자 등록됨. 데이터 액세스의 추가 민감하지 않은/민감한/제한된 범위 목록은 비어 있음(실제 요청 scope는 코드·실제 흐름에서 확인 필요). 새 클라이언트의 리디렉션 URI 등록과 Client ID/Secret의 Mac mini 서버 비공개 파일 설정은 아직 수행하지 않음. 기존 관리자 클라이언트 리디렉션 URI는 `story-admin-stg.knolquiz.com` 및 `story-admin.knolquiz.com`의 `/api/v1/auth/google/callback`이며 신규 서비스의 실제 callback과 같다고 추정하지 않음. **다음 행동:** 소스의 정확한 Google callback과 origin 확인 → Google Console에 URI 등록 → 자격증명을 Git 외부 시크릿에 연결 → 카카오 로그인 상태에서 Google 명시 연결 및 같은 내부 account ID로 Google 재로그인·충돌/실패 검증. OAuth 완료 또는 운영 배포로 판정하지 않음. 기존 Kakao 실제 검증은 아래 근거로 분리하여 재수행 강요하지 않음. |
 
 확정한 Q-04: 2026-10-18 사용자 선택으로 기기 원고 유지·온라인 휴지통·같은 작품 ID/이력 복구를 채택했다. [계약과 구현](authoring-storage-contract.md#휴지통-구현집중-검증). 보관/자동 영구삭제는 Q-03으로 분리한다.
 
