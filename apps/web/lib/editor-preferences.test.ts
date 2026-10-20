@@ -4,6 +4,18 @@ import {renderToString} from 'react-dom/server';
 import {defaultEditorPreferences,normalizeEditorPreferences,readEditorPreferences,writeEditorPreferences,editorPreferencesKey,createEditorPreferencesStore,useEditorPreferences} from './editor-preferences';
 const store=()=>{const values=new Map<string,string>();return {getItem:(key:string)=>values.get(key)??null,setItem:(key:string,value:string)=>{values.set(key,value);}};};
 describe('session-only editor preferences',()=>{
+ it('restores the cut arrangement independently for each work without changing old preferences',()=>{
+  const storage=store();
+  for(const arrangement of ['auto','columns','stacked'] as const){
+   const value=normalizeEditorPreferences({screen:'text',arrangement});
+   expect(value.arrangement).toBe(arrangement);
+   expect(writeEditorPreferences(storage,'a',value)).toBe(true);
+   expect(readEditorPreferences(storage,'a').arrangement).toBe(arrangement);
+   expect(readEditorPreferences(storage,'b').arrangement).toBe('auto');
+  }
+  expect(normalizeEditorPreferences({arrangement:'invalid'}).arrangement).toBe('auto');
+  expect(normalizeEditorPreferences({screen:'background'}).arrangement).toBe('auto');
+ });
  it('starts with basic editing and every optional editor closed',()=>{expect(readEditorPreferences(store(),'a')).toEqual(defaultEditorPreferences);});
  it('round trips separate project settings without authored content',()=>{const storage=store();const value=normalizeEditorPreferences({screen:'audio',enabled:{audio:true},logic:{scores:true},companions:{audio:['text','background']}});writeEditorPreferences(storage,'a',value);expect(readEditorPreferences(storage,'a')).toEqual(value);expect(readEditorPreferences(storage,'b')).toEqual(defaultEditorPreferences);expect(JSON.parse(storage.getItem(editorPreferencesKey('a'))!)).toEqual({version:1,...value});});
  it('requires exact boolean opt-ins and falls back from a closed screen',()=>{expect(normalizeEditorPreferences({screen:'audio',enabled:{audio:'true',characters:1},logic:{scores:'true'}})).toEqual(defaultEditorPreferences);expect(normalizeEditorPreferences({screen:'direction',enabled:{direction:true}}).screen).toBe('direction');});

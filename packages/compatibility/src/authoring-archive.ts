@@ -1,6 +1,6 @@
 import {validateAudioMetadata,type AudioMetadata} from '../../asset-registry/src/audio-metadata';
 import {parseAuthoringJson,assertJsonbText} from './authoring-json';
-import {parseStoryDocument, CURRENT_SCHEMA_VERSION, stageProjection, type StoryDocumentEnvelope, type StoryProject} from '@knolstory/story-domain';
+import {parseStoryDocument, normalizeChapterTitle, CURRENT_SCHEMA_VERSION, stageProjection, type StoryDocumentEnvelope, type StoryProject} from '@knolstory/story-domain';
 import {parseShortStory, type ShortStoryProject} from './shortstory';
 import {assertAuthoringFields} from './authoring-fields';
 
@@ -108,9 +108,13 @@ function assertPreservedValues(original:unknown,parsed:unknown,path:string):void
  }
  if(original!==parsed)throw Error(`${path}: 작성한 값을 그대로 보존할 수 없습니다. 형식과 허용 값을 확인해 주세요.`);
 }
-function validatedDocument(value:unknown):StoryDocumentEnvelope{
- if(!record(value))throw Error('document: 작품 문서를 확인해 주세요.');
+function validatedDocument(input:unknown):StoryDocumentEnvelope{
+ if(!record(input))throw Error('document: 작품 문서를 확인해 주세요.');
+ let value=input;
  exactKeys(value,['documentType','schemaVersion','savedAt','appVersion','assetCatalogVersion','project'],'document');
+ // Explicit title-only correction also applies to exact-value archive/workbook checks.
+ // Keep every other authored field and the caller's original object unchanged.
+ if(record(value.project)&&Array.isArray(value.project.chapters))value={...value,project:{...value.project,chapters:value.project.chapters.map(chapter=>record(chapter)&&typeof chapter.title==='string'?{...chapter,title:normalizeChapterTitle(chapter.title)}:chapter)}};
  if((value.schemaVersion===5||value.schemaVersion===6||value.schemaVersion===7||value.schemaVersion===CURRENT_SCHEMA_VERSION))assertAuthoringFields('knolstory',value.project);
  const parsed=parseStoryDocument(value);
  if(!parsed.ok)throw Error(parsed.issues.map(issue=>`${issue.path}: ${issue.message}`).join('\n'));

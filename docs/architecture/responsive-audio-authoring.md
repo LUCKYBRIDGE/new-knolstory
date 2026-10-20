@@ -1,5 +1,13 @@
 # 표시 영역 구도와 연출·오디오 제작
 
+## 인접 컷의 장면 미리보기 — 2026-10-20
+
+기본편집의 이전/다음 원고 컷은 Core가 해석한 고정1280×720 `RuntimeScene`을 현재 단일 Ren’Py 인스턴스에 `renderSceneThumbnail`로 요청한다. protocol1의 선택적 명령이며 `requestId`와 edit모드 scene을 검증한다. bridge는 현재 장면의 seq/revision·audio·크기를 바꾸지 않고 최대2요청을 유지한다. 현재가 play이면 실행하지 않는다.
+
+Ren’Py8.5.3의 기존 `knol_stage` screen을 별도 표시 없이 `render_to_surface`로 렌더하고320×180 PNG를 `sceneThumbnail`로 반환한다. 임시 scene·첫 글 페이지·화자 스크롤·대사 측정 캐시는 finally에서 복원하고 현재 컷의 interaction/audio/Flow를 실행하지 않는다. 실패는 `sceneThumbnailFailed`로 식별한다. pinned SDK 내부 ScreenDisplayable adapter를 사용하므로 SDK 변경 시 실제 native 재검증이 필요하다.
+
+Web은 origin/source·requestId·sceneId·revision과 제한된PNG data URL을 검사한다. 원고와 해석된 scene 내용으로 캐시 키를 만들고 메모리 캐시24개·응답 대기12초를 제한한다. 컷/작품/구도 변경 뒤 오래된 응답은 무시하며 현재 주변 두 컷만 생성한다. 이미지와 캐시는 작품 파일·브라우저 원고 저장·온라인 데이터에 추가하지 않는다. 동영상/전체 대사 페이지 재생이 아닌 첫 글상자를 포함한 정지 미리보기다. 제품 배치 기준은 [DESIGN](../../DESIGN.md#기본편집의-컷-배치와-보조-공간--2026-10-20-사용자-확정), 현재 검증은 [완성 작업 기록](evidence/editor-completion-2026-10-20/checkpoint.json)이 소유한다.
+
 최신 결정:16:9/9:16만 사용하고4:3은폐기했다. 큰종이패널 대신 반투명짙은녹색 대사창·밝은본문·민트화자와작은투명도구를쓴다. 짧은원고는실제페이지높이로상자를낮추며 같은컷내페이지는최대실측높이로고정한다. 글씨설정은페이지글분량과독립,배경/인물좌표불변이다. 아래4:3·고정4/6줄빈공간은이전후보이며 [현재읽기도안](reading-interface-design.md)의최신절이우선한다.
 
 최신사용자결정:4:3을폐기하고16:9/9:16만제품에서생성한다. 대사창은짙은반투명ADV오버레이로바꾸고기준4/6줄분량은유지하되짧은글의빈줄예약은제거한다. 실제페이지높이로패널만조절하며독자font변경이페이지문장·경계를바꾸지않고배경·인물도불변이다. 아래4:3확장은과거기록이다. [최신읽기기준](reading-interface-design.md)을따른다.

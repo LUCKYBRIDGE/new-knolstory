@@ -118,7 +118,8 @@ class ResourceAndViewportTests(unittest.TestCase):
         adjustment = lambda: types.SimpleNamespace(change=lambda value: None)
         self.ns = {'config': types.SimpleNamespace(screen_width=1280, screen_height=720, keymap={}, gamedir=self.directory.name),
             'renpy': types.SimpleNamespace(ui=types.SimpleNamespace(adjustment=adjustment), game=types.SimpleNamespace(interface=types.SimpleNamespace(set_mode=lambda: self.resize_calls.append(True))), free_memory=lambda:None)}
-        exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+        # Execute only Python helpers; a separate native choice screen now precedes the stage.
+        exec(textwrap.dedent(source.split('init python:\n',1)[1].split('\nscreen ',1)[0]), self.ns)
     def test_displayed_page_end_uses_actual_pages_not_resume_anchor(self):
         self.ns['knol_dialogue_metrics'] = lambda scene: {'pages':['첫🐇문', '나머지', '비밀']}
         self.ns['knol_text_page'] = 0

@@ -8,10 +8,10 @@
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | 로컬 저장/한글 입력/인물 도구/손상·충돌 복구 완료 근거 유지. 진행12 파일 오류 한국어·개인 경로 비노출 및 세션 연결 보존 [근거](evidence/local-file-errors-2026-10-20/checkpoint.json), 진행13 오래된 Google 연결 응답 차단 [근거](evidence/account-link-stale-2026-10-20/checkpoint.json), 온라인 오류 용어 [근거](evidence/online-error-language-2026-10-20/checkpoint.json), 진행14 기본 글의 임시 보관 불가 상태 초안/파일 보존 [근거](evidence/basic-draft-recovery-2026-10-20/checkpoint.json). 사용자 요청의 GitHub main 반영 완료(소스6a28d44·원격SHA일치), [전달 근거](evidence/github-main-2026-10-20/checkpoint.json)의 새 체크아웃 CI 전체 성공. 운영 배포/실물기기 완료 아님. |
+| 현재 작업 | 편집화면 구성 목표 로컬 완료. 반응형 여섯 화면·가로/세로 배열·현재 및 이전/다음 컷의 실제 장면 미리보기·읽기 복귀·보조 패널·파일 보존을 검증했다. [현재 기능 감사](editor-redesign-completeness-audit.md#2026-10-20-편집-화면-구성-완료-작업--검증-완료), [최종 checkpoint](evidence/editor-completion-2026-10-20/checkpoint.json). 현재 dirty 변경은 미게시이며 제품 출시 전체 완료가 아니다. |
 | 종료된 로컬 checkpoint | PC-01 host389 종료:352통과/37native 전용 제외, source/보호artifact 변경0. 필수 native 동선 이행은 [실행별 결과](evidence/native-resume-2026-10-15/native-result.json). PC-02 네 제작 모드 대조와 점수 전용 native 빈 셀 보완. 물리 기기·출시 전체 완료 아님 |
 | 우선 읽을 증거 | [로컬 작품 파일 현재 checkpoint](evidence/local-work-files-2026-10-18/checkpoint.json), [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [온라인 휴지통 후속](evidence/online-trash-2026-10-18/checkpoint.json). 원고/최대 화면/접근성의 기존 근거는 해당 소유 문서에서 재사용. |
-| 다음 행동 | GitHub main 소스6a28d44 원격 일치·새 환경 CI 성공 확인 완료. 다음은 상세 편집/작품 설정에서 writer 차단·사용 불가 때 임시 보관 상태를 정확히 표시하는지 확인한다. 기본 글의 초안 보호를 다른 도구의 저장 권한 완화로 확대하지 않는다. 게시 제외한 비공개 자료·인증·진단 원본은 로컬 보존, 다른 컴퓨터의 복원은 README 기준. 이후 현재 입력/복구/계정의 남은 실패 경로와 필수 기기 검증을 이어간다. PC-05 학급/제출/공유는 Q-01/02, 보관/영구삭제는 Q-03, 실제 Google은 Q-05에 의존한다. 전체 목표와 완료 증거를 보존하고 정상 검사를 불필요하게 반복하지 않는다. |
+| 다음 행동 | 현재 편집화면 목표는 종료한다. 다음 사용자 요청 또는 기존 작업 큐의 정확한 의존성이 충족된 범위로 이어간다. 물리 기기/OS IME/스크린리더·장기 안정성·운영/학급/공유·공개 배포를 이번 화면 검증으로 완료 처리하지 않는다. 원고/Asset ID/Flow·미커밋 변경과 과거 검증 기록을 보존한다. |
 | Docker 상태 | Next production db/api/ingress running at final origin https://story.knolquiz.com; loopback15501 only. Default production-compose start now preserves final origin; story-next GET/HEAD redirects308. Legacy five running containers unchanged. |
 | 중요한 수정 | 최초 적용001 변경을 checksum이 거부했다. journal hash와 일치하는001 복원, blob trigger는002 전진 migration. DB/journal 초기화하지 않음. rollback 실패client는 release(true) 폐기. 과거 실패 로그 유지 |
 | 미검증 범위 | Google OAuth·온라인 휴지통의 운영/실기기 검증·장기 오프라인·물리기기·스크린리더·최초Chrome154 원인·새외부앱·공개 배포·외부/전체 운영 백업복원. 로컬 저장/순수 계정/DB 검사를 이 완료로 확대하지 않음 |

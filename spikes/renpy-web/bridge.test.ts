@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { describe, expect, it } from 'vitest';
-import { isRuntimeScene,isRuntimeServiceAudioResources,runtimeServiceAudioPaths } from '../../packages/runtime-contract/src/index';
+import { isRuntimeScene,isRuntimeThumbnailRequest,isRuntimeServiceAudioResources,runtimeServiceAudioPaths } from '../../packages/runtime-contract/src/index';
 
 const scene = { contractVersion: 1, sceneId: 'probe', revision: 1, width: 1280, height: 720,
   actors: [{ id: 'heungbu', name: '흥부', rect: { x: 20, y: 20, width: 100, height: 200 } }],
@@ -13,7 +13,7 @@ function bridge() {
   const attrs=new Map<string,string>([['tabindex','-1']]);
   const canvas={getBoundingClientRect:()=>({x:0,y:0,width:800,height:600}),getAttribute:(name:string)=>attrs.get(name)??null,setAttribute:(name:string,value:string)=>attrs.set(name,value),removeAttribute:(name:string)=>attrs.delete(name)};
   const parent = { postMessage: (event: unknown) => events.push(event), document: {activeElement: frameElement as unknown} };
-  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene,isRuntimeServiceAudioResources,runtimeServiceAudioPaths }, frameElement };
+  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene,isRuntimeThumbnailRequest,isRuntimeServiceAudioResources,runtimeServiceAudioPaths }, frameElement };
   runInNewContext(readFileSync('spikes/renpy-web/bridge.js', 'utf8'), {
     window, parent, location: { origin: 'https://story.knolquiz.com' }, structuredClone,
     addEventListener: (name: string, fn: (event: unknown) => void) => { listeners[name] = fn; },
@@ -27,6 +27,14 @@ function bridge() {
   return { api, events, send, parent, frameElement, listeners,canvas };
 }
 describe('actual runtime iframe bridge', () => {
+  it('renders at most two editing thumbnails without replacing the active scene or revision',()=>{
+    const {api,send,listeners,parent,events}=bridge();send(1,1,{...scene,mode:'edit'});api.drain();
+    const request=(requestId:string,overrides={})=>listeners.message({origin:'https://story.knolquiz.com',source:parent,data:{protocol:1,type:'renderSceneThumbnail',requestId,payload:{...scene,sceneId:requestId,revision:0,mode:'edit'}},...overrides});
+    request('wrong-origin',{origin:'https://other.invalid'});request('one');request('two');request('three');
+    expect(JSON.parse(api.drain()).map((c:{requestId:string})=>c.requestId)).toEqual(['two','three']);
+    send(2,2,{...scene,mode:'edit',revision:2});expect(JSON.parse(api.drain())[0].revision).toBe(2);expect(events).toEqual([]);
+    send(3,3,{...scene,mode:'play',revision:3});api.drain();request('during-play');expect(api.drain()).toBe('[]');
+  });
   it('accepts complete resolved scene and drains only once', () => {
     const { api, send } = bridge(); send(); expect(JSON.parse(api.drain())[0].payload).toEqual(scene); expect(api.drain()).toBe('[]');
   });

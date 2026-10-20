@@ -1,0 +1,48 @@
+
+ RUN  v4.1.11 /Volumes/WAN2/apps/new-knolstory
+
+ ❯ apps/web/lib/editor-preferences.test.ts (11 tests | 1 failed) 10ms
+     × restores the cut arrangement independently for each work without changing old preferences 4ms
+ ❯ apps/web/lib/cut-arrangement.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/cut-arrangement.test.ts [ apps/web/lib/cut-arrangement.test.ts ]
+Error: Cannot find module './cut-arrangement' imported from /Volumes/WAN2/apps/new-knolstory/apps/web/lib/cut-arrangement.test.ts
+ ❯ apps/web/lib/cut-arrangement.test.ts:2:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {resolveCutArrangement} from './cut-arrangement';
+       | ^
+      3|
+      4| describe('cut arrangement based on available editing area',()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/editor-preferences.test.ts > session-only editor preferences > restores the cut arrangement independently for each work without changing old preferences
+AssertionError: expected undefined to be 'auto' // Object.is equality
+
+- Expected:
+"auto"
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/editor-preferences.test.ts:11:30
+      9|   for(const arrangement of ['auto','columns','stacked'] as const){
+     10|    const value=normalizeEditorPreferences({screen:'text',arrangement});
+     11|    expect(value.arrangement).toBe(arrangement);
+       |                              ^
+     12|    expect(writeEditorPreferences(storage,'a',value)).toBe(true);
+     13|    expect(readEditorPreferences(storage,'a').arrangement).toBe(arrange…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  1 failed | 10 passed (11)
+   Start at  14:56:09
+   Duration  262ms (transform 36ms, setup 0ms, import 53ms, tests 10ms, environment 0ms)
+

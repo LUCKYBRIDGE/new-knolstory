@@ -1,0 +1,70 @@
+test_background_fallback_uses_artwork_rect_not_extended_canvas (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_body_input_and_keyboard_do_not_skip_final_choices (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_body_uses_direct_native_text_without_scroll_container (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_budget_and_resize_keep_character_anchor (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_choice_popup_fits_two_to_four_options_without_scrolling (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_compact_panel_overlays_stage_and_grows_only_for_actual_text (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_extreme_choice_text_preserves_access_in_a_bounded_popup (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_extreme_text_pages_preserve_newlines_and_all_characters (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_final_page_advance_hit_area_stays_inside_reserved_nav_row (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_fixed_seed_random_pagination_preserves_text_and_fitting (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_four_three_extension_covers_bottom_without_reframing_artwork (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_label_measured_height_cannot_overlap_body (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_metrics_use_native_font_wrap_spacing_and_bounded_last_scene_cache (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_page_advance_keeps_native_audio_and_transition_input_guards (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_page_change_anchors_survive_repeated_reflow (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_page_controls_scale_with_body_font_and_reserve_space (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_popup_geometry_does_not_depend_on_dialogue_panel_height (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_popup_waits_for_final_page_audio_and_transition_before_taking_focus (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_reader_font_changes_preserve_every_page_and_character_offset (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_reference_body_budget_is_three_landscape_five_portrait (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_sentence_word_and_grapheme_priority (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_speaker_length_is_stable_and_large_font_expands_without_repagination (test_dialogue_geometry.DialogueGeometryTests) ... ok
+test_original_dedication_does_not_require_credit (test_media_provenance.ReleaseEvidenceTests) ... ok
+test_required_credit_without_distributed_evidence_is_blocked (test_media_provenance.ReleaseEvidenceTests) ... ok
+test_unknown_credit_is_blocked (test_media_provenance.ReleaseEvidenceTests) ... ok
+test_bad_cache_is_rejected_and_preserved (test_prepare_runtime.RuntimeSetupTests) ... ok
+test_bad_download_never_becomes_cached_resource (test_prepare_runtime.RuntimeSetupTests) ... Downloading resource
+ok
+test_failed_staging_preserves_existing_sdk (test_prepare_runtime.RuntimeSetupTests) ... Extracting verified SDK and Web support.
+ok
+test_manifest_detects_modified_installation (test_prepare_runtime.RuntimeSetupTests) ... ok
+test_manifest_rejects_added_source_but_accepts_build_state (test_prepare_runtime.RuntimeSetupTests) ... ok
+test_older_marker_ignores_only_regenerated_bytecode (test_prepare_runtime.RuntimeSetupTests) ... ok
+test_prepare_reuses_sdk_after_build_regenerates_bytecode (test_prepare_runtime.RuntimeSetupTests) ... Verified pinned SDK installation.
+ok
+test_tar_traversal_and_symlinks_are_rejected_before_writing (test_prepare_runtime.RuntimeSetupTests) ... ok
+test_verified_cache_is_reused_without_network (test_prepare_runtime.RuntimeSetupTests) ... Verified cached resource
+ok
+test_verified_download_is_published_atomically (test_prepare_runtime.RuntimeSetupTests) ... Downloading resource
+ok
+test_zip_traversal_and_symlinks_are_rejected (test_prepare_runtime.RuntimeSetupTests) ... ok
+test_exact_baseline_room_bytes_are_restored (test_restore_legacy_ui.LegacyRoomRestoreTests) ... ok
+test_room_destination_cannot_escape_the_local_ui_folder (test_restore_legacy_ui.LegacyRoomRestoreTests) ... ok
+test_wrong_hash_does_not_overwrite_existing_room (test_restore_legacy_ui.LegacyRoomRestoreTests) ... ok
+test_existing_runtime_files_are_served_directly (test_serve_test_build.StaticExportTests) ... ok
+test_page_html_wins_over_next_payload_directory (test_serve_test_build.StaticExportTests) ... ok
+test_duplicate_archive_entries_cannot_hide_changed_audio (test_service_audio.ServiceAudioTests) ... ok
+test_extra_copied_renamed_and_missing_media_are_rejected (test_service_audio.ServiceAudioTests) ... ok
+test_malformed_approval_and_formal_rights_mismatch_fail_closed (test_service_audio.ServiceAudioTests) ... ok
+test_only_approved_exact_bytes_with_rights_and_evidence_pass (test_service_audio.ServiceAudioTests) ... ok
+test_path_escape_missing_proof_and_duplicate_approval_are_rejected (test_service_audio.ServiceAudioTests) ... ok
+test_scene_integrated_licence_requires_all_capability_limits (test_service_audio.ServiceAudioTests) ... ok
+test_stale_runtime_zip_is_rejected_before_web_publication (test_service_audio.ServiceAudioTests) ... ok
+test_budget_preserves_playing_files_and_rejects_duplicate_resources (test_service_audio_cache.CacheTests) ... ok
+test_rejects_unreferenced_traversal_hash_and_format (test_service_audio_cache.CacheTests) ... ok
+test_symlink_and_version_conflict_leave_other_files_unchanged (test_service_audio_cache.CacheTests) ... ok
+test_verified_reference_and_protected_eviction (test_service_audio_cache.CacheTests) ... ok
+test_media_check_reports_missing_and_changed_without_writing (test_test_environment.EnvironmentTests) ... ok
+test_node_requirement_rejects_old_patch (test_test_environment.EnvironmentTests) ... ok
+test_prepare_checks_restored_audio_before_runtime_download_and_build (test_test_environment.EnvironmentTests) ... ok
+test_prepare_plan_uses_fixed_install_and_root_relative_tools (test_test_environment.EnvironmentTests) ... ok
+test_runtime_requires_actual_wasm_and_bridge (test_test_environment.EnvironmentTests) ... ok
+test_static_preview_rejects_old_runtime (test_test_environment.EnvironmentTests) ... ok
+
+----------------------------------------------------------------------
+Ran 58 tests in 2.500s
+
+OK
+Restored 1 exact fixed-baseline room files for authorized local testing.
+Restored 0 exact fixed-baseline files for local testing. No release permission is inferred.

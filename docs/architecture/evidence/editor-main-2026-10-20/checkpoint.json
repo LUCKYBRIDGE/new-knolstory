@@ -1,0 +1,53 @@
+{
+  "status": "local-verified-ready-for-main",
+  "scope": "Retired act-prefix cleanup and owner-authorized delivery of current editor changes to latest GitHub main",
+  "remoteBase": "499a1313fcce64237a69c08d128eae1e7716feba",
+  "browserLimit": "Latest chapter-title UI check rejected: Local browser use disabled in Work settings. Earlier native editor evidence retains its original scope.",
+  "preservation": "User-added JPG, ignored runtime/assets and original baseline fixtures remain local and unchanged.",
+  "titleMigration": {
+    "rule": "Remove leading numbered act prefix from chapter titles only; retain real chapter number, branch, sequence, content and IDs.",
+    "locations": [
+      "StoryDocument validator",
+      "chapterLabel display",
+      "archive/workbook/JSONB preservation validation"
+    ],
+    "baselineFiles": "Raw fixture/evidence files remain unchanged; eight provided editions use normalized parsed titles.",
+    "tests": "chapter-identity, reader-text, legacy, external audio/non-audio roundtrip, chapter-title-migration"
+  },
+  "verification": {
+    "full_unit": {
+      "files": 202,
+      "passed": 1840,
+      "skipped": 2,
+      "exit_code": 0,
+      "maxWorkers": 1,
+      "note": "Collected before the additional dedicated migration test; that extra test passed separately."
+    },
+    "focused_fix_recheck": {
+      "passed": 24,
+      "exit_code": 0
+    },
+    "explicit_archive_workbook_jsonb_migration": {
+      "passed": 1,
+      "exit_code": 0
+    },
+    "typecheck_exit": 0,
+    "lint_exit": 0,
+    "lint_warning": "One existing no-img-element warning in story-player-menu.tsx; no errors.",
+    "build_exit": 0,
+    "python": {
+      "passed": 60,
+      "exit_code": 0
+    },
+    "docs_check_exit": 0,
+    "test_docs": {
+      "passed": 10,
+      "exit_code": 0
+    }
+  },
+  "sourceHashes": {
+    "packages/story-domain/src/legacy/chapter-identity.ts": "66f01ea52e1376fd41c9c5e7c69cd12e172205c852017fed182a9e711c73f050",
+    "packages/story-domain/src/legacy/story-project-validation.ts": "5886a756ef9552577aeee40e5b405a79edf6a1bebc71d77c5786db0128569732",
+    "packages/compatibility/src/authoring-archive.ts": "91136bb1a69a009f4bb7a34a0d443e27dc6777fb1f18ee8d24d7d1c35d7cc3f9"
+  }
+}

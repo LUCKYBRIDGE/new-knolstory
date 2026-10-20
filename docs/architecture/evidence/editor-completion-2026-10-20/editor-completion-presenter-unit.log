@@ -1,0 +1,45 @@
+................EEEE
+======================================================================
+ERROR: test_actual_audio_unlock_initializes_once_without_advancing_scene (__main__.ResourceAndViewportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Volumes/WAN2/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 121, in setUp
+    exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+  File "<string>", line 1
+    config.keymap = dict(config.keymap, game_menu=[], rollback=[], skip=[], toggle_skip=[])
+IndentationError: unexpected indent
+
+======================================================================
+ERROR: test_custom_bytes_verified_before_native_file_install (__main__.ResourceAndViewportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Volumes/WAN2/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 121, in setUp
+    exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+  File "<string>", line 1
+    config.keymap = dict(config.keymap, game_menu=[], rollback=[], skip=[], toggle_skip=[])
+IndentationError: unexpected indent
+
+======================================================================
+ERROR: test_displayed_page_end_uses_actual_pages_not_resume_anchor (__main__.ResourceAndViewportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Volumes/WAN2/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 121, in setUp
+    exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+  File "<string>", line 1
+    config.keymap = dict(config.keymap, game_menu=[], rollback=[], skip=[], toggle_skip=[])
+IndentationError: unexpected indent
+
+======================================================================
+ERROR: test_orientation_updates_same_engine_only_when_dimensions_change (__main__.ResourceAndViewportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Volumes/WAN2/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 121, in setUp
+    exec(textwrap.dedent(source.split('init python:\n',1)[1].split('screen knol_stage():',1)[0]), self.ns)
+  File "<string>", line 1
+    config.keymap = dict(config.keymap, game_menu=[], rollback=[], skip=[], toggle_skip=[])
+IndentationError: unexpected indent
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.120s
+
+FAILED (errors=4)

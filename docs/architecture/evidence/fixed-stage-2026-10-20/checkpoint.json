@@ -1,0 +1,80 @@
+{
+  "scope": "Product Web scene compilation and editor preview. No deployment or complete product native playback claim.",
+  "decision": "Reading 16:9/9:16 only, contain and center; responsive editor with 16:9 cut preview.",
+  "implementation": [
+    "storySceneLayout selects a fixed logical viewport; displaySize for internal composition equals that viewport",
+    "Browser available rectangle is used for contain projection, not native text/tools reflow",
+    "Old saved preview preferences are retained but do not control the editing format"
+  ],
+  "checks": {
+    "focused_unit": {
+      "exit_code": 0,
+      "passed": 33
+    },
+    "source_unit": {
+      "exit_code": 0,
+      "files": 196,
+      "passed": 1823,
+      "skipped": 2,
+      "excluded_files": [
+        "packages/asset-registry/tests/catalog.test.ts",
+        "packages/asset-registry/tests/approved-audio-bytes.test.ts"
+      ]
+    },
+    "typecheck": {
+      "exit_code": 0
+    },
+    "changed_source_lint": {
+      "exit_code": 0
+    },
+    "build_source": {
+      "exit_code": 0
+    },
+    "docs_check": {
+      "exit_code": 0
+    },
+    "test_docs": {
+      "exit_code": 0
+    }
+  },
+  "observed_web": {
+    "editor_desktop": {
+      "logical": [
+        1280,
+        720
+      ],
+      "ratio": 1.7777777643,
+      "contained": true
+    },
+    "editor_phone": {
+      "logical": [
+        1280,
+        720
+      ],
+      "ratio": 1.7777776175,
+      "contained": true
+    },
+    "reading_portrait": {
+      "logical": [
+        720,
+        1280
+      ],
+      "ratio": 0.5625000532,
+      "contained": true
+    },
+    "reading_landscape": {
+      "logical": [
+        1280,
+        720
+      ],
+      "ratio": 1.7777777778,
+      "contained": true
+    }
+  },
+  "limitations": [
+    "Product /runtime and private images/audio are absent on this computer; engine iframe returned404",
+    "Web iframe geometry is not proof of current complete product native playback",
+    "Existing isolated choice QA build is separate from the product runtime",
+    "Physical devices, screen readers and production deployment were not verified"
+  ]
+}

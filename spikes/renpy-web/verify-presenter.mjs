@@ -43,7 +43,9 @@ try {
     return count;
   }
   await send({...scene,sceneId:'choices',revision:2,presentation:{effects:[]},choices:[{id:'first',text:'선택지 {b}그대로[/b]'}, {id:'second',text:'두 번째 선택지'}]});
-  await page.mouse.click(640, 155);
+  const choicePopup=await page.evaluate(()=>window.presenterEvents.findLast(e=>e.type==='sceneRendered'&&e.revision===2).choicesRect);
+  // Native popup: panel padding24 + heading92 + half the minimum96px button.
+  await page.mouse.click(choicePopup.x+choicePopup.width/2,choicePopup.y+164);
   await page.waitForFunction(()=>window.presenterEvents.some(e=>e.type==='choiceSelected'&&e.choiceId==='first'),null,{timeout:10000});
   let revision=2;
   for(const type of ['shake','flash-red','fade-black','crack','spotlight','flash','screen-crack']) {

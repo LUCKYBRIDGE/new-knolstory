@@ -1,0 +1,49 @@
+
+> knolstory-next@ typecheck /Volumes/WAN2/apps/new-knolstory
+> turbo run typecheck && pnpm typecheck:server
+
+
+   • turbo 2.11.7
+   • Packages in scope: @knolstory/asset-registry, @knolstory/compatibility, @knolstory/runtime-contract, @knolstory/runtime-core, @knolstory/story-domain, @knolstory/web
+   • Running typecheck in 6 packages
+   • Remote caching disabled
+
+@knolstory/story-domain:typecheck: cache hit, replaying logs 50287ce6d3e6e968
+@knolstory/runtime-contract:typecheck: cache hit, replaying logs 07050cb8caf5542d
+@knolstory/asset-registry:typecheck: cache hit, replaying logs ddef029885d8b5c2
+@knolstory/runtime-contract:typecheck: 
+@knolstory/runtime-contract:typecheck: > @knolstory/runtime-contract@0.0.0 typecheck /Volumes/WAN2/apps/new-knolstory/packages/runtime-contract
+@knolstory/asset-registry:typecheck: 
+@knolstory/asset-registry:typecheck: > @knolstory/asset-registry@0.0.0 typecheck /Volumes/WAN2/apps/new-knolstory/packages/asset-registry
+@knolstory/runtime-contract:typecheck: > tsc --noEmit
+@knolstory/runtime-contract:typecheck: 
+@knolstory/asset-registry:typecheck: > tsc --noEmit
+@knolstory/asset-registry:typecheck: 
+@knolstory/story-domain:typecheck: 
+@knolstory/story-domain:typecheck: > @knolstory/story-domain@0.0.0 typecheck /Volumes/WAN2/apps/new-knolstory/packages/story-domain
+@knolstory/story-domain:typecheck: > tsc --noEmit
+@knolstory/story-domain:typecheck: 
+@knolstory/compatibility:typecheck: cache hit, replaying logs 6d82efd2f78f2515
+@knolstory/compatibility:typecheck: 
+@knolstory/compatibility:typecheck: > @knolstory/compatibility@0.0.0 typecheck /Volumes/WAN2/apps/new-knolstory/packages/compatibility
+@knolstory/compatibility:typecheck: > tsc --noEmit
+@knolstory/compatibility:typecheck: 
+@knolstory/runtime-core:typecheck: cache hit, replaying logs 150ff12b02fbb138
+@knolstory/runtime-core:typecheck: 
+@knolstory/runtime-core:typecheck: > @knolstory/runtime-core@0.0.0 typecheck /Volumes/WAN2/apps/new-knolstory/packages/runtime-core
+@knolstory/runtime-core:typecheck: > tsc --noEmit
+@knolstory/runtime-core:typecheck: 
+@knolstory/web:typecheck: cache miss, executing 4fe86c2649bb29aa
+@knolstory/web:typecheck: 
+@knolstory/web:typecheck: > @knolstory/web@0.0.0 typecheck /Volumes/WAN2/apps/new-knolstory/apps/web
+@knolstory/web:typecheck: > tsc --noEmit
+@knolstory/web:typecheck: 
+
+ Tasks:    6 successful, 6 total
+Cached:    5 cached, 6 total
+  Time:    4.565s 
+
+
+> knolstory-next@ typecheck:server /Volumes/WAN2/apps/new-knolstory
+> tsc -p server/tsconfig.json
+

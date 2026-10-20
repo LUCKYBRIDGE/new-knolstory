@@ -1,0 +1,52 @@
+
+ RUN  v4.1.11 /Volumes/WAN2/apps/new-knolstory
+
+ ❯ apps/web/lib/story-viewport.test.ts (6 tests | 3 failed) 8ms
+     × always previews editing in 16:9 regardless of old settings and container shape 2ms
+     × fits both reading formats inside every available rectangle without changing scene composition 4ms
+     × automatic reading chooses only landscape or portrait and never a third shape 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/story-viewport.test.ts > story display viewport > always previews editing in 16:9 regardless of old settings and container shape
+TypeError: storySceneLayout is not a function
+ ❯ apps/web/lib/story-viewport.test.ts:24:16
+     22|     for(const profile of ['auto','desktop','portrait','landscape'] as …
+     23|       for(const display of [{width:390,height:844},{width:844,height:3…
+     24|         expect(storySceneLayout('edit',profile,display)).toEqual({view…
+       |                ^
+     25|       }
+     26|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  apps/web/lib/story-viewport.test.ts > story display viewport > fits both reading formats inside every available rectangle without changing scene composition
+TypeError: storySceneLayout is not a function
+ ❯ apps/web/lib/story-viewport.test.ts:32:67
+     30|     const original=JSON.stringify(work);
+     31|     for(const profile of ['landscape','portrait'] as const){
+     32|       const baseline=compileStoryScene(work,cut,1,{mode:'play',...stor…
+       |                                                                   ^
+     33|       for(const display of [{width:390,height:844},{width:844,height:3…
+     34|         const scene=compileStoryScene(work,cut,1,{mode:'play',...story…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  apps/web/lib/story-viewport.test.ts > story display viewport > automatic reading chooses only landscape or portrait and never a third shape
+TypeError: storySceneLayout is not a function
+ ❯ apps/web/lib/story-viewport.test.ts:49:20
+     47|   it('automatic reading chooses only landscape or portrait and never a…
+     48|     for(const display of [{width:1024,height:768},{width:800,height:80…
+     49|       const layout=storySceneLayout('play','auto',display);
+       |                    ^
+     50|       expect(layout.viewport).toEqual(display.width<display.height?{wi…
+     51|       expect(layout.displaySize).toEqual(layout.viewport);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 3 passed (6)
+   Start at  14:29:30
+   Duration  1.46s (transform 916ms, setup 0ms, import 1.34s, tests 8ms, environment 0ms)
+

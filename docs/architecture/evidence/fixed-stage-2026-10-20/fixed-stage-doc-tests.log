@@ -1,0 +1,22 @@
+
+> knolstory-next@ test:docs /Volumes/WAN2/apps/new-knolstory
+> node --test scripts/tests/project-docs.test.mjs scripts/tests/product-language.test.mjs
+
+✔ detects retired product names and provides preferred labels (1.043541ms)
+✔ keeps link targets, anchors and fences intact while checking current descriptions (0.792375ms)
+✔ does not alter protected historical records or literal quotations (0.206375ms)
+✔ is idempotent and does not rewrite semantically distinct vocabulary (0.071833ms)
+✔ preserves inline and indented code, reference identifiers and reference definitions (0.130417ms)
+✔ discovers new current documents, skills and UI helpers while excluding history and aliases (3.614833ms)
+✔ keeps explicit compatibility anchors while checking the renamed heading description (0.108708ms)
+✔ accepts local fragments, external URLs and angle paths with spaces (1.745584ms)
+✔ reports missing local links with source row and missing canonical files (0.931417ms)
+✔ ignores fenced examples and checks skill navigation (1.30125ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53.215291

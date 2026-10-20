@@ -4,7 +4,7 @@ import onggojibSource from '../../../tests/fixtures/stories/onggojib.json';
 import rabbitSource from '../../../tests/fixtures/stories/rabbit.json';
 import { describe, expect, it } from 'vitest';
 import { getRepresentativeStory, representativeStories } from '../src/index';
-import { parseStoryDocument, serializeStoryDocument, updateStoryLine, storyFlowTargets, orderedStoryFlowLines } from '@knolstory/story-domain';
+import { normalizeChapterTitle, parseStoryDocument, serializeStoryDocument, updateStoryLine, storyFlowTargets, orderedStoryFlowLines } from '@knolstory/story-domain';
 
 describe('fixed legacy manuscript fidelity', () => {
   for (const story of representativeStories) {
@@ -103,7 +103,7 @@ describe('every authored baseline field is retained', () => {
     it(`${story.id} preserves every chapter, cut, text, branch, asset ID and cue`, () => {
       const project = getRepresentativeStory(story.id).project;
       const source = sourceManuscripts[story.id];
-      expect(project).toMatchObject(source);
+      expect(project).toMatchObject({...source,chapters:source.chapters.map(chapter=>({...chapter,title:normalizeChapterTitle(chapter.title)}))});
       expect(project.lines.map(line => line.id)).toEqual(source.lines.map(line => line.id));
       expect(project.chapters.map(chapter => chapter.id)).toEqual(source.chapters.map(chapter => chapter.id));
     });

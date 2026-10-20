@@ -389,31 +389,79 @@ class DialogueGeometryTests(unittest.TestCase):
 
     def test_final_page_advance_hit_area_stays_inside_reserved_nav_row(self):
         script = SOURCE.read_text()
-        advance = script.split('elif not knol_scene.get("ended") and knol_text_page ==', 1)[1].split('            if knol_transition_active', 1)[0]
+        advance = script.split('if not knol_scene.get("choices") and not knol_scene.get("ended") and knol_text_page ==', 1)[1].split('            if knol_transition_active', 1)[0]
         self.assertNotIn('xysize (44, 44)', advance)
         self.assertIn('xsize 44', advance)
         self.assertIn('ysize knol_dialogue_metrics(knol_scene)["controlsHeight"]', advance)
         self.assertIn('padding (0, 0)', advance)
 
-    def test_choices_use_available_space_above_speaker(self):
+    def choice_layout_context(self):
         script = SOURCE.read_text()
-        code = re.search(r'    def knol_choices_rect\(.*?(?=    def knol_resize)', script, re.S).group()
-        context = {'knol_textbox': lambda scene: scene['textboxRect']}
+        code = re.search(r'    def knol_choice_layout\(.*?(?=    def knol_resize)', script, re.S).group()
+        class Native:
+            def render(self, item, width, height, st, at):
+                text, style = item
+                # Conservative CJK width; native screenshots verify actual font metrics.
+                columns = max(1, int(width / style['size']))
+                rows = sum(max(1, (len(line) + columns - 1) // columns) for line in text.split('\n'))
+                return type('Render', (), {'height': rows * (style['size'] + 4)})()
+        context = {'knol_choice_cache': None, 'Text': lambda text, **style: (text, style),
+                   'knol_literal': lambda value: value, 'renpy': Native()}
         exec(textwrap.dedent(code), context)
-        for width, speaker_y in [(720, 1200), (1280, 400), (1280, 32), (1280, 8)]:
-            scene = {'width': width, 'textboxRect': {'y': speaker_y + 32}}
-            rect = context['knol_choices_rect'](scene, {'speaker': {'y': speaker_y}})
-            self.assertGreater(rect['height'], 0)
-            self.assertGreaterEqual(rect['y'], 0)
-            self.assertLessEqual(rect['y'] + rect['height'], speaker_y - 4)
+        return context
 
-    def test_choices_stop_above_panel_even_when_speaker_is_inside(self):
-        code = re.search(r'    def knol_choices_rect\(.*?(?=    def knol_resize)', SOURCE.read_text(), re.S).group()
-        context = {'knol_textbox': lambda scene: scene['textboxRect']}
+    def test_choice_popup_fits_two_to_four_options_without_scrolling(self):
+        context = self.choice_layout_context()
+        for width, height in [(1280, 720), (720, 1280)]:
+            for count in (2, 3, 4):
+                for text in ('다친 제비를 도와준다', '낯선 길이 두렵지만 친구와 함께 용기를 내어 숲속으로 들어간다. ' * 2):
+                    scene = {'width': width, 'height': height,
+                             'choices': [{'id': str(i), 'text': text} for i in range(count)]}
+                    layout = context['knol_choice_layout'](scene)
+                    self.assertFalse(layout['scroll'], (width, count, text))
+                    self.assertGreaterEqual(layout['fontSize'], 24)
+                    self.assertEqual(len(layout['buttonHeights']), count)
+                    self.assertTrue(all(value >= 80 for value in layout['buttonHeights']))
+                    rect = layout['rect']
+                    self.assertAlmostEqual(rect['x'] + rect['width'] / 2, width / 2, delta=1)
+                    self.assertAlmostEqual(rect['y'] + rect['height'] / 2, height / 2, delta=1)
+                    self.assertLessEqual(rect['y'] + rect['height'], height - 24)
+
+    def test_extreme_choice_text_preserves_access_in_a_bounded_popup(self):
+        context = self.choice_layout_context()
+        scene = {'width': 1280, 'height': 720, 'choices': [{'id': str(i), 'text': '긴 선택 문구 ' * 1000} for i in range(4)]}
+        layout = context['knol_choice_layout'](scene)
+        self.assertTrue(layout['scroll'])
+        self.assertEqual(layout['fontSize'], 24)
+        self.assertLessEqual(layout['rect']['height'], 720 - 48)
+        self.assertIs(layout, context['knol_choice_layout'](scene))
+
+    def test_popup_geometry_does_not_depend_on_dialogue_panel_height(self):
+        context = self.choice_layout_context()
+        scene = {'width': 1280, 'height': 720, 'choices': [{'id': 'a', 'text': '숲으로 간다'}]}
+        first = context['knol_choices_rect'](scene, {'speaker': {'y': 390}})
+        second = context['knol_choices_rect'](scene, {'speaker': {'y': 600}})
+        self.assertEqual(first, second)
+        self.assertGreater(first['y'], 0)
+        self.assertLess(first['height'], 400)
+
+    def test_popup_waits_for_final_page_audio_and_transition_before_taking_focus(self):
+        code = re.search(r'    def knol_choices_visible\(.*?(?=    def knol_choice_layout)', SOURCE.read_text(), re.S).group()
+        context = {'knol_ready': True, 'knol_scene': {'mode': 'play', 'choices': [{'id': 'a'}]},
+                   'knol_transition_active': False, 'knol_waiting_for_audio': lambda: False,
+                   'knol_text_page': 1, 'knol_dialogue_metrics': lambda scene: {'pages': ['first', 'last']}}
         exec(textwrap.dedent(code), context)
-        for width, panel_y in [(1280, 534), (1280, 390), (720, 1050), (720, 620), (1280, 12)]:
-            scene = {'width': width, 'textboxRect': {'y': panel_y}}
-            rect = context['knol_choices_rect'](scene, {'speaker': {'y': panel_y + 12}})
-            self.assertLessEqual(rect['y'] + rect['height'], panel_y - 8)
-            self.assertGreater(rect['height'], 0)
-            self.assertGreaterEqual(rect['y'], 0)
+        self.assertTrue(context['knol_choices_visible']())
+        for field, blocked in [('knol_ready', False), ('knol_text_page', 0), ('knol_transition_active', True)]:
+            before = context[field]
+            context[field] = blocked
+            self.assertFalse(context['knol_choices_visible']())
+            context[field] = before
+        context['knol_waiting_for_audio'] = lambda: True
+        self.assertFalse(context['knol_choices_visible']())
+        context['knol_waiting_for_audio'] = lambda: False
+        for patch in ({'mode': 'edit'}, {'ended': True}, {'choices': []}):
+            before = context['knol_scene']
+            context['knol_scene'] = {**before, **patch}
+            self.assertFalse(context['knol_choices_visible']())
+            context['knol_scene'] = before

@@ -705,6 +705,8 @@
 /* One grouped settings entry; only chapter/cut navigation stays alongside it. */
 .shell.editorShell:not(.playMode)>.header { justify-content:flex-start; }
 .shell.editorShell:not(.playMode)>.header>.management { order:0; }
+.shell.editorShell:not(.playMode)>.header>.libraryHome{order:99;flex:none;margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:44px;height:44px;padding:6px 10px}
+@media(max-width:700px){.shell.editorShell:not(.playMode)>.header>.libraryHome{width:44px;padding:6px}.libraryHome>span{display:none}}
 .shell.editorShell:not(.playMode)>.header>.management>summary { display:flex; align-items:center; gap:6px; min-width:76px; }
 .shell.editorShell:not(.playMode)>.header>.management>summary::after { display:none; }
 .shell.editorShell:not(.playMode)>.header .cutPosition { order:1; }

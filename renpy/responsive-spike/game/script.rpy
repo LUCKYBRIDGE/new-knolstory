@@ -34,6 +34,7 @@ init python:
     knol_text_offset = 0
     knol_speaker_scroll = renpy.ui.adjustment()
     knol_choice_scroll = renpy.ui.adjustment()
+    knol_choice_cache = None
 
     def knol_viewport():
         # Pinned SDK internal API: actual engine virtual-to-physical transform.
@@ -244,12 +245,49 @@ init python:
         metrics = knol_dialogue_metrics(scene)
         return knol_dialogue_rects(scene, metrics["labelWidth"], metrics["labelHeight"])
 
+    def knol_choices_visible():
+        return bool(knol_ready and knol_scene and knol_scene.get("choices") and
+            knol_scene.get("mode") == "play" and not knol_scene.get("ended") and
+            not knol_transition_active and not knol_waiting_for_audio() and
+            knol_text_page == len(knol_dialogue_metrics(knol_scene)["pages"]) - 1)
+
+    def knol_choice_layout(scene):
+        global knol_choice_cache
+        if knol_choice_cache is not None and knol_choice_cache[0] is scene:
+            return knol_choice_cache[1]
+        width, height = int(scene["width"]), int(scene["height"])
+        portrait = height > width
+        padding, gap, header = 24, 12, 92
+        maximum_height = height - 64
+        maximum_width = width - 64
+        preferred_width = min(maximum_width, 640 if portrait else 880)
+        choices = scene.get("choices", [])
+        # Measure the very same literal text/font used by the native buttons.
+        # Widen before reducing type; never truncate authored choices to make them fit.
+        for font_size in range(34 if portrait else 32, 23, -2):
+            for popup_width in (preferred_width, maximum_width):
+                text_width = popup_width - padding * 2 - 48 - 12
+                heights = [max(96, renpy.render(Text(knol_literal(choice["text"]),
+                    substitute=False, font="NotoSansKR.ttf", size=font_size,
+                    line_spacing=4), text_width, 2000000, 0, 0).height + 32)
+                    for choice in choices]
+                content_height = sum(heights) + gap * max(0, len(heights) - 1)
+                popup_height = content_height + header + padding * 2
+                if popup_height <= maximum_height:
+                    break
+            if popup_height <= maximum_height:
+                break
+        popup_height = min(maximum_height, popup_height)
+        layout = {"rect": {"x": (width - popup_width) // 2, "y": (height - popup_height) // 2,
+            "width": popup_width, "height": popup_height}, "padding": padding,
+            "gap": gap, "headerHeight": header, "fontSize": font_size,
+            "buttonHeights": heights, "listHeight": popup_height - header - padding * 2,
+            "scroll": content_height > popup_height - header - padding * 2}
+        knol_choice_cache = (scene, layout)
+        return layout
+
     def knol_choices_rect(scene, dialogue_rects):
-        top = int(min(110, knol_textbox(scene)["y"] * .2, max(0, dialogue_rects["speaker"]["y"] - 64)))
-        width = int(scene["width"] * .625 if scene["width"] >= 1000 else scene["width"] - 48)
-        return {"x": int(scene["width"] * .1875 if scene["width"] >= 1000 else 24),
-            "y": top, "width": width,
-            "height": max(1, int(min(knol_textbox(scene)["y"] - 8, dialogue_rects["speaker"]["y"] - 6) - top))}
+        return knol_choice_layout(scene)["rect"]
 
     def knol_resize(scene):
         width, height = int(scene["width"]), int(scene["height"])
@@ -297,6 +335,34 @@ init python:
                 with open(destination, "wb") as output:
                     output.write(data)
 
+    def knol_render_thumbnail(command):
+        # Pinned 8.5.3 screen adapter: render the existing native screen offscreen.
+        # No show_screen/loadScene, audio calls, revision changes or interaction.
+        global knol_scene, knol_text_page, knol_text_offset, knol_dialogue_cache, knol_speaker_scroll
+        original = (knol_scene, knol_text_page, knol_text_offset, knol_dialogue_cache, knol_speaker_scroll)
+        target = command["payload"]
+        result = {"protocol": 1, "type": "sceneThumbnailFailed", "requestId": command["requestId"],
+            "sceneId": target["sceneId"], "revision": target["revision"]}
+        try:
+            if not knol_scene or knol_scene.get("mode") != "edit" or (config.screen_width, config.screen_height) != (1280, 720):
+                return
+            import io
+            knol_scene, knol_text_page, knol_text_offset = target, 0, 0
+            knol_dialogue_cache, knol_speaker_scroll = None, renpy.ui.adjustment()
+            screen = renpy.display.screen.ScreenDisplayable(
+                renpy.display.screen.get_screen_variant("knol_stage"), None, None)
+            surface = renpy.render_to_surface(screen, 1280, 720, resize=True)
+            surface = renpy.display.scale.smoothscale(surface, (320, 180))
+            output = io.BytesIO()
+            renpy.display.module.save_png(surface, output, 0)
+            result.update(type="sceneThumbnail", width=320, height=180,
+                dataUrl="data:image/png;base64," + base64.b64encode(output.getvalue()).decode("ascii"))
+        except Exception as error:
+            renpy.log("KnolStory thumbnail: " + str(error))
+        finally:
+            knol_scene, knol_text_page, knol_text_offset, knol_dialogue_cache, knol_speaker_scroll = original
+            knol_emit(result)
+
     def knol_poll():
         global knol_scene, knol_seq, knol_revision, knol_pending, knol_started, knol_last_viewport, knol_ready, knol_transition_active, knol_presentation_started, knol_reported_audio, knol_text_page, knol_text_offset
         if not renpy.emscripten:
@@ -331,6 +397,9 @@ init python:
         raw = renpy.emscripten.run_script_string("window.knolBridge.drain()")
         messages = json.loads(raw)
         for command in messages:
+            if command.get("type") == "renderSceneThumbnail":
+                knol_render_thumbnail(command)
+                continue
             if command.get("type") == "nextDialoguePage":
                 if knol_scene and command.get("sceneId") == knol_scene["sceneId"] and command.get("revision") == knol_revision:
                     # Host auto may only turn native text pages; a raced manual input must never skip a cut.
@@ -387,6 +456,74 @@ init python:
             knol_pending = True
         if messages:
             renpy.restart_interaction()
+
+screen knol_choice_popup():
+    zorder 80
+    modal knol_choices_visible()
+    if knol_choices_visible():
+        $ layout = knol_choice_layout(knol_scene)
+        $ rect = layout["rect"]
+        # A separate modal screen owns focus and blocks click-through to the story.
+        add Solid("#08191699")
+        frame:
+            id "choice-popup"
+            xpos int(rect["x"])
+            ypos int(rect["y"])
+            xysize (int(rect["width"]), int(rect["height"]))
+            padding (layout["padding"], layout["padding"])
+            background Frame("ui/choice-panel.svg", 24, 24)
+            fixed:
+                text "이야기의 갈림길":
+                    substitute False
+                    font "NotoSansKR.ttf"
+                    size 22
+                    color "#bce6cf"
+                    xalign .5
+                text "어떻게 할까요?":
+                    substitute False
+                    font "NotoSansKR.ttf"
+                    size 34
+                    color "#fffdf5"
+                    xalign .5
+                    ypos 30
+                viewport:
+                    id "choice-list"
+                    ypos layout["headerHeight"]
+                    xysize (int(rect["width"] - layout["padding"] * 2 - (12 if layout["scroll"] else 0)), int(layout["listHeight"]))
+                    mousewheel layout["scroll"]
+                    draggable layout["scroll"]
+                    yadjustment knol_choice_scroll
+                    vbox:
+                        spacing layout["gap"]
+                        xfill True
+                        for index, choice in enumerate(knol_scene["choices"]):
+                            button:
+                                id ("choice-" + choice["id"])
+                                xfill True
+                                ysize int(layout["buttonHeights"][index])
+                                padding (24, 16)
+                                background Frame("ui/choice-button.svg", 16, 16)
+                                hover_background Frame("ui/choice-button-hover.svg", 16, 16)
+                                default_focus index == 0
+                                action Function(knol_text_input, "choiceSelected", choice["id"])
+                                text knol_literal(choice["text"]):
+                                    substitute False
+                                    font "NotoSansKR.ttf"
+                                    size layout["fontSize"]
+                                    line_spacing 4
+                                    color "#fffdf5"
+                                    hover_color "#183331"
+                                    xsize int(rect["width"] - layout["padding"] * 2 - 48 - (12 if layout["scroll"] else 0))
+                                    text_align .5
+                                    align (.5, .5)
+                if layout["scroll"]:
+                    vbar:
+                        adjustment knol_choice_scroll
+                        xpos int(rect["width"] - layout["padding"] * 2 - 6)
+                        ypos layout["headerHeight"]
+                        xysize (6, int(layout["listHeight"]))
+                        base_bar Solid("#284e46")
+                        thumb Solid("#bce6cf")
 
 screen knol_stage():
     add Solid("#fffdf5")
@@ -535,39 +672,7 @@ screen knol_stage():
                     for effect in knol_target_effects("screen"):
                         if effect["type"] != "shake" and (not knol_scene.get("reducedMotion") or effect["type"] in ("crack", "screen-crack", "spotlight", "fade-black")):
                             add knol_effect(effect, knol_scene.get("reducedMotion", False)) id ("screen-effect-" + str(effect))
-            if knol_scene.get("choices") and knol_text_page == len(knol_dialogue_metrics(knol_scene)["pages"]) - 1:
-                $ choices_rect = knol_choices_rect(knol_scene, dialogue_rects)
-                $ choices_padding = min(20, int(choices_rect["height"] / 8))
-                frame:
-                    xpos int(choices_rect["x"])
-                    ypos int(choices_rect["y"])
-                    xysize (int(choices_rect["width"]), int(choices_rect["height"]))
-                    padding (choices_padding, choices_padding)
-                    background Solid(knol_paper)
-                    viewport:
-                        xysize (max(1, int(choices_rect["width"] - choices_padding * 2 - 8)), max(1, int(choices_rect["height"] - choices_padding * 2)))
-                        mousewheel True
-                        draggable True
-                        yadjustment knol_choice_scroll
-                        vbox:
-                            spacing 10
-                            xfill True
-                            for choice in knol_scene["choices"]:
-                                textbutton knol_button_text(choice["text"]):
-                                    text_font "NotoSansKR.ttf"
-                                    text_size 28
-                                    text_color knol_ink
-                                    xfill True
-                                    action Function(knol_text_input, "choiceSelected", choice["id"])
-                vbar:
-                    adjustment knol_choice_scroll
-                    xpos int(choices_rect["x"] + choices_rect["width"] - choices_padding - 6)
-                    ypos int(choices_rect["y"] + choices_padding)
-                    xysize (6, max(1, int(choices_rect["height"] - choices_padding * 2)))
-                    unscrollable "hide"
-                    base_bar Solid(knol_paper)
-                    thumb Solid(knol_mint)
-            elif not knol_scene.get("ended") and knol_text_page == len(knol_dialogue_metrics(knol_scene)["pages"]) - 1:
+            if not knol_scene.get("choices") and not knol_scene.get("ended") and knol_text_page == len(knol_dialogue_metrics(knol_scene)["pages"]) - 1:
                 button:
                     xpos int(textbox["x"] + textbox["width"] - 44)
                     ypos int(dialogue_rects["body"]["y"] + dialogue_rects["body"]["height"])
@@ -638,5 +743,6 @@ screen knol_stage():
         text "편집 화면 연결 중…" color knol_ink size 32 font "NotoSansKR.ttf" align (0.5, 0.5)
 
 label start:
+    show screen knol_choice_popup
     call screen knol_stage
     jump start

@@ -1,0 +1,113 @@
+
+ RUN  v4.1.11 /Volumes/WAN2/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/authoring-real-works.test.ts (12 tests | 4 failed) 151096ms
+   × seonnyeo story: entire actual manuscript survives official file, XLSX and JSONB snapshot 31595ms
+   × seonnyeo classic: entire actual manuscript survives official file, XLSX and JSONB snapshot 23440ms
+   × heungbu story: entire actual manuscript survives official file, XLSX and JSONB snapshot 22098ms
+   × heungbu classic: entire actual manuscript survives official file, XLSX and JSONB snapshot 20568ms
+ ❯ packages/compatibility/tests/reader-text.test.ts (15 tests | 4 failed) 163822ms
+     × applies curated exact manuscript edits without touching IDs,flow,actors or source 5784ms
+     × refreshes every exact official edition of all eight stories without mutating the source 13807ms
+     × pinky-review-main-004: current corrected manuscript survives archive, workbook, XLSX and JSONB 53131ms
+     × pinky-review-main-003: current corrected manuscript survives archive, workbook, XLSX and JSONB 40432ms
+ ❯ packages/compatibility/tests/workbook-seconds.test.ts (9 tests | 1 failed) 13750ms
+   × does not accept duplicate previous and current names for the same authoring sheet 5650ms
+ ❯ packages/compatibility/tests/registered-korean-artifacts.test.ts (2 tests | 1 failed) 14436ms
+   × preserves needed Korean authoring content in a current registered excel copy 11010ms
+ ❯ packages/compatibility/tests/authoring-excel.test.ts (2 tests | 1 failed) 6379ms
+   × writes a real multi-tab editable XLSX with full story fidelity and no project JSON payload 5051ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/authoring-excel.test.ts > writes a real multi-tab editable XLSX with full story fidelity and no project JSON payload
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/authoring-excel.test.ts:6:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  packages/compatibility/tests/authoring-real-works.test.ts > seonnyeo story: entire actual manuscript survives official file, XLSX and JSONB snapshot
+ FAIL  packages/compatibility/tests/authoring-real-works.test.ts > seonnyeo classic: entire actual manuscript survives official file, XLSX and JSONB snapshot
+ FAIL  packages/compatibility/tests/authoring-real-works.test.ts > heungbu story: entire actual manuscript survives official file, XLSX and JSONB snapshot
+ FAIL  packages/compatibility/tests/authoring-real-works.test.ts > heungbu classic: entire actual manuscript survives official file, XLSX and JSONB snapshot
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/authoring-real-works.test.ts:5:131
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  packages/compatibility/tests/reader-text.test.ts > provided original and creative editions edited reading text > applies curated exact manuscript edits without touching IDs,flow,actors or source
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/reader-text.test.ts:24:2
+     22| }
+     23| describe('provided original and creative editions edited reading text'…
+     24|  it('applies curated exact manuscript edits without touching IDs,flow,…
+       |  ^
+     25|   expect(readerTextEdits.length).toBeGreaterThan(86);
+     26|   expect(new Set(readerTextEdits.map(e=>e.projectId)).size).toBe(8);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  packages/compatibility/tests/reader-text.test.ts > provided original and creative editions edited reading text > refreshes every exact official edition of all eight stories without mutating the source
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/reader-text.test.ts:45:2
+     43|   }
+     44|  });
+     45|  it('refreshes every exact official edition of all eight stories witho…
+       |  ^
+     46|   expect(priorEdits).toHaveLength(86);
+     47|   const entries=[...representativeStories,...classicStories];
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  packages/compatibility/tests/reader-text.test.ts > provided original and creative editions edited reading text > pinky-review-main-004: current corrected manuscript survives archive, workbook, XLSX and JSONB
+ FAIL  packages/compatibility/tests/reader-text.test.ts > provided original and creative editions edited reading text > pinky-review-main-003: current corrected manuscript survives archive, workbook, XLSX and JSONB
+Error: Test timed out in 20000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/reader-text.test.ts:121:66
+    119|   }
+    120|  });
+    121|  for(const entry of [...representativeStories,...classicStories])it(`$…
+       |                                                                  ^
+    122|   const original=structuredClone(entry.project),current=resolveProvide…
+    123|   const parsed=parseStoryDocument(current,{savedAt:'2026-10-18T00:00:0…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  packages/compatibility/tests/registered-korean-artifacts.test.ts > preserves needed Korean authoring content in a current registered excel copy
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/registered-korean-artifacts.test.ts:5:40
+      3| import {createHash} from 'node:crypto';
+      4| import {registeredWorkbookCopy} from './fixtures/registered-workbook-c…
+      5| for(const source of ['google','excel'])it(`preserves needed Korean aut…
+       |                                        ^
+      6|  const path=`docs/architecture/evidence/authoring-format/story-korean-…
+      7|  const {original,archive,buffer,replacements}=await registeredWorkbook…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  packages/compatibility/tests/workbook-seconds.test.ts > does not accept duplicate previous and current names for the same authoring sheet
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/compatibility/tests/workbook-seconds.test.ts:80:1
+     78|  expect(await importAuthoringExcel(bytes)).toEqual(archive);
+     79| });
+     80| it('does not accept duplicate previous and current names for the same …
+       | ^
+     81|  const ExcelJS=(await import('exceljs')).default,book=new ExcelJS.Work…
+     82|  await book.xlsx.load(await exportAuthoringExcel({format:'knolstory',d…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+
+ Test Files  5 failed | 195 passed (200)
+      Tests  11 failed | 1820 passed | 2 skipped (1833)
+   Start at  15:30:52
+   Duration  347.32s (transform 35.93s, setup 0ms, import 139.89s, tests 487.58s, environment 27ms)
+

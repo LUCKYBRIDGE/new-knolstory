@@ -21,6 +21,11 @@ function editFirstLine(project:StoryProject,patch:Partial<StoryLine>):StoryProje
  return {...project,lines:project.lines.map((line,index)=>index===0?{...line,...patch}:line)};
 }
 describe('provided original and creative editions edited reading text',()=>{
+ it('provides all eight editions with chapter titles, without retired act numbering',()=>{
+  for(const entry of [...representativeStories,...classicStories]){
+   expect(entry.project.chapters.every(chapter=>!/^\s*(?:제\s*)?[0-9]+\s*막(?=\s|[:：·.\-]|$)/u.test(chapter.title))).toBe(true);
+  }
+ });
  it('applies curated exact manuscript edits without touching IDs,flow,actors or source',()=>{
   expect(readerTextEdits.length).toBeGreaterThan(86);
   expect(new Set(readerTextEdits.map(e=>e.projectId)).size).toBe(8);

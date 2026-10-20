@@ -1,0 +1,179 @@
+{
+  "status": "complete-local-scope",
+  "scope": "Responsive six-screen authoring editor, desktop/tablet/phone arrangements, current and adjacent 16:9 native scene previews, contextual tools, fixed16:9/9:16 reading and edit/play return. Local scoped completion; not deployment or physical-device certification.",
+  "requirements": [
+    {
+      "requirement": "Desktop/tablet columns with chapter list and current-cut notes",
+      "evidence": "Final desktop native capture; tablet portrait capture and DOM rectangles; context navigation inspected.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Portrait stacked and short landscape phone layout, manual setting restoration",
+      "evidence": "checks.json manualOverride plus final portrait/landscape captures; manual columns survived reload, wide stacked confirmed, restored auto.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Six explicit editor screens and closed advanced gates",
+      "evidence": "checks.json screens: twelve desktop/phone observations, no document/workbench horizontal overflow; original optional settings restored.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Basic speaker/type inputs, explicit playback, long chapter selection remains visible",
+      "evidence": "Actual metadata and late58th-cut checks, current third-cut scene and explicit playback; SSR tests.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "16:9 edit preview, 16:9/9:16 reading, one native instance",
+      "evidence": "Actual native reading/resize acknowledgements, four reading geometries and five editing geometries; final single-frame native state.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Correct whole-stage contain size on each edit/read/resize attachment",
+      "evidence": "checks.json geometry and actual post-adjacent-feature read-return: edit1280x720 contains in269.36x221.67, scale0.21044; no retained reading/editing size.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Context panel dismissal and keyboard focus, composition protection",
+      "evidence": "Actual mobile Escape/outside click and notes action/focus; composition guards retained in source; physical OS IME explicitly outside this scope.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Authored data and file preservation after configuration changes",
+      "evidence": "Actual exported project/audioResources/schema equal before/after settings; temporary text-edit verification restored all authored fields except expected updatedAt, confirmed in final file export.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Final verification and completion audit",
+      "evidence": "Runtime build0 then final pnpm build0; full sequential unit202files1837passed2skipped; final focused19, Python60 and presenter20 passed. Final CSS/hint refinement followed by focused tests, actual native captures and final build.",
+      "status": "verified-local-scope"
+    },
+    {
+      "requirement": "Previous/next cut previews include native background, actor placement and first dialogue textbox on desktop/tablet/phone",
+      "evidence": "native-adjacent-checks.json and actual native captures; 320x180 images, one engine/current cut/audio preserved, changed manuscript creates different full-image fingerprints and restoration recreates the original fingerprint. Contract/bridge/native-state tests pass.",
+      "status": "verified-local-scope"
+    }
+  ],
+  "assets": {
+    "legacyImages": {
+      "baseline": "18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b",
+      "files": 431,
+      "counts": {
+        "restored": 431
+      },
+      "policy": "Local owner-authorized test images only. Redistribution unverified; ignored by Git."
+    },
+    "audio": {
+      "package": "audio-cc0-staging-2026-10-13-v1",
+      "sha256": "255d7662b11c5bbd37c46c7ce8182e25d5ff5f2f95bae6cdb1bc27d3ccb62c43",
+      "approvedPackageAudio": 61,
+      "approvedOnDemandAudio": 469,
+      "scope": "Owner local scene/editor QA, no redistribution change"
+    },
+    "gitPolicy": "Local restored media/runtime remain ignored. No redistribution permission change."
+  },
+  "blocker": null,
+  "verification": {
+    "runtime_build_exit": 0,
+    "full_build_exit": 0,
+    "latest_focused_passed": 22,
+    "python_tests_passed": 58,
+    "presenter_tests_passed": 20,
+    "previous_full_unit": {
+      "files": 199,
+      "passed": 1830,
+      "skipped": 2
+    },
+    "final_full_unit": {
+      "files": 200,
+      "passed": 1820,
+      "skipped": 2,
+      "failed": 11,
+      "failure": "Timeouts during concurrent build at high machine load; no data assertion mismatch."
+    },
+    "timeout_file_recheck": {
+      "files": 5,
+      "passed": 40,
+      "failed": 0,
+      "maxWorkers": 1,
+      "exit_code": 0
+    },
+    "full_sequential_unit": {
+      "exit_code": 0,
+      "files": 201,
+      "passed": 1833,
+      "skipped": 2,
+      "failed": 0,
+      "maxWorkers": 1,
+      "no_excluded_files": true,
+      "timeouts_unchanged": true
+    },
+    "final_components_and_replaced_measure_observer": {
+      "exit_code": 0,
+      "files": 2,
+      "passed": 3
+    },
+    "final_lint_exit": 0,
+    "final_docs_check_exit": 0,
+    "final_test_docs_exit": 0,
+    "final_release_build": {
+      "exit_code": 0,
+      "command": "pnpm build",
+      "includes": "Approved source/runtime audio hash and rights gate, then full Web build",
+      "durationSeconds": 9.635
+    },
+    "adjacent_final": {
+      "runtime_build_exit": 0,
+      "web_build_exit": 0,
+      "full_sequential_unit": {
+        "files": 202,
+        "passed": 1837,
+        "skipped": 2,
+        "exit_code": 0
+      },
+      "focused": {
+        "passed": 19,
+        "exit_code": 0
+      },
+      "python": {
+        "passed": 60,
+        "exit_code": 0
+      },
+      "presenter": {
+        "passed": 20,
+        "exit_code": 0
+      },
+      "lint_exit": 0,
+      "web_typecheck_exit": 0,
+      "full_typecheck_exit": 0,
+      "docs_check_exit": 0,
+      "test_docs_exit": 0,
+      "diff_check_exit": 0
+    }
+  },
+  "sourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "4ccf9339439e818469df281afab464265e3f4c2de8162a005fb2d2212fb6e50a",
+    "apps/web/components/story-editing-workbench.module.css": "be48d11847c7a38ff8789c27921efe57df05568d8147f76f074cf2ff71f7d950",
+    "apps/web/components/story-workspace-runtime.ts": "8ed4dfc69bbbc2af3841fda5066d44d0985a708af97e8ff1ad7fd3e521e095ab",
+    "apps/web/lib/observe-display-size.ts": "f04d7078f21b170864727bf1517ac8a2bc60b0b81ffdcb0113ed2ecbb83c3baa",
+    "apps/web/lib/cut-arrangement.ts": "592ec2a3d8ac1aec35f34ced4e86de0c40770b085e86917c606210c0cb8a2f11",
+    "renpy/responsive-spike/game/script.rpy": "5876d425bd63a5d5c046c7589b9faa773996a14536a34c8cf37dd7971c15489e",
+    "apps/web/components/use-adjacent-scene-thumbnails.ts": "1bc5ffd17b8617bb22e50c28c50df10b204a4de1da3e86048c185576448243b8",
+    "packages/runtime-contract/src/index.ts": "875678f4c01ea47a5f97e3608b3e6d0f6dd1191a36dc2c1f29741ef45dbacdac",
+    "spikes/renpy-web/bridge.js": "29f8c702523086ef199b6f806589a000e4d8194be876436522e7fd66049a236d"
+  },
+  "preservation": "Existing dirty changes and user-added JPG preserved. No commit/push/deploy.",
+  "resolvedBlocker": "After user confirmed access allowed, a normal HTTP product tab opened successfully. The former tab contained a data-URL connection-error page. No security policy bypass was used.",
+  "preAdjacentSourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "c4515093767795186b08527efa58d52c6ae72f58899b82d7ef2b4602f96cb90c",
+    "apps/web/components/story-editing-workbench.module.css": "5c3b520d2bff62b32be87103bdc52fa3620af510c1485a48515c6cb160f30ee2",
+    "apps/web/components/story-workspace-runtime.ts": "8ed4dfc69bbbc2af3841fda5066d44d0985a708af97e8ff1ad7fd3e521e095ab",
+    "apps/web/lib/observe-display-size.ts": "f04d7078f21b170864727bf1517ac8a2bc60b0b81ffdcb0113ed2ecbb83c3baa",
+    "apps/web/lib/cut-arrangement.ts": "592ec2a3d8ac1aec35f34ced4e86de0c40770b085e86917c606210c0cb8a2f11",
+    "renpy/responsive-spike/game/script.rpy": "dc1c409df4810ead91ebac4817cf2c21546d7e5b7ec7dd3aa7b3537b03bb7e69"
+  },
+  "limits": [
+    "Viewport simulations do not establish physical phone/tablet, OS IME, screen-reader or hours-long performance results.",
+    "Native thumbnails show the first text page as a static16:9 scene; motion/audio are inspected through playback.",
+    "No commit, push, public deployment or media redistribution approval."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "status": "complete-local-scope",
+  "scope": "Basic editor prioritizes speaker name and actual connected stage image; dialogue/narration kind remains in a collapsed setting. No authored format or actor-assignment changes.",
+  "checks": {
+    "component_tests": {
+      "passed": 3,
+      "exit_code": 0
+    },
+    "typecheck_exit": 0,
+    "build_exit": 0,
+    "lint_exit": 0,
+    "docs_check_exit": 0,
+    "test_docs": {
+      "passed": 10,
+      "exit_code": 0
+    },
+    "browser": [
+      "Actual dialogue cut: 화자 용왕, 연결된 이미지 용왕 · 병든 모습 and thumbnail",
+      "Actual narration cut: 없음 · 해설; restored dialogue cut shows linked image",
+      "Desktop and portrait phone inspected; no horizontal overflow",
+      "Collapsed 글 종류 설정 opens the existing dialogue/narration selector",
+      "Existing actor opt-in, composition guard and manuscript writes preserved"
+    ]
+  },
+  "sourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "b1b8b8750200f6762f7ce698d52fe7b403b939433635aa32afb79eab89212286",
+    "apps/web/components/story-editing-workbench.module.css": "b8196b8ee5d62a4b5652b6a739e6221ae0d071e0c1ebfc3839aaff3c20c7ec6c",
+    "apps/web/components/story-editing-workbench.test.ts": "0f70410e8ea67933821b0205e83b621a037d90564cc7ca88219dce09c6401af9"
+  },
+  "limits": [
+    "No fresh physical-device/OS IME/screen-reader or deployment claim.",
+    "Earlier editor completion and full-suite results retain their original source scope."
+  ]
+}

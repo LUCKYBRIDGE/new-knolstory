@@ -1,0 +1,28 @@
+{
+  "status": "complete-local-scope",
+  "scope": "Compact basic speaker/image/kind/play row. Read-only linked image semantics and current data contract unchanged.",
+  "geometry": "geometry.json",
+  "verification": {
+    "build_exit": 0,
+    "focused_component_tests": {
+      "passed": 3,
+      "exit_code": 0
+    },
+    "lint_exit": 0,
+    "docs_check_exit": 0,
+    "test_docs_exit": 0,
+    "actual_browser": [
+      "Desktop:44px bar, all input/select/play top coordinates and heights equal",
+      "Portrait and short landscape phone:70px bar,44px controls aligned, linked image on compact24px second line",
+      "No horizontal document overflow observed"
+    ]
+  },
+  "sourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "a26a8662d8d97729e3cf350492d38e954816c9cd61b21f1aaddce48816180cf2",
+    "apps/web/components/story-editing-workbench.module.css": "3bfe702a14c512e7a2d99616a8b4b46aa6389b7ab0257af1d285e8e991dd255e"
+  },
+  "limits": [
+    "Viewport simulations, not physical-device/IME evidence.",
+    "No native or authored-data changes; no commit or deployment."
+  ]
+}

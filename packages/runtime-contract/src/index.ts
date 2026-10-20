@@ -32,7 +32,12 @@ export type RuntimeScene = Readonly<{
   audio?: RuntimeAudio;
   mode?: 'edit' | 'play'; ended?: boolean; reducedMotion?: boolean; presentation?: RuntimePresentation;
 }>;
+/** Read-only render request: never loads or advances the active story scene. */
+export type RuntimeThumbnailRequest=Readonly<{protocol:1;type:'renderSceneThumbnail';requestId:string;payload:RuntimeScene}>;
+export type RuntimeSceneThumbnail=Readonly<{width:320;height:180;dataUrl:string}>;
 export type RuntimeEvent =
+  | (Readonly<{protocol:1;type:'sceneThumbnail';requestId:string;sceneId:string;revision:number}>&RuntimeSceneThumbnail)
+  | Readonly<{protocol:1;type:'sceneThumbnailFailed';requestId:string;sceneId:string;revision:number}>
   | Readonly<{ protocol: 1; type: 'ready'; runtimeVersion: string; contractVersion: 1 }>
   | Readonly<{ protocol: 1; type: 'sceneRendered'; revision: number; sceneId: string;
       renderMs: number; rendererRect: Rect; textboxRect: Rect; dialogueRects?:Readonly<{speaker:Rect;body:Rect}>; choicesRect?:Rect;
@@ -130,9 +135,14 @@ export function isRuntimeScene(value: unknown): value is RuntimeScene {
     && optionalChoice(actor.emphasis, ['normal', 'dim']));
   return valid && sceneExtras(value) && new Set(actors.map((actor: RuntimeActor) => actor.id)).size === actors.length;
 }
+export function isRuntimeThumbnailRequest(value:unknown):value is RuntimeThumbnailRequest{
+ return record(value)&&value.protocol===1&&value.type==='renderSceneThumbnail'&&text(value.requestId,100)&&!!value.requestId&&isRuntimeScene(value.payload)&&value.payload.mode==='edit'&&value.payload.width===1280&&value.payload.height===720;
+}
 export function isRuntimeEvent(value: unknown): value is RuntimeEvent {
   if (!record(value) || value.protocol !== 1) return false;
   switch (value.type) {
+    case 'sceneThumbnail': return text(value.requestId,100)&&!!value.requestId&&text(value.sceneId,200)&&!!value.sceneId&&revision(value.revision)&&value.width===320&&value.height===180&&text(value.dataUrl,550000)&&/^data:image\/png;base64,[A-Za-z0-9+/]+={0,2}$/.test(value.dataUrl);
+    case 'sceneThumbnailFailed': return text(value.requestId,100)&&!!value.requestId&&text(value.sceneId,200)&&!!value.sceneId&&revision(value.revision);
     case 'ready': return value.contractVersion === 1 && text(value.runtimeVersion, 100) && !!value.runtimeVersion;
     case 'viewportChanged': return isRect(value.rendererRect);
     case 'error': return text(value.message, 2000);

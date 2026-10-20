@@ -1,0 +1,65 @@
+{
+  "scope": "Basic authoring editor context panels and device-aware cut arrangement; not product native playback or deployment",
+  "source_files": [
+    "apps/web/components/story-editing-workbench.tsx",
+    "apps/web/components/story-editing-workbench.module.css",
+    "apps/web/lib/editor-preferences.ts",
+    "apps/web/lib/cut-arrangement.ts"
+  ],
+  "changes": [
+    "Auto chooses columns near landscape and stacked near portrait based on stable editing workspace",
+    "Manual auto/columns/stacked stored in existing per-work tab preferences",
+    "Columns use left chapter navigation and right current-cut notes/explicit connections",
+    "Stacked tablet/phone use compact previous/current/next and collapsible contextual tools",
+    "Short landscape phone separates preview and writing in one row with compact context",
+    "IME composition and keyboard occlusion suspend automatic remeasurement",
+    "All cut previews remain landscape1280x720"
+  ],
+  "checks": {
+    "source_unit": {
+      "exit_code": 0,
+      "files": 197,
+      "passed": 1827,
+      "skipped": 2,
+      "excluded_files": [
+        "packages/asset-registry/tests/catalog.test.ts",
+        "packages/asset-registry/tests/approved-audio-bytes.test.ts"
+      ]
+    },
+    "final_focused": {
+      "exit_code": 0,
+      "passed": 14
+    },
+    "typecheck": {
+      "exit_code": 0
+    },
+    "final_source_build": {
+      "exit_code": 0
+    },
+    "changed_source_lint": {
+      "exit_code": 0
+    },
+    "docs_check": {
+      "exit_code": 0
+    },
+    "test_docs": {
+      "exit_code": 0
+    }
+  },
+  "browser_checks": [
+    "desktop columns with chapter list and notes rail",
+    "tablet1024x768 columns;768x1024 stacked",
+    "phone390x844 stacked;844x390 compact columns",
+    "chapter-list click selects second cut and marks current cut",
+    "mobile note action opens existing cut notes and focuses title",
+    "manual columns survives reload in portrait then restored auto",
+    "no nested buttons or horizontal document overflow observed",
+    "preview logical1280x720 and displayed16:9 preserved"
+  ],
+  "limits": [
+    "No physical-device, OS keyboard or actual IME-composition claim; input guard is source-level",
+    "Product native runtime and private media are absent on this machine; no complete native playback verification",
+    "Source unit suite preceded the final CSS and observer guard refinement; final focused tests and source build were rerun after it",
+    "No commit, push or production deployment"
+  ]
+}

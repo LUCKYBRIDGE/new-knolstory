@@ -1,9 +1,9 @@
 "use client";
-import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState } from "react";
 import {captureNativeSaveThumbnail} from '../lib/native-save-thumbnail';
 import {runtimeServiceAudioPaths,type RuntimeEvent,type RuntimeScene} from "@knolstory/runtime-contract";
 import { fitStage } from "@knolstory/runtime-core";
-import {isReaderDisplaySize} from '../lib/reader-display-viewport';
+import {observeDisplaySize} from '../lib/observe-display-size';
 import {presentationPhase} from "../lib/presentation-phase";
 import {readerPresentationReady} from "../lib/reader-presentation-ready";
 import {ServiceAudioDelivery} from '../lib/service-audio-delivery';
@@ -21,6 +21,8 @@ export function useStoryRuntime(
   inputBlocked = false,
 ) {
   const container = useRef<HTMLDivElement>(null);
+  const [containerNode,setContainerNode]=useState<HTMLDivElement|null>(null);
+  const attachContainer=useCallback((node:HTMLDivElement|null)=>{container.current=node;setContainerNode(node);},[]);
   const frame = useRef<HTMLIFrameElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
   const [ready, setReady] = useState(false);
@@ -57,19 +59,13 @@ export function useStoryRuntime(
       window.scrollTo({top:0});
     }
   }, [scene.sceneId,scene.mode,scene.presentationEntry]);
-  useEffect(() => {
-    const node = container.current;
-    if (!enabled || !node) return;
-    const observer = new ResizeObserver((entries) => {
-      const rect = entries[0]?.contentRect;
-      if (rect && rect.width > 0 && rect.height > 0) {
-        const next = {width:rect.width,height:rect.height};
-        if(isReaderDisplaySize(next)){setSize(next); sizeCallback.current?.(next);}
-      }
+  useLayoutEffect(() => {
+    if (!enabled || !containerNode) return;
+    return observeDisplaySize(containerNode,next=>{
+      setSize(previous=>previous.width===next.width&&previous.height===next.height?previous:next);
+      sizeCallback.current?.(next);
     });
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [enabled]);
+  }, [enabled,containerNode,scene.mode]);
   useEffect(() => {
     const receive = (message: MessageEvent) => {
       if (
@@ -191,6 +187,7 @@ export function useStoryRuntime(
     presentationReady: readerPresentationReady(scene, rendered, confirmed, audioPending, runtimeStatus.failed),
     audioPending,
     container,
+    attachContainer,
     frame,
     ready,
     rendered,

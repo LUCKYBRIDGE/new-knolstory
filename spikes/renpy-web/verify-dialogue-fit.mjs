@@ -74,7 +74,7 @@ try{
  assert.ok(choiceScene.choicesRect.height>=140,'long choice text retains reachable choice space');
  let choiceInputs=0;
  for(;choiceInputs<25;choiceInputs++){
-  await page.mouse.click(choiceScene.choicesRect.x+choiceScene.choicesRect.width/2,choiceScene.choicesRect.y+35);
+  await page.mouse.click(choiceScene.choicesRect.x+choiceScene.choicesRect.width/2,choiceScene.choicesRect.y+164);
   await page.waitForTimeout(100);
   if(await page.evaluate(r=>window.presenterEvents.some(e=>e.type==='choiceSelected'&&e.revision===r),revision))break;
   await page.mouse.click(choiceScene.textboxRect.x+choiceScene.textboxRect.width-30,choiceScene.textboxRect.y+choiceScene.textboxRect.height-24);

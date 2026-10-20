@@ -1,0 +1,103 @@
+{
+  "finalNativeState": {
+    "arrangement": "columns",
+    "current": "review-main-002:start:2",
+    "frames": 1,
+    "overflow": false,
+    "rendered": "31",
+    "revision": "31",
+    "thumbnails": [
+      {
+        "id": "review-main-002:start:1",
+        "status": "ready"
+      },
+      {
+        "id": "review-main-002:start:3",
+        "status": "ready"
+      }
+    ],
+    "window": [
+      1163,
+      654
+    ]
+  },
+  "tablet": {
+    "arrangement": "stacked",
+    "overflow": false,
+    "thumbnails": [
+      {
+        "id": "review-main-002:start:1",
+        "rect": {
+          "bottom": 127.49999618530272,
+          "height": 62.99715805053711,
+          "left": 78.8991470336914,
+          "right": 190.89488220214844,
+          "top": 64.50283813476562,
+          "width": 111.99573516845705,
+          "x": 78.8991470336914,
+          "y": 64.50283813476562
+        },
+        "status": "ready"
+      },
+      {
+        "id": "review-main-002:start:3",
+        "rect": {
+          "bottom": 815.3053855895996,
+          "height": 62.99715805053711,
+          "left": 78.8991470336914,
+          "right": 190.89488220214844,
+          "top": 752.3082275390625,
+          "width": 111.99573516845705,
+          "x": 78.8991470336914,
+          "y": 752.3082275390625
+        },
+        "status": "ready"
+      }
+    ],
+    "window": [
+      698,
+      931
+    ]
+  },
+  "changedNeighborRebuilt": true,
+  "restoredPixels": true,
+  "preservation": {
+    "allAuthoredFieldsEqualExceptExpectedEditTimestamp": true,
+    "audioResourcesEqual": true,
+    "schemaUnchanged": true
+  },
+  "readReturn": {
+    "singleFrame": true,
+    "currentCutPreserved": true,
+    "previewLogical": [
+      1280,
+      720
+    ],
+    "contained": true
+  },
+  "source": "Actual product in-app browser with RenPy8.5.3",
+  "fullImageFingerprint": {
+    "before": {
+      "a": 997159450,
+      "b": 2359006180,
+      "height": 180,
+      "length": 308042,
+      "width": 320
+    },
+    "changed": {
+      "a": 1310227107,
+      "b": 2195185391,
+      "height": 180,
+      "length": 308042,
+      "width": 320
+    },
+    "restored": {
+      "a": 997159450,
+      "b": 2359006180,
+      "height": 180,
+      "length": 308042,
+      "width": 320
+    }
+  },
+  "preservationAfterFinalEdit": true
+}

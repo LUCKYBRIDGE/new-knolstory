@@ -47,7 +47,7 @@ if assets.exists():
         return [name for name in names if name in {'cover-fonts', 'legacy-ui'} or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]
     shutil.copytree(assets, project / 'game/assets', ignore=ignore_service_assets)
 env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy')
-subprocess.run([str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
+subprocess.run(['bash', str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
 html = (output / 'index.html').read_text()
 html = html.replace('<script src="renpy-pre.js">', '<script src="runtime-contract.js"></script>\n  <script src="knol-bridge.js"></script>\n  <script src="renpy-pre.js">')
 # Spike stays local, avoids stale service-worker cache between builds.

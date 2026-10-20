@@ -1,14 +1,16 @@
 import {useSyncExternalStore} from 'react';
+import type {CutArrangement} from './cut-arrangement';
 
 export type EditingScreen='basic'|'text'|'background'|'characters'|'audio'|'direction';
 export type Companion=Exclude<EditingScreen,'basic'>;
 export type EditorPreferences=Readonly<{
  screen:EditingScreen;
+ arrangement?:CutArrangement;
  enabled:Readonly<{characters:boolean;audio:boolean;direction:boolean}>;
  logic:Readonly<{choices:boolean;scores:boolean;branches:boolean}>;
  companions:Readonly<Partial<Record<EditingScreen,readonly Companion[]>>>;
 }>;
-export const defaultEditorPreferences:EditorPreferences={screen:'basic',enabled:{characters:false,audio:false,direction:false},logic:{choices:false,scores:false,branches:false},companions:{}};
+export const defaultEditorPreferences:EditorPreferences={screen:'basic',arrangement:'auto',enabled:{characters:false,audio:false,direction:false},logic:{choices:false,scores:false,branches:false},companions:{}};
 const screens:readonly EditingScreen[]=['basic','text','background','characters','audio','direction'];
 const companionNames:readonly Companion[]=['text','background','characters','audio','direction'];
 const record=(value:unknown):Record<string,unknown>=>value!==null&&typeof value==='object'&&!Array.isArray(value)?value as Record<string,unknown>:{};
@@ -24,7 +26,8 @@ export function normalizeEditorPreferences(value:unknown):EditorPreferences {
   const selected=[...new Set(values.filter((item):item is Companion=>companionNames.includes(item as Companion)&&item!==primary))];
   return selected.length?[[primary,selected]]:[];
  }));
- return {screen,enabled,logic,companions};
+ const arrangement=raw.arrangement==='columns'||raw.arrangement==='stacked'?raw.arrangement:'auto';
+ return {screen,arrangement,enabled,logic,companions};
 }
 export const editorPreferencesKey=(projectId:string)=>`knolstory-editor-session-v1:${encodeURIComponent(projectId)}`;
 export function readEditorPreferences(storage:Pick<Storage,'getItem'>,projectId:string):EditorPreferences {

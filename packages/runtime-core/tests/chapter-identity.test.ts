@@ -6,6 +6,20 @@ import { updateStoryChapter } from '../src/editor-authoring';
 const base=()=>createBlankStoryProject({id:'p',chapterId:'c',lineId:'l'});
 const ids=()=>{let i=0;return ()=>`new-${++i}`;};
 describe('chapter identity distinct from cut order and graph order',()=>{
+ it('removes retired numbered act prefixes without changing chapter identity, cut text or links',()=>{
+  const project=base();project.chapters[0].order=5;project.chapters[0].chapterNumber=3;project.chapters[0].branchLabel='B';
+  const original=structuredClone(project);
+  for(const title of ['2막: 용궁 대청','제 2 막 · 용궁 대청','2막 용궁 대청']){
+   const raw={...project,chapters:[{...project.chapters[0],title}]};
+   const loaded=parseStoryDocument(createStoryDocument({project:raw,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test'}));
+   expect(loaded.ok).toBe(true);if(!loaded.ok)throw Error('parse');
+   expect(loaded.document.project.chapters[0]).toEqual({...original.chapters[0],title:'용궁 대청'});
+   expect(loaded.document.project.lines).toEqual(original.lines);
+   expect(chapterLabel(raw.chapters[0])).toBe('3장B · 용궁 대청');
+   expect(raw.chapters[0].title).toBe(title);
+  }
+  for(const title of ['마지막 선택','막내의 이야기','사막의 밤','1막내 이야기'])expect(chapterLabel({...project.chapters[0],title})).toBe(`3장B · ${title}`);
+ });
  it('labels independent narrative numbers and branch suffix without rewriting title',()=>{
   const c={...base().chapters[0],order:4,chapterNumber:3,branchLabel:'B',title:'돌아오는 길'};
   expect(chapterLabel(c)).toBe('3장B · 돌아오는 길');

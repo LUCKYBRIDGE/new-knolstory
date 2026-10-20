@@ -4,6 +4,7 @@ import {EditorFlowContext} from './editor-flow-context';
 import {StoryBranchEditingContext} from './story-branch-editing-context';
 import {StoryWorkspaceInspector} from './story-workspace-inspector';
 import {StoryEditingWorkbench} from './story-editing-workbench';
+import {useAdjacentSceneThumbnails} from './use-adjacent-scene-thumbnails';
 import {StoryChapterSettings} from './story-chapter-settings';
 import {useEditorPreferences} from '../lib/editor-preferences';
 import {LocalWorkFileActions} from './local-work-file-actions';
@@ -20,7 +21,7 @@ import {StoryCutPosition} from "./story-cut-context";
 import {usePreviewEditorContext} from './use-preview-editor-context';
 import {rewindReader} from '../lib/reader-rewind';
 import {useEditorKeyboard} from "./use-editor-keyboard";
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   getRepresentativeStory,
   representativeStories,classicStories,resolveProvidedCatalogStory,
@@ -79,7 +80,7 @@ import {useEditorMenus} from './use-editor-menus';
 import {StoryStageNavigation} from './story-stage-navigation';
 import {StoryTextAccessibility} from './story-text-accessibility';
 import {StoryPlayerMenu} from "./story-player-menu";
-import { previewViewport, type PreviewProfile } from "../lib/story-viewport";
+import { storySceneLayout, type PreviewProfile } from "../lib/story-viewport";
 import {BookIntroduction} from './book-introduction';
 import {BookStart} from './book-start';
 import {BookCoverEditor} from './book-cover-editor';
@@ -91,9 +92,6 @@ import {scheduleWorkspaceAutosave} from '../lib/workspace-autosave';
 const FIRST = representativeStories[0]!;
 const builtInStories=[...representativeStories,...classicStories];
 
-const subscribePhoneEditor=(notify:()=>void)=>{const query=window.matchMedia('(max-width:700px)');query.addEventListener('change',notify);return ()=>query.removeEventListener('change',notify);};
-const phoneEditorSnapshot=()=>window.matchMedia('(max-width:700px)').matches;
-const serverPhoneEditorSnapshot=()=>false;
 export function StoryWorkspace() {
   const [pendingBranch,setPendingBranch]=useState<(ReturnType<typeof createChoiceWritingDraft>&{before:StoryProject;workId:string;label:string;sourceLabel:string})|null>(null);
   const [branchError,setBranchError]=useState('');
@@ -146,8 +144,6 @@ export function StoryWorkspace() {
   const keyboard=useEditorKeyboard();
   const [editorPreferences,setEditorPreferences]=useEditorPreferences(project.id);
   const editingScreen=editorPreferences.screen;
-  const phoneEditor=useSyncExternalStore(subscribePhoneEditor,phoneEditorSnapshot,serverPhoneEditorSnapshot);
-  const effectivePreviewProfile=mode==='edit'&&editingScreen==='basic'&&phoneEditor?'landscape':previewProfile;
   const logic=editorPreferences.logic;
   const [soundTool,setSoundTool]=useState(false);
   const [flowMapOpen, setFlowMapOpen] = useState(false);
@@ -182,9 +178,9 @@ export function StoryWorkspace() {
   const excludedAudio = useMemo(() => excludedStoryAudio(project), [project]);
   const flowNodes = useMemo(() => new Map(flowGraph.nodes.map(node => [node.lineId, node])), [flowGraph]);
   const scene = useMemo(() => {
-    const compiled=compileStoryScene(project,line.id,revision,{mode,reducedMotion:reducedMotion||motionOverride,viewport:previewViewport(mode==='play'?readerFormat:effectivePreviewProfile,displaySize),displaySize,dialogueDock:{bottomInsetPx:0,safeBottomPx:0},playbackPath:mode==='play'?playback.path:undefined,playbackState:mode==='play'?playback:undefined});
+    const compiled=compileStoryScene(project,line.id,revision,{mode,reducedMotion:reducedMotion||motionOverride,...storySceneLayout(mode,readerFormat,displaySize),dialogueDock:{bottomInsetPx:0,safeBottomPx:0},playbackPath:mode==='play'?playback.path:undefined,playbackState:mode==='play'?playback:undefined});
     return {...compiled,...(mode==='play'&&readerResume?.lineId===line.id?{dialogueOffset:readerResume.offset}:{}),...(compiled.dialogueStyle?{dialogueStyle:{...compiled.dialogueStyle,fontSize:Math.min(96,Math.max(16,Math.round(compiled.dialogueStyle.fontSize*readerTextScale)))}}:{}),audio:{...compiled.audio!,sessionId:`${project.id}/${playbackRun}`},presentationEntry:String(presentationEntry),...(mode==='play'&&playback.status==='ended'?{ended:true,choices:[]}: {})};
-  }, [project,line.id,revision,mode,reducedMotion,motionOverride,playback,effectivePreviewProfile,displaySize,presentationEntry,playbackRun,readerTextScale,readerResume,readerFormat]);
+  }, [project,line.id,revision,mode,reducedMotion,motionOverride,playback,displaySize,presentationEntry,playbackRun,readerTextScale,readerResume,readerFormat]);
   const stage = resolveStageComposition(chapter, line, project);
   const dragCleanup = useRef<(() => void) | null>(null);
   const runtime = useStoryRuntime(scene, composing, (event) => {
@@ -200,6 +196,7 @@ export function StoryWorkspace() {
     });
     setRevision(value=>value+1);
   }, runtimeMounted, mode==='play'&&readerBusy);
+  const adjacentThumbnails=useAdjacentSceneThumbnails(project,line.id,runtime.frame,view==='editor'&&mode==='edit'&&editingScreen==='basic',runtime.ready&&runtime.rendered===scene.revision,composing,readerTextScale);
   useEffect(() => {
     const media = window.matchMedia("(max-width: 720px), (max-width: 1000px) and (max-height: 500px)");
     const sync = () => {setCompact(media.matches);setRevision(value=>value+1);};
@@ -774,9 +771,7 @@ export function StoryWorkspace() {
   }
   function changeWorkSection(section:WorkSection){setMemoRequest(current=>({projectId:project.id,memoId:current?.projectId===project.id?current.memoId:'',lineId:current?.projectId===project.id?current.lineId:line.id,section,returnToEditor:current?.projectId===project.id?current.returnToEditor:false,editorContext:current?.projectId===project.id?current.editorContext:undefined}));setManageOpen(false);}
   const workHeader=(children:ReactNode)=><WorkspaceManagement unifiedSettings={view==='editor'&&mode==='edit'} settingsExtras={<>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="장 추가·보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong>{mode==='edit'&&<button disabled={composing} onClick={()=>addChapter()}>장 추가</button>}<EditorTermGuide/>
-            <label>화면 비율<select aria-label="미리보기 화면 비율" value={effectivePreviewProfile==='desktop'?'landscape':effectivePreviewProfile} disabled={mode==='edit'&&editingScreen==='basic'&&phoneEditor} onChange={event=>{setPreviewProfile(event.target.value as PreviewProfile);setRevision(value=>value+1);}}>
-              <option value="auto">화면 방향에 맞추기</option><option value="landscape">가로 16:9</option><option value="portrait">세로 9:16</option>
-            </select></label>{mode==='edit'&&editingScreen==='basic'&&phoneEditor&&<small>휴대폰 기본편집은 가로 16:9로 미리 봅니다. 다른 화면과 읽기 비율 설정은 유지됩니다.</small>}
+            <p>컷 미리보기 · 가로 16:9 고정. 읽기 화면에서는 16:9 또는 9:16을 선택할 수 있어요.</p>
           <button aria-pressed={reducedMotion || motionOverride} onClick={() => { setMotionOverride(value => !value); setRevision(value => value + 1); }} disabled={reducedMotion}>동작 줄이기</button>
           <button disabled={composing} onClick={()=>switchMode('play',true)}>처음부터 읽기</button></div></details>}<button disabled={composing} onClick={addCut} aria-label="현재 컷 뒤에 추가">컷 추가</button><div ref={setSettingsHost}/></>} scoresEnabled={logic.scores} localFileActions={<LocalWorkFileActions fileSession={localFileSession} workKey={project.id} name={project.title} extension=".knolstory" disabled={composing||!loadComplete} serialize={()=>serializeLocalWork()}/>} disabled={composing} recovery={<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||writer.status!=='owned'||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>} project={project} compact={true} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={open=>{setManageOpen(open);if(open)shell.current?.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open]').forEach(detail=>{detail.open=false;});if(open&&viewToolsMenu.current)viewToolsMenu.current.open=false;}} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportArchive={archive=>{setError('');setPendingArchive(archive);}} onError={setError} onLibrary={returnToLibrary} onPrepare={section=>view==='prepare'?changeWorkSection(section):prepareWork('',section)}>{children}</WorkspaceManagement>;
   const nativeStage=runtimeMounted?<section className={styles.stage} aria-label="이야기 무대">
@@ -787,8 +782,8 @@ export function StoryWorkspace() {
           </div>
           <StagePreviewFrame editing={mode==='edit'} ordered={ordered} lineId={line.id} composing={composing} onSelect={selectCut}>
           <div
-            className={`${styles.viewport} ${effectivePreviewProfile === "portrait" ? styles.portraitPreview : ""} ${mode === "play" ? styles.playingViewport : ""}`}
-            ref={runtime.container}
+            className={`${styles.viewport} ${mode === "play" ? styles.playingViewport : ""}`}
+            ref={runtime.attachContainer}
             data-testid="story-stage-viewport"
           >
             <iframe
@@ -917,7 +912,7 @@ export function StoryWorkspace() {
       <div className={`${styles.grid} ${mode==='edit'?styles.workbenchGrid:''}`} data-editing-screen={mode==='edit'?editingScreen:undefined}>
 
         <div ref={previewEditor.panel} onBlurCapture={previewEditor.onBlurCapture} className={styles.workbenchPanel} data-editor-inputs data-writer-scroll>
-          <StoryEditingWorkbench chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||writer.status!=='owned'||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
+          <StoryEditingWorkbench chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||writer.status!=='owned'||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
             onScreenChange={screen=>{if(composing)return;try{persistWorkspace();}catch(issue){setError(`편집 화면을 바꾸기 전 원고 보관에 실패했어요. ${String(issue)}`);return;}setEditorPreferences(current=>({...current,screen}));setActiveTool('text');setSoundTool(false);setEditorView('cut');}}
             onProjectChange={applyProject} onSelectCut={selectCut} onComposing={setComposing}
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}

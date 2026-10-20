@@ -2,6 +2,7 @@
 (() => {
   let queued = null;
   let queuedPageInput = null;
+  let queuedThumbnails = [];
   let lastSeq = -1;
   let lastRevision = -1;
   let engineViewport = null;
@@ -46,7 +47,7 @@
       width: logicalWidth * scale, height: logicalHeight * scale };
   }
   window.knolBridge = Object.freeze({
-    drain() { const commands = [...(queued ? [queued] : []), ...(queuedPageInput ? [queuedPageInput] : [])]; queued = null; queuedPageInput = null; return JSON.stringify(commands); },
+    drain() { const commands = [...(queued ? [queued] : []), ...(queuedPageInput ? [queuedPageInput] : []), ...queuedThumbnails]; queued = null; queuedPageInput = null; queuedThumbnails = []; return JSON.stringify(commands); },
     emit(event) {
       if (event.type === 'sceneRendered' && currentScene && event.sceneId === currentScene.sceneId && event.revision === currentScene.revision) {
         const audio = currentScene.audio;
@@ -61,6 +62,13 @@
     if (event.origin !== origin || event.source !== parent) return;
     const c = event.data;
     if (!c || c.protocol !== 1) return;
+    if(c.type==='renderSceneThumbnail'){
+      if(currentScene?.mode==='edit'&&window.KnolRuntimeContract.isRuntimeThumbnailRequest(c)){
+        queuedThumbnails=queuedThumbnails.filter(item=>item.requestId!==c.requestId);
+        queuedThumbnails.push(structuredClone(c));queuedThumbnails=queuedThumbnails.slice(-2);
+      }
+      return;
+    }
     if (c.type === 'nextDialoguePage') {
       if (currentScene?.mode === 'play' && !currentScene.ended && Number.isSafeInteger(c.revision) &&
           c.revision === currentScene.revision && c.sceneId === currentScene.sceneId) {
@@ -81,6 +89,8 @@
     }
     if(!window.KnolRuntimeContract.isRuntimeServiceAudioResources(c.serviceAudioResources,window.KnolRuntimeContract.runtimeServiceAudioPaths(c.payload.audio))){window.knolBridge.emit({protocol:1,type:'error',message:'등록 음원 자료 형식이 올바르지 않습니다.'});return;}
     audioEntry(false);
+    // A scene change invalidates in-flight neighbor work, without touching playback revisions.
+    queuedThumbnails = [];
     queuedPageInput = null;
     currentScene=structuredClone(c.payload);
     logicalWidth=c.payload.width;logicalHeight=c.payload.height;

@@ -10,6 +10,15 @@ export function previewViewport(profile:PreviewProfile,actual:DisplaySize):Displ
   }
 }
 
+/** The browser rectangle scales the whole stage; it must not reflow its contents.
+ * Editing always uses landscape. Stored preview preferences remain readable for
+ * older sessions but cannot introduce portrait or a third editing composition.
+ */
+export function storySceneLayout(mode:'edit'|'play',profile:PreviewProfile,actual:DisplaySize){
+ const viewport=previewViewport(mode==='edit'?'landscape':profile,actual);
+ return {viewport,displaySize:viewport};
+}
+
 /** Retired preview choices are interpreted without rewriting stored manuscripts. */
 export function normalizePreviewProfile(value:unknown):PreviewProfile{
  if(value==='classic')return 'landscape';

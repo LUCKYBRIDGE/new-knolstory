@@ -1,0 +1,18 @@
+{
+  "status": "complete-local-scope",
+  "scope": "Always-visible upper-right library home button in editor; same existing guarded onLibrary action.",
+  "verification": {
+    "build_exit": 0,
+    "lint_exit": 0,
+    "docs_check_exit": 0,
+    "browser": "geometry.json: desktop/mobile top-right44px button, actual library navigation and return preserve cut/text, no horizontal overflow"
+  },
+  "sourceHashes": {
+    "apps/web/components/workspace-management.tsx": "1c0a967d641b85c3056da105eaf4c75f29b8e62ba3907a13a1d112f0d9d877cb",
+    "apps/web/components/story-workspace.module.css": "00e48de881be091139a0b2b52df4fd4c746dd049e85398adb561b9503620ce4e"
+  },
+  "limits": [
+    "No authored-data, native rendering or deployment change.",
+    "Browser viewport checks do not establish physical-device results."
+  ]
+}

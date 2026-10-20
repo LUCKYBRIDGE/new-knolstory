@@ -7,6 +7,7 @@ import { isStoryFlow } from "./story-flow";
 import { isStoryCover } from "./story-cover";
 import { isStorySceneEffect } from "./story-scene-effect";
 import { normalizeCreativeMemos } from "./creative-memos";
+import { normalizeChapterTitle } from "./chapter-identity";
 import type { Chapter, StoryLine, StoryPlanning, StoryProject } from "./story-data";
 import {
   canonicalizeStoryStageKeys,
@@ -296,7 +297,7 @@ function normalizeChapters(value: unknown, issues: StoryDocumentIssue[]): Chapte
       ...(isStoryAudio(record.audio) ? {audio: structuredClone(record.audio)} : {}),
       id: requiredString(record, "id", path, issues),
       order: requiredNumber(record, "order", path, issues),
-      title: requiredString(record, "title", path, issues),
+      title: normalizeChapterTitle(requiredString(record, "title", path, issues)),
       summary: requiredString(record, "summary", path, issues),
       purpose: optionalString(record, "purpose", path, issues),
       mood: optionalString(record, "mood", path, issues),
