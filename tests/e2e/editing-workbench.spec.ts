@@ -206,17 +206,21 @@ test('direction edits existing actor motion while keeping one native frame and a
  await mode(page,'글 편집');await mode(page,'배경 편집');await mode(page,'기본편집');await expect(frame).toHaveCount(1);await expect(frame).toHaveAttribute('data-workbench-identity','same-frame');
 });
 
-test('phone basic editor fits previous current next in 1:4:1 with landscape native scene',async({page},info)=>{
+test('phone basic editor stacks compact context around the current landscape preview and draft',async({page},info)=>{
  await page.setViewportSize({width:390,height:844});await prepare(page);await mode(page,'글 편집');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();await mode(page,'기본편집');
  const current=workbench(page).getByRole('group',{name:'현재 컷 · 2컷',exact:true}),previous=workbench(page).getByRole('button',{name:/^이전 컷/}),next=workbench(page).getByRole('button',{name:/^다음 컷/});
  const scene=page.getByTestId('story-stage-viewport');await expect(scene).toBeVisible();
  const boxes=await Promise.all([previous,scene,current,next].map(locator=>locator.boundingBox()));const [p,s,c,n]=boxes as {x:number;y:number;width:number;height:number}[];
  const top=Math.min(s.y,c.y),bottom=Math.max(s.y+s.height,c.y+c.height),height=bottom-top;
  expect(p.y+p.height).toBeLessThanOrEqual(top+2);expect(n.y).toBeGreaterThanOrEqual(bottom-2);
- expect(height/p.height).toBeGreaterThan(3.5);expect(height/p.height).toBeLessThan(4.6);expect(Math.abs(p.height-n.height)).toBeLessThanOrEqual(3);
+ await expect(workbench(page).locator('[data-editing-body]')).toHaveAttribute('data-cut-arrangement','stacked');
+ expect(height).toBeGreaterThan(p.height*3);expect(height).toBeGreaterThan(n.height*3);
+ expect(p.height).toBeGreaterThanOrEqual(44);expect(n.height).toBeGreaterThanOrEqual(44);
+ await expect(workbench(page).getByRole('textbox',{name:'현재 컷 화자',exact:true})).toBeVisible();
+ await expect(workbench(page).locator('[data-stacked-context]')).toBeVisible();
  await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-width','1280');await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-height','720');
  expect(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight+2&&document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
- await page.screenshot({path:info.outputPath('phone-basic-1-4-1.png'),fullPage:true});
+ await page.screenshot({path:info.outputPath('phone-basic-stacked.png'),fullPage:true});
  await next.click();await expect(workbench(page).getByRole('textbox',{name:'3컷 글',exact:true})).toHaveValue(fixture.lines[2].text);
  await workbench(page).getByRole('button',{name:/^이전 컷/}).click();await expect(workbench(page).getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue(fixture.lines[1].text);
 });
@@ -234,9 +238,20 @@ for(const [width,height] of [[360,640],[640,360],[768,1024],[1280,720]])test(`ed
 test('native frame remains mounted and interactive through editor read return',async({page})=>{
  await page.setViewportSize({width:390,height:844});await prepare(page);const frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>node.setAttribute('data-return-identity','native-kept'));
  await workbench(page).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect(frame).toHaveAttribute('data-return-identity','native-kept');
+ await expect.poll(()=>frame.evaluate(node=>{
+  const frame=node.getBoundingClientRect(),area=node.parentElement!.getBoundingClientRect();
+  const width=Number.parseFloat((node as HTMLElement).style.width),height=Number.parseFloat((node as HTMLElement).style.height);
+  const scale=Math.min(area.width/width,area.height/height);
+  return Math.max(Math.abs(frame.width-width*scale),Math.abs(frame.height-height*scale),Math.abs((frame.x-area.x)*2+frame.width-area.width),Math.abs((frame.y-area.y)*2+frame.height-area.height));
+ })).toBeLessThan(2);
  expect(await frame.evaluate(node=>node.closest('[inert],[aria-hidden="true"]')===null)).toBe(true);
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
  await expect(workbench(page).getByRole('textbox',{name:'1컷 글',exact:true})).toBeVisible();await expect(frame).toHaveAttribute('data-return-identity','native-kept');
+ await expect.poll(()=>frame.evaluate(node=>{
+  const frame=node.getBoundingClientRect(),area=node.parentElement!.getBoundingClientRect();
+  const scale=Math.min(area.width/1280,area.height/720);
+  return Math.max(Math.abs(frame.width-1280*scale),Math.abs(frame.height-720*scale));
+ })).toBeLessThan(2);
  expect((await exported(page)).project).toEqual(fixture);
 });
 
