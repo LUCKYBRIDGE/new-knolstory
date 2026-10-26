@@ -1,5 +1,7 @@
 # STATUS — current development state
 
+2026-10-26 공통 브랜드: `apps/web/public/brand/knolquiz-mark.svg`에 세로 물음표로 수정한 놀퀴즈 아이콘을 추가했다. 현재 앱에 놀퀴즈 아이콘 사용처가 없어 기존 UI는 변경하지 않았다.
+
 Updated: 2026-10-20. This is the current status owner; past runs are in [history](docs/archive/status-history-through-2026-10-10.md). A completed authoring goal is not a product 1.0/release claim.
 
 ## Current implementation
