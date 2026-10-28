@@ -10,7 +10,8 @@ export function AudioMetadataControls({asset,label,workId,onSaved}:{asset:AudioA
  const [resource,setResource]=useState<AudioResource|null>(null),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false);
  const incoming:AudioMetadataDraft={name:asset.name,category:audioAssetCategory(asset),tags:asset.metadata?.tags.join(', ')??'',originalName:asset.metadata?.originalName??'',source:asset.metadata?.source??asset.source??''};
  const [state,setState]=useState<AudioMetadataDraftState>({baseline:incoming,draft:incoming});
- if(JSON.stringify(state.baseline)!==JSON.stringify(incoming))setState(reconcileAudioMetadataDraft(state,incoming));
+ const [acknowledged,setAcknowledged]=useState(incoming);
+ if(JSON.stringify(state.baseline)!==JSON.stringify(incoming)){setState(reconcileAudioMetadataDraft(state,incoming));setAcknowledged(incoming);}
  const {name,category,tags,originalName,source}=state.draft;
  const change=<K extends keyof AudioMetadataDraft>(key:K,value:AudioMetadataDraft[K])=>setState(current=>({...current,draft:{...current.draft,[key]:value}}));
  const setName=(value:string)=>change('name',value),setCategory=(value:AudioCategory)=>change('category',value),setTags=(value:string)=>change('tags',value),setOriginalName=(value:string)=>change('originalName',value),setSource=(value:string)=>change('source',value);
@@ -18,7 +19,7 @@ export function AudioMetadataControls({asset,label,workId,onSaved}:{asset:AudioA
  useEffect(()=>{let active=true;
  if(custom)listAudioResources([asset.id],workId).then(items=>{if(active)setResource(items[0]??null);}).catch(()=>{if(active)setNotice('소리 속성을 불러오지 못했습니다. 다시 선택해 주세요.');});return()=>{active=false;};},[asset.id,workId,custom]);
  async function save(){
-  if(!resource)return;
+  if(!resource||busy)return;
   const submitted=state.draft;setBusy(true);setNotice('');
   try{
    const parsedTags=submitted.tags.split(/[,，\n]/).map(tag=>tag.trim()).filter(Boolean);
@@ -29,13 +30,14 @@ export function AudioMetadataControls({asset,label,workId,onSaved}:{asset:AudioA
    const canonical:AudioMetadataDraft={name:saved.name,category:metadata.category,tags:metadata.tags.join(', '),originalName:metadata.originalName??'',source:metadata.source??asset.source??''};
    // Keep the current prop baseline until the resource refresh acknowledges the save.
    setState(current=>({...acknowledgeAudioMetadataSave(current,submitted,canonical),baseline:current.baseline}));
+   setAcknowledged(canonical);window.dispatchEvent(new CustomEvent('knolstory-authored-resource-change',{detail:{workId}}));
    setNotice('소리 이름과 속성을 저장했습니다. 작품 파일에도 포함됩니다.');onSaved();
   }catch(cause){setNotice(cause instanceof Error?cause.message:'속성 저장에 실패했습니다. 입력을 확인하고 다시 저장해 주세요.');}
   finally{setBusy(false);}
  }
 
  function addTag(tag:string){const current=tags.split(',').map(value=>value.trim()).filter(Boolean);setTags([...new Set([...current,tag])].join(', '));}
- return <details className={styles.metadata}><summary>{label} 이름·속성·원래 이름</summary>{custom?<>
+ return <details className={styles.metadata} data-unsaved-draft={String(custom&&JSON.stringify(state.draft)!==JSON.stringify(acknowledged))}><summary>{label} 이름·속성·원래 이름</summary>{custom?<>
  <label>한글 표시 이름<input aria-label={`${label} 표시 이름`} maxLength={200} value={name} onChange={event=>setName(event.target.value)}/></label>
  <label>소리 종류<select aria-label={`${label} 소리 종류`} value={category} onChange={event=>setCategory(event.target.value as AudioCategory)}>{Object.entries(AUDIO_CATEGORY_LABELS).map(([value,title])=><option key={value} value={value}>{title}</option>)}</select></label>
  <label>속성 태그<input aria-label={`${label} 속성 태그`} value={tags} onChange={event=>setTags(event.target.value)} placeholder="피아노, 여성, 교실처럼 쉼표로 구분"/></label>

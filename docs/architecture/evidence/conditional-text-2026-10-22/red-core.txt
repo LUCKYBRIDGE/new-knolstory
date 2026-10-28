@@ -1,0 +1,148 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/conditional-text.test.ts (5 tests | 5 failed) 20ms
+   × preserves schema8 variants and rejects malformed or dangling authored data 7ms
+   × rejects variants in every older envelope and unversioned legacy input 2ms
+   × resolves first matching score text without changing fallback, derives restore and back state 2ms
+   × preserves clone, refuses ambiguous manuscript split/merge and clears only blank new branch text 8ms
+   × evaluates AND and OR terms including zero, and keeps real text after perspective transition 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/conditional-text.test.ts > preserves schema8 variants and rejects malformed or dangling authored data
+AssertionError: expected { ok: true, source: 'current', …(1) } to match object { ok: true, document: { …(1) } }
+(52 matching properties omitted from actual)
+
+- Expected
++ Received
+
+@@ -2,45 +2,27 @@
+    "document": {
+      "project": {
+        "lines": [
+          {},
+          {
+-           "textVariants": [
+-             {
+-               "condition": {
+-                 "mode": "all",
+-                 "terms": [
+-                   {
+-                     "operator": "gte",
+-                     "scoreId": "trust",
+-                     "value": 1,
++           "backgroundId": "",
++           "chapterId": "ch",
++           "directionNote": "",
++           "emotionNote": "",
++           "id": "end",
++           "leftAssetId": "",
++           "order": 2,
++           "purposeNote": "",
++           "rightAssetId": "",
++           "speaker": "narration",
++           "speakerName": "",
++           "stageComposition": {
++             "leftActors": [],
++             "rightActors": [],
+            },
+-                 ],
+-               },
+-               "id": "high",
+-               "text": "믿음의 말",
+-             },
+-             {
+-               "condition": {
+-                 "mode": "any",
+-                 "terms": [
+-                   {
+-                     "operator": "eq",
+-                     "scoreId": "trust",
+-                     "value": 0,
+-                   },
+-                   {
+-                     "operator": "gte",
+-                     "scoreId": "trust",
+-                     "value": 8,
+-                   },
+-                 ],
+-               },
+-               "id": "zero",
+-               "text": "",
+-             },
+-           ],
++           "text": "기본 글",
++           "type": "narration",
+          },
+        ],
+      },
+    },
+    "ok": true,
+
+ ❯ packages/runtime-core/src/conditional-text.test.ts:12:60
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  packages/runtime-core/src/conditional-text.test.ts > rejects variants in every older envelope and unversioned legacy input
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ packages/runtime-core/src/conditional-text.test.ts:17:208
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  packages/runtime-core/src/conditional-text.test.ts > resolves first matching score text without changing fallback, derives restore and back state
+AssertionError: expected '기본 글' to be '믿음의 말' // Object.is equality
+
+Expected: "믿음의 말"
+Received: "기본 글"
+
+ ❯ packages/runtime-core/src/conditional-text.test.ts:21:21
+     19|  const p=fixture(),before=structuredClone(p),start=createPlayback(p),h…
+     20|  const text=(state:typeof high)=>compileStoryScene(p,'end',1,{mode:'pl…
+     21|  expect(text(high)).toBe('믿음의 말');expect(text(low)).toBe('');expect(te…
+       |                     ^
+     22|  expect(advancePlayback(p,backPlayback(p,high),'no')).toEqual(low);exp…
+     23|  const unmatched={...p,lines:[p.lines[0],{...p.lines[1],textVariants:[…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  packages/runtime-core/src/conditional-text.test.ts > preserves clone, refuses ambiguous manuscript split/merge and clears only blank new branch text
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ packages/runtime-core/src/conditional-text.test.ts:29:45
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  packages/runtime-core/src/conditional-text.test.ts > evaluates AND and OR terms including zero, and keeps real text after perspective transition
+AssertionError: expected '나의 시점' to be '실제 이야기' // Object.is equality
+
+Expected: "실제 이야기"
+Received: "나의 시점"
+
+ ❯ packages/runtime-core/src/conditional-text.test.ts:35:114
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  17:32:55
+   Duration  425ms (transform 220ms, setup 0ms, import 318ms, tests 20ms, environment 0ms)
+

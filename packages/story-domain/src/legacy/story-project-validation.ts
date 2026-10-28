@@ -1,3 +1,6 @@
+import {isStorySceneVisibility} from './story-scene-visibility';
+import {storyBranchConditionTerms} from './story-branch-condition';
+import {isStoryTextVariants} from './story-text-variants';
 import { isStoryAudio } from "./story-audio";
 import { isStageComposition, stageProjection } from "./story-stage-composition";
 import { isStoryPresentation, migrateLegacyPresentation, normalizePresentation } from "./story-presentation";
@@ -349,6 +352,8 @@ function normalizeLines(value: unknown, issues: StoryDocumentIssue[]): StoryLine
       addIssue(issues, "invalid-type", path, "line must be an object.");
       return emptyLine(index);
     }
+    if(record.visibility!==undefined&&!isStorySceneVisibility(record.visibility))addIssue(issues,"invalid-value",`${path}.visibility`,"컷 표시 조건을 확인해 주세요.");
+    if(record.textVariants!==undefined&&!isStoryTextVariants(record.textVariants))addIssue(issues,"invalid-value",`${path}.textVariants`,"조건별 글의 ID·글·점수 조건을 확인해 주세요.");
     if (record.audio !== undefined && !isStoryAudio(record.audio)) addIssue(issues, "invalid-value", `${path}.audio`, "컷 오디오 설정을 확인해 주세요.");
     if (record.effect !== undefined && !isStorySceneEffect(record.effect)) {
       addIssue(issues, "invalid-value", `${path}.effect`, "Invalid scene effect settings.");
@@ -383,6 +388,8 @@ function normalizeLines(value: unknown, issues: StoryDocumentIssue[]): StoryLine
       speakerName: requiredString(record, "speakerName", path, issues),
       ...(record.coSpeakerNames !== undefined ? {coSpeakerNames: optionalStringArray(record, "coSpeakerNames", path, issues)} : {}),
       text: requiredString(record, "text", path, issues),
+      ...(isStorySceneVisibility(record.visibility)?{visibility:structuredClone(record.visibility)}:{}),
+      ...(isStoryTextVariants(record.textVariants)?{textVariants:structuredClone(record.textVariants)}:{}),
       leftAssetId: requiredString(record, "leftAssetId", path, issues),
       rightAssetId: requiredString(record, "rightAssetId", path, issues),
       backgroundId: requiredString(record, "backgroundId", path, issues),
@@ -505,7 +512,7 @@ export function normalizeAndValidateStoryProject(value: unknown) {
     const referencedScores = line.flow?.type === "choice"
       ? line.flow.options.flatMap(option => [...(option.condition?.terms ?? []).map(term => term.scoreId), ...(option.effects ?? []).map(effect => effect.scoreId)])
       : line.flow?.routes?.flatMap(route => route.condition.terms.map(term => term.scoreId)) ?? [];
-    for (const scoreId of referencedScores) {
+    for (const scoreId of [...referencedScores,...(line.visibility?.scores?.terms.map(term=>term.scoreId)??[]),...(line.textVariants??[]).flatMap(variant=>variant.condition.terms.map(term=>term.scoreId))]) {
       if (!scoreIds.has(scoreId)) addIssue(issues, "broken-reference", `$.project.lines[${index}].flow`, `이야기 점수 '${scoreId}'을 찾을 수 없어요. 점수 항목을 먼저 만들어 주세요.`);
     }
     for (const target of targets) {
@@ -547,12 +554,15 @@ export function normalizeAndValidateStoryProject(value: unknown) {
     if (!cue || typeof cue !== 'object' || !('branchCondition' in cue)) return;
     const branch = (cue as {branchCondition?: import('./story-branch-condition').StoryBranchCondition}).branchCondition;
     if (!branch) return;
-    const source = linesById.get(branch.sourceLineId);
-    if (source?.flow?.type !== 'choice' || !source.flow.options.some(option => option.id === branch.choiceId)) {
+    if (storyBranchConditionTerms(branch).some(term => {
+      const source = linesById.get(term.sourceLineId);
+      return source?.flow?.type !== 'choice' || !source.flow.options.some(option => option.id === term.choiceId);
+    })) {
       addIssue(issues, 'broken-reference', `${path}.branchCondition`, '갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.');
     }
   };
   project.lines.forEach((line, index) => {
+    validateBranchCue({branchCondition:line.visibility?.choices}, `$.project.lines[${index}].visibility`);
     line.presentation?.effects?.forEach((cue, cueIndex) => validateBranchCue(cue, `$.project.lines[${index}].presentation.effects[${cueIndex}]`));
     validateBranchCue(line.audio?.music, `$.project.lines[${index}].audio.music`);
     validateBranchCue(line.audio?.ambience, `$.project.lines[${index}].audio.ambience`);

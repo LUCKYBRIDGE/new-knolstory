@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-24",
+  "scope": "Current manuscript split/merge UI and native exact-choice condition references",
+  "reasonForRun": "Recent initial fullscreen modal and host navigation changes affect entry and fresh narrow-page flow. Existing check now handles the offer explicitly without weakening manuscript assertions.",
+  "verification": {
+    "tests": "2 passed15.1s, actual RenPy yes/no choice results after split, new source cut referenced by exact choice condition, scene audio selection, file export/reopen, merge restores original whole project except updatedAt",
+    "lint": "Focused ESLint passed with existing React discovery warning",
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "preservation": "Existing manuscript, choice IDs, audio source ranges and scene settings comparisons retained",
+  "limits": [
+    "Browser native runtime, not new physical Android or external-office evidence",
+    "No new product behavior change required in this scope",
+    "Whole editor objective remains active"
+  ]
+}

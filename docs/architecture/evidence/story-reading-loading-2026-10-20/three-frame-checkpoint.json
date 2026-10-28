@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-20",
+  "scope": "사용자 후속: 4번 제외·긴 정지 제외",
+  "status": "local-focused-verified",
+  "asset": {
+    "path": "apps/web/public/assets/loading/story-reading-v3.webp",
+    "bytes": 140224,
+    "sha256": "1a985812cdbd10a90e24573d6ae0ae134967371c0ef8a1ccbc89fe91bfbcb5a8",
+    "width": 480,
+    "height": 440,
+    "frames": [
+      1,
+      2,
+      3
+    ],
+    "durationsMs": [
+      240,
+      240,
+      240
+    ],
+    "loopMs": 720,
+    "loop": "infinite",
+    "backgroundAlpha": 0
+  },
+  "preservation": "이전 v1/v2와 원본 프레임·근거 보존. 원고/Runtime Core/엔진 소스 변경 없음. Web/native 공통 JSON 경로만 새 asset으로 변경. 동작 줄이기는 기존 정지 첫 프레임 유지.",
+  "verification": {
+    "webBuild": "passed",
+    "browser": "3 passed; frame change, portrait/landscape layout, static source for reduced-motion, engine ready/input, tip-failure startup and manuscript preservation",
+    "docs": "docs:check and test:docs passed"
+  }
+}

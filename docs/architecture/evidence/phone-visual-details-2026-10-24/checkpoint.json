@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-24",
+  "scope": "Actual S25 portrait background and character detail edits on independent test work",
+  "verified": [
+    "Background contain selection and native touch focal slider x=0.79",
+    "Actor center placement and native touch size slider scale=0.85",
+    "Next/previous cut return retains actor edits",
+    "Full project comparison preserves all other fields, actor keys and asset IDs; explicit inheritActors=false is expected stage patch semantics"
+  ],
+  "limits": [
+    "Does not claim actual native rendered placement or audio listening from these detail checks",
+    "Short landscape advanced editing remains pending"
+  ]
+}

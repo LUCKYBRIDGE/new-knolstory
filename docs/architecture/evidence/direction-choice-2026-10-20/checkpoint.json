@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-passed",
+  "scope": "Named transition/look/effect selection opens compact proposal dialog; collapsed description, optional tip, explicit Use.",
+  "behavior": [
+    "Selection stages local UI state; original controlled value/manuscript persist until Use.",
+    "Close/Escape cancels and restores actual opener focus.",
+    "Applied values have compact 안내 entry to reopen same dialog; same-value Use is a no-op.",
+    "Removed persistent category tip and explanatory paragraph; option list shows names only.",
+    "Default/none choices retain immediate reset behavior."
+  ],
+  "checks": {
+    "browser": "1 passed: pending/cancel/apply for transition, look and effects; existing title preserved, reopen/same-use unchanged; 1280x800/390x844/844x390 bounds",
+    "native_regression": "1 passed: actual authoring, native confirm, original text/placement and file export/reopen preserved",
+    "typecheck": "passed",
+    "lint": "0 errors/warnings",
+    "web_build": "passed",
+    "docs": "57 active documents; 0 links/retired terms; 10 tests passed"
+  },
+  "review": "Found missing guide access for already applied values; added compact re-open control and regression.",
+  "preservation": "Existing manuscripts/internal IDs/previous evidence and dirty work retained. No runtime or file schema change.",
+  "limitations": [
+    "Other historical E2E selectors that expected immediate named-effect application need the explicit Use step when those scenarios are next exercised.",
+    "Physical-device and screen-reader tests not run; full product regression/deployment not claimed."
+  ],
+  "evidence": [
+    "browser.log",
+    "native-regression.log",
+    "lint.log",
+    "typecheck.log",
+    "docs.log",
+    "docs-tests.log",
+    "source-hashes.json"
+  ]
+}

@@ -3,9 +3,9 @@ import {useEffect,useLayoutEffect,useRef,type RefObject,type MouseEvent} from 'r
 import type {RuntimeScene} from '@knolstory/runtime-contract';
 import type {PlaybackState} from '@knolstory/runtime-core';
 import styles from './story-workspace.module.css';
-type Props=Readonly<{scene:RuntimeScene;sceneReady:boolean;mode:'edit'|'play';status:PlaybackState['status'];presentationPending:boolean;readerBusy:boolean;onAdvance:(choiceId?:string)=>void;onBack?:()=>void;canGoBack?:boolean;nativeFrame?:RefObject<HTMLIFrameElement|null>;onNativeBackTab?:()=>void}>;
+type Props=Readonly<{scene:RuntimeScene;sceneReady:boolean;hasMoreText?:boolean;mode:'edit'|'play';status:PlaybackState['status'];presentationPending:boolean;readerBusy:boolean;onAdvance:(choiceId?:string)=>void;onBack?:()=>void;canGoBack?:boolean;nativeFrame?:RefObject<HTMLIFrameElement|null>;onNativeBackTab?:()=>void}>;
 /** Semantic access to the native scene; never a second visual story renderer. */
-export function StoryTextAccessibility({scene,sceneReady,mode,status,presentationPending,readerBusy,onAdvance,onBack,canGoBack=false,nativeFrame,onNativeBackTab}:Props){
+export function StoryTextAccessibility({scene,sceneReady,hasMoreText=false,mode,status,presentationPending,readerBusy,onAdvance,onBack,canGoBack=false,nativeFrame,onNativeBackTab}:Props){
  const summary=useRef<HTMLElement>(null),pendingFocus=useRef<{source:HTMLButtonElement;revision:number}|null>(null);
  const backTab=useRef(onNativeBackTab);useLayoutEffect(()=>{backTab.current=onNativeBackTab;});
  useEffect(()=>{
@@ -43,20 +43,21 @@ export function StoryTextAccessibility({scene,sceneReady,mode,status,presentatio
   if(!pending.source.isConnected||pending.source.disabled||active===document.body)summary.current?.focus();
  });
  const navigate=(event:MouseEvent<HTMLButtonElement>,action:()=>void)=>{pendingFocus.current=event.detail===0&&event.currentTarget===document.activeElement?{source:event.currentTarget,revision:scene.revision}:null;action();};
+ const manualEffectPending=!!scene.effectSteps&&scene.effectSteps.current<scene.effectSteps.total;
  if(mode==='edit')return null;return <>
           <details className={styles.semantic} open={mode === "play"}>
             <summary ref={summary}>대사·해설 텍스트 보기</summary>
             <p>장면에 표시된 글을 읽거나 복사할 수 있어요.</p>
-            <div aria-live="polite">
+            {!scene.transitionOnly&&<div aria-live="polite">
               <p>
                 <strong>{scene.dialogue.speaker || "해설"}</strong>
               </p>
               <p>{scene.dialogue.text}</p>
-            </div>
+            </div>}
             {canGoBack&&onBack&&<button disabled={readerBusy} onClick={event=>navigate(event,onBack)}>이전 읽은 컷</button>}
-            {mode === "play" && <button disabled={status!=="reading"||presentationPending||readerBusy} onClick={event=>navigate(event,()=>onAdvance())}>다음으로</button>}
+            {mode === "play" && (!scene.transitionOnly||!!scene.effectSteps) && <button disabled={(status!=="reading"&&!manualEffectPending&&!hasMoreText)||presentationPending||readerBusy||!sceneReady} onClick={event=>navigate(event,()=>onAdvance())}>{manualEffectPending&&!hasMoreText?'다음 효과':'다음으로'}</button>}
             {mode === "play" &&
-              status === "choice" &&
+              status === "choice" && !manualEffectPending && !hasMoreText &&
               scene.choices?.map((option) => (
                 <button
                   key={option.id}

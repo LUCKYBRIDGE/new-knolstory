@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-22",
+  "scope": "Cut split/merge exact choice-owner relocation; editor goal remains active",
+  "implemented": [
+    "Move only branchCondition.sourceLineId when choice ownership changes; preserve exact choiceId",
+    "Cover cut effects/music/ambience/sounds and chapter music/ambience/sounds, including self conditions",
+    "Preserve targets, range ends, authored audio bounds, source provenance and original manuscript",
+    "Reject merge of external range endpoint with useful explanation; existing memo/flow/continuation/source protections retained"
+  ],
+  "verification": {
+    "focusedTestsPassed": 23,
+    "relatedAuthoringTestsPassed": 28,
+    "helperCoverage": {
+      "statements": 100,
+      "branches": 87.5,
+      "functions": 100,
+      "lines": 100
+    },
+    "formatRoundtrip": [
+      "archive2",
+      "workbook8",
+      "actual XLSX bytes",
+      "JSONB"
+    ],
+    "runtimeMatrix": "true/false/missing decision history; runtime originEntry visit index intentionally differs after added cut",
+    "nativeBrowserTests": 2,
+    "nativeChecks": [
+      "Actual yes/no selections with same destination retain conditional versus fallback audio",
+      "Open detail then actual play click without manual dismissal",
+      "Export split, fresh context import, actual merge, export merged preserves original content",
+      "390px no horizontal page overflow"
+    ],
+    "docsCheck": "passed",
+    "docsTestsPassed": 10
+  },
+  "review": "Read-only specialist source review found no blocking relocation issue; literal targets/range/provenance preserved",
+  "limitations": [
+    "Existing split clones staging/sound/effects; this does not establish one-shot continuation policy",
+    "Physical devices/external spreadsheet app UI not verified",
+    "Ego TaskSpace6 missing; project Playwright fallback used"
+  ],
+  "sha256": {
+    "packages/runtime-core/src/manuscript-operations.ts": "5e83d115d8b980f45b153ae991284ca2f80b875b6ac4d71d7448da12faece483",
+    "packages/runtime-core/src/relocate-choice-conditions.ts": "34556acff0be9a405c109b206b36d1ed9eaf27c8ca076e16c66296604171a72e",
+    "packages/runtime-core/tests/manuscript-choice-relocation.test.ts": "a751c9eddcf154c41262950f1cad956ab6cfe4ee047db9de36a96a6157bf2b0e",
+    "apps/web/components/chapter-writer.tsx": "5067b9e1618c9289dbd769a2189db1487e5f7651ce4bcda8654110bc8b8137d5",
+    "tests/e2e/manuscript-choice-relocation.spec.ts": "f72fba5bb265c85ced24f3639ec393ed4610ca80531db998bf9a9bfdd2b7a6ab"
+  }
+}

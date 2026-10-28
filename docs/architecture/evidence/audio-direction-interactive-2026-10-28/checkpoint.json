@@ -1,0 +1,29 @@
+{
+  "status": "interactive-local-review-passed",
+  "browser": "ego-browser TaskSpace11 p1; new isolated space explicitly approved by user; static15401",
+  "steps": [
+    "Import actual earlier2chapter3cut file,open editing,enable audio/direction explicitly.",
+    "Audio screen add/select chime;direction select shake,description/tip collapsed,use to apply.",
+    "Combined time select exact effect and sound bars;set effect400ms,sound800ms.",
+    "Scroll time panel then undo sound time: sound0ms,effect400ms retained.",
+    "Set200% zoom;actual export download;reload complete project equal.",
+    "Reimport existing identity as independent newID;all other fields equal;return to actual basic editor."
+  ],
+  "result": {
+    "wholeMatchesExceptId": true,
+    "independentId": true,
+    "effectDelay": 400,
+    "soundDelay": 0
+  },
+  "scopeLimits": [
+    "No actual audible output/visual shake timing certification,physical device or OS picker proof.",
+    "Export download used;primary OS picker not invoked.",
+    "Automation auto-scroll could not hit bottom undo;actual wheel scroll then click succeeded. Not recorded as proven overlap defect.",
+    "Initial wait after import targeted editor status while actual preparation view was open; corrected observation, no product failure."
+  ],
+  "sourceSha256": {
+    "apps/web/components/audio-controls.module.css": "6e08304baee509fb18e5f343a646dc67cee8276a4809f32664105f3ef87e1216",
+    "apps/web/components/story-effect-controls.module.css": "2fd5abab6671d606d7c96dc79e4006111e88742dc438b6c3b953d4ab17ed409e",
+    "apps/web/components/story-combined-time.module.css": "df52dc02d60e505a596f30a298211a4badef3f5cc43fdd72526f2e79bceff0f4"
+  }
+}

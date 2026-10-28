@@ -1,0 +1,62 @@
+[WebServer] (node:18602) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:18617) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/31jrpn7bwdm07.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/3rxu0l_jx58l5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/37vzys53zm1nk.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/0x07tqarn2xgn.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/2cejk_2feih67.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:34] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:57:35] "GET /assets/loading/story-reading-v4.webp HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:117:1 › short phone landscape parks advanced tools and restores the chosen task in portrait (6.2s)
+
+
+  1) [host] › tests/e2e/keyboard-writing-focus.spec.ts:117:1 › short phone landscape parks advanced tools and restores the chosen task in portrait 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-phone-editor=true][data-screen=basic]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-phone-editor=true][data-screen=basic]') with timeout 5000ms
+      - waiting for locator('[data-phone-editor=true][data-screen=basic]')
+
+
+      119 |  const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio');await expect(page.locator('[data-screen=audio]')).toBeVisible();
+      120 |  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+    > 121 |  await page.setViewportSize({width:748,height:259});await expect(page.locator('[data-phone-editor=true][data-screen=basic]')).toBeVisible();await expect(page.getByText('세부 편집은 휴대폰을 세로로 돌려 주세요.',{exact:true})).toBeVisible();const field=page.locator('[data-current-cut] textarea');await expect(field).toHaveAttribute('readonly','');const r=await field.boundingBox();expect(r!.height).toBeGreaterThan(80);expect(r!.y+r!.height).toBeLessThanOrEqual(260);
+          |                                                                                                                               ^
+      122 |  await menu.locator(':scope>summary').click();expect(await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).locator('option[value=audio]').evaluate(e=>(e as HTMLOptionElement).disabled)).toBe(true);await menu.locator(':scope>summary').click();await page.setViewportSize({width:390,height:844});await expect(page.locator('[data-screen=audio]')).toBeVisible();expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);await context.close();
+      123 | });
+      124 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/keyboard-writing-focus.spec.ts:121:127
+
+    Error Context: .cache/phone-landscape-advanced-20261024/red-results/keyboard-writing-focus-sho-6573f-the-chosen-task-in-portrait-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/phone-landscape-advanced-20261024/red-results/keyboard-writing-focus-sho-6573f-the-chosen-task-in-portrait-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/phone-landscape-advanced-20261024/red-results/keyboard-writing-focus-sho-6573f-the-chosen-task-in-portrait-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/keyboard-writing-focus.spec.ts:117:1 › short phone landscape parks advanced tools and restores the chosen task in portrait 

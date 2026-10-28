@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-20",
+  "scope": "verified Korean poem lines for loading",
+  "status": "local-focused-verified",
+  "newEntries": [
+    {
+      "id": "poem-seosi-rabbit",
+      "label": "시 한 구절 · 「서시」 · 윤동주",
+      "text": "오늘 밤에도 별이 바람에 스치운다.",
+      "characterSrc": "/assets/loading/story-reading-v4.webp",
+      "characterStillSrc": "/assets/loading/story-reading-still-v1.webp",
+      "workId": "rabbit",
+      "kind": "poem",
+      "source": {
+        "kind": "primary-text",
+        "url": "https://ko.wikisource.org/wiki/하늘과_바람과_별과_시_(1948년)/서시",
+        "section": "마지막 행",
+        "title": "서시",
+        "author": "윤동주",
+        "edition": "1948년 하늘과 바람과 별과 시",
+        "textTreatment": "확인한 원문의 해당 행을 그대로 발췌",
+        "spoilerReview": "사건·관계·결말을 설명하지 않는 독립된 짧은 행"
+      }
+    },
+    {
+      "id": "poem-sowol-heungbu",
+      "label": "시 한 구절 · 「엄마야 누나야」 · 김소월",
+      "text": "엄마야 누나야 강변 살자.",
+      "characterSrc": "/assets/loading/heungbu-reading-v2.webp",
+      "characterStillSrc": "/assets/loading/heungbu-reading-still-v1.webp",
+      "workId": "heungbu",
+      "kind": "poem",
+      "source": {
+        "kind": "primary-text",
+        "url": "https://ko.wikisource.org/wiki/진달래꽃_(시집)/엄마야_누나야",
+        "section": "마지막 행",
+        "title": "엄마야 누나야",
+        "author": "김소월",
+        "edition": "진달래꽃 시집",
+        "textTreatment": "확인한 원문의 해당 행을 그대로 발췌",
+        "spoilerReview": "사건·관계·결말을 설명하지 않는 독립된 짧은 행"
+      }
+    },
+    {
+      "id": "poem-seosi-seonnyeo",
+      "label": "시 한 구절 · 「서시」 · 윤동주",
+      "text": "오늘 밤에도 별이 바람에 스치운다.",
+      "characterSrc": "/assets/loading/seonnyeo-reading-v2.webp",
+      "characterStillSrc": "/assets/loading/seonnyeo-reading-still-v1.webp",
+      "workId": "seonnyeo",
+      "kind": "poem",
+      "source": {
+        "kind": "primary-text",
+        "url": "https://ko.wikisource.org/wiki/하늘과_바람과_별과_시_(1948년)/서시",
+        "section": "마지막 행",
+        "title": "서시",
+        "author": "윤동주",
+        "edition": "1948년 하늘과 바람과 별과 시",
+        "textTreatment": "확인한 원문의 해당 행을 그대로 발췌",
+        "spoilerReview": "사건·관계·결말을 설명하지 않는 독립된 짧은 행"
+      }
+    },
+    {
+      "id": "poem-sowol-onggojib",
+      "label": "시 한 구절 · 「엄마야 누나야」 · 김소월",
+      "text": "엄마야 누나야 강변 살자.",
+      "characterSrc": "/assets/loading/onggojib-reading-v2.webp",
+      "characterStillSrc": "/assets/loading/onggojib-reading-still-v1.webp",
+      "workId": "onggojib",
+      "kind": "poem",
+      "source": {
+        "kind": "primary-text",
+        "url": "https://ko.wikisource.org/wiki/진달래꽃_(시집)/엄마야_누나야",
+        "section": "마지막 행",
+        "title": "엄마야 누나야",
+        "author": "김소월",
+        "edition": "진달래꽃 시집",
+        "textTreatment": "확인한 원문의 해당 행을 그대로 발췌",
+        "spoilerReview": "사건·관계·결말을 설명하지 않는 독립된 짧은 행"
+      }
+    }
+  ],
+  "review": [
+    "Exact last line checked in the specified edition, including punctuation",
+    "Author and poem title displayed in one label",
+    "No invented inspirational saying attributed to an author",
+    "No plot event, character relationship or ending explained",
+    "Two distinct poem excerpts are each assigned to two character groups for equal probability"
+  ],
+  "selection": {
+    "entries": 24,
+    "perCharacter": 6,
+    "poemEntries": 4,
+    "distinctPoems": 2,
+    "visibleMessages": 1,
+    "rotationMs": 4000,
+    "noImmediateRepeat": true,
+    "sameCharacter": true
+  },
+  "preservation": [
+    "No manuscript or existing assets changed",
+    "One JSON shared by Web and native boot; no runtime engine source change",
+    "Previous evidence preserved"
+  ],
+  "verification": {
+    "build": "Web production static export passed; unchanged runtime source reused",
+    "browser": {
+      "passed": 17,
+      "durationSeconds": 19.8,
+      "scope": [
+        "two poem lines and source labels displayed",
+        "existing book/reading quotations displayed",
+        "Web/native one-message four-second random rotation",
+        "same character and only selected illustration requested",
+        "native ready and reading input; authored project preserved"
+      ]
+    },
+    "lint": "passed; environment React detection warning only",
+    "docs": "docs:check0linkerrors and0retiredterms; test:docs10passed"
+  },
+  "sourceHash": "999189cb102d8f25e61de067b5202bdffd7440e36680d4a705b66fcd319866df",
+  "limits": [
+    "Local Chromium viewport emulation; not physical device, screen reader, public deployment or whole product completion"
+  ]
+}

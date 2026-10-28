@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-20",
+  "scope": "흥부전·선녀와 나무꾼·옹고집전 로딩 추가와 네 작품 무작위 선택",
+  "status": "local-focused-verified",
+  "assets": [
+    {
+      "workId": "heungbu",
+      "path": "apps/web/public/assets/loading/heungbu-reading-v1.webp",
+      "bytes": 82056,
+      "sha256": "f321eb5879b2da9f4c5048c537a44834ef5f5ee9f5b07646005250bb9be10921",
+      "width": 480,
+      "height": 440,
+      "frames": 3,
+      "durationsMs": [
+        240,
+        240,
+        240
+      ],
+      "loop": "infinite",
+      "alpha": "transparent",
+      "distinctFrames": true
+    },
+    {
+      "workId": "seonnyeo",
+      "path": "apps/web/public/assets/loading/seonnyeo-reading-v1.webp",
+      "bytes": 100686,
+      "sha256": "f35ce5ea20857bb682c54127e73b72eea7eb22210a5fcc13aa966123144e5c0d",
+      "width": 480,
+      "height": 440,
+      "frames": 3,
+      "durationsMs": [
+        240,
+        240,
+        240
+      ],
+      "loop": "infinite",
+      "alpha": "transparent",
+      "distinctFrames": true
+    },
+    {
+      "workId": "onggojib",
+      "path": "apps/web/public/assets/loading/onggojib-reading-v1.webp",
+      "bytes": 87796,
+      "sha256": "570e0014c8903a48751fcb3efe29c9a160856d944e67a86ec24c54d169026981",
+      "width": 480,
+      "height": 440,
+      "frames": 3,
+      "durationsMs": [
+        240,
+        240,
+        240
+      ],
+      "loop": "infinite",
+      "alpha": "transparent",
+      "distinctFrames": true
+    }
+  ],
+  "selection": {
+    "source": "apps/web/public/loading-stories.json",
+    "works": [
+      "rabbit",
+      "heungbu",
+      "seonnyeo",
+      "onggojib"
+    ],
+    "entriesPerWork": 2,
+    "chancePerWork": "25% with uniform random",
+    "lifetime": "하나의 로딩에서 한 번 선택. 크기 변경/일반 다시그리기/애니메이션 반복에 재선택하지 않음",
+    "copy": "작품 안내는 같은 작품 캐릭터; 서비스 안내는 각 작품 하나씩 배정"
+  },
+  "performance": [
+    "선택 전 Web에서 기본 토끼 이미지를 미리 요청하지 않음",
+    "선택한 animatedWebP 하나 요청; reducedmotion은 해당 정지 이미지",
+    "새 자산은 게임 zip에서 제외; Web부트 공통 경로 사용"
+  ],
+  "preservation": [
+    "기존 토끼전 버전과 과거 원고·Asset ID·Flow·전달 증거 유지",
+    "실제 엔진 준비·오류·입력·진행표시 계약 유지"
+  ],
+  "verification": {
+    "build": "Web production static export passed; no runtime source change so previous engine build reused",
+    "typecheck": "passed",
+    "lint": "0 errors/warnings on loading component/test",
+    "docs": "57 active docs0linkerrors; productlanguage0retiredterms; docs tests10passed",
+    "browser": {
+      "passed": 7,
+      "durationSeconds": 9.8,
+      "checks": [
+        "Web stage actual ready/native read input and manuscript preservation",
+        "native boot actual frame pixel change and reducedmotion currentSrc",
+        "optional tips failure still starts native",
+        "all four works deterministically reachable via random selector",
+        "each work has exactly2of8entries",
+        "literary copy and character work agree",
+        "other work illustrations not fetched",
+        "selection stable across portrait/landscape resize",
+        "reduced motion adds only selected work still image"
+      ]
+    }
+  },
+  "limits": [
+    "물리기기/스크린리더·배포·전체 서비스 검증 아님"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-loading.tsx": "b126ee746257a5ea38eea41cb7fda91a100d021b512a470d79f3baac9bab36f0",
+    "apps/web/public/loading-stories.json": "962c7a89b7f359fe661adc81a8061474ac5229231681725e33b3a69b3438161c",
+    "tests/e2e/story-loading.spec.ts": "48793ea5c0e928165f8a2b12cf6dc5262fa7227151c687f584fe35796a3ff831"
+  }
+}

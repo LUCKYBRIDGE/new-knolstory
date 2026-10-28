@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-23",
+  "scope": "Actual S25 landscape boundary, current-cut visibility repair and portrait-only basic text writing in short phone landscape",
+  "device": {
+    "model": "SM-S938N",
+    "rotationDegrees": 90,
+    "layoutCss": [
+      748,
+      259
+    ]
+  },
+  "reproduced": [
+    "Normal landscape previously displayed neighbours and bottom docks while current text required internal scrolling",
+    "Actual Samsung landscape keyboard left only41 CSS px above keyboard, below a usable input/touch-target budget"
+  ],
+  "implemented": [
+    "Short phone landscape shows current RenPy preview and current text side by side",
+    "44px previous/next preview arrows navigate without opening keyboard",
+    "Short phone landscape basic textarea is read-only with explicit rotate-to-portrait advice; portrait restores writing",
+    "Content, saved preferences and large-screen editors are unchanged"
+  ],
+  "verification": {
+    "native": "Actual90-degree landscape, text fully visible173px tall after repair, no horizontal overflow; native scene rendered; readonly touch leaves full259px viewport",
+    "browser": "6 passed7.2s: short748x259 controls and portrait write restoration, existing portrait/tablet keyboard/IME arrows and phone task boundaries",
+    "build": "Web build:source passed",
+    "lint": "Focused component/test ESLint passed",
+    "types": "Web TypeScript passed",
+    "nativePortraitReturn": "Actual angle0,360x677 layout,350px keyboard visual viewport; readonly=false; same manuscript retained. See portrait-return.json"
+  },
+  "limits": [
+    "Detailed advanced phone editors and other devices are not all verified",
+    "Phone security settings not changed by agent",
+    "Full goal remains active"
+  ]
+}

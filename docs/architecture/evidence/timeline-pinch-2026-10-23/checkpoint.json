@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-23",
+  "scope": "Combined cut/seconds timeline touch zoom and short landscape space correction",
+  "source": [
+    "apps/web/lib/timeline-pinch.ts",
+    "apps/web/components/use-timeline-pinch.ts",
+    "apps/web/components/story-combined-timeline.tsx",
+    "apps/web/components/story-combined-time.tsx",
+    "apps/web/components/story-editing-workbench.module.css"
+  ],
+  "behavior": [
+    "One-finger native scroll stays available",
+    "Two-finger distance scales zoom and midpoint anchors content",
+    "Second touch cancels pending authoring drag; remaining finger does not resume edit",
+    "Checkbox disables pinch; mixed outside/inside start does not zoom",
+    "Geometry changes, third touch and touchcancel cancel current gesture",
+    "Short landscape minimum preview32/timeline104 leaves room for space distribution"
+  ],
+  "verification": {
+    "red": "Unit import failed before helper existed",
+    "unit": "3 passed; pinch math scoped coverage statements/functions/lines100%; no conditional branches in helper; hook/UI coverage not claimed",
+    "build": "build:source passed after final source change",
+    "typecheck": "Web passed",
+    "lint": "Focused TS/TSX and new browser test passed",
+    "browserRegression": "13 cases: final source run12 passed/1 phone midpoint test failed because measurement preceded native scroll momentum cancellation; measurement moved to gesture start after touchdown, both phone/tablet focused tests passed. Not a single green13-case execution.",
+    "browserTouch": "CDP Input.dispatchTouchEvent with hasTouch context on390x844 and820x1180: one-finger native scroll, cut/seconds pinch, exact midpoint content coordinate, enabled drag cancellation from actual effect bar, remaining-finger movement, next pointer selection, mixed-surface rejection, option off, complete stored project equality",
+    "responsive": "Same final source run passed6 fit/zoom/reveal cases,4 expanded settings access cases,1 space-control case including short landscape",
+    "docs": "docs:check passed57 active documents/0 link errors, product-language225 surfaces/0 retired terms; test:docs10 passed; git diff --check passed"
+  },
+  "limitations": [
+    "Browser touch emulation is not physical iOS/Android testing",
+    "No native story rendering assertion needed for host-only gesture; native runtime unchanged",
+    "No free resizing of seconds-axis inner track height",
+    "Entire editor/product objective remains active"
+  ],
+  "artifacts": {
+    "regression": ".cache/timeline-pinch-responsive-final",
+    "focused": ".cache/timeline-pinch-momentum-final",
+    "buildLog": ".cache/timeline-pinch-build-responsive.log"
+  },
+  "review": "Root inspected gesture cancellation, passive:false listeners, cleanup, UI state separation and midpoint math. Delegated review unavailable due account usage limit; no independent reviewer result claimed."
+}

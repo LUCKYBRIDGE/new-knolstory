@@ -1,0 +1,60 @@
+{
+  "status": "failed-usb-adb-check-not-30-minute-pass",
+  "runnerPid": 92474,
+  "execSession": 57598,
+  "relayPid": 92440,
+  "relaySession": 69156,
+  "runDirectory": ".cache/phone-soak-20261027-resume",
+  "durationMs": 1800000,
+  "testProjectId": "android-soak-1793090394702",
+  "originalRestoredBeforeRun": true,
+  "previousInterruptedCopyPreserved": true,
+  "connection": "Local CDP relay presents only unique local tab; other tabs not paused or operated. noDefaults:true.",
+  "guards": [
+    "Chrome foreground and unlocked",
+    "visible unique local tab",
+    "current independent test project",
+    "portrait geometry"
+  ],
+  "completionRequired": [
+    "same process terminal",
+    "elapsed >= 30 minutes",
+    "real Android downloaded archive equals final project",
+    "all preexisting works equal",
+    "original editor visible and whole project equal",
+    "source and output hashes unchanged",
+    "no page errors"
+  ],
+  "notProven": [
+    "Running is not a pass",
+    "fullscreen",
+    "all device or editor completion"
+  ],
+  "continuation": "Terminal result preserved; a new independent run started only after reconnection, full snapshot recovery, and original editor restoration.",
+  "terminal": {
+    "status": "failed",
+    "elapsedMs": 292651,
+    "cycles": 19,
+    "nativeReturns": 2,
+    "message": "Command failed: .cache/android-tools-20261023/platform-tools/adb shell dumpsys window",
+    "errors": []
+  },
+  "preservation": {
+    "completedEdits": 19,
+    "partiallyCompletedCycleTextAlsoPreserved": 20,
+    "wholeExpectedProjectEqual": true,
+    "preexistingWorksEqual": true,
+    "originalWorkPreserved": true,
+    "sourceChanges": [],
+    "readOnlyAfterInterruption": true,
+    "phoneUiNotTouched": true,
+    "finalDeviceDownloadNotAttempted": true,
+    "originalEditorRestorePendingForeground": true
+  },
+  "restore": {
+    "originalWorkEqual": true,
+    "editorVisible": true,
+    "interruptedCopyKept": true
+  },
+  "connectionAfterInterruption": "ADB transport reappeared after user reconnected USB; original error did not include enough information to prove cause."
+}

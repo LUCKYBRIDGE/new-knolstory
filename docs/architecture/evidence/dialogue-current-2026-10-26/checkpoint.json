@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "scriptsSuite": {
+    "tests": 71,
+    "singleTerminalRun": true
+  },
+  "nativeSuite": {
+    "tests": 4,
+    "singleTerminalRun": true,
+    "scope": "Real RenPy browser runtime; touch-enabled context;1280/390 manualeffectgroups, pagination, choices, saves/load, titleinput; autoreading manualstep guard; titleleftback."
+  },
+  "changes": "Extracted Python tests now install actual effect helpers and match current effect-step advance button; added exact emission/currentstep-host-ownership regression. Browser native touch spec explicitly enables hasTouch and handles fullscreen offer through session preference.",
+  "productSourceChanged": false,
+  "review": "Read-only reviewer found no blocker; strengthened exact emissions and native step counter remains unchanged.",
+  "preservedFailures": [
+    "Four prior extracted-context/selector errors",
+    "First native attempt failed because hasTouch was not configured"
+  ],
+  "notProven": [
+    "Physical finalDPRcandidate",
+    "30minute Android stability",
+    "All editorgoal"
+  ]
+}

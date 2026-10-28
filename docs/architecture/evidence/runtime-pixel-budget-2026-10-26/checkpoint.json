@@ -1,0 +1,28 @@
+{
+  "status": "local-native-focused-passed-physical-pending",
+  "implementation": "Pinned Emscripten SDL DPR import clamped1..2; browser DPR and authored logical coordinates unchanged. Exact single SDK anchor required.",
+  "cacheFix": "Content SHA256 query on relative bootJS/CSS and gameZipURL, generated after dependencies. wasm/data and HTML stableURL remain outside this scoped invalidation.",
+  "validation": {
+    "unitFocused": 7,
+    "nativeDprCases": [
+      1.25,
+      2,
+      4
+    ],
+    "nativeCasesPassed": 3,
+    "dpr4VisualAndVersionedEngineFollowupPassed": true,
+    "fullscreenAndResize": true,
+    "actualStageTouchAdvances": true,
+    "sameIframeAndWholeProject": true,
+    "buildOrder": "runtime:build then build",
+    "review": "Read-only reviewer found no blocker; CSS/quotes/externalURL/exacthash/archive-only invalidation tests added."
+  },
+  "physical": "Before content-version fix, phone executed stale uncapped engine although no-store network served fresh code. Then USB disconnected. Old5120canvas evidence is not a test of the final versioned candidate. No cache cleared.",
+  "knownUnresolved": "Broad scripts test run68 had4preexisting helper/selector errors in test_dialogue_geometry regarding knol_effect_step_pending/current advance controls. Focused7passed, broad suite not claimed green.",
+  "notProven": [
+    "Final candidate physicalcanvas/fullscreen",
+    "Renderer memory improvement",
+    "30minute stability",
+    "All editorgoal completion"
+  ]
+}

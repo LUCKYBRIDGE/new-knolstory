@@ -1,0 +1,70 @@
+{
+  "normal": {
+    "state": {
+      "status": "passed",
+      "elapsedMs": 92367,
+      "cycles": 7,
+      "nativeReturns": 1,
+      "wholeTestProjectPreserved": true,
+      "preexistingWorksPreserved": true,
+      "archiveExportNotAttempted": true,
+      "originalEditorRestored": true,
+      "errors": []
+    },
+    "samples": 7,
+    "wasmLinearCapacityBytes": [
+      289996800
+    ],
+    "lastThumbnailCounters": {
+      "requests": 13,
+      "replies": 13,
+      "payloadChars": 4004546,
+      "failures": 0
+    },
+    "cycleMsRange": [
+      3535,
+      6309
+    ]
+  },
+  "no-capture": {
+    "state": {
+      "status": "passed",
+      "elapsedMs": 92331,
+      "cycles": 7,
+      "nativeReturns": 1,
+      "wholeTestProjectPreserved": true,
+      "preexistingWorksPreserved": true,
+      "archiveExportNotAttempted": true,
+      "originalEditorRestored": true,
+      "errors": []
+    },
+    "samples": 7,
+    "wasmLinearCapacityBytes": [
+      201326592
+    ],
+    "lastThumbnailCounters": {
+      "requests": 27,
+      "replies": 0,
+      "payloadChars": 0,
+      "failures": 0
+    },
+    "cycleMsRange": [
+      3135,
+      5210
+    ]
+  },
+  "scope": "Two serial 90-second diagnostics on physical S25; same recovered12-cut fixture/cadence; normal product path vs harness-only suppression of renderSceneThumbnail. No product source changes.",
+  "cleanup": {
+    "reloadedOriginalEditor": true,
+    "wholeProjectEqual": true,
+    "temporaryInstrumentationRemoved": true,
+    "nativeReady": true
+  },
+  "notProven": [
+    "Cause of25-minute crash",
+    "Memory leak",
+    "30-minute success",
+    "Exact resident memory",
+    "Matched baseline initialization or reversed order"
+  ]
+}

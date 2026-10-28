@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:20724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus (3.3s)
+
+  1 passed (3.8s)

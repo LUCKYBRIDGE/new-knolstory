@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:96277) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 1440x900 (4.6s)
+  ✓  2 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 768x1024 (4.5s)
+  ✓  3 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 390x844 (4.2s)
+  ✓  4 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 844x390 (4.4s)
+  ✓  5 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 320x568 (4.3s)
+  ✓  6 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 700x320 (4.5s)
+  ✓  7 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 701x320 (4.4s)
+  ✓  8 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 390x320 (4.3s)
+
+  8 passed (35.9s)

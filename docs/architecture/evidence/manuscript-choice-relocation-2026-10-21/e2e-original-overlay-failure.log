@@ -1,0 +1,116 @@
+
+Running 2 tests using 1 worker
+
+(node:85533) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains yes native result, file reopen and merge (2.6m)
+(node:85686) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains no native result, file reopen and merge (2.6m)
+
+
+  1) tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains yes native result, file reopen and merge 
+
+    Test timeout of 150000ms exceeded.
+
+    Error: locator.click: Test timeout of 150000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '이 컷부터 재생', exact: true })
+        - locator resolved to <button type="button" aria-label="이 컷부터 재생" title="현재 컷부터 실제 이야기 재생">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설">앞 문장. </textarea> from <div data-additional-dock="true" class="story-editing-workbench-module__jlqdCG__additional">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설">앞 문장. </textarea> from <div data-additional-dock="true" class="story-editing-workbench-module__jlqdCG__additional">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        287 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설">앞 문장. </textarea> from <div data-additional-dock="true" class="story-editing-workbench-module__jlqdCG__additional">…</div> subtree intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+
+
+      15 |  test.setTimeout(150000);await load(page);await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();const text=page.locator('#story-line-text');await text.focus();await text.press('ControlOrMeta+A');await text.press('ArrowLeft');for(let i=0;i<6;i++)await text.press('ArrowRight');await page.getByRole('button',{name:'상세 글의 커서에서 컷 나누기',exact:true}).click();
+      16 |  await expect.poll(async()=>(await stored(page)).lines.length).toBe(3);const split=await stored(page),second=split.lines.find((l:{id:string})=>l.id!=='a'&&l.id!=='b');expect(second.flow).toEqual(project.lines[0].flow);expect(split.lines.find((l:{id:string})=>l.id==='b').audio.music.branchCondition).toEqual({sourceLineId:second.id,choiceId:'yes'});
+    > 17 |  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered(page);const status=page.getByTestId('story-runtime-status');await page.getByTestId('story-runtime-frame').contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true}).press('Enter');await expect(status).toHaveAttribute('data-audio-unlocked','true');await expect(status).toHaveAttribute('data-music-path',/night/);
+         |                                                              ^
+      18 |  const current=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId);
+      19 |  let frame=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(frame.x+frame.width*.5,frame.y+frame.height*.2);await expect.poll(current).toBe(second.id);await rendered(page);
+      20 |  frame=(await page.getByTestId('story-runtime-frame').boundingBox())!;const rect=JSON.parse((await status.getAttribute('data-choices-rect'))!),width=Number(await status.getAttribute('data-scene-width')),height=Number(await status.getAttribute('data-scene-height')),scale=Math.min(frame.width/width,frame.height/height);await page.mouse.click(frame.x+(frame.width-width*scale)/2+(rect.x+rect.width/2)*scale,frame.y+(frame.height-height*scale)/2+(rect.y+24+92+48+(choice==='yes'?0:1)*108)*scale);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-choice-relocation.spec.ts:17:62
+
+    Error Context: test-results-manuscript-choice/manuscript-choice-relocati-fc491-esult-file-reopen-and-merge/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-manuscript-choice/manuscript-choice-relocati-fc491-esult-file-reopen-and-merge/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-manuscript-choice/manuscript-choice-relocati-fc491-esult-file-reopen-and-merge/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains no native result, file reopen and merge 
+
+    Test timeout of 150000ms exceeded.
+
+    Error: locator.click: Test timeout of 150000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '이 컷부터 재생', exact: true })
+        - locator resolved to <button type="button" aria-label="이 컷부터 재생" title="현재 컷부터 실제 이야기 재생">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설">앞 문장. </textarea> from <div data-additional-dock="true" class="story-editing-workbench-module__jlqdCG__additional">…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설">앞 문장. </textarea> from <div data-additional-dock="true" class="story-editing-workbench-module__jlqdCG__additional">…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        287 × waiting for element to be visible, enabled and stable
+            - element is visible, enabled and stable
+            - scrolling into view if needed
+            - done scrolling
+            - <textarea maxlength="20000" id="story-line-text" aria-label="대사 / 해설">앞 문장. </textarea> from <div data-additional-dock="true" class="story-editing-workbench-module__jlqdCG__additional">…</div> subtree intercepts pointer events
+          - retrying click action
+            - waiting 500ms
+
+
+      15 |  test.setTimeout(150000);await load(page);await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();const text=page.locator('#story-line-text');await text.focus();await text.press('ControlOrMeta+A');await text.press('ArrowLeft');for(let i=0;i<6;i++)await text.press('ArrowRight');await page.getByRole('button',{name:'상세 글의 커서에서 컷 나누기',exact:true}).click();
+      16 |  await expect.poll(async()=>(await stored(page)).lines.length).toBe(3);const split=await stored(page),second=split.lines.find((l:{id:string})=>l.id!=='a'&&l.id!=='b');expect(second.flow).toEqual(project.lines[0].flow);expect(split.lines.find((l:{id:string})=>l.id==='b').audio.music.branchCondition).toEqual({sourceLineId:second.id,choiceId:'yes'});
+    > 17 |  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered(page);const status=page.getByTestId('story-runtime-status');await page.getByTestId('story-runtime-frame').contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true}).press('Enter');await expect(status).toHaveAttribute('data-audio-unlocked','true');await expect(status).toHaveAttribute('data-music-path',/night/);
+         |                                                              ^
+      18 |  const current=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId);
+      19 |  let frame=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(frame.x+frame.width*.5,frame.y+frame.height*.2);await expect.poll(current).toBe(second.id);await rendered(page);
+      20 |  frame=(await page.getByTestId('story-runtime-frame').boundingBox())!;const rect=JSON.parse((await status.getAttribute('data-choices-rect'))!),width=Number(await status.getAttribute('data-scene-width')),height=Number(await status.getAttribute('data-scene-height')),scale=Math.min(frame.width/width,frame.height/height);await page.mouse.click(frame.x+(frame.width-width*scale)/2+(rect.x+rect.width/2)*scale,frame.y+(frame.height-height*scale)/2+(rect.y+24+92+48+(choice==='yes'?0:1)*108)*scale);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-choice-relocation.spec.ts:17:62
+
+    Error Context: test-results-manuscript-choice/manuscript-choice-relocati-54adc-esult-file-reopen-and-merge/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-manuscript-choice/manuscript-choice-relocati-54adc-esult-file-reopen-and-merge/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-manuscript-choice/manuscript-choice-relocati-54adc-esult-file-reopen-and-merge/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains yes native result, file reopen and merge 
+    tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains no native result, file reopen and merge 

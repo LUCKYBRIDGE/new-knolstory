@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-20",
+  "scope": "사용자 확정 총4프레임:1→2→3→4→1",
+  "status": "local-focused-verified",
+  "decision": {
+    "frameCount": 4,
+    "order": [
+      1,
+      2,
+      3,
+      4,
+      1
+    ],
+    "durationMsPerFrame": 240,
+    "cycleMs": 960,
+    "frame1Roles": [
+      "책 페이지를 넘기기 전",
+      "한 장을 완전히 넘긴 후·다음 반복의 시작"
+    ],
+    "frame4": "페이지가 책등을 지나 반대편에 거의 내려앉은 중간 자세; 완전히 펼친 별도 완료 자세 없음",
+    "excluded": [
+      "7프레임/4개 추가 아님",
+      "페이지를 원래 쪽으로 되돌리지 않음",
+      "긴 읽기 정지 없음"
+    ]
+  },
+  "assets": [
+    {
+      "workId": "rabbit",
+      "path": "apps/web/public/assets/loading/story-reading-v4.webp",
+      "frames": 4,
+      "width": 480,
+      "height": 440,
+      "durationMs": [
+        240,
+        240,
+        240,
+        240
+      ],
+      "loopMs": 960,
+      "canvasBackgroundAlpha": 0,
+      "bytes": 184372,
+      "sha256": "e41a1709d9c7b6c449a3e727163b763a1fe4c51d3ad4947ecf149f8edfb6b9a4"
+    },
+    {
+      "workId": "heungbu",
+      "path": "apps/web/public/assets/loading/heungbu-reading-v2.webp",
+      "frames": 4,
+      "width": 480,
+      "height": 440,
+      "durationMs": [
+        240,
+        240,
+        240,
+        240
+      ],
+      "loopMs": 960,
+      "canvasBackgroundAlpha": 0,
+      "bytes": 106606,
+      "sha256": "b93af387d6cc82265e024268b91cc7f7b2056959bcecee05ecb2cde3ba7495bc"
+    },
+    {
+      "workId": "seonnyeo",
+      "path": "apps/web/public/assets/loading/seonnyeo-reading-v2.webp",
+      "frames": 4,
+      "width": 480,
+      "height": 440,
+      "durationMs": [
+        240,
+        240,
+        240,
+        240
+      ],
+      "loopMs": 960,
+      "canvasBackgroundAlpha": 0,
+      "bytes": 130466,
+      "sha256": "bf62bd0608e776a816ee458921870dec362a1025d8742cf9ccbf88cece3b0eb3"
+    },
+    {
+      "workId": "onggojib",
+      "path": "apps/web/public/assets/loading/onggojib-reading-v2.webp",
+      "frames": 4,
+      "width": 480,
+      "height": 440,
+      "durationMs": [
+        240,
+        240,
+        240,
+        240
+      ],
+      "loopMs": 960,
+      "canvasBackgroundAlpha": 0,
+      "bytes": 114774,
+      "sha256": "a98c23c8af7b532cc3b02d5358d1be93cbb08e015361d95023a4f4e235051293"
+    }
+  ],
+  "preservation": [
+    "기존 첫3프레임과 정지1번 유지",
+    "이전 정적/3프레임/무작위 후보와 검증을 덮어쓰지 않음",
+    "원고·작품파일·AssetID·Flow·RuntimeCore 의미 변경 없음"
+  ],
+  "behavior": [
+    "네 작품 같은 확률로 로딩당 한 번 선택",
+    "Web/native 같은 JSON 경로",
+    "선택된 애니메이션 하나만 요청; reducedmotion은 같은작품 정지1번",
+    "임의 대기/가짜progress 추가 없음"
+  ],
+  "verification": {
+    "build": "production static export passed; runtime engine source unchanged, previous runtime build reused",
+    "assetMetadata": "all four work animations have4frames, 240ms each, transparentcanvas and transparentcorners",
+    "browser": {
+      "passed": 7,
+      "durationSeconds": 9.7,
+      "scope": [
+        "actualnative frame change and stage readiness/input",
+        "four works selected via deterministic randomvalues",
+        "only selected asset requested",
+        "selected work/description match and remain through resize",
+        "reducedmotion selects samework staticframe1",
+        "tip fetch failure does not blockengine",
+        "authored project preserved"
+      ]
+    },
+    "docs": "57active docs0linkerrors, language0retiredterms, docs tests10passed"
+  },
+  "limits": [
+    "데스크톱 Chromium의 viewport emulation이며 물리 기기·스크린리더·배포/전체출시 완료 아님"
+  ],
+  "sourceHashes": {
+    "apps/web/public/loading-stories.json": "e324341036aab84d30d1ee66184b779075404afcf3dc71b73a474ab3be4523b9",
+    "apps/web/components/story-loading.tsx": "b126ee746257a5ea38eea41cb7fda91a100d021b512a470d79f3baac9bab36f0",
+    "tests/e2e/story-loading.spec.ts": "48793ea5c0e928165f8a2b12cf6dc5262fa7227151c687f584fe35796a3ff831"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-22",
+  "scope": "Score-conditioned same-cut text through domain/Core/editor/current formats, whole editor goal active",
+  "implemented": [
+    "StoryLine.textVariants optional0..16 strict uniqueID/text/requiredscorecondition; base text fallback",
+    "First matching priority using existing all/any score evaluation; blank text preserved",
+    "Schema8-only; old envelopes/unversioned inputs reject extension",
+    "Edit preview base text; actual playback uses replayed choice scores, direct preview initial scores",
+    "Historical script resolves each visit prior choice effects; perspective real prose not auto-skipped",
+    "Opt-in scores+branches collapsed UI, exact selected variant, priority/edit/delete/guarded undo, IME locks",
+    "Score deletion sees variant refs; cut clone deep-preserves, blank branch clears, nonempty variant split/merge refuses",
+    "Editable workbook8 marker+two Korean tables, strict IDs/owners/contiguousorder/requiredconditions; wholly absent scalar adapter",
+    "Archive2/XLSX actual editedcells/JSONB preserve exact manuscript and fieldabsence"
+  ],
+  "verification": {
+    "focusedTests": 74,
+    "focusedFiles": 10,
+    "typecheck": "All6packages+server pass",
+    "build": "Web production source; existing RuntimeScene text contract and RenPy unchanged",
+    "coverage": "New validator/workbook/helper modules combined96.15statement91.95branch100line from15tests, not whole product coverage",
+    "browserTests": 3,
+    "browserScope": [
+      "Opt-in, edit/priority/exact selection/undo,2termOR, fourviewport,IMElocks,featureoff/onpreservation",
+      "Actual file export wholeproject equality and freshbrowserimport",
+      "Native render and both same-target choices different score text",
+      "Native visiblepageoffset plus past-script text matches chosen variant"
+    ],
+    "docs": "57 active docs/220 current surfaces/10 doc tests pass",
+    "schema": "Generated field schema check passes"
+  },
+  "limitations": [
+    "External Excel/Google app directsave and physicaldevice/softkeyboard unverified",
+    "Multiple choice-history AND/OR and conditional scene skipping distinct unfinished features",
+    "No inferred cross-cut reader clock or automatic sequence split",
+    "Whole editor completion remains active"
+  ]
+}

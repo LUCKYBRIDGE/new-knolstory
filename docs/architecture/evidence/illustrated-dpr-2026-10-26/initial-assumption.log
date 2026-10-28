@@ -1,0 +1,113 @@
+[WebServer] (node:15192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:21] "GET / HTTP/1.1" 200 -
+
+Running 2 tests using 1 worker
+
+(node:15207) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/1rxi7xfjtlo95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/0h_kygruut1i3.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /_next/static/chunks/00xbs-pri8q31.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/knol-loading.css?v=43e5ed9c18176959 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/runtime-contract.js?v=4dad150a73edc4a4 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/knol-bridge.js?v=c7fd05acd4429659 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/renpy-pre.js?v=aef6c9d0aee065bc HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /assets/loading/heungbu-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/renpy.js?v=498a0981c1fe0e8d HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/knol-loading.js?v=293c0aeb94ac0370 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /loading-stories.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:22] "GET /runtime/game.zip?v=5f441ce9d22ad176 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:25] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:25] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:25] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:26] "GET /runtime/game/ui/choice-button-hover.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:26] "GET /runtime/game/ui/choice-button.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:26] "GET /runtime/game/ui/choice-panel.svg HTTP/1.1" 200 -
+  ✘  1 [stories-runtime] › tests/e2e/runtime-pixel-budget.spec.ts:17:71 › DPR4 illustrated choices retain native hit coordinates 390 (5.4s)
+(node:15235) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/1rxi7xfjtlo95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/0h_kygruut1i3.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /_next/static/chunks/00xbs-pri8q31.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/knol-loading.css?v=43e5ed9c18176959 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/knol-bridge.js?v=c7fd05acd4429659 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/runtime-contract.js?v=4dad150a73edc4a4 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/renpy-pre.js?v=aef6c9d0aee065bc HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /assets/loading/story-reading-v4.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/knol-loading.js?v=293c0aeb94ac0370 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/renpy.js?v=498a0981c1fe0e8d HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /loading-stories.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /assets/loading/seonnyeo-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:28] "GET /runtime/game.zip?v=5f441ce9d22ad176 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:31] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:31] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:31] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:32] "GET /runtime/game/ui/choice-button-hover.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:32] "GET /runtime/game/ui/choice-panel.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:32] "GET /runtime/game/ui/choice-button.svg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [26/Oct/2026 20:49:34] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+  ✓  2 [stories-runtime] › tests/e2e/runtime-pixel-budget.spec.ts:17:71 › DPR4 illustrated choices retain native hit coordinates 844 (7.2s)
+
+
+  1) [stories-runtime] › tests/e2e/runtime-pixel-budget.spec.ts:17:71 › DPR4 illustrated choices retain native hit coordinates 390 
+
+    Error: expect(received).toHaveLength(expected)
+
+    Expected length: 2
+    Received length: 0
+    Received array:  []
+
+      26 |   const layout=await runtime.evaluate(()=> (window as unknown as {renpy_exec:(code:string)=>Promise<{rect:{x:number;y:number;width:number;height:number};padding:number;headerHeight:number;gap:number;buttonHeights:number[]}>}).renpy_exec('result = knol_choice_layout(knol_scene)'));
+      27 |   await expect.poll(()=>status.getAttribute('data-choices-rect')).not.toBe('null');
+    > 28 |   const dimensions=await runtime.evaluate(()=>{const canvas=document.querySelector('canvas')!;return {width:canvas.width,height:canvas.height,dpr:devicePixelRatio};});const w=Number(await status.getAttribute('data-scene-width')),h=Number(await status.getAttribute('data-scene-height'));expect(dimensions).toEqual({width:w*2,height:h*2,dpr:4});expect(JSON.parse((await status.getAttribute('data-actor-rects'))!)).toHaveLength(2);await page.screenshot({path:info.outputPath('illustrated-native-choices.png')});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+      29 |   const box=(await page.getByTestId('story-runtime-frame').boundingBox())!,scale=Math.min(box.width/w,box.height/h),x=layout.rect.x+layout.rect.width/2,y=layout.rect.y+layout.padding+layout.headerHeight+layout.buttonHeights[0]+layout.gap+layout.buttonHeights[1]/2;
+      30 |   await page.touchscreen.tap(box.x+(box.width-w*scale)/2+x*scale,box.y+(box.height-h*scale)/2+y*scale);await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('stream-end');await ready(page);expect(await identity!.evaluate(e=>e===document.querySelector('[data-testid=story-runtime-frame]'))).toBe(true);
+      31 |   await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toHaveValue('stream-end');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(original);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/runtime-pixel-budget.spec.ts:28:413
+
+    Error Context: .cache/illustrated-dpr-20261026/results/runtime-pixel-budget-DPR4--85d8c--native-hit-coordinates-390-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/illustrated-dpr-20261026/results/runtime-pixel-budget-DPR4--85d8c--native-hit-coordinates-390-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/illustrated-dpr-20261026/results/runtime-pixel-budget-DPR4--85d8c--native-hit-coordinates-390-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [stories-runtime] › tests/e2e/runtime-pixel-budget.spec.ts:17:71 › DPR4 illustrated choices retain native hit coordinates 390 
+  1 passed (13.9s)

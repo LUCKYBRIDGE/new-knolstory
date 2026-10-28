@@ -72,3 +72,8 @@ docs/architecture/evidence/recovery-navigation/ownership-final.log
 
 # HTML coverage trees duplicate source and generated tool code.
 docs/architecture/evidence/**/*coverage*/
+
+# Failed assertion includes a full authored manuscript diff; retain locally.
+docs/architecture/evidence/manuscript-choice-relocation-2026-10-21/e2e-storage-wait-failure.log
+docs/architecture/evidence/phone-logic-2026-10-26/baseline.json
+docs/architecture/evidence/phone-soak-2026-10-26/original.json

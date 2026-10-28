@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:17871) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/long-text-context.spec.ts:9:119 › long text retains internal viewport and selection 390 (1.5s)
+  ✓  2 tests/e2e/long-text-context.spec.ts:9:119 › long text retains internal viewport and selection 844 (1.4s)
+  ✓  3 tests/e2e/long-text-context.spec.ts:9:119 › long text retains internal viewport and selection 768 (1.4s)
+  ✓  4 tests/e2e/long-text-context.spec.ts:9:119 › long text retains internal viewport and selection 1280 (1.4s)
+  ✓  5 tests/e2e/long-text-context.spec.ts:25:1 › long text keeps selection direction after actual native preview return (5.7s)
+  ✓  6 tests/e2e/long-text-context.spec.ts:29:1 › long text returns from work planning with cursor and inner scroll (1.8s)
+
+  6 passed (13.8s)

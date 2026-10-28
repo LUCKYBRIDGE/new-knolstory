@@ -72,10 +72,13 @@ async function writeVerified(handle: LocalWorkFileHandle, text: string, isCurren
     try {await stream.abort();} catch { /* The caller still receives the write error. */ }
     throw error;
   }
-  if (await (await handle.getFile()).text() !== text) {
-    throw new LocalWorkFileError('저장한 파일의 내용을 확인하지 못했습니다. 다른 이름으로 저장해 주세요.');
+  // Android document providers may briefly return their pre-close snapshot.
+  // Retry reads only, never the write: success still requires exact content.
+  for (const delay of [0, 100, 250, 500, 1000]) {
+    if (delay) await new Promise(resolve => setTimeout(resolve, delay));
+    if (await (await handle.getFile()).text() === text) return true;
   }
-  return true;
+  throw new LocalWorkFileError('저장한 파일의 내용을 확인하지 못했습니다. 다른 이름으로 저장해 주세요.');
 }
 
 /** Keep handles per work, never in browser storage or under another work identity. */
@@ -100,7 +103,7 @@ export function createLocalWorkFileSaver(options: {
         if (!handle && options.pick) {
           try {
             handle = await options.pick({suggestedName: name, types: [{
-              description: '놀스토리 작품 파일', accept: {'application/json': [input.extension]},
+              description: '놀스토리 작품 파일', accept: {'application/octet-stream': [input.extension]},
             }]});
           } catch (error) {
             if (error instanceof Error && error.name === 'AbortError') return {kind: 'cancelled', name};

@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:34695) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editor-flow-change-protection.spec.ts:18:58 › flow mode protects choices until explicit confirmation (4.9s)
+  ✓  2 tests/e2e/editor-flow-change-protection.spec.ts:18:58 › flow mode protects routes until explicit confirmation (4.7s)
+  ✓  3 tests/e2e/editor-flow-change-protection.spec.ts:18:58 › flow mode protects ending until explicit confirmation (4.7s)
+  ✓  4 tests/e2e/editor-inherited-background.spec.ts:19:1 › inherited background thumbnails show resolved artwork without changing default, none or direct selections (6.1s)
+  ✓  5 tests/e2e/editor-range-overview.spec.ts:7:1 › multi-cut lists and companion views show continuing audio and effects through their inclusive end (2.3s)
+  ✓  6 tests/e2e/editor-work-isolation.spec.ts:7:1 › same cut ids in independent works do not carry open direction details or draft values (3.4s)
+
+  6 passed (26.7s)

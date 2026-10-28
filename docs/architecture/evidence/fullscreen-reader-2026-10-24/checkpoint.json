@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-24",
+  "scope": "Actual S25 fullscreen native reading and return to editor",
+  "verified": [
+    "Actual RenPy rendered current revision in landscape748x360",
+    "Story stage usesx0y0width748height360",
+    "Reader menu offers fullscreen exit",
+    "Return to editor retains document fullscreen",
+    "Whole test project identical before and after"
+  ],
+  "limits": [
+    "Physical phone stays landscape per user preference",
+    "No claim of all reader settings or score path behavior from this run"
+  ]
+}

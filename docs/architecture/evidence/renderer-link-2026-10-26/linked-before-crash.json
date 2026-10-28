@@ -1,0 +1,66 @@
+{
+  "frameIds": [
+    "69F9293D2A932DFDE977EC030D50387F",
+    "AAAE9CF0EDE56CAEAADCCCCB4DCB02C2"
+  ],
+  "systemProcessInfoAvailable": true,
+  "localFrames": [],
+  "errors": [],
+  "processKinds": [
+    {
+      "id": 22048,
+      "type": "browser"
+    },
+    {
+      "id": 28831,
+      "type": "renderer"
+    },
+    {
+      "id": 28679,
+      "type": "renderer"
+    },
+    {
+      "id": 28756,
+      "type": "renderer"
+    },
+    {
+      "id": 28708,
+      "type": "renderer"
+    },
+    {
+      "id": 28699,
+      "type": "renderer"
+    },
+    {
+      "id": 9874,
+      "type": "GPU"
+    }
+  ],
+  "localMarkers": [
+    {
+      "name": "knol-local-host-pid-probe",
+      "pid": 28679,
+      "tid": 28684
+    },
+    {
+      "name": "knol-local-runtime-pid-probe",
+      "pid": 28679,
+      "tid": 28684
+    }
+  ],
+  "traceStartShapes": [
+    {
+      "pid": 22048,
+      "keys": [],
+      "dataKeys": [],
+      "data": null
+    }
+  ],
+  "metadataNames": [
+    "thread_name",
+    "process_name",
+    "process_uptime_seconds",
+    "ActiveProcesses",
+    "TracingStartedInBrowser"
+  ]
+}

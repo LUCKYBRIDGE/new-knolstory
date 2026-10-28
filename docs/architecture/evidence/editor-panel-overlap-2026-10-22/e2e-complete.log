@@ -1,0 +1,16 @@
+
+Running 9 tests using 1 worker
+
+(node:95325) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 1440x900 (2.2s)
+  ✓  2 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 1024x768 (2.1s)
+  ✓  3 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 768x1024 (2.1s)
+  ✓  4 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 390x844 (2.3s)
+  ✓  5 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 844x390 (2.1s)
+  ✓  6 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 320x568 (2.2s)
+  ✓  7 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 700x440 (2.3s)
+  ✓  8 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 701x440 (2.3s)
+  ✓  9 tests/e2e/editor-panel-overlap.spec.ts:14:235 › expanded editor tools never cover active editing at 390x480 (2.2s)
+
+  9 passed (20.4s)

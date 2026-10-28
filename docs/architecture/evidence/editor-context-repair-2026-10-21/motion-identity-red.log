@@ -1,0 +1,41 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/combined-editing-tracks.test.ts (7 tests | 1 failed) 12ms
+   × retains exact actor keys when cut IDs and actor keys overlap 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/combined-editing-tracks.test.ts > retains exact actor keys when cut IDs and actor keys overlap
+AssertionError: expected [ { target: 'motion', …(8) }, …(2) ] to match object [ { sourceLineId: 'b', …(1) }, …(2) ]
+(24 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  [
+    {
+-     "actorKey": "b",
+      "sourceLineId": "b",
+    },
+    {
+-     "actorKey": "lead",
+      "sourceLineId": "b",
+    },
+    {
+-     "actorKey": "lead-extra",
+      "sourceLineId": "b",
+    },
+  ]
+
+ ❯ apps/web/lib/combined-editing-tracks.test.ts:45:18
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  21:41:31
+   Duration  492ms (transform 272ms, setup 0ms, import 387ms, tests 12ms, environment 0ms)
+

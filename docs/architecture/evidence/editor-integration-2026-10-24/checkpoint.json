@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-24",
+  "scope": "Latest combined editor candidate:keyboard/fullscreen/popups/score/file shortcuts/task navigation",
+  "verification": {
+    "tests": "37 passed1.1min in one terminal run, no failure/skip",
+    "covered": [
+      "Body/IME/cursor and keyboard-focused speaker/memo/settings",
+      "Phone short landscape/portrait restoration and task capability",
+      "Image/cover modal ownership, numeric inputs and cancel project preservation",
+      "Initial fullscreen accept/decline/session/menu/queued nested dialogs",
+      "Choice/score changes and exact shared destinations/reload",
+      "Ctrl/Meta file save/SaveAs, pending numeric draft, invalid/IME/modal/reader guards",
+      "Five task screens, phone single-cut/large-screen find, selected-cut focus and whole file preservation"
+    ],
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Bounded browser regression, not whole E2E pass or physical tier1 completion",
+    "30minute stability run started separately and not yet complete",
+    "No new actual device, screen reader or production release claim"
+  ],
+  "preservation": "No manuscript fixtures or runtime source changed by this integration run"
+}

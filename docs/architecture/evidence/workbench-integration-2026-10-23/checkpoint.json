@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-23",
+  "scope": "Current editing-workbench integration after context/IME/conditional changes; wholeeditorgoalactive",
+  "reason": "Recent sharedcontext and composition guard changes justify affected multi-cut/settings/popup regression",
+  "verification": {
+    "browser": "38passed singlefinalrun2.0minutes",
+    "suite": "editing-workbench.spec.ts 38cases1worker",
+    "source": "current production build reused, no app changes in this audit",
+    "covered": [
+      "Multi-cuttext/background/character edits+file/contentpreservation",
+      "Audio/direction optin/ranges/reopen/actor motion",
+      "Basicneighbors phone1:4:1/currentlandscape native actualrender",
+      "Internal scrolling4viewports modeledvisualviewportshrink",
+      "Unified settings bookshelfreturn recoverywritefailure",
+      "Systemmenus3widths, import/asset/terms/flow/delete/cover/staging/ShortStoryrecovery popups",
+      "Connections choice/scorewording AND/OR file reimport",
+      "Speaker/choicecomposition and characteroptin"
+    ]
+  },
+  "requirementsOwner": "../../editor-redesign-completeness-audit.md",
+  "limits": [
+    "Suite only proves covered local flows, not entireproduct",
+    "Some layoutcases block runtime; explicitnativecases waitactualrender",
+    "Physicaldevices/OSkeyboards/externalsheetapp unverified"
+  ],
+  "sourceHashes": {
+    "tests/e2e/editing-workbench.spec.ts": "a5737bd1f8d2e07eba4e7133722a28358e42ee8067f02f438b7b684263060688",
+    "apps/web/components/story-editing-workbench.tsx": "7dc84c1a60629488cf2d691781ad9b4feee5ca307abd88782000a645d4889e44",
+    "apps/web/components/use-preview-editor-context.ts": "3462d7bc6804dbcc10567dc18afa2de7bb8539b6abe8c6c851a75e58838cead7",
+    "apps/web/out/index.html": "74a048f21ea6250d820a7211ab64eff5346da35afb46560733ae89aa8f959566"
+  },
+  "visualReview": [
+    "Phonebasicstacked.png layout screenshot includes loading; actualnative evidence separate testcase",
+    "asset-selector-320.png: no clipped horizontal labels; fixedcancel/apply and list region visible"
+  ]
+}

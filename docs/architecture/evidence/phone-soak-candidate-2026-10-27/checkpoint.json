@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "runnerPid": 29441,
+  "execSession": 34304,
+  "relayPid": 92440,
+  "testProjectId": "android-soak-1793097671193",
+  "runDirectory": ".cache/phone-soak-20261027-candidate",
+  "durationMs": 1800000,
+  "scope": "S25 Chrome portrait/windowed, independent copy, latest shelf search and storage guidance candidate; 30min editing and RenPy return, actual file equality and original editor restoration",
+  "predecessor": "../phone-soak-final-2026-10-27/checkpoint.json",
+  "change": "The last library search must close after Enter before opening the original work; current source and built output hashes recorded before starting.",
+  "completionRequired": [
+    "same process terminal",
+    "elapsed 30 minutes",
+    "actual file and full project equality",
+    "preexisting works equal",
+    "original editor visible and equal",
+    "source and output hashes unchanged",
+    "no page errors"
+  ],
+  "notProven": [
+    "OS Korean IME",
+    "fullscreen",
+    "other devices or all editor requirements",
+    "30min soak after later time-axis fix"
+  ],
+  "pendingIndependentFixes": [
+    {
+      "issue": "Same-position time-guide alignment replaces undo for the last actual change",
+      "redTest": "tests/e2e/combined-editing.spec.ts: unchanged guide alignment keeps the last real time edit undoable",
+      "log": ".cache/combined-time-noop-20261027-red.log",
+      "next": "After soak ends, fix no-op alignment/resize/trim without changing project or replacing previous undo; rerun focused test and related regressions.",
+      "shadowFix": ".cache/editor-shadow-20261027/apps/web/components/story-combined-time.tsx",
+      "shadowFocusedResult": ".cache/shadow-combined-green2.log",
+      "review": "Read-only review found no blocker; requested snapped start-edge drag coverage, now in progress.",
+      "shadowScope": "Effect start and duration no-op alignment plus snapped no-op start-edge drag preserve prior undo; whole project equality after undo, excluding update timestamp.",
+      "status": "applied-and-focused-main-passed",
+      "mainFocusedResult": ".cache/combined-time-noop-20261027-main.log",
+      "soundFocusedResult": ".cache/combined-time-noop-20261027-sound-main.log",
+      "checks": "web build, typecheck, focused lint, combined-time-edit unit 13/13; focused effect and sound host tests passed",
+      "sourceSha256": "3f7681465a9e9b4a8a2b88dfbdc506b4e41f374c43d846ced017b4ba9c190fdf"
+    },
+    {
+      "status": "host-and-native-focused-passed",
+      "issue": "The prior focus failure was a legitimate deferred fullscreen offer, not a demonstrated product defect. The test marks the offer as previously seen and exercises flow-map close/focus independently.",
+      "hostResult": ".cache/flow-migration-20261027/host-next.log",
+      "scope": "Current UI, nested branches and merge, pending/unreachable cuts, file roundtrip and focus after viewport change.",
+      "native": "Native merge click found accessibility text panel covering native choices when keyboard focused; subsequent test closes it by keyboard before native click. Rerun in progress.",
+      "nativeResult": ".cache/flow-migration-20261027/native5.log",
+      "nativeScope": "Actual native choices for six nested and merged routes to two endings; playback IDs, native renderer identity, manuscript preservation and editor return. Accessibility text panel was closed with keyboard before native choice when focused."
+    }
+  ],
+  "result": {
+    "elapsedMs": 1809873,
+    "cycles": 117,
+    "nativeReturns": 12,
+    "wholeTestProjectPreserved": true,
+    "preexistingWorksPreserved": true,
+    "actualDeviceArchiveEqual": true,
+    "originalEditorRestored": true,
+    "pageErrors": 0,
+    "testedSourceAndOutputHashesMismatch": 0,
+    "scope": "Same process completed on S25 Chrome portrait windowed; actual saved .knolstory project equals final project. Later time-axis source change is not part of this candidate."
+  },
+  "largeFlowValidation": {
+    "status": "focused-host-passed",
+    "log": ".cache/large-flow-current-20261027-run1.log",
+    "testSha256": "cbfe1df0946d28f3abc3bcf491a48e09d4629564e7a16f87b0b12bdc552fef79",
+    "scope": "More than 100 cuts: find a late cut through flow map, edit text, compare all other manuscript content, export file, import independent copy, reload, compare whole imported manuscript and re-find edited cut.",
+    "limits": [
+      "Not native large-work performance or physical device."
+    ]
+  }
+}

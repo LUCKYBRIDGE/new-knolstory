@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "reproduced": "Blank rejected NumberValue draft in first of2same-value condition terms moved toremaining term after deleting first.",
+  "fix": "Local numericdraft revision changes onexplicitcondition/effect deletion; remount numericdrafts only, keep score/method selects anddocumentformats.",
+  "tests": {
+    "conditionalFileSingleRun": 7,
+    "phoneKeyboardFocusedSingleRun": 1,
+    "scopes": [
+      "Invalidsame-value termdelete",
+      "Choiceeffectadd/set samevalue deletion",
+      "Validfocused7 commitsbeforedelete ofanotherrow",
+      "Undo/fullprojectexpectedcomparison",
+      "Existingconditionalpriority/filereopen/native display",
+      "Phoneviewportkeyboardposition/hitcenter/exactchoice destination"
+    ]
+  },
+  "review": "Read-onlyreview no blocker; added positivefocusedvalid7 case.",
+  "initialGreenAttempt": "Two new projectcomparison assertions sampled before asyncstorage completion. Added explicit2termready andpollwholeproject; original UI-empty RED preserved separately.",
+  "typecheck": true,
+  "lint": true,
+  "notProven": [
+    "All score operations",
+    "Physicalphone",
+    "30minutestability",
+    "Allgoal"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-22",
+  "scope": "Settings-menu and flow-confirmation responsive audit plus accurate removal warning; whole editor goal active",
+  "implemented": [
+    "Choice removal warning enumerates actual option count, score effect entries and options with display conditions",
+    "No warning for absent score/visibility settings",
+    "Correct Korean particle on final enumerated item; existing staged proposal/apply semantics unchanged"
+  ],
+  "verification": {
+    "unitTestsPassed": 5,
+    "helperCoverage": {
+      "statements": 100,
+      "branches": 100,
+      "functions": 100,
+      "lines": 100
+    },
+    "browserTestsPassed": 19,
+    "durationSeconds": 57.9,
+    "settings": {
+      "cases": 10,
+      "viewports": [
+        [
+          1440,
+          900
+        ],
+        [
+          768,
+          1024
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          320,
+          568
+        ],
+        [
+          720,
+          320
+        ],
+        [
+          721,
+          320
+        ],
+        [
+          390,
+          320
+        ],
+        [
+          844,
+          240
+        ],
+        [
+          390,
+          200
+        ]
+      ],
+      "checks": [
+        "Long title, six editor options enabled",
+        "Panel fits viewport",
+        "Actual temporary-save click after internal scroll",
+        "Full save-button bounds and hit test",
+        "Escape focus return, original manuscript unchanged"
+      ]
+    },
+    "confirmations": {
+      "cases": 9,
+      "viewports": [
+        [
+          390,
+          844
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          390,
+          320
+        ]
+      ],
+      "types": [
+        "choice with exact score-change and visibility counts",
+        "score route",
+        "ending"
+      ],
+      "checks": [
+        "Cancel/Escape preserves full manuscript",
+        "Full horizontal/vertical button bounds after scroll and pointer hit",
+        "Confirmation, temporary storage and reload at each original viewport",
+        "Focus returns to mode field"
+      ]
+    },
+    "webBuild": "passed",
+    "webTypecheck": "passed",
+    "focusedEslint": "passed",
+    "docsCheck": "57active documents,0links,214current language surfaces,353historical,0retired terms",
+    "docsTestsPassed": 10,
+    "diffCheck": "passed"
+  },
+  "review": "Read-only specialist found no blocking warning bug; strengthened original-viewport confirmation and horizontal button bounds per review",
+  "limits": [
+    "Confirm dialog uses internal whole-dialog scrolling at short heights; each action is reachable, not all content simultaneously visible",
+    "Existing settings layout passed audit; no unnecessary CSS rewrite",
+    "No physical device or OS keyboard, external sheet app, native renderer or deployment claim",
+    "Other popup classes, same-cut music clips and full editor completion audit remain"
+  ],
+  "sha256": {
+    "apps/web/lib/story-flow-change.ts": "a9544560b48286f79ed3fc8c505377f57dad39c217f673126aa95ffc14c3194c",
+    "apps/web/lib/story-flow-change.test.ts": "3ca47296f980e0946b1ce56290705cd75566abddb77ff5fef5fad7590ed27406",
+    "tests/e2e/editor-settings-bounds.spec.ts": "14dae6f3f3157d9ef2dc4c8e0c198682745b8444932747bb4a4a04435792065a",
+    "tests/e2e/editor-flow-change-protection.spec.ts": "6d7865fd8c6cad5216b41c447afb785c342b1eef7decefb24e7c1f74fd85bc25"
+  }
+}

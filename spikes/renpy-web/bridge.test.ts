@@ -115,3 +115,12 @@ it('rejects page requests before a scene and for editing scenes or malformed rev
  request();expect(api.drain()).toBe('[]');send();api.drain();request();expect(api.drain()).toBe('[]');
  send(2,2,{...scene,revision:2,mode:'play'});api.drain();for(const revision of [-1,1,2.5,'2'])request(revision);expect(api.drain()).toBe('[]');
 });
+
+it('exposes the actual unlock canvas for either sequence channel without fabricating input',()=>{
+ for(const channel of ['music','ambience']){
+  const {api,send,canvas}=bridge(),cue={action:'sequence',id:'queue',entryId:'cut:a:0',clips:[{id:'one',audioPath:'assets/audio/forest.wav',sourceStartMs:0,sourceEndMs:1000,volume:1,fadeInMs:0,fadeOutMs:0}]};
+  const playable={...scene,mode:'play',audio:{version:1,music:{action:'stop',fadeOutMs:0},[channel]:cue,sounds:[]}};
+  expect(isRuntimeScene(playable)).toBe(true);send(1,1,playable);api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:1,audioState:{unlocked:false}});
+  expect(canvas.getAttribute('role')).toBe('button');expect(canvas.getAttribute('aria-label')).toContain('소리 켜고 시작');api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:1,audioState:{unlocked:true}});expect(canvas.getAttribute('role')).toBeNull();
+ }
+});

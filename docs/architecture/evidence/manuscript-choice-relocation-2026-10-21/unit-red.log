@@ -1,0 +1,57 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/manuscript-choice-relocation.test.ts (3 tests | 2 failed) 15ms
+   × moves exact choice ownership after text split and updates all sound/effect conditions without changing targets 13ms
+   × merges back to the original choice owner, preserving incoming targets, optional fields and all conditions 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/manuscript-choice-relocation.test.ts > moves exact choice ownership after text split and updates all sound/effect conditions without changing targets
+Error: 갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+ ❯ validated packages/runtime-core/src/manuscript-operations.ts:11:22
+      9|  const next={...project,updatedAt:new Date().toISOString()};
+     10|  const parsed=parseStoryDocument(createStoryDocument({project:next,sav…
+     11|  if(!parsed.ok)throw new Error(parsed.issues.map(issue=>issue.message)…
+       |                      ^
+     12|  return next;
+     13| }
+ ❯ replaceCuts packages/runtime-core/src/manuscript-operations.ts:16:9
+ ❯ splitStoryCut packages/runtime-core/src/manuscript-operations.ts:29:9
+ ❯ packages/runtime-core/tests/manuscript-choice-relocation.test.ts:12:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/runtime-core/tests/manuscript-choice-relocation.test.ts > merges back to the original choice owner, preserving incoming targets, optional fields and all conditions
+Error: 갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.
+ ❯ validated packages/runtime-core/src/manuscript-operations.ts:11:22
+      9|  const next={...project,updatedAt:new Date().toISOString()};
+     10|  const parsed=parseStoryDocument(createStoryDocument({project:next,sav…
+     11|  if(!parsed.ok)throw new Error(parsed.issues.map(issue=>issue.message)…
+       |                      ^
+     12|  return next;
+     13| }
+ ❯ replaceCuts packages/runtime-core/src/manuscript-operations.ts:16:9
+ ❯ splitStoryCut packages/runtime-core/src/manuscript-operations.ts:29:9
+ ❯ packages/runtime-core/tests/manuscript-choice-relocation.test.ts:25:35
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  23:08:23
+   Duration  186ms (transform 63ms, setup 0ms, import 79ms, tests 15ms, environment 0ms)
+

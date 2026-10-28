@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-24",
+  "scope": "Phone portrait choice/score condition editing, compact readable score controls",
+  "failure": "Visual review at360px found two-column score method text truncated; added stacked-row assertion failed before polish",
+  "change": "Score rows use one column at<=420px. Short labels visible and accessible names include same words; domain IDs/semantics unchanged.",
+  "verification": {
+    "focused": "1 passed6.9s: choice text, keyboard visibility, score add value3, two any terms, exact choice IDs and shared join destination, unrelated option/cut preservation, reload whole-project equality",
+    "visual": "Manually reviewed before and after screenshots; method text no longer clipped, focused number full width",
+    "build": "Web build:source passed",
+    "types": "Web TypeScript passed",
+    "lint": "Focused ESLint passed",
+    "review": "Separate read-only reviewer prompted accessible-name alignment; adopted",
+    "relatedConditions": "3 passed21.0s: compound exact-choice editing/file reopening, conditional text opt-in/priority/IME/file reopen/native display, scene visibility edit/undo/feature opt-in/manuscript preservation. Updated explicit initial offer preference and supported advanced landscape height.",
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Synthetic keyboard geometry and browser portrait; physical S25 remains landscape fullscreen by user preference",
+    "Whole service/editor completion not claimed",
+    "Earlier score-narrative/approved-editor historic navigation not certified by selector name updates"
+  ]
+}

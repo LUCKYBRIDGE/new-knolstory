@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "device": "Connected Galaxy S25 Ultra",
+  "scope": "Physical phone portrait; existing local test work preserved and independent imported logic work used. Browser host 360px wide.",
+  "fullscreen": {
+    "nativeAdbTap": true,
+    "beforeHeight": 677,
+    "afterHeight": 780,
+    "addressBarHidden": true,
+    "toolbarHidden": true
+  },
+  "keyboard": {
+    "nativeAdbTapOpened": true,
+    "choiceAndScoreVisualHeight": 389,
+    "conditionVisualHeight": 453,
+    "activeInputsFullyVisible": true,
+    "conditionCenterHitTarget": true,
+    "textValuesEnteredProgrammatically": true,
+    "notRealKoreanImeTest": true
+  },
+  "preservation": {
+    "wholeProjectEqualExceptIntendedOptionAndUpdatedAt": true,
+    "reloadedWholeProjectEqual": true,
+    "choiceTargetPreserved": "android-cut-1",
+    "secondChoiceUnchanged": true,
+    "remainingCutsUnchanged": true
+  },
+  "return": {
+    "originalWorkWholeProjectEqual": true,
+    "originalEditorRestored": true,
+    "id": "3e79590b-d176-422b-be38-711968e60ded"
+  },
+  "notProven": [
+    "New landscape-to-portrait preference restoration",
+    "Floating or split keyboard",
+    "Physical tablet long-duration budget",
+    "Screen reader or release readiness"
+  ],
+  "screenshots": "Native OS keyboard screenshot inspected locally and retained in task cache; not committed."
+}

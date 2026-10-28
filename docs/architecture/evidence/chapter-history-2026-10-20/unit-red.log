@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/reader-chapter-history.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/reader-chapter-history.test.ts [ apps/web/lib/reader-chapter-history.test.ts ]
+Error: Cannot find module './reader-chapter-history' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/reader-chapter-history.test.ts
+ ❯ apps/web/lib/reader-chapter-history.test.ts:3:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import {createBlankStoryProject,playbackScores,type PlaybackState} fro…
+      3| import {readerChapterHistory,restartReaderChapter} from './reader-chap…
+       | ^
+      4| const work=()=>{
+      5|  const base=createBlankStoryProject({id:'chapter-history',chapterId:'a…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  17:36:52
+   Duration  417ms (transform 229ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

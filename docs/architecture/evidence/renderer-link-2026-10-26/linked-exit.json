@@ -1,0 +1,15 @@
+{
+  "pid": 28679,
+  "record": [
+    "          timestamp=2026-10-26 19:13:52.138 pid=28679 realUid=90037 packageUid=10283 definingUid=10283 user=0",
+    "          process=com.android.chrome:sandboxed_process0:org.chromium.content.app.NativeOnlySandboxedProcessService0:27 reason=2 (SIGNALED) subreason=0 (UNKNOWN) status=11",
+    "          importance=100 pss=0.00 rss=1.5GB state=empty trace=null",
+    "          description=null",
+    "          anrInfo=null"
+  ],
+  "reason": "SIGNALED",
+  "status": 11,
+  "rssLabel": "1.5GB",
+  "timing": "During diagnostic Runtime.queryObjects, not normal editing soak.",
+  "interpretation": "Exact renderer termination correlated. Does not establish previous soak cause."
+}

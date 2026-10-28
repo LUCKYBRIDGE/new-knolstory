@@ -1,0 +1,18 @@
+..............................F...
+======================================================================
+FAIL: test_pending_title_input_passes_real_native_event_gate (__main__.ResourceAndViewportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 259, in test_pending_title_input_passes_real_native_event_gate
+    self.assertEqual(events[-1]['type'], 'backRequested')
+AssertionError: 'advanceRequested' != 'backRequested'
+- advanceRequested
+?  ---- ^
++ backRequested
+? +  ^
+
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.107s
+
+FAILED (failures=1)

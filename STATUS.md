@@ -1,8 +1,107 @@
 # STATUS — current development state
 
+2026-10-29 GitHub main 반영: 로컬 편집 완성·전체 화면·작업 이탈 보호와 현재 원고/파일 계약을 반영하는 통합을 준비했다. 원격 공용 브랜드 자산 변경을 보존하고 Next.js와 lint 설정을16.4.1로 갱신해 보안 감사0건을 확인했다. [통합 검증·로컬 전용 자료 경계](docs/architecture/evidence/github-main-sync-2026-10-29/checkpoint.json). 실제 원격 반영 결과는 Git 이력으로 확인하며 제품 전체 큐는 유지한다.
+
+2026-10-29 작업 이탈 보호 후속: 미저장 변경의 종료·새로고침·뒤로가기 확인과 저장 후 이동을 구현했다. 표지·음원 미적용 초안도 보호하며 파일 취소·실패·다운로드 요청만으로는 이동하지 않는다. [현재 근거와 브라우저 지원 한계](docs/architecture/evidence/work-leave-protection-2026-10-29/checkpoint.json). 이번 검사와 실제 휴대폰 강제 종료 보장은 구분한다.
+
+2026-10-29 전체 화면 후속: 편집 상단에 전체 화면/해제 바로가기를 추가하고 읽기 메뉴의 키보드 초점 복귀를 보완했다. [좁은 폭·S25 실제 터치 근거](docs/architecture/evidence/fullscreen-shortcut-2026-10-29/checkpoint.json). 실제 사용 높이677→780px와 해제 복귀, 조작부 겹침 없음·원고/검사 전 보관 값 보존을 확인했다. 아래 편집 완료 판정 뒤의 사용자 추가 요구이며 전체 제품 큐는 유지한다.
+
+2026-10-29 편집 기능·화면 완료: 현행 사용자 확정 범위의 기본·전용·통합 편집과 조건·로컬 파일 흐름을 [요구별 완료 감사](docs/architecture/editor-redesign-completeness-audit.md#편집-기능화면-완료-판정--2026-10-29)로 확정했다. 주변 사람이 짧은 작품을 만들고 편집하는 체험을 시작할 수 있는 단계다. 전체 제품·학교 목표 기기·실제 보조 기술·온라인 운영/공개 출시는 별도이며 기존 큐에 유지한다.
+
+2026-10-29 휴대폰 편집 후속: [실제 S25 상세 조작·키보드 가시성·가로→세로 편집 복귀](docs/architecture/evidence/phone-editor-return-2026-10-29/checkpoint.json)를 확인했다. 같은 컷·연출 편집·원고 전체를 유지했고 검사 전 작품과 보관 값도 복원했다. 실제 보조 기술·다른 목표 기기 확인은 별도다.
+
+2026-10-28 편집 후속: 첫 창작의 입력·컷/장 추가 복귀·한국어 줄 나눔을 보완하고 [실제 생성·재생·파일 재열기 흐름](docs/architecture/evidence/first-creation-walkthrough-2026-10-28/checkpoint.json)을 확인했다. 당시는 전용 편집화면의 실제 UX 대조 단계였으며, 다음 행동은 [단일 실행 계획](docs/architecture/product-completion-plan.md)을 따른다. 전체 편집·운영 출시 완료 판정과는 구분한다.
+
+2026-10-27 편집 후속: [S25 30분 편집 및 파일 대조](docs/architecture/evidence/phone-soak-reconnected-2026-10-27/checkpoint.json), 이후 [Android 작품 확장자·실제 재열기](docs/architecture/evidence/android-file-extension-2026-10-27/checkpoint.json)와 [세로 현실 균열](docs/architecture/evidence/portrait-look-size-2026-10-27/checkpoint.json)을 수정·검증했다. 장시간 실행과 이후 수정된 후보의 범위는 구분한다.
+
+2026-10-26 당시 실물 장시간 검사: [S25 Chrome 충돌과 원고 복구](docs/architecture/evidence/phone-soak-2026-10-26/checkpoint.json)를 확인했다. 당시 실물30분 안정성은 미완료였다. 후속 후보의30분 결과와 이후 변경 범위는 위 최신 근거 및 현행 요구 대조를 따른다. 새로고침 후 원고 전체·기존 작품 보존·원래 편집 복귀를 확인했으며 이를 충돌 해결로 확대하지 않는다.
+
+현재 편집 검증의 범위와 남은 항목은 [현행 요구 대조](docs/architecture/editor-redesign-completeness-audit.md#현재-편집-요구-대조-진입점----2026-10-24)를 따른다. 2026-10-26의 [S25 세로 선택지·점수·조건 입력](docs/architecture/evidence/phone-logic-2026-10-26/checkpoint.json)은 이전 실물 검증의 해당 빈 범위를 보완하며 전체 기기·보조 기술·출시 완료를 뜻하지 않는다.
+
+2026-10-23 휴대폰 편집 후속: 실제 S25 Ultra의 한글 조합·native 장면·키보드 화면을 확인하고, 키보드 집중 편집/좌우 컷 이동과 휴대폰 단일 컷 작업 화면을 구현했다. 통합 시간축은 큰 화면 전용으로 제한하며 기존 큰 화면 설정을 보존한다. 실제 파일 저장 직후 읽기 지연은 [제한된 재확인과 실제 재저장](docs/architecture/evidence/android-file-readback-2026-10-23/checkpoint.json)으로 보완했다. [휴대폰 파일 선택기 재열기·독립 사본](docs/architecture/evidence/android-file-readback-2026-10-23/native-reopen.json)도 확인했다. 실제 가로 회전·남은 상세 편집은 별도다. [현재 근거와 범위](docs/architecture/evidence/phone-editor-2026-10-23/checkpoint.json).
+
+2026-10-23 외부 양식 보존: LibreOffice가 나눈 일반 문자열의 대체 글꼴 구간을 읽도록 보완했다. 글자별 강조 차이와 수식은 계속 거부하며 실제 저장/전체 원고·음원·그림책 보존과 Web 가져오기·재생을 확인했다. [현재 근거](docs/architecture/evidence/office-font-runs-2026-10-23/checkpoint.json). 이후 [Microsoft Excel 직접 편집](docs/architecture/evidence/excel-current-2026-10-23/checkpoint.json)에서 현재 양식 본문·컷 표시 점수 수정, 전체 보존 및 Web 재생/편집 복귀/내보내기를 확인했다. Google 직접 편집·물리 기기 전체 검증과 구분한다.
+
+2026-10-23 접힌 도구 복귀: 같은 컷의 숨긴 입력으로 초점을 보내던 경로를 보완하고, 상세를 접은 상태와 원고를 유지하며 현재 컷의 보이는 조작으로 복귀한다. [현재 검사](docs/architecture/evidence/closed-preview-context-2026-10-23/checkpoint.json).
+
+2026-10-23 고급 편집 복귀: 글 입력칸이 없는 여러 컷 화면의 현재 컷 가시성/초점과 통합 시간축의 활성화 후 위치 찾기를 수정했다. 같은 컷 수동 이동과 원고 보존을 유지한다. [현재 근거](docs/architecture/evidence/advanced-editor-return-2026-10-23/checkpoint.json).
+
+2026-10-23 큰 원고 편집 복귀: 3장300컷의 파일/편집 동선을 확인하고, 재생 후 다른 장으로 돌아올 때 현재 글이 화면 밖에 남던 스크롤을 수정했다. [재현·현재 근거](docs/architecture/evidence/large-manuscript-return-2026-10-23/checkpoint.json). 같은 컷의 커서/선택 복원과 원고는 보존하며 실기기·전체 완성은 별도다.
+
+
+2026-10-23 편집 통합 감사: 최근 조합 보호·화면/재생/기획 복귀 변경이 포함된 현재 빌드에서 여러 컷 편집·설정·팝업 통합38개가 단일 실행으로 통과했다. [범위·캡처·한계](docs/architecture/evidence/workbench-integration-2026-10-23/checkpoint.json). 전체 목표/실기기/외부 앱 완료는 별도다.
+
+2026-10-23 편집 교차 감사: 숨긴 컷이 있는 작품의 함께 보기·통합 시간축에서 컷 위치가 밀리거나 오류가 나던 문제를 수정했다. 표시 조건이 있는 소리 구간의 자동 분할은 손실 전 차단하며 미지원으로 남긴다. [현재 검증](docs/architecture/evidence/editor-visibility-integration-2026-10-23/checkpoint.json). 전체 감사·실기기는 계속 진행한다.
+
+2026-10-23 조건부 컷 후속: 컷 표시 조건을 점수·정확한 선택 이력과 연결하고 구조 경로를 보존하며 숨긴 컷을 건너뛴다. 편집·파일/양식·진행 복원·지난기록·음향/연출 및 전체 숨김 종료를 함께 처리한다. [계약](docs/architecture/score-narrative-contract.md#조건부-컷의-표시와-건너뛰기-계약--2026-10-23), [검증](docs/architecture/evidence/scene-visibility-2026-10-23/checkpoint.json). 아래 미구현/기반 단계 판정을 이 범위에서 대체하며 실기기·전체 편집 감사는 남아 있다.
+
+2026-10-23 여러 선택 조건 후속: 기존 단일 조건을 보존하며 연출·음향의 그리고/또는 조건을 편집·실제 이력·참조 보호·파일/양식에 연결했다. [계약](docs/architecture/branch-scope-authoring-contract.md#여러-선택-조건의-그리고또는--2026-10-22), [검증](docs/architecture/evidence/compound-branch-2026-10-23/checkpoint.json). 아래 이전 단일 선택 제한 판정을 대체한다. 조건부 장면·실기기·전체 감사는 남아 있다.
+
+2026-10-22 조건별 글 후속: 같은 컷의 기본 글을 보존하며 점수 조건에 따라 첫 일치 글을 표시하는 저작·편집·Core·현재 파일/양식 연결을 추가했다. [현재 계약](docs/architecture/score-narrative-contract.md#같은-컷의-점수-조건별-글--2026-10-22), [검증](docs/architecture/evidence/conditional-text-2026-10-22/checkpoint.json). 여러 선택 이력 조건 결합·조건부 장면·전체 편집 감사와 실기기는 별도다.
+
+2026-10-22 편집 통합 대조: 현재 브라우저66개 중59개 첫 통과, 노후 검사 경로7개를 수정해 개별 재통과했다. 단일66개 전체 재실행 성공과 구분한다. 최근 편집 검사는 기본 host 목록에 등록했다. [현재 근거·미완료](docs/architecture/evidence/editor-integration-2026-10-22/checkpoint.json). 같은 컷 조건부 글은 아래 후속 계약으로 추가했다. 과거 branch-scope 경로는 [현재 검사](docs/architecture/evidence/branch-scope-current-2026-10-22/checkpoint.json)로 이행했다. 여러 선택 이력 조건 결합·실기기·전체 편집 감사는 남아 있다.
+
+2026-10-22 여러 컷 편집 후속: 글·배경·인물·음향·연출 목록의 현재 컷 표시와 명시적 목록 안 찾기를 연결하고 함께 보기 옵션의 좁은 폭을 보완했다. [현재 검증](docs/architecture/evidence/task-editor-current-cut-2026-10-22/checkpoint.json).
+
+2026-10-22 시간축 보기 설정 후속: 펼친 설정의 겹침을 없애고 설정 자체의 높이 제한·내부 스크롤·Escape 초점 복귀를 연결했다. [현재 검증](docs/architecture/evidence/timeline-settings-access-2026-10-22/checkpoint.json).
+
+2026-10-22 시간축 화면 조작 후속: 현재 컷 시간 보기의 확대·전체 보기·선택 위치 찾기와 Ctrl/Shift+휠을 실제 시간 영역에 연결하고, 짧은 가로 화면에서 보기 설정이 화면 전환 버튼을 가리던 문제를 수정했다. [현재 근거](docs/architecture/evidence/time-viewport-controls-2026-10-22/checkpoint.json). 실물 기기와 전체 편집 감사는 별도다.
+
+2026-10-22 음원 순서 편집 후속: 단일 음악의 기존 의미를 유지하며 배경음·주변 소리에 여러 조각의 순서 재생과 선택·추가·이동·삭제·분할·구간/음량/페이드·채널 취소를 연결했다. 파일·양식은 각 조각을 보존하고, 통합 시간 막대는 정확한 상세를 선택한다. [현재 계약·검증](docs/architecture/responsive-audio-authoring.md#여러-음원의-순서-재생--2026-10-22). 현재 컷 조각 직접 끌기·원본 앞뒤 조정·보조선 분할과 변경 취소는 [후속 검증](docs/architecture/evidence/sequence-time-edit-2026-10-22/checkpoint.json)으로 연결했다. 시작 컷 이동은 [후속 계약](docs/architecture/responsive-audio-authoring.md#순서-음원의-시작-컷-이동--2026-10-22)으로 연결했다. 컷 경계 분할·외부 앱/실기기·전체 편집 감사는 별도 후속이다. 기기별 공식 편집 참고는 [디자인 기준](DESIGN.md#기기별-편집-참고와-적용-기준--2026-10-22)을 따른다.
+
+2026-10-22 설정·확인창 후속: 긴 작품 제목과 펼친 편집 설정의 화면 경계·스크롤·초점·원고 보존을 확인하고, 진행 방식 변경 경고에서 실제 선택지·점수 변화·표시 조건만 개수와 함께 안내한다. [현재 용어·검증](docs/architecture/editor-terminology-and-time.md#진행-방식-변경-확인의-항목-안내--2026-10-22). 전체 편집·다른 팝업·실기기 완료를 뜻하지 않는다.
+
+2026-10-22 자료 선택 후속: 그림 선택과 즐겨찾기 버튼 영역을 분리하고, 작은 화면의 이미지·연출 팝업에서 닫기·적용·사용과 키보드 조작을 검증한다. [현재 디자인·검증](DESIGN.md#자료-선택-버튼의-독립-조작--2026-10-22). 전체 편집·다른 팝업·실기기 감사는 진행 중이다.
+
+2026-10-22 편집 겹침 후속: 상세·컷 목록·메모 패널을 작업 영역 안에 배치하고, 키보드 단일 열기와 클릭 중 배치 보존을 연결했다. [현재 디자인·검증](DESIGN.md#편집-보조-패널의-겹침-방지--2026-10-22). 모든 팝업·물리기기 검증과 전체 편집 목표는 계속 진행 중이다.
+
+2026-10-21 컷 정리 후속: 선택지 컷을 나누거나 합칠 때 조건부 음향·연출의 연결을 새 선택지 컷으로 함께 옮긴다. 선택 항목·도착 컷·범위 종료·원작 출처를 보존한다. [현재 계약·검증](docs/architecture/authoring-storage-contract.md#컷-나누기합치기의-선택-조건-연결--2026-10-21). 기존 소리·연출 복제 정책과 전체 편집 목표는 별도 범위다.
+
+2026-10-21 조건 소리 분할 후속: 앞에서 이미 고른 정확한 선택 조건을 보존하며 장/컷의 선형 배경음·주변 소리 구간을 나눈다. 조건을 풀거나 같은 도착 컷으로 선택을 추정하지 않는다. [조건·재생·검증](docs/architecture/responsive-audio-authoring.md#선택-조건을-보존하는-소리-구간-분할--2026-10-21). 내부 합류·우회·새 선택의 비선형 자동 분할과 동일 컷 음악 조각·외부 앱/기기·전체 감사는 남아 있다.
+
+2026-10-21 장 소리 분할 후속: 장 기본 배경음·주변 소리도 선형 적용 범위 안에서 나누어 뒤 컷의 독립 설정으로 편집한다. 첫 컷·원고를 보존하고 장/뒤 컷 해당 채널만 취소한다. [현재 기준·검증](docs/architecture/responsive-audio-authoring.md#장-기본-소리의-컷-구간-분할--2026-10-21). 조건부/비선형 자동 분할과 같은 컷 안 음악 조각·전체 외부 앱/기기 검증은 남아 있다.
+
+2026-10-21 음원 미리 듣기 후속: 편집 미리 듣기가 원본 사용 구간·작성 음량을 반영하며 끝에서 정지한다. 음량은 들으면서 조정하고 자료·구간·활성 상태 변경 시 정지한다. 장면 전용 자료 제한과 원고 보존을 유지한다. [현재 기준·검증](DESIGN.md#편집-중-원본-사용-구간-미리-듣기--2026-10-21). 실제 컷 대기·반복·페이드는 기존 native 재생에서 확인하며 전체 편집 목표는 진행 중이다.
+
+2026-10-21 연속 소리 구간 후속: 통합 화면에서 컷의 배경음·주변 소리 적용 범위를 둘로 나눠 독립 편집·취소한다. 선형 연결을 검사하며 단순 분할은 같은 소리를 이어 재생한다. [현재 범위·검증](docs/architecture/responsive-audio-authoring.md#연속-소리의-컷-구간-분할--2026-10-21). 같은 컷 안 여러 음원 조각·장 기본/갈래 자동 분할은 별도 미구현이며 전체 편집 목표는 진행 중이다.
+
+2026-10-21 편집 맥락 후속: 현재 컷 변경·재생 진입에서 수동 장 필터를 해제하여 편집 복귀가 읽던 컷의 장을 따른다. 인물 동작 종류 변경은 기존 시간·출발 위치를 보존하고, 통합 항목은 인물 키로 정확히 연결한다. [동작 기준·검증](DESIGN.md#장-탐색인물-동작-편집의-원고-보존--2026-10-21). 전체 편집 목표와 외부 양식 앱·기기 검증은 계속 진행 중이다.
+
+2026-10-21 통합 효과음 시간 후속: 알려진 원본·사용 구간 길이를 표시하고 끝을 보조선에 맞출 수 있다. 정확한 효과음 막대가 해당 상세를 선택하며 재선택으로 음향 취소 기록을 초기화하지 않는다. [현재 기준·검증](DESIGN.md#통합-시간-화면의-효과음-길이선택--2026-10-21). 전체 대조에서 발견한 장 복귀 필터·인물 동작 시간 보존·인물 키 비교 결함의 후속은 [현재 대조](docs/architecture/editor-redesign-completeness-audit.md#2026-10-21-현재-편집-목표-재대조)이다.
+
+2026-10-21 효과음 분할 후속: 원본을 보존하는 두 사용 구간·각 재생 대기·기존 취소를 연결했다. 잘못 입력한 위치에서 원고를 변경하지 않으며 기존 파일·양식 필드를 사용한다. [현재 동작·검증](docs/architecture/responsive-audio-authoring.md#효과음-사용-구간-분할--2026-10-21). 배경음·주변 소리의 여러 구간 트랙과 외부 양식 앱 검증·전체 편집 요구 감사는 남아 있다.
+
+2026-10-21 음원 사용 구간 후속: 접힌 상세에서 원본 시작·끝을 지정하고 작품 파일·양식·Core·Ren’Py 재생에 연결했다. 원본은 보존하고 같은 구간의 컷 간 음악은 유지한다. [현재 계약·검증](docs/architecture/authoring-storage-contract.md#원본-음원-사용-구간--2026-10-21). 구간 분할과 외부 양식 앱 검증·전체 편집 요구 감사는 남아 있다.
+
+2026-10-21 통합 길이 후속: 효과·인물 동작 길이 입력, 보조선까지 길이 맞춤, 시작/끝 유지 앞뒤 끌기 조정과 원고를 보존하는 취소를 연결했다. 효과음 길이는 추측하지 않으며 반복 주기를 자동 변경하지 않는다. [현재 검증](docs/architecture/evidence/combined-duration-2026-10-21/checkpoint.json). 원본 음원 구간 편집과 분할·이어재생은 남아 있다.
+
+2026-10-21 통합 시간 후속: 현재 컷의 효과음·효과·인물 동작을 시작 기준별 초 단위 축으로 표시하고 시작 시간 입력/끌기·이동식 보조선 시작/끝 맞춤·선택적 자동 맞춤과 취소를 연결했다. 실제 길이가 미정인 효과음은 시작점만 표시한다. [현재 검증](docs/architecture/evidence/combined-time-2026-10-21/checkpoint.json). 원본 음원 구간 편집/분할과 통합 시간축의 길이 조정은 남아 있다.
+
+2026-10-21 통합 구간 조정 후속: 컷에서 시작한 배경음·주변 소리와 이어지는 효과의 시작/종료 컷 적용, 선택적 막대 끌기 이동·앞뒤 조정, 원고를 보존하는 구간 취소를 연결했다. 다른 소리 변경·정지·효과 종료 지시는 덮지 않는다. [현재 검증](docs/architecture/evidence/combined-range-2026-10-21/checkpoint.json). 원본 음원 구간 편집·분할과 통합 초 단위 축/보조선은 남아 있다.
+
+2026-10-21 통합 편집 후속: 선택적 ‘음향·연출 함께 편집’을 실제 장별 트랙·기존 수정 도구·단일 Ren’Py 미리보기와 연결했다. 시작 컷/장 기본값·조건·정지·포함 종료 범위를 구분하고 실제 수정·파일 내보내기·재열기·재생 복귀를 확인한다. [현재 검증](docs/architecture/evidence/combined-editing-2026-10-21/checkpoint.json). 통합 초 단위 트랙과 직접 구간 끌기·음원 구간 편집/분할은 남아 있다.
+
+2026-10-21 클릭 효과 후속: 실제 효과 편집의 ‘클릭하면/클릭 순서’를 작품 파일·양식·Core 진행 저장·Ren’Py에 연결했다. 남은 글 페이지 뒤 묶음별로 실행하고 선택지는 그 뒤에 표시한다. 자동 넘기기는 수동 묶음 앞에서 기다린다. 기존 양식의 새 열 누락을 보완하며 원고를 보존한다. [실행 계약](docs/architecture/responsive-audio-authoring.md#클릭으로-시작하는-효과--2026-10-21), [집중 검증](docs/architecture/evidence/click-effects-2026-10-21/checkpoint.json). 통합 음향·연출 화면과 원본 음원 구간 편집의 실제 연결은 남아 있다.
+
+2026-10-21 효과 배치 후속: 이동식 보조선 시작/끝 맞춤, 이전 효과와 함께/다음에 시간 맞춤, 표시·자동 맞춤 설정과 세밀한 키보드 조정을 실제 편집 창에 연결했다. 통합 시안의 클릭 단계·사용 구간 나누기/줄이기는 실제 앱 연결이 남아 있다. [배치 검증](docs/architecture/evidence/effect-placement-2026-10-21/checkpoint.json).
+
+2026-10-21 편집 후속: 효과별 선택 목록·시간 막대·시작 슬라이더와 한 효과씩 상세 조정을 연결했다. 음향·연출의 시작/종료 요약, 상속 배경 실제 미리보기, 진행 방식 변경의 원고 보호, 작품/편집화면별 상세 상태 분리를 보완한다. [현행 기준](DESIGN.md#음향연출의-범위와-효과-편집-창--2026-10-21), [검증 범위](docs/architecture/evidence/editor-finish-2026-10-21/checkpoint.json).
+
+2026-10-20 연출 팁 후속: 연출 선택 시 접힌 설명·팁·사용 버튼의 창을 연다. 사용 전에는 적용하지 않고 닫으면 기존 원고·설정을 유지하며, 적용된 연출의 안내도 다시 열 수 있다. [현행 기준](DESIGN.md#연출-사용-팁--2026-10-20-사용자-결정), [현재 검증](docs/architecture/evidence/direction-choice-2026-10-20/checkpoint.json).
+
+2026-10-20 읽기 조작·시점 안내 후속: 독자의 화면 터치 방식 설정과 Core 안내 전용 분류/실제 Ren’Py 전환 후 본문 연결을 구현했다. 제공 놀스토리 옹고집전 여섯 시점 안내의 연출을 연결하고 원고와 개인 수정본을 보존한다. [동작 기준](docs/architecture/reading-interface-design.md#읽기-조작-설정과-시점-안내--2026-10-20), [검증 범위](docs/architecture/evidence/reader-controls-2026-10-20/checkpoint.json).
+
 Updated: 2026-10-20. This is the current status owner; past runs are in [history](docs/archive/status-history-through-2026-10-10.md). A completed authoring goal is not a product 1.0/release claim.
 
 ## Current implementation
+
+2026-10-20 로딩 시 구절 후속: 윤동주 「서시」·김소월 「엄마야 누나야」의 짧은 행을 원문 대조해 추가했다. 책·독서 명언과 책·시의 실제 구절에 출처를 표시하며4초 단일 문구 무작위 교체를 유지한다. [현재 검증](docs/architecture/evidence/loading-poetry-2026-10-20/checkpoint.json).
+
+2026-10-20 로딩 문구 후속: 원문 확인 후 직접 옮긴 『이상한 나라의 앨리스』·『작은 아씨들』·『빨강 머리 앤』·『비밀의 화원』의 짧은 문장을 추가했다. 사건·결말·인물 관계는 노출하지 않으며 한 문구씩4초 교체를 유지한다. [현재 문구·표시 검증](docs/architecture/evidence/loading-book-quotes-2026-10-20/checkpoint.json).
+
+2026-10-20 로딩 후속: 웹 첫 화면과 이야기 무대 준비에 투명 토끼·자라의 책 읽기/페이지 넘기기 총4프레임(1→2→3→4→1, 1번이 시작·완료 공용, 긴 정지 없음), 동작 줄이기의 정지 첫 프레임, 한 번에 하나의 무작위 서비스/작품 안내를 적용했다. 후속으로 네 작품 캐릭터를 같은 확률로 선택한다. [작품별 무작위 검증](docs/architecture/evidence/story-loading-variants-2026-10-20/checkpoint.json). 문구는 스포일러 없는 작품 주제·실제 기능·원문 확인 독서 명언으로 정리하고 하나씩4초마다 무작위 교체한다. [문구 대조·교체 검증](docs/architecture/evidence/loading-copy-2026-10-20/checkpoint.json). 실제 엔진 진행과 준비 완료는 그대로 따른다. [디자인 기준](DESIGN.md#로딩-화면--2026-10-20-사용자-결정), [초기 로딩 검증](docs/architecture/evidence/story-loading-2026-10-20/checkpoint.json), [현재 연속 동작 검증](docs/architecture/evidence/story-loading-four-frame-2026-10-20/checkpoint.json).
+
+2026-10-20 지난기록 후속: 현재 장에서 읽은 글을 극본처럼 모으고 최신 글부터 보이도록 바꿨다. 이전 장의 실제 첫 컷만 확인 후 다시 읽으며, 임의 컷 이동은 제거했다. 표시 범위·선택/점수·원고 보존과 현재 검증 범위는 [장별 지난기록](docs/architecture/reading-interface-design.md#장별-지난기록--2026-10-20-사용자-결정), [검증 기록](docs/architecture/evidence/chapter-history-2026-10-20/checkpoint.json)을 따른다.
 
 2026-10-20 로컬 편집 후속: 반응형 여섯 화면,16:9컷 미리보기,16:9/9:16읽기, 실제 인물·글상자를 포함한 이전/다음 컷 썸네일, 간결한 화자/연결 이미지와 우측 홈 버튼을 구현했다. 세부 검증 범위는 [현재 감사](docs/architecture/editor-redesign-completeness-audit.md)에서 구분한다. 사용자가 확인한 잘못된 번호 ‘막’ 접두사는 공통 장 제목 정규화로 제거하며 장 번호·갈래·ID·Flow·본문은 유지한다. 고정 fixture와 파일 원본은 보존한다. [정리·GitHub 전달 기록](docs/architecture/evidence/editor-main-2026-10-20/checkpoint.json).
 
@@ -154,3 +253,5 @@ The user excludes ChatGPT connection through the Excel add-in from this developm
 2026-10-15 다음 목표 인수인계: 사용자가 새 세션에서 진행할 제품 완성 목표를 요청했다. 상세 범위·단계·의존성·완료 조건과 짧은 실행 프롬프트는 [제품 완성 목표](docs/architecture/product-completion-goal-2026-10-15.md)에 둔다. 현재 구현 완료를 서비스/출시 완료로 확대하지 않고 미확정 운영 정책·외부 승인 경계를 구분한다. 현재 검사와 미커밋 작업은 보존한다.
 
 2026-10-16 로컬 checkpoint: 현재 동일 후보 host352통과/37native 전용 제외와 직접 native 동선 근거를 회수했다. 현재 Mac mini Docker의 별도 PostgreSQL 저장 어댑터14개 실제 통합과 내부 projection·계정 연결 경계를 검증했다. 실제 OAuth/API/Web 동기화·학급/공유·물리기기·운영출시는 계속 남아 있다. [실행 계획](docs/architecture/product-completion-plan.md), [저장/인증 경계](docs/architecture/authoring-storage-contract.md), [확정 정책](docs/decisions/0023-mac-mini-docker-and-linked-login.md).
+
+2026-10-23 실제 휴대폰 가로 후속:748×259에서 기본편집 본문이 가려지는 문제를 두 열 미리보기/본문으로 보완했다. 가로 삼성 키보드 후41px만 남는 경계 때문에 짧은 가로 기본 본문은 확인용·세로 수정 안내로 정했다. 실제 컷 이동과 세로 복귀 후 입력 해제·키보드 집중 화면·원고 보존을 확인했다. [현재 근거](docs/architecture/evidence/phone-landscape-2026-10-23/checkpoint.json). 다른 상세 편집화면의 실기기 검증과 전체 편집 완성은 별도다.

@@ -46,3 +46,38 @@ describe('session-only editor preferences',()=>{
  });
 
 });
+
+
+describe('effect placement assistance preferences',()=>{
+ it('defaults existing works to visible guides and snapping and requires strict boolean values',()=>{
+  expect(defaultEditorPreferences.effectAssistance).toEqual({showGuides:true,snap:true});
+  for(const effectAssistance of [undefined,null,[],{showGuides:'false',snap:0},{}]){
+   expect(normalizeEditorPreferences({effectAssistance}).effectAssistance).toEqual({showGuides:true,snap:true});
+  }
+  expect(normalizeEditorPreferences({effectAssistance:{showGuides:false}}).effectAssistance).toEqual({showGuides:false,snap:true});
+  expect(normalizeEditorPreferences({effectAssistance:{snap:false}}).effectAssistance).toEqual({showGuides:true,snap:false});
+ });
+ it('persists disabled helpers through serialization and a fresh store without changing unrelated settings',()=>{
+  const storage=store(),first=createEditorPreferencesStore(()=>storage);
+  first.update('mine',()=>normalizeEditorPreferences({screen:'direction',arrangement:'stacked',enabled:{characters:true,direction:true},logic:{branches:true},companions:{direction:['text','background']}}));
+  const before=first.snapshot('mine');
+  first.update('mine',current=>({...current,effectAssistance:{showGuides:false,snap:false}}));
+  const expected={...before,effectAssistance:{showGuides:false,snap:false}};
+  expect(first.snapshot('mine')).toEqual(expected);
+  expect(before.effectAssistance).toEqual({showGuides:true,snap:true});
+  expect(JSON.parse(storage.getItem(editorPreferencesKey('mine'))!)).toEqual({version:1,...expected});
+  const restored=createEditorPreferencesStore(()=>storage);
+  expect(restored.snapshot('mine')).toEqual(expected);
+  expect(restored.snapshot('other').effectAssistance).toEqual({showGuides:true,snap:true});
+  restored.update('mine',current=>({...current,screen:'text'}));
+  expect(restored.snapshot('mine').effectAssistance).toEqual({showGuides:false,snap:false});
+ });
+});
+
+describe('combined audio direction opt-in',()=>{
+ it('opens only after both editors are enabled and retains settings per work',()=>{
+  for(const enabled of [{},{audio:true},{direction:true},{audio:'true',direction:true}])expect(normalizeEditorPreferences({screen:'audio-direction',enabled}).screen).toBe('basic');
+  const settings=normalizeEditorPreferences({screen:'audio-direction',enabled:{audio:true,direction:true}});expect(settings.screen).toBe('audio-direction');const storage=store();writeEditorPreferences(storage,'combined',settings);expect(readEditorPreferences(storage,'combined')).toEqual(settings);expect(readEditorPreferences(storage,'other').screen).toBe('basic');
+  expect(normalizeEditorPreferences({...settings,enabled:{audio:false,direction:true}}).screen).toBe('basic');
+ });
+});

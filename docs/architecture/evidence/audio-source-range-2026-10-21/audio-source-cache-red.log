@@ -1,0 +1,13 @@
+...............F....................
+======================================================================
+FAIL: test_sliced_playing_paths_remain_protected_during_service_cache_install (__main__.PresenterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 78, in test_sliced_playing_paths_remain_protected_during_service_cache_install
+    self.assertIn(path, captured[0])
+AssertionError: 'assets/audio/cc0/test/v1/music.ogg' not found in ['<from 0.200 to 0.800>assets/audio/cc0/test/v1/music.ogg']
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.094s
+
+FAILED (failures=1)

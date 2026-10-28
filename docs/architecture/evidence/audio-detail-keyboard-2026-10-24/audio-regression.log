@@ -1,0 +1,27 @@
+[WebServer] (node:15980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:01] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:15995) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/3yeezciy9ogmb.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/31jrpn7bwdm07.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/3rxu0l_jx58l5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/44n7nxg50d0zv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/0sx3wabin4rot.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:48:02] "GET /assets/loading/story-reading-v4.webp HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:95:1 › phone audio detail keeps the focused number visible with readable stacked labels (1.9s)
+
+  1 passed (2.8s)

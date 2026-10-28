@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-21",
+  "scope": "Finite sound source length and correct timeline sound selection; full editor goal active",
+  "implemented": [
+    "Known catalog or explicit source-end minus source-start gives finite clip length; unknown end/outside known source/excluded audio remain duration unknown",
+    "Sound length displayed as source range; end alignment moves delay only; sound cannot resize like actor/effect duration",
+    "Guide covers current axis but start/end alignment only enables delay0..10s",
+    "Nine ruler marks regardless long source duration",
+    "Timeline cueId and explicit selection revision choose exact SoundCueList item, including same-bar reselection",
+    "Selection revision affects only local sound choice, not remounting undo owner"
+  ],
+  "verification": {
+    "unitTests": 41,
+    "newTimeUnitTests": 12,
+    "timeHelperCoverage": {
+      "statements": 96.87,
+      "branches": 92.92,
+      "functions": 100,
+      "lines": 100
+    },
+    "typecheck": "passed all packages and server",
+    "webBuild": "passed final UI source",
+    "eslint": "passed",
+    "e2e": "passed3 final candidate flows",
+    "e2eLog": "sound-time-e2e-final.log",
+    "newFlow": [
+      "Exact second sound selected from cut bar and time bar",
+      "Internal list selection then same-bar reselect picks exact cue",
+      "Finite200ms source range displayed and sound resize hidden",
+      "Guide at2s moves sound start to1.8s preserving source200..400 and first cue",
+      "Time undo restores500ms",
+      "Sound volume undo remains after external same-bar click",
+      "1280x800 and390x844 rendered screenshots, viewport no horizontal overflow"
+    ],
+    "relatedFlows": [
+      "Combined guide/length/drag/file/reopen/native play-return",
+      "Sound split/undo/capacity/file fresh reopen/native two scheduled starts"
+    ],
+    "docsCheck": "passed57 active docs,209 current language surfaces",
+    "docsTests": 10,
+    "visualInspection": "Inspected final phone screenshot with actual ready stage and time bars"
+  },
+  "review": {
+    "method": "Independent read-only source review",
+    "findingFixed": "Initial full editor remount by selection revision discarded audio undo. Reproduced RED and replaced with narrow request-aware selected ID state.",
+    "additionalAuditPending": [
+      "chapter filter on playback return into another chapter",
+      "motion type change preserving authored delay/duration",
+      "exact actorKey comparison instead of includes"
+    ]
+  },
+  "limitations": [
+    "No new native renderer changes; current native build reused",
+    "Explicit range length is author intent, not measured waveform evidence",
+    "Physical devices/external sheet apps and whole editor completion audit remain pending"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/combined-time-edit.ts": "b3bfe6da364da127cf882ea2aaa8fd3eaba238a395714f977276374a85268e9f",
+    "apps/web/lib/combined-time-edit.test.ts": "aff97af9c57203e0aef9ed2a949f0b05144fa4543ab324187fc49108ecaa8fd9",
+    "apps/web/components/story-combined-time.tsx": "f8088e84d1853a87926aed295133e16b9be970efc4b8dfc8742a37690dec868b",
+    "apps/web/components/story-combined-timeline.tsx": "12ffd048acf103fe629ef3ab0faa81313d7215d816190c5c5401d28a17c81a38",
+    "apps/web/components/story-audio-controls.tsx": "4ae11865063bb13d5074f7ff4f0c9acb1f7253b6737cf149040cf0d1570ca34b",
+    "apps/web/components/sound-cue-list.tsx": "60279c3198266263fd63cf23d128677996838606acec7a761e0272fe35e7ba91",
+    "apps/web/components/story-editing-workbench.tsx": "c5bb5cabdbe0587dce9129fd95aa3293dd7922bad02b2b662b1bd4758f2832d6",
+    "tests/e2e/combined-sound-time.spec.ts": "3fb110875abeed70a26c7b1ff8b48b163074dfd51df1ad618eac56b69dddce18",
+    "playwright.config.ts": "40073f626073db7d1e68671e38bce5950a1abb58446592fa22f82c94985bbf88"
+  }
+}

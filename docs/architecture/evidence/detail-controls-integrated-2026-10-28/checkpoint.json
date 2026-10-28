@@ -1,0 +1,20 @@
+{
+  "status": "focused-integrated-passed",
+  "initialLog": ".cache/detail-controls-integrated-20261028.log",
+  "initialResult": "3passed1failed; old phone combined-support expectation failed.",
+  "migration": "Combined viewport loops now tablet800x1100,1180x700,desktop1280x800; phone exclusion retained separately in sound-time test.",
+  "intermediateLog": ".cache/detail-controls-integrated-20261028-v2.log",
+  "intermediateFailure": "Incorrect mandatory-new-ID assertion in a fresh browser was removed; original full-project equality retained.",
+  "finalLog": ".cache/detail-controls-integrated-20261028-final.log",
+  "finalResult": "1passed; combined optin,actual edits,scope/time/click steps,viewport layout,download,new-context full-project equality,playback return,reload,disabling preserves work.",
+  "otherPassingScope": "Initial run3passed: no-op guide undo,effect stale undo,sound finite end alignment with detail/time undo and phone unsupported notice. No claim of single4green execution.",
+  "limits": [
+    "Automated browser and screenshot review,not new interactive ego walkthrough or physical devices.",
+    "No new complete native audio/effect certification."
+  ],
+  "sourceSha256": {
+    "apps/web/components/audio-controls.module.css": "6e08304baee509fb18e5f343a646dc67cee8276a4809f32664105f3ef87e1216",
+    "apps/web/components/story-effect-controls.module.css": "2fd5abab6671d606d7c96dc79e4006111e88742dc438b6c3b953d4ab17ed409e",
+    "tests/e2e/combined-editing.spec.ts": "12a74099ef34b160470f78bcd9aa91608d2a16bea3834d2036bee98b1ae7fdd9"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "view": {
+    "width": 360,
+    "height": 677,
+    "dpr": 4,
+    "hidden": false
+  },
+  "nativeBrowser": {
+    "addressBarPresent": true,
+    "toolbarPresent": true
+  },
+  "canvas": {
+    "width": 1440,
+    "height": 2560
+  },
+  "logical": {
+    "w": 720,
+    "h": 1280
+  },
+  "nativeAdbTouch": {
+    "x": 1152,
+    "y": 938,
+    "advancedTo": "android-cut-1"
+  },
+  "sameIframe": true,
+  "wholeProjectEqual": true
+}

@@ -1,0 +1,45 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/effect-authoring.test.ts (17 tests | 1 failed) 7ms
+     × rejects a looping predecessor but permits a final loop 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/effect-authoring.test.ts > non-audio effect authoring > rejects a looping predecessor but permits a final loop
+AssertionError: expected [ { type: 'shake', …(3) }, …(1) ] to be null
+
+- Expected:
+null
+
++ Received:
+[
+  {
+    "delayMs": 0,
+    "repeat": "loop",
+    "trigger": "scene-enter",
+    "type": "shake",
+  },
+  {
+    "delayMs": 600,
+    "trigger": "scene-enter",
+    "type": "flash",
+  },
+]
+
+ ❯ apps/web/lib/effect-authoring.test.ts:35:85
+     33|  });
+     34|  it('rejects a looping predecessor but permits a final loop',()=>{
+     35|   expect(arrangeEffectsSequentially([{type:'shake',repeat:'loop'},{typ…
+       |                                                                                     ^
+     36|   expect(arrangeEffectsSequentially([{type:'shake'},{type:'flash',repe…
+     37|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  08:19:26
+   Duration  117ms (transform 17ms, setup 0ms, import 23ms, tests 7ms, environment 0ms)
+

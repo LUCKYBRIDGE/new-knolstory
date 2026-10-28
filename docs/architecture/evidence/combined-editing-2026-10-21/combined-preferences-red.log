@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/editor-preferences.test.ts (14 tests | 1 failed) 9ms
+     × opens only after both editors are enabled and retains settings per work 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/editor-preferences.test.ts > combined audio direction opt-in > opens only after both editors are enabled and retains settings per work
+AssertionError: expected 'basic' to be 'audio-direction' // Object.is equality
+
+Expected: "audio-direction"
+Received: "basic"
+
+ ❯ apps/web/lib/editor-preferences.test.ts:80:133
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 passed (14)
+   Start at  08:40:53
+   Duration  132ms (transform 17ms, setup 0ms, import 38ms, tests 9ms, environment 0ms)
+

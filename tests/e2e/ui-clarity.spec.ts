@@ -64,7 +64,7 @@ for(const size of [{width:1440,height:900},{width:390,height:844},{width:844,hei
  await expect(page.getByText('보기 설정',{exact:true}).locator('..')).not.toHaveAttribute('open','');await page.keyboard.press('Escape');
  await expect(page.locator('[data-work-menu]>summary').locator('..')).not.toHaveAttribute('open','');
  await page.locator('[data-work-menu]>summary').click();await page.getByLabel('대사 / 해설',{exact:true}).click();await expect(page.locator('[data-work-menu]>summary').locator('..')).not.toHaveAttribute('open','');
- await page.getByRole('button',{name:'배경·인물 편집',exact:true}).click();await page.getByRole('button',{name:'배경 이미지 찾기',exact:true}).click();
+ await page.getByRole('button',{name:'배경·인물 편집',exact:true}).click();await page.getByRole('button',{name:/^배경 이미지 찾기 ·/,exact:false}).click();
  const dialog=page.getByRole('dialog',{name:'이미지 선택 · 배경'});await expect(dialog).toBeVisible();const rect=await dialog.boundingBox();expect(rect!.x).toBeGreaterThanOrEqual(0);expect(rect!.y).toBeGreaterThanOrEqual(0);expect(rect!.x+rect!.width).toBeLessThanOrEqual(size.width);expect(rect!.y+rect!.height).toBeLessThanOrEqual(size.height);
  const footer=dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true});await expect(footer).toBeVisible();await footer.scrollIntoViewIfNeeded();const footerRect=await footer.boundingBox();expect(footerRect!.y+footerRect!.height).toBeLessThanOrEqual(size.height);
  await dialog.getByRole('button',{name:'이미지 선택 닫기'}).click();await expect(page.getByLabel('대사 / 해설',{exact:true})).toBeVisible();

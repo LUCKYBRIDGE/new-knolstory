@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-23",
+  "scope": "Current route migration for5selected preview-context cases, not entirefile",
+  "changed": [
+    "Direction4viewports use settings optin/cutdetails/real tipsUse, actualnative-renderack, focus/purpose/undo and sameiframe",
+    "Catalogaudio actualHTMLaudition pauses onnative entry, purpose/focus/cue retained, scopedundo restoreswholeproject",
+    "Wholeproject comparison waits for persisted state afterundo; onlyupdatedAt ignored"
+  ],
+  "verification": {
+    "browser": "5passed onefinalrun28s",
+    "viewports": [
+      "1440x900",
+      "768x900",
+      "390x900",
+      "844x390"
+    ],
+    "audioViewport": "default desktop",
+    "lint": "noerrors",
+    "productSource": "unchanged this migration; existing currentbuild used"
+  },
+  "limits": [
+    "Remaining4oldcases in preview-context still need migration; notwholefilepass",
+    "Physicaldevice/softkeyboard/externalapps unverified",
+    "No productcompletion claim"
+  ],
+  "sourceHashes": {
+    "tests/e2e/preview-context.spec.ts": "ac2a8004a079679513ce3e0bfc42340ba7d67244fcce3cf8b9ba7b0c902c65e6",
+    "apps/web/out/index.html": "4ca80967d572ab4f1a567ac931addca4559771c00e7f957ac858fb7bde88b9cd"
+  }
+}

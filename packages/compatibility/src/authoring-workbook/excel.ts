@@ -1,3 +1,4 @@
+import {fontRunText} from './font-runs';
 import assetCatalog from '../../../asset-registry/src/catalog.json';
 import {AUDIO_CATALOG,audioAssetCategory} from '../../../asset-registry/src/audio';
 import {createExcelWorkbook,checkExcelArchive} from '../excel';
@@ -56,7 +57,8 @@ function values(sheet:ReturnType<Awaited<ReturnType<typeof createExcelWorkbook>>
    if(Object.keys(link).some(key=>!['text','hyperlink','tooltip'].includes(key))||typeof link.text!=='string'||link.text!==link.hyperlink||!/^https?:\/\//.test(link.text))throw new WorkbookIssue(sheet.name,row,String(column),'표시 문구와 링크 주소가 다른 링크는 작품 값으로 보존할 수 없습니다. 주소 자체를 입력해 주세요.');
    value=link.text;
   }
-  if(typeof value!=='string'&&typeof value!=='number'&&typeof value!=='boolean')throw new WorkbookIssue(sheet.name,row,String(column),'수식·날짜·리치 텍스트 대신 원래 양식의 일반 값을 사용해 주세요.');
+  const fontText=fontRunText(value);if(fontText!==undefined)value=fontText;
+  if(typeof value!=='string'&&typeof value!=='number'&&typeof value!=='boolean')throw new WorkbookIssue(sheet.name,row,String(column),'수식·날짜·글자별 서식 대신 원래 양식의 일반 값을 사용해 주세요.');
   const result=String(value);portableCellText(result,sheet.name,row,String(column));if(result.length>TABLE_CELL_LIMIT)throw new WorkbookIssue(sheet.name,row,String(column),'셀 내용이 너무 큽니다.');total+=result.length;if(total>TABLE_MAX_BYTES)throw new Error('편집 양식 내용이 너무 큽니다.');return result;
  };
  sheet.getRow(2).eachCell({includeEmpty:true},(cell,column)=>{headers[column-1]=text(cell.value,2,column);});

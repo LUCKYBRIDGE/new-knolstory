@@ -18,7 +18,7 @@ test('score definitions, choice effects and conditional routes are editable and 
  await expect(page.getByLabel('진행 방식',{exact:true})).toBeHidden();
  const before:StoryProject=(await exported(page,info.outputPath('score-before.knolstory'))).document.project;
  await flow(page);await page.locator('[class*="choiceCard"]').first().locator('summary').first().click();
- const effect=page.getByLabel('선택지 1 결과 1 값',{exact:true});await effect.fill('3');await effect.blur();
+ const effect=page.getByLabel('선택지 1 결과 1 적용할 값',{exact:true});await effect.fill('3');await effect.blur();
  await page.getByLabel('선택지 1 결과 1 방법',{exact:true}).selectOption('set');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await page.reload();await flow(page);await page.locator('[class*="choiceCard"]').first().locator('summary').first().click();await expect(effect).toHaveValue('3');
  await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption('score-join');await page.getByText('점수 조건에 따른 진행',{exact:true}).click();

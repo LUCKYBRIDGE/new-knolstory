@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-21",
+  "scope": "Combined time placement assistance; whole editor goal remains active",
+  "implemented": [
+    "Whole-bar movement snaps nearest start or finite end without changing duration/source range",
+    "Match movable guide or same-clock neighbour edges; never infer a repeat/unknown end",
+    "Visual snap tolerance8 CSS pixels at current zoom",
+    "Pick selected start/end as guide location without manuscript edits",
+    "Existing show-guides/snap session switches and Shift bypass remain; dragging defaults off"
+  ],
+  "verification": {
+    "unitTests": 15,
+    "helperCoverage": {
+      "statements": 100,
+      "branches": 100,
+      "functions": 100,
+      "lines": 100
+    },
+    "e2e": {
+      "passed": 2,
+      "durationSeconds": 7.2,
+      "checks": [
+        "Actual pointer end snap",
+        "Shift bypass",
+        "Snap off",
+        "Hide guides hides actions",
+        "Scoped undo retains authored sound bounds and unrelated content, updatedAt can change",
+        "No manuscript change on guide pickup",
+        "390px no page overflow",
+        "Existing selection, numeric alignment, undo regression"
+      ]
+    },
+    "webBuild": "passed",
+    "webTypecheck": "passed",
+    "focusedEslint": "passed",
+    "documentation": {
+      "activeDocuments": 57,
+      "linkErrors": 0,
+      "currentLanguageSurfaces": 214,
+      "historicalLanguageSurfacesPreserved": 351,
+      "retiredTerms": 0,
+      "testsPassed": 10
+    }
+  },
+  "review": {
+    "externalAgent": "Unavailable: configured reviewer model unsupported; manual source review performed",
+    "testRepairs": [
+      "Scroll pointer target into clipped work area before drag",
+      "Wait debounced temporary storage before reading",
+      "Compare content after undo separately from expected updatedAt edit metadata"
+    ]
+  },
+  "limits": [
+    "Project Playwright fallback; previous Ego TaskSpace6 was unavailable, no replacement created",
+    "No physical-device verification",
+    "No native renderer or format change in this scope",
+    "Existing native evidence reused; whole product audit pending"
+  ],
+  "sha256": {
+    "apps/web/components/story-combined-time.tsx": "79ca845f5d857b06fbf28d772a79676a35f57fb02631944fb03fd239f1d1d236",
+    "apps/web/lib/time-placement-assistance.ts": "98957243f8255fe58c6f3a1ac96bbc92bbef794f001ec1c5d5cfe8229347b0c2",
+    "apps/web/lib/time-placement-assistance.test.ts": "bca3938096e660830dd7c959a5bd8445c0b658a38095881d763635f46b692129",
+    "tests/e2e/time-placement-assistance.spec.ts": "f0df62af2fdaa330f395d77641b4cdc2baac63b414bcd73610fd73870c063f86"
+  }
+}

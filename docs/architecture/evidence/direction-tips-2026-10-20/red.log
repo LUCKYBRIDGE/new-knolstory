@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:13989) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus (14.4s)
+
+
+  1) tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus 
+
+    TimeoutError: locator.click: Timeout 12000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '연출 사용 팁', exact: true })
+
+
+      14 |  await page.getByText('전환에 표시할 글',{exact:true}).click();await page.getByLabel('전환 제목',{exact:true}).fill('민아의 시점');
+      15 |  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const original=await work(page);
+    > 16 |  const tips=page.getByRole('button',{name:'연출 사용 팁',exact:true});await tips.click();let dialog=page.getByRole('dialog',{name:'화면 전환 사용 팁',exact:true});
+         |                                                                             ^
+      17 |  await expect(dialog).toContainText('1인칭');await expect(dialog).toContainText('‘나’가 다른 인물로 바뀌어');await expect(dialog).toContainText('민아의 시점');
+      18 |  await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await expect(tips).toBeFocused();await expect(page.getByLabel('전환 제목',{exact:true})).toHaveValue('민아의 시점');
+      19 |  for(const [kind,title] of [['look','색감·분위기'],['effects','흔들림·화면 효과'],['actors','인물 강조·투명도']] as const){await page.getByLabel('조정할 연출',{exact:true}).selectOption(kind);await tips.click();dialog=page.getByRole('dialog',{name:`${title} 사용 팁`,exact:true});await expect(dialog.locator('dt')).not.toHaveCount(0);await dialog.getByRole('button',{name:'연출 팁 닫기',exact:true}).click();await expect(tips).toBeFocused();}
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-tips.spec.ts:16:77
+
+    Error Context: test-results-direction-tips/direction-tips-contextual--8d1e3-nd-preserve-draft-and-focus/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-direction-tips/direction-tips-contextual--8d1e3-nd-preserve-draft-and-focus/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-direction-tips/direction-tips-contextual--8d1e3-nd-preserve-draft-and-focus/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus 

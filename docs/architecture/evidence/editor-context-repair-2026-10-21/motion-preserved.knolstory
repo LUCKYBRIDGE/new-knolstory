@@ -1,0 +1,147 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-21T12:45:43.974Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "context-repair",
+      "title": "새 이야기",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "one",
+          "order": 1,
+          "title": "처음 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        },
+        {
+          "chapterNumber": 2,
+          "id": "two",
+          "order": 2,
+          "title": "다음 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "b",
+          "chapterId": "one",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "처음 글",
+          "leftAssetId": "seonnyeo.character.M02-neutral",
+          "rightAssetId": "seonnyeo.character.M01-earth-neutral",
+          "backgroundId": "",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "a",
+                "assetId": "seonnyeo.character.M02-neutral",
+                "motion": {
+                  "type": "fade-in",
+                  "durationMs": 2000,
+                  "delayMs": 1000
+                }
+              }
+            ],
+            "rightActors": [
+              {
+                "key": "b",
+                "assetId": "seonnyeo.character.M01-earth-neutral",
+                "motion": {
+                  "type": "fade-out",
+                  "durationMs": 2300,
+                  "delayMs": 1100,
+                  "fromXAnchor": 20
+                }
+              }
+            ]
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": "last"
+          }
+        },
+        {
+          "id": "last",
+          "chapterId": "two",
+          "order": 2,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "다음 장의 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-21T12:45:43.532Z"
+    }
+  },
+  "audioResources": []
+}

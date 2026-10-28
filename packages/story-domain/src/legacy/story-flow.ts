@@ -117,7 +117,7 @@ export function createStoryBranches(project: StoryProject, lineId: string, count
   const actorFields = source.inheritActors
     ? {stageComposition:undefined,leftAssetId:'',rightAssetId:''}
     : {stageComposition:structuredClone(composition),...stageProjection(composition)};
-  const newLine = (id: string, chapterId: string, targetLineId: string | null): StoryLine => ({ ...source, ...actorFields, ending: undefined, audio: undefined, id, chapterId, order: 1, type: "narration", speaker: "narration", speakerName: "해설", text: "", purposeNote: "", emotionNote: "", directionNote: "", presentation: source.presentation?.actors ? {actors:structuredClone(source.presentation.actors)} : undefined, flow: { type: "goto", targetLineId } });
+  const newLine = (id: string, chapterId: string, targetLineId: string | null): StoryLine => ({ ...source, ...actorFields, ending: undefined, audio: undefined, id, chapterId, order: 1, type: "narration", speaker: "narration", speakerName: "해설", text: "", textVariants:undefined, visibility:undefined, purposeNote: "", emotionNote: "", directionNote: "", presentation: source.presentation?.actors ? {actors:structuredClone(source.presentation.actors)} : undefined, flow: { type: "goto", targetLineId } });
   return {
     ...project,
     chapters: [...project.chapters, ...newBranches.map((branch, i) => newChapter(branch.chapterId, `갈래 ${branches.indexOf(branch) + 1}`, baseOrder + i + 1, nextNumber, String.fromCharCode(65 + branches.indexOf(branch)))), newChapter(joinChapterId, "다시 만나는 이야기", baseOrder + newBranches.length + 1, nextNumber + 1)],
@@ -146,7 +146,7 @@ export function createStoryChoiceChapter(project: StoryProject, lineId: string, 
   };
   const nextLine: StoryLine = {
     ...source, audio: undefined, id: cutId, chapterId, order: 1, type: "narration", speaker: "narration", speakerName: "해설",
-    text: "", workingTitle: "", coSpeakerNames: [], purposeNote: "", emotionNote: "", directionNote: "", ending: undefined,
+    text: "", textVariants:undefined, visibility:undefined, workingTitle: "", coSpeakerNames: [], purposeNote: "", emotionNote: "", directionNote: "", ending: undefined,
     ...(source.inheritActors
       ? {stageComposition:undefined,leftAssetId:'',rightAssetId:''}
       : {stageComposition:structuredClone(composition),...stageProjection(composition)}),

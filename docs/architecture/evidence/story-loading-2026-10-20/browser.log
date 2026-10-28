@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:83383) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/story-loading.spec.ts:5:1 › branded waiting screen fits the stage, keeps one short tip and yields to actual RenPy (5.0s)
+  ✓  2 tests/e2e/story-loading.spec.ts:35:1 › native boot uses the same character and concise random tip while preserving real engine progress (235ms)
+  ✓  3 tests/e2e/story-loading.spec.ts:53:1 › unavailable optional tips leave a readable boot screen and never delay the engine (2.2s)
+
+  3 passed (7.9s)

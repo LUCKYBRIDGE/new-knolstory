@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-passed",
+  "request": "Small contextual tip button next to direction selector, recommended narrative situations, especially first-person narrator identity change.",
+  "implementation": [
+    "Compact tip button beside direction selector; tips remain closed by default.",
+    "Four contextual groups: transitions, looks, screen effects, actor emphasis/opacity.",
+    "Perspective change particularly recommended when first-person I becomes another person; independent invented example, not a catalog-story rule.",
+    "Shared story-game dialog, focus trap, Escape/close and focus restoration, keyboard-focusable scroll area."
+  ],
+  "verification": {
+    "browser": "1 passed: all four groups, 1280x800/390x844/844x390, focus/keyboard scroll, draft/document unchanged",
+    "native_transition_regression": "1 passed: authoring opt-in, editing, native confirmation, export/reopen and prose/placement preservation",
+    "typecheck": "passed",
+    "lint": "0 errors, 0 warnings",
+    "web_build": "passed",
+    "docs": "57 documents, 0 broken links, 0 retired terms; 10 tests passed"
+  },
+  "review": "Read-only review identified scroll keyboard access gap; fixed tabindex/accessible region and verified PageDown changes scroll position.",
+  "limitations": [
+    "Viewport emulation does not establish physical device or screen reader verification.",
+    "Full service regression and deployment not performed."
+  ],
+  "evidence": [
+    "browser.log",
+    "transition-regression.log",
+    "typecheck.log",
+    "lint.log",
+    "docs.log",
+    "docs-tests.log",
+    "source-hashes.json"
+  ]
+}

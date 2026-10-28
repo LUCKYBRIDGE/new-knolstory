@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-24",
+  "scope": "S25 portrait audio/direction numeric keyboard detail editing",
+  "actualDevice": {
+    "model": "Galaxy S25 Ultra",
+    "layout": "360x677",
+    "numericVisualHeight": 286,
+    "audioInput": "44px high, y237.77..281.77, wholly visible",
+    "audioEdit": "fadeInMs=200; reload retained 0.2 seconds",
+    "directionEdit": "shake durationMs=800, actual effect selection/use and number input succeeded"
+  },
+  "polish": "At width420px or less, paired audio controls use one column; Korean labels preserve word boundaries. Actual page screenshot checked after rebuild/reload.",
+  "verification": {
+    "focusedRegression": "1 passed2.8s, numeric focus/stacked fields/persistence",
+    "build": "Web build:source passed",
+    "preservation": "Full test project equality after excluding intended first-cut audio/presentation changes and updatedAt; all other fields equal",
+    "review": "Separate read-only CSS review found no actionable regression",
+    "documentation": "57 active documents/227 current surfaces, 0 errors; 10 docs tests passed",
+    "lint": "Focused E2E ESLint passed (existing React discovery warning)"
+  },
+  "limits": [
+    "Independent phone test copy only; user manuscripts untouched",
+    "No claim of actual audio listening or native effect playback from these detail checks",
+    "Background/character detail edits, short-landscape advanced editing and separate preparation dialogs remain pending"
+  ]
+}

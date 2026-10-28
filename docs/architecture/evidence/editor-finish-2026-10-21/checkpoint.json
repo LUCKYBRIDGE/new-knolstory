@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-21",
+  "status": "focused-local-editor-completion-passed",
+  "implemented": [
+    "Inherited chapter/work background preview while preserving empty inheritance fields.",
+    "Core-derived audio/effect start/end summaries with source and inclusive end; source-order and conditional limitations explicit.",
+    "Destructive flow mode proposals require explicit confirm; cancel preserves choice IDs, score routes and ending.",
+    "Work/screen scoped detail/error state; audio-to-direction controls remount correctly.",
+    "Effect selection pane with timing bars, start slider, selected-only editor, reordering retains selection.",
+    "Reader menu controls remain usable after semantic keyboard reading."
+  ],
+  "concept_only": [
+    "Combined audio/direction five-track workbench: interactive local HTML, not integrated authoring or playback."
+  ],
+  "checks": {
+    "editor_scenarios": "6 passed: three flow protections, inherited background, range summaries, work/screen isolation",
+    "effect_pane": "1 passed: selection, start slider, duration, sequential start, reorder, narrow/wide bounds and preserved text/IDs",
+    "creative_native_journey": "1 passed: UI-authored 12 cuts/5 chapters, file/reload/fresh context, both branches/merge, native audio/history/slots/fullscreen, edit-return and restart",
+    "long_manuscript": "2 passed: 120-cut cursor/file preservation and bounded repeated resize/screen changes",
+    "direction_choice": "1 passed: pending Use/cancel/reopen and manuscript preservation",
+    "native_regression": "3 passed: native authored confirm and portrait/landscape touch; focused keyboard 1 passed; semantic-focus-to-phone-menu 1 passed",
+    "core_unit": "46 files / 731 passed before extra excluded-audio case; current focused helpers 21 passed and excluded-summary suite 6 passed. Not summed as unique tests.",
+    "scoped_coverage": {
+      "statements": 97.51,
+      "branches": 92.88,
+      "functions": 100,
+      "lines": 100
+    },
+    "typecheck": "passed",
+    "lint": "0 errors/warnings",
+    "static_build": "passed; runtime unchanged by this editor follow-up",
+    "docs": "0 broken links / retired terms; 10 tests passed",
+    "combined_concept": "interaction and desktop/phone horizontal bounds passed; design only",
+    "vn_native": "3 native scenarios passed on delivery build"
+  },
+  "preservation": "Raw story fixtures unchanged; manuscripts, Asset IDs, Flow, StageComposition, prior evidence and existing dirty work retained. No push or deployment.",
+  "review_findings_resolved": [
+    "Explicit source-order note avoids claiming a real branch path.",
+    "Excluded cues show 재생 제외 instead of active play.",
+    "Inherited stageDefaults fixture initially invalid; corrected without changing validation.",
+    "Audio/direction reused details DOM caused missing controls; distinct keys plus regression.",
+    "Semantic focus panel covered reading tool; menu stacking corrected."
+  ],
+  "limits": [
+    "Physical device / screen reader / hours-long stability not established.",
+    "Whole service release, external providers and deployment remain separate.",
+    "Combined audio/direction surface is a concept, not completed integrated feature."
+  ],
+  "evidence": [
+    "editor-browser.log",
+    "effect-pane-browser.log",
+    "creative-journey.log",
+    "run-summary.json",
+    "core-unit.log",
+    "coverage.log",
+    "native-regression.log",
+    "reader-focus.log",
+    "native-keyboard.log",
+    "source-hashes.json",
+    "audio-direction-concept.html",
+    "vn-workflow-final.log"
+  ]
+}

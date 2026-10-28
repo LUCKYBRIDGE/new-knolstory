@@ -1,0 +1,24 @@
+.loading{box-sizing:border-box;display:grid;place-items:center;min-height:100dvh;padding:clamp(20px,5vmin,48px);background:radial-gradient(ellipse at 50% 36%,#203a38,var(--story-menu-bg,#112223) 68%);color:var(--story-menu-ink,#f5ead4);text-align:center;container-type:size;overflow:auto}
+.loading[data-story-loading=stage]{position:absolute;inset:0;min-height:0;height:100%;z-index:1;padding:clamp(14px,3vmin,32px)}
+.content{width:min(100%,480px);margin:auto;min-width:0}
+.art{position:relative;display:grid;place-items:center;width:100%;height:clamp(120px,25vmin,210px);margin:0 auto 16px}
+.art img{position:relative;display:block;object-fit:contain;width:auto;max-width:100%;height:100%;}
+.art img[hidden]{display:none}
+.brand{margin:0 0 14px;color:#c6b28f;letter-spacing:.2em;font-size:12px}
+.title{margin:0;font-size:clamp(18px,2.6vmin,24px);font-weight:500;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+.hint{margin:8px 0 0;color:var(--story-menu-muted,#c1c9ba);font-size:13px;line-height:1.7;word-break:keep-all}
+.tip{margin:24px auto 0;max-width:360px;font-size:14px;line-height:1.85;word-break:keep-all;overflow-wrap:anywhere}
+.tip p{margin:0}
+.tip .label{color:#c6b28f;font-size:11px;letter-spacing:.04em;margin-bottom:8px}
+.rule{position:relative;display:block;width:120px;height:1px;margin:24px auto 0;overflow:hidden;background:#53605a}
+.rule::after{content:"";position:absolute;width:40%;height:100%;left:-40%;background:#d3bb91;animation:story-loading-travel 2.4s ease-in-out infinite}
+@keyframes story-loading-travel{to{left:100%}}
+@container (max-height:360px){.content{width:min(100%,580px);display:grid;grid-template-columns:minmax(90px,.7fr) minmax(0,1.3fr);align-items:center;gap:20px}.art{height:clamp(80px,45cqh,160px);margin:0}.brand{margin-bottom:6px}.tip{margin-top:12px;font-size:12px}.rule{margin-top:14px}.title{font-size:16px}.hint{font-size:11px}}
+@media(max-height:460px) and (min-width:520px){.loading:not([data-story-loading=stage]) .content{display:grid;grid-template-columns:160px minmax(0,1fr);align-items:center;gap:24px;width:min(100%,650px)}.art{height:150px;margin-bottom:0}.tip{margin-top:14px}.rule{margin-top:16px}}
+@media(prefers-reduced-motion:reduce){.art img,.rule::after{animation:none}.rule::after{left:30%}}
+@container (max-height:280px){.brand,.hint{display:none}.content{gap:12px}.art{height:min(120px,45cqh)}.title{font-size:15px}.tip{margin-top:10px;font-size:11px;line-height:1.75}.tip .label{font-size:10px;margin-bottom:4px}.rule{margin-top:12px}}
+.art picture{display:block;height:100%;max-width:100%}
+/* The picture must fill its reserved art box, never its intrinsic sprite height. */
+.art{overflow:hidden}
+.art picture{position:absolute;inset:0;display:block;width:100%;height:100%;min-height:0}
+.art picture img{width:100%;height:100%;max-height:100%;object-fit:contain}

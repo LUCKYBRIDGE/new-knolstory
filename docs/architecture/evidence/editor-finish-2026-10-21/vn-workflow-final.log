@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:38045) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:43:1 › fixed landscape editor preview, responsive native reading, slots and actual-path backlog restore both routes (11.9s)
+  ✓  2 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:58:1 › changed-work slots show saved excerpt and require explicit compatible restore (5.4s)
+  ✓  3 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:69:1 › numbered real-asset branch chapters play A and B then join without crossing routes (7.8s)
+
+  3 passed (25.5s)

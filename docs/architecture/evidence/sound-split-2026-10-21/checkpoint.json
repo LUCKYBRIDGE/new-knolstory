@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-21",
+  "scope": "Non-destructive effect sound split in cut or chapter cues; full editor goal active",
+  "implemented": [
+    "Original first ID/range start/delay/condition retained; new second ID and sourceStart with original optional end",
+    "Second schedule = prior delay + source split minus source start; insert adjacent in same list",
+    "Reject4-cue limit, unknown end, outside-known duration, noninterior or noninteger time, duplicate ID and second delay>10sec",
+    "Collapsed raw draft split input, no mutation before action; invalid position prevents split",
+    "Automatically select right piece; list source bounds; existing per-channel scoped undo",
+    "Work/cut/chapter scope key isolates sound list drafts",
+    "Keep Korean words together in audio/direction range summaries; allow emergency wrap for long tokens"
+  ],
+  "verification": {
+    "unitIntegrationTests": 4,
+    "formats": [
+      "archive2 encode/decode",
+      "workbook8 roundtrip",
+      "actual generated XLSX bytes import/export",
+      "JSONB snapshot"
+    ],
+    "coreScheduling": "exact two source ranges and delays preserved",
+    "helperCoverage": {
+      "statements": 96.29,
+      "branches": 97.14,
+      "functions": 100,
+      "lines": 100
+    },
+    "realNativeE2E": 1,
+    "nativeBehavior": "Two separate starts via actual game audio gate, first play count1 then2 with observed separation>250ms; source original unchanged",
+    "uiBehavior": [
+      "Invalid2sec source input→Enter→split rejected, count stays1",
+      "Split selects second cue and persists source0.2..0.8/0.8..1.1, delays0.2/0.8",
+      "Undo restores original cue; resplit then capacity4 rejection",
+      "Actual exported work file exact equality and fresh-context import",
+      "1280x800 and390x844 no horizontal overflow"
+    ],
+    "webBuild": "passed final Korean summary wrapping candidate",
+    "eslint": "passed",
+    "relatedE2EFlows": 2,
+    "relatedE2ELog": "sound-split-regression.log",
+    "relatedE2EBehavior": [
+      "Original source music range file/native stop regression",
+      "Combined guide/start-end resize/undo/current work file/native playback-return regression"
+    ],
+    "allTypecheck": "passed",
+    "docsCheck": "passed 57 active documents and209 current language surfaces",
+    "docsTests": 10,
+    "finalE2ELog": "sound-split-e2e-wrap.log",
+    "visualInspection": "Inspected rendered390px image after Korean word-boundary wrapping fix; source bounds and cue labels fit viewport"
+  },
+  "review": {
+    "independentReadOnly": "completed, one defect found and resolved",
+    "resolved": "Invalid split draft previously fell back to prior valid position; RED reproduced2 cues instead of1, raw action draft fixes this",
+    "crossFileClock": "presentation.rpy knol_finish_transition resets sound clock after transition; no engine source change this turn"
+  },
+  "browserPreference": {
+    "egoBrowser": "CLI not found; read skill installation reference; onboarding needs user interaction",
+    "fallback": "Project Playwright Chromium suite and rendered screenshot inspection; not ego-browser verification"
+  },
+  "limitations": [
+    "Independent scheduled clips do not guarantee sample-accurate seamless join or physical listening evidence",
+    "Music/ambience multiple-segment editing remains unimplemented",
+    "No external Excel/Google app save/edit proof",
+    "Whole editor requirements audit and device-specific proof still pending"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/sound-split.ts": "73ffca626370eb9a5038809580dc31473f7f680453dcd80c5c6ef2cede4bdf6d",
+    "apps/web/lib/sound-split.test.ts": "3e1aeb8588e85ffe7b4bab265bf5a18b69d4fe6f3cd9692484ce39d1a4cc7f83",
+    "apps/web/components/sound-split-controls.tsx": "a20272c28b53af261244c1f134b705c7ff996c9ab80bdb60b5f0794f8235614f",
+    "apps/web/components/sound-cue-list.tsx": "bc59f54ce1a06716b49bc8553b1e46068249851acadc147590a748aa8f13e566",
+    "apps/web/components/story-audio-controls.tsx": "63c9b6199f915032c3865d0a4a31b3b89b8046f01c82222b9968bfd117b1c7bd",
+    "apps/web/components/audio-controls.module.css": "2a19079bf2bc379728674bfd5260cbc606131f29094ba7f2ead004bc20adaa23",
+    "tests/e2e/sound-split.spec.ts": "da35bae93366255cca190ce7508e6cf80b296e1175bfe7bfe3ab342828175260",
+    "playwright.config.ts": "4f0c14a60f679e706717d76699f1770f760b6021b5d8569f03b64bf4395b903e",
+    "apps/web/components/story-editing-workbench.tsx": "27917f82a65b5154e7859e999331714c2b08e0af5d82540e26258deb29fcbb98",
+    "apps/web/components/story-editing-workbench.module.css": "b4df77e1e7606dca5696298a29bc06af32290de4f7e42ca8d431cba429b29b0d"
+  }
+}

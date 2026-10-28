@@ -1,8 +1,18 @@
 import type {Column,TableSpec} from './model';
 /** User-facing meaning; IDs stay stable and are never replaced with display names. */
 export function columnApplication(spec:TableSpec,column:Column):string{
+ if(spec.key==='sceneVisibility')return '컷 표시 조건 있음으로 정한 컷마다 한 행을 써요. 점수와 선택 조건을 함께 정하면 둘 다 맞아야 보여요. 단일 선택은 묶음을 미설정으로, 여러 선택은 모두 만족 또는 하나라도 만족으로 정해요.';
+ if(spec.key==='sceneVisibilityScores')return '컷 ID로 연결하고 조건 순서는0부터 연속으로 써요. 같은 컷의 조건 묶음은 같아야 해요. 점수 ID는 점수 항목 탭에서 확인하세요.';
+ if(spec.key==='sceneVisibilityChoices')return '선택지가 있는 컷 ID와 선택지 ID를 함께 써요. 같은 도착 컷이라도 어떤 선택을 골랐는지 구분해요. 조건 순서는0부터 연속으로 써요.';
+ if(column.key==='visibilityPresent')return '조건에 맞을 때만 이 컷을 보여 주려면 있음으로 정하고 컷 표시 조건·컷 표시 점수·컷 표시 선택 탭을 작성해요.';
+ if(spec.key==='textVariants')return '컷 ID와 조건별 글 ID로 연결해요. 검사 순서는0부터 연속으로 쓰고 처음 만족하는 글을 사용해요. 본문이 빈 문자열이면 빈 글을 표시하며 기본 글은 컷 탭에 그대로 남겨요.';
+ if(spec.key==='textVariantConditions')return '조건별 글 탭의 컷 ID·조건별 글 ID와 같은 값으로 연결해요. 조건 순서는0부터 연속, 조건 묶음은 모든 행에서 같게 쓰세요. 해당 글마다 한 개 이상의 점수 비교가 필요해요.';
+ if(column.key==='textVariantsPresent')return '조건별 글 탭과 글 점수 조건 탭에서 이 컷의 다른 글을 편집하려면 있음으로 정해요. 없음은 기본 글만 사용해요.';
+ if(spec.key==='audioClips')return '장·컷·소리 종류·이어 재생 ID가 같은 설정에 연결됩니다. 재생 순서는 0부터 연속으로 입력하세요. 시간은 초 단위로 작성합니다. 각 구간의 원본 사용 끝은 필수이며 반복·대기 없이 차례로 재생합니다.';
  if(spec.key==='audioTracks'&&column.key==='endLineId')return '재생하는 장 기본 소리 또는 컷 소리의 종료 컷 ID입니다. 종료 컷까지 포함하고 다음 방문 컷에서 해당 소리만 멈춥니다. 장 기본 소리는 이 장에 실제 진입한 컷부터 시작합니다. 종료를 우회하면 계속 유지되며 미설정은 종료를 제한하지 않습니다.';
+ if(spec.key==='branchConditionTerms')return '장·컷·효과 ID·소리 종류로 정확히 연결하세요. 연출 효과는 효과 순서도 일치해야 하며 ID가 없으면 미설정으로 둡니다. 조건 순서는 0부터 연속으로 쓰고 같은 선택은 중복하지 않습니다.';
  const key=column.key;
+ if(key==='branchConditionMode')return '미설정은 한 선택 조건, 모두 만족은 그리고, 하나라도 만족은 또는 조건입니다. 묶음을 쓰면 두 단일 조건 ID는 미설정으로 두고 선택 조건 묶음 탭에 1~8개 조건을 씁니다.';
  if(key==='branchConditionPresent')return '선택 갈래 조건 있음은 지정한 선택 컷에서 해당 선택지를 골랐을 때만 이 효과·소리를 적용합니다. 같은 도착 컷으로 모여도 선택지 ID로 갈래를 구분합니다.';
  if(key==='branchSourceLineId')return '조건의 선택 컷 ID입니다. 선택지가 있는 컷을 지정하고 조건 선택지 ID도 함께 작성합니다.';
  if(key==='branchChoiceId')return '조건 선택 컷 안의 선택지 ID입니다. 조건 없음일 때는 두 조건 ID를 모두 미설정으로 둡니다.';
@@ -28,7 +38,7 @@ export function columnApplication(spec:TableSpec,column:Column):string{
  if(spec.key==='scoreConditions'&&key==='value')return '누적 점수와 비교하는 유한한 숫자입니다. 예: 신뢰 이상 3은 신뢰가 3 또는 더 높을 때 만족합니다.';
  if(key==='inheritActors')return '있음: 장의 인물 구성을 이어받습니다. 컷의 배치한 인물 행을 직접 편집하려면 없음으로 바꾸고 인물 배치 있음을 선택하세요.';
  if(spec.key==='cuts'&&key==='type')return '대사는 인물이 말하는 글, 해설은 장면을 설명하는 글입니다. 본문은 그대로 두고 이야기의 표시 방식을 선택합니다.';
- if(spec.key==='audioTracks'&&key==='action')return '이전 소리 유지: 재시작하지 않음. 소리 중지: 기존 채널을 끔. 소리 재생: 선택한 음원을 시작함.';
+ if(spec.key==='audioTracks'&&key==='action')return '이전 소리 유지: 재시작하지 않음. 소리 중지: 기존 채널을 끔. 소리 재생: 선택한 음원을 시작함. 이어 재생: 이어 재생 음원 탭의 구간을 순서대로 한 번 재생함.';
  if(key==='bind')return '작품 제목·소개·지은이 등과 표지 글을 연결합니다. 내용 방식을 직접 입력으로 바꾸면 연결 대신 직접 입력 글을 사용합니다.';
  if(spec.key==='metadata')return '앱이 자동으로 기록하는 양식 정보입니다. 새 작품의 내용은 다른 편집 탭에 입력하세요.';
  if(key==='chapterId')return '‘장’ 탭의 장 ID와 연결합니다. 이 행의 컷·무대·소리 설정이 어느 장에 속하는지 정합니다.';

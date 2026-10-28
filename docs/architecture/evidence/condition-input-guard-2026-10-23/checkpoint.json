@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-23",
+  "scope": "Composition isolation for scenevisibility/textvariants, wholeeditorgoalactive",
+  "red": "Main text composition didnot disable visibility score input",
+  "fixed": [
+    "Pass globalcomposition to conditional editors",
+    "Foreign composition disables conditioninputs/textvarianttextarea/actions",
+    "Local variant textcomposition keeps activeinput enabled; structural actions blocked"
+  ],
+  "verification": {
+    "browser": "7passed onefinalrun33s includes2conditioneditor guards, native scoring/skip, file reimport, off/onpreserve",
+    "unit": "8passed2files",
+    "types": "Webpassed",
+    "lint": "noerrors",
+    "build": "Websource production"
+  },
+  "limits": [
+    "Synthetic composition events, not OSIMEphysicaldevice proof",
+    "Other advanced controlguards remain audit targets",
+    "Wholeeditor completion unproven"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-scene-visibility.tsx": "6172512d19f1097067c94d26f7a6239e59ddb81ee9afe34291e68d359cf35449",
+    "apps/web/components/story-text-variants.tsx": "a2aedab3557d6f09e632b19133bbc9aa2428ff2faed915a357e09d86fd6b0c25",
+    "apps/web/components/story-editing-workbench.tsx": "7dc84c1a60629488cf2d691781ad9b4feee5ca307abd88782000a645d4889e44",
+    "tests/e2e/scene-visibility.spec.ts": "71c7067e1f08f9f9cdfa1ce9c1d25581312a08550106630544bc3096831c02cd",
+    "tests/e2e/conditional-text.spec.ts": "4b97f98827e1abd3cae15403c6bdcacaa8c24040cf2a9cec8ed88c24c2c178d2",
+    "apps/web/out/index.html": "74a048f21ea6250d820a7211ab64eff5346da35afb46560733ae89aa8f959566"
+  }
+}

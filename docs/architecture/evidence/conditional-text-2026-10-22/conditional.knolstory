@@ -1,0 +1,127 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-22T08:59:39.009Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "scores": [
+        {
+          "id": "trust",
+          "name": "신뢰",
+          "description": "선택으로 쌓은 신뢰",
+          "initial": 2
+        }
+      ],
+      "choiceMode": "simple",
+      "id": "conditional-ui",
+      "title": "새 이야기",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "ch",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "a",
+          "chapterId": "ch",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "기본 원고",
+          "textVariants": [
+            {
+              "id": "one",
+              "text": "수정한 조건별 문장",
+              "condition": {
+                "mode": "any",
+                "terms": [
+                  {
+                    "scoreId": "trust",
+                    "operator": "gte",
+                    "value": 1
+                  },
+                  {
+                    "scoreId": "trust",
+                    "operator": "gte",
+                    "value": 1
+                  }
+                ]
+              }
+            },
+            {
+              "id": "two",
+              "text": "뒤의 원고",
+              "condition": {
+                "mode": "all",
+                "terms": [
+                  {
+                    "scoreId": "trust",
+                    "operator": "gte",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-22T08:59:37.991Z"
+    }
+  },
+  "audioResources": []
+}

@@ -1,0 +1,126 @@
+
+Running 4 tests using 1 worker
+
+(node:35198) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 390 (225ms)
+(node:35204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 844 (95ms)
+(node:35222) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 768 (88ms)
+(node:35229) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 1280 (87ms)
+
+
+  1) tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 390 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      5 | const base=createBlankStoryProject({id:'sequence-time-browser',chapterId:'ch',lineId:'a'}),cue={action:'sequence' as const,id:'q',clips:[{id:'one',assetId:'audio:music:forest',sourceStartMs:200,sourceEndMs:1200,volume:.5,fadeInMs:50,fadeOutMs:60},{id:'two',assetId:'audio:music:night',sourceStartMs:500,sourceEndMs:2500},{id:'three',assetId:'audio:music:forest',sourceEndMs:1000}]},project={...base,lines:base.lines.map(line=>({...line,text:'타임라인에서도 원고와 음원 구간을 보존합니다.',audio:{sounds:[{id:'edge',assetId:'audio:sound:chime',delayMs:10000}],music:cue,ambience:{action:'play' as const,assetId:'audio:music:night',volume:.3}}}))};
+      6 | const stored=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+    > 7 | async function setup(page:Page,file?:string){await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'time.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await expect.poll(()=>stored(page)).toEqual(file?parseAuthoringFile(readFileSync(file,'utf8')).project:project);const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');}
+        |                                                                                                    ^
+      8 | for(const viewport of [{width:390,height:844},{width:844,height:390},{width:768,height:1024},{width:1280,height:800}])test(`expanded cut settings preserve real clip access ${viewport.width}`,async({page},info)=>{await page.setViewportSize(viewport);await setup(page);const timeline=page.locator('[data-combined-timeline]'),settings=timeline.getByText('보기 설정',{exact:true}),region=timeline.getByRole('region',{name:'음향·연출 작업 영역',exact:true}),bar=region.getByRole('button').filter({hasText:'3개 음원 순서 재생'});await settings.click();await timeline.getByRole('checkbox',{name:'막대를 끌어 구간 수정',exact:true}).check();const mode=timeline.getByRole('combobox',{name:'구간 끌기 동작',exact:true});await mode.selectOption('start');await bar.scrollIntoViewIfNeeded();const rect=(await bar.boundingBox())!;expect(await bar.evaluate((el,point)=>el.contains(document.elementFromPoint(point.x,point.y)),{x:rect.x+rect.width/2,y:rect.y+rect.height/2})).toBe(true);await bar.click();await expect(bar).toHaveAttribute('aria-pressed','true');await mode.selectOption('end');await settings.focus();await settings.press('Escape');await expect(mode).toBeHidden();await expect(settings).toBeFocused();expect(await stored(page)).toEqual(project);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`settings-${viewport.width}.png`)});});
+      9 |
+        at setup (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:7:100)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:8:250
+
+    Error Context: test-results-timeline-settings-red/timeline-settings-access-e-c5adc-eserve-real-clip-access-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-timeline-settings-red/timeline-settings-access-e-c5adc-eserve-real-clip-access-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-timeline-settings-red/timeline-settings-access-e-c5adc-eserve-real-clip-access-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 844 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      5 | const base=createBlankStoryProject({id:'sequence-time-browser',chapterId:'ch',lineId:'a'}),cue={action:'sequence' as const,id:'q',clips:[{id:'one',assetId:'audio:music:forest',sourceStartMs:200,sourceEndMs:1200,volume:.5,fadeInMs:50,fadeOutMs:60},{id:'two',assetId:'audio:music:night',sourceStartMs:500,sourceEndMs:2500},{id:'three',assetId:'audio:music:forest',sourceEndMs:1000}]},project={...base,lines:base.lines.map(line=>({...line,text:'타임라인에서도 원고와 음원 구간을 보존합니다.',audio:{sounds:[{id:'edge',assetId:'audio:sound:chime',delayMs:10000}],music:cue,ambience:{action:'play' as const,assetId:'audio:music:night',volume:.3}}}))};
+      6 | const stored=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+    > 7 | async function setup(page:Page,file?:string){await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'time.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await expect.poll(()=>stored(page)).toEqual(file?parseAuthoringFile(readFileSync(file,'utf8')).project:project);const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');}
+        |                                                                                                    ^
+      8 | for(const viewport of [{width:390,height:844},{width:844,height:390},{width:768,height:1024},{width:1280,height:800}])test(`expanded cut settings preserve real clip access ${viewport.width}`,async({page},info)=>{await page.setViewportSize(viewport);await setup(page);const timeline=page.locator('[data-combined-timeline]'),settings=timeline.getByText('보기 설정',{exact:true}),region=timeline.getByRole('region',{name:'음향·연출 작업 영역',exact:true}),bar=region.getByRole('button').filter({hasText:'3개 음원 순서 재생'});await settings.click();await timeline.getByRole('checkbox',{name:'막대를 끌어 구간 수정',exact:true}).check();const mode=timeline.getByRole('combobox',{name:'구간 끌기 동작',exact:true});await mode.selectOption('start');await bar.scrollIntoViewIfNeeded();const rect=(await bar.boundingBox())!;expect(await bar.evaluate((el,point)=>el.contains(document.elementFromPoint(point.x,point.y)),{x:rect.x+rect.width/2,y:rect.y+rect.height/2})).toBe(true);await bar.click();await expect(bar).toHaveAttribute('aria-pressed','true');await mode.selectOption('end');await settings.focus();await settings.press('Escape');await expect(mode).toBeHidden();await expect(settings).toBeFocused();expect(await stored(page)).toEqual(project);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`settings-${viewport.width}.png`)});});
+      9 |
+        at setup (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:7:100)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:8:250
+
+    Error Context: test-results-timeline-settings-red/timeline-settings-access-e-fba9a-eserve-real-clip-access-844/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-timeline-settings-red/timeline-settings-access-e-fba9a-eserve-real-clip-access-844/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-timeline-settings-red/timeline-settings-access-e-fba9a-eserve-real-clip-access-844/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 768 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      5 | const base=createBlankStoryProject({id:'sequence-time-browser',chapterId:'ch',lineId:'a'}),cue={action:'sequence' as const,id:'q',clips:[{id:'one',assetId:'audio:music:forest',sourceStartMs:200,sourceEndMs:1200,volume:.5,fadeInMs:50,fadeOutMs:60},{id:'two',assetId:'audio:music:night',sourceStartMs:500,sourceEndMs:2500},{id:'three',assetId:'audio:music:forest',sourceEndMs:1000}]},project={...base,lines:base.lines.map(line=>({...line,text:'타임라인에서도 원고와 음원 구간을 보존합니다.',audio:{sounds:[{id:'edge',assetId:'audio:sound:chime',delayMs:10000}],music:cue,ambience:{action:'play' as const,assetId:'audio:music:night',volume:.3}}}))};
+      6 | const stored=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+    > 7 | async function setup(page:Page,file?:string){await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'time.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await expect.poll(()=>stored(page)).toEqual(file?parseAuthoringFile(readFileSync(file,'utf8')).project:project);const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');}
+        |                                                                                                    ^
+      8 | for(const viewport of [{width:390,height:844},{width:844,height:390},{width:768,height:1024},{width:1280,height:800}])test(`expanded cut settings preserve real clip access ${viewport.width}`,async({page},info)=>{await page.setViewportSize(viewport);await setup(page);const timeline=page.locator('[data-combined-timeline]'),settings=timeline.getByText('보기 설정',{exact:true}),region=timeline.getByRole('region',{name:'음향·연출 작업 영역',exact:true}),bar=region.getByRole('button').filter({hasText:'3개 음원 순서 재생'});await settings.click();await timeline.getByRole('checkbox',{name:'막대를 끌어 구간 수정',exact:true}).check();const mode=timeline.getByRole('combobox',{name:'구간 끌기 동작',exact:true});await mode.selectOption('start');await bar.scrollIntoViewIfNeeded();const rect=(await bar.boundingBox())!;expect(await bar.evaluate((el,point)=>el.contains(document.elementFromPoint(point.x,point.y)),{x:rect.x+rect.width/2,y:rect.y+rect.height/2})).toBe(true);await bar.click();await expect(bar).toHaveAttribute('aria-pressed','true');await mode.selectOption('end');await settings.focus();await settings.press('Escape');await expect(mode).toBeHidden();await expect(settings).toBeFocused();expect(await stored(page)).toEqual(project);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`settings-${viewport.width}.png`)});});
+      9 |
+        at setup (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:7:100)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:8:250
+
+    Error Context: test-results-timeline-settings-red/timeline-settings-access-e-5661b-eserve-real-clip-access-768/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-timeline-settings-red/timeline-settings-access-e-5661b-eserve-real-clip-access-768/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-timeline-settings-red/timeline-settings-access-e-5661b-eserve-real-clip-access-768/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 1280 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+      5 | const base=createBlankStoryProject({id:'sequence-time-browser',chapterId:'ch',lineId:'a'}),cue={action:'sequence' as const,id:'q',clips:[{id:'one',assetId:'audio:music:forest',sourceStartMs:200,sourceEndMs:1200,volume:.5,fadeInMs:50,fadeOutMs:60},{id:'two',assetId:'audio:music:night',sourceStartMs:500,sourceEndMs:2500},{id:'three',assetId:'audio:music:forest',sourceEndMs:1000}]},project={...base,lines:base.lines.map(line=>({...line,text:'타임라인에서도 원고와 음원 구간을 보존합니다.',audio:{sounds:[{id:'edge',assetId:'audio:sound:chime',delayMs:10000}],music:cue,ambience:{action:'play' as const,assetId:'audio:music:night',volume:.3}}}))};
+      6 | const stored=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+    > 7 | async function setup(page:Page,file?:string){await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'time.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await expect.poll(()=>stored(page)).toEqual(file?parseAuthoringFile(readFileSync(file,'utf8')).project:project);const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');}
+        |                                                                                                    ^
+      8 | for(const viewport of [{width:390,height:844},{width:844,height:390},{width:768,height:1024},{width:1280,height:800}])test(`expanded cut settings preserve real clip access ${viewport.width}`,async({page},info)=>{await page.setViewportSize(viewport);await setup(page);const timeline=page.locator('[data-combined-timeline]'),settings=timeline.getByText('보기 설정',{exact:true}),region=timeline.getByRole('region',{name:'음향·연출 작업 영역',exact:true}),bar=region.getByRole('button').filter({hasText:'3개 음원 순서 재생'});await settings.click();await timeline.getByRole('checkbox',{name:'막대를 끌어 구간 수정',exact:true}).check();const mode=timeline.getByRole('combobox',{name:'구간 끌기 동작',exact:true});await mode.selectOption('start');await bar.scrollIntoViewIfNeeded();const rect=(await bar.boundingBox())!;expect(await bar.evaluate((el,point)=>el.contains(document.elementFromPoint(point.x,point.y)),{x:rect.x+rect.width/2,y:rect.y+rect.height/2})).toBe(true);await bar.click();await expect(bar).toHaveAttribute('aria-pressed','true');await mode.selectOption('end');await settings.focus();await settings.press('Escape');await expect(mode).toBeHidden();await expect(settings).toBeFocused();expect(await stored(page)).toEqual(project);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`settings-${viewport.width}.png`)});});
+      9 |
+        at setup (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:7:100)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/timeline-settings-access.spec.ts:8:250
+
+    Error Context: test-results-timeline-settings-red/timeline-settings-access-e-70c63-serve-real-clip-access-1280/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-timeline-settings-red/timeline-settings-access-e-70c63-serve-real-clip-access-1280/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-timeline-settings-red/timeline-settings-access-e-70c63-serve-real-clip-access-1280/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 390 
+    tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 844 
+    tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 768 
+    tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 1280 

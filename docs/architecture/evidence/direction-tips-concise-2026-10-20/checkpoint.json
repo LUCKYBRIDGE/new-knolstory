@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-passed",
+  "request": "Clear useful guidance with restrained length. Explain white transition.",
+  "changes": [
+    "Shared white-fade display label renamed to 흰 화면 전환; internal values and manuscripts preserved.",
+    "Tips describe visible behavior/use in one or two short sentences.",
+    "Removed generic preamble and repeated examples; kept one first-person narrator example.",
+    "Actor emphasis copy avoids implying automatic speaker detection or brightness enhancement."
+  ],
+  "checks": {
+    "browser": "1 passed: all groups, PC/phone portrait/landscape bounds, Escape/focus/keyboard scroll, draft preserved",
+    "typecheck": "passed",
+    "lint": "passed",
+    "docs": "0 broken links / 0 retired terms / 10 tests passed"
+  },
+  "review": "Native white Fade, look color changes and explicit dimming behavior compared against text.",
+  "limitations": [
+    "Physical device and screen reader not tested.",
+    "No native behavior or file schema changed."
+  ]
+}

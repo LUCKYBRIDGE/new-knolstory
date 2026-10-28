@@ -81,3 +81,14 @@ for(const [width,height,label] of [[390,844,'portrait'],[844,390,'landscape']] a
 test('cover title validation keeps the applied book intact and draft recoverable',async({page})=>{
  await page.goto('/');await enterLibrary(page);await openShelfAction(page,builtinShelfCard(page,'seonnyeo'),'작품 준비');await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});await dialog.getByLabel('작품 제목',{exact:true}).fill('가'.repeat(201));await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();await expect(dialog).toBeVisible();await expect(dialog.getByRole('status')).toContainText('200자');await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue('선녀와 나무꾼 · 내 사본');
 });
+
+for(const action of ['닫기','취소','Escape'])test(`cover draft asks before discarding via ${action} and cancel preserves draft and focus`,async({page})=>{
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/runtime/**',route=>route.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await exportMenu(page);await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();
+ const cover=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true}),field=cover.getByLabel('작품 제목',{exact:true}),original=await field.inputValue();await field.fill('아직 적용하지 않은 표지 제목');
+ const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+ if(action==='Escape')await field.press('Escape');else await cover.getByRole('button',{name:action,exact:true}).click();
+ const confirmation=page.getByRole('dialog',{name:'표지 변경을 적용하지 않고 닫을까요?',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'계속 편집',exact:true}).click();await expect(confirmation).toHaveCount(0);await expect(field).toHaveValue('아직 적용하지 않은 표지 제목');await expect(action==='Escape'?field:cover.getByRole('button',{name:action,exact:true})).toBeFocused();
+ await field.fill(original);await cover.getByRole('button',{name:'닫기',exact:true}).click();await expect(cover).toHaveCount(0);await expect(confirmation).toHaveCount(0);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);
+ await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();await field.fill('닫기로 버릴 변경');await cover.getByRole('button',{name:'닫기',exact:true}).click();await confirmation.getByRole('button',{name:'변경 버리고 닫기',exact:true}).click();await expect(cover).toHaveCount(0);await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(original);
+});

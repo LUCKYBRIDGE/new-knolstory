@@ -1,0 +1,22 @@
+{
+  "status": "focused-host-and-screenshot-review-passed",
+  "issue": "One actor and empty add picker stretched equal height, hiding next cut.",
+  "change": "Top-aligned wrapping actor cards, two-column controls, compact full-row add action, visible existing X/scale percentages.",
+  "redLog": ".cache/character-density-20261028-red.log",
+  "finalLog": ".cache/character-density-20261028-v2.log",
+  "result": "1 focused host journey, desktop1052x877 and phone390x844 transition,44px controls,no overflow,center/scale140% and exported othercuts/chapters preserved.",
+  "intermediateFailure": ".cache/character-density-20261028-final.log sampled before phone layout updated; final test waits for phone layout.",
+  "build": ".cache/character-density-20261028-build.log",
+  "typecheck": ".cache/character-density-20261028-types.log",
+  "lint": ".cache/character-density-20261028-lint-final.log",
+  "limits": [
+    "Ego10 before screenshot and interactive actor editing; space10 later missing, no replacement created. After screenshots from isolated host regression with runtime requests aborted.",
+    "One actor layout, not fouractors or physical device certification.",
+    "No new whole editor or native playback completion."
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-editing-workbench.tsx": "b7c776a8488f9b4cf544a9529f652ec4821fcdc2c788da3e908b31f5ccc07517",
+    "apps/web/components/story-editing-workbench.module.css": "08b942b066d4355e9296a6ddd697ec6069e3b56de24bf2d9be10c3cb9d5e4332",
+    "tests/e2e/editing-workbench.spec.ts": "2b96af7a29124921030439bcbc00ceb31141f8ef56bdc15d9fa50491ed1b4db2"
+  }
+}

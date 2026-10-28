@@ -1,0 +1,26 @@
+
+Running 19 tests using 1 worker
+
+(node:97633) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects choices until explicit confirmation at 390x844 (5.0s)
+  ✓   2 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects routes until explicit confirmation at 390x844 (5.0s)
+  ✓   3 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects ending until explicit confirmation at 390x844 (5.0s)
+  ✓   4 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects choices until explicit confirmation at 844x390 (4.9s)
+  ✓   5 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects routes until explicit confirmation at 844x390 (4.8s)
+  ✓   6 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects ending until explicit confirmation at 844x390 (4.9s)
+  ✓   7 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects choices until explicit confirmation at 390x320 (4.9s)
+  ✓   8 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects routes until explicit confirmation at 390x320 (4.9s)
+  ✓   9 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects ending until explicit confirmation at 390x320 (4.9s)
+  ✓  10 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 1440x900 (1.3s)
+  ✓  11 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 768x1024 (1.3s)
+  ✓  12 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 390x844 (1.3s)
+  ✓  13 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 844x390 (1.3s)
+  ✓  14 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 320x568 (1.3s)
+  ✓  15 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 720x320 (1.3s)
+  ✓  16 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 721x320 (1.3s)
+  ✓  17 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 390x320 (1.3s)
+  ✓  18 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 844x240 (1.3s)
+  ✓  19 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 390x200 (1.3s)
+
+  19 passed (57.9s)

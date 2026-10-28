@@ -1,0 +1,74 @@
+
+> knolstory-next@ test:docs /Users/wan/ai_dev/apps/new-knolstory
+> node --test scripts/tests/project-docs.test.mjs scripts/tests/product-language.test.mjs
+
+TAP version 13
+# Subtest: detects retired product names and provides preferred labels
+ok 1 - detects retired product names and provides preferred labels
+  ---
+  duration_ms: 1.281875
+  type: 'test'
+  ...
+# Subtest: keeps link targets, anchors and fences intact while checking current descriptions
+ok 2 - keeps link targets, anchors and fences intact while checking current descriptions
+  ---
+  duration_ms: 0.334333
+  type: 'test'
+  ...
+# Subtest: does not alter protected historical records or literal quotations
+ok 3 - does not alter protected historical records or literal quotations
+  ---
+  duration_ms: 0.127
+  type: 'test'
+  ...
+# Subtest: is idempotent and does not rewrite semantically distinct vocabulary
+ok 4 - is idempotent and does not rewrite semantically distinct vocabulary
+  ---
+  duration_ms: 0.045583
+  type: 'test'
+  ...
+# Subtest: preserves inline and indented code, reference identifiers and reference definitions
+ok 5 - preserves inline and indented code, reference identifiers and reference definitions
+  ---
+  duration_ms: 0.121083
+  type: 'test'
+  ...
+# Subtest: discovers new current documents, skills and UI helpers while excluding history and aliases
+ok 6 - discovers new current documents, skills and UI helpers while excluding history and aliases
+  ---
+  duration_ms: 4.017125
+  type: 'test'
+  ...
+# Subtest: keeps explicit compatibility anchors while checking the renamed heading description
+ok 7 - keeps explicit compatibility anchors while checking the renamed heading description
+  ---
+  duration_ms: 0.123
+  type: 'test'
+  ...
+# Subtest: accepts local fragments, external URLs and angle paths with spaces
+ok 8 - accepts local fragments, external URLs and angle paths with spaces
+  ---
+  duration_ms: 2.061042
+  type: 'test'
+  ...
+# Subtest: reports missing local links with source row and missing canonical files
+ok 9 - reports missing local links with source row and missing canonical files
+  ---
+  duration_ms: 0.69225
+  type: 'test'
+  ...
+# Subtest: ignores fenced examples and checks skill navigation
+ok 10 - ignores fenced examples and checks skill navigation
+  ---
+  duration_ms: 1.271083
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 70.343542

@@ -1,0 +1,57 @@
+{
+  "status": "30-minute-editing-passed-run-finalization-failed-file-verified-followup",
+  "runnerPid": 94957,
+  "execSession": 30074,
+  "relayPid": 92440,
+  "relaySession": 69156,
+  "testProjectId": "android-soak-1793092007559",
+  "durationMs": 1800000,
+  "runDirectory": ".cache/phone-soak-20261027-reconnected",
+  "previousRun": "../phone-soak-resumed-2026-10-27/checkpoint.json",
+  "guards": [
+    "Chrome foreground and unlocked",
+    "visible local tab",
+    "independent test project",
+    "portrait geometry"
+  ],
+  "completionRequired": [
+    "same process terminal",
+    "30 minute elapsed editing",
+    "actual Android downloaded file matches final project",
+    "all preexisting projects preserved",
+    "original editor restored",
+    "source and out hashes unchanged",
+    "no page errors"
+  ],
+  "notProven": [
+    "30 minute pass",
+    "USB durability",
+    "fullscreen",
+    "all editor completion"
+  ],
+  "terminal": {
+    "status": "failed",
+    "elapsedMs": 1805787,
+    "cycles": 118,
+    "nativeReturns": 12,
+    "message": "Unexpected token 'c', \"cat: /sdca\"... is not valid JSON",
+    "errors": []
+  },
+  "editingEvidence": {
+    "durationMs": 1804501,
+    "cycles": 118,
+    "nativeReturns": 12,
+    "pageErrors": 0,
+    "sourceHashesChanged": 0,
+    "scope": "S25 portrait, windowed, independent copy, scripted edit/switch and RenPy returns; not fullscreen or real IME typing."
+  },
+  "finalizationFailure": "Runner expected .knolstory but Chrome saved .knolstory.json; adb cat error text entered final.knolstory and JSON parse failed. Terminal status remains failed; error file preserved.",
+  "boundedFollowup": {
+    "actualFile": "Android-Editor-Soak-20261027-1793092007559.knolstory.json",
+    "actualBytes": 26859,
+    "wholeProjectEqual": true,
+    "priorWorksEqual": true,
+    "originalEditorAndProjectRestored": true,
+    "filenameAndMimeInvestigation": "../android-file-extension-2026-10-27/checkpoint.json"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-23",
+  "scope": "Return from actualreading to another cut focus; wholeeditorgoalactive",
+  "fixed": [
+    "Preview mismatch fallback finds current multi-cut row/basictextarea rather than obsolete inspectoronly",
+    "Active return doesnotapply previouscut snapshot to differentcurrentcut",
+    "Snapshots kept local whileworkbenchremainsmounted; restoration guarded by active/project/screen context"
+  ],
+  "verification": {
+    "browser": "7passed finalrun:4screenviewports+samecutnative+planning+othercutnative",
+    "otherCut": "Real keyboard advances actual textpages to nextcut, returnfocus currentcut; previousrange notcopied; initialprose unchanged",
+    "types": "Webpassed",
+    "lint": "0errors0warnings related",
+    "build": "Webproduction nativeunchanged"
+  },
+  "limits": [
+    "Nativeothercutcase desktoponly",
+    "Remaining oldpreview-context audio/time/crosschaptercases needmigration",
+    "No fullgoalcompletion"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "ef102deb4906d1ee47d30ff6604b1e169bb8fac91a7d6a23cbb230d697fb1584",
+    "apps/web/components/story-workspace.tsx": "6b7c55f23ed49ca492995be2ce0e401d6e002764afb9f0e4e83ac1eea6b8b04f",
+    "apps/web/components/use-preview-editor-context.ts": "3462d7bc6804dbcc10567dc18afa2de7bb8539b6abe8c6c851a75e58838cead7",
+    "tests/e2e/long-text-context.spec.ts": "07ae900b7aae524706bd47aa10a745d4225e772e5842a435f3c89dba8d738387",
+    "apps/web/out/index.html": "558643e8cb5bc8f77a5442c1e7a8802fc67d84ff3d8a53ce7c06d42aff19b1d2"
+  }
+}

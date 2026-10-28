@@ -14,6 +14,7 @@ import seonnyeoEdits from './reader-edit-seonnyeo.json';
 import onggojibClassic from '../../../tests/fixtures/stories/onggojib-classic.json';
 import onggojibEdits from './reader-edit-onggojib.json';
 import {enhanceExistingStory} from './story-direction';
+import {connectCatalogPerspective} from './catalog-perspective';
 export type ReaderTextEdit=Readonly<{projectId:string;lineId:string;before:string;after:string;reason:string}>;
 export const readerTextEdits:readonly ReaderTextEdit[]=[...first,...second,...rabbitEdits,...heungbuEdits,...seonnyeoEdits,...onggojibEdits];
 // Storage validators may reorder object keys. Array order and every JSON value remain exact.
@@ -51,8 +52,9 @@ export function resolveProvidedCatalogStory(original: StoryProject, stored?: Sto
    return edit&&line.text===edit.before?{...line,text:edit.after}:line;
   })};
   const refined=refineProvidedStory(original);
-  const current=enhanceExistingStory(refined);
-  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,current].map(catalogFingerprint));
+  const enhanced=enhanceExistingStory(refined);
+  const current=connectCatalogPerspective(enhanced);
+  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,current].map(catalogFingerprint));
   versions={known,current};catalogVersions.set(original.id,versions);
  }
  if(stored&&!versions.known.has(catalogFingerprint(stored)))return stored;

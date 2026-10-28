@@ -1,0 +1,53 @@
+{
+  "status": "interrupted-foreground-change-not-stability-pass",
+  "durationMs": 1800000,
+  "runnerPid": 70135,
+  "execSession": 97911,
+  "runDirectory": ".cache/phone-soak-20261027",
+  "testProjectId": "android-soak-1793056988116",
+  "scope": "Physical S25 portrait windowed same final audio-entry/pixel-budget build; independent copied project; edit/basic/text/background/native return; original and preexisting works preserved percycle.",
+  "sourceHashes": ".cache/phone-soak-20261027/tested-source-hashes.json",
+  "stopGuards": [
+    "Chrome foreground",
+    "unlocked",
+    "local tab visible",
+    "same independent active work",
+    "portrait360 width"
+  ],
+  "completionRequired": [
+    "terminal runner status",
+    "30minute elapsed editing",
+    "final Android Download archive equals whole final project",
+    "preexisting projects unchanged",
+    "original actual editor restored",
+    "source hashes unchanged",
+    "error and metrics review"
+  ],
+  "notProven": [
+    "Running process is not completion",
+    "Fullscreen addressbar hiding",
+    "Memory leak resolution",
+    "Whole editor completion"
+  ],
+  "continuation": "This run is terminal. Preserve it; do not resume or call it30minute success. Wait for explicit availability with local Chrome foreground before fresh run. First return original editor or preserve interrupted testcopy. Current phone UI left untouched.",
+  "terminal": {
+    "elapsedMs": 150343,
+    "cycles": 10,
+    "nativeReturns": 1,
+    "pageErrors": [],
+    "reason": "Chrome no longer foreground",
+    "runnerProcessMissingConfirmed": true,
+    "execExitCode": 1
+  },
+  "preservation": {
+    "completedEdits": 10,
+    "wholeExpectedProjectEqual": true,
+    "preexistingWorksEqual": true,
+    "originalWorkPreserved": true,
+    "sourceChanges": [],
+    "readOnlyAfterInterruption": true,
+    "phoneUiNotTouched": true,
+    "finalDeviceDownloadNotAttempted": true,
+    "originalEditorRestorePendingForeground": true
+  }
+}

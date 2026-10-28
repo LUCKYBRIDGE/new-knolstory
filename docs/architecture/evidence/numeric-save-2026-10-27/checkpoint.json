@@ -1,0 +1,35 @@
+{
+  "status": "focused-and-host-journey-passed",
+  "issues": [
+    "Invalid chapter number could trigger a file write of the last valid manuscript.",
+    "Invalid actor opacity did not expose an invalid input to the save shortcut; valid opacity or chapter number commit remounted the input and lost focus."
+  ],
+  "change": "Expose validation errors through input aria-invalid and descriptions. Keep numeric controls mounted across valid commits; synchronize external authored value changes without overwriting ordinary local drafts.",
+  "red": [
+    ".cache/chapter-number-save-20261027-red.log",
+    ".cache/opacity-save-20261027-red.log"
+  ],
+  "green": [
+    ".cache/chapter-number-save-20261027-green.log",
+    ".cache/opacity-save-20261027-green.log",
+    ".cache/numeric-save-20261027-journey.log"
+  ],
+  "scope": "Mock work-file handles verify writes/bytes, rejected input preserves manuscript, corrected chapter2 and opacity75 persist with focus. Chapter-switch isolation and chapter identity/ordering/links remain intact. UI-authored conditional work host file save/reopen still passes.",
+  "checks": [
+    "web build",
+    "web typecheck",
+    "focused ESLint",
+    "read-only opacity ownership review"
+  ],
+  "limits": [
+    "Mock file handle does not prove actual OS file picker.",
+    "No physical device or all numeric fields claim.",
+    "Earlier native and phone soak evidence predates this source change."
+  ],
+  "hashes": {
+    "apps/web/components/story-actor-appearance-controls.tsx": "ba68a295082ab0df1f10f5ddaf9a58f8e10ffe12cb980d023dbe1a34d950a40e",
+    "apps/web/components/story-chapter-settings.tsx": "b495aa63177a61861bb3fc720b3854b34109973cc30c9491184ae9605ec96d8f",
+    "tests/e2e/keyboard-writing-focus.spec.ts": "b86e5e6e14a4eb0592c5e88ab4dfec8ab908dd29cec3500b0ae1233e8f70e826",
+    "tests/e2e/chapter-settings-access.spec.ts": "4ea770c6a2104a12be73c39aba250b728b36ca65913b1b240601d24caf20ff69"
+  }
+}

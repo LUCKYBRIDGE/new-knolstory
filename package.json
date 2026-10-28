@@ -27,7 +27,9 @@
     "docs:check": "node scripts/check-project-docs.mjs && node scripts/check-product-language.mjs",
     "test:docs": "node --test scripts/tests/project-docs.test.mjs scripts/tests/product-language.test.mjs",
     "test:service-audio": "python3 scripts/check-service-audio.py",
-    "typecheck:server": "tsc -p server/tsconfig.json"
+    "typecheck:server": "tsc -p server/tsconfig.json",
+    "test:office-roundtrip": "vitest run --config packages/compatibility/tests/office-roundtrip.vitest.config.ts",
+    "test:e2e:office": "playwright test --config packages/compatibility/tests/office-browser.playwright.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
@@ -36,7 +38,7 @@
     "@vitest/coverage-v8": "4.1.11",
     "axe-core": "4.14.0",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.3.8",
+    "eslint-config-next": "16.4.1",
     "pngjs": "7.0.0",
     "turbo": "2.11.7",
     "typescript": "5.9.3",

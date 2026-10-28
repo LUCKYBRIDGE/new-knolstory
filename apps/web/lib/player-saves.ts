@@ -1,5 +1,5 @@
 import {cutLabel,type StoryProject} from '@knolstory/story-domain';
-import {restorePlayback,type PlaybackState} from '@knolstory/runtime-core';
+import {restorePlayback,playbackLog,type PlaybackState} from '@knolstory/runtime-core';
 export const PLAYER_SAVES_KEY='knolstory-player-v1';
 export type PlayerSlotId='auto'|'quick'|number;
 export type PlayerThumbnail=Readonly<{dataUrl:string;width:number;height:number}>;
@@ -54,6 +54,7 @@ function validateSlot(value:unknown):value is PlayerSlot{
  if(v.dialoguePosition!==undefined&&!validDialoguePosition(v.dialoguePosition))return false;
  if(v.thumbnail!==undefined&&!isPlayerThumbnail(v.thumbnail))return false;
  if(v.summary!==undefined){const summary=v.summary as Record<string,unknown>;if(!summary||typeof summary!=='object'||typeof summary.location!=='string'||typeof summary.speaker!=='string'||typeof summary.text!=='string')return false;}
+ if(s?.effectStep!==undefined&&(!Number.isSafeInteger(s.effectStep)||(s.effectStep as number)<0||(s.effectStep as number)>3||s.status==='ended'))return false;
  if(s?.choiceHistory!==undefined&&(!Array.isArray(s.choiceHistory)||s.choiceHistory.some(record=>!record||typeof record!=='object'||!Number.isInteger(record.pathIndex)||record.pathIndex<0||!Array.isArray(s.path)||record.pathIndex>=s.path.length||typeof record.choiceId!=='string')))return false;
  return typeof v.projectId==='string'&&typeof v.projectTitle==='string'&&typeof v.fingerprint==='string'&&typeof v.savedAt==='string'&&Number.isFinite(Date.parse(v.savedAt))&&!!s&&typeof s==='object'&&Array.isArray(s.path)&&s.path.length<=10000&&s.path.every(x=>typeof x==='string')&&(s.lineId===null||typeof s.lineId==='string')&&['reading','choice','ended','pending','approval-required'].some(status=>s.status===status);
 }
@@ -74,9 +75,10 @@ export function savePlayerSlot(saves:PlayerSaves,project:StoryProject,state:Play
  if(thumbnail!==undefined&&!isPlayerThumbnail(thumbnail))throw Error('저장 화면 이미지를 확인해 주세요.');
  if(!validSlotId(id)||!Number.isFinite(Date.parse(savedAt)))throw Error('저장 위치를 확인해 주세요.');
  const playback=restorePlayback(project,state);
- const line=project.lines.find(item=>item.id===(playback.lineId??playback.path.at(-1))),chapter=project.chapters.find(item=>item.id===line?.chapterId);
+ const entry=playbackLog(project,playback,playback.lineId?{lineId:playback.lineId,endOffset:20000}:null).at(-1);
+ const line=project.lines.find(item=>item.id===entry?.lineId),chapter=project.chapters.find(item=>item.id===entry?.chapterId);
  const position=normalizeDialoguePosition(project,playback,dialoguePosition);
- const slot:PlayerSlot={projectId:project.id,projectTitle:project.title,fingerprint:projectPlaybackFingerprint(project),savedAt,playback,...(position?{dialoguePosition:position}:{}),...(thumbnail?{thumbnail}:{}),summary:{location:chapter&&line?cutLabel(chapter,line):'이야기 끝',speaker:line?.speakerName||'해설',text:(line?.text||'빈 글').slice(0,1000)}};
+ const slot:PlayerSlot={projectId:project.id,projectTitle:project.title,fingerprint:projectPlaybackFingerprint(project),savedAt,playback,...(position?{dialoguePosition:position}:{}),...(thumbnail?{thumbnail}:{}),summary:{location:chapter&&line?cutLabel(chapter,line):'이야기 끝',speaker:entry?.speaker||'해설',text:(entry?.text??'이야기 끝').slice(0,1000)}};
  return {...saves,version:3,works:{...saves.works,[project.id]:{...saves.works[project.id],[String(id)]:slot}}};
 }
 export function writePlayerSaves(storage:Pick<Storage,'setItem'>,saves:PlayerSaves):void{storage.setItem(PLAYER_SAVES_KEY,JSON.stringify(saves));}

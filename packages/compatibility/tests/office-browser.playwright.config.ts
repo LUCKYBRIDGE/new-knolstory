@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'../../../tests/e2e',testMatch:'external-workbook-import.spec.ts',workers:1,timeout:150000,outputDir:`../../../.cache/office-browser-${Date.now()}`,webServer:{cwd:'../../..',command:'python3 scripts/serve-test-build.py --port 15401',url:'http://127.0.0.1:15401',reuseExistingServer:true,stdout:'ignore',stderr:'ignore'},use:{baseURL:'http://127.0.0.1:15401',browserName:'chromium',actionTimeout:12000,trace:'retain-on-failure'}});

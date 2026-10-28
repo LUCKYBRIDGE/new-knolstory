@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/sound-split.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/sound-split.test.ts [ apps/web/lib/sound-split.test.ts ]
+Error: Cannot find module './sound-split' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/sound-split.test.ts
+ ❯ apps/web/lib/sound-split.test.ts:2:1
+      1| import {it,expect} from 'vitest';
+      2| import {splitSoundCue} from './sound-split';
+       | ^
+      3| const cue={id:'s',assetId:'audio:sound:chime',volume:.4,sourceStartMs:…
+      4| it('splits source ranges immutably while keeping identity, exact condi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  19:35:26
+   Duration  128ms (transform 11ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

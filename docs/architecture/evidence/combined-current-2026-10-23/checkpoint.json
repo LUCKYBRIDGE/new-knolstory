@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-23",
+  "scope": "Current combined editor end-to-end after space/pinch source integration",
+  "verification": {
+    "test": "combined-editing.spec.ts:1 passed16.3s",
+    "workflow": [
+      "Explicit audio/direction opt-in",
+      "Chapter source settings, exact effects and range/source edits",
+      "Range drag end/move and scoped undo",
+      "Seconds-axis start/end/duration/guide operations and undo",
+      "Viewport layouts1280x800,390x844,844x390",
+      "Actual RenPy rendered revision acknowledgements",
+      "Full manuscript fields and chapters preserved",
+      "Actual .knolstory export and fresh-context reopen equality",
+      "Read mode and edit return, reload, advanced feature closing without data deletion"
+    ],
+    "limitations": [
+      "Pinch input itself uses separate focused evidence",
+      "Not a long-duration physical-device test",
+      "Not external spreadsheet application editing",
+      "No whole editor/product completion"
+    ],
+    "docs": "docs:check and test:docs10 passed; git diff --check passed"
+  },
+  "sourceReview": "WorkspaceManagement and DESIGN2026-10-20 explicit home-button exception agree. Contradictory older settings-only wording clarified without removing intended button.",
+  "environment": {
+    "adb": "not installed/on PATH",
+    "simctl": "xcrun cannot locate utility",
+    "previewBefore": "15401 not listening after test-owned server termination",
+    "previewAfter": "Owned loopback server exec session73035 and HTTP200 verified at15401; running at this checkpoint, not permanent service guarantee"
+  },
+  "artifacts": ".cache/combined-current-20261023",
+  "captures": [
+    "combined-844.png",
+    "time-1280.png",
+    "time-390.png",
+    "combined-1280.png",
+    "time-844.png",
+    "combined-390.png"
+  ],
+  "visualReview": "Root viewed combined-390.png: actual native dialogue visible, independently scrollable timeline and details, no horizontal overflow; blank authored stage is fixture content."
+}

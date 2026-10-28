@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-24",
+  "scope": "Short phone landscape advanced task availability",
+  "failure": "At748x259 equivalent browser viewport, advanced task row area4..16px; phone numeric keyboard41px evidence retained separately from2026-10-23",
+  "change": "Only phone landscape height<=440px uses basic read-only review with cut arrows. Requested screen/preferences preserved; portrait restores chosen task. Advanced options explain portrait editing. Defer fallback until active IME composition ends.",
+  "verification": {
+    "red": "New task-restoration test failed before fix",
+    "green": "14 passed19.2s: keyboard/body/menu/cover/audio and phone/tablet task screens",
+    "layout": "748x259 body input height173.41px after fix",
+    "build": "Web build:source passed",
+    "types": "Web TypeScript passed",
+    "review": "Separate read-only reviewer found no actionable defect",
+    "actualDevice": "Actual S25 landscape748x259 angle90, textarea173.40px, readonly, previous/next return without keyboard, advanced options disabled and entire project equal. Portrait return awaits user rotation. User chose to keep landscape; no further rotation requested.",
+    "composition": "Additional focused test passed1.8s: rotation waits for compositionend, then parks; portrait restores original text task and content",
+    "docs": "57 active docs/227 current surfaces,0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Separate preparation menus/dialogs not governed by this workbench restriction",
+    "Native playback is not proven by screenshots with runtime requests blocked",
+    "Overall editing goal remains active"
+  ]
+}

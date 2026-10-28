@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-22",
+  "scope": "Current-cut finite sequence clip timeline edit and cross-device official reference; overall editor goal active",
+  "implemented": [
+    "Exact ID clip selection, source front/end trim and contiguous insertion reorder",
+    "Guide split/pickup and source-number alternative",
+    "Optional drag/snap with Shift bypass, stale cue guard and view-change cancellation",
+    "Scoped channel undo preserving subsequent text/other channel changes",
+    "Next pointer selection works after a drag even if generated click was absent",
+    "Keyboard Enter selection after drag bypasses pointer click suppression; RED reproduced and GREEN browser checked"
+  ],
+  "verification": {
+    "unitTests": 27,
+    "unitFiles": 4,
+    "newHelperCoverage": {
+      "statements": 100,
+      "branches": 94.87,
+      "functions": 100,
+      "lines": 100
+    },
+    "newBrowserFlows": 2,
+    "existingBrowserRegressionFlows": 3,
+    "viewports": [
+      [
+        1280,
+        800
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        320,
+        568
+      ]
+    ],
+    "touch": "Chromium emulated touch: clip tap, guide split, number trim, undo; no physical-device claim",
+    "realFile": "timeline-sequence.knolstory exported, whole project parsed and equal, imported in fresh browser context",
+    "build": "Web source production build; native unchanged and previous native evidence retained",
+    "typecheck": "Web tsc noEmit",
+    "lint": "focused source/test eslint",
+    "keyboard": "Drag reorder -> focus another clip -> Enter selects its exact ID",
+    "docs": "57 active links +218 current terminology surfaces;10 doc tests pass"
+  },
+  "research": "Official CapCut mobile/web/desktop, PowerPoint phone/tablet timing, Premiere mobile, Final Cut Pro iPad, Clipchamp web. See DESIGN.md current device reference section. No external app interaction claim.",
+  "limitations": [
+    "No physical touch device/software keyboard validation",
+    "No pinch zoom implementation claimed",
+    "Sequence origin cut move/cut-boundary split remains blocked",
+    "No fixed reader-duration inference, original audio file rewriting, or new native contract",
+    "Whole editor and product completion remains active"
+  ],
+  "priorEvidence": "../music-sequence-2026-10-22/checkpoint.json"
+}

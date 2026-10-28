@@ -1,0 +1,169 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-21T16:47:49.572Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "manuscript-choice",
+      "title": "새 이야기",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "audio": {
+            "music": {
+              "action": "play",
+              "assetId": "audio:music:night",
+              "loop": true
+            }
+          },
+          "id": "ch",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "a",
+          "chapterId": "ch",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "앞 문장. ",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "65be66dd-6fa8-484c-8f85-c5871053aced",
+          "chapterId": "ch",
+          "order": 2,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "뒤 문장.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "yes",
+                "label": "첫 번째 선택",
+                "targetLineId": "b"
+              },
+              {
+                "id": "no",
+                "label": "두 번째 선택",
+                "targetLineId": "b"
+              }
+            ]
+          }
+        },
+        {
+          "id": "b",
+          "chapterId": "ch",
+          "order": 3,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "같은 컷, 서로 다른 선택 조건",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "music": {
+              "action": "play",
+              "assetId": "audio:music:forest",
+              "loop": true,
+              "sourceStartMs": 200,
+              "sourceEndMs": 1800,
+              "branchCondition": {
+                "sourceLineId": "65be66dd-6fa8-484c-8f85-c5871053aced",
+                "choiceId": "yes"
+              }
+            }
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "presentation": {
+            "effects": [
+              {
+                "branchCondition": {
+                  "choiceId": "yes",
+                  "sourceLineId": "65be66dd-6fa8-484c-8f85-c5871053aced"
+                },
+                "id": "flash",
+                "type": "flash"
+              }
+            ]
+          }
+        }
+      ],
+      "updatedAt": "2026-10-21T16:47:45.879Z"
+    }
+  },
+  "audioResources": []
+}

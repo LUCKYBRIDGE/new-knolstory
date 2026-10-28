@@ -1,0 +1,864 @@
+{
+  "cover": {
+    "author": "",
+    "subtitle": "",
+    "authorNote": "",
+    "layout": "picture",
+    "theme": "night",
+    "font": "serif",
+    "titlePosition": "top",
+    "authorPosition": "bottom",
+    "align": "center",
+    "titleSize": 34,
+    "titleColor": "",
+    "backgroundId": "seonnyeo.background.poster-art",
+    "characterId": "",
+    "characterPosition": "center",
+    "composition": {
+      "version": 1,
+      "backgroundFit": "fill",
+      "backgroundX": 50,
+      "backgroundY": 50,
+      "backgroundZoom": 1,
+      "characterX": 50,
+      "characterBottom": 20,
+      "characterScale": 1,
+      "titleX": 50,
+      "titleY": 6,
+      "titleWidth": 78,
+      "showEdition": false,
+      "textPanel": "auto"
+    }
+  },
+  "id": "android-engine-diagnostic-1793009852228",
+  "title": "Android engine diagnostic",
+  "description": "선택, 신뢰, 관계와 두 고향을 다루는 이야기",
+  "planning": {
+    "premise": "",
+    "structureMode": "five",
+    "material": "",
+    "theme": "",
+    "mainCharacter": "",
+    "mainGoal": "",
+    "centralProblem": "",
+    "stakes": "",
+    "endingChange": "",
+    "opening": "",
+    "middle": "",
+    "crisis": "",
+    "climax": "",
+    "ending": "",
+    "characterNotes": "",
+    "worldNotes": "",
+    "mood": "",
+    "openQuestions": "",
+    "freeNotes": "콘텐츠 기준: docs/review-main-004-seonnyeo-namukkun/01-통합-상세대본.md\n선택 기억을 기존 컷 분기로 풀어낸 편집본입니다. 같은 장면의 조건별 변형이 별도 장으로 표시될 수 있습니다.\n장면별 배경과 인물 이미지를 내장 자산 ID로 연결했습니다. 이 이미지 팩이 등록된 story-maker에서 열 수 있습니다. Stage Composition v1으로 같은 공간의 인물과 선택지 무대를 보존합니다."
+  },
+  "creativeMemos": [],
+  "sheetUrl": "",
+  "sheetEditable": false,
+  "speakerNames": [
+    "선녀 1",
+    "선녀",
+    "선녀 2",
+    "나무꾼",
+    "나무꾼의 생각",
+    "선녀의 기억",
+    "선녀의 과거 목소리",
+    "나무꾼의 과거 목소리"
+  ],
+  "chapters": [
+    {
+      "id": "polish",
+      "order": 1,
+      "title": "넓은 무대의 하루",
+      "summary": "",
+      "purpose": "",
+      "mood": "",
+      "keyEvents": "",
+      "nextChapterIdea": "",
+      "storyStageKeys": [],
+      "chapterSpeakerNames": [
+        "선녀 1",
+        "선녀",
+        "선녀 2"
+      ],
+      "characterAssetIds": [],
+      "backgroundAssetIds": [],
+      "backgroundId": "",
+      "leftAssetId": "",
+      "rightAssetId": ""
+    }
+  ],
+  "lines": [
+    {
+      "id": "phone-soak-cut-0",
+      "chapterId": "polish",
+      "order": 1,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "1컷 장시간 검사 원고. 수정 회차 97.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-1"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-1",
+      "chapterId": "polish",
+      "order": 2,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "2컷 장시간 검사 원고. 수정 회차 98.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-2"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-2",
+      "chapterId": "polish",
+      "order": 3,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "3컷 장시간 검사 원고. 수정 회차 99.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-3"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-3",
+      "chapterId": "polish",
+      "order": 4,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "4컷 장시간 검사 원고. 수정 회차 100.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-4"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-4",
+      "chapterId": "polish",
+      "order": 5,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "5컷 장시간 검사 원고. 수정 회차 101.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-5"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-5",
+      "chapterId": "polish",
+      "order": 6,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "6컷 장시간 검사 원고. 수정 회차 102.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-6"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-6",
+      "chapterId": "polish",
+      "order": 7,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "7컷 장시간 검사 원고. 수정 회차 103.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-7"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-7",
+      "chapterId": "polish",
+      "order": 8,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "8컷 장시간 검사 원고. 수정 회차 104.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-8"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-8",
+      "chapterId": "polish",
+      "order": 9,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "9컷 장시간 검사 원고. 수정 회차 105.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-9"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-9",
+      "chapterId": "polish",
+      "order": 10,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "10컷 장시간 검사 원고. 수정 회차 106.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-10"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-10",
+      "chapterId": "polish",
+      "order": 11,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "11컷 장시간 검사 원고. 수정 회차 95.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": "phone-soak-cut-11"
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "phone-soak-cut-11",
+      "chapterId": "polish",
+      "order": 12,
+      "type": "dialogue",
+      "speaker": "left",
+      "speakerName": "선녀",
+      "text": "12컷 장시간 검사 원고. 수정 회차 96.",
+      "leftAssetId": "seonnyeo.character.M01-base",
+      "rightAssetId": "seonnyeo.character.M03-neutral",
+      "backgroundId": "seonnyeo.background.BG01-valley-day",
+      "inheritActors": false,
+      "purposeNote": "",
+      "emotionNote": "",
+      "directionNote": "원전 장면: P1\n원전 컷: P1-1\n배경: valley",
+      "audio": {
+        "music": {
+          "action": "play",
+          "assetId": "audio:music:forest",
+          "volume": 0.7,
+          "loop": true,
+          "fadeInMs": 200
+        }
+      },
+      "stageComposition": {
+        "leftActors": [
+          {
+            "key": "M01",
+            "characterKey": "M01",
+            "assetId": "seonnyeo.character.M01-base",
+            "position": "center",
+            "positionOrder": 1,
+            "scaleMultiplier": 1.26,
+            "xAnchor": 70
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "M03",
+            "characterKey": "M03",
+            "assetId": "seonnyeo.character.M03-neutral",
+            "scaleMultiplier": 1.31
+          }
+        ]
+      },
+      "flow": {
+        "type": "goto",
+        "targetLineId": null
+      },
+      "presentation": {
+        "backgroundFit": "contain",
+        "backgroundFocal": {
+          "x": 0.79,
+          "y": 0.5
+        },
+        "effects": [
+          {
+            "durationMs": 800,
+            "intensity": "normal",
+            "type": "shake"
+          }
+        ]
+      }
+    }
+  ],
+  "updatedAt": "2026-10-26T09:58:46.489Z"
+}

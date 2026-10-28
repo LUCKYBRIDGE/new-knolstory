@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-24",
+  "scope": "Multi-cut text editor explicit current-cut selection and cursor ownership",
+  "failure": "At1280x800 and800x1100, focusing/selecting first textarea then choosing19th row restored first textarea focus and old scroll. New tests failed on first input still focused.",
+  "change": "Track prior project/current-cut selection. When current cut changes, skip cursor/scroll snapshot belonging to another cut. Preserve same-current-cut task-screen cursor restoration and preview-return guards.",
+  "verification": {
+    "green": "3 passed10.9s: desktop/tablet selected-row focus, target visible, old text protected from subsequent typing, only selected cut changes;120cut long manuscript screen/cursor/file preservation",
+    "red": "2 new desktop/tablet cases failed before fix",
+    "build": "Web build:source passed",
+    "types": "Web TypeScript passed",
+    "lint": "Focused ESLint passed",
+    "review": "Separate read-only review found no additional defect",
+    "preview": "2 passed8.2s: actual native same-cut text cursor/sound-purpose return and later-cut return without old undo/cursor",
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Physical phone unchanged in landscape fullscreen",
+    "Does not certify all old task-editor viewport assumptions or whole editor completion"
+  ]
+}

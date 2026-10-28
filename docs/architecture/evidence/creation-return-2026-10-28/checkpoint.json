@@ -1,0 +1,34 @@
+{
+  "status": "focused-host-and-native-passed",
+  "change": "Successful settings cut/chapter insertion closes actual details and state, focuses exact new visible editable basic cut; dedicated editor or readonly landscape returns focus to settings summary. Failure returns no ID and retains menu.",
+  "redLogs": [
+    ".cache/cut-add-20261028-red.log",
+    ".cache/chapter-add-20261028-red.log"
+  ],
+  "intermediate": {
+    "log": ".cache/cut-add-20261028-final.log",
+    "result": "2 passed,3 failed",
+    "findings": [
+      "State-only details close raced with toggle, fixed by actual details close plus state.",
+      "Landscape test lacked coarse-pointer phone context; now explicitly supplies touch and screen geometry."
+    ]
+  },
+  "cutOnlyLog": ".cache/cut-add-20261028-v2.log",
+  "hostLog": ".cache/cut-add-20261028-v3.log",
+  "hostResult": "5 passed in one run; title composition, integrated author journey, cut return1280/390/844 including background screen and desktop chapter addition, exact exported cut IDs/text and chapter count.",
+  "nativeLog": ".cache/cut-add-20261028-native.log",
+  "nativeResult": "1 passed; UI-authored and reopened work, actual native choice clicks for score2 conditional scene and score0 skip then common ending and editor return.",
+  "build": ".cache/cut-add-20261028-build-v3.log",
+  "typecheck": ".cache/cut-add-20261028-types-final.log",
+  "lint": ".cache/cut-add-20261028-lint-final.log",
+  "limits": [
+    "Screen dimensions and touch context are browser simulation, not new physical keyboard or device proof.",
+    "Failed insertion menu retention is source-reviewed, not failure-injected by this new test.",
+    "No new coverage percentage, complete editor readiness, actual novice research, OS picker or deployment claim."
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-workspace.tsx": "0218027181860b82741c1136a5f2b03e602ad3be45b526660d822351fb007a27",
+    "tests/e2e/create-writing.spec.ts": "d1051b098f6c6e28f9bb7c25cb7928c746c1b22d318874017412e8e607d03e50",
+    "tests/e2e/authoring-journey.spec.ts": "91da028fcf8fc9c68dd111b768cff052da48dbdef172bb3f1bd5c98b350bd832"
+  }
+}

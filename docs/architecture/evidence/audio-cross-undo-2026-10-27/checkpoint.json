@@ -1,0 +1,28 @@
+{
+  "status": "focused-and-host-journey-passed",
+  "issue": "Effect sound detail volume undo overwrote later start-time edits made in the integrated timeline.",
+  "red": ".cache/audio-cross-20261027-red.log",
+  "change": "Store after state per audio channel; compare only that channel structurally before restoring. Reject stale undo without changing project, preserve other channels, retain undo for later use after timeline rollback.",
+  "green": ".cache/audio-cross-20261027-green.log",
+  "unitTests": 5,
+  "checks": [
+    "web build",
+    "web typecheck",
+    "focused ESLint",
+    "independent read-only review"
+  ],
+  "scope": "Actual effect-sound detail→timeline→stale undo rejection, entire manuscript unchanged, timeline undo then normal detail undo. Sequence order protection verified by unit test.",
+  "limits": [
+    "Not physical-device testing",
+    "Sequence trim and all audio authoring paths not newly covered",
+    "Earlier phone soak predates this source change"
+  ],
+  "hashes": {
+    "apps/web/components/story-audio-controls.tsx": "6ca12e0c5357757f482f24d5ec87287fd7f7a79aeff3e5f06f244338f138c5cc",
+    "apps/web/lib/audio-part-undo.ts": "a3c61f7ec5bc0e3482c261f89e07266ac59865eba7e8ac07d21ca286b63924cb",
+    "apps/web/lib/audio-part-undo.test.ts": "a24377bb850204c2401dd0d9f89b51a9e98c5f24fc0962ee7b07af37b65cc5d6",
+    "tests/e2e/combined-sound-time.spec.ts": "ab194f085c1f801379ec69bb86f7319ab44e8438217ee965a716f6c7e1ba5fd4"
+  },
+  "finalRun": ".cache/audio-cross-20261027-final.log",
+  "finalRunScope": "Sound detail/timeline stale undo and UI-authored scored conditional work with primary local fallback file saving/fresh-context import, two host tests."
+}

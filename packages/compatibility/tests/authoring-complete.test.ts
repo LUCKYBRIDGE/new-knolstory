@@ -28,6 +28,9 @@ function fieldMapping(path:string,format:'knolstory'|'shortstory'){
  }else if(path.includes('.cover.composition.')){ownerModule='cover';tables=['coverComposition'];}
  else if(path.startsWith('$.cover.')){ownerModule=format==='shortstory'?'index':'cover';tables=[format==='shortstory'?'shortProject':'cover'];}
  else if(format==='shortstory'){ownerModule='index';tables=[path.startsWith('$.pages[]')?'pages':'shortProject'];}
+ else if(path.includes('.branchCondition.terms')||path.includes('.branchCondition.mode')){ownerModule='branch';tables=['branchConditionTerms'];}
+ else if(path.includes('.visibility.')){ownerModule='visibility';tables=['sceneVisibility','sceneVisibilityScores','sceneVisibilityChoices'];}
+ else if(path.includes('.textVariants[]')){ownerModule='text-variants';tables=['textVariants','textVariantConditions'];}
  else if(path.includes('.audio.')){ownerModule='audio';tables=[path.includes('.sounds[]')?'audioSounds':'audioTracks'];}
  else if(path.includes('.stageComposition.')){ownerModule='stage';tables=[path.includes('Actors[]')?'stageActors':path.includes('speakerActorKeys[]')?'stageSpeakers':'stages'];}
  else if(path.includes('.presentation.')){ownerModule='presentation';tables=[path.includes('.effects[]')?'presentationEffects':'presentations'];}

@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:96430) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 390x320 (3.6s)
+
+
+  1) tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 390x320 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      12 |  const original=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+      13 |  await select.focus();await select.press('Tab');await expect(favorite).toBeFocused();const wasFavorite=await favorite.getAttribute('aria-pressed');await favorite.press('Space');await expect(favorite).toHaveAttribute('aria-pressed',wasFavorite==='true'?'false':'true');await expect(select).toHaveAttribute('aria-pressed','false');
+    > 14 |  await reachable(favorite);const before=await select.getAttribute('aria-pressed');await favorite.click();await expect(select).toHaveAttribute('aria-pressed',before!);await select.click();await reachable(picker.getByRole('button',{name:'선택한 이미지 적용',exact:true}));await reachable(picker.getByRole('button',{name:'이미지 선택 닫기',exact:true}));expect(await picker.getByRole('button',{name:'선택한 이미지 적용',exact:true}).evaluate(node=>{const r=node.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;})).toBe(true);await page.screenshot({path:info.outputPath('image-controls.png')});await picker.getByRole('button',{name:'취소',exact:true}).click();await expect(image).toBeFocused();expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(original);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^
+      15 |  await image.click();const applyId=await picker.locator('[data-asset-id]').first().getAttribute('data-asset-id');await picker.locator('[data-asset-id]').first().click();await picker.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(image).toHaveAttribute('data-asset-value',applyId!);await image.click();await page.keyboard.press('Escape');await expect(image).toBeFocused();
+      16 |  const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('direction');await page.getByText('1컷 연출 수정',{exact:true}).click();const field=page.getByLabel('화면 전환',{exact:true});await field.selectOption('perspective-blackout');const dialog=page.getByRole('dialog',{name:'시점 전환',exact:true});await dialog.getByText('설명',{exact:true}).click();await dialog.getByRole('button',{name:'팁',exact:true}).click();await reachable(dialog.getByRole('button',{name:'사용',exact:true}));await reachable(dialog.getByRole('button',{name:'연출 선택 닫기',exact:true}));expect(await dialog.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);await page.screenshot({path:info.outputPath('direction-controls.png')});await page.keyboard.press('Escape');await expect(field).toBeFocused();await expect(field).toHaveValue('');
+      17 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-popup-overlap.spec.ts:14:504
+
+    Error Context: test-results-popup-footer-red/editor-popup-overlap-image-938fe-pendent-controls-at-390x320/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-popup-footer-red/editor-popup-overlap-image-938fe-pendent-controls-at-390x320/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-popup-footer-red/editor-popup-overlap-image-938fe-pendent-controls-at-390x320/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editor-popup-overlap.spec.ts:7:211 › image and direction dialogs retain independent controls at 390x320 

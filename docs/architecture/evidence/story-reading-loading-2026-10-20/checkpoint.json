@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-20",
+  "scope": "책 읽기/페이지 넘기기 연속 이미지 로딩",
+  "status": "local-focused-verified",
+  "asset": {
+    "path": "apps/web/public/assets/loading/story-reading-v2.webp",
+    "bytes": 187108,
+    "sha256": "947cd4fe4543195fcae9f98e1fd99ebc7b70cc31a7c3c6ef1f6287fc07da519c",
+    "width": 480,
+    "height": 440,
+    "frames": 4,
+    "durationsMs": [
+      1800,
+      180,
+      220,
+      1200
+    ],
+    "loop": "infinite",
+    "canvasBackgroundAlpha": 0,
+    "framesCheck": [
+      {
+        "index": 0,
+        "transparentCorner": true
+      },
+      {
+        "index": 1,
+        "transparentCorner": true
+      },
+      {
+        "index": 2,
+        "transparentCorner": true
+      },
+      {
+        "index": 3,
+        "transparentCorner": true
+      }
+    ],
+    "static": {
+      "path": "apps/web/public/assets/loading/story-reading-still-v1.webp",
+      "bytes": 46154,
+      "sha256": "99d114c17af8be53a262a15f856bfb2117ae58993cba88a6a143c6580aad53f6"
+    }
+  },
+  "implementation": [
+    "Web과 native 부트에서 같은 animated WebP를 사용",
+    "동작 줄이기는 picture media source가 실제 정지 첫 프레임 선택",
+    "앞선 CSS 들썩임 제거; 페이지 변화는 실제 연속 프레임",
+    "로딩 안내·준비 완료·엔진 progress/input 계약 유지",
+    "그림 한 URL 재사용; 반복할 때 재다운로드 없음"
+  ],
+  "preservation": [
+    "원본 토끼/자라 Asset ID·원고·StoryDocument·이전 정적 캐릭터·이전 증거 보존",
+    "이전 source checkpoint 덮어쓰지 않음"
+  ],
+  "verification": {
+    "runtimeBuild": "passed",
+    "webBuild": "passed",
+    "pythonTests": 3,
+    "lint": "passed",
+    "browser": {
+      "passed": 3,
+      "durationSeconds": 10.8,
+      "viewports": [
+        "1280x800",
+        "390x844",
+        "844x390"
+      ],
+      "checks": [
+        "actual frame pixels change during reading motion",
+        "real reduced-motion static source selected",
+        "bounded layout in Web preview and native boot",
+        "real engine progress value/max retained",
+        "boot completes and native read input works",
+        "optional tip fetch failure still starts engine",
+        "authored project remains identical"
+      ]
+    },
+    "typecheck": "passed",
+    "docsTests": 10
+  },
+  "limits": [
+    "데스크톱 Chromium viewport emulation; 실제 물리기기/스크린리더·배포·전체 출시 완료 아님"
+  ],
+  "placement": {
+    "web": "중앙; 작은 편집 미리보기에서는 캐릭터 왼쪽·문구 오른쪽",
+    "native": "centered above brand/copy; short landscape two columns",
+    "motion": "read 1.8s, page lift0.18s, turn0.22s, read1.2s; loop3.4s; aligned seated position"
+  },
+  "sourceHashes": {
+    "apps/web/components/story-loading.tsx": "1265f2390e84c9aef0644e4a68937a07e9d3221eac2828254937a07bbde3b12e",
+    "apps/web/components/story-loading.module.css": "7c22967d52f95e9434476742ff69a3619c1cbc7975467c88e3f3ca8fea332814",
+    "spikes/renpy-web/loading.py": "df5c54a912cd8d005b32229e9dbb4b3247621d6d18ef0bc1b7fa0716f9a049f2",
+    "spikes/renpy-web/loading.css": "43e5ed9c181769597f8ae59557f9080980612dcd1bd725b85c724185e3b931e0",
+    "spikes/renpy-web/loading.js": "d0e792e475ce27de7f644c44a1521187cecb61c3d83eafb98b786eeb961ee9df",
+    "apps/web/public/loading-stories.json": "f0e4a16c74a7e5a99189eca1a229e58d3afbaa9999f04acab50f79c12f4cdc89"
+  }
+}

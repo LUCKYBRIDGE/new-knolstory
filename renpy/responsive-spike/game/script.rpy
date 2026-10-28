@@ -53,7 +53,7 @@ init python:
         value = scene if scene is not None else knol_scene
         audio = value.get("audio", {}) if value else {}
         return bool(value and value.get("mode") == "play" and not knol_audio_unlocked and
-            (audio.get("music", {}).get("action") == "play" or audio.get("ambience", {}).get("action") == "play" or audio.get("sounds")))
+            (audio.get("music", {}).get("action") in ("play", "sequence") or audio.get("ambience", {}).get("action") in ("play", "sequence") or audio.get("sounds")))
 
     def knol_unlock_audio():
         global knol_audio_unlocked, knol_presentation_started, knol_audio_started, knol_pending
@@ -62,7 +62,7 @@ init python:
         knol_audio_unlocked = True
         if knol_scene and knol_scene.get("mode") == "play":
             knol_presentation_started = time.monotonic()
-            knol_apply_audio(knol_scene, True)
+            knol_apply_audio(knol_scene, True, knol_presentation_started)
             knol_start_native_transition(knol_scene)
             knol_audio_started = knol_presentation_started
             knol_sync_effect_clocks(knol_scene, True)
@@ -211,6 +211,8 @@ init python:
         return {"x": 0, "y": height - metrics["panelHeight"], "width": width, "height": metrics["panelHeight"]}
 
     def knol_dialogue_page_evidence(scene):
+        if scene.get("transitionOnly"):
+            return {"index": 0, "count": 1, "offset": 0, "endOffset": 0}
         pages = knol_dialogue_metrics(scene)["pages"]
         return {"index": knol_text_page, "count": len(pages), "offset": knol_text_offset,
             "endOffset": sum(len(page) for page in pages[:knol_text_page + 1])}
@@ -223,13 +225,45 @@ init python:
         knol_pending = True
         renpy.restart_interaction()
 
+    def knol_effect_step_pending():
+        steps = knol_scene.get("effectSteps") if knol_scene else None
+        return bool(steps and steps.get("current", 0) < steps.get("total", 0))
+
+    def knol_manual_title():
+        return bool(knol_scene and knol_scene.get("transitionOnly") and knol_scene.get("effectSteps") is not None)
+
+    def knol_title_shake(trans, st, at):
+        result = knol_target_shake(trans, st, at, "screen")
+        screen_x, screen_y = trans.xoffset, trans.yoffset
+        knol_target_shake(trans, st, at, "background")
+        trans.xoffset += screen_x
+        trans.yoffset += screen_y
+        return result
+
     def knol_text_input(kind, choice_id=None):
-        if not knol_ready or not knol_scene or knol_scene.get("mode") != "play" or knol_scene.get("ended") or knol_transition_active or knol_waiting_for_audio():
+        if not knol_ready or not knol_scene or knol_scene.get("mode") != "play" or knol_scene.get("ended") or knol_transition_active or (knol_scene.get("transitionOnly") and not knol_manual_title()) or knol_waiting_for_audio():
             return
-        if knol_text_page < len(knol_dialogue_metrics(knol_scene)["pages"]) - 1:
+        if not knol_scene.get("transitionOnly") and knol_text_page < len(knol_dialogue_metrics(knol_scene)["pages"]) - 1:
             knol_change_text_page(1)
+        elif knol_effect_step_pending():
+            # Each input activates one host-owned step; it cannot also choose or
+            # leave the cut. Native text pagination always keeps first priority.
+            knol_input("advanceRequested")
         elif not knol_scene.get("choices") or (kind == "choiceSelected" and choice_id is not None):
             knol_input(kind, choice_id)
+
+    def knol_stage_tap():
+        if not knol_ready or not knol_scene or knol_scene.get("mode") != "play" or knol_transition_active or (knol_scene.get("transitionOnly") and not knol_manual_title()) or knol_waiting_for_audio():
+            return
+        # Explicit choices own forward input; halves mode may still go back.
+        left = renpy.get_mouse_pos()[0] < knol_scene["width"] / 2.0
+        if knol_scene.get("readerTapMode", "next") == "halves" and left:
+            if knol_text_page > 0 and not knol_scene.get("ended") and not knol_scene.get("transitionOnly"):
+                knol_change_text_page(-1)
+            elif knol_scene.get("readerCanGoBack", False):
+                knol_input("backRequested")
+        elif not knol_scene.get("ended") and not knol_choices_visible():
+            knol_text_input("advanceRequested")
 
     def knol_dialogue_rects(scene, label_width, label_height):
         box = knol_textbox(scene)
@@ -248,7 +282,7 @@ init python:
     def knol_choices_visible():
         return bool(knol_ready and knol_scene and knol_scene.get("choices") and
             knol_scene.get("mode") == "play" and not knol_scene.get("ended") and
-            not knol_transition_active and not knol_waiting_for_audio() and
+            not knol_transition_active and not knol_waiting_for_audio() and not knol_effect_step_pending() and
             knol_text_page == len(knol_dialogue_metrics(knol_scene)["pages"]) - 1)
 
     def knol_choice_layout(scene):
@@ -315,9 +349,13 @@ init python:
     def knol_install_service_audio(resources, scene):
         audio = scene.get("audio") or {}
         paths = [cue["audioPath"] for cue in [audio.get("music", {}), audio.get("ambience", {})] if cue.get("action") == "play"] + [cue["audioPath"] for cue in audio.get("sounds", [])]
+        paths += [clip["audioPath"] for channel in ("music", "ambience") for clip in audio.get(channel, {}).get("clips", [])]
         paths = [path for path in paths if path.startswith("assets/audio/cc0/") and "/v" in path]
-        protected = [renpy.music.get_playing(channel=channel) for channel in ["music", "knol_ambience"] + ["knol_sound_" + str(index) for index in range(8)]]
+        protected = [knol_audio_source_path(renpy.music.get_playing(channel=channel)) for channel in ["music", "knol_ambience"] + ["knol_sound_" + str(index) for index in range(8)]]
         protected += [cue["audioPath"] for cue in knol_audio_pending]
+        for state in (knol_music_sequence, knol_ambience_sequence):
+            if state and not state["finished"]:
+                protected += [clip["audioPath"] for clip in state["clips"]]
         knol_service_audio_cache.install(resources, paths, [path for path in protected if path])
 
     def knol_install_audio(resources):
@@ -351,8 +389,11 @@ init python:
             knol_dialogue_cache, knol_speaker_scroll = None, renpy.ui.adjustment()
             screen = renpy.display.screen.ScreenDisplayable(
                 renpy.display.screen.get_screen_variant("knol_stage"), None, None)
-            surface = renpy.render_to_surface(screen, 1280, 720, resize=True)
-            surface = renpy.display.scale.smoothscale(surface, (320, 180))
+            # Keep the authored stage geometry, but scale the native Render before
+            # GPU readback so a thumbnail does not allocate a full-size CPU surface.
+            rendered = renpy.render(screen, 1280, 720, 0, 0)
+            thumbnail = renpy.display.motion.zoom_render(rendered, 0, 0, 1280, 720, 320, 180, True)
+            surface = renpy.render_to_surface(thumbnail, resize=True)
             output = io.BytesIO()
             renpy.display.module.save_png(surface, output, 0)
             result.update(type="sceneThumbnail", width=320, height=180,
@@ -465,6 +506,16 @@ screen knol_choice_popup():
         $ rect = layout["rect"]
         # A separate modal screen owns focus and blocks click-through to the story.
         add Solid("#08191699")
+        # The modal keeps choice buttons exclusive while permitting deliberate back taps.
+        if knol_scene.get("readerTapMode") == "halves":
+            button:
+                id "choice-back-input"
+                xysize (int(knol_scene["width"] / 2), int(knol_scene["height"]))
+                padding (0, 0)
+                background None
+                hover_background None
+                sensitive knol_text_page > 0 or knol_scene.get("readerCanGoBack", False)
+                action Function(knol_stage_tap)
         frame:
             id "choice-popup"
             xpos int(rect["x"])
@@ -548,7 +599,7 @@ screen knol_stage():
                 if knol_scene.get("background"):
                     add knol_background(knol_scene)
                     if knol_scene.get("mode") == "play" and not knol_waiting_for_audio():
-                        for effect in knol_target_effects("background"):
+                        for effect in ([] if knol_scene.get("transitionOnly") else knol_target_effects("background")):
                             if effect["type"] != "shake" and (not knol_scene.get("reducedMotion") or effect["type"] in ("crack", "screen-crack", "spotlight", "fade-black")):
                                 add knol_effect(effect, knol_scene.get("reducedMotion", False)) id ("background-effect-" + str(effect))
                 for index, actor in enumerate(sorted(knol_scene["actors"], key=lambda a: a.get("depth", 0))):
@@ -564,7 +615,7 @@ screen knol_stage():
                             background Solid(knol_actor_colors[index % len(knol_actor_colors)])
                             text knol_literal(actor["name"]) substitute False color knol_ink size 32 font "NotoSansKR.ttf"
                 if knol_scene.get("presentation", {}).get("look", {}).get("type") == "fractured-reality":
-                    add "effects/crack.svg" alpha .35 xysize (config.screen_width, config.screen_height)
+                    add "effects/crack.svg" alpha .35 xysize (int(knol_scene["width"]), int(knol_scene["height"]))
                 if knol_scene.get("mode") == "play" and not knol_waiting_for_audio():
                     for effect in knol_scene.get("presentation", {}).get("effects", []):
                         if effect["type"] != "shake" and (not knol_scene.get("reducedMotion") or effect["type"] in ("crack", "screen-crack", "spotlight", "fade-black")):
@@ -574,6 +625,15 @@ screen knol_stage():
                                     if target_actor["id"] == target.get("actorId"):
                                         $ target_rect = target_actor["rect"]
                                         add knol_actor_effect(effect, target_actor, knol_scene) xpos int(target_rect["x"]) ypos int(target_rect["y"]) id ("effect-" + str(effect))
+        # Native stage input stays below dialogue controls, choices and audio/transition gates.
+        button:
+            id "stage-tap-input"
+            xysize (int(knol_scene["width"]), int(knol_scene["height"]))
+            padding (0, 0)
+            background None
+            hover_background None
+            sensitive knol_ready and knol_scene.get("mode") == "play" and not knol_transition_active and not knol_waiting_for_audio() and (not knol_scene.get("ended") or (knol_scene.get("readerTapMode") == "halves" and knol_scene.get("readerCanGoBack", False)))
+            action Function(knol_stage_tap)
         $ textbox = knol_textbox(knol_scene)
         $ dialogue_style = knol_scene.get("dialogueStyle", {"fontSize": 30, "speakerFontSize": 28, "padding": 24})
         $ padding = int(dialogue_style["padding"])
@@ -584,7 +644,7 @@ screen knol_stage():
         $ speaker_rect = dialogue_rects["speaker"]
         frame:
             id "textbox"
-            at Transform(function=knol_shake)
+            at Transform(function=knol_shake, alpha=0 if knol_scene.get("transitionOnly") else 1)
             xpos int(textbox["x"])
             ypos int(textbox["y"])
             xysize (int(textbox["width"]), int(textbox["height"]))
@@ -599,8 +659,8 @@ screen knol_stage():
                 padding (0, 0)
                 background None
                 hover_background None
-                sensitive knol_ready and knol_scene.get("mode") == "play" and not knol_scene.get("ended") and not knol_transition_active and not knol_waiting_for_audio()
-                action Function(knol_text_input, "advanceRequested")
+                sensitive knol_ready and knol_scene.get("mode") == "play" and not knol_transition_active and not knol_waiting_for_audio()
+                action Function(knol_stage_tap)
                 text knol_literal(knol_dialogue_metrics(knol_scene)["pages"][knol_text_page]):
                     substitute False
                     color "#fffdf5"
@@ -637,7 +697,7 @@ screen knol_stage():
                             padding (4, 0)
                             action Function(knol_change_text_page, 1)
         frame:
-            at Transform(function=knol_shake)
+            at Transform(function=knol_shake, alpha=0 if knol_scene.get("transitionOnly") else 1)
             xpos int(speaker_rect["x"])
             ypos int(speaker_rect["y"])
             xysize (int(speaker_rect["width"]), int(speaker_rect["height"]))
@@ -650,6 +710,7 @@ screen knol_stage():
                 yadjustment knol_speaker_scroll
                 text knol_literal(knol_scene["dialogue"]["speaker"]) substitute False color "#bce6cf" size speaker_size font "NotoSansKR.ttf"
         vbar:
+            at Transform(alpha=0 if knol_scene.get("transitionOnly") else 1)
             adjustment knol_speaker_scroll
             xpos int(speaker_rect["x"] + speaker_rect["width"] - 8)
             ypos int(speaker_rect["y"] + 3)
@@ -669,23 +730,23 @@ screen knol_stage():
                     xpos -int(artwork_rect["x"])
                     ypos -int(artwork_rect["y"])
                     xysize (int(knol_scene["width"]), int(knol_scene["height"]))
-                    for effect in knol_target_effects("screen"):
+                    for effect in ([] if knol_scene.get("transitionOnly") else knol_target_effects("screen")):
                         if effect["type"] != "shake" and (not knol_scene.get("reducedMotion") or effect["type"] in ("crack", "screen-crack", "spotlight", "fade-black")):
                             add knol_effect(effect, knol_scene.get("reducedMotion", False)) id ("screen-effect-" + str(effect))
-            if not knol_scene.get("choices") and not knol_scene.get("ended") and knol_text_page == len(knol_dialogue_metrics(knol_scene)["pages"]) - 1:
+            if not knol_scene.get("transitionOnly") and (not knol_scene.get("choices") or knol_effect_step_pending()) and not knol_scene.get("ended") and knol_text_page == len(knol_dialogue_metrics(knol_scene)["pages"]) - 1:
                 button:
-                    xpos int(textbox["x"] + textbox["width"] - 44)
+                    xpos int(textbox["x"] + textbox["width"] - (140 if knol_effect_step_pending() else 44))
                     ypos int(dialogue_rects["body"]["y"] + dialogue_rects["body"]["height"])
-                    xsize 44
+                    xsize (140 if knol_effect_step_pending() else 44)
                     ysize knol_dialogue_metrics(knol_scene)["controlsHeight"]
                     padding (0, 0)
                     background None
                     hover_background None
                     action Function(knol_text_input, "advanceRequested")
-                    text "›" color "#fffdf5" size page_text_size font "NotoSansKR.ttf" align (.5, .5)
+                    text ("다음 효과 ›" if knol_effect_step_pending() else "›") color "#fffdf5" size (min(20, page_text_size) if knol_effect_step_pending() else page_text_size) font "NotoSansKR.ttf" align (.5, .5)
             if knol_transition_active and knol_should_use_native_transition(knol_scene):
                 timer knol_transition_duration(knol_scene) action Function(knol_finish_transition)
-            if knol_transition_active and not knol_should_use_native_transition(knol_scene):
+            if (knol_transition_active or knol_scene.get("transitionOnly")) and not knol_should_use_native_transition(knol_scene):
                 $ transition = knol_scene["presentation"]["transition"]
                 # Use scene values: Ren'Py may cache config attributes in screen expressions.
                 $ transition_width = int(knol_scene["width"])
@@ -693,7 +754,7 @@ screen knol_stage():
                 $ duration = .1 if knol_scene.get("reducedMotion") else transition.get("durationMs", 900) / 1000.0
                 $ white = transition["type"] == "white-fade"
                 frame:
-                    at Transform(function=knol_transition_fade)
+                    at Transform(function=knol_transition_fade), Transform(function=knol_title_shake)
                     xysize (transition_width, transition_height)
                     background Solid("#ffffff" if white else "#080b12")
                     padding (min(80, int(transition_width * .06)), 16)
@@ -708,7 +769,7 @@ screen knol_stage():
                                 spacing 8
                                 for field in ("cue", "title", "description"):
                                     text knol_literal(transition.get(field, "")) substitute False color (knol_ink if white else "#ffffff") size 24 font "NotoSansKR.ttf" xalign .5
-                        if transition.get("mode") == "confirm":
+                        if knol_transition_active and transition.get("mode") == "confirm":
                             button:
                                 background Solid(knol_mint)
                                 padding (24, 16)
@@ -721,8 +782,24 @@ screen knol_stage():
                                     mousewheel True
                                     draggable True
                                     text knol_button_text(transition.get("actionLabel", "계속")) substitute False font "NotoSansKR.ttf" size 28 color knol_ink xsize (transition_width - 2 * min(80, int(transition_width * .06)) - 48) text_align .5 xalign .5
-                if transition.get("mode") != "confirm":
+                if knol_transition_active and transition.get("mode") != "confirm":
                     timer duration action Function(knol_finish_transition)
+            if knol_manual_title() and not knol_transition_active and not knol_scene.get("ended"):
+                # A title card is the visible background here. Screen/background
+                # effects must sit above that card; actor targets stay attached
+                # to their hidden actors rather than becoming full-screen effects.
+                for effect in knol_target_effects("background") + knol_target_effects("screen"):
+                    if effect["type"] != "shake" and (not knol_scene.get("reducedMotion") or effect["type"] in ("crack", "screen-crack", "spotlight", "fade-black")):
+                        add knol_effect(effect, knol_scene.get("reducedMotion", False)) id ("title-effect-" + str(effect))
+                textbutton ("다음 효과 ›" if knol_effect_step_pending() else "계속 ›"):
+                    xalign .5
+                    yalign .95
+                    padding (24, 12)
+                    text_font "NotoSansKR.ttf"
+                    text_size 24
+                    text_color "#fffdf5"
+                    background Solid("#183331e8")
+                    action Function(knol_text_input, "advanceRequested")
         if knol_ready and knol_scene.get("mode") == "play" and not knol_scene.get("ended") and not knol_transition_active and not knol_waiting_for_audio():
             key "K_RETURN" action Function(knol_text_input, "advanceRequested")
             key "K_SPACE" action Function(knol_text_input, "advanceRequested")
@@ -730,12 +807,12 @@ screen knol_stage():
             key "K_RETURN" action Function(knol_unlock_audio)
             key "K_SPACE" action Function(knol_unlock_audio)
             button:
-                xysize (config.screen_width, config.screen_height)
+                xysize (int(knol_scene["width"]), int(knol_scene["height"]))
                 background Solid("#fffdf4cc")
                 action Function(knol_unlock_audio)
                 vbox:
                     align (.5, .5)
-                    xsize int(config.screen_width - 48)
+                    xsize int(knol_scene["width"] - 48)
                     spacing 20
                     text "소리 켜고 시작" color knol_ink size int(text_size) font "NotoSansKR.ttf" xalign .5
                     text "무대를 누르거나 Enter·Space로 소리와 이야기를 시작하세요." color knol_ink size int(text_size) font "NotoSansKR.ttf" text_align .5 xalign .5

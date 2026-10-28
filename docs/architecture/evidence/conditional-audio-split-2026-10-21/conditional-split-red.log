@@ -1,0 +1,61 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/conditional-audio-split.test.ts (5 tests | 5 failed) 8ms
+   × preserves exact true/false/missing choice history for cut music split 4ms
+   × preserves exact true/false/missing choice history for cut ambience split 1ms
+   × preserves exact true/false/missing choice history for chapter music split 0ms
+   × preserves exact true/false/missing choice history for chapter ambience split 0ms
+   × continues to refuse merges or a choice inside the split span and future choice sources 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/conditional-audio-split.test.ts > preserves exact true/false/missing choice history for cut music split
+ FAIL  apps/web/lib/conditional-audio-split.test.ts > preserves exact true/false/missing choice history for cut ambience split
+Error: 선택 조건이 있는 소리는 구간을 자동으로 나눌 수 없어요. 조건과 연결을 먼저 확인해 주세요.
+ ❯ splitContinuousAudioRange apps/web/lib/continuous-audio-split.ts:7:31
+      5|  const source=project.lines.find(line=>line.id===sourceLineId),cue=sou…
+      6|  if(!source||cue?.action!=='play')throw Error('컷에서 시작한 배경음·주변 소리를 선택해 …
+      7|  if(cue.branchCondition)throw Error('선택 조건이 있는 소리는 구간을 자동으로 나눌 수 없어요. …
+       |                               ^
+      8|  const cuts=project.lines.filter(line=>line.chapterId===source.chapter…
+      9|  let end=cue.endLineId?cuts.findIndex(line=>line.id===cue.endLineId):c…
+ ❯ apps/web/lib/conditional-audio-split.test.ts:11:96
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  apps/web/lib/conditional-audio-split.test.ts > preserves exact true/false/missing choice history for chapter music split
+ FAIL  apps/web/lib/conditional-audio-split.test.ts > preserves exact true/false/missing choice history for chapter ambience split
+Error: 선택 조건이 있는 소리는 구간을 자동으로 나눌 수 없어요. 조건과 연결을 먼저 확인해 주세요.
+ ❯ splitContinuousAudioRange apps/web/lib/continuous-audio-split.ts:7:31
+      5|  const source=project.lines.find(line=>line.id===sourceLineId),cue=sou…
+      6|  if(!source||cue?.action!=='play')throw Error('컷에서 시작한 배경음·주변 소리를 선택해 …
+      7|  if(cue.branchCondition)throw Error('선택 조건이 있는 소리는 구간을 자동으로 나눌 수 없어요. …
+       |                               ^
+      8|  const cuts=project.lines.filter(line=>line.chapterId===source.chapter…
+      9|  let end=cue.endLineId?cuts.findIndex(line=>line.id===cue.endLineId):c…
+ ❯ splitChapterAudioRange apps/web/lib/chapter-audio-split.ts:10:14
+ ❯ apps/web/lib/conditional-audio-split.test.ts:11:141
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  apps/web/lib/conditional-audio-split.test.ts > continues to refuse merges or a choice inside the split span and future choice sources
+AssertionError: expected [Function] to throw error matching /합류/ but got '선택 조건이 있는 소리는 구간을 자동으로 나눌 수 없어요. 조건과 …'
+
+- Expected:
+/합류/
+
++ Received:
+"선택 조건이 있는 소리는 구간을 자동으로 나눌 수 없어요. 조건과 연결을 먼저 확인해 주세요."
+
+ ❯ apps/web/lib/conditional-audio-split.test.ts:17:231
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 failed (5)
+   Start at  22:54:44
+   Duration  473ms (transform 261ms, setup 0ms, import 371ms, tests 8ms, environment 0ms)
+

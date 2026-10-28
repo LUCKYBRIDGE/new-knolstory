@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:21658) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/preview-context.spec.ts:19:1 › seconds validation and expanded settings remain after preview without writing invalid time (7.7s)
+
+
+  1) tests/e2e/preview-context.spec.ts:19:1 › seconds validation and expanded settings remain after preview without writing invalid time 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByLabel('컷 배경음 서서히 크게 시작 (초)', { exact: true })
+    Expected: "true"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByLabel('컷 배경음 서서히 크게 시작 (초)', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('컷 배경음 서서히 크게 시작 (초)', { exact: true })
+        13 × locator resolved to <input min="0" max="10" step="0.001" type="number" value="0.275" inputmode="decimal" aria-label="컷 배경음 서서히 크게 시작 (초)"/>
+           - unexpected value "null"
+
+
+      18 | });
+      19 | test('seconds validation and expanded settings remain after preview without writing invalid time',async({page})=>{
+    > 20 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const id=await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();await page.locator('[data-work-menu]>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('audio');const row=page.getByTestId(`editing-cut-${id}`);await row.getByText('1컷 음향 수정',{exact:true}).click();await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');const seconds=page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true});await seconds.fill('0.275');await seconds.dispatchEvent('compositionstart');await seconds.press('Enter');await expect(seconds).toBeFocused();await seconds.dispatchEvent('compositionend');await seconds.blur();await page.getByText('자세히 찾기',{exact:true}).first().click();await page.getByLabel('컷 배경음 찾기',{exact:true}).fill('숲');await seconds.fill('99');await seconds.blur();const alert=page.getByRole('alert').filter({hasText:'초 사이에서'});await expect(alert).toBeVisible();await expect(seconds).toHaveAttribute('aria-invalid','true');const errorId=await seconds.getAttribute('aria-describedby');expect(errorId).toBeTruthy();await expect(page.locator(`[id="${errorId}"]`)).toContainText('기존 값은 유지됩니다');await expect(seconds).toHaveValue('0.275');await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(seconds).toBeFocused();await expect(seconds).toHaveValue('0.275');await expect(alert).toBeVisible();await expect(page.getByLabel('컷 배경음 찾기',{exact:true})).toHaveValue('숲');await expect(page.getByLabel('컷 배경음 종류 필터',{exact:true})).toBeVisible();await page.locator('[data-work-menu]>summary').click();const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const saved=JSON.parse(readFileSync((await (await download).path())!,'utf8'));expect(saved.document.project.lines.find((line:{audio?:{music?:{fadeInMs?:number}}})=>line.audio?.music?.fadeInMs===275)).toBeTruthy();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+      21 | });
+      22 | test('manuscript return follows the current read cut across chapter boundaries',async({page})=>{
+      23 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const saved=JSON.parse(readFileSync((await (await download).path())!,'utf8'));const project=saved.document.project,first=project.lines.find((line:{chapterId:string})=>line.chapterId===project.chapters[0].id),target=project.lines.find((line:{chapterId:string})=>line.chapterId===project.chapters[1].id);const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('text');await page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true}).click();await page.getByLabel('진행 방식',{exact:true}).selectOption('goto');const confirmation=page.getByRole('dialog');if(await confirmation.count())await confirmation.getByRole('button',{name:'진행 방식 변경',exact:true}).click();await page.getByLabel('도착 컷',{exact:true}).selectOption(target.id);await expect(page.getByLabel('편집할 장',{exact:true})).toHaveValue(first.chapterId);await page.getByTestId(`editing-cut-${first.id}`).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');return Number(await state.getAttribute('data-rendered-revision'))>=0&&(await state.getAttribute('data-rendered-revision'))===(await state.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);const advance=page.getByRole('button',{name:'다음으로',exact:true});await advance.focus();await advance.press('Enter');await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(target.id);await expect(page.getByLabel('편집할 장',{exact:true})).toHaveValue(target.chapterId);const current=page.getByTestId(`editing-cut-${target.id}`).locator('textarea[data-cut-id]');await expect(current).toHaveValue(target.text);await expect(current).toBeFocused();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/preview-context.spec.ts:20:1142
+
+    Error Context: test-results-time-error-red/preview-context-seconds-va-6cb46-ithout-writing-invalid-time/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-time-error-red/preview-context-seconds-va-6cb46-ithout-writing-invalid-time/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-time-error-red/preview-context-seconds-va-6cb46-ithout-writing-invalid-time/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/preview-context.spec.ts:19:1 › seconds validation and expanded settings remain after preview without writing invalid time 

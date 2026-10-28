@@ -3,3 +3,8 @@
 .condition select { width:100%; min-width:0; max-width:100%; }
 .condition p { margin:0; font-size:12px; line-height:1.5; overflow-wrap:anywhere; }
 .condition button { justify-self:start; }
+
+.term { display:grid; gap:4px; min-width:0; border-inline-start:2px solid #d8d0be; padding-inline-start:8px; }
+.term > button { justify-self:end; }
+.condition button { max-width:100%; white-space:normal; word-break:keep-all; }
+.condition p { word-break:keep-all; }

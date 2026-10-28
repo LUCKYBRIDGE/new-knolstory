@@ -31,3 +31,7 @@ export * from './legacy/chapter-identity';
 export * from "./legacy/story-scores";
 
 export * from './legacy/story-branch-condition';
+
+export * from './legacy/story-text-variants';
+
+export * from './legacy/story-scene-visibility';

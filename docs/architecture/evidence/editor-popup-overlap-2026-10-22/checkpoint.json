@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-22",
+  "scope": "Image catalog favorite separation and bounded popup action reachability; whole editor remains active",
+  "reproduced": [
+    "Favorite button overlapped image selection by1408 CSS-square-pixels in1440x900 fixture",
+    "Image apply footer partly clipped at390x320 after close button scroll; center click test alone missed it"
+  ],
+  "implemented": [
+    "Independent image-select then labelled favorite in normal-flow card,44px favorite target",
+    "Popup list min-height0 and flexible shrink preserves fixed header/footer, shell overflow controlled",
+    "Existing selection pending/apply/cancel semantics and saved content unchanged"
+  ],
+  "verification": {
+    "browserTestsPassed": 8,
+    "durationSeconds": 36.8,
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        320,
+        568
+      ],
+      [
+        700,
+        320
+      ],
+      [
+        701,
+        320
+      ],
+      [
+        390,
+        320
+      ]
+    ],
+    "checks": [
+      "Image/favorite rectangular intersection0",
+      "Tab goes image selection to favorite; Space toggles favorite without selecting candidate",
+      "Pointer favorite does not change pending selected image",
+      "Cancel preserves authored project; actual Apply changes chosen image and Escape restores focus",
+      "Full button viewport bounds and center hit-test, real pointer actionability",
+      "Close and Apply fully visible simultaneously at short height",
+      "Direction explanation and tip expanded; Use/Close reachable and canceled proposal leaves original transition",
+      "Expanded screenshots visually inspected incl390x320 footer fix"
+    ],
+    "unitTestsPassed": 8,
+    "webBuild": "passed",
+    "webTypecheck": "passed",
+    "focusedEslint": "passed",
+    "docsCheck": "57active documents,0links,0retired terms",
+    "docsTestsPassed": 10,
+    "diffCheck": "passed"
+  },
+  "review": "Read-only specialist found no blocking product issue and requested keyboard check; implemented in every viewport case",
+  "limits": [
+    "Image/direction dialogs only; other popup families remain to audit",
+    "Viewport emulation is not actual OS keyboard/touch proof",
+    "No format/native renderer/deployment change",
+    "Existing missing Ego TaskSpace6; project Playwright regression fallback used"
+  ],
+  "sha256": {
+    "apps/web/components/asset-browser-dialog.tsx": "f9a637aadf38b2039981869dd18f904800269e4ccc3247daebd1c0ccf5f54af9",
+    "apps/web/components/asset-browser-dialog.module.css": "30bbf20d09ad2719268c5bf566229dd59d9336e690240e78fba6a8a8465dc78e",
+    "tests/e2e/editor-popup-overlap.spec.ts": "b16ee004524ba17007112600cf2c4fee695036a1f37f3e2d9ba055b0abe46317"
+  }
+}

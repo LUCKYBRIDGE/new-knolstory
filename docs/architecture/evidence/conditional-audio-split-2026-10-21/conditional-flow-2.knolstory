@@ -1,0 +1,249 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-21T13:59:17.264Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "conditional-split",
+      "title": "새 이야기",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "intro",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        },
+        {
+          "chapterNumber": 2,
+          "audio": {
+            "ambience": {
+              "action": "play",
+              "assetId": "audio:music:forest",
+              "sourceStartMs": 200,
+              "sourceEndMs": 1800,
+              "volume": 0.6,
+              "loop": true,
+              "endLineId": "b",
+              "branchCondition": {
+                "sourceLineId": "decision",
+                "choiceId": "yes"
+              }
+            }
+          },
+          "id": "body",
+          "order": 2,
+          "title": "다음 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "decision",
+          "chapterId": "intro",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "같은 도착 컷의 두 선택",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "ambience": {
+              "action": "play",
+              "assetId": "audio:music:night",
+              "loop": true
+            }
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "yes",
+                "label": "첫 번째 선택",
+                "targetLineId": "a"
+              },
+              {
+                "id": "no",
+                "label": "두 번째 선택",
+                "targetLineId": "a"
+              }
+            ]
+          }
+        },
+        {
+          "id": "a",
+          "chapterId": "body",
+          "order": 2,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존a",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "b",
+          "chapterId": "body",
+          "order": 3,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존b",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "c",
+          "chapterId": "body",
+          "order": 4,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존c",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "ambience": {
+              "action": "play",
+              "assetId": "audio:music:forest",
+              "sourceStartMs": 200,
+              "sourceEndMs": 1800,
+              "volume": 0.6,
+              "loop": true,
+              "endLineId": "d",
+              "branchCondition": {
+                "sourceLineId": "decision",
+                "choiceId": "yes"
+              }
+            }
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "d",
+          "chapterId": "body",
+          "order": 5,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존d",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "e",
+          "chapterId": "body",
+          "order": 6,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존e",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-21T13:59:13.080Z"
+    }
+  },
+  "audioResources": []
+}

@@ -60,8 +60,8 @@ test('chapter resource list edits preserve defaults and all used cut images',asy
  await importFile(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project:source}));
  const before=(await exportFile(page)).project;
  async function resources(){const controls=await chapter(page),details=controls.locator('details').filter({has:page.locator('summary',{hasText:/^장 자료 목록$/})});if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();return details;}
- let list=await resources();await expect(list.getByRole('button',{name:'장 자료에 인물 추가 이미지 찾기',exact:true})).toHaveCount(0);
- await list.getByRole('button',{name:'장 자료에 배경 추가 이미지 찾기',exact:true}).click();
+ let list=await resources();await expect(list.getByRole('button',{name:/^장 자료에 인물 추가 이미지 찾기 ·/,exact:false})).toHaveCount(0);
+ await list.getByRole('button',{name:/^장 자료에 배경 추가 이미지 찾기 ·/,exact:false}).click();
  const dialog=page.getByRole('dialog'),candidate=dialog.locator('[data-asset-id]:visible').first(),id=(await candidate.getAttribute('data-asset-id'))!;
  await candidate.click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();
  const added=(await exportFile(page)).project;
@@ -72,8 +72,8 @@ test('chapter resource list edits preserve defaults and all used cut images',asy
  const button=list.locator(`[data-chapter-resource-id="${id}"]`).getByRole('button');await button.click();
  const after=(await exportFile(page)).project;expect(after.lines).toEqual(before.lines);
  expect(after.chapters[0]).toEqual({...added.chapters[0],backgroundAssetIds:added.chapters[0].backgroundAssetIds.filter(value=>value!==id)});
- const settings=await optins(page);await settings.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();list=await resources();await expect(list.getByRole('button',{name:'장 자료에 인물 추가 이미지 찾기',exact:true})).toBeVisible();
- await controlsComposition(page,true);await expect(list.getByRole('button',{name:'장 자료에 인물 추가 이미지 찾기',exact:true})).toBeDisabled();await controlsComposition(page,false);
+ const settings=await optins(page);await settings.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();list=await resources();await expect(list.getByRole('button',{name:/^장 자료에 인물 추가 이미지 찾기 ·/,exact:false})).toBeVisible();
+ await controlsComposition(page,true);await expect(list.getByRole('button',{name:/^장 자료에 인물 추가 이미지 찾기 ·/,exact:false})).toBeDisabled();await controlsComposition(page,false);
  await page.setViewportSize({width:390,height:844});
  const layout=await page.locator('[data-system-menu=editor]').evaluate(node=>({width:node.clientWidth,scroll:node.scrollWidth,left:node.scrollLeft,rect:node.getBoundingClientRect().toJSON(),overflow:[...node.querySelectorAll('*')].filter(item=>item.scrollWidth>item.clientWidth+1).map(item=>({tag:item.tagName,class:item.className,client:item.clientWidth,scroll:item.scrollWidth})).slice(0,12),wide:[...node.querySelectorAll('*')].filter(item=>item.getBoundingClientRect().right>node.getBoundingClientRect().right+1).map(item=>({tag:item.tagName,class:item.className,text:item.textContent?.slice(0,60),width:item.getBoundingClientRect().width})).slice(0,12)}));
  expect(layout.scroll,JSON.stringify(layout)).toBeLessThanOrEqual(layout.width+1);await page.screenshot({path:info.outputPath('resource-list-phone.png')});
@@ -92,4 +92,33 @@ test('chapter settings do not carry an invalid numeric draft or error into anoth
  controls=await chapter(page);await expect(controls.getByRole('alert')).toHaveCount(0);await controls.getByText('장 번호·갈래 표시',{exact:true}).click();await expect(controls.getByRole('spinbutton',{name:'장 번호',exact:true})).toHaveValue('2');
  await page.keyboard.press('Escape');await page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true}).selectOption(fixture.lines[0].id);
  controls=await chapter(page);await expect(controls.getByRole('alert')).toHaveCount(0);await controls.getByText('장 번호·갈래 표시',{exact:true}).click();await expect(controls.getByRole('spinbutton',{name:'장 번호',exact:true})).toHaveValue('1');
+});
+
+
+test('invalid chapter number blocks file shortcut and correction saves without losing focus',async({page})=>{
+ await page.addInitScript(()=>{const root=window as unknown as {chapterFile:{picks:number;writes:number;contents:string};showSaveFilePicker:()=>Promise<unknown>};root.chapterFile={picks:0,writes:0,contents:''};root.showSaveFilePicker=async()=>{root.chapterFile.picks++;return {name:'chapter-number.knolstory',getFile:async()=>({text:async()=>root.chapterFile.contents}),createWritable:async()=>({write:async(text:string)=>{root.chapterFile.writes++;root.chapterFile.contents=text;},close:async()=>{},abort:async()=>{}})};};});
+ await page.route('**/api/**',route=>route.abort());await page.route('**/runtime/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+ const controls=await chapter(page);await controls.getByText('장 번호·갈래 표시',{exact:true}).click();const number=controls.getByRole('spinbutton',{name:'장 번호',exact:true});await number.focus();await number.press('Control+s');
+ const file=()=>page.evaluate(()=>(window as unknown as {chapterFile:{picks:number;writes:number;contents:string}}).chapterFile);
+ await expect.poll(async()=>(await file()).writes).toBe(1);const snapshot=await file(),before=parseAuthoringFile(snapshot.contents).project as StoryProject;
+ await number.fill('0');await number.press('Control+s');await expect(controls.getByRole('alert')).toContainText('1 이상의 정수');await expect.poll(async()=>(await file()).writes).toBe(1);await expect(number).toHaveAttribute('aria-invalid','true');await expect(number).toHaveValue('0');await expect(number).toBeFocused();expect(await file()).toEqual(snapshot);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);
+ await number.fill('2');await number.press('Control+s');await expect.poll(async()=>(await file()).writes).toBe(2);await expect(number).toBeFocused();await expect(number).toHaveValue('2');await expect(number).not.toHaveAttribute('aria-invalid','true');const after=parseAuthoringFile((await file()).contents).project as StoryProject;expect(after.chapters[0].chapterNumber).toBe(2);expect(after.lines).toEqual(before.lines);expect(after.chapters.slice(1)).toEqual(before.chapters.slice(1));expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(after);
+});
+
+for(const width of [1280,390])test(`chapter title composition keeps settings open ${width}`,async({page})=>{
+ await page.setViewportSize({width,height:900});
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
+ await page.route('**/api/**',route=>route.abort());await page.route('**/runtime/**',route=>route.abort());
+ await page.goto('/?view=editor');await saved(page);
+ const controls=await chapter(page),workMenu=page.locator('[data-work-menu]'),title=controls.getByRole('textbox',{name:/장 제목$/});
+ await title.fill('입력 중인 장 제목');await saved(page);
+ const before=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+ await title.dispatchEvent('compositionstart',{data:'목'});await title.press('Escape');
+ await expect(workMenu).toHaveAttribute('open','');await expect(title).toBeFocused();await expect(title).toHaveValue('입력 중인 장 제목');
+ await title.dispatchEvent('keydown',{key:'Escape',code:'Escape',isComposing:true,keyCode:229});await expect(workMenu).toHaveAttribute('open','');
+ await title.dispatchEvent('compositionend',{data:'목'});
+ await title.dispatchEvent('keydown',{key:'Escape',code:'Escape',keyCode:229});await expect(workMenu).toHaveAttribute('open','');
+ await title.press('Escape');await expect(workMenu).not.toHaveAttribute('open','');await expect(workMenu.locator(':scope>summary')).toBeFocused();
+ await menu(page);await expect(title).toBeVisible();await expect(title).toHaveValue('입력 중인 장 제목');
+ expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(before);
 });

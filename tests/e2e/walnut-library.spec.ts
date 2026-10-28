@@ -2,6 +2,16 @@ import {test,expect} from '@playwright/test';
 import {enterLibrary} from './library-entry';
 import {mkdirSync} from 'node:fs';
 const evidence=`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/walnut-library`;
+test('phone search closes its panel and leaves the matching book usable',async({page})=>{
+ await page.setViewportSize({width:360,height:677});await page.goto('/');await enterLibrary(page);
+ const tools=page.getByTestId('library-tools');await tools.locator(':scope>summary').click();
+ const search=page.getByRole('searchbox',{name:'책 찾기',exact:true});await search.fill('별주부전');
+ await search.dispatchEvent('keydown',{key:'Enter',isComposing:true});await expect(tools).toHaveAttribute('open','');await expect(search).toHaveValue('별주부전');
+ await search.press('Enter');
+ await expect(tools).not.toHaveAttribute('open','');
+ const book=page.locator('[data-shelf-book]');await expect(book).toHaveCount(1);await book.getByRole('button').click();
+ await expect(page.getByRole('dialog').getByRole('button',{name:'원작 읽기',exact:true})).toBeVisible();
+});
 test('owner-selected legacy honey oak finish keeps window wall clearance',async({page},info)=>{
  await page.setViewportSize({width:1200,height:900});await page.goto('/');await enterLibrary(page);
  const cabinet=page.locator('[data-cabinet-base]').locator('..');const oak=await cabinet.evaluate(node=>getComputedStyle(node).backgroundImage);expect(oak).toContain('152, 95, 48');expect(oak).toContain('99, 55, 22');expect(oak).not.toContain('80, 57, 43');

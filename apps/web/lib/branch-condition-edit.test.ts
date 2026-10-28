@@ -1,0 +1,9 @@
+import {describe,it,expect} from 'vitest';
+import {addBranchConditionChoice,changeBranchConditionChoice,removeBranchConditionChoice,changeBranchConditionMode} from './branch-condition-edit';
+const a={sourceLineId:'first',choiceId:'yes'},b={sourceLineId:'second',choiceId:'yes'};
+describe('exact choice condition editing',()=>{
+ it('preserves singles and promotes only explicit addition, without mutating input',()=>{const before=structuredClone(a);expect(changeBranchConditionChoice(a,0,b)).toEqual(b);expect(addBranchConditionChoice(a,b)).toEqual({mode:'all',terms:[a,b]});expect(a).toEqual(before);});
+ it('keeps authored group mode/order on replacement and removal including a one-term group',()=>{const group={mode:'any' as const,terms:[a,b]};expect(changeBranchConditionMode(group,'all')).toEqual({...group,mode:'all'});expect(removeBranchConditionChoice(group,0)).toEqual({mode:'any',terms:[b]});expect(removeBranchConditionChoice(a,0)).toBeUndefined();expect(changeBranchConditionChoice(group,1,{...b,choiceId:'no'})).toEqual({...group,terms:[a,{...b,choiceId:'no'}]});expect(group.terms).toEqual([a,b]);});
+ it('rejects duplicates and invalid index rather than removing or changing another choice',()=>{expect(()=>addBranchConditionChoice(a,a)).toThrow();expect(()=>changeBranchConditionChoice({mode:'all',terms:[a,b]},1,a)).toThrow();expect(()=>changeBranchConditionChoice(a,1,b)).toThrow();expect(()=>removeBranchConditionChoice(a,-1)).toThrow();});
+ it('retains eight-term cap and same destination independence',()=>{const group={mode:'all' as const,terms:Array.from({length:8},(_,i)=>({sourceLineId:'one',choiceId:`choice-${i}`}))};expect(()=>addBranchConditionChoice(group,b)).toThrow();expect(addBranchConditionChoice(a,{...a,choiceId:'no'})).toEqual({mode:'all',terms:[a,{...a,choiceId:'no'}]});});
+});

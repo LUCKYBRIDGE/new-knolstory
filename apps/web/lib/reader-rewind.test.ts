@@ -41,4 +41,20 @@ describe('reader rewind event boundary',()=>{
   if(result.ok)expect(result.playback).toMatchObject({lineId:'second',path:['first','second'],status:'reading'});
   expect(state).toEqual(before);
  });
+ it('skips consecutive presentation-only cues when returning to previously read prose',()=>{
+  const source=work(),cut=source.lines[0]!;
+  const cue={...cut,id:'cue',order:2,speakerName:'시점 전환',text:'친구의 시점',presentation:{transition:{type:'perspective-blackout' as const,mode:'confirm' as const,durationMs:300,title:'친구의 시점'}}};
+  const project={...source,lines:[cut,cue,{...cue,id:'cue2',order:3},{...source.lines[1]!,order:4}]};
+  const state=advancePlayback(project,advancePlayback(project,advancePlayback(project,createPlayback(project))));
+  const before=structuredClone({project,state}),result=rewindReader(project,state,10);
+  expect(result.ok).toBe(true);if(result.ok)expect(result.playback).toMatchObject({lineId:'first',path:['first']});
+  expect({project,state}).toEqual(before);
+ });
+ it('keeps the current prose when the only earlier cut is an entrance cue',()=>{
+  const source=work(),cut=source.lines[0]!;
+  const project={...source,lines:[{...cut,speakerName:'시점 전환',text:'친구의 시점',presentation:{transition:{type:'perspective-blackout' as const,mode:'confirm' as const,durationMs:300,title:'친구의 시점'}}},source.lines[1]!]};
+  const state=advancePlayback(project,createPlayback(project)),result=rewindReader(project,state,11);
+  expect(result.ok).toBe(true);if(result.ok)expect(result.playback).toBe(state);
+ });
+
 });

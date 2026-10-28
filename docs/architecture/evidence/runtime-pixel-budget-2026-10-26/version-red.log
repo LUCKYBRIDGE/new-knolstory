@@ -1,0 +1,16 @@
+E
+======================================================================
+ERROR: test_content_changes_only_invalidate_the_changed_resource (scripts.tests.test_runtime_asset_versions.RuntimeAssetVersionTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_runtime_asset_versions.py", line 14, in test_content_changes_only_invalidate_the_changed_resource
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 982, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1039, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/asset_versions.py'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

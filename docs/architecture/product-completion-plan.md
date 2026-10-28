@@ -4,19 +4,30 @@
 
 ## 재개 지점
 
-마지막 확인: 2026-10-20. 세션 전환 시 이 절을 교체하고 실제 파일·프로세스·결과를 대조한다.
+마지막 확인: 2026-10-29. 세션 전환 시 이 절을 교체하고 실제 파일·프로세스·결과를 대조한다.
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | 편집화면 구성 목표 로컬 완료. 반응형 여섯 화면·가로/세로 배열·현재 및 이전/다음 컷의 실제 장면 미리보기·읽기 복귀·보조 패널·파일 보존을 검증했다. [현재 기능 감사](editor-redesign-completeness-audit.md#2026-10-20-편집-화면-구성-완료-작업--검증-완료), [최종 checkpoint](evidence/editor-completion-2026-10-20/checkpoint.json). 현재 소스는 최신 원격499a131을 보존해 main에 반영했다. [전달·검증 기록](evidence/editor-main-2026-10-20/checkpoint.json). 제품 출시 전체 완료가 아니다. |
+| 현재 작업 | 사용자 후속 요구인 종료·뒤로가기 보호와 저장 후 이동을 구현·검증했다. [최신 근거](evidence/work-leave-protection-2026-10-29/checkpoint.json). 이전 전체 화면 후속·편집 완료 근거와 제품 전체 큐는 보존한다. |
 | 종료된 로컬 checkpoint | PC-01 host389 종료:352통과/37native 전용 제외, source/보호artifact 변경0. 필수 native 동선 이행은 [실행별 결과](evidence/native-resume-2026-10-15/native-result.json). PC-02 네 제작 모드 대조와 점수 전용 native 빈 셀 보완. 물리 기기·출시 전체 완료 아님 |
 | 우선 읽을 증거 | [로컬 작품 파일 현재 checkpoint](evidence/local-work-files-2026-10-18/checkpoint.json), [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [온라인 휴지통 후속](evidence/online-trash-2026-10-18/checkpoint.json). 원고/최대 화면/접근성의 기존 근거는 해당 소유 문서에서 재사용. |
-| 다음 행동 | 현재 편집화면 목표는 종료한다. 다음 사용자 요청 또는 기존 작업 큐의 정확한 의존성이 충족된 범위로 이어간다. 물리 기기/OS IME/스크린리더·장기 안정성·운영/학급/공유·공개 배포를 이번 화면 검증으로 완료 처리하지 않는다. 원고/Asset ID/Flow·미커밋 변경과 과거 검증 기록을 보존한다. |
+| 다음 행동 | 활성 편집 목표를 종료하고 전체 제품 큐를 보존한다. 첫 창작 체험은 안내와 작품 파일로 진행할 준비가 됐다. 후속 제품 작업은 아래 PC-04/05/06의 승인·환경 의존성을 확인해 선택한다. 다른 목표 기기·실제 보조 기술의 미검증을 폐기하거나 통과로 바꾸지 않는다. |
+| 이전 후보 검증 기록 | 작업별 설정·작품 분리5개와 현행 큰 화면에 맞춘 통합 재생 복귀1개는 각각 통과했다. 로그는 `.cache/editor-candidate-20261027-host.log`와 `.cache/editor-candidate-20261027-tablet.log`다. 최초6개 실행의 전체 통과로 합산하지 않는다. 최근 숫자 입력 저장·채널 취소·점수 설정 복귀의 근거는 편집 요구 대조에 보존한다. |
 | Docker 상태 | Next production db/api/ingress running at final origin https://story.knolquiz.com; loopback15501 only. Default production-compose start now preserves final origin; story-next GET/HEAD redirects308. Legacy five running containers unchanged. |
 | 중요한 수정 | 최초 적용001 변경을 checksum이 거부했다. journal hash와 일치하는001 복원, blob trigger는002 전진 migration. DB/journal 초기화하지 않음. rollback 실패client는 release(true) 폐기. 과거 실패 로그 유지 |
 | 미검증 범위 | Google OAuth·온라인 휴지통의 운영/실기기 검증·장기 오프라인·물리기기·스크린리더·최초Chrome154 원인·새외부앱·공개 배포·외부/전체 운영 백업복원. 로컬 저장/순수 계정/DB 검사를 이 완료로 확대하지 않음 |
 | 결정 | 카카오 가입/로그인, 이후 Google 연결 및 연결 후 Google 로그인, 현재 Mac mini Docker는 확정. 교사/학급 승인·공유/공개·보관 기간만 미결. 확정 내용을 다시 질문하지 않음 |
 | 보존 | 미커밋 원고·Asset ID·Flow·StageComposition·private자료·과거evidence 보존. 보호artifact483개 hash 일치는 당시 체크포인트 근거. 계정 Web 변경 당시 Runtime은 변경하지 않았으며, 이후 PC-06 native 키보드 변경을 포함한 후보는 [새 정적 복원](evidence/static-restore-keyboard-2026-10-17/checkpoint.json)으로 따로 확인. 외부 공개/기존운영전환 승인 아님. 이번 원고 연결은 [보존 대조](evidence/reader-eight-integrated-2026-10-18/preservation-after.json)로 기존 fixture/evidence/runtime 변경·누락0 확인. |
+
+## 첫 창작 체험으로 이어갈 순서 -- 2026-10-28
+
+사용자가 편집기 이후 AI로 원고를 만들거나 주변 사람에게 창작·편집을 맡기려는 목적을 재확인했다. 편집 전체 목표와 기존 기기 검증은 유지하면서, 제한된 창작 체험을 다음 중간 목표로 둔다. 이는 전체 편집 완료나 공개 배포 승인이 아니다.
+
+1. 첫 창작의 개발 검증과 [실제 화면 검토](evidence/first-creation-walkthrough-2026-10-28/checkpoint.json)를 유지한다. [제목 조합](evidence/first-creation-ime-2026-10-28/checkpoint.json), [컷·장 추가 복귀](evidence/creation-return-2026-10-28/checkpoint.json), [설정 조합 보호](evidence/settings-ime-2026-10-28/checkpoint.json)의 보완 근거는 각 기록이 소유한다. 다음은 위 재개 지점의 전용 편집화면 대조다. 기본 저장의 OS 선택기·실제 참여자의 사용성과 전체 편집 완료는 이 검토만으로 판정하지 않는다. 새 검사창 사용 승인은 받았으며, 같은 목표의 후속 상호작용은 작업 공간10을 재사용한다.
+2. 짧은 작품 하나를 만드는 [첫 창작 안내](editor-first-creation-guide.md)를 README에 연결했다. 현재 로컬 후보 기준이며 운영 배포 여부와 구분한다. 실제 참여자가 만들다 막힌 부분을 받아 다음 수정 순서를 정한다. 참여자 모집·연락·외부 공개는 아직 수행하지 않는다.
+3. AI 활용은 생성 원고를 현행 작품 형식으로 검증하고 독립 작품으로 열어 사람이 고친 뒤 저장하는 경로부터 준비한다. 기존 작품을 자동으로 덮어쓰지 않는다. 서비스 안의 AI 제공자·비용·전송 범위는 확정된 것으로 취급하지 않으며, 외부 AI 원고 활용과 앱 내부 생성 기능의 완료 여부를 구분한다.
+
+체험 준비가 되었다는 판단과 모든 기기·보조 기술·온라인 서비스의 완료 판단을 분리한다. 체험에서 확인되지 않은 사용성은 미확인으로 남긴다.
 
 ## 작업 큐
 
@@ -24,7 +35,7 @@
 
 | ID·우선순위 | 작업 상태 | 의존성 | 세부 소유 문서 | 완료 조건과 다음 진행 |
 |---|---|---|---|---|
-| PC-11 P1 | 부분 완료(여섯 화면·viewport 맞춤·작품별 세션 설정 로컬 검증; 실제 사용성/장문·일부 상세 UX 남음) | 기존 원고·범위 계약/SSOT·실제 환경 | [최신 설계](../../DESIGN.md#편집-작업-영역--2026-10-19-후속-설계), [viewport 검증](evidence/editing-viewport-2026-10-19/checkpoint.json) | 직접 편집·함께 보기·개별 개방·휴대폰1:4:1/가로 native·화면 안 맞춤/내부 스크롤·IME 합성/커서·파일 보존 확인. 반복 방향 전환/실제 기기·전체 UX 감사와 조건부 글/장면 계약은 별도 |
+| PC-11 P1 | 완료(현행 편집 기능·UI/UX; 전체 제품·출시 검증 별도) | 기존 원고·범위 계약/SSOT·실제 환경 | [최신 설계](../../DESIGN.md#편집-작업-영역--2026-10-19-후속-설계), [viewport 검증](evidence/editing-viewport-2026-10-19/checkpoint.json) | 기본·전용 화면, 함께 보기·개별 개방·통합 시간축·조건별 글/컷·파일 보존의 현재 근거는 [요구 대조](editor-redesign-completeness-audit.md)가 소유한다. [최종 판정](editor-redesign-completeness-audit.md#편집-기능화면-완료-판정--2026-10-29)으로 종료. 첫 창작/전용 화면 직접 검토와 S25 실제 복귀를 포함한다. PC-06 기기·보조 기술 및 전체 서비스 출시는 계속 분리한다. |
 | PC-10 P1 | 완료(현재 로컬 파일 저장/재열기·개발 인수인계 범위; 전체 제품 완료 아님) | 현재 archive2/원고 보존/명시 파일 권한 | [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [검증](evidence/local-work-files-2026-10-18/checkpoint.json) | 두 모드 새 환경 실제 파일 왕복·집중 보호 검사와 실제 Mac ShortStory 저장/재저장 확인. 파일 연결은 세션 한정이며 reload 후 명시 선택. 다음 PC-04 결합 검증 |
 | PC-09 P1 | 로컬 구현·8판본 원고 연결/집중 검증 완료; 대기(실제 화면 검토·기기/출시 환경) | 사용자 종합 승인 완료; 남은 실제 환경/운영 범위 | [읽기 개편안](reading-interface-design.md), [현재 원고/실제 검증](evidence/reader-eight-integrated-2026-10-18/checkpoint.json) | 기존 R1–R5 디자인/native 근거 유지. 원작·놀스토리8판본 원고 교정 연결 완료. 남은 기기/접근성·행렬은 실제 환경에서 이행; R6운영 별도. 이전 원고·저장·유효 증거와 전체 제품 큐 보존 |
 | PC-01 P1 | 완료(현재 로컬 후보 회귀 checkpoint; host352/37 native 전용 제외 및 직접 native 근거) | 현재 build·자료 정책·UI | [현재 파일/읽기](reader-file-current-regression-validation.md), [UX 계획](approved-ui-development-plan.md) | 현재 host/native 회귀의 실패 이행·실제 창작/읽기 보존, 최종 동일 후보의 전체 결과. 완료→PC-02/04, 정책 확인은 미리 준비 |

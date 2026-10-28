@@ -1,0 +1,40 @@
+
+Running 1 test using 1 worker
+
+(node:50947) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440 (42.4s)
+
+
+  1) tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "shake"
+    Received: "neutral"
+
+    Call Log:
+    - Timeout 30000ms exceeded while waiting on the predicate
+
+      21 |  const width=Number(await status.getAttribute('data-scene-width')),height=Number(await status.getAttribute('data-scene-height')),scale=Math.min(bounds.width/width,bounds.height/height),padding=24;
+      22 |  await page.mouse.click(bounds.x+(bounds.width-width*scale)/2+(rect.x+rect.width/2)*scale,bounds.y+(bounds.height-height*scale)/2+(rect.y+padding+92+48+index*108)*scale);
+    > 23 |  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId),{timeout:30000}).toBe('shake');await rendered(page);
+         |                                                                                                                                             ^
+      24 | }
+      25 | for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`exact same-target branch condition saves, previews, loops and reopens ${size.width}`,async({page},info)=>{
+      26 |  page.setDefaultTimeout(15000);await page.setViewportSize(size);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await fileMenu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'branch-scope.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-14T00:00:00.000Z',appVersion:'test',project:source}))});await confirmAuthoringImport(page);
+        at chooseNative (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/branch-scope.spec.ts:23:141)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/branch-scope.spec.ts:40:345
+
+    Error Context: test-results-branch-current-2/branch-scope-exact-same-ta-c4caa-iews-loops-and-reopens-1440/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-branch-current-2/branch-scope-exact-same-ta-c4caa-iews-loops-and-reopens-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-branch-current-2/branch-scope-exact-same-ta-c4caa-iews-loops-and-reopens-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440 

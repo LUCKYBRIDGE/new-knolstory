@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "bug": "Unchanged score number blur always emitted onChange and replaced textvariantundo with no-op; clickingundo after focusingthreshold leftchangedtextintact.",
+  "fix": "NumberValue validates/normalizes onblur but emit only numericvaluechanged.",
+  "tests": {
+    "conditionalSingleRun": 8,
+    "saveShortcutSingleRun": 2,
+    "scope": [
+      "Undoactualwholeprojectrestoration",
+      "Existing variantdraft/deletion/valid7 guards",
+      "Existingfile/reopen/native conditionaldisplay",
+      "Focusedchangedscore serialized torealarchive",
+      "Invalidscore shortcut doesnot save"
+    ]
+  },
+  "review": "Read-onlyreview no blocker; normalization/changedvalue/invalidvalue semantics preserved.",
+  "productScope": "Shared numeric UI only; no document/schema changes.",
+  "notProven": [
+    "Allundo tools",
+    "Physical finalcandidate",
+    "30minutestability",
+    "Wholegoal"
+  ]
+}

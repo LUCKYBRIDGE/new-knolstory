@@ -1,0 +1,48 @@
+{
+  "status": "focused-passed",
+  "macroReview": "Basic and task-specific editing, optional features, shared StoryDocument and local work files are implemented. Choice/branch details and score work settings remain distributed; integrated author usability is not yet established. Mixed choice/score arbitrary OR and conditional-cut automatic audio splitting are outside current support.",
+  "fixes": [
+    {
+      "issue": "Invalid audio end draft allowed file shortcut to write previous valid value.",
+      "validation": ".cache/audio-range-shortcut-20261027-final.log",
+      "scope": "Invalid draft prevents extra file write; correction writes actual file contents and retains focus."
+    },
+    {
+      "issue": "Effect row deletion transferred invalid numeric draft; same-position guide alignment overwrote undo; earlier detail undo could erase later timeline edit.",
+      "validation": [
+        ".cache/effect-noop-20261027-all-final.log",
+        ".cache/effect-cross-20261027-green-final.log"
+      ],
+      "scope": "Effect numeric draft isolation, unchanged guide undo, later timeline edit preserved, existing effect panel paths."
+    },
+    {
+      "issue": "Phone term guide search results obscured by keyboard.",
+      "validation": [
+        ".cache/term-keyboard-20261027-final.log",
+        ".cache/phone-term-20261027/result.json"
+      ],
+      "scope": "Simulated viewport geometry and actual S25 software keyboard layout; CDP filled search; original project preserved."
+    }
+  ],
+  "checks": [
+    "web build passed",
+    "web typecheck passed",
+    "focused ESLint passed"
+  ],
+  "unresolved": [
+    "Broader author journey across multiple tools and file/replay must be checked end-to-end.",
+    "Real Korean IME composition for this term dialog not tested.",
+    "Prior 30-minute phone soak predates these source changes.",
+    "Other invalid numeric fields require separate reproduction."
+  ],
+  "hashes": {
+    "apps/web/components/story-effect-controls.tsx": "4e1bcfe84ddb6f923a642dc902716297798c4e08a87b3bfbe1c06255baedaaae",
+    "apps/web/components/audio-source-range-controls.tsx": "cbe5d4bbaa180a4473a5efbd4ca25117f0960bb4db5160bdb3b9b84285e70bf2",
+    "apps/web/components/editor-term-guide.tsx": "f3dbbed73bc2c5bd10fc651c77178f67ff7700f98e9abf4d2a4a291616df4064",
+    "apps/web/components/editor-term-guide.module.css": "db9861db1b752c658db9e17e680ad9bec4a4c2ef214b34abd895bfbf79bad641",
+    "tests/e2e/editor-effect-pane.spec.ts": "50ebd8ae0f0957df7dcbccaef2b379dbf7f1d8c4dd830a8af669acc9d9fa6904",
+    "tests/e2e/audio-source-range.spec.ts": "7ab8bc0555c44d5b71989b3713623accc455a9371944f5f6610af58750108354",
+    "tests/e2e/keyboard-writing-focus.spec.ts": "eea326c8f4d1b6cc8b63ea273bee55ece5c770c4634b6139f9048c8c4b696ccc",
+    "tests/e2e/combined-editing.spec.ts": "fa1770469c76274244a9840e551a04c1eebfd1294e0ca8b670d289f83a2934ea"
+  }
+}

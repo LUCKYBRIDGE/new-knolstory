@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-23",
+  "scope": "All9 current preview-context paths migration, wholeeditorgoalactive",
+  "checks": [
+    "Direction4viewport native/focus/purpose/undo/fullauthoring equality/oneiframe",
+    "Textcursor andambiencepurpose previewreturn scopedundo",
+    "Laterreadcut keeps correct currentrow anddoesnotreuse priorrow undo; priorrow undo retained",
+    "Actual registeredaudio audition pauses duringnative reading and restorescue/undo",
+    "Seconds275ms preserved oninvalid99s, errorandexpandedsearch retained, realfileexports275ms",
+    "ActualFlow crosschapter nativeadvance then currentchapter/cut/text/focus"
+  ],
+  "verification": {
+    "browser": "All9passed singlefinalrun43.3s",
+    "lint": "noerrors;Reactdetection warningonly",
+    "productCode": "unchanged this route migration; used current productionbuild"
+  },
+  "limits": [
+    "Physicaldevice/OSkeyboard/externalapps notverified",
+    "Full editorcompletion stillunproven"
+  ],
+  "sourceHashes": {
+    "tests/e2e/preview-context.spec.ts": "a7180187875cb58d7f7080195a69920e631b602fa40db77f2f10541d592cb03e",
+    "apps/web/out/index.html": "558643e8cb5bc8f77a5442c1e7a8802fc67d84ff3d8a53ce7c06d42aff19b1d2"
+  }
+}

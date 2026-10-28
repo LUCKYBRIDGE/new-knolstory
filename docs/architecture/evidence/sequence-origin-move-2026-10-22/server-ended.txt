@@ -1,0 +1,37 @@
+
+Running 1 test using 1 worker
+
+(node:32525) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture (103ms)
+
+
+  1) tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+       7 | const make=(channel:'music'|'ambience',sequence=true)=>({...base,lines:[{...line,text:'첫 음원에서 다음 음원으로 이어집니다.',audio:{[channel]:sequence?cue:{action:'play' as const,assetId:'audio:music:forest',sourceEndMs:3000,volume:.6,loop:true}}},{...line,id:'b',order:2,text:'앞 컷의 소리 순서를 유지합니다.'},{...line,id:'c',order:3,text:'예약된 소리를 모두 정지합니다.',audio:{[channel]:{action:'stop' as const}}}]});
+       8 | async function stored(page:Page){return page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);}
+    >  9 | async function load(page:Page,project:ReturnType<typeof make>,file?:string){await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'sequence.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);const menu=page.locator('[data-work-menu]');if(await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await expect.poll(()=>stored(page)).toEqual(project);}
+         |                                                                                                                                   ^
+      10 | async function rendered(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);}
+      11 | async function next(page:Page){const rect=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.2);}
+      12 | for(const channel of ['music','ambience'] as const)test(`${channel} sequence origin range move, undo, file reopen and native continuity`,async({page,browser},info)=>{
+        at load (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sequence-origin-move.spec.ts:9:131)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sequence-origin-move.spec.ts:19:30
+
+    Error Context: test-results-sequence-origin-drag-2/sequence-origin-move-seque-a041f-cels-a-changed-zoom-gesture/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-sequence-origin-drag-2/sequence-origin-move-seque-a041f-cels-a-changed-zoom-gesture/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-sequence-origin-drag-2/sequence-origin-move-seque-a041f-cels-a-changed-zoom-gesture/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture 

@@ -1,0 +1,34 @@
+import {test,expect} from '@playwright/test';
+import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
+import {confirmAuthoringImport} from './authoring-file';
+const base=createBlankStoryProject({id:'sound-time',chapterId:'ch',lineId:'a'}),project={...base,lines:base.lines.map(line=>({...line,text:'효과음 둘을 구분해서 편집합니다.',audio:{sounds:[{id:'first',assetId:'audio:sound:chime',delayMs:100},{id:'second',assetId:'audio:sound:step',delayMs:500,sourceStartMs:200,sourceEndMs:400}]}}))};
+test('guide pickup and both-edge dragging preserve source ranges and respect optional assistance',async({page},info)=>{
+ await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'sound-time.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-21T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');
+
+ const timeline=page.locator('[data-combined-timeline]');
+ await timeline.getByRole('button',{name:'현재 컷 시간 보기',exact:true}).click();
+ const time=page.locator('[data-combined-time]'),bar=time.getByRole('button',{name:'가벼운 발걸음 시간 선택',exact:true});
+ await bar.click();
+ const guide=time.getByLabel('통합 시간 보조선 (초)',{exact:true});
+ await time.getByRole('button',{name:'보조선을 선택 항목 시작으로',exact:true}).click();await expect(guide).toHaveValue('0.5');
+ await time.getByRole('button',{name:'보조선을 선택 항목 끝으로',exact:true}).click();await expect(guide).toHaveValue('0.7');
+ const stored=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+ await expect.poll(stored).toEqual(project);
+ await guide.fill('2');await guide.press('Enter');
+ await time.getByText('시간 배치 설정',{exact:true}).click();await time.getByRole('checkbox',{name:'시간 막대 끌기 사용',exact:true}).check();
+ const move=async(shift=false)=>{await bar.scrollIntoViewIfNeeded();const rect=await bar.boundingBox();expect(rect).toBeTruthy();await page.mouse.move(rect!.x+5,rect!.y+10);await page.mouse.down();if(shift)await page.keyboard.down('Shift');await page.mouse.move(rect!.x+5+76.8,rect!.y+10);await page.mouse.up();if(shift)await page.keyboard.up('Shift');};
+ await move();await expect(time.getByLabel('선택 항목 시작 시간 (초)',{exact:true})).toHaveValue('1.8');
+ await expect(time.getByRole('status')).toHaveText('끝을 2초 보조선에 맞췄어요.');
+ await expect.poll(async()=>(await stored()).lines[0].audio.sounds[1]).toEqual({...project.lines[0].audio.sounds[1],delayMs:1800});
+ await time.getByRole('button',{name:'시간 변경 취소',exact:true}).click();
+ await move(true);await expect(time.getByLabel('선택 항목 시작 시간 (초)',{exact:true})).toHaveValue('1.78');
+ await time.getByRole('button',{name:'시간 변경 취소',exact:true}).click();
+ await time.getByRole('checkbox',{name:'시간 보조선에 맞추기',exact:true}).uncheck();
+ await move();await expect(time.getByLabel('선택 항목 시작 시간 (초)',{exact:true})).toHaveValue('1.78');
+ await time.getByRole('button',{name:'시간 변경 취소',exact:true}).click();
+ await time.getByRole('checkbox',{name:'시간 보조선 표시',exact:true}).uncheck();await expect(guide).toBeHidden();
+ await expect(time.getByRole('button',{name:'보조선을 선택 항목 끝으로',exact:true})).toBeHidden();
+ await expect.poll(async()=>({...await stored(),updatedAt:project.updatedAt})).toEqual(project);
+ await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.screenshot({path:info.outputPath('guide-assistance-phone.png')});
+});

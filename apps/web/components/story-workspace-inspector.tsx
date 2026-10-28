@@ -1,6 +1,9 @@
 "use client";
 import {DialogueCapacityHint} from './dialogue-capacity-hint';
-import {useRef} from 'react';
+import {useRef,useState} from 'react';
+import {createPortal} from 'react-dom';
+import {flowMode,prepareFlowChange,type FlowMode} from '../lib/story-flow-change';
+import {StoryFlowChangeDialog} from './story-flow-change-dialog';
 import {StorySceneResources} from './story-scene-resources';
 import {SecondsInput} from './seconds-input';
 import {StoryStagingImport} from './story-staging-import';
@@ -74,7 +77,18 @@ export function StoryWorkspaceInspector({
   onPreviewFromBranch,
 }: Props) {
   const root=useRef<HTMLElement>(null);
-  const focusField=(label:string)=>{const field=[...root.current?.querySelectorAll<HTMLElement>('[aria-label]')??[]].find(node=>node.getAttribute('aria-label')===label||node.getAttribute('aria-label')===`${label} 이미지 찾기`);field?.scrollIntoView({block:'nearest'});field?.focus({preventScroll:true});};
+  const flowOpener=useRef<HTMLElement|null>(null);
+  const [pendingFlow,setPendingFlow]=useState<{projectId:string;lineId:string;before:string;proposal:NonNullable<ReturnType<typeof prepareFlowChange>>}|null>(null);
+  const flowSnapshot=JSON.stringify([line.flow,line.ending]);
+  const pendingBlocked=disabled||composing||!editingActive||!!pendingFlow&&(pendingFlow.projectId!==project.id||pendingFlow.lineId!==line.id||pendingFlow.before!==flowSnapshot);
+  function requestFlowMode(next:FlowMode,opener:HTMLElement){
+    if(disabled||composing||!editingActive)return;
+    const proposal=prepareFlowChange(line,next);if(!proposal)return;
+    if(!proposal.warning){patch(proposal.patch);return;}
+    flowOpener.current=opener;setPendingFlow({projectId:project.id,lineId:line.id,before:flowSnapshot,proposal});
+  }
+
+  const focusField=(label:string)=>{const field=[...root.current?.querySelectorAll<HTMLElement>('[aria-label]')??[]].find(node=>node.getAttribute('aria-label')===label||node.getAttribute('aria-label')?.startsWith(`${label} 이미지 찾기 ·`));field?.scrollIntoView({block:'nearest'});field?.focus({preventScroll:true});};
   const chapter = project.chapters.find(item=>item.id===line.chapterId);
   const chapterAssets = [...(chapter?.characterAssetIds??[]),...(chapter?.backgroundAssetIds??[])];
   const targetSelect = (
@@ -102,6 +116,7 @@ export function StoryWorkspaceInspector({
 
   return (
     <aside ref={root} className={styles.inspector} aria-label="현재 컷 편집">
+      {pendingFlow&&createPortal(<StoryFlowChangeDialog warning={pendingFlow.proposal.warning} blocked={pendingBlocked} opener={flowOpener} onCancel={()=>setPendingFlow(null)} onConfirm={()=>{if(pendingBlocked)return;patch(pendingFlow.proposal.patch);setPendingFlow(null);}}/>,document.body)}
       <h2>{activeSection === "text" ? "이 컷의 글" : activeSection === "sound" ? "이 컷의 소리" : activeSection === "assets" ? "배경·인물 편집" : activeSection === "flow" ? "선택지·이야기 연결" : activeSection === "presentation" ? "장면 연출" : "현재 컷 편집"}</h2>
       <fieldset disabled={disabled} className={styles.inputBoundary}>
       {(activeSection === "all" || activeSection === "text") && <div
@@ -263,38 +278,8 @@ export function StoryWorkspaceInspector({
           <select
             disabled={composing}
             aria-label="진행 방식"
-            value={
-              line.flow?.type === "goto" && line.flow.targetLineId === null
-                ? "ending"
-                : line.flow?.type ?? "linear"
-            }
-            onChange={(event) =>
-              patch({
-                ending: undefined,
-                flow:
-                  event.target.value === "linear"
-                    ? undefined
-                    : event.target.value === "goto"
-                      ? { type: "goto", targetLineId: "" }
-                      : event.target.value === "ending"
-                        ? { type: "goto", targetLineId: null }
-                      : {
-                          type: "choice",
-                          options: [
-                            {
-                              id: `${line.id}-choice-1`,
-                              label: "선택 1",
-                              targetLineId: "",
-                            },
-                            {
-                              id: `${line.id}-choice-2`,
-                              label: "선택 2",
-                              targetLineId: "",
-                            },
-                          ],
-                        },
-              })
-            }
+            value={flowMode(line)}
+            onChange={event=>requestFlowMode(event.target.value as FlowMode,event.currentTarget)}
           >
             <option value="linear">순서대로 다음 컷</option>
             {(branchesEnabled || line.flow?.type === "goto") && <option value="goto" disabled={!branchesEnabled}>도착 컷 지정</option>}

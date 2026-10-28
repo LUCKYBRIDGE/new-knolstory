@@ -1,4 +1,4 @@
-import type { StoryBranchCondition, StoryLine, StoryMusicCue } from '@knolstory/story-domain';
+import { storyBranchConditionTerms, type StoryBranchChoice, type StoryBranchCondition, type StoryLine, type StoryMusicCue } from '@knolstory/story-domain';
 
 /** Rebind only references to the duplicated cut; other destinations stay literal. */
 export function remapClonedCutReferences(
@@ -8,18 +8,24 @@ export function remapClonedCutReferences(
 ): StoryLine {
   const target = (id: string | null) => id === sourceLineId ? clone.id : id;
   const branch = <T extends { branchCondition?: StoryBranchCondition }>(cue: T): T => {
-    if (cue.branchCondition?.sourceLineId !== sourceLineId) return cue;
-    const choiceId = choiceIds.get(cue.branchCondition.choiceId);
-    if (!choiceId) throw new Error('복제할 컷의 갈래 실행 조건에 연결된 선택 항목을 찾을 수 없어요. 선택지를 확인해 주세요.');
-    return { ...cue, branchCondition: { ...cue.branchCondition, sourceLineId: clone.id, choiceId } };
+    const condition = cue.branchCondition;
+    if (!condition || !storyBranchConditionTerms(condition).some(term => term.sourceLineId === sourceLineId)) return cue;
+    const remap = (term: StoryBranchChoice): StoryBranchChoice => {
+      if (term.sourceLineId !== sourceLineId) return term;
+      const choiceId = choiceIds.get(term.choiceId);
+      if (!choiceId) throw new Error('복제할 컷의 선택 조건에 연결된 선택 항목을 찾을 수 없어요. 선택지를 확인해 주세요.');
+      return { ...term, sourceLineId: clone.id, choiceId };
+    };
+    return { ...cue, branchCondition: 'terms' in condition ? { ...condition, terms: condition.terms.map(remap) } : remap(condition) };
   };
   const music = (cue: StoryMusicCue): StoryMusicCue => {
-    if (cue.action !== 'play') return cue;
+    if (cue.action !== 'play' && cue.action !== 'sequence') return cue;
     return branch(cue.endLineId === sourceLineId ? { ...cue, endLineId: clone.id } : cue);
   };
   const flow = clone.flow;
   return {
     ...clone,
+    ...(clone.visibility?.choices?{visibility:{...clone.visibility,choices:branch({branchCondition:clone.visibility.choices}).branchCondition}}:{}),
     ...(flow ? { flow: flow.type === 'choice'
       ? { ...flow, options: flow.options.map(option => ({ ...option, targetLineId: target(option.targetLineId) })) }
       : { ...flow, targetLineId: target(flow.targetLineId),

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { cutLabel, isStoryScoreNumber, STORY_SCORE_MAX_DEFINITIONS, STORY_SCORE_MAX_EFFECTS, STORY_SCORE_MAX_TERMS, STORY_SCORE_MAX_ROUTES, type StoryProject } from '@knolstory/story-domain';
 import {orderedLines} from '@knolstory/runtime-core';
 import styles from './story-score-controls.module.css';
@@ -10,20 +10,20 @@ type Condition = { mode: 'all'|'any'; terms: Term[] };
 type Effect = { scoreId: string; operation: 'add'|'set'; value: number };
 const comparisons: [Term['operator'],string][] = [['gte','이상'],['gt','초과'],['eq','같음'],['ne','다름'],['lte','이하'],['lt','미만']];
 const presets = [{name:'신뢰',description:'서로 믿고 도와준 선택의 정도'}, {name:'용기',description:'어려움에 맞선 선택의 정도'}, {name:'욕심',description:'자기 이익을 먼저 챙긴 선택의 정도'}];
-function NumberValue({value,onChange,label}:{value:number;onChange:(n:number)=>void;label:string}) {
+function NumberValue({value,onChange,label,displayLabel=label}:{value:number;onChange:(n:number)=>void;label:string;displayLabel?:string}) {
   const [draft,setDraft]=useState({base:value,text:String(value)});
   const text=draft.base===value?draft.text:String(value);
-  const [error,setError]=useState(false);
-  return <label>{label}<input aria-label={label} type="number" step="1" min={-1000000} max={1000000} value={text} onChange={e=>{setDraft({base:value,text:e.target.value});setError(false);}} onBlur={()=>{const n=Number(text);if(text.trim()&&isStoryScoreNumber(n)){onChange(n);}else{setError(true);}}}/>{error&&<span role="alert">-1,000,000부터 1,000,000 사이의 정수를 입력해 주세요. 현재 원고에 적용된 값은 {value}입니다.</span>}</label>;
+  const [error,setError]=useState(false),errorId=useId();
+  return <label>{displayLabel}<input aria-label={label} aria-invalid={error?true:undefined} aria-describedby={error?errorId:undefined} type="number" step="1" min={-1000000} max={1000000} value={text} onChange={e=>{setDraft({base:value,text:e.target.value});setError(false);}} onBlur={()=>{const n=Number(text);if(text.trim()&&isStoryScoreNumber(n)){setDraft({base:n,text:String(n)});if(n!==value)onChange(n);}else{setError(true);}}}/>{error&&<span id={errorId} role="alert">-1,000,000부터 1,000,000 사이의 정수를 입력해 주세요. 현재 원고에 적용된 값은 {value}입니다.</span>}</label>;
 }
 function ScoreName({name,label,onChange}:{name:string;label:string;onChange:(name:string)=>void}) {
   const [draft,setDraft]=useState({base:name,text:name});
-  const [error,setError]=useState(false);
+  const [error,setError]=useState(false),errorId=useId();
   const text=draft.base===name?draft.text:name;
-  return <label>점수 이름<input aria-label={label} value={text} maxLength={80} onChange={e=>{setDraft({base:name,text:e.target.value});setError(false);}} onBlur={()=>{if(text.trim())onChange(text);else setError(true);}}/>{error&&<span role="alert">점수 이름을 써 주세요. 현재 원고에 적용된 이름은 {name}입니다.</span>}</label>;
+  return <label>점수 이름<input aria-label={label} aria-invalid={error?true:undefined} aria-describedby={error?errorId:undefined} value={text} maxLength={80} onChange={e=>{setDraft({base:name,text:e.target.value});setError(false);}} onBlur={()=>{if(text.trim()){if(text!==name)onChange(text);}else setError(true);}}/>{error&&<span id={errorId} role="alert">점수 이름을 써 주세요. 현재 원고에 적용된 이름은 {name}입니다.</span>}</label>;
 }
-function ScoreSelect({scores,value,label,onChange}:{scores:Score[];value:string;label:string;onChange:(id:string)=>void}) {
-  return <label>{label}<select aria-label={label} value={value} onChange={e=>onChange(e.target.value)}>{scores.map(s=><option key={s.id} value={s.id}>{s.name}</option>)}</select></label>;
+function ScoreSelect({scores,value,label,onChange,displayLabel=label}:{scores:Score[];value:string;label:string;onChange:(id:string)=>void;displayLabel?:string}) {
+  return <label>{displayLabel}<select aria-label={label} value={value} onChange={e=>onChange(e.target.value)}>{scores.map(s=><option key={s.id} value={s.id}>{s.name}</option>)}</select></label>;
 }
 export function ProjectScoreEditor({project,onProjectChange}:{project:StoryProject;onProjectChange:(p:StoryProject)=>void}) {
   const [name,setName]=useState('');
@@ -34,7 +34,7 @@ export function ProjectScoreEditor({project,onProjectChange}:{project:StoryProje
     const flow=line.flow;
     const conditions=flow?.type==='goto'?(flow.routes??[]).map(r=>r.condition):flow?.type==='choice'?flow.options.map(o=>o.condition).filter((c):c is Condition=>!!c):[];
     const effects=flow?.type==='choice'?flow.options.flatMap(o=>o.effects??[]):[];
-    return conditions.some(c=>c.terms.some(t=>t.scoreId===id))||effects.some(e=>e.scoreId===id)?[line.id]:[];
+    return [...conditions,...(line.visibility?.scores?[line.visibility.scores]:[]),...(line.textVariants??[]).map(variant=>variant.condition)].some(c=>c.terms.some(t=>t.scoreId===id))||effects.some(e=>e.scoreId===id)?[line.id]:[];
   });
   const add=(scoreName:string,meaning:string)=>{update([...scores,{id:crypto.randomUUID(),name:scoreName.trim(),description:meaning,initial:0}]);setName('');setDescription('');};
   return <section className={styles.editor} aria-label="이야기 점수 설정"><h3>이야기 점수</h3><p>무엇을 기억하고 쌓을지 작가가 정해요. 선택 결과와 조건에 연결하면 나중의 줄거리도 달라집니다. 점수는 독자마다 시작 값에서 출발해요.</p>
@@ -44,14 +44,16 @@ export function ProjectScoreEditor({project,onProjectChange}:{project:StoryProje
   </section>;
 }
 export function ScoreConditionEditor({scores,condition,onChange,label}:{scores:Score[];condition?:Condition;onChange:(c:Condition|undefined)=>void;label:string}) {
+  const [draftRevision,setDraftRevision]=useState(0);
   const patch=(index:number,partial:Partial<Term>)=>onChange({...condition!,terms:condition!.terms.map((t,i)=>i===index?{...t,...partial}:t)});
-  return <div className={styles.editor} aria-label={label}><strong>{label}</strong>{condition&&<><label>조건을 어떻게 연결할까요?<select aria-label={`${label} 조건 묶음`} value={condition.mode} onChange={e=>onChange({...condition,mode:e.target.value as Condition['mode']})}><option value="all">그리고 · 모든 조건을 만족할 때</option><option value="any">또는 · 하나라도 만족할 때</option></select></label>{condition.terms.map((term,index)=><div className={styles.row} key={index}><ScoreSelect scores={scores} value={term.scoreId} label={`${label} 조건 ${index+1} 점수`} onChange={scoreId=>patch(index,{scoreId})}/><label>비교<select aria-label={`${label} 조건 ${index+1} 비교`} value={term.operator} onChange={e=>patch(index,{operator:e.target.value as Term['operator']})}>{comparisons.map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label><NumberValue label={`${label} 조건 ${index+1} 값`} value={term.value} onChange={value=>patch(index,{value})}/><button type="button" onClick={()=>onChange(condition.terms.length===1?undefined:{...condition,terms:condition.terms.filter((_,i)=>i!==index)})}>조건 {index+1} 삭제</button></div>)}</>}
+  return <div className={styles.editor} aria-label={label}><strong>{label}</strong>{condition&&<><label>조건을 어떻게 연결할까요?<select aria-label={`${label} 조건 묶음`} value={condition.mode} onChange={e=>onChange({...condition,mode:e.target.value as Condition['mode']})}><option value="all">그리고 · 모든 조건을 만족할 때</option><option value="any">또는 · 하나라도 만족할 때</option></select></label>{condition.terms.map((term,index)=><div className={styles.row} key={index}><ScoreSelect scores={scores} value={term.scoreId} displayLabel={`${index+1}번 조건 · 점수`} label={`${label} 조건 ${index+1} 점수`} onChange={scoreId=>patch(index,{scoreId})}/><label>비교<select aria-label={`${label} 조건 ${index+1} 비교`} value={term.operator} onChange={e=>patch(index,{operator:e.target.value as Term['operator']})}>{comparisons.map(([v,l])=><option key={v} value={v}>{l}</option>)}</select></label><NumberValue key={`${draftRevision}/${index}`} displayLabel="기준값" label={`${label} 조건 ${index+1} 값`} value={term.value} onChange={value=>patch(index,{value})}/><button type="button" onClick={()=>{onChange(condition.terms.length===1?undefined:{...condition,terms:condition.terms.filter((_,i)=>i!==index)});setDraftRevision(value=>value+1);}}>조건 {index+1} 삭제</button></div>)}</>}
     <button type="button" disabled={!scores.length||(condition?.terms.length??0)>=STORY_SCORE_MAX_TERMS} onClick={()=>onChange({mode:condition?.mode??'all',terms:[...(condition?.terms??[]),{scoreId:scores[0].id,operator:'gte',value:1}]})}>조건 추가</button>{!condition&&<small>설정한 점수 조건이 없어요.</small>}
   </div>;
 }
 export function ChoiceScoreEditor({scores,effects,condition,onChange,label,conditionsEnabled=true}:{conditionsEnabled?:boolean;scores:Score[];effects?:Effect[];condition?:Condition;onChange:(patch:{effects?:Effect[];condition?:Condition})=>void;label:string}) {
+  const [draftRevision,setDraftRevision]=useState(0);
   const patch=(index:number,partial:Partial<Effect>)=>onChange({effects:effects!.map((e,i)=>i===index?{...e,...partial}:e)});
-  return <section className={styles.editor} aria-label={`${label} 점수 변화${conditionsEnabled?'·표시 조건':''}`}><p>이 선택지를 고르면 아래에 정한 점수 변화가 적용돼요.{conditionsEnabled&&' 표시 조건을 만족하지 않는 선택지는 읽기 화면에 나타나지 않아요.'}</p>{(effects??[]).map((effect,index)=><div className={styles.row} key={index}><ScoreSelect scores={scores} value={effect.scoreId} label={`${label} 결과 ${index+1} 점수`} onChange={scoreId=>patch(index,{scoreId})}/><label>바꾸는 방법<select aria-label={`${label} 결과 ${index+1} 방법`} value={effect.operation} onChange={e=>patch(index,{operation:e.target.value as Effect['operation']})}><option value="add">더하기 (음수는 빼기)</option><option value="set">이 값으로 바꾸기</option></select></label><NumberValue label={`${label} 결과 ${index+1} 값`} value={effect.value} onChange={value=>patch(index,{value})}/><button type="button" onClick={()=>onChange({effects:effects!.length===1?undefined:effects!.filter((_,i)=>i!==index)})}>결과 {index+1} 삭제</button></div>)}<button type="button" disabled={!scores.length||(effects?.length??0)>=STORY_SCORE_MAX_EFFECTS} onClick={()=>onChange({effects:[...(effects??[]),{scoreId:scores[0].id,operation:'add',value:1}]})}>점수 변화 추가</button>{conditionsEnabled&&<ScoreConditionEditor scores={scores} condition={condition} label={`${label} 표시 조건`} onChange={next=>onChange({condition:next})}/>}</section>;
+  return <section className={styles.editor} aria-label={`${label} 점수 변화${conditionsEnabled?'·표시 조건':''}`}><p>이 선택지를 고르면 아래에 정한 점수 변화가 적용돼요.{conditionsEnabled&&' 표시 조건을 만족하지 않는 선택지는 읽기 화면에 나타나지 않아요.'}</p>{(effects??[]).map((effect,index)=><div className={styles.row} key={index}><ScoreSelect scores={scores} value={effect.scoreId} label={`${label} 결과 ${index+1} 바꿀 점수`} displayLabel="바꿀 점수" onChange={scoreId=>patch(index,{scoreId})}/><label>바꾸는 방법<select aria-label={`${label} 결과 ${index+1} 방법`} value={effect.operation} onChange={e=>patch(index,{operation:e.target.value as Effect['operation']})}><option value="add">더하기 (음수는 빼기)</option><option value="set">이 값으로 바꾸기</option></select></label><NumberValue key={`${draftRevision}/${index}`} label={`${label} 결과 ${index+1} 적용할 값`} displayLabel="적용할 값" value={effect.value} onChange={value=>patch(index,{value})}/><button type="button" onClick={()=>{onChange({effects:effects!.length===1?undefined:effects!.filter((_,i)=>i!==index)});setDraftRevision(value=>value+1);}}>결과 {index+1} 삭제</button></div>)}<button type="button" disabled={!scores.length||(effects?.length??0)>=STORY_SCORE_MAX_EFFECTS} onClick={()=>onChange({effects:[...(effects??[]),{scoreId:scores[0].id,operation:'add',value:1}]})}>점수 변화 추가</button>{conditionsEnabled&&<ScoreConditionEditor scores={scores} condition={condition} label={`${label} 표시 조건`} onChange={next=>onChange({condition:next})}/>}</section>;
 }
 
 type Route = { id:string; condition:Condition; targetLineId:string|null };

@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-23",
+  "scope": "Phone-specific task editing and keyboard writing focus; partial physical Galaxy S25 verification",
+  "device": {
+    "model": "SM-S938N",
+    "android": 16,
+    "chrome": "156.0.8078.47",
+    "cssWidth": 360
+  },
+  "implemented": [
+    "Keyboard basic writing shows only native preview and current textarea",
+    "44px previous/next preview arrows with IME commit and focus return",
+    "Phone background/characters/audio/direction show one cut with navigation",
+    "Phone combined timeline disabled with large-screen reason; saved large-screen preferences preserved",
+    "Keyboard panning offset no longer cancels keyboard detection",
+    "Desktop chapter filter ignored in phone single-cut mode"
+  ],
+  "physicalEvidence": [
+    "Actual Samsung Korean keyboard touches composed 가나다 with native composition events",
+    "Composing text retained across next/previous cut navigation",
+    "Keyboard open visual height350; image168 and textarea158; no horizontal overflow",
+    "Four phone task screens each one row, next/previous navigation, no horizontal overflow",
+    "Real native RenPy preview renders"
+  ],
+  "verification": {
+    "unit": "3 passed: keyboard detection and phone device/layout decisions",
+    "browser": "5 passed6.7s: phone/tablet keyboard focus+composition-safe arrows, phone portrait/landscape single tasks, chapter change, desktop-filter resize, tablet combined preference restoration and unchanged project",
+    "review": "Separate read-only review found stale filtered chapter and playback notice issues; both corrected; reviewer later hit usage limit",
+    "build": "Web build:source passed",
+    "lint": "Focused source/tests ESLint passed",
+    "docs": "57 active documents/227 current surfaces: 0 link or retired-term errors;10 docs tests passed"
+  },
+  "openDefects": [
+    "Actual Android file picker saved .knolstory.json bytes but immediate handle readback differed; app correctly reports unverified save. Diagnose before claiming local file save completion. Reopening physical file not yet verified."
+  ],
+  "limits": [
+    "Actual landscape rotation and all phone control details not yet verified",
+    "Screenshots copied from page only; notification/private file-picker images remain ignored cache",
+    "Whole editor goal remains active"
+  ]
+}

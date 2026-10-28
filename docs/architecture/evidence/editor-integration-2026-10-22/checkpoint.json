@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-22",
+  "scope": "Current editor integrated browser audit, test path alignment and default suite registration; full goal remains active",
+  "verification": {
+    "initialSuite": {
+      "total": 66,
+      "passed": 59,
+      "failed": 7
+    },
+    "focusedRepairs": {
+      "uniqueCases": 7,
+      "passed": 7,
+      "runs": 6,
+      "note": "Current application code/build unchanged during these test-only repairs; not a single all-green66 rerun"
+    },
+    "coverage": [
+      "Five task screens and companions; basic prev/current/next; advanced explicit opt-ins and session separation",
+      "Korean composition/cursor/resize; exact actor targeting and source timing",
+      "Story menu/popups/focus/cancel/delete/branch preview protections",
+      "Score AND/OR two terms with actual file reopen",
+      "KnolStory/ShortStory actual files and handles, disk/permission failures and stale writes",
+      "Native perspective cue/prose/return and editor native mounting"
+    ],
+    "testFixes": [
+      "Reopen flow panel after settings closes supplemental panels",
+      "Keep explicit user home-icon exception instead of obsolete zero-header-button expectation",
+      "Confirm destructive flow-mode changes before branch and Korean-choice editing",
+      "Declare hasTouch for perspective touchscreen actions",
+      "Explicit score editing opt-in before score preparation"
+    ],
+    "defaultRegistration": [
+      "task-editor-current-cut",
+      "timeline-settings-access",
+      "time-viewport-controls",
+      "sequence-origin-move",
+      "sequence-time-edit",
+      "direction-tips",
+      "perspective-cue"
+    ]
+  },
+  "uncompleted": [
+    "Original branch-scope.spec obsolete data-additional-tools path still requires current UI/native migration; interrupted initial72 run retained",
+    "Same-cut conditional text/score variants absent; score route is not a substitute",
+    "Multiple exact choice-history conditions with AND/OR absent; score comparison AND/OR exists",
+    "Sequence cross-cut auto split and physical-device/soft-keyboard/full goal audit remain"
+  ],
+  "preservation": "Application/rendering/manuscript code not changed in this integration audit; prior artifacts not regenerated"
+}

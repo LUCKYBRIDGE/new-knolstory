@@ -1,4 +1,5 @@
 import {describe,expect,it} from 'vitest';
+import {connectCatalogPerspective} from '../src/catalog-perspective';
 import {representativeStories,classicStories,refineProvidedStory,readerTextEdits,enhanceExistingStory,resolveProvidedCatalogStory} from '../src';
 import {parseStoryDocument,createStoryDocument,type StoryProject,type StoryLine} from '@knolstory/story-domain';
 import {createAuthoringArchive,encodeAuthoringArchive,decodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot} from '../src/authoring-archive';
@@ -52,7 +53,7 @@ describe('provided original and creative editions edited reading text',()=>{
   const entries=[...representativeStories,...classicStories];
   expect(entries).toHaveLength(8);
   for(const entry of entries){
-   const original=entry.project,current=enhanceExistingStory(refineProvidedStory(original));
+   const original=entry.project,current=connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)));
    const editions=[original,enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original)),current];
    expect(resolveProvidedCatalogStory(original)).toEqual(current);
    for(const edition of editions){
@@ -65,7 +66,7 @@ describe('provided original and creative editions edited reading text',()=>{
  // Full-manuscript roundtrips exceed the short unit default on shared CI CPUs.
  it('preserves the same reference and every field after any authored edit to any official edition',{timeout:30000},()=>{
   for(const entry of [...representativeStories,...classicStories]){
-   const original=entry.project,current=enhanceExistingStory(refineProvidedStory(original));
+   const original=entry.project,current=connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)));
    const editions=[original,enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original)),current];
    for(const edition of editions){
     const changes:Record<string,StoryProject>={
@@ -89,7 +90,7 @@ describe('provided original and creative editions edited reading text',()=>{
 
  it('refreshes earlier directed editions after document creation and storage parsing reorder object fields',()=>{
   for(const entry of [...representativeStories,...classicStories]){
-   const original=entry.project,current=enhanceExistingStory(refineProvidedStory(original));
+   const original=entry.project,current=connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)));
    for(const edition of [enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original))]){
     const document=createStoryDocument({project:edition,savedAt:'2026-10-18T00:00:00.000Z',appVersion:'reader-storage-test'});
     const parsed=parseStoryDocument(JSON.parse(JSON.stringify(document)));
@@ -110,7 +111,7 @@ describe('provided original and creative editions edited reading text',()=>{
  });
  it('isolates later catalog resolution from consumer edits to returned projects',()=>{
   for(const entry of [...representativeStories,...classicStories]){
-   const before=structuredClone(entry.project),expected=enhanceExistingStory(refineProvidedStory(entry.project));
+   const before=structuredClone(entry.project),expected=connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)));
    const returned=resolveProvidedCatalogStory(entry.project);
    // Simulate a consumer editing a selected work in place, including a nested manuscript line.
    returned.title='내 개인 제목';

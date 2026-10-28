@@ -1,0 +1,20 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/combined-range-edit.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/combined-range-edit.test.ts [ apps/web/lib/combined-range-edit.test.ts ]
+Error: Cannot find module './combined-range-edit' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/combined-range-edit.test.ts
+ ❯ apps/web/lib/combined-range-edit.test.ts:3:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  17:40:07
+   Duration  462ms (transform 257ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

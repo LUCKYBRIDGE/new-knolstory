@@ -35,5 +35,6 @@ it('restores authentic previous schema snapshots using the original fingerprint 
  const archive=await createAuthoringArchive({format:'knolstory',document:getRepresentativeStory('rabbit')});if(archive.format!=='knolstory')throw Error('kind');
  for(const version of [2,3,4,5,6,7] as const){const content={...archive,document:{...archive.document,schemaVersion:version}} as unknown as AuthoringArchive;const snapshot=await oldSnapshot(content),before=structuredClone(snapshot);expect(await restoreJsonbSnapshot(snapshot)).toEqual(archive);expect(snapshot).toEqual(before);await expect(restoreJsonbSnapshot({...snapshot,contentSha256:'0'.repeat(64)})).rejects.toThrow();}
  const book=await exportAuthoringWorkbook(archive),tables={...book.tables};for(const key of ['presentationEffects','audioTracks','audioSounds']){const t=tables[key];tables[key]={headers:t.headers.filter(h=>!h.startsWith('branch')),rows:t.rows.map(r=>r.filter((_,i)=>!t.headers[i].startsWith('branch')))};}
+ delete tables.branchConditionTerms;
  const meta=tables.metadata;tables.metadata={...meta,rows:meta.rows.map(row=>row.map((cell,i)=>['version','schemaVersion'].includes(meta.headers[i])?'7':cell))};expect(await importAuthoringWorkbook({...book,formatVersion:7,tables})).toEqual(archive);
 });

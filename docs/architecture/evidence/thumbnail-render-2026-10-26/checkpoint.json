@@ -1,0 +1,48 @@
+{
+  "status": "focused-validation-passed",
+  "change": "Pinned native zoom_render scales1280x720 authored Render to320x180 before screenshot; PNG/current state contract retained.",
+  "unitTests": 3,
+  "failureStages": [
+    "logical-render",
+    "native-scale",
+    "readback",
+    "PNG"
+  ],
+  "nativeCaptures": [
+    "1280x800 DPR1 before/after",
+    "390x844 DPR3",
+    "800x1000 DPR2"
+  ],
+  "preservation": {
+    "wholeProjectEqual": true,
+    "sameIframe": true,
+    "output": [
+      320,
+      180
+    ]
+  },
+  "physicalPhone": {
+    "status": "passed",
+    "elapsedMs": 92412,
+    "cycles": 7,
+    "nativeReturns": 1,
+    "wholeTestProjectPreserved": true,
+    "preexistingWorksPreserved": true,
+    "archiveExportNotAttempted": true,
+    "originalEditorRestored": true,
+    "errors": []
+  },
+  "phoneCleanup": {
+    "reloadedOriginalEditor": true,
+    "wholeProjectEqual": true,
+    "temporaryInstrumentationRemoved": true,
+    "nativeReady": true
+  },
+  "memoryConclusion": "Normal90sec after-change WASM linear capacity remains289996800bytes, same as prior normal run. No measured peak-capacity saving or crash resolution is established.",
+  "notProven": [
+    "30minute S25 stability",
+    "Previous crash cause",
+    "Reduced allocator live bytes/RSS/GPU",
+    "All editor requirements"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-21",
+  "scope": "Cut-owned linear music/ambience region split, independent source-range editing and continuity; whole editor goal remains active",
+  "implemented": [
+    "Split originalcut play directive into left ending previouscut and copied right directive preserving unset end/source/loop/volume/fades",
+    "Reject conditional source, out-of-region and explicit intervening changes/stops",
+    "Full project incoming graph checks each interior cut for unique previous-only straight continuation, including choice/score/merge/skip defenses",
+    "Precomputed incoming graph map",
+    "Collapsed split controls on selected nonconditional multi-cut audio region, exact scoped range undo",
+    "Preserve original media, manuscript and other channels/sounds"
+  ],
+  "verification": {
+    "focusedUnitTests": 11,
+    "newHelperTests": 6,
+    "coverage": {
+      "statements": 96.29,
+      "branches": 93.93,
+      "functions": 92.3,
+      "lines": 100
+    },
+    "formats": [
+      "archive2 encode/decode",
+      "workbook8 export/import",
+      "generated actual XLSX bytes export/import",
+      "JSONB snapshot"
+    ],
+    "core": "Split pre-edit compiled audio equal at all4cuts to unsplit original",
+    "finalE2EFlows": 3,
+    "finalE2ELog": "continuous-split-e2e-final.log",
+    "nativeBehavior": [
+      "Actual game audio gate; music and ambience independently start once",
+      "Actual stage clicks across first and second boundary keep startcount1",
+      "Change right sourceStart0.2→1sec preserves left0.2sec",
+      "Play changed right cut starts channel again count2"
+    ],
+    "fileBehavior": [
+      "Export actual split work file matches current whole project",
+      "Fresh browser import equals exported project",
+      "Original text preserved",
+      "Split undo restores one original region",
+      "390x844 no horizontal overflow"
+    ],
+    "relatedE2E": "Existing combined edits/guide/duration/drag/actual file reopen/nativeplayreturn passed",
+    "typecheck": "passed all packages/server",
+    "eslint": "passed",
+    "webBuild": "passed final UI source; native source unchanged and existing built renderer reused",
+    "docsCheck": "passed57 active documents and211 current language surfaces",
+    "docsTests": 10,
+    "visualInspection": "Rendered390x844 phone source-range detail inspected"
+  },
+  "review": {
+    "method": "Independent planning and actual-code review",
+    "findingsAddressed": [
+      "Preserve real flow; graph-check entire affected interior rather than just splitcut",
+      "Maintain original end absence and split destination maintain undo",
+      "Replace per-cut full graph scan with incoming map",
+      "Hide unsupported conditional split action"
+    ]
+  },
+  "limitations": [
+    "No temporal music clip queue within one cut",
+    "No automatic chapter-default or branch-conditioned region split",
+    "No waveform editing or sample-accurate seam proof",
+    "No external Excel/Google app edit-save proof or physical device validation"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/continuous-audio-split.ts": "f2f9388e7494dcc20d105477fb043327e6cc19c4e0c72e285ab9dca8dad254b1",
+    "apps/web/lib/continuous-audio-split.test.ts": "02827e297d4b72585bb7e93431eecaa422cc01c96d460de13aa7f7de94295c48",
+    "apps/web/components/story-combined-range-tools.tsx": "431b7f15f4fe0fa76f52b606289bb64a93291a3866ac4f52dd9392d9c68fd495",
+    "tests/e2e/continuous-audio-split.spec.ts": "7948dadf8e0453b89b6c154337f00bbc40fb70a90f54bc920ee8c19517d1eb78",
+    "playwright.config.ts": "330b00d416a1f72b493e04e4e86c9e33872dc8976c392d96db28bf7aae735398"
+  },
+  "egoBrowser": {
+    "spaceId": 6,
+    "sameGoalSpace": "knolstory-editor-completion",
+    "verified": "Imported actual split work file as independent copy on localhost origin; enabled combined editor; observed2 source bars; clicked right bar, selected cut c and source range1..1.8sec",
+    "limit": "Native continuity and split action proof from final Playwright runs; Ego independently confirmed reopened selection and range display",
+    "taskSpace": "Retained for active full editor goal"
+  }
+}

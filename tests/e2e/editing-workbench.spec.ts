@@ -40,7 +40,7 @@ async function settings(page:Page){
 }
 async function mode(page:Page,label:string){await openWorkMenu(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption({label});}
 async function pickBackground(page:Page,target:Locator,label:string){
- const launcher=target.getByRole('button',{name:`${label} 이미지 찾기`,exact:true});
+ const launcher=target.getByRole('button',{name:new RegExp(`^${`${label} 이미지 찾기`} ·`),exact:false});
  const current=await launcher.getAttribute('data-asset-value');await launcher.click();
  const dialog=page.getByRole('dialog',{name:`이미지 선택 · ${label}`,exact:true});
  const candidate=dialog.locator(`[data-asset-id]:not([data-asset-id="${current}"]):visible`).first();
@@ -72,8 +72,8 @@ test('background workbench updates separate cuts and preserves their text, stage
  const after=(await exported(page)).project;
  expect(after).toEqual({...before,updatedAt:after.updatedAt,lines:before.lines.map((line,index)=>index<2?{...line,backgroundId:index===0?first:second}:line)});
  await page.reload();await mode(page,'배경 편집');
- await expect(row(page,0).getByRole('button',{name:'1컷 배경 이미지 찾기',exact:true})).toHaveAttribute('data-asset-value',first);
- await expect(row(page,1).getByRole('button',{name:'2컷 배경 이미지 찾기',exact:true})).toHaveAttribute('data-asset-value',second);
+ await expect(row(page,0).getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false})).toHaveAttribute('data-asset-value',first);
+ await expect(row(page,1).getByRole('button',{name:/^2컷 배경 이미지 찾기 ·/,exact:false})).toHaveAttribute('data-asset-value',second);
 });
 
 test('audio and direction require separate opt-in, persist real cut ranges and survive local-file reopen',async({page,browser})=>{
@@ -184,7 +184,7 @@ test('legacy advanced controls remain separately opt-in and preserve existing ch
  await page.keyboard.press('Escape');const logic=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await logic.locator(':scope>summary').click();
  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true})).toBeVisible();
  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true}).locator('option[value="goto"]')).toHaveAttribute('disabled','');
- await openWorkMenu(page);await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.keyboard.press('Escape');
+ await openWorkMenu(page);await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.keyboard.press('Escape');await logic.locator(':scope>summary').click();
  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true}).locator('option[value="goto"]')).toHaveCount(1);
  await openWorkMenu(page);await page.getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).uncheck();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).uncheck();
  await expect(logic).toHaveCount(0);await page.keyboard.press('Escape');
@@ -277,7 +277,7 @@ test('editing follows modeled visible viewport shrink and pan while keeping text
 
 test('one grouped settings menu replaces scattered editor controls',async({page},info)=>{
  await page.setViewportSize({width:390,height:844});const before=await prepare(page),header=page.locator('main[data-keyboard-occluded]>header');await page.keyboard.press('Escape');
- await expect(header.locator(':scope>button')).toHaveCount(0);await expect(header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeVisible();
+ await expect(header.locator(':scope>button')).toHaveCount(1);await expect(header.getByRole('button',{name:'홈 · 서재로 이동',exact:true})).toBeVisible();await expect(header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeVisible();
  await expect(header.locator('[data-work-menu]>summary')).toHaveAccessibleName('설정');await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).not.toBeVisible();await expect(page.getByText('···',{exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'기본편집',exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'글 편집',exact:true})).toHaveCount(0);
  expect((await header.boundingBox())!.height).toBeLessThanOrEqual(52);
  await openWorkMenu(page);await expect(header.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).toBeVisible();
@@ -322,7 +322,7 @@ test('popup audit: import confirmation traps focus, cancels without modifying th
 });
 
 for(const [width,height] of [[320,640],[640,360]])test(`popup audit: image selection pending cancel stays safe ${width}x${height}`,async({page},info)=>{
- await page.setViewportSize({width,height});const before=await prepare(page);await mode(page,'배경 편집');const opener=row(page,0).getByRole('button',{name:'1컷 배경 이미지 찾기',exact:true});await opener.click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경',exact:true});await popupFits(dialog,page);const current=await opener.getAttribute('data-asset-value');await dialog.locator(`[data-asset-id]:not([data-asset-id="${current}"])`).first().click();await page.screenshot({path:info.outputPath(`asset-selector-${width}.png`),fullPage:true});await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(opener).toBeFocused();expect((await exported(page)).project).toEqual(before);
+ await page.setViewportSize({width,height});const before=await prepare(page);await mode(page,'배경 편집');const opener=row(page,0).getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false});await opener.click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경',exact:true});await popupFits(dialog,page);const current=await opener.getAttribute('data-asset-value');await dialog.locator(`[data-asset-id]:not([data-asset-id="${current}"])`).first().click();await page.screenshot({path:info.outputPath(`asset-selector-${width}.png`),fullPage:true});await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(opener).toBeFocused();expect((await exported(page)).project).toEqual(before);
 });
 
 test('popup audit: term search and flow map close back to settings without changing content',async({page},info)=>{
@@ -347,7 +347,7 @@ test('popup audit: ShortStory delete cancel preserves book and page',async({page
 });
 
 test('popup audit: new branch preview and local-work deletion cancel safely',async({page},info)=>{
- await page.setViewportSize({width:320,height:640});await prepare(page);await settings(page);await page.getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.keyboard.press('Escape');const detail=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await detail.locator(':scope>summary').click();await detail.getByRole('combobox',{name:'진행 방식',exact:true}).selectOption('choice');const before=(await exported(page)).project;await page.keyboard.press('Escape');await detail.getByRole('button',{name:'선택지 1에 새 장 연결',exact:true}).click();const branch=page.getByRole('dialog',{name:'새 갈래 작성',exact:true});await popupFits(branch,page);await page.screenshot({path:info.outputPath('new-branch-320.png'),fullPage:true});await page.keyboard.press('Escape');expect((await exported(page)).project).toEqual(before);await page.keyboard.press('Escape');await openWorkMenu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await shelfCoverButton(page,before.title).click();const book=page.getByRole('dialog');await book.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();await book.getByRole('button',{name:/작품 삭제|내 작품 삭제|이 작품 삭제/}).click();const deletion=page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true});await popupFits(deletion,page);await page.screenshot({path:info.outputPath('work-delete-320.png'),fullPage:true});await page.keyboard.press('Escape');await expect(shelfCoverButton(page,before.title)).toBeVisible();
+ await page.setViewportSize({width:320,height:640});await prepare(page);await settings(page);await page.getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.keyboard.press('Escape');const detail=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await detail.locator(':scope>summary').click();await detail.getByRole('combobox',{name:'진행 방식',exact:true}).selectOption('choice');await page.getByRole('dialog',{name:'진행 방식 변경 확인',exact:true}).getByRole('button',{name:'진행 방식 변경',exact:true}).click();const before=(await exported(page)).project;await page.keyboard.press('Escape');await detail.locator(':scope>summary').click();await detail.getByRole('button',{name:'선택지 1에 새 장 연결',exact:true}).click();const branch=page.getByRole('dialog',{name:'새 갈래 작성',exact:true});await popupFits(branch,page);await page.screenshot({path:info.outputPath('new-branch-320.png'),fullPage:true});await page.keyboard.press('Escape');expect((await exported(page)).project).toEqual(before);await page.keyboard.press('Escape');await openWorkMenu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await shelfCoverButton(page,before.title).click();const book=page.getByRole('dialog');await book.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();await book.getByRole('button',{name:/작품 삭제|내 작품 삭제|이 작품 삭제/}).click();const deletion=page.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true});await popupFits(deletion,page);await page.screenshot({path:info.outputPath('work-delete-320.png'),fullPage:true});await page.keyboard.press('Escape');await expect(shelfCoverButton(page,before.title)).toBeVisible();
 });
 
 test('popup audit: corrupt ShortStory recovery uses explicit app confirmation and preserves original bytes',async({page},info)=>{
@@ -373,7 +373,7 @@ test('speaker and choice Korean composition keep active inputs editable while bl
  await expect(name).toBeEnabled();await expect(page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeDisabled();await expect(detail.getByRole('combobox',{name:'글 종류',exact:true})).toBeDisabled();
  await name.fill('한글 이름 조합');await name.dispatchEvent('compositionend');await expect(page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeEnabled();
  await settings(page);await page.getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).check();await page.keyboard.press('Escape');
- const flow=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await flow.locator(':scope>summary').click();await flow.getByRole('combobox',{name:'진행 방식',exact:true}).selectOption('choice');
+ const flow=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await flow.locator(':scope>summary').click();await flow.getByRole('combobox',{name:'진행 방식',exact:true}).selectOption('choice');await page.getByRole('dialog',{name:'진행 방식 변경 확인',exact:true}).getByRole('button',{name:'진행 방식 변경',exact:true}).click();
  const choice=flow.getByRole('textbox',{name:'선택지 1 문구',exact:true});await choice.focus();await choice.dispatchEvent('compositionstart');await expect(choice).toBeEnabled();
  await expect(page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeDisabled();await expect(flow.getByRole('combobox',{name:'진행 방식',exact:true})).toBeDisabled();
  await choice.fill('조합 중인 선택 문구');await choice.dispatchEvent('compositionend');await expect(flow.getByRole('combobox',{name:'진행 방식',exact:true})).toBeEnabled();
@@ -399,4 +399,52 @@ test('character opt-in restores speaker linking and registration without opening
  await settings(page);await page.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).uncheck();expect((await exported(page)).project).toEqual(after);
  const archive=await exported(page);await importRaw(page,archive.raw);const reopened=(await exported(page)).project;expect(reopened).toEqual({...after,id:reopened.id});
  await page.screenshot({path:info.outputPath('speaker-opt-in-preserved.png')});
+});
+
+test('character cards keep the next cut and compact add action reachable',async({page},info)=>{
+ test.skip(info.project.name!=='host');await page.setViewportSize({width:1052,height:877});
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
+ await page.route('**/runtime/**',route=>route.abort());await page.route('**/api/**',route=>route.abort());
+ await page.goto('/?view=editor');await saved(page);
+ const single={...fixture,lines:fixture.lines.map(line=>({...line,rightAssetId:'',stageComposition:{leftActors:line.stageComposition!.leftActors.slice(0,1),rightActors:[]}}))};
+ await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-28T00:00:00.000Z',appVersion:'test',project:single}));
+ const before=(await exported(page)).project,controls=await settings(page);await controls.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();await mode(page,'인물 편집');
+ const first=row(page,0),add=first.getByRole('button',{name:/^1컷 인물 추가 이미지 찾기/});
+ expect((await add.boundingBox())!.height).toBeLessThanOrEqual(100);
+ const bounds=await workbench(page).locator('[data-writer-scroll]').boundingBox(),next=await row(page,1).locator('header').boundingBox();
+ expect(next!.y+next!.height).toBeLessThanOrEqual(bounds!.y+bounds!.height);
+ await first.getByRole('combobox',{name:'1컷 인물 1 배치 위치',exact:true}).selectOption('center');
+ await first.getByRole('slider',{name:'1컷 인물 1 크기',exact:true}).press('End');
+ await expect(first.getByText('크기 · 140%',{exact:true})).toBeVisible();
+ const after=(await exported(page)).project;
+ expect(after.lines[0].stageComposition!.leftActors[0]).toMatchObject({key:before.lines[0].stageComposition!.leftActors[0].key,position:'center',scaleMultiplier:1.4});
+ expect(after.lines.slice(1)).toEqual(before.lines.slice(1));expect(after.chapters).toEqual(before.chapters);
+ await mode(page,'인물 편집');await page.screenshot({path:info.outputPath('compact-character-cards.png')});
+ await page.setViewportSize({width:390,height:844});
+ await expect(workbench(page)).toHaveAttribute('data-phone-editor','true');
+ await expect.poll(async()=> (await first.boundingBox())!.width).toBeLessThanOrEqual(390);
+ await expect(first.getByRole('slider',{name:'1컷 인물 1 크기',exact:true})).toBeVisible();
+ const phone=await first.evaluate(node=>{const r=node.getBoundingClientRect();return {width:r.width,scroll:node.scrollWidth,client:node.clientWidth,controls:[...node.querySelectorAll('input[type=range],select')].filter(e=>e.checkVisibility()).map(e=>({height:e.getBoundingClientRect().height,right:e.getBoundingClientRect().right}))};});
+ expect(phone.scroll).toBeLessThanOrEqual(phone.client+1);for(const control of phone.controls){expect(control.height).toBeGreaterThanOrEqual(44);expect(control.right).toBeLessThanOrEqual(390);}
+ expect((await exported(page)).project).toEqual(after);await mode(page,'인물 편집');await page.screenshot({path:info.outputPath('compact-character-phone.png')});
+});
+
+test('four actor cards retain independent controls and fit narrow editing widths',async({page},info)=>{
+ test.skip(info.project.name!=='host');await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
+ await page.route('**/runtime/**',route=>route.abort());await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await saved(page);
+ const original=fixture.lines[0].stageComposition!,actor=original.leftActors[0];
+ const stage={leftActors:[{...actor,key:'density-left-1'},{...actor,key:'density-left-2'}],rightActors:[{...actor,key:'density-right-1'},{...actor,key:'density-right-2'}],speakerActorKey:'density-left-1'};
+ const four={...fixture,lines:fixture.lines.map((line,i)=>i===0?{...line,stageComposition:stage}:line)};
+ await importRaw(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-28T00:00:00.000Z',appVersion:'test',project:four}));
+ const before=(await exported(page)).project,controls=await settings(page);await controls.getByRole('checkbox',{name:'인물 편집 사용',exact:true}).check();await mode(page,'인물 편집');
+ const first=row(page,0);await expect(first.getByRole('button',{name:/^1컷 인물 추가 이미지 찾기/})).toHaveCount(0);
+ for(const width of [1052,768,390,320]){
+  await page.setViewportSize({width,height:877});await expect.poll(async()=>(await first.boundingBox())!.width).toBeLessThanOrEqual(width);
+  const layout=await first.evaluate(node=>{const rect=node.getBoundingClientRect();return {client:node.clientWidth,scroll:node.scrollWidth,controls:[...node.querySelectorAll('input[type=range],select')].filter(e=>e.checkVisibility()).map(e=>({left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,height:e.getBoundingClientRect().height})),rect:{left:rect.left,right:rect.right}};});
+  expect(layout.scroll).toBeLessThanOrEqual(layout.client+1);for(const c of layout.controls){expect(c.left).toBeGreaterThanOrEqual(0);expect(c.right).toBeLessThanOrEqual(width);expect(c.height,JSON.stringify({width,layout})).toBeGreaterThanOrEqual(44);}
+ }
+ const scale=first.getByRole('slider',{name:'1컷 인물 4 크기',exact:true});await scale.press('Home');await expect(first.getByText('크기 · 50%',{exact:true})).toBeVisible();
+ const after=(await exported(page)).project,oldStage=before.lines[0].stageComposition!,newStage=after.lines[0].stageComposition!;
+ expect(newStage.leftActors).toEqual(oldStage.leftActors);expect(newStage.rightActors[0]).toEqual(oldStage.rightActors[0]);expect(newStage.rightActors[1]).toEqual({...oldStage.rightActors[1],scaleMultiplier:.5});expect(newStage.speakerActorKey).toBe('density-left-1');expect(after.lines.slice(1)).toEqual(before.lines.slice(1));
+ await mode(page,'인물 편집');await first.getByRole('slider',{name:'1컷 인물 4 크기',exact:true}).scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('four-actor-narrow.png')});
 });

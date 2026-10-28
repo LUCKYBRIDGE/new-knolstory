@@ -1,0 +1,28 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/conditional-audio-split.test.ts (8 tests | 1 failed) 607ms
+   × refuses to split across conditionally hidden cuts rather than losing the continuation 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/conditional-audio-split.test.ts > refuses to split across conditionally hidden cuts rather than losing the continuation
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/conditional-audio-split.test.ts:41:346
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 7 passed (8)
+   Start at  09:27:42
+   Duration  1.07s (transform 332ms, setup 0ms, import 375ms, tests 607ms, environment 0ms)
+

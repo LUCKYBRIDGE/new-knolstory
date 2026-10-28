@@ -1,0 +1,38 @@
+{
+  "status": "30min-completed-runner-failed-restoration-followup-passed",
+  "runnerPid": 9425,
+  "execSession": 83305,
+  "relayPid": 92440,
+  "relaySession": 69156,
+  "testProjectId": "android-soak-1793095556436",
+  "runDirectory": ".cache/phone-soak-20261027-final",
+  "durationMs": 1800000,
+  "scope": "latest MIME and crack candidate, actual S25 portrait/windowed; independent copy; 30min edit, mode switching, RenPy return, actual Android .knolstory download, prior-work and original editor restoration",
+  "improvedFileGate": "Wait for readable valid archive with whole project equality, rather than nonempty adb cat error text.",
+  "completionRequired": [
+    "same process terminal",
+    "30min elapsed",
+    "actual file valid and exact work",
+    "preexisting works equal",
+    "original editor visible",
+    "source and out hashes unchanged",
+    "page errors none"
+  ],
+  "notProven": [
+    "original runner passed",
+    "fullscreen or OS IME",
+    "all device/editor completion"
+  ],
+  "result": {
+    "elapsedMs": 1834883,
+    "cycles": 118,
+    "nativeReturns": 12,
+    "pageErrors": 0,
+    "finalDeviceArchiveEqualsProject": true,
+    "priorWorksCheckedEachCycle": true,
+    "testedHashesMismatch": 0,
+    "originalEditorRestoredByFollowup": true,
+    "runnerFailure": "Search/add panel remained open and obscured book cover; Playwright could not click original card within timeout. After closing the panel through its visible control, original work reopened and entire project matched baseline.",
+    "scope": "Real S25 Chrome portrait windowed, original candidate before later source change; actual file and followup restoration are separate evidence, not a single-run pass."
+  }
+}

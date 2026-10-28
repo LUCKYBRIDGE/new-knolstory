@@ -13,7 +13,7 @@ class ServiceAudioCache:
         self.max_bytes=max_bytes
         self.entries={}
     def install(self,resources,referenced,protected=()):
-        if not isinstance(resources,list) or len(resources)>10 or sum(len(row.get('data','')) if isinstance(row,dict) and isinstance(row.get('data'),str) else 32000001 for row in resources)>32000000:
+        if not isinstance(resources,list) or len(resources)>42 or sum(len(row.get('data','')) if isinstance(row,dict) and isinstance(row.get('data'),str) else 32000001 for row in resources)>32000000:
             raise ValueError('Invalid shared audio list')
         expected=set(referenced)
         keep=expected|set(protected)

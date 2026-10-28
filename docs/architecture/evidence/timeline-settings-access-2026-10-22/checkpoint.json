@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-22",
+  "scope": "Expanded cut/time settings retain usable work area; full editor goal active",
+  "changes": [
+    "Settings in normal flow all widths, bounded128px internal scroll",
+    "Timeline outer scroll and cut viewport minimum104px preserve ruler and first row access",
+    "Time section minimum180px and bounded time settings; irrelevant cut options hidden in time view",
+    "Escape closes own settings and focuses summary; UI preferences do not change manuscript"
+  ],
+  "verification": {
+    "newSettingsViewports": [
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1280,
+        800
+      ]
+    ],
+    "checks": [
+      "Open options, enable drag, change mode, real elementFromPoint and pointer bar selection",
+      "Cut settings close/focus on Escape",
+      "Switch time view, hide cut settings, open time options, enable drag and select time bar, Escape focus",
+      "Entire imported project preserved; page has no horizontal overflow"
+    ],
+    "build": "Web production source build",
+    "typecheck": "Web tsc noEmit",
+    "lint": "Focused eslint",
+    "browserTests": 15,
+    "breakdown": "4 new settings variants,6 viewport axis controls,2 time-edit/file/touch flows,3 origin/file/native flows",
+    "docs": "57 active docs,218 current terminology surfaces and10 tests pass"
+  },
+  "limits": [
+    "Chromium viewport and pointer emulation, not physical touch/software keyboard",
+    "Whole editor audit not complete",
+    "Existing native/file evidence remains scoped"
+  ]
+}

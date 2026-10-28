@@ -37,7 +37,7 @@ async function exported(page: Page) {
 
 async function currentId(page: Page) {return page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();}
 async function selectCut(page:Page,id:string){await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);}
-async function pick(page:Page,label:string){await page.getByRole('button',{name:`${label} 이미지 찾기`,exact:true}).click();const dialog=page.getByRole('dialog',{name:`이미지 선택 · ${label}`,exact:true});const card=dialog.locator('[data-asset-id]').first();const id=(await card.getAttribute('data-asset-id'))!;expect(id).toBeTruthy();await card.click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(dialog).toHaveCount(0);return id;}
+async function pick(page:Page,label:string){await page.getByRole('button',{name:new RegExp(`^${`${label} 이미지 찾기`} ·`),exact:false}).click();const dialog=page.getByRole('dialog',{name:`이미지 선택 · ${label}`,exact:true});const card=dialog.locator('[data-asset-id]').first();const id=(await card.getAttribute('data-asset-id'))!;expect(id).toBeTruthy();await card.click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(dialog).toHaveCount(0);return id;}
 async function importFile(page:Page,path:string){await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(path);await confirmAuthoringImport(page);const preparation=page.getByRole('region',{name:'작품 설정',exact:true});await expect(preparation).toBeVisible();await preparation.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();await saved(page);}
 
 async function create(page: Page) {
@@ -116,7 +116,7 @@ test('phone authoring keeps drafts and runtime while tools, orientation, files a
   expect(await assetTool.evaluate(node => getComputedStyle(node).outlineStyle)).not.toBe('none');
   await page.keyboard.press('Enter');
   await expect(assetTool).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('button',{name:'배경 이미지 찾기',exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:/^배경 이미지 찾기 ·/,exact:false})).toBeVisible();
   await tool(page, '글 편집');
   await page.locator('[data-writing-tools]>summary').click();
   await page.getByRole('button', { name: '전체 흐름 보기', exact: true }).click({ timeout: 10000 });

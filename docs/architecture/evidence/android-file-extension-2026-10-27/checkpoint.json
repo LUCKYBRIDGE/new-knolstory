@@ -1,0 +1,59 @@
+{
+  "status": "focused-browser-and-S25-knolstory-passed",
+  "problem": "Chrome Android saved application/json work archive named .knolstory as .knolstory.json, contrary to desired local work extension. Actual data remained valid.",
+  "evidence": "S25 physical actual JSON archive full project equals final work; separate octet-stream download probe saved exact .knolstory filename and content.",
+  "controls": "Previous .knolstory.json remains valid and accepted. No format conversion.",
+  "next": "Narrow work-file MIME on both formats and exports; browser roundtrip + actual S25 save/reopen with original unchanged.",
+  "change": "Work archive picker, fallback downloads and explicit exports use application/octet-stream; contents remain validated JSON archive. Recovery .json and Excel/TSV MIME unchanged.",
+  "validation": {
+    "localFileUnitTests": 27,
+    "browserFocusedPrior": 4,
+    "red": "Both formats application/json blobs failed extension-safe check. Picker both format options failed before correction.",
+    "s25Picker": {
+      "actualFilename": "Android-File-Extension-1793095019428.knolstory",
+      "bytes": 13355,
+      "wholeProjectEqual": true,
+      "testProjectId": "android-mime-1793095019428"
+    },
+    "s25Export": {
+      "filename": "Android-File-Extension-1793095019428 (1).knolstory",
+      "bytes": 13355,
+      "wholeProjectEqual": true
+    },
+    "s25NativeReopen": {
+      "physicalPickerSelectedExactExtension": true,
+      "independentProjectId": "d93bdb29-ae30-4fb3-8c76-ab2af099af8c",
+      "wholeWorkEqualExceptNewId": true,
+      "preexistingWorksEqual": true
+    },
+    "s25OriginalRestored": {
+      "originalWorkEqual": true,
+      "editorVisible": true,
+      "interruptedCopyKept": true
+    },
+    "review": "Read-only review found no blocker.",
+    "combinedFinalBrowserTests": 9,
+    "combinedFinalScope": "2 work-file save+export+both extension reopen, 3 DPR native, 2 audio entry, 2 fractured look resize",
+    "combinedFinalDurationSeconds": 56.5
+  },
+  "initialFailures": [
+    "Android picker pre-fix appended .json; its actual file contains the entire project.",
+    "Phone export listing probe timed out on escaped newline; a bounded adb pull of actual (1).knolstory independently confirmed name and complete project.",
+    "Native reopen initially waited for editor status but import opened preparation; followed actual current-cut-writing UI and verified.",
+    "Older authoring.spec.ts branching test timed out waiting for retired data-additional-tools; the same run had3 other passes. It is not claimed green."
+  ],
+  "limits": [
+    "Physical shortstory picker/export not checked",
+    "Phone fullscreen and OS IME not proved",
+    "30-minute run was on previous candidate before this MIME and crack change",
+    "Whole editor completion not claimed"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/local-work-file.ts": "485e0d14bba748e17524cd63f813fd2685a2abd9335bc387da23471982587294",
+    "apps/web/lib/local-work-file.test.ts": "ec2a243aaea2f0ea819649ea61e21937480511360c72b4813365fd490716fc9b",
+    "apps/web/components/local-work-file-actions.tsx": "30a17483386e872d7d235f6047b1cb2d973dd5466577543f1467717435a04221",
+    "apps/web/components/story-workspace.tsx": "5690037bdc136237a5b1d28a745c7eab851aa4459c55a51c2879691f8452961a",
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "f4eb28730ecef98e5c884430e78f4788ee902d1fa7b31ec6b5e2a4ed3a7a993d",
+    "tests/e2e/local-work-files.spec.ts": "ea044e59974a307a403fb0d7e7980a36e1b94e7b4c954df3ae8ae497c3da8974"
+  }
+}

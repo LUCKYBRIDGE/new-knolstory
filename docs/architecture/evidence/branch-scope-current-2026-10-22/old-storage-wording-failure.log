@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:51784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/branch-scope.spec.ts:45:1 › branch preview preserves draft during composition/save failure and source deletion stays guarded (7.5s)
+
+
+  1) tests/e2e/branch-scope.spec.ts:45:1 › branch preview preserves draft during composition/save failure and source deletion stays guarded 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('workspace-error')
+    Expected substring: "저장"
+    Received string:    "현재 글의 복구본을 보관하지 못해 읽기를 시작하지 않았어요. QuotaExceededError: branch quota"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByTestId('workspace-error') with timeout 5000ms
+      - waiting for getByTestId('workspace-error')
+        14 × locator resolved to <div role="alert" data-testid="workspace-error" class="story-workspace-module__gRDfJG__error">현재 글의 복구본을 보관하지 못해 읽기를 시작하지 않았어요. QuotaExceededEr…</div>
+           - unexpected value "현재 글의 복구본을 보관하지 못해 읽기를 시작하지 않았어요. QuotaExceededError: branch quota"
+
+
+      47 |  const position=page.getByLabel('현재 장과 컷 이동',{exact:true});await position.selectOption('shake');await tool(page,'연출 편집');await page.getByLabel('조정할 연출',{exact:true}).selectOption('effects');const condition=page.getByLabel('효과 갈래 조건',{exact:true});await condition.selectOption({label:choiceA});await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const saved=(await exportWork(page)).project,raw=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+      48 |  const detail=page.getByText('현재 컷 상세·메모·정리',{exact:true}).locator('..');await detail.locator(':scope>summary').click();const text=page.locator('#story-line-text');await text.dispatchEvent('compositionstart');await expect(text).toBeEnabled();await expect(page.getByRole('button',{name:'선택지가 있는 컷부터 재생',exact:true})).toBeDisabled();await expect(page.getByTestId('playback-status')).toHaveCount(0);await expect(position).toHaveValue('shake');expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(raw);await text.dispatchEvent('compositionend');
+    > 49 |  await page.evaluate(()=>{const original=Storage.prototype.setItem;(window as unknown as {restoreBranchStorage:()=>void}).restoreBranchStorage=()=>{Storage.prototype.setItem=original;};Storage.prototype.setItem=function(key,value){if(key==='knolstory-next-workspace-v1')throw new DOMException('branch quota','QuotaExceededError');original.call(this,key,value);};});await page.getByRole('button',{name:'선택지가 있는 컷부터 재생',exact:true}).click();await expect(page.getByTestId('workspace-error')).toContainText('저장');await expect(position).toHaveValue('shake');await expect(condition).toHaveValue(JSON.stringify(['neutral','warm']));expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(raw);await page.evaluate(()=>(window as unknown as {restoreBranchStorage:()=>void}).restoreBranchStorage());
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+      50 |  await position.selectOption('neutral');if(!await detail.evaluate(node=>(node as HTMLDetailsElement).open))await detail.locator(':scope>summary').click();await detail.getByRole('button',{name:'현재 컷 삭제',exact:true}).click();const dialog=page.getByRole('dialog',{name:'컷 삭제 확인',exact:true});await expect(dialog.getByRole('alert')).toContainText('갈래 조건');await expect(dialog.getByRole('alert')).toContainText('1번째 효과');await expect(dialog.getByRole('button',{name:'삭제 실행',exact:true})).toBeDisabled();await dialog.getByRole('button',{name:'삭제 취소',exact:true}).click();expect((await exportWork(page)).project).toEqual(saved);
+      51 | });
+      52 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/branch-scope.spec.ts:49:490
+
+    Error Context: test-results-branch-current-guard/branch-scope-branch-previe-5b5ff-urce-deletion-stays-guarded/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-branch-current-guard/branch-scope-branch-previe-5b5ff-urce-deletion-stays-guarded/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-branch-current-guard/branch-scope-branch-previe-5b5ff-urce-deletion-stays-guarded/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/branch-scope.spec.ts:45:1 › branch preview preserves draft during composition/save failure and source deletion stays guarded 

@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:15333) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/audio-source-range.spec.ts:6:1 › author source range roundtrips and native music stops at the selected end (7.9s)
+
+
+  1) tests/e2e/audio-source-range.spec.ts:6:1 › author source range roundtrips and native music stops at the selected end 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByTestId('editing-cut-a').getByLabel('컷 배경음 원본 사용 시작 (초)', { exact: true })
+    Expected: "0.2"
+    Received: "1"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" getByTestId('editing-cut-a').getByLabel('컷 배경음 원본 사용 시작 (초)', { exact: true }) with timeout 5000ms
+      - waiting for getByTestId('editing-cut-a').getByLabel('컷 배경음 원본 사용 시작 (초)', { exact: true })
+        14 × locator resolved to <input min="0" value="1" max="7.999" step="0.001" type="number" inputmode="decimal" aria-label="컷 배경음 원본 사용 시작 (초)"/>
+           - unexpected value "1"
+
+
+       6 | test('author source range roundtrips and native music stops at the selected end',async({page,browser},info)=>{
+       7 |  test.setTimeout(150000);await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'range.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-21T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio');await page.getByText('1컷 음향 수정',{exact:true}).click();const row=page.getByTestId('editing-cut-a');await row.getByText('컷 배경음 원본 사용 구간',{exact:true}).click();await row.getByLabel('컷 배경음 원본 사용 시작 (초)',{exact:true}).fill('0.2');await row.getByLabel('컷 배경음 원본 사용 시작 (초)',{exact:true}).press('Enter');await row.getByLabel('컷 배경음 원본 사용 끝 (초)',{exact:true}).fill('0.8');await row.getByLabel('컷 배경음 원본 사용 끝 (초)',{exact:true}).press('Enter');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await row.getByLabel('컷 배경음 원본 사용 끝 (초)',{exact:true}).fill('0.1');await row.getByLabel('컷 배경음 원본 사용 끝 (초)',{exact:true}).press('Enter');await expect(row.getByRole('alert')).toContainText('사용 끝');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project.lines[0].audio.music.sourceEndMs)).toBe(800);await row.getByLabel('컷 배경음 원본 사용 끝 (초)',{exact:true}).fill('0.8');await row.getByLabel('컷 배경음 원본 사용 끝 (초)',{exact:true}).press('Enter');
+    >  8 |  const start=row.getByLabel('컷 배경음 원본 사용 시작 (초)',{exact:true});await start.fill('1');await start.press('Enter');await expect(start).toHaveValue('0.2');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project.lines[0].audio.music.sourceStartMs)).toBe(200);
+         |                                                                                                                                     ^
+       9 |  for(const viewport of [{width:1280,height:800},{width:390,height:844}]){await page.setViewportSize(viewport);await row.locator('[data-audio-source-range]').first().scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath(`source-${viewport.width}.png`)});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}await page.setViewportSize({width:1280,height:800});await menu.locator(':scope>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('source-range.knolstory');await(await pending).saveAs(file);const saved=parseAuthoringFile(readFileSync(file,'utf8'));expect(saved.project.lines[0].audio.music).toMatchObject({sourceStartMs:200,sourceEndMs:800,loop:false});expect(saved.project.lines[0].text).toBe(project.lines[0].text);await menu.locator(':scope>summary').click();await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:120000});const gate=page.getByTestId('story-runtime-frame').contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});await expect(gate).toBeVisible({timeout:30000});await gate.press('Enter');await expect.poll(async()=>Number(await status.getAttribute('data-music-start-count')),{timeout:30000}).toBe(1);await expect.poll(()=>status.getAttribute('data-music-path'),{timeout:5000}).toBe('');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('a');
+      10 |  const context=await browser.newContext(),fresh=await context.newPage();await fresh.route('**/api/**',route=>route.abort());await fresh.goto('/?view=editor');await expect(fresh.getByTestId('save-status')).toHaveText('임시 보관됨');await fresh.locator('[data-work-menu]>summary').click();await fresh.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file);await confirmAuthoringImport(fresh);await expect(fresh.getByTestId('save-status')).toHaveText('임시 보관됨');expect(await fresh.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(saved.project);await context.close();
+      11 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/audio-source-range.spec.ts:8:133
+
+    Error Context: test-results-audio-source-invalid-start-red/audio-source-range-author--f69f1-c-stops-at-the-selected-end/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-audio-source-invalid-start-red/audio-source-range-author--f69f1-c-stops-at-the-selected-end/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-audio-source-invalid-start-red/audio-source-range-author--f69f1-c-stops-at-the-selected-end/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/audio-source-range.spec.ts:6:1 › author source range roundtrips and native music stops at the selected end 

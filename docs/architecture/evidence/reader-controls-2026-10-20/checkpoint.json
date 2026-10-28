@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-20",
+  "status": "focused-local-verification-passed",
+  "scope": [
+    "reader settings next/halves persisted locally",
+    "real RenPy touch at 390x844 and 844x390",
+    "perspective cue confirm -> prose, rewind across cue",
+    "six official Onggojib perspective cues connected"
+  ],
+  "results": {
+    "native_e2e": "3 passed",
+    "unit": "73 passed / 15 files",
+    "catalog_regression": "36 passed / 2 files, including archive/workbook/XLSX/JSONB roundtrips",
+    "presenter": "27 passed",
+    "geometry": "22 passed",
+    "scoped_helper_coverage": {
+      "statements": 97.56,
+      "branches": 98.11,
+      "functions": 100,
+      "lines": 100
+    },
+    "typecheck": "passed",
+    "build": "RenPy 8.5.3 then final static Web build passed",
+    "lint": "0 errors; 1 existing img warning",
+    "documentation": "57 documents / 0 link errors, terminology 0 retired terms; 10 tests passed",
+    "provided_Onggojib_native": "1 passed: native entrance, direct prose, ignored prior entrance, subsequent right tap still works, manuscript unchanged",
+    "native_keyboard": "1 passed (BODY/canvas Tab and Shift+Tab after real audio unlock)",
+    "authored_transition_regression": "1 passed: current editor opt-in/direction/cut detail path, native confirm, archive export/reopen, prose and placement preserved"
+  },
+  "preservation": "Fixture manuscripts unchanged. Additive exact-catalog presentation transform; authored differences excluded. Existing dirty work and historical evidence retained.",
+  "limitations": [
+    "viewport emulation does not prove physical touch devices",
+    "screen reader and full product regression not run",
+    "no remote deployment"
+  ],
+  "evidence": [
+    "native-touch-and-perspective.log",
+    "units.log",
+    "catalog-regression.log",
+    "presenter.log",
+    "geometry.log",
+    "coverage.log",
+    "source-hashes.json",
+    "onggojib-native.log",
+    "native-keyboard.json",
+    "transition-current-path.log",
+    "native-regression-initial.log"
+  ],
+  "initial_failures": [
+    "Initial touch test choice click coordinate hit modal header; corrected to actual first-choice button, final tests pass.",
+    "Landscape test initially assumed phone quick settings button; now follows actual reading-menu/settings path.",
+    "Older authored transition test looked for removed additional-tools toolbar; updated to explicit direction opt-in and cut detail. Initial failure log preserved."
+  ]
+}

@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:10133) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/audio-source-range.spec.ts:6:1 › author source range roundtrips and native music stops at the selected end (6.1s)
+  ✓  2 tests/e2e/chapter-audio-split.spec.ts:5:52 › music chapter split preserves continuity, undo, independent source editing and actual work file (6.9s)
+  ✓  3 tests/e2e/chapter-audio-split.spec.ts:5:52 › ambience chapter split preserves continuity, undo, independent source editing and actual work file (7.2s)
+  ✓  4 tests/e2e/combined-sound-time.spec.ts:5:1 › selected sound bar opens its own detail and its finite end aligns to the movable guide (3.8s)
+  ✓  5 tests/e2e/conditional-audio-split.spec.ts:6:89 › cut conditional split retains exact yes same-destination choice across native playback (7.9s)
+  ✓  6 tests/e2e/conditional-audio-split.spec.ts:6:89 › cut conditional split retains exact no same-destination choice across native playback (7.6s)
+  ✓  7 tests/e2e/conditional-audio-split.spec.ts:6:89 › chapter conditional split retains exact yes same-destination choice across native playback (7.8s)
+  ✓  8 tests/e2e/conditional-audio-split.spec.ts:6:89 › chapter conditional split retains exact no same-destination choice across native playback (7.9s)
+
+  8 passed (55.6s)

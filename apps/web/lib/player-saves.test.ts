@@ -89,3 +89,12 @@ describe('native thumbnail envelope v3',()=>{
    }
   });
  });
+
+describe('conditional scene saved summaries',()=>{
+ it('never previews text from skipped scenes when all scenes are hidden',()=>{
+  const base=p(),project:StoryProject={...base,scores:[{id:'trust',name:'신뢰',description:'',initial:0}],lines:base.lines.map(line=>({...line,text:'숨긴 비밀',visibility:{scores:{mode:'all',terms:[{scoreId:'trust',operator:'gte',value:1}]}}}))};
+  const state=createPlayback(project);expect(state.status).toBe('ended');
+  const slot=savePlayerSlot({version:3,works:{}},project,state,'quick').works.p.quick;
+  expect(slot.summary?.text).not.toContain('숨긴 비밀');expect(slot.summary?.location).toBe('이야기 끝');
+ });
+});

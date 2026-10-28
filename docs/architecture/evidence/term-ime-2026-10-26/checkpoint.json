@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "bug": "Termguide search Escape key withnativeisComposing closedmodal anddiscardedquery.",
+  "fix": "Synchronouscompositionref plusnativeisComposing/keyCode229 guard preventsEscapeclose andnativecancelwhilecomposing;normalEscape/Tab/close remain.",
+  "test": {
+    "count": 1,
+    "scope": "Hostbrowser syntheticcomposition/keyevents; queryretained,229branch,ordinaryShiftTab/Tab,compositionstart/Escape/cancel/end,normalEscapeclose,openerfocus,wholeprojectpreserved. Runtimeblocked."
+  },
+  "review": "Read-onlyreview noblocker;229andnormalkeyboard assertions added.",
+  "notProven": [
+    "PhysicalIMEcandidatewindow",
+    "AllOScompositionordering",
+    "OtherpopupIMEhandling",
+    "FinalphoneDPR/30minutestability",
+    "Wholegoal"
+  ]
+}

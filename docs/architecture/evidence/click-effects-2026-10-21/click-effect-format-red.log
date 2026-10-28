@@ -1,0 +1,49 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/click-effect-format.test.ts (2 tests | 2 failed) 15ms
+   × preserves separate ordered click cues, IDs, exact choice conditions and the whole schema8 work in every current format 8ms
+   × accepts the stable on-click workbook value and rejects unknown trigger or grouping fields before import 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/click-effect-format.test.ts > preserves separate ordered click cues, IDs, exact choice conditions and the whole schema8 work in every current format
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/compatibility/tests/click-effect-format.test.ts:23:62
+     21| it('preserves separate ordered click cues, IDs, exact choice condition…
+     22|  const {original,document,effects}=fixture(),before=JSON.stringify(ori…
+     23|  const parsed=parseStoryDocument(document);expect(parsed.ok).toBe(true…
+       |                                                              ^
+     24|  const archive=await createAuthoringArchive({format:'knolstory',docume…
+     25|  expect(archive.formatVersion).toBe(2);expect(archive.format==='knolst…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/compatibility/tests/click-effect-format.test.ts > accepts the stable on-click workbook value and rejects unknown trigger or grouping fields before import
+Error: $.lines[0].presentation.effects[0].trigger: 허용 값은 scene-enter입니다.
+$.lines[0].presentation.effects[2].trigger: 허용 값은 scene-enter입니다.
+ ❯ assertAuthoringFields packages/compatibility/src/authoring-fields.ts:26:25
+     24| export function assertAuthoringFields(format:'knolstory'|'shortstory',…
+     25|  const issues=authoringFieldIssues(authoringSchema(format),project);
+     26|  if(issues.length)throw new Error(issues.slice(0,50).join('\n'));
+       |                         ^
+     27| }
+     28|
+ ❯ createAuthoringArchive packages/compatibility/src/authoring-archive.ts:143:3
+ ❯ packages/compatibility/tests/click-effect-format.test.ts:39:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  08:25:03
+   Duration  847ms (transform 481ms, setup 0ms, import 741ms, tests 15ms, environment 0ms)
+

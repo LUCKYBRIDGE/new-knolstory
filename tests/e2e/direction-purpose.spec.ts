@@ -27,7 +27,7 @@ for(const sample of [{width:1440,side:'none'},{width:768,side:'left'},{width:390
  const untouched=(await exported()).document.project;expect(untouched).toEqual({...project,id:untouched.id});
  if(sample.side==='none'){
   await controls.getByRole('button',{name:'인물 배치하기',exact:true}).click();await expect(page.locator('[data-inspector-section="assets"]:visible')).toHaveCount(1);
-  await page.getByRole('button',{name:'왼쪽 인물 이미지 찾기',exact:true}).click();const picker=page.getByRole('dialog',{name:'이미지 선택 · 왼쪽 인물',exact:true});await picker.locator('[data-asset-id="seonnyeo.character.M01-base"]').click();await picker.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();
+  await page.getByRole('button',{name:/^왼쪽 인물 이미지 찾기 ·/,exact:false}).click();const picker=page.getByRole('dialog',{name:'이미지 선택 · 왼쪽 인물',exact:true});await picker.locator('[data-asset-id="seonnyeo.character.M01-base"]').click();await picker.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();
   await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'연출 편집',exact:true}).click();await page.getByLabel('조정할 연출',{exact:true}).selectOption('actors');await expect(controls.getByLabel('왼쪽 인물 전체 강조',{exact:true})).toBeVisible();await expect(controls.getByLabel('오른쪽 인물 전체 강조',{exact:true})).toHaveCount(0);
   const added=(await exported()).document.project;expect(added).toEqual({...untouched,updatedAt:added.updatedAt,lines:untouched.lines.map((cut:StoryLine)=>cut.id===line.id?{...cut,leftAssetId:'seonnyeo.character.M01-base',stageComposition:{...cut.stageComposition,leftActors:[{key:expect.any(String),assetId:'seonnyeo.character.M01-base'}]}}:cut)});
  }

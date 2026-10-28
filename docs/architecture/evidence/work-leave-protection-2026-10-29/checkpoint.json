@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-29",
+  "scope": "작업 소실 위험의 종료·새로고침·뒤로가기 확인과 저장 후 이동",
+  "behavior": [
+    "이번 실행에서 관찰한 원고의 변경·파일 쓰기 중 상태·미적용 표지/음원 초안·잘못된 입력을 보호한다.",
+    "문서 종료·새로고침·다른 문서로 뒤로가기는 브라우저 기본 이탈 확인창. 지원 브라우저의 같은 문서 뒤로가기는 Navigation navigate에서 취소하고 서비스 확인창.",
+    "다른 경로 링크 이동 확인창: 저장하고 이동 / 계속 편집하기 / 저장하지 않고 이동. 실제 파일 재읽기 확인 후 남은 변경이 없어야 이동.",
+    "설정의 작품 파일 저장하고 서재로: 확인된 파일 저장 뒤 서재 복귀. 임시 보관 성공만으로 파일 저장으로 판정하지 않는다.",
+    "파일 선택 취소·쓰기 오류·다운로드 요청·늦은 저장 중 새 수정은 이동을 멈춘다.",
+    "표지 닫기·취소·Escape의 미적용 변경은 별도 버리기 확인. 음원 이름/속성·출처 조건 select 초안도 실제 기준값과 비교.",
+    "이전 원고·다른 작품·기존 저장 키 보존. 파일 형식·렌더러 변경 없음."
+  ],
+  "validation": {
+    "focusedBrowser": "17 passed, 39.9s. local-work-files + entry-cover 의 변경 관련 검사 선택. browser-run.log",
+    "units": "work-leave-tracker + audio-metadata-draft + local-work-file: 36 passed",
+    "build": "pnpm --filter @knolstory/web build: pass",
+    "types": "pnpm --filter @knolstory/web typecheck: pass",
+    "lint": "변경 파일 ESLint pass",
+    "review": "독립 소스 리뷰 지적 후 보완, 마지막 리뷰 치명적 결함 발견 없음",
+    "coverage": "새 work-leave-tracker만 한정: 줄100%, 함수100%, 분기80%, 구문97.14%. tracker-coverage.log",
+    "documentation": "pnpm docs:check + pnpm test:docs: pass",
+    "visual": "390x740 브라우저 이미지 직접 확인: 기존 게임풍 팝업·세로 버튼·44px 이상·겹침 없음. 실제 휴대폰 검사 아님.",
+    "newUnitCases": "tracker6개 개별 coverage 실행 통과. 앞선 관련3파일 단위36개 통과 뒤 추가된 순수 검사2개는 개별 확인."
+  },
+  "sourceSha256": {
+    "apps/web/components/work-leave-guard.tsx": "6da609f9d281c597e93cb7eaef88745994122f4c8861afec2684c77234e3dd0a",
+    "apps/web/lib/work-leave-tracker.ts": "550a49bb23029e6efdfca78c5bd22529bc8a146d0cee0b21d0ed46e1363edada",
+    "apps/web/components/local-work-file-actions.tsx": "7dfc69ac1d393fb6020cfc02b026e8049ae2a732d1b1d48f750ea45a3de9d3de",
+    "apps/web/components/story-workspace.tsx": "e8476314af2f227d1ab32dd2aef3592e9081204282e038bd84e1c0c8032bcace",
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "c907d06e2cee3b3e5f808e2cd657fc931a697bbc28c88b900b9e73b28c07ee5a",
+    "apps/web/components/book-cover-editor.tsx": "f9d2dcec2fe4c84790b3f20aa9a8117da9bca7de730ed0f8089561268c3338cd",
+    "apps/web/components/audio-metadata-controls.tsx": "14de9b72bed21fbef1bbb6845a103537728bd43446c6e7b4864dd5a55cd4c59f",
+    "apps/web/components/audio-provenance-controls.tsx": "d978c6cf15728dbad7988e774ab663f08d45b14248dcc46faee9a9d78b07f3bc"
+  },
+  "references": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Navigation/navigate_event"
+  ],
+  "limits": [
+    "브라우저 기본 종료 확인창의 문구/버튼은 웹에서 바꿀 수 없다. 사용자 활성화와 브라우저 지원에 따른다.",
+    "모바일 앱 강제 종료·OS 프로세스 종료에는 beforeunload가 실행되지 않을 수 있다. 임시 보관·실제 작품 파일 보관을 유지한다.",
+    "같은 문서 뒤로가기 확인은 Navigation API의 취소 가능한 traverse 지원 환경에서 구현·검증한다. 구형 미지원 브라우저 실제 검증은 별도다.",
+    "파일 선택/스트림은 브라우저 모형 검사이며 이번 작업의 실제 OS 선택기·휴대폰 검증은 아니다.",
+    "처음 불러온 기존 원고를 파일 저장 완료로 새로 주장하지 않는다. 이탈 보호는 이번 실행에서 감지한 변경을 추적한다."
+  ],
+  "corrections": [
+    "초기 tracker import 실패를 RED로 확인하고 구현했다.",
+    "초기 통합에서 검색/원본 읽기의 불필요 경고·같은 문서 뒤로가기 누락을 리뷰로 발견하고 보완했다.",
+    "확인 취소 후 숏스토리 textarea의 값이 암묵 label에 붙는 실제 접근성 이름 결함을 안정된 aria-label로 수정했다.",
+    "기존 임시보관·파일 저장 지연/취소·미적용 자료 입력 계약을 보존하며 변경 범위만 재검사했다."
+  ],
+  "selfReview": {
+    "scores": {
+      "accuracy": 4,
+      "completeness": 4,
+      "clarity": 4,
+      "actionability": 4,
+      "conciseness": 4
+    },
+    "evidence": "17개 브라우저·36개 관련 단위·추가 tracker 검사·coverage·독립 리뷰·직접 팝업 이미지 대조. 기본 종료창은 브라우저 소유이며 구형 브라우저·실물 앱 강제 종료는 별도.",
+    "average": 4,
+    "improvement": "다른 목표 브라우저와 실제 기기의 뒤로가기/종료를 다음 기기 검증에서 대조한다.",
+    "selfCheck": "저장하고 마치는 동작을 제공했고 취소·실패 때 실제 편집을 유지한다. 웹에서 닫을 수 없는 탭을 닫았다고 표현하지 않는다."
+  }
+}

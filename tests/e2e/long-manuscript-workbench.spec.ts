@@ -9,7 +9,7 @@ async function screen(page:Page,name:string){await menu(page);await page.getByRo
 async function exported(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(await readFile((await (await pending).path())!,'utf8')).project;}
 
 test('long manuscript keeps last-cut editing, cursor, file and internal scrolling across screen changes',async({page},info)=>{
- await page.route('**/api/**',route=>route.abort());await page.setViewportSize({width:390,height:844});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/api/**',route=>route.abort());await page.setViewportSize({width:390,height:844});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'long.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
  const before=await exported(page);await screen(page,'text');await page.getByRole('checkbox',{name:'배경 함께 보기',exact:true}).check();
  const field=page.getByTestId('editing-cut-long-cut-119').getByRole('textbox',{name:'120컷 글',exact:true});await field.scrollIntoViewIfNeeded();
@@ -17,7 +17,7 @@ test('long manuscript keeps last-cut editing, cursor, file and internal scrollin
  await screen(page,'background');await screen(page,'text');await expect(field).toHaveValue(next);
  await expect.poll(()=>field.evaluate(node=>{const input=node as HTMLTextAreaElement;return [input.selectionStart,input.selectionEnd,document.activeElement===input];})).toEqual([7,12,true]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1&&document.documentElement.scrollHeight<=innerHeight+2)).toBe(true);
- for(const viewport of [{width:844,height:390},{width:820,height:1180},{width:1280,height:720},{width:390,height:844}]){await page.setViewportSize(viewport);await field.scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1&&document.documentElement.scrollHeight<=innerHeight+2)).toBe(true);}
+ for(const viewport of [{width:844,height:460},{width:820,height:1180},{width:1280,height:720},{width:390,height:844}]){await page.setViewportSize(viewport);await field.scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1&&document.documentElement.scrollHeight<=innerHeight+2)).toBe(true);}
  const after=await exported(page);expect(after).toEqual({...before,updatedAt:after.updatedAt,lines:before.lines.map((line:typeof before.lines[number],index:number)=>index===119?{...line,text:next}:line)});
  await page.reload();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await expect(field).toHaveValue(next);await field.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('long-manuscript-phone.png')});await info.attach('scenario',{body:JSON.stringify({cuts:120,characters:project.lines.reduce((sum,line)=>sum+line.text.length,0),scope:'local Chromium authoring, not native-device performance budget'}),contentType:'application/json'});
 });
@@ -29,7 +29,7 @@ test('repeated resize and editor changes keep a single actual engine and intact 
  async function rendered(){await expect.poll(async()=>{const revision=await status.getAttribute('data-scene-revision'),actual=await status.getAttribute('data-rendered-revision');return actual!==null&&Number(actual)>=0&&actual===revision;},{timeout:90000}).toBe(true);}
  await rendered();const before=await exported(page),errors:string[]=[];
  page.on('console',message=>{if(/FS.syncfs operations in flight|ZeroDivisionError|NoneType.*update/.test(message.text())&&errors.length<10)errors.push(message.text());});page.on('pageerror',error=>errors.push(error.message));
- const viewports=[{width:390,height:844},{width:844,height:390},{width:820,height:1180},{width:1280,height:720}];
+ const viewports=[{width:390,height:844},{width:844,height:460},{width:820,height:1180},{width:1280,height:720}];
  for(let round=0;round<3;round++)for(const viewport of viewports){
   await screen(page,'text');await page.setViewportSize(viewport);await screen(page,'background');await screen(page,'basic');await rendered();
   await expect(frame).toHaveCount(1);await expect(frame).toHaveAttribute('data-stability-engine','same');

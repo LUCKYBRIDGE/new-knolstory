@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/time-placement-assistance.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/time-placement-assistance.test.ts [ apps/web/lib/time-placement-assistance.test.ts ]
+Error: Cannot find module './time-placement-assistance' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/time-placement-assistance.test.ts
+ ❯ apps/web/lib/time-placement-assistance.test.ts:2:1
+      1| import {expect,it} from 'vitest';
+      2| import {snapTimePlacement} from './time-placement-assistance';
+       | ^
+      3| const item={key:'chosen',clock:'컷 시작',startMs:300,durationMs:600};
+      4| const peer={key:'other',clock:'컷 시작',startMs:2000,durationMs:1000};
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  23:02:35
+   Duration  111ms (transform 10ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

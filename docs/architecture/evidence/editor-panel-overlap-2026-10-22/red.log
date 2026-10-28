@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:94011) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editor-panel-overlap.spec.ts:14:166 › expanded editor tools never cover active editing at 1440x900 (1.4s)
+
+
+  1) tests/e2e/editor-panel-overlap.spec.ts:14:166 › expanded editor tools never cover active editing at 1440x900 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 883
+    Received:    305
+
+      15 |  await page.setViewportSize(viewport);await load(page);await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();
+      16 |  const dock=page.locator('[data-additional-dock]>details[open]'),body=page.locator('[data-editing-body]');
+    > 17 |  const d=await dock.boundingBox(),b=await body.boundingBox();expect(d).toBeTruthy();expect(b).toBeTruthy();expect(d!.y).toBeGreaterThanOrEqual(b!.y+b!.height-1);
+         |                                                                                                                         ^
+      18 |  await expect(page.locator('#story-line-text')).toBeVisible();await page.locator('#story-line-text').fill('겹침 없이 작성한 글');
+      19 |  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click({trial:true,timeout:5000});
+      20 |  await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();await expect(dock).toHaveCount(0);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-panel-overlap.spec.ts:17:121
+
+    Error Context: test-results-panel-overlap-red/editor-panel-overlap-expan-37842--active-editing-at-1440x900/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-panel-overlap-red/editor-panel-overlap-expan-37842--active-editing-at-1440x900/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-panel-overlap-red/editor-panel-overlap-expan-37842--active-editing-at-1440x900/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editor-panel-overlap.spec.ts:14:166 › expanded editor tools never cover active editing at 1440x900 

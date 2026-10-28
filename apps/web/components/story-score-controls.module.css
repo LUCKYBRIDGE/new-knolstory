@@ -7,3 +7,9 @@
 .row { display:flex; flex-wrap:wrap; gap:8px; align-items:end; min-width:0; }
 .row label { flex:1 1 125px; }
 .editor small { color:var(--ink-soft,#4c625f); }
+@media(max-width:420px){
+ .row { flex-direction:column; align-items:stretch; }
+ .row label { flex:none; width:100%; }
+ .editor label,.editor button { word-break:keep-all; overflow-wrap:break-word; }
+ .editor :is(input,select,button) { min-height:44px; }
+}

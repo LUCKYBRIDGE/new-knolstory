@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:9657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/music-sequence.spec.ts:12:52 › music sequence plays second clip through cut boundary and stops at finite end (10.2s)
+  ✓  2 tests/e2e/music-sequence.spec.ts:12:52 › ambience sequence plays second clip through cut boundary and stops at finite end (9.9s)
+  ✓  3 tests/e2e/music-sequence.spec.ts:16:1 › explicit scalar conversion, source split, order, clip selection and undo preserve authored data (3.2s)
+
+  3 passed (23.8s)

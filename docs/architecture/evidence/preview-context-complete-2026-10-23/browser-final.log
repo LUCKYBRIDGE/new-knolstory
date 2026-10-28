@@ -1,0 +1,16 @@
+
+Running 9 tests using 1 worker
+
+(node:19379) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 1440 (5.4s)
+  ✓  2 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 768 (5.5s)
+  ✓  3 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 390 (5.5s)
+  ✓  4 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 844 (5.2s)
+  ✓  5 tests/e2e/preview-context.spec.ts:9:1 › text cursor and sound purpose survive same cut preview (2.9s)
+  ✓  6 tests/e2e/preview-context.spec.ts:13:1 › return to a later read cut does not reuse prior cut undo or cursor (4.3s)
+  ✓  7 tests/e2e/preview-context.spec.ts:16:1 › catalog-only sound preview pauses during native reading and preserves the registered cue (5.6s)
+  ✓  8 tests/e2e/preview-context.spec.ts:19:1 › seconds validation and expanded settings remain after preview without writing invalid time (3.3s)
+  ✓  9 tests/e2e/preview-context.spec.ts:22:1 › manuscript return follows the current read cut across chapter boundaries (5.1s)
+
+  9 passed (43.3s)

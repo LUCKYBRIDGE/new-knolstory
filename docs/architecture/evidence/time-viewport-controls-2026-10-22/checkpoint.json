@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-22",
+  "scope": "Visible seconds-axis fit/zoom/reveal and short-landscape toolbar access; full editor goal active",
+  "changes": [
+    "Use visible time viewport handle rather than hidden cut viewport for zoom/fit/reveal",
+    "Time fit10..400 percent includes100px label and24px minimum-target tail; cut view retains50percent lower bound",
+    "Visible time region native Ctrl-wheel zoom and Shift-wheel horizontal scroll; keyboard plus/minus/arrows/Home/End",
+    "Short landscape cut/time toolbars remain in flow; settings no longer intercept view-switch button",
+    "Adaptive1/2/4/8 ruler intervals and no-wrap labels prevent split numbers and label collisions"
+  ],
+  "verification": {
+    "browserTests": 6,
+    "viewports": [
+      [
+        1280,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        701,
+        390
+      ],
+      [
+        1024,
+        768
+      ]
+    ],
+    "checked": [
+      "Real pointer time-view entry including short-landscape boundary",
+      "Full visible seconds-axis fits within viewport and uses available width",
+      "Zero-duration10s cue minimum24px target stays inside fitted canvas",
+      "Ctrl-wheel and keyboard zoom update active scale; Shift-wheel scrolls active region",
+      "Reveal resets to origin when nothing selected; fit resets scrolling",
+      "Each ruler label remains single-line and separated from next label",
+      "Full project remains equal to imported project throughout"
+    ],
+    "build": "Web source production build passed; native renderer unchanged",
+    "typecheck": "Web tsc noEmit passed",
+    "lint": "Focused ESLint passed with no warnings",
+    "existingSequenceFlows": 2,
+    "existingSequenceScope": "Drag, guide/source trim, exact selection, keyboard, undo, touch emulation and actual file export/fresh reopen",
+    "docs": "57 active docs +218 current terminology surfaces;10 doc tests pass"
+  },
+  "limitations": [
+    "No physical touch device/software keyboard or pinch gesture evidence",
+    "No new audio/native/data format contract",
+    "Full editor audit and sequence origin move/cut-boundary split remain"
+  ]
+}

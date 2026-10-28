@@ -1,0 +1,41 @@
+{
+  "terminal": true,
+  "status": "failed",
+  "elapsedMs": 1497814,
+  "cycles": 105,
+  "nativeReturns": 11,
+  "message": "page.evaluate: Target crashed ",
+  "errors": [],
+  "sampleCount": 18,
+  "mainAndroidTargetJsHeapBytes": {
+    "min": 72215716,
+    "max": 88152568,
+    "first": 72215716,
+    "last": 86324176
+  },
+  "mainAndroidTargetDomNodes": {
+    "min": 1934,
+    "max": 2535,
+    "first": 1935,
+    "last": 1934
+  },
+  "chromeNamedProcessPssKb": {
+    "min": 272057,
+    "max": 294993,
+    "first": 283656,
+    "last": 272057
+  },
+  "candidateSourcesChanged": [],
+  "finalFileSha256": null,
+  "measurementLimit": "Android page target main JS/DOM without forced GC. dumpsys meminfo com.android.chrome is process/package diagnostic and does not prove all renderer/WASM/GPU/OS memory or tablet budget.",
+  "passesBoundedPhysicalSession": false,
+  "recovery": {
+    "reloadedAfterCrash": true,
+    "all106IntendedTextEditsPersisted": true,
+    "wholeTestProjectEqualExceptIntendedTextAndUpdatedAt": true,
+    "preexistingWorksUnchanged": true,
+    "thirtyMinutePassed": false
+  },
+  "originalEditorRestored": true,
+  "classification": "Failed physical-device soak; actual Chrome Aw Snap screen observed. No final archive was exported. Correlated Android sandboxed Chrome LOW_MEMORY exit record retained locally but exact target/process linkage is unproven."
+}

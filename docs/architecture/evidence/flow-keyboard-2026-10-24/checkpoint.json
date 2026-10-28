@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-24",
+  "scope": "Flow map keyboard boundary/return focus and visible branch deletion accessible name",
+  "changes": [
+    "Flow map now calls shared modal Tab boundary handler",
+    "Return focus falls back to visible settings trigger if original opener hidden",
+    "Branch deletion accessible name includes visible label and exact condition index"
+  ],
+  "verification": {
+    "preFix": "Source missing Tab handler; initial assertion incorrectly assumed final control a button. Corrected actual final control includes chapter summaries. Followup exposed real hidden-opener focus failure.",
+    "build": "Final Web build:source passed",
+    "types": "Web TypeScript passed before final focus fallback (full final build also typechecked)",
+    "review": "Separate read-only review of shared handler and accessible name; runtime tests additionally found hidden-opener case fixed with actual visibility/body exclusion.",
+    "tests": "2 flow map desktop/phone boundary-and-close cases passed4.0s. Compound exact-condition delete/name/file-reopen case separately passed9.9s.",
+    "docs": "57 active docs/228 current surfaces0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Does not claim screen-reader physical verification",
+    "No manuscript or branch semantics changed",
+    "Whole editor goal remains active"
+  ]
+}

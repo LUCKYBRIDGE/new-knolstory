@@ -1,0 +1,30 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts (10 tests | 1 failed) 20ms
+     × keeps the final activated effects visible after the story ends without pending clicks 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/newclick-effect-playback.test.ts > click effect playback > keeps the final activated effects visible after the story ends without pending clicks
+AssertionError: expected [] to deeply equal [ 'final-click' ]
+
+- Expected
++ Received
+
+- [
+-   "final-click",
+- ]
++ []
+
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts:19:694
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  08:38:09
+   Duration  918ms (transform 532ms, setup 0ms, import 804ms, tests 20ms, environment 0ms)
+

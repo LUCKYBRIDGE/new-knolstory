@@ -1,5 +1,7 @@
+import {VISIBILITY_SPECS,exportVisibilityTables,readVisibilityTables,upgradeVisibilityTables} from './visibility';
+import {TEXT_VARIANT_SPECS,exportTextVariantTables,readTextVariantTables,upgradeTextVariantTables} from './text-variants';
 import {shiftDecimal} from './time-units';
-import {BRANCH_COLUMNS} from './branch';
+import {BRANCH_COLUMNS,BRANCH_SPECS,exportBranchTables,upgradeBranchGroupTables,validateBranchGroupOwners} from './branch';
 import {createStoryDocument,CURRENT_SCHEMA_VERSION,type StoryProject} from '@knolstory/story-domain';
 import {createAuthoringArchive,validateAuthoringArchive,type AuthoringArchive,type AuthoringArchiveInput,type AuthoringAudioResource} from '../authoring-archive';
 import {parseShortStory,type ShortStoryProject} from '../shortstory';
@@ -22,7 +24,7 @@ const tags:TableSpec={key:'resourceTags',title:'소리 검색 태그',columns:[c
 const bytes:TableSpec={key:'resourceBytes',title:'첨부 음원 원본',columns:[c('id','음원 ID'),c('part','조각 순서','number'),c('data','음원 원본 데이터 (수정 금지)')]};
 const shortProject:TableSpec={key:'shortProject',title:'그림책 정보',columns:[...['id','title','description','authorDisplayName','updatedAt','backgroundId','characterId','authorNote'].map(key=>c(key,({id:'작품 ID',title:'제목',description:'소개',authorDisplayName:'지은이',updatedAt:'수정 시각',backgroundId:'표지 배경 ID',characterId:'표지 인물 ID',authorNote:'마지막 인사'} as Record<string,string>)[key])),c('sourcePresent','출처 있음','boolean'),c('sourceKind','출처 종류','text',true),c('presetId','기본 그림책 ID','text',true)]};
 const pages:TableSpec={key:'pages',title:'그림책 쪽',columns:[c('id','쪽 ID'),c('order','쪽 순서','number'),c('title','제목'),c('text','이야기'),c('backgroundId','배경 ID'),c('leftAssetId','왼쪽 인물 ID'),c('rightAssetId','오른쪽 인물 ID')]};
-export function authoringWorkbookSpecs(kind:'knolstory'|'shortstory'):readonly TableSpec[]{return kind==='knolstory'?[meta,...PROJECT_SPECS,...FLOW_SPECS,...SCORE_SPECS,...STAGE_SPECS,...AUDIO_SPECS,...PRESENTATION_SPECS,...COVER_SPECS,...PREPARATION_SPECS,resources,tags,bytes]:[meta,shortProject,pages,...COVER_SPECS.slice(2)];}
+export function authoringWorkbookSpecs(kind:'knolstory'|'shortstory'):readonly TableSpec[]{return kind==='knolstory'?[meta,...PROJECT_SPECS,...TEXT_VARIANT_SPECS,...VISIBILITY_SPECS,...BRANCH_SPECS,...FLOW_SPECS,...SCORE_SPECS,...STAGE_SPECS,...AUDIO_SPECS,...PRESENTATION_SPECS,...COVER_SPECS,...PREPARATION_SPECS,resources,tags,bytes]:[meta,shortProject,pages,...COVER_SPECS.slice(2)];}
 function exportResources(values:readonly AuthoringAudioResource[]):AuthoringTables {
  return {[resources.key]:makeTable(resources,values.map((value,position)=>({id:value.id,name:value.name,mime:value.mime,kind:value.kind,position,provenancePresent:value.provenance!==undefined,metadataPresent:value.metadata!==undefined,category:value.metadata?.category,originalName:value.metadata?.originalName,metadataSource:value.metadata?.source,...Object.fromEntries(provenanceKeys.map(key=>[key,value.provenance?.[key]]))}))),[tags.key]:makeTable(tags,values.flatMap(value=>(value.metadata?.tags??[]).map((tag,position)=>({id:value.id,position,tag})))),[bytes.key]:makeTable(bytes,values.flatMap(value=>{const parts:Record<string,WorkbookScalar>[]=[];for(let start=0;start<value.data.length;start+=20000)parts.push({id:value.id,part:parts.length,data:value.data.slice(start,start+20000)});return parts;}))};
 }
@@ -49,7 +51,7 @@ export async function exportAuthoringWorkbook(input:AuthoringArchiveInput|Author
  let tables:AuthoringTables;
  if(kind==='knolstory'){
   const p=archive.document.project;
-  tables={...exportProjectTables(p),...exportFlowTables(p),...exportScoreTables(p),...exportStageTables(p),...exportAudioTables(p),...exportPresentationTables(p),...exportCoverTables(p),...exportPreparationTables(p),...exportResources(archive.audioResources)};
+  tables={...exportProjectTables(p),...exportTextVariantTables(p),...exportVisibilityTables(p),...exportBranchTables(p),...exportFlowTables(p),...exportScoreTables(p),...exportStageTables(p),...exportAudioTables(p),...exportPresentationTables(p),...exportCoverTables(p),...exportPreparationTables(p),...exportResources(archive.audioResources)};
  }else{
   const p=archive.project;
   tables={[shortProject.key]:makeTable(shortProject,[{id:p.id,title:p.title,description:p.description,authorDisplayName:p.authorDisplayName,updatedAt:p.updatedAt,backgroundId:p.cover.backgroundId,characterId:p.cover.characterId,authorNote:p.cover.authorNote,sourcePresent:p.source!==undefined,sourceKind:p.source?.kind,presetId:p.source?.presetId}]),[pages.key]:makeTable(pages,p.pages),...exportCoverDesignTables(p.cover.design)};
@@ -123,7 +125,7 @@ function upgradeCutEnds(input:AuthoringWorkbook):AuthoringWorkbook{
 /** v7 had no choice-path conditions. Reject authored future columns under any old declaration. */
 function upgradeBranchConditions(input:AuthoringWorkbook):AuthoringWorkbook{
  if(input.formatVersion!==7)return input;
- const keys=BRANCH_COLUMNS.map(column=>column.key),tables={...input.tables};
+ const keys=BRANCH_COLUMNS.filter(column=>column.key!=='branchConditionMode').map(column=>column.key),tables={...input.tables};
  if(input.workKind==='knolstory')for(const key of ['presentationEffects','audioTracks','audioSounds']){
   const table=tables[key];if(!table)continue;
   if(!table.headers.some(column=>keys.includes(column)))tables[key]={headers:[...table.headers,...keys],rows:table.rows.map(row=>[...row,'없음','⟪미설정⟫','⟪미설정⟫'])};
@@ -132,8 +134,11 @@ function upgradeBranchConditions(input:AuthoringWorkbook):AuthoringWorkbook{
  return {...input,formatVersion:8,tables};
 }
 export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<AuthoringArchive>{
+ if(input.formatVersion<8&&(VISIBILITY_SPECS.some(spec=>input.tables[spec.key]?.rows.length)||(()=>{const t=input.tables.cuts,i=t?.headers.indexOf('visibilityPresent')??-1;return i>=0&&t.rows.some(row=>!['false','없음'].includes((row[i]??'').toLowerCase()));})()))throw new WorkbookIssue('컷 표시 조건',0,'버전','컷 표시 조건은 표 버전8에서 작성해 주세요.');
+ if(input.formatVersion<8&&(input.tables.branchConditionTerms?.rows.length||['presentationEffects','audioTracks','audioSounds'].some(key=>{const t=input.tables[key],index=t?.headers.indexOf('branchConditionMode')??-1;return index>=0&&t.rows.some(row=>row[index]!=='⟪미설정⟫');})))throw new WorkbookIssue('선택 조건 묶음',0,'버전','선택 조건 묶음은 표 버전8로 작성하세요.');
+ if(input.formatVersion<8&&(input.tables.textVariants?.rows.length||input.tables.textVariantConditions?.rows.length))throw new WorkbookIssue('조건별 글',0,'버전','조건별 글은 표 버전8에서 작성해 주세요.');
  if(input.formatVersion<8){
-  const keys=BRANCH_COLUMNS.map(column=>column.key);
+  const keys=BRANCH_COLUMNS.filter(column=>column.key!=='branchConditionMode').map(column=>column.key);
   for(const key of ['presentationEffects','audioTracks','audioSounds']){
    const table=input.tables[key];if(!table||!table.headers.some(column=>keys.includes(column)))continue;
    const missing=keys.some(column=>!table.headers.includes(column));
@@ -141,7 +146,8 @@ export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<A
    if(missing||authored)throw new WorkbookIssue('형식 정보',3,'표 버전','선택 갈래 조건은 표 버전8로 작성하세요.');
   }
  }
- const workbook=upgradeBranchConditions(upgradeCutEnds(upgradeEffectDuration(upgradeAudioAttributes(upgradeMillisecondsWorkbook(upgradePreviousWorkbook(input))))));
+ const upgraded=upgradeBranchConditions(upgradeCutEnds(upgradeEffectDuration(upgradeAudioAttributes(upgradeMillisecondsWorkbook(upgradePreviousWorkbook(input))))));
+ const workbook=upgraded.workKind==='knolstory'?{...upgraded,tables:upgradeVisibilityTables(upgradeBranchGroupTables(upgradeTextVariantTables(upgraded.tables)))}:upgraded;
  if(workbook.format!=='knolstory-authoring-workbook'||workbook.formatVersion!==8||!['knolstory','shortstory'].includes(workbook.workKind))throw new WorkbookIssue(meta.title,0,'버전','지원하지 않는 편집 양식입니다.');
  const specs=authoringWorkbookSpecs(workbook.workKind),unknown=Object.keys(workbook.tables).filter(key=>!specs.some(spec=>spec.key===key));
  if(unknown.length)throw new WorkbookIssue('편집 양식',0,'탭',`지원하지 않는 탭 ${unknown.join(', ')}가 있습니다.`);
@@ -149,7 +155,7 @@ export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<A
  if(m.format!==workbook.format||m.version!==workbook.formatVersion||m.kind!==workbook.workKind||m.schemaVersion!==(workbook.workKind==='knolstory'?CURRENT_SCHEMA_VERSION:1))throw new WorkbookIssue(meta.title,3,'버전','형식 정보가 일치하지 않습니다.');
  if(workbook.workKind==='knolstory'){
   let p:StoryProject=readProjectTables(workbook.tables);
-  for(const apply of [readFlowTables,readScoreTables,readStageTables,readAudioTables,readPresentationTables,readCoverTables,readPreparationTables])p=apply(workbook.tables,p);
+  for(const apply of [validateBranchGroupOwners,readFlowTables,readScoreTables,readTextVariantTables,readVisibilityTables,readStageTables,readAudioTables,readPresentationTables,readCoverTables,readPreparationTables])p=apply(workbook.tables,p);
   return createAuthoringArchive({format:'knolstory',document:createStoryDocument({project:p,savedAt:String(m.savedAt),appVersion:String(m.appVersion),...(m.assetCatalogVersion===undefined?{}:{assetCatalogVersion:String(m.assetCatalogVersion)})}),audioResources:readResources(workbook.tables)});
  }
  const rows=readTable(workbook.tables,shortProject);if(rows.length!==1)throw new WorkbookIssue(shortProject.title,3,'행','작품 행은 한 개여야 합니다.');const row=rows[0];

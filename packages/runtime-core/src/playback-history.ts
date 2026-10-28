@@ -1,3 +1,5 @@
+import {visibleStoryPathIndices} from './scene-visits';
+import {resolveStoryText} from './conditional-text';
 import {availableStoryChoices} from './story-scores';
 import type {StoryProject} from '@knolstory/story-domain';
 import {restorePlayback,type PlaybackState} from './story-runtime';
@@ -5,6 +7,7 @@ export type PlaybackLogEntry=Readonly<{pathIndex:number;lineId:string;chapterId:
 /** Encountered route. Current text requires renderer evidence; bounds count Unicode code points. */
 export function playbackLog(project:StoryProject,state:PlaybackState,currentPage:Readonly<{lineId:string;endOffset:number}>|null=null):readonly PlaybackLogEntry[]{
  const valid=restorePlayback(project,state);
+ const visible=new Set(visibleStoryPathIndices(project,valid));
  return valid.path.map((lineId,pathIndex)=>{
   const line=project.lines.find(item=>item.id===lineId)!;
   const decision=valid.choiceHistory?.find(item=>item.pathIndex===pathIndex);
@@ -15,13 +18,15 @@ export function playbackLog(project:StoryProject,state:PlaybackState,currentPage
   const active=pathIndex===valid.path.length-1&&valid.status!=='ended';
   const hasBound=currentPage?.lineId===lineId&&Number.isSafeInteger(currentPage.endOffset)&&currentPage.endOffset>=0;
   const endOffset=hasBound?currentPage!.endOffset:0;
-  const text=active?Array.from(line.text).slice(0,endOffset).join(''):line.text;
-  return {pathIndex,lineId,chapterId:line.chapterId,speaker:line.speakerName||(line.type==='narration'?'해설':'화자'),text,...(active&&!hasBound&&line.text?{textPending:true as const}:{}),...(choiceLabel?{choiceLabel}:{})};
- });
+  const passage=resolveStoryText(project,line,{lineId,path:valid.path.slice(0,pathIndex+1),status:'reading',choiceHistory:valid.choiceHistory?.filter(item=>item.pathIndex<pathIndex)});
+  const text=active?Array.from(passage).slice(0,endOffset).join(''):passage;
+  return {pathIndex,lineId,chapterId:line.chapterId,speaker:line.speakerName||(line.type==='narration'?'해설':'화자'),text,...(active&&!hasBound&&passage?{textPending:true as const}:{}),...(choiceLabel?{choiceLabel}:{})};
+ }).filter(entry=>visible.has(entry.pathIndex));
 }
 export function jumpPlayback(project:StoryProject,state:PlaybackState,pathIndex:number):PlaybackState{
  const valid=restorePlayback(project,state);
  if(!Number.isInteger(pathIndex)||pathIndex<0||pathIndex>=valid.path.length)throw new Error('지난 기록의 위치를 확인해 주세요.');
+ if(!visibleStoryPathIndices(project,valid).includes(pathIndex))throw Error('표시하지 않은 컷으로 이동할 수 없어요.');
  const path=valid.path.slice(0,pathIndex+1),lineId=path.at(-1)!;
  const choices=valid.choiceHistory?.filter(item=>item.pathIndex<pathIndex);
  const next:PlaybackState={lineId,path,status:'reading',...(choices?{choiceHistory:choices}:{})};

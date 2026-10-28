@@ -1,0 +1,248 @@
+
+Running 5 tests using 1 worker
+
+(node:18244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 1440 (5.1s)
+(node:18258) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 768 (5.2s)
+(node:18278) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 390 (5.2s)
+(node:18288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 844 (5.2s)
+(node:18302) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 tests/e2e/preview-context.spec.ts:16:1 › catalog-only sound preview pauses during native reading and preserves the registered cue (5.6s)
+
+
+  1) tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 1440 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 6
+
+    @@ -3287,10 +3287,16 @@
+              "type": "goto",
+            },
+            "id": "P1-v166-1",
+            "leftAssetId": "seonnyeo.character.M01-base",
+            "order": 1,
+    +       "presentation": Object {
+    +         "look": Object {
+    +           "intensity": "normal",
+    +           "type": "flashback",
+    +         },
+    +       },
+            "purposeNote": "",
+            "rightAssetId": "seonnyeo.character.M03-neutral",
+            "speaker": "narration",
+            "speakerName": "해설",
+            "stageComposition": Object {
+
+       5 | }
+       6 | for(const width of [1440,768,390,844])test(`native preview returns to same direction tool and undo ${width}`,async({page},info)=>{
+    >  7 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);const row=await openDirection(page);const kind=row.getByLabel('조정할 연출',{exact:true});await kind.selectOption('look');const mood=row.getByLabel('분위기',{exact:true}),original=await mood.inputValue();await mood.selectOption('flashback');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();await kind.focus();const frame=await page.getByTestId('story-runtime-frame').elementHandle();await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect(row).toBeHidden();await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');return Number(await state.getAttribute('data-rendered-revision'))>=0&&(await state.getAttribute('data-rendered-revision'))===(await state.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('look');await expect(kind).toBeFocused();await row.getByRole('button',{name:'마지막 분위기 변경 취소',exact:true}).click();await expect(mood).toHaveValue(original);const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect({...after,updatedAt:before.updatedAt}).toEqual(before);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.screenshot({path:info.outputPath(`direction-return-${width}.png`)});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+       8 | });
+       9 | test('text cursor and sound purpose survive same cut preview',async({page})=>{
+      10 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('첫 문장을 쓴다. 다음 문장을 고친다.');await text.evaluate((node:HTMLTextAreaElement)=>{node.focus();node.setSelectionRange(4,9);node.scrollTop=0;});await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(text).toBeFocused();expect(await text.evaluate((node:HTMLTextAreaElement)=>[node.selectionStart,node.selectionEnd])).toEqual([4,9]);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await kind.selectOption('ambience');await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.focus();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('ambience');await expect(kind).toBeFocused();await page.getByRole('button',{name:'주변 소리 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('default');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/preview-context.spec.ts:7:1561
+
+    Error Context: test-results-preview-current2/preview-context-native-pre-ed503-irection-tool-and-undo-1440/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-preview-current2/preview-context-native-pre-ed503-irection-tool-and-undo-1440/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-preview-current2/preview-context-native-pre-ed503-irection-tool-and-undo-1440/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 768 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 6
+
+    @@ -3287,10 +3287,16 @@
+              "type": "goto",
+            },
+            "id": "P1-v166-1",
+            "leftAssetId": "seonnyeo.character.M01-base",
+            "order": 1,
+    +       "presentation": Object {
+    +         "look": Object {
+    +           "intensity": "normal",
+    +           "type": "flashback",
+    +         },
+    +       },
+            "purposeNote": "",
+            "rightAssetId": "seonnyeo.character.M03-neutral",
+            "speaker": "narration",
+            "speakerName": "해설",
+            "stageComposition": Object {
+
+       5 | }
+       6 | for(const width of [1440,768,390,844])test(`native preview returns to same direction tool and undo ${width}`,async({page},info)=>{
+    >  7 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);const row=await openDirection(page);const kind=row.getByLabel('조정할 연출',{exact:true});await kind.selectOption('look');const mood=row.getByLabel('분위기',{exact:true}),original=await mood.inputValue();await mood.selectOption('flashback');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();await kind.focus();const frame=await page.getByTestId('story-runtime-frame').elementHandle();await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect(row).toBeHidden();await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');return Number(await state.getAttribute('data-rendered-revision'))>=0&&(await state.getAttribute('data-rendered-revision'))===(await state.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('look');await expect(kind).toBeFocused();await row.getByRole('button',{name:'마지막 분위기 변경 취소',exact:true}).click();await expect(mood).toHaveValue(original);const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect({...after,updatedAt:before.updatedAt}).toEqual(before);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.screenshot({path:info.outputPath(`direction-return-${width}.png`)});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+       8 | });
+       9 | test('text cursor and sound purpose survive same cut preview',async({page})=>{
+      10 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('첫 문장을 쓴다. 다음 문장을 고친다.');await text.evaluate((node:HTMLTextAreaElement)=>{node.focus();node.setSelectionRange(4,9);node.scrollTop=0;});await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(text).toBeFocused();expect(await text.evaluate((node:HTMLTextAreaElement)=>[node.selectionStart,node.selectionEnd])).toEqual([4,9]);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await kind.selectOption('ambience');await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.focus();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('ambience');await expect(kind).toBeFocused();await page.getByRole('button',{name:'주변 소리 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('default');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/preview-context.spec.ts:7:1561
+
+    Error Context: test-results-preview-current2/preview-context-native-pre-24643-direction-tool-and-undo-768/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-preview-current2/preview-context-native-pre-24643-direction-tool-and-undo-768/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-preview-current2/preview-context-native-pre-24643-direction-tool-and-undo-768/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 390 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 6
+
+    @@ -3287,10 +3287,16 @@
+              "type": "goto",
+            },
+            "id": "P1-v166-1",
+            "leftAssetId": "seonnyeo.character.M01-base",
+            "order": 1,
+    +       "presentation": Object {
+    +         "look": Object {
+    +           "intensity": "normal",
+    +           "type": "flashback",
+    +         },
+    +       },
+            "purposeNote": "",
+            "rightAssetId": "seonnyeo.character.M03-neutral",
+            "speaker": "narration",
+            "speakerName": "해설",
+            "stageComposition": Object {
+
+       5 | }
+       6 | for(const width of [1440,768,390,844])test(`native preview returns to same direction tool and undo ${width}`,async({page},info)=>{
+    >  7 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);const row=await openDirection(page);const kind=row.getByLabel('조정할 연출',{exact:true});await kind.selectOption('look');const mood=row.getByLabel('분위기',{exact:true}),original=await mood.inputValue();await mood.selectOption('flashback');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();await kind.focus();const frame=await page.getByTestId('story-runtime-frame').elementHandle();await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect(row).toBeHidden();await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');return Number(await state.getAttribute('data-rendered-revision'))>=0&&(await state.getAttribute('data-rendered-revision'))===(await state.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('look');await expect(kind).toBeFocused();await row.getByRole('button',{name:'마지막 분위기 변경 취소',exact:true}).click();await expect(mood).toHaveValue(original);const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect({...after,updatedAt:before.updatedAt}).toEqual(before);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.screenshot({path:info.outputPath(`direction-return-${width}.png`)});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+       8 | });
+       9 | test('text cursor and sound purpose survive same cut preview',async({page})=>{
+      10 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('첫 문장을 쓴다. 다음 문장을 고친다.');await text.evaluate((node:HTMLTextAreaElement)=>{node.focus();node.setSelectionRange(4,9);node.scrollTop=0;});await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(text).toBeFocused();expect(await text.evaluate((node:HTMLTextAreaElement)=>[node.selectionStart,node.selectionEnd])).toEqual([4,9]);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await kind.selectOption('ambience');await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.focus();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('ambience');await expect(kind).toBeFocused();await page.getByRole('button',{name:'주변 소리 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('default');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/preview-context.spec.ts:7:1561
+
+    Error Context: test-results-preview-current2/preview-context-native-pre-dff71-direction-tool-and-undo-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-preview-current2/preview-context-native-pre-dff71-direction-tool-and-undo-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-preview-current2/preview-context-native-pre-dff71-direction-tool-and-undo-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 844 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 6
+
+    @@ -3287,10 +3287,16 @@
+              "type": "goto",
+            },
+            "id": "P1-v166-1",
+            "leftAssetId": "seonnyeo.character.M01-base",
+            "order": 1,
+    +       "presentation": Object {
+    +         "look": Object {
+    +           "intensity": "normal",
+    +           "type": "flashback",
+    +         },
+    +       },
+            "purposeNote": "",
+            "rightAssetId": "seonnyeo.character.M03-neutral",
+            "speaker": "narration",
+            "speakerName": "해설",
+            "stageComposition": Object {
+
+       5 | }
+       6 | for(const width of [1440,768,390,844])test(`native preview returns to same direction tool and undo ${width}`,async({page},info)=>{
+    >  7 |  await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);const row=await openDirection(page);const kind=row.getByLabel('조정할 연출',{exact:true});await kind.selectOption('look');const mood=row.getByLabel('분위기',{exact:true}),original=await mood.inputValue();await mood.selectOption('flashback');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();await kind.focus();const frame=await page.getByTestId('story-runtime-frame').elementHandle();await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect(row).toBeHidden();await expect.poll(async()=>{const state=page.getByTestId('story-runtime-status');return Number(await state.getAttribute('data-rendered-revision'))>=0&&(await state.getAttribute('data-rendered-revision'))===(await state.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('look');await expect(kind).toBeFocused();await row.getByRole('button',{name:'마지막 분위기 변경 취소',exact:true}).click();await expect(mood).toHaveValue(original);await expect.poll(async()=>{const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);return {...after,updatedAt:before.updatedAt};}).toEqual(before);expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);await page.screenshot({path:info.outputPath(`direction-return-${width}.png`)});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+       8 | });
+       9 | test('text cursor and sound purpose survive same cut preview',async({page})=>{
+      10 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.fill('첫 문장을 쓴다. 다음 문장을 고친다.');await text.evaluate((node:HTMLTextAreaElement)=>{node.focus();node.setSelectionRange(4,9);node.scrollTop=0;});await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(text).toBeFocused();expect(await text.evaluate((node:HTMLTextAreaElement)=>[node.selectionStart,node.selectionEnd])).toEqual([4,9]);await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();const kind=page.getByLabel('조정할 소리',{exact:true});await kind.selectOption('ambience');await page.getByLabel('컷 주변 소리 동작',{exact:true}).selectOption('play');await kind.focus();await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('ambience');await expect(kind).toBeFocused();await page.getByRole('button',{name:'주변 소리 변경 취소',exact:true}).click();await expect(page.getByLabel('컷 주변 소리 동작',{exact:true})).toHaveValue('default');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/preview-context.spec.ts:7:1561
+
+    Error Context: test-results-preview-current2/preview-context-native-pre-7ba74-direction-tool-and-undo-844/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-preview-current2/preview-context-native-pre-7ba74-direction-tool-and-undo-844/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-preview-current2/preview-context-native-pre-7ba74-direction-tool-and-undo-844/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/e2e/preview-context.spec.ts:16:1 › catalog-only sound preview pauses during native reading and preserves the registered cue 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 8
+
+    @@ -3274,10 +3274,18 @@
+        "creativeMemos": Array [],
+        "description": "선택, 신뢰, 관계와 두 고향을 다루는 이야기",
+        "id": "pinky-review-main-004",
+        "lines": Array [
+          Object {
+    +       "audio": Object {
+    +         "music": Object {
+    +           "action": "play",
+    +           "assetId": "audio:music:forest",
+    +           "loop": true,
+    +           "volume": 0.7,
+    +         },
+    +       },
+            "backgroundId": "seonnyeo.background.BG01-valley-day",
+            "chapterId": "P1-v166",
+            "directionNote": "원전 장면: P1
+      원전 컷: P1-1
+      배경: valley",
+
+      15 | });
+      16 | test('catalog-only sound preview pauses during native reading and preserves the registered cue',async({page})=>{
+    > 17 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project),id=await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();await page.locator('[data-work-menu]>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('audio');const row=page.getByTestId(`editing-cut-${id}`);await row.getByText('1컷 음향 수정',{exact:true}).click();const kind=row.getByLabel('조정할 소리',{exact:true});await kind.selectOption('music');await row.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');const audio=row.getByLabel('컷 배경음 미리 듣기',{exact:true});await expect(row.locator('input[type="file"][accept*="audio"]')).toHaveCount(0);await audio.evaluate((el:HTMLAudioElement)=>el.play());await expect.poll(()=>audio.evaluate((el:HTMLAudioElement)=>el.paused)).toBe(false);await kind.focus();await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(()=>audio.evaluate((el:HTMLAudioElement)=>el.paused)).toBe(true);const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(kind).toHaveValue('music');await expect(kind).toBeFocused();await expect(row.getByLabel('컷 배경음 동작',{exact:true})).toHaveValue('play');await row.getByRole('button',{name:'배경음 변경 취소',exact:true}).click();await expect.poll(async()=>{const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);return {...after,updatedAt:before.updatedAt};}).toEqual(before);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+      18 | });
+      19 | test('seconds validation and expanded settings remain after preview without writing invalid time',async({page})=>{
+      20 |  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-additional-tools]>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await page.getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');const seconds=page.getByLabel('컷 배경음 서서히 크게 시작 (초)',{exact:true});await seconds.fill('0.275');await seconds.blur();await page.getByText('자세히 찾기',{exact:true}).first().click();await page.getByLabel('컷 배경음 찾기',{exact:true}).fill('숲');await seconds.fill('99');await seconds.blur();const alert=page.getByRole('alert').filter({hasText:'초 사이에서'});await expect(alert).toBeVisible();await expect(seconds).toHaveValue('0.275');await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(seconds).toBeFocused();await expect(seconds).toHaveValue('0.275');await expect(alert).toBeVisible();await expect(page.getByLabel('컷 배경음 찾기',{exact:true})).toHaveValue('숲');await expect(page.getByLabel('컷 배경음 종류 필터',{exact:true})).toBeVisible();await page.locator('[data-work-menu]>summary').click();const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const saved=JSON.parse(readFileSync((await (await download).path())!,'utf8'));expect(saved.document.project.lines.find((line:{audio?:{music?:{fadeInMs?:number}}})=>line.audio?.music?.fadeInMs===275)).toBeTruthy();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/preview-context.spec.ts:17:2002
+
+    Error Context: test-results-preview-current2/preview-context-catalog-on-567db-reserves-the-registered-cue/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-preview-current2/preview-context-catalog-on-567db-reserves-the-registered-cue/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-preview-current2/preview-context-catalog-on-567db-reserves-the-registered-cue/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 1440 
+    tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 768 
+    tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 390 
+    tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 844 
+    tests/e2e/preview-context.spec.ts:16:1 › catalog-only sound preview pauses during native reading and preserves the registered cue 

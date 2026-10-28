@@ -1,0 +1,29 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  3 passed (3)
+      Tests  15 passed (15)
+   Start at  17:53:22
+   Duration  3.53s (transform 1.08s, setup 0ms, import 1.55s, tests 2.57s, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   96.15 |    91.95 |     100 |     100 |                   
+ apps/web/lib      |     100 |    89.28 |     100 |     100 |                   
+  ...riant-edit.ts |     100 |    89.28 |     100 |     100 | 4,6-7             
+ ...oring-workbook |   95.08 |    91.89 |     100 |     100 |                   
+  text-variants.ts |   95.08 |    91.89 |     100 |     100 | 12,21             
+ ...ain/src/legacy |   91.66 |    94.44 |     100 |     100 |                   
+  ...t-variants.ts |   91.66 |    94.44 |     100 |     100 | 6                 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 96.15% ( 100/104 )
+Branches     : 91.95% ( 80/87 )
+Functions    : 100% ( 39/39 )
+Lines        : 100% ( 28/28 )
+================================================================================

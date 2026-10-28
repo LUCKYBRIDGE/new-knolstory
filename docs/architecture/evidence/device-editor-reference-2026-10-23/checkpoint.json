@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-23",
+  "scope": "Official editor references and current-source comparison; no application UI implementation in this checkpoint",
+  "sources": [
+    "https://www.capcut.com/resource/how-to-use-capcut",
+    "https://support.microsoft.com/en-us/powerpoint/add-animation-effects-in-powerpoint-on-a-mobile-device",
+    "https://support.microsoft.com/en-us/powerpoint/training/animate-text-or-objects",
+    "https://support.apple.com/guide/keynote-ipad/change-build-order-and-timing-tan3ad5f8d82/ipados",
+    "https://support.apple.com/guide/final-cut-pro-ipad/customize-the-edit-screen-dev8b472bcb8/ipados",
+    "https://support.apple.com/guide/imovie-ipad/navigate-in-the-timeline-knaeca4b0ea2/ipados",
+    "https://helpx.adobe.com/ca/premiere/mobile/manage-clips/rearrange-clips.html",
+    "https://www.canva.com/help/page-view-settings/"
+  ],
+  "verified": [
+    "Official documentation retrieved with web search/open",
+    "Ego browser opened Final Cut iPad guide; semantic snapshot confirmed current Korean page",
+    "Current StoryCombinedTime and StoryCombinedTimeline source inspected",
+    "docs:check passed: 57 active documents, 0 link errors and 0 retired-term occurrences",
+    "test:docs 10 passed",
+    "git diff --check passed"
+  ],
+  "findings": {
+    "implemented": "Selected item details, zoom/fit/reveal, explicit drag opt-in",
+    "notImplemented": "User-adjustable combined timeline height and pinch input",
+    "next": "Combined timeline height control and default reset with keyboard/orientation/selection-preservation verification"
+  },
+  "limits": [
+    "Ego TaskSpace 5 disappeared before follow-up; no screenshot or external app interaction claimed",
+    "Official guidance is not physical phone/tablet app testing",
+    "Application code, authored manuscripts and historical evidence untouched in this checkpoint",
+    "Delegated read-only audit failed due usage limit; source comparison completed by root"
+  ],
+  "designOwner": "DESIGN.md#휴대폰태블릿-참고-보강--2026-10-23"
+}

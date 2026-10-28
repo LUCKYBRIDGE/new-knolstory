@@ -1,0 +1,19 @@
+{
+  "status": "focused-host-passed",
+  "issue": "Effect select32px inherited common chrome height despite local44px intent.",
+  "change": "Effect controls subtree defines --chrome-control-height:44px; no authored data or runtime logic change.",
+  "red": ".cache/effect-height-20261028-red.log",
+  "final": ".cache/effect-height-20261028-final.log",
+  "result": "4host tests pass in one run; effect select/delay/duration44px and workspace unchanged; guide undo,delete invalid draft isolation,animation pane timing/file flow.",
+  "build": ".cache/effect-height-20261028-build.log",
+  "lint": ".cache/effect-height-20261028-lint.log",
+  "review": "Independent read-only scoped CSS review found no blocker.",
+  "limits": [
+    "Host suite includes existing engine-backed checks but this new dimension test blocks runtime; no new actual native effects/device proof.",
+    "No interactive replacement space created while pending question."
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-effect-controls.module.css": "2fd5abab6671d606d7c96dc79e4006111e88742dc438b6c3b953d4ab17ed409e",
+    "tests/e2e/editor-effect-pane.spec.ts": "008b2f99cee9ca15a1086e0b2695476e273f2603381bbfc12175d226a6b9f20f"
+  }
+}

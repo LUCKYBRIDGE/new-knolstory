@@ -1,0 +1,43 @@
+
+Running 1 test using 1 worker
+
+(node:19095) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus (7.1s)
+
+
+  1) tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('dialog', { name: '시점 전환', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('dialog', { name: '시점 전환', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '시점 전환', exact: true })
+
+
+      14 |  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const original=await work(page);
+      15 |  const field=page.getByLabel('화면 전환',{exact:true});await field.selectOption('perspective-blackout');
+    > 16 |  let dialog=page.getByRole('dialog',{name:'시점 전환',exact:true});await expect(dialog).toBeVisible();
+         |                                                                                     ^
+      17 |  expect(await work(page)).toEqual(original);await expect(field).toHaveValue('');
+      18 |  const description=dialog.locator('details');await expect(description).not.toHaveAttribute('open','');await description.locator('summary').click();await expect(description).toContainText('누구의 시점');
+      19 |  await dialog.getByRole('button',{name:'팁',exact:true}).click();await expect(dialog).toContainText('1인칭');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/direction-tips.spec.ts:16:85
+
+    Error Context: test-results-direction-choice-red/direction-tips-contextual--8d1e3-nd-preserve-draft-and-focus/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-direction-choice-red/direction-tips-contextual--8d1e3-nd-preserve-draft-and-focus/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-direction-choice-red/direction-tips-contextual--8d1e3-nd-preserve-draft-and-focus/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus 

@@ -1,0 +1,5 @@
+import {getRepresentativeStory} from '../../src';
+export function officeStoryDocument(){
+ const base=getRepresentativeStory('rabbit'),[a,b]=base.project.lines,choices={mode:'any',terms:[{sourceLineId:a.id,choiceId:'yes'},{sourceLineId:a.id,choiceId:'no'}]},condition={mode:'all',terms:[{scoreId:'trust',operator:'gte',value:3}]};
+ return {...base,project:{...base.project,id:'office-roundtrip-probe',title:'외부 앱 파일 왕복 검사',scores:[{id:'trust',name:'신뢰',description:'점수 보존',initial:0}],lines:base.project.lines.map((line,i)=>({...line,...(i===0?{text:'001 =수식이 아닌 원고 🌳\n두 번째 줄',flow:{type:'choice',options:[{id:'yes',label:'가자',targetLineId:b.id},{id:'no',label:'기다리자',targetLineId:b.id}]}}:{}),...(i===1?{visibility:{scores:condition,choices}}:{}),...(i===2?{textVariants:[{id:'alternate',text:'조건에 맞는 글',condition}],presentation:{effects:[{id:'effect',type:'shake',durationMs:600,branchCondition:choices}]},audio:{music:{action:'sequence',id:'sequence',clips:[{id:'one',assetId:'audio:music:forest',sourceStartMs:0,sourceEndMs:1200,volume:0,fadeInMs:0},{id:'two',assetId:'audio:music:night',sourceEndMs:2500,fadeOutMs:150}],branchCondition:choices}}}:{})}))}} as typeof base;
+}

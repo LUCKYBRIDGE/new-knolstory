@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-22",
+  "scope": "In-flow detail and stacked context panel collision prevention; not all popup audit",
+  "cause": [
+    "Absolute-position detail covered current editing/play controls",
+    "Closing in-flow panel on outside pointerdown would move clicked target before pointerup",
+    "Keyboard toggle could leave multiple large panels open"
+  ],
+  "implemented": [
+    "Detail occupies bounded45% flex area and context bounded35%, internal scrolling and sticky summary",
+    "Native toggle capture ensures single open auxiliary panel for mouse and keyboard",
+    "Summary/Escape dismissal; outside pointer does not change layout while clicking",
+    "Same RenPy instance and existing manuscript state retained"
+  ],
+  "verification": {
+    "browserTestsPassed": 9,
+    "viewports": [
+      [
+        1440,
+        900
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        320,
+        568
+      ],
+      [
+        700,
+        440
+      ],
+      [
+        701,
+        440
+      ],
+      [
+        390,
+        480
+      ]
+    ],
+    "checks": [
+      "Open panel geometry does not cover editing body",
+      "Write text, scroll to bottom and click actual duplicate action",
+      "Play button pointer actionability with open panel",
+      "Stacked context list geometry and keyboard mutually exclusive toggles",
+      "Escape closes panel and returns focus",
+      "No page horizontal overflow",
+      "Expanded screenshots inspected at390x844,1440x900 and844x390"
+    ],
+    "nativePlaybackAndFilesRegressionTestsPassed": 2,
+    "build": "passed",
+    "typecheck": "passed",
+    "focusedEslint": "passed",
+    "diffCheck": "passed",
+    "docsCheck": "passed",
+    "docsTestsPassed": 10
+  },
+  "review": "Read-only specialist identified multi-panel keyboard and bottom-action gaps; tests and implementation strengthened",
+  "limits": [
+    "Viewport emulation is not physical touch/OS keyboard proof",
+    "Reduced390x480 viewport simulates low space, not actual mobile IME",
+    "Other popup classes and whole editor audit remain",
+    "Existing Ego TaskSpace6 missing; no replacement created"
+  ],
+  "sha256": {
+    "apps/web/components/story-editing-workbench.module.css": "75f5b82cc028ae03652c37d6fe38ef9b57e4516e29880c04129134fdfd4efd8f",
+    "apps/web/components/story-editing-workbench.tsx": "40dcfa9944b775358e8b25cf143aa2cca9b038dff1d814a7f7f3ee235969244e",
+    "tests/e2e/editor-panel-overlap.spec.ts": "8a8c42757a1e1775ac8e14d2387d00bbba2ae1dc45d641e72760ae4360cadab5"
+  }
+}

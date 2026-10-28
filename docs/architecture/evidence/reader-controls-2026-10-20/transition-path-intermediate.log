@@ -1,0 +1,37 @@
+
+Running 1 test using 1 worker
+
+(node:12894) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/non-audio-transition.spec.ts:19:1 › author controls confirm transition and look intensity without changing manuscript or placement (16.6s)
+
+
+  1) tests/e2e/non-audio-transition.spec.ts:19:1 › author controls confirm transition and look intensity without changing manuscript or placement 
+
+    TimeoutError: locator.evaluate: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByTestId('editing-cut-flashback').locator('details').filter({ has: getByTestId('editing-cut-flashback').getByText(/^[0-9]+컷 연출 수정$/) }).first()
+
+
+      14 |  await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption({label:'연출 편집'});
+      15 |  const row=page.getByTestId('editing-cut-flashback'),details=row.locator('details').filter({has:row.getByText(/^[0-9]+컷 연출 수정$/)}).first();
+    > 16 |  if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();
+         |                    ^
+      17 |  await page.getByLabel('조정할 연출',{exact:true}).selectOption(kind);
+      18 | }
+      19 | test('author controls confirm transition and look intensity without changing manuscript or placement',async({page},info)=>{
+        at direction (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-transition.spec.ts:16:20)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/non-audio-transition.spec.ts:22:77
+
+    Error Context: test-results-reader-transition-current/non-audio-transition-autho-99396-ing-manuscript-or-placement/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-reader-transition-current/non-audio-transition-autho-99396-ing-manuscript-or-placement/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-reader-transition-current/non-audio-transition-autho-99396-ing-manuscript-or-placement/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/non-audio-transition.spec.ts:19:1 › author controls confirm transition and look intensity without changing manuscript or placement 

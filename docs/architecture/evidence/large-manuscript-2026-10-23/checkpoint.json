@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-23",
+  "scope": "Local authoring scalability journey:3 chapters x100 cuts; full file reopen",
+  "verification": {
+    "browser": "large-manuscript.spec.ts:1 passed5.8s, includes four viewport loops and fresh browser context file import",
+    "viewports": [
+      "1280x800",
+      "390x844",
+      "844x390",
+      "820x1180"
+    ],
+    "actions": [
+      "Import300 authored cuts",
+      "Edit100th cut of first chapter and100th cut of last chapter at each viewport",
+      "Browse another chapter while current cut remains in original chapter and current-cut find is disabled correctly",
+      "Select51st cut of second chapter and find it after scrolling list to top",
+      "Switch text/background/text and keep current chapter/cut",
+      "Compare every cut including text, ID, order, metadata, flow, assets and stage fields",
+      "Export actual .knolstory, parse full project equality and reopen in fresh context"
+    ]
+  },
+  "files": [
+    {
+      "name": "large.knolstory",
+      "bytes": 630771,
+      "sha256": "e227f4822394eb2c5f73688ca9527a295b9450f7f9d67d2b5ce2daaee7e1879f"
+    }
+  ],
+  "limits": [
+    "Runtime requests aborted; this checkpoint does not prove native rendering of300-cut work",
+    "Elapsed local test time is not a device performance benchmark or long-duration session",
+    "No physical phone/tablet or OS IME assertion",
+    "No product behavior defect reproduced in this focused journey",
+    "Entire editor objective remains active"
+  ],
+  "source": "tests/e2e/large-manuscript.spec.ts",
+  "sourceSha256": "ec2b3a1482e4601082ba74c5a59c73e6ed6bf4960797cc3ac6313a58db029085"
+}

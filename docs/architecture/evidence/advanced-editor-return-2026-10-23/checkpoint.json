@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-23",
+  "scope": "Cross-chapter return in multi-cut background/character/audio/direction and combined editing",
+  "failures": [
+    "Background current-cut header was top-23934 vs viewport238: no editable text field meant no scroll/focus fallback",
+    "Combined current-cut controls inactive on return",
+    "After focus fix, combined cut1 button right-11506 remained outside viewport: hidden-time reveal did not survive restoration"
+  ],
+  "changes": [
+    "Use current row text field or current-cut selection button as destination; keep original same-scope input restoration",
+    "Combined return focuses current-cut target selector",
+    "Combined timeline reveals changed cut after editor becomes active and has layout",
+    "Same-cut return retains manual horizontal/vertical panning"
+  ],
+  "verification": {
+    "advancedAndContext": "8 passed in9-case matrix:300-cut file reopen, text cross-chapter,4 advanced screens, same-cut selection direction and different-cut return; combined visibility case failed then fixed",
+    "combinedFinal": "2 passed21.0s in one execution:full combined edit/undo/file/new-context/native journey and cross-chapter return plus same-cut pan preservation",
+    "scopeNote": "10 distinct cases covered across executions, not a single green10-case run. Final timeline-only change does not alter8 non-combined cases.",
+    "native": "Actual RenPy revision acknowledgements, precise chapter/cut, row/axis bounds, destination focus and full project equality",
+    "visual": "Root viewed audio390 capture:chapter2 cut1 visibly selected, no forced detail opening",
+    "build": "Web build:source passed",
+    "typecheck": "Web passed",
+    "lint": "Focused changed components and tests passed"
+  },
+  "sourceHashes": {
+    "apps/web/components/use-preview-editor-context.ts": "0018d004751a7d7c962eba803283738ec1328f5c7f9bfee6e719fbb8530eb072",
+    "apps/web/components/story-combined-timeline.tsx": "f2af8ae8730fabc7ac86badd0e23cdcf67bcc0961432d83cf9da4009ccf216f7",
+    "apps/web/components/story-editing-workbench.tsx": "15a7f0762cb1db5a96607aa3f83fed86aa52bc10d4f53360ac398e0c5419d9a4",
+    "tests/e2e/large-manuscript.spec.ts": "9a1bfa9e9634711827bd8bfc13a316044ed4a6455d44862198bdef32f35e350e",
+    "tests/e2e/combined-preview-return.spec.ts": "e816d3c1cde05a7890caee670e8318a838418c39d7fd9344699472676d063651"
+  },
+  "limits": [
+    "Local browser/native evidence is not physical phone/tablet certification",
+    "Same-cut field inside an intentionally closed detail needs separate focus audit",
+    "No whole editor/product completion claim"
+  ]
+}

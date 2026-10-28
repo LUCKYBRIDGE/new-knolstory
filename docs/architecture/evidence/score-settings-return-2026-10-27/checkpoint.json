@@ -1,0 +1,24 @@
+{
+  "status": "focused-and-host-journey-passed",
+  "problem": "Current choice editor score-settings return retained the cut but did not restore focus; old activeTool and dialogue accessible-name selectors no longer described the actual task screen.",
+  "change": "Keep a temporary score settings opener ref scoped to current project/cut. Restore only when connected, visible and owned by editor. Retain already-restored text focus/selection or fall back to current text without changing manuscript.",
+  "red": ".cache/score-return-20261027-red.log",
+  "green": ".cache/score-return-20261027-green.log",
+  "planningRegression": ".cache/score-return-20261027-planning.log",
+  "checks": [
+    "web build",
+    "web typecheck",
+    "focused ESLint",
+    "independent read-only review found no blocker"
+  ],
+  "limits": [
+    "One choice-to-score keyboard return and one long text planning return.",
+    "Not all settings return paths or physical keyboard states.",
+    "Previous native journey and S25 soak predate this source change."
+  ],
+  "hashes": {
+    "apps/web/components/story-workspace.tsx": "bf19b34278f37463f747b1ccbbb0bdd5d1d94af21337dca35f9000ae911a5258",
+    "tests/e2e/keyboard-writing-focus.spec.ts": "f6b2fd843dae099e44820deedb13814a61616e8f6f3b879553d82f250b3d4ba1"
+  },
+  "hostJourneyRegression": ".cache/score-return-20261027-journey.log"
+}

@@ -1,0 +1,36 @@
+{
+  "w": 748,
+  "h": 259,
+  "v": 259,
+  "angle": 90,
+  "geometry": {
+    "x": 383,
+    "y": 58,
+    "width": 352,
+    "height": 173.40234375
+  },
+  "choices": [
+    {
+      "value": "basic",
+      "disabled": false
+    },
+    {
+      "value": "text",
+      "disabled": true
+    },
+    {
+      "value": "background",
+      "disabled": true
+    },
+    {
+      "value": "characters",
+      "disabled": true
+    },
+    {
+      "value": "audio",
+      "disabled": true
+    }
+  ],
+  "cutReturn": true,
+  "wholeProjectPreserved": true
+}

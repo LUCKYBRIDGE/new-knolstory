@@ -52,7 +52,7 @@
       if (event.type === 'sceneRendered' && currentScene && event.sceneId === currentScene.sceneId && event.revision === currentScene.revision) {
         const audio = currentScene.audio;
         audioEntry(currentScene.mode === 'play' && event.audioState?.unlocked === false &&
-          (audio?.music?.action === 'play' || audio?.ambience?.action === 'play' || !!audio?.sounds?.length));
+          (['play','sequence'].includes(audio?.music?.action) || ['play','sequence'].includes(audio?.ambience?.action) || !!audio?.sounds?.length));
       }
       if (event.engineViewport) engineViewport = event.engineViewport;
       parent.postMessage({ ...event, rendererRect: rendererRect() }, origin);

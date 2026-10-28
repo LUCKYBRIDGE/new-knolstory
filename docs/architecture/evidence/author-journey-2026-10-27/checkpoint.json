@@ -1,0 +1,15 @@
+{
+  "status": "focused-primary-save-fresh-context-and-native-click-passed",
+  "hostLog": ".cache/author-journey-20261027-primary-host-final.log",
+  "hostScope": "Blank work through current UI: cut text/background, character, sound, effect, optional choice and score, two choices reaching scored conditional cut and common cut, export local work, import independent copy, reload, compare complete manuscript.",
+  "native": "UI-authored and file-reopened work: both actual RenPy choice centers clicked using measured layout. Help gives trust2 and optional cut then common; pass gives trust0 and skips optional to common. Native rendered revision synchronized, same iframe and whole manuscript after editor return.",
+  "limits": [
+    "One small integrated author journey; not all editing requirements or physical devices.",
+    "Native OS file chooser and in-place re-save are separate evidence; picker is intentionally unavailable in this fallback integration.",
+    "Sound and effect authored fields are compared; no new audible sound or visual effect playback claim.",
+    "Mixed choice-score arbitrary OR and conditional-cut sound auto splitting are not claimed."
+  ],
+  "nativeLog": ".cache/author-journey-20261027-primary-native2.log",
+  "sourceSha256": "91da028fcf8fc9c68dd111b768cff052da48dbdef172bb3f1bd5c98b350bd832",
+  "fileRoute": "First archive uses the primary 작품 파일 저장 button in unsupported-picker download fallback, creating a real downloaded file. Reopened in an isolated new browser context with no prior recovery store, compared whole manuscript. Same-context independent copy/reload also compared."
+}

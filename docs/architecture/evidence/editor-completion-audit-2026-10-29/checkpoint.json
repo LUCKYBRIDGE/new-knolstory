@@ -1,0 +1,99 @@
+{
+  "objective": "편집 기능 구현과 편집 화면 ui,ux을 완성해줘.",
+  "status": "editor-implementation-and-ui-ux-complete-current-supported-scope",
+  "basis": [
+    {
+      "requirement": "기본편집·최소 상단·설정·앞뒤 맥락",
+      "checkpoint": "docs/architecture/evidence/editor-completion-2026-10-20/checkpoint.json",
+      "status": "complete-local-scope"
+    },
+    {
+      "requirement": "글·배경·인물·음향·연출 및 함께 보기",
+      "checkpoint": "docs/architecture/evidence/workbench-integration-2026-10-23/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "기능 개방·조건부 컷 교차 편집",
+      "checkpoint": "docs/architecture/evidence/editor-visibility-integration-2026-10-23/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "시간축 배율·스크롤·맞춤·보조선",
+      "checkpoint": "docs/architecture/evidence/time-viewport-controls-2026-10-22/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "음원 사용 구간·분할·직접 조절",
+      "checkpoint": "docs/architecture/evidence/sequence-time-edit-2026-10-22/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "선택 이력 그리고/또는",
+      "checkpoint": "docs/architecture/evidence/compound-branch-2026-10-23/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "점수별 글·조건부 컷",
+      "checkpoint": "docs/architecture/evidence/conditional-text-2026-10-22/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "조건부 컷 건너뛰기",
+      "checkpoint": "docs/architecture/evidence/scene-visibility-2026-10-23/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "여러 장300컷·파일",
+      "checkpoint": "docs/architecture/evidence/large-manuscript-2026-10-23/checkpoint.json",
+      "status": "see checkpoint scope"
+    },
+    {
+      "requirement": "실제 창작·점수 경로·합류·파일",
+      "checkpoint": "docs/architecture/evidence/author-journey-2026-10-27/checkpoint.json",
+      "status": "focused-primary-save-fresh-context-and-native-click-passed"
+    },
+    {
+      "requirement": "실제 첫 창작 화면·재생·독립 파일",
+      "checkpoint": "docs/architecture/evidence/first-creation-walkthrough-2026-10-28/checkpoint.json",
+      "status": "interactive-local-walkthrough-complete"
+    },
+    {
+      "requirement": "인물 네 명·좁은 폭·독립 조작",
+      "checkpoint": "docs/architecture/evidence/character-four-2026-10-28/checkpoint.json",
+      "status": "focused-host-passed"
+    },
+    {
+      "requirement": "음향·연출·통합 직접 조작·취소·파일",
+      "checkpoint": "docs/architecture/evidence/audio-direction-interactive-2026-10-28/checkpoint.json",
+      "status": "interactive-local-review-passed"
+    },
+    {
+      "requirement": "실제 S25 상세·키보드·가로세로 복귀",
+      "checkpoint": "docs/architecture/evidence/phone-editor-return-2026-10-29/checkpoint.json",
+      "status": "physical-s25-focused-passed"
+    }
+  ],
+  "completionMeaning": "Current authored editing features and approved responsive UX are implemented and supported by requirement-specific functional, file, native, interactive and physical phone evidence. This closes active editor objective, not full product release.",
+  "scopePreserved": [
+    "Minimal default basic/text/background;advancedtools individually enabled.",
+    "Phone singlecut/keyboardfocus;shortlandscape readonly;combinedtimeline tabletPC per latest userdecision.",
+    "StoryDocument content SSOT and RuntimeCore→RenPy only;current works/IDs/Flow/Stage retained.",
+    "Local work file primary,online upload distinct,browser recovery auxiliary."
+  ],
+  "knownLimitsRetained": [
+    "Automatic sound splitting across unknown reader dwelltime or nonlinear conditional cut boundaries unsupported.",
+    "Arbitrary mixed choice-score nested OR and independent timeline bar-height are existing limitations/candidates,not newly excluded requirements.",
+    "Novice external user testing,school Windows/Chromebook/Androidtablet physical budgets,screenreader speech,all keyboard modes remain product phaseC/PC06 release verification.",
+    "Prior VoiceOver permission fulfilled by attempt/offrestore;no new VoiceOver prerequisite reinstated.",
+    "Accounts/classroom/sharing/OAuth/rights/deployment remain full product queue."
+  ],
+  "validationPolicy": "No summation of separate historical runs into one green full suite;latest source hash comparisons and change impact determine evidence reuse.",
+  "sourceSha256": {
+    "apps/web/components/story-workspace.tsx": "60580d421a43268a2e20fa02ec98c5e832dcd64e6847479c650b287b72bccc4f",
+    "apps/web/components/story-editing-workbench.tsx": "b7c776a8488f9b4cf544a9529f652ec4821fcdc2c788da3e908b31f5ccc07517",
+    "apps/web/components/story-editing-workbench.module.css": "c33f4894c45c98326767343c6e6131b6f4335b7dc8029474002b143eca890ac5",
+    "apps/web/components/audio-controls.module.css": "6e08304baee509fb18e5f343a646dc67cee8276a4809f32664105f3ef87e1216",
+    "apps/web/components/story-effect-controls.module.css": "2fd5abab6671d606d7c96dc79e4006111e88742dc438b6c3b953d4ab17ed409e",
+    "apps/web/components/use-editor-menus.ts": "2803e95d059e6c1799aa071e743cbcc81eabd09b4abe07e37568f009fd13a88d"
+  }
+}

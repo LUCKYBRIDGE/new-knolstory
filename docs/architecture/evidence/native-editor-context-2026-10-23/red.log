@@ -1,0 +1,46 @@
+
+Running 1 test using 1 worker
+
+(node:17186) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/long-text-context.spec.ts:25:1 › long text keeps selection direction after actual native preview return (10.8s)
+
+
+  1) tests/e2e/long-text-context.spec.ts:25:1 › long text keeps selection direction after actual native preview return 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "direction": "backward",
+    +   "direction": "none",
+        "end": 1620,
+        "start": 1600,
+        "top": 550,
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      24 |
+      25 | test('long text keeps selection direction after actual native preview return',async({page},info)=>{
+    > 26 |  await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'long.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-23T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await screen(page,'text');const field=page.locator('textarea[data-cut-id]').first();await field.evaluate((el:HTMLTextAreaElement)=>{el.focus();el.setSelectionRange(1600,1620,'backward');el.scrollTop=550;});const before=await field.evaluate((el:HTMLTextAreaElement)=>({start:el.selectionStart,end:el.selectionEnd,direction:el.selectionDirection,top:el.scrollTop}));await page.getByTestId('editing-cut-neutral').getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(field).toBeFocused();await expect.poll(()=>field.evaluate((el:HTMLTextAreaElement)=>({start:el.selectionStart,end:el.selectionEnd,direction:el.selectionDirection,top:el.scrollTop}))).toEqual(before);await expect(field).toHaveValue(prose);await page.screenshot({path:info.outputPath('native-return.png')});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+      27 | });
+      28 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/long-text-context.spec.ts:26:1562
+
+    Error Context: test-results-long-native-red/long-text-context-long-tex-e85d9-ctual-native-preview-return/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-long-native-red/long-text-context-long-tex-e85d9-ctual-native-preview-return/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-long-native-red/long-text-context-long-tex-e85d9-ctual-native-preview-return/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/long-text-context.spec.ts:25:1 › long text keeps selection direction after actual native preview return 

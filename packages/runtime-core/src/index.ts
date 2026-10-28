@@ -95,3 +95,5 @@ export * from './story-scores';
 
 export * from './branch-conditions';
 export * from './branch-condition-references';
+
+export * from './scene-visits';

@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-21",
+  "scope": "Non-destructive audio source range editing; full editor goal remains active",
+  "implemented": [
+    "Optional sourceStartMs/sourceEndMs integer bounds and strict non-play rejection",
+    "Music, ambience, sound original source bounds separate from cut delay",
+    "Collapsed range controls, original reset, known-duration limits and changed-asset reset",
+    "Archive2/document8 additive optional fields; workbook8 old-column omission adapter; generated field schema",
+    "Runtime Core exact range propagation; native filename conversion only inside presenter",
+    "Same channel/source-range/loop identity maintains playback; changed range restarts; volume-only changes do not restart",
+    "Active sliced audio cache paths normalized before eviction protection; rejected start draft restored to persisted value"
+  ],
+  "verification": {
+    "focusedUnitTests": 31,
+    "nativePythonTests": 36,
+    "realNativeE2E": 1,
+    "nativeE2EBehavior": "Imported actual work file; edited0.2..0.8s on8s original; rejected invalid end; exported work file; entered RenPy through real audio gate; music started once and stopped within5s without advancing cut; fresh-context imported exact exported project",
+    "viewports": [
+      {
+        "width": 1280,
+        "height": 800
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "formats": [
+      "archive encode/decode",
+      "workbook export/import",
+      "generated actual xlsx bytes export/import",
+      "JSONB snapshot prepare/restore"
+    ],
+    "previousWorkbook8MissingColumns": "passed",
+    "typecheckAll": "passed",
+    "runtimeBuild": "passed pinned RenPy8.5.3",
+    "webBuild": "passed final source after cache protection fix",
+    "focusedUnitEvidence": "30 tests across12files plus one new asset-reset test in2-test asset suite",
+    "finalE2EFlows": 4,
+    "finalE2ELog": "audio-source-e2e-final.log",
+    "additionalFlows": [
+      "Combined guide alignment/numeric duration/direct beginning-end drag/undo/file fresh import/native play-return",
+      "Dedicated effect pane selection and edits",
+      "Cross-work editor draft isolation"
+    ],
+    "coverageScope": [
+      "packages/story-domain/src/legacy/story-audio.ts",
+      "packages/runtime-contract/src/audio.ts",
+      "packages/runtime-core/src/audio.ts"
+    ],
+    "coverage": {
+      "statements": 93.33,
+      "branches": 88.32,
+      "functions": 94.11,
+      "lines": 96.7
+    },
+    "allTypecheck": "passed final source",
+    "eslintChangedSource": "passed",
+    "docsCheck": "passed 57 active documents and product language",
+    "docsTests": 10,
+    "generatedSchemaCheck": "passed"
+  },
+  "limitations": [
+    "No physical-device or auditory verification",
+    "Unknown-duration private sources use format bounds; decoder determines actual end",
+    "External Excel/Google Sheets editing of new columns remains unverified",
+    "Split source ranges and cross-source seamless audio editing remain unimplemented",
+    "Prior failed UI test found keyed details remount closing panel; fixed stable outer details and repeated actual flow successfully"
+  ],
+  "sourceSha256": {
+    "apps/web/components/audio-source-range-controls.tsx": "48ed350af13c3758caa25ae2410839e71f6a1cbd4860b958a96306a17ca39ddc",
+    "apps/web/components/audio-controls.module.css": "4733104fd7008277b8bfd02459771979f9b47c2858d5bf39c0d08270b20178bd",
+    "apps/web/components/story-audio-controls.tsx": "8774418fb4d33d94ff56ec75310ee2c46b98b77ae248a65aa84473068f94fc26",
+    "apps/web/components/sound-cue-list.tsx": "bdc5d2df5a9a3193e648ff8f926a9a051293ebc7462e98c7260ce07ebb967450",
+    "apps/web/lib/audio-asset-choice.ts": "6de4ed639e4b8e1579754ef86c3285a29c2cfd6f0733c8a0f221440293fb8eef",
+    "packages/story-domain/src/legacy/story-audio.ts": "e2b3a5ae7a33cda8e7344762d92923c35389548545ab5b4f18a4b91faad96eb4",
+    "packages/runtime-contract/src/audio.ts": "b073480b57047a052599a07dbd7427c6968ab5d4e509a90982a8819ccb199146",
+    "packages/runtime-core/src/audio.ts": "d047747dfacf3355ed8b5bab4690fd53aed75310caa7d3901f5d22d028804e1c",
+    "packages/compatibility/src/authoring-workbook/audio.ts": "d6e40c66b745df90880a15ee024ef2bd063f30577a3bf4b5e6aa4703eff35903",
+    "packages/compatibility/src/authoring-workbook/guide.ts": "f693e085c74eae4e711c49eb410746e90b550b98857dabfef4467bb61c02d7c5",
+    "packages/compatibility/src/authoring-field-schema.json": "2e8c3df642f6c8ecf8428f00b6c2aa1ba5c71e49cfd5f1eb7cf49068bf1224d3",
+    "renpy/responsive-spike/game/audio.rpy": "7404a346f7768a4d433c34f280d8122945173f8f102d4250621e1235b0174d06",
+    "spikes/renpy-web/presenter-unit-test.py": "6300ca187d2bd962b472d3bd51165437d86161b89f9e9ddb106e509a51f8ca7b",
+    "packages/runtime-core/src/audio-source-range.test.ts": "36aefde8c3b2d33b4c2851919cc89bee626f9b779fe7a3de3cc317c2e7cfb5ec",
+    "packages/compatibility/tests/audio-source-format.test.ts": "4f758f72f39e74170bf0819ebad299e03988b311bdd8f360e484eefd690dea49",
+    "tests/e2e/audio-source-range.spec.ts": "6443d4f3664e82a0ec119e01cbf1b9e6d178d275765591222bd92eff2fc6a7a5",
+    "renpy/responsive-spike/game/script.rpy": "6df5c1059e26a4190d4681821032b5849971802921c2c425687832a0898dd96e",
+    "apps/web/lib/audio-asset-choice.test.ts": "9c5a0c2034a05b025a6375bd712fc4e0eb9bcd46f233302f75682b54a7a2803f"
+  },
+  "review": {
+    "method": "Independent read-only review plus focused source checks",
+    "findingsFixed": [
+      "Rejected start draft differed from stored cue; reproduced RED and restored range validation",
+      "Sliced active music paths did not match plain service cache keys; reproduced RED and normalized protection list"
+    ],
+    "reviewedAreas": [
+      "domain guards",
+      "runtime contract/core propagation",
+      "native identity and source syntax",
+      "workbook adapter",
+      "source UI and asset replacement"
+    ]
+  }
+}

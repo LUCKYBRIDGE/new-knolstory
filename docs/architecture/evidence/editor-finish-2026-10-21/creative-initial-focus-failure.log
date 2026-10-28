@@ -1,0 +1,62 @@
+
+Running 1 test using 1 worker
+
+(node:36596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:86:1 › UI-authored twelve-cut story survives local files and both actual RenPy reading paths (1.3m)
+
+
+  1) [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:86:1 › UI-authored twelve-cut story survives local files and both actual RenPy reading paths 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '설정', exact: true })
+        - locator resolved to <button>설정</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <details open="" class="story-workspace-module__gRDfJG__semantic">…</details> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <details open="" class="story-workspace-module__gRDfJG__semantic">…</details> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        28 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <details open="" class="story-workspace-module__gRDfJG__semantic">…</details> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+       at native-reader.ts:42
+
+      40 | }
+      41 | export async function loadReadSlot(page:Page,id:number){
+    > 42 |  await readerTools(page);const settings=page.getByRole('button',{name:'설정',exact:true});if(await settings.isVisible())await settings.click();await page.getByRole('button',{name:'불러오기',exact:true}).click();
+         |                                                                                                                                      ^
+      43 |  await page.getByRole('button',{name:`${id}번 불러오기`,exact:true}).click();
+      44 |  await page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true}).getByRole('button',{name:'확인',exact:true}).click();
+      45 | }
+        at loadReadSlot (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/native-reader.ts:42:134)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creative-reading-journey.spec.ts:102:76
+
+    attachment #1: reading actual-context trace (application/zip) ──────────────────────────────────
+    test-results-editor-creative-v11/creative-reading-journey-U-02832--actual-RenPy-reading-paths-stories-runtime/attachments/reading-actual-context-trace-1b25d8c8b49e2f20c7acd9c304c12f46d657372a.zip
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: authoring actual-context trace (application/zip) ────────────────────────────────
+    test-results-editor-creative-v11/creative-reading-journey-U-02832--actual-RenPy-reading-paths-stories-runtime/attachments/authoring-actual-context-trace-997e8eb01f3dbaa55cf81991cf201180d0328f28.zip
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results-editor-creative-v11/creative-reading-journey-U-02832--actual-RenPy-reading-paths-stories-runtime/error-context.md
+
+  1 failed
+    [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:86:1 › UI-authored twelve-cut story survives local files and both actual RenPy reading paths 

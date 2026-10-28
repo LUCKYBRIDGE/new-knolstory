@@ -1,0 +1,75 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/effect-authoring.test.ts (21 tests | 3 failed) 10ms
+     × uses click-only ordinal defaults, explicit shared stages and separate timing clocks 2ms
+     × aligns with or after previous click effect on its effective stage without changing other metadata 2ms
+     × removes click stage when aligning to non-click effects or explicitly arranging scene starts 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/effect-authoring.test.ts > click-stage effect placement > uses click-only ordinal defaults, explicit shared stages and separate timing clocks
+TypeError: effectClickStep is not a function
+ ❯ apps/web/lib/effect-authoring.test.ts:144:10
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  apps/web/lib/effect-authoring.test.ts > click-stage effect placement > aligns with or after previous click effect on its effective stage without changing other metadata
+AssertionError: expected { id: 'last', type: 'shake', …(5) } to deeply equal { id: 'last', type: 'shake', …(5) }
+
+- Expected
++ Received
+
+  {
+    "branchCondition": {
+      "choiceId": "choice",
+      "sourceLineId": "source",
+    },
+-   "clickStep": 1,
++   "clickStep": 3,
+    "delayMs": 500,
+    "id": "last",
+    "target": {
+      "kind": "background",
+    },
+-   "trigger": "on-click",
++   "trigger": "scene-enter",
+    "type": "shake",
+  }
+
+ ❯ apps/web/lib/effect-authoring.test.ts:159:60
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  apps/web/lib/effect-authoring.test.ts > click-stage effect placement > removes click stage when aligning to non-click effects or explicitly arranging scene starts
+AssertionError: expected { id: 'last', type: 'shake', …(3) } to deeply equal { id: 'last', type: 'shake', …(2) }
+
+- Expected
++ Received
+
+  {
++   "clickStep": 3,
+    "delayMs": 0,
+    "id": "last",
+    "trigger": "with-dialogue",
+    "type": "shake",
+  }
+
+ ❯ apps/web/lib/effect-authoring.test.ts:166:60
+    164|  it('removes click stage when aligning to non-click effects or explici…
+    165|   const effects:StoryEffectCue[]=[{type:'flash',trigger:'with-dialogue…
+    166|   expect(alignEffectStart(effects,1,'with-previous')?.[1]).toEqual({id…
+       |                                                            ^
+    167|   expect(arrangeEffectsSequentially(effects)).toEqual([{type:'flash',t…
+    168|   expect(effects[1].clickStep).toBe(3);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 18 passed (21)
+   Start at  08:25:47
+   Duration  137ms (transform 19ms, setup 0ms, import 26ms, tests 10ms, environment 0ms)
+

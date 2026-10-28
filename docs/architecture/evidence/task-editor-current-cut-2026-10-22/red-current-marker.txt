@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:37442) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/task-editor-current-cut.spec.ts:11:119 › current cut find and selection across task editors 390 (6.4s)
+
+
+  1) tests/e2e/task-editor-current-cut.spec.ts:11:119 › current cut find and selection across task editors 390 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByTestId('editing-cut-long-cut-18')
+    Expected: "step"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByTestId('editing-cut-long-cut-18') with timeout 5000ms
+      - waiting for getByTestId('editing-cut-long-cut-18')
+        14 × locator resolved to <article aria-label="19컷 편집" data-testid="editing-cut-long-cut-18" class="story-editing-workbench-module__jlqdCG__row">…</article>
+           - unexpected value "null"
+
+
+      11 | for(const viewport of [{width:390,height:844},{width:844,height:390},{width:768,height:1024},{width:1280,height:800}])test(`current cut find and selection across task editors ${viewport.width}`,async({page},info)=>{
+      12 |  await page.setViewportSize(viewport);await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'rows.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await menu(page);await page.getByText('편집 설정',{exact:true}).click();for(const name of ['인물','음향','연출'])await page.getByRole('checkbox',{name:`${name} 편집 사용`,exact:true}).check();
+    > 13 |  for(const name of ['text','background','characters','audio','direction']){await screen(page,name);const list=page.locator('[data-writer-scroll]'),row=page.getByTestId('editing-cut-long-cut-18');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();await expect(row).toHaveAttribute('aria-current','step');await expect(row.getByRole('button',{name:'이 컷 선택',exact:true})).toHaveAttribute('aria-pressed','true');await list.evaluate(el=>{el.scrollTop=0;});await page.getByRole('button',{name:'현재 컷 찾기',exact:true}).click();const bounds=await row.locator('header').evaluate(el=>{const row=el.getBoundingClientRect(),view=el.closest('[data-writer-scroll]')!.getBoundingClientRect();return {top:row.top,bottom:row.bottom,viewTop:view.top,viewBottom:view.bottom};});expect(bounds.top).toBeGreaterThanOrEqual(bounds.viewTop-1);expect(bounds.top).toBeLessThan(bounds.viewBottom);await expect(page.getByRole('button',{name:'현재 컷 찾기',exact:true})).toBeFocused();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
+         |                                                                                                                                                                                                                                                                                       ^
+      14 |  await page.screenshot({path:info.outputPath(`selected-${viewport.width}.png`)});const after=await exported(page);expect(after.lines).toEqual(project.lines);expect(after.chapters).toEqual(project.chapters);
+      15 | });
+      16 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/task-editor-current-cut.spec.ts:13:279
+
+    Error Context: test-results-task-current-red/task-editor-current-cut-cu-99243-ion-across-task-editors-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-task-current-red/task-editor-current-cut-cu-99243-ion-across-task-editors-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-task-current-red/task-editor-current-cut-cu-99243-ion-across-task-editors-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/task-editor-current-cut.spec.ts:11:119 › current cut find and selection across task editors 390 

@@ -9,12 +9,12 @@
     "build:source": "next build"
   },
   "dependencies": {
-    "@knolstory/runtime-core": "workspace:*",
-    "@knolstory/runtime-contract": "workspace:*",
-    "@knolstory/story-domain": "workspace:*",
-    "@knolstory/compatibility": "workspace:*",
     "@knolstory/asset-registry": "workspace:*",
-    "next": "16.3.8",
+    "@knolstory/compatibility": "workspace:*",
+    "@knolstory/runtime-contract": "workspace:*",
+    "@knolstory/runtime-core": "workspace:*",
+    "@knolstory/story-domain": "workspace:*",
+    "next": "16.4.1",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

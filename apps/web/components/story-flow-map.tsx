@@ -1,5 +1,6 @@
 "use client";
 import dialogSurface from './story-dialog-surface.module.css';
+import {trapDialogTab} from '../lib/dialog-keyboard';
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { StoryProject } from "@knolstory/story-domain";
@@ -53,6 +54,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
     return result;
   }, [graph]);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const composing = useRef(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
   const legendId = useId();
@@ -68,7 +70,11 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
     const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     if (dialog && !dialog.open) dialog.showModal();
     closeRef.current?.focus();
-    return () => { dialog?.close(); if (opener?.isConnected) opener.focus(); };
+    return () => {
+      dialog?.close();
+      const target=opener?.isConnected&&opener!==document.body&&opener.checkVisibility()?opener:document.querySelector<HTMLElement>('[data-work-menu]>summary');
+      target?.focus({preventScroll:true});
+    };
   }, []);
   const issueIds = useMemo(() => new Set(graph.issues.map(issue => issue.lineId)), [graph]);
   const search = query.trim().toLocaleLowerCase();
@@ -89,7 +95,10 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
     setExpanded(previous => previous.includes(id) ? previous.filter(value => value !== id) : [...previous, id]);
   }
   return <dialog ref={dialogRef} className={`${styles.dialog} ${dialogSurface.surface}`} aria-labelledby={titleId} aria-describedby={legendId}
-    onCancel={event => { event.preventDefault(); onClose(); }}
+    onCompositionStart={()=>{composing.current=true;}}
+    onCompositionEnd={()=>{composing.current=false;}}
+    onKeyDown={event=>{if(event.nativeEvent.isComposing||event.nativeEvent.keyCode===229||composing.current){if(event.key==='Escape'){event.preventDefault();event.stopPropagation();}return;}trapDialogTab(event,dialogRef.current);}}
+    onCancel={event => { event.preventDefault(); event.stopPropagation(); if(!composing.current)onClose(); }}
     onClick={event => {
       const bounds = event.currentTarget.getBoundingClientRect();
       if (event.target === event.currentTarget && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) onClose();

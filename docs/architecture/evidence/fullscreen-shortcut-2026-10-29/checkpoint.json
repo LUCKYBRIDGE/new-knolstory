@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-29",
+  "scope": "좁은 화면의 전체 화면 전환과 조작부 겹침 방지",
+  "implementation": [
+    "지원 브라우저의 편집 상단에44px 전체 화면/해제 버튼. 설정 안의 기존 조작 유지.",
+    "실제 fullscreenchange 상태로 표시. 중복 요청 억제·실패 시 원고 보존.",
+    "읽기 메뉴 조작 후 보이는 메뉴 버튼으로 키보드 초점 복귀."
+  ],
+  "physical": {
+    "device": "Galaxy S25 Ultra / Android Chrome",
+    "result": "phone-result.json",
+    "images": [
+      "phone-before.png",
+      "phone-fullscreen.png"
+    ],
+    "observed": "실제 터치로 시작/해제. OS 이미지에서 주소창·시스템 표시 영역 숨김 확인. 360x677→360x780→360x677 CSS px. 상단4개 조작부44px 높이·중심 히트·겹침 없음. 원고 전체 불변·검사 전 보관 값 복원.",
+    "boundary": "실기기 확인 후 기능 감지 상태 갱신을requestAnimationFrame으로 미루는lint 수정만 추가. 최종 후보는 다시 빌드하고 브라우저 검사. 키보드가 열린 상태의 새 바로가기 실제 터치와 다른OS/브라우저는 이번 검사 범위 밖."
+  },
+  "sourceSha256": {
+    "apps/web/components/workspace-management.tsx": "3b6378d299fc39a0e1fe31d41fedb5c1debf96a054c7562afbac3d3089f633d8",
+    "apps/web/components/story-workspace.tsx": "d345a9b9af93daa9a8beac6ee94d8410824f8de0e41fbd81fcc97166a1c34d5c",
+    "apps/web/components/story-player-menu.tsx": "79271d0f8c73249da769b70c12d9451907f5c1e40c78812e88cccbb0f5cd1858",
+    "apps/web/components/story-workspace.module.css": "744f2c3b6d77e72bcf25121492aa07b5b9a52a1c8dbd878f09a4a2d8e8cb491d",
+    "tests/e2e/phone-editor-tasks.spec.ts": "e93fc375fa6e035ec877871c0f8e26c7307e561211610ea11ee27b2e89a56503"
+  },
+  "validation": {
+    "build": "pnpm --filter @knolstory/web build: pass",
+    "typecheck": "pnpm --filter @knolstory/web typecheck: pass",
+    "focusedBrowser": "KNOL_TEST_STATIC=1 pnpm exec playwright test tests/e2e/phone-editor-tasks.spec.ts --project=host --grep fullscreen: 5 passed, 8.1s",
+    "cases": [
+      "320/390/748px 조작부 비겹침·44px·중심 히트·가로 넘침 없음·진입/해제·원고 보존",
+      "읽기 메뉴 키보드 초점 복귀",
+      "외부 해제 상태 동기화·요청 거절 원고 보존"
+    ],
+    "lint": "변경 TSX/검사: 오류0, 기존 story-player-menu img 경고1",
+    "review": "독립 읽기전용 소스 리뷰: 수정이 필요한 결함 발견 없음",
+    "documentation": "pnpm docs:check + pnpm test:docs: pass"
+  },
+  "limits": [
+    "OS·브라우저 제스처로 표시줄이 다시 나타날 수 있다.",
+    "브라우저 검사는runtime 통신을 차단하고 조작·상태·원고를 확인. 기존 유효한RenPy 검증 유지.",
+    "전체 제품·모든 기기 출시 완료 판정이 아니다."
+  ],
+  "selfReview": {
+    "summary": "구현·좁은 폭 조작·실제 휴대폰 전환 근거를 연결했다.",
+    "scores": {
+      "accuracy": {
+        "score": 4,
+        "evidence": "실제 OS 이미지·전환 치수·5개 브라우저 검사 일치. 최종 기능 감지 시점 수정은 브라우저만 재검사."
+      },
+      "completeness": {
+        "score": 4,
+        "evidence": "진입/해제·거절·외부 해제·비겹침·원고 보존 확인. 새 버튼의 키보드 열린 실물 터치는 미확인."
+      },
+      "clarity": {
+        "score": 4,
+        "evidence": "전체 화면/해제 이름·상태와 한 줄 배치 규칙을 DESIGN에 반영."
+      },
+      "actionability": {
+        "score": 4,
+        "evidence": "편집 상단의44px 버튼으로 직접 이용 가능. 설정 경로도 유지."
+      },
+      "conciseness": {
+        "score": 4,
+        "evidence": "별도 안내 팝업을 늘리지 않고 기존 헤더 한 버튼으로 처리."
+      }
+    },
+    "average": 4.0,
+    "improvements": [
+      "다른OS/브라우저를 실제 검증할 때 전체 화면 지원과 키보드 조합을 함께 확인."
+    ],
+    "selfCheck": "사용자가 요청한 빠른 전환과 겹침 방지는 구현·실물 근거가 있으며 미검증 범위를 분리했다."
+  }
+}

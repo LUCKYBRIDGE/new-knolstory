@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-23",
+  "scope": "Compound exact-choice conditions for effects and audio; whole editor goal active",
+  "contract": "../../branch-scope-authoring-contract.md",
+  "implemented": [
+    "Single shape unchanged; flat all/any1..8 strict unique exact source/choice pairs",
+    "Latest actual visit per term, pending revisit false; ongoing OR preserves other true term",
+    "Validation/deletion/clone/relocate/split/restore handles every term",
+    "Opt-in add draft does not edit manuscript until choice confirmed; remove/mode/undo; feature off preserves data",
+    "Editable workbook owner/mode/term rows; all-or-none extension; exact authored IDs including escaped reserved strings",
+    "Archive2/document8/workbook8/API1/JSONB1/RuntimeScene unchanged"
+  ],
+  "verification": {
+    "coreTests": 82,
+    "compatibilityTests": 316,
+    "compatibilitySkipped": 2,
+    "webTests": 26,
+    "browserFinal": "11 passed in one terminal final run (existing single6 + compound5); actual keyboard choices and native render results, four viewport sizes",
+    "typecheck": "six workspace packages and server passed; Web final passed",
+    "coverage": "Core changed5modules96.26stmt91.08branch; workbook branch93.97stmt92.4branch; Web helper94.44stmt89.47branch, not whole product coverage"
+  },
+  "review": {
+    "finding": "P2 raw owner cell decoding omitted string escape",
+    "resolution": "Shared readTable decoding and workbook/actual XLSX escaped owner ID regression passed",
+    "additional": "Group name distinguished from select name after old single route strict locator failure"
+  },
+  "limits": [
+    "Physical touch/soft keyboard/real external spreadsheet app not verified",
+    "Conditional scene and mixed choice-score groups are not this implementation",
+    "Whole editor/product completion unproven"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-branch-condition-field.tsx": "995e50d9628970fc18559fa88f2fae808eba3fe455910f2fc79c506eaf96c853",
+    "apps/web/lib/branch-condition-edit.ts": "3b433a797ad3616196714b6a8ca281191d9fd4003c4c40f00e71f9dbe767c894",
+    "packages/story-domain/src/legacy/story-branch-condition.ts": "05780a64d516bf1d22ba8287eace11c97a853c9d168d8075ff6c216fe5859067",
+    "packages/runtime-core/src/branch-conditions.ts": "58301e621040916cf8d5b61087472c8b03b88438a242a0cdc9b1e58edd0900a2",
+    "packages/compatibility/src/authoring-workbook/branch.ts": "afdd46aeb1a6727b20fbe6079898c7d0150dc0372fb8a18d9ec2314ff3e6b309",
+    "packages/compatibility/src/authoring-field-schema.json": "bbfb1529318acb8291097be7bfd717bd56ff6ca2b7f24354e2fb73294243b6e8",
+    "tests/e2e/compound-branch.spec.ts": "435324c989e418f68c4b5bb532e0a6bf0998095f9e618e314c46d4a560b44306",
+    "apps/web/out/index.html": "d385326061559bad93b28da7063b4747178521e2b3c71881c3ae8e12dac3c8e5"
+  }
+}

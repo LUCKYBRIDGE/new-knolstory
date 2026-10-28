@@ -1,0 +1,47 @@
+
+Running 2 tests using 1 worker
+
+(node:84030) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/combined-sound-time.spec.ts:5:1 › selected sound bar opens its own detail and its finite end aligns to the movable guide (4.6s)
+  ✘  2 tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance (7.3s)
+
+
+  1) tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  locator('[data-combined-time]').getByLabel('선택 항목 시작 시간 (초)', { exact: true })
+    Expected: "1.8"
+    Received: "0.5"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveValue" locator('[data-combined-time]').getByLabel('선택 항목 시작 시간 (초)', { exact: true }) with timeout 5000ms
+      - waiting for locator('[data-combined-time]').getByLabel('선택 항목 시작 시간 (초)', { exact: true })
+        14 × locator resolved to <input min="0" max="10" value="0.5" step="0.001" type="number" inputmode="decimal" aria-label="선택 항목 시작 시간 (초)"/>
+           - unexpected value "0.5"
+
+
+      18 |  await time.getByText('시간 배치 설정',{exact:true}).click();await time.getByRole('checkbox',{name:'시간 막대 끌기 사용',exact:true}).check();
+      19 |  const move=async(shift=false)=>{const rect=await bar.boundingBox();expect(rect).toBeTruthy();await page.mouse.move(rect!.x+5,rect!.y+10);await page.mouse.down();if(shift)await page.keyboard.down('Shift');await page.mouse.move(rect!.x+5+76.8,rect!.y+10);await page.mouse.up();if(shift)await page.keyboard.up('Shift');};
+    > 20 |  await move();await expect(time.getByLabel('선택 항목 시작 시간 (초)',{exact:true})).toHaveValue('1.8');
+         |                                                                             ^
+      21 |  await expect(time.getByRole('status')).toHaveText('끝을 2초 보조선에 맞췄어요.');
+      22 |  expect((await stored()).lines[0].audio.sounds[1]).toEqual({...project.lines[0].audio.sounds[1],delayMs:1800});
+      23 |  await time.getByRole('button',{name:'시간 변경 취소',exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/time-placement-assistance.spec.ts:20:77
+
+    Error Context: test-results-time-assistance/time-placement-assistance--b0fef-respect-optional-assistance/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-time-assistance/time-placement-assistance--b0fef-respect-optional-assistance/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-time-assistance/time-placement-assistance--b0fef-respect-optional-assistance/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance 
+  1 passed (12.6s)

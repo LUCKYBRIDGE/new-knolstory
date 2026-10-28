@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-21",
+  "scope": "Combined current-cut seconds view, editable starts and movable guides; overall editor objective remains active",
+  "implemented": [
+    "local sound/effect/actor-motion starts on separated scene/dialogue/manual-click clocks",
+    "only finite effect/motion duration bars, sound starts without invented file length",
+    "guide slider and millisecond numeric edit; align start/end rejects unknown length and loops",
+    "explicit opt-in pointer start dragging; same-clock nearest-guide snapping and Shift bypass",
+    "guide visibility/snap uses existing per-project UI preferences",
+    "scope-specific undo preserves subsequent text; actor undo restores authored composition and inheritance absence",
+    "short landscape dedicated compact time zoom"
+  ],
+  "verification": {
+    "unit": {
+      "focusedTests": 34,
+      "newTimeTests": 6,
+      "coverage": {
+        "statements": 97.95,
+        "branches": 90.9,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "e2eEarlierCandidate": {
+      "passed": 3,
+      "log": "combined-time-delivery.log",
+      "covers": [
+        "actual numeric and end-guide alignment",
+        "pointer dragging and custom guide snap",
+        "clock-filtered selection routes correct effect editor",
+        "guide toggles",
+        "three viewport layouts",
+        "cut range edit regression",
+        "actual download/freshcontext import/reload",
+        "native preview play and editor return",
+        "existing effectpane and workisolation"
+      ]
+    },
+    "finalLayoutE2E": {
+      "status": "passed",
+      "tests": 1,
+      "log": "combined-time-layout.log"
+    },
+    "webBuild": "passed with final layout",
+    "allTypecheck": "passed before final layout; final Web build includes typecheck",
+    "focusedLint": "passed",
+    "docs": {
+      "linkErrors": 0,
+      "retiredTerms": 0,
+      "testsPassed": 10
+    },
+    "zeroTickFollowup": "CSS first tick aligned inward and Web rebuilt; full combined flow passed1 in combined-time-zero.log.",
+    "wordingFollowup": "Repeat tooltip describes one motion duration, not repeat period; only wording changed after final full-flow run and Web rebuilt."
+  },
+  "remaining": [
+    "duration resizing from combined seconds axis",
+    "split ranges with sourceaudio/continuous playback semantics",
+    "sourceaudio trimming preserving originals",
+    "full editor requirement audit/physical devices/external spreadsheet app gates"
+  ],
+  "preservation": "All previous dirty work and authored manuscripts retained; no content schema changes; no audio assets trimmed. Current StoryDocument timing fields and canonical patchStoryLine reused.",
+  "sourceSha256": {
+    "apps/web/lib/combined-time-edit.ts": "a53e50411be33b6998c964905b2bc2ee8f13492b1f09ab9b75afc9c2a7b4d0e8",
+    "apps/web/lib/combined-time-edit.test.ts": "28c17f4af3690498950b585c4fbb018feda80a3cafa099bfe6e47bf123773f54",
+    "apps/web/components/story-combined-time.tsx": "65fd40405ab70dcc3d1cb1434cb165213e6c5cee4c46eeeee59178f3ce270839",
+    "apps/web/components/story-combined-time.module.css": "616779720928d8087005533f0ca762df47a078c9eff7b6bfff1be6913df77e75",
+    "apps/web/components/story-combined-timeline.tsx": "099d8a279fc1cfbd26ff075f53cf690b85614637d87a94618aa3ef4965b63a14",
+    "apps/web/components/story-combined-timeline.module.css": "f4d21dab07f62cad3d1fed82bb10b408ce607e36f562f1e853b7456dfa1e7ec9",
+    "apps/web/components/story-editing-workbench.tsx": "181434aae8d66471daf8709d7707689539b29e296efb1c0213e304faf8c77542",
+    "apps/web/components/story-editing-workbench.module.css": "48e063fa80e139e911eef7f068156a842bde8e3571e35136d01421343538b1f9",
+    "tests/e2e/combined-editing.spec.ts": "4116dce5746a09da01af7935ee481d06f69b341c089da52241a7a2a4d4efb8da"
+  }
+}

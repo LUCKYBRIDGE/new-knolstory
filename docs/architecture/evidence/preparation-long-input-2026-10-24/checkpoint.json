@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "scope": "Actual S25 portrait long preparation author note and deeply nested planning note",
+  "verification": {
+    "authorNote": "80 lines2790 chars; selection at end, scrollTop4008.75; field y467.10..561.89 inside visual327..677",
+    "planningNote": "100 lines2691 chars; selection at end, internal scrollTop2498.75; screenshot confirms last line/caret visible",
+    "preservation": "Restored each original note via UI and returned to cut editor; whole project equal except expected updatedAt",
+    "wording": "Changed ambiguous automatic work-save claim to browser temporary retention plus explicit work-file saving; actual updated phone page checked",
+    "build": "Web build:source passed",
+    "review": "Separate read-only review confirmed preparation changes use workspace snapshots; only explicit local-file buttons write actual files",
+    "docs": "57 active docs/227 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Planning note bottom border exceeded viewport bottom by1.07CSS px in raw measurement; this check proves final text/caret visibility rather than exact full-border fit",
+    "Independent test copy; no user manuscript modified",
+    "New short-landscape rotation remains pending user action; no physical-device claim for it"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "status": "focused-host-and-native-passed",
+  "originalFailure": "Existing authoring.spec host test waited for retired data-additional-tools and timed out.",
+  "migration": "Current editor: opt-in character/choice/branch, current cut text and chapter settings, real asset selection, StageComposition resolution, explicit flow change, file export/import/reload.",
+  "validation": {
+    "command": "KNOL_TEST_STATIC=1 pnpm exec playwright test tests/e2e/authoring.spec.ts --project=host --grep \"blank authoring saves a real-asset branching work\"",
+    "passed": 1,
+    "seconds": 19.5,
+    "scope": "3 cuts, background and resolved left actor, exact choice destination and endings, file export, overwrite draft, import independent copy, reload and whole project equality",
+    "firstMigrationFailure": "Import opens work preparation; currentFlow now returns to current cut and re-enables optional choice/branch tools before inspecting.",
+    "phoneSoakUnaffected": "Only browser test file changed; product source and static output unchanged."
+  },
+  "limits": [
+    "Focused host and native tests; not a complete product or release verification",
+    "Physical device, other devices and accessibility are separate"
+  ],
+  "sourceSha256": "194ec6577b38ddd697995aacea698185e1e3936aa1650a596b338675f804bdba",
+  "nativeValidation": {
+    "command": "KNOL_TEST_STATIC=1 pnpm exec playwright test tests/e2e/authoring.spec.ts --project=stories-runtime --grep \"newly authored branching work renders\"",
+    "passed": 1,
+    "seconds": 13.5,
+    "scope": "Created 3-cut branching work using current UI; actual illustrated RenPy canvas, each choice clicked using native measured geometry, exact destination and ending, current cut editing return and full manuscript equality, same iframe.",
+    "boundary": "One scoped native test; other old authoring paths not migrated."
+  },
+  "storageRetryValidation": {
+    "command": "KNOL_TEST_STATIC=1 pnpm exec playwright test tests/e2e/authoring.spec.ts --project=host --grep \"explicit save retries a failed device write\"",
+    "passed": 1,
+    "seconds": 9.2,
+    "scope": "Simulated browser temporary-storage quota failure; current draft retained, explicit temporary-storage retry after restoring storage, reload preserves text.",
+    "serverLog": "Local static server emitted BrokenPipe after browser closed; test passed. No network or filesystem failure claim."
+  },
+  "corruptStorageValidation": {
+    "command": "KNOL_TEST_STATIC=1 pnpm exec playwright test tests/e2e/authoring.spec.ts --project=host --grep \"corrupt stored workspace preserves raw bytes\"",
+    "passed": 1,
+    "seconds": 4.2,
+    "scope": "Unreadable stored bytes remain unchanged; draft exports intact; importing another work and returning to library are blocked while the current draft remains visible.",
+    "boundary": "One host test; does not establish physical device recovery."
+  },
+  "structuralValidation": {
+    "command": "KNOL_TEST_STATIC=1 pnpm exec playwright test tests/e2e/authoring.spec.ts --project=host --grep \"blank creation preserves existing work\"",
+    "passed": 1,
+    "seconds": 25.7,
+    "scope": "Preserved a separate existing work; created current branching work, added and removed choices, made a new branch chapter, moved and deleted cuts, checked choice IDs and destinations, reopened both saved works and checked full project equality.",
+    "boundary": "Host UI and temporary storage; not a physical device or comprehensive test."
+  },
+  "pendingMessageRegression": {
+    "status": "red-then-green",
+    "redLog": ".cache/authoring-current-20261027/corrupt-message-red.log",
+    "greenLog": ".cache/authoring-current-20261027/corrupt-message-green.log",
+    "finding": "Returning to library with unreadable temporary storage retains the current draft and explains saving a work file or recovering storage without showing raw Error text.",
+    "scope": "Host corrupt-storage scenario; raw storage and exported manuscript equality preserved."
+  },
+  "shelfSearchValidation": {
+    "redLog": ".cache/authoring-current-20261027/shelf-search.log",
+    "greenLog": ".cache/authoring-current-20261027/shelf-search-green.log",
+    "scope": "Phone-sized host viewport: composing Enter retains panel and query, regular Enter closes panel, then matching book opens.",
+    "physicalFollowup": ".cache/phone-soak-20261027-final/shelf-fix-phone.json",
+    "physicalScope": "S25 Chrome portrait: CDP Enter, matching cover click, original editor return and full project equality. Not an OS IME test."
+  }
+}

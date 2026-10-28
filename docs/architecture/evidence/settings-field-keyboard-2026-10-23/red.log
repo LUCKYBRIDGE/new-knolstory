@@ -1,0 +1,64 @@
+
+Running 2 tests using 1 worker
+
+(node:9847) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter title input visible (5.7s)
+(node:9880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter number input visible (5.6s)
+
+
+  1) tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter title input visible 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('main[data-keyboard-occluded=true]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('main[data-keyboard-occluded=true]') with timeout 5000ms
+      - waiting for locator('main[data-keyboard-occluded=true]')
+
+
+      89 |  if(kind==='number')await page.getByText('장 번호·갈래 표시',{exact:true}).click();
+      90 |  const field=kind==='number'?page.getByRole('spinbutton',{name:'장 번호',exact:true}):page.getByRole('textbox',{name:/장 제목$/});await field.focus();await page.evaluate(()=>{Object.defineProperty(visualViewport!,'height',{configurable:true,value:260});visualViewport!.dispatchEvent(new Event('resize'));});
+    > 91 |  await expect(page.locator('main[data-keyboard-occluded=true]')).toBeVisible();await expect(field).toBeFocused();await expect.poll(async()=>{const r=await field.boundingBox();return !!r&&r.y>=0&&r.y+r.height<=261;}).toBe(true);
+         |                                                                  ^
+      92 |  await expect(page.locator('[data-system-menu=editor]')).toBeVisible();await field.fill(kind==='number'?'2':'장 제목 검사');await expect(field).toHaveValue(kind==='number'?'2':'장 제목 검사');
+      93 | });
+      94 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/keyboard-writing-focus.spec.ts:91:66
+
+    Error Context: .cache/android-landscape-20261023/browser-run/keyboard-writing-focus-key-b5538-chapter-title-input-visible/error-context.md
+
+  2) tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter number input visible 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('main[data-keyboard-occluded=true]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('main[data-keyboard-occluded=true]') with timeout 5000ms
+      - waiting for locator('main[data-keyboard-occluded=true]')
+
+
+      89 |  if(kind==='number')await page.getByText('장 번호·갈래 표시',{exact:true}).click();
+      90 |  const field=kind==='number'?page.getByRole('spinbutton',{name:'장 번호',exact:true}):page.getByRole('textbox',{name:/장 제목$/});await field.focus();await page.evaluate(()=>{Object.defineProperty(visualViewport!,'height',{configurable:true,value:260});visualViewport!.dispatchEvent(new Event('resize'));});
+    > 91 |  await expect(page.locator('main[data-keyboard-occluded=true]')).toBeVisible();await expect(field).toBeFocused();await expect.poll(async()=>{const r=await field.boundingBox();return !!r&&r.y>=0&&r.y+r.height<=261;}).toBe(true);
+         |                                                                  ^
+      92 |  await expect(page.locator('[data-system-menu=editor]')).toBeVisible();await field.fill(kind==='number'?'2':'장 제목 검사');await expect(field).toHaveValue(kind==='number'?'2':'장 제목 검사');
+      93 | });
+      94 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/keyboard-writing-focus.spec.ts:91:66
+
+    Error Context: .cache/android-landscape-20261023/browser-run/keyboard-writing-focus-key-61b63-hapter-number-input-visible/error-context.md
+
+  2 failed
+    tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter title input visible 
+    tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter number input visible 

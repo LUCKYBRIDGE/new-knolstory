@@ -186,13 +186,16 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
     await expect(page.getByTestId('playback-status')).toHaveText('이야기 끝');
     await readerTools(page);
     await page.getByRole('button', { name: '지난기록', exact: true }).click();
-    const log = page.getByRole('dialog').getByRole('listitem');
-    await expect(log).toHaveCount(state.path.length);
+    const log = page.getByRole('dialog').locator('[data-reader-current-script] li');
+    const lastChapterId = project.lines.find(line => line.id === state.path.at(-1))!.chapterId;
+    let chapterStart = state.path.length - 1;
+    while (chapterStart > 0 && project.lines.find(line => line.id === state.path[chapterStart - 1])!.chapterId === lastChapterId) chapterStart--;
+    await expect(log).toHaveCount(state.path.length - chapterStart);
     for (const [index, decision] of (state.choiceHistory ?? []).entries()) {
       const choiceCut = project.lines.find(c => c.id === state.path[decision.pathIndex])!;
       const option = choiceCut.flow?.type === 'choice' ? choiceCut.flow.options.find(o => o.id === decision.choiceId) : undefined;
       expect(option, `selected option ${index}`).toBeTruthy();
-      await expect(log.nth(decision.pathIndex)).toContainText(`선택: ${option!.label}`);
+      if (decision.pathIndex >= chapterStart) await expect(log.nth(decision.pathIndex - chapterStart)).toContainText(`선택: ${option!.label}`);
     }
     await page.getByRole('button', { name: '읽기 메뉴 닫기', exact: true }).click();
     await expect(frame).toHaveAttribute('data-score-instance', 'persistent');

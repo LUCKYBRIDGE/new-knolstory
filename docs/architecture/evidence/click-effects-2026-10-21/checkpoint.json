@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-21",
+  "scope": "Real click effect authoring, grouped Core progress, official-format preservation and RenPy input; whole editor goal remains active",
+  "implemented": [
+    "on-click trigger with optional1..3clickStep; same step runs together",
+    "Core filters exact choice conditions then compacts group numbers; only active effects sent to RenPy",
+    "PlaybackState effectStep validated and persisted; cut/back/reentry resets",
+    "native pages before manual effects before choices/cut; pointer/Enter/Space and semantic controls",
+    "auto waits at manual groups and resumes after last group",
+    "title-only manual effects visible above black title; last effect remains until another input; configured previous tap permitted",
+    "guides and align previous separate click clocks; samegroup timing copied",
+    "workbook8 absent clickStep column explicit adapter; archive2/schema8 unchanged old fields retained"
+  ],
+  "verification": {
+    "focusedIntegratedUnit": {
+      "files": 8,
+      "passed": 73
+    },
+    "additionalRegressionUnit": {
+      "files": 5,
+      "passed": 30,
+      "overlapsFocused": "newclick core tests overlap; do not sum"
+    },
+    "formatRegression": {
+      "passed": 17,
+      "newFormatTestsIncludedInFocused": 12
+    },
+    "nativePython": {
+      "passed": 34,
+      "newBackTestREDThenGREEN": true
+    },
+    "nativeEarlierCandidate": {
+      "desktopPhoneFlow": 2,
+      "autoPauseResume": 1,
+      "normalInputRegression": 5,
+      "note": "Current delivery adds only manual title back gate fix; final same-source run pending below"
+    },
+    "nativeDelivery": {
+      "status": "passed",
+      "tests": 4,
+      "log": "click-native-delivery.log",
+      "covers": [
+        "actual authoring click order change",
+        "desktop and phone touch, Enter, Space, semantic choice",
+        "sameclick group and nextgroup stay on samecut",
+        "save/load preserves currentgroup",
+        "remaining native textpages precede effects",
+        "choices wait for groups",
+        "title effect drawn above title and waits extra input",
+        "auto pauses each manual group then resumes after final",
+        "manual title halves leftback both pending and completed"
+      ]
+    },
+    "build": "pinned runtime build delivery passed, then web build delivery passed; final ended-state Core fix followed by another web build",
+    "typecheck": "all packages and server passed",
+    "lint": "no errors; existing native thumbnail img warning retained",
+    "schemaGeneratorCheck": "passed",
+    "docs": {
+      "linkErrors": 0,
+      "retiredTerms": 0,
+      "testsPassed": 10
+    },
+    "endedSceneFollowup": {
+      "red": "click-ended-red.log",
+      "green": "click-ended-green.log",
+      "testsPassed": 10,
+      "scope": "Final Core compilation retains activated effects in ended scenes. Native4 tests preceded this isolated Core end-state fix; Web was rebuilt afterward."
+    }
+  },
+  "limits": [
+    "combined sound/direction workbench remains concept",
+    "source audio trimming/splitting and persistent cue dependencies not implemented",
+    "new workbook column actual Excel/Google UI roundtrip not yet performed; generated XLSX import/export and previous sheet adapter tested",
+    "no physical device/OS screenreader/release verification claim",
+    "save restores activated groups, not exact animation milliseconds"
+  ],
+  "preservation": "Dirty worktree and authored manuscripts retained; no raw manuscript fixture edits. Existing legacy storage never touched. Prior checkpoints unchanged.",
+  "sourceSha256": {
+    "apps/web/components/story-effect-controls.tsx": "8d18e19ba74368ed2a39e9e2e4ee338c9afc53dc868419351ec9ca68ff337252",
+    "apps/web/components/story-workspace.tsx": "0ec38fc277042d61769af3418311fa7498a39e90f4dd43f3ac91671d9a60904e",
+    "apps/web/components/story-player-menu.tsx": "2742792a12b40e0697bf56fb73ab8d626b852096ba76d807345e4cdd2ace8a58",
+    "apps/web/components/story-text-accessibility.tsx": "3f00b8d81bebec0ea21adc6ac20e159db7e86b0a3516662af89b7c8c22fd39a2",
+    "apps/web/lib/effect-authoring.ts": "d09ab84383ff7493a365059afbcadf9d48ed4f2cc6d5a8a943556205f822013d",
+    "apps/web/lib/player-saves.ts": "7c6572a5fe5ba6977e1fff48f920e985047db647de9bc3c47801dcf5ef5f4f94",
+    "apps/web/lib/reader-auto-forward.ts": "6d9531b8c67cfd41d6552c9a726addcdbfbdc04af52b19c7232b7f16d316ca27",
+    "packages/story-domain/src/legacy/story-presentation.ts": "32e102c697e5a2a3ec873535f194d9f1c5616d0a37384736084c4701fc8b6286",
+    "packages/runtime-core/src/presentation-scopes.ts": "e9fd0c4057a9556b877f688383bb7cfdbbbaa5ff8d0d2381697a668f270216ce",
+    "packages/runtime-core/src/story-runtime.ts": "012ce1738dd731ac3e5786c24a099cbea1e974caf2fc33fafcc2fbf800ed93b0",
+    "packages/runtime-contract/src/index.ts": "07cb1336f859c908aac1e8f2f3755ad2db3cb67b498dd438055ca9315be7b967",
+    "packages/compatibility/src/authoring-workbook/presentation.ts": "40ab3de8c13c70a399c759af600d7b30d66caf63f09a1f26942080567c9c682d",
+    "packages/compatibility/src/authoring-workbook/guide.ts": "56a0c9ae6aa266049d9e91b85f13df2108a596dfc26311c546926b285fb99c3f",
+    "packages/compatibility/src/authoring-workbook/labels.ts": "dda8e3a098544cba48384eaa649070ebe1696f5e48cf7212621abc63f5ed209f",
+    "packages/compatibility/src/authoring-field-schema.json": "9297a436879a86639721b735a2369f88d62cf85ae2cf939178681143edf3ba06",
+    "renpy/responsive-spike/game/presentation.rpy": "ee6fc73f9f24c82decc589c29dd35982463609e86291b15a0294cf8f229c8dad",
+    "renpy/responsive-spike/game/script.rpy": "10d7f3716fdb46b42b6f75c9f3b93e067059081c89ef0b67c590887b0b3a9fb7",
+    "tests/e2e/click-effect-native.spec.ts": "0d381ab79d29905957a11785428f2bcdde01dd3e81f2e5ffdd32231883434613",
+    "spikes/renpy-web/presenter-unit-test.py": "dc3fff3cc3b7fddb1f78c690e3c6650ecdeb15dc06b5787f036ec5eb9c5a2b19",
+    "packages/runtime-core/src/newclick-effect-playback.test.ts": "e92dbe912dd3220768d419fb55107836c7f49296ffbfc28801982b5555111144"
+  },
+  "nativeCandidateSourceSha256": {
+    "apps/web/components/story-effect-controls.tsx": "8d18e19ba74368ed2a39e9e2e4ee338c9afc53dc868419351ec9ca68ff337252",
+    "apps/web/components/story-workspace.tsx": "0ec38fc277042d61769af3418311fa7498a39e90f4dd43f3ac91671d9a60904e",
+    "apps/web/components/story-player-menu.tsx": "2742792a12b40e0697bf56fb73ab8d626b852096ba76d807345e4cdd2ace8a58",
+    "apps/web/components/story-text-accessibility.tsx": "3f00b8d81bebec0ea21adc6ac20e159db7e86b0a3516662af89b7c8c22fd39a2",
+    "apps/web/lib/effect-authoring.ts": "d09ab84383ff7493a365059afbcadf9d48ed4f2cc6d5a8a943556205f822013d",
+    "apps/web/lib/player-saves.ts": "7c6572a5fe5ba6977e1fff48f920e985047db647de9bc3c47801dcf5ef5f4f94",
+    "apps/web/lib/reader-auto-forward.ts": "6d9531b8c67cfd41d6552c9a726addcdbfbdc04af52b19c7232b7f16d316ca27",
+    "packages/story-domain/src/legacy/story-presentation.ts": "32e102c697e5a2a3ec873535f194d9f1c5616d0a37384736084c4701fc8b6286",
+    "packages/runtime-core/src/presentation-scopes.ts": "e9fd0c4057a9556b877f688383bb7cfdbbbaa5ff8d0d2381697a668f270216ce",
+    "packages/runtime-core/src/story-runtime.ts": "cc8e264936002d1c4e2212ef8dd1deefcd61e75796b2e47ad228733c06ea2537",
+    "packages/runtime-contract/src/index.ts": "07cb1336f859c908aac1e8f2f3755ad2db3cb67b498dd438055ca9315be7b967",
+    "packages/compatibility/src/authoring-workbook/presentation.ts": "40ab3de8c13c70a399c759af600d7b30d66caf63f09a1f26942080567c9c682d",
+    "packages/compatibility/src/authoring-workbook/guide.ts": "56a0c9ae6aa266049d9e91b85f13df2108a596dfc26311c546926b285fb99c3f",
+    "packages/compatibility/src/authoring-workbook/labels.ts": "dda8e3a098544cba48384eaa649070ebe1696f5e48cf7212621abc63f5ed209f",
+    "packages/compatibility/src/authoring-field-schema.json": "9297a436879a86639721b735a2369f88d62cf85ae2cf939178681143edf3ba06",
+    "renpy/responsive-spike/game/presentation.rpy": "ee6fc73f9f24c82decc589c29dd35982463609e86291b15a0294cf8f229c8dad",
+    "renpy/responsive-spike/game/script.rpy": "10d7f3716fdb46b42b6f75c9f3b93e067059081c89ef0b67c590887b0b3a9fb7",
+    "tests/e2e/click-effect-native.spec.ts": "0d381ab79d29905957a11785428f2bcdde01dd3e81f2e5ffdd32231883434613",
+    "spikes/renpy-web/presenter-unit-test.py": "dc3fff3cc3b7fddb1f78c690e3c6650ecdeb15dc06b5787f036ec5eb9c5a2b19"
+  }
+}

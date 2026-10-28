@@ -1,0 +1,41 @@
+{
+  "status": "investigation-progress",
+  "exactLocalHostRuntimePidLink": true,
+  "method": "blink.user_timing mark on each local context; matching trace pid and SystemInfo renderer list; marks removed and raw trace not persisted",
+  "linkedPidBeforeDiagnosticCrash": 28679,
+  "beforeGc": {
+    "pid": 28679,
+    "VmRSSKb": 1069508,
+    "RssAnonKb": 968668,
+    "RssFileKb": 81176,
+    "RssShmemKb": 19664,
+    "VmSwapKb": 927424,
+    "wasmLinearCapacityBytes": 289996800
+  },
+  "afterGc": {
+    "pid": 28679,
+    "VmRSSKb": 1004196,
+    "RssAnonKb": 903356,
+    "RssFileKb": 81176,
+    "RssShmemKb": 19664,
+    "VmSwapKb": 972668,
+    "wasmLinearCapacityBytes": 289996800
+  },
+  "queryObjects": "No result; renderer exited SIGNALED/status11 at1.5GB RSS during heap enumeration. Own waiting diagnostic process stopped. Not repeated.",
+  "restoration": {
+    "originalWholeProjectEqual": true,
+    "editorActuallyVisible": true,
+    "currentTextVisible": true
+  },
+  "freshRenderer": [
+    {
+      "pid": 5755,
+      "VmRSSKb": 1245656,
+      "RssAnonKb": 1130820,
+      "VmSwapKb": 9064
+    }
+  ],
+  "productSourceChanged": false,
+  "previous25MinuteCrashCauseProven": false,
+  "thirtyMinutePassed": false
+}

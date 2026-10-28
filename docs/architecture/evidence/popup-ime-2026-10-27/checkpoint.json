@@ -1,0 +1,47 @@
+{
+  "status": "focused-browser-passed-physical-pending",
+  "problem": {
+    "image": "During synthetic active composition, trusted Escape cleared the search input via browser default behavior.",
+    "cover": "During synthetic active composition, Escape cancelled the modal and discarded its unapplied local draft."
+  },
+  "change": "Guard composing lifecycle, native composing flag and keyCode229 before Escape/default search clearing and modal cancel; parent cover only tracks its own dialog composition. Keep existing normal search Escape and applying guard.",
+  "validation": {
+    "command": "KNOL_TEST_STATIC=1 pnpm exec playwright test tests/e2e/keyboard-writing-focus.spec.ts --project=host --grep 'dialog retains its unapplied draft|nested cover image composition|term search keeps|image search owns|nested cover image search leaves'",
+    "passed": 6,
+    "durationSeconds": 11.4,
+    "build": "pnpm build passed",
+    "eslint": "Changed components passed; existing no-pages-directory configuration warning printed.",
+    "review": "Read-only review found no blocker.",
+    "coverage": [
+      "image search text retained during composition Escape/cancel",
+      "unapplied cover title retained during composition Escape/cancel",
+      "native isComposing and229 key events",
+      "normal dismissal after composition ends",
+      "nested image cancel returns focus to parent launcher and retains unapplied title",
+      "return from cover remounts preparation and focuses existing work-title input",
+      "whole original project unchanged",
+      "existing keyboard viewport ownership and term dialog composition"
+    ]
+  },
+  "testCorrections": [
+    "Initial title locator corrected to actual accessible name 작품 제목 before final RED.",
+    "Initial final-focus expectation assumed the cover opener stayed mounted; source shows view change remounts preparation, whose existing effect focuses the work-title input. Corrected to that actual contract. No product focus behavior changed."
+  ],
+  "physical": {
+    "adb": "Authorized S25 Ultra connected",
+    "foregroundGuard": "Local test tab not foreground; phone UI left untouched. Asked user to open local Chrome.",
+    "server": "Local static server15401 restored; existing local project read-only state identified."
+  },
+  "notProven": [
+    "actual Samsung IME candidate event order",
+    "all popups",
+    "final physical DPR canvas cap",
+    "renderer memory improvement or30minute stability",
+    "whole editor completion"
+  ],
+  "sourceSha256": {
+    "apps/web/components/asset-browser-dialog.tsx": "71f1b738090090a223b06e50ee3db5c16c6c64cbbcb436f3d11fb0d03f319910",
+    "apps/web/components/book-cover-editor.tsx": "d2dffc1690517bdf0111176741931722e6eddc9ba4b8645f8dbb2a9bbc380bb7",
+    "tests/e2e/keyboard-writing-focus.spec.ts": "4c17b5b13e67fee002901c69b35a3aa0413e5d5cdbe64ae618fe2109e307aabb"
+  }
+}

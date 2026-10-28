@@ -1,0 +1,22 @@
+.F
+======================================================================
+FAIL: test_native_success_restores_current_scene_page_scroll_and_cache (scripts.tests.test_scene_thumbnail.NativeThumbnailTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_scene_thumbnail.py", line 54, in test_native_success_restores_current_scene_page_scroll_and_cache
+    result = self.run_thumbnail()
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_scene_thumbnail.py", line 50, in run_thumbnail
+    self.assertEqual(calls, ["logical-render", "small-render", "small-readback"])
+AssertionError: Lists differ: [] != ['logical-render', 'small-render', 'small-readback']
+
+Second list contains 3 additional elements.
+First extra element 0:
+'logical-render'
+
+- []
++ ['logical-render', 'small-render', 'small-readback']
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+FAILED (failures=1)

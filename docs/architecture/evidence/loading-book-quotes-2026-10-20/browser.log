@@ -1,0 +1,22 @@
+
+Running 15 tests using 1 worker
+
+(node:902) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/story-loading.spec.ts:6:1 › branded waiting screen fits the stage, shows one short tip and yields to actual RenPy (5.6s)
+  ✓   2 tests/e2e/story-loading.spec.ts:39:1 › native boot uses the same character and concise random tip while preserving real engine progress (430ms)
+  ✓   3 tests/e2e/story-loading.spec.ts:65:1 › unavailable optional tips leave a readable boot screen and never delay the engine (2.2s)
+  ✓   4 tests/e2e/story-loading.spec.ts:76:2 › random loading can select rabbit without fetching the other story illustrations (263ms)
+  ✓   5 tests/e2e/story-loading.spec.ts:76:2 › random loading can select heungbu without fetching the other story illustrations (281ms)
+  ✓   6 tests/e2e/story-loading.spec.ts:76:2 › random loading can select seonnyeo without fetching the other story illustrations (144ms)
+  ✓   7 tests/e2e/story-loading.spec.ts:76:2 › random loading can select onggojib without fetching the other story illustrations (252ms)
+  ✓   8 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote quote-bacon-rabbit appears as one attributed short message (140ms)
+  ✓   9 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote quote-descartes-heungbu appears as one attributed short message (117ms)
+  ✓  10 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote book-alice appears as one attributed short message (119ms)
+  ✓  11 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote book-little-women appears as one attributed short message (121ms)
+  ✓  12 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote book-anne appears as one attributed short message (112ms)
+  ✓  13 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote book-secret-garden appears as one attributed short message (114ms)
+  ✓  14 tests/e2e/story-loading.spec.ts:125:2 › web shows one spoiler-free message and rotates it every four seconds without changing characters (4.5s)
+  ✓  15 tests/e2e/story-loading.spec.ts:125:2 › native shows one spoiler-free message and rotates it every four seconds without changing characters (4.2s)
+
+  15 passed (19.3s)

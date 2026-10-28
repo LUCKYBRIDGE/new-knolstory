@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-23",
+  "scope": "Actual native preview return keeps long-text selection direction; full editor goal active",
+  "red": "Before fix backward selection restored as none while range and scroll matched",
+  "fixed": [
+    "Preview snapshot captures selectionDirection and fieldscrollLeft",
+    "Restores focused selection then field scroll outside StoryDocument"
+  ],
+  "verification": {
+    "browser": "5passed one finalrun:4screen-switchviewport+1actualnativepreviewreturn",
+    "native": "Actual rendered revision before readmenu/editreturn; longprose selection1600..1620backward and scroll550 restored, textunchanged",
+    "types": "Webpassed",
+    "lint": "related no errors",
+    "build": "Websourceproduction; nativeunchanged"
+  },
+  "limits": [
+    "Actualnativecase desktop only; other4viewportcases intentionallyruntimeblocked",
+    "Physicaldevice/OSkeyboard/fullpreviewtoolregressions remain unverified",
+    "No whole editor completion claim"
+  ],
+  "sourceHashes": {
+    "apps/web/components/use-preview-editor-context.ts": "bf0e6bfed7cefbd99ce771a016506139693bcc3ef2684d309c48b806b3377c23",
+    "tests/e2e/long-text-context.spec.ts": "7d61e3035164df2454ef76bd0575f6ac7d142977b49b8a75860aab2b17d31834",
+    "apps/web/out/index.html": "08ad153473c48505e2f752818e61eaf03d40bbe7ccc95317aea4efd38e0fa77b"
+  }
+}

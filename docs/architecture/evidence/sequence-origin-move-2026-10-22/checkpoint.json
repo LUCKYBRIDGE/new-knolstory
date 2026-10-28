@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-22",
+  "scope": "Cut-owned finite sequence origin movement; whole editor goal active",
+  "semantics": [
+    "Move whole exact sequence cue; new origin starts first clip",
+    "Preserve sequence/clip IDs, source ranges, volume/fades, exact condition/end",
+    "Direct move refuses occupied destination and end before or outside destination chapter",
+    "Combined range supports requested start/end together with existing range conflict guards",
+    "Range drag snapshots view/project/context; changed geometry/document cancels; next pointer/keyboard click preserved",
+    "No reader elapsed-time inference or automatic cross-cut sequence splitting"
+  ],
+  "verification": {
+    "unitTests": 20,
+    "unitFiles": 4,
+    "coverageAudioStart": {
+      "statements": 95.23,
+      "branches": 92.68,
+      "functions": 93.75,
+      "lines": 100
+    },
+    "browserScope": "Both channels direct move/end rejection/undo, combined range move/undo, real file export/fresh reopen, native first clip and continuity through next cut; range drag and changed-zoom cancellation",
+    "build": "Web source production; native unchanged",
+    "typecheck": "All6 workspace packages plus server",
+    "limits": [
+      "No physical device claim",
+      "No cross-cut auto split or chapter-default origin move",
+      "Whole editor audit still pending"
+    ],
+    "browserFlows": 3,
+    "docs": "57 active links/218 current terminology surfaces,10 doc tests pass"
+  }
+}

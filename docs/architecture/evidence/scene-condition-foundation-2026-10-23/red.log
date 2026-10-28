@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/scene-condition.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/scene-condition.test.ts [ packages/runtime-core/src/scene-condition.test.ts ]
+Error: Cannot find module './scene-condition' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core/src/scene-condition.test.ts
+ ❯ packages/runtime-core/src/scene-condition.test.ts:2:1
+      1| import {it,expect} from 'vitest';
+      2| import {isSceneDisplayCondition,sceneDisplayConditionMatches} from './…
+       | ^
+      3| const scores={mode:'all' as const,terms:[{scoreId:'trust',operator:'gt…
+      4| const choices={mode:'any' as const,terms:[{sourceLineId:'a',choiceId:'…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  09:17:03
+   Duration  113ms (transform 9ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

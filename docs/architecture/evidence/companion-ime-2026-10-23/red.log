@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:19587) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/long-text-context.spec.ts:9:119 › long text retains internal viewport and selection 1280 (6.5s)
+
+
+  1) tests/e2e/long-text-context.spec.ts:9:119 › long text retains internal viewport and selection 1280 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('checkbox', { name: '배경 함께 보기', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByRole('checkbox', { name: '배경 함께 보기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('checkbox', { name: '배경 함께 보기', exact: true })
+        14 × locator resolved to <input type="checkbox"/>
+           - unexpected value "enabled"
+
+
+      18 |  await field.evaluate((el:HTMLTextAreaElement)=>{const note=document.createElement('textarea');note.setAttribute('aria-label','Snapshot isolation probe');note.value='memo';el.closest('section')!.appendChild(note);note.focus();note.setSelectionRange(1,2);note.blur();note.remove();});await screen(page,'background');await screen(page,'text');await expect.poll(()=>field.evaluate((el:HTMLTextAreaElement)=>({top:el.scrollTop,left:el.scrollLeft,start:el.selectionStart,end:el.selectionEnd,direction:el.selectionDirection}))).toEqual(before);
+      19 |  // Ordinary input focus and an IME session must not be replaced by a stale snapshot.
+    > 20 |  const next=page.locator('textarea[data-cut-id]').nth(1);await next.focus();await next.dispatchEvent('compositionstart');await expect(next).toBeFocused();await expect(next).toBeEnabled();await expect(page.getByRole('checkbox',{name:'배경 함께 보기',exact:true})).toBeDisabled();await expect(page.getByRole('combobox',{name:'편집화면 선택',exact:true})).toBeDisabled();await next.dispatchEvent('compositionend');await expect(page.getByRole('checkbox',{name:'배경 함께 보기',exact:true})).toBeEnabled();await expect(next).toBeFocused();await expect(field).toHaveValue(prose);
+         |                                                                                                                                                                                                                                                                  ^
+      21 |  await page.screenshot({path:info.outputPath(`long-text-${viewport.width}.png`)});
+      22 |  const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(n=>(n as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=await (await pending).path();const after=parseAuthoringFile(await readFile(path!,'utf8')).project;expect(after.lines).toEqual(project.lines);expect(after.chapters).toEqual(project.chapters);
+      23 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/long-text-context.spec.ts:20:258
+
+    Error Context: test-results-companion-ime-red/long-text-context-long-tex-adedd-viewport-and-selection-1280/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-companion-ime-red/long-text-context-long-tex-adedd-viewport-and-selection-1280/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-companion-ime-red/long-text-context-long-tex-adedd-viewport-and-selection-1280/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/long-text-context.spec.ts:9:119 › long text retains internal viewport and selection 1280 

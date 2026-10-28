@@ -1,0 +1,77 @@
+{
+  "normal": {
+    "state": {
+      "status": "passed",
+      "temporaryInstrumentationRemoved": true,
+      "editorActuallyVisible": true,
+      "elapsedMs": 188381,
+      "cycles": 13,
+      "nativeReturns": 2,
+      "wholeTestProjectPreserved": true,
+      "preexistingWorksPreserved": true,
+      "archiveExportNotAttempted": true,
+      "originalEditorRestored": true,
+      "errors": []
+    },
+    "before": {
+      "rendererPid": 5755,
+      "VmRSSKb": 1130584,
+      "RssAnonKb": 1014244,
+      "VmSwapKb": 9060
+    },
+    "after": {
+      "rendererPid": 5755,
+      "VmRSSKb": 1526040,
+      "RssAnonKb": 1425368,
+      "VmSwapKb": 17964
+    },
+    "anonymousRssPlusSwapProxyDeltaKb": 420028,
+    "wasmCapacitySamples": [
+      289996800
+    ],
+    "lastThumbnailCounters": {
+      "requests": 22,
+      "replies": 22,
+      "payloadChars": 6776924,
+      "failures": 0
+    }
+  },
+  "capture-suppressed": {
+    "state": {
+      "status": "passed",
+      "temporaryInstrumentationRemoved": true,
+      "editorActuallyVisible": true,
+      "elapsedMs": 189239,
+      "cycles": 14,
+      "nativeReturns": 2,
+      "wholeTestProjectPreserved": true,
+      "preexistingWorksPreserved": true,
+      "archiveExportNotAttempted": true,
+      "originalEditorRestored": true,
+      "errors": []
+    },
+    "before": {
+      "rendererPid": 5755,
+      "VmRSSKb": 1857624,
+      "RssAnonKb": 1748512,
+      "VmSwapKb": 87852
+    },
+    "after": {
+      "rendererPid": 5755,
+      "VmRSSKb": 798540,
+      "RssAnonKb": 715860,
+      "VmSwapKb": 1564992
+    },
+    "anonymousRssPlusSwapProxyDeltaKb": 444488,
+    "wasmCapacitySamples": [
+      289996800
+    ],
+    "lastThumbnailCounters": {
+      "requests": 50,
+      "replies": 0,
+      "payloadChars": 0,
+      "failures": 0
+    }
+  },
+  "interpretation": "Sequential same-renderer diagnostics with different baseline/OS swap conditions; RssAnon+VmSwap is a proxy, not PSS or allocator live bytes. Growth without thumbnail rendering means this path alone does not explain growth. Not a30minute pass."
+}

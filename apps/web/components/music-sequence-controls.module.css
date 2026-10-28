@@ -1,0 +1,15 @@
+.editor { min-width: 0; display: grid; gap: .65rem; }
+.editor p { margin: .25rem 0; }
+.editor summary { cursor: pointer; padding-block: .4rem; }
+.list { margin: 0; padding: 0; list-style: none; max-height: 14rem; overflow: auto; display: grid; gap: .35rem; }
+.list button { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .3rem .6rem; width: 100%; min-height: 44px; text-align: left; }
+.list button[aria-pressed="true"] { border-color: var(--mint-strong); background: var(--mint); }
+.list span { min-width: 0; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+.actions button { min-height: 44px; }
+.actions small { flex-basis: 100%; }
+.detail { min-width: 0; display: grid; gap: .65rem; }
+.fields { display: grid; gap: .5rem; }
+.editor label { min-width: 0; display: grid; gap: .3rem; }
+.editor input, .editor select { max-width: 100%; min-width: 0; }
+.editor small { overflow-wrap: anywhere; }

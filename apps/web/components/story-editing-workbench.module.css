@@ -35,10 +35,15 @@
 .material { display:flex; flex-direction:column; align-items:flex-start; gap:4px; overflow-wrap:anywhere; font-size:12px; }
 .material img { width:96px; height:60px; max-width:100%; object-fit:contain; background:var(--paper); border-radius:5px; }
 .materials { display:flex; flex-wrap:wrap; gap:8px; }
-.excerpt { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.6; margin:0; }
+.excerpt { white-space:pre-wrap; word-break:keep-all; overflow-wrap:anywhere; line-height:1.6; margin:0; }
 .adjacent .excerpt { max-height:180px; overflow:auto; }
-.characters { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; }
-.characters>section { min-width:0; border:1px solid var(--line); border-radius:8px; padding:10px; display:grid; gap:8px; }
+.characters { display:flex; flex-wrap:wrap; align-items:flex-start; gap:12px; }
+.characters>section { flex:1 1 260px; min-width:0; border:1px solid var(--line); border-radius:8px; padding:6px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-content:start; gap:6px; }
+.characters>section>:is(strong,div,button) { grid-column:1/-1; }
+.characters>section>label { --chrome-control-height:44px; min-width:0; }
+.workbench[data-screen=characters] .characters>section>label :is(input,select) { width:100%; max-width:100%; min-width:0; box-sizing:border-box; min-height:44px; }
+.workbench .characters>section>label input[type=range] { margin:0; padding:0; }
+.characterAdd { flex:0 0 100%; min-width:0; }
 .characters label { display:grid; gap:4px; }
 .characters label.check { display:flex; }
 @media(max-width:700px) { .basic { grid-template-columns:1fr; } .current { grid-row:1; } .adjacent { grid-template-columns:95px 1fr; } .adjacent strong { grid-column:1/-1; } .adjacent .excerpt { max-height:110px; } }
@@ -73,7 +78,9 @@
 .options small { font-size:11px; }
 .additional { flex:none; position:relative; display:flex; flex-wrap:wrap; gap:4px; }
 .additional>details>summary { padding:5px 8px; min-height:32px; font-size:12px; cursor:pointer; }
-.additional>details[open] { position:absolute; bottom:0; left:0; right:0; z-index:7; background:var(--white); border:1px solid var(--line); border-radius:8px; max-height:min(65dvh,600px); overflow:auto; padding:8px; box-shadow:0 -4px 16px #18333122; }
+.additional:has(>details[open]) { display:block; flex:0 1 45%; min-height:88px; overflow:auto; overscroll-behavior:contain; }
+.additional>details[open] { position:relative; background:var(--white); border:1px solid var(--line); border-radius:8px; padding:8px; }
+.additional>details[open]>summary { position:sticky; top:-1px; z-index:1; background:var(--white); }
 .playing { gap:0; }
 .playing .body { display:block; height:100%; }
 .playing .previewSlot { height:100%; }
@@ -109,9 +116,9 @@
  .current>.text { grid-column:1/-1; gap:2px; font-size:13px; }
  .current>.text textarea { min-height:60px; height:60px; }
  .current>.primary { grid-column:1; }
- .current>.primary img,.current>.primary small,.current>div { display:none; }
- .current>.primary button { padding:4px 8px; min-height:44px; }
- .current>.primary strong { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+ .current>.primary [data-asset-value]>img,.current>.primary [data-asset-value] small,.current>div { display:none; }
+ .current>.primary [data-asset-value] { padding:4px 8px; min-height:44px; }
+ .current>.primary [data-asset-value] strong { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
  .current>button { grid-column:2; align-self:end; max-width:128px; padding:4px 8px; font-size:12px; min-height:44px; }
 }
 @media(max-width:700px) and (min-height:441px) {
@@ -142,7 +149,7 @@
 .cutList button[aria-current=step]{background:var(--mint);border-color:var(--ink-soft);font-weight:700}
 .cutList button:focus-visible,.contextNotes button:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
 .contextNotes{display:flex;flex-direction:column;gap:8px;min-width:0;font-size:12px}
-.contextNotes p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6}
+.contextNotes p{margin:0;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;line-height:1.6}
 .contextNotes small{display:block}.contextNotes ul{padding-left:16px;margin:0;display:grid;gap:6px}
 .contextNotes button{min-height:44px;align-self:start}
 .stackedContext{display:none}
@@ -161,7 +168,9 @@
 .body[data-cut-arrangement=stacked] .adjacent .excerpt{grid-column:3;grid-row:1;line-height:1.5;max-height:3em;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
 .stackedContext[data-arrangement=stacked]{display:flex;flex-wrap:wrap;gap:6px;flex:none;position:relative;font-size:12px}
 .stackedContext>details>summary{min-height:44px;display:flex;align-items:center;padding:0 8px;cursor:pointer}
-.stackedContext>details[open]{position:absolute;left:0;right:0;bottom:0;z-index:8;max-height:60dvh;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--white);box-shadow:0 -4px 16px #18333122;overflow:auto}
+.stackedContext:has(>details[open]){display:block;flex:0 1 35%;min-height:44px;overflow:auto;overscroll-behavior:contain}
+.stackedContext>details[open]{position:relative;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--white)}
+.stackedContext>details[open]>summary{position:sticky;top:-1px;z-index:1;background:var(--white)}
 .stackedContext .cutList{max-height:45dvh}
 @media(max-width:700px){
  .sideSupplement{padding:6px;font-size:12px}
@@ -212,3 +221,99 @@
  .speakerImage{grid-column:1/-1;grid-row:2}
  .basicSpeaker button{padding:6px 8px}
 }
+
+/* Combined editing shares the existing single native preview. */
+.body[data-combined=true][data-playing=false]{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,1fr);grid-template-rows:minmax(0,1fr) auto minmax(0,1fr);gap:8px}
+.body[data-combined=true][data-playing=false]>.editingContent{display:contents}
+.body[data-combined=true][data-playing=false]>.previewSlot{grid-column:1;grid-row:1;min-height:0}
+.body[data-combined=true][data-playing=false] [data-combined-timeline]{grid-column:1;grid-row:3;min-height:0;min-width:0}
+.body[data-combined=true][data-playing=false] [data-combined-details]{grid-column:2;grid-row:1/4;min-height:0;min-width:0;overflow:auto}
+.combinedChapter{grid-column:1;grid-row:2;display:flex;align-items:center;gap:8px;min-width:0;font-size:12px}.combinedChapter select{min-width:0;max-width:100%;min-height:44px}
+@media(max-width:700px){.body[data-combined=true][data-playing=false]{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(100px,.8fr) auto minmax(250px,1.5fr) minmax(160px,1fr)}.body[data-combined=true][data-playing=false] [data-combined-details]{grid-column:1;grid-row:4}}
+@media(max-height:500px) and (min-width:701px){.body[data-combined=true][data-playing=false]{grid-template-columns:minmax(0,1.4fr) minmax(260px,1fr);grid-template-rows:minmax(60px,.6fr) auto minmax(150px,1.4fr)}}
+
+@media(max-height:500px) and (min-width:701px){.body[data-combined=true][data-playing=false]:has([data-time-view=true]){grid-template-rows:32px auto minmax(0,1fr)}}
+
+.rangeSummary{word-break:keep-all;overflow-wrap:anywhere;line-height:1.6}
+
+.row[aria-current=step]{border-color:var(--mint-strong);box-shadow:inset 3px 0 var(--mint-strong)}.row>header button[aria-pressed=true]{background:var(--mint-soft,var(--paper));border-color:var(--mint-strong)}
+.options>label{flex:1;min-width:0}.options>label select{min-width:0;max-width:100%}.options>button{flex-shrink:0}.options fieldset{flex:1 1 220px;box-sizing:border-box}.options legend{white-space:nowrap}
+.options>label{flex-basis:180px;white-space:nowrap}.options>label select{flex:1}
+
+/* Only the combined editor shares its available space; manuscript layout is unchanged. */
+.body[data-combined=true][data-playing=false]{grid-template-rows:minmax(60px,var(--preview-space,1fr)) auto minmax(150px,var(--timeline-space,1fr))}
+@media(max-width:700px){.body[data-combined=true][data-playing=false]{grid-template-rows:minmax(100px,var(--preview-space,1fr)) auto minmax(250px,var(--timeline-space,1fr)) minmax(160px,1fr)}}
+@media(max-height:500px) and (min-width:701px){.body[data-combined=true][data-playing=false]:has([data-time-view=true]){grid-template-rows:minmax(32px,var(--preview-space,1fr)) auto minmax(150px,var(--timeline-space,1fr))}}
+
+@media(max-height:500px) and (min-width:701px){.body[data-combined=true][data-playing=false],.body[data-combined=true][data-playing=false]:has([data-time-view=true]){grid-template-rows:minmax(32px,var(--preview-space,1fr)) auto minmax(104px,var(--timeline-space,1fr))}}
+
+/* The on-screen keyboard turns basic writing into a two-pane current-cut task. */
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .body[data-basic=true] {
+ grid-template-columns:minmax(0,1fr);
+ grid-template-rows:minmax(64px,1fr) minmax(88px,1fr);
+ gap:6px;
+}
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) :is(.previousSide,.nextSide,.stackedContext,.additional,.hint) { display:none; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .previewSlot { grid-column:1; grid-row:1; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .current { grid-column:1; grid-row:2; display:flex; padding:4px; overflow:hidden; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .current>:not(.text) { display:none; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .current>.text { display:flex; flex-direction:column; flex:1; min-height:0; font-size:0; gap:0; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .current>.text textarea { flex:1; height:100%; min-height:72px; resize:none; font-size:16px; line-height:1.55; }
+
+/* Keyboard writing navigation uses the outer edges of the existing native preview. */
+.keyboardCutNavigation { display:none; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .previewSlot { position:relative; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current>.text textarea:focus) .keyboardCutNavigation { display:flex; position:absolute; z-index:2; inset:0; align-items:center; justify-content:space-between; pointer-events:none; }
+.workbench .previewSlot .keyboardCutNavigation button { pointer-events:auto; width:44px; min-width:44px; height:44px; padding:0; border:1px solid #fff8; border-radius:50%; background:#183331d9; color:#fff; font-size:30px; line-height:1; box-shadow:0 1px 4px #0004; }
+.workbench .previewSlot .keyboardCutNavigation button:disabled { opacity:.3; pointer-events:none; }
+.workbench .previewSlot .keyboardCutNavigation button:focus-visible { outline:3px solid var(--gold); outline-offset:-4px; }
+
+/* Phone tasks use one full-width cut; multi-track editing belongs to larger screens. */
+.phoneCutNavigation { display:flex; align-items:center; justify-content:space-between; gap:8px; flex:none; }
+.phoneCutNavigation button { flex:none; min-height:44px; }
+.phoneCutNavigation strong { text-align:center; font-size:13px; }
+.workbench[data-phone-single=true] .options { display:flex; flex-wrap:nowrap; align-items:center; }
+.workbench[data-phone-single=true] .options>label { flex:1; min-width:0; }
+.workbench[data-phone-single=true] .options select { flex:1; min-width:0; width:100%; }
+.workbench[data-phone-single=true] .options>button { display:none; }
+.workbench[data-phone-single=true] .rows { flex:1; }
+.workbench[data-phone-single=true] .row { padding:10px; gap:10px; }
+.workbench[data-phone-single=true] .characters>section { flex-basis:100%; }
+.workbench[data-phone-single=true] .row>header>strong { flex:1; }
+.workbench[data-phone-single=true] .row>header>button[aria-pressed] { display:none; }
+.workbench[data-phone-single=true] .primary { min-width:0; }
+.workbench[data-phone-single=true] .primary :is(input:not([type=checkbox]):not([type=radio]),select,textarea) { max-width:100%; box-sizing:border-box; font-size:16px; }
+
+/* Short phone landscape prioritizes the two useful editing panes even before typing. */
+@media (max-height:440px) {
+ .workbench[data-phone-editor=true][data-screen=basic] :is(.previousSide,.nextSide,.stackedContext,.additional,.hint) { display:none; }
+ .workbench[data-phone-editor=true][data-screen=basic] .body[data-basic=true] { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:minmax(0,1fr); gap:8px; }
+ .workbench[data-phone-editor=true][data-screen=basic] .previewSlot { grid-column:1; grid-row:1; position:relative; }
+ .workbench[data-phone-editor=true][data-screen=basic] .current { grid-column:2; grid-row:1; display:flex; padding:4px; overflow:hidden; }
+ .workbench[data-phone-editor=true][data-screen=basic] .current>:not(.text) { display:none; }
+ .workbench[data-phone-editor=true][data-screen=basic] .current>.text { display:flex; flex-direction:column; flex:1; min-height:0; font-size:0; gap:0; }
+ .workbench[data-phone-editor=true][data-screen=basic] .current>.text textarea { flex:1; min-height:44px; height:100%; font-size:16px; resize:none; }
+ .workbench[data-phone-editor=true][data-screen=basic] .keyboardCutNavigation { display:flex; position:absolute; z-index:2; inset:0; align-items:center; justify-content:space-between; pointer-events:none; }
+ [data-keyboard-occluded=true] .workbench[data-phone-editor=true][data-screen=basic]:has(.current>.text textarea:focus) .body[data-basic=true] { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:minmax(0,1fr); }
+ [data-keyboard-occluded=true] .workbench[data-phone-editor=true][data-screen=basic]:has(.current>.text textarea:focus) .previewSlot { grid-column:1; grid-row:1; }
+ [data-keyboard-occluded=true] .workbench[data-phone-editor=true][data-screen=basic]:has(.current>.text textarea:focus) .current { grid-column:2; grid-row:1; }
+ [data-keyboard-occluded=true] .workbench[data-phone-editor=true][data-screen=basic]:has(.current>.text textarea:focus) .current>.text textarea { min-height:44px; }
+}
+
+/* The active keyboard field owns the editing space, including names and detail inputs. */
+[data-keyboard-occluded=true] .workbench:has(input:focus) :is(.hint,.stackedContext) { display:none; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current input:focus) :is(.previousSide,.nextSide,.additional) { display:none; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current input:focus) .body[data-basic=true] { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(32px,1fr) minmax(72px,2fr); }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current input:focus) .previewSlot { grid-column:1; grid-row:1; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current input:focus) .current { grid-column:1; grid-row:2; display:block; padding:8px; }
+[data-keyboard-occluded=true] .workbench[data-screen=basic]:has(.current input:focus) .current>:not(:focus-within) { display:none; }
+[data-keyboard-occluded=true] .workbench .basicSpeaker:has(input:focus) { display:block; min-width:0; }
+[data-keyboard-occluded=true] .workbench .basicSpeaker:has(input:focus)>:not(:focus-within) { display:none; }
+[data-keyboard-occluded=true] .workbench .basicSpeaker:has(input:focus) .speakerName { display:grid; grid-template-columns:1fr; min-width:0; gap:4px; }
+[data-keyboard-occluded=true] .workbench .basicSpeaker:has(input:focus) input { width:100%; min-width:0; min-height:44px; box-sizing:border-box; font-size:16px; }
+[data-keyboard-occluded=true] .workbench:has(.rows :is(input,textarea):focus) :is(.options,.phoneCutNavigation,.additional) { display:none; }
+[data-keyboard-occluded=true] .workbench .rows:has(:is(input,textarea):focus) { flex:1; }
+[data-keyboard-occluded=true] .workbench .rows:has(:is(input,textarea):focus)>.row:not(:focus-within),
+[data-keyboard-occluded=true] .workbench .row:focus-within>:is(header,.companions) { display:none; }
+[data-keyboard-occluded=true] .workbench:has(.additional :is(input,textarea):focus) :is(.body,.stackedContext,.hint) { display:none; }
+[data-keyboard-occluded=true] .workbench .additional:has(:is(input,textarea):focus) { display:block; flex:1; min-height:0; overflow:auto; }

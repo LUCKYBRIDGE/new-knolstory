@@ -157,7 +157,7 @@ export function ChapterWriter({ project, chapterId, lineId, onSelectCut, onProje
           <button type="button" onClick={() => {
             const position=splitPosition?.id===line.id?splitPosition.position:textRef.current?.selectionStart??0;
             const id=crypto.randomUUID();
-            try {onProjectChange(splitStoryCut(project,line.id,id,position),id);setError("");setNotice("글을 나눴어요. 새 컷은 같은 배치와 연출·소리를 이어받으며, 선택지와 엔딩은 뒤 컷에 남아요.");}
+            try {onProjectChange(splitStoryCut(project,line.id,id,position),id);setError("");setNotice("글을 나눴어요. 새 컷은 같은 배치와 연출·소리를 이어받으며, 선택지와 엔딩은 뒤 컷에 남고, 선택 조건 연결도 함께 유지해요.");}
             catch(cause){setError(cause instanceof Error?cause.message:"나눌 위치를 확인해 주세요.");}
           }}>커서 위치에서 컷 나누기</button>
           {index<cuts.length-1&&<button type="button" onClick={() => {

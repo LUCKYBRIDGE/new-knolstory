@@ -1,0 +1,37 @@
+{
+  "host": {
+    "dpr": 4,
+    "width": 360,
+    "height": 677,
+    "visible": true
+  },
+  "engine": {
+    "dpr": 4,
+    "ratio": 2,
+    "ratioFunction": "()=>Math.min(2,Math.max(1,typeof devicePixelRatio==\"number\"&&devicePixelRatio||1))",
+    "scripts": [
+      "knol-loading.js?v=293c0aeb94ac0370",
+      "runtime-contract.js?v=4dad150a73edc4a4",
+      "knol-bridge.js?v=c7fd05acd4429659",
+      "renpy-pre.js?v=aef6c9d0aee065bc",
+      "renpy.js?v=498a0981c1fe0e8d"
+    ],
+    "canvases": [
+      {
+        "width": 2560,
+        "height": 1440
+      }
+    ],
+    "wasmBytes": 201326592
+  },
+  "native": {
+    "x": 0,
+    "y": 0,
+    "width": 1280,
+    "height": 720,
+    "physicalWidth": 1280,
+    "physicalHeight": 720
+  },
+  "wholeProjectEqual": true,
+  "preexistingWorksEqual": true
+}

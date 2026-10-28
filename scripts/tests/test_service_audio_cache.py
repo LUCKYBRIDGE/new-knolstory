@@ -28,3 +28,15 @@ class CacheTests(unittest.TestCase):
    with self.assertRaises(ValueError):cache.install([b],[b['path']],[a['path']])
    with self.assertRaises(ValueError):cache.install([b,b],[b['path']])
    self.assertTrue((Path(root)/a['path']).exists());self.assertFalse((Path(root)/b['path']).exists())
+
+ def test_sequence_resource_count_and_aggregate_transport_budget(self):
+  with tempfile.TemporaryDirectory() as root:
+   cache=module.ServiceAudioCache(root)
+   rows=[self.row('assets/audio/cc0/test/v1/clip'+str(index)+'.ogg') for index in range(42)]
+   cache.install(rows,[row['path'] for row in rows])
+   self.assertEqual(len(cache.entries),42)
+   extra=self.row('assets/audio/cc0/test/v1/extra.ogg')
+   with self.assertRaises(ValueError):cache.install(rows+[extra],[row['path'] for row in rows]+[extra['path']])
+   oversized=[{**row,'data':'A'*8000001} for row in rows[:4]]
+   with self.assertRaises(ValueError):cache.install(oversized,[row['path'] for row in oversized])
+   self.assertEqual(len(cache.entries),42)

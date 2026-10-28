@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:58907) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/editor-effect-pane.spec.ts:7:1 › animation pane selects a single effect editor and edits timing with visible bars without changing unrelated content (3.0s)
+
+
+  1) tests/e2e/editor-effect-pane.spec.ts:7:1 › animation pane selects a single effect editor and edits timing with visible bars without changing unrelated content 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 2000
+    Received:   2000
+
+      23 |  await pane.getByRole('checkbox',{name:'보조선 표시',exact:true}).uncheck();await expect(guideSlider).toHaveCount(0);await expect(pane.getByRole('checkbox',{name:'보조선에 맞추기',exact:true})).toBeDisabled();await expect(slider).toHaveValue('2000');
+      24 |  await pane.getByRole('checkbox',{name:'보조선 표시',exact:true}).check();await expect(guideSlider).toHaveValue('205');await page.getByLabel('2번째 효과 대기 시간 (초)',{exact:true}).fill('0.215');await page.getByLabel('2번째 효과 대기 시간 (초)',{exact:true}).press('Enter');await expect(slider).toHaveValue('215');await slider.press('Shift+ArrowRight');await expect(slider).toHaveValue('225');await page.getByLabel('선택한 효과 시작 맞추기',{exact:true}).selectOption('after-previous');
+    > 25 |  await pane.getByLabel('보조선 위치 (초)',{exact:true}).fill('2');await pane.getByLabel('보조선 위치 (초)',{exact:true}).press('Enter');await pane.getByRole('checkbox',{name:'보조선에 맞추기',exact:true}).check();await slider.scrollIntoViewIfNeeded();const bounds=(await slider.boundingBox())!;const pointerX=bounds.x+8+(bounds.width-16)*.208;await page.mouse.click(pointerX,bounds.y+bounds.height/2);await expect(slider).toHaveValue('2000');await page.keyboard.down('Shift');await page.mouse.click(pointerX,bounds.y+bounds.height/2);await page.keyboard.up('Shift');expect(Number(await slider.inputValue())).toBeGreaterThan(2000);await pane.getByRole('checkbox',{name:'보조선에 맞추기',exact:true}).uncheck();await page.getByLabel('선택한 효과 시작 맞추기',{exact:true}).selectOption('after-previous');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^
+      26 |  for(const viewport of [{width:1280,height:800},{width:390,height:844},{width:844,height:390}]){await page.setViewportSize(viewport);await pane.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath(`pane-${viewport.width}.png`)});expect(await pane.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);}
+      27 |  await pane.getByRole('checkbox',{name:'보조선 표시',exact:true}).uncheck();await page.getByText('1컷 연출 수정',{exact:true}).click();await page.getByText('1컷 연출 수정',{exact:true}).click();await pane.getByText('배치 보조 설정',{exact:true}).click();await expect(pane.getByRole('checkbox',{name:'보조선 표시',exact:true})).not.toBeChecked();await expect(pane.getByRole('checkbox',{name:'보조선에 맞추기',exact:true})).not.toBeChecked();
+      28 |  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect(after.lines[0].text).toBe(before.lines[0].text);expect(after.lines[0].presentation.effects.map((effect:{id:string})=>effect.id)).toEqual(['one','two']);expect(after.lines[0].presentation.effects[1]).toMatchObject({delayMs:600,durationMs:1200});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editor-effect-pane.spec.ts:25:590
+
+    Error Context: test-results-movable-guide-pointer/editor-effect-pane-animati-a7638--changing-unrelated-content/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-movable-guide-pointer/editor-effect-pane-animati-a7638--changing-unrelated-content/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-movable-guide-pointer/editor-effect-pane-animati-a7638--changing-unrelated-content/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/editor-effect-pane.spec.ts:7:1 › animation pane selects a single effect editor and edits timing with visible bars without changing unrelated content 

@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "elapsedMs": 8282,
+  "cycles": 6,
+  "wholeProjectPreserved": true,
+  "offlineExportEqual": true,
+  "reconnectedReloadEqual": true,
+  "errors": [],
+  "scope": "Already-loaded isolated desktop Chromium editor; six cuts edited while browser context offline, basic/text/background screen changes, exported archive equality and online reload equality.",
+  "candidateSourcesChanged": [],
+  "finalFileSha256": "68b5b03d08b8cac418dcaaea7581a69a63225a6a405a65dc37d424c21517c82d",
+  "notProven": [
+    "First offline launch",
+    "Long-duration offline use",
+    "Offline reload or installed PWA",
+    "Physical device or unavailable uncached artwork"
+  ]
+}

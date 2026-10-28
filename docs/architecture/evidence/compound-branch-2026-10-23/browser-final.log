@@ -1,0 +1,18 @@
+
+Running 11 tests using 1 worker
+
+(node:3536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 1440 (16.5s)
+  ✓   2 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 768 (16.6s)
+  ✓   3 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 390 (16.8s)
+  ✓   4 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 844 (14.6s)
+  ✓   5 tests/e2e/branch-scope.spec.ts:47:1 › branch preview preserves draft during composition/save failure and source deletion stays guarded (2.6s)
+  ✓   6 tests/e2e/branch-scope.spec.ts:55:1 › a work without choices keeps branch-only controls out of effect editing without changing content (2.0s)
+  ✓   7 tests/e2e/compound-branch.spec.ts:29:1 › compound choice editing is optional, exact, undoable and preserved by files (8.9s)
+  ✓   8 tests/e2e/compound-branch.spec.ts:47:141 › actual same-target choices resolve all true/true (4.6s)
+  ✓   9 tests/e2e/compound-branch.spec.ts:47:141 › actual same-target choices resolve all true/false (4.3s)
+  ✓  10 tests/e2e/compound-branch.spec.ts:47:141 › actual same-target choices resolve any true/false (4.5s)
+  ✓  11 tests/e2e/compound-branch.spec.ts:47:141 › actual same-target choices resolve any false/false (4.3s)
+
+  11 passed (1.6m)

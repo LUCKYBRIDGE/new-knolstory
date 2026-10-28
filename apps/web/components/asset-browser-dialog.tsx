@@ -5,6 +5,7 @@ import { ASSET_FACETS, assetDisplayName, assetCharacterIds, facetLabel, facetVal
 import { readAssetPreferences, recordRecentAsset, toggleAssetFavorite, writeAssetPreferences, type AssetPreferences } from '../lib/asset-preferences';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './asset-browser-dialog.module.css';
+import {useEditorKeyboard} from './use-editor-keyboard';
 type EmptyOption=Readonly<{value:string;label:string}>;
 type Props = { emptyOptions?:readonly EmptyOption[];label: string; type: Asset['type']; value: string; chapterAssetIds?: readonly string[]; onSelect: (id: string) => void; onClose: () => void };
 type Filters = Partial<Record<FacetKey, readonly string[]>>;
@@ -18,7 +19,9 @@ function Thumbnail({ asset }: { asset: Asset }) {
  * the manual portal/focus trap; all images stay catalog assets, never a Web Story Stage.
  */
 export function AssetBrowserDialog({ label, type, value, chapterAssetIds = [], emptyOptions=[], onSelect, onClose }: Props) {
+  const keyboard=useEditorKeyboard('[data-keyboard-dialog=assets]');
   const dialog = useRef<HTMLDialogElement>(null);
+  const composing = useRef(false);
   const searchInput = useRef<HTMLInputElement>(null);
   const titleId = useId();
   const [search, setSearch] = useState('');
@@ -60,7 +63,7 @@ export function AssetBrowserDialog({ label, type, value, chapterAssetIds = [], e
   const chips = ASSET_FACETS.flatMap(f => (filters[f.key] ?? []).map(entry => ({ key: f.key, entry })));
   const empty=emptyOptions.find(option=>option.value===pending);
   const canApply = !!empty || (isSelectableAsset(preview) && preview.type === type);
-  return <dialog ref={dialog} className={styles.dialog} aria-labelledby={titleId} onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={event => { event.preventDefault(); event.stopPropagation(); onClose(); }}>
+  return <dialog ref={dialog} data-keyboard-dialog="assets" data-keyboard-occluded={keyboard.occluded} className={styles.dialog} aria-labelledby={titleId} onCompositionStart={()=>{composing.current=true;}} onCompositionEnd={()=>{composing.current=false;}} onKeyDown={event=>{if(event.nativeEvent.isComposing||event.nativeEvent.keyCode===229||composing.current){if(event.key==='Escape'){event.preventDefault();event.stopPropagation();}return;}trapDialogTab(event,dialog.current);}} onCancel={event => { event.preventDefault(); event.stopPropagation(); if(!composing.current)onClose(); }}>
     <div className={styles.shell}>
       <header className={styles.header}><div><small>이야기 그림 자료실</small><h2 id={titleId}>이미지 선택 · {label}</h2><p>적용 대상: {label}. 그림을 미리 본 뒤 적용하세요.</p></div><button type="button" aria-label="이미지 선택 닫기" onClick={onClose}>닫기</button></header>
       <div className={styles.comparison}>
@@ -77,11 +80,11 @@ export function AssetBrowserDialog({ label, type, value, chapterAssetIds = [], e
           if (!values.length) return null;
           return <details key={facet.key}><summary>{facet.label}{filters[facet.key]?.length ? ` (${filters[facet.key]!.length})` : ''}</summary><div role="group" aria-label={`${facet.label} 조건`}>{values.map(entry => <button type="button" key={entry} aria-pressed={filters[facet.key]?.includes(entry) ?? false} onClick={() => toggle(facet.key, entry)}>{facetLabel(facet.key, entry)} <small>{base.filter(a => facetValues(a, facet.key).includes(entry)).length}</small></button>)}</div></details>;
         })}</section></details>
-        {(chips.length > 0 || search || sameCharacter || view !== 'all') && <div className={styles.chips} aria-label="현재 찾는 조건">{chips.map(chip => <button type="button" key={`${chip.key}:${chip.entry}`} aria-label={`${facetLabel(chip.key, chip.entry)} 조건 해제`} onClick={() => toggle(chip.key, chip.entry)}>{facetLabel(chip.key, chip.entry)} ×</button>)}<button type="button" onClick={clear}>모두 지우기</button></div>}
+        {(chips.length > 0 || search || sameCharacter || view !== 'all') && <div className={styles.chips} data-only-search={chips.length===0&&!sameCharacter&&view==='all'} aria-label="현재 찾는 조건">{chips.map(chip => <button type="button" key={`${chip.key}:${chip.entry}`} aria-label={`${facetLabel(chip.key, chip.entry)} 조건 해제`} onClick={() => toggle(chip.key, chip.entry)}>{facetLabel(chip.key, chip.entry)} ×</button>)}<button type="button" onClick={clear}>모두 지우기</button></div>}
         <p aria-live="polite">{found.length}개의 이미지 · 현재 저장된 이미지는 조건과 관계없이 확인할 수 있어요.</p>
         <div className={styles.grid}>{found.map(asset => <article key={asset.id} className={pending === asset.id ? styles.selected : styles.card}>
-          <button type="button" className={styles.favorite} aria-label={`즐겨찾기 ${asset.label}`} aria-pressed={preferences.favoriteIds.includes(asset.id)} onClick={() => persist(toggleAssetFavorite(preferences, asset.id))}>{preferences.favoriteIds.includes(asset.id) ? '★' : '☆'}</button>
           <button type="button" className={styles.option} data-asset-id={asset.id} aria-pressed={pending === asset.id} onClick={() => setPending(asset.id)}><Thumbnail asset={asset} /><strong>{assetDisplayName(asset)}</strong><small>{asset.story}{asset.id === value ? ' · 현재 이미지' : ''}{!isSelectableAsset(asset) ? ' · 이전 이미지 (확인용)' : ''}</small></button>
+          <button type="button" className={styles.favorite} aria-label={`즐겨찾기 ${asset.label}`} aria-pressed={preferences.favoriteIds.includes(asset.id)} onClick={() => persist(toggleAssetFavorite(preferences, asset.id))}>{preferences.favoriteIds.includes(asset.id) ? '★' : '☆'} 즐겨찾기</button>
         </article>)}</div>
         {!found.length && <div className={styles.empty}><strong>찾은 이미지가 없어요.</strong><p>조건을 해제하거나 다른 보기에서 찾아보세요.</p><button type="button" onClick={clear}>모두 지우기</button></div>}
       </div>

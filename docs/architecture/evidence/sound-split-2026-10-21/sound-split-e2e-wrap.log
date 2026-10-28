@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:22933) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/sound-split.spec.ts:8:1 › split a sound, undo, edit two pieces, reopen actual file and play scheduled native segments (7.0s)
+
+  1 passed (7.4s)

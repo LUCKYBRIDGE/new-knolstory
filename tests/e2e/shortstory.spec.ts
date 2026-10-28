@@ -31,13 +31,13 @@ test('ShortStory edits static pages, saves, restores files and prints without ru
 test('ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected', async ({page}) => {
  await page.setViewportSize({width:390,height:844});await page.goto('/shortstory');
  {const summary=page.getByText('이 쪽 그림 고르기',{exact:true});if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await summary.click();}
- const bg=page.getByRole('button',{name:'쪽 배경 이미지 찾기',exact:true});await bg.click();const picker=page.getByRole('dialog',{name:'이미지 선택 · 쪽 배경',exact:true}),card=picker.locator('[data-asset-id]').first(),id=(await card.getAttribute('data-asset-id'))!;expect(id).toBeTruthy();await card.click();await picker.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(bg).toHaveAttribute('data-asset-value',id);
+ const bg=page.getByRole('button',{name:/^쪽 배경 이미지 찾기 ·/,exact:false});await bg.click();const picker=page.getByRole('dialog',{name:'이미지 선택 · 쪽 배경',exact:true}),card=picker.locator('[data-asset-id]').first(),id=(await card.getAttribute('data-asset-id'))!;expect(id).toBeTruthy();await card.click();await picker.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(bg).toHaveAttribute('data-asset-value',id);
  await expect(page.getByRole('img',{name:'1쪽 삽화',exact:true}).locator('img')).toHaveCount(1);
  await page.getByLabel('이 쪽의 이야기').fill('그림과 글을 엑셀로 보관해요.');
  const nextDownload=page.waitForEvent('download');await page.getByRole('button',{name:'Excel로 보관',exact:true}).click();const saved=await nextDownload;const path=await saved.path();
  await page.getByRole('button',{name:'새 그림책'}).click();await page.locator('input[type=file]').setInputFiles({name:saved.suggestedFilename(),mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',buffer:await readFile(path!)}); await confirmAuthoringImport(page);
  await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('그림과 글을 엑셀로 보관해요.');
- {const summary=page.getByText('이 쪽 그림 고르기',{exact:true});if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await summary.click();}await expect(page.getByRole('button',{name:'쪽 배경 이미지 찾기',exact:true})).toHaveAttribute('data-asset-value',id);
+ {const summary=page.getByText('이 쪽 그림 고르기',{exact:true});if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await summary.click();}await expect(page.getByRole('button',{name:/^쪽 배경 이미지 찾기 ·/,exact:false})).toHaveAttribute('data-asset-value',id);
  await page.getByRole('button',{name:'임시 보관',exact:true}).click();
  const project=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!).books.at(-1));
  await page.locator('input[type=file]').setInputFiles({name:'unsupported.shortstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({format:'shortstory',formatVersion:2,project:{...project,music:{assetId:'fake'}}}))});

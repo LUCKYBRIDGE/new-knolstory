@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-23",
+  "scope": "Keep an already visible current-cut position when returning from preview",
+  "red": "Same-cut closed detail return changed writer scrollTop10657->10730 (73px) although header was visible; actual native test failed",
+  "change": "Inspect current row header and focused control. Retain list position if header is within viewport and enough of focus control is visible. Reveal current header only when outside or control is almost occluded.",
+  "verification": {
+    "browser": "16 passed in a single1.3-minute run:8 closed audio/direction viewport cases,4 advanced cross-chapter cases,1 large manuscript cross-chapter case,1 same-cut exact scroll preservation,2 long-text/cut cases",
+    "content": "Full project equality and closed detail state preserved",
+    "native": "Actual RenPy acknowledgement in tested returns",
+    "build": "Web build:source passed",
+    "typecheck": "Web passed",
+    "lint": "Focused hook and large manuscript test passed"
+  },
+  "sourceHash": "086750bc9b077afdb9d2ef59889df1e281f77bcbbd926ea6180e7ec43083841a",
+  "limits": [
+    "Not physical phone/tablet certification",
+    "Whole editor objective remains active"
+  ],
+  "nextEnvironmentObservation": {
+    "Excel": "Installed app directory detected; no workbook or add-in opened",
+    "LibreOffice": "Installed bundled native soffice --version returned LibreOfficeDev26.8.0.0.alpha0; actual file roundtrip not yet performed",
+    "constraint": "User exclusion of Excel ChatGPT add-in is preserved"
+  }
+}

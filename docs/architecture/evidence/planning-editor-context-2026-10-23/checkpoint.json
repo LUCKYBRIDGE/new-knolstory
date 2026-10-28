@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-23",
+  "scope": "Work planning return restores parked editor long text context, whole editor goal active",
+  "finding": "Editor stays mounted but parked/inert during preparation; prior restore effect only watched project/screen, did not run on active return",
+  "fixed": [
+    "Explicit editingActive signal restores context when editor becomes active",
+    "Work-scoped transient snapshot storage outside authored document; preserves range/direction/inner scroll and list state"
+  ],
+  "verification": {
+    "browser": "6passed onefinalrun:4screenviewports+1actualnative+1planningroundtrip",
+    "planningCase": "Real menu planning/currentcutreturn restores longtext backwardselection1600..1620scroll550 and unchangedprose",
+    "types": "Web passed",
+    "lint": "related errors0",
+    "build": "Web source production"
+  },
+  "limits": [
+    "Planning/native cases desktop only",
+    "No new full settings edits or distinct project/cut navigation proof",
+    "Whole editor audit/physicaldevices remain"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "fc75cf6fed395c79f6079029b543fe1ff5739ff179441e6eef11916f19649fe5",
+    "apps/web/components/story-workspace.tsx": "3f8efcbeb58b070a5e92e960073abe8cc8aa8a7d60a62c6f7f9de1af59d72139",
+    "tests/e2e/long-text-context.spec.ts": "8a3e6948e41afd44a9b88ef908cfa7c5b1b5362b69134e3f8627e23829f450f6",
+    "apps/web/out/index.html": "4ca80967d572ab4f1a567ac931addca4559771c00e7f957ac858fb7bde88b9cd"
+  }
+}

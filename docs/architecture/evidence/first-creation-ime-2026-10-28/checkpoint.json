@@ -1,0 +1,28 @@
+{
+  "status": "focused-host-passed",
+  "scope": [
+    "Title composition Enter cannot implicitly create a work.",
+    "Library tools stay open for composition Escape and trailing229; normal Escape closes and returns focus.",
+    "Cancel during composition and reopen retain title and allow ordinary creation.",
+    "Existing UI-authored work integration retains primary download save and fresh-context complete-file reopen."
+  ],
+  "redLog": ".cache/first-title-20261028-red.log",
+  "intermediateLog": ".cache/first-title-20261028-green.log",
+  "intermediateFailure": "Product behavior assertions passed, final test used the wrong workspace payload field; corrected assertion to actual visible work heading.",
+  "finalLog": ".cache/first-title-20261028-final.log",
+  "result": "2 host tests passed in one run",
+  "build": ".cache/first-title-20261028-build-final.log",
+  "typecheck": ".cache/first-title-20261028-types-final.log",
+  "lint": ".cache/first-title-20261028-lint-final.log",
+  "limits": [
+    "Composition events are synthetic; not physical Samsung or macOS IME certification.",
+    "No new native playback, OS chooser, deployment, novice user research or overall editor-completion claim.",
+    "No new component coverage percentage measured."
+  ],
+  "sourceSha256": {
+    "apps/web/components/new-story-form.tsx": "e0a1e30c7fbbd60cfd02caf4e2d7ee6589ba1adb3c8088908ee61f621305eddd",
+    "apps/web/components/local-bookshelf.tsx": "051b3d8a7330c3279efe5855854229ae2292a54cfb3ec586f754aa8a6b1722a3",
+    "tests/e2e/create-writing.spec.ts": "4f73ad47402ff4e8d1c2f41dea5d83ebcc8ef402f921eeaee9a3cecf809c809a",
+    "tests/e2e/authoring-journey.spec.ts": "91da028fcf8fc9c68dd111b768cff052da48dbdef172bb3f1bd5c98b350bd832"
+  }
+}

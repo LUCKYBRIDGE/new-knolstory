@@ -1,10 +1,20 @@
 'use client';
 /* eslint-disable @next/next/no-img-element -- Material thumbnails only; official story preview is supplied by Ren'Py. */
 import {createPortal} from 'react-dom';
-import {useEffect,useLayoutEffect,useRef,useState, type ReactNode} from 'react';
-import {assetDisplayName,resolveAsset,resolveAudioAsset} from '@knolstory/asset-registry';
-import {activeStageSpeaker,chapterLabel,resolveStageComposition,presentationLabel,type StoryProject,type StoryLine,type StageComposition,type StageActorEntry,type StoryMusicCue} from '@knolstory/story-domain';
+import {usePhoneEditor} from './use-phone-editor';
+import {useEffect,useLayoutEffect,useMemo,useRef,useState, type CSSProperties, type ReactNode} from 'react';
+import {assetDisplayName,resolveAsset} from '@knolstory/asset-registry';
+import {activeStageSpeaker,chapterLabel,resolveStageComposition,presentationLabel,type StoryProject,type StoryLine,type StageComposition,type StageActorEntry} from '@knolstory/story-domain';
+import {actorMotionChoice} from '../lib/actor-motion-choice';
+import {buildEditorRangeSummaries} from '../lib/editor-range-summaries';
 import {patchStoryLine} from '@knolstory/runtime-core';
+import {splitChapterAudioRange} from '../lib/chapter-audio-split';
+import {editCombinedRange,undoCombinedRange,type CombinedRangeUndo} from '../lib/combined-range-edit';
+import {StoryTextVariants} from './story-text-variants';
+import {StorySceneVisibilityEditor} from './story-scene-visibility';
+import {StoryCombinedRangeTools} from './story-combined-range-tools';
+import {StoryCombinedTimeline} from './story-combined-timeline';
+import type {CombinedTarget,CombinedEditingEntry} from '../lib/combined-editing-tracks';
 import {StoryStagingImport} from './story-staging-import';
 import {AssetPickerField} from './asset-picker-field';
 import {StoryAudioControls} from './story-audio-controls';
@@ -15,8 +25,9 @@ import type {EditingScreen,Companion,EditorPreferences} from '../lib/editor-pref
 import {resolveCutArrangement,type CutArrangement} from '../lib/cut-arrangement';
 import type {AdjacentSceneThumbnail} from './use-adjacent-scene-thumbnails';
 export type {EditingScreen} from '../lib/editor-preferences';
-type Props={adjacentThumbnails?:Readonly<Record<string,AdjacentSceneThumbnail>>;preferences:EditorPreferences;onPreferencesChange:(update:(current:EditorPreferences)=>EditorPreferences)=>void;settingsTarget?:HTMLElement|null;preview?:ReactNode;playing?:boolean;additionalSettings?:ReactNode;chapterSettings?:ReactNode;additionalEditor?:ReactNode;project:StoryProject;lineId:string;screen:EditingScreen;onScreenChange:(screen:EditingScreen)=>void;onProjectChange:(project:StoryProject)=>void;onSelectCut:(id:string)=>void;onComposing:(value:boolean)=>void;basicTextDisabled:boolean;onBasicTextChange:(text:string)=>void;disabled:boolean;composing:boolean;onPreview:(id:string)=>void};
-const screens:readonly [EditingScreen,string][]=[['basic','기본편집'],['text','글 편집'],['background','배경 편집'],['characters','인물 편집'],['audio','음향 편집'],['direction','연출 편집']];
+export type EditorTextSnapshots=Record<string,{cutId?:string;start:number;end:number;direction:"forward"|"backward"|"none";top:number;left:number;scroll:number;windowScroll:number}>;
+type Props={editingActive?:boolean;adjacentThumbnails?:Readonly<Record<string,AdjacentSceneThumbnail>>;preferences:EditorPreferences;onPreferencesChange:(update:(current:EditorPreferences)=>EditorPreferences)=>void;settingsTarget?:HTMLElement|null;preview?:ReactNode;playing?:boolean;additionalSettings?:ReactNode;chapterSettings?:ReactNode;additionalEditor?:ReactNode;project:StoryProject;lineId:string;screen:EditingScreen;onScreenChange:(screen:EditingScreen)=>void;onProjectChange:(project:StoryProject)=>void;onSelectCut:(id:string)=>void;onComposing:(value:boolean)=>void;basicTextDisabled:boolean;onBasicTextChange:(text:string)=>void;disabled:boolean;composing:boolean;onPreview:(id:string)=>void};
+const screens:readonly [EditingScreen,string][]=[['basic','기본편집'],['text','글 편집'],['background','배경 편집'],['characters','인물 편집'],['audio','음향 편집'],['direction','연출 편집'],['audio-direction','음향·연출 함께 편집']];
 const names:Record<Companion,string>={text:'글',background:'배경',characters:'인물',audio:'음향',direction:'연출'};
 const optional=(screen:EditingScreen):screen is 'characters'|'audio'|'direction'=>screen==='characters'||screen==='audio'||screen==='direction';
 function backgroundId(project:StoryProject,line:StoryLine){return line.backgroundMode==='none'?'':line.backgroundId||project.chapters.find(c=>c.id===line.chapterId)?.backgroundId||project.stageDefaults?.backgroundId||'';}
@@ -32,60 +43,110 @@ function revealCurrentCut(root:HTMLElement|null){
   else if(item.bottom>bounds.bottom)list.scrollTop+=item.bottom-bounds.bottom;
  });
 }
-function audioSummary(project:StoryProject,line:StoryLine){
- const a=line.audio;
- const cue=(name:string,value:StoryMusicCue|undefined)=>!value?`${name} 이전 설정 사용`:value.action==='play'?`${name} ${resolveAudioAsset(value.assetId)?.name??'소리 이름 확인 필요'} · 재생 시작 설정${value.branchCondition?' · 선택 이력 조건 있음':''}${value.endLineId?` · 종료 컷 ${cutReference(project,value.endLineId)}`:''}`:`${name} ${value.action==='stop'?'정지':'현재 소리 계속 재생'}`;
- return ['이 컷의 음향 설정',cue('배경음',a?.music),cue('주변 소리',a?.ambience),a?.sounds?.length?`효과음 ${a.sounds.map(sound=>resolveAudioAsset(sound.assetId)?.name??'효과음 이름 확인 필요').join(', ')}`:'이 컷에 지정한 효과음 없음'].join(' / ');
-}
-function directionSummary(project:StoryProject,line:StoryLine){const ranges=line.presentation?.effects?.filter(effect=>effect.scope==='following').map(effect=>effect.endLineId?`이 컷부터 ${cutReference(project,effect.endLineId)}까지`:'이 컷부터 다음 컷으로 이어짐');return [presentationLabel(line.presentation),...ranges??[]].join(' / ');}
 export function StoryEditingWorkbench(p:Props){
- const [chapterFilter,setChapterFilter]=useState<{projectId:string;chapterId:string}|null>(null);
- const [error,setError]=useState('');
+ const [chapterFilter,setChapterFilter]=useState<{projectId:string;chapterId:string;lineId:string}|null>(null);
+ // A manual browse belongs to one editing visit; never resurrect it after playback or cut changes.
+ if(chapterFilter&&(chapterFilter.projectId!==p.project.id||chapterFilter.lineId!==p.lineId||p.playing))setChapterFilter(null);
+ const [error,setError]=useState<{context:string;message:string}|null>(null);
+ const editContext=JSON.stringify([p.project.id,p.lineId]);
+ const reportError=(cause:unknown)=>setError({context:editContext,message:cause instanceof Error?cause.message:'원고 변경을 적용하지 못했어요.'});
+ const [timelineSpace,setTimelineSpace]=useState(50);
+ const [rangeUndo,setRangeUndo]=useState<CombinedRangeUndo|null>(null);
  const [expanded,setExpanded]=useState<Record<string,boolean>>({});
  const enabled=p.preferences.enabled;
- const screen=optional(p.screen)&&!enabled[p.screen]?'basic':p.screen;
+ const phone=usePhoneEditor();
+ const [shortLandscape,setShortLandscape]=useState(false);
+ useEffect(()=>{
+  const media=matchMedia('(orientation: landscape) and (max-height: 440px)');
+  const update=()=>setShortLandscape(media.matches);
+  update();media.addEventListener('change',update);return()=>media.removeEventListener('change',update);
+ },[]);
+ const requestedScreen=p.screen==='audio-direction'?enabled.audio&&enabled.direction?p.screen:'basic':optional(p.screen)&&!enabled[p.screen]?'basic':p.screen;
+ const landscapeReview=phone&&shortLandscape&&!p.composing;
+ const screen=landscapeReview?'basic':phone&&requestedScreen==='audio-direction'?'audio':requestedScreen;
+ const phoneSingle=phone&&screen!=='basic'&&screen!=='text';
  const root=useRef<HTMLElement>(null);
  const [bodySize,setBodySize]=useState<{width:number;height:number}>();
+ const [keyboardCutRequest,setKeyboardCutRequest]=useState<{projectId:string;sourceId:string;targetId:string}|null>(null);
+ useEffect(()=>{
+  if(!keyboardCutRequest||p.composing)return;
+  const frame=requestAnimationFrame(()=>{
+   setKeyboardCutRequest(null);
+   if(keyboardCutRequest.projectId!==p.project.id||keyboardCutRequest.sourceId!==p.lineId||p.playing)return;
+   p.onSelectCut(keyboardCutRequest.targetId);
+   requestAnimationFrame(()=>root.current?.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea')?.focus({preventScroll:true}));
+  });
+  return()=>cancelAnimationFrame(frame);
+ },[keyboardCutRequest,p]);
+ const navigateWhileWriting=(targetId:string)=>{
+  const field=root.current?.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea');
+  if(document.activeElement!==field){if(!p.composing)p.onSelectCut(targetId);return;}
+  setKeyboardCutRequest({projectId:p.project.id,sourceId:p.lineId,targetId});
+  // Native IMEs commit on blur; wait for compositionend before changing the cut.
+  root.current?.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea')?.blur();
+ };
+
+ useEffect(()=>{
+  const node=root.current;if(!node)return;
+  const toggle=(event:Event)=>{
+   const opened=event.target;
+   if(!(opened instanceof HTMLDetailsElement)||!opened.open||!opened.matches('[data-additional-dock]>details,[data-stacked-context]>details'))return;
+   node.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open],[data-stacked-context]>details[open]').forEach(detail=>{if(detail!==opened)detail.open=false;});
+  };
+  node.addEventListener('toggle',toggle,true);return()=>node.removeEventListener('toggle',toggle,true);
+ },[]);
  // Observe the stable workspace, not the grid whose supplemental tools change height.
  useEffect(()=>{const node=root.current;if(!node||p.composing)return;const observer=new ResizeObserver(entries=>{if(node.closest('[data-keyboard-occluded=true]'))return;const rect=entries[0]?.contentRect;if(rect&&rect.width>0&&rect.height>0)setBodySize(previous=>previous?.width===rect.width&&previous?.height===rect.height?previous:{width:rect.width,height:rect.height});});observer.observe(node);return()=>observer.disconnect();},[p.composing]);
  const arrangement=resolveCutArrangement(p.preferences.arrangement??'auto',bodySize);
  useEffect(()=>{if(screen==='basic'&&!p.playing)revealCurrentCut(root.current);},[screen,p.project.id,p.lineId,p.playing,arrangement]);
  useEffect(()=>{
   const panels=()=>root.current?.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open],[data-stacked-context]>details[open]');
-  const dismiss=(event:PointerEvent)=>{if(document.querySelector('dialog[open]')||!(event.target instanceof Node))return;panels()?.forEach(detail=>{if(!detail.contains(event.target as Node))detail.open=false;});};
   const escape=(event:KeyboardEvent)=>{
    if(event.key!=='Escape'||event.defaultPrevented||event.isComposing||document.querySelector('dialog[open]'))return;
    const opened=[...panels()??[]].at(-1);if(!opened)return;
    opened.open=false;opened.querySelector<HTMLElement>(':scope>summary')?.focus();event.preventDefault();event.stopPropagation();
   };
-  document.addEventListener('pointerdown',dismiss);document.addEventListener('keydown',escape);
-  return()=>{document.removeEventListener('pointerdown',dismiss);document.removeEventListener('keydown',escape);};
+  document.addEventListener('keydown',escape);
+  return()=>{document.removeEventListener('keydown',escape);};
  },[]);
- const snapshots=useRef<Record<string,{cutId?:string;start:number;end:number;scroll:number;windowScroll:number}>>({});
+ const snapshots=useRef<EditorTextSnapshots>({});
  const snapshotKey=`${p.project.id}/${screen}`;
  const remember=(field:EventTarget|null=document.activeElement)=>{
   const area=root.current?.querySelector<HTMLElement>('[data-writer-scroll]');
   const previous=snapshots.current[snapshotKey];
-  const textarea=field instanceof HTMLTextAreaElement&&root.current?.contains(field)?field:undefined;
-  snapshots.current[snapshotKey]={cutId:textarea?.dataset.cutId??previous?.cutId,start:textarea?.selectionStart??previous?.start??0,end:textarea?.selectionEnd??previous?.end??0,scroll:area?.scrollTop??0,windowScroll:window.scrollY};
+  const textarea=field instanceof HTMLTextAreaElement&&field.dataset.cutId&&root.current?.contains(field)?field:undefined;
+  snapshots.current[snapshotKey]={cutId:textarea?.dataset.cutId??previous?.cutId,start:textarea?.selectionStart??previous?.start??0,end:textarea?.selectionEnd??previous?.end??0,direction:textarea?.selectionDirection??previous?.direction??"none",top:textarea?.scrollTop??previous?.top??0,left:textarea?.scrollLeft??previous?.left??0,scroll:area?.scrollTop??0,windowScroll:window.scrollY};
  };
+ const previousEditingActive=useRef(p.editingActive),restoredContext=useRef<string|null>(null);
+ const previousSelection=useRef({projectId:p.project.id,lineId:p.lineId});
  useLayoutEffect(()=>{
+  const context=JSON.stringify([p.project.id,screen,p.editingActive,p.lineId]);
+  if(restoredContext.current===context)return;restoredContext.current=context;
+  const returning=previousEditingActive.current===false&&p.editingActive!==false;previousEditingActive.current=p.editingActive;
+  const selectionChanged=previousSelection.current.projectId!==p.project.id||previousSelection.current.lineId!==p.lineId;
+  previousSelection.current={projectId:p.project.id,lineId:p.lineId};
+  if(p.editingActive===false)return;
   const snapshot=snapshots.current[`${p.project.id}/${screen}`];
-  if(!snapshot)return;
+  if(!snapshot||(returning||selectionChanged)&&snapshot.cutId!==p.lineId)return;
   const textarea=Array.from(root.current?.querySelectorAll<HTMLTextAreaElement>('textarea[data-cut-id]')??[]).find(field=>field.dataset.cutId===snapshot.cutId);
-  if(textarea&&!textarea.disabled){textarea.focus({preventScroll:true});textarea.setSelectionRange(snapshot.start,snapshot.end);}
+  if(textarea&&!textarea.disabled){textarea.focus({preventScroll:true});textarea.setSelectionRange(snapshot.start,snapshot.end,snapshot.direction);textarea.scrollTop=snapshot.top;textarea.scrollLeft=snapshot.left;}
   const area=root.current?.querySelector<HTMLElement>('[data-writer-scroll]');
   if(area)area.scrollTop=snapshot.scroll;
   window.scrollTo({top:snapshot.windowScroll,behavior:'instant'});
- },[p.project.id,screen]);
+ },[p.project.id,screen,p.editingActive,p.lineId]);
  const current=p.project.lines.find(l=>l.id===p.lineId);
- const chapterId=chapterFilter?.projectId===p.project.id?chapterFilter.chapterId:current?.chapterId??p.project.chapters[0]?.id;
+ const chapterId=!phoneSingle&&chapterFilter?.projectId===p.project.id&&chapterFilter.lineId===p.lineId?chapterFilter.chapterId:current?.chapterId??p.project.chapters[0]?.id;
  const rows=p.project.lines.filter(l=>l.chapterId===(screen==='basic'?current?.chapterId:chapterId)).sort((a,b)=>a.order-b.order);
  const selected=p.preferences.companions[screen]??[];
+ const findCurrentRow=()=>{const list=root.current?.querySelector<HTMLElement>('[data-writer-scroll]'),row=list?.querySelector<HTMLElement>('[aria-current=step]');if(!list||!row)return;const item=row.getBoundingClientRect(),bounds=list.getBoundingClientRect();list.scrollTop+=item.top-bounds.top-2;};
+ const showRanges=screen==='audio-direction'||screen==='audio'||screen==='direction'||selected.includes('audio')||selected.includes('direction');
+ const rangeSummaries=useMemo(()=>showRanges?buildEditorRangeSummaries(p.project):new Map<string,{audio:string;direction:string}>(),[p.project,showRanges]);
+ const audioSummary=(line:StoryLine)=>rangeSummaries.get(line.id)?.audio??'음향 설정 없음';
+ const directionSummary=(line:StoryLine)=>rangeSummaries.get(line.id)?.direction??'연출 없음';
  const busy=p.disabled;
- const changeProject=(project:StoryProject)=>{try{p.onProjectChange(project);setError('');}catch(cause){setError(cause instanceof Error?cause.message:'원고 변경을 적용하지 못했어요.');}};
- const patch=(line:StoryLine,value:Partial<StoryLine>)=>{if(busy)return;try{changeProject(patchStoryLine(p.project,line.id,value));}catch(cause){setError(cause instanceof Error?cause.message:'원고 변경을 적용하지 못했어요.');}};
- const textEditor=(line:StoryLine,index:number,basic=false)=><label className={styles.text}>글상자 글<textarea data-cut-id={line.id} aria-label={`${index+1}컷 글`} value={line.text} maxLength={20000} disabled={basic?p.basicTextDisabled:busy} onCompositionStart={()=>p.onComposing(true)} onCompositionEnd={()=>p.onComposing(false)} onChange={event=>{if(basic){if(!p.basicTextDisabled)p.onBasicTextChange(event.target.value);}else patch(line,{text:event.target.value});}}/></label>;
+ const changeProject=(project:StoryProject)=>{try{p.onProjectChange(project);setError(null);}catch(cause){reportError(cause);}};
+ const patch=(line:StoryLine,value:Partial<StoryLine>)=>{if(busy)return;try{changeProject(patchStoryLine(p.project,line.id,value));}catch(cause){reportError(cause);}};
+ const textEditor=(line:StoryLine,index:number,basic=false)=><><label className={styles.text}>글상자 글<textarea data-cut-id={line.id} aria-label={`${index+1}컷 글`} value={line.text} maxLength={20000} readOnly={basic&&phone&&shortLandscape} disabled={basic?p.basicTextDisabled:busy} onCompositionStart={()=>p.onComposing(true)} onCompositionEnd={()=>p.onComposing(false)} onChange={event=>{if(basic){if(!p.basicTextDisabled)p.onBasicTextChange(event.target.value);}else patch(line,{text:event.target.value});}}/>{basic&&phone&&shortLandscape&&<small>{requestedScreen==='basic'?'글을 수정하려면 휴대폰을 세로로 돌려 주세요.':'세부 편집은 휴대폰을 세로로 돌려 주세요.'}</small>}</label>{p.preferences.logic.scores&&p.preferences.logic.branches&&<StoryTextVariants key={`${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} onComposing={p.onComposing} onChange={textVariants=>patch(line,{textVariants})}/>}{p.preferences.logic.branches&&<StorySceneVisibilityEditor key={`visibility/${p.project.id}/${line.id}`} project={p.project} line={line} index={index} disabled={busy} composing={p.composing} scoresEnabled={p.preferences.logic.scores} onComposing={p.onComposing} onChange={visibility=>patch(line,{visibility})}/>}</>;
  const basicSpeaker=(line:StoryLine)=>{
   const stage=resolveStageComposition(p.project.chapters.find(chapter=>chapter.id===line.chapterId),line,p.project);
   const primary=activeStageSpeaker(stage,line);
@@ -99,15 +160,15 @@ export function StoryEditingWorkbench(p:Props){
    <button type="button" aria-label="이 컷부터 재생" title="현재 컷부터 실제 이야기 재생" disabled={busy||p.composing} onClick={()=>p.onPreview(line.id)}><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2 L13 8 L4 14 Z" fill="currentColor"/></svg>재생</button>
   </fieldset>;
  };
- const backgroundEditor=(line:StoryLine,index:number)=><fieldset disabled={busy||p.composing} className={styles.primary}><AssetPickerField label={`${index+1}컷 배경`} type="background" value={line.backgroundMode==='none'?'__none':line.backgroundId} allowDefault allowNone chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.backgroundAssetIds} onChange={id=>patch(line,id==='__none'?{backgroundId:'',backgroundMode:'none'}:{backgroundId:id,backgroundMode:undefined})}/>{screen==='background'&&<BackgroundDisplayControls line={line} index={index} onChange={presentation=>patch(line,{presentation})}/>}</fieldset>;
+ const backgroundEditor=(line:StoryLine,index:number)=><fieldset disabled={busy||p.composing} className={styles.primary}><AssetPickerField label={`${index+1}컷 배경`} type="background" value={line.backgroundMode==='none'?'__none':line.backgroundId} allowDefault allowNone inheritedPreviewId={backgroundId(p.project,line)} defaultLabel={p.project.chapters.find(c=>c.id===line.chapterId)?.backgroundId?'장의 기본 이미지':p.project.stageDefaults?.backgroundId?'작품의 기본 이미지':'장의 기본 이미지'} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.backgroundAssetIds} onChange={id=>patch(line,id==='__none'?{backgroundId:'',backgroundMode:'none'}:{backgroundId:id,backgroundMode:undefined})}/>{screen==='background'&&<BackgroundDisplayControls line={line} index={index} onChange={presentation=>patch(line,{presentation})}/>}</fieldset>;
  const stageFor=(line:StoryLine)=>resolveStageComposition(p.project.chapters.find(c=>c.id===line.chapterId),line,p.project);
- const companion=(kind:Companion,line:StoryLine):ReactNode=>kind==='text'?<p className={styles.excerpt}>{line.text||'아직 글이 없어요.'}</p>:kind==='background'?<Material id={backgroundId(p.project,line)}/>:kind==='characters'?<div className={styles.materials}>{[...stageFor(line).leftActors,...stageFor(line).rightActors].map(a=><span key={a.key}><small>{a.position==='center'?'중앙':stageFor(line).leftActors.some(x=>x.key===a.key)?'왼쪽':'오른쪽'}</small><Material id={a.assetId}/></span>)}</div>:kind==='audio'?<p>{audioSummary(p.project,line)}</p>:<p>{directionSummary(p.project,line)}</p>;
+ const companion=(kind:Companion,line:StoryLine):ReactNode=>kind==='text'?<p className={styles.excerpt}>{line.text||'아직 글이 없어요.'}</p>:kind==='background'?<Material id={backgroundId(p.project,line)}/>:kind==='characters'?<div className={styles.materials}>{[...stageFor(line).leftActors,...stageFor(line).rightActors].map(a=><span key={a.key}><small>{a.position==='center'?'중앙':stageFor(line).leftActors.some(x=>x.key===a.key)?'왼쪽':'오른쪽'}</small><Material id={a.assetId}/></span>)}</div>:kind==='audio'?<p className={styles.rangeSummary}>{audioSummary(line)}</p>:<p className={styles.rangeSummary}>{directionSummary(line)}</p>;
  const primary=(line:StoryLine,index:number)=>{
   if(screen==='text')return textEditor(line,index);
   if(screen==='background')return backgroundEditor(line,index);
   if(screen==='characters')return <><CharacterEditors stage={stageFor(line)} index={index} chapterAssetIds={p.project.chapters.find(c=>c.id===line.chapterId)?.characterAssetIds} onChange={stageComposition=>patch(line,{stageComposition})}/><StoryStagingImport project={p.project} line={line} ordered={[...p.project.lines].sort((a,b)=>(p.project.chapters.find(c=>c.id===a.chapterId)?.order??0)-(p.project.chapters.find(c=>c.id===b.chapterId)?.order??0)||a.order-b.order)} onChange={changeProject}/></>;
-  if(screen==='audio')return <><p>{audioSummary(p.project,line)}</p><details onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`audio/${line.id}`]:open}));}}><summary>{index+1}컷 음향 수정</summary>{expanded[`audio/${line.id}`]&&<StoryAudioControls value={line.audio} scope="cut" project={p.project} lineId={line.id} chapterId={line.chapterId} workId={p.project.id} editingActive={!busy} onChange={audio=>patch(line,{audio})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/>}</details></>;
-  return <><p>{directionSummary(p.project,line)}</p><details onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`direction/${line.id}`]:open}));}}><summary>{index+1}컷 연출 수정</summary>{expanded[`direction/${line.id}`]&&<><StoryDirectionPanel project={p.project} line={line} stage={stageFor(line)} onChange={presentation=>patch(line,{presentation})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/><details><summary>인물 동작 수정</summary><ActorMotionEditors stage={stageFor(line)} index={index} onChange={stageComposition=>patch(line,{stageComposition})}/></details></>}</details></>;
+  if(screen==='audio')return <><p className={styles.rangeSummary}>{audioSummary(line)}</p><details key={`${p.project.id}/audio/${line.id}`} onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`${p.project.id}/audio/${line.id}`]:open}));}}><summary>{index+1}컷 음향 수정</summary>{expanded[`${p.project.id}/audio/${line.id}`]&&<StoryAudioControls value={line.audio} scope="cut" project={p.project} lineId={line.id} chapterId={line.chapterId} workId={p.project.id} editingActive={!busy} onChange={audio=>patch(line,{audio})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/>}</details></>;
+  return <><p className={styles.rangeSummary}>{directionSummary(line)}</p><details key={`${p.project.id}/direction/${line.id}`} onToggle={event=>{const open=event.currentTarget.open;setExpanded(prev=>({...prev,[`${p.project.id}/direction/${line.id}`]:open}));}}><summary>{index+1}컷 연출 수정</summary>{expanded[`${p.project.id}/direction/${line.id}`]&&<><StoryDirectionPanel project={p.project} line={line} stage={stageFor(line)} onChange={presentation=>patch(line,{presentation})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/><details><summary>인물 동작 수정</summary><ActorMotionEditors stage={stageFor(line)} index={index} onChange={stageComposition=>patch(line,{stageComposition})}/></details></>}</details></>;
  };
  const adjacent=(line:StoryLine|undefined,label:string)=>{
   if(!line)return <p className={styles.adjacent}>{label}이 없어요.</p>;
@@ -118,21 +179,35 @@ export function StoryEditingWorkbench(p:Props){
  const chapterList=()=> <nav aria-label="현재 장 컷 목록" data-chapter-cuts className={styles.cutList}>{rows.map((line,index)=><button type="button" key={line.id} aria-current={line.id===p.lineId?'step':undefined} disabled={busy||p.composing} onClick={()=>p.onSelectCut(line.id)}><span>{index+1}컷</span><span>{line.workingTitle||line.text||'아직 글이 없어요.'}</span></button>)}</nav>;
  const openNotes=()=>{root.current?.querySelectorAll<HTMLDetailsElement>('[data-stacked-context]>details[open]').forEach(detail=>{detail.open=false;});const notes=root.current?.querySelector<HTMLDetailsElement>('[data-additional-dock] [data-cut-notes]');if(!notes)return;let parent:HTMLElement|null=notes;while(parent&&parent!==root.current){if(parent instanceof HTMLDetailsElement)parent.open=true;parent=parent.parentElement;}notes.querySelector<HTMLInputElement>('input')?.focus({preventScroll:true});};
  const currentNotes=()=>current?<section className={styles.contextNotes} aria-label="현재 컷 메모·연결 정보"><strong>{current.workingTitle||'현재 컷 메모'}</strong>{([['purposeNote','목적'],['emotionNote','감정'],['directionNote','연출 메모']] as const).map(([key,label])=>current[key]?<p key={key}><small>{label}</small>{current[key]}</p>:null)}{!current.purposeNote&&!current.emotionNote&&!current.directionNote&&<p className={styles.hint}>아직 작성한 메모가 없어요.</p>}<button type="button" disabled={busy||p.composing} onClick={openNotes}>{current.purposeNote||current.emotionNote||current.directionNote?'메모 수정':'메모 추가'}</button>{current.ending?.endsStory?<p>이 컷에서 이야기 종료</p>:current.flow?.type==='choice'?<><strong>선택 후 이동</strong><ul>{current.flow.options.map(option=><li key={option.id}>{option.label||'문구 없는 선택지'} → {destinationLabel(p.project,option.targetLineId)}</li>)}</ul></>:current.flow?.type==='goto'?<p><small>재생 시 이동</small>{destinationLabel(p.project,current.flow.targetLineId)}{current.flow.routes?.length?<small>점수 조건에 따라 도착 컷이 달라질 수 있어요.</small>:null}</p>:<p className={styles.hint}>이전·다음 컷은 원고 순서입니다.</p>}</section>:null;
+ const editChapterSource=(id:string)=>{const chapter=p.project.chapters.find(item=>item.id===id);if(!chapter)return;const first=p.project.lines.filter(item=>item.chapterId===id).sort((a,b)=>a.order-b.order)[0];if(first&&current?.chapterId!==id)p.onSelectCut(first.id);const detail=(p.settingsTarget??root.current)?.querySelector<HTMLDetailsElement>('[data-chapter-settings]');if(!detail)return;let parent:HTMLElement|null=detail;while(parent){if(parent instanceof HTMLDetailsElement)parent.open=true;parent=parent.parentElement;}detail.querySelector<HTMLElement>(':scope>summary')?.focus();};
+ const combinedDetails=(target:CombinedTarget,line:StoryLine,setTarget:(target:CombinedTarget)=>void,entry?:CombinedEditingEntry,selectionRevision?:number)=>{
+  const index=p.project.lines.filter(item=>item.chapterId===line.chapterId).sort((a,b)=>a.order-b.order).findIndex(item=>item.id===line.id),stage=stageFor(line);
+  return <fieldset disabled={busy||p.composing} className={styles.primary}>
+   {rangeUndo?.projectId===p.project.id&&<button type="button" onClick={()=>{try{p.onProjectChange(undoCombinedRange(p.project,rangeUndo));setRangeUndo(null);}catch(error){reportError(error);}}}>구간 변경 취소</button>}
+   {entry?.sourceLineId&&<StoryCombinedRangeTools key={`${p.project.id}/${entry.key}/${entry.endCutIndex}`} project={p.project} entry={entry} disabled={busy||p.composing} onChange={changeProject} onSelectCut={p.onSelectCut} onUndoReady={setRangeUndo}/>}
+   {target==='music'||target==='ambience'||target==='sounds'?<StoryAudioControls key={`${p.project.id}/combined-audio/${line.id}`} initialSelectedClipId={target==='music'||target==='ambience'?entry?.cueId:undefined} clipSelectionRevision={selectionRevision} soundSelectionRevision={selectionRevision} initialSelectedSoundId={target==='sounds'?entry?.cueId:undefined} selectedPart={target} onPartChange={setTarget} value={line.audio} scope="cut" project={p.project} lineId={line.id} chapterId={line.chapterId} workId={p.project.id} editingActive={!busy} onChange={audio=>patch(line,{audio})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview}/>:target==='motion'?<ActorMotionEditors stage={stage} index={index} onChange={stageComposition=>patch(line,{stageComposition})}/>:<StoryDirectionPanel key={`${p.project.id}/combined-direction/${line.id}/${entry?.cueIndex??0}`} initialSelectedEffect={entry?.cueIndex} selectedKind={target} onKindChange={setTarget} project={p.project} line={line} stage={stage} onChange={presentation=>patch(line,{presentation})} onProjectChange={changeProject} onPreviewFromBranch={p.onPreview} onMotion={()=>setTarget('motion')}/>}
+  </fieldset>;
+ };
  const layoutControl=<label className={styles.screenSelection}>컷 배치<select aria-label="컷 배치" value={p.preferences.arrangement??'auto'} disabled={p.composing||busy} onChange={event=>p.onPreferencesChange(current=>({...current,arrangement:event.target.value as CutArrangement}))}><option value="auto">자동 · 화면에 맞춤</option><option value="columns">가로 · 나란히</option><option value="stacked">세로 · 위아래</option></select></label>;
- return <section ref={root} onBlurCapture={event=>remember(event.target)} className={`${styles.workbench} ${p.playing?styles.playing:''}`} data-screen={screen} aria-label="여러 컷 편집">
-  {p.settingsTarget?createPortal(<>{p.chapterSettings}<label className={styles.screenSelection}>편집화면<select aria-label="편집화면 선택" value={screen} disabled={busy||p.composing} onPointerDown={()=>remember()} onChange={event=>{remember();p.onScreenChange(event.target.value as EditingScreen);const menu=event.currentTarget.closest<HTMLDetailsElement>('[data-work-menu]');if(menu){menu.open=false;menu.querySelector<HTMLElement>(':scope>summary')?.focus();}}}>{screens.filter(([id])=>!optional(id)||enabled[id]).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select></label><details><summary>편집 설정</summary><p>기본편집, 글 편집, 배경 편집은 항상 사용할 수 있어요. 필요한 기능만 켜서 편집하세요. 기능을 꺼도 작품의 내용은 유지돼요.</p>{(['characters','audio','direction'] as const).map(id=><label key={id} className={styles.check}><input type="checkbox" checked={enabled[id]} disabled={busy||p.composing} onChange={event=>{p.onPreferencesChange(prev=>({...prev,enabled:{...prev.enabled,[id]:event.target.checked}}));if(!event.target.checked&&screen===id)p.onScreenChange('basic');}}/>{names[id]} 편집 사용</label>)}{p.additionalSettings}<small>편집화면과 설정은 현재 탭에서 작품별로 유지돼요. 새로고침하거나 서재를 오가도 유지되며, 작품 파일에는 포함되지 않아요.</small></details></>,p.settingsTarget):<div hidden={p.playing} inert={p.playing}><>{p.chapterSettings}<label className={styles.screenSelection}>편집화면<select aria-label="편집화면 선택" value={screen} disabled={busy||p.composing} onPointerDown={()=>remember()} onChange={event=>{remember();p.onScreenChange(event.target.value as EditingScreen);const menu=event.currentTarget.closest<HTMLDetailsElement>('[data-work-menu]');if(menu){menu.open=false;menu.querySelector<HTMLElement>(':scope>summary')?.focus();}}}>{screens.filter(([id])=>!optional(id)||enabled[id]).map(([id,label])=><option key={id} value={id}>{label}</option>)}</select></label><details><summary>편집 설정</summary><p>기본편집, 글 편집, 배경 편집은 항상 사용할 수 있어요. 필요한 기능만 켜서 편집하세요. 기능을 꺼도 작품의 내용은 유지돼요.</p>{(['characters','audio','direction'] as const).map(id=><label key={id} className={styles.check}><input type="checkbox" checked={enabled[id]} disabled={busy||p.composing} onChange={event=>{p.onPreferencesChange(prev=>({...prev,enabled:{...prev.enabled,[id]:event.target.checked}}));if(!event.target.checked&&screen===id)p.onScreenChange('basic');}}/>{names[id]} 편집 사용</label>)}{p.additionalSettings}<small>편집화면과 설정은 현재 탭에서 작품별로 유지돼요. 새로고침하거나 서재를 오가도 유지되며, 작품 파일에는 포함되지 않아요.</small></details></></div>}
-  {!p.playing&&error&&<p role="alert">{error}</p>}
-  <p hidden={p.playing} className={styles.hint}>작품 파일 저장이 기본입니다. 이전·다음 컷은 장면 미리보기이며, 움직임과 소리는 ‘이 컷부터 재생’으로 확인하세요.</p>
+ return <section ref={root} onBlurCapture={event=>remember(event.target)} className={`${styles.workbench} ${p.playing?styles.playing:''}`} data-screen={screen} data-phone-editor={phone} data-phone-single={phoneSingle} aria-label="여러 컷 편집">
+  {p.settingsTarget?createPortal(<>{p.chapterSettings}<label className={styles.screenSelection}>편집화면<select aria-label="편집화면 선택" value={screen} disabled={busy||p.composing} onPointerDown={()=>remember()} onChange={event=>{remember();p.onScreenChange(event.target.value as EditingScreen);const menu=event.currentTarget.closest<HTMLDetailsElement>('[data-work-menu]');if(menu){menu.open=false;menu.querySelector<HTMLElement>(':scope>summary')?.focus();}}}>{screens.filter(([id])=>id==='audio-direction'?enabled.audio&&enabled.direction:!optional(id)||enabled[id]).map(([id,label])=><option key={id} value={id} disabled={phone&&id==='audio-direction'||landscapeReview&&id!=='basic'}>{label}{phone&&id==='audio-direction'?' · 큰 화면에서 사용':landscapeReview&&id!=='basic'?' · 세로에서 편집':''}</option>)}</select></label><details><summary>편집 설정</summary><p>기본편집, 글 편집, 배경 편집은 항상 사용할 수 있어요. 필요한 기능만 켜서 편집하세요. 기능을 꺼도 작품의 내용은 유지돼요.</p>{(['characters','audio','direction'] as const).map(id=><label key={id} className={styles.check}><input type="checkbox" checked={enabled[id]} disabled={busy||p.composing} onChange={event=>{p.onPreferencesChange(prev=>({...prev,enabled:{...prev.enabled,[id]:event.target.checked}}));if(!event.target.checked&&(screen===id||screen==='audio-direction'&&(id==='audio'||id==='direction')))p.onScreenChange('basic');}}/>{names[id]} 편집 사용</label>)}{p.additionalSettings}<small>편집화면과 설정은 현재 탭에서 작품별로 유지돼요. 새로고침하거나 서재를 오가도 유지되며, 작품 파일에는 포함되지 않아요.</small></details></>,p.settingsTarget):<div hidden={p.playing} inert={p.playing}><>{p.chapterSettings}<label className={styles.screenSelection}>편집화면<select aria-label="편집화면 선택" value={screen} disabled={busy||p.composing} onPointerDown={()=>remember()} onChange={event=>{remember();p.onScreenChange(event.target.value as EditingScreen);const menu=event.currentTarget.closest<HTMLDetailsElement>('[data-work-menu]');if(menu){menu.open=false;menu.querySelector<HTMLElement>(':scope>summary')?.focus();}}}>{screens.filter(([id])=>id==='audio-direction'?enabled.audio&&enabled.direction:!optional(id)||enabled[id]).map(([id,label])=><option key={id} value={id} disabled={phone&&id==='audio-direction'||landscapeReview&&id!=='basic'}>{label}{phone&&id==='audio-direction'?' · 큰 화면에서 사용':landscapeReview&&id!=='basic'?' · 세로에서 편집':''}</option>)}</select></label><details><summary>편집 설정</summary><p>기본편집, 글 편집, 배경 편집은 항상 사용할 수 있어요. 필요한 기능만 켜서 편집하세요. 기능을 꺼도 작품의 내용은 유지돼요.</p>{(['characters','audio','direction'] as const).map(id=><label key={id} className={styles.check}><input type="checkbox" checked={enabled[id]} disabled={busy||p.composing} onChange={event=>{p.onPreferencesChange(prev=>({...prev,enabled:{...prev.enabled,[id]:event.target.checked}}));if(!event.target.checked&&(screen===id||screen==='audio-direction'&&(id==='audio'||id==='direction')))p.onScreenChange('basic');}}/>{names[id]} 편집 사용</label>)}{p.additionalSettings}<small>편집화면과 설정은 현재 탭에서 작품별로 유지돼요. 새로고침하거나 서재를 오가도 유지되며, 작품 파일에는 포함되지 않아요.</small></details></></div>}
+  {!p.playing&&error?.context===editContext&&<p role="alert">{error.message}</p>}
+  <p hidden={p.playing} className={styles.hint}>{showRanges?'원고 순서 기준 · 갈래별 적용은 재생으로 확인해요.':'작품 파일 저장이 기본입니다. 이전·다음 컷은 장면 미리보기이며, 움직임과 소리는 ‘이 컷부터 재생’으로 확인하세요.'}</p>
   {p.settingsTarget?createPortal(layoutControl,p.settingsTarget):!p.playing&&layoutControl}
-  <div className={styles.body} data-editing-body data-basic={screen==='basic'} data-playing={!!p.playing} data-cut-arrangement={arrangement}>
-  <div className={styles.previewSlot} data-runtime-parked={!p.playing&&screen!=='basic'?true:undefined} aria-hidden={!p.playing&&screen!=='basic'?true:undefined} inert={!p.playing&&screen!=='basic'}>{p.preview}</div>
+  {!p.playing&&phone&&p.screen==='audio-direction'&&<p className={styles.hint}>통합 시간축은 태블릿·PC에서 사용할 수 있어요. 휴대폰에서는 음향과 연출을 각각 편집해 주세요.</p>}
+  <div className={styles.body} data-editing-body style={{'--timeline-space':`${timelineSpace/50}fr`,'--preview-space':`${(100-timelineSpace)/50}fr`} as CSSProperties} data-basic={screen==='basic'} data-combined={screen==='audio-direction'} data-playing={!!p.playing} data-cut-arrangement={arrangement}>
+  <div className={styles.previewSlot} data-runtime-parked={!p.playing&&screen!=='basic'&&screen!=='audio-direction'?true:undefined} aria-hidden={!p.playing&&screen!=='basic'&&screen!=='audio-direction'?true:undefined} inert={!p.playing&&screen!=='basic'&&screen!=='audio-direction'}>{p.preview}{screen==='basic'&&!p.playing&&<nav className={styles.keyboardCutNavigation} aria-label="글 편집 중 컷 이동"><button type="button" aria-label="이전 컷 편집" disabled={busy||currentIndex<=0} onPointerDown={event=>event.preventDefault()} onClick={()=>{const previous=rows[currentIndex-1];if(previous)navigateWhileWriting(previous.id);}}>‹</button><button type="button" aria-label="다음 컷 편집" disabled={busy||currentIndex<0||currentIndex>=rows.length-1} onPointerDown={event=>event.preventDefault()} onClick={()=>{const next=rows[currentIndex+1];if(next)navigateWhileWriting(next.id);}}>›</button></nav>}</div>
   <div className={styles.editingContent} hidden={p.playing} inert={p.playing}>
-  {screen==='basic'&&current?<div className={styles.basic}>
+  {screen==='audio-direction'?<>
+   <label className={styles.combinedChapter}>편집할 장<select aria-label="편집할 장" value={chapterId??''} disabled={busy||p.composing} onChange={event=>{setChapterFilter({projectId:p.project.id,chapterId:event.target.value,lineId:p.lineId});const first=p.project.lines.filter(item=>item.chapterId===event.target.value).sort((a,b)=>a.order-b.order)[0];if(first)p.onSelectCut(first.id);}}>{[...p.project.chapters].sort((a,b)=>a.order-b.order).map(chapter=><option key={chapter.id} value={chapter.id}>{chapterLabel(chapter)}</option>)}</select></label>
+   <StoryCombinedTimeline editingActive={p.editingActive!==false&&!p.playing} space={timelineSpace} onSpaceChange={setTimelineSpace} key={p.project.id} project={p.project} chapterId={chapterId??''} lineId={p.lineId} disabled={busy} composing={p.composing} onSelectCut={p.onSelectCut} onPreview={p.onPreview} onEditChapter={editChapterSource} onProjectChange={changeProject} onSplitChapterRange={(entry,split)=>{if(!entry.sourceChapterId||(entry.target!=='music'&&entry.target!=='ambience'))return false;try{const result=splitChapterAudioRange(p.project,entry.sourceChapterId,entry.target,split);p.onProjectChange(result.project);setRangeUndo(result.undo);p.onSelectCut(split);return true;}catch(error){reportError(error);return false;}}} onEditRange={(entry,start,end)=>{if(!entry.sourceLineId)return;try{const result=editCombinedRange(p.project,{sourceLineId:entry.sourceLineId,target:entry.target,cueIndex:entry.cueIndex},start,end);p.onProjectChange(result.project);setRangeUndo(result.undo);p.onSelectCut(start);}catch(error){reportError(error);}}} renderDetails={combinedDetails}/>
+  </>:screen==='basic'&&current?<div className={styles.basic}>
    <aside className={styles.previousSide} aria-label="이전 컷과 장 탐색">{adjacent(rows[currentIndex-1],'이전 컷')}<section className={styles.sideSupplement}><strong>이 장의 컷</strong>{chapterList()}</section></aside><fieldset disabled={p.basicTextDisabled} className={styles.current} data-current-cut><legend>현재 컷 · {currentIndex+1}컷</legend>{basicSpeaker(current)}{textEditor(current,currentIndex,true)}{backgroundEditor(current,currentIndex)}<div><strong>현재 인물 · 자료 미리보기</strong>{companion('characters',current)}</div></fieldset><aside className={styles.nextSide} aria-label="다음 컷과 참고 정보">{adjacent(rows[currentIndex+1],'다음 컷')}<div className={styles.sideSupplement}>{currentNotes()}</div></aside>
   </div>:<>
-   <div className={styles.options}><label>편집할 장<select aria-label="편집할 장" value={chapterId??''} disabled={busy||p.composing} onChange={event=>setChapterFilter({projectId:p.project.id,chapterId:event.target.value})}>{[...p.project.chapters].sort((a,b)=>a.order-b.order).map(c=><option key={c.id} value={c.id}>{chapterLabel(c)}</option>)}</select></label>
-   <fieldset><legend>함께 보기</legend>{(Object.keys(names) as Companion[]).filter(id=>id!==screen).map(id=><label className={styles.check} key={id}><input type="checkbox" checked={selected.includes(id)} onChange={event=>p.onPreferencesChange(prev=>({...prev,companions:{...prev.companions,[screen]:event.target.checked?[...selected,id]:selected.filter(x=>x!==id)}}))}/>{names[id]} 함께 보기</label>)}<small>다른 항목은 참고용으로 보여 줘요. 수정하려면 해당 편집화면으로 이동하세요. 인물·음향·연출 편집은 편집 설정에서 먼저 켜 주세요.</small></fieldset></div>
-   <div className={styles.rows} data-writer-scroll>{rows.map((line,index)=><article key={line.id} data-testid={`editing-cut-${line.id}`} className={styles.row} aria-label={`${index+1}컷 편집`}><header><strong>{index+1}컷{line.speakerName?` · ${line.speakerName}`:''}</strong><button type="button" disabled={busy||p.composing} onClick={()=>p.onSelectCut(line.id)}>이 컷 선택</button><button type="button" disabled={busy||p.composing} onClick={()=>p.onPreview(line.id)}>이 컷부터 재생</button></header><fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{selected.length>0&&<aside className={styles.companions} aria-label="확인용 함께 보기">{selected.map(id=><section key={id}><strong>{names[id]}</strong>{companion(id,line)}</section>)}</aside>}</article>)}</div>
+   <div className={styles.options}><label>편집할 장<select aria-label="편집할 장" value={chapterId??''} disabled={busy||p.composing} onChange={event=>{setChapterFilter({projectId:p.project.id,chapterId:event.target.value,lineId:p.lineId});if(phoneSingle){const first=p.project.lines.filter(line=>line.chapterId===event.target.value).sort((a,b)=>a.order-b.order)[0];if(first)p.onSelectCut(first.id);}}}>{[...p.project.chapters].sort((a,b)=>a.order-b.order).map(c=><option key={c.id} value={c.id}>{chapterLabel(c)}</option>)}</select></label>
+   <button type="button" disabled={busy||p.composing||!rows.some(line=>line.id===p.lineId)} onClick={findCurrentRow}>현재 컷 찾기</button><fieldset hidden={phoneSingle} disabled={busy||p.composing}><legend>함께 보기</legend>{(Object.keys(names) as Companion[]).filter(id=>id!==screen).map(id=><label className={styles.check} key={id}><input type="checkbox" checked={selected.includes(id)} onChange={event=>p.onPreferencesChange(prev=>({...prev,companions:{...prev.companions,[screen]:event.target.checked?[...selected,id]:selected.filter(x=>x!==id)}}))}/>{names[id]} 함께 보기</label>)}<small>다른 항목은 참고용으로 보여 줘요. 수정하려면 해당 편집화면으로 이동하세요. 인물·음향·연출 편집은 편집 설정에서 먼저 켜 주세요.</small></fieldset></div>
+   {phoneSingle&&<nav className={styles.phoneCutNavigation} aria-label="현재 컷 편집 이동"><button type="button" disabled={busy||p.composing||currentIndex<=0} onClick={()=>{const previous=rows[currentIndex-1];if(previous)p.onSelectCut(previous.id);}}>‹ 이전 컷</button><strong>{Math.max(0,currentIndex)+1} / {rows.length}컷</strong><button type="button" disabled={busy||p.composing||currentIndex>=rows.length-1} onClick={()=>{const next=rows[currentIndex+1];if(next)p.onSelectCut(next.id);}}>다음 컷 ›</button></nav>}
+   <div className={styles.rows} data-writer-scroll>{rows.map((line,index)=>phoneSingle&&line.id!==(rows[currentIndex]?.id??rows[0]?.id)?null:<article key={`${p.project.id}/${line.id}`} data-testid={`editing-cut-${line.id}`} aria-current={line.id===p.lineId?'step':undefined} className={styles.row} aria-label={`${index+1}컷 편집`}><header><strong>{index+1}컷{line.speakerName?` · ${line.speakerName}`:''}</strong><button type="button" disabled={busy||p.composing} aria-pressed={line.id===p.lineId} onClick={()=>p.onSelectCut(line.id)}>이 컷 선택</button><button type="button" disabled={busy||p.composing} onClick={()=>p.onPreview(line.id)}>이 컷부터 재생</button></header><fieldset disabled={busy||(p.composing&&screen!=='text')} className={styles.primary}>{primary(line,index)}</fieldset>{!phoneSingle&&selected.length>0&&<aside className={styles.companions} aria-label="확인용 함께 보기">{selected.map(id=><section key={id}><strong>{names[id]}</strong>{companion(id,line)}</section>)}</aside>}</article>)}</div>
   </>}
   </div>
   </div>
@@ -168,16 +243,19 @@ function CharacterEditors({stage,index,onChange,chapterAssetIds}:{stage:StageCom
  };
  const remove=(key:string)=>onChange({...stage,leftActors:stage.leftActors.filter(a=>a.key!==key),rightActors:stage.rightActors.filter(a=>a.key!==key),speakerActorKey:stage.speakerActorKey===key?undefined:stage.speakerActorKey,speakerActorKeys:stage.speakerActorKeys?.filter(id=>id!==key)});
  const add=(assetId:string)=>{const side=stage.leftActors.length<2?'leftActors':'rightActors';if(stage[side].length>=2)return;onChange({...stage,[side]:[...stage[side],{key:`actor-${crypto.randomUUID()}`,assetId}]});};
- return <div className={styles.characters}>{actors.map((actor,i)=><section key={actor.key}>
+ return <div className={styles.characters}>{actors.map((actor,i)=>{
+  const x=actor.xAnchor??(actor.position==='center'?50:stage.leftActors.some(a=>a.key===actor.key)?25:75);
+  const scale=Math.round((actor.scaleMultiplier??1)*100);
+  return <section key={actor.key}>
   <strong>{actor.position==='center'?'중앙':stage.leftActors.some(a=>a.key===actor.key)?'왼쪽':'오른쪽'} 인물 {i+1}</strong><AssetPickerField label={`${index+1}컷 인물 ${i+1}`} type="character" value={actor.assetId} chapterAssetIds={chapterAssetIds} onChange={assetId=>update(actor.key,{assetId})}/>
-  <label>가로 위치<input aria-label={`${index+1}컷 인물 ${i+1} 가로 위치`} type="range" min="5" max="95" value={actor.xAnchor??(actor.position==='center'?50:stage.leftActors.some(a=>a.key===actor.key)?25:75)} onChange={e=>update(actor.key,{xAnchor:Number(e.target.value)})}/></label>
+  <label>가로 위치 · {x}%<input aria-label={`${index+1}컷 인물 ${i+1} 가로 위치`} type="range" min="5" max="95" value={x} onChange={e=>update(actor.key,{xAnchor:Number(e.target.value)})}/></label>
   <label>배치 위치<select aria-label={`${index+1}컷 인물 ${i+1} 배치 위치`} value={actor.position==='center'?'center':stage.leftActors.some(a=>a.key===actor.key)?'left':'right'} onChange={e=>move(actor,e.target.value as 'left'|'center'|'right')}><option value="left" disabled={!stage.leftActors.some(a=>a.key===actor.key)&&stage.leftActors.length>=2}>왼쪽</option><option value="center">중앙</option><option value="right" disabled={!stage.rightActors.some(a=>a.key===actor.key)&&stage.rightActors.length>=2}>오른쪽</option></select></label>
   <label>방향<select aria-label={`${index+1}컷 인물 ${i+1} 방향`} value={actor.facing??'auto'} onChange={e=>update(actor.key,{facing:e.target.value==='auto'?undefined:e.target.value as StageActorEntry['facing']})}><option value="auto">자료 기본 방향</option><option value="original">원본 방향</option><option value="left">왼쪽 보기</option><option value="right">오른쪽 보기</option></select></label>
-  <label>크기<input aria-label={`${index+1}컷 인물 ${i+1} 크기`} type="range" min="50" max="140" value={Math.round((actor.scaleMultiplier??1)*100)} onChange={e=>update(actor.key,{scaleMultiplier:Number(e.target.value)/100})}/></label><button type="button" onClick={()=>remove(actor.key)}>인물 {i+1} 빼기</button>
- </section>)}{actors.length<4&&<AssetPickerField label={`${index+1}컷 인물 추가`} type="character" value="" chapterAssetIds={chapterAssetIds} onChange={add}/>}</div>;
+  <label>크기 · {scale}%<input aria-label={`${index+1}컷 인물 ${i+1} 크기`} type="range" min="50" max="140" value={scale} onChange={e=>update(actor.key,{scaleMultiplier:Number(e.target.value)/100})}/></label><button type="button" onClick={()=>remove(actor.key)}>인물 {i+1} 빼기</button>
+ </section>;})}{actors.length<4&&<div className={styles.characterAdd}><AssetPickerField label={`${index+1}컷 인물 추가`} type="character" value="" chapterAssetIds={chapterAssetIds} onChange={add}/></div>}</div>;
 }
 
 function ActorMotionEditors({stage,index,onChange}:{stage:StageComposition;index:number;onChange:(stage:StageComposition)=>void}){
  const update=(key:string,motion:StageActorEntry['motion'])=>onChange({...stage,leftActors:stage.leftActors.map(a=>a.key===key?{...a,motion}:a),rightActors:stage.rightActors.map(a=>a.key===key?{...a,motion}:a)});
- return <>{[...stage.leftActors,...stage.rightActors].map((actor,i)=><fieldset key={actor.key}><legend>인물 {i+1} 동작</legend><label>동작<select aria-label={`${index+1}컷 인물 ${i+1} 동작`} value={actor.motion?.type??''} onChange={event=>update(actor.key,event.target.value?{type:event.target.value as NonNullable<StageActorEntry['motion']>['type'],durationMs:600,delayMs:0}:undefined)}><option value="">바로 표시</option><option value="fade-in">서서히 등장</option><option value="fade-out">서서히 퇴장</option><option value="move">지정 위치에서 이동</option></select></label>{actor.motion&&<><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 시간`} valueMs={actor.motion.durationMs??600} onChange={durationMs=>update(actor.key,{...actor.motion!,durationMs})}/><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 대기`} valueMs={actor.motion.delayMs??0} onChange={delayMs=>update(actor.key,{...actor.motion!,delayMs})}/>{actor.motion.type==='move'&&<label>출발 가로 위치<input type="range" min="5" max="95" aria-label={`${index+1}컷 인물 ${i+1} 출발 위치`} value={actor.motion.fromXAnchor??50} onChange={event=>update(actor.key,{...actor.motion!,fromXAnchor:Number(event.target.value)})}/></label>}</>}</fieldset>)}</>;
+ return <>{[...stage.leftActors,...stage.rightActors].map((actor,i)=><fieldset key={actor.key}><legend>인물 {i+1} 동작</legend><label>동작<select aria-label={`${index+1}컷 인물 ${i+1} 동작`} value={actor.motion?.type??''} onChange={event=>update(actor.key,actorMotionChoice(actor.motion,event.target.value as NonNullable<StageActorEntry['motion']>['type']|''))}><option value="">바로 표시</option><option value="fade-in">서서히 등장</option><option value="fade-out">서서히 퇴장</option><option value="move">지정 위치에서 이동</option></select></label>{actor.motion&&<><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 시간`} valueMs={actor.motion.durationMs??600} onChange={durationMs=>update(actor.key,{...actor.motion!,durationMs})}/><SecondsInput label={`${index+1}컷 인물 ${i+1} 동작 대기`} valueMs={actor.motion.delayMs??0} onChange={delayMs=>update(actor.key,{...actor.motion!,delayMs})}/>{actor.motion.type==='move'&&<label>출발 가로 위치<input type="range" min="5" max="95" aria-label={`${index+1}컷 인물 ${i+1} 출발 위치`} value={actor.motion.fromXAnchor??50} onChange={event=>update(actor.key,{...actor.motion!,fromXAnchor:Number(event.target.value)})}/></label>}</>}</fieldset>)}</>;
 }

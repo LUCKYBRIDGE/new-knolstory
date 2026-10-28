@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-24",
+  "scope": "Selected image visible name in asset picker accessible name",
+  "failure": "Visible selected image name omitted from action-only accessible name; direct computed-name assertion failed before fix",
+  "change": "Action plus current display name in accessible name; unique describedby hint. Inspector focus lookup uses stable action prefix. Related asset selector tests use anchored action prefix while retaining image ID/content assertions.",
+  "verification": {
+    "focused": "Image/nested dialog keyboard2 and new image-name/cancel/project-preservation1 passed in scoped run; inherited defaults/none/direct/reload regression separately passed7.4s after adapting current-cut selection to phone contract",
+    "build": "Web build:source passed",
+    "types": "Web TypeScript passed",
+    "lint": "E2E sources and changed components ESLint passed",
+    "review": "Independent read-only source review found no actionable issue",
+    "scanner": "Raw current basic scan retained; it still reports two label-content-name-mismatch findings. Not claimed as scan-zero or overall WCAG pass. Direct name includes visible primary and description verified separately.",
+    "nameAndDescription": "Final computed primary name/unique description/cancel focus/whole project test passed2.5s",
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "No physical screen-reader or voice-control run",
+    "Old selectors updated across related specs; unexecuted historic paths are not certified",
+    "Whole editor goal remains active"
+  ]
+}

@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:22334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/sound-split.spec.ts:8:1 › split a sound, undo, edit two pieces, reopen actual file and play scheduled native segments (7.1s)
+
+
+  1) tests/e2e/sound-split.spec.ts:8:1 › split a sound, undo, edit two pieces, reopen actual file and play scheduled native segments 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByTestId('editing-cut-a').getByRole('group', { name: '효과음 목록', exact: true }).getByRole('button')
+    Expected: 1
+    Received: 2
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByTestId('editing-cut-a').getByRole('group', { name: '효과음 목록', exact: true }).getByRole('button') with timeout 5000ms
+      - waiting for getByTestId('editing-cut-a').getByRole('group', { name: '효과음 목록', exact: true }).getByRole('button')
+        14 × locator resolved to 2 elements
+           - unexpected value "2"
+
+
+      17 |  const row=page.getByTestId('editing-cut-a'),list=row.getByRole('group',{name:'효과음 목록',exact:true});await row.getByLabel('조정할 소리',{exact:true}).selectOption('sounds');
+      18 |  async function split(){const control=row.locator('[data-sound-split]:visible');if(!await control.evaluate(el=>(el as HTMLDetailsElement).open))await control.locator(':scope>summary').click();await row.getByLabel('1번 효과음 나눌 원본 위치 (초)',{exact:true}).fill('0.8');await row.getByLabel('1번 효과음 나눌 원본 위치 (초)',{exact:true}).press('Enter');await row.getByRole('button',{name:'이 위치에서 둘로 나누기',exact:true}).click();}
+    > 19 |  await row.locator('[data-sound-split]:visible>summary').click();await row.getByLabel('1번 효과음 나눌 원본 위치 (초)',{exact:true}).fill('2');await row.getByLabel('1번 효과음 나눌 원본 위치 (초)',{exact:true}).press('Enter');await row.getByRole('button',{name:'이 위치에서 둘로 나누기',exact:true}).click();await expect(list.getByRole('button')).toHaveCount(1);await expect(row.getByRole('alert')).toBeVisible();
+         |                                                                                                                                                                                                                                                                                                                            ^
+      20 |  await split();await expect(list.getByRole('button')).toHaveCount(2);await expect(list.getByRole('button').nth(1)).toHaveAttribute('aria-pressed','true');
+      21 |  await expect(row.getByLabel('2번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('0.8');
+      22 |  const stored=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sound-split.spec.ts:19:316
+
+    Error Context: test-results-sound-split-invalid-red-v2/sound-split-split-a-sound--4fecc-y-scheduled-native-segments/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-sound-split-invalid-red-v2/sound-split-split-a-sound--4fecc-y-scheduled-native-segments/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-sound-split-invalid-red-v2/sound-split-split-a-sound--4fecc-y-scheduled-native-segments/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/sound-split.spec.ts:8:1 › split a sound, undo, edit two pieces, reopen actual file and play scheduled native segments 

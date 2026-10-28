@@ -1,0 +1,73 @@
+.timeline,.details{min-width:0;min-height:0;max-width:100%;color:var(--ink);word-break:keep-all;overflow-wrap:anywhere}
+.timeline{display:flex;flex-direction:column;gap:6px;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--paper);padding:8px}
+.toolbar,.detailHeading{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;min-width:0}
+.toolbar strong,.detailHeading strong{font-size:14px;line-height:1.5}
+.navigation,.viewTools{display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-width:0}
+.timeline button,.details button,.timeline select,.details select{min-height:44px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);color:var(--ink);font:inherit;font-size:12px;line-height:1.4;padding:6px 8px;cursor:pointer}
+.timeline button:disabled,.details button:disabled{cursor:default;opacity:.5}
+.timeline button:focus-visible,.details button:focus-visible,.timeline select:focus-visible,.details select:focus-visible,.viewport:focus-visible,.viewSettings>summary:focus-visible{outline:2px solid var(--mint-strong);outline-offset:2px}
+.navigation button:first-child,.navigation button:last-child,.viewTools>button{min-width:44px}
+.viewTools>label{display:flex;gap:4px;align-items:center;font-size:12px}
+.viewTools select{width:80px}
+.viewSettings{position:relative;margin-left:auto;font-size:12px}
+.viewSettings>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;padding:6px 8px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white)}
+.viewSettings>div{padding:8px 0;max-width:300px}
+.viewSettings label{display:flex;gap:6px;align-items:center;min-height:44px}
+.viewSettings input{width:18px!important;height:18px;min-width:18px}
+.viewSettings p,.hint,.sourceNote,.chapterSource p{margin:0;font-size:12px;line-height:1.6}
+.hint{color:var(--ink-soft)}
+.viewport{overflow:auto;overscroll-behavior:contain;min-height:120px;max-height:310px;height:310px;max-width:100%;min-width:0;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);touch-action:pan-x pan-y;position:relative;isolation:isolate;scrollbar-gutter:stable}
+.viewport[data-hand=true]{cursor:grab;user-select:none}
+.viewport[data-hand=true]:active{cursor:grabbing}
+.grid{min-width:100%;position:relative}
+.ruler{display:flex;position:sticky;top:0;z-index:4;background:var(--paper);height:44px;border-bottom:1px solid var(--line)}
+.corner{position:sticky;left:0;z-index:5;flex:0 0 92px;display:flex;align-items:center;padding:6px 8px;background:var(--paper);font-size:12px;border-right:1px solid var(--line)}
+.cutRuler{display:flex;flex:1}
+.cutRuler>button{flex-shrink:0;border:0;border-right:1px solid var(--line);border-radius:0;background:var(--paper)}
+.cutRuler>button[aria-current=step]{background:var(--mint-soft,var(--paper));box-shadow:inset 0 -3px var(--mint-strong);font-weight:bold}
+.row{display:flex;min-height:58px;border-bottom:1px solid var(--line);position:relative}
+.rowLabel{position:sticky;left:0;z-index:3;flex:0 0 92px;width:92px!important;max-width:92px;text-align:left;border-width:0 1px 0 0!important;border-radius:0!important;align-self:stretch;background:var(--paper)!important}
+.rowLabel[aria-pressed=true]{box-shadow:inset 3px 0 var(--mint-strong);font-weight:bold}
+.track{position:relative;flex-shrink:0;min-height:58px;background-image:linear-gradient(to right,transparent calc(100% - 1px),var(--line) 1px)}
+.trackHeight{display:block;pointer-events:none}
+.currentCut{position:absolute;top:0;bottom:0;background:var(--mint-soft,var(--paper));opacity:.55;pointer-events:none}
+.entry{position:absolute;display:flex;flex-direction:column;justify-content:center;gap:1px;min-height:44px;height:44px;text-align:left;border-color:var(--mint-strong)!important;background:var(--paper)!important;overflow:hidden;white-space:nowrap;max-width:none!important}
+.entry>span,.entry>small{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+.entry>small{font-size:10px;color:var(--ink-soft)}
+.entry[aria-pressed=true]{box-shadow:inset 3px 0 var(--mint-strong);background:var(--white)!important}
+.empty{position:absolute;left:8px;top:18px;font-size:12px;color:var(--ink-soft)}
+.details{display:flex;flex-direction:column;gap:8px;overflow:auto;padding:8px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white)}
+.detailHeading{border-bottom:1px solid var(--line);padding-bottom:6px}
+.targetSelect{display:grid;gap:4px;min-width:0;font-size:12px}
+.targetSelect select{width:100%;min-width:0}
+.chapterSource{display:grid;gap:8px}
+@media(max-width:600px){.viewport{height:260px;max-height:260px}.timeline,.details{padding:6px}.viewSettings{margin-left:0}.entry>span{font-size:11px}.details{max-height:420px}}
+@media(max-height:480px) and (min-width:601px){.viewport{height:180px;max-height:180px}}
+
+.viewport{flex:1;min-height:60px;height:auto;max-height:none}
+@media(max-width:700px){.timeline>.hint{display:none}.toolbar>strong{font-size:12px}.viewTools{gap:3px}.viewTools>button{padding:5px}.viewTools select{width:80px}.viewTools>label{font-size:11px}.viewSettings>summary{padding:5px}.viewSettings>div{position:absolute;right:0;top:100%;z-index:8;background:var(--paper);padding:8px;min-width:220px;border:1px solid var(--line)}.viewport{height:auto;max-height:none}}
+@media(max-height:500px) and (min-width:701px){.timeline>.hint,.toolbar>strong{display:none}.toolbar{position:absolute;right:8px;top:8px}.viewTools{padding-right:145px;flex-wrap:nowrap}.viewTools>label{flex-shrink:0}.viewTools>button{min-width:32px;padding:4px}.viewSettings>summary{padding:4px}.timeline{position:relative}.viewport{min-height:44px}.viewSettings>div{position:absolute;right:0;z-index:8;min-width:230px;background:var(--paper);border:1px solid var(--line);padding:8px}}
+
+.viewport[data-range-editing=true] .entry{touch-action:none;cursor:ew-resize}
+.details [data-combined-range-tools]>summary{min-height:44px;cursor:pointer;padding:8px 0}.details [data-combined-range-tools] fieldset{display:grid;gap:8px;min-width:0;margin:0}.details [data-combined-range-tools] label{display:grid;gap:4px}.details [data-combined-range-tools] small{font-size:12px;line-height:1.5}
+
+@media(max-height:500px) and (min-width:701px){.timeline[data-time-view=true] .toolbar{position:static;justify-content:space-between}.timeline[data-time-view=true] .viewTools{padding-right:0}.timeline[data-time-view=true] .navigation{margin-left:auto}}
+
+.shortTimeZoom{display:none}
+@media(max-height:500px) and (min-width:701px){.timeline[data-time-view=true] .viewTools{display:none}.timeline[data-time-view=true] .shortTimeZoom{display:flex;align-items:center;gap:4px;font-size:11px}.shortTimeZoom select{width:80px}.timeline[data-time-view=true] .toolbar{flex-wrap:nowrap;gap:4px}}
+
+.shortTimeFit{display:none}@media(max-height:500px) and (min-width:701px){.timeline[data-time-view=true] .shortTimeFit{display:block}}
+/* Keep both cut and time toolbars in flow on short screens. */
+@media(max-height:500px) and (min-width:701px){.timeline .toolbar{position:static;right:auto;top:auto;justify-content:space-between;flex-wrap:wrap}.timeline .viewTools{padding-right:0;flex-wrap:wrap}}
+
+/* Expanded options never cover clips; each area keeps its own reachable scroll. */
+.timeline{overflow:auto;overscroll-behavior:contain}
+.toolbar,.viewTools,.timeline>.hint{flex-shrink:0}
+.viewTools{align-items:flex-start}
+.viewSettings>div{position:static!important;min-width:0!important;max-width:100%;max-height:128px;overflow:auto;overscroll-behavior:contain;padding:8px;border:1px solid var(--line);background:var(--paper)}
+.viewport{flex-shrink:0;min-height:104px}
+
+.viewSettings .spaceControl{display:grid;grid-template-columns:auto minmax(60px,1fr) auto;gap:6px;min-width:0}
+.viewSettings .spaceControl input{width:100%!important;min-width:60px;min-height:44px}
+.viewSettings .spaceControl output{white-space:nowrap}
+@media(max-height:500px) and (min-width:701px){.timeline[data-time-view=true] .viewTools{display:flex}.timeline[data-time-view=true] .viewTools>label,.timeline[data-time-view=true] .viewTools>button{display:none}}

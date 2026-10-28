@@ -1,0 +1,86 @@
+
+Running 11 tests using 1 worker
+
+(node:99525) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/story-loading.spec.ts:6:1 › branded waiting screen fits the stage, shows one short tip and yields to actual RenPy (5.5s)
+  ✘   2 tests/e2e/story-loading.spec.ts:39:1 › native boot uses the same character and concise random tip while preserving real engine progress (5.4s)
+(node:99662) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 tests/e2e/story-loading.spec.ts:65:1 › unavailable optional tips leave a readable boot screen and never delay the engine (2.3s)
+  ✓   4 tests/e2e/story-loading.spec.ts:76:2 › random loading can select rabbit without fetching the other story illustrations (272ms)
+  ✓   5 tests/e2e/story-loading.spec.ts:76:2 › random loading can select heungbu without fetching the other story illustrations (258ms)
+  ✓   6 tests/e2e/story-loading.spec.ts:76:2 › random loading can select seonnyeo without fetching the other story illustrations (279ms)
+  ✓   7 tests/e2e/story-loading.spec.ts:76:2 › random loading can select onggojib without fetching the other story illustrations (153ms)
+  ✓   8 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote quote-bacon-rabbit appears as one attributed short message (114ms)
+  ✓   9 tests/e2e/story-loading.spec.ts:110:2 › verified reading quote quote-descartes-heungbu appears as one attributed short message (115ms)
+  ✘  10 tests/e2e/story-loading.spec.ts:125:2 › web shows one spoiler-free message and rotates it every four seconds without changing characters (4.9s)
+(node:99680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 tests/e2e/story-loading.spec.ts:125:2 › native shows one spoiler-free message and rotates it every four seconds without changing characters (4.2s)
+
+
+  1) tests/e2e/story-loading.spec.ts:39:1 › native boot uses the same character and concise random tip while preserving real engine progress 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "/assets/loading/story-reading-still-v1.webp"
+    Received string:    "http://127.0.0.1:15401/assets/loading/seonnyeo-reading-still-v1.webp"
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      58 |   const fits=await splash.evaluate(el=>{const box=el.getBoundingClientRect(),content=el.firstElementChild!.getBoundingClientRect();return content.left>=box.left&&content.right<=box.right&&content.top>=box.top&&content.bottom<=box.bottom;});expect(fits).toBe(true);
+      59 |   await page.screenshot({path:info.outputPath('native-landscape.png')});
+    > 60 |   await page.emulateMedia({reducedMotion:'reduce'});await expect.poll(()=>character.evaluate(el=>(el as HTMLImageElement).currentSrc)).toContain(selectedTip.characterStillSrc);
+         |                                                                                                                                        ^
+      61 |  }finally{release();}
+      62 | });
+      63 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/story-loading.spec.ts:60:136
+
+    Error Context: test-results-story-loading/story-loading-native-boot--4c63a-erving-real-engine-progress/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-story-loading/story-loading-native-boot--4c63a-erving-real-engine-progress/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-story-loading/story-loading-native-boot--4c63a-erving-real-engine-progress/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/story-loading.spec.ts:125:2 › web shows one spoiler-free message and rotates it every four seconds without changing characters 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Array [
+    -   "http://127.0.0.1:15401/assets/loading/story-reading-v4.webp",
+    +   "/assets/loading/story-reading-v4.webp",
+      ]
+
+      137 |    await expect.poll(()=>text.textContent(),{timeout:5000,intervals:[100,200]}).not.toBe(first);
+      138 |    await expect(image).toHaveAttribute('src',source!);await expect(text).toHaveCount(1);
+    > 139 |    expect([...requested]).toEqual([source!]);
+          |                           ^
+      140 |    const displayed=await text.textContent();expect(tips.filter(tip=>tip.workId==='rabbit').some(tip=>displayed?.includes(tip.text))).toBe(true);
+      141 |   }finally{release();}
+      142 |  });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/story-loading.spec.ts:139:27
+
+    Error Context: test-results-story-loading/story-loading-web-shows-on-58e33-without-changing-characters/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-story-loading/story-loading-web-shows-on-58e33-without-changing-characters/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-story-loading/story-loading-web-shows-on-58e33-without-changing-characters/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/story-loading.spec.ts:39:1 › native boot uses the same character and concise random tip while preserving real engine progress 
+    tests/e2e/story-loading.spec.ts:125:2 › web shows one spoiler-free message and rotates it every four seconds without changing characters 
+  9 passed (25.1s)

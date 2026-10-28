@@ -1,0 +1,16 @@
+................F..................
+======================================================================
+FAIL: test_source_audio_range_is_non_destructive_and_identity_controls_restart (__main__.PresenterTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/presenter-unit-test.py", line 60, in test_source_audio_range_is_non_destructive_and_identity_controls_restart
+    self.assertEqual(self.music.track, '<from 0.100 to 0.900>assets/audio/rain.wav')
+AssertionError: 'assets/audio/rain.wav' != '<from 0.100 to 0.900>assets/audio/rain.wav'
+- assets/audio/rain.wav
++ <from 0.100 to 0.900>assets/audio/rain.wav
+
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.062s
+
+FAILED (failures=1)

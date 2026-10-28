@@ -1,0 +1,48 @@
+
+Running 1 test using 1 worker
+
+(node:49364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/conditional-text.spec.ts:9:1 › conditional text opt-in edits priority, conditions and undo, real file reopen and native display (12.9s)
+
+
+  1) tests/e2e/conditional-text.spec.ts:9:1 › conditional text opt-in edits priority, conditions and undo, real file reopen and native display 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByTestId('editing-cut-a').locator('[data-text-variants]').getByRole('button', { name: '조건별 글 앞으로', exact: true })
+        - locator resolved to <button disabled type="button">조건별 글 앞으로</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying click action
+          - waiting 100ms
+        18 × waiting for element to be visible, enabled and stable
+           - element is not enabled
+         - retrying click action
+           - waiting 500ms
+
+
+       7 | async function menu(p:Page){const m=p.locator('[data-work-menu]');if(!await m.evaluate(el=>(el as HTMLDetailsElement).open))await m.locator(':scope>summary').click();}
+       8 | async function setup(page:Page,file?:string){await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'conditional.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);}
+    >  9 | test('conditional text opt-in edits priority, conditions and undo, real file reopen and native display',async({page,browser},info)=>{test.setTimeout(150000);await setup(page);await expect(page.locator('[data-text-variants]')).toHaveCount(0);await menu(page);await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'점수 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('text');const row=page.getByTestId('editing-cut-a'),tools=row.locator('[data-text-variants]');await tools.locator(':scope>summary').click();await tools.getByRole('textbox',{name:'1컷 조건별 글 1번 본문',exact:true}).fill('수정한 조건별 문장');await expect.poll(async()=>(await work(page)).lines[0].textVariants[0].text).toBe('수정한 조건별 문장');await tools.getByRole('button',{name:'조건별 글 변경 취소',exact:true}).click();await expect.poll(async()=>(await work(page)).lines[0].textVariants).toEqual(project.lines[0].textVariants);await tools.getByRole('textbox',{name:'1컷 조건별 글 1번 본문',exact:true}).fill('수정한 조건별 문장');await tools.getByRole('button',{name:'조건별 글 뒤로',exact:true}).click();await expect.poll(async()=>(await work(page)).lines[0].textVariants.map((v:{id:string})=>v.id)).toEqual(['two','one']);await tools.getByRole('button',{name:'조건별 글 앞으로',exact:true}).click();await tools.getByRole('combobox',{name:'1컷 조건별 글 1번 조건 묶음',exact:true}).selectOption('any');await tools.getByRole('button',{name:'조건 추가',exact:true}).click();await expect.poll(async()=>(await work(page)).lines[0].textVariants[0].condition.terms.length).toBe(2);expect((await work(page)).lines[0].text).toBe('기본 원고');for(const viewport of [{width:1280,height:800},{width:768,height:1024},{width:390,height:844},{width:844,height:390}]){await page.setViewportSize(viewport);await tools.scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`conditional-${viewport.width}.png`)});}const authored=await work(page);await menu(page);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('conditional.knolstory');await(await download).saveAs(file);expect(parseAuthoringFile(readFileSync(file,'utf8')).project).toEqual(authored);const fresh=await browser.newContext();await setup(await fresh.newPage(),file);await fresh.close();await page.keyboard.press('Escape');await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);await expect(page.getByRole('region',{name:'이야기 무대',exact:true}).getByText('수정한 조건별 문장',{exact:true})).toBeAttached();expect(await work(page)).toEqual(authored);await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('conditional-native.png')});});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+      10 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/conditional-text.spec.ts:9:1366
+
+    Error Context: test-results-conditional-text/conditional-text-condition-5ab07-e-reopen-and-native-display/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-conditional-text/conditional-text-condition-5ab07-e-reopen-and-native-display/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-conditional-text/conditional-text-condition-5ab07-e-reopen-and-native-display/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/conditional-text.spec.ts:9:1 › conditional text opt-in edits priority, conditions and undo, real file reopen and native display 

@@ -1,0 +1,172 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-23T00:30:04.655Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "scores": [
+        {
+          "id": "trust",
+          "name": "신뢰",
+          "description": "이야기 선택의 신뢰",
+          "initial": 0
+        }
+      ],
+      "choiceMode": "simple",
+      "id": "visibility-test",
+      "title": "조건부 장면 검증",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "ch",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "decision",
+          "chapterId": "ch",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "어떻게 할까요?",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "yes",
+                "label": "도와준다",
+                "targetLineId": "optional",
+                "effects": [
+                  {
+                    "scoreId": "trust",
+                    "operation": "add",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "id": "no",
+                "label": "지나간다",
+                "targetLineId": "optional"
+              }
+            ]
+          }
+        },
+        {
+          "id": "optional",
+          "chapterId": "ch",
+          "order": 2,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "조건에서만 보이는 장면",
+          "visibility": {
+            "scores": {
+              "mode": "all",
+              "terms": [
+                {
+                  "scoreId": "trust",
+                  "operator": "gte",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "sounds": [
+              {
+                "id": "bell",
+                "assetId": "audio:sound:chime"
+              }
+            ]
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "common",
+          "chapterId": "ch",
+          "order": 3,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "다시 합류한 공통 장면",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-23T00:30:03.073Z"
+    }
+  },
+  "audioResources": []
+}

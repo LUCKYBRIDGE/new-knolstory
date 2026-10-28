@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-21",
+  "scope": "Real opt-in combined cut-range editor and existing field editors; broader editing completion remains active",
+  "implemented": [
+    "audio-direction screen requires audio and direction opt-in",
+    "current single native preview stays visible, one timeline and one selected detail editor",
+    "canonical source-order continuous audio/effect spans, exact owner and inclusive end, stop points, conditional raw cues labelled, no invented audio lengths",
+    "click entries selects original source cut and specific effect index; chapter sources open chapter settings",
+    "zoom50..400, internal horizontal/vertical scroll, stickycut ruler andlabels, keyboard arrows andhandnavigation",
+    "existing audio/direction/motion edit controls reused with same validation/undo/conditions/file semantics"
+  ],
+  "verification": {
+    "unit": {
+      "focusedModelAndPreferences": 20,
+      "workbenchStructuralRegression": 3,
+      "coverage": {
+        "statements": 97.72,
+        "branches": 87.74,
+        "functions": 90.24,
+        "lines": 100
+      },
+      "combinedModelBranches": 84.48
+    },
+    "e2e": {
+      "passed": 3,
+      "log": "combined-delivery.log",
+      "includes": [
+        "real opt-in",
+        "specific second effect selection",
+        "effect duration edit",
+        "audio stop edit at another cut",
+        "chapter default opens chapter settings",
+        "zoom and scroll do not modify manuscript",
+        "1280x800 390x844 844x390 internalviewport",
+        "actual download equals authored project",
+        "reload retains screen and authored project",
+        "actual native play and editor return",
+        "existing effectpane and independentworks isolation regressions",
+        "specific second effect selected by track bar",
+        "fresh browser actual exported file import",
+        "disabling required optional editor preserves manuscript",
+        "zoom preserves scrolled work position"
+      ],
+      "latestFollowup": "combined-owner-fix.log: full combined flow passed after owner-note guard; additional regression2 passed in combined-last.log"
+    },
+    "freshFileReopen": "passed: actual exported file reimport in a new browser context equals authored project; disabling audio leaves manuscript intact and closes combined screen",
+    "webBuild": "passed",
+    "webTypecheck": "passed",
+    "focusedLint": "passed without warnings",
+    "docs": {
+      "linkErrors": 0,
+      "retiredTerms": 0,
+      "testsPassed": 10
+    },
+    "typecheck": "all packages and server passed before UI-only owner-note guard; final web build typecheck also passed"
+  },
+  "remaining": [
+    "combined seconds-axis mode",
+    "direct track range manipulation and movable guide on combined timeline",
+    "non-destructive trim/split with explicit continuous-audio semantics",
+    "actual external Excel/Google UI for click-effect new column",
+    "physicaldevice/OS/accessibility and whole editor completion audit"
+  ],
+  "preservation": "All existing dirty changes and historical evidence preserved. Current StoryDocument fields reused. Editor screen preferences excluded from work files. No raw manuscript/legacy storage changes.",
+  "sourceSha256": {
+    "apps/web/components/story-combined-timeline.tsx": "6029228d95f4d756e2c8f94729d05ad84db06ca5dccc1dcee22200ab56b4a370",
+    "apps/web/components/story-combined-timeline.module.css": "c3d2c2edd13c93245d870a3f3e30fdd05ae233acc9a7c09abb166f186abb0e11",
+    "apps/web/lib/combined-editing-tracks.ts": "aa016b77abb6c75058eda5afa7d0d3c572ba9f2aab8a9cd6c61964de75c296f4",
+    "apps/web/lib/combined-editing-tracks.test.ts": "2e18153ae1774392afa252616a3698bfed8a62d9b8116be250290fb9c8cec936",
+    "apps/web/components/story-editing-workbench.tsx": "10d2b6ac6995c421a4b5f22d3e718db42905a2e350963363f5959cc44cc3afcd",
+    "apps/web/components/story-editing-workbench.module.css": "45542af158558de97e06f49ea414ae5f4df185c232b92f12c75e852a7c088fa0",
+    "apps/web/components/story-audio-controls.tsx": "0dc7e0c4a362fa80d0456cd48909ead9494ab1d8adc8c1d0ec3bfa469f7f4182",
+    "apps/web/components/story-direction-panel.tsx": "2d95b826dd6c3289bdd2d1c43392160c1799427f07083bba8f8c44958181e616",
+    "apps/web/components/story-effect-controls.tsx": "d2e80ff113eeadd9e534216308d6f7e628d3931e18cfddb53cb61fad856fdbe3",
+    "apps/web/lib/editor-preferences.ts": "9a30db95086642928140c5a62f3c09c11c2d1740c3e4887c35038f03817e3d74",
+    "tests/e2e/combined-editing.spec.ts": "e2f68a3e8dc65413ef4f344634a1d1ee5f1296943794e31afca87b4debe07be0"
+  }
+}

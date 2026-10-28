@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-23",
+  "scope": "Time input rejection feedback association and recovery; wholeeditorgoalactive",
+  "fixed": [
+    "Each seconds input unique errorID via useId",
+    "Rejected value input exposes aria-invalid and aria-describedby linked to exact visibleerror",
+    "Correction clears error/stateassociation; normalized/persisted time unchanged"
+  ],
+  "verification": {
+    "browser": "1focused actual editor casepassed: compositionEnter,275mscommit,99sreject,associatederror,nativepreviewreturn,expandedsearch,fileexport,correctvalueclears",
+    "types": "Webpass",
+    "lint": "relatederrors0",
+    "build": "Webproduction nativeunchanged"
+  },
+  "limits": [
+    "DOMaccessibility attributes verified, no actual screenreader audibility claim",
+    "All other score/name fields not included",
+    "Previous9native/38workbench evidence retained notrerun this followup"
+  ],
+  "sourceHashes": {
+    "apps/web/components/seconds-input.tsx": "71b551119ad0a9ecb1e0589a125c23068beca4354cab660722baedc9bd388ff4",
+    "tests/e2e/preview-context.spec.ts": "15ecfc45f7e53af8c7159f9f7cd5cdb028606c96ab3d4119aaff86d771637021",
+    "apps/web/out/index.html": "7483a9573bc06b39e4babefffabf0f4c4b8643451be9ac9d55004537cf2697fb"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-23",
+  "scope": "Editor interactions audit after conditional scene integration, whole editor goal active",
+  "fixed": [
+    "Editor range summaries indexed compressed visible replay and crashed/misassigned cuts",
+    "Combined timeline compressed hidden cuts and shifted source IDs/indices or crashed on SFX",
+    "Continuous music split across hidden source/boundary/end could lose continuation; refuse before mutation"
+  ],
+  "behavior": [
+    "Authoring projections retain every authored cut via immutable visibility-free preview; actual playback still evaluates visibility",
+    "Summaries explicitly indicate cut visibility can change playback",
+    "Existing linear split retained; conditional-visibility spans refused with explanatory message, no manuscript change"
+  ],
+  "verification": {
+    "unit": "41tests5files passed",
+    "browser": "1final scenario passed: audio/direction companion + combined timeline, fourviewports, undo display, feature toggles, actual downloadedfile/reimport",
+    "types": "Web passed",
+    "lint": "related files no errors",
+    "build": "Web source production; Runtime unchanged"
+  },
+  "limits": [
+    "Conditional cut span automatic audio splitting remains unsupported; no guessed runtime time or conditional continuation",
+    "Physicaldevice/softkeyboard/external app notverified",
+    "Whole editor requirement audit remains active"
+  ],
+  "sourceHashes": {
+    "apps/web/lib/editor-range-summaries.ts": "dde85da7a7510e1f628e0781b01896a8ccb0e54ab3faae8d077e9931991f92a9",
+    "apps/web/lib/combined-editing-tracks.ts": "a12635343a810adeed1cb493f84b7af29f200e446c59ea5fffc0a02a0436ffa4",
+    "apps/web/lib/continuous-audio-split.ts": "fd24298a3c67cad687a6d687573270b9b974bfacc93c562d62eecc2e1d369418",
+    "tests/e2e/scene-visibility.spec.ts": "9b6f2212e08ad23443736ae763380f05e15f41b1b415d6ef5d54f4117ebfd82c",
+    "apps/web/out/index.html": "c4404ab6162a78baef841993dc35b8500cf073f7e234820bb398ab8f09f661e6"
+  }
+}

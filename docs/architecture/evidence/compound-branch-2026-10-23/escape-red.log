@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/compound-branch-format.test.ts (7 tests | 1 failed | 6 skipped) 44ms
+   × roundtrips escaped literal owner IDs through whole workbook and actual XLSX 43ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/compound-branch-format.test.ts > roundtrips escaped literal owner IDs through whole workbook and actual XLSX
+Error: 선택 조건 묶음 · 구조 확인 · 연결: 장·컷·효과 순서·효과 ID·소리 종류가 정확히 같은 설정 행에 연결해 주세요.
+ ❯ issue packages/compatibility/src/authoring-workbook/stage.ts:6:84
+
+ ❯ validateBranchGroupOwners packages/compatibility/src/authoring-workbook/branch.ts:44:25
+ ❯ importAuthoringWorkbook packages/compatibility/src/authoring-workbook/index.ts:156:198
+ ❯ packages/compatibility/tests/compound-branch-format.test.ts:13:830
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 skipped (7)
+   Start at  18:20:21
+   Duration  892ms (transform 495ms, setup 0ms, import 760ms, tests 44ms, environment 0ms)
+

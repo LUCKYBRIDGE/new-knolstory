@@ -1,0 +1,6 @@
+
+> knolstory-next@ docs:check /Users/wan/ai_dev/apps/new-knolstory
+> node scripts/check-project-docs.mjs && node scripts/check-product-language.mjs
+
+Project docs: 57 active documents checked; 0 link errors. Historical evidence excluded.
+Product language: 227 current surfaces, 362 historical surfaces preserved; 0 retired-term occurrences. Semantic review remains required.

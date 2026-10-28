@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-23",
+  "scope": "Conditional scene eligibility foundation only, not integrated authoring/playback feature",
+  "progress": [
+    "Strict score/choice condition composition evaluator implemented",
+    "Unconditional true; both categories required when present; exact choice evaluator callback reused",
+    "RED then3passing unit cases, module80statement90.47branch100line; runtime-core types/lint pass"
+  ],
+  "next": [
+    "Add validated StoryLine visibility and editable workbook fields",
+    "Implement shared structural visit replay, preserving hidden IDs and filtering side effects",
+    "Integrate create/advance/back/restore, score/choice semantics, audio/effects/history and ended fallback",
+    "Editor opt-in and actual file/native/browser verification"
+  ],
+  "limits": [
+    "No persisted visibility field or UI yet",
+    "No playback skipping or history filtering yet",
+    "Whole editor goal active"
+  ]
+}

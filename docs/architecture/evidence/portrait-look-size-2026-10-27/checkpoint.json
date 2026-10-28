@@ -1,0 +1,64 @@
+{
+  "status": "focused-native-browser-and-S25-portrait-passed",
+  "trigger": "Landscape editor preview followed by portrait reading using fractured-reality look.",
+  "observed": {
+    "sceneLogicalSize": [
+      720,
+      1280
+    ],
+    "configSize": [
+      720,
+      1280
+    ],
+    "actualCrackTransformRenderSize": [
+      1280,
+      720
+    ],
+    "screenshot": "portrait-before.png"
+  },
+  "scope": "Isolated desktop Chromium viewport360x677 DPR2 with actual RenPy runtime and fixture. Not a phone or full matrix claim.",
+  "causeCandidate": "screen expression xysize uses config.screen_width/height; pinned RenPy screen analysis treats config as constant, previously proven for audio gate.",
+  "next": "After active physical soak ends and source hashes are verified, use current RuntimeScene dimensions and verify native portrait/landscape scene size, full view and editor return without changing project.",
+  "sourceModified": false,
+  "regressionDraft": {
+    "path": ".cache/portrait-crack-audit-20261027/test-draft.txt",
+    "red": "2 cases failed: initial portrait and landscape-to-portrait resize both rendered1280x720 for720x1280. Initial landscape passed its geometry before resize.",
+    "testContext": "isolated desktop browser against static server; no source or device change.",
+    "afterSoak": "promote draft into tracked suite, fix, rebuild runtime then web, rerun and inspect screenshots/whole project."
+  },
+  "fix": "RenPy screen look dimensions follow current knol_scene width and height instead of constant-folded config size.",
+  "browserValidation": "Portrait and landscape initial sizes, then opposite viewport resize: actual crack Transform sizes matched; same iframe, editor return, whole project equal; before fix two portrait cases failed.",
+  "s25": {
+    "view": {
+      "width": 360,
+      "height": 677,
+      "dpr": 4
+    },
+    "scene": [
+      720,
+      1280
+    ],
+    "crack": [
+      [
+        720,
+        1280
+      ]
+    ],
+    "testProjectId": "android-crack-1793095282047",
+    "wholeTestProjectEqual": true,
+    "preexistingWorksEqual": true,
+    "originalEditorRestorePending": true,
+    "originalEditorRestored": true
+  },
+  "limits": [
+    "Physical landscape rotation not checked",
+    "Unrelated effects not covered",
+    "30-minute run was before this candidate",
+    "Whole editor completion not claimed"
+  ],
+  "sourceSha256": {
+    "renpy/responsive-spike/game/script.rpy": "be8afb52a5c390b74056410a07c8bd849413411b6c7ec9757f28bff1cfa56c7c",
+    "tests/e2e/runtime-pixel-budget.spec.ts": "91db78c7653d1e22626846d3bd7b3f1287565a0860d9a9fc752f652be394b9d3"
+  },
+  "combinedFinalTests": 9
+}

@@ -1,0 +1,39 @@
+
+Running 1 test using 1 worker
+
+(node:12530) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/time-viewport-controls.spec.ts:8:119 › time viewport fit, zoom and reveal use visible seconds axis 390 (7.0s)
+
+
+  1) tests/e2e/time-viewport-controls.spec.ts:8:119 › time viewport fit, zoom and reveal use visible seconds axis 390 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 1
+    Received:    47
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+       8 | for(const viewport of [{width:1280,height:800},{width:390,height:844},{width:844,height:390},{width:768,height:1024}])test(`time viewport fit, zoom and reveal use visible seconds axis ${viewport.width}`,async({page},info)=>{
+       9 |  await page.setViewportSize(viewport);await setup(page);const timeline=page.locator('[data-combined-timeline]');
+    > 10 |  const region=timeline.getByRole('region',{name:'현재 컷 초 단위 작업 영역',exact:true});await timeline.getByRole('button',{name:'전체 보기',exact:true}).click();await expect.poll(()=>region.evaluate(el=>el.scrollWidth-el.clientWidth)).toBeLessThanOrEqual(1);await expect.poll(()=>stored(page)).toEqual(project);
+         |                                                                                                                                                                                                                               ^
+      11 |  const zoom=timeline.getByRole('combobox',{name:/^(시간 작업 배율|음향·연출 작업 배율)$/});await zoom.selectOption('400');await expect.poll(()=>region.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);await timeline.getByRole('button',{name:'현재 컷',exact:true}).click();await expect.poll(()=>region.evaluate(el=>el.scrollLeft)).toBe(0);
+      12 |  await region.evaluate(el=>{el.scrollLeft=200;});await timeline.getByRole('button',{name:'전체 보기',exact:true}).click();await expect.poll(()=>region.evaluate(el=>el.scrollLeft)).toBe(0);expect(await region.evaluate(el=>el.scrollWidth-el.clientWidth)).toBeLessThanOrEqual(1);await region.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath(`fit-${viewport.width}.png`)});expect(await stored(page)).toEqual(project);
+      13 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/time-viewport-controls.spec.ts:10:223
+
+    Error Context: test-results-time-viewport-phone-red/time-viewport-controls-tim-5ede9-se-visible-seconds-axis-390/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-time-viewport-phone-red/time-viewport-controls-tim-5ede9-se-visible-seconds-axis-390/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-time-viewport-phone-red/time-viewport-controls-tim-5ede9-se-visible-seconds-axis-390/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/time-viewport-controls.spec.ts:8:119 › time viewport fit, zoom and reveal use visible seconds axis 390 

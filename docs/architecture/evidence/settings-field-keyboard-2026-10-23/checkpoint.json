@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-23",
+  "scope": "Keyboard visibility of editor settings-menu chapter title and number inputs",
+  "failure": "Inputs portalled into header settings were outside keyboard detection scope; title/number focus did not activate keyboard-aware positioning",
+  "change": "Include editor system-menu fields in detection/reveal. Keep focused settings header visible and bound menu to actual visual height using CSS custom property, with internal scroll. Main editor focus behavior unchanged.",
+  "verification": {
+    "red": "Both chapter-title and chapter-number failed keyboard detection before fix",
+    "green": "2 passed1.6s after fix",
+    "actualDevice": "S25 portrait360x677, numeric keyboard visual286px; menu y4..282,input y234..278,height44 fully visible and focused",
+    "build": "Web build:source passed",
+    "lint": "Focused hook/test ESLint passed",
+    "types": "Web TypeScript passed",
+    "integration": "11 passed9.7s: title/number, speaker/nested memo, body/IME navigation, short landscape and phone/tablet screens",
+    "review": "Separate read-only review found no actionable defect in hook/CSS focus scoping",
+    "documentation": "57 active docs/227 current surfaces,0 link or retired term errors;10 docs tests passed"
+  },
+  "limits": [
+    "This extends prior focused-field scope to the editor header menu; unrelated preparation pages/native dialogs not claimed",
+    "No authored values modified in actual numeric focus check",
+    "Overall editor goal remains active"
+  ]
+}

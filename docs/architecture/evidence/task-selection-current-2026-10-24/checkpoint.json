@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-24",
+  "scope": "Current task editor navigation for phone single-cut versus large-screen multiple-cut UI",
+  "change": "Updated old regression assumptions to supported phone one-cut navigation and sufficient-height advanced landscape. Explicitly handles initial fullscreen offer; keeps full file manuscript assertions.",
+  "verification": {
+    "tests": "6 passed12.2s:390x844,844x460,768x1024,1280x800 task selection/find/navigation/file preservation;1280/800 selected-text-row focus protection",
+    "screens": [
+      "text",
+      "background",
+      "characters",
+      "audio",
+      "direction"
+    ],
+    "lint": "Focused ESLint passed, existing React discovery warning",
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Viewport regression, not new physical-device evidence",
+    "Short-phone landscape fallback covered by separate existing focused evidence",
+    "Whole editor completion remains unproven"
+  ]
+}

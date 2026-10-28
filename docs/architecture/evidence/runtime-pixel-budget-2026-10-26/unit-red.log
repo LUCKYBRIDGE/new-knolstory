@@ -1,0 +1,31 @@
+EE
+======================================================================
+ERROR: test_caps_only_pinned_import_and_preserves_fractional_density (scripts.tests.test_runtime_pixel_budget.RuntimePixelBudgetTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_runtime_pixel_budget.py", line 18, in test_caps_only_pinned_import_and_preserves_fractional_density
+    module = self.load()
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_runtime_pixel_budget.py", line 14, in load
+    SPEC.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 982, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1039, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/pixel_budget.py'
+
+======================================================================
+ERROR: test_unknown_or_duplicate_sdk_anchor_fails_before_mutation (scripts.tests.test_runtime_pixel_budget.RuntimePixelBudgetTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_runtime_pixel_budget.py", line 30, in test_unknown_or_duplicate_sdk_anchor_fails_before_mutation
+    module = self.load()
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_runtime_pixel_budget.py", line 14, in load
+    SPEC.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 982, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1039, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/wan/ai_dev/apps/new-knolstory/spikes/renpy-web/pixel_budget.py'
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (errors=2)

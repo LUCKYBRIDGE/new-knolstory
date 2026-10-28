@@ -1,4 +1,6 @@
 import {createStoryDocument,parseStoryDocument,type StoryLine,type StoryProject} from '@knolstory/story-domain';
+import {cutRangeEndReferences} from './cut-range-references';
+import {relocateChoiceConditions} from './relocate-choice-conditions';
 
 function requireCut(project:StoryProject,id:string):StoryLine {
  const line=project.lines.find(item=>item.id===id);
@@ -11,22 +13,25 @@ function validated(project:StoryProject):StoryProject {
  if(!parsed.ok)throw new Error(parsed.issues.map(issue=>issue.message).join('\n'));
  return next;
 }
-function replaceCuts(project:StoryProject,chapterId:string,cuts:StoryLine[]):StoryProject {
+function replaceCuts(project:StoryProject,chapterId:string,cuts:StoryLine[],choiceMove?:{source:StoryLine;to:string}):StoryProject {
  const numbered=cuts.map((line,index)=>({...line,order:index+1}));
- return validated({...project,lines:[...project.lines.filter(line=>line.chapterId!==chapterId),...numbered]});
+ const candidate={...project,lines:[...project.lines.filter(line=>line.chapterId!==chapterId),...numbered]};
+ return validated(choiceMove?.source.flow?.type==='choice'?relocateChoiceConditions(candidate,choiceMove.source.id,choiceMove.to,new Set(choiceMove.source.flow.options.map(option=>option.id))):candidate);
 }
 const ordered=(project:StoryProject,chapterId:string)=>project.lines.filter(line=>line.chapterId===chapterId).sort((a,b)=>a.order-b.order);
 
 /** Explicit UTF-16 textarea position, checked against graphemes. Never trim or insert text. */
 export function splitStoryCut(project:StoryProject,lineId:string,newId:string,position:number):StoryProject {
+ if(project.lines.find(line=>line.id===lineId)?.visibility||project.lines.find(line=>line.id===lineId)?.textVariants?.length)throw Error("조건별 글이 있는 컷은 먼저 조건별 글을 정리한 뒤 나눠 주세요.");
  const source=requireCut(project,lineId);
+ if(source.audio?.music?.action==='sequence'||source.audio?.ambience?.action==='sequence')throw new Error('소리를 순서대로 재생하는 시작 컷은 나눌 수 없어요. 음향 편집에서 시작 컷을 먼저 확인해 주세요.');
  if(typeof newId!=='string'||!newId.trim()||project.lines.some(line=>line.id===newId))throw new Error('새 컷의 ID를 확인해 주세요.');
  const boundary=Number.isInteger(position)&&position>0&&position<source.text.length&&
   [...new Intl.Segmenter('ko',{granularity:'grapheme'}).segment(source.text)].some(segment=>segment.index===position);
  if(!boundary)throw new Error('글 안에서 나눌 위치를 골라 주세요. 한 글자나 이모지 중간에서는 나눌 수 없어요.');
  const first={...source,text:source.text.slice(0,position),flow:undefined,ending:undefined};
  const second={...structuredClone(source),id:newId,text:source.text.slice(position)};
- return replaceCuts(project,source.chapterId,ordered(project,source.chapterId).flatMap(line=>line.id===lineId?[first,second]:[line]));
+ return replaceCuts(project,source.chapterId,ordered(project,source.chapterId).flatMap(line=>line.id===lineId?[first,second]:[line]),{source,to:newId});
 }
 function targets(line:StoryLine,id:string):boolean {
  return line.flow?.type==='choice'?line.flow.options.some(option=>option.targetLineId===id):line.flow?.type==='goto'&&(line.flow.targetLineId===id||Boolean(line.flow.routes?.some(route=>route.targetLineId===id)));
@@ -37,11 +42,13 @@ function settings(line:StoryLine):Record<string,unknown> {
 }
 /** Keep the earlier identity and append verbatim; reject any removed entry point or staging cue. */
 export function mergeStoryCuts(project:StoryProject,firstId:string,secondId:string):StoryProject {
+ if(project.lines.some(line=>(line.id===firstId||line.id===secondId)&&(line.visibility||line.textVariants?.length)))throw Error("조건별 글이 있는 컷은 먼저 조건별 글을 정리한 뒤 합쳐 주세요.");
  const first=requireCut(project,firstId),second=requireCut(project,secondId);
  const cuts=ordered(project,first.chapterId),index=cuts.findIndex(line=>line.id===firstId);
  if(first.chapterId!==second.chapterId||cuts[index+1]?.id!==secondId)throw new Error('같은 장에서 바로 다음에 있는 컷만 합칠 수 있어요.');
  if(first.ending||first.flow&&(first.flow.type!=='goto'||first.flow.targetLineId!==secondId||Boolean(first.flow.routes?.length)))throw new Error('앞 컷에 선택지·다른 연결·엔딩이 있어 합칠 수 없어요.');
  if(project.lines.some(line=>line.id!==firstId&&targets(line,secondId)))throw new Error('뒤 컷으로 들어오는 연결이 있어 합칠 수 없어요. 연결을 먼저 확인해 주세요.');
+ if(cutRangeEndReferences(project,secondId).length)throw new Error('이 컷에서 끝나는 음향·연출 구간이 있어 합칠 수 없어요. 구간의 끝을 먼저 확인해 주세요.');
  if(project.continuation?.lineId===secondId)throw new Error('뒤 컷이 이어쓰기 시작점이어서 합칠 수 없어요.');
  if(project.creativeMemos.some(memo=>memo.linkedLineId===secondId||memo.linkedLineIds?.includes(secondId)))throw new Error('뒤 컷에 연결된 창작 메모가 있어 합칠 수 없어요. 메모의 연결을 먼저 확인해 주세요.');
  const creation=project.source?.kind==='baseEdition'?project.source.linearCreation:undefined;
@@ -50,5 +57,5 @@ export function mergeStoryCuts(project:StoryProject,firstId:string,secondId:stri
  if(JSON.stringify(settings(first))!==JSON.stringify(settings(second)))throw new Error('화자·무대·메모 설정이 서로 달라 합칠 수 없어요. 두 컷의 설정을 먼저 확인해 주세요.');
  if(first.text.length+second.text.length>20000)throw new Error('한 컷의 글은 20,000자 이내로 합칠 수 있어요.');
  const merged={...first,text:first.text+second.text,flow:second.flow,ending:second.ending};
- return replaceCuts(project,first.chapterId,cuts.flatMap(line=>line.id===firstId?[merged]:line.id===secondId?[]:[line]));
+ return replaceCuts(project,first.chapterId,cuts.flatMap(line=>line.id===firstId?[merged]:line.id===secondId?[]:[line]),{source:second,to:firstId});
 }

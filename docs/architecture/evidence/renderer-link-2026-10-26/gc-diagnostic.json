@@ -1,0 +1,22 @@
+{
+  "scope": "One explicitly requested diagnostic CDP garbage collection; not natural steady state or30minute pass. PID linked by local host/runtime trace markers.",
+  "before": {
+    "pid": 28679,
+    "VmRSSKb": 1069508,
+    "RssAnonKb": 968668,
+    "RssFileKb": 81176,
+    "RssShmemKb": 19664,
+    "VmSwapKb": 927424,
+    "wasmLinearCapacityBytes": 289996800
+  },
+  "after": {
+    "pid": 28679,
+    "VmRSSKb": 1004196,
+    "RssAnonKb": 903356,
+    "RssFileKb": 81176,
+    "RssShmemKb": 19664,
+    "VmSwapKb": 972668,
+    "wasmLinearCapacityBytes": 289996800
+  },
+  "wholeProjectEqual": true
+}

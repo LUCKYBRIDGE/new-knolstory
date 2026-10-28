@@ -1,0 +1,19 @@
+{
+  "status": "focused-host-passed",
+  "issue": "Cut music action inherited32px common chrome height.",
+  "change": "Audio controls subtree --chrome-control-height44px restores local input/select/button intent;18px checkbox graphic rules preserved.",
+  "red": ".cache/audio-height-20261028-red.log",
+  "final": ".cache/audio-height-20261028-final.log",
+  "result": "3host tests one run: action/search/volume44px and full stored workspace unchanged, invalid source-end shortcut protection, integrated author create/export/fresh-context reopen.",
+  "build": ".cache/audio-height-20261028-build.log",
+  "lint": ".cache/audio-height-20261028-lint.log",
+  "review": "Independent read-only review no blocker; variables scoped to audio fieldset.",
+  "limits": [
+    "New height check blocks runtime, no new listening/native audio/device or OS chooser proof.",
+    "Interactive ego10 missing, replacement question pending."
+  ],
+  "sourceSha256": {
+    "apps/web/components/audio-controls.module.css": "6e08304baee509fb18e5f343a646dc67cee8276a4809f32664105f3ef87e1216",
+    "tests/e2e/audio-source-range.spec.ts": "79ea70b20be9541e4df6b30a33ac03f3185d0cc28e8a77965254976f5453bee2"
+  }
+}

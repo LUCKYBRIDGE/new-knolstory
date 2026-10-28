@@ -2,6 +2,8 @@
 
 차세대 놀스토리 공식 개발 저장소.
 
+짧은 작품을 직접 만들어 보려면 [처음 만드는 놀스토리](docs/architecture/editor-first-creation-guide.md)를 참고하세요. 현재 개발 중인 편집화면의 만들기·편집·재생·로컬 작품 파일 저장·다시 열기 순서입니다.
+
 - Legacy reference: `LUCKYBRIDGE/story-maker` (feature-frozen)
 - Legacy baseline: `18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b`
 - Successor repository: `LUCKYBRIDGE/new-knolstory`

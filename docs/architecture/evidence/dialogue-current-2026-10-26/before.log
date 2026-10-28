@@ -1,0 +1,40 @@
+.E......E....E...E....
+======================================================================
+ERROR: test_body_input_and_keyboard_do_not_skip_final_choices (scripts.tests.test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 375, in test_body_input_and_keyboard_do_not_skip_final_choices
+    context['knol_text_input']('advanceRequested')
+  File "<string>", line 6, in knol_text_input
+NameError: name 'knol_effect_step_pending' is not defined
+
+======================================================================
+ERROR: test_final_page_advance_hit_area_stays_inside_reserved_nav_row (scripts.tests.test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 395, in test_final_page_advance_hit_area_stays_inside_reserved_nav_row
+    advance = script.split('if not knol_scene.get("transitionOnly") and not knol_scene.get("choices") and not knol_scene.get("ended") and knol_text_page ==', 1)[1].split('            if knol_transition_active', 1)[0]
+IndexError: list index out of range
+
+======================================================================
+ERROR: test_page_advance_keeps_native_audio_and_transition_input_guards (scripts.tests.test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 351, in test_page_advance_keeps_native_audio_and_transition_input_guards
+    context['knol_text_input']('advanceRequested')
+  File "<string>", line 6, in knol_text_input
+NameError: name 'knol_effect_step_pending' is not defined
+
+======================================================================
+ERROR: test_popup_waits_for_final_page_audio_and_transition_before_taking_focus (scripts.tests.test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 457, in test_popup_waits_for_final_page_audio_and_transition_before_taking_focus
+    self.assertTrue(context['knol_choices_visible']())
+  File "<string>", line 4, in knol_choices_visible
+NameError: name 'knol_effect_step_pending' is not defined
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.182s
+
+FAILED (errors=4)

@@ -1,0 +1,17 @@
+
+Running 10 tests using 1 worker
+
+(node:96918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 1440x900 (1.4s)
+  ✓   2 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 768x1024 (1.3s)
+  ✓   3 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 390x844 (1.3s)
+  ✓   4 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 844x390 (1.3s)
+  ✓   5 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 320x568 (1.3s)
+  ✓   6 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 720x320 (1.3s)
+  ✓   7 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 721x320 (1.3s)
+  ✓   8 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 390x320 (1.3s)
+  ✓   9 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 844x240 (1.3s)
+  ✓  10 tests/e2e/editor-settings-bounds.spec.ts:5:257 › expanded settings fit available viewport at 390x200 (1.3s)
+
+  10 passed (13.5s)

@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  4 passed (4)
+      Tests  26 passed (26)
+   Start at  18:22:27
+   Duration  1.57s (transform 807ms, setup 0ms, import 973ms, tests 1.66s, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   94.44 |    89.47 |     100 |     100 |                   
+ ...dition-edit.ts |   94.44 |    89.47 |     100 |     100 | 10,20             
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 94.44% ( 17/18 )
+Branches     : 89.47% ( 17/19 )
+Functions    : 100% ( 8/8 )
+Lines        : 100% ( 11/11 )
+================================================================================

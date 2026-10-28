@@ -12,22 +12,22 @@ test('native history includes the displayed page but never later pages of the cu
  const first=JSON.parse((await status.getAttribute('data-dialogue-page'))!);expect(first.index).toBe(0);expect(first.count).toBeGreaterThan(2);
  let dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);
  expect(first.endOffset).toBeGreaterThan(0);expect(first.endOffset).toBeLessThan(Array.from(manuscript).length);
- await expect(dialog.locator('ol li').last()).toContainText(Array.from(manuscript).slice(0,first.endOffset).join(''));
+ await expect(dialog.locator('[data-reader-current-script] li').last()).toContainText(Array.from(manuscript).slice(0,first.endOffset).join(''));
  await page.screenshot({path:info.outputPath('first-page-history.png')});await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  const next=page.getByRole('button',{name:'다음으로',exact:true});await expect(next).toBeEnabled();await next.focus();await next.press('Enter');
  await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).index).toBe(1);
  const second=JSON.parse((await status.getAttribute('data-dialogue-page'))!);expect(second.endOffset).toBeGreaterThan(first.endOffset);
- dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);await expect(dialog.locator('ol li').last()).toContainText(Array.from(manuscript).slice(0,second.endOffset).join(''));
+ dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);await expect(dialog.locator('[data-reader-current-script] li').last()).toContainText(Array.from(manuscript).slice(0,second.endOffset).join(''));
  await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  await page.getByRole('button',{name:'빠른 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'빠른 저장 완료'})).toBeVisible();
  await page.setViewportSize({width:390,height:844});await expect(status).toHaveAttribute('data-engine-width','720');await rendered(page);const resized=JSON.parse((await status.getAttribute('data-dialogue-page'))!);
- dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);await expect(dialog.locator('ol li').last()).toContainText(Array.from(manuscript).slice(0,resized.endOffset).join(''));
+ dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);await expect(dialog.locator('[data-reader-current-script] li').last()).toContainText(Array.from(manuscript).slice(0,resized.endOffset).join(''));
  await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  await page.getByRole('button',{name:'설정',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'빠른 불러오기',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'확인',exact:true}).click();await rendered(page);
  await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).offset).toBe(second.offset);
- const restored=JSON.parse((await status.getAttribute('data-dialogue-page'))!);dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);await expect(dialog.locator('ol li').last()).toContainText(Array.from(manuscript).slice(0,restored.endOffset).join(''));
- await dialog.getByRole('button',{name:'이 지점부터 다시 읽기',exact:true}).last().click();await page.getByRole('dialog').getByRole('button',{name:'확인',exact:true}).click();await rendered(page);
- await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).index).toBe(0);dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+ const restored=JSON.parse((await status.getAttribute('data-dialogue-page'))!);dialog=await history(page);await expect(dialog).not.toContainText(unreadSentence);await expect(dialog.locator('[data-reader-current-script] li').last()).toContainText(Array.from(manuscript).slice(0,restored.endOffset).join(''));
+ await expect(dialog.locator('[data-player-history-index]')).toHaveCount(0);await expect(dialog.getByRole('button',{name:'이 지점부터 다시 읽기',exact:true})).toHaveCount(0);await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+ await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).offset).toBe(second.offset);
  // Reading and backlog display must never alter authored content.
  expect(await page.evaluate(raw=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project.lines[0].text===JSON.parse(raw!).document.project.lines[0].text,original)).toBe(true);
 });

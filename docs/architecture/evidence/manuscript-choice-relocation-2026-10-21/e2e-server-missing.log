@@ -1,0 +1,68 @@
+
+Running 2 tests using 1 worker
+
+(node:93744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains yes native result, file reopen and merge (218ms)
+(node:93754) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains no native result, file reopen and merge (86ms)
+
+
+  1) tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains yes native result, file reopen and merge 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+       7 | async function rendered(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);}
+       8 | async function load(page:Page,file?:string){
+    >  9 |  await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();
+         |                                                        ^
+      10 |  await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'choices.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-21T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
+      11 |  const menu=page.locator('[data-work-menu]');if(await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+      12 | }
+        at load (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-choice-relocation.spec.ts:9:56)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-choice-relocation.spec.ts:15:26
+
+    Error Context: test-results-manuscript-choice-v2/manuscript-choice-relocati-fc491-esult-file-reopen-and-merge/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-manuscript-choice-v2/manuscript-choice-relocati-fc491-esult-file-reopen-and-merge/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-manuscript-choice-v2/manuscript-choice-relocati-fc491-esult-file-reopen-and-merge/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains no native result, file reopen and merge 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:15401/?view=editor
+    Call log:
+      - navigating to "http://127.0.0.1:15401/?view=editor", waiting until "load"
+
+
+       7 | async function rendered(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);}
+       8 | async function load(page:Page,file?:string){
+    >  9 |  await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();
+         |                                                        ^
+      10 |  await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'choices.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-21T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
+      11 |  const menu=page.locator('[data-work-menu]');if(await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+      12 | }
+        at load (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-choice-relocation.spec.ts:9:56)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/manuscript-choice-relocation.spec.ts:15:26
+
+    Error Context: test-results-manuscript-choice-v2/manuscript-choice-relocati-54adc-esult-file-reopen-and-merge/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-manuscript-choice-v2/manuscript-choice-relocati-54adc-esult-file-reopen-and-merge/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-manuscript-choice-v2/manuscript-choice-relocati-54adc-esult-file-reopen-and-merge/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains yes native result, file reopen and merge 
+    tests/e2e/manuscript-choice-relocation.spec.ts:14:43 › split choice retains no native result, file reopen and merge 

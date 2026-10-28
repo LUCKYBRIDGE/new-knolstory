@@ -1,0 +1,48 @@
+[WebServer] (node:50368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET / HTTP/1.1" 200 -
+
+Running 2 tests using 1 worker
+
+(node:50389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/1rxi7xfjtlo95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/3n7imawhwoykw.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:05] "GET /_next/static/chunks/2lhfk7chc59-b.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:06] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:06] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:06] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:06] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:06] "GET /assets/loading/story-reading-v4.webp HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:173:31 › flow map wraps keyboard focus and returns to its opener 1280 (1.7s)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/1rxi7xfjtlo95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/3n7imawhwoykw.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /_next/static/chunks/2lhfk7chc59-b.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:00:07] "GET /assets/loading/story-reading-v4.webp HTTP/1.1" 200 -
+  ✓  2 [host] › tests/e2e/keyboard-writing-focus.spec.ts:173:31 › flow map wraps keyboard focus and returns to its opener 390 (1.6s)
+
+  2 passed (4.0s)

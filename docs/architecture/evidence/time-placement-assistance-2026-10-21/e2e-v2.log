@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:84227) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance (2.5s)
+
+
+  1) tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "assetId": "audio:sound:step",
+    -   "delayMs": 1800,
+    +   "delayMs": 500,
+        "id": "second",
+        "sourceEndMs": 400,
+        "sourceStartMs": 200,
+      }
+
+      20 |  await move();await expect(time.getByLabel('선택 항목 시작 시간 (초)',{exact:true})).toHaveValue('1.8');
+      21 |  await expect(time.getByRole('status')).toHaveText('끝을 2초 보조선에 맞췄어요.');
+    > 22 |  expect((await stored()).lines[0].audio.sounds[1]).toEqual({...project.lines[0].audio.sounds[1],delayMs:1800});
+         |                                                    ^
+      23 |  await time.getByRole('button',{name:'시간 변경 취소',exact:true}).click();
+      24 |  await move(true);await expect(time.getByLabel('선택 항목 시작 시간 (초)',{exact:true})).toHaveValue('1.78');
+      25 |  await time.getByRole('button',{name:'시간 변경 취소',exact:true}).click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/time-placement-assistance.spec.ts:22:52
+
+    Error Context: test-results-time-assistance-v2/time-placement-assistance--b0fef-respect-optional-assistance/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-time-assistance-v2/time-placement-assistance--b0fef-respect-optional-assistance/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-time-assistance-v2/time-placement-assistance--b0fef-respect-optional-assistance/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance 

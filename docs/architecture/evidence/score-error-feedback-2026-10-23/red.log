@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:22030) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/score-authoring.spec.ts:8:1 › author creates custom plot score and preserves it through file export and reload on compact screens (8.2s)
+
+
+  1) tests/e2e/score-authoring.spec.ts:8:1 › author creates custom plot score and preserves it through file export and reload on compact screens 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('region', { name: '작품 설정', exact: true }).getByRole('region', { name: '이야기 점수 설정', exact: true }).getByLabel('점수 1 시작 값', { exact: true })
+    Expected: "true"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('region', { name: '작품 설정', exact: true }).getByRole('region', { name: '이야기 점수 설정', exact: true }).getByLabel('점수 1 시작 값', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('region', { name: '작품 설정', exact: true }).getByRole('region', { name: '이야기 점수 설정', exact: true }).getByLabel('점수 1 시작 값', { exact: true })
+        14 × locator resolved to <input step="1" value="2.5" max="1000000" type="number" min="-1000000" aria-label="점수 1 시작 값"/>
+           - unexpected value "null"
+
+
+      25 |   }
+      26 |   await initial.fill('2.5');await initial.blur();
+    > 27 |   await expect(scores.getByRole('alert')).toContainText('정수를 입력');await expect(initial).toHaveAttribute('aria-invalid','true');const numberErrorId=await initial.getAttribute('aria-describedby');expect(numberErrorId).toBeTruthy();await expect(page.locator(`[id="${numberErrorId}"]`)).toContainText('현재 원고에 적용된 값은 2');
+         |                                                                                         ^
+      28 |   await initial.fill('2');await initial.blur();await expect(initial).not.toHaveAttribute('aria-invalid','true');const name=scores.getByLabel('점수 1 이름',{exact:true});await name.fill('');await name.blur();await expect(name).toHaveAttribute('aria-invalid','true');const nameErrorId=await name.getAttribute('aria-describedby');expect(nameErrorId).toBeTruthy();await expect(page.locator(`[id="${nameErrorId}"]`)).toContainText('이웃에게 나눈 횟수');await name.fill('이웃에게 나눈 횟수');await name.blur();await expect(name).not.toHaveAttribute('aria-invalid','true');await expect(scores.getByRole('alert')).toHaveCount(0);
+      29 |   await page.locator('[data-work-menu]>summary').click();
+      30 |   const downloaded=page.waitForEvent('download');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/score-authoring.spec.ts:27:89
+
+    Error Context: test-results-score-error-red/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-score-error-red/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-score-error-red/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/score-authoring.spec.ts:8:1 › author creates custom plot score and preserves it through file export and reload on compact screens 

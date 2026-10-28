@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-24",
+  "scope": "Cover editing keyboard viewport and focused field",
+  "before": "Actual S25 dialog bottom656.69 exceeded visual viewport bottom513.25; footer outside visible region",
+  "after": "Actual S25 visual350; dialog y4..346, input y216.40..283.99, cancel/apply buttons y295..339 all visible",
+  "draftPreservation": "Edited author note then cancelled; complete stored project equality confirmed",
+  "implementation": "Scoped keyboard hook for cover dialog, viewport-sized flex layout, internal field scroll, retained footer; second-frame reveal after React layout commit",
+  "verification": {
+    "red": "New cover regression failed before implementation",
+    "actualDevice": "S25 portrait author-note input, footer visibility, cancellation and whole-project equality passed",
+    "build": "Web build:source passed",
+    "review": "Separate read-only review found no actionable issue",
+    "integration": "10 focused cases repeated twice:20 passed22.5s. Scope: body/IME, short landscape, speaker, nested memo/title, settings, audio number and cover dialog.",
+    "types": "Web TypeScript passed",
+    "docs": "57 active docs/227 current surfaces checked,0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Phone short landscape advanced editing and other preparation popups remain separate",
+    "No whole-editor completion claim"
+  ]
+}

@@ -1,0 +1,43 @@
+
+Running 4 tests using 1 worker
+
+(node:9128) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/scene-visibility.spec.ts:15:32 › conditional cut actual score choice true (5.4s)
+  ✓  2 tests/e2e/scene-visibility.spec.ts:15:32 › conditional cut actual score choice false (5.1s)
+  ✓  3 tests/e2e/scene-visibility.spec.ts:22:1 › all hidden cuts end without rendering hidden content or sound (4.2s)
+  ✘  4 tests/e2e/scene-visibility.spec.ts:25:1 › scene visibility edit undo file and feature opt-in preserve manuscript (7.7s)
+
+
+  1) tests/e2e/scene-visibility.spec.ts:25:1 › scene visibility edit undo file and feature opt-in preserve manuscript 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 3
+    Received: 1
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      25 | test('scene visibility edit undo file and feature opt-in preserve manuscript',async({page},info)=>{
+      26 |  await setup(page);await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption('optional');await menu(page);const settings=page.getByText('편집 설정',{exact:true}).locator('..');if(!await settings.evaluate(el=>(el as HTMLDetailsElement).open))await settings.locator(':scope>summary').click();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'점수 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('text');const area=page.getByTestId('editing-cut-optional').locator('[data-scene-visibility]');await area.locator(':scope>summary').click();const baseline=(await state(page)).document.project;
+    > 27 |  await area.getByLabel('2컷 표시 점수 조건 조건 1 값',{exact:true}).fill('3');await expect.poll(async()=>(await state(page)).document.project.lines[1].visibility.scores.terms[0].value).toBe(3);await area.getByRole('button',{name:'컷 표시 조건 변경 취소',exact:true}).click();await expect.poll(async()=>(await state(page)).document.project.lines[1].visibility).toEqual(condition);
+         |                                                                                                                                                                                ^
+      28 |  for(const viewport of [{width:1280,height:800},{width:768,height:1024},{width:390,height:844},{width:844,height:390}]){await page.setViewportSize(viewport);await area.scrollIntoViewIfNeeded();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`visibility-editor-${viewport.width}.png`)});}
+      29 |  const authored=(await state(page)).document.project;expect({...authored,updatedAt:baseline.updatedAt}).toEqual(baseline);await menu(page);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('visibility.knolstory');await(await download).saveAs(file);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file);await confirmAuthoringImport(page);await expect.poll(async()=>(await state(page)).document.project.id).not.toBe(authored.id);const reopened=(await state(page)).document.project;expect(reopened).toEqual({...authored,id:reopened.id});
+      30 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/scene-visibility.spec.ts:27:176
+
+    Error Context: test-results-scene-second/scene-visibility-scene-vis-275f1--opt-in-preserve-manuscript/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-scene-second/scene-visibility-scene-vis-275f1--opt-in-preserve-manuscript/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-scene-second/scene-visibility-scene-vis-275f1--opt-in-preserve-manuscript/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/scene-visibility.spec.ts:25:1 › scene visibility edit undo file and feature opt-in preserve manuscript 
+  3 passed (23.3s)

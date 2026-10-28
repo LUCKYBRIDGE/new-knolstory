@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-20",
+  "scope": "첫 Web 화면·이야기 무대 준비·RenPy 부트 로딩 디자인",
+  "status": "local-focused-verified",
+  "userDecisions": [
+    "현재 놀스토리 분위기",
+    "로딩 한 번에 짧은 무작위 서비스/작품 안내 하나",
+    "기존 토끼·자라의 귀여운 재해석",
+    "투명 배경에 캐릭터만",
+    "작은 한 장 재사용·CSS 반복 동작"
+  ],
+  "content": {
+    "canonical": "apps/web/public/loading-stories.json",
+    "items": 8,
+    "selection": "한 번의 로딩에 무작위 하나; 자동 순환 없음",
+    "reference": "사용자가 지정한 로컬 pinky-ne-site 점프맵의 캐릭터·짧은 소개 구성; 해당 프로젝트 변경 없음"
+  },
+  "asset": {
+    "path": "apps/web/public/assets/loading/story-friends.webp",
+    "width": 640,
+    "height": 426,
+    "generation": "imagegen으로 기존 토끼·자라 참고해 생성·배경 제거 후 WebP 크기/압축 최적화. 기존 Asset ID·원본 교체 없음",
+    "motion": "CSS 들썩임; reduced-motion에서는 중지. 영상/GIF/연속 이미지 다운로드 없음",
+    "bytes": 52842,
+    "sha256": "356423f7fb45d870d18dcf8cfba893486afc12fb3c3772ce278b5013dcd3fccb"
+  },
+  "preservation": [
+    "StoryDocument/원고/Asset ID/Flow/진행 저장 형식 변경 없음",
+    "presplash 제거·실제 progress 값·status/error·overlay 입력 유지",
+    "소개/이미지 요청을 엔진 준비와 분리; 실패해도 준비 진행",
+    "로딩 이미지와 소개는 게임 자산 zip에 포함하지 않음"
+  ],
+  "verification": {
+    "python": {
+      "passed": 3,
+      "scope": "SDK 템플릿 교체·연결 지점 보존·예상 HTML 변경 감지"
+    },
+    "runtimeBuild": "passed; engine JS unchanged",
+    "webBuild": "passed; final compact candidate",
+    "typecheck": "passed",
+    "lint": "new loading component/test 0 errors/warnings",
+    "browser": {
+      "passed": 3,
+      "durationSeconds": 7.9,
+      "viewports": [
+        "1280x800",
+        "390x844",
+        "844x390"
+      ],
+      "checks": [
+        "single tip remains stable across viewport changes",
+        "actual character loaded and content fits",
+        "reduced-motion stops animation",
+        "engine progress value/max retained",
+        "boot ends without artificial delay",
+        "actual native input after loading",
+        "optional tip request failure allows engine startup",
+        "authored project preserved"
+      ]
+    }
+  },
+  "limits": [
+    "데스크톱 Chromium viewport emulation. 물리 기기·스크린리더·공개 배포/전체 출시 검증 아님",
+    "기존 지난기록/편집 변경과 과거 evidence 보존. 다른 기능 전체 재검증으로 확대하지 않음"
+  ]
+}

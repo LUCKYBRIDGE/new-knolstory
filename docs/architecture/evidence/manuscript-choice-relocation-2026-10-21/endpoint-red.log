@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/manuscript-choice-relocation.test.ts (5 tests | 1 failed) 18ms
+   × explains external audio/effect range endpoints before removing a merged cut 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/manuscript-choice-relocation.test.ts > explains external audio/effect range endpoints before removing a merged cut
+AssertionError: expected [Function] to throw error matching /이 컷에서 끝나는/ but got '소리 범위의 종료 컷이 없습니다.'
+
+- Expected:
+/이 컷에서 끝나는/
+
++ Received:
+"소리 범위의 종료 컷이 없습니다."
+
+ ❯ packages/runtime-core/tests/manuscript-choice-relocation.test.ts:43:51
+     41|  const split=splitStoryCut(choiceManuscript(),'a','second',6);
+     42|  const chapter={...split,chapters:split.chapters.map(ch=>({...ch,audio…
+     43|  expect(()=>mergeStoryCuts(chapter,'a','second')).toThrow(/이 컷에서 끝나는/);
+       |                                                   ^
+     44|  const cut={...split,lines:split.lines.map(l=>l.id==='b'?{...l,present…
+     45|  expect(()=>mergeStoryCuts(cut,'a','second')).toThrow(/이 컷에서 끝나는/);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  23:09:38
+   Duration  189ms (transform 62ms, setup 0ms, import 78ms, tests 18ms, environment 0ms)
+

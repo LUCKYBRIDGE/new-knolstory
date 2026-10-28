@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-23",
+  "scope": "Actual USB debugger authorization, before physical editor interaction",
+  "device": {
+    "model": "SM-S938N (Galaxy S25 Ultra)",
+    "android": "16",
+    "sdk": 36,
+    "chrome": "156.0.8078.47"
+  },
+  "observed": {
+    "adbState": "device",
+    "hostPreviewHttpStatus": 200,
+    "reversePort": 15401,
+    "devtoolsForwardPort": 19223,
+    "chromeLaunchIntent": "Activity launch returned Status: ok",
+    "localPageTargetCount": 0,
+    "windowState": "mDreamingLockscreen=true; NotificationShade focus"
+  },
+  "next": "User unlocks device and shows Chrome; then inspect only local test target and run editor interactions",
+  "limits": [
+    "USB connection success is not physical UI or touch/keyboard/file validation",
+    "No existing phone browser tab navigated, closed or cleared",
+    "No phone files or global preferences modified by agent",
+    "Phone-side security changes made by user; restore USB debugging/Auto Blocker after testing",
+    "New USB mappings must be removed after physical tests"
+  ]
+}

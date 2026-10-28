@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:24303) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/combined-editing.spec.ts:7:1 › combined opt-in, navigation, actual edits and local file roundtrip preserve manuscript (16.2s)
+  ✓  2 tests/e2e/combined-sound-time.spec.ts:5:1 › selected sound bar opens its own detail and its finite end aligns to the movable guide (3.9s)
+  ✓  3 tests/e2e/sound-split.spec.ts:8:1 › split a sound, undo, edit two pieces, reopen actual file and play scheduled native segments (7.0s)
+
+  3 passed (27.6s)

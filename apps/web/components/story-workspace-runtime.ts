@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useLayoutEffect, useReducer, useRef, useState } from "react";
 import {captureNativeSaveThumbnail} from '../lib/native-save-thumbnail';
-import {runtimeServiceAudioPaths,type RuntimeEvent,type RuntimeScene} from "@knolstory/runtime-contract";
+import {runtimeAudioPaths,runtimeServiceAudioPaths,type RuntimeEvent,type RuntimeScene} from "@knolstory/runtime-contract";
 import { fitStage } from "@knolstory/runtime-core";
 import {observeDisplaySize} from '../lib/observe-display-size';
 import {presentationPhase} from "../lib/presentation-phase";
@@ -97,6 +97,7 @@ export function useStoryRuntime(
       }
       if (
         event.type === "advanceRequested" ||
+        event.type === "backRequested" ||
         event.type === "choiceSelected" ||
         event.type === "presentationDone"
       ) {
@@ -137,7 +138,7 @@ export function useStoryRuntime(
       sendTimer.current = null;
       seq.current += 1;
       const current = latest.current;
-      const paths=[...(current.audio?.ambience?.action==='play'?[current.audio.ambience.audioPath]:[]),...(current.audio?.music.action==='play'?[current.audio.music.audioPath]:[]),...(current.audio?.sounds.map(s=>s.audioPath)??[])];
+      const paths=runtimeAudioPaths(current.audio);
       const servicePaths=runtimeServiceAudioPaths(current.audio);
       let audioResources,serviceAudioResources;
       try { audioResources=paths.some(path=>/assets\/audio\/[a-f0-9]{64}\./.test(path)) ? (await listAudioResources()).filter(r=>!confirmedResources.current.has(r.id)&&paths.some(path=>path.includes(r.id.split(':')[2]))) : [];serviceAudioResources=await serviceDelivery.current!.load(servicePaths,confirmedServicePaths.current); }
@@ -181,7 +182,7 @@ export function useStoryRuntime(
     const timer = window.setTimeout(() => updateStatus({ type: 'waiting' }), 15000);
     return () => window.clearTimeout(timer);
   }, [ready, composing, rendered, scene.revision]);
-  const audioPending=scene.mode==='play' && (scene.audio?.ambience?.action==='play'||scene.audio?.music.action==='play'||!!scene.audio?.sounds.length) && renderEvidence?.audioState?.unlocked!==true;
+  const audioPending=scene.mode==='play' && runtimeAudioPaths(scene.audio).length>0 && renderEvidence?.audioState?.unlocked!==true;
   return {
     captureThumbnail,
     presentationReady: readerPresentationReady(scene, rendered, confirmed, audioPending, runtimeStatus.failed),

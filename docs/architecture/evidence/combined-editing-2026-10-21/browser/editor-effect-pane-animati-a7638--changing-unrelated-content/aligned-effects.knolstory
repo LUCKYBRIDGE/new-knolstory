@@ -1,0 +1,102 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-21T08:34:04.815Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "effect-pane",
+      "title": "연출 순서 편집",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "a",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "first",
+          "chapterId": "a",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "변하지 않는 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "presentation": {
+            "effects": [
+              {
+                "delayMs": 0,
+                "durationMs": 600,
+                "id": "one",
+                "trigger": "scene-enter",
+                "type": "shake"
+              },
+              {
+                "delayMs": 600,
+                "durationMs": 1200,
+                "id": "two",
+                "trigger": "scene-enter",
+                "type": "flash"
+              }
+            ]
+          }
+        }
+      ],
+      "updatedAt": "2026-10-21T08:34:04.060Z"
+    }
+  },
+  "audioResources": []
+}

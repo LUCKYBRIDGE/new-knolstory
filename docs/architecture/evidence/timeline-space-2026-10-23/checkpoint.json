@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-23",
+  "scope": "Combined editor preview/timeline relative space, not whole editor completion",
+  "changes": [
+    "Space range 30..75 with keyboard Home/End/arrows and pointer",
+    "Default 50 restoration",
+    "Both cut/time views expose view settings, cut-only operations stay hidden in time view",
+    "Responsive CSS retains positive preview and independent selected-detail area",
+    "Component UI state only, no StoryDocument fields"
+  ],
+  "red": "New slider absent: timeline-space-red failed as expected",
+  "verification": {
+    "webBuild": "passed build:source",
+    "webTypecheck": "passed",
+    "focusedLint": "passed",
+    "browserNewCase": "passed across 1280x800,820x1180,390x844,844x390; actual height increases, selection/details and full stored project unchanged; orientation preserves value",
+    "regressionFirstRun": "7 passed; 4 failed only at prior expectation that all view settings hide in time view",
+    "regressionFollowup": "4 settings-access cases passed after replacing obsolete hidden-settings expectation with visible space control and hidden cut-only controls; first-run 7 and followup 4 cover 11 distinct cases, not a single green 11-case run",
+    "docs": "docs:check, test:docs 10 and git diff --check passed"
+  },
+  "limits": [
+    "No physical phone/tablet or native rendering assertion in new case",
+    "No pinch gesture yet",
+    "No arbitrary resize of internal seconds track height",
+    "No whole-product completion"
+  ],
+  "review": "Root inspected changed JSX, responsive CSS and phone/short landscape captures; delegated audit unavailable due account usage limit"
+}

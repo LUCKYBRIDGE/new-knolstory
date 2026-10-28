@@ -1,0 +1,41 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/tests/sequence-origin-move.test.ts (3 tests | 3 failed) 7ms
+   × music moves the complete sequence and starts a new origin while maintaining following cuts 4ms
+   × ambience moves the complete sequence and starts a new origin while maintaining following cuts 1ms
+   × rejects occupied destinations, invalid ends and stale undo without mutating source 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/tests/sequence-origin-move.test.ts > music moves the complete sequence and starts a new origin while maintaining following cuts
+ FAIL  packages/runtime-core/tests/sequence-origin-move.test.ts > ambience moves the complete sequence and starts a new origin while maintaining following cuts
+Error: 재생할 소리와 다른 시작 컷을 선택해 주세요.
+ ❯ moveStoryAudioStart packages/runtime-core/src/audio-start.ts:8:112
+      6| export function moveStoryAudioStart(project:StoryProject,sourceId:stri…
+      7|  const source=project.lines.find(line=>line.id===sourceId),target=proj…
+      8|  if(!['music','ambience'].includes(channel)||!source||!target||sourceI…
+       |                                                                                                                ^
+      9|  if(target.audio?.[channel]!==undefined)throw Error('도착 컷에 기존 소리 지시가 있…
+     10|  const sourceAudio=Object.fromEntries(Object.entries(source.audio!).fi…
+ ❯ packages/runtime-core/tests/sequence-origin-move.test.ts:8:208
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  packages/runtime-core/tests/sequence-origin-move.test.ts > rejects occupied destinations, invalid ends and stale undo without mutating source
+AssertionError: expected [Function] to throw error including '기존' but got '재생할 소리와 다른 시작 컷을 선택해 주세요.'
+
+Expected: "기존"
+Received: "재생할 소리와 다른 시작 컷을 선택해 주세요."
+
+ ❯ packages/runtime-core/tests/sequence-origin-move.test.ts:9:312
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed (3)
+   Start at  07:57:17
+   Duration  419ms (transform 215ms, setup 0ms, import 314ms, tests 7ms, environment 0ms)
+

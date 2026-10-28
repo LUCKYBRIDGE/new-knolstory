@@ -1,0 +1,37 @@
+{
+  "status": "focused-native-browser-and-S25-passed",
+  "problem": "Actual S25 portrait screenshot clipped audio start text; native screen gate retained1280x720 on720x1280 scene.",
+  "rootCause": "Pinned SDK screen analysis treats config as constant; knol_resize changes config afterinitialization.",
+  "change": "Audio gate xysize and content width consume current knol_scene dimensions.",
+  "validation": {
+    "correctedRed": "Portrait actual unlock Button rendered1280x720; landscape control passed. Initial query wrongscreen and callback locals corrected before valid RED.",
+    "nativeBrowserPassed": 7,
+    "seconds": 44.7,
+    "dialogueUnitPassed": 23,
+    "runtimeThenWebBuildPassed": true,
+    "scope": "DPR1.25/2/4, illustrated choice hit coordinates, portrait/landscape audio gate dimensions and two-step unlock/advance, whole project preserved"
+  },
+  "physical": {
+    "device": "S25 Ultra Chrome actual portrait360x677 DPR4",
+    "editorCanvas": "2560x1440",
+    "readerCanvas": "1440x2560",
+    "hostDprUnchanged": 4,
+    "audioEntryTextVisualReview": "Centered full stage overlay; Korean sentence fits720x1280 stage.",
+    "nativeAdbTouch": "First touch unlocks audio; next advances android-cut-0 to android-cut-1; editor restored.",
+    "wholeOriginalProjectEqual": true,
+    "preexistingWorksEqual": true,
+    "candidateGameZip": "96829316cfde6fd0",
+    "fullscreen": "DOMtrue with trusted native clicks but OS url_bar/toolbar remain. No fullscreen success claimed."
+  },
+  "unresolved": [
+    "Android DOM fullscreen true while OS addressbar remains visible even trusted native button touch; no fullscreen pass claimed.",
+    "30minute physical stability still incomplete",
+    "Actual Samsung IME candidate sequence",
+    "Adjacent fractured-reality config screen expression noted for separate actual repro"
+  ],
+  "sourceSha256": {
+    "renpy/responsive-spike/game/script.rpy": "ca39a358213c3254e694bc66b061a69276a1b3cbb05cabb1c115e409a1c982b8",
+    "tests/e2e/runtime-pixel-budget.spec.ts": "448056ddf19405f224cef96e982b223c73b023a05e0fb03d209de81e8b867236"
+  },
+  "review": "Read-only final review found no blocker."
+}

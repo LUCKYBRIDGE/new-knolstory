@@ -1,0 +1,313 @@
+
+Running 66 tests using 1 worker
+
+(node:39318) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus (3.1s)
+  ✓   2 tests/e2e/editing-workbench.spec.ts:51:1 › several cut texts edit directly and companion visibility never edits manuscript data (5.5s)
+  ✓   3 tests/e2e/editing-workbench.spec.ts:68:1 › background workbench updates separate cuts and preserves their text, stage, audio and effects (6.3s)
+  ✓   4 tests/e2e/editing-workbench.spec.ts:79:1 › audio and direction require separate opt-in, persist real cut ranges and survive local-file reopen (4.7s)
+  ✓   5 tests/e2e/editing-workbench.spec.ts:105:1 › character batch view changes placement across cuts without converting left/right speaker roles (5.7s)
+  ✓   6 tests/e2e/editing-workbench.spec.ts:127:1 › basic editing keeps previous and next cut context beside a clear current editor at desktop and phone widths (4.3s)
+  ✓   7 tests/e2e/editing-workbench.spec.ts:148:1 › multi-cut text composition keeps typing and caret stable while cut and screen navigation wait (2.4s)
+  ✘   8 tests/e2e/editing-workbench.spec.ts:177:1 › legacy advanced controls remain separately opt-in and preserve existing choices (7.3s)
+(node:39429) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 tests/e2e/editing-workbench.spec.ts:196:1 › direction edits existing actor motion while keeping one native frame and actor identities (2.5s)
+  ✓  10 tests/e2e/editing-workbench.spec.ts:209:1 › phone basic editor stacks compact context around the current landscape preview and draft (2.1s)
+  ✓  11 tests/e2e/editing-workbench.spec.ts:228:73 › editor chrome fits 360x640 while only cut list scrolls (2.3s)
+  ✓  12 tests/e2e/editing-workbench.spec.ts:228:73 › editor chrome fits 640x360 while only cut list scrolls (2.3s)
+  ✓  13 tests/e2e/editing-workbench.spec.ts:228:73 › editor chrome fits 768x1024 while only cut list scrolls (2.3s)
+  ✓  14 tests/e2e/editing-workbench.spec.ts:228:73 › editor chrome fits 1280x720 while only cut list scrolls (2.3s)
+  ✓  15 tests/e2e/editing-workbench.spec.ts:238:1 › native frame remains mounted and interactive through editor read return (2.0s)
+  ✓  16 tests/e2e/editing-workbench.spec.ts:258:1 › actual native basic preview renders landscape inside the phone center without changing manuscript (3.9s)
+  ✓  17 tests/e2e/editing-workbench.spec.ts:267:1 › editing follows modeled visible viewport shrink and pan while keeping text accessible (2.0s)
+  ✘  18 tests/e2e/editing-workbench.spec.ts:278:1 › one grouped settings menu replaces scattered editor controls (6.9s)
+(node:39480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 tests/e2e/editing-workbench.spec.ts:290:1 › library navigation is inside settings and returns to the same edited work (2.7s)
+  ✓  20 tests/e2e/editing-workbench.spec.ts:297:1 › failed recovery write keeps the editor open when library navigation is requested (1.9s)
+  ✓  21 tests/e2e/editing-workbench.spec.ts:303:1 › background fit and focus edits preserve other presentation data and reset only focus (5.6s)
+  ✓  22 tests/e2e/editing-workbench.spec.ts:309:35 › story-game system menus preserve editor and reader actions 320 (4.9s)
+  ✓  23 tests/e2e/editing-workbench.spec.ts:309:35 › story-game system menus preserve editor and reader actions 390 (4.7s)
+  ✓  24 tests/e2e/editing-workbench.spec.ts:309:35 › story-game system menus preserve editor and reader actions 1280 (4.7s)
+  ✓  25 tests/e2e/editing-workbench.spec.ts:319:1 › popup audit: import confirmation traps focus, cancels without modifying the work (1.9s)
+  ✓  26 tests/e2e/editing-workbench.spec.ts:324:51 › popup audit: image selection pending cancel stays safe 320x640 (2.5s)
+  ✓  27 tests/e2e/editing-workbench.spec.ts:324:51 › popup audit: image selection pending cancel stays safe 640x360 (2.4s)
+  ✓  28 tests/e2e/editing-workbench.spec.ts:328:1 › popup audit: term search and flow map close back to settings without changing content (2.2s)
+  ✓  29 tests/e2e/editing-workbench.spec.ts:332:1 › popup audit: cut deletion opens compact and safe cancel keeps all authored data (1.9s)
+  ✓  30 tests/e2e/editing-workbench.spec.ts:336:51 › popup audit: book details and cover draft stay bounded 320x640 (3.1s)
+  ✓  31 tests/e2e/editing-workbench.spec.ts:336:51 › popup audit: book details and cover draft stay bounded 640x360 (3.1s)
+  ✓  32 tests/e2e/editing-workbench.spec.ts:340:1 › popup audit: staging import and current flow context cancel without authoring changes (2.4s)
+  ✓  33 tests/e2e/editing-workbench.spec.ts:345:1 › popup audit: ShortStory delete cancel preserves book and page (431ms)
+  ✘  34 tests/e2e/editing-workbench.spec.ts:349:1 › popup audit: new branch preview and local-work deletion cancel safely (14.4s)
+(node:39739) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  35 tests/e2e/editing-workbench.spec.ts:353:1 › popup audit: corrupt ShortStory recovery uses explicit app confirmation and preserves original bytes (491ms)
+  ✓  36 tests/e2e/editing-workbench.spec.ts:357:1 › connection information names source chapters choices and score thresholds without altering the work (3.1s)
+  ✓  37 tests/e2e/editing-workbench.spec.ts:366:1 › score branching edits 그리고 or 또는 explicitly and keeps both score terms on file reopen (3.4s)
+  ✘  38 tests/e2e/editing-workbench.spec.ts:370:1 › speaker and choice Korean composition keep active inputs editable while blocking cut and screen changes (14.4s)
+(node:40249) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  39 tests/e2e/editing-workbench.spec.ts:383:1 › character opt-in restores speaker linking and registration without opening tools by default (4.2s)
+  ✓  40 tests/e2e/editor-context-repair.spec.ts:8:1 › motion kind preserves times and overlapping actor keys select exact native edit target (2.0s)
+  ✓  41 tests/e2e/editor-context-repair.spec.ts:14:1 › manual chapter browsing is preserved until reading returns on another chapter (5.1s)
+  ✓  42 tests/e2e/editor-effect-pane.spec.ts:7:1 › animation pane selects a single effect editor and edits timing with visible bars without changing unrelated content (7.0s)
+  ✓  43 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects choices until explicit confirmation at 390x844 (4.9s)
+  ✓  44 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects routes until explicit confirmation at 390x844 (5.0s)
+  ✓  45 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects ending until explicit confirmation at 390x844 (4.9s)
+  ✓  46 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects choices until explicit confirmation at 844x390 (4.9s)
+  ✓  47 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects routes until explicit confirmation at 844x390 (4.8s)
+  ✓  48 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects ending until explicit confirmation at 844x390 (4.8s)
+  ✓  49 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects choices until explicit confirmation at 390x320 (4.9s)
+  ✓  50 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects routes until explicit confirmation at 390x320 (4.8s)
+  ✓  51 tests/e2e/editor-flow-change-protection.spec.ts:18:151 › flow mode protects ending until explicit confirmation at 390x320 (4.8s)
+  ✓  52 tests/e2e/editor-range-overview.spec.ts:7:1 › multi-cut lists and companion views show continuing audio and effects through their inclusive end (2.2s)
+  ✓  53 tests/e2e/editor-session-preferences.spec.ts:29:1 › editor session restores screen, companion and explicit opt-ins without changing work files (13.3s)
+  ✓  54 tests/e2e/editor-session-preferences.spec.ts:47:1 › a separate work and a fresh browser session start with basic editing and closed advanced tools (4.3s)
+  ✓  55 tests/e2e/editor-session-preferences.spec.ts:66:58 › session storage corrupt keeps editor and local file usable (1.6s)
+  ✓  56 tests/e2e/editor-session-preferences.spec.ts:66:58 › session storage blocked keeps editor and local file usable (1.6s)
+  ✓  57 tests/e2e/editor-work-isolation.spec.ts:7:1 › same cut ids in independent works do not carry open direction details or draft values (3.2s)
+  ✓  58 tests/e2e/local-work-files.spec.ts:4:57 › knolstory: real downloaded work file reopens without server or previous browser storage (4.9s)
+  ✓  59 tests/e2e/local-work-files.spec.ts:4:57 › shortstory: real downloaded work file reopens without server or previous browser storage (789ms)
+  ✓  60 tests/e2e/local-work-files.spec.ts:28:1 › explicit file handle save verifies write, reuses selected file, protects external edits and allows save as (2.2s)
+  ✓  61 tests/e2e/local-work-files.spec.ts:46:1 › file association survives work settings and delayed picker stops after leaving the work (2.3s)
+  ✓  62 tests/e2e/local-work-files.spec.ts:60:1 › leaving the work while a writable file stream opens aborts before any new write (1.5s)
+  ✓  63 tests/e2e/local-work-files.spec.ts:73:1 › file permission and disk failures keep the draft, hide native details and allow a safe retry (2.2s)
+  ✘  64 tests/e2e/perspective-cue.spec.ts:19:1 › perspective cue confirms once, proceeds to real dialogue and preserves the authored manuscript (4.2s)
+(node:40567) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  65 tests/e2e/perspective-cue.spec.ts:46:1 › provided Onggojib opens with one perspective entrance and proceeds directly into its story (4.8s)
+(node:40581) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  66 tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens (13.8s)
+
+
+  1) tests/e2e/editing-workbench.spec.ts:177:1 › legacy advanced controls remain separately opt-in and preserve existing choices 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 방식', exact: true }).locator('option[value="goto"]')
+    Expected: 1
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 방식', exact: true }).locator('option[value="goto"]') with timeout 5000ms
+      - waiting for getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('combobox', { name: '진행 방식', exact: true }).locator('option[value="goto"]')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      186 |  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true}).locator('option[value="goto"]')).toHaveAttribute('disabled','');
+      187 |  await openWorkMenu(page);await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).check();await page.keyboard.press('Escape');
+    > 188 |  await expect(logic.getByRole('combobox',{name:'진행 방식',exact:true}).locator('option[value="goto"]')).toHaveCount(1);
+          |                                                                                                      ^
+      189 |  await openWorkMenu(page);await page.getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).uncheck();await page.getByRole('checkbox',{name:'분기조건 편집 사용',exact:true}).uncheck();
+      190 |  await expect(logic).toHaveCount(0);await page.keyboard.press('Escape');
+      191 |  const details=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷 상세·메모·정리'})}).first();await details.locator(':scope>summary').click();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:188:102
+
+    Error Context: test-results-editor-integration-3/editing-workbench-legacy-a-e8121-d-preserve-existing-choices/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-editor-integration-3/editing-workbench-legacy-a-e8121-d-preserve-existing-choices/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-editor-integration-3/editing-workbench-legacy-a-e8121-d-preserve-existing-choices/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/editing-workbench.spec.ts:278:1 › one grouped settings menu replaces scattered editor controls 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('main[data-keyboard-occluded]>header').locator(':scope>button')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('main[data-keyboard-occluded]>header').locator(':scope>button') with timeout 5000ms
+      - waiting for locator('main[data-keyboard-occluded]>header').locator(':scope>button')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      278 | test('one grouped settings menu replaces scattered editor controls',async({page},info)=>{
+      279 |  await page.setViewportSize({width:390,height:844});const before=await prepare(page),header=page.locator('main[data-keyboard-occluded]>header');await page.keyboard.press('Escape');
+    > 280 |  await expect(header.locator(':scope>button')).toHaveCount(0);await expect(header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeVisible();
+          |                                                ^
+      281 |  await expect(header.locator('[data-work-menu]>summary')).toHaveAccessibleName('설정');await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).not.toBeVisible();await expect(page.getByText('···',{exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'기본편집',exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'글 편집',exact:true})).toHaveCount(0);
+      282 |  expect((await header.boundingBox())!.height).toBeLessThanOrEqual(52);
+      283 |  await openWorkMenu(page);await expect(header.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).toBeVisible();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:280:48
+
+    Error Context: test-results-editor-integration-3/editing-workbench-one-grou-84baa-s-scattered-editor-controls/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-editor-integration-3/editing-workbench-one-grou-84baa-s-scattered-editor-controls/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-editor-integration-3/editing-workbench-one-grou-84baa-s-scattered-editor-controls/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/e2e/editing-workbench.spec.ts:349:1 › popup audit: new branch preview and local-work deletion cancel safely 
+
+    TimeoutError: locator.click: Timeout 12000ms exceeded.
+    Call log:
+      - waiting for locator('[data-work-menu]').locator(':scope>summary')
+        - locator resolved to <summary aria-label="설정">…</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-label="진행 방식 변경 확인" class="authoring-import-dialog-module__5cdFna__dialog story-dialog-surface-module__24ZUMW__surface">…</dialog> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <dialog open="" aria-label="진행 방식 변경 확인" class="authoring-import-dialog-module__5cdFna__dialog story-dialog-surface-module__24ZUMW__surface">…</dialog> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        22 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <dialog open="" aria-label="진행 방식 변경 확인" class="authoring-import-dialog-module__5cdFna__dialog story-dialog-surface-module__24ZUMW__surface">…</dialog> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      14 | async function openWorkMenu(page:Page){
+      15 |  const menu=page.locator('[data-work-menu]');
+    > 16 |  if(!await menu.evaluate(element=>(element as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+         |                                                                                                              ^
+      17 | }
+      18 | async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
+      19 | async function exported(page:Page){
+        at openWorkMenu (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:16:110)
+        at exported (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:20:20)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:350:542
+
+    Error Context: test-results-editor-integration-3/editing-workbench-popup-au-e0182-work-deletion-cancel-safely/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-editor-integration-3/editing-workbench-popup-au-e0182-work-deletion-cancel-safely/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-editor-integration-3/editing-workbench-popup-au-e0182-work-deletion-cancel-safely/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/e2e/editing-workbench.spec.ts:370:1 › speaker and choice Korean composition keep active inputs editable while blocking cut and screen changes 
+
+    TimeoutError: locator.focus: Timeout 12000ms exceeded.
+    Call log:
+      - waiting for getByRole('region', { name: '여러 컷 편집', exact: true }).locator('details').filter({ has: locator('summary').filter({ hasText: '현재 컷의 선택지·분기조건 편집' }) }).first().getByRole('textbox', { name: '선택지 1 문구', exact: true })
+
+
+      375 |  await settings(page);await page.getByRole('checkbox',{name:'선택지 편집 사용',exact:true}).check();await page.keyboard.press('Escape');
+      376 |  const flow=workbench(page).locator('details').filter({has:page.locator('summary',{hasText:'현재 컷의 선택지·분기조건 편집'})}).first();await flow.locator(':scope>summary').click();await flow.getByRole('combobox',{name:'진행 방식',exact:true}).selectOption('choice');
+    > 377 |  const choice=flow.getByRole('textbox',{name:'선택지 1 문구',exact:true});await choice.focus();await choice.dispatchEvent('compositionstart');await expect(choice).toBeEnabled();
+          |                                                                                   ^
+      378 |  await expect(page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeDisabled();await expect(flow.getByRole('combobox',{name:'진행 방식',exact:true})).toBeDisabled();
+      379 |  await choice.fill('조합 중인 선택 문구');await choice.dispatchEvent('compositionend');await expect(flow.getByRole('combobox',{name:'진행 방식',exact:true})).toBeEnabled();
+      380 |  const after=(await exported(page)).project;expect(after.lines[0].speakerName).toBe('한글 이름 조합');expect(after.lines[0].flow?.type).toBe('choice');if(after.lines[0].flow?.type==='choice')expect(after.lines[0].flow.options[0].label).toBe('조합 중인 선택 문구');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/editing-workbench.spec.ts:377:83
+
+    Error Context: test-results-editor-integration-3/editing-workbench-speaker--1647e-king-cut-and-screen-changes/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-editor-integration-3/editing-workbench-speaker--1647e-king-cut-and-screen-changes/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-editor-integration-3/editing-workbench-speaker--1647e-king-cut-and-screen-changes/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/e2e/perspective-cue.spec.ts:19:1 › perspective cue confirms once, proceeds to real dialogue and preserves the authored manuscript 
+
+    Error: touchscreen.tap: hasTouch must be enabled on the browser context before using the touchscreen.
+
+      27 |  await expect(status).toContainText('전환 화면에서 계속을 눌러 주세요');
+      28 |  await expect(page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})})).not.toContainText('시점 전환');
+    > 29 |  const bounds=(await frame.boundingBox())!;await page.touchscreen.tap(bounds.x+bounds.width*.2,bounds.y+bounds.height*.2);
+         |                                                                   ^
+      30 |  expect((await state(page)).playback.lineId).toBe('cue');
+      31 |  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('perspective-confirm.png')});
+      32 |  const height=Number(await status.getAttribute('data-scene-height'));
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/perspective-cue.spec.ts:29:67
+
+    Error Context: test-results-editor-integration-3/perspective-cue-perspectiv-05045-ves-the-authored-manuscript/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-editor-integration-3/perspective-cue-perspectiv-05045-ves-the-authored-manuscript/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-editor-integration-3/perspective-cue-perspectiv-05045-ves-the-authored-manuscript/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests/e2e/perspective-cue.spec.ts:46:1 › provided Onggojib opens with one perspective entrance and proceeds directly into its story 
+
+    Error: touchscreen.tap: hasTouch must be enabled on the browser context before using the touchscreen.
+
+      58 |  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('onggojib-entrance.png')});
+      59 |  const bounds=(await frame.boundingBox())!,height=Number(await status.getAttribute('data-scene-height'));
+    > 60 |  await page.touchscreen.tap(bounds.x+bounds.width*.5,bounds.y+bounds.height*(height-56)/height);
+         |                         ^
+      61 |  await expect.poll(async()=>(await state(page)).playback.lineId).not.toBe(cue);await rendered(page);
+      62 |  const mirror=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})});
+      63 |  await expect(mirror).not.toContainText('시점 전환');await expect(mirror).not.toContainText('옹고집의 시점');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/perspective-cue.spec.ts:60:25
+
+    Error Context: test-results-editor-integration-3/perspective-cue-provided-O-041be-eds-directly-into-its-story/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-editor-integration-3/perspective-cue-provided-O-041be-eds-directly-into-its-story/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-editor-integration-3/perspective-cue-provided-O-041be-eds-directly-into-its-story/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens 
+
+    TimeoutError: locator.click: Timeout 12000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '이야기 점수', exact: true })
+
+
+       8 |   await page.getByLabel('새 작품 제목',{exact:true}).fill('선택에 따라 쌓이는 이야기');
+       9 |   await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
+    > 10 |   if(!await page.getByRole('region',{name:'작품 설정',exact:true}).isVisible()){await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'이야기 점수',exact:true}).click();}
+         |                                                                                                                                                                                              ^
+      11 |   const preparation=page.getByRole('region',{name:'작품 설정',exact:true});
+      12 |   await expect(page.getByLabel('작품 설정 항목')).toHaveValue('scores');const scores=preparation.getByRole('region',{name:'이야기 점수 설정',exact:true});
+      13 |   await scores.getByLabel('새 점수 이름',{exact:true}).fill('이웃에게 나눈 횟수');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/score-authoring.spec.ts:10:190
+
+    Error Context: test-results-editor-integration-3/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-editor-integration-3/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-editor-integration-3/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    tests/e2e/editing-workbench.spec.ts:177:1 › legacy advanced controls remain separately opt-in and preserve existing choices 
+    tests/e2e/editing-workbench.spec.ts:278:1 › one grouped settings menu replaces scattered editor controls 
+    tests/e2e/editing-workbench.spec.ts:349:1 › popup audit: new branch preview and local-work deletion cancel safely 
+    tests/e2e/editing-workbench.spec.ts:370:1 › speaker and choice Korean composition keep active inputs editable while blocking cut and screen changes 
+    tests/e2e/perspective-cue.spec.ts:19:1 › perspective cue confirms once, proceeds to real dialogue and preserves the authored manuscript 
+    tests/e2e/perspective-cue.spec.ts:46:1 › provided Onggojib opens with one perspective entrance and proceeds directly into its story 
+    tests/e2e/score-authoring.spec.ts:6:1 › author creates custom plot score and preserves it through file export and reload on compact screens 
+  59 passed (4.6m)

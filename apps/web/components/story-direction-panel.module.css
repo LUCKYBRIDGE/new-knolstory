@@ -1,1 +1,3 @@
 .panel{min-width:0;font-size:13px}.panel>label{display:grid;gap:4px}.panel>p{font-size:12px;line-height:1.5;margin:4px 0 8px;overflow-wrap:anywhere}.panel>section{min-width:0}.panel [hidden]{display:none}
+
+.kindRow{display:flex;align-items:flex-end;gap:6px;min-width:0}.kindRow>label{display:grid;gap:4px;min-width:0;flex:1}.kindRow select{width:100%;min-width:0}

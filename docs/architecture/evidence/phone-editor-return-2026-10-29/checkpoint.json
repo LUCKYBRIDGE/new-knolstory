@@ -1,0 +1,122 @@
+{
+  "status": "physical-s25-focused-passed",
+  "device": {
+    "model": "SM-S938N",
+    "android": "17",
+    "sdk": 37,
+    "portrait": [
+      360,
+      677
+    ],
+    "landscape": [
+      748,
+      259
+    ]
+  },
+  "details": {
+    "characters": {
+      "screen": "characters",
+      "phone": "true",
+      "inputs": [
+        {
+          "name": "편집할 장",
+          "height": 44,
+          "left": 58.328125,
+          "right": 352
+        },
+        {
+          "name": "1컷 인물 1 가로 위치",
+          "height": 47.5,
+          "left": 28,
+          "right": 177
+        },
+        {
+          "name": "1컷 인물 1 배치 위치",
+          "height": 44,
+          "left": 183,
+          "right": 332
+        },
+        {
+          "name": "1컷 인물 1 방향",
+          "height": 44,
+          "left": 28,
+          "right": 177
+        },
+        {
+          "name": "1컷 인물 1 크기",
+          "height": 47.5,
+          "left": 183,
+          "right": 332
+        }
+      ],
+      "width": 360
+    },
+    "keyboard": {
+      "name": "1번 효과음 찾기",
+      "focused": true,
+      "rect": {
+        "x": 30,
+        "y": 123.03515625,
+        "width": 300,
+        "height": 44,
+        "top": 123.03515625,
+        "right": 330,
+        "bottom": 167.03515625,
+        "left": 30
+      },
+      "viewport": {
+        "top": 0,
+        "height": 350
+      },
+      "inner": [
+        360,
+        677
+      ]
+    },
+    "effectHeight": 44,
+    "wholeProjectUnchanged": true
+  },
+  "landscape": {
+    "viewport": [
+      748,
+      259
+    ],
+    "readonly": true,
+    "keyboardClosed": true,
+    "sameCut": true,
+    "wholeProjectUnchanged": true,
+    "requestedScreen": "basic"
+  },
+  "portraitReturnAndRestore": {
+    "screen": "direction",
+    "viewport": [
+      360,
+      677
+    ],
+    "sameCut": true,
+    "wholeProjectUnchanged": true,
+    "originalKeysRestored": true,
+    "originalWorkId": "android-editor-test-20261023"
+  },
+  "steps": [
+    "Backup existing five knolstory localStorage values and tab preferences before reload.",
+    "Import isolated actual author-journey file,enable character/audio/direction.",
+    "Measure real character controls44/47.5px without horizontal overflow.",
+    "Real CDP touch opens OS keyboard; audio search focus rect123..167 lies inside visualViewport0..350.",
+    "Direction effect select44px and whole project unchanged.",
+    "User rotates landscape; readonly basic preview,keyboard closed,next/previous returns samecut,whole manuscript unchanged.",
+    "User rotates portrait; selected direction tool and samecut restored,whole manuscript unchanged.",
+    "Restore all original localStorage values and existing tab preferences,reload original introduction; all five original values byte equal."
+  ],
+  "limits": [
+    "Search text filled through browser automation,not new physical Korean composition proof.",
+    "No new file picker/audio playback/long soak/screenreader/all device claim.",
+    "Initial fullscreen offer caused test locator wait; actual app dialog was dismissed via 지금은 그대로 without changing OS/display preferences."
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-editing-workbench.tsx": "b7c776a8488f9b4cf544a9529f652ec4821fcdc2c788da3e908b31f5ccc07517",
+    "apps/web/components/story-editing-workbench.module.css": "c33f4894c45c98326767343c6e6131b6f4335b7dc8029474002b143eca890ac5",
+    "apps/web/components/audio-controls.module.css": "6e08304baee509fb18e5f343a646dc67cee8276a4809f32664105f3ef87e1216",
+    "apps/web/components/story-effect-controls.module.css": "2fd5abab6671d606d7c96dc79e4006111e88742dc438b6c3b953d4ab17ed409e"
+  }
+}

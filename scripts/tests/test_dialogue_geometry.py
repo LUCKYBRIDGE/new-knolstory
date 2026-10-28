@@ -9,6 +9,11 @@ from pathlib import Path
 SOURCE = Path(__file__).resolve().parents[2] / 'renpy/responsive-spike/game/script.rpy'
 
 class DialogueGeometryTests(unittest.TestCase):
+    def install_effect_input_helpers(self, context):
+        source = SOURCE.read_text()
+        code = re.search(r'    def knol_effect_step_pending\(.*?(?=    def knol_title_shake)', source, re.S).group()
+        exec(textwrap.dedent(code), context)
+
     def test_reference_body_budget_is_three_landscape_five_portrait(self):
         code = re.search(r'    def knol_text_page_budget\(.*?(?=    def knol_text_page_for_offset)', SOURCE.read_text(), re.S).group()
         context = {}
@@ -344,6 +349,7 @@ class DialogueGeometryTests(unittest.TestCase):
                    'knol_waiting_for_audio': lambda: False, 'knol_dialogue_metrics': lambda scene: {'pages': ['first', 'last']},
                    'knol_change_text_page': lambda offset: calls.append(('page', offset)),
                    'knol_input': lambda kind, choice: calls.append((kind, choice))}
+        self.install_effect_input_helpers(context)
         exec(textwrap.dedent(code), context)
         context['knol_text_input']('advanceRequested')
         self.assertEqual(calls, [('page', 1)])
@@ -367,6 +373,7 @@ class DialogueGeometryTests(unittest.TestCase):
                    'knol_dialogue_metrics': lambda scene: {'pages': ['first', 'last']},
                    'knol_change_text_page': lambda offset: calls.append(('page', offset)),
                    'knol_input': lambda kind, choice: calls.append((kind, choice))}
+        self.install_effect_input_helpers(context)
         exec(textwrap.dedent(code), context)
         context['knol_text_input']('advanceRequested')
         self.assertEqual(calls, [('page', 1)])
@@ -383,15 +390,19 @@ class DialogueGeometryTests(unittest.TestCase):
         body = script.split('id "textbox"', 1)[1].split('        frame:', 1)[0]
         self.assertIn('id "dialogue-input"', body)
         self.assertIn('ysize int(dialogue_rects["body"]["height"])', body)
-        self.assertIn('action Function(knol_text_input, "advanceRequested")', body)
+        self.assertIn('action Function(knol_stage_tap)', body)
+        stage_input = script.split('id "stage-tap-input"', 1)[1].split('        $ textbox', 1)[0]
+        self.assertIn('xysize (int(knol_scene["width"]), int(knol_scene["height"]))', stage_input)
+        self.assertIn('action Function(knol_stage_tap)', stage_input)
         for key in ['K_RETURN', 'K_SPACE']:
             self.assertIn('key "' + key + '" action Function(knol_text_input, "advanceRequested")', script)
 
     def test_final_page_advance_hit_area_stays_inside_reserved_nav_row(self):
         script = SOURCE.read_text()
-        advance = script.split('if not knol_scene.get("choices") and not knol_scene.get("ended") and knol_text_page ==', 1)[1].split('            if knol_transition_active', 1)[0]
+        advance = script.split('if not knol_scene.get("transitionOnly") and (not knol_scene.get("choices") or knol_effect_step_pending()) and not knol_scene.get("ended") and knol_text_page ==', 1)[1].split('            if knol_transition_active', 1)[0]
         self.assertNotIn('xysize (44, 44)', advance)
-        self.assertIn('xsize 44', advance)
+        self.assertIn('xsize (140 if knol_effect_step_pending() else 44)', advance)
+        self.assertIn('text ("다음 효과 ›" if knol_effect_step_pending() else "›")', advance)
         self.assertIn('ysize knol_dialogue_metrics(knol_scene)["controlsHeight"]', advance)
         self.assertIn('padding (0, 0)', advance)
 
@@ -450,6 +461,7 @@ class DialogueGeometryTests(unittest.TestCase):
         context = {'knol_ready': True, 'knol_scene': {'mode': 'play', 'choices': [{'id': 'a'}]},
                    'knol_transition_active': False, 'knol_waiting_for_audio': lambda: False,
                    'knol_text_page': 1, 'knol_dialogue_metrics': lambda scene: {'pages': ['first', 'last']}}
+        self.install_effect_input_helpers(context)
         exec(textwrap.dedent(code), context)
         self.assertTrue(context['knol_choices_visible']())
         for field, blocked in [('knol_ready', False), ('knol_text_page', 0), ('knol_transition_active', True)]:
@@ -465,3 +477,37 @@ class DialogueGeometryTests(unittest.TestCase):
             context['knol_scene'] = {**before, **patch}
             self.assertFalse(context['knol_choices_visible']())
             context['knol_scene'] = before
+
+    def test_click_effect_steps_wait_for_text_then_do_not_choose_or_advance_cut(self):
+        source = SOURCE.read_text()
+        code = re.search(r'    def knol_text_input\(.*?(?=    def knol_dialogue_rects)', source, re.S).group()
+        choices = re.search(r'    def knol_choices_visible\(.*?(?=    def knol_choice_layout)', source, re.S).group()
+        calls = []
+        context = {'knol_scene': {'mode': 'play', 'choices': [{'id': 'a'}], 'effectSteps': {'current': 0, 'total': 2}},
+                   'knol_ready': True, 'knol_text_page': 0, 'knol_transition_active': False,
+                   'knol_waiting_for_audio': lambda: False,
+                   'knol_dialogue_metrics': lambda scene: {'pages': ['first', 'last']},
+                   'knol_change_text_page': lambda offset: calls.append(('page', offset)),
+                   'knol_input': lambda kind, choice=None: calls.append((kind, choice))}
+        self.install_effect_input_helpers(context)
+        exec(textwrap.dedent(code), context)
+        exec(textwrap.dedent(choices), context)
+        context['knol_text_input']('choiceSelected', 'a')
+        self.assertEqual(calls, [('page', 1)])
+        self.assertFalse(context['knol_choices_visible']())
+        calls.clear()
+        context['knol_text_page'] = 1
+        for current in [0, 1]:
+            context['knol_scene']['effectSteps']['current'] = current
+            calls.clear()
+            self.assertFalse(context['knol_choices_visible']())
+            context['knol_text_input']('choiceSelected', 'a')
+            self.assertEqual(calls, [('advanceRequested', None)])
+            self.assertEqual(context['knol_scene']['effectSteps']['current'], current)
+        context['knol_scene']['effectSteps']['current'] = 2
+        self.assertTrue(context['knol_choices_visible']())
+        calls.clear()
+        context['knol_text_input']('advanceRequested')
+        self.assertEqual(calls, [])
+        context['knol_text_input']('choiceSelected', 'a')
+        self.assertEqual(calls, [('choiceSelected', 'a')])

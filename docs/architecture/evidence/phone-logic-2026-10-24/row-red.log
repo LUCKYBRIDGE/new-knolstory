@@ -1,0 +1,55 @@
+[WebServer] (node:30507) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:17] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:30524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/0logr70qn_psj.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/08c80g6r8_fkc.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /_next/static/chunks/2lhfk7chc59-b.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:27:18] "GET /assets/loading/story-reading-v4.webp HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:156:1 › phone choice text and score conditions stay editable above the keyboard and retain exact destinations (1.3s)
+
+
+  1) [host] › tests/e2e/keyboard-writing-focus.spec.ts:156:1 › phone choice text and score conditions stay editable above the keyboard and retain exact destinations 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 879.984375
+    Received:    835.984375
+
+      159 |  const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'phone-logic.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-24T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);if(!await menu.evaluate(e=>(e as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();for(const name of ['선택지','점수','분기조건'])await page.getByRole('checkbox',{name:`${name} 편집 사용`,exact:true}).check();await menu.locator(':scope>summary').click();await page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true}).click();
+      160 |  const text=page.getByRole('textbox',{name:'선택지 1 문구',exact:true});await text.focus();await page.evaluate(()=>{Object.defineProperty(visualViewport!,'height',{configurable:true,value:350});visualViewport!.dispatchEvent(new Event('resize'));});await expect(page.locator('main[data-keyboard-occluded=true]')).toBeVisible();await expect.poll(async()=>{const r=await text.boundingBox();return !!r&&r.y>=0&&r.y+r.height<=351;}).toBe(true);await text.fill('함께 도와준다');await text.blur();await page.evaluate(()=>{delete (visualViewport as unknown as {height?:number}).height;visualViewport!.dispatchEvent(new Event('resize'));});
+    > 161 |  const card=page.locator('[data-inspector-section=flow]').locator('div').filter({has:page.getByRole('textbox',{name:'선택지 1 문구',exact:true})}).first();await card.getByText('선택 결과·표시 조건 · 점수 변화 1개',{exact:true}).click();const scoreField=page.getByRole('combobox',{name:'선택지 1 결과 1 점수',exact:true}),methodField=page.getByRole('combobox',{name:'선택지 1 결과 1 방법',exact:true});const scoreRect=await scoreField.boundingBox(),methodRect=await methodField.boundingBox();expect(methodRect!.y).toBeGreaterThanOrEqual(scoreRect!.y+scoreRect!.height);const value=page.getByRole('spinbutton',{name:'선택지 1 결과 1 값',exact:true});await value.focus();await page.evaluate(()=>{Object.defineProperty(visualViewport!,'height',{configurable:true,value:286});visualViewport!.dispatchEvent(new Event('resize'));});await expect.poll(async()=>{const r=await value.boundingBox();return !!r&&r.y>=0&&r.y+r.height<=287;}).toBe(true);await value.fill('3');await page.screenshot({path:info.outputPath('phone-score-keyboard.png')});await value.blur();await page.evaluate(()=>{delete (visualViewport as unknown as {height?:number}).height;visualViewport!.dispatchEvent(new Event('resize'));});
+          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+      162 |  const condition=page.locator('[aria-label="선택지 1 표시 조건"]');await condition.getByRole('button',{name:'조건 추가',exact:true}).click();await condition.getByRole('button',{name:'조건 추가',exact:true}).click();await condition.getByRole('combobox',{name:'선택지 1 표시 조건 조건 묶음',exact:true}).selectOption('any');const threshold=page.getByRole('spinbutton',{name:'선택지 1 표시 조건 조건 2 값',exact:true});await threshold.fill('5');await threshold.blur();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const authored=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect(authored.lines[0].flow.options[0]).toMatchObject({id:'yes',label:'함께 도와준다',targetLineId:'join',effects:[{scoreId:'trust',operation:'add',value:3}],condition:{mode:'any',terms:[{scoreId:'trust',operator:'gte',value:1},{scoreId:'trust',operator:'gte',value:5}]}});expect(authored.lines[0].flow.options[1]).toEqual(project.lines[0].flow!.options![1]);await condition.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('phone-score-conditions.png')});expect(authored.lines[1]).toEqual(project.lines[1]);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.reload();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(authored);
+      163 | });
+      164 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/keyboard-writing-focus.spec.ts:161:482
+
+    Error Context: .cache/phone-logic-20261024/row-red-results/keyboard-writing-focus-pho-461d3-d-retain-exact-destinations-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/phone-logic-20261024/row-red-results/keyboard-writing-focus-pho-461d3-d-retain-exact-destinations-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/phone-logic-20261024/row-red-results/keyboard-writing-focus-pho-461d3-d-retain-exact-destinations-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/keyboard-writing-focus.spec.ts:156:1 › phone choice text and score conditions stay editable above the keyboard and retain exact destinations 

@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:32596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/direction-tips.spec.ts:6:1 › contextual direction tips explain recommended use and preserve draft and focus (3.3s)
+  ✓  2 tests/e2e/long-manuscript-workbench.spec.ts:11:1 › long manuscript keeps last-cut editing, cursor, file and internal scrolling across screen changes (6.4s)
+  ✓  3 tests/e2e/long-manuscript-workbench.spec.ts:25:1 › repeated resize and editor changes keep a single actual engine and intact manuscript (13.1s)
+
+  3 passed (23.2s)

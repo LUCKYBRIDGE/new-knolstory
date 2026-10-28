@@ -34,6 +34,8 @@ export type Chapter = {
 };
 
 export type StoryLine = {
+  visibility?: import("./story-scene-visibility").StorySceneVisibility;
+  textVariants?: import("./story-text-variants").StoryTextVariant[];
   audio?: import("./story-audio").StoryAudio;
   inheritActors?: boolean;
   workingTitle?: string;

@@ -1,0 +1,52 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/audio-source-range.test.ts (2 tests | 2 failed) 5ms
+   × validates non-destructive source ranges without changing ordinary cue values 3ms
+   × compiles exact source bounds separately from scheduled cut delay and preserves path inheritance 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/audio-source-range.test.ts > validates non-destructive source ranges without changing ordinary cue values
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/runtime-core/src/audio-source-range.test.ts:6:89
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/runtime-core/src/audio-source-range.test.ts > compiles exact source bounds separately from scheduled cut delay and preserves path inheritance
+AssertionError: expected { action: 'play', …(5) } to match object { sourceStartMs: 500, …(1) }
+(6 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "sourceEndMs": 2000,
+-   "sourceStartMs": 500,
++   "action": "play",
++   "audioPath": "assets/audio/test.wav",
++   "fadeInMs": 0,
++   "fadeOutMs": 0,
++   "loop": true,
++   "volume": 1,
+  }
+
+ ❯ packages/runtime-core/src/audio-source-range.test.ts:11:486
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  18:08:38
+   Duration  401ms (transform 206ms, setup 0ms, import 304ms, tests 5ms, environment 0ms)
+

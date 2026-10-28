@@ -13,3 +13,12 @@ it('keeps excluded authored IDs while stopping channels and never resolving them
  const parsed=parseStoryDocument(serializeStoryDocument({...original,project}));expect(parsed.ok).toBe(true);
  if(parsed.ok)expect(parsed.document.project).toEqual(project);
 });
+it('fails the entire ordered channel closed before resolving any clip when one asset is excluded',()=>{
+ const original=getRepresentativeStory('rabbit');
+ const queue={action:'sequence' as const,id:'queue',clips:[{id:'ok',assetId:'audio:music:forest',sourceEndMs:1000},{id:'denied',assetId:'audio:music:denied-queue',sourceEndMs:1500}]};
+ const project={...original.project,chapters:original.project.chapters.map(c=>({...c,audio:undefined})),lines:original.project.lines.map((line,i)=>i?line:{...line,audio:{music:queue,ambience:queue}})};
+ const before=structuredClone(project);let resolved=0;
+ const audio=compileStoryAudio(project,project.lines[0].id,()=>{resolved++;throw Error('must not resolve');});
+ expect(audio.music).toEqual({action:'stop',fadeOutMs:0});expect(audio.ambience).toEqual({action:'stop',fadeOutMs:0});expect(resolved).toBe(0);
+ expect(excludedStoryAudio(project).map(asset=>asset.id)).toEqual(['audio:music:denied-queue']);expect(project).toEqual(before);
+});

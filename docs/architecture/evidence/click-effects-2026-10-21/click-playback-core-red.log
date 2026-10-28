@@ -1,0 +1,90 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts (6 tests | 6 failed) 8ms
+     × waits for each local click and prevents cut advance until both effects have run 4ms
+     × carries following effects as active and resets click progress on back and re-entry 0ms
+     × restores precise progress and old states without inventing click progress 1ms
+     × rejects malformed and out-of-bounds progress, including progress on an ended state 1ms
+     × counts only exact matching branch cues, even when choices share a destination 1ms
+     × does not create progress for ordinary or ended cuts 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/newclick-effect-playback.test.ts > click effect playback > waits for each local click and prevents cut advance until both effects have run
+AssertionError: expected [ undefined, undefined ] to deeply equal [ 'waiting', 'waiting' ]
+
+- Expected
++ Received
+
+  [
+-   "waiting",
+-   "waiting",
++   undefined,
++   undefined,
+  ]
+
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts:10:238
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  packages/runtime-core/src/newclick-effect-playback.test.ts > click effect playback > carries following effects as active and resets click progress on back and re-entry
+TypeError: advanceEffectPlayback is not a function
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts:11:139
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  packages/runtime-core/src/newclick-effect-playback.test.ts > click effect playback > restores precise progress and old states without inventing click progress
+TypeError: Cannot read properties of undefined (reading 'replace')
+ ❯ normalizeChapterTitle packages/story-domain/src/legacy/chapter-identity.ts:5:16
+      3| /** Retired act numbering is not another story hierarchy. Keep the act…
+      4| export function normalizeChapterTitle(title:string):string {
+      5|   return title.replace(/^\s*(?:제\s*)?[0-9]+\s*막(?=\s|[:：·.\-]|$)[\s:：·…
+       |                ^
+      6| }
+      7|
+ ❯ chapterLabel packages/story-domain/src/legacy/chapter-identity.ts:12:17
+ ❯ storyBranchConditionReferences packages/runtime-core/src/branch-condition-references.ts:9:111
+ ❯ restorePlayback packages/runtime-core/src/story-runtime.ts:85:35
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts:12:238
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  packages/runtime-core/src/newclick-effect-playback.test.ts > click effect playback > rejects malformed and out-of-bounds progress, including progress on an ended state
+TypeError: advanceEffectPlayback is not a function
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts:13:289
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  packages/runtime-core/src/newclick-effect-playback.test.ts > click effect playback > counts only exact matching branch cues, even when choices share a destination
+AssertionError: expected [ undefined ] to deeply equal [ 'waiting' ]
+
+- Expected
++ Received
+
+  [
+-   "waiting",
++   undefined,
+  ]
+
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts:14:672
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  packages/runtime-core/src/newclick-effect-playback.test.ts > click effect playback > does not create progress for ordinary or ended cuts
+TypeError: advanceEffectPlayback is not a function
+ ❯ packages/runtime-core/src/newclick-effect-playback.test.ts:15:113
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed (6)
+   Start at  08:25:18
+   Duration  405ms (transform 210ms, setup 0ms, import 306ms, tests 8ms, environment 0ms)
+

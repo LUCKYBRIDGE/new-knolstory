@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-21",
+  "scope": "Current editor one-shot timing alignment and optional movable guides; combined audio/direction concept tools separately verified",
+  "implemented": [
+    "move custom guide by slider or millisecond numeric input",
+    "align selected effect start or finite end while preserving duration, clock, IDs and other metadata",
+    "with previous / after previous one-shot timing alignment",
+    "snap/display toggles retained per project tab session, Shift pointer bypass, keyboard100ms/Shift10ms",
+    "reject nonfinal looping predecessor in sequential arrangement",
+    "same-clock guide rendering and row clock labels"
+  ],
+  "verification": {
+    "focusedUnitTests": 30,
+    "coverage": {
+      "statements": 97.65,
+      "branches": 97.88,
+      "functions": 93.18,
+      "lines": 100
+    },
+    "editorE2E": {
+      "passed": 1,
+      "viewports": [
+        [
+          1280,
+          800
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          844,
+          390
+        ]
+      ],
+      "verified": [
+        "keyboard coarse/fine precision",
+        "manual guide align start/end, undo, invalid end disabled",
+        "toggles persist after detail close/reopen",
+        "unchanged manuscript and IDs",
+        "actual .knolstory export equals authored project",
+        "reload retains authored project",
+        "real pointer snap to custom guide",
+        "real Shift+pointer drag bypasses snap"
+      ],
+      "currentLog": "movable-guide-e2e-pointer-v3.log",
+      "priorPointerAttempts": "First two test gestures clicked inside the already positioned native slider thumb; changed test to an actual drag, source unchanged."
+    },
+    "webBuild": "passed",
+    "webTypecheck": "passed",
+    "focusedLint": "passed",
+    "review": "clock display, loop predecessor and manual range precision findings fixed",
+    "concept": "3 viewport tools and navigation checks passed; see separate observations",
+    "docs": {
+      "linkErrors": 0,
+      "retiredTerms": 0,
+      "testsPassed": 10
+    }
+  },
+  "notImplemented": [
+    "persistent relative cue dependency",
+    "manual click-trigger runtime stages",
+    "actual combined editor integration",
+    "source audio trim/split or continuous playback across split segments"
+  ],
+  "preservation": "Dirty worktree, raw manuscript sources and prior evidence retained; current-format existing effect fields only. Editor helper settings stay outside StoryDocument.",
+  "sourceSha256": {
+    "apps/web/components/story-effect-controls.tsx": "7346f2263fc6e262e4c0a984af8cc4347d705111ef1b91adc43d580b32540e95",
+    "apps/web/components/story-effect-controls.module.css": "743389b49d0fc0c50f88857eeca835eabf5b38bfcd9710cf9517319d75ac6d32",
+    "apps/web/lib/effect-authoring.ts": "b6a710e0baa468dc40cf435165932aeddf6ae27a8519a6db5a820c34a5cba5cd",
+    "apps/web/lib/editor-preferences.ts": "8912e39b5f001983361cb53744922e4fff4e15a980b5e9f44099e537b5dc9c6d",
+    "tests/e2e/editor-effect-pane.spec.ts": "47672bb5ff41309931da12b4224e4b93d46c3c1a92cb8ae1294c6a8b5ff7b3a6",
+    "docs/architecture/evidence/editor-finish-2026-10-21/audio-direction-concept.html": "fc0666332a5603d2470ddf78f3a9ae30400cc369decc07605831585b625e59c5"
+  }
+}

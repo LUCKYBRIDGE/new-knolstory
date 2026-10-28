@@ -1,0 +1,51 @@
+.E......E....E...E........Downloading resource
+.Extracting verified SDK and Web support.
+....Verified pinned SDK installation.
+..Verified cached resource
+.Downloading resource
+..............127.0.0.1 - - [26/Oct/2026 19:33:31] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [26/Oct/2026 19:33:31] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [26/Oct/2026 19:33:31] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [26/Oct/2026 19:33:31] "GET /sample.wav HTTP/1.1" 416 -
+....................
+======================================================================
+ERROR: test_body_input_and_keyboard_do_not_skip_final_choices (test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 375, in test_body_input_and_keyboard_do_not_skip_final_choices
+    context['knol_text_input']('advanceRequested')
+  File "<string>", line 6, in knol_text_input
+NameError: name 'knol_effect_step_pending' is not defined
+
+======================================================================
+ERROR: test_final_page_advance_hit_area_stays_inside_reserved_nav_row (test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 395, in test_final_page_advance_hit_area_stays_inside_reserved_nav_row
+    advance = script.split('if not knol_scene.get("transitionOnly") and not knol_scene.get("choices") and not knol_scene.get("ended") and knol_text_page ==', 1)[1].split('            if knol_transition_active', 1)[0]
+IndexError: list index out of range
+
+======================================================================
+ERROR: test_page_advance_keeps_native_audio_and_transition_input_guards (test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 351, in test_page_advance_keeps_native_audio_and_transition_input_guards
+    context['knol_text_input']('advanceRequested')
+  File "<string>", line 6, in knol_text_input
+NameError: name 'knol_effect_step_pending' is not defined
+
+======================================================================
+ERROR: test_popup_waits_for_final_page_audio_and_transition_before_taking_focus (test_dialogue_geometry.DialogueGeometryTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_dialogue_geometry.py", line 457, in test_popup_waits_for_final_page_audio_and_transition_before_taking_focus
+    self.assertTrue(context['knol_choices_visible']())
+  File "<string>", line 4, in knol_choices_visible
+NameError: name 'knol_effect_step_pending' is not defined
+
+----------------------------------------------------------------------
+Ran 68 tests in 0.827s
+
+FAILED (errors=4)
+Restored 1 exact fixed-baseline room files for authorized local testing.
+Restored 0 exact fixed-baseline files for local testing. No release permission is inferred.

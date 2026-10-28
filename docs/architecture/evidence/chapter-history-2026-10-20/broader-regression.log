@@ -1,0 +1,80 @@
+
+Running 2 tests using 1 worker
+
+(node:80831) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:79:1 › UI-authored twelve-cut story survives Chrome files and both actual RenPy reading paths (16.6s)
+(node:80917) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [stories-runtime] › tests/e2e/vn-workflow.spec.ts:37:1 › native portrait single speaker, slots and actual-path backlog restore both routes (16.3s)
+
+
+  1) [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:79:1 › UI-authored twelve-cut story survives Chrome files and both actual RenPy reading paths 
+
+    TimeoutError: locator.evaluate: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for locator('[data-writing-tools]')
+
+
+      27 | async function writing(page:Page,view:'현재 컷 쓰기'|'장 전체 글 고치기'){
+      28 |  const tools=page.locator('[data-writing-tools]');
+    > 29 |  if(!await tools.evaluate(n=>(n as HTMLDetailsElement).open))await tools.locator(':scope>summary').click();
+         |                  ^
+      30 |  await page.getByRole('button',{name:view,exact:true}).click();
+      31 | }
+      32 | async function id(page:Page){return page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();}
+        at writing (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creative-reading-journey.spec.ts:29:18)
+        at author (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creative-reading-journey.spec.ts:59:9)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creative-reading-journey.spec.ts:88:16
+
+    attachment #1: authoring actual-context trace (application/zip) ────────────────────────────────
+    test-results-chapter-history-regression/creative-reading-journey-U-9b7ea--actual-RenPy-reading-paths-stories-runtime/attachments/authoring-actual-context-trace-6bb62c412d8387165b93d9e98f8892b8b556391d.zip
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results-chapter-history-regression/creative-reading-journey-U-9b7ea--actual-RenPy-reading-paths-stories-runtime/error-context.md
+
+  2) [stories-runtime] › tests/e2e/vn-workflow.spec.ts:37:1 › native portrait single speaker, slots and actual-path backlog restore both routes 
+
+    TimeoutError: locator.click: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByText('보기 설정', { exact: true })
+        - locator resolved to <summary aria-label="보기 설정" title="장 추가·보기 설정">보기 설정</summary>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        27 × waiting for element to be visible, enabled and stable
+           - element is not visible
+         - retrying click action
+           - waiting 500ms
+
+
+       8 | const demo='docs/architecture/evidence/responsive-audio/branching-demo.knolstory';
+       9 | async function management(page:Page){const s=page.locator('[data-work-menu]>summary');if(!await s.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await s.click();}
+    > 10 | async function details(page:Page,text:string){const n=page.getByText(text,{exact:true});if(!await n.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await n.click();}
+         |                                                                                                                                                                       ^
+      11 | async function load(page:Page,path=demo){page.setDefaultTimeout(15000);const source=parseAuthoringFile(readFileSync(path,'utf8'));const prior=await existingPrivateWorkspace(page,source.project,source.audioResources);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await expect(page.getByRole('heading',{name:source.project.title,exact:true})).toBeVisible();return {source,prior};}
+      12 | async function rendered(page:Page){const s=page.getByTestId('story-runtime-status');await expect(s).toContainText('연결됨',{timeout:120000});await expect.poll(async()=>Number(await s.getAttribute('data-rendered-revision'))>=0&&(await s.getAttribute('data-scene-revision'))===(await s.getAttribute('data-rendered-revision')),{timeout:30000}).toBe(true);}
+      13 | async function tool(page:Page,name:string){const d=page.locator('[data-additional-tools]');if(name!=='배경·인물 편집'&&!await d.evaluate(n=>(n as HTMLDetailsElement).open))await d.locator(':scope>summary').click();await page.getByRole('button',{name,exact:true}).click();}
+        at details (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/vn-workflow.spec.ts:10:167)
+        at views (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/vn-workflow.spec.ts:14:46)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/vn-workflow.spec.ts:38:233
+
+    Error Context: test-results-chapter-history-regression/vn-workflow-native-portrai-96f69-backlog-restore-both-routes-stories-runtime/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-chapter-history-regression/vn-workflow-native-portrai-96f69-backlog-restore-both-routes-stories-runtime/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-chapter-history-regression/vn-workflow-native-portrai-96f69-backlog-restore-both-routes-stories-runtime/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:79:1 › UI-authored twelve-cut story survives Chrome files and both actual RenPy reading paths 
+    [stories-runtime] › tests/e2e/vn-workflow.spec.ts:37:1 › native portrait single speaker, slots and actual-path backlog restore both routes 

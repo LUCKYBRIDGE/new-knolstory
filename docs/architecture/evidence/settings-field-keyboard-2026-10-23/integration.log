@@ -1,0 +1,18 @@
+
+Running 11 tests using 1 worker
+
+(node:10309) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/keyboard-writing-focus.spec.ts:3:72 › keyboard gives basic writing space to the current image and text 360 (747ms)
+  ✓   2 tests/e2e/keyboard-writing-focus.spec.ts:3:72 › keyboard gives basic writing space to the current image and text 800 (698ms)
+  ✓   3 tests/e2e/keyboard-writing-focus.spec.ts:54:1 › short phone landscape exposes image, text and arrows without opening the keyboard on navigation (674ms)
+  ✓   4 tests/e2e/keyboard-writing-focus.spec.ts:71:1 › keyboard prioritizes the focused speaker name rather than the cut body and neighbours (500ms)
+  ✓   5 tests/e2e/keyboard-writing-focus.spec.ts:79:40 › keyboard reveals a deeply nested detail field: 컷 작업 제목 (574ms)
+  ✓   6 tests/e2e/keyboard-writing-focus.spec.ts:79:40 › keyboard reveals a deeply nested detail field: 연출 메모 (576ms)
+  ✓   7 tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter title input visible (593ms)
+  ✓   8 tests/e2e/keyboard-writing-focus.spec.ts:87:38 › keyboard keeps settings-menu chapter number input visible (595ms)
+  ✓   9 tests/e2e/phone-editor-tasks.spec.ts:6:225 › task editors use phone-sized controls and preserve the large-screen workspace 390 (1.6s)
+  ✓  10 tests/e2e/phone-editor-tasks.spec.ts:6:225 › task editors use phone-sized controls and preserve the large-screen workspace 844 (1.5s)
+  ✓  11 tests/e2e/phone-editor-tasks.spec.ts:6:225 › task editors use phone-sized controls and preserve the large-screen workspace 800 (1.3s)
+
+  11 passed (9.7s)

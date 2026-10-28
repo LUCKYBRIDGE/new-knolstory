@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-23",
+  "scope": "Long textarea screen-switch context and compact score labels; whole editor goal active",
+  "fixed": [
+    "Missing inner textarea scrollTop/scrollLeft and selectionDirection restoration",
+    "Unrelated textarea selection polluted main cut snapshot",
+    "Repeated long score labels replaced with concise visible labels; accessibility context retained"
+  ],
+  "verification": {
+    "longTextBrowser": "4passed390x844,844x390,768x1024,1280x800",
+    "scope": [
+      "100lineprose selection1600..1620backward andscroll550 preserved after text/background/text",
+      "Untrackedtextarea DOMprobe does notoverwrite main snapshot",
+      "Othercut focus/IMEevent does nothijackfocus",
+      "Downloadedfile cut/chapter equality"
+    ],
+    "scoreLabelBrowser": "1passed actual conditional score edit/undo and fourviewport rendering",
+    "types": "Web passed",
+    "lint": "relatederrors0",
+    "build": "Websource production"
+  },
+  "limits": [
+    "DOMprobe verifies snapshot isolation, not a full real conditional-text editing journey",
+    "Runtime aborted intentionally in longtext cases; no new playback restoration evidence",
+    "Physical softkeyboard/device and whole editoraudit remain"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "70d8a4ab3caed862d3461bad7cc8c1c4f85e1e1f1b95e039c7727c621bfa0a5f",
+    "apps/web/components/story-score-controls.tsx": "f43ba2694a9e0e1e9a3c3c72019f6829024b040963d384feba9b226bd8f5ba68",
+    "tests/e2e/long-text-context.spec.ts": "07efb7a981011e19bdf0e6ff1e4290558e9324467cb7814b256972611e6b2ba3",
+    "apps/web/out/index.html": "eae8542dae33bff3f3bfa1d536bb65c5489386a679423fc13ebefa7333e9a2c8"
+  }
+}

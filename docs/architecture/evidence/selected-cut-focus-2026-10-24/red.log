@@ -1,0 +1,125 @@
+[WebServer] (node:31965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:17] "GET / HTTP/1.1" 200 -
+
+Running 2 tests using 1 worker
+
+(node:31980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/1rxi7xfjtlo95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/30d1ybg6kebgl.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /_next/static/chunks/2lhfk7chc59-b.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /assets/loading/heungbu-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:18] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/task-editor-current-cut.spec.ts:17:73 › selecting another text row never restores the previous cut cursor 1280 (6.2s)
+(node:31995) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/1rxi7xfjtlo95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/2lhfk7chc59-b.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/30d1ybg6kebgl.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:24] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:25] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:25] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:25] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:25] "GET /assets/loading/heungbu-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:31:25] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+  ✘  2 [host] › tests/e2e/task-editor-current-cut.spec.ts:17:73 › selecting another text row never restores the previous cut cursor 800 (6.1s)
+
+
+  1) [host] › tests/e2e/task-editor-current-cut.spec.ts:17:73 › selecting another text row never restores the previous cut cursor 1280 
+
+    Error: expect(locator).not.toBeFocused() failed
+
+    Locator:  getByRole('textbox', { name: '1컷 글', exact: true })
+    Expected: not focused
+    Received: focused
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "not toBeFocused" getByRole('textbox', { name: '1컷 글', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: '1컷 글', exact: true })
+        14 × locator resolved to <textarea aria-label="1컷 글" maxlength="20000" data-cut-id="long-cut-0">1컷의 긴 원고.↵앞뒤 맥락과 줄바꿈을 살피며 오래 쓰는 한국어 문장입니다. 앞뒤 맥락과…</textarea>
+           - unexpected value "focused"
+
+
+      17 | for(const viewport of [{width:1280,height:800},{width:800,height:1100}])test(`selecting another text row never restores the previous cut cursor ${viewport.width}`,async({page},info)=>{
+      18 |  await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.setViewportSize(viewport);await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'selection.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-24T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await screen(page,'text');
+    > 19 |  const first=page.getByRole('textbox',{name:'1컷 글',exact:true}),target=page.getByTestId('editing-cut-long-cut-18');const original=await first.inputValue();await first.focus();await first.evaluate(el=>(el as HTMLTextAreaElement).setSelectionRange(2,5));await target.getByRole('button',{name:'이 컷 선택',exact:true}).click();await expect(target).toHaveAttribute('aria-current','step');await expect(first).not.toBeFocused();await expect(target.getByRole('button',{name:'이 컷 선택',exact:true})).toBeFocused();const bounds=await target.locator('header').evaluate(e=>({row:e.getBoundingClientRect().toJSON(),list:e.closest('[data-writer-scroll]')!.getBoundingClientRect().toJSON()}));expect(bounds.row.top).toBeGreaterThanOrEqual(bounds.list.top-1);expect(bounds.row.bottom).toBeLessThanOrEqual(bounds.list.bottom+1);await page.keyboard.type('should not replace earlier text');await expect(first).toHaveValue(original);const chosen=target.getByRole('textbox',{name:'19컷 글',exact:true});await chosen.fill('선택한 컷에만 입력합니다.');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const actual=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect(actual.lines[0].text).toBe(project.lines[0].text);expect(actual.lines[18].text).toBe('선택한 컷에만 입력합니다.');expect(actual.lines.filter((_:unknown,i:number)=>i!==18)).toEqual(project.lines.filter((_,i)=>i!==18));await page.screenshot({path:info.outputPath('selected-cut-focus.png')});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+      20 | });
+      21 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/task-editor-current-cut.spec.ts:19:405
+
+    Error Context: .cache/selected-cut-focus-20261024/red-results/task-editor-current-cut-se-7f6e2-he-previous-cut-cursor-1280-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/selected-cut-focus-20261024/red-results/task-editor-current-cut-se-7f6e2-he-previous-cut-cursor-1280-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/selected-cut-focus-20261024/red-results/task-editor-current-cut-se-7f6e2-he-previous-cut-cursor-1280-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [host] › tests/e2e/task-editor-current-cut.spec.ts:17:73 › selecting another text row never restores the previous cut cursor 800 
+
+    Error: expect(locator).not.toBeFocused() failed
+
+    Locator:  getByRole('textbox', { name: '1컷 글', exact: true })
+    Expected: not focused
+    Received: focused
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "not toBeFocused" getByRole('textbox', { name: '1컷 글', exact: true }) with timeout 5000ms
+      - waiting for getByRole('textbox', { name: '1컷 글', exact: true })
+        14 × locator resolved to <textarea aria-label="1컷 글" maxlength="20000" data-cut-id="long-cut-0">1컷의 긴 원고.↵앞뒤 맥락과 줄바꿈을 살피며 오래 쓰는 한국어 문장입니다. 앞뒤 맥락과…</textarea>
+           - unexpected value "focused"
+
+
+      17 | for(const viewport of [{width:1280,height:800},{width:800,height:1100}])test(`selecting another text row never restores the previous cut cursor ${viewport.width}`,async({page},info)=>{
+      18 |  await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.setViewportSize(viewport);await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'selection.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-24T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await screen(page,'text');
+    > 19 |  const first=page.getByRole('textbox',{name:'1컷 글',exact:true}),target=page.getByTestId('editing-cut-long-cut-18');const original=await first.inputValue();await first.focus();await first.evaluate(el=>(el as HTMLTextAreaElement).setSelectionRange(2,5));await target.getByRole('button',{name:'이 컷 선택',exact:true}).click();await expect(target).toHaveAttribute('aria-current','step');await expect(first).not.toBeFocused();await expect(target.getByRole('button',{name:'이 컷 선택',exact:true})).toBeFocused();const bounds=await target.locator('header').evaluate(e=>({row:e.getBoundingClientRect().toJSON(),list:e.closest('[data-writer-scroll]')!.getBoundingClientRect().toJSON()}));expect(bounds.row.top).toBeGreaterThanOrEqual(bounds.list.top-1);expect(bounds.row.bottom).toBeLessThanOrEqual(bounds.list.bottom+1);await page.keyboard.type('should not replace earlier text');await expect(first).toHaveValue(original);const chosen=target.getByRole('textbox',{name:'19컷 글',exact:true});await chosen.fill('선택한 컷에만 입력합니다.');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const actual=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect(actual.lines[0].text).toBe(project.lines[0].text);expect(actual.lines[18].text).toBe('선택한 컷에만 입력합니다.');expect(actual.lines.filter((_:unknown,i:number)=>i!==18)).toEqual(project.lines.filter((_,i)=>i!==18));await page.screenshot({path:info.outputPath('selected-cut-focus.png')});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+      20 | });
+      21 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/task-editor-current-cut.spec.ts:19:405
+
+    Error Context: .cache/selected-cut-focus-20261024/red-results/task-editor-current-cut-se-95ffc-the-previous-cut-cursor-800-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/selected-cut-focus-20261024/red-results/task-editor-current-cut-se-95ffc-the-previous-cut-cursor-800-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/selected-cut-focus-20261024/red-results/task-editor-current-cut-se-95ffc-the-previous-cut-cursor-800-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [host] › tests/e2e/task-editor-current-cut.spec.ts:17:73 › selecting another text row never restores the previous cut cursor 1280 
+    [host] › tests/e2e/task-editor-current-cut.spec.ts:17:73 › selecting another text row never restores the previous cut cursor 800 

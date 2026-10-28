@@ -26,3 +26,10 @@ describe('portable resource boundaries',()=>{
   expect(()=>portableAudioResources({audioResources:many})).toThrow('전체 크기');
  });
 });
+
+it('includes every sequence clip attachment from chapter and cut owners without duplicates',()=>{
+ const base=createBlankStoryProject({id:'sequence-portable',chapterId:'c',lineId:'a'});
+ const cue={action:'sequence' as const,id:'queue',clips:[{id:'one',assetId:'custom-one',sourceEndMs:1000},{id:'two',assetId:'custom-two',sourceEndMs:2000}]};
+ const project={...base,chapters:base.chapters.map(ch=>({...ch,audio:{music:cue}})),lines:base.lines.map(line=>({...line,audio:{ambience:{...cue,id:'other',clips:[...cue.clips,{id:'three',assetId:'custom-three',sourceEndMs:3000}]}}}))};
+ expect(referencedAudioIds(project)).toEqual(['custom-one','custom-two','custom-three']);
+});

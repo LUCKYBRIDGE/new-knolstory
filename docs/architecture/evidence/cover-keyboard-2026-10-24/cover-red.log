@@ -1,0 +1,69 @@
+[WebServer] (node:17272) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:43] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:17287) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/3yeezciy9ogmb.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/3rxu0l_jx58l5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/31jrpn7bwdm07.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/44n7nxg50d0zv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/0sx3wabin4rot.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:44] "GET /assets/loading/story-reading-v4.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:45] "GET /assets/cover-fonts/KnolStorySerif-b1c57b68.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:45] "GET /assets/cover-fonts/KnolStorySans-b75e6866.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:45] "GET /assets/cover-fonts/Jua-Regular-cb995145.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:45] "GET /assets/cover-fonts/KnolStoryPen-Regular-d252740c.woff2 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:52:45] "GET /assets/legacy-18da4fc/seonnyeo.poster.art.webp HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:107:1 › cover dialog fits above the keyboard and preserves draft-only editing until apply (6.5s)
+
+
+  1) [host] › tests/e2e/keyboard-writing-focus.spec.ts:107:1 › cover dialog fits above the keyboard and preserves draft-only editing until apply 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true })
+    Expected: "true"
+    Received: ""
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog', { name: '내 책 표지 꾸미기', exact: true })
+        14 × locator resolved to <dialog open="" aria-labelledby="_r_0_" class="book-cover-editor-module__C9f9iG__dialog story-dialog-surface-module__24ZUMW__surface">…</dialog>
+           - unexpected value "null"
+
+
+      110 |  await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();
+      111 |  const dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true}),field=dialog.getByRole('textbox',{name:'작가의 말',exact:true});await field.focus();await page.evaluate(()=>{Object.defineProperty(visualViewport!,'height',{configurable:true,value:350});visualViewport!.dispatchEvent(new Event('resize'));});
+    > 112 |  await expect(dialog).toHaveAttribute('data-keyboard-occluded','true');
+          |                       ^
+      113 |  await expect.poll(async()=>{const r=await dialog.boundingBox(),f=await field.boundingBox(),a=await dialog.getByRole('button',{name:'표지 적용',exact:true}).boundingBox();return !!r&&!!f&&!!a&&r.y>=0&&r.y+r.height<=351&&f.y>=0&&f.y+f.height<=351&&a.y+a.height<=351;}).toBe(true);
+      114 |  await expect(field).toBeFocused();await field.fill('아직 적용하지 않은 표지 문구');await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(dialog).toHaveCount(0);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(original);
+      115 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/keyboard-writing-focus.spec.ts:112:23
+
+    Error Context: test-results/keyboard-writing-focus-cov-01277-ft-only-editing-until-apply-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/keyboard-writing-focus-cov-01277-ft-only-editing-until-apply-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/keyboard-writing-focus-cov-01277-ft-only-editing-until-apply-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/keyboard-writing-focus.spec.ts:107:1 › cover dialog fits above the keyboard and preserves draft-only editing until apply 

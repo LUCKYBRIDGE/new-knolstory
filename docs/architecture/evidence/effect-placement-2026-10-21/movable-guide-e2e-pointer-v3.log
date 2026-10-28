@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:59512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/editor-effect-pane.spec.ts:7:1 › animation pane selects a single effect editor and edits timing with visible bars without changing unrelated content (6.8s)
+
+  1 passed (7.2s)

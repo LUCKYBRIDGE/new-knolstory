@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:95879) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/combined-editing.spec.ts:7:1 › combined opt-in, navigation, actual edits and local file roundtrip preserve manuscript (11.8s)
+  ✓  2 tests/e2e/editor-effect-pane.spec.ts:7:1 › animation pane selects a single effect editor and edits timing with visible bars without changing unrelated content (6.8s)
+  ✓  3 tests/e2e/editor-work-isolation.spec.ts:7:1 › same cut ids in independent works do not carry open direction details or draft values (3.3s)
+
+  3 passed (22.5s)

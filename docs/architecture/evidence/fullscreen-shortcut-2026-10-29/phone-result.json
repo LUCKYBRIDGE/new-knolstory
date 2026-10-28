@@ -1,0 +1,77 @@
+{
+  "before": [
+    360,
+    677
+  ],
+  "entered": {
+    "size": [
+      360,
+      780
+    ],
+    "fullscreen": true,
+    "labels": [
+      {
+        "name": "설정",
+        "rect": {
+          "x": 6,
+          "y": 2,
+          "width": 76,
+          "height": 44,
+          "top": 2,
+          "right": 82,
+          "bottom": 46,
+          "left": 6
+        },
+        "hit": true
+      },
+      {
+        "name": "현재 장과 컷 이동",
+        "rect": {
+          "x": 85,
+          "y": 2,
+          "width": 175,
+          "height": 44,
+          "top": 2,
+          "right": 260,
+          "bottom": 46,
+          "left": 85
+        },
+        "hit": true
+      },
+      {
+        "name": "편집 화면 전체 화면 해제",
+        "rect": {
+          "x": 263,
+          "y": 2,
+          "width": 44,
+          "height": 44,
+          "top": 2,
+          "right": 307,
+          "bottom": 46,
+          "left": 263
+        },
+        "hit": true
+      },
+      {
+        "name": "홈 · 서재로 이동",
+        "rect": {
+          "x": 310,
+          "y": 2,
+          "width": 44,
+          "height": 44,
+          "top": 2,
+          "right": 354,
+          "bottom": 46,
+          "left": 310
+        },
+        "hit": true
+      }
+    ]
+  },
+  "after": [
+    360,
+    677
+  ],
+  "wholeWorkUnchanged": true,
+  "originalKeysRestored": true
+}

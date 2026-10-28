@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-20",
+  "scope": "실제 무대 준비 화면에 완성된 책 넘기기 로딩 연결·현행 IAB 복원",
+  "status": "verified",
+  "findings": [
+    "실제 IAB 탭은 이전 문구-only 화면을 유지하고 있었음",
+    "로컬15401서버가 종료되어 runtime iframe연결 거부였음",
+    "최신 읽기 로딩에서 picture intrinsic 크기가 예약영역을 넘는 배치 발견"
+  ],
+  "changes": [
+    "로컬 정적 미리보기15401다시 시작 후 기존 탭 최신화",
+    "로딩그림 picture를 예약 art영역에 absolute로 고정·contain",
+    "실제 playmode 준비 화면의 이미지/안내 비겹침 회귀 검사 추가"
+  ],
+  "integration": [
+    "Web 첫 화면 불러오기",
+    "편집 미리보기 엔진 준비",
+    "실제 이야기 읽기 엔진 준비",
+    "네이티브 부트 presplash"
+  ],
+  "invariants": [
+    "네 작품 무작위·총4프레임1→2→3→4→1·투명 배경 유지",
+    "실제 ready 신호에 따라 제거; 가짜 대기/재생 렌더러 추가 없음",
+    "원고·저장·core/runtime 의미 유지"
+  ],
+  "verification": {
+    "browser": "7 passed (9.4s); actualplaymode wait + art/copy bounds + realnative input/readiness + fourwork randomselection + optionaltipfailure",
+    "liveIAB": "old connection-refused reproduced; server restored and latest loading shown; then actual audio-start native gate reached",
+    "typecheck": "passed",
+    "lint": "passed",
+    "docs": "docs:check passed; test:docs10passed"
+  },
+  "sourceHashes": {
+    "apps/web/components/story-loading.module.css": "60b40f3e054502f33080f1451e1a8babe5791f0e9e2f43f33993ef8bfff21608",
+    "tests/e2e/story-loading.spec.ts": "314df979a3e2c16c13ac94cdcbd57282ff444383decf7f11e0e60a2abeeebd70"
+  },
+  "limits": [
+    "Screenshot of controlled actualreading wait uses test-only held game.zip download; no production forced delay",
+    "물리 기기·스크린리더·전체 출시·공개 배포 검증 아님"
+  ]
+}

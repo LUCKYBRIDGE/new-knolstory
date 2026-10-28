@@ -1,0 +1,45 @@
+{
+  "status": "focused-physical-composition-passed",
+  "scope": "Actual S25 Samsung keyboard on image search in independent imported work; portrait Chrome 360x677; not every popup or all IME behavior.",
+  "observed": {
+    "device": "S25 Samsung keyboard actual touch",
+    "composition": "ㄱ→가 then committed",
+    "dialogStayedOpen": true,
+    "escape": "ADB Escape not delivered to page during composition; no application Escape claim",
+    "cancelPreservedWholeCopy": true,
+    "keyboardLanguageRestored": "English (US)",
+    "originalWorkRestoredAndEqual": true
+  },
+  "events": {
+    "compositionStart": true,
+    "compositionUpdateGa": true,
+    "compositionEndGa": true,
+    "escapeKeyDeliveredToPage": false
+  },
+  "sourceSha256": {
+    "apps/web/components/asset-browser-dialog.tsx": "71f1b738090090a223b06e50ee3db5c16c6c64cbbcb436f3d11fb0d03f319910",
+    "apps/web/out/index.html": "61fdd3d9a63fab0fd5e57c0e7bf375e1bb8197f790c924add75f07916a567b7b",
+    "apps/web/out/runtime/game.zip": "bda738cee7e2dadd5216e3cc5accc74a35704f0bae92a06382cac439f5528808"
+  },
+  "artifacts": ".cache/phone-popup-ime-20261027/",
+  "limits": [
+    "ADB Escape was not observed in page events; composition guard behavior for a delivered physical Escape is unproven.",
+    "Candidate suggestions are sensitive user data; screenshots stay in ignored cache.",
+    "No claim for all popups, OS IME modes, devices or complete editor."
+  ],
+  "thumbnailFix": {
+    "red": "Phone CSS hid all images inside the current background picker, including modal image previews; actual S25 computed display:none and screenshot confirmed.",
+    "change": "Restrict compact launcher styles to the background launcher itself, so modal thumbnails, buttons, labels and descriptions retain their own styles.",
+    "browserRed": ".cache/phone-popup-ime-20261027/thumb-red.log",
+    "browserGreen": ".cache/phone-popup-ime-20261027/thumb-green.log",
+    "physical": "S25 Chrome portrait: real decoded 1599px and 1600px background images displayed in picker, actual screenshot reviewed, cancel preserves original whole work.",
+    "sourceSha256": "de1d7975ee81513decfcda1394e3543a90572710c229b0d7f49c3fc1fbbc8590",
+    "limits": "Individual background picker path, not all viewport and popup combinations.",
+    "browserApply": ".cache/phone-popup-ime-20261027/thumb-apply.log",
+    "browserCoverage": "Actual decoded thumbnail, 44px compact launcher, cancel unchanged and another background selection applied to correct cut.",
+    "phoneTaskSweep": ".cache/phone-popup-ime-20261027/all-phone.log",
+    "phoneTaskSweepScope": "Four tests, including pre-final variant of picker and current phone/tablet task coverage.",
+    "review": "Independent read-only review found scoped selector appropriate; apply and launcher checks added afterward.",
+    "testSha256": "dac08c2b6916de5004abaf98694f1e74b3aaef101df3b00a5ae51cbc99202b0c"
+  }
+}

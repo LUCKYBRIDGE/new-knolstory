@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:12105) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/sequence-time-edit.spec.ts:9:1 › movable guide splits exact source and drag trims/reorders only when enabled, with guarded undo and real file reopen (9.6s)
+
+
+  1) tests/e2e/sequence-time-edit.spec.ts:9:1 › movable guide splits exact source and drag trims/reorders only when enabled, with guarded undo and real file reopen 
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator:  locator('[data-combined-time]').getByRole('button', { name: /^배경음 1 ·.*시간 선택$/ })
+    Expected: "true"
+    Received: "false"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveAttribute" locator('[data-combined-time]').getByRole('button', { name: /^배경음 1 ·.*시간 선택$/ }) with timeout 5000ms
+      - waiting for locator('[data-combined-time]').getByRole('button', { name: /^배경음 1 ·.*시간 선택$/ })
+        14 × locator resolved to <button type="button" aria-pressed="false" data-duration-ms="2000" aria-label="배경음 1 · 밤의 길 · 차분한 배경음 시간 선택" title="배경음 1 · 밤의 길 · 차분한 배경음 · 0초 뒤 · 2초">소리</button>
+           - unexpected value "false"
+
+
+      13 |  await drag(page,bar(2),27,true);await expect.poll(async()=>(await stored(page)).lines[0].audio.music.clips[1].sourceEndMs).toBe(2950);await undo.click();
+      14 |  await time.getByRole('combobox',{name:'시간 막대 끌기 동작',exact:true}).selectOption('start');await time.getByRole('checkbox',{name:'시간 보조선에 맞추기',exact:true}).uncheck();await drag(page,bar(2),12);await expect.poll(async()=>(await stored(page)).lines[0].audio.music.clips[1].sourceStartMs).toBe(700);await expect(bar(2)).toHaveAttribute('data-duration-ms','1800');await undo.click();
+    > 15 |  await time.getByRole('combobox',{name:'시간 막대 끌기 동작',exact:true}).selectOption('move');await drag(page,bar(1),180);await expect.poll(async()=>(await stored(page)).lines[0].audio.music.clips.map((clip:{id:string})=>clip.id)).toEqual(['two','three','one']);await bar(1).focus();await bar(1).press('Enter');await expect(bar(1)).toHaveAttribute('aria-pressed','true');await undo.click();await expect.poll(async()=>(await stored(page)).lines[0].audio.music).toEqual(cue);
+         |                                                                                                                                                                                                                                                                                                                                      ^
+      16 |  await bar(2).scrollIntoViewIfNeeded();const held=(await bar(2).boundingBox())!;await page.mouse.move(held.x+10,held.y+20);await page.mouse.down();await page.getByRole('combobox',{name:/^(시간 작업 배율|음향·연출 작업 배율)$/}).selectOption('150');await page.mouse.move(held.x+50,held.y+20);await page.mouse.up();await expect(time.getByText('시간축이나 보조선이 바뀌어 끌기를 취소했어요. 다시 끌어 주세요.',{exact:true})).toBeVisible();expect((await stored(page)).lines[0].audio.music).toEqual(cue);await page.getByRole('combobox',{name:/^(시간 작업 배율|음향·연출 작업 배율)$/}).selectOption('100');
+      17 |  await time.getByRole('checkbox',{name:'시간 보조선 표시',exact:true}).uncheck();await expect(time.getByRole('button',{name:'보조선에서 음원 나누기',exact:true})).toBeHidden();
+      18 |  await time.getByRole('checkbox',{name:'시간 보조선 표시',exact:true}).check();await bar(2).click();await guide.fill('1.4');await guide.press('Enter');await time.getByRole('button',{name:'보조선에서 음원 나누기',exact:true}).click();value=await stored(page);await expect.poll(async()=>(await stored(page)).lines[0].audio.music.clips.length).toBe(4);value=await stored(page);expect(value.lines[0].text).toBe(project.lines[0].text);expect(value.lines[0].audio.ambience).toEqual(project.lines[0].audio.ambience);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sequence-time-edit.spec.ts:15:326
+
+    Error Context: test-results-sequence-time-keyboard-red/sequence-time-edit-movable-8671c-d-undo-and-real-file-reopen/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-sequence-time-keyboard-red/sequence-time-edit-movable-8671c-d-undo-and-real-file-reopen/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-sequence-time-keyboard-red/sequence-time-edit-movable-8671c-d-undo-and-real-file-reopen/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/sequence-time-edit.spec.ts:9:1 › movable guide splits exact source and drag trims/reorders only when enabled, with guarded undo and real file reopen 

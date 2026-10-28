@@ -1,0 +1,43 @@
+{
+  "status": "interactive-local-walkthrough-complete",
+  "browser": "ego-browser TaskSpace10 p1, isolated first-creation work, local static candidate at15401",
+  "steps": [
+    "Introduction to library, new title, blank first cut.",
+    "Write first text, search/select/apply actual background.",
+    "Add second cut, add second chapter, write third cut.",
+    "Actual RenPy first-cut render and canvas click advance; return edits second cut.",
+    "Actual .knolstory download using visible 작품 파일 내보내기, library file import confirmation, independent copy.",
+    "Whole project matches except intentional independent project ID.",
+    "현재 컷 쓰기 returns imported work to editor; reload preserves complete imported project.",
+    "Review final1052x877 screenshot, native loaded background/dialogue, adjacent thumbnail ready and natural Korean wrapping."
+  ],
+  "fileRoute": "Visible export-download and reimport; primary save uses an OS picker in this browser and was not invoked.",
+  "fix": [
+    "Scoped keep-all for context notes and companion/adjacent excerpts, anywhere fallback retained for oversized tokens.",
+    "First guide now includes imported work 현재 컷 쓰기 and explicit export-download option."
+  ],
+  "result": {
+    "wholeProjectMatchesExceptIndependentId": true,
+    "wholeProjectUnchangedAfterReload": true,
+    "chapters": 2,
+    "cuts": 3,
+    "viewport": {
+      "width": 1052,
+      "height": 877
+    },
+    "horizontalOverflow": false,
+    "notesWordBreak": "keep-all",
+    "excerptWordBreak": "keep-all"
+  },
+  "buildLog": ".cache/first-creation-browser-20261028-build-final.log",
+  "limits": [
+    "Agent walkthrough, not independent novice usability research.",
+    "No new physical phone/tablet or assistive technology proof.",
+    "OS file picker save/re-save belongs to existing separate evidence.",
+    "Existing desktop and other authored features retain their scoped evidence; this is not overall editor/release completion."
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-editing-workbench.module.css": "e53be7181674003bcbb4442fedb0c71f544fa8cecaa7de527b9f35f32f224a63",
+    "docs/architecture/editor-first-creation-guide.md": "041b324f69334d0cd4ccb920ff64641d18f61a46a48ae2a5506ab873c44269bb"
+  }
+}

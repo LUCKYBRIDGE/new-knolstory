@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-24",
+  "scope": "Image search keyboard ownership, visible results/actions and actual selection",
+  "failure": "Actual S25 click focused search, keyboard resized to350, search blurred and keyboard closed. Blur snapshot showed dialog bottom671 while visual height350. Main keyboard handling included nested modal input.",
+  "change": "Image dialog owns its keyboard viewport. Cover/assets scopes are distinct; host ignores inputs owned by another modal. Focus reveal stops at modal boundary. Keyboard layout retains search, tabs, scrollable results and footer actions.",
+  "verification": {
+    "red": "New image keyboard regression failed before fix",
+    "green": "14 focused keyboard cases passed17.8s, including nested cover-image ownership",
+    "actualDevice": "S25 visual350: dialogy4..346, searchy64..108, results118px, footer284..345; focus retained while searching",
+    "actualApply": "Selected another actor image from keyboard search, applied, restored original image through UI; full project equality except updatedAt. Cancellation also preserved entire project.",
+    "build": "Web build:source passed",
+    "types": "Web TypeScript passed",
+    "lint": "Focused ESLint passed",
+    "review": "Separate read-only source review found no actionable issue",
+    "compactFollowup": "2 image ownership/nested cases passed after keyboard-only compact controls. Browser visual check: first matching image button y178..275.55 before footer y284, wholly visible. Active facet chips retained.",
+    "docs": "57 active docs/227 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Actual landscape check passed; user chose to keep landscape, portrait return remains browser-verified only.",
+    "Actual nested cover-image check is browser E2E, not claimed as a separate physical-device run",
+    "Whole editor completion not claimed"
+  ]
+}

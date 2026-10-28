@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:19222) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/preview-context.spec.ts:13:1 › return to a later read cut does not reuse prior cut undo or cursor (4.4s)
+
+  1 passed (4.9s)

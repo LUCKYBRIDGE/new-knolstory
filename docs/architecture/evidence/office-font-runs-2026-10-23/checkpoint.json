@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-23",
+  "scope": "Actual LibreOffice XLSX save roundtrip and Web import after script-font fallback fragmentation",
+  "failure": "Native LibreOffice saved plain Korean/Latin text as multiple richText font runs; importer rejected project description at row3 col3 despite unchanged text.",
+  "cause": "Font fallback split Korean and Latin spans; other text style fields matched.",
+  "contract": "Join only validated plain string runs with uniform non-font-substitution style. Ignore per-run name/family/charset/scheme display substitutions. Reject unknown objects, formulas, dates, hyperlinks with hidden differing targets and inline style differences. Archive/document fields unchanged.",
+  "verification": {
+    "nativeApplication": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "nativeSave": "3 passed16.62s in a single optional integration run",
+    "results": [
+      {
+        "name": "story-current",
+        "status": "passed",
+        "inputBytes": 351347,
+        "outputBytes": 426303,
+        "inputSha256": "1285a129599f1a82e625032ff5db6cc0a0036708d5c776b98f97528c718387f5",
+        "outputSha256": "75434d212db611274ded8e47b589fd1f2adbda64b9459f28f6e14756ad7aad4c"
+      },
+      {
+        "name": "story-full",
+        "status": "passed",
+        "inputBytes": 293112,
+        "outputBytes": 363178,
+        "inputSha256": "b8e705b6984103d35c7080250b554740debb3ad1c19a6823246b569e3e5dc189",
+        "outputSha256": "a7a391c3e9682b072f4a17d5d4c2e2b98cd1f6ec2aad12898106b05fa87af921"
+      },
+      {
+        "name": "shortstory-full",
+        "status": "passed",
+        "inputBytes": 60971,
+        "outputBytes": 75613,
+        "inputSha256": "64cd8cb58be122a03f5737eaf128776f8f782e1ecffae8850918991d5f79306a",
+        "outputSha256": "d32b14f5afc685b23f43fd4af4a7cbe3792c747d8f02a78ee1c8d1b3e09b6f6a"
+      }
+    ],
+    "browser": "2 passed9.3s:real saved current story UI import/native play/edit/export equality and full picture-book UI import/export/reload",
+    "compatibility": "63 files327 passed,2 historical external-file cases skipped; not counted as current Excel verification",
+    "newUnit": "4 passed; font-runs helper scoped coverage100% statements/branches/functions/lines",
+    "types": "All6 workspaces and server passed, followed by compatibility check for added configs",
+    "build": "Web build:source passed",
+    "lint": "Focused source/tests/configs passed"
+  },
+  "reproduction": {
+    "native": "pnpm test:office-roundtrip",
+    "browser": "KNOLSTORY_OFFICE_RESULTS=<successful-native-output-folder> pnpm test:e2e:office",
+    "defaultCI": "Native app integration opt-in; regular tests do not require soffice or Excel add-in"
+  },
+  "sourceHashes": {
+    "packages/compatibility/src/authoring-workbook/font-runs.ts": "f2240c559962782931b1ec387ba8fc7922838490da6060bbfe6b71148ff64a3c",
+    "packages/compatibility/src/authoring-workbook/excel.ts": "1f63ecd9bb9d0104ea0252d674ead81b2956dde67a17506644205762e8d2ea7a",
+    "packages/compatibility/tests/workbook-font-runs.test.ts": "e018bad1b582be28999cfea0b14cd226250d4674e48fd17f0ea95c3203a1f574",
+    "packages/compatibility/tests/libreoffice-roundtrip.integration.ts": "b90042e1927984018a506478b0b2c80ca196e41436113c0b30870812814fdbdb",
+    "tests/e2e/external-workbook-import.spec.ts": "068c710b598c561fa190cce89da2f20f345784b9d3ce2f80223ea7e3839e6a9a"
+  },
+  "limits": [
+    "Native LibreOffice command opens/saves files; no app UI cell editing asserted",
+    "Microsoft Excel installed but not operated in this checkpoint",
+    "Google Sheets and physical device editing not verified",
+    "Excel ChatGPT add-in explicitly excluded and not required",
+    "Native files with fixture audio bytes kept in ignored cache; hashes only recorded here",
+    "Entire editor/product objective remains active"
+  ]
+}

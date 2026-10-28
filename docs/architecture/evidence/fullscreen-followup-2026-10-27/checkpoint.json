@@ -1,0 +1,25 @@
+{
+  "status": "investigating-environment-candidate-not-resolved",
+  "device": "S25 Ultra Android Chrome156.0.8078.47",
+  "observed": {
+    "domFullscreen": true,
+    "nativeTrustedButtonClicks": true,
+    "actualUrlBarRemains": true,
+    "viewport": "360x677",
+    "expectedFullscreenViewport": "360x780"
+  },
+  "environment": {
+    "accessibilityEnabled": true,
+    "touchExplorationEnabled": false,
+    "activeService": "Windows Link screen mirroring accessibility service",
+    "settingsChanged": false
+  },
+  "hypothesis": "Chromium TabStateBrowserControlsVisibilityDelegate.enableHidingBrowserControls disables browser control hiding while ChromeAccessibilityUtil.isAccessibilityEnabled. Current device state matches this path, but no service-off comparison was authorized or performed. Not a proven causal attribution.",
+  "primarySource": "https://chromium.googlesource.com/chromium/src/+/refs/heads/main/chrome/android/java/src/org/chromium/chrome/browser/tab/TabStateBrowserControlsVisibilityDelegate.java",
+  "automation": {
+    "focusEmulationDisabledDiagnostic": "Still677px; did not resolve actual OS fullscreen.",
+    "newPhysicalRunner": "connectOverCDP noDefaults:true preserves browser media/focus/download defaults. Installed Playwright types document the option.",
+    "noCacheOrPhoneSettingsChanged": true
+  },
+  "next": "Preserve current service/settings and complete independent windowed editor stability; separately compare fullscreen when user explicitly provides an environment without the mirroring service."
+}

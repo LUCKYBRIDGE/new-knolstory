@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/story-flow-change.test.ts (5 tests | 1 failed) 5ms
+   × describes only existing choice score changes and visibility conditions 3ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/story-flow-change.test.ts > describes only existing choice score changes and visibility conditions
+AssertionError: expected '선택지 2개와 연결된 점수·조건이 없어집니다.' to be '선택지 2개가 없어집니다.' // Object.is equality
+
+Expected: "선택지 2개가 없어집니다."
+Received: "선택지 2개와 연결된 점수·조건이 없어집니다."
+
+ ❯ apps/web/lib/story-flow-change.test.ts:32:53
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  01:55:04
+   Duration  461ms (transform 252ms, setup 0ms, import 360ms, tests 5ms, environment 0ms)
+

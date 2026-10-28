@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-21",
+  "scope": "Real cut usage range move/resize for cut-start audio and following effects; overall editor goal remains active",
+  "implemented": [
+    "numeric start/end cut range editing",
+    "optional direct bar dragging disabled by default; move/start/end modes; handpan takes precedence",
+    "pointer cancel/no movement does not write; release performs validation",
+    "old start/end moved preserving IDs/conditions/duration",
+    "intervening change/stop/clear instructions rejected",
+    "scoped undo preserves later text/unrelated fields and refuses changed cue state"
+  ],
+  "verification": {
+    "focusedUnit": 28,
+    "newRangeUnit": 5,
+    "rangeCoverage": {
+      "statements": 93.67,
+      "branches": 90.66,
+      "functions": 93.1,
+      "lines": 100
+    },
+    "e2e": {
+      "passed": 1,
+      "log": "combined-range-e2e-final.log",
+      "verified": [
+        "numeric end shrink and undo",
+        "actual pointer end shrink and undo",
+        "actual pointer whole-range move from cuts1..3 to3..5 and undo",
+        "duration and audio edits after range edits",
+        "three viewport layouts",
+        "actual file download equals authored project",
+        "fresh browser file reimport",
+        "native preview/play/editor return",
+        "reload and editor toggle preserve manuscript"
+      ]
+    },
+    "build": "passed",
+    "allPackagesAndServerTypecheck": "passed",
+    "focusedLint": "passed",
+    "docs": {
+      "localLinkErrors": 0,
+      "retiredTerms": 0,
+      "testsPassed": 10
+    }
+  },
+  "limits": [
+    "source audio not trimmed; moved sound restarts at newcut",
+    "chapter defaults/sound cues/local-onlyeffects use existing editors",
+    "no combined secondsaxis or movableguide yet",
+    "split/continuous sourceaudio trim semantics not yet implemented",
+    "no physical device/wholeproduct completionclaim"
+  ],
+  "preservation": "Historical evidence and raw manuscripts unchanged; no file format changes; existing Core startmove validation reused.",
+  "sourceSha256": {
+    "apps/web/lib/combined-range-edit.ts": "5e964ab225f99023dd784b525fe32e066e1eec6f0acbf6488eb4ecd8dd6cc3b0",
+    "apps/web/lib/combined-range-edit.test.ts": "bd0d2e1e7e6cd5be900fe47a75fb38bc4a3b05bdba39684141af40eee7413472",
+    "apps/web/components/story-combined-range-tools.tsx": "c19badd8d8797b31b042bfb17fad773b7ff1819518d074ee32a5fe8b0beef67f",
+    "apps/web/components/story-combined-timeline.tsx": "565da3d1ab339a9cecb15a45094f9718af898631b022fe1061fe3c5a0004118d",
+    "apps/web/components/story-combined-timeline.module.css": "de6ee45175511f97aaff20b7d691efafdd5770abe13a9e0526e96ec137a236d7",
+    "apps/web/components/story-editing-workbench.tsx": "249dfa7036d6febb9c594f84e5580aea87721b5e3d856bcaf86a5cf7aa430ff3",
+    "tests/e2e/combined-editing.spec.ts": "717de1d6af6e377e1877f314ec52c39e3716ad321f9e6f08a6b7e2b9a2aad036"
+  }
+}

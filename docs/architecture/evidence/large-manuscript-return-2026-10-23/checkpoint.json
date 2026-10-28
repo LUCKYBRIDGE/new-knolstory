@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-23",
+  "scope": "Reveal current editor cut after playback crosses a chapter in a300-cut manuscript",
+  "problem": "After chapter1 cut100 -> chapter2 cut1, correct textarea was focused but writer list retained deep prior chapter scroll; viewport still showed cuts99/100. Focus assertion alone passed; visual review found defect.",
+  "red": "Header top=-27461 while writer viewport top238; explicit bounds assertion failed in large-manuscript-return-red",
+  "change": "On preview return to a different cut, reveal its current row within its own writer list. Same-cut cursor/selection/inner scroll restoration remains unchanged.",
+  "verification": {
+    "browser": "3 passed in one18.8s execution:300-cut cross-chapter native return plus long-text same-cut selection direction plus different read-cut return",
+    "native": "Actual rendered-revision acknowledgement, same iframe retained, correct chapter/cut/field focus and current row header inside writer viewport",
+    "content": "Entire project equals pre-preview state after intended short edit, including300cuts and flow",
+    "visual": "Root viewed before and after phone captures: current chapter cut1 and focused manuscript visible after fix",
+    "build": "Web build:source passed",
+    "typecheck": "Web passed",
+    "lint": "Changed hook and new browser test passed",
+    "docs": "docs:check57 active documents,225 current language surfaces passed; test:docs10 passed; git diff --check passed"
+  },
+  "files": {
+    "hook": "7d1a4403baecd8d715228de8dd4a6180e730237f7db8ae27351eb91805d4d28f",
+    "test": "ba131c19d4fbf6a7db96f28a887ded66ab43273e5ca332c7eaf054957f0c2b12"
+  },
+  "limits": [
+    "Phone viewport is local browser evidence, not physical device",
+    "Same300-cut file journey separately recorded in large-manuscript-2026-10-23",
+    "Whole editor objective remains active"
+  ]
+}

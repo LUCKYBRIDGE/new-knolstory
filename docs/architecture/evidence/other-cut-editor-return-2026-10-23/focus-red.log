@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:18552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/long-text-context.spec.ts:33:1 › reading another cut returns focus to that cut without old selection (14.4s)
+
+
+  1) tests/e2e/long-text-context.spec.ts:33:1 › reading another cut returns focus to that cut without old selection 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('textarea[data-cut-id="shake"]')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" locator('textarea[data-cut-id="shake"]') with timeout 5000ms
+      - waiting for locator('textarea[data-cut-id="shake"]')
+        14 × locator resolved to <textarea aria-label="2컷 글" maxlength="20000" data-cut-id="shake">shake 장면을 확인해요.</textarea>
+           - unexpected value "inactive"
+
+
+      32 |
+      33 | test('reading another cut returns focus to that cut without old selection',async({page},info)=>{
+    > 34 |  await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'long.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-23T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);await screen(page,'text');const field=page.locator('textarea[data-cut-id]').first();await field.evaluate((el:HTMLTextAreaElement)=>{el.focus();el.setSelectionRange(1600,1620,'backward');el.scrollTop=550;});const before=await field.evaluate((el:HTMLTextAreaElement)=>({start:el.selectionStart,end:el.selectionEnd,direction:el.selectionDirection,top:el.scrollTop}));await page.getByTestId('editing-cut-neutral').getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const rev=await status.getAttribute('data-rendered-revision');return rev!==null&&Number(rev)>=0&&rev===await status.getAttribute('data-scene-revision');},{timeout:120000}).toBe(true);const nextButton=page.getByRole('button',{name:'다음으로',exact:true});for(let step=0;step<200;step++){if(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)!=='neutral')break;await nextButton.focus();await nextButton.press('Enter');await page.waitForTimeout(30);}await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).not.toBe('neutral');await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();const currentId=await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();const current=page.locator(`textarea[data-cut-id="${currentId}"]`);await expect(current).toBeFocused();expect(await current.evaluate((el:HTMLTextAreaElement)=>el.selectionStart)).not.toBe(before.start);await expect(field).toHaveValue(prose);await page.screenshot({path:info.outputPath('native-return.png')});
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+      35 | });
+      36 |
+      37 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/long-text-context.spec.ts:34:1990
+
+    Error Context: test-results-other-cut-red2/long-text-context-reading--c5188-t-cut-without-old-selection/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-other-cut-red2/long-text-context-reading--c5188-t-cut-without-old-selection/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-other-cut-red2/long-text-context-reading--c5188-t-cut-without-old-selection/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/long-text-context.spec.ts:33:1 › reading another cut returns focus to that cut without old selection 

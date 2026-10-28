@@ -1,0 +1,11 @@
+
+Running 72 tests using 1 worker
+
+(node:39142) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 1440 (16.8s)
+(node:39208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 tests/e2e/branch-scope.spec.ts:25:115 › exact same-target branch condition saves, previews, loops and reopens 768 (16.6s)
+(node:39252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

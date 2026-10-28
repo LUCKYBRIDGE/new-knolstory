@@ -86,8 +86,7 @@ export async function validateAuthoringAudioResources(value:unknown):Promise<Aut
 export function authoringReferencedAudioIds(project:StoryProject):string[]{
  const ids=new Set<string>();
  for(const item of [...project.chapters,...project.lines]){
-  if(item.audio?.music?.action==='play')ids.add(item.audio.music.assetId);
-  if(item.audio?.ambience?.action==='play')ids.add(item.audio.ambience.assetId);
+  for(const channel of ['music','ambience'] as const){const cue=item.audio?.[channel];if(cue?.action==='play')ids.add(cue.assetId);if(cue?.action==='sequence')for(const clip of cue.clips)ids.add(clip.assetId);}
   if('sounds' in(item.audio??{}))for(const cue of item.audio?.sounds??[])ids.add(cue.assetId);
  }
  return [...ids];

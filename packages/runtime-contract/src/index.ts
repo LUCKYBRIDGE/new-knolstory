@@ -29,7 +29,13 @@ export type RuntimeScene = Readonly<{
   background?: Readonly<{ imagePath: string; fit?: 'contain' | 'cover'; rect?:Rect; focal?:Point }>;
   choices?: readonly Readonly<{ id: string; text: string }>[];
   presentationEntry?: string;
+  /** Resolved manual effect groups for this path occurrence; Core owns progress. */
+  effectSteps?: Readonly<{current:number;total:number}>;
   audio?: RuntimeAudio;
+  /** A matching authored viewpoint title, presented without a second dialogue step. */
+  transitionOnly?: boolean;
+  /** Reader-session navigation preferences; omitted mode advances on every stage tap. */
+  readerTapMode?: 'next' | 'halves'; readerCanGoBack?: boolean;
   mode?: 'edit' | 'play'; ended?: boolean; reducedMotion?: boolean; presentation?: RuntimePresentation;
 }>;
 /** Read-only render request: never loads or advances the active story scene. */
@@ -47,7 +53,7 @@ export type RuntimeEvent =
       audioState?: Readonly<{unlocked?:boolean;ambiencePath?:string|null;ambienceStartCount?:number;musicPath:string|null;musicPosition:number|null;musicStartCount:number;soundPlayCount:number;soundPaths?:readonly string[]}> }>
   | Readonly<{ protocol: 1; type: 'viewportChanged'; rendererRect: Rect }>
   | Readonly<{ protocol: 1; type: 'error'; message: string }>
-  | Readonly<{ protocol: 1; type: 'advanceRequested' | 'presentationDone'; sceneId: string; revision: number }>
+  | Readonly<{ protocol: 1; type: 'advanceRequested' | 'backRequested' | 'presentationDone'; sceneId: string; revision: number }>
   | Readonly<{ protocol: 1; type: 'choiceSelected'; sceneId: string; revision: number; choiceId: string }>;
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -94,17 +100,28 @@ export function isRuntimePresentation(value: unknown): value is RuntimePresentat
   return true;
 }
 function sceneExtras(value: Record<string, unknown>): boolean {
+  if(value.effectSteps!==undefined){const steps=value.effectSteps;if(!record(steps)||!Number.isSafeInteger(steps.current)||!Number.isSafeInteger(steps.total)||(steps.current as number)<0||(steps.total as number)<1||(steps.total as number)>3||(steps.current as number)>(steps.total as number)||value.mode!=='play'||value.ended===true)return false;}
   if(value.dialogueOffset !== undefined && !revision(value.dialogueOffset))return false;
   if(value.viewportVersion !== undefined && value.viewportVersion !== 1)return false;
   if(value.textboxRect !== undefined && !isRect(value.textboxRect))return false;
   if(value.dialogueStyle !== undefined && (!record(value.dialogueStyle) || !finite(value.dialogueStyle.fontSize) || !optionalNumber(value.dialogueStyle.fontSize,16,96) || !finite(value.dialogueStyle.speakerFontSize) || !optionalNumber(value.dialogueStyle.speakerFontSize,16,96) || !finite(value.dialogueStyle.padding) || !optionalNumber(value.dialogueStyle.padding,0,64) || !optionalNumber(value.dialogueStyle.paginationFontSize,16,96) || !optionalNumber(value.dialogueStyle.toolsHeight,44,512)))return false;
   if(value.presentationEntry !== undefined && (!text(value.presentationEntry,200)||!value.presentationEntry))return false;
   if(value.audio !== undefined && !isRuntimeAudio(value.audio))return false;
+  if (!optionalChoice(value.readerTapMode, ['next', 'halves']) || !optionalChoice(value.readerCanGoBack, [true, false])) return false;
   if (!optionalChoice(value.mode, ['edit', 'play']) || !optionalChoice(value.ended, [true, false]) || !optionalChoice(value.reducedMotion, [true, false])) return false;
   if (value.background !== undefined && (!record(value.background) || !isRuntimeImagePath(value.background.imagePath)
     || !optionalChoice(value.background.fit, ['contain', 'cover']) || value.background.rect !== undefined && !isRect(value.background.rect)
     || value.background.focal !== undefined && (!record(value.background.focal) || !finite(value.background.focal.x) || !finite(value.background.focal.y) || !optionalNumber(value.background.focal.x,0,1) || !optionalNumber(value.background.focal.y,0,1)))) return false;
   if (value.presentation !== undefined && !isRuntimePresentation(value.presentation)) return false;
+  if (!optionalChoice(value.transitionOnly, [true, false])) return false;
+  if (value.transitionOnly) {
+    const transition = record(value.presentation) ? value.presentation.transition : undefined;
+    if (value.mode !== 'play' || value.ended || !record(transition) || transition.type !== 'perspective-blackout'
+      || typeof transition.title !== 'string' || !transition.title.trim() || !record(value.dialogue)
+      || value.dialogue.speaker !== '시점 전환' || typeof value.dialogue.text !== 'string'
+      || value.dialogue.text.trim() !== transition.title.trim()
+      || value.choices !== undefined && (!Array.isArray(value.choices) || value.choices.length !== 0)) return false;
+  }
   if (value.choices !== undefined) {
     const choices = value.choices;
     if (!Array.isArray(choices) || choices.length > 4 || !choices.every(c => record(c) && text(c.id, 200) && !!c.id && text(c.text, 20000))) return false;
@@ -148,6 +165,7 @@ export function isRuntimeEvent(value: unknown): value is RuntimeEvent {
     case 'error': return text(value.message, 2000);
     case 'choiceSelected': return text(value.choiceId, 200) && !!value.choiceId && text(value.sceneId, 200) && !!value.sceneId && revision(value.revision);
     case 'advanceRequested':
+    case 'backRequested':
     case 'presentationDone': return text(value.sceneId, 200) && !!value.sceneId && revision(value.revision);
     case 'sceneRendered': return (value.engineLogicalSize === undefined || record(value.engineLogicalSize) && optionalNumber(value.engineLogicalSize.width, 1, 4096) && value.engineLogicalSize.width !== undefined && optionalNumber(value.engineLogicalSize.height, 1, 4096) && value.engineLogicalSize.height !== undefined) && (value.audioState === undefined || isRuntimeAudioState(value.audioState)) && revision(value.revision) && text(value.sceneId, 200) && !!value.sceneId
       && (value.dialogueRects===undefined || record(value.dialogueRects)&&isRect(value.dialogueRects.speaker)&&isRect(value.dialogueRects.body))

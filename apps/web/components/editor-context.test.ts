@@ -3,6 +3,7 @@ import {keyboardOccludesEditor,adjacentManuscriptCuts} from './editor-context';
 describe('approved editor context',()=>{
  it('recognizes measured focused keyboard occlusion without device heights',()=>{
   expect(keyboardOccludesEditor({layoutHeight:844,visualHeight:510,offsetTop:0,focused:true,scale:1})).toBe(true);
+  expect(keyboardOccludesEditor({layoutHeight:677,visualHeight:350,offsetTop:273.5,focused:true,scale:1})).toBe(true);
   expect(keyboardOccludesEditor({layoutHeight:844,visualHeight:810,offsetTop:0,focused:true,scale:1})).toBe(false);
   expect(keyboardOccludesEditor({layoutHeight:844,visualHeight:510,offsetTop:0,focused:false,scale:1})).toBe(false);
   expect(keyboardOccludesEditor({layoutHeight:844,visualHeight:510,offsetTop:0,focused:true,scale:2})).toBe(false);

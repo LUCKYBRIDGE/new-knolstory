@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "tests": 3,
+  "scope": "Existing phone choice/score input center hit-target assertions and new 390/1280 connection dialog collapsed/expanded native Tab boundaries, hidden control skipping, Escape/opener restoration and whole-project equality. Runtime blocked for these host tests.",
+  "productSourceChanged": false,
+  "initialFailures": "Incorrect test assumptions: ambiguous summary locator, then wrong last control. Incoming connection buttons follow upstream details. These logs are not product defect evidence.",
+  "review": "Read-only second-agent review found no blocking issue; added explicit re-collapse visibility and folded summary-to-first incoming button traversal.",
+  "helperInvestigation": "Generic native-details/inert weakness was demonstrable in isolated markup but no untouched product callsite failure was established. No speculative helper patch applied.",
+  "notProven": [
+    "All popups",
+    "Screen readers",
+    "Native runtime rendering"
+  ]
+}

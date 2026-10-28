@@ -22,3 +22,13 @@ describe('saved normalized metadata',()=>{
   expect(acknowledgeAudioMetadataSave({baseline,draft},submitted,canonical)).toEqual({baseline:canonical,draft});
  });
 });
+
+describe('audio draft departure markers',()=>{
+ it('stays dirty for a select-only change and clears after acknowledgement',()=>{
+  const baseline={name:'소리',category:'effect' as const,tags:'종',originalName:'bell.wav',source:'녹음'};
+  const draft={...baseline,category:'ambience' as const};
+  expect(JSON.stringify(draft)!==JSON.stringify(baseline)).toBe(true);
+  const saved=acknowledgeAudioMetadataSave({baseline,draft},draft,draft);
+  expect(saved.draft).toEqual(saved.baseline);
+ });
+});

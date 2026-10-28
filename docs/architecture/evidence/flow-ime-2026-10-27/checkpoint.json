@@ -1,0 +1,18 @@
+{
+  "status": "focused-browser-passed",
+  "red": "360 and1280 composing Escape cleared flow search text.",
+  "change": "Composition ref/native flag229 protect Escape and cancel; normal search Escape and dismissal remain.",
+  "validation": {
+    "tests": 4,
+    "seconds": 8.1,
+    "scope": "2 new composing search cases and2 existing flow keyboard boundary cases",
+    "build": true,
+    "lint": true,
+    "wholeProjectPreserved": true,
+    "readOnlyReview": "No blocker; actual16 dialog files inspected;4 have Korean free text and now have guards."
+  },
+  "limits": [
+    "Synthetic composition events, not actual Samsung IME candidate sequence",
+    "Not all editor completion"
+  ]
+}

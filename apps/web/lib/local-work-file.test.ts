@@ -226,3 +226,20 @@ it('creates one file saver per session and retains it when settings remount', ()
   expect(factory).toHaveBeenCalledOnce();
   expect(other.getOrCreate(() => second)).toBe(second);
 });
+
+it('waits for an Android provider to publish closed bytes without writing the file again',async()=>{
+ const selected=file();let closed=false,stale=2;
+ selected.stream.close.mockImplementation(async()=>{closed=true;});
+ vi.mocked(selected.handle.getFile).mockImplementation(async()=>({text:async()=>closed?(stale-->0?'':'manuscript'):''}));
+ const saver=createLocalWorkFileSaver({pick:async()=>selected.handle,download:vi.fn()});
+ expect(await saver.save(input())).toEqual({kind:'saved',name:'work.knolstory'});
+ expect(selected.stream.write).toHaveBeenCalledOnce();expect(selected.stream.close).toHaveBeenCalledOnce();
+});
+
+it.each(['.knolstory', '.shortstory'] as const)('offers the actual %s work extension to the file picker', async extension => {
+  const selected = file(`work${extension}`);
+  const pick = vi.fn(async () => selected.handle);
+  const saver = createLocalWorkFileSaver({pick, download: vi.fn()});
+  await saver.save({...input(), extension});
+  expect(pick).toHaveBeenCalledWith(expect.objectContaining({suggestedName:`work${extension}`,types:[expect.objectContaining({accept:{'application/octet-stream':[extension]}})]}));
+});

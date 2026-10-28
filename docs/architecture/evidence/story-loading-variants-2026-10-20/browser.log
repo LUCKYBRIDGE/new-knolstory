@@ -1,0 +1,14 @@
+
+Running 7 tests using 1 worker
+
+(node:93052) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/story-loading.spec.ts:6:1 › branded waiting screen fits the stage, keeps one short tip and yields to actual RenPy (5.4s)
+  ✓  2 tests/e2e/story-loading.spec.ts:36:1 › native boot uses the same character and concise random tip while preserving real engine progress (547ms)
+  ✓  3 tests/e2e/story-loading.spec.ts:62:1 › unavailable optional tips leave a readable boot screen and never delay the engine (2.2s)
+  ✓  4 tests/e2e/story-loading.spec.ts:73:2 › random loading can select rabbit without fetching the other story illustrations (259ms)
+  ✓  5 tests/e2e/story-loading.spec.ts:73:2 › random loading can select heungbu without fetching the other story illustrations (248ms)
+  ✓  6 tests/e2e/story-loading.spec.ts:73:2 › random loading can select seonnyeo without fetching the other story illustrations (243ms)
+  ✓  7 tests/e2e/story-loading.spec.ts:73:2 › random loading can select onggojib without fetching the other story illustrations (256ms)
+
+  7 passed (9.8s)

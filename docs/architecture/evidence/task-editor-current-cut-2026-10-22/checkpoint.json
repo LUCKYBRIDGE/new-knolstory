@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-22",
+  "scope": "Selected row and explicit find in five task editors; broader goal active",
+  "changes": [
+    "Exact lineId current article/pressed button and existing mint tokens",
+    "Find scrolls only writer list to current row, focus remains on trigger",
+    "Disabled outside selected chapter/busy/IME; no automatic cursor or scroll changes",
+    "Companion options basis220px wraps rather than narrow vertical text",
+    "Chapter picker basis180px stays readable beside explicit find; measured select width above100px"
+  ],
+  "verification": {
+    "screens": [
+      "text",
+      "background",
+      "characters",
+      "audio",
+      "direction"
+    ],
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ],
+      [
+        1280,
+        800
+      ]
+    ],
+    "checks": [
+      "Select nineteenth cut, scroll list to origin, find selected row and verify header inside list",
+      "Exact current/pressed state and trigger focus",
+      "No page horizontal overflow, companion group width at least200px",
+      "Exported manuscript and chapters preserved"
+    ],
+    "regression": "120-cut long manuscript editing/cursor/screen return/file/reload flow passed",
+    "build": "Web production source build",
+    "typecheck": "Web tsc noEmit",
+    "lint": "Focused eslint",
+    "browserTests": 4,
+    "combinations": 20,
+    "docs": "57 active docs/218 terminology surfaces,10 tests pass"
+  },
+  "limits": [
+    "Native startup blocked only for host UI checks; previous native evidence retained",
+    "Physical touch/soft keyboard and broader editor completion remain"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-24",
+  "scope": "User-requested mobile entry fullscreen offer and settings access",
+  "behavior": [
+    "Supported phone first workspace entry offers decline/start, once per tab session",
+    "Settings and existing reader menu allow fullscreen/exit",
+    "Root document fullscreen includes preparation and sibling modal dialogs",
+    "No automatic fullscreen or authored-data changes"
+  ],
+  "verification": {
+    "actualDevice": "Actual S25 native ADB tap: Android UI tree has neither address/location bar nor browser toolbar; landscape height259->360px, width748. Remains landscape fullscreen per user direction.",
+    "automationBoundary": "CDP synthetic clicks produced DOM fullscreenElement without removing Android browser chrome; physical toolbar disappearance is asserted only from actual native input/UI tree.",
+    "preservation": "Offer acceptance/menu exit roundtrip preserved complete test project",
+    "build": "Web build:source passed",
+    "review": "Separate read-only review; initial null fullscreen state defect found by integration and fixed",
+    "integration": "20 passed34.5s: fullscreen offer decline/reload/settings, explicit acceptance, root fullscreen/preparation/cover modal/exit/project preservation plus keyboard and phone/tablet task regressions",
+    "types": "Web TypeScript passed",
+    "lint": "Focused ESLint passed",
+    "docs": "57 active docs/228 current surfaces,0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Fullscreen availability is browser-dependent; unsupported browsers do not receive entry offer",
+    "Native screenshots containing OS state stay ignored; public evidence includes clean page-only capture",
+    "Whole editor completion remains active"
+  ]
+}

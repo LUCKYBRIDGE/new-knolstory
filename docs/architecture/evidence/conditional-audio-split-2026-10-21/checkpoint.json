@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-21",
+  "scope": "Exact earlier-choice conditional audio region split on a linear continuation; full editor goal remains active",
+  "implemented": [
+    "Permit chapter/cut music/ambience split when exact source choice precedes play owner",
+    "Preserve sourceLineId and choiceId without destination inference or condition removal",
+    "Keep existing entire-span single-predecessor graph check against skip/merge/internal new choice/route",
+    "Reject future/current owner choice condition",
+    "Expose existing collapsed cut/chapter split UI on conditional entries, retain condition markers",
+    "Existing scoped channel undo and original manuscript preservation remain"
+  ],
+  "verification": {
+    "focusedUnitTests": 23,
+    "newConditionalTests": 6,
+    "coreMatrix": "chapter/cut × music/ambience × yes/no/missing history × every a..e cut, original versus split actual runtime audio equal",
+    "sameDestinationChoices": "two distinct choice IDs both targeta, false and missing remain fallbacknight rather than conditionalforest",
+    "formats": [
+      "archive2 encode/decode",
+      "workbook8 export/import",
+      "generated actual XLSX byte export/import",
+      "JSONB snapshot"
+    ],
+    "coverageScope": [
+      "continuous-audio-split.ts",
+      "chapter-audio-split.ts"
+    ],
+    "coverage": {
+      "statements": 95.6,
+      "branches": 96.42,
+      "functions": 92.85,
+      "lines": 100
+    },
+    "nativeE2E": "passed6flows final candidate",
+    "typecheck": "passed all packages/server",
+    "eslint": "passed",
+    "webBuild": "passed candidate UI/source; native unchanged",
+    "nativeE2ELog": "conditional-split-e2e-final.log",
+    "newConditionalFlows": 4,
+    "regressionFlows": 2,
+    "nativeBehavior": [
+      "Exact first versus second choice selected through actual native choice buttons, same target a",
+      "Active condition playsforest, inactive condition preservesnight for cutmusic andchapterambience",
+      "Crossing b/c/d retains exact path and startcount for both choices",
+      "Actual exported whole project and freshcontextimport equal prior splitproject"
+    ],
+    "directPreview": "Core direct a/c/d with missing history equals unsplit original and never fabricates a completed choice",
+    "docsCheck": "passed57 active docs and213current language surfaces",
+    "docsTests": 10
+  },
+  "review": {
+    "method": "Source invariants and explicit truth/false/missing parity matrix",
+    "invariants": [
+      "No choice can occur/change inside affected region due full graph check",
+      "Condition refers strictly to earlier node and current document validation retains realchoice reference",
+      "Inactive condition leaves previous channel state, active condition uses same source/loop identity",
+      "Chapter synthesis restores exact firstcut; right copy retains samecondition and oldend"
+    ],
+    "priorTestCorrections": [
+      "Old native choice geometry hit heading; used actual pinned layout header92/padding24/row96/gap12",
+      "Gate closing render may precede unlock report; finalflow waits actualaudio-unlocked and fallbacknight before native choice click"
+    ]
+  },
+  "limitations": [
+    "Internal branches/merges/jumps remain rejected",
+    "No same-cut temporal music queue",
+    "No external spreadsheet app edits or physical device validation",
+    "Ego goal TaskSpace6 previously missing, not replaced to bypass; current focused browser proof uses project Playwright"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/continuous-audio-split.ts": "29a8f0fff91fee932c18dd6cef41f3297bb992ce8869c66755850cbc0d5649d3",
+    "apps/web/lib/conditional-audio-split.test.ts": "f703842453f5d6f9c675fb3c44b18451bc820b6f8556d7b8696aea8416aa341d",
+    "apps/web/components/story-combined-range-tools.tsx": "69a7a4be738d0a1c17443ec9d565d7e6a4a6c4ed2ec46aba09c12af40d235ee4",
+    "apps/web/components/story-chapter-audio-split.tsx": "894c2a805629670fd7638875693ff930f393b0dc0d6bd8ce301e7b69ac3d96ff",
+    "tests/e2e/conditional-audio-split.spec.ts": "1ab62ce75fdadd70a67055c49d632f8488031645675642c58f4d64dd7f595f2b",
+    "playwright.config.ts": "b4a7d2f89de49187401cff6d3cf9c56bb38b9cad79cae559164cbcdb4b6eac54"
+  }
+}

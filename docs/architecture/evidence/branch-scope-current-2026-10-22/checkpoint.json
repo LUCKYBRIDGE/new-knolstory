@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-22",
+  "scope": "Current branch-condition editor route migration and device-specific reference criteria; whole editor goal active",
+  "verification": {
+    "browserTests": 6,
+    "singleFinalRun": true,
+    "viewports": [
+      "1440x900",
+      "768x1024",
+      "390x844",
+      "844x390"
+    ],
+    "choiceInput": "Actual focused host accessibility choice + keyboard Enter, followed by native rendered revision. No direct callback or canvas-coordinate click claim.",
+    "checks": [
+      "Exact sourceLineId/choiceId for both choices with same target",
+      "Effect/music/ambience/SFX conditional active/inactive results; looping, rewind/reselect, quicksave/load",
+      "Scoped undo, reload, actual authoring file export/import and local XLSX codec roundtrip",
+      "All authored fields compared after removing only four newly written branchCondition fields",
+      "Composition event keeps active input enabled and preview disabled, storage unchanged",
+      "Injected quota failure blocks preview and preserves stored authoring data; referenced source cut deletion blocked",
+      "No-choice work hides branch-only controls without modifying manuscript"
+    ],
+    "lint": "No errors; existing React detection warning"
+  },
+  "referenceOwner": "../../../../DESIGN.md#기기별-편집-참고와-적용-기준--2026-10-22",
+  "review": {
+    "method": "Independent read-only reviewer plus direct source and screenshot review",
+    "addressed": "Preservation assertion previously replaced entire audio/presentation; now strips only branchCondition. IME evidence wording narrowed to actual events/storage test."
+  },
+  "limits": [
+    "Official reference documentation and images are not hands-on external-app verification",
+    "Viewport keyboard tests are not physical-device touch, rotation, soft-keyboard or accessibility certification",
+    "No new native canvas pointer hit-area evidence; original dated pixel evidence preserved",
+    "No whole editor/product completion or deployment; no production code/runtime change in this follow-up"
+  ],
+  "files": {
+    "tests/e2e/branch-scope.spec.ts": "b7141306d3128bfe42f293fbe112f1be6eaecb4193ba958310a7246e5c24dd0e",
+    "DESIGN.md": "251a8442ef7fae8f97a4516b0dc27bdd0dde629c75619bb17a09b73a43869cae",
+    "apps/web/out/index.html": "7e6f4c4403136f408fa44380651406aacf7b820c143b42ab55d34531bf77b9b8"
+  }
+}

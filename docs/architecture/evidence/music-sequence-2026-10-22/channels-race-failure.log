@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:9761) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/music-sequence.spec.ts:21:1 › independent music and ambience sequences retain only the active channel after an early stop (9.0s)
+
+
+  1) tests/e2e/music-sequence.spec.ts:21:1 › independent music and ambience sequences retain only the active channel after an early stop 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "c"
+    Received: "b"
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      21 | test('independent music and ambience sequences retain only the active channel after an early stop',async({page})=>{
+      22 |  test.setTimeout(150000);const baseProject=make('music'),project={...baseProject,lines:baseProject.lines.map(cut=>cut.id==='a'?{...cut,audio:{music:{...cue,clips:[{...cue.clips[0],sourceEndMs:3000},cue.clips[1]]},ambience:{...cue,id:'ambient-queue',clips:[{id:'ambient-one',assetId:'audio:music:night',sourceEndMs:4000},{id:'ambient-two',assetId:'audio:music:forest',sourceEndMs:2500}]}}}:cut)};project.lines.push({...line,id:'d',order:4,text:'모든 예약을 정지합니다.',audio:{music:{action:'stop'},ambience:{action:'stop'}}});
+    > 23 |  await load(page,project);await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered(page);const status=page.getByTestId('story-runtime-status');await page.getByTestId('story-runtime-frame').contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true}).press('Enter');await expect(status).toHaveAttribute('data-audio-unlocked','true');await expect(status).toHaveAttribute('data-music-path',/forest/);await expect(status).toHaveAttribute('data-ambience-path',/night/);const count=Number(await status.getAttribute('data-music-start-count'));await next(page);await rendered(page);await next(page);await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('c');await rendered(page);await expect(status).toHaveAttribute('data-music-path','');await expect(status).toHaveAttribute('data-ambience-path',/forest/,{timeout:8000});expect(Number(await status.getAttribute('data-music-start-count'))).toBe(count);await next(page);await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe('d');await rendered(page);await expect(status).toHaveAttribute('data-music-path','');await expect(status).toHaveAttribute('data-ambience-path','');
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+      24 | });
+      25 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/music-sequence.spec.ts:23:761
+
+    Error Context: test-results-music-sequence-channels/music-sequence-independent-42993-channel-after-an-early-stop/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-music-sequence-channels/music-sequence-independent-42993-channel-after-an-early-stop/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-music-sequence-channels/music-sequence-independent-42993-channel-after-an-early-stop/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/music-sequence.spec.ts:21:1 › independent music and ambience sequences retain only the active channel after an early stop 

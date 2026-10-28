@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-21",
+  "scope": "Three concrete editor context and manuscript-preservation repairs; full editor goal active",
+  "implemented": [
+    "Manual chapter filter anchored to one project/cut editing visit and permanently reset on cut/work change or playback, avoiding stale filter resurrection",
+    "Independent chapter browsing while current cut stays fixed preserves chapter and text edits",
+    "Actor motion type selection preserves authored duration/delay/fromXAnchor including omitted fields; new motion only receives defaults",
+    "Exact actorKey on combined motion entries and timeline matching, never key substring inference"
+  ],
+  "verification": {
+    "unitTests": 21,
+    "unitFiles": 3,
+    "newMotionChoiceTests": 2,
+    "trackTests": 7,
+    "timeTests": 12,
+    "coverageScope": [
+      "actor-motion-choice.ts",
+      "combined-editing-tracks.ts"
+    ],
+    "coverage": {
+      "statements": 99.1,
+      "branches": 87.5,
+      "functions": 95.83,
+      "lines": 100
+    },
+    "finalE2EFlows": 4,
+    "finalE2ELog": "editor-repair-e2e-final.log",
+    "contextBehavior": [
+      "Motion2.3sec/1.1sec/fromXAnchor20 preserved after type change and actual exported work file",
+      "Cut ID b and actor keys a/b correctly select exact second actor motion",
+      "Actual native stage click advances to next chapter and edit return shows correct chapter/detail",
+      "Manual text chapter browse persists through text editing",
+      "Cut moves and return to old anchor do not resurrect old filter",
+      "Same current cut play/edit after browsing other chapter resets manual filter"
+    ],
+    "regressions": [
+      "Combined file/fresh-context reopen/native play-return/guide-duration-drag",
+      "Exact sound selection and undo ownership/source length end alignment"
+    ],
+    "typecheck": "passed all packages/server",
+    "webBuild": "passed final source",
+    "eslint": "passed",
+    "docsCheck": "passed57active docs,210current product surfaces and no retired terms",
+    "docsTests": 10
+  },
+  "egoBrowser": {
+    "spaceId": 6,
+    "spaceName": "knolstory-editor-completion",
+    "origin": "http://localhost:15401",
+    "statePreservation": "Used independent origin rather than existing127.0.0.1 workspace; import confirmed independent copy",
+    "verified": "Actual UI change second motion fade-out→fade-in retained2.3sec and1.1sec; actual download retained fromXAnchor20",
+    "artifact": "ego-motion.knolstory",
+    "limitation": "Ego motion check used candidate before final chapter-filter invalidation; unchanged motion code. Final chapter behavior is proven by final Playwright native flows",
+    "lifecycle": "Goal still active; same TaskSpace retained for continuation; no user tabs closed"
+  },
+  "review": {
+    "method": "Independent read-only gap audit plus second review",
+    "fixes": "Anchor-only filter initially revived when returning to old cut; conditional state invalidation permanently clears it and playback clears same-cut browse",
+    "fixtureCorrections": [
+      "Initial fixture used nonexistent asset aliases rejected by import; replaced with registered catalogue IDs",
+      "Host next button unavailable in native-only display; used actual #overlayDiv stage pointer input"
+    ]
+  },
+  "limitations": [
+    "Full editor completion audit remains incomplete",
+    "Music/ambience multiple-segment editing remains pending",
+    "External Excel/Google UI roundtrip and physical device evidence remain pending"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/actor-motion-choice.ts": "e199c5eeccc85917cdfeb7d7078d3ed9206eb002425b4cddaddc88b74085f6ad",
+    "apps/web/lib/actor-motion-choice.test.ts": "9ebd33c69d1acca8485f85f63b67a8fbf2528f93061bba0cd3c52c4fa478445c",
+    "apps/web/lib/combined-editing-tracks.ts": "c8da6f3dece006465ee96840c44c5ef8e59ae5ebf7d8e117aa1ab4b60444ac53",
+    "apps/web/lib/combined-editing-tracks.test.ts": "b5aa14cd3b506140ce3b2d221576d633a83ff7499beecd7f5aaff1bd1ed72756",
+    "apps/web/components/story-editing-workbench.tsx": "e2c67ecb53a48eeff6eaafc4350505a706e2a1fe3645fd6966d41072efd5ba27",
+    "apps/web/components/story-combined-timeline.tsx": "b9b9c90964aedf034f8d180446e1f03ba70bb8e8d299c5b6113a61a69d51e8b5",
+    "tests/e2e/editor-context-repair.spec.ts": "c1b4c6a280f853d544cda6e430ff3ce1aa770e79dda2f44717cf216a103fc07d",
+    "playwright.config.ts": "ffca36beac2d9a5b83d2b6c440a7dda3fb1f5377257cb7ff067721f348da360a"
+  }
+}

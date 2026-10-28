@@ -1,0 +1,45 @@
+
+Running 1 test using 1 worker
+
+(node:23459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/combined-sound-time.spec.ts:5:1 › selected sound bar opens its own detail and its finite end aligns to the movable guide (7.2s)
+
+
+  1) tests/e2e/combined-sound-time.spec.ts:5:1 › selected sound bar opens its own detail and its finite end aligns to the movable guide 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-combined-details]').getByLabel('2번 효과음 재생 대기 (초)', { exact: true })
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-combined-details]').getByLabel('2번 효과음 재생 대기 (초)', { exact: true }) with timeout 5000ms
+      - waiting for locator('[data-combined-details]').getByLabel('2번 효과음 재생 대기 (초)', { exact: true })
+        14 × locator resolved to <input min="0" max="10" value="0.5" step="0.001" type="number" inputmode="decimal" aria-label="2번 효과음 재생 대기 (초)"/>
+           - unexpected value "hidden"
+
+
+       5 | test('selected sound bar opens its own detail and its finite end aligns to the movable guide',async({page},info)=>{
+       6 |  await page.route('**/api/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'sound-time.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-21T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');
+    >  7 |  const timeline=page.locator('[data-combined-timeline]'),detail=page.locator('[data-combined-details]');await timeline.getByRole('button').filter({hasText:'가벼운 발걸음'}).click();await expect(detail.getByLabel('2번 효과음 재생 대기 (초)',{exact:true})).toBeVisible();await expect(detail.getByLabel('1번 효과음 재생 대기 (초)',{exact:true})).toBeHidden();
+         |                                                                                                                                                                                                                                                 ^
+       8 |  await timeline.getByRole('button',{name:'현재 컷 시간 보기',exact:true}).click();const time=page.locator('[data-combined-time]'),bar=time.getByRole('button',{name:'가벼운 발걸음 시간 선택',exact:true});await expect(bar).toHaveAttribute('data-duration-ms','200');await bar.click();await expect(detail.getByLabel('2번 효과음 재생 대기 (초)',{exact:true})).toBeVisible();await expect(time.getByText('사용 구간 길이 0.2초',{exact:true})).toBeVisible();await expect(time.getByText('동작 길이 조정',{exact:true})).toHaveCount(0);
+       9 |  await time.getByLabel('통합 시간 보조선 (초)',{exact:true}).fill('2');await time.getByLabel('통합 시간 보조선 (초)',{exact:true}).press('Enter');await time.getByRole('button',{name:'끝을 시간 보조선에 맞추기',exact:true}).click();await expect(time.getByLabel('선택 항목 시작 시간 (초)',{exact:true})).toHaveValue('1.8');await expect(detail.getByLabel('2번 효과음 재생 대기 (초)',{exact:true})).toHaveValue('1.8');
+      10 |  const stored=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);await expect.poll(async()=>(await stored()).lines[0].audio.sounds[1].delayMs).toBe(1800);expect((await stored()).lines[0].audio.sounds[0]).toEqual(project.lines[0].audio.sounds[0]);expect((await stored()).lines[0].audio.sounds[1]).toMatchObject({id:'second',sourceStartMs:200,sourceEndMs:400});
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/combined-sound-time.spec.ts:7:241
+
+    Error Context: test-results-sound-time-red/combined-sound-time-select-c9ef3-aligns-to-the-movable-guide/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-sound-time-red/combined-sound-time-select-c9ef3-aligns-to-the-movable-guide/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-sound-time-red/combined-sound-time-select-c9ef3-aligns-to-the-movable-guide/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/combined-sound-time.spec.ts:5:1 › selected sound bar opens its own detail and its finite end aligns to the movable guide 

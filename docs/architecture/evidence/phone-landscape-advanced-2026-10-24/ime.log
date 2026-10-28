@@ -1,0 +1,27 @@
+[WebServer] (node:19276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:19291) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/37vzys53zm1nk.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/31jrpn7bwdm07.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/3rxu0l_jx58l5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/1newfc1d730ml.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/2cejk_2feih67.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:38] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 01:59:39] "GET /assets/loading/onggojib-reading-v2.webp HTTP/1.1" 200 -
+  ✓  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:125:1 › phone rotation waits for text composition before parking advanced editing (961ms)
+
+  1 passed (1.8s)

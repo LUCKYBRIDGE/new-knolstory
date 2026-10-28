@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-23",
+  "scope": "Conditional cut visibility end-to-end local implementation; whole editor goal active",
+  "implemented": [
+    "StoryLine.visibility scores/choices min1 strict exactrefs schema8; olddeclaration rejects",
+    "Common structural visit replay preserves originalpathIndex; hidden selection/score/flow/ending/audio/effect sideeffects skipped",
+    "create/advance/back/restore/history/jump, inherited audio/effects, allhidden cleanended scene",
+    "Edit hypothetical path does not invent decisions; actual restore and scores exacthistory required",
+    "Deletion/clone/relocate/newbranch/splitmergeguards and scoredeletion reference protection",
+    "Collapsed opt-in basic/text editor, changeundo, activeIMEinputpreservation, featureoff data preservation",
+    "Editable workbook8 presence+3tables, exactsingle/group shape, archive2/XLSX/JSONB preservation",
+    "Save summaries and ended/back UI use visible visits",
+    "Number input committed draft resets so undo updates displayed number correctly"
+  ],
+  "verification": {
+    "coreDomainBroad": "53files794passed before3extra coverage-only tests",
+    "newCoreVisibility": "10passed; newmodule combined98.07stmt98.43branch100func100line",
+    "compatibility": "62files323passed2intentional skips",
+    "web": "4files31passed; newhelper100allcoverage",
+    "browser": "Single finalrun7passed: visibility4 + existingconditionaltext3",
+    "browserScope": [
+      "Real scorechoice visible/hidden target; structuralpath retained",
+      "Hidden SFX notplayed; history excludes hidden text",
+      "Allhidden ends blank withzeroaudio",
+      "Edit/undo including inputdisplay; fourviewports; featureoff/onpreserve; downloadedactualfile reimport"
+    ],
+    "types": "sixworkspacepackages+server and finalWeb pass",
+    "build": "Web source production; existingnative contract unchanged"
+  },
+  "review": {
+    "foundFixed": [
+      "Hiddenedit audioreplay empty-state crash",
+      "Initialallhidden restore and forged trailinghidden choices/path validation",
+      "Importer hypothetical scoredpath rejected for missing actualchoicehistory",
+      "Hidden authoring text leaked in readsave summaries",
+      "Committed number draft stale afterundo"
+    ],
+    "independent": "Read-only cross-layer review plus root code/screenshot inspection"
+  },
+  "limits": [
+    "Physical device/touch/softkeyboard and actual external spreadsheet app notverified",
+    "Full editor audit remains active",
+    "No new nativecanvas pointer hit-area or deployment claim"
+  ],
+  "sourceHashes": {
+    "packages/runtime-core/src/scene-visits.ts": "a110f906e4fb255288b019c7c90d10baed9c9e1d608bebd5140cad03a2f81e72",
+    "packages/runtime-core/src/story-runtime.ts": "a955177aa58ed43f993b2ae0240c6eb29892954049c2f704c4fff7ab8a10d913",
+    "packages/story-domain/src/legacy/story-scene-visibility.ts": "a6001436f5c92f579341fba9e6b114dc6a408e81b0f4b92c509b87a4d54c9728",
+    "packages/compatibility/src/authoring-workbook/visibility.ts": "fec2f6dfbf587306a070e71bca4609bc7a7ae25e77bf0b07ee7c7259958d75b9",
+    "packages/compatibility/src/authoring-field-schema.json": "87c785020535acc29decd5a5284bcf23c55007b18e471c2200c8cc46bc21515a",
+    "apps/web/components/story-scene-visibility.tsx": "2dcbc0cfc2260057cb55495a71a4ffa2987bd654451636716c431348c3151902",
+    "apps/web/components/story-score-controls.tsx": "b8c7404e34da981e0f9188ccadb16d2722c652c1d22e5d219997f21b8b9afd33",
+    "tests/e2e/scene-visibility.spec.ts": "43c9f5c84c3fa447057713c5e84d953eea88117a5c094b515919b1506b0f4c3e",
+    "apps/web/out/index.html": "22f8a467327f831225366b4b2cd095e75fdc1598245d8180f090608bae0ec65c"
+  }
+}

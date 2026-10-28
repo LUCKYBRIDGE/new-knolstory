@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-23",
+  "scope": "Score integer/name validation feedback and recovery; wholeeditorgoalactive",
+  "fixed": [
+    "NumberValue and ScoreName haveuniqueuseId error association",
+    "Rejecteddecimal/blankname aria-invalid=true + exacterror aria-describedby",
+    "Validreentry clears error/attributes; authoreddefinition preserved"
+  ],
+  "verification": {
+    "browser": "1fullscoreauthoring scenario passed8s",
+    "scope": [
+      "Create customscore actualUI",
+      "4viewport layout checks",
+      "2.5reject keeps2, emptyname rejectskeepsauthoredname, errorassociation andcorrectionclear",
+      "Realdownloadedwork exactscore definition and reload restores2"
+    ],
+    "types": "Webpass",
+    "lint": "relatederrors0",
+    "build": "Webproduction nativeunchanged"
+  },
+  "limits": [
+    "No real screenreader/device input claim",
+    "Aggregate rendering check not physicalkeyboard test",
+    "Wholeeditor completion stillunproven"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-score-controls.tsx": "7af689f2aac63328e603c5b2dc7dfeb82a090d8ebc0b478d94040882172a111d",
+    "tests/e2e/score-authoring.spec.ts": "338cb240bcfc0105c23a6d39190e258cb11eb467724e041e10badec075a96cd1",
+    "apps/web/out/index.html": "ab31d3cbc30765d58e47dae6e38281b0bba5d6db8ba567be20bca8bfb11af949"
+  }
+}

@@ -1,0 +1,22 @@
+
+Running 15 tests using 1 worker
+
+(node:36547) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/sequence-origin-move.spec.ts:12:52 › music sequence origin range move, undo, file reopen and native continuity (10.0s)
+  ✓   2 tests/e2e/sequence-origin-move.spec.ts:12:52 › ambience sequence origin range move, undo, file reopen and native continuity (9.8s)
+  ✓   3 tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture (2.7s)
+  ✓   4 tests/e2e/sequence-time-edit.spec.ts:9:1 › movable guide splits exact source and drag trims/reorders only when enabled, with guarded undo and real file reopen (7.7s)
+  ✓   5 tests/e2e/sequence-time-edit.spec.ts:23:1 › phone touch selection and source-number editing preserve the other channel (3.4s)
+  ✓   6 tests/e2e/time-viewport-controls.spec.ts:8:166 › time viewport fit, zoom and reveal use visible seconds axis 1280 (2.7s)
+  ✓   7 tests/e2e/time-viewport-controls.spec.ts:8:166 › time viewport fit, zoom and reveal use visible seconds axis 390 (2.6s)
+  ✓   8 tests/e2e/time-viewport-controls.spec.ts:8:166 › time viewport fit, zoom and reveal use visible seconds axis 844 (2.6s)
+  ✓   9 tests/e2e/time-viewport-controls.spec.ts:8:166 › time viewport fit, zoom and reveal use visible seconds axis 768 (2.6s)
+  ✓  10 tests/e2e/time-viewport-controls.spec.ts:8:166 › time viewport fit, zoom and reveal use visible seconds axis 701 (2.8s)
+  ✓  11 tests/e2e/time-viewport-controls.spec.ts:8:166 › time viewport fit, zoom and reveal use visible seconds axis 1024 (2.7s)
+  ✓  12 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 390 (2.6s)
+  ✓  13 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 844 (2.7s)
+  ✓  14 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 768 (2.8s)
+  ✓  15 tests/e2e/timeline-settings-access.spec.ts:8:119 › expanded cut settings preserve real clip access 1280 (2.7s)
+
+  15 passed (1.0m)

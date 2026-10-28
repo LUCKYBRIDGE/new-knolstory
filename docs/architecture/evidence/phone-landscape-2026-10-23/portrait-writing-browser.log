@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:6919) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/keyboard-writing-focus.spec.ts:3:72 › keyboard gives basic writing space to the current image and text 360 (903ms)
+  ✓  2 tests/e2e/keyboard-writing-focus.spec.ts:3:72 › keyboard gives basic writing space to the current image and text 800 (716ms)
+  ✓  3 tests/e2e/keyboard-writing-focus.spec.ts:54:1 › short phone landscape exposes image, text and arrows without opening the keyboard on navigation (670ms)
+  ✓  4 tests/e2e/phone-editor-tasks.spec.ts:6:225 › task editors use phone-sized controls and preserve the large-screen workspace 390 (1.6s)
+  ✓  5 tests/e2e/phone-editor-tasks.spec.ts:6:225 › task editors use phone-sized controls and preserve the large-screen workspace 844 (1.5s)
+  ✓  6 tests/e2e/phone-editor-tasks.spec.ts:6:225 › task editors use phone-sized controls and preserve the large-screen workspace 800 (1.3s)
+
+  6 passed (7.2s)

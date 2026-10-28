@@ -5,7 +5,8 @@ const equal=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b);
 function validated(project:StoryProject){const result=parseStoryDocument(createStoryDocument({project,savedAt:new Date().toISOString(),appVersion:'audio-start'}));if(!result.ok)throw Error(result.issues.map(item=>item.message).join('\n'));return project;}
 export function moveStoryAudioStart(project:StoryProject,sourceId:string,targetId:string,channel:Channel){
  const source=project.lines.find(line=>line.id===sourceId),target=project.lines.find(line=>line.id===targetId),cue=source?.audio?.[channel];
- if(!['music','ambience'].includes(channel)||!source||!target||sourceId===targetId||cue?.action!=='play')throw Error('재생할 소리와 다른 시작 컷을 선택해 주세요.');
+ if(!['music','ambience'].includes(channel)||!source||!target||sourceId===targetId||(cue?.action!=='play'&&cue?.action!=='sequence'))throw Error('재생할 소리와 다른 시작 컷을 선택해 주세요.');
+ if(cue.action==='sequence'&&cue.endLineId){const end=project.lines.find(line=>line.id===cue.endLineId);if(!end||end.chapterId!==target.chapterId||end.order<target.order)throw Error('새 시작 컷은 같은 장의 종료 컷 또는 그 앞의 컷이어야 해요. 종료 컷도 함께 바꾸려면 사용할 컷 구간을 조정해 주세요.');}
  if(target.audio?.[channel]!==undefined)throw Error('도착 컷에 기존 소리 지시가 있습니다. 그 지시를 확인하고 변경하지 않음으로 정리한 뒤 옮겨 주세요.');
  const sourceAudio=Object.fromEntries(Object.entries(source.audio!).filter(([key])=>key!==channel));
  const next=validated({...project,updatedAt:new Date().toISOString(),lines:project.lines.map(line=>line.id===sourceId?{...line,audio:sourceAudio}:line.id===targetId?{...line,audio:{...line.audio,[channel]:structuredClone(cue)}}:line)});

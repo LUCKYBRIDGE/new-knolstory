@@ -1,0 +1,41 @@
+
+Running 1 test using 1 worker
+
+(node:34014) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:86:1 › UI-authored twelve-cut story survives local files and both actual RenPy reading paths (44.1s)
+
+
+  1) [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:86:1 › UI-authored twelve-cut story survives local files and both actual RenPy reading paths 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('editing-cut-cf7736bf-590a-4b16-bda3-592eb2e9b26b').getByLabel('조정할 연출', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('editing-cut-cf7736bf-590a-4b16-bda3-592eb2e9b26b').getByLabel('조정할 연출', { exact: true }) with timeout 5000ms
+      - waiting for getByTestId('editing-cut-cf7736bf-590a-4b16-bda3-592eb2e9b26b').getByLabel('조정할 연출', { exact: true })
+
+
+      27 |  if(name==='글 편집'){await screen(page,'기본편집');await openEditorDetails(page,'현재 컷 상세·메모·정리');return;}
+      28 |  const target=name==='배경·인물 편집'?'인물 편집':name==='소리 편집'?'음향 편집':name;await screen(page,target);
+    > 29 |  if(target==='음향 편집'||target==='연출 편집'){const current=await id(page),row=page.getByTestId(`editing-cut-${current}`),summary=row.getByText(target==='음향 편집'?/^[0-9]+컷 음향 수정$/:/^[0-9]+컷 연출 수정$/);if(!await summary.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await summary.click();await expect(row.getByLabel(target==='음향 편집'?'조정할 소리':'조정할 연출',{exact:true})).toBeVisible();}
+         |                                                                                                                                                                                                                                                                                                                                                                                 ^
+      30 | }
+      31 | async function writing(page:Page,view:'현재 컷 쓰기'|'장 전체 글 고치기'){await screen(page,view==='현재 컷 쓰기'?'기본편집':'글 편집');}
+      32 | async function chapterSettings(page:Page){await manage(page);await openEditorDetails(page,'현재 컷의 장 설정');return page.locator('[data-chapter-settings]');}
+        at tool (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creative-reading-journey.spec.ts:29:369)
+        at author (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creative-reading-journey.spec.ts:79:93)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creative-reading-journey.spec.ts:95:16
+
+    attachment #1: authoring actual-context trace (application/zip) ────────────────────────────────
+    test-results-editor-creative-v8/creative-reading-journey-U-02832--actual-RenPy-reading-paths-stories-runtime/attachments/authoring-actual-context-trace-feca34461b77fba86be196d1b0dbc2a9ae14dfe6.zip
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results-editor-creative-v8/creative-reading-journey-U-02832--actual-RenPy-reading-paths-stories-runtime/error-context.md
+
+  1 failed
+    [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:86:1 › UI-authored twelve-cut story survives local files and both actual RenPy reading paths 

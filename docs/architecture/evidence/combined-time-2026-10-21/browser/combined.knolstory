@@ -1,0 +1,329 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-21T08:54:39.031Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "combined",
+      "title": "함께 편집 확인",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "audio": {
+            "music": {
+              "action": "play",
+              "assetId": "audio:music:forest",
+              "volume": 0.7
+            }
+          },
+          "id": "ch",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "first",
+          "chapterId": "ch",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "1컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          },
+          "presentation": {
+            "effects": [
+              {
+                "durationMs": 1200,
+                "endLineId": "cut3",
+                "id": "effect",
+                "scope": "following",
+                "type": "shake"
+              },
+              {
+                "clickStep": 2,
+                "durationMs": 800,
+                "id": "second",
+                "trigger": "on-click",
+                "type": "flash"
+              }
+            ]
+          }
+        },
+        {
+          "id": "cut2",
+          "chapterId": "ch",
+          "order": 2,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "2컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "music": {
+              "action": "stop",
+              "fadeOutMs": 300
+            }
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut3",
+          "chapterId": "ch",
+          "order": 3,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "3컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut4",
+          "chapterId": "ch",
+          "order": 4,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "4컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "music": {
+              "action": "stop"
+            }
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut5",
+          "chapterId": "ch",
+          "order": 5,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "5컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut6",
+          "chapterId": "ch",
+          "order": 6,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "6컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut7",
+          "chapterId": "ch",
+          "order": 7,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "7컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut8",
+          "chapterId": "ch",
+          "order": 8,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "8컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut9",
+          "chapterId": "ch",
+          "order": 9,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "9컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut10",
+          "chapterId": "ch",
+          "order": 10,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "10컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut11",
+          "chapterId": "ch",
+          "order": 11,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "11컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "cut12",
+          "chapterId": "ch",
+          "order": 12,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "12컷의 보존할 글",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-21T08:54:37.860Z"
+    }
+  },
+  "audioResources": []
+}

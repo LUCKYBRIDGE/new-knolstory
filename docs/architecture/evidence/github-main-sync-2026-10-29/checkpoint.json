@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-29",
+  "request": "로컬에서 완성한 작업을 GitHub main에 반영",
+  "upstream": "e5c9b13 chore: add corrected shared Knolquiz brand asset",
+  "localBase": "203b762",
+  "integration": "로컬 변경을 먼저 커밋하고 원격 main을 병합해 양쪽 이력을 보존. 강제 푸시·reset·배포 없음.",
+  "scope": [
+    "기본/전용/통합 편집·조건부 서사·현재 형식 원고·로컬 파일·휴대폰 반응형 후속",
+    "전체 화면 바로가기와 작업 이탈 확인·저장 후 이동",
+    "설계·계약·검사·재개 문서와 유효한 역사 근거"
+  ],
+  "security": {
+    "next": "16.3.8 → 16.4.1",
+    "eslint-config-next": "16.3.8 → 16.4.1",
+    "lockfile": "pnpm-lock.yaml 동기화·frozen install 확인",
+    "audit": "pnpm audit --prod --audit-level=moderate: No known vulnerabilities found",
+    "references": [
+      "https://github.com/advisories/GHSA-2464-fhr4-w9xw",
+      "https://github.com/advisories/GHSA-673q-mjm6-r5xr",
+      "https://github.com/advisories/GHSA-p3m5-59mp-jv5r"
+    ],
+    "privatePreservation": "원시 원고 diff 로그1개와 실제 기기 원래 작품 snapshot2개는 정확경로 ignore. 파일은 로컬에 그대로 보존. 기존 그림·음원·런타임·진단 제외 규칙 유지.",
+    "review": "독립 읽기전용 의존성/공개 파일 리뷰 및 비밀키 패턴 검사"
+  },
+  "validation": {
+    "ciAlignedUnitCoverage": "246 files passed, 2119 tests passed, 2 skipped. CI와 동일하게 private asset corpus 검사2파일 제외.",
+    "coverage": {
+      "statements": 91.61,
+      "branches": 90.63,
+      "functions": 94.92,
+      "lines": 94.96
+    },
+    "boundary": "전체 단위/coverage는 의존성 보안 갱신 직전 실행. 갱신 후 타입·lint·build·focused browser로 프레임워크 영향 확인.",
+    "scripts": "71 passed",
+    "types": "pnpm typecheck: pass, server 포함",
+    "lint": "오류0, 기존 story-player-menu img 경고1",
+    "build": "Next16.4.1 Web build pass, service audio 확인 포함",
+    "browser": "Next16.4.1 후보: host 선택22개 passed, 47.5s. 종료/같은문서뒤로가기·저장/재열기·취소/실패·표지·전체화면.",
+    "docs": "docs:check/test:docs pass"
+  },
+  "preservedLocalOnly": "기존 권리·개인 원고 보호 정책에 따라 일부 미디어와 실물 스크린샷은 GitHub에 포함되지 않는다. 다른 컴퓨터의 환경 준비는 README와 재현 계약을 따른다.",
+  "releaseBoundary": "GitHub 소스 반영이며 서비스 공개 배포·전체 제품 출시 완료와 구분한다."
+}

@@ -292,3 +292,14 @@
 .dialog .message { color:var(--story-menu-muted); }
 .dialog .fields fieldset { background:var(--story-menu-surface); color:var(--story-menu-ink); }
 .dialog .fields :is(input,select,textarea) { background:var(--story-menu-surface); color:var(--story-menu-ink); }
+.dialog[data-keyboard-occluded=true] {
+  position:fixed; top:calc(var(--keyboard-visible-top,0px) + 4px); left:2vw;
+  margin:0; width:96vw; height:calc(var(--keyboard-visible-height) - 8px);
+  max-height:calc(var(--keyboard-visible-height) - 8px); display:flex; flex-direction:column; overflow:hidden;
+}
+.dialog[data-keyboard-occluded=true] .header,.dialog[data-keyboard-occluded=true] .footer { flex:none; padding:6px 10px; gap:8px; }
+.dialog[data-keyboard-occluded=true] .header h2 { font-size:18px; margin:0; }
+.dialog[data-keyboard-occluded=true] .header small,.dialog[data-keyboard-occluded=true] .footer>span,.dialog[data-keyboard-occluded=true] .preview { display:none; }
+.dialog[data-keyboard-occluded=true] .body { display:block; flex:1; min-height:0; max-height:none; overflow:auto; padding:8px 12px; }
+.dialog[data-keyboard-occluded=true] .fields { padding:0; }
+.dialog[data-keyboard-occluded=true] .footer { position:static; justify-content:flex-end; }

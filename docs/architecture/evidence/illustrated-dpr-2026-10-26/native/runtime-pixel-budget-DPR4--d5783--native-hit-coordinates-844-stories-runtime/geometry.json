@@ -1,0 +1,37 @@
+{
+  "viewport": {
+    "width": 844,
+    "height": 460
+  },
+  "dpr": 4,
+  "dimensions": {
+    "width": 2560,
+    "height": 1440,
+    "dpr": 4
+  },
+  "logical": {
+    "w": 1280,
+    "h": 720
+  },
+  "nativeChoiceLayout": {
+    "rect": {
+      "x": 200,
+      "y": 188,
+      "width": 880,
+      "height": 344
+    },
+    "padding": 24,
+    "gap": 12,
+    "headerHeight": 92,
+    "fontSize": 32,
+    "buttonHeights": [
+      96,
+      96
+    ],
+    "listHeight": 204,
+    "scroll": false
+  },
+  "chosen": "stream-end",
+  "sameIframe": true,
+  "wholeProjectEqual": true
+}

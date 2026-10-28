@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-23",
+  "scope": "Same-cut preview return after closing audio/direction detail",
+  "problem": "Snapshot pointed to an input inside closed details. Same-cut return attempted hidden focus and left visible current-cut action inactive.",
+  "red": "closed direction390 failed current-cut selection focus assertion in .cache/closed-preview-red",
+  "change": "Restore previous input only if enabled, not hidden/inert, rendered and visibly available. Otherwise use current-cut text/selection or combined target fallback without reopening details.",
+  "verification": {
+    "browser": "19 passed in one1.5-minute execution:closed audio/direction at390x844,844x390,768x1024,1280x800;9 preview-context cases;2 native long-text/different-cut cases",
+    "assertions": [
+      "Detail remains closed",
+      "Visible current-cut selection receives focus",
+      "Current-cut header remains within writer viewport",
+      "Entire project unchanged",
+      "Open direction target, undo and same iframe preserved",
+      "Text cursor and long-text backward selection preserved",
+      "Sound audition pauses for actual native reading and cue preserved",
+      "Invalid seconds input, expanded settings and file roundtrip preserved",
+      "Cross-chapter current cut return retained"
+    ],
+    "native": "Actual rendered/scene revision acknowledgement used",
+    "visual": "Root viewed direction390 image:current row and focused selection visible; detail stays closed",
+    "build": "Web build:source passed",
+    "typecheck": "Web passed",
+    "lint": "Focused hook and browser test passed"
+  },
+  "sourceHash": "77444e4a6e2e6e981309fd1143a854a1a22d93bfcbdacebff7dfd50450fb820c",
+  "testHash": "0ecf6efbd620a1ec5edfe128733355bc3efe722322c0a338f0426c61e7e0fffa",
+  "limits": [
+    "Physical phone/tablet, OS IME and screen reader unverified",
+    "No whole editor/product completion claim"
+  ]
+}

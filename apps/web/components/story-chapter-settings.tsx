@@ -1,6 +1,6 @@
 "use client";
 
-import {useState} from 'react';
+import {useId,useState} from 'react';
 import {updateStoryChapter} from '@knolstory/runtime-core';
 import {chapterLabel,type Chapter,type StoryProject} from '@knolstory/story-domain';
 import {AssetPickerField} from './asset-picker-field';
@@ -46,20 +46,29 @@ export function changeChapterBranchLabel(project:StoryProject,chapterId:string,b
 /** A blank numeric draft must never become zero or overwrite the authored number. */
 export function changeChapterNumber(project:StoryProject,chapterId:string,draft:string):StoryProject {
  const value=Number(draft);
- if(!/^[0-9]+$/.test(draft)||!Number.isSafeInteger(value)||value<1) throw new Error('장 번호는 1 이상의 정수로 입력해 주세요.');
+ if(!validChapterNumber(draft)) throw new Error('장 번호는 1 이상의 정수로 입력해 주세요.');
  const chapter=project.chapters.find(item=>item.id===chapterId);
  if(!chapter)throw new Error('이야기 장을 찾을 수 없어요.');
  return updateStoryChapter(project,chapterId,{chapterNumber:value,...(chapter.chapterNumber===undefined&&getDisplayedChapterBranch(chapter)!==(chapter.branchLabel??'')?{branchLabel:getDisplayedChapterBranch(chapter)}:{})});
 }
 
-function ChapterNumberInput({value,disabled,onCommit}:{value:number;disabled:boolean;onCommit:(draft:string)=>void}) {
+function validChapterNumber(draft:string):boolean {
+ return /^[0-9]+$/.test(draft)&&Number.isSafeInteger(Number(draft))&&Number(draft)>=1;
+}
+
+function ChapterNumberInput({value,disabled,errorId,onCommit}:{value:number;disabled:boolean;errorId:string;onCommit:(draft:string)=>void}) {
  const [draft,setDraft]=useState(String(value));
- return <input aria-label="장 번호" type="number" min={1} step={1} value={draft} disabled={disabled} onChange={event=>setDraft(event.target.value)} onBlur={()=>{if(draft!==String(value))onCommit(draft);}}/>;
+ const [previousValue,setPreviousValue]=useState(value);
+ const [invalid,setInvalid]=useState(false);
+ // Keep the focused input mounted when a committed number changes.
+ if(previousValue!==value){setPreviousValue(value);setDraft(String(value));setInvalid(false);}
+ return <input aria-label="장 번호" aria-invalid={invalid?true:undefined} aria-describedby={invalid?errorId:undefined} type="number" min={1} step={1} value={draft} disabled={disabled} onChange={event=>{setDraft(event.target.value);setInvalid(false);}} onBlur={()=>{if(draft!==String(value)){setInvalid(!validChapterNumber(draft));onCommit(draft);}}}/>;
 }
 
 /** Content for the existing Settings disclosure; never adds a second menu. */
 export function StoryChapterSettings({project,chapterId,onProjectChange,charactersEnabled,audioEnabled,disabled=false,composing=false,onComposing,onPreviewFromBranch}:Props) {
  const [error,setError]=useState('');
+ const errorId=useId();
  const chapter=project.chapters.find(item=>item.id===chapterId);
  if(!chapter) return null;
  const name=chapterLabel(chapter);
@@ -74,10 +83,10 @@ export function StoryChapterSettings({project,chapterId,onProjectChange,characte
  const composition={onCompositionStart:()=>onComposing?.(true),onCompositionEnd:()=>onComposing?.(false)};
  return <section className={styles.settings} aria-label={`${name} 설정`}>
   <p>설정할 장 · {name}</p>
-  {error&&<p role="alert">{error}</p>}
+  {error&&<p id={errorId} role="alert">{error}</p>}
   <label>장 제목<input aria-label={`${name} 장 제목`} value={chapter.title} maxLength={200} disabled={disabled} {...composition} onChange={event=>patch({title:event.target.value})}/></label>
   <details><summary>장 번호·갈래 표시</summary>
-   <label>장 번호<ChapterNumberInput key={`${project.id}/${chapterId}/${getDisplayedChapterNumber(chapter)}`} value={getDisplayedChapterNumber(chapter)} disabled={disabled||composing} onCommit={draft=>{if(!composing)apply(()=>changeChapterNumber(project,chapterId,draft));}}/></label>
+   <label>장 번호<ChapterNumberInput key={`${project.id}/${chapterId}`} value={getDisplayedChapterNumber(chapter)} errorId={errorId} disabled={disabled||composing} onCommit={draft=>{if(!composing)apply(()=>changeChapterNumber(project,chapterId,draft));}}/></label>
    <label>갈래 표시<input aria-label="장 갈래 표시" maxLength={20} placeholder="예: A, B · 표시하지 않으려면 비워 두세요" value={getDisplayedChapterBranch(chapter)} disabled={disabled} {...composition} onChange={event=>apply(()=>changeChapterBranchLabel(project,chapterId,event.target.value))}/></label>
    <p>장 이름에 보이는 번호와 갈래 표시를 바꿔요. 장 순서나 컷 연결은 바뀌지 않아요. 갈래 표시를 적어도 새로운 이야기 갈래가 만들어지지는 않아요.</p>
   </details>

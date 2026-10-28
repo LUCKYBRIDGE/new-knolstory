@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:52378) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 1440 (15.4s)
+  ✓  2 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 768 (17.3s)
+  ✓  3 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 390 (16.7s)
+  ✓  4 tests/e2e/branch-scope.spec.ts:23:115 › exact same-target branch condition saves, previews, loops and reopens 844 (15.7s)
+  ✓  5 tests/e2e/branch-scope.spec.ts:47:1 › branch preview preserves draft during composition/save failure and source deletion stays guarded (2.5s)
+  ✓  6 tests/e2e/branch-scope.spec.ts:55:1 › a work without choices keeps branch-only controls out of effect editing without changing content (1.9s)
+
+  6 passed (1.2m)

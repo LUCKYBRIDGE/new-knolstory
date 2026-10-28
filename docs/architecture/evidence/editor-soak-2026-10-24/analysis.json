@@ -1,0 +1,27 @@
+{
+  "terminal": true,
+  "status": "passed",
+  "elapsedMs": 1800120,
+  "cycles": 173,
+  "nativeReturns": 18,
+  "wholeProjectPreserved": true,
+  "finalFileEqual": true,
+  "errors": [],
+  "sampleCount": 29,
+  "steadyJsHeapBytes": {
+    "min": 78188752,
+    "max": 98787220,
+    "first": 95678676,
+    "last": 79384664
+  },
+  "steadyDomNodes": {
+    "min": 1805,
+    "max": 3318,
+    "first": 2012,
+    "last": 1980
+  },
+  "candidateSourcesChanged": [],
+  "finalFileSha256": "2168aa3ba5fce9d3bb83f3f94e2065d8b8fcff824e98b1f654f418be6a363fe9",
+  "measurementScope": "Main document Chrome Performance metrics sampled without forced GC. Not WASM/GPU/OS memory and not physical Android tablet budget.",
+  "passesBoundedSession": true
+}

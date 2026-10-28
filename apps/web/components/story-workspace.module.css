@@ -851,3 +851,16 @@
 .shell .storageWarning { flex:0 0 auto; max-height:min(28dvh,12rem); overflow:auto; overscroll-behavior:contain; margin:4px 8px; padding:8px; }
 .shell .storageWarning p { margin:0 0 6px; }
 .shell .storageWarning button { min-height:44px; white-space:normal; word-break:keep-all; }
+
+/* Basic text input needs the visible viewport while the OS keyboard is open. */
+.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:has([data-screen=basic] [data-current-cut]>label textarea:focus)>.header { display:none; }
+.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:has([data-editor-inputs] :is(input,textarea):focus)>.header { display:none; }
+
+/* A focused settings field must keep its menu open inside the keyboard's visible area. */
+.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:has([data-system-menu=editor] :is(input,textarea):focus)>.header { display:flex; position:static; max-height:none; overflow:visible; }
+.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:has([data-system-menu=editor] :is(input,textarea):focus) [data-work-menu] { position:static; }
+.shell.editorShell:not(.playMode)[data-keyboard-occluded=true]:has([data-system-menu=editor] :is(input,textarea):focus) [data-work-menu][open]>[data-system-menu=editor] { position:absolute; top:4px; left:4px; right:4px; width:auto; max-height:calc(var(--keyboard-visible-height) - 8px); box-sizing:border-box; overflow:auto; margin:0; }
+
+/* Fullscreen stays in the header flow, never over the preview or cut controls. */
+.shell.editorShell:not(.playMode)>.header>.fullscreenShortcut { order:3; flex:0 0 44px; width:44px; min-width:44px; max-width:44px; height:44px; padding:6px; display:inline-flex; align-items:center; justify-content:center; }
+.shell.editorShell:not(.playMode)>.header>.fullscreenShortcut[aria-pressed=true] { background:var(--mint); border-color:var(--mint-strong); }

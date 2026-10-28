@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "nativeTests": 2,
+  "singleTerminalRun": true,
+  "viewportCases": [
+    [
+      390,
+      844
+    ],
+    [
+      844,
+      460
+    ]
+  ],
+  "deviceScaleFactor": 4,
+  "scope": "Real RenPy rendered in automated Chromium DPR4 contexts, not physical S25",
+  "fixture": "Actual catalog background+two actors in editor;two-line dialogue and two authored choice destinations. Portrait choice uses current zero-actor policy, landscape retains two.",
+  "assertions": [
+    "BrowserDPR4 remains truthful",
+    "Canvas dimensions logicalstage times2",
+    "Editor actors2",
+    "Nonempty nativechoice geometry,2buttonheights,noscroll",
+    "Actual touchscreen tap at native second-button coordinates reaches exactstream-end",
+    "Sameiframe",
+    "Editorreturns to stream-end",
+    "Wholeprojectunchanged"
+  ],
+  "review": "Read-only review improved choice readiness and formula assumptions. Review suggestion about literalnewline was checked against source repr and not reproduced; actualTS escapealreadycorrect.",
+  "initialFailure": "Wrong test assumption of2actors inportraitchoice; existingactiveStageSpeaker hasnochoice speaker. No productchange.",
+  "productSourceChanged": false,
+  "notProven": [
+    "Physicalphone finalcandidate",
+    "Memoryimprovement",
+    "30minutestability",
+    "Allgoalcompletion"
+  ]
+}

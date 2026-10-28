@@ -1,0 +1,7 @@
+import {it,expect} from 'vitest';
+import {isSceneDisplayCondition,sceneDisplayConditionMatches} from './scene-condition';
+const scores={mode:'all' as const,terms:[{scoreId:'trust',operator:'gte' as const,value:2}]};
+const choices={mode:'any' as const,terms:[{sourceLineId:'a',choiceId:'yes'},{sourceLineId:'b',choiceId:'yes'}]};
+it('requires a real bounded score or exact choice condition without unknown keys',()=>{for(const invalid of [{},{scores:undefined},{scores,extra:1},{choices:{mode:'all',terms:[]}},{scores:{...scores,terms:Array(1)}}])expect(isSceneDisplayCondition(invalid)).toBe(false);expect(isSceneDisplayCondition({scores})).toBe(true);expect(isSceneDisplayCondition({choices})).toBe(true);});
+it('keeps unconditional cuts visible and combines score and choice requirements without mutating them',()=>{const c={scores,choices},before=structuredClone(c);expect(sceneDisplayConditionMatches(undefined,{},()=>false)).toBe(true);expect(sceneDisplayConditionMatches(c,{trust:2},()=>true)).toBe(true);expect(sceneDisplayConditionMatches(c,{trust:1},()=>true)).toBe(false);expect(sceneDisplayConditionMatches(c,{trust:2},()=>false)).toBe(false);expect(c).toEqual(before);});
+it('passes the entire exact choice condition to the shared history interpreter',()=>{let seen:unknown;expect(sceneDisplayConditionMatches({choices},{},condition=>{seen=condition;return true;})).toBe(true);expect(seen).toBe(choices);expect(()=>sceneDisplayConditionMatches({scores},{},()=>true)).toThrow();});

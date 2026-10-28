@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:37191) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [stories-runtime] › tests/e2e/creative-reading-journey.spec.ts:86:1 › UI-authored twelve-cut story survives local files and both actual RenPy reading paths (1.3m)
+
+  1 passed (1.3m)

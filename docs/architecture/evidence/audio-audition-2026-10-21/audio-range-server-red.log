@@ -1,0 +1,14 @@
+.127.0.0.1 - - [21/Oct/2026 21:58:41] "GET /sample.wav HTTP/1.1" 200 -
+F.
+======================================================================
+FAIL: test_media_single_byte_ranges_support_real_browser_seeking (scripts.tests.test_serve_test_build.StaticExportTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/scripts/tests/test_serve_test_build.py", line 44, in test_media_single_byte_ranges_support_real_browser_seeking
+    self.assertEqual(response.status,206);self.assertEqual(response.read(),expected);self.assertEqual(response.headers['Content-Range'],content_range)
+AssertionError: 200 != 206
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.520s
+
+FAILED (failures=1)

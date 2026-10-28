@@ -120,7 +120,7 @@ init python:
         renpy.transition(native, layer="screens", always=True, force=True)
 
     def knol_input(kind, choice_id=None):
-        if not knol_scene or knol_scene.get("mode") != "play" or knol_scene.get("ended") or knol_transition_active or knol_waiting_for_audio():
+        if not knol_scene or knol_scene.get("mode") != "play" or (knol_scene.get("ended") and kind != "backRequested") or knol_transition_active or (knol_scene.get("transitionOnly") and (kind not in ("advanceRequested", "backRequested") or not knol_manual_title())) or knol_waiting_for_audio():
             return
         event = {"protocol": 1, "type": kind, "sceneId": knol_scene["sceneId"], "revision": knol_revision}
         if choice_id is not None:
@@ -161,7 +161,7 @@ init python:
         transition = knol_scene.get("presentation", {}).get("transition", {})
         duration = knol_transition_duration(knol_scene)
         elapsed = time.monotonic() - knol_presentation_started
-        trans.alpha = 1 if transition.get("mode") == "confirm" else max(0, min(1, (duration - elapsed) / max(.001, duration * .7)))
+        trans.alpha = 1 if knol_scene.get("transitionOnly") or transition.get("mode") == "confirm" else max(0, min(1, (duration - elapsed) / max(.001, duration * .7)))
         return .016
 
     def knol_effect(effect, reduced, size=None):

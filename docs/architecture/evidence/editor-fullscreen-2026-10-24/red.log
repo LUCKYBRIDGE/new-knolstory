@@ -1,0 +1,57 @@
+[WebServer] (node:27788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:41] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:27803) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/31jrpn7bwdm07.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/3y996l021__52.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/3rxu0l_jx58l5.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/2lhfk7chc59-b.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/013xvnj5t-e1p.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 02:18:42] "GET /assets/loading/onggojib-reading-v2.webp HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:140:1 › editor fullscreen hides browser navigation while keeping preparation dialogs reachable (2.0m)
+
+
+  1) [host] › tests/e2e/keyboard-writing-focus.spec.ts:140:1 › editor fullscreen hides browser navigation while keeping preparation dialogs reachable 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '전체 화면', exact: true })
+
+
+      140 |
+      141 | test('editor fullscreen hides browser navigation while keeping preparation dialogs reachable',async({page})=>{
+    > 142 |  await page.setViewportSize({width:390,height:844});await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+          |                                                                                                                  ^
+      143 |  await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'전체 화면',exact:true}).click();await expect.poll(()=>page.evaluate(()=>document.fullscreenElement===document.documentElement)).toBe(true);await page.locator('[data-work-menu]>summary').click();await expect(page.getByRole('button',{name:'전체 화면 해제',exact:true})).toBeVisible();await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();const dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true});await expect(dialog).toBeVisible();expect(await dialog.evaluate(e=>document.fullscreenElement!.contains(e))).toBe(true);await dialog.getByRole('button',{name:'취소',exact:true}).click();await page.getByRole('button',{name:'현재 컷으로 돌아가기',exact:true}).click();await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'전체 화면 해제',exact:true}).click();await expect.poll(()=>page.evaluate(()=>document.fullscreenElement===null)).toBe(true);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);
+      144 | });
+      145 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/keyboard-writing-focus.spec.ts:142:114
+
+    Error Context: .cache/editor-fullscreen-20261024/red-results/keyboard-writing-focus-edi-68b68-eparation-dialogs-reachable-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/editor-fullscreen-20261024/red-results/keyboard-writing-focus-edi-68b68-eparation-dialogs-reachable-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/editor-fullscreen-20261024/red-results/keyboard-writing-focus-edi-68b68-eparation-dialogs-reachable-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/keyboard-writing-focus.spec.ts:140:1 › editor fullscreen hides browser navigation while keeping preparation dialogs reachable 

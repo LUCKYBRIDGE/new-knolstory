@@ -1,0 +1,12 @@
+
+Running 5 tests using 1 worker
+
+(node:18325) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 1440 (5.4s)
+  ✓  2 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 768 (5.5s)
+  ✓  3 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 390 (5.5s)
+  ✓  4 tests/e2e/preview-context.spec.ts:6:39 › native preview returns to same direction tool and undo 844 (5.4s)
+  ✓  5 tests/e2e/preview-context.spec.ts:16:1 › catalog-only sound preview pauses during native reading and preserves the registered cue (5.7s)
+
+  5 passed (28.0s)

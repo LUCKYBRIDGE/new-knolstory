@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:33263) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/sequence-origin-move.spec.ts:12:52 › music sequence origin range move, undo, file reopen and native continuity (10.7s)
+  ✓  2 tests/e2e/sequence-origin-move.spec.ts:12:52 › ambience sequence origin range move, undo, file reopen and native continuity (9.8s)
+  ✓  3 tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture (2.7s)
+
+  3 passed (23.7s)

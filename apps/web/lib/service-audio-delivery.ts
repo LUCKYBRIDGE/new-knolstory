@@ -10,7 +10,7 @@ export class ServiceAudioDelivery {
  constructor(catalog:readonly AudioAsset[]=AUDIO_CATALOG,private readonly fetcher:typeof fetch=(input,init)=>globalThis.fetch(input,init)){this.assets=new Map(catalog.filter(asset=>asset.delivery==='on-demand').map(asset=>[asset.runtimePath,asset]));}
  async load(paths:readonly string[],confirmed:ReadonlySet<string>):Promise<readonly RuntimeServiceAudioResource[]>{
   const unique=[...new Set(paths)];
-  if(unique.length>10||unique.some(path=>!isRuntimeServiceAudioPath(path)||!this.assets.has(path)))throw Error('등록되지 않은 음원 경로입니다.');
+  if(unique.length>42||unique.some(path=>!isRuntimeServiceAudioPath(path)||!this.assets.has(path)))throw Error('등록되지 않은 음원 경로입니다.');
   if(unique.reduce((total,path)=>total+(this.assets.get(path)!.runtimeBytes??Infinity),0)>24000000)throw Error('이 컷의 음원 파일이 재생 준비 한도를 넘었습니다.');
   const active=new Set(unique);
   for(const [path,entry] of this.entries)if(!active.has(path))entry.controller.abort();

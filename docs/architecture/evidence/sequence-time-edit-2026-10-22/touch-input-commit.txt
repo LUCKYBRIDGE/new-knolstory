@@ -1,0 +1,51 @@
+
+Running 2 tests using 1 worker
+
+(node:11813) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/sequence-time-edit.spec.ts:9:1 › movable guide splits exact source and drag trims/reorders only when enabled, with guarded undo and real file reopen (8.8s)
+  ✘  2 tests/e2e/sequence-time-edit.spec.ts:23:1 › phone touch selection and source-number editing preserve the other channel (12.3s)
+
+
+  1) tests/e2e/sequence-time-edit.spec.ts:23:1 › phone touch selection and source-number editing preserve the other channel 
+
+    TimeoutError: locator.tap: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for locator('[data-combined-time]').getByRole('button', { name: '보조선에서 음원 나누기', exact: true })
+        - locator resolved to <button disabled type="button">보조선에서 음원 나누기</button>
+      - attempting tap action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying tap action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not enabled
+        - retrying tap action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is not enabled
+         - retrying tap action
+           - waiting 500ms
+
+
+      23 | test('phone touch selection and source-number editing preserve the other channel',async({browser},info)=>{
+      24 |  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),page=await context.newPage();
+    > 25 |  try{await setup(page);const time=page.locator('[data-combined-time]'),bar=time.getByRole('button',{name:/^배경음 2 ·.*시간 선택$/});await bar.tap();await time.getByLabel('통합 시간 보조선 (초)',{exact:true}).fill('1.4');const split=time.getByRole('button',{name:'보조선에서 음원 나누기',exact:true});await split.tap();await expect.poll(async()=>(await stored(page)).lines[0].audio.music.clips.length).toBe(4);await time.getByRole('button',{name:'시간 변경 취소',exact:true}).tap();await expect.poll(async()=>(await stored(page)).lines[0].audio.music).toEqual(cue);await time.getByText('선택 음원 사용 구간',{exact:true}).tap();const start=time.getByLabel('시간 막대 음원 원본 시작 (초)',{exact:true});await start.fill('0.7');await start.press('Enter');await expect.poll(async()=>(await stored(page)).lines[0].audio.music.clips[1].sourceStartMs).toBe(700);expect((await stored(page)).lines[0].audio.ambience).toEqual(project.lines[0].audio.ambience);await time.getByRole('button',{name:'시간 변경 취소',exact:true}).tap();await expect.poll(async()=>(await stored(page)).lines[0].audio.music).toEqual(cue);await bar.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('phone-touch-time-axis.png')});}finally{await context.close();}
+         |                                                                                                                                                                                                                                                                                                 ^
+      26 | });
+      27 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sequence-time-edit.spec.ts:25:289
+
+    Error Context: test-results-sequence-time-final/sequence-time-edit-phone-t-2ad9e--preserve-the-other-channel/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-sequence-time-final/sequence-time-edit-phone-t-2ad9e--preserve-the-other-channel/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-sequence-time-final/sequence-time-edit-phone-t-2ad9e--preserve-the-other-channel/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/sequence-time-edit.spec.ts:23:1 › phone touch selection and source-number editing preserve the other channel 
+  1 passed (21.8s)

@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-22",
+  "scope": "Finite ordered music/ambience clips through domain/Core/native/editor/archive/workbook; whole editor objective remains active",
+  "implemented": [
+    "New actionsequence and strict1..16finite unique-ID clips, optional exact root condition/end; existing scalar play untouched",
+    "Schema8-only gate, additive workbook8 explicit scalar missingtable/column adapter",
+    "Editable per-clip Korean worksheet rows; every private/shared asset collected and exact optional fields preserved",
+    "Native independent per-channel origin clocks; maintain cut continuity, finite boundaries/end, new session/origin restart, stop/edit/replacement cancels pending",
+    "Native/web actual unlock and accessible canvas gate supports both sequence channels",
+    "Explicit scalar conversion preserving source/settings/root refs and explaining one-pass loop removal",
+    "Selected clip list add/reorder/delete, source trim/volume/fades, exact source split and per-channel undo",
+    "Cut timeline authored spans, finite readonly current-cut time bars select exact clip detail",
+    "Shared delivery cap42 references retains24m bytes/32m base64 and64m nativecache budget"
+  ],
+  "verification": {
+    "focusedUnitTests": 94,
+    "focusedUnitFiles": 13,
+    "nativePythonTests": 44,
+    "formatsAdditionalRun": "30 focused tests incl6 sequence format cases; overlap with94, not additive",
+    "coreAdditionalRun": "38 focused cases, overlap with94, not additive",
+    "coverage": {
+      "coreAudioThreeFiles": {
+        "statements": 95.69,
+        "branches": 92.35,
+        "functions": 98.43,
+        "lines": 98.97
+      },
+      "sequenceEditorHelper": {
+        "statements": 97.82,
+        "branches": 95.55,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "uniqueNewBrowserFlows": 4,
+    "browserRuns": [
+      {
+        "file": "browser-sequence.log",
+        "passed": 3,
+        "scope": "Music and ambience actual first/second finite playback, maintain cut continuity/end; scalar conversion/split/reorder/exact selection/undo"
+      },
+      {
+        "file": "browser-channels.log",
+        "passed": 1,
+        "scope": "Two sequences, music early stop cancels later music while ambience reaches its next clip independently"
+      },
+      {
+        "file": "browser-ui-file.log",
+        "passed": 1,
+        "scope": "Updated UI case replaces prior UI evidence; actual authored sequence export and fresh context import;5 viewport sizes"
+      }
+    ],
+    "existingScalarBrowserRegression": {
+      "passed": 8,
+      "durationSeconds": 55.6,
+      "scope": "Native source-range, music/ambience chapter split and continuity, sound selection/endguide/undo,4 true-false conditionalcut/chapter paths"
+    },
+    "actualWorkFileReopen": "Music, ambience and UI-authored sequence entire projects equal after freshcontext import",
+    "formatRoundtrips": [
+      "archive2 encode/decode",
+      "workbook8 exact values",
+      "actualXLSX bytes and edited cells",
+      "JSONB snapshot",
+      "private attachment in later clip and missingbytes rejection"
+    ],
+    "build": "runtime rebuild then full Web build passed",
+    "typecheck": "all6packages plus server passed",
+    "focusedEslint": "passed",
+    "generatedSchema": "check passed",
+    "documentation": "57active,0links,216current language surfaces,355historical,0retired terms;10tests passed",
+    "diffCheck": "passed",
+    "serviceCachePythonTests": 5
+  },
+  "references": [
+    {
+      "title": "CapCut official selected video/audio editing and split",
+      "url": "https://www.capcut.com/resource/how-to-use-capcut"
+    },
+    {
+      "title": "PowerPoint official animation timing",
+      "url": "https://support.microsoft.com/en-us/powerpoint/set-the-start-time-and-speed-of-an-animation-effect"
+    }
+  ],
+  "remaining": [
+    "Direct clip dragging/edge trim/guide split and repeated-clip semantics beyond finite one-pass are not implemented",
+    "Sequence origin move and cut-boundary automatic split blocked; root end edits supported",
+    "New sequence-origin text split blocked to avoid duplicated restart; scalar text split unchanged",
+    "Time bars authored from origin only; not a claim of live music progress at arbitrary reader-dependent cut duration",
+    "Actual external Excel/Google app UI, physical device/OS keyboard/audio listening/full editor audit remain",
+    "No deployment or whole-product completion claim"
+  ],
+  "review": "Read-only planning mapped cross-layer ownership; usage-limited workers ended after files; parent ran current-state integration tests and repaired native ambience, delivery limits, bridge gate, exact clip selection. Manual integrated review retained original scalar semantics.",
+  "sha256": {
+    "packages/story-domain/src/legacy/story-audio.ts": "ca14926f145bc2bfe8282d7d04dede8ce2fa78b98adf62e9fd487769610dabd5",
+    "packages/story-domain/src/legacy/story-project-document.ts": "3fb8d27be2a9c36fec3dcb2b2c7b7166865a2e0f4fa021391d1cfea16345d09b",
+    "packages/runtime-contract/src/audio.ts": "7709b77875078b4d1bb70f7ed4f905102c7cde5cf3531b7a6fde79b03a9219f5",
+    "packages/runtime-core/src/audio.ts": "30643bd2684442662916009a0cd019b49a0101686c9bf7716fde15fa17c5d69e",
+    "packages/runtime-core/src/clone-cut-references.ts": "cb8777b00a6c605160a295df1c64c236ee2100f63daa857a95ddde81b05b42b9",
+    "packages/runtime-core/src/cut-range-references.ts": "f14954ec10639ecd8922dc88e5652973599055c214e1a4e6f8f2a20ce3110c69",
+    "packages/runtime-core/src/branch-condition-references.ts": "b400250b430d1b882854207257b78b03ab8a5449ff3f04769ba21a41e0bf7efc",
+    "packages/runtime-core/src/relocate-choice-conditions.ts": "9fd37bf7695299280c66c2b40628783abf20bf76d12234b7c9e7d86aa23ab522",
+    "packages/runtime-core/src/manuscript-operations.ts": "88579a328aeb811d4212d0aff9087ece7ae9eb172b19b990d62d156414ccf633",
+    "packages/compatibility/src/authoring-archive.ts": "ab994a7902e4ecdeccfe156f9f0d1ffcbc63e148c03693d6a2dda8dd7e6e987a",
+    "packages/compatibility/src/authoring-workbook/audio.ts": "61b6d324c5fe872ba9541dc7f0b6f937ff94f2da79d07f9aed353cb63099220d",
+    "packages/compatibility/src/authoring-field-schema.json": "63a97fccf8033340531e3cdd95dbe544634f08dd65660ce38402af480f6fbf66",
+    "apps/web/components/music-sequence-controls.tsx": "4d7d5c7bed5e39ae3231918dda61323a0e63c8b24f98771938d880b7bafc6064",
+    "apps/web/components/music-sequence-controls.module.css": "bc7237483b4fa6df5b0bd1a9c145a477823abf3f9e1abba8384ff5e565b26891",
+    "apps/web/components/story-audio-controls.tsx": "687c077b18c12d403d44bd3339d437d1992f82fdedfd125bf82dda225865b3b8",
+    "apps/web/components/story-workspace-runtime.ts": "493993c39e55d0286bc8bbdffd02f6023f590a9a1f21c4926ddb24593f42df33",
+    "apps/web/components/story-editing-workbench.tsx": "1f943ba64074237ffd055c3baa9e4853663bbe5e01819ca132c2def483687de7",
+    "apps/web/lib/music-sequence-edit.ts": "8fa65c4d4b857a87643c90ba0cd2a9dd9b5a8a10601dc1a988d0f35825fc478b",
+    "apps/web/lib/audio-portability.ts": "94561abf9abdda6cd6666051c187a35fa990d5cce0941ec749a9c9d9084dd3bb",
+    "apps/web/lib/combined-editing-tracks.ts": "4a8f73b4bf9a8b6ef838843451d18fe7049b39e46b6c70e21500effe824099e9",
+    "apps/web/lib/editor-range-summaries.ts": "c1c4e210541d815a7d6b2166994b70cc4829f52399026d25d5af6df037aa481b",
+    "apps/web/lib/combined-time-edit.ts": "25a4d32f404c095b1cce953ae93f16b9502de94e854deadaccb8a53dc98a8b24",
+    "apps/web/lib/combined-range-edit.ts": "f3031926b8d90adbf29b6943cde82f2374aaa7b223e07f27eb5488a6280006a3",
+    "apps/web/components/story-combined-time.tsx": "59909ea6695f891cfeb709505f9730036d94c1c35ac31a9d026e1bc474ad48b9",
+    "apps/web/components/story-combined-timeline.tsx": "a3cd0818729ed6bacc1c59fb24529df59133d22e07ea152e3eb2ebcd54a80c31",
+    "apps/web/components/story-combined-range-tools.tsx": "1ef61954fb447e0ec115fa261818a572172eeec62cf0a553b5fd7af08f458ddf",
+    "apps/web/components/story-chapter-audio-split.tsx": "b3e92fd52ed1d345734232534a67f7ad6d818dc53b45d94270831d7cbaeeb04a",
+    "apps/web/lib/service-audio-delivery.ts": "b6cdb6553d14ba895c347801fef4a29fdf25022986bd90101a17d6702869e44e",
+    "renpy/responsive-spike/game/audio.rpy": "664c90c71d193e2b092608a230d7bf87ac65263daa8ab45da1100543e9a9efe8",
+    "renpy/responsive-spike/game/script.rpy": "ef65c37adeaf905da10103e6bbdb31933e2658f7887fb8b635a932ab1466d550",
+    "renpy/responsive-spike/game/service_audio.py": "ddadd48344972e74708698ecd62920c5eaea552a8b4fe4c1de1312677ff09f94",
+    "spikes/renpy-web/bridge.js": "c7fd05acd44296591c43423dac10c886690243b2813ad17e948c5e29b5371b72",
+    "spikes/renpy-web/bridge.test.ts": "bd0c3142f5a11c87cb3ad09e7af6165e7a62e70ec3a44ed3a0c9909a8442a200",
+    "spikes/renpy-web/presenter-unit-test.py": "f08b0c1c35f79c9d598a5ac51d86e31b63db8c3fa327f089aaf8227554815025",
+    "tests/e2e/music-sequence.spec.ts": "17f27e0d5a12a6fc82b91b852108c96db68837c8b32b49bff18eddf0b396c779",
+    "scripts/tests/test_service_audio_cache.py": "01f9e2356ae6c18ff114a7ebceb835d1758b2a37be956dc50c6da38e58bb4088"
+  }
+}

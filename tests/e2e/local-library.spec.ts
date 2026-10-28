@@ -120,7 +120,7 @@ async function fillPreparation(page: Page) {
   await pane.getByLabel('표지 색감', { exact: true }).selectOption({ index: 1 });
   await pane.getByLabel('표지 배치', { exact: true }).selectOption('picture');
   for(const [label,id] of [['표지 배경',background],['표지 인물',actor]]){
-    await pane.getByRole('button',{name:`${label} 이미지 찾기`,exact:true}).click();
+    await pane.getByRole('button',{name:new RegExp(`^${`${label} 이미지 찾기`} ·`),exact:false}).click();
     const dialog=page.getByRole('dialog',{name:`이미지 선택 · ${label}`,exact:true});
     await dialog.locator(`[data-asset-id="${id}"]`).click();
     await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();

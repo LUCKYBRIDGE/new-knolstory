@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "bug": "Invalid blank numeric draft/error leaked from one conditional text variant to another when both committed thresholds equal1. Document remainedunchanged butvisiblecontrolwrong.",
+  "fix": "Key ScoreConditionEditor by currentvariant.id; explicitvariant switch remounts only condition drafts, samevariant edits/reorder retainidentity.",
+  "regression": "Blank+blur invalid firstvariant; selectsecond displayscommitted1/noerror; returnfirst displays1/noerror;wholeprojectunchanged.",
+  "tests": {
+    "count": 4,
+    "singleTerminalRun": true,
+    "scope": "conditional-text.spec host project includes real file/reopen/native display test plus guards andnewdraft test; runtimeblockedonlynewfocusedtest"
+  },
+  "review": "Read-onlyreview foundnoblocker; parentundo/composition/IDs unchanged.",
+  "separateCandidate": "Index-keyed term/effect rows may reuseinvaliddraft ondeletion; notyetvalidappreproduced, notclaimedfixed.",
+  "notProven": [
+    "All score editors",
+    "Physicaldevice",
+    "Wholegoal",
+    "30minutestability"
+  ]
+}

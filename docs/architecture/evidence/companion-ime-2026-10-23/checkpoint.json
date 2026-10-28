@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-23",
+  "scope": "Composition guard for multi-cut companion layout; whole editor goal active",
+  "fixed": "Companion settings fieldset disabled during busy/globalcomposing; active text input unaffected, controls enabled aftercompositionend",
+  "verification": {
+    "browser": "7passed onefinalrun22.4s",
+    "cases": [
+      "4viewport compositionstart inputenabled/companiondisabled, compositionend companionenabled; text/context/file preserved",
+      "Native samecut/planning/othercut return regression"
+    ],
+    "types": "Webpassed",
+    "lint": "relatederrors0",
+    "build": "Websourceproduction"
+  },
+  "limits": [
+    "Synthetic composition events, not real KoreanOSIME",
+    "No claim all advanced nested controls covered",
+    "Whole product/device/externalapp audit remains"
+  ],
+  "sourceHashes": {
+    "apps/web/components/story-editing-workbench.tsx": "36c057c783b876818668e7afcc30b8ccf29d765fb080827d1e61d6df80386c2d",
+    "tests/e2e/long-text-context.spec.ts": "f595a02fd9ef11385d2b251e9281a341091cb3f55c1295098cb89660bbe9d5de",
+    "apps/web/out/index.html": "8ca7039ac60f4e22cb5edc4b57c0292b904e70368b84de5feb20fae68a581969"
+  }
+}

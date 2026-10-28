@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-20",
+  "scope": "장별 지난기록: 현재 장 대본, 이전 장 첫 컷 이동, 최신 글 표시",
+  "status": "local-focused-verified",
+  "implementation": [
+    "이번 장 마지막 연속 방문에서 실제 표시된 본문·화자·선택만 제공",
+    "이전 장의 실제 첫 컷만 허용; 확인 시 현재 경로 재검사",
+    "이동 확인 취소는 스크롤·버튼 초점 유지",
+    "최신 글로 열기; 위로 올려 읽기; 짧은 가로 화면 실제 남은 높이에 맞춤",
+    "본문 크기 보고가 늦게 도착해도 하단을 보고 있었다면 최신 글 위치 유지; 위로 읽는 중에는 강제 이동하지 않음"
+  ],
+  "preservation": "StoryDocument/작품 파일/진행 저장 형식·Core 일반 이동 해석 변경 없음. 실제 import→읽기→되돌림 뒤 project 전체 동일 확인.",
+  "verification": {
+    "unit": {
+      "chapterHistoryAndRewind": 13,
+      "coreHistory": 8,
+      "newHelperCoverage": {
+        "statements": 95.23,
+        "branches": 84.61,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "native": {
+      "passed": 2,
+      "viewports": [
+        "1280x800",
+        "390x844",
+        "844x390"
+      ],
+      "assertions": [
+        "실제 RenPy 표시 끝까지의 본문",
+        "읽지 않은 장·현재 장 이동 없음",
+        "최신 글 하단/화면 경계",
+        "위로 스크롤",
+        "취소 시 스크롤·초점 유지",
+        "다시 열면 최신 글",
+        "이전 장 첫 컷 복귀 뒤 선택/점수 초기화",
+        "작품 project 전체 보존"
+      ],
+      "result": "2 passed (21.0s) on final source"
+    },
+    "build": "Final anchor candidate production static export passed",
+    "docsTests": 10,
+    "broaderRegression": {
+      "status": "2 failures before history interaction",
+      "creativeJourney": "removed [data-writing-tools] selector in earlier editor preparation",
+      "vnWorkflow": "hidden 보기 설정 selector in earlier editor preparation",
+      "note": "Upstream editor changes require migration of these older full workflows. Not a current-history pass claim. Other broad/native matrices not rerun."
+    },
+    "typecheck": "passed",
+    "lint": "0 errors; one existing thumbnail no-img-element warning",
+    "docs": "57 active documents checked, 0 link errors; 0 retired terms"
+  },
+  "limits": [
+    "물리 기기/스크린리더/전체 출시 검증 아님",
+    "기존 전체 창작 경로 두 검사는 편집 준비 단계에서 실패하여 새 지난기록까지 도달하지 못함"
+  ],
+  "sourceBase": "203b7620a0b1c5d6c553caac3b456dff2755201f",
+  "sourceHashes": {
+    "apps/web/components/story-player-menu.tsx": "ab31e2044ee99d378caa6b6fc6e09c2bf81013cb9d10d11344aec043ce00e3e0",
+    "apps/web/components/story-player-menu.module.css": "18264f75a209a033ed090fa1b4a3babe4155ff15389a1d19233a246d7d1c868f",
+    "apps/web/lib/reader-chapter-history.ts": "d37ce1c42bb05df804e22a277f42ab7fb6d2dfd8c418ccf40d196d72720e5cde",
+    "tests/e2e/chapter-history.spec.ts": "17c10258b9f216c09e72a3c156b333455acf281397ac25d92fdf9fcda29c2115"
+  }
+}

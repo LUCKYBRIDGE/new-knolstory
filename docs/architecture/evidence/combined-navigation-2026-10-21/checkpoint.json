@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-21",
+  "status": "concept-navigation-verified",
+  "scope": "Interactive combined audio/direction concept only; no actual authoring/runtime connection.",
+  "source": "docs/architecture/evidence/editor-finish-2026-10-21/audio-direction-concept.html",
+  "sourceSha256": "5f0070eeb85184624350052b33387ab947c28b1e996dfbe4259bd008ea0fabd5",
+  "features": [
+    "50–400% zoom with centered/pointer anchoring and source values unchanged",
+    "Fit and reveal-current-cut actions",
+    "Previous/next boundary gates, top cut strip and ruler navigation",
+    "Horizontal and vertical internal scroll with sticky ruler and track names",
+    "Keyboard +/−, arrows, Home/End; Shift-wheel pan and Ctrl-wheel zoom",
+    "Hand pan with pointer capture/cancel and click suppression; phone tap controls",
+    "Time-mode visible entries follow current cut and out-of-range selection has explicit context",
+    "Keyboard ruler focus preserved without stealing toolbar focus"
+  ],
+  "verification": {
+    "browser": "3 viewport scenarios passed:1280x800,390x844,844x390; no page errors; no document horizontal overflow",
+    "preservation": "Viewport operations retain source selection range and do not write files or local storage. Prior source snapshot retained as audio-direction-concept-before-navigation.html.",
+    "docs": "57 active docs; 0 link errors; 0 retired terms; 10 tests passed"
+  },
+  "review": "Two read-only review findings fixed: ruler replacement focus loss and out-of-cut selected-item context. Hidden duration label CSS also corrected.",
+  "evidence": [
+    "browser-v2/browser-observations.json",
+    "browser-v2.log",
+    "navigation-check.mjs",
+    "docs.log",
+    "docs-tests.log"
+  ],
+  "limits": [
+    "Physical-device pinch and accessibility technologies not verified.",
+    "Standalone concept assets/UI only; integrated editor validation remains separate.",
+    "Current in-app browser could not be refreshed by tool because local browser use is disabled in Work settings; file-backed headless browser checks passed."
+  ]
+}

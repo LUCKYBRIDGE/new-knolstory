@@ -1,0 +1,32 @@
+{
+  "status": "focused-browser-passed",
+  "problem": "Focusing and blurring an unchanged score name changed only project.updatedAt. Reproduced with whole project comparison.",
+  "change": "ScoreName emits valid name only when text differs from the current authored name. Whitespace policy, IDs, schema and blank validation unchanged.",
+  "validation": {
+    "tests": 2,
+    "seconds": 10.5,
+    "scope": [
+      "Whole project including updatedAt unchanged after no-op blur",
+      "Actual rename updates the score and preserves other authored fields",
+      "Blank draft rejected and authored project preserved",
+      "Existing export and reload path retains score name and initial value",
+      "Four viewport checks"
+    ],
+    "build": true,
+    "eslint": true,
+    "review": "Read-only no blocker"
+  },
+  "harnessCorrections": [
+    "New error assertion scoped to score region to exclude Next route announcer.",
+    "Existing viewport sweep opened the initial mobile fullscreen offer; diagnostic active element was its decline button. Both focused score tests now mark the offer as already seen; fullscreen has separate coverage."
+  ],
+  "notProven": [
+    "Cut deletion undo interaction",
+    "Physical Samsung IME",
+    "Whole editor completion"
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-score-controls.tsx": "aa4c2596d7706097a518b7baa31be26b5a0eefe55bcd4823fc881a0b7522503d",
+    "tests/e2e/score-authoring.spec.ts": "9431bb62d4dac836c39260e1257b40d116da2f6a2683e6f0ba22f2a415be3bcb"
+  }
+}

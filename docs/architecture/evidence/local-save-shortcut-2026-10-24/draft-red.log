@@ -1,0 +1,58 @@
+[WebServer] (node:57147) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:57166) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/3i-u201csoxhq.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/1rxi7xfjtlo95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/3o-kx4upsaz22.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/07na6ok0m__co.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/3j7-wbog4oixz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/1zxaxjmeh41vz.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/2bgz9vofki-23.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/turbopack-0crreo2si4imf.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/3pn1a5dz9iuys.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/39cjp9pdxqlbt.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/4123492rec_85.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/0h_kygruut1i3.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:38] "GET /_next/static/chunks/391e_r8-hr78j.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:39] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:39] "GET /assets/loading/seonnyeo-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:39] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:39] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [24/Oct/2026 12:22:39] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+  ✘  1 [host] › tests/e2e/keyboard-writing-focus.spec.ts:194:1 › save shortcut commits the focused score draft before serializing the work file (1.4s)
+
+
+  1) [host] › tests/e2e/keyboard-writing-focus.spec.ts:194:1 › save shortcut commits the focused score draft before serializing the work file 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 7
+    Received: 0
+
+      193 |
+      194 | test('save shortcut commits the focused score draft before serializing the work file',async({page})=>{
+    > 195 |  await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.evaluate(()=>{Object.defineProperty(window,'showSaveFilePicker',{configurable:true,value:undefined});});await page.locator('[data-work-menu]>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'점수 편집 사용',exact:true}).check();await page.getByRole('button',{name:'이야기 점수 설정 열기',exact:true}).click();await page.getByRole('textbox',{name:'새 점수 이름',exact:true}).fill('신뢰');await page.getByRole('button',{name:'점수 만들기',exact:true}).click();const input=page.getByRole('spinbutton',{name:'점수 1 시작 값',exact:true});await input.fill('7');const pending=page.waitForEvent('download',{timeout:5000});await input.press('ControlOrMeta+s');const download=await pending;const {readFile}=await import('node:fs/promises');const archive=JSON.parse(await readFile((await download.path())!,'utf8'));expect(archive.document.project.scores[0].initial).toBe(7);await expect(input).toBeFocused();expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project.scores[0].initial)).toBe(7);
+          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+      196 | });
+      197 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/keyboard-writing-focus.spec.ts:195:1085
+
+    Error Context: .cache/local-save-shortcut-20261024/draft-red-results/keyboard-writing-focus-sav-5dd5a-e-serializing-the-work-file-host/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    .cache/local-save-shortcut-20261024/draft-red-results/keyboard-writing-focus-sav-5dd5a-e-serializing-the-work-file-host/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .cache/local-save-shortcut-20261024/draft-red-results/keyboard-writing-focus-sav-5dd5a-e-serializing-the-work-file-host/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [host] › tests/e2e/keyboard-writing-focus.spec.ts:194:1 › save shortcut commits the focused score draft before serializing the work file 

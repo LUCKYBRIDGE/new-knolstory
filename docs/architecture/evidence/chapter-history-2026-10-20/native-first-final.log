@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:80800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/chapter-history.spec.ts:18:1 › chapter script opens at newest text and only previous chapter starts can rewind choices and scores (15.2s)
+  ✓  2 tests/e2e/history-visible-text.spec.ts:6:1 › native history includes the displayed page but never later pages of the current cut (5.9s)
+
+  2 passed (21.6s)

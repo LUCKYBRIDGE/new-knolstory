@@ -1,5 +1,6 @@
 'use client';
 import dialogSurface from './story-dialog-surface.module.css';
+import confirmationStyles from './authoring-import-dialog.module.css';
 import {EditorTermGuide} from './editor-term-guide';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import { useEffect, useId, useRef, useState } from 'react';
@@ -12,14 +13,19 @@ import { BookCover } from './book-cover';
 import {commitCoverDraft,undoCoverDraft,redoCoverDraft,type CoverDraftHistory} from '../lib/cover-editor-interactions';
 import {CoverEditorCanvas} from './cover-editor-canvas';
 import styles from './book-cover-editor.module.css';
+import {useEditorKeyboard} from './use-editor-keyboard';
 
 const faceLabels={front:'앞표지',spine:'책등',back:'뒤표지'};
 type CoverHistory=CoverDraftHistory;
 /** REFINE: fixed story-maker@18da4fc BookCoverEditor and CoverLayersEditor.
  * Cover changes remain isolated until Apply. Bound layer text follows draft book information; Apply commits title and cover. */
 export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject;onApply:(cover:StoryCover,title:string)=>void;onCancel:()=>void}) {
+  const keyboard=useEditorKeyboard('[data-keyboard-dialog=cover]');
   const [initial]=useState<StoryCover>(()=>structuredClone(resolveStoryCover(project)));
   const [history,setHistory]=useState<CoverHistory>(()=>({past:[],present:{cover:initial,title:project.title},future:[]}));
+  const composing=useRef(false);
+  const [initialTitle]=useState(project.title);
+  const [confirmDiscard,setConfirmDiscard]=useState(false);
   const title=history.present.title;
   const setTitle=(title:string)=>setHistory(current=>commitCoverDraft(current,{...current.present,title}));
   const previewProject={...project,title};
@@ -63,9 +69,11 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
     const faces=(key==='ink'||key==='color')?Object.fromEntries(Object.entries(design.faces).map(([id,side])=>[id,{...side,elements:side.elements.map(item=>item.type==='text'&&item.style.color.toLowerCase()===String(previous).toLowerCase()?{...item,style:{...item.style,color:value}}:item)}])) as CoverDesign['faces']:design.faces;
     commitDesign({...design,finish:{...design.finish,[key]:value},faces});
   };
+  const dirty=JSON.stringify(history.present)!==JSON.stringify({cover:initial,title:initialTitle});
+  const requestClose=()=>{if(applying||composing.current)return;if(dirty)setConfirmDiscard(true);else onCancel();};
   const apply=()=>{if(applying)return;setApplying(true);try{onApply(structuredClone(cover),title);}catch(error){setMessage(error instanceof Error?error.message:'표지를 적용하지 못했어요. 다시 시도해 주세요.');setApplying(false);}};
-  return <dialog ref={dialog} className={`${styles.dialog} ${dialogSurface.surface}`} aria-labelledby={headingId} onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={event=>{event.preventDefault();if(event.target===event.currentTarget&&!applying)onCancel();}}>
-    <header className={styles.header}><div><small>한 권의 이야기를 직접 꾸며요</small><h2 id={headingId}>내 책 표지 꾸미기</h2></div><EditorTermGuide/><button type="button" onClick={onCancel} disabled={applying}>닫기</button></header>
+  return <dialog ref={dialog} data-unsaved-draft={String(dirty)} data-keyboard-dialog="cover" data-keyboard-occluded={keyboard.occluded} className={`${styles.dialog} ${dialogSurface.surface}`} aria-labelledby={headingId} onCompositionStart={event=>{if((event.target as Element).closest('dialog')===event.currentTarget)composing.current=true;}} onCompositionEnd={event=>{if((event.target as Element).closest('dialog')===event.currentTarget)composing.current=false;}} onKeyDown={event=>{if((event.target as Element).closest('dialog')!==event.currentTarget)return;if(event.nativeEvent.isComposing||event.nativeEvent.keyCode===229||composing.current){if(event.key==='Escape'){event.preventDefault();event.stopPropagation();}return;}trapDialogTab(event,dialog.current);}} onCancel={event=>{event.preventDefault();if(event.target===event.currentTarget)requestClose();}}>
+    <header className={styles.header}><div><small>한 권의 이야기를 직접 꾸며요</small><h2 id={headingId}>내 책 표지 꾸미기</h2></div><EditorTermGuide/><button type="button" onClick={requestClose} disabled={applying}>닫기</button></header>
     <div className={styles.body}>
       <section className={styles.preview} aria-label="표지 미리보기">
         <div className={styles.actions}>{(Object.keys(faceLabels) as CoverFaceId[]).map(id=><button key={id} type="button" aria-pressed={face===id} onClick={()=>{setFace(id);select('');}}>{faceLabels[id]}</button>)}</div>
@@ -136,8 +144,18 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
         <p role="status" className={styles.message}>{message||'변경은 표지 적용 전까지 이 창에만 있어요.'}</p>
       </section>
     </div>
-    <footer className={styles.footer}><span>적용한 표지는 작품 파일에도 함께 보관돼요.</span><button type="button" disabled={applying} onClick={onCancel}>취소</button><button type="button" disabled={applying} className={styles.primary} onClick={apply}>표지 적용</button></footer>
+    <footer className={styles.footer}><span>적용한 표지는 작품 파일에도 함께 보관돼요.</span><button type="button" disabled={applying} onClick={requestClose}>취소</button><button type="button" disabled={applying} className={styles.primary} onClick={apply}>표지 적용</button></footer>
+    {confirmDiscard&&<CoverDiscardConfirmation onContinue={()=>setConfirmDiscard(false)} onDiscard={onCancel}/>}
   </dialog>;
+}
+
+function CoverDiscardConfirmation({onContinue,onDiscard}:{onContinue:()=>void;onDiscard:()=>void}){
+ const dialog=useRef<HTMLDialogElement>(null);
+ useEffect(()=>{const opener=document.activeElement as HTMLElement|null;const element=dialog.current;element?.showModal();return()=>{element?.close();if(opener?.isConnected)opener.focus({preventScroll:true});};},[]);
+ return <dialog ref={dialog} className={`${confirmationStyles.dialog} ${dialogSurface.surface}`} aria-label="표지 변경을 적용하지 않고 닫을까요?" onKeyDown={event=>{event.stopPropagation();trapDialogTab(event,dialog.current);}} onCancel={event=>{event.preventDefault();event.stopPropagation();onContinue();}}>
+  <h2>표지 변경을 적용하지 않고 닫을까요?</h2><p>이 창에서 바꾼 제목과 표지 디자인은 아직 작품에 적용되지 않았어요. 지금 닫으면 이 변경은 사라져요.</p>
+  <div className={confirmationStyles.actions}><button type="button" autoFocus onClick={onContinue}>계속 편집</button><button type="button" className={confirmationStyles.danger} onClick={onDiscard}>변경 버리고 닫기</button></div>
+ </dialog>;
 }
 
 function Select({label,value,options,onChange}:{label:string;value:string;options:readonly (readonly [string,string])[];onChange:(value:string)=>void}){

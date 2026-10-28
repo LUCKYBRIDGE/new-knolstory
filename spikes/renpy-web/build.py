@@ -6,6 +6,10 @@ from pathlib import Path
 import shutil
 import subprocess
 
+from loading import brand_loading_html
+from pixel_budget import cap_runtime_pixel_ratio
+from asset_versions import version_runtime_html
+
 ROOT = Path(__file__).resolve().parents[2]
 subprocess.run(['python3', str(ROOT / 'scripts/check-service-audio.py'), '--source-only'], check=True)
 version = (ROOT / 'renpy/RENPY_VERSION').read_text().strip()
@@ -44,10 +48,13 @@ if assets.exists():
     approvals = json.loads((ROOT / 'packages/asset-registry/src/audio-service-approvals.json').read_text())
     streamed = {row['src'] for row in approvals['assets'] if row.get('delivery') == 'on-demand'}
     def ignore_service_assets(folder, names):
-        return [name for name in names if name in {'cover-fonts', 'legacy-ui'} or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]
+        return [name for name in names if name in {'cover-fonts', 'legacy-ui', 'loading'} or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]
     shutil.copytree(assets, project / 'game/assets', ignore=ignore_service_assets)
 env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy')
 subprocess.run(['bash', str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
+# Bound the SDL framebuffer density, not browser DPR or authored coordinates.
+engine_js = output / 'renpy.js'
+engine_js.write_text(cap_runtime_pixel_ratio(engine_js.read_text()))
 html = (output / 'index.html').read_text()
 html = html.replace('<script src="renpy-pre.js">', '<script src="runtime-contract.js"></script>\n  <script src="knol-bridge.js"></script>\n  <script src="renpy-pre.js">')
 # Spike stays local, avoids stale service-worker cache between builds.
@@ -55,9 +62,14 @@ start = html.index('      // Register the service worker.')
 end = html.index('  </script>', start)
 html = html[:start] + html[end:]
 html = html.replace('</style>', '\n#ContextContainer { display:none !important; }\nhtml, #canvas { background: ' + tokens['paper'] + '; }\n</style>')
+html = brand_loading_html(html)
 (output / 'index.html').write_text(html)
+for extension in ['css', 'js']:
+    shutil.copy2(ROOT / f'spikes/renpy-web/loading.{extension}', output / f'knol-loading.{extension}')
 shutil.copy2(ROOT / 'spikes/renpy-web/bridge.js', output / 'knol-bridge.js')
 shutil.copy2(ROOT / 'spikes/renpy-web/FONT-LICENSE.txt', output / 'FONT-LICENSE.txt')
 subprocess.run(['node', '-e', "const fs=require('fs'),ts=require('typescript');const audio=ts.transpileModule(fs.readFileSync(require('path').join(require('path').dirname(process.argv[1]),'audio.ts'),'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;const source=fs.readFileSync(process.argv[1],'utf8');const code=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;fs.writeFileSync(process.argv[2],'(()=>{const audioExports={};(()=>{const exports=audioExports;'+audio+'})();const require=()=>audioExports;const exports={};'+code+';window.KnolRuntimeContract=Object.freeze(exports);})();');", str(ROOT / 'packages/runtime-contract/src/index.ts'), str(output / 'runtime-contract.js')], cwd=ROOT, check=True)
+# Apply content versions after all boot dependencies have been generated.
+(output / 'index.html').write_text(version_runtime_html((output / 'index.html').read_text(), output))
 print(f'Built Ren\'Py {version} to apps/web/public/runtime')
 subprocess.run(['python3', str(ROOT / 'scripts/check-service-audio.py')], check=True)

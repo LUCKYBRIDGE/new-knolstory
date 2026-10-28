@@ -1,0 +1,49 @@
+
+Running 1 test using 1 worker
+
+(node:84298) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance (7.2s)
+
+
+  1) tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -83,7 +83,7 @@
+        },
+        "sheetEditable": false,
+        "sheetUrl": "",
+        "speakerNames": Array [],
+        "title": "새 이야기",
+    -   "updatedAt": "2026-10-21T14:04:51.100Z",
+    +   "updatedAt": "2026-10-21T14:04:53.829Z",
+      }
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      29 |  await time.getByRole('checkbox',{name:'시간 보조선 표시',exact:true}).uncheck();await expect(guide).toBeHidden();
+      30 |  await expect(time.getByRole('button',{name:'보조선을 선택 항목 끝으로',exact:true})).toBeHidden();
+    > 31 |  await expect.poll(stored).toEqual(project);
+         |                            ^
+      32 |  await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      33 |  await page.screenshot({path:info.outputPath('guide-assistance-phone.png')});
+      34 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/time-placement-assistance.spec.ts:31:28
+
+    Error Context: test-results-time-assistance-v3/time-placement-assistance--b0fef-respect-optional-assistance/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-time-assistance-v3/time-placement-assistance--b0fef-respect-optional-assistance/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-time-assistance-v3/time-placement-assistance--b0fef-respect-optional-assistance/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/time-placement-assistance.spec.ts:5:1 › guide pickup and both-edge dragging preserve source ranges and respect optional assistance 

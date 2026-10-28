@@ -1,0 +1,21 @@
+{
+  "host": {
+    "visible": true,
+    "viewport": {
+      "width": 360,
+      "height": 677
+    },
+    "projectTitle": "안드로이드 편집 검사"
+  },
+  "engine": {
+    "wasmLinearCapacityBytes": 289996800,
+    "jsUsedBytes": 225000000,
+    "canvas": [
+      {
+        "width": 5120,
+        "height": 2880
+      }
+    ]
+  },
+  "scope": "Read-only post-reload original editor. WASM buffer capacity is not allocator live bytes, resident memory or peak before crash."
+}

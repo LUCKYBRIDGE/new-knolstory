@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-21",
+  "scope": "Combined effect/motion duration resizing and atomic beginning trim; full editor goal remains active",
+  "implemented": [
+    "numeric once-motion duration0..10000ms without filling absent start",
+    "length to movable guide keeping start",
+    "opt-in time drag modes move/start keeping end/end keeping start",
+    "sameclock endpoint snapping and Shift bypass",
+    "atomic start+duration trim and scoped undo",
+    "reject sound duration invention and invalid durations; preserve clickstep IDs conditions target scope and actor path"
+  ],
+  "verification": {
+    "newTimeUnitTests": 10,
+    "focusedRelatedUnitTests": 38,
+    "timeHelperCoverage": {
+      "statements": 98.24,
+      "branches": 91.66,
+      "functions": 100,
+      "lines": 100
+    },
+    "e2e": {
+      "fullCombinedFlowPassed": 1,
+      "fullCombinedLog": "combined-duration-file.log",
+      "verified": [
+        "numeric resize then undo",
+        "guide length resize then undo",
+        "actual pointer ending resize keeping start",
+        "actual pointer beginning trim keeping end",
+        "start move regression",
+        "click-clock effect duration1.1s persisted",
+        "download equality and freshbrowser import",
+        "three viewport no horizontal overflow",
+        "native preview play and editor return",
+        "reload and opt-in shutdown preserve manuscript"
+      ]
+    },
+    "additionalE2ERegressionsPassed": 2,
+    "additionalLog": "combined-duration-delivery.log",
+    "priorFullFlowFailure": "Closed duration panel after switching click clock; corrected test to explicitly open new panel. Source unchanged between failed/passed full flows.",
+    "allTypecheck": "passed",
+    "webBuild": "passed",
+    "focusedLint": "passed",
+    "docs": {
+      "linkErrors": 0,
+      "retiredTerms": 0,
+      "testsPassed": 10
+    }
+  },
+  "preservation": "Current authored timing fields only; IDs, conditions, raw manuscripts and historical evidence preserved. No source audio edits.",
+  "remaining": [
+    "sourceaudio use-range contract and non-destructive trimming",
+    "split ranges with explicit continuity semantics",
+    "actual external workbook app roundtrip and full editor requirement audit"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/combined-time-edit.ts": "0780d77a77da680a30571125223924b8103ef30229e94eb7bcaa4df94f887290",
+    "apps/web/lib/combined-time-edit.test.ts": "30ccf1baab0e13d856f50ce04b65e47c6c84ef8abdd3f3cef4c2d5c5e72fd176",
+    "apps/web/components/story-combined-time.tsx": "b1e9d8ca391e9da463efe573ac5c9feba70f0b68c262fedc1ba7187b35f1a1e3",
+    "apps/web/components/story-combined-time.module.css": "f47de75292e17ff1678ff25341017f933bc159a36241ee46ec535ad7318ed87e",
+    "tests/e2e/combined-editing.spec.ts": "71ee915f9e61346d6661282799639e95b50350e71d0335650d4d1d1f2df1f76d"
+  }
+}

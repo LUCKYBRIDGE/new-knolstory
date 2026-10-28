@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-21",
+  "scope": "Standalone editor audio audition of authored source ranges/volume; full editor completion goal active",
+  "implemented": [
+    "Forward source bounds and authored volume in music/ambience/sound previews",
+    "Decode finite actual duration; clamp playable end without rewriting manuscript; reject invalid start",
+    "One-shot preview; replay at end returns source start; midrange paused resume; bounded seek",
+    "Pause on source/range/active change, unmount, media error; stop watchdog on pause/end/error/cleanup",
+    "Live authored gain change does not pause or rewind",
+    "Exclusive HTML audio preview; scene-only policy does not instantiate audio",
+    "20ms watchdog plus media events; wait for media data/seek completion",
+    "Loopback static server supports single bounded/open/suffix HTTPRange206 and invalid416 for media seeks"
+  ],
+  "verification": {
+    "focusedUnitTests": 11,
+    "newHelperTests": 2,
+    "helperCoverage": {
+      "statements": 100,
+      "branches": 100,
+      "functions": 100,
+      "lines": 100
+    },
+    "pythonServerTests": 3,
+    "finalE2EFlows": 4,
+    "finalLog": "audio-audition-e2e-final.log",
+    "newFlow": [
+      "Three cue types actual HTML media decoded and played authored start/end/volume",
+      "End reached and paused within test tolerance, replay/seek bounds",
+      "Inactive channel switch pauses earlier preview",
+      "Source bound edit pauses and only intended manuscript field changes",
+      "Gain changed live0.30→0.29→0.30 without stopping",
+      "Scene-only Pixabay selection has no standalone audio element",
+      "390x844 no horizontal overflow"
+    ],
+    "regressions": [
+      "Music and ambience cut split/native continuity/actual file/freshcontext reopen",
+      "Effect sound split/native scheduling/actual file/freshcontext reopen"
+    ],
+    "typecheck": "passed all packages/server",
+    "eslint": "passed",
+    "webBuild": "passed final source",
+    "nativeBuild": "unchanged native source; prior current renderer reused",
+    "docsCheck": "passed57 active docs and211 current product surfaces",
+    "docsTests": 10
+  },
+  "review": {
+    "independentReadOnly": "completed, two concrete issues fixed",
+    "fixed": [
+      "Separate gain effect avoids pause/rewind during volume adjustment",
+      "Audio error explicitly pauses and clears20mswatchdog"
+    ]
+  },
+  "environmentRepair": {
+    "oldFailure": "Range request received200 from old SimpleHTTPRequestHandler; browser seek repeatedly returned0/readyState1",
+    "redGreen": "Real HTTP unit RED expected206 got200; GREEN3tests verifies bounded/open/suffix206 and invalid416",
+    "server": "Verified exact owned15401serverPID then restarted changed script; port still15401; no workspace storage cleared"
+  },
+  "limitations": [
+    "No physical hearing/decibel or sample-accurate stop claim",
+    "Browser media tests are actual playback state, not auditory subjective proof",
+    "Preview deliberately omits authored cut delay, looping, fades and branching; those remain native",
+    "Operating serverRange behavior is not proven by loopback tests",
+    "Full editor audit and remaining authoring requirements still pending"
+  ],
+  "sourceSha256": {
+    "apps/web/lib/audio-audition.ts": "6d3a4caee6833f5f7735cfb4e37ca2a0e37ae310344b9fc1ddcf3db85982ebb9",
+    "apps/web/lib/audio-audition.test.ts": "4003c30b19b34bbb28b46962838ea071bc8510b1dcdb9ad91d8b764fba486f6a",
+    "apps/web/components/audio-audition.tsx": "d6881379ffaa4a56ce12189706c5690a7e25a903f22c08fce66f92eb1d3903ec",
+    "apps/web/components/audio-picker-field.tsx": "dd6f85556343569e4ac40f5f75c8b5a34f01d02d23559952f7a60213a1db2e5d",
+    "apps/web/components/story-audio-controls.tsx": "ab31c44bc489c20d96956a85d119b53158d77cd8d4ad2549dfa5883cd31a794e",
+    "apps/web/components/sound-cue-list.tsx": "2df02cb95485b45d9af176d62bce6621fdb427ce2ec3dd68539d1d7bcebb85fc",
+    "tests/e2e/audio-audition.spec.ts": "b05ced29a1e1624edd504769fb13c66bbcda9846fe3ba6cc87f23c12ba271d1e",
+    "scripts/serve-test-build.py": "d7a057df6bd1ed7d434f5319117631c474db95e6e549215d2c3baa8ad022d71f",
+    "scripts/tests/test_serve_test_build.py": "5dbb1283568f8d0d40382479fa43d1d62188a66469bee0191173714f789765ef",
+    "playwright.config.ts": "45ebecd3eb8bccff3366373fb9a36e82ff9fbe47bc7177d1f60d517c3eef171d"
+  },
+  "egoBrowser": {
+    "spaceId": 6,
+    "sameActiveGoalSpace": "knolstory-editor-completion",
+    "input": "Actual page.press Space on native HTML audio controls, no programmaticplay",
+    "startObserved": {
+      "playing": true,
+      "currentTime": 1.020044,
+      "volume": 0.6
+    },
+    "endObserved": {
+      "paused": true,
+      "currentTime": 1.8
+    },
+    "note": "Post-play ref snapshot was stale; media assertions succeeded before stale reference. Next fresh page observation separately confirms state. Goal active, TaskSpace retained.",
+    "freshObservation": {
+      "paused": true,
+      "currentTime": 1.8,
+      "volume": 0.6,
+      "source": "http://localhost:15401/assets/audio/forest.wav"
+    }
+  }
+}

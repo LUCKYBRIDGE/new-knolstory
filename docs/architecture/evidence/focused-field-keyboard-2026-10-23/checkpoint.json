@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-23",
+  "scope": "Focused editor field visibility while OS keyboard covers phone viewport",
+  "failure": "Keyboard handling favored cut body only; speaker name and nested details could remain cramped while unrelated panes consumed space",
+  "changes": [
+    "Basic speaker input hides body/neighbours/docks and gives focused speaker group space",
+    "Advanced row text/number focus hides unused rows/options and retains one scrollable editing task",
+    "Nested dock input gives dock available space and hides unused preview/body",
+    "After visual viewport/focus changes, scrollable ancestors reveal current field within visible viewport without changing focus or content"
+  ],
+  "verification": {
+    "nativeSpeaker": "Actual S25 portrait360x677 keyboard286px: speaker input44px tall fully visible132..176px and focused; body text preserved",
+    "nativeMemo": "Actual S25 keyboard350px: nested 연출 메모150px tall fully visible68..219px; preview/body hidden",
+    "browser": "7 passed7.8s including new speaker and existing body/IME/arrows/phone/tablet; separate nested title and memo2 passed1.7s",
+    "build": "Web build:source passed",
+    "lint": "Focused component/hook/test ESLint passed",
+    "types": "Web TypeScript passed"
+  },
+  "limits": [
+    "Header/settings-menu or external native dialogs outside data-editor-inputs are not covered by this hook",
+    "All device/keyboards or every advanced numeric input not individually verified",
+    "Short landscape basic writing remains portrait-only per prior verified design",
+    "Whole editor goal remains active"
+  ]
+}

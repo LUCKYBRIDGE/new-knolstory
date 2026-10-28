@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:81710) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/chapter-audio-split.spec.ts:5:52 › music chapter split preserves continuity, undo, independent source editing and actual work file (7.7s)
+  ✓  2 tests/e2e/chapter-audio-split.spec.ts:5:52 › ambience chapter split preserves continuity, undo, independent source editing and actual work file (6.9s)
+
+  2 passed (15.2s)

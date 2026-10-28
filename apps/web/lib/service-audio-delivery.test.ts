@@ -31,3 +31,10 @@ it('calls the browser global fetch with its owning receiver, not the delivery in
  try {expect(await new ServiceAudioDelivery([asset]).load([asset.runtimePath],new Set())).toHaveLength(1);}
  finally {globalThis.fetch=original;}
 });
+it('admits all finite sequence references within existing bytes budget and rejects over capacity',async()=>{
+ const catalogue=Array.from({length:43},(_,index)=>({...asset,id:`sequence-${index}`,runtimePath:`assets/audio/cc0/sequence/v1/clip-${index}.ogg`,src:`/clip-${index}.ogg`}));
+ const fetcher=vi.fn(async()=>new Response(bytes)),store=new ServiceAudioDelivery(catalogue,fetcher);
+ expect(await store.load(catalogue.slice(0,42).map(item=>item.runtimePath),new Set())).toHaveLength(42);expect(fetcher).toHaveBeenCalledTimes(42);
+ await expect(store.load(catalogue.map(item=>item.runtimePath),new Set())).rejects.toThrow();expect(fetcher).toHaveBeenCalledTimes(42);
+ const oversized=catalogue.slice(0,16).map(item=>({...item,runtimeBytes:2000000}));await expect(new ServiceAudioDelivery(oversized,fetcher).load(oversized.map(item=>item.runtimePath),new Set())).rejects.toThrow(/한도/);expect(fetcher).toHaveBeenCalledTimes(42);
+});

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-24",
+  "scope": "Mobile initial fullscreen offer waits for active and nested authoring dialogs",
+  "failure": "Desktop image search open then viewport390 caused a second modal fullscreen offer above pending image selection; initial new test failed",
+  "change": "Observe dialog open changes and removal. Do not mark offer seen/session-consumed until other dialogs close. Re-evaluate after closing; disconnect observer/cancel scheduled frame when resolved or cleaned up.",
+  "verification": {
+    "red": "New active-image test failed before fix",
+    "green": "5 passed17.6s: active image preserves search/whole project, nested cover/image waits for both close, first entry decline/reload/settings, explicit accept, root fullscreen/preparation dialogs",
+    "build": "Web build:source passed",
+    "types": "Web TypeScript passed",
+    "lint": "Focused ESLint passed with existing React discovery warning",
+    "review": "Separate read-only review found no actionable defect",
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Browser viewport transition regression; no new native device test claimed",
+    "Physical phone remains user-requested landscape fullscreen",
+    "Whole editing goal remains active"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-23",
+  "scope": "Actual Microsoft Excel UI editing of current workbook8 and full archive/browser preservation",
+  "application": "Microsoft Excel on macOS, native UI; no add-in",
+  "actions": [
+    "Opened an independent fixture workbook, not a user manuscript",
+    "Changed 컷!F3 to Excel에서 고친 본문 001 🌳",
+    "Changed 컷 표시 점수!F3 from 3 to 5",
+    "Saved with Cmd+S and observed 내 Mac에 저장됨",
+    "Closed only the test workbook"
+  ],
+  "verification": {
+    "fullArchive": "Imported native saved XLSX equals baseline archive with only the two intended edits; compound choices, conditional text, sequence and all other fields preserved",
+    "frozenRegression": "packages/compatibility/tests/excel-current-edits.test.ts: 1 passed",
+    "browser": "Passed: actual saved workbook UI import, native RenPy playback, return to editor and exported project equality; terminal browser-result.json and office-import.knolstory artifact observed",
+    "browserSource": "tests/e2e/external-workbook-import.spec.ts",
+    "lint": "Focused ESLint passed",
+    "types": "Compatibility TypeScript passed",
+    "documentation": "docs:check: 57 active documents, 0 link errors, 0 retired terms; test:docs: 10 passed"
+  },
+  "sha256": {
+    "edited.xlsx": "434344cff78ef9313bc17d1246b78bdb743ded1bb7152b953a0469133a176120",
+    "expected.json": "af2c57202dc10560ee0851ba53a585bf736cf64c2590a0bfb0cc9747baa22f48",
+    "excel-edited.png": "905d6f8ef09c3eef3f70561a26e146d6e47805e2b03a5f664e5d38a83e5e48bb",
+    "browser-result.json": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+  },
+  "limits": [
+    "This is one current KnolStory fixture, not all Excel sheets or ShortStory editing",
+    "Google Sheets direct editing of current added fields remains separate",
+    "Physical Android, OS keyboards and accessibility remain unverified",
+    "Excel ChatGPT add-in is excluded",
+    "Full editor goal remains active"
+  ]
+}

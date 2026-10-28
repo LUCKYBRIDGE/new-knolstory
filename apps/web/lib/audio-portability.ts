@@ -4,8 +4,7 @@ export type PortableAudioResource = Readonly<{id:string;name:string;mime:string;
 export function referencedAudioIds(project:StoryProject):string[] {
   const ids=new Set<string>();
   for(const item of [...project.chapters,...project.lines]) {
-    if(item.audio?.ambience?.action==='play')ids.add(item.audio.ambience.assetId);
-    if(item.audio?.music?.action==='play')ids.add(item.audio.music.assetId);
+    for(const channel of ['ambience','music'] as const){const cue=item.audio?.[channel];if(cue?.action==='play')ids.add(cue.assetId);else if(cue?.action==='sequence')for(const clip of cue.clips)ids.add(clip.assetId);}
     if('sounds' in (item.audio??{}))for(const sound of item.audio?.sounds??[])ids.add(sound.assetId);
   }
   return [...ids];

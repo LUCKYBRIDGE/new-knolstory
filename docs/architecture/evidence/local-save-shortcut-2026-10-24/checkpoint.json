@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-24",
+  "scope": "Explicit authoring file-save keyboard shortcuts using existing verified local-file path",
+  "behavior": [
+    "Ctrl/Meta+S saves work file; Shift requests Save As",
+    "Explicitly enabled only in editor edit mode and preparation; active visible workspace required",
+    "IME/repeat/Alt/defaultPrevented/open-dialog guard; in-flight save prevents duplicates",
+    "Flush focused field draft before taking latest serializer snapshot and restore focus; aria-invalid draft stops shortcut save"
+  ],
+  "verification": {
+    "red": [
+      "Initial shortcut produced no download",
+      "Reader incorrectly intercepted hidden author menu shortcut before explicit mode scope fix",
+      "Focused score draft7 exported old0 before draft flush/latest serializer fix"
+    ],
+    "build": "Final Web build:source passed",
+    "types": "Web TypeScript passed",
+    "lint": "Focused ESLint passed",
+    "fileHelper": "25 unit tests passed for verified file writing/handle/concurrency/readback paths",
+    "browser": "5 passed6.7s: Ctrl/Meta S and Shift downloads exact latest whole work, active score draft7 committed before archive capture with focus retained, invalid fractional score stays0/no download, composition/modal ignored, reader shortcut unhandled.",
+    "docs": "57 active docs/228 current surfaces checked0 errors;10 docs tests passed"
+  },
+  "limits": [
+    "Actual download files tested in browser; no new physical native file picker shortcut test",
+    "Existing native file save/reopen evidence retained separately",
+    "Reviewer identified reader-scope defect, fixed and covered; agent review then hit usage limit",
+    "Whole editing objective remains active"
+  ]
+}

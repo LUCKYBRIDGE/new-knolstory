@@ -1,0 +1,45 @@
+
+Running 4 tests using 1 worker
+
+(node:82736) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/conditional-audio-split.spec.ts:6:89 › cut conditional split retains exact yes same-destination choice across native playback (8.1s)
+  ✓  2 tests/e2e/conditional-audio-split.spec.ts:6:89 › cut conditional split retains exact no same-destination choice across native playback (7.9s)
+  ✘  3 tests/e2e/conditional-audio-split.spec.ts:6:89 › chapter conditional split retains exact yes same-destination choice across native playback (9.3s)
+(node:82778) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 tests/e2e/conditional-audio-split.spec.ts:6:89 › chapter conditional split retains exact no same-destination choice across native playback (8.0s)
+
+
+  1) tests/e2e/conditional-audio-split.spec.ts:6:89 › chapter conditional split retains exact yes same-destination choice across native playback 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "a"
+    Received: "decision"
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      11 |  await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption('decision');await detail.getByRole('button',{name:'이 컷 재생',exact:true}).click();await rendered(page);const status=page.getByTestId('story-runtime-status'),gate=page.getByTestId('story-runtime-frame').contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});await gate.press('Enter');await rendered(page);
+      12 |  const frame=(await page.getByTestId('story-runtime-frame').boundingBox())!,rect=JSON.parse((await status.getAttribute('data-choices-rect'))!),width=Number(await status.getAttribute('data-scene-width')),height=Number(await status.getAttribute('data-scene-height')),scale=Math.min(frame.width/width,frame.height/height),padding=24;await page.mouse.click(frame.x+(frame.width-width*scale)/2+(rect.x+rect.width/2)*scale,frame.y+(frame.height-height*scale)/2+(rect.y+padding+92+48+(choice==='yes'?0:1)*108)*scale);
+    > 13 |  const current=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId);await expect.poll(current).toBe('a');await rendered(page);const path=channel==='music'?'data-music-path':'data-ambience-path',count=channel==='music'?'data-music-start-count':'data-ambience-start-count';await expect(status).toHaveAttribute(path,choice==='yes'?/forest/:/night/);const starts=await status.getAttribute(count);
+         |                                                                                                                                                   ^
+      14 |  for(const id of ['b','c','d']){const bounds=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.mouse.click(bounds.x+bounds.width*.5,bounds.y+bounds.height*.2);await expect.poll(current).toBe(id);await rendered(page);await expect(status).toHaveAttribute(path,choice==='yes'?/forest/:/night/);expect(await status.getAttribute(count)).toBe(starts);}
+      15 |  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await menu.locator(':scope>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('conditional.knolstory');await(await pending).saveAs(file);const saved=parseAuthoringFile(readFileSync(file,'utf8'));expect(saved.project).toEqual(stored);
+      16 |  const context=await browser.newContext(),fresh=await context.newPage();await fresh.route('**/api/**',r=>r.abort());await fresh.goto('/?view=editor');await expect(fresh.getByTestId('save-status')).toHaveText('임시 보관됨');await fresh.locator('[data-work-menu]>summary').click();await fresh.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file);await confirmAuthoringImport(fresh);await expect(fresh.getByTestId('save-status')).toHaveText('임시 보관됨');expect(await fresh.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(stored);await context.close();
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/conditional-audio-split.spec.ts:13:147
+
+    Error Context: test-results-conditional-split-v2/conditional-audio-split-ch-b0d32-oice-across-native-playback/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-conditional-split-v2/conditional-audio-split-ch-b0d32-oice-across-native-playback/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-conditional-split-v2/conditional-audio-split-ch-b0d32-oice-across-native-playback/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/conditional-audio-split.spec.ts:6:89 › chapter conditional split retains exact yes same-destination choice across native playback 
+  3 passed (34.3s)

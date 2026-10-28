@@ -1,0 +1,24 @@
+{
+  "status": "focused-host-passed",
+  "issue": "Desktop common chrome style reduced actor select heights to34.5px.",
+  "change": "Scope44px chrome height to actor control labels; reduce card padding/gap while retaining next cut access.",
+  "result": "2tests one run: oneactor desktop/phone and fouractors1052/768/390/320 widths,44px controls,no horizontal overflow,independent fourthactor scale and original speaker/otheractors/othercuts preserved in exported file.",
+  "log": ".cache/character-four-20261028-final2.log",
+  "build": ".cache/character-four-20261028-build-final.log",
+  "lint": ".cache/character-four-20261028-lint.log",
+  "priorFailures": [
+    ".cache/character-four-20261028.log invalid test fixture speaker side corrected",
+    ".cache/character-four-20261028-v2.log genuine34.5px controls",
+    ".cache/character-four-20261028-final.log specificity attempt insufficient",
+    ".cache/character-four-20261028-v3.log next header pushed below viewport",
+    ".cache/character-four-20261028-v4.log next header4px outside viewport"
+  ],
+  "limits": [
+    "Isolated host browser tests with runtime blocked; no physical device or native rendering claim.",
+    "Ego workspace10 absent, no new replacement created; question pending."
+  ],
+  "sourceSha256": {
+    "apps/web/components/story-editing-workbench.module.css": "c33f4894c45c98326767343c6e6131b6f4335b7dc8029474002b143eca890ac5",
+    "tests/e2e/editing-workbench.spec.ts": "3844dd22b320ad91066c17fcb9d40d2eec6bd1dd9ab9c9db33242b66487fb7da"
+  }
+}

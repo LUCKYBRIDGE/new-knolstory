@@ -1,0 +1,163 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-10-21T12:51:49.577Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "choiceMode": "simple",
+      "id": "continuous-music",
+      "title": "새 이야기",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "ch",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "a",
+          "chapterId": "ch",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존할 글 1",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "music": {
+              "action": "play",
+              "assetId": "audio:music:forest",
+              "volume": 0.6,
+              "loop": true,
+              "sourceStartMs": 200,
+              "sourceEndMs": 1800,
+              "endLineId": "b"
+            }
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "b",
+          "chapterId": "ch",
+          "order": 2,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존할 글 2",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "c",
+          "chapterId": "ch",
+          "order": 3,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존할 글 3",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "music": {
+              "action": "play",
+              "assetId": "audio:music:forest",
+              "volume": 0.6,
+              "loop": true,
+              "sourceStartMs": 1000,
+              "sourceEndMs": 1800,
+              "endLineId": "d"
+            }
+          },
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "d",
+          "chapterId": "ch",
+          "order": 4,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "보존할 글 4",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-10-21T12:51:49.248Z"
+    }
+  },
+  "audioResources": []
+}

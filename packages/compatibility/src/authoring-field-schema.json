@@ -2279,6 +2279,163 @@
                           "properties": {
                             "action": {
                               "kind": "literal",
+                              "value": "sequence"
+                            },
+                            "id": {
+                              "kind": "string"
+                            },
+                            "clips": {
+                              "kind": "array",
+                              "element": {
+                                "kind": "object",
+                                "properties": {
+                                  "id": {
+                                    "kind": "string"
+                                  },
+                                  "assetId": {
+                                    "kind": "string"
+                                  },
+                                  "sourceStartMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "sourceEndMs": {
+                                    "kind": "number"
+                                  },
+                                  "volume": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeInMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeOutMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "assetId",
+                                  "sourceEndMs"
+                                ]
+                              }
+                            },
+                            "endLineId": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "string"
+                                }
+                              ]
+                            },
+                            "branchCondition": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "sourceLineId": {
+                                      "kind": "string"
+                                    },
+                                    "choiceId": {
+                                      "kind": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sourceLineId",
+                                    "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "action",
+                            "id",
+                            "clips"
+                          ]
+                        },
+                        {
+                          "kind": "object",
+                          "properties": {
+                            "action": {
+                              "kind": "literal",
                               "value": "maintain"
                             }
                           },
@@ -2319,6 +2476,28 @@
                             "assetId": {
                               "kind": "string"
                             },
+                            "sourceStartMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
+                            "sourceEndMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
                             "endLineId": {
                               "kind": "union",
                               "variants": [
@@ -2349,6 +2528,46 @@
                                   "required": [
                                     "sourceLineId",
                                     "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
                                   ]
                                 }
                               ]
@@ -2421,6 +2640,163 @@
                           "properties": {
                             "action": {
                               "kind": "literal",
+                              "value": "sequence"
+                            },
+                            "id": {
+                              "kind": "string"
+                            },
+                            "clips": {
+                              "kind": "array",
+                              "element": {
+                                "kind": "object",
+                                "properties": {
+                                  "id": {
+                                    "kind": "string"
+                                  },
+                                  "assetId": {
+                                    "kind": "string"
+                                  },
+                                  "sourceStartMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "sourceEndMs": {
+                                    "kind": "number"
+                                  },
+                                  "volume": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeInMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeOutMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "assetId",
+                                  "sourceEndMs"
+                                ]
+                              }
+                            },
+                            "endLineId": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "string"
+                                }
+                              ]
+                            },
+                            "branchCondition": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "sourceLineId": {
+                                      "kind": "string"
+                                    },
+                                    "choiceId": {
+                                      "kind": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sourceLineId",
+                                    "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "action",
+                            "id",
+                            "clips"
+                          ]
+                        },
+                        {
+                          "kind": "object",
+                          "properties": {
+                            "action": {
+                              "kind": "literal",
                               "value": "maintain"
                             }
                           },
@@ -2461,6 +2837,28 @@
                             "assetId": {
                               "kind": "string"
                             },
+                            "sourceStartMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
+                            "sourceEndMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
                             "endLineId": {
                               "kind": "union",
                               "variants": [
@@ -2491,6 +2889,46 @@
                                   "required": [
                                     "sourceLineId",
                                     "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
                                   ]
                                 }
                               ]
@@ -2569,6 +3007,28 @@
                               "assetId": {
                                 "kind": "string"
                               },
+                              "sourceStartMs": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "undefined"
+                                  },
+                                  {
+                                    "kind": "number"
+                                  }
+                                ]
+                              },
+                              "sourceEndMs": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "undefined"
+                                  },
+                                  {
+                                    "kind": "number"
+                                  }
+                                ]
+                              },
                               "branchCondition": {
                                 "kind": "union",
                                 "variants": [
@@ -2588,6 +3048,46 @@
                                     "required": [
                                       "sourceLineId",
                                       "choiceId"
+                                    ]
+                                  },
+                                  {
+                                    "kind": "object",
+                                    "properties": {
+                                      "mode": {
+                                        "kind": "union",
+                                        "variants": [
+                                          {
+                                            "kind": "literal",
+                                            "value": "all"
+                                          },
+                                          {
+                                            "kind": "literal",
+                                            "value": "any"
+                                          }
+                                        ]
+                                      },
+                                      "terms": {
+                                        "kind": "array",
+                                        "element": {
+                                          "kind": "object",
+                                          "properties": {
+                                            "sourceLineId": {
+                                              "kind": "string"
+                                            },
+                                            "choiceId": {
+                                              "kind": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "sourceLineId",
+                                            "choiceId"
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "mode",
+                                      "terms"
                                     ]
                                   }
                                 ]
@@ -2732,6 +3232,258 @@
         "element": {
           "kind": "object",
           "properties": {
+            "visibility": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "undefined"
+                },
+                {
+                  "kind": "object",
+                  "properties": {
+                    "scores": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "undefined"
+                        },
+                        {
+                          "kind": "object",
+                          "properties": {
+                            "mode": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "literal",
+                                  "value": "all"
+                                },
+                                {
+                                  "kind": "literal",
+                                  "value": "any"
+                                }
+                              ]
+                            },
+                            "terms": {
+                              "kind": "array",
+                              "element": {
+                                "kind": "object",
+                                "properties": {
+                                  "scoreId": {
+                                    "kind": "string"
+                                  },
+                                  "operator": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "literal",
+                                        "value": "eq"
+                                      },
+                                      {
+                                        "kind": "literal",
+                                        "value": "ne"
+                                      },
+                                      {
+                                        "kind": "literal",
+                                        "value": "gt"
+                                      },
+                                      {
+                                        "kind": "literal",
+                                        "value": "gte"
+                                      },
+                                      {
+                                        "kind": "literal",
+                                        "value": "lt"
+                                      },
+                                      {
+                                        "kind": "literal",
+                                        "value": "lte"
+                                      }
+                                    ]
+                                  },
+                                  "value": {
+                                    "kind": "number"
+                                  }
+                                },
+                                "required": [
+                                  "scoreId",
+                                  "operator",
+                                  "value"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "mode",
+                            "terms"
+                          ]
+                        }
+                      ]
+                    },
+                    "choices": {
+                      "kind": "union",
+                      "variants": [
+                        {
+                          "kind": "undefined"
+                        },
+                        {
+                          "kind": "object",
+                          "properties": {
+                            "sourceLineId": {
+                              "kind": "string"
+                            },
+                            "choiceId": {
+                              "kind": "string"
+                            }
+                          },
+                          "required": [
+                            "sourceLineId",
+                            "choiceId"
+                          ]
+                        },
+                        {
+                          "kind": "object",
+                          "properties": {
+                            "mode": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "literal",
+                                  "value": "all"
+                                },
+                                {
+                                  "kind": "literal",
+                                  "value": "any"
+                                }
+                              ]
+                            },
+                            "terms": {
+                              "kind": "array",
+                              "element": {
+                                "kind": "object",
+                                "properties": {
+                                  "sourceLineId": {
+                                    "kind": "string"
+                                  },
+                                  "choiceId": {
+                                    "kind": "string"
+                                  }
+                                },
+                                "required": [
+                                  "sourceLineId",
+                                  "choiceId"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "mode",
+                            "terms"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              ]
+            },
+            "textVariants": {
+              "kind": "union",
+              "variants": [
+                {
+                  "kind": "undefined"
+                },
+                {
+                  "kind": "array",
+                  "element": {
+                    "kind": "object",
+                    "properties": {
+                      "id": {
+                        "kind": "string"
+                      },
+                      "text": {
+                        "kind": "string"
+                      },
+                      "condition": {
+                        "kind": "object",
+                        "properties": {
+                          "mode": {
+                            "kind": "union",
+                            "variants": [
+                              {
+                                "kind": "literal",
+                                "value": "all"
+                              },
+                              {
+                                "kind": "literal",
+                                "value": "any"
+                              }
+                            ]
+                          },
+                          "terms": {
+                            "kind": "array",
+                            "element": {
+                              "kind": "object",
+                              "properties": {
+                                "scoreId": {
+                                  "kind": "string"
+                                },
+                                "operator": {
+                                  "kind": "union",
+                                  "variants": [
+                                    {
+                                      "kind": "literal",
+                                      "value": "eq"
+                                    },
+                                    {
+                                      "kind": "literal",
+                                      "value": "ne"
+                                    },
+                                    {
+                                      "kind": "literal",
+                                      "value": "gt"
+                                    },
+                                    {
+                                      "kind": "literal",
+                                      "value": "gte"
+                                    },
+                                    {
+                                      "kind": "literal",
+                                      "value": "lt"
+                                    },
+                                    {
+                                      "kind": "literal",
+                                      "value": "lte"
+                                    }
+                                  ]
+                                },
+                                "value": {
+                                  "kind": "number"
+                                }
+                              },
+                              "required": [
+                                "scoreId",
+                                "operator",
+                                "value"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "mode",
+                          "terms"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "text",
+                      "condition"
+                    ]
+                  }
+                }
+              ]
+            },
             "audio": {
               "kind": "union",
               "variants": [
@@ -2746,6 +3498,163 @@
                       "variants": [
                         {
                           "kind": "undefined"
+                        },
+                        {
+                          "kind": "object",
+                          "properties": {
+                            "action": {
+                              "kind": "literal",
+                              "value": "sequence"
+                            },
+                            "id": {
+                              "kind": "string"
+                            },
+                            "clips": {
+                              "kind": "array",
+                              "element": {
+                                "kind": "object",
+                                "properties": {
+                                  "id": {
+                                    "kind": "string"
+                                  },
+                                  "assetId": {
+                                    "kind": "string"
+                                  },
+                                  "sourceStartMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "sourceEndMs": {
+                                    "kind": "number"
+                                  },
+                                  "volume": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeInMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeOutMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "assetId",
+                                  "sourceEndMs"
+                                ]
+                              }
+                            },
+                            "endLineId": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "string"
+                                }
+                              ]
+                            },
+                            "branchCondition": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "sourceLineId": {
+                                      "kind": "string"
+                                    },
+                                    "choiceId": {
+                                      "kind": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sourceLineId",
+                                    "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "action",
+                            "id",
+                            "clips"
+                          ]
                         },
                         {
                           "kind": "object",
@@ -2792,6 +3701,28 @@
                             "assetId": {
                               "kind": "string"
                             },
+                            "sourceStartMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
+                            "sourceEndMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
                             "endLineId": {
                               "kind": "union",
                               "variants": [
@@ -2822,6 +3753,46 @@
                                   "required": [
                                     "sourceLineId",
                                     "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
                                   ]
                                 }
                               ]
@@ -2894,6 +3865,163 @@
                           "properties": {
                             "action": {
                               "kind": "literal",
+                              "value": "sequence"
+                            },
+                            "id": {
+                              "kind": "string"
+                            },
+                            "clips": {
+                              "kind": "array",
+                              "element": {
+                                "kind": "object",
+                                "properties": {
+                                  "id": {
+                                    "kind": "string"
+                                  },
+                                  "assetId": {
+                                    "kind": "string"
+                                  },
+                                  "sourceStartMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "sourceEndMs": {
+                                    "kind": "number"
+                                  },
+                                  "volume": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeInMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  },
+                                  "fadeOutMs": {
+                                    "kind": "union",
+                                    "variants": [
+                                      {
+                                        "kind": "undefined"
+                                      },
+                                      {
+                                        "kind": "number"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "assetId",
+                                  "sourceEndMs"
+                                ]
+                              }
+                            },
+                            "endLineId": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "string"
+                                }
+                              ]
+                            },
+                            "branchCondition": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "sourceLineId": {
+                                      "kind": "string"
+                                    },
+                                    "choiceId": {
+                                      "kind": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "sourceLineId",
+                                    "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
+                                  ]
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "action",
+                            "id",
+                            "clips"
+                          ]
+                        },
+                        {
+                          "kind": "object",
+                          "properties": {
+                            "action": {
+                              "kind": "literal",
                               "value": "maintain"
                             }
                           },
@@ -2934,6 +4062,28 @@
                             "assetId": {
                               "kind": "string"
                             },
+                            "sourceStartMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
+                            "sourceEndMs": {
+                              "kind": "union",
+                              "variants": [
+                                {
+                                  "kind": "undefined"
+                                },
+                                {
+                                  "kind": "number"
+                                }
+                              ]
+                            },
                             "endLineId": {
                               "kind": "union",
                               "variants": [
@@ -2964,6 +4114,46 @@
                                   "required": [
                                     "sourceLineId",
                                     "choiceId"
+                                  ]
+                                },
+                                {
+                                  "kind": "object",
+                                  "properties": {
+                                    "mode": {
+                                      "kind": "union",
+                                      "variants": [
+                                        {
+                                          "kind": "literal",
+                                          "value": "all"
+                                        },
+                                        {
+                                          "kind": "literal",
+                                          "value": "any"
+                                        }
+                                      ]
+                                    },
+                                    "terms": {
+                                      "kind": "array",
+                                      "element": {
+                                        "kind": "object",
+                                        "properties": {
+                                          "sourceLineId": {
+                                            "kind": "string"
+                                          },
+                                          "choiceId": {
+                                            "kind": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "sourceLineId",
+                                          "choiceId"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "mode",
+                                    "terms"
                                   ]
                                 }
                               ]
@@ -3042,6 +4232,28 @@
                               "assetId": {
                                 "kind": "string"
                               },
+                              "sourceStartMs": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "undefined"
+                                  },
+                                  {
+                                    "kind": "number"
+                                  }
+                                ]
+                              },
+                              "sourceEndMs": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "undefined"
+                                  },
+                                  {
+                                    "kind": "number"
+                                  }
+                                ]
+                              },
                               "branchCondition": {
                                 "kind": "union",
                                 "variants": [
@@ -3061,6 +4273,46 @@
                                     "required": [
                                       "sourceLineId",
                                       "choiceId"
+                                    ]
+                                  },
+                                  {
+                                    "kind": "object",
+                                    "properties": {
+                                      "mode": {
+                                        "kind": "union",
+                                        "variants": [
+                                          {
+                                            "kind": "literal",
+                                            "value": "all"
+                                          },
+                                          {
+                                            "kind": "literal",
+                                            "value": "any"
+                                          }
+                                        ]
+                                      },
+                                      "terms": {
+                                        "kind": "array",
+                                        "element": {
+                                          "kind": "object",
+                                          "properties": {
+                                            "sourceLineId": {
+                                              "kind": "string"
+                                            },
+                                            "choiceId": {
+                                              "kind": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "sourceLineId",
+                                            "choiceId"
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "mode",
+                                      "terms"
                                     ]
                                   }
                                 ]
@@ -4002,6 +5254,46 @@
                                       "sourceLineId",
                                       "choiceId"
                                     ]
+                                  },
+                                  {
+                                    "kind": "object",
+                                    "properties": {
+                                      "mode": {
+                                        "kind": "union",
+                                        "variants": [
+                                          {
+                                            "kind": "literal",
+                                            "value": "all"
+                                          },
+                                          {
+                                            "kind": "literal",
+                                            "value": "any"
+                                          }
+                                        ]
+                                      },
+                                      "terms": {
+                                        "kind": "array",
+                                        "element": {
+                                          "kind": "object",
+                                          "properties": {
+                                            "sourceLineId": {
+                                              "kind": "string"
+                                            },
+                                            "choiceId": {
+                                              "kind": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "sourceLineId",
+                                            "choiceId"
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "mode",
+                                      "terms"
+                                    ]
                                   }
                                 ]
                               },
@@ -4185,6 +5477,21 @@
                                   {
                                     "kind": "literal",
                                     "value": "after-delay"
+                                  },
+                                  {
+                                    "kind": "literal",
+                                    "value": "on-click"
+                                  }
+                                ]
+                              },
+                              "clickStep": {
+                                "kind": "union",
+                                "variants": [
+                                  {
+                                    "kind": "undefined"
+                                  },
+                                  {
+                                    "kind": "number"
                                   }
                                 ]
                               },

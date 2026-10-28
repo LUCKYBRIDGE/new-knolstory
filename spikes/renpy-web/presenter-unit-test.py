@@ -54,6 +54,142 @@ class PresenterTests(unittest.TestCase):
         self.music = music
     def apply(self, music, sounds=None, entrance=True, mode='play'):
         self.ns['knol_apply_audio']({'mode':mode,'audio':{'music':music,'sounds':sounds or []}}, entrance)
+    def sequence(self, entry='visit-1'):
+        return {'action':'sequence', 'id':'queue', 'entryId':entry, 'clips':[
+            {'id':'one','audioPath':'assets/audio/one.wav','sourceStartMs':200,'sourceEndMs':1200,'volume':.4},
+            {'id':'two','audioPath':'assets/audio/two.wav','sourceStartMs':500,'sourceEndMs':2500,'volume':.8}]}
+
+    def test_two_sequence_channels_keep_independent_clocks_and_cancel_separately(self):
+        music = self.sequence()
+        ambience = self.sequence('ambient-visit')
+        ambience['clips'][0]['sourceEndMs'] = 1700
+        self.ns['knol_apply_audio']({'mode':'play','audio':{'music':music,'ambience':ambience}}, True)
+        self.ns['knol_poll_audio'](False, 11.1)
+        self.assertIn('two.wav', self.music.get_playing('music'))
+        self.assertIn('one.wav', self.music.get_playing('knol_ambience'))
+        self.ns['time'].monotonic = lambda: 11.2
+        self.ns['knol_apply_audio']({'mode':'play','audio':{'music':{'action':'stop'},'ambience':ambience}}, True)
+        self.assertIsNone(self.ns['knol_music_sequence'])
+        self.assertEqual(self.ns['knol_ambience_sequence']['started'], 10)
+        self.ns['knol_poll_audio'](False, 11.6)
+        self.assertIsNone(self.music.get_playing('music'))
+        self.assertIn('two.wav', self.music.get_playing('knol_ambience'))
+        self.ns['knol_poll_audio'](False, 13.6)
+        self.assertIsNone(self.music.get_playing('knol_ambience'))
+
+    def test_sequence_boundaries_and_continuity_across_cut_entrances(self):
+        cue = self.sequence()
+        original = copy.deepcopy(cue)
+        self.apply(cue)
+        self.assertEqual(self.music.track, '<from 0.200 to 1.200>assets/audio/one.wav')
+        self.ns['time'] = types.SimpleNamespace(monotonic=lambda: 10.6)
+        self.apply(cue, entrance=True)
+        self.apply({'action':'maintain'}, entrance=True)
+        self.ns['knol_poll_audio'](False, 11)
+        self.assertEqual(self.music.track, '<from 0.500 to 2.500>assets/audio/two.wav')
+        self.ns['knol_poll_audio'](False, 13)
+        self.assertIsNone(self.music.track)
+        self.apply(cue)
+        self.assertIsNone(self.music.track)
+        self.assertEqual(self.ns['knol_music_start_count'], 2)
+        self.assertEqual(cue, original)
+
+    def test_sequence_late_poll_skips_expired_time_and_works_during_transition(self):
+        self.apply(self.sequence())
+        self.ns['knol_poll_audio'](True, 11.5)
+        self.assertEqual(self.music.track, '<from 1.000 to 2.500>assets/audio/two.wav')
+        self.ns['knol_poll_audio'](True, 14)
+        self.assertIsNone(self.music.track)
+        self.assertEqual(self.ns['knol_music_start_count'], 2)
+
+    def test_sequence_stop_edit_session_entry_and_reconfiguration_cancel_old_schedule(self):
+        for kind in ('stop','edit','session','entry','reconfigure','scalar'):
+            with self.subTest(kind=kind):
+                self.setUp()
+                cue = self.sequence()
+                self.apply(cue)
+                self.ns['time'] = types.SimpleNamespace(monotonic=lambda: 10.5)
+                if kind == 'stop': self.apply({'action':'stop'})
+                elif kind == 'edit': self.apply(cue, mode='edit')
+                elif kind == 'session': self.ns['knol_apply_audio']({'mode':'play','audio':{'sessionId':'new','music':cue}}, False)
+                elif kind == 'entry': self.apply(self.sequence('visit-2'), entrance=False)
+                elif kind == 'reconfigure': self.apply({**cue,'clips':[{**cue['clips'][0],'volume':.7},cue['clips'][1]]}, entrance=False)
+                else: self.apply({'action':'play','audioPath':'assets/audio/scalar.wav'})
+                self.ns['knol_poll_audio'](False, 11.1)
+                if kind in ('stop','edit'): self.assertIsNone(self.music.track)
+                elif kind == 'scalar': self.assertEqual(self.music.track, 'assets/audio/scalar.wav')
+                else: self.assertEqual(self.music.track, '<from 0.200 to 1.200>assets/audio/one.wav')
+
+    def test_sequence_fade_out_is_applied_once_before_clip_boundary(self):
+        cue = self.sequence()
+        cue['clips'][0]['fadeOutMs'] = 200
+        self.apply(cue)
+        self.ns['knol_poll_audio'](False, 10.8)
+        self.ns['knol_poll_audio'](False, 10.9)
+        fades = [c for c in self.music.calls if c[0]=='stop' and c[1].get('fadeout') == .2]
+        self.assertEqual(len(fades), 1)
+        self.ns['knol_poll_audio'](False, 11)
+        self.assertEqual(self.music.track, '<from 0.500 to 2.500>assets/audio/two.wav')
+
+    def test_sequence_unlock_uses_same_origin_as_presentation_and_sound(self):
+        source = (ROOT / 'renpy/responsive-spike/game/script.rpy').read_text()
+        functions = '    def knol_waiting_for_audio' + source.split('    def knol_waiting_for_audio', 1)[1].split('    def knol_body_render', 1)[0]
+        exec(textwrap.dedent(functions), self.ns)
+        ticks = iter([10.25, 10.75])
+        self.ns.update(knol_audio_unlocked=False, knol_scene={'mode':'play','audio':{
+            'music':self.sequence(),'sounds':[{'audioPath':'assets/audio/tap.wav'}]}},
+            time=types.SimpleNamespace(monotonic=lambda: next(ticks)),
+            knol_start_native_transition=lambda scene: None, knol_sync_effect_clocks=lambda scene, reset: None)
+        self.ns['renpy'].restart_interaction = lambda: None
+        self.assertTrue(self.ns['knol_waiting_for_audio']())
+        self.ns['knol_unlock_audio']()
+        self.assertEqual(self.ns['knol_music_sequence']['started'], 10.25)
+        self.assertEqual(self.ns['knol_audio_started'], 10.25)
+        self.assertEqual(self.ns['knol_presentation_started'], 10.25)
+        self.ns['knol_poll_audio'](False, 11.25)
+        self.assertEqual(self.music.track, '<from 0.500 to 2.500>assets/audio/two.wav')
+
+    def test_sequence_future_service_clips_are_loaded_and_protected(self):
+        source = (ROOT / 'renpy/responsive-spike/game/script.rpy').read_text()
+        function = '    def knol_install_service_audio' + source.split('    def knol_install_service_audio', 1)[1].split('    def knol_install_audio', 1)[0]
+        captured = []
+        self.ns['knol_service_audio_cache'] = types.SimpleNamespace(install=lambda resources, paths, protected: captured.append((paths, protected)))
+        exec(textwrap.dedent(function), self.ns)
+        cue = self.sequence()
+        for index, clip in enumerate(cue['clips']): clip['audioPath'] = 'assets/audio/cc0/track/v1/' + str(index) + '.ogg'
+        self.apply(cue)
+        self.ns['knol_install_service_audio']([], {'audio':{'music':cue}})
+        expected = [clip['audioPath'] for clip in cue['clips']]
+        self.assertEqual(captured[0][0], expected)
+        for path in expected: self.assertIn(path, captured[0][1])
+        self.apply({'action':'stop'})
+        self.ns['knol_install_service_audio']([], {'audio':{'music':{'action':'stop'}}})
+        self.assertEqual(captured[1], ([], []))
+
+    def test_source_audio_range_is_non_destructive_and_identity_controls_restart(self):
+        track = {'action':'play','audioPath':'assets/audio/rain.wav','sourceStartMs':100,'sourceEndMs':900,'loop':True}
+        self.apply(track)
+        self.assertEqual(self.music.track, '<from 0.100 to 0.900>assets/audio/rain.wav')
+        self.assertEqual(self.ns['knol_audio_state']()['musicPath'], 'assets/audio/rain.wav')
+        self.apply({**track,'volume':.5}, entrance=False)
+        self.assertEqual(self.ns['knol_music_start_count'], 1)
+        self.apply({**track,'sourceEndMs':1500}, entrance=False)
+        self.assertEqual(self.ns['knol_music_start_count'], 2)
+        self.assertEqual(self.music.track, '<from 0.100 to 1.500>assets/audio/rain.wav')
+        self.assertEqual(self.ns['knol_audio_filename']({'audioPath':'assets/audio/plain.wav'}),'assets/audio/plain.wav')
+
+    def test_sliced_playing_paths_remain_protected_during_service_cache_install(self):
+        source = (ROOT / 'renpy/responsive-spike/game/script.rpy').read_text()
+        function = '    def knol_install_service_audio' + source.split('    def knol_install_service_audio', 1)[1].split('    def knol_install_audio', 1)[0]
+        captured = []
+        self.ns['knol_service_audio_cache'] = types.SimpleNamespace(install=lambda resources, paths, protected: captured.append(protected))
+        exec(textwrap.dedent(function), self.ns)
+        path = 'assets/audio/cc0/test/v1/music.ogg'
+        self.music.tracks['music'] = '<from 0.200 to 0.800>' + path
+        self.ns['knol_install_service_audio']([], {'audio': {'music': {'action': 'stop'}}})
+        self.assertIn(path, captured[0])
+        self.assertNotIn('<from 0.200 to 0.800>' + path, captured[0])
+
     def test_ambience_independent_continuity_restore_and_edit(self):
         track={'action':'play','audioPath':'assets/audio/rain.wav','volume':.2,'loop':True}
         def apply(cue, session='one', mode='play'):
@@ -120,6 +256,175 @@ class ResourceAndViewportTests(unittest.TestCase):
             'renpy': types.SimpleNamespace(ui=types.SimpleNamespace(adjustment=adjustment), game=types.SimpleNamespace(interface=types.SimpleNamespace(set_mode=lambda: self.resize_calls.append(True))), free_memory=lambda:None)}
         # Execute only Python helpers; a separate native choice screen now precedes the stage.
         exec(textwrap.dedent(source.split('init python:\n',1)[1].split('\nscreen ',1)[0]), self.ns)
+    def tap_setup(self, mode=None, page=0, can_back=True, ended=False):
+        self.tap_calls = []
+        self.ns.update(knol_ready=True, knol_audio_unlocked=True, knol_transition_active=False,
+            knol_text_page=page, knol_scene={'sceneId':'tap', 'revision':5, 'mode':'play',
+                'width':1280, 'height':720, 'readerCanGoBack':can_back, 'ended':ended})
+        if mode is not None:
+            self.ns['knol_scene']['readerTapMode'] = mode
+        self.ns['knol_dialogue_metrics'] = lambda scene: {'pages':['first','last']}
+        self.ns['knol_input'] = lambda kind, choice_id=None: self.tap_calls.append(kind)
+        self.ns['knol_change_text_page'] = lambda offset: self.tap_calls.append(offset)
+        self.ns['renpy'].get_mouse_pos = lambda: (100, 300)
+    def test_default_stage_tap_advances_on_either_half(self):
+        self.tap_setup()
+        self.ns['knol_stage_tap']()
+        self.ns['renpy'].get_mouse_pos = lambda: (1000, 300)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [1, 1])
+    def test_halves_previous_page_precedes_host_back_and_absent_history_is_noop(self):
+        self.tap_setup('halves', page=1, can_back=False)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [-1])
+        self.ns['knol_text_page'] = 0
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [-1])
+        self.ns['knol_scene']['readerCanGoBack'] = True
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [-1, 'backRequested'])
+    def test_halves_right_advances_last_page_and_ended_left_can_return(self):
+        self.tap_setup('halves', page=1)
+        self.ns['renpy'].get_mouse_pos = lambda: (640, 300)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, ['advanceRequested'])
+        self.ns['knol_scene']['ended'] = True
+        self.ns['knol_stage_tap']()
+        self.ns['renpy'].get_mouse_pos = lambda: (100, 300)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, ['advanceRequested', 'backRequested'])
+    def test_choices_block_forward_but_allow_halves_back_without_selecting(self):
+        self.tap_setup('halves', page=1)
+        self.ns['knol_scene']['choices'] = [{'id':'a'}]
+        self.ns['renpy'].get_mouse_pos = lambda: (1000, 300)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [])
+        self.ns['renpy'].get_mouse_pos = lambda: (100, 300)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [-1])
+        self.ns['knol_text_page'] = 0
+        self.ns['knol_dialogue_metrics'] = lambda scene: {'pages':['only']}
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [-1, 'backRequested'])
+        self.ns['knol_scene']['readerTapMode'] = 'next'
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [-1, 'backRequested'])
+        self.ns['knol_text_input']('choiceSelected', 'a')
+        self.assertEqual(self.tap_calls[-1], 'choiceSelected')
+
+    def test_stage_taps_respect_transition_audio_and_edit_gates(self):
+        for gate in ('transition', 'audio', 'edit', 'unready', 'transitionOnly'):
+            with self.subTest(gate=gate):
+                self.tap_setup('halves', page=1)
+                if gate == 'transition': self.ns['knol_transition_active'] = True
+                if gate == 'audio':
+                    self.ns['knol_audio_unlocked'] = False
+                    self.ns['knol_scene']['audio'] = {'music':{'action':'play'}}
+                if gate == 'edit': self.ns['knol_scene']['mode'] = 'edit'
+                if gate == 'unready': self.ns['knol_ready'] = False
+                if gate == 'transitionOnly': self.ns['knol_scene']['transitionOnly'] = True
+                self.ns['knol_stage_tap']()
+                self.assertEqual(self.tap_calls, [])
+
+    def test_transition_only_cue_has_no_displayed_dialogue_or_extra_input(self):
+        self.tap_setup(page=1)
+        self.ns['knol_scene']['transitionOnly'] = True
+        self.ns['knol_text_input']('advanceRequested')
+        self.assertEqual(self.tap_calls, [])
+        self.assertEqual(self.ns['knol_dialogue_page_evidence'](self.ns['knol_scene']),
+            {'index':0, 'count':1, 'offset':0, 'endOffset':0})
+
+    def test_pending_effect_waits_for_last_native_text_page_then_precedes_choices(self):
+        self.tap_setup(page=0)
+        self.ns['knol_scene'].update(effectSteps={'current':0, 'total':2}, choices=[{'id':'a'}])
+        self.assertFalse(self.ns['knol_choices_visible']())
+        self.ns['knol_text_input']('advanceRequested')
+        self.assertEqual(self.tap_calls, [1])
+        self.ns['knol_text_page'] = 1
+        self.ns['knol_text_input']('choiceSelected', 'a')
+        self.assertEqual(self.tap_calls, [1, 'advanceRequested'])
+        self.assertFalse(self.ns['knol_choices_visible']())
+        self.ns['knol_scene']['effectSteps']['current'] = 2
+        self.assertTrue(self.ns['knol_choices_visible']())
+        self.ns['knol_text_input']('advanceRequested')
+        self.assertEqual(self.tap_calls, [1, 'advanceRequested'])
+        self.ns['knol_text_input']('choiceSelected', 'a')
+        self.assertEqual(self.tap_calls[-1], 'choiceSelected')
+
+    def test_pending_effect_stage_tap_advances_even_with_choices(self):
+        self.tap_setup(page=1)
+        self.ns['knol_scene'].update(effectSteps={'current':1, 'total':2}, choices=[{'id':'a'}])
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, ['advanceRequested'])
+
+    def test_pending_title_effect_requires_input_after_transition_completes(self):
+        self.tap_setup(page=0)
+        self.ns['knol_scene'].update(transitionOnly=True, effectSteps={'current':0, 'total':1})
+        self.ns['knol_transition_active'] = True
+        self.ns['knol_text_input']('advanceRequested')
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [])
+        self.ns['knol_transition_active'] = False
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, ['advanceRequested'])
+        self.ns['knol_text_input']('advanceRequested')
+        self.assertEqual(self.tap_calls, ['advanceRequested', 'advanceRequested'])
+        self.ns['knol_scene']['effectSteps']['current'] = 1
+        self.ns['knol_text_input']('advanceRequested')
+        self.assertEqual(len(self.tap_calls), 3)
+
+    def test_pending_title_input_passes_real_native_event_gate(self):
+        self.tap_setup(page=0)
+        self.ns['knol_scene'].update(transitionOnly=True, effectSteps={'current':0, 'total':1})
+        source = (ROOT / 'renpy/responsive-spike/game/presentation.rpy').read_text()
+        function = '    def knol_input' + source.split('    def knol_input', 1)[1].split('    def knol_finish_transition', 1)[0]
+        exec(textwrap.dedent(function), self.ns)
+        events = []
+        self.ns['knol_revision'] = 5
+        self.ns['knol_emit'] = events.append
+        self.ns['knol_stage_tap']()
+        self.assertEqual(events, [{'protocol':1, 'type':'advanceRequested', 'sceneId':'tap', 'revision':5}])
+        self.ns['knol_input']('choiceSelected', 'a')
+        self.assertEqual(len(events), 1)
+        self.ns['knol_scene']['effectSteps']['current'] = 1
+        self.ns['knol_stage_tap']()
+        self.assertEqual(len(events), 2)
+        self.assertEqual(events[-1]['type'], 'advanceRequested')
+        self.ns['knol_scene'].update(readerTapMode='halves', readerCanGoBack=True)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(events[-1]['type'], 'backRequested')
+        self.assertEqual(len(events), 3)
+        self.ns['knol_scene']['readerCanGoBack'] = False
+        self.ns['knol_stage_tap']()
+        self.assertEqual(len(events), 3)
+
+    def test_title_shake_combines_screen_and_background_without_retargeting_actors(self):
+        calls = []
+        def shake(trans, st, at, kind):
+            calls.append(kind)
+            trans.xoffset, trans.yoffset = (3, 1) if kind == 'screen' else (-1, 2)
+            return .016
+        self.ns['knol_target_shake'] = shake
+        trans = types.SimpleNamespace(xoffset=0, yoffset=0)
+        self.assertEqual(self.ns['knol_title_shake'](trans, 0, 0), .016)
+        self.assertEqual((trans.xoffset, trans.yoffset), (2, 3))
+        self.assertEqual(calls, ['screen', 'background'])
+
+    def test_pending_effect_preserves_audio_edit_and_ended_input_gates(self):
+        for gate in ('audio', 'edit', 'ended', 'unready'):
+            with self.subTest(gate=gate):
+                self.tap_setup(page=1)
+                self.ns['knol_scene']['effectSteps'] = {'current':0, 'total':1}
+                if gate == 'audio':
+                    self.ns['knol_audio_unlocked'] = False
+                    self.ns['knol_scene']['audio'] = {'music':{'action':'play'}}
+                if gate == 'edit': self.ns['knol_scene']['mode'] = 'edit'
+                if gate == 'ended': self.ns['knol_scene']['ended'] = True
+                if gate == 'unready': self.ns['knol_ready'] = False
+                self.ns['knol_text_input']('advanceRequested')
+                self.ns['knol_stage_tap']()
+                self.assertEqual(self.tap_calls, [])
+
     def test_displayed_page_end_uses_actual_pages_not_resume_anchor(self):
         self.ns['knol_dialogue_metrics'] = lambda scene: {'pages':['첫🐇문', '나머지', '비밀']}
         self.ns['knol_text_page'] = 0
@@ -135,7 +440,7 @@ class ResourceAndViewportTests(unittest.TestCase):
         before = copy.deepcopy(scene)
         calls = []
         self.ns['time'] = types.SimpleNamespace(monotonic=lambda: 10)
-        self.ns['knol_apply_audio'] = lambda value, entrance: calls.append(('audio', copy.deepcopy(value), entrance))
+        self.ns['knol_apply_audio'] = lambda value, entrance, started=None: calls.append(('audio', copy.deepcopy(value), entrance))
         self.ns['knol_start_native_transition'] = lambda value: calls.append(('transition', copy.deepcopy(value)))
         self.ns['knol_sync_effect_clocks'] = lambda value, reset: calls.append(('clocks', copy.deepcopy(value), reset))
         self.ns['renpy'].restart_interaction = lambda: calls.append(('restart',))
@@ -158,6 +463,14 @@ class ResourceAndViewportTests(unittest.TestCase):
         self.assertEqual(scene, before)
         self.assertEqual(self.ns['knol_revision'], -1)
         self.assertEqual(self.ns['knol_seq'], -1)
+
+    def test_ambience_only_sequence_requires_actual_audio_unlock(self):
+        self.ns['knol_scene'] = {'mode':'play','audio':{'music':{'action':'stop'},
+            'ambience':{'action':'sequence','id':'ambience','entryId':'visit','clips':[]}}}
+        self.ns['knol_audio_unlocked'] = False
+        self.assertTrue(self.ns['knol_waiting_for_audio']())
+        self.ns['knol_audio_unlocked'] = True
+        self.assertFalse(self.ns['knol_waiting_for_audio']())
 
     def test_orientation_updates_same_engine_only_when_dimensions_change(self):
         self.ns['knol_resize']({'width':720,'height':1558})
@@ -187,6 +500,16 @@ class NativeDirectionTests(unittest.TestCase):
             'Dissolve': lambda duration: ('Dissolve', round(duration, 3))}
         exec(textwrap.dedent(source.split('init python:\n', 1)[1].split('transform ', 1)[0]), self.ns)
         self.engine = engine
+    def test_ended_scene_allows_only_host_back_input(self):
+        events = []
+        self.ns.update(knol_scene={'mode':'play','sceneId':'last','ended':True}, knol_revision=7,
+            knol_transition_active=False, knol_waiting_for_audio=lambda:False, knol_emit=events.append)
+        self.ns['knol_input']('advanceRequested')
+        self.ns['knol_input']('backRequested')
+        self.assertEqual(events, [{'protocol':1,'type':'backRequested','sceneId':'last','revision':7}])
+        self.ns['knol_transition_active'] = True
+        self.ns['knol_input']('backRequested')
+        self.assertEqual(len(events), 1)
     def scene(self, transition, entry='entry-1', reduced=False):
         return {'mode':'play','sceneId':'s','presentationEntry':entry,'reducedMotion':reduced,
             'presentation':{'transition':transition},'audio':{'music':{'action':'stop'},'sounds':[]}}
@@ -277,6 +600,19 @@ class NativeDirectionTests(unittest.TestCase):
         self.now=11
         self.ns['knol_finish_transition']()
         self.assertEqual(self.ns['knol_effect_clocks'],{'following':9,'current':11})
+
+    def test_title_completion_reports_only_presentation_done_with_pending_effects(self):
+        self.setup_effects([])
+        self.ns['knol_scene'].update(sceneId='title', transitionOnly=True, effectSteps={'current':0, 'total':1})
+        self.ns['knol_transition_active'] = True
+        self.ns['knol_revision'] = 5
+        events = []
+        self.ns['knol_emit'] = events.append
+        self.ns['renpy'].restart_interaction = lambda: None
+        self.ns['knol_finish_transition']()
+        self.assertEqual([event['type'] for event in events], ['presentationDone'])
+        self.assertFalse(self.ns['knol_transition_active'])
+        self.assertEqual(self.ns['knol_scene']['effectSteps'], {'current':0, 'total':1})
 
     def test_default_durations_preserve_old_cues(self):
         self.assertEqual(self.ns['knol_effect_duration']({'type':'shake'}),.6)

@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-23",
+  "scope": "Actual Galaxy S25 Android file provider delayed readback correction",
+  "device": {
+    "model": "SM-S938N",
+    "android": 16,
+    "chrome": "156.0.8078.47"
+  },
+  "failure": "After stream.close, native provider returned the previous empty snapshot (0bytes) although later read returned12492bytes and11674UTF16units. Exact-content verification correctly rejected immediate stale result.",
+  "change": "Read at most5times at0/100/250/500/1000ms intervals after close. Only exact serialized content succeeds. Never retry the write; errors and persistent mismatch still fail. Baseline external-change checks unchanged.",
+  "physicalVerification": [
+    "Created test file through native Android Save picker and observed saved-and-verified UI",
+    "Edited current text and saved again through same handle without reopening picker",
+    "Actual same-handle reads match revised text;2writes total",
+    "Native import picker opened to Downloads; physical reopen pending because device locked before selecting saved file"
+  ],
+  "checks": {
+    "unit": "25 passed including new stale provider test and existing persistent mismatch/error/conflict cases",
+    "webBuild": "build:source passed",
+    "lint": "Focused local-file source/test passed",
+    "types": "Web TypeScript passed",
+    "browser": "6 local-file regressions passed12.9s"
+  },
+  "limits": [
+    "No phone security settings or existing files changed by agent",
+    "Raw native picker captures and phone metadata remain ignored cache",
+    "Entire editor goal remains active",
+    "Actual physical rotation and remaining detailed edit controls are not yet verified"
+  ],
+  "followUp": {
+    "onDeviceBytes": "on-device-file.json: actual phone file bytes equal serialized archive and entire current project",
+    "freshBrowser": "fresh-browser-reopen.log: actual phone saved file imported through UI in fresh independent browser, entire project equality and reload verified",
+    "phoneState": "Still locked; actual phone picker selection remains pending. No security setting changed."
+  },
+  "resumeAudit": {
+    "adbState": "device",
+    "localTestTarget": "2266 on loopback15401",
+    "deviceLock": "mDreamingLockscreen=true",
+    "condition": "Device remains locked for three consecutive goal continuations after explicit unlock request; phone-native picker reopen and physical rotation cannot proceed",
+    "completedIndependentWork": "Delayed readback fix, actual first/repeated native save, on-device whole archive equality and fresh independent browser import/reload passed",
+    "resume": "User unlocks phone; inspect native picker state before selecting saved android-save-fixed.knolstory.json. Preserve existing tabs/files and recorded evidence."
+  },
+  "nativeReopen": {
+    "status": "passed",
+    "evidence": "native-reopen.json",
+    "method": "Actual unlocked S25 Downloads picker search and file selection, import preview, independent-copy confirmation, then wait for temporary storage before comparing entire project",
+    "preservation": "All saved project fields match; imported copy gets a new project ID",
+    "frozenSavedFile": "android-saved.knolstory.json",
+    "sha256": "664ce928a472aaa152e0b22fd82c830296354bc31bfd633447798b293d57c108"
+  },
+  "currentResume": {
+    "deviceConnection": "SM-S938N reconnected, authorized; loopback15401 preview restarted; USB forward19223/reverse15401 restored",
+    "completed": "Actual phone native file reopen and independent copy verified, see native-reopen.json",
+    "next": "User asked to unlock Chrome and physically rotate to landscape. Current authoritative window state still reports lockscreen. Preserve completed file evidence."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "focused-host-passed",
+  "scope": [
+    "Settings Escape respects workspace composition state, native isComposing, trailing229.",
+    "Chapter title stays visible/focused while composing; ordinary Escape later closes menu and restores settings summary.",
+    "Title and complete stored workspace are unchanged by composition dismissal keys and reopening.",
+    "Same candidate retains first title composition, cut/chapter insertion focus and file preservation, integrated authoring and fresh-context reopen."
+  ],
+  "redLog": ".cache/settings-ime-20261028-red.log",
+  "hostLog": ".cache/settings-ime-20261028-final.log",
+  "result": "7 host tests passed in one run",
+  "build": ".cache/settings-ime-20261028-build.log",
+  "lint": ".cache/settings-ime-20261028-lint.log",
+  "typecheck": ".cache/settings-ime-20261028-types.log",
+  "limits": [
+    "Synthetic composition plus real browser keyboard dispatch, not actual OS IME certification.",
+    "No new native runtime test; earlier creation-return native result belongs to its recorded candidate.",
+    "No new coverage percentage or novice user study claim."
+  ],
+  "sourceSha256": {
+    "apps/web/components/use-editor-menus.ts": "2803e95d059e6c1799aa071e743cbcc81eabd09b4abe07e37568f009fd13a88d",
+    "apps/web/components/story-workspace.tsx": "60580d421a43268a2e20fa02ec98c5e832dcd64e6847479c650b287b72bccc4f",
+    "tests/e2e/chapter-settings-access.spec.ts": "dd916a60711c353469cf0519ead169631d2656b8419d77de734f0908eb0f89a9",
+    "tests/e2e/create-writing.spec.ts": "d1051b098f6c6e28f9bb7c25cb7928c746c1b22d318874017412e8e607d03e50",
+    "tests/e2e/authoring-journey.spec.ts": "91da028fcf8fc9c68dd111b768cff052da48dbdef172bb3f1bd5c98b350bd832"
+  }
+}

@@ -1,0 +1,43 @@
+
+Running 3 tests using 1 worker
+
+(node:14288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/sequence-origin-move.spec.ts:12:52 › music sequence origin range move, undo, file reopen and native continuity (9.9s)
+  ✓  2 tests/e2e/sequence-origin-move.spec.ts:12:52 › ambience sequence origin range move, undo, file reopen and native continuity (9.7s)
+  ✘  3 tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture (7.3s)
+
+
+  1) tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture 
+
+    Error: expect(received).toMatchObject(expected)
+
+    Matcher error: received value must be a non-null object
+
+    Received has value: undefined
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      17 |
+      18 | test('sequence cut-range drag moves its start and cancels a changed-zoom gesture',async({page})=>{
+    > 19 |  const project=make('music');await load(page,project);await page.locator('[data-work-menu]>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:'음향 편집 사용',exact:true}).check();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('audio-direction');const timeline=page.locator('[data-combined-timeline]'),bar=timeline.getByRole('button').filter({hasText:'2개 음원 순서 재생'});await timeline.getByText('보기 설정',{exact:true}).click();await timeline.getByRole('checkbox',{name:'막대를 끌어 구간 수정',exact:true}).check();await timeline.getByRole('combobox',{name:'구간 끌기 동작',exact:true}).selectOption('start');await bar.scrollIntoViewIfNeeded();let box=(await bar.boundingBox())!;await page.mouse.move(box.x+20,box.y+20);await page.mouse.down();await page.mouse.move(box.x+140,box.y+20);await page.mouse.up();await expect.poll(async()=>(await stored(page)).lines[1].audio?.music).toMatchObject(cue);await page.getByRole('button',{name:'구간 변경 취소',exact:true}).click();await expect.poll(async()=>(await stored(page)).lines).toEqual(project.lines);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^
+      20 |  await timeline.getByRole('combobox',{name:'구간 끌기 동작',exact:true}).selectOption('move');await bar.scrollIntoViewIfNeeded();box=(await bar.boundingBox())!;await page.mouse.move(box.x+20,box.y+20);await page.mouse.down();await timeline.getByRole('combobox',{name:'음향·연출 작업 배율',exact:true}).selectOption('150');await page.mouse.move(box.x+200,box.y+20);await page.mouse.up();await expect(timeline.getByText('작업 배율이나 선택한 구간이 바뀌어 끌기를 취소했어요. 다시 끌어 주세요.',{exact:true})).toBeVisible();expect((await stored(page)).lines).toEqual(project.lines);await bar.focus();await bar.press('Enter');await expect(bar).toHaveAttribute('aria-pressed','true');
+      21 | });
+      22 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/sequence-origin-move.spec.ts:19:1006
+
+    Error Context: test-results-sequence-origin-final/sequence-origin-move-seque-a041f-cels-a-changed-zoom-gesture/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results-sequence-origin-final/sequence-origin-move-seque-a041f-cels-a-changed-zoom-gesture/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results-sequence-origin-final/sequence-origin-move-seque-a041f-cels-a-changed-zoom-gesture/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/sequence-origin-move.spec.ts:18:1 › sequence cut-range drag moves its start and cancels a changed-zoom gesture 
+  2 passed (27.8s)
