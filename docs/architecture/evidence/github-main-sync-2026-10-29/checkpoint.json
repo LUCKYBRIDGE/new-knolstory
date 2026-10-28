@@ -39,5 +39,7 @@
     "docs": "docs:check/test:docs pass"
   },
   "preservedLocalOnly": "기존 권리·개인 원고 보호 정책에 따라 일부 미디어와 실물 스크린샷은 GitHub에 포함되지 않는다. 다른 컴퓨터의 환경 준비는 README와 재현 계약을 따른다.",
-  "releaseBoundary": "GitHub 소스 반영이며 서비스 공개 배포·전체 제품 출시 완료와 구분한다."
+  "releaseBoundary": "GitHub 소스 반영이며 서비스 공개 배포·전체 제품 출시 완료와 구분한다.",
+  "localImplementationCommit": "1bd5557",
+  "upstreamIntegration": "STATUS 상단 기록의 병합 충돌을 양쪽 항목 모두 보존해 해결. CHECKLIST·공용 brand SVG/README 추가를 그대로 유지."
 }

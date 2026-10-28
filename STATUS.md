@@ -1,6 +1,6 @@
 # STATUS — current development state
 
-2026-10-29 GitHub main 반영: 로컬 편집 완성·전체 화면·작업 이탈 보호와 현재 원고/파일 계약을 반영하는 통합을 준비했다. 원격 공용 브랜드 자산 변경을 보존하고 Next.js와 lint 설정을16.4.1로 갱신해 보안 감사0건을 확인했다. [통합 검증·로컬 전용 자료 경계](docs/architecture/evidence/github-main-sync-2026-10-29/checkpoint.json). 실제 원격 반영 결과는 Git 이력으로 확인하며 제품 전체 큐는 유지한다.
+2026-10-29 GitHub main 반영: 로컬 편집 완성·전체 화면·작업 이탈 보호와 현재 원고/파일 계약을 반영하는 통합을 마쳤다. 원격 공용 브랜드 자산 변경을 보존하고 Next.js와 lint 설정을16.4.1로 갱신해 보안 감사0건을 확인했다. [통합 검증·로컬 전용 자료 경계](docs/architecture/evidence/github-main-sync-2026-10-29/checkpoint.json). 실제 원격 반영 결과는 Git 이력으로 확인하며 제품 전체 큐는 유지한다.
 
 2026-10-29 작업 이탈 보호 후속: 미저장 변경의 종료·새로고침·뒤로가기 확인과 저장 후 이동을 구현했다. 표지·음원 미적용 초안도 보호하며 파일 취소·실패·다운로드 요청만으로는 이동하지 않는다. [현재 근거와 브라우저 지원 한계](docs/architecture/evidence/work-leave-protection-2026-10-29/checkpoint.json). 이번 검사와 실제 휴대폰 강제 종료 보장은 구분한다.
 
@@ -90,6 +90,7 @@
 2026-10-20 연출 팁 후속: 연출 선택 시 접힌 설명·팁·사용 버튼의 창을 연다. 사용 전에는 적용하지 않고 닫으면 기존 원고·설정을 유지하며, 적용된 연출의 안내도 다시 열 수 있다. [현행 기준](DESIGN.md#연출-사용-팁--2026-10-20-사용자-결정), [현재 검증](docs/architecture/evidence/direction-choice-2026-10-20/checkpoint.json).
 
 2026-10-20 읽기 조작·시점 안내 후속: 독자의 화면 터치 방식 설정과 Core 안내 전용 분류/실제 Ren’Py 전환 후 본문 연결을 구현했다. 제공 놀스토리 옹고집전 여섯 시점 안내의 연출을 연결하고 원고와 개인 수정본을 보존한다. [동작 기준](docs/architecture/reading-interface-design.md#읽기-조작-설정과-시점-안내--2026-10-20), [검증 범위](docs/architecture/evidence/reader-controls-2026-10-20/checkpoint.json).
+2026-10-26 공통 브랜드: `apps/web/public/brand/knolquiz-mark.svg`에 세로 물음표로 수정한 놀퀴즈 아이콘을 추가했다. 현재 앱에 놀퀴즈 아이콘 사용처가 없어 기존 UI는 변경하지 않았다.
 
 Updated: 2026-10-20. This is the current status owner; past runs are in [history](docs/archive/status-history-through-2026-10-10.md). A completed authoring goal is not a product 1.0/release claim.
 
