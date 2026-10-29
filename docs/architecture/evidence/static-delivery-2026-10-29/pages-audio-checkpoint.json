@@ -93,5 +93,12 @@
       "Complete actual CDN/cache/failure and target-device slow-network evidence before public cutover.",
       "Resolve media/runtime notices and full branch reading coverage."
     ]
+  },
+  "remoteCi": {
+    "packagingCommit": "dd5a0cfd83798443d936e8a23c56b46ff220bd7f",
+    "initialRun": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/40879995681",
+    "initialResult": "2121 passed,2 skipped,1 existing real XLSX edit fixture timed out at5000ms undercoverage; build step not reached",
+    "followup": "Only conditional-text-format real XLSX edit fixture gets30000ms matching neighboring XLSX fixtures; same assertions/input and global timeouts/coverage thresholds retained; focused coverage instrumentation then remote full CI rerun.",
+    "focusedFollowup": "5 conditional-text format tests passed under local coverage instrumentation in3.89sec; focused lint/diff passed. Focused invocation disables aggregate thresholds for partial run only; tracked full CI thresholds remain80%."
   }
 }
