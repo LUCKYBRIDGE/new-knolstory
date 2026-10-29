@@ -8,14 +8,14 @@
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | 사용자 후속 요구인 종료·뒤로가기 보호와 저장 후 이동을 구현·검증했다. [최신 근거](evidence/work-leave-protection-2026-10-29/checkpoint.json). 이전 전체 화면 후속·편집 완료 근거와 제품 전체 큐는 보존한다. |
+| 현재 작업 | [웹 편집 연결 후속](evidence/web-editor-connections-2026-10-29/checkpoint.json)의 저장 판정·뒤로가기·대기 조작 및 XLSX CI 시간 초과 보완을 마쳤다. GitHub main 반영과 해당 CI 결과를 확인한다. 기존 편집 완료·전체 제품 큐는 유지한다. |
 | 종료된 로컬 checkpoint | PC-01 host389 종료:352통과/37native 전용 제외, source/보호artifact 변경0. 필수 native 동선 이행은 [실행별 결과](evidence/native-resume-2026-10-15/native-result.json). PC-02 네 제작 모드 대조와 점수 전용 native 빈 셀 보완. 물리 기기·출시 전체 완료 아님 |
 | 우선 읽을 증거 | [로컬 작품 파일 현재 checkpoint](evidence/local-work-files-2026-10-18/checkpoint.json), [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [온라인 휴지통 후속](evidence/online-trash-2026-10-18/checkpoint.json). 원고/최대 화면/접근성의 기존 근거는 해당 소유 문서에서 재사용. |
 | 다음 행동 | 활성 편집 목표를 종료하고 전체 제품 큐를 보존한다. 첫 창작 체험은 안내와 작품 파일로 진행할 준비가 됐다. 후속 제품 작업은 아래 PC-04/05/06의 승인·환경 의존성을 확인해 선택한다. 다른 목표 기기·실제 보조 기술의 미검증을 폐기하거나 통과로 바꾸지 않는다. |
 | 이전 후보 검증 기록 | 작업별 설정·작품 분리5개와 현행 큰 화면에 맞춘 통합 재생 복귀1개는 각각 통과했다. 로그는 `.cache/editor-candidate-20261027-host.log`와 `.cache/editor-candidate-20261027-tablet.log`다. 최초6개 실행의 전체 통과로 합산하지 않는다. 최근 숫자 입력 저장·채널 취소·점수 설정 복귀의 근거는 편집 요구 대조에 보존한다. |
 | Docker 상태 | Next production db/api/ingress running at final origin https://story.knolquiz.com; loopback15501 only. Default production-compose start now preserves final origin; story-next GET/HEAD redirects308. Legacy five running containers unchanged. |
 | 중요한 수정 | 최초 적용001 변경을 checksum이 거부했다. journal hash와 일치하는001 복원, blob trigger는002 전진 migration. DB/journal 초기화하지 않음. rollback 실패client는 release(true) 폐기. 과거 실패 로그 유지 |
-| 미검증 범위 | Google OAuth·온라인 휴지통의 운영/실기기 검증·장기 오프라인·물리기기·스크린리더·최초Chrome154 원인·새외부앱·공개 배포·외부/전체 운영 백업복원. 로컬 저장/순수 계정/DB 검사를 이 완료로 확대하지 않음 |
+| 미검증 범위 | 운영 ingress 뒤 요청 제한 버킷 공유의 신뢰 경계/전용 키 정책, Google OAuth·온라인 휴지통의 운영/실기기 검증·장기 오프라인·물리기기·스크린리더·최초Chrome154 원인·새외부앱·공개 배포·외부/전체 운영 백업복원. 로컬 저장/순수 계정/DB 검사를 이 완료로 확대하지 않음 |
 | 결정 | 카카오 가입/로그인, 이후 Google 연결 및 연결 후 Google 로그인, 현재 Mac mini Docker는 확정. 교사/학급 승인·공유/공개·보관 기간만 미결. 확정 내용을 다시 질문하지 않음 |
 | 보존 | 미커밋 원고·Asset ID·Flow·StageComposition·private자료·과거evidence 보존. 보호artifact483개 hash 일치는 당시 체크포인트 근거. 계정 Web 변경 당시 Runtime은 변경하지 않았으며, 이후 PC-06 native 키보드 변경을 포함한 후보는 [새 정적 복원](evidence/static-restore-keyboard-2026-10-17/checkpoint.json)으로 따로 확인. 외부 공개/기존운영전환 승인 아님. 이번 원고 연결은 [보존 대조](evidence/reader-eight-integrated-2026-10-18/preservation-after.json)로 기존 fixture/evidence/runtime 변경·누락0 확인. |
 

@@ -46,6 +46,8 @@ workbook의 연출 효과 표에는 ‘클릭 순서’ 열을 추가한다. 이
 
 같은 문서의 브라우저 뒤로가기는 지원 브라우저의 취소 가능한 Navigation traverse에서 현재 화면을 유지하고 서비스 확인창을 연다. 일반 문서 뒤로가기는 기본 이탈 확인을 따른다. 표지의 닫기·취소·Escape와 음원 이름/속성·출처/이용 조건의 미적용 초안은 각 편집기의 실제 기준값과 비교하며 별도 보호한다. 기존 작품을 읽거나 검색만 한 상태를 새 원고 변경으로 취급하지 않는다. 처음 불러온 기존 원고의 디스크 저장 여부를 이 추적으로 증명하지 않는다. [구현·검증·지원 한계](evidence/work-leave-protection-2026-10-29/checkpoint.json).
 
+2026-10-29 웹 연결 후속: 파일 확인의 원고 비교는 객체 키 삽입 순서를 작성 내용으로 취급하지 않는다. 실제 값·배열 순서·현재 원고와 늦은 저장의 차이는 유지한다. 같은 문서 뒤로가기를 승인하면 새 URL을 쌓지 않고 원래 방문 이력 항목으로 돌아가며, 완료 후 다음 변경도 다시 보호한다. 승인된 이동을 기다릴 때 버튼·Escape는 잠가 늦은 이동을 취소로 오해하지 않도록 한다. [구현·검증](evidence/web-editor-connections-2026-10-29/checkpoint.json).
+
 ## 하나의 저작 문서
 
 놀스토리의 콘텐츠 SSOT는 StoryDocument이고 숏스토리는 ShortStoryProject이다. 도메인 문서 schemaVersion, 공식 교환 formatVersion, 향후 API payloadVersion, 서버 저장 revision은 서로 다른 버전이다. 표 행은 독립 서버 저장 모델이 아니며 같은 저작 문서를 편집하는 표현이다. 서버가 Flow·StageComposition·연출을 다시 해석하지 않는다. Core→Ren’Py 재생과 숏스토리 Web/CSS 경계는 유지한다.

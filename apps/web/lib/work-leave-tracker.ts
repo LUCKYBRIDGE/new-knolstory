@@ -1,3 +1,13 @@
+/** Compare JSON content without treating object insertion order as authored data.
+ * Array order and JSON's omission/null semantics remain unchanged. */
+function contentFingerprint(value:unknown):string {
+ return JSON.stringify(value,(_key,item:unknown)=>{
+  if(!item||typeof item!=='object'||Array.isArray(item))return item;
+  const fields=item as Record<string,unknown>;
+  return Object.fromEntries(Object.keys(fields).sort().map(key=>[key,fields[key]]));
+ });
+}
+
 /** File verification, browser recovery and unapplied input are distinct states. */
 export function createWorkLeaveTracker(){
  const created=new Set<string>();
@@ -6,7 +16,7 @@ export function createWorkLeaveTracker(){
  let save:(()=>Promise<string>)|undefined;
  return {
   observe<T extends {id:string}>(work:T){
-   const content=JSON.stringify(work),previous=works.get(work.id);
+   const content=contentFingerprint(work),previous=works.get(work.id);
    works.set(work.id,{current:content,verified:previous?previous.verified:created.has(work.id)?undefined:content,draft:previous?.current===content?previous.draft:false});active=work.id;
   },
   created(id:string){created.add(id);},
@@ -16,7 +26,8 @@ export function createWorkLeaveTracker(){
   saved(text:string){
    const archive=JSON.parse(text),project=archive.document?.project??archive.project;
    if(!project||typeof project.id!=='string')return;
-   const previous=works.get(project.id);if(previous)works.set(project.id,{...previous,verified:savingRevision===resourceRevision?JSON.stringify(project):undefined,draft:previous.current===JSON.stringify(project)?false:previous.draft});
+   const previous=works.get(project.id),content=contentFingerprint(project);
+   if(previous)works.set(project.id,{...previous,verified:savingRevision===resourceRevision?content:undefined,draft:previous.current===content?false:previous.draft});
   },
   registerSave(handler:()=>Promise<string>){save=handler;return()=>{if(save===handler)save=undefined;};},
   saveCurrent(){return save?.()??Promise.resolve('unavailable');},

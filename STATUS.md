@@ -1,5 +1,7 @@
 # STATUS — current development state
 
+2026-10-29 웹 편집 연결 재점검: 통합 구간 편집 후 파일 저장 성공을 잘못 판정하던 문제와 뒤로가기 승인 후 이력·대기 조작 경합을 보완했다. GitHub의 실제 XLSX 시간 초과도 검사 의미를 보존하며 수정했다. [웹 편집·파일·실제 재생·보안 감사](docs/architecture/evidence/web-editor-connections-2026-10-29/checkpoint.json). 전체 제품 큐와 운영 프록시 제한 정책 후속은 보존한다.
+
 2026-10-29 GitHub main 반영: 로컬 편집 완성·전체 화면·작업 이탈 보호와 현재 원고/파일 계약을 반영하는 통합을 마쳤다. 원격 공용 브랜드 자산 변경을 보존하고 Next.js와 lint 설정을16.4.1로 갱신해 보안 감사0건을 확인했다. [통합 검증·로컬 전용 자료 경계](docs/architecture/evidence/github-main-sync-2026-10-29/checkpoint.json). 실제 원격 반영 결과는 Git 이력으로 확인하며 제품 전체 큐는 유지한다.
 
 2026-10-29 작업 이탈 보호 후속: 미저장 변경의 종료·새로고침·뒤로가기 확인과 저장 후 이동을 구현했다. 표지·음원 미적용 초안도 보호하며 파일 취소·실패·다운로드 요청만으로는 이동하지 않는다. [현재 근거와 브라우저 지원 한계](docs/architecture/evidence/work-leave-protection-2026-10-29/checkpoint.json). 이번 검사와 실제 휴대폰 강제 종료 보장은 구분한다.

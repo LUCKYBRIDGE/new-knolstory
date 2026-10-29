@@ -8,3 +8,30 @@ describe('work departure protection',()=>{
  it('new works require a file even before further editing and reading another existing work stays clean',()=>{const t=createWorkLeaveTracker();t.observe({id:'read-a'});t.observe({id:'read-b'});expect(t.hasRisk()).toBe(false);t.created('new');t.observe({id:'new'});expect(t.hasRisk()).toBe(true);});
  it('registers and releases the current file operation without keeping an unmounted action',async()=>{const t=createWorkLeaveTracker();expect(await t.saveCurrent()).toBe('unavailable');const release=t.registerSave(async()=>'saved');expect(await t.saveCurrent()).toBe('saved');release();expect(await t.saveCurrent()).toBe('unavailable');});
 });
+
+it('accepts a verified file with reordered object keys while preserving authored values',()=>{
+ const tracker=createWorkLeaveTracker();
+ const original={id:'canonical-order',lines:[{id:'cut-1',presentation:{effects:[{durationMs:600,id:'effect',scope:'following',type:'shake'}]}}]};
+ tracker.observe(original);
+ tracker.observe({...original,lines:[{...original.lines[0],presentation:{effects:[{...original.lines[0].presentation.effects[0],endLineId:'cut-2'}]}}]});
+ tracker.saving(true);
+ tracker.saved(JSON.stringify({document:{project:{lines:[{presentation:{effects:[{type:'shake',scope:'following',id:'effect',endLineId:'cut-2',durationMs:600}]},id:'cut-1'}],id:'canonical-order'}}}));
+ tracker.saving(false);
+ expect(tracker.hasRisk()).toBe(false);
+});
+
+it('retains protection for different values and reordered authored arrays',()=>{
+ const tracker=createWorkLeaveTracker();tracker.observe({id:'ordered-array',lines:[{id:'a',text:'before'},{id:'b',text:'second'}]});
+ tracker.observe({id:'ordered-array',lines:[{id:'a',text:'after'},{id:'b',text:'second'}]});
+ tracker.saved(JSON.stringify({project:{lines:[{text:'before',id:'a'},{text:'second',id:'b'}],id:'ordered-array'}}));expect(tracker.hasRisk()).toBe(true);
+ tracker.saved(JSON.stringify({project:{lines:[{text:'second',id:'b'},{text:'after',id:'a'}],id:'ordered-array'}}));expect(tracker.hasRisk()).toBe(true);
+ tracker.saved(JSON.stringify({project:{lines:[{text:'after',id:'a'},{text:'second',id:'b'}],id:'ordered-array'}}));expect(tracker.hasRisk()).toBe(false);
+});
+
+it('uses JSON serialization semantics for omitted optional values without reordering array items',()=>{
+ const tracker=createWorkLeaveTracker();tracker.observe({id:'optional-json',optional:undefined,lines:[{text:'before',note:undefined}]});
+ tracker.observe({id:'optional-json',optional:undefined,lines:[{text:'after',note:undefined}]});
+ tracker.saved(JSON.stringify({project:{lines:[{text:'after'}],id:'optional-json'}}));expect(tracker.hasRisk()).toBe(false);
+ tracker.observe({id:'optional-json',optional:undefined,lines:[{text:'later',note:undefined}]});
+ tracker.saved(JSON.stringify({project:{id:'optional-json',lines:[{text:'after'}]}}));expect(tracker.hasRisk()).toBe(true);
+});
