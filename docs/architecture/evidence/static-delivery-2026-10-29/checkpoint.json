@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-29",
+  "adoptedDecision": "docs/decisions/0026-static-reading-authoring-and-optional-api.md",
+  "proposalSha256": "7def22a4c2450c3b4c4e1ca3707cce022bc26031e03e09d27decec6c1cd56e49",
+  "localWebSourceBase": "206130d169dcb1070124da8fcc4d80bfa627497b",
+  "webEntrySha256": "32cc82282095bb4126f2479770b2c948f5ccd74141055376467bae7453010fcb",
+  "auditScriptSha256": "e484e5499629ca3c6b48de1c8383ce854e7718f04efed8334620585cf5a74031",
+  "inventorySha256": "3752cd0e1d14f63e7b51c31ab5d4021188a9103f538775916b01490d69adf6f6",
+  "summary": {
+    "files": 1504,
+    "bytes": 809685650,
+    "blockers": 911,
+    "passesPreflight": false
+  },
+  "blockerReasons": {
+    "unverified-media-rights": 905,
+    "non-serving-artifact": 1,
+    "pages-file-too-large": 2,
+    "runtime-bundle-review-required": 3
+  },
+  "oversized": [
+    {
+      "path": "runtime.zip",
+      "reason": "pages-file-too-large",
+      "bytes": 227275097,
+      "limit": 26214400
+    },
+    {
+      "path": "runtime/game.zip",
+      "reason": "pages-file-too-large",
+      "bytes": 37680521,
+      "limit": 26214400
+    }
+  ],
+  "runtimeBundles": [
+    {
+      "path": "runtime/game.zip",
+      "bytes": 37680521,
+      "sha256": "bda738cee7e2dadd5216e3cc5accc74a35704f0bae92a06382cac439f5528808",
+      "rightsStatus": "review-required"
+    },
+    {
+      "path": "runtime/renpy.data",
+      "bytes": 15057379,
+      "sha256": "808c0c14b9dabd1d4b36558c9d775de5e8390ea7db167523ff0a72a82227fc8c",
+      "rightsStatus": "review-required"
+    },
+    {
+      "path": "runtime/renpy.wasm",
+      "bytes": 21586559,
+      "sha256": "8469117271d5143b4a9959dfade7d6896912921fe3f399b8826e290d24da4fef",
+      "rightsStatus": "review-required"
+    }
+  ],
+  "scope": "Counts describe delivered files including duplicates, not unique creative assets. Evidence is a preflight snapshot, not deployment or rights approval.",
+  "fullReport": "Generated locally at .cache/static-direction-20261029/inventory-reviewed.json; reproduce with pnpm delivery:inventory --output .cache/static-delivery-inventory.json",
+  "validation": {
+    "tests": "15 focused + full Python scripts86 passed. New private JSON/altered-license cases first failed then passed.",
+    "report": "read-only inventory exits0; --check exits1 as expected for blocked candidate",
+    "docs": "docs:check/test:docs pass",
+    "native": "No runtime/renderer/authoring schema changed. Existing valid native/editor/file evidence reused, not rerun."
+  },
+  "network": "live-http-sample.json records403 of bounded unauthenticated GET. Assets/origin topology/current deployed build remain unverified; no bypass/retry or operational change.",
+  "next": [
+    "SD-01 current deployed network/build still needs authorized observable HTTP/browser evidence.",
+    "SD-02 explicit public asset rights/opaque runtime contents and ≤25MiB or alternate static delivery candidate.",
+    "Keep iframe same-origin until an explicit cross-origin contract exists; URL prefix substitution alone is insufficient."
+  ],
+  "selfReview": {
+    "scores": {
+      "accuracy": 4,
+      "completeness": 4,
+      "clarity": 4,
+      "actionability": 4,
+      "conciseness": 4
+    },
+    "average": 4,
+    "evidence": "Proposal preserved; canonical decision/queue updated; functioning conservative gate and real local package audit; independent review defects fixed. Live403 and rights/size blockers explicitly retained.",
+    "improvement": "Resolve deployed observation and asset rights before CDN candidate or operating cutover."
+  }
+}

@@ -8,16 +8,28 @@
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | [웹 편집 연결 후속](evidence/web-editor-connections-2026-10-29/checkpoint.json)의 저장 판정·뒤로가기·대기 조작 및 XLSX CI 시간 초과 보완을 마쳤다. GitHub main 반영과 해당 CI 결과를 확인한다. 기존 편집 완료·전체 제품 큐는 유지한다. |
+| 현재 작업 | [ADR0026](../decisions/0026-static-reading-authoring-and-optional-api.md)에 따라 Pages 단독 크기 조건을 충족한 정적 실행 패키지를 구성했다. [현재 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json). API 없는 로컬 정적 후보의8판본 진입/다음 컷·두 작품 파일 왕복은 확인했으며 전체 갈래·공개 배포 완료는 아니다. 기존 편집 완료·로그인 정책과 전체 목표를 유지한다. |
 | 종료된 로컬 checkpoint | PC-01 host389 종료:352통과/37native 전용 제외, source/보호artifact 변경0. 필수 native 동선 이행은 [실행별 결과](evidence/native-resume-2026-10-15/native-result.json). PC-02 네 제작 모드 대조와 점수 전용 native 빈 셀 보완. 물리 기기·출시 전체 완료 아님 |
 | 우선 읽을 증거 | [로컬 작품 파일 현재 checkpoint](evidence/local-work-files-2026-10-18/checkpoint.json), [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [온라인 휴지통 후속](evidence/online-trash-2026-10-18/checkpoint.json). 원고/최대 화면/접근성의 기존 근거는 해당 소유 문서에서 재사용. |
-| 다음 행동 | 활성 편집 목표를 종료하고 전체 제품 큐를 보존한다. 첫 창작 체험은 안내와 작품 파일로 진행할 준비가 됐다. 후속 제품 작업은 아래 PC-04/05/06의 승인·환경 의존성을 확인해 선택한다. 다른 목표 기기·실제 보조 기술의 미검증을 폐기하거나 통과로 바꾸지 않는다. |
+| 다음 행동 | SD-02의 권리/런타임 번들 출처 차단을 해소할 후보를 정리하고 SD-03의 실제 전달·캐시·실패 복귀를 검증한다. 배경음 반복·음향 편집/파일 왕복 확인을 보존하고 SD-04의8판본 전체 갈래·느린 망/목표 실기기 검증을 이어간다. Pages 단독 크기 조건은 충족했으므로 R2를 필수로 두지 않는다. 운영 전환·외부 업로드는 별도이며 완료된 편집·유효한 기기 근거를 반복하지 않는다. |
 | 이전 후보 검증 기록 | 작업별 설정·작품 분리5개와 현행 큰 화면에 맞춘 통합 재생 복귀1개는 각각 통과했다. 로그는 `.cache/editor-candidate-20261027-host.log`와 `.cache/editor-candidate-20261027-tablet.log`다. 최초6개 실행의 전체 통과로 합산하지 않는다. 최근 숫자 입력 저장·채널 취소·점수 설정 복귀의 근거는 편집 요구 대조에 보존한다. |
 | Docker 상태 | Next production db/api/ingress running at final origin https://story.knolquiz.com; loopback15501 only. Default production-compose start now preserves final origin; story-next GET/HEAD redirects308. Legacy five running containers unchanged. |
 | 중요한 수정 | 최초 적용001 변경을 checksum이 거부했다. journal hash와 일치하는001 복원, blob trigger는002 전진 migration. DB/journal 초기화하지 않음. rollback 실패client는 release(true) 폐기. 과거 실패 로그 유지 |
 | 미검증 범위 | 운영 ingress 뒤 요청 제한 버킷 공유의 신뢰 경계/전용 키 정책, Google OAuth·온라인 휴지통의 운영/실기기 검증·장기 오프라인·물리기기·스크린리더·최초Chrome154 원인·새외부앱·공개 배포·외부/전체 운영 백업복원. 로컬 저장/순수 계정/DB 검사를 이 완료로 확대하지 않음 |
 | 결정 | 카카오 가입/로그인, 이후 Google 연결 및 연결 후 Google 로그인, 현재 Mac mini Docker는 확정. 교사/학급 승인·공유/공개·보관 기간만 미결. 확정 내용을 다시 질문하지 않음 |
 | 보존 | 미커밋 원고·Asset ID·Flow·StageComposition·private자료·과거evidence 보존. 보호artifact483개 hash 일치는 당시 체크포인트 근거. 계정 Web 변경 당시 Runtime은 변경하지 않았으며, 이후 PC-06 native 키보드 변경을 포함한 후보는 [새 정적 복원](evidence/static-restore-keyboard-2026-10-17/checkpoint.json)으로 따로 확인. 외부 공개/기존운영전환 승인 아님. 이번 원고 연결은 [보존 대조](evidence/reader-eight-integrated-2026-10-18/preservation-after.json)로 기존 fixture/evidence/runtime 변경·누락0 확인. |
+
+## 정적 읽기·편집 우선 순서 — 2026-10-29
+
+사용자의 [제안 원문](evidence/static-delivery-2026-10-29/proposal-source.md)을 [ADR0026](../decisions/0026-static-reading-authoring-and-optional-api.md)으로 개편 수용한다. 이 절이 추가 큐의 소유자다. 기존PC 항목/전체 목표를 삭제하거나 별도 날짜별 계획을 병렬로 운영하지 않는다. 기존 로그인·API 구현도 폐기하지 않고 아래 핵심 정적 경로 뒤에 검증 순서를 둔다.
+
+| 단계 | 작업·완료 기준 | 현재 상태 |
+|---|---|---|
+| SD-01 | 실제 도메인 응답·빌드·공용 자산/출처/크기/해시/권리/누락 인벤토리, 공개 전 차단 검사 | 부분 완료([최초 산출물 검사](evidence/static-delivery-2026-10-29/checkpoint.json), [후속 패키지 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)). 현재 HTTP 조사는403으로 제공 호스트/경로 미확인. 로컬 인벤토리와 공개 전 차단은 구현했고 최초 큰 실행 파일 문제는 후속 패키지로 보완. |
+| SD-02 | 권리 확인된 배포 자산 후보, 미확인 레거시 대체/확보 목록, 대용량 실행 파일 전달 방법 | 진행. 긴 배경음/환경음과 짧은 효과음을 나눈 후보가 Pages 단독 크기 조건을 충족했다. 미확인 자산 권리·런타임 번들 출처 차단은 남아 있다. 같은 출처 runtime 경로 유지, R2는 선택 대안. 외부 업로드·운영 전환은 미수행. |
+| SD-03 | 읽기·편집·실제Ren’Py의 공통 ID/URL·캐시·실패복귀 연결과 API 장애 분리 | 진행(로컬 정적 후보). 별도 API 없이 최초 읽기·파일 흐름과 온디맨드 배경음/환경음 전달을 연결했다. OGG·MP3의 구간 반복·컷 간 유지·정지·효과음 확인을 마쳤다. 캐시·실패 복귀·실제 배포 응답 검증은 남아 있다. |
+| SD-04 | API 없는 새 환경에서8판본 전체 갈래·신규 작품/효과/음향/조건·파일 왕복·기기/느린 망 검증 | 부분 확인([현재 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)).8판본 실제 진입과 다음 컷 이동, 두 형식의 실제 다운로드/새 환경 재열기를 확인했다. 전체 선택 갈래·엔딩과 신규 작품의 조건/효과/음향 조합, 느린 망·목표 실기기는 별도 검증 필요. |
+| PC 온라인 후속 | 카카오/Google·개인 JSON 버전/복원·학급/과제/공유 | 기존PC-04/05/06와 미결 결정 유지. 정적 읽기·편집 핵심 경로 이후 단계화. |
 
 ## 첫 창작 체험으로 이어갈 순서 -- 2026-10-28
 

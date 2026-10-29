@@ -48,3 +48,5 @@ Expand 0001–0008 into fuller ADR files as implementation decisions gain concre
 - [0024: Personal document API ownership and concurrency](0024-private-document-api.md)
 
 - [0025 — 구 서버 교체와 신규 Next 운영 환경](0025-legacy-server-replacement.md): 장기 병행 운영을 폐기하고 Next로 교체. 구 데이터 영구 삭제 방향은 확정했으며 정확한 대상의 최종 확정 후 실행. 공유 SSH/Tunnel과 Next 저작 데이터는 보호.
+
+- [0026 — 정적 읽기·편집과 선택적 API](0026-static-reading-authoring-and-optional-api.md): 공개 정적 전달 계층과 Mac mini 온라인 API를 분리하는 사용자 후속 방향. 기존 저작/권리/로그인 계약과 운영 상태를 보존하며 실제 패키지 제약부터 검증.

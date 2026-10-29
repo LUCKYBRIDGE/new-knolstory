@@ -225,3 +225,28 @@ VM에서 실행하는 bridge의 V8 coverage 시도는 계측되지 않아0%로 �
 5. 실제 작품 파일을 휴대폰에 저장하고 파일 선택기를 통해 다시 연다. 다운로드 버튼 호출·임시 보관만으로 실제 파일 저장/재열기를 통과 처리하지 않는다. 수정한 글과 조건·음향/연출·자산 ID를 내보낸 파일 전체로 대조한다.
 
 검사 결과에는 통과·실패·미실행과 실제 입력/자동화 방법을 남긴다. 종료 시 이번에 만든 USB 포트 전달만 `adb reverse --remove tcp:15401`로 해제하고 검사 탭을 정리한다. 사용자 기존 탭·다운로드 파일은 일괄 삭제하지 않는다. USB 디버깅을 처음 켰다면 사용자에게 원래 상태 복원 방법을 안내한다. 화면·로그에는 개인 알림·기기 일련번호를 남기지 않는다.
+
+## 정적 전달 후보 검사 — 2026-10-29
+
+[ADR0026](../decisions/0026-static-reading-authoring-and-optional-api.md)의 정적 웹 독립을 위한 사전 검사다. 현재 로컬 준비용 산출물을 그대로 공개할 수 있다는 뜻이 아니다. 재현 환경의 Web 정적 빌드 뒤 다음을 실행한다.
+
+```sh
+pnpm delivery:inventory --output .cache/static-delivery-inventory.json
+pnpm delivery:check --output .cache/static-delivery-check.json
+```
+
+첫 명령은 읽기전용 인벤토리이며 두 번째는 차단 사유가 있으면 종료 코드1이다. `--root`로 별도 정적 후보를 검사할 수 있다. 보고서는 검사 대상 안에 쓰지 않는다. 원고·파일·레거시 원본을 바꾸거나 업로드하지 않는다. Asset ID와 기존 권리 기록의 해시·고지 자료, runtime 필수 파일·누락·용량을 대조한다. 미확인 런타임 컨테이너도 차단하며 MIME은 확장자 기반의 후보 정보라 실제 응답 Content-Type·코덱·CORS·Range 검증을 대신하지 않는다.
+
+현재 Pages 크기/개수 기본 제한은 [공식 문서](https://developers.cloudflare.com/pages/platform/limits/)의 파일당25MiB/무료20,000개다. `--max-file-bytes`/`--max-files`는 다른 검토 후보의 용량 조건을 비교하는 인자이며 실제 호스팅 한도나 권리 제한을 해제하지 않는다. `runtime.zip`은 개발용 전체 다운로드 자료이므로 웹 서비스 산출물에서 제외할 대상으로 진단한다. `passesPreflight`는 이 도구의 범위 통과이며 공개 배포 승인·전체 제품 완성을 뜻하지 않는다. 실제 CDN/대용량 경로 후보와8판본의 참조 충족·API 없는 첫 실행 검증이 별도로 필요하다.
+
+로컬 실행 후보는 새 디렉터리에 준비한다. Pages 단독 목표에는 `--pages-only`를 사용한다. 실행에 필요하지 않은 `runtime.zip`을 제외한 뒤에도 파일당 한도를 넘는 파일이 있으면 출력 생성 전에 실패한다. 이 인자가 없으면 큰 파일은 `objects`로 분리하므로 Pages 단독 충족으로 해석하지 않는다.
+
+```sh
+pnpm delivery:prepare --pages-only --output .cache/pages-candidate
+KNOL_STATIC_CANDIDATE=.cache/pages-candidate pnpm test:e2e:static
+pnpm delivery:preview --candidate .cache/pages-candidate --port 3000
+```
+
+준비 명령은 원본 파일 바이트·서비스 경로를 보존하고 전체 다운로드용 묶음만 후보에서 제외한다. `manifest.json`과 권리 검사 결과는 서비스 루트 밖에 둔다. 미리보기는 루프백에서 두 저장 영역을 같은 출처로 제공하며 온라인 API는 없다. 파일/해시·Range·버전 캐시의 로컬 확인용이며 실제 Pages 응답이나 CDN 캐시를 대신하지 않는다. 미리보기 동안 후보 파일을 수정하지 않는다. 권리 검사 실패는 이 후보를 만든 것으로 해제되지 않는다.
+
+패키징 변경 후에는 `runtime:build → Web build → 후보 준비` 순서를 지키고, `.agents/skills/runtime-qa/SKILL.md`의 정적 전달 절차를 따른다. 현재 결과와 한계는 [패키지 축소 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)에서 확인한다.

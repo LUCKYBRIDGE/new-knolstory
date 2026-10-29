@@ -1,5 +1,7 @@
 # KnolStory Next — 개발 Blueprint v1.4
 
+2026-10-29 방향 보완: [ADR0026](../decisions/0026-static-reading-authoring-and-optional-api.md)에 따라 공개 웹앱·공용 자산·Ren’Py 실행의 정적 독립을 우선하고 Mac mini API는 온라인 계정·업로드/버전 책임으로 좁힌다. StoryDocument→Runtime Core→Ren’Py 경계와 로컬 파일 우선은 유지한다. 작업 순서는 [단일 실행 계획](product-completion-plan.md#정적-읽기편집-우선-순서--2026-10-29)이 소유한다. 현재 운영 전환 완료를 뜻하지 않는다.
+
 - 신규 공식 저장소: `LUCKYBRIDGE/new-knolstory`
 - 레거시 기준 저장소: `LUCKYBRIDGE/story-maker` @ `18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b` (2026-10-05, PR #100)
 - 로컬 작업 경로: 두 곳에서 작업한다 ([ADR 0012](../decisions/0012-toolchain-and-monorepo.md)). 문서·스크립트에는 절대 경로를 쓰지 않는다

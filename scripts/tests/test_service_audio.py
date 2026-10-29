@@ -114,3 +114,82 @@ class ServiceAudioTests(unittest.TestCase):
             for patch in [{'standaloneDownload':'permitted'},{'preview':'asset'},{'exportMode':'bytes'},{'redistribution':'permitted'},{'editorProvision':'permitted'}]:
                 approvals.write_text(json.dumps(dict(version=2, checkedAt='2026-10-10', scope='common-editor-playback-and-project-file-transfer', assets=[{**conditional, **patch}])))
                 self.assertTrue(module.audit(root))
+
+    def progressive(self, root, row, source):
+        runtime = root / 'apps/web/public/runtime'
+        runtime.mkdir(exist_ok=True)
+        path = runtime / ('game' + row['src'])
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(source.read_bytes())
+        with zipfile.ZipFile(runtime / 'game.zip', 'w') as archive:
+            archive.writestr('game/renpyweb_remote_files.txt', row['src'].lstrip('/') + '\nmusic -\n')
+        return path
+
+    def test_native_progressive_audio_preserves_approved_bytes_without_zip_copy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            row, approvals, source = self.fixture(root)
+            progressive = self.progressive(root, row, source)
+            self.assertEqual(module.audit(root), [])
+            progressive.write_bytes(b'changed progressive copy')
+            self.assertTrue(module.audit(root))
+            self.assertEqual(module.audit(root, source_only=True), [])
+
+    def test_missing_unregistered_duplicate_and_escaped_progressive_audio_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            row, approvals, source = self.fixture(root)
+            progressive = self.progressive(root, row, source)
+            progressive.unlink()
+            self.assertTrue(module.audit(root))
+            progressive.symlink_to(source)
+            self.assertTrue(module.audit(root))
+            progressive.unlink()
+            progressive.write_bytes(source.read_bytes())
+            with zipfile.ZipFile(root / 'apps/web/public/runtime/game.zip', 'w') as archive:
+                archive.writestr('game/renpyweb_remote_files.txt', '')
+            self.assertTrue(module.audit(root))
+            self.progressive(root, row, source)
+            with zipfile.ZipFile(root / 'apps/web/public/runtime/game.zip', 'a') as archive:
+                archive.write(source, 'game' + row['src'])
+            self.assertTrue(module.audit(root))
+            self.progressive(root, row, source)
+            (progressive.parent / 'not-approved.ogg').write_bytes(source.read_bytes())
+            self.assertTrue(module.audit(root))
+
+    def test_host_on_demand_audio_cannot_be_copied_to_native_progressive_storage(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            row, approvals, source = self.fixture(root)
+            replacement = source.parent / 'fixture/v1/a.ogg'
+            replacement.parent.mkdir(parents=True)
+            source.rename(replacement)
+            row = {**row, 'src':'/assets/audio/cc0/fixture/v1/a.ogg','delivery':'on-demand'}
+            approvals.write_text(json.dumps(dict(version=2, checkedAt='2026-10-10', scope='common-editor-playback-and-project-file-transfer', assets=[row])))
+            formal = dict(file='apps/web/public'+row['src'], assetIds=[row['id']], source=row['sourceUrl'], sha256=row['sha256'], license=row['license'], commercialUse='permitted', redistribution='permitted')
+            (approvals.parent/'media-provenance.json').write_text(json.dumps(dict(entries=[formal])))
+            self.assertEqual(module.audit(root), [])
+            self.progressive(root, row, replacement)
+            self.assertTrue(module.audit(root))
+
+    def test_duplicate_unsafe_progressive_index_and_bad_approval_fail_closed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            row, approvals, source = self.fixture(root)
+            self.progressive(root, row, source)
+            runtime = root / 'apps/web/public/runtime/game.zip'
+            for index in [row['src'].lstrip('/') + '\nmusic -\n' + row['src'].lstrip('/') + '\nmusic -\n',
+                          'assets/audio/../../secret.ogg\nmusic -\n',
+                          row['src'].lstrip('/') + '\nmusic -\ntruncated']:
+                with zipfile.ZipFile(runtime, 'w') as archive:
+                    archive.writestr('game/renpyweb_remote_files.txt', index)
+                self.assertTrue(module.audit(root))
+            self.progressive(root, row, source)
+            approvals.write_text(json.dumps(dict(version=2, checkedAt='2026-10-10', scope='common-editor-playback-and-project-file-transfer', assets=[{**row, 'sha256':'invalid'}])))
+            self.assertTrue(module.audit(root))
+
+    def test_progressive_music_patterns_leave_short_sounds_inside_runtime_zip(self):
+        rules = (SCRIPT.parents[1] / 'renpy/responsive-spike/progressive_download.txt').read_text()
+        self.assertIn('+ music game/assets/audio/story-score/score-*.ogg', rules)
+        self.assertIn('+ music game/assets/audio/story-score/ambience-*.ogg', rules)
+        self.assertNotIn('+ music game/assets/audio/**', rules)

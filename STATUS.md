@@ -1,5 +1,9 @@
 # STATUS — current development state
 
+2026-10-29 정적 실행 패키지 후속: 음원 재인코딩이나 원고/자산 ID 변경 없이 긴 배경음·환경음만 필요할 때 받도록 분리해 Pages 단독의 파일 크기 조건을 충족했다. 별도 API 없는 로컬 정적 후보의8판본 진입·다음 컷 이동과 두 작품 파일 형식의 다운로드/재열기 근거를 [현재 패키지 검증](docs/architecture/evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)에 연결한다. 전체 갈래·권리·캐시/오류 복귀·실제 Pages 배포·느린 망/목표 실기기 완료와는 구분한다.
+
+2026-10-29 정적 웹 독립 방향 수용: 공용 자산/웹앱/공개 원고/실행 파일은 정적 전달, Mac mini는 선택적 온라인 API로 역할을 나누는 [ADR0026](docs/decisions/0026-static-reading-authoring-and-optional-api.md)을 추가했다. 기존 편집 완료와 메인CI 성공은 보존하며 [배포 자산 인벤토리·권리·실행 파일 크기 검사](docs/architecture/evidence/static-delivery-2026-10-29/checkpoint.json)를 구현했고 최초 후보의 권리·큰 실행 파일 차단을 확인했다. 크기 문제의 후속 결과는 위 현재 패키지 근거를 따르며 미확인 권리 차단은 유지한다. 현재 운영 도메인 전환은 하지 않았다.
+
 2026-10-29 웹 편집 연결 재점검: 통합 구간 편집 후 파일 저장 성공을 잘못 판정하던 문제와 뒤로가기 승인 후 이력·대기 조작 경합을 보완했다. GitHub의 실제 XLSX 시간 초과도 검사 의미를 보존하며 수정했다. [웹 편집·파일·실제 재생·보안 감사](docs/architecture/evidence/web-editor-connections-2026-10-29/checkpoint.json). 전체 제품 큐와 운영 프록시 제한 정책 후속은 보존한다.
 
 2026-10-29 GitHub main 반영: 로컬 편집 완성·전체 화면·작업 이탈 보호와 현재 원고/파일 계약을 반영하는 통합을 마쳤다. 원격 공용 브랜드 자산 변경을 보존하고 Next.js와 lint 설정을16.4.1로 갱신해 보안 감사0건을 확인했다. [통합 검증·로컬 전용 자료 경계](docs/architecture/evidence/github-main-sync-2026-10-29/checkpoint.json). 실제 원격 반영 결과는 Git 이력으로 확인하며 제품 전체 큐는 유지한다.

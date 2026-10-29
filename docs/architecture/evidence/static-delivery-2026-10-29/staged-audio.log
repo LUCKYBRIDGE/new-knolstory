@@ -1,0 +1,78 @@
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET / HTTP/1.1" 200 -
+
+Running 1 test using 1 worker
+
+(node:60680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/11am_-h5hdqfw.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/125-trod_i7ri.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/2w3-cjkenzh95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/36ie6os18w5-v.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/1bkjhd7ih83xc.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/11qn349hshmyu.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/turbopack-3-ry682tkyiqk.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/0lgat42ldsds2.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/3psmsn6b--wu0.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/2kp6s8in75qm3.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/3-da-u0qog8hl.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/3kq4z0haat1gv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:37] "GET /_next/static/chunks/09omw9rzb74bk.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/knol-loading.css?v=43e5ed9c18176959 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/runtime-contract.js?v=4dad150a73edc4a4 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/knol-bridge.js?v=c7fd05acd4429659 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/renpy-pre.js?v=aef6c9d0aee065bc HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/knol-loading.js?v=293c0aeb94ac0370 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /assets/loading/seonnyeo-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/renpy.js?v=498a0981c1fe0e8d HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /loading-stories.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /assets/loading/onggojib-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:38] "GET /runtime/game.zip?v=306bcf84952037f9 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:44] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:44] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:44] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:44] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:44] "GET /?view=editor HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/0n44xo4jhjjio.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/36ie6os18w5-v.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/2w3-cjkenzh95.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/11am_-h5hdqfw.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/1bkjhd7ih83xc.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/turbopack-3-ry682tkyiqk.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/3psmsn6b--wu0.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/11qn349hshmyu.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/125-trod_i7ri.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/0lgat42ldsds2.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/2kp6s8in75qm3.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/3-da-u0qog8hl.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/3kq4z0haat1gv.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:45] "GET /_next/static/chunks/09omw9rzb74bk.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /runtime/index.html HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /assets/loading/heungbu-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /loading-stories.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /runtime/renpy.data HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /runtime/renpy.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /assets/loading/seonnyeo-reading-v2.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:54] "GET /runtime/game.zip?v=306bcf84952037f9 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:57] "GET /assets/audio/cc0/kenney-impact/v1/footstep-carpet-001.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:57] "GET /assets/audio/cc0/oga-park/v1/park-ambience-river.ogg HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:57] "GET /assets/audio/cc0/oga-tension/v1/komiku-it-s-time-for-adventure-vol-2-12-tension-0.mp3 HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:58] "GET /runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:58] "GET /runtime/game/assets/legacy-18da4fc/M01-base.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:58] "GET /runtime/game/assets/legacy-18da4fc/M03-neutral.webp HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [29/Oct/2026 22:10:58] "GET /runtime/game/assets/legacy-18da4fc/M04-neutral.webp HTTP/1.1" 200 -
+  ✓  1 [stories-runtime] › tests/e2e/staged-audio.spec.ts:23:1 › staged shared music ambience and effects preserve references through file and native playback (28.4s)
+
+  1 passed (29.7s)

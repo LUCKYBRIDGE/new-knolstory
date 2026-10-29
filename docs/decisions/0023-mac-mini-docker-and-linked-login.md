@@ -4,6 +4,8 @@ Status: Accepted for hosting and login identity policy (2026-10-16). 실제 배�
 
 2026-10-17 부분 대체: 기존 서버의 장기 보존/병행 운영 방향은 [ADR0025](0025-legacy-server-replacement.md)의 Next 교체·구 서버 폐기 결정으로 대체한다. 아래는 결정 당시 기록이며, 로그인 정책은 그대로 유효하다. 영구 삭제는 정확한 대상의 별도 최종 확정 후 실행한다.
 
+2026-10-29 호스팅 책임 부분 대체: [ADR0026](0026-static-reading-authoring-and-optional-api.md)에 따라 공개 읽기·편집 웹앱/공용 자산은 정적 전달 계층으로 독립시키고 Mac mini는 선택적 온라인 API에 집중하는 목표로 진행한다. 로그인 정책은 유지하며 현재 운영 상태와 목표 전환 완료를 혼동하지 않는다.
+
 ## 사용자 결정
 
 - 서버는 구 놀스토리처럼 현재 Mac mini의 Docker에서 구현한다.

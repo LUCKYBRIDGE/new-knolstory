@@ -1,5 +1,7 @@
 # KnolStory Next
 
+현재 배포 방향은 [ADR0026](docs/decisions/0026-static-reading-authoring-and-optional-api.md)의 정적 읽기·편집과 선택적 온라인 API 분리다. 기존 로컬 복원 절차는 현재 개발 환경을 재현하는 방법이며, 최종 이용자에게 수동 자산 복원을 요구하는 완성 조건이 아니다. 정적 배포 패키지와 권리는 별도 검증한다.
+
 차세대 놀스토리 공식 개발 저장소.
 
 짧은 작품을 직접 만들어 보려면 [처음 만드는 놀스토리](docs/architecture/editor-first-creation-guide.md)를 참고하세요. 현재 개발 중인 편집화면의 만들기·편집·재생·로컬 작품 파일 저장·다시 열기 순서입니다.

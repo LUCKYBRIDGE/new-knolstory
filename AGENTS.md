@@ -41,6 +41,8 @@ Ren'Py Web Runtime
 15. No absolute local paths in scripts, config or doc references. The repo is used from more than one machine path; ADR 0012 is the only place that records them.
 16. Read legacy behavior from the baseline commit (`git show 18da4fc:<path>`), not from whatever branch a local legacy clone has checked out.
 
+정적 웹 독립 후속은 [ADR0026](docs/decisions/0026-static-reading-authoring-and-optional-api.md)을 따른다. 공개 읽기·편집/공용 자산과 선택적 온라인 API를 분리하되 기존 같은 출처 Ren’Py 메시지 계약과 권리 gate를 유지한다. URL 문자열 치환만으로 CDN 이전이나 배포 완료를 주장하지 않는다.
+
 ## Before coding
 Read: `AGENTS.md` → `STATUS.md` → `docs/architecture/development-blueprint.md` → `DESIGN.md` when relevant → relevant ADR → relevant `.agents/skills/*/SKILL.md`.
 Open questions listed in `STATUS.md` are not decided; do not implement around them silently.

@@ -1,0 +1,30 @@
+{
+  "method": "stdlib trace; discovery and server threads included; CLI subprocess execution not counted",
+  "files": [
+    {
+      "file": "scripts/static-delivery-audit.py",
+      "executableLines": 208,
+      "coveredLines": 192,
+      "percent": 92.31
+    },
+    {
+      "file": "scripts/prepare-static-candidate.py",
+      "executableLines": 126,
+      "coveredLines": 117,
+      "percent": 92.86
+    },
+    {
+      "file": "scripts/serve-static-candidate.py",
+      "executableLines": 163,
+      "coveredLines": 130,
+      "percent": 79.75
+    },
+    {
+      "file": "scripts/check-service-audio.py",
+      "executableLines": 139,
+      "coveredLines": 120,
+      "percent": 86.33
+    }
+  ],
+  "overallPercent": 87.89
+}

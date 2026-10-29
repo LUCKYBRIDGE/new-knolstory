@@ -1,0 +1,20 @@
+
+> knolstory-next@ test:scripts <repository>
+> python3 -m unittest discover -s scripts/tests
+
+...........................Downloading resource
+.Extracting verified SDK and Web support.
+....Verified pinned SDK installation.
+..Verified cached resource
+.Downloading resource
+................127.0.0.1 - - [29/Oct/2026 17:20:03] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [29/Oct/2026 17:20:03] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [29/Oct/2026 17:20:03] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [29/Oct/2026 17:20:03] "GET /sample.wav HTTP/1.1" 416 -
+...................................
+----------------------------------------------------------------------
+Ran 86 tests in 0.835s
+
+OK
+Restored 1 exact fixed-baseline room files for authorized local testing.
+Restored 0 exact fixed-baseline files for local testing. No release permission is inferred.

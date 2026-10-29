@@ -1,4 +1,4 @@
-"""Fail closed for unreviewed common-service audio bytes, including the runtime ZIP."""
+"""Fail closed for original, bundled and SDK-progressive service audio bytes."""
 import argparse
 import hashlib
 import json
@@ -21,6 +21,66 @@ def evidence_exists(root, name):
         return False
     path = (root / name).resolve()
     return path.is_relative_to(root.resolve()) and path.is_file()
+
+def runtime_audio_errors(public, approvals, expected):
+    """Native delivery may be bundled or SDK-progressive, never host-on-demand."""
+    runtime = public / 'runtime'
+    zipped = runtime / 'game.zip'
+    loose = list((runtime / 'game').rglob('*')) if (runtime / 'game').exists() else []
+    loose_audio = [path for path in loose if path.is_file() and path.suffix.lower() in EXTENSIONS]
+    if not zipped.exists():
+        return ['Native progressive audio requires its runtime archive/index.'] if loose_audio else []
+    errors, found, members, remote = [], set(), set(), set()
+    packaged = {row['src'] for row in approvals['assets'] if isinstance(row, dict) and isinstance(row.get('src'), str) and row.get('delivery', 'package') == 'package'}
+    with zipfile.ZipFile(zipped) as archive:
+        index = 'game/renpyweb_remote_files.txt'
+        if archive.namelist().count(index) > 1:
+            errors.append('Duplicate runtime progressive index.')
+        lines = archive.read(index).decode('utf-8').splitlines() if index in archive.namelist() else []
+        if len(lines) % 2:
+            errors.append('Malformed runtime progressive index.')
+        for name, kind in zip(lines[::2], lines[1::2]):
+            if PurePosixPath(name).suffix.lower() not in EXTENSIONS:
+                continue
+            if (not name.startswith('assets/audio/') or name.startswith('/') or
+                    '..' in PurePosixPath(name).parts or '\\' in name or
+                    name != PurePosixPath(name).as_posix() or kind != 'music -'):
+                errors.append(f'Unsafe progressive audio entry: {name}')
+                continue
+            source = '/' + name
+            if source in remote:
+                errors.append(f'Duplicate progressive audio entry: {name}')
+            remote.add(source)
+            path = runtime / 'game' / name
+            if (source not in packaged or not path.is_file() or path.is_symlink() or
+                    not path.resolve().is_relative_to(runtime.resolve()) or
+                    any(parent.is_symlink() for parent in path.parents if parent == runtime or runtime in parent.parents)):
+                errors.append(f'Unapproved or missing progressive audio: {name}')
+            elif hashlib.sha256(path.read_bytes()).hexdigest() != expected.get(source):
+                errors.append(f'Changed progressive audio: {name}')
+        actual_remote = {'/' + path.relative_to(runtime / 'game').as_posix() for path in loose_audio}
+        if actual_remote != remote:
+            errors.append('Runtime progressive audio files differ from the index.')
+        for info in archive.infolist():
+            name = info.filename
+            if PurePosixPath(name).suffix.lower() not in EXTENSIONS:
+                continue
+            if name in members:
+                errors.append(f'Duplicate runtime audio member: {name}')
+            members.add(name)
+            if name in ENGINE_SILENCE:
+                if hashlib.sha256(archive.read(info)).hexdigest() != ENGINE_SILENCE[name] or 'renpy/LICENSE.txt' not in archive.namelist():
+                    errors.append(f'Changed or unlicensed engine silence: {name}')
+                continue
+            source = name.removeprefix('game')
+            found.add(source)
+            if source not in packaged or hashlib.sha256(archive.read(info)).hexdigest() != expected.get(source):
+                errors.append(f'Unapproved runtime audio: {name}')
+        if found & remote:
+            errors.append('Audio is duplicated in bundled and native progressive delivery.')
+        if found | remote != packaged:
+            errors.append('Runtime audio set differs from approved originals; rebuild runtime.')
+    return errors
 
 def audit(root=ROOT, source_only=False):
     errors, expected, ids = [], {}, set()
@@ -69,32 +129,12 @@ def audit(root=ROOT, source_only=False):
                 errors.append(f'Changed approved bytes: {name}')
         public = root / 'apps/web/public'
         for path in public.rglob('*'):
-            if path.is_file() and path.suffix.lower() in EXTENSIONS:
+            if path.is_file() and path.suffix.lower() in EXTENSIONS and path.relative_to(public).parts[0] != 'runtime':
                 name = '/' + path.relative_to(public).as_posix()
                 if name not in expected:
                     errors.append(f'Unapproved public audio: {name}')
-        runtime = public / 'runtime/game.zip'
-        if not source_only and runtime.exists():
-            with zipfile.ZipFile(runtime) as archive:
-                found, members = set(), set()
-                for info in archive.infolist():
-                    name = info.filename
-                    if PurePosixPath(name).suffix.lower() not in EXTENSIONS:
-                        continue
-                    if name in members:
-                        errors.append(f'Duplicate runtime audio member: {name}')
-                    members.add(name)
-                    if name in ENGINE_SILENCE:
-                        if hashlib.sha256(archive.read(info)).hexdigest() != ENGINE_SILENCE[name] or 'renpy/LICENSE.txt' not in archive.namelist():
-                            errors.append(f'Changed or unlicensed engine silence: {name}')
-                        continue
-                    source = name.removeprefix('game')
-                    found.add(source)
-                    if source not in expected or any(row['src'] == source and row.get('delivery') == 'on-demand' for row in approvals['assets']) or hashlib.sha256(archive.read(info)).hexdigest() != expected[source]:
-                        errors.append(f'Unapproved runtime audio: {name}')
-                packaged = {row['src'] for row in approvals['assets'] if row.get('delivery', 'package') == 'package'}
-                if found != packaged:
-                    errors.append('Runtime audio set differs from approved originals; rebuild runtime.')
+        if not source_only:
+            errors.extend(runtime_audio_errors(public, approvals, expected))
     except (OSError, ValueError, TypeError, AttributeError, zipfile.BadZipFile) as cause:
         errors.append(f'Cannot verify service audio: {cause}')
     return errors

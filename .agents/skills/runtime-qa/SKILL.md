@@ -26,3 +26,7 @@ Use [documentation governance](../../../docs/architecture/documentation-governan
 ## 작업 이탈 보호 대조
 
 종료·뒤로가기 변경은 [저장·이탈 보호 계약](../../../docs/architecture/authoring-storage-contract.md#종료뒤로가기와-저장-후-이동--2026-10-29)을 따른다. 문서 이탈의 기본 확인과 같은 문서 뒤로가기·서비스 링크 확인을 각각 검사한다. 계속 편집의 원고·초점 복귀, 저장 취소/실패/다운로드 요청의 이동 중단, 파일 확인 후 이동, 저장 중 새 입력/자료 수정, 미적용 표지·음원 select를 대조한다. 브라우저 모형과 OS 선택기·앱 강제 종료 근거는 구분한다.
+
+## 정적 전달 후보
+
+공개 읽기·편집과 선택적 API의 경계는 [ADR0026](../../../docs/decisions/0026-static-reading-authoring-and-optional-api.md)을 따른다. [정적 후보 검사](../../../docs/architecture/reproducible-test-environment.md#정적-전달-후보-검사--2026-10-29)로 산출물·원고/진단 혼입·크기·해시·권리·고지 자료를 대조한다. 사전검사 통과와 실제CDN·API없는 첫접속·전체갈래·기기·운영전환 완료를 구분한다. 같은출처 Ren’Py 계약을 변경하려면 호스트와bridge 양쪽의 실제 회귀 근거가 필요하다.

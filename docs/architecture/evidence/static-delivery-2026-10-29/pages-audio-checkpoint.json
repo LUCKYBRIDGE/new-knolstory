@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-29",
+  "sourceBase": "206130d169dcb1070124da8fcc4d80bfa627497b",
+  "scope": "Local Pages-sized candidate, not public deployment or rights approval",
+  "packaging": {
+    "beforeBytes": 37680521,
+    "afterBytes": 13491570,
+    "reductionPercent": 64.19,
+    "allAudioUnchanged": true,
+    "bundledAudio": 36,
+    "progressiveAudio": 25
+  },
+  "preservation": {
+    "originalAudio": 61,
+    "originalImageFiles": 421,
+    "allBytesUnchanged": true,
+    "reencoded": false,
+    "manuscriptOrSchemaChanged": false,
+    "onDemandHostAudioUnchanged": 469
+  },
+  "candidate": {
+    "files": 1528,
+    "siteFiles": 1528,
+    "objectFiles": 0,
+    "bytes": 583286098,
+    "largestFile": "runtime/renpy.wasm",
+    "largestBytes": 21586559,
+    "pagesLimitBytes": 26214400,
+    "downloadOnlyRuntimeZipExcluded": true
+  },
+  "publicationAudit": {
+    "summary": {
+      "files": 1528,
+      "bytes": 583286098,
+      "blockers": 915,
+      "passesPreflight": false
+    },
+    "blockerReasons": {
+      "unverified-media-rights": 912,
+      "runtime-bundle-review-required": 3
+    }
+  },
+  "validation": {
+    "runtimeBuild": "pass",
+    "webBuild": "pass",
+    "pythonScripts": "119 passed",
+    "provenance": "1943 records passed",
+    "typecheck": "pass",
+    "lint": "0 errors; one existing img warning",
+    "staticBrowserInitial": "4 passed: 8 native entries and one advance each, 2 actual file download/fresh-context reopen formats, progressive BGM continuity/SFX/stop",
+    "audioSourceRangeAndAudition": "2 passed against candidate; explicit test harness dismisses already-covered fullscreen offer and accepts intentional reload",
+    "extendedLoopAndMP3": "2 passed after waiting for new rendered resize revision and rejecting missing/nonfinite positions: actual native position >0,16 samples with at least two800ms wraps, same music start count next cut, stop and bundled SFX",
+    "pagesOnlyPrepare": "pass: 1528 site files,0 objects; oversize rejection before output creation",
+    "legacyStagedRegression": "passed: current settings/audio editor path, music+ambience+SFX, actual downloaded file reimport+reload, native channels and edit return; obsolete selector and duplicate test beforeunload handler fixed",
+    "assetRegistry": "35 passed across11 files",
+    "dependencyAudit": "root/server production audits: no known vulnerabilities",
+    "staticBrowserFinal": "5 passed56.6sec: actual Pages-only candidate with all files in site, API404, 8 native entries+one advance each, actual knolstory/shortstory downloads+fresh-context reopen, OGG/MP3 native sampled loops+continuity+stop+SFX",
+    "pythonLineCoverage": "87.89% aggregate across4 changed delivery/audio scripts; stdlib trace includes discovery/server threads, excludes CLI subprocess lines"
+  },
+  "limits": [
+    "No production Pages/CDN deployment or DNS/billing changes.",
+    "No full eight-edition branch-ending coverage or physical slow-network/audio quality measurement in this run.",
+    "Media rights and opaque runtime component notice review still block public preflight.",
+    "Initial older audio test timed out behind fullscreen offer; revised harness is separate from product behavior."
+  ],
+  "next": [
+    "SD-02 rights and opaque runtime notices.",
+    "SD-03 actual static CDN headers/cache/failure recovery; same-origin bridge retained.",
+    "SD-04 full branches and target-device/slow-network evidence."
+  ],
+  "artifactHashes": {
+    "apps/web/public/runtime/game.zip": "306bcf84952037f96b4f0c1fcb5bf52a5f7ca582cc98c495125d231d4911188b",
+    "apps/web/public/runtime/renpy.js": "498a0981c1fe0e8d0e87e96d9ebdd5bc8c2d931cd539c77c0b97458438715fba",
+    "renpy/responsive-spike/progressive_download.txt": "4095da8fd1c9191109362ab8d0f877b3add2ae21f2370681a53251c765cafa8b"
+  },
+  "selfReview": {
+    "scores": {
+      "accuracy": 4,
+      "completeness": 4,
+      "clarity": 4,
+      "actionability": 4,
+      "conciseness": 4
+    },
+    "evidence": {
+      "accuracy": "Original bytes verified and actual native/file evidence retained; physical slow-network quality remains separate.",
+      "completeness": "Pages-sized local candidate and repeatable safeguards complete; rights/CDN/full branches remain queued.",
+      "clarity": "Canonical status/ADR/plan distinguish size feasibility from publication clearance.",
+      "actionability": "Pages-only generator rejects future oversized files before output; loopback/API-free regression runnable.",
+      "conciseness": "Evidence and canonical links centralize detail; older audit retained as historical snapshot."
+    },
+    "average": 4,
+    "improvements": [
+      "Complete actual CDN/cache/failure and target-device slow-network evidence before public cutover.",
+      "Resolve media/runtime notices and full branch reading coverage."
+    ]
+  }
+}

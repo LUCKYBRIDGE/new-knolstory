@@ -29,7 +29,12 @@
     "test:service-audio": "python3 scripts/check-service-audio.py",
     "typecheck:server": "tsc -p server/tsconfig.json",
     "test:office-roundtrip": "vitest run --config packages/compatibility/tests/office-roundtrip.vitest.config.ts",
-    "test:e2e:office": "playwright test --config packages/compatibility/tests/office-browser.playwright.config.ts"
+    "test:e2e:office": "playwright test --config packages/compatibility/tests/office-browser.playwright.config.ts",
+    "delivery:inventory": "python3 scripts/static-delivery-audit.py",
+    "delivery:check": "python3 scripts/static-delivery-audit.py --check",
+    "delivery:prepare": "python3 scripts/prepare-static-candidate.py",
+    "delivery:preview": "python3 scripts/serve-static-candidate.py",
+    "test:e2e:static": "playwright test --config tests/static-delivery.playwright.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",

@@ -7,3 +7,18 @@
 + image game/**
 + music game/audio/**
 + voice game/voice/**
+# Shared BGM/ambience use the SDK native progressive loader without re-encoding.
+# Keep short non-looping effects bundled; music-tagged progressive sounds may
+# arrive after their authored cue on a cold connection.
++ music game/assets/audio/forest.wav
++ music game/assets/audio/story-score/score-*.ogg
++ music game/assets/audio/story-score/ambience-*.ogg
++ music game/assets/audio/cc0/oga-rain-*.ogg
++ music game/assets/audio/cc0/oga-forest.mp3
++ music game/assets/audio/pixabay/54177.mp3
++ music game/assets/audio/pixabay/139064.mp3
++ music game/assets/audio/pixabay/450982.mp3
++ music game/assets/audio/pixabay/22484.mp3
++ music game/assets/audio/pixabay/339954.mp3
++ music game/assets/audio/pixabay/478257.mp3
++ music game/assets/audio/pixabay/501446.mp3
