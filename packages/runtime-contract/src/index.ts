@@ -78,8 +78,16 @@ function optionalNumber(value: unknown, min: number, max: number): boolean {
 function optionalChoice(value: unknown, values: readonly unknown[]): boolean {
   return value === undefined || values.includes(value);
 }
+// Reviewed canvas-padding derivatives keep stable asset IDs without replacing
+// fixed-baseline source files. This is an allowlist, not an arbitrary URL root.
+const STATURE_IMAGE_PATHS: ReadonlySet<string> = new Set([
+  "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+  "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+  "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+]);
 export function isRuntimeImagePath(value: unknown): value is string {
-  return text(value, 500) && /^assets\/legacy-18da4fc\/[a-zA-Z0-9._-]+\.(webp|png|jpg|jpeg)$/.test(value);
+  return text(value, 500) && (/^assets\/legacy-18da4fc\/[a-zA-Z0-9._-]+\.(webp|png|jpg|jpeg)$/.test(value)
+    || STATURE_IMAGE_PATHS.has(value));
 }
 export function isRuntimePresentation(value: unknown): value is RuntimePresentation {
   if (!record(value)) return false;

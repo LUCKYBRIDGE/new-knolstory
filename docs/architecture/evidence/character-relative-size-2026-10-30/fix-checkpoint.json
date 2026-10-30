@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-30",
+  "scope": "Shared default stature correction for all stories and editor RuntimeScene compilation; native/browser verification is local, not a deployed-service or physical-device claim.",
+  "supersedesInspectionOnlyStatus": "checkpoint.json",
+  "sourceBase": "cbd3bf73bb4f19cbcffcdd3dd0ff8f85a8b72962",
+  "policy": {
+    "fullBody": "Shared canvas scale1 retains height and posture already encoded in source; never equalize silhouettes by inverse alpha fraction.",
+    "upperBody": "Existing cropped upper-body readability retained.",
+    "specials": "Mounted/deer/rooster/robe existing scales retained.",
+    "automaticCast": "Common fit factor across both sides for fullyautomatic casts; explicit anchors/centered layout retain existing policy.",
+    "manual": "Authored scaleMultiplier applied once; saved IDs, Flow, StageComposition and coordinates not rewritten."
+  },
+  "assets": {
+    "stableIdsRetained": 3,
+    "method": "User-selected uniform original resize plus transparent upper canvas padding; no new drawing used.",
+    "canvas": [
+      800,
+      1200
+    ],
+    "turtleScale": 0.72,
+    "seonnyeoChildrenScale": 0.62,
+    "originalFilesChecked": 421,
+    "allOriginalBytesUnchanged": true,
+    "rights": "Same original rights retained; no new distribution approval; binary derivatives remain local private artifacts.",
+    "transformation": "padding-transform-manifest.json"
+  },
+  "validation": {
+    "TDD": "Intrinsic stature13fail1pass→14pass; shared fit3fail3pass→6pass; pathcontract3fail2pass→5pass; image/restore/provenance RED→GREEN.",
+    "focused": "524 tests passed across5 stature/layout files",
+    "integrated": "887 passed across78 core/contract/assets/viewport files",
+    "python": "139 passed including destination/ancestor/catalog symlinks, hardlinks, restore mismatched hash/codec preserve existing bytes",
+    "typecheck": "pass",
+    "lint": "0errors; one existing img warning",
+    "build": "runtime:build then Web build pass; generated iframe contract confirmed includes derived namespace",
+    "native": "3 passed36.3sec; 8character samples ×edit/play at1280/390; actual downloaded work file fresh-context reopen;3/4actor asymmetric cast proportions",
+    "eightEditions": "8 actual native entries+one advance each passed20sec; not all branch endings",
+    "pagesOnly": {
+      "files": 1534,
+      "objectFiles": 0,
+      "largestFileBytes": 21586559,
+      "gameZipBytes": 13495488
+    },
+    "destinationHardening": "Complete: preflight all destinations, encode and compare all restore hashes/geometry before writes, exclusive same-directory temp + replace, reject derived restore source symlink/hardlink. Local immutable-directory contract; no concurrent filesystem adversary claim.",
+    "generatedContract": "runtime/runtime-contract.js contains exactly3newpaths; runtime rebuilt after path contract change, then Web build and native tests repeated.",
+    "fullSourceCoverage": {
+      "files": 251,
+      "passed": 2150,
+      "skipped": 2,
+      "statements": 91.63,
+      "branches": 90.64,
+      "functions": 94.93,
+      "lines": 94.97
+    },
+    "dependencies": "Root/server production audits: no known vulnerabilities",
+    "docs": "58 active docs0links errors; language231current/372historical preserved;10 doc tests passed"
+  },
+  "initialIntegrationCorrections": [
+    "Legacy test assumed every image path stayedinlegacydirectory; now checks canonical catalog +runtime allowlist.",
+    "Native fixture corrected to include canonical left/right mirror fields and explicit speaker; imports do not always change an unused custom ID.",
+    "After new path validator was added, runtime rebuilt again so generated iframe validator and Web contract agree."
+  ],
+  "limits": [
+    "Physical-device/slow-network full product proof not rerun for this change.",
+    "Pillow11.3/WebP1.5 restore verified locally; mismatched output must fail without destroying existing artifacts.",
+    "22child/young/group candidates inspected; no biological height inference from names used for unrelated young adult or animal art.",
+    "Public Pages deployment/rights work remains queued."
+  ],
+  "next": "Local change verified; main synchronization and remoteCI. Existing SD-02/03/04 rights/deployment/fullbranch/physical queue remains.",
+  "sourceHashes": {
+    "packages/runtime-core/src/stage-view.ts": "cf91d01f2edcb5594f4f0454696fdbaffb5b18ff1af280607ae1f9e2909ad22c",
+    "packages/runtime-core/src/stage-layout.ts": "97b0446954568a7196819536158627a38a2bb96ac70f87a20b2f1069d0829c84",
+    "packages/runtime-contract/src/index.ts": "12cf436855ef0855f66e795cdfdcbbeddab10a6834b5e62f71fc92c6159876ee",
+    "apps/web/public/runtime/game.zip": "c4e50b83dd274d04ed6162022d4eb2b1648b3c435e1c1c26a9a2d61c9912a033",
+    "apps/web/public/runtime/runtime-contract.js": "4107b3d27b8d4b5a20e6d52ceaa43aea343b5383f6eb3e9bff8bbcb74bc3a8c4"
+  },
+  "review": {
+    "independent": "Two source/art/layout reviews found intrinsic height flattening and asymmetric cast fit; final integrity review found P1 symlink/hardlink overwrite and P2 overwrite-before-restore-check; corrections covered by RED→GREEN image/restore tests.",
+    "final": "Reviewer hit tool usage limit before second review. Root inspected final guards/staged encoding/replace/source-link rejection and reran139 tests."
+  },
+  "selfReview": {
+    "scores": {
+      "accuracy": 4,
+      "completeness": 4,
+      "clarity": 4,
+      "actionability": 4,
+      "conciseness": 4
+    },
+    "average": 4,
+    "evidence": {
+      "accuracy": "887 focused source tests,139 Python, actual native/file screens; deployed/physical evidence separate.",
+      "completeness": "All common actor compilation paths use newdefault; all202 assets inventoried,22 child/young candidates visually inspected; no broad rights clearance.",
+      "clarity": "Final user source-padding decision supersedes redrawing; no generated candidate applied.",
+      "actionability": "Versioned3assetIDs paths stable, protected originals retained, deterministic restore+CI Pillow pin+reject-before-write guards.",
+      "conciseness": "Canonical DESIGN/status/queue linked to evidence; repeated old paths corrected without changing authored data."
+    },
+    "improvements": [
+      "Complete existing deployment/rights and physical/slow-network queue separately."
+    ]
+  }
+}

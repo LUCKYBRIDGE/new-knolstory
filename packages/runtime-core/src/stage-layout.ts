@@ -22,21 +22,35 @@ export function resolveStageLayout(width:number, baseHeight:number, actors:reado
     const maxX=a.width<=width?Math.min(width-a.width,safeRight-a.width*a.alphaRight):safeRight-a.width*a.alphaRight;
     return {...a,x:clamp(a.x,minX,Math.max(minX,maxX))};
   };
-  const initial:readonly Placed[]=actors.map(a=>{
+  const unscaled:readonly Placed[]=actors.map(a=>{
     const g=a.geometry,height=Math.min(Math.max(0,baseHeight*a.scale),maxVisibleHeight/Math.max(.001,g.bottom-g.top));
     const boxWidth=height*g.width/g.height;
     const alphaLeft=a.mirrored?1-g.right:g.left,alphaRight=a.mirrored?1-g.left:g.right;
     return {...a,height,width:boxWidth,alphaLeft,alphaRight,visibleWidth:boxWidth*(alphaRight-alphaLeft),x:0,effectiveScale:baseHeight?height/baseHeight:0};
   });
+  const pairSpace=(side:'left'|'right',group:readonly Placed[])=>{
+    const [a,b]=group,band=Math.min(32,safeWidth*.06);
+    const zoneLeft=side==='left'?safeLeft:safeLeft+safeWidth/2-band;
+    const zoneRight=side==='right'?safeRight:safeLeft+safeWidth/2+band,zoneWidth=zoneRight-zoneLeft;
+    const narrow=Math.min(a.visibleWidth,b.visibleWidth);
+    const gap=Math.max(-narrow*maxOverlap,Math.min(-Math.min(maxGap,narrow*.15),zoneWidth-a.visibleWidth-b.visibleWidth));
+    const requested=a.visibleWidth+b.visibleWidth+gap;
+    return {zoneLeft,zoneRight,gap,factor:requested>zoneWidth?zoneWidth/requested:1};
+  };
+  // Automatic casts share one camera-scale reduction. Shrinking only the
+  // crowded side can make a child on the other side taller than an adult.
+  // Authored anchors and centered compositions retain their existing policy.
+  const allAutomatic=actors.every(a=>a.xAnchor===undefined&&!a.centered);
+  const automaticFactor=allAutomatic?Math.min(1,...(['left','right'] as const).map(side=>{
+    const group=unscaled.filter(a=>a.side===side);
+    if(group.length===2)return pairSpace(side,group).factor;
+    return !cropSides&&group.length===1&&group[0].visibleWidth>safeWidth?safeWidth/group[0].visibleWidth:1;
+  })):1;
+  const initial=automaticFactor<1?unscaled.map(a=>resize(a,automaticFactor)):unscaled;
   const sideGroup=(side:'left'|'right'):readonly Placed[]=>{
     const group=initial.filter(a=>a.side===side);
     if(group.length===2&&group.every(a=>a.xAnchor===undefined&&!a.centered)){
-      const [a,b]=group,band=Math.min(32,safeWidth*.06);
-      const zoneLeft=side==='left'?safeLeft:safeLeft+safeWidth/2-band;
-      const zoneRight=side==='right'?safeRight:safeLeft+safeWidth/2+band,zoneWidth=zoneRight-zoneLeft;
-      const narrow=Math.min(a.visibleWidth,b.visibleWidth);
-      const gap=Math.max(-narrow*maxOverlap,Math.min(-Math.min(maxGap,narrow*.15),zoneWidth-a.visibleWidth-b.visibleWidth));
-      const requested=a.visibleWidth+b.visibleWidth+gap,factor=requested>zoneWidth?zoneWidth/requested:1;
+      const [a,b]=group,{zoneLeft,zoneRight,gap,factor}=pairSpace(side,group);
       const aa=resize(a,factor),bb=resize(b,factor),scaledGap=gap*factor,total=aa.visibleWidth+bb.visibleWidth+scaledGap;
       const center=contentLeft+railWidth*(side==='left'?.18:.82),start=clamp(center-total/2,zoneLeft,zoneRight-total);
       return [atCenter(aa,start+aa.visibleWidth/2),atCenter(bb,start+aa.visibleWidth+scaledGap+bb.visibleWidth/2)];

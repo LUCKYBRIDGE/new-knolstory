@@ -1,5 +1,9 @@
 # STATUS — current development state
 
+2026-10-30 인물 상대 크기 수정 후속: 전신 그림의 키·체형·자세를 공통 캔버스 기준으로 유지하고 자동 다인 배치의 좌우 공통 축소를 적용했다. 어린 자라 두 그림과 선녀의 두 아이는 원본·ID·발 위치를 보존하는 균일 축소/투명 위쪽 여백 파생본으로 연결했다. 수동 배율과 구도를 유지하며 실제 가로/세로 읽기·편집·파일 재열기와3·4인 재생을 확인했다. [수정·원본 보존·검증 범위](docs/architecture/evidence/character-relative-size-2026-10-30/fix-checkpoint.json). 아래 같은 날의 점검만 완료/수정 미착수 판정은 이 후속으로 대체한다. 운영 배포·물리 기기 전체 검증은 별도다.
+
+2026-10-30 인물 상대 크기 점검: 반응형 기본 배율이 이미지마다 보이는 몸 높이를 같게 맞춰, 흥부전의 작은 아이·앉은 아이가 어른만큼 커지는 문제를 실제 Ren’Py 검사 사본에서 확인했다. [재현·측정·검사 누락 범위](docs/architecture/evidence/character-relative-size-2026-10-30/checkpoint.json). 이번은 원인 확인이며 배율 수정은 미착수다. 원고의 수동 배율·기존 작품은 유지한다.
+
 2026-10-29 정적 실행 패키지 후속: 음원 재인코딩이나 원고/자산 ID 변경 없이 긴 배경음·환경음만 필요할 때 받도록 분리해 Pages 단독의 파일 크기 조건을 충족했다. 별도 API 없는 로컬 정적 후보의8판본 진입·다음 컷 이동과 두 작품 파일 형식의 다운로드/재열기 근거를 [현재 패키지 검증](docs/architecture/evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)에 연결한다. 전체 갈래·권리·캐시/오류 복귀·실제 Pages 배포·느린 망/목표 실기기 완료와는 구분한다.
 
 2026-10-29 정적 웹 독립 방향 수용: 공용 자산/웹앱/공개 원고/실행 파일은 정적 전달, Mac mini는 선택적 온라인 API로 역할을 나누는 [ADR0026](docs/decisions/0026-static-reading-authoring-and-optional-api.md)을 추가했다. 기존 편집 완료와 메인CI 성공은 보존하며 [배포 자산 인벤토리·권리·실행 파일 크기 검사](docs/architecture/evidence/static-delivery-2026-10-29/checkpoint.json)를 구현했고 최초 후보의 권리·큰 실행 파일 차단을 확인했다. 크기 문제의 후속 결과는 위 현재 패키지 근거를 따르며 미확인 권리 차단은 유지한다. 현재 운영 도메인 전환은 하지 않았다.

@@ -70,32 +70,22 @@ export function stageSharedActor(id: string) {
       ].includes(id);
 }
 
-function isSmallPerson(id: string) {
-  const asset = assets.get(id);
-  return asset?.story === "옹고집전" && ["아이", "둘째 아이", "막내 아이"].includes(asset.group)
-    || asset?.story === "선녀와 나무꾼" && asset.group === "두 아이"
-    || (asset?.story === "별주부전" || asset?.story === "토끼와 자라") && asset.group === "어린 자라";
-}
+// Full-body source canvases retain intrinsic stature and pose, including
+// transparent padding in the prepared child artwork. Never expand silhouettes
+// to equal height or apply the source artwork reduction a second time.
 export function stageCharacterScale(id: string) {
   const asset = assets.get(id);
-  // Dialogue-side readability: a small stature cue, not a dramatic child/adult shrink.
-  // Compensate only some extra transparent canvas padding, with a strict 15% ceiling.
-  const smallPerson = isSmallPerson(id);
-  if (smallPerson) {
-    const visibleFraction = asset?.geometry ? asset.geometry.bottom - asset.geometry.top : .82;
-    return .98 * Math.min(1.15, Math.max(1, .82 / visibleFraction));
-  }
   return SEONNYEO_MOUNTED.has(id) ? 1.4
         : asset?.story === "선녀와 나무꾼" && asset.group === "사슴" ? 0.72
         : asset?.story === "선녀와 나무꾼" && asset.group === "수탉" ? 0.48
         : asset?.story === "선녀와 나무꾼" && asset.group === "날개옷" ? 0.65 : 1;
 }
 
-/** Responsive dialogue slots normalize transparent margins, keeping a subtle stature cue. */
+/** Preserve full-body stature/pose; only cropped upper-body art needs margin normalization. */
 export function stageReadableCharacterScale(id: string) {
-  const asset = assets.get(id);
-  const fraction = asset?.geometry ? asset.geometry.bottom - asset.geometry.top : .82;
-  const small = isSmallPerson(id);
-  const special = SEONNYEO_MOUNTED.has(id) || asset?.story === "선녀와 나무꾼" && ["사슴", "수탉", "날개옷"].includes(asset.group);
-  return special ? stageCharacterScale(id) : .82 / Math.max(.35, fraction) * (small ? .98 : 1);
+  const scale = stageCharacterScale(id);
+  if (stagePlacementClass(id) !== "framing-upper") return scale;
+  const geometry = assets.get(id)?.geometry;
+  const fraction = geometry ? geometry.bottom - geometry.top : .82;
+  return scale * .82 / Math.max(.35, fraction);
 }

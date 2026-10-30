@@ -26,7 +26,7 @@ describe('responsive story framing', () => {
     expect(() => resolveBackgroundRect({ width: 0, height: 900 }, { width: 720, height: 1600 }, 'cover')).toThrow();
     expect(() => resolveBackgroundRect({ width: 1600, height: 900 }, { width: 720, height: 1600 }, 'cover', { x: 2, y: .5 })).toThrow();
   });
-  it.each([{ width: 390, height: 844 }, { width: 1000, height: 450 }, { width: 1280, height: 720 }])('keeps readable mildly different people and lower-body textbox overlap in $width × $height', viewport => {
+  it.each([{ width: 390, height: 844 }, { width: 1000, height: 450 }, { width: 1280, height: 720 }])('preserves source stature and lower-body textbox overlap in $width × $height', viewport => {
     const project = source();
     const before = JSON.stringify(project);
     const scene = compileStoryScene(project, 'cut', 1, { mode: 'edit', viewport });
@@ -40,7 +40,7 @@ describe('responsive story framing', () => {
       return actor.rect.height * (geometry.bottom - geometry.top);
     });
     if(viewport.width<viewport.height){expect(scene.actors.map(a=>a.id)).toEqual(['child']);}
-    else {expect(painted[0] / painted[1]).toBeGreaterThan(.9); expect(painted[0] / painted[1]).toBeLessThan(1);}
+    else {const childGeometry=resolveAsset(child)!.geometry!,adultGeometry=resolveAsset(adult)!.geometry!;expect(painted[0]/painted[1]).toBeCloseTo((childGeometry.bottom-childGeometry.top)/(adultGeometry.bottom-adultGeometry.top),6);expect(painted[0]/painted[1]).toBeLessThan(.9);}
     expect(scene.background!.rect).toBeDefined();
     expect(JSON.stringify(project)).toBe(before);
   });

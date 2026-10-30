@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "toolchain": {
+    "pillow": "11.3.0",
+    "webpCodec": "1.5.0"
+  },
+  "transforms": [
+    {
+      "id": "rabbit-turtle.character.turtle-child-unified-720x900",
+      "method": "uniform-resize-transparent-headroom",
+      "scale": 0.72,
+      "originalCanvas": [
+        800,
+        1200
+      ],
+      "resizedCanvas": [
+        576,
+        864
+      ],
+      "offset": [
+        112,
+        322
+      ],
+      "alphaThreshold": 16,
+      "originalPaintedBox": [
+        202,
+        123,
+        597,
+        1148
+      ],
+      "paintedBox": [
+        257,
+        410,
+        542,
+        1148
+      ],
+      "source": "assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+      "sourceSha256": "901b1552b90b631e6ecbc184328dfb8fe920f2769bab5404c3159b3accd8dbd3",
+      "output": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+      "outputSha256": "41fc9811c45c31f1ab14bb7ac1ee3f28453de5566d87b9ece2b62bd7eafb6f0e",
+      "rights": "inherited-from-original; no new redistribution approval",
+      "runtimeScale": 1
+    },
+    {
+      "id": "rabbit-turtle.character.turtle-child-flashback",
+      "method": "uniform-resize-transparent-headroom",
+      "scale": 0.72,
+      "originalCanvas": [
+        800,
+        1200
+      ],
+      "resizedCanvas": [
+        576,
+        864
+      ],
+      "offset": [
+        112,
+        322
+      ],
+      "alphaThreshold": 16,
+      "originalPaintedBox": [
+        179,
+        120,
+        621,
+        1150
+      ],
+      "paintedBox": [
+        240,
+        408,
+        560,
+        1150
+      ],
+      "source": "assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-flashback.webp",
+      "sourceSha256": "66e6eaa3056ba6cca8dae8c13a9a73d247088fac03c69357b72c9de27a68792d",
+      "output": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+      "outputSha256": "513b895ddf687b714769387a3cc63a6bcb631c0ea2f80ecae4be4b24d5694239",
+      "rights": "inherited-from-original; no new redistribution approval",
+      "runtimeScale": 1
+    },
+    {
+      "id": "seonnyeo.character.classic-children",
+      "method": "uniform-resize-transparent-headroom",
+      "scale": 0.62,
+      "originalCanvas": [
+        800,
+        1200
+      ],
+      "resizedCanvas": [
+        496,
+        744
+      ],
+      "offset": [
+        152,
+        437
+      ],
+      "alphaThreshold": 16,
+      "originalPaintedBox": [
+        48,
+        149,
+        753,
+        1150
+      ],
+      "paintedBox": [
+        182,
+        529,
+        619,
+        1150
+      ],
+      "source": "assets/legacy-18da4fc/seonnyeo.character.classic-children.webp",
+      "sourceSha256": "bcf370f13f4ee617e1905df52cc34e5b3cb557b4a967c7124772371c75b7e40d",
+      "output": "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+      "outputSha256": "506e37ef6986c68df15b56911d0b0cd72b6b8bf114a4a62ac1d4a3eb762f84f2",
+      "rights": "inherited-from-original; no new redistribution approval",
+      "runtimeScale": 1
+    }
+  ],
+  "note": "Derived from protected original bytes. Rights and original identity remain unchanged."
+}

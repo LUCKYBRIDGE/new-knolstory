@@ -1,0 +1,50 @@
+
+> knolstory-next@ test:scripts <repository>
+> python3 -m unittest discover -s scripts/tests
+
+...........................................Downloading resource
+.Extracting verified SDK and Web support.
+....Verified pinned SDK installation.
+..Verified cached resource
+.Downloading resource
+.....................................127.0.0.1 - - [30/Oct/2026 16:22:00] code 409, message Candidate changed; prepare and verify it again.
+127.0.0.1 - - [30/Oct/2026 16:22:00] "GET /runtime/game.zip?v=84d89877f0d4041e HTTP/1.1" 409 -
+.127.0.0.1 - - [30/Oct/2026 16:22:01] code 409, message Candidate changed while verifying its content.
+127.0.0.1 - - [30/Oct/2026 16:22:01] "GET /runtime/game.zip HTTP/1.1" 409 -
+..127.0.0.1 - - [30/Oct/2026 16:22:01] "GET /runtime/game.zip HTTP/1.1" 206 -
+127.0.0.1 - - [30/Oct/2026 16:22:01] "HEAD /runtime/game.zip?v=84d89877f0d4041e HTTP/1.1" 200 -
+127.0.0.1 - - [30/Oct/2026 16:22:01] "GET /runtime/game.zip?v=wrong HTTP/1.1" 200 -
+.127.0.0.1 - - [30/Oct/2026 16:22:02] code 409, message Candidate changed; prepare and verify it again.
+127.0.0.1 - - [30/Oct/2026 16:22:02] "GET /runtime/game.zip?v=84d89877f0d4041e HTTP/1.1" 409 -
+.127.0.0.1 - - [30/Oct/2026 16:22:02] code 409, message Candidate changed; prepare and verify it again.
+127.0.0.1 - - [30/Oct/2026 16:22:02] "GET /runtime/game.zip?v=84d89877f0d4041e HTTP/1.1" 409 -
+.127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /runtime/game.zip HTTP/1.1" 206 -
+.127.0.0.1 - - [30/Oct/2026 16:22:03] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /shortstory HTTP/1.1" 200 -
+127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /runtime/game/scene.webp HTTP/1.1" 200 -
+127.0.0.1 - - [30/Oct/2026 16:22:03] code 404, message No static candidate route; online API is unavailable.
+127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /api/auth/session HTTP/1.1" 404 -
+127.0.0.1 - - [30/Oct/2026 16:22:03] code 404, message No static candidate route; online API is unavailable.
+127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /manifest.json HTTP/1.1" 404 -
+127.0.0.1 - - [30/Oct/2026 16:22:03] code 404, message No static candidate route; online API is unavailable.
+127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /objects/runtime/game.zip HTTP/1.1" 404 -
+127.0.0.1 - - [30/Oct/2026 16:22:03] code 404, message No static candidate route; online API is unavailable.
+127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /runtime/ HTTP/1.1" 404 -
+127.0.0.1 - - [30/Oct/2026 16:22:03] code 404, message No static candidate route; online API is unavailable.
+127.0.0.1 - - [30/Oct/2026 16:22:03] "GET /%2e%2e/manifest.json HTTP/1.1" 404 -
+..127.0.0.1 - - [30/Oct/2026 16:22:04] code 400, message Untrusted preview host.
+127.0.0.1 - - [30/Oct/2026 16:22:04] "GET / HTTP/1.1" 400 -
+..127.0.0.1 - - [30/Oct/2026 16:22:04] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [30/Oct/2026 16:22:04] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [30/Oct/2026 16:22:04] "GET /sample.wav HTTP/1.1" 206 -
+127.0.0.1 - - [30/Oct/2026 16:22:04] "GET /sample.wav HTTP/1.1" 416 -
+........................................
+----------------------------------------------------------------------
+Ran 139 tests in 5.414s
+
+OK
+{"localOnly": true, "preflightApproval": false, "files": 1, "excluded": 0, "objectFiles": 0}
+Restored 0 exact fixed-baseline room files for authorized local testing.
+Restored 1 exact fixed-baseline files for local testing and 1 reproducible padded derivatives. No release permission is inferred.
+Restored 1 exact fixed-baseline room files for authorized local testing.
+Restored 0 exact fixed-baseline files for local testing and 0 reproducible padded derivatives. No release permission is inferred.

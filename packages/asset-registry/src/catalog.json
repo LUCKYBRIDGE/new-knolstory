@@ -3031,14 +3031,14 @@
       "어린 자라",
       "회상"
     ],
-    "src": "/assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-flashback.webp",
+    "src": "/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
     "sourcePath": "games/ifstory/images/adventure/characters/adventure_turtle_child_flashback.png",
     "copyright": "놀퀴즈",
-    "revision": "66e6eaa3056ba6cca8dae8c13a9a73d247088fac03c69357b72c9de27a68792d",
+    "revision": "513b895ddf687b714769387a3cc63a6bcb631c0ea2f80ecae4be4b24d5694239",
     "geometry": {
-      "left": 0.22375,
-      "right": 0.77625,
-      "top": 0.1,
+      "left": 0.3,
+      "right": 0.7,
+      "top": 0.34,
       "bottom": 0.9583333333333334,
       "width": 800,
       "height": 1200
@@ -3066,11 +3066,54 @@
       "pairingStatus": "missing-upper",
       "qualityReview": {
         "decision": "KEEP",
-        "sha256": "66e6eaa3056ba6cca8dae8c13a9a73d247088fac03c69357b72c9de27a68792d",
+        "sha256": "513b895ddf687b714769387a3cc63a6bcb631c0ea2f80ecae4be4b24d5694239",
         "referenceAssetId": "rabbit-turtle.character.turtle-resolve",
         "poseClass": "standing",
-        "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
-        "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
+        "reason": "원본 그림의 가로·세로를 같은 비율로 줄이고 발 기준선을 유지한 투명 캔버스 파생본. 얼굴·의상·포즈·원본 파일 및 자산 ID 보존. 새 해부학적 검수나 배포 권리 승인을 뜻하지 않음.",
+        "evidence": "scripts/prepare-character-stature-assets.py",
+        "previousSourceReview": {
+          "decision": "KEEP",
+          "sha256": "66e6eaa3056ba6cca8dae8c13a9a73d247088fac03c69357b72c9de27a68792d",
+          "referenceAssetId": "rabbit-turtle.character.turtle-resolve",
+          "poseClass": "standing",
+          "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
+          "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
+        }
+      },
+      "statureTransform": {
+        "method": "uniform-resize-transparent-headroom",
+        "scale": 0.72,
+        "originalCanvas": [
+          800,
+          1200
+        ],
+        "resizedCanvas": [
+          576,
+          864
+        ],
+        "offset": [
+          112,
+          322
+        ],
+        "alphaThreshold": 16,
+        "originalPaintedBox": [
+          179,
+          120,
+          621,
+          1150
+        ],
+        "paintedBox": [
+          240,
+          408,
+          560,
+          1150
+        ],
+        "source": "assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-flashback.webp",
+        "sourceSha256": "66e6eaa3056ba6cca8dae8c13a9a73d247088fac03c69357b72c9de27a68792d",
+        "output": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+        "outputSha256": "513b895ddf687b714769387a3cc63a6bcb631c0ea2f80ecae4be4b24d5694239",
+        "rights": "inherited-from-original; no new redistribution approval",
+        "runtimeScale": 1
       }
     }
   },
@@ -3672,14 +3715,14 @@
       "어린 자라",
       "기본"
     ],
-    "src": "/assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+    "src": "/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
     "sourcePath": "games/ifstory/images/adventure/characters/generated/adventure_turtle_child_unified_720x900.png",
     "copyright": "놀퀴즈",
-    "revision": "901b1552b90b631e6ecbc184328dfb8fe920f2769bab5404c3159b3accd8dbd3",
+    "revision": "41fc9811c45c31f1ab14bb7ac1ee3f28453de5566d87b9ece2b62bd7eafb6f0e",
     "geometry": {
-      "left": 0.2525,
-      "right": 0.74625,
-      "top": 0.1025,
+      "left": 0.32125,
+      "right": 0.6775,
+      "top": 0.3416666666666667,
       "bottom": 0.9566666666666667,
       "width": 800,
       "height": 1200
@@ -3707,11 +3750,54 @@
       "pairingStatus": "missing-upper",
       "qualityReview": {
         "decision": "KEEP",
-        "sha256": "901b1552b90b631e6ecbc184328dfb8fe920f2769bab5404c3159b3accd8dbd3",
+        "sha256": "41fc9811c45c31f1ab14bb7ac1ee3f28453de5566d87b9ece2b62bd7eafb6f0e",
         "referenceAssetId": "rabbit-turtle.character.turtle-resolve",
         "poseClass": "standing",
-        "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
-        "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
+        "reason": "원본 그림의 가로·세로를 같은 비율로 줄이고 발 기준선을 유지한 투명 캔버스 파생본. 얼굴·의상·포즈·원본 파일 및 자산 ID 보존. 새 해부학적 검수나 배포 권리 승인을 뜻하지 않음.",
+        "evidence": "scripts/prepare-character-stature-assets.py",
+        "previousSourceReview": {
+          "decision": "KEEP",
+          "sha256": "901b1552b90b631e6ecbc184328dfb8fe920f2769bab5404c3159b3accd8dbd3",
+          "referenceAssetId": "rabbit-turtle.character.turtle-resolve",
+          "poseClass": "standing",
+          "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
+          "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
+        }
+      },
+      "statureTransform": {
+        "method": "uniform-resize-transparent-headroom",
+        "scale": 0.72,
+        "originalCanvas": [
+          800,
+          1200
+        ],
+        "resizedCanvas": [
+          576,
+          864
+        ],
+        "offset": [
+          112,
+          322
+        ],
+        "alphaThreshold": 16,
+        "originalPaintedBox": [
+          202,
+          123,
+          597,
+          1148
+        ],
+        "paintedBox": [
+          257,
+          410,
+          542,
+          1148
+        ],
+        "source": "assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+        "sourceSha256": "901b1552b90b631e6ecbc184328dfb8fe920f2769bab5404c3159b3accd8dbd3",
+        "output": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+        "outputSha256": "41fc9811c45c31f1ab14bb7ac1ee3f28453de5566d87b9ece2b62bd7eafb6f0e",
+        "rights": "inherited-from-original; no new redistribution approval",
+        "runtimeScale": 1
       }
     }
   },
@@ -11304,14 +11390,14 @@
       "두 아이",
       "손을 잡은 남매"
     ],
-    "src": "/assets/legacy-18da4fc/seonnyeo.character.classic-children.webp",
+    "src": "/assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
     "sourcePath": "public/story-assets/seonnyeo.character.classic-children.webp",
     "copyright": "놀퀴즈",
-    "revision": "bcf370f13f4ee617e1905df52cc34e5b3cb557b4a967c7124772371c75b7e40d",
+    "revision": "506e37ef6986c68df15b56911d0b0cd72b6b8bf114a4a62ac1d4a3eb762f84f2",
     "geometry": {
-      "left": 0.06,
-      "right": 0.94125,
-      "top": 0.12416666666666666,
+      "left": 0.2275,
+      "right": 0.77375,
+      "top": 0.44083333333333335,
       "bottom": 0.9583333333333334,
       "width": 800,
       "height": 1200
@@ -11337,11 +11423,54 @@
       "pairingStatus": "exception",
       "qualityReview": {
         "decision": "KEEP",
-        "sha256": "bcf370f13f4ee617e1905df52cc34e5b3cb557b4a967c7124772371c75b7e40d",
+        "sha256": "506e37ef6986c68df15b56911d0b0cd72b6b8bf114a4a62ac1d4a3eb762f84f2",
         "referenceAssetId": "seonnyeo.character.classic-children",
         "poseClass": "composite",
-        "reason": "두 아이 각각 얼굴/어깨·손, 상완/전완과 허벅지/종아리의 어린이 비율, 손 연결·완전한 신발 확인. carrying-children 안 같은 두 아이의 머리·의상과 대조. 실제 성장 후 컷의 성인 대비 크기 정상.",
-        "evidence": "work/story-assets/remediation/audit/contact-sheets; work/story-assets/remediation/manual-stage-map.json; /tmp/image-quality-manual-review/results.json"
+        "reason": "원본 그림의 가로·세로를 같은 비율로 줄이고 발 기준선을 유지한 투명 캔버스 파생본. 얼굴·의상·포즈·원본 파일 및 자산 ID 보존. 새 해부학적 검수나 배포 권리 승인을 뜻하지 않음.",
+        "evidence": "scripts/prepare-character-stature-assets.py",
+        "previousSourceReview": {
+          "decision": "KEEP",
+          "sha256": "bcf370f13f4ee617e1905df52cc34e5b3cb557b4a967c7124772371c75b7e40d",
+          "referenceAssetId": "seonnyeo.character.classic-children",
+          "poseClass": "composite",
+          "reason": "두 아이 각각 얼굴/어깨·손, 상완/전완과 허벅지/종아리의 어린이 비율, 손 연결·완전한 신발 확인. carrying-children 안 같은 두 아이의 머리·의상과 대조. 실제 성장 후 컷의 성인 대비 크기 정상.",
+          "evidence": "work/story-assets/remediation/audit/contact-sheets; work/story-assets/remediation/manual-stage-map.json; /tmp/image-quality-manual-review/results.json"
+        }
+      },
+      "statureTransform": {
+        "method": "uniform-resize-transparent-headroom",
+        "scale": 0.62,
+        "originalCanvas": [
+          800,
+          1200
+        ],
+        "resizedCanvas": [
+          496,
+          744
+        ],
+        "offset": [
+          152,
+          437
+        ],
+        "alphaThreshold": 16,
+        "originalPaintedBox": [
+          48,
+          149,
+          753,
+          1150
+        ],
+        "paintedBox": [
+          182,
+          529,
+          619,
+          1150
+        ],
+        "source": "assets/legacy-18da4fc/seonnyeo.character.classic-children.webp",
+        "sourceSha256": "bcf370f13f4ee617e1905df52cc34e5b3cb557b4a967c7124772371c75b7e40d",
+        "output": "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+        "outputSha256": "506e37ef6986c68df15b56911d0b0cd72b6b8bf114a4a62ac1d4a3eb762f84f2",
+        "rights": "inherited-from-original; no new redistribution approval",
+        "runtimeScale": 1
       }
     }
   },

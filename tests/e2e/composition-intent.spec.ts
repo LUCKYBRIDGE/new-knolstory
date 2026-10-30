@@ -160,7 +160,7 @@ test('actual Ren’Py preserves authored bodies, front center and empty POV acro
   expect(childHeight).toBeGreaterThan(0);
   const childGeometry=resolveAsset(child)!.geometry!, adultGeometry=resolveAsset(adult)!.geometry!;
   const paintedRatio=childHeight*(childGeometry.bottom-childGeometry.top)/(adultHeight*(adultGeometry.bottom-adultGeometry.top));
-  expect(paintedRatio).toBeCloseTo(.98 * .9, 6);
+  expect(paintedRatio).toBeCloseTo(.9 * (childGeometry.bottom-childGeometry.top)/(adultGeometry.bottom-adultGeometry.top), 6);
   await page.getByTestId('story-stage-viewport').screenshot({ path: testInfo.outputPath('small-and-big-native.png') });
   for (const viewport of [{ width: 390, height: 844 }, { width: 844, height: 390 }, { width: 1280, height: 900 }]) {
     await page.setViewportSize(viewport);const view=page.getByText('보기 설정',{exact:true}).locator('..');if(!await view.evaluate(node=>(node as HTMLDetailsElement).open))await view.locator(':scope>summary').click();await page.getByLabel('미리보기 화면 비율',{exact:true}).selectOption(viewport.width<viewport.height?'portrait':viewport.width===844?'landscape':'desktop');

@@ -1,5 +1,5 @@
 """Build/check exhaustive distributed media provenance, including unknown legacy rights."""
-import argparse, hashlib, json
+import argparse, hashlib, json, math
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'packages/asset-registry/src/media-provenance.json'
@@ -19,6 +19,26 @@ def release_allowed(record,target):
    path=(ROOT/name).resolve()
    if not path.is_relative_to(public) or not path.is_file():return False
  return True
+def asset_provenance(asset):
+ """Describe byte lineage, never infer a license from a local image transform."""
+ base={'assetIds':[asset['id']],'authorOrRightsHolder':asset.get('copyright','unknown')}
+ transform=asset.get('metadata',{}).get('statureTransform')
+ if transform is None:
+  return {**base,'provider':'legacy-repository','source':f"story-maker@18da4fc:{asset.get('sourcePath','unknown')}"}
+ source=transform.get('source','');scale=transform.get('scale');offset=transform.get('offset')
+ source_sha=transform.get('sourceSha256','')
+ if (transform.get('method')!='uniform-resize-transparent-headroom' or
+     not isinstance(source,str) or not source.startswith('assets/legacy-18da4fc/') or
+     '..' in Path(source).parts or '\\' in source or
+     not isinstance(source_sha,str) or len(source_sha)!=64 or any(c not in '0123456789abcdef' for c in source_sha) or
+     transform.get('output')!=asset['src'].lstrip('/') or transform.get('outputSha256')!=asset.get('revision') or
+     not isinstance(scale,(int,float)) or isinstance(scale,bool) or not math.isfinite(scale) or not 0<scale<=1 or
+     not isinstance(offset,list) or len(offset)!=2 or any(not isinstance(v,int) or isinstance(v,bool) or v<0 for v in offset)):
+  raise ValueError('Invalid recorded image transformation: '+asset['id'])
+ return {**base,'provider':'local-derived-image','source':'scripts/prepare-character-stature-assets.py',
+         'originalSource':'apps/web/public/'+source,'originalSha256':source_sha,
+         'transformation':{'method':transform['method'],'scale':scale,'offset':list(offset)},
+         'generationPlan':'deterministic-local-source-resize; original rights unchanged'}
 def inventory():
  catalog=json.loads((ROOT/'packages/asset-registry/src/catalog.json').read_text());by_path={a['src'].lstrip('/'):a for a in catalog}
  score=json.loads((ROOT/'apps/web/public/assets/audio/story-score/manifest.json').read_text());scores={f"assets/audio/story-score/{a['file']}":a for a in score['assets']}
@@ -40,7 +60,7 @@ def inventory():
  for file in sorted(set(p for p in files if p.is_file() and p.suffix.lower() in EXT)):
   relative=file.relative_to(ROOT).as_posix();pub=relative.removeprefix('apps/web/public/');asset=by_path.get(pub);cue=scores.get(pub)
   record={'file':relative,'sha256':digest(file),'mediaType':'font' if file.suffix.lower() in {'.ttf','.woff','.woff2','.otf'} else 'audio' if file.suffix.lower() in {'.wav','.ogg','.mp3'} else 'video' if file.suffix.lower() in {'.mp4','.webm'} else 'image','assetIds':[],'provider':'unknown','source':'unknown','authorOrRightsHolder':'unknown','license':'unknown','commercialUse':'unverified','redistribution':'unverified','attribution':'unverified','generationPlan':'not-recorded','replacementRequiredBeforeCommercialRelease':'review-required','replacementAssetId':None}
-  if asset:record.update(assetIds=[asset['id']],provider='legacy-repository',source=f"story-maker@18da4fc:{asset.get('sourcePath','unknown')}",authorOrRightsHolder=asset.get('copyright','unknown'))
+  if asset:record.update(asset_provenance(asset))
   elif relative in ui_sources:record.update(provider='legacy-repository',source=f"story-maker@18da4fc:{ui_sources[relative]['sourcePath']}",authorOrRightsHolder='project owner; user-declared on 2026-10-08',usageAuthorization='Direct owner instruction: reuse existing project design/resources in KnolStory Next',redistribution='unverified')
   elif cue:record.update(assetIds=[f"audio:{'music' if cue['kind']=='ambience' else 'sound' if cue['kind']=='sfx' else cue['kind']}:{cue['id']}"],provider='original-procedural-synthesis',source='scripts/create-story-soundtrack.py',authorOrRightsHolder='KnolStory Next original synthesis',license='CC0-1.0',commercialUse='permitted',redistribution='permitted',attribution='not-required',generationPlan='local-no-paid-service',replacementRequiredBeforeCommercialRelease=False)
   elif pub in ['assets/audio/forest.wav','assets/audio/night.wav','assets/audio/chime.wav','assets/audio/step.wav']:record.update(assetIds=[f"audio:{'sound' if file.stem in ['chime','step'] else 'music'}:{file.stem}"],provider='original-procedural-synthesis',source='apps/web/public/assets/audio/README.md',authorOrRightsHolder='KnolStory Next original synthesis',license='original-project-asset; no external samples',generationPlan='local-no-paid-service')

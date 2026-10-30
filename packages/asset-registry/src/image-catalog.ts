@@ -14,7 +14,7 @@ function freezeTree<T>(value: T): T {
   }
   return value;
 }
-/** Exact source bytes, IDs and alpha geometry from the fixed legacy baseline. */
+/** Stable source IDs and measured geometry; versioned local derivatives retain original lineage. */
 export const ASSET_CATALOG: readonly Asset[] = freezeTree(catalog.map(asset => ({
   ...asset, type: asset.type as Asset['type'], runtimePath: asset.src.slice(1),
   geometry: asset.geometry ? Object.freeze({...asset.geometry}) : null,

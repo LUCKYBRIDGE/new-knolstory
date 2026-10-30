@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-30",
+  "result": "confirmed-current-defect; not fixed in this inspection",
+  "sourceCommit": "cbd3bf73bb4f19cbcffcdd3dd0ff8f85a8b72962",
+  "scope": "Local current static candidate/native RenPy scene with imported inspection-only work; source compilation of4 pairs across edit/play and landscape/portrait. No deployed-service or physical-device claim.",
+  "cause": {
+    "runtimePath": "packages/runtime-core/src/story-runtime.ts:209",
+    "defaultScale": "packages/runtime-core/src/stage-view.ts:95",
+    "detail": "Responsive scale divides0.82 by per-image painted height fraction, cancelling stature/pose differences. Existing isSmallPerson also misses Heungbu child groups; recognized children get only0.98 factor."
+  },
+  "ratios": [
+    {
+      "pair": "Heungbu/second child",
+      "sourceCanvasPaintedChildToAdult": 0.6907,
+      "responsiveChildToAdult": 1
+    },
+    {
+      "pair": "older/younger Heungbu child",
+      "sourceCanvasPaintedYoungerToOlder": 0.7841,
+      "responsiveYoungerToOlder": 1
+    },
+    {
+      "pair": "Heungbu/seated girl",
+      "sourceCanvasPaintedChildToAdult": 0.5105,
+      "responsiveChildToAdult": 1
+    },
+    {
+      "pair": "Onggojib/child",
+      "sourceCanvasPaintedChildToAdult": 0.8542,
+      "responsiveChildToAdult": 0.98
+    }
+  ],
+  "native": {
+    "viewport": "1280x720 native canvas",
+    "paintedHeightAdultAndSecondChild": 395.568,
+    "screenshots": [
+      "adult-child-current.png",
+      "adult-seated-child-current.png"
+    ],
+    "preview": "Loopback-only API-free immutable Pages candidate, original files untouched; imported independent inspection copy on separate port/origin."
+  },
+  "testGap": "Existing composition-intent tests omit viewport; responsive-story-layout deliberately requires old recognized child to be90–100% adult, missing natural stature and seated pose preservation.",
+  "validation": "Read-only Vitest probe1passed; actual native shots visually inspected; source and second independent review agree.",
+  "preserved": [
+    "Authored works/Asset IDs/StageComposition/scaleMultiplier",
+    "Default rendering code and existing evidence"
+  ],
+  "next": "Implement shared framing/reference scale retaining intended relative stature and pose, with separate upper-body/special composite handling and manual scale preservation; add responsive edit/play regression before broad rendering change.",
+  "artifactPolicy": "JSON is portable evidence; PNG screenshots remain local ignored artifacts unless explicitly retained in Git."
+}

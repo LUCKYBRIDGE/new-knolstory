@@ -39,11 +39,12 @@ describe('authored composition intent', () => {
   it('keeps child body scale smaller than adult instead of equalizing heights', () => {
     const project = patchStoryLine(blank(), 'cut', { stageComposition: { leftActors: [{ key: 'child', assetId: child }], rightActors: [{ key: 'adult', assetId: adult }] } });
     const actors = compileStoryScene(project, 'cut', 1).actors;
-    expect(stageCharacterScale(child)).toBeCloseTo(1.127, 6);
+    expect(stageCharacterScale(child)).toBe(1);
     expect(stageCharacterScale(adult)).toBe(1);
     const childGeometry=resolveAsset(child)!.geometry!,adultGeometry=resolveAsset(adult)!.geometry!;
     const paintedRatio=actors[0].rect.height*(childGeometry.bottom-childGeometry.top)/(actors[1].rect.height*(adultGeometry.bottom-adultGeometry.top));
-    expect(paintedRatio).toBeGreaterThan(.88);expect(paintedRatio).toBeLessThan(1);
+    expect(paintedRatio).toBeCloseTo((childGeometry.bottom-childGeometry.top)/(adultGeometry.bottom-adultGeometry.top),6);
+    expect(paintedRatio).toBeLessThan(.9);
     for (const [index, id] of [child, adult].entries()) {
       const geometry = resolveAsset(id)!.geometry!;
       expect(actors[index].rect.y + actors[index].rect.height * geometry.top).toBeGreaterThanOrEqual(8);

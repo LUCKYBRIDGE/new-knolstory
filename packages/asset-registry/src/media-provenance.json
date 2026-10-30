@@ -14722,6 +14722,247 @@
       ]
     },
     {
+      "file": "apps/web/public/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+      "sha256": "513b895ddf687b714769387a3cc63a6bcb631c0ea2f80ecae4be4b24d5694239",
+      "mediaType": "image",
+      "assetIds": [
+        "rabbit-turtle.character.turtle-child-flashback"
+      ],
+      "provider": "local-derived-image",
+      "source": "scripts/prepare-character-stature-assets.py",
+      "authorOrRightsHolder": "놀퀴즈",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "deterministic-local-source-resize; original rights unchanged",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "originalSource": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-flashback.webp",
+      "originalSha256": "66e6eaa3056ba6cca8dae8c13a9a73d247088fac03c69357b72c9de27a68792d",
+      "transformation": {
+        "method": "uniform-resize-transparent-headroom",
+        "scale": 0.72,
+        "offset": [
+          112,
+          322
+        ]
+      },
+      "usageReferences": []
+    },
+    {
+      "file": "apps/web/public/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+      "sha256": "41fc9811c45c31f1ab14bb7ac1ee3f28453de5566d87b9ece2b62bd7eafb6f0e",
+      "mediaType": "image",
+      "assetIds": [
+        "rabbit-turtle.character.turtle-child-unified-720x900"
+      ],
+      "provider": "local-derived-image",
+      "source": "scripts/prepare-character-stature-assets.py",
+      "authorOrRightsHolder": "놀퀴즈",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "deterministic-local-source-resize; original rights unchanged",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "originalSource": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+      "originalSha256": "901b1552b90b631e6ecbc184328dfb8fe920f2769bab5404c3159b3accd8dbd3",
+      "transformation": {
+        "method": "uniform-resize-transparent-headroom",
+        "scale": 0.72,
+        "offset": [
+          112,
+          322
+        ]
+      },
+      "usageReferences": [
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[24].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[24].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[25].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[25].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[26].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[26].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[27].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[27].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[28].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[28].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[29].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[29].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[30].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[30].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[31].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[31].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[32].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[32].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[33].rightAssetId"
+        },
+        {
+          "work": "rabbit",
+          "documentLocation": "$.lines[33].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[24].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[25].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[26].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[27].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[28].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[29].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[30].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[31].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[32].rightAssetId"
+        },
+        {
+          "work": "baseline:rabbit",
+          "documentLocation": "$.lines[33].rightAssetId"
+        }
+      ]
+    },
+    {
+      "file": "apps/web/public/assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+      "sha256": "506e37ef6986c68df15b56911d0b0cd72b6b8bf114a4a62ac1d4a3eb762f84f2",
+      "mediaType": "image",
+      "assetIds": [
+        "seonnyeo.character.classic-children"
+      ],
+      "provider": "local-derived-image",
+      "source": "scripts/prepare-character-stature-assets.py",
+      "authorOrRightsHolder": "놀퀴즈",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "deterministic-local-source-resize; original rights unchanged",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "originalSource": "apps/web/public/assets/legacy-18da4fc/seonnyeo.character.classic-children.webp",
+      "originalSha256": "bcf370f13f4ee617e1905df52cc34e5b3cb557b4a967c7124772371c75b7e40d",
+      "transformation": {
+        "method": "uniform-resize-transparent-headroom",
+        "scale": 0.62,
+        "offset": [
+          152,
+          437
+        ]
+      },
+      "usageReferences": [
+        {
+          "work": "seonnyeo-classic",
+          "documentLocation": "$.chapters[2].characterAssetIds[4]"
+        },
+        {
+          "work": "seonnyeo-classic",
+          "documentLocation": "$.lines[26].rightAssetId"
+        },
+        {
+          "work": "seonnyeo-classic",
+          "documentLocation": "$.lines[26].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "seonnyeo-classic",
+          "documentLocation": "$.lines[30].rightAssetId"
+        },
+        {
+          "work": "seonnyeo-classic",
+          "documentLocation": "$.lines[30].stageComposition.rightActors[0].assetId"
+        },
+        {
+          "work": "baseline:seonnyeo-classic",
+          "documentLocation": "$.chapters[2].characterAssetIds[4]"
+        },
+        {
+          "work": "baseline:seonnyeo-classic",
+          "documentLocation": "$.lines[26].rightAssetId"
+        },
+        {
+          "work": "baseline:seonnyeo-classic",
+          "documentLocation": "$.lines[30].rightAssetId"
+        }
+      ]
+    },
+    {
       "file": "apps/web/public/assets/cover-fonts/Jua-Regular-cb995145.woff2",
       "sha256": "cb995145eb03afc3ca5d714471d2183f58d56ed571001321e109170b421abcda",
       "mediaType": "font",
@@ -122255,12 +122496,10 @@
       "file": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-flashback.webp",
       "sha256": "66e6eaa3056ba6cca8dae8c13a9a73d247088fac03c69357b72c9de27a68792d",
       "mediaType": "image",
-      "assetIds": [
-        "rabbit-turtle.character.turtle-child-flashback"
-      ],
-      "provider": "legacy-repository",
-      "source": "story-maker@18da4fc:games/ifstory/images/adventure/characters/adventure_turtle_child_flashback.png",
-      "authorOrRightsHolder": "놀퀴즈",
+      "assetIds": [],
+      "provider": "unknown",
+      "source": "unknown",
+      "authorOrRightsHolder": "unknown",
       "license": "unknown",
       "commercialUse": "unverified",
       "redistribution": "unverified",
@@ -122274,12 +122513,10 @@
       "file": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.turtle-child-unified-720x900.webp",
       "sha256": "901b1552b90b631e6ecbc184328dfb8fe920f2769bab5404c3159b3accd8dbd3",
       "mediaType": "image",
-      "assetIds": [
-        "rabbit-turtle.character.turtle-child-unified-720x900"
-      ],
-      "provider": "legacy-repository",
-      "source": "story-maker@18da4fc:games/ifstory/images/adventure/characters/generated/adventure_turtle_child_unified_720x900.png",
-      "authorOrRightsHolder": "놀퀴즈",
+      "assetIds": [],
+      "provider": "unknown",
+      "source": "unknown",
+      "authorOrRightsHolder": "unknown",
       "license": "unknown",
       "commercialUse": "unverified",
       "redistribution": "unverified",
@@ -122287,128 +122524,7 @@
       "generationPlan": "not-recorded",
       "replacementRequiredBeforeCommercialRelease": "review-required",
       "replacementAssetId": null,
-      "usageReferences": [
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[24].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[24].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[25].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[25].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[26].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[26].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[27].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[27].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[28].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[28].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[29].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[29].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[30].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[30].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[31].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[31].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[32].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[32].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[33].rightAssetId"
-        },
-        {
-          "work": "rabbit",
-          "documentLocation": "$.lines[33].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[24].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[25].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[26].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[27].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[28].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[29].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[30].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[31].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[32].rightAssetId"
-        },
-        {
-          "work": "baseline:rabbit",
-          "documentLocation": "$.lines[33].rightAssetId"
-        }
-      ]
+      "usageReferences": []
     },
     {
       "file": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.turtle-herb-bundle.webp",
@@ -126453,12 +126569,10 @@
       "file": "apps/web/public/assets/legacy-18da4fc/seonnyeo.character.classic-children.webp",
       "sha256": "bcf370f13f4ee617e1905df52cc34e5b3cb557b4a967c7124772371c75b7e40d",
       "mediaType": "image",
-      "assetIds": [
-        "seonnyeo.character.classic-children"
-      ],
-      "provider": "legacy-repository",
-      "source": "story-maker@18da4fc:public/story-assets/seonnyeo.character.classic-children.webp",
-      "authorOrRightsHolder": "놀퀴즈",
+      "assetIds": [],
+      "provider": "unknown",
+      "source": "unknown",
+      "authorOrRightsHolder": "unknown",
       "license": "unknown",
       "commercialUse": "unverified",
       "redistribution": "unverified",
@@ -126466,40 +126580,7 @@
       "generationPlan": "not-recorded",
       "replacementRequiredBeforeCommercialRelease": "review-required",
       "replacementAssetId": null,
-      "usageReferences": [
-        {
-          "work": "seonnyeo-classic",
-          "documentLocation": "$.chapters[2].characterAssetIds[4]"
-        },
-        {
-          "work": "seonnyeo-classic",
-          "documentLocation": "$.lines[26].rightAssetId"
-        },
-        {
-          "work": "seonnyeo-classic",
-          "documentLocation": "$.lines[26].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "seonnyeo-classic",
-          "documentLocation": "$.lines[30].rightAssetId"
-        },
-        {
-          "work": "seonnyeo-classic",
-          "documentLocation": "$.lines[30].stageComposition.rightActors[0].assetId"
-        },
-        {
-          "work": "baseline:seonnyeo-classic",
-          "documentLocation": "$.chapters[2].characterAssetIds[4]"
-        },
-        {
-          "work": "baseline:seonnyeo-classic",
-          "documentLocation": "$.lines[26].rightAssetId"
-        },
-        {
-          "work": "baseline:seonnyeo-classic",
-          "documentLocation": "$.lines[30].rightAssetId"
-        }
-      ]
+      "usageReferences": []
     },
     {
       "file": "apps/web/public/assets/legacy-18da4fc/seonnyeo.character.classic-deer.webp",
@@ -130806,6 +130887,57 @@
         }
       ],
       "derivedFrom": "apps/web/public/assets/audio/story-score/score-warmth.ogg"
+    },
+    {
+      "file": "apps/web/public/runtime/game/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+      "sha256": "513b895ddf687b714769387a3cc63a6bcb631c0ea2f80ecae4be4b24d5694239",
+      "mediaType": "image",
+      "assetIds": [],
+      "provider": "RenPy SDK distribution",
+      "source": "RenPy 8.5.3 Web build; SDK bundled resource",
+      "authorOrRightsHolder": "SDK distribution; specific media author unverified",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "not-recorded",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "usageReferences": []
+    },
+    {
+      "file": "apps/web/public/runtime/game/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+      "sha256": "41fc9811c45c31f1ab14bb7ac1ee3f28453de5566d87b9ece2b62bd7eafb6f0e",
+      "mediaType": "image",
+      "assetIds": [],
+      "provider": "RenPy SDK distribution",
+      "source": "RenPy 8.5.3 Web build; SDK bundled resource",
+      "authorOrRightsHolder": "SDK distribution; specific media author unverified",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "not-recorded",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "usageReferences": []
+    },
+    {
+      "file": "apps/web/public/runtime/game/assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+      "sha256": "506e37ef6986c68df15b56911d0b0cd72b6b8bf114a4a62ac1d4a3eb762f84f2",
+      "mediaType": "image",
+      "assetIds": [],
+      "provider": "RenPy SDK distribution",
+      "source": "RenPy 8.5.3 Web build; SDK bundled resource",
+      "authorOrRightsHolder": "SDK distribution; specific media author unverified",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "not-recorded",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "usageReferences": []
     },
     {
       "file": "apps/web/public/runtime/game/assets/legacy-18da4fc/BG-cottage-night.webp",
@@ -141562,6 +141694,57 @@
         }
       ],
       "derivedFrom": "apps/web/public/assets/audio/story-score/sfx-water.ogg"
+    },
+    {
+      "file": "renpy/responsive-spike/game/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+      "sha256": "513b895ddf687b714769387a3cc63a6bcb631c0ea2f80ecae4be4b24d5694239",
+      "mediaType": "image",
+      "assetIds": [],
+      "provider": "unknown",
+      "source": "unknown",
+      "authorOrRightsHolder": "unknown",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "not-recorded",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "usageReferences": []
+    },
+    {
+      "file": "renpy/responsive-spike/game/assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+      "sha256": "41fc9811c45c31f1ab14bb7ac1ee3f28453de5566d87b9ece2b62bd7eafb6f0e",
+      "mediaType": "image",
+      "assetIds": [],
+      "provider": "unknown",
+      "source": "unknown",
+      "authorOrRightsHolder": "unknown",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "not-recorded",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "usageReferences": []
+    },
+    {
+      "file": "renpy/responsive-spike/game/assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+      "sha256": "506e37ef6986c68df15b56911d0b0cd72b6b8bf114a4a62ac1d4a3eb762f84f2",
+      "mediaType": "image",
+      "assetIds": [],
+      "provider": "unknown",
+      "source": "unknown",
+      "authorOrRightsHolder": "unknown",
+      "license": "unknown",
+      "commercialUse": "unverified",
+      "redistribution": "unverified",
+      "attribution": "unverified",
+      "generationPlan": "not-recorded",
+      "replacementRequiredBeforeCommercialRelease": "review-required",
+      "replacementAssetId": null,
+      "usageReferences": []
     },
     {
       "file": "renpy/responsive-spike/game/assets/legacy-18da4fc/BG-cottage-night.webp",

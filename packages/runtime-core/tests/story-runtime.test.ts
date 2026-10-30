@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import {isRuntimeImagePath} from '@knolstory/runtime-contract';
+import {ASSET_CATALOG,resolveAsset} from '@knolstory/asset-registry';
 import { representativeStories } from '@knolstory/compatibility';
 import { advancePlayback, backPlayback, compileStoryScene, createPlayback, orderedLines, patchStoryLine, restorePlayback } from '../src/index';
 
@@ -8,7 +10,8 @@ describe('representative story compiler', () => {
       const scene = compileStoryScene(project, line.id, 1, { mode: 'edit' });
       expect(scene.dialogue.text).toBe(line.text);
       expect(scene.sceneId).toBe(`${project.id}/${line.id}`);
-      expect(scene.actors.every(a => a.imagePath?.startsWith('assets/legacy-18da4fc/'))).toBe(true);
+      expect(scene.actors.every(a => isRuntimeImagePath(a.imagePath))).toBe(true);
+      for(const actor of scene.actors)expect(ASSET_CATALOG.some(asset=>resolveAsset(asset.id)?.runtimePath===actor.imagePath)).toBe(true);
       if (line.flow?.type === 'choice') expect(scene.choices?.map(c => c.id)).toEqual(line.flow.options.map(c => c.id));
       expect(scene.presentation?.effects?.map(({originEntry:_origin,...cue})=>cue)??[]).toEqual(line.presentation?.effects?.map(cue=>({...cue,durationMs:cue.durationMs??(cue.type==='shake'?600:['crack','screen-crack'].includes(cue.type)?1800:800)}))??[]);
     }

@@ -6,7 +6,8 @@ import rabbit from '../../../tests/fixtures/stories/rabbit-classic.json';
 import { classicStories, getClassicStory } from '../src/classic-stories';
 import { parseStoryDocument, serializeStoryDocument } from '@knolstory/story-domain';
 import { advancePlayback, analyzeStoryFlow, compileStoryScene, createPlayback, orderedLines, restorePlayback } from '../../runtime-core/src/index';
-import { isRuntimeScene } from '../../runtime-contract/src/index';
+import {ASSET_CATALOG} from '../../asset-registry/src/index';
+import { isRuntimeImagePath,isRuntimeScene } from '../../runtime-contract/src/index';
 import { preflight } from '../../../apps/web/lib/workspace-storage';
 
 const originals = [
@@ -45,7 +46,7 @@ describe('fixed baseline original readings', () => {
       expect(isRuntimeScene(scene)).toBe(true);
       expect(scene.dialogue.text).toBe(cut.text);
       expect(scene.sceneId).toBe(`${project.id}/${cut.id}`);
-      expect(scene.actors.every(actor => actor.imagePath?.startsWith('assets/legacy-18da4fc/'))).toBe(true);
+      for(const actor of scene.actors){expect(isRuntimeImagePath(actor.imagePath)).toBe(true);expect(ASSET_CATALOG.some(asset=>asset.runtimePath===actor.imagePath)).toBe(true);}
       if (scene.background) expect(scene.background.imagePath.startsWith('assets/legacy-18da4fc/')).toBe(true);
     }
   });

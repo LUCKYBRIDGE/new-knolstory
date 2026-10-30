@@ -3,7 +3,6 @@ import fixtures from './stage-layout-baseline.json';
 import viewFixtures from './stage-view-baseline.json';
 import { resolveStageLayout,type LayoutActor } from '../src/stage-layout';
 import { stageShouldMirror,stageCharacterScale,stageSharedActor,stagePlacementClass } from '../src/stage-view';
-import { resolveAsset } from '@knolstory/asset-registry';
 describe('canonical baseline stage geometry',()=>{
   it.each(fixtures)('preserves frozen geometry and authored placement for $input.width / $input.actors.length actors',({input,expected})=>{
     const before=JSON.stringify(input);
@@ -11,6 +10,29 @@ describe('canonical baseline stage geometry',()=>{
     const {actors:oldActors,...oldRails}=expected;
     const {actors:newActors,...newRails}=actual;
     expect(newRails).toEqual(oldRails);
+    const automatic=input.actors.every(actor=>!('xAnchor' in actor)&&!('centered' in actor&&actor.centered));
+    const sharedFitChanged=automatic&&newActors.some((actor,index)=>actor.height!==oldActors[index].height);
+    if(sharedFitChanged){
+      // A crowded automatic cast now shares one fit across both sides. Compare
+      // to the source geometry, not the historical per-side shrink snapshot.
+      const sourceHeights=input.actors.map(actor=>Math.min(input.baseHeight*actor.scale,input.maxVisibleHeight/(actor.geometry.bottom-actor.geometry.top)));
+      const sharedFactor=newActors[0].height/sourceHeights[0];
+      expect(sharedFactor).toBeGreaterThan(0);expect(sharedFactor).toBeLessThanOrEqual(1);
+      for(const [index,actor] of newActors.entries()){
+        const previous=oldActors[index],source=input.actors[index];
+        const {height:_oh,width:_ow,visibleWidth:_ov,effectiveScale:_os,bottom:_ob,x:_ox,visibleLeft:_ol,visibleRight:_or,...oldIdentity}=previous;
+        const {height:_nh,width:_nw,visibleWidth:_nv,effectiveScale:_ns,bottom:_nb,x:_nx,visibleLeft:_nl,visibleRight:_nr,...newIdentity}=actor;
+        expect(newIdentity).toEqual(oldIdentity);
+        expect(actor.height/sourceHeights[index]).toBeCloseTo(sharedFactor,8);
+        expect(actor.width/actor.height).toBeCloseTo(source.geometry.width/source.geometry.height,8);
+        expect(actor.effectiveScale).toBeCloseTo(actor.height/input.baseHeight,8);
+        expect(actor.visibleWidth).toBeCloseTo(actor.width*(actor.alphaRight-actor.alphaLeft),8);
+        expect(actor.bottom).toBeCloseTo(Math.max(24,Math.ceil(input.baseHeight*.06))-actor.height*(1-source.geometry.bottom),8);
+        expect(actor.visibleLeft).toBeGreaterThanOrEqual(actual.safeLeft-1e-8);
+        expect(actor.visibleRight).toBeLessThanOrEqual(actual.safeRight+1e-8);
+      }
+      expect(JSON.stringify(input)).toBe(before);return;
+    }
     newActors.forEach((actor,index)=>{
       const previous=oldActors[index];
       // REFINE: default silhouette centers spread outward. Frozen legacy JSON remains evidence;
@@ -26,12 +48,19 @@ describe('canonical baseline stage geometry',()=>{
     });
     expect(JSON.stringify(input)).toBe(before);
   });
-  it.each(viewFixtures)('preserves baseline facing/framing and refines small-person readability for $id', fixture => {
+  it.each(viewFixtures)('preserves baseline facing/framing and uses canvas-relative child stature for $id', fixture => {
     expect(stagePlacementClass(fixture.id)).toBe(fixture.placement);
-    const asset=resolveAsset(fixture.id);
-    const small=asset?.group==='어린 자라'||asset?.story==='옹고집전'&&['아이','둘째 아이','막내 아이'].includes(asset.group)||asset?.story==='선녀와 나무꾼'&&asset.group==='두 아이';
-    const scale=small?.98*Math.min(1.15,Math.max(1,.82/((asset?.geometry?.bottom??.82)-(asset?.geometry?.top??0)))):fixture.scale;
-    expect(stageCharacterScale(fixture.id)).toBe(scale);
+    // Frozen baseline remains historical evidence. Current child artwork encodes
+    // stature in a shared canvas, including three source-preserving padded
+    // derivatives. A runtime child multiplier would shrink that artwork twice.
+    const canvasRelativeChildren=new Set([
+      'onggojib.character.child-pixel','onggojib.character.second-child-hesitant-pixel',
+      'onggojib.character.second-child-pixel','onggojib.character.youngest-child-cautious-pixel',
+      'onggojib.character.youngest-child-pixel','creative.character.onggojib-child-wave',
+      'creative.character.onggojib-child-listening','rabbit-turtle.character.turtle-child-unified-720x900',
+      'rabbit-turtle.character.turtle-child-flashback','seonnyeo.character.classic-children',
+    ]);
+    expect(stageCharacterScale(fixture.id)).toBe(canvasRelativeChildren.has(fixture.id)?1:fixture.scale);
     expect(stageSharedActor(fixture.id)).toBe(fixture.shared);
     expect(stageShouldMirror(fixture.id, 'left')).toBe(fixture.leftMirrored);
     expect(stageShouldMirror(fixture.id, 'right')).toBe(fixture.rightMirrored);

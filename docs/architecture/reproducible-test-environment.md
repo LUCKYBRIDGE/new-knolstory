@@ -250,3 +250,15 @@ pnpm delivery:preview --candidate .cache/pages-candidate --port 3000
 준비 명령은 원본 파일 바이트·서비스 경로를 보존하고 전체 다운로드용 묶음만 후보에서 제외한다. `manifest.json`과 권리 검사 결과는 서비스 루트 밖에 둔다. 미리보기는 루프백에서 두 저장 영역을 같은 출처로 제공하며 온라인 API는 없다. 파일/해시·Range·버전 캐시의 로컬 확인용이며 실제 Pages 응답이나 CDN 캐시를 대신하지 않는다. 미리보기 동안 후보 파일을 수정하지 않는다. 권리 검사 실패는 이 후보를 만든 것으로 해제되지 않는다.
 
 패키징 변경 후에는 `runtime:build → Web build → 후보 준비` 순서를 지키고, `.agents/skills/runtime-qa/SKILL.md`의 정적 전달 절차를 따른다. 현재 결과와 한계는 [패키지 축소 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)에서 확인한다.
+
+## 인물 상대 크기 파생 이미지 복원 — 2026-10-30
+
+고정 원본을 보유한 개발 환경에서 `python3 -m pip install Pillow==11.3.0`을 준비한다. 원본 그림의 권리가 새로 승인되는 것은 아니다. `restore-legacy-media.py`는 기록된 원본 해시를 확인한 뒤 어린 인물 파생본을 재생성하고 현재 카탈로그 해시·geometry를 대조한다. 원본이 이미 있는 환경에서는 다음 명령으로 파생본만 복원할 수 있다.
+
+```sh
+python3 scripts/prepare-character-stature-assets.py --restore --manifest .cache/character-stature-transform.json
+```
+
+`--restore`는 현재 카탈로그를 바꾸지 않는다. 해시·geometry가 다르면 도구/원본 차이를 확인하고, 정상 파일을 임의 새 버전으로 승인하지 않는다. 처음 변환 정책을 변경하는 개발 작업에서만 `--restore` 없이 실행하고 카탈로그·프로비넌스·실제 장면을 함께 검토한다. 파생 WebP도 원본의 배포 권리 경계를 상속하므로 비공개 미디어와 같은 방식으로 보관한다. 다른 컴퓨터에서 `env:prepare`를 사용할 때도 이 의존성과 원본이 필요하다.
+
+이미지 경로의 runtime contract를 변경하면 호스트 TypeScript만 빌드하지 않는다. `pnpm runtime:build → pnpm --filter @knolstory/web build`로 iframe 안의 생성 계약까지 맞춘 뒤 가로/세로 읽기·편집·파일 재열기를 확인한다. [현재 검증](evidence/character-relative-size-2026-10-30/fix-checkpoint.json).
