@@ -1,0 +1,184 @@
+{
+ "origin": "https://story.knolquiz.com",
+ "measuredAt": "2026-10-31T14:29:17.507Z",
+ "order": "ABBA",
+ "results": [
+  {
+   "label": "stored brotli copies (1)",
+   "libraryMs": 1948,
+   "storyMs": 26315,
+   "storyRequests": 15,
+   "storyTransferMB": 21.85,
+   "storyDecodedMB": 50.91,
+   "runtimeDownloadEndMs": 23580,
+   "afterDownloadToSceneMs": 2735,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 2407,
+     "endMs": 10421
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 2405,
+     "endMs": 10200
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 10440,
+     "endMs": 23580
+    },
+    "renpy.js": {
+     "transferKB": 87,
+     "decodedKB": 387,
+     "startMs": 574,
+     "endMs": 2397
+    }
+   },
+   "startedAt": "2026-10-31T14:27:13.594Z",
+   "acceptEncoding": "browser default"
+  },
+  {
+   "label": "br left out (2)",
+   "libraryMs": 2173,
+   "storyMs": 29343,
+   "storyRequests": 16,
+   "storyTransferMB": 34.68,
+   "storyDecodedMB": 50.8,
+   "runtimeDownloadEndMs": 26709,
+   "afterDownloadToSceneMs": 2634,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 5687,
+     "decodedKB": 21081,
+     "startMs": 1557,
+     "endMs": 11875
+    },
+    "renpy.data": {
+     "transferKB": 14705,
+     "decodedKB": 14704,
+     "startMs": 1555,
+     "endMs": 26578
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 11884,
+     "endMs": 26709
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 1027,
+     "endMs": 1547
+    }
+   },
+   "startedAt": "2026-10-31T14:27:42.250Z",
+   "acceptEncoding": "gzip, deflate, zstd"
+  },
+  {
+   "label": "br left out (3)",
+   "libraryMs": 1830,
+   "storyMs": 31802,
+   "storyRequests": 16,
+   "storyTransferMB": 34.79,
+   "storyDecodedMB": 50.92,
+   "runtimeDownloadEndMs": 29119,
+   "afterDownloadToSceneMs": 2683,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 5687,
+     "decodedKB": 21081,
+     "startMs": 1942,
+     "endMs": 11809
+    },
+    "renpy.data": {
+     "transferKB": 14705,
+     "decodedKB": 14704,
+     "startMs": 1940,
+     "endMs": 27376
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 11819,
+     "endMs": 29119
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 945,
+     "endMs": 1932
+    }
+   },
+   "startedAt": "2026-10-31T14:28:14.123Z",
+   "acceptEncoding": "gzip, deflate, zstd"
+  },
+  {
+   "label": "stored brotli copies (4)",
+   "libraryMs": 1788,
+   "storyMs": 27316,
+   "storyRequests": 16,
+   "storyTransferMB": 21.92,
+   "storyDecodedMB": 50.99,
+   "runtimeDownloadEndMs": 24673,
+   "afterDownloadToSceneMs": 2643,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 1912,
+     "endMs": 12913
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 1911,
+     "endMs": 10818
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 12928,
+     "endMs": 24673
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 509,
+     "endMs": 1905
+    }
+   },
+   "startedAt": "2026-10-31T14:28:48.138Z",
+   "acceptEncoding": "browser default"
+  }
+ ],
+ "progress": {
+  "events": 109,
+  "downloadEvents": 108,
+  "monotonic": true,
+  "lastDownloadRatio": 1,
+  "startAfterFirstEventMs": 20944,
+  "msFromFirstEventToShare": {
+   "25%": 5504,
+   "50%": 9850,
+   "75%": 15056,
+   "99%": 20827
+  },
+  "barSamples": 79,
+  "barValues": 77,
+  "barTexts": [
+   "놀스토리이야기 무대를 준비하고 있어요처음에는 조금 더 걸릴 수 있어요.시 한 구절 · 「서시」 · 윤동주오늘 밤에도 별이 바람에 스치운다.",
+   "놀스토리이야기 무대를 준비하고 있어요처음에는 조금 더 걸릴 수 있어요.무대 자료를 받고 있어요 · N%시 한 구절 · 「서시」 · 윤동주오늘 밤에도 별이 바람에 스치운다.",
+   "놀스토리이야기 무대를 준비하고 있어요처음에는 조금 더 걸릴 수 있어요.무대 자료를 받고 있어요 · N%독서의 한마디 · 프랜시스 베이컨 · 「학문에 관하여」독서는 사람을 풍부하게 하고, 대화는 민첩하게 하며, 글쓰기는 정확하게 한다.",
+   "놀스토리이야기 무대를 준비하고 있어요처음에는 조금 더 걸릴 수 있어요.무대 자료를 받고 있어요 · N%책 속 한 문장 · 『이상한 나라의 앨리스』 · 루이스 캐럴나는 대체 누구일까? 아, 그게 가장 큰 수수께끼야!",
+   "놀스토리이야기 무대를 준비하고 있어요처음에는 조금 더 걸릴 수 있어요.무대 자료를 받고 있어요 · N%놀스토리 이용 안내작품은 내 기기에 작품 파일로 저장해요. 온라인으로 보내는 것은 업로드예요.",
+   "놀스토리이야기 무대를 준비하고 있어요처음에는 조금 더 걸릴 수 있어요.무대를 열고 있어요놀스토리 이용 안내작품은 내 기기에 작품 파일로 저장해요. 온라인으로 보내는 것은 업로드예요.",
+   "놀스토리이야기 무대를 준비하고 있어요처음에는 조금 더 걸릴 수 있어요.무대를 열고 있어요시 한 구절 · 「서시」 · 윤동주오늘 밤에도 별이 바람에 스치운다."
+  ],
+  "screenshotAtPercent": 40
+ }
+}

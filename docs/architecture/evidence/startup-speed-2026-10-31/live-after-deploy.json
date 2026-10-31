@@ -1,0 +1,78 @@
+{
+ "origin": "https://story.knolquiz.com",
+ "measuredAt": "2026-10-31T14:23:52.689Z",
+ "results": [
+  {
+   "label": "first visit",
+   "libraryMs": 1884,
+   "storyMs": 29582,
+   "storyRequests": 15,
+   "storyTransferMB": 21.8,
+   "storyDecodedMB": 50.87,
+   "runtimeDownloadEndMs": 26821,
+   "afterDownloadToSceneMs": 2761,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 2182,
+     "endMs": 10463
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 2180,
+     "endMs": 8845
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 10483,
+     "endMs": 26821
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 1122,
+     "endMs": 2173
+    }
+   }
+  },
+  {
+   "label": "later visit",
+   "libraryMs": 1436,
+   "storyMs": 3600,
+   "storyRequests": 15,
+   "storyTransferMB": 0.11,
+   "storyDecodedMB": 50.84,
+   "runtimeDownloadEndMs": 1119,
+   "afterDownloadToSceneMs": 2481,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 0,
+     "decodedKB": 21081,
+     "startMs": 382,
+     "endMs": 859
+    },
+    "renpy.data": {
+     "transferKB": 0,
+     "decodedKB": 14704,
+     "startMs": 380,
+     "endMs": 734
+    },
+    "game.zip": {
+     "transferKB": 0,
+     "decodedKB": 13180,
+     "startMs": 919,
+     "endMs": 1119
+    },
+    "renpy.js": {
+     "transferKB": 0,
+     "decodedKB": 387,
+     "startMs": 294,
+     "endMs": 372
+    }
+   }
+  }
+ ]
+}

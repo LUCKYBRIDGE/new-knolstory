@@ -1,0 +1,21 @@
+{
+ "origin": "https://story.knolquiz.com",
+ "measuredAt": "2026-10-31T14:25:14Z (23:25 KST), after the deployment",
+ "method": "measurement/later-visits.spec.ts: one disk profile. First visit opens 선녀와 나무꾼 원작 (stores the 1,613-cut 놀스토리 edition as well); the browser is closed and reopened twice. firstScreenMs is from navigation to the end of '화면 불러오는 중'; longestTaskMs from a longtask PerformanceObserver; checks is the number of remembered fingerprints in knolstory-workspace-checks-v1.",
+ "before": "Same flow on the old code (live, 2026-10-31 evening): 5,217-5,686 ms to the first screen with one 4,775 ms task.",
+ "firstVisit": {"libraryMs": 2239, "storyMs": 29620},
+ "progressEvents": 115,
+ "progressFirstAndLast": [
+  {"protocol": 1, "type": "loadProgress", "stage": "download", "ratio": 0.00002715633868986023},
+  {"protocol": 1, "type": "loadProgress", "stage": "download", "ratio": 0.0074504629930549696},
+  {"protocol": 1, "type": "loadProgress", "stage": "download", "ratio": 0.010625828234414955},
+  {"protocol": 1, "type": "loadProgress", "stage": "download", "ratio": 0.02131309332862861},
+  {"protocol": 1, "type": "loadProgress", "stage": "download", "ratio": 0.9984762015295081},
+  {"protocol": 1, "type": "loadProgress", "stage": "download", "ratio": 1},
+  {"protocol": 1, "type": "loadProgress", "stage": "start"}
+ ],
+ "visits": [
+  {"label": "second visit (first start after the update: full check once, then remembered)", "firstScreenMs": 1071, "longestTaskMs": 474, "checks": 2},
+  {"label": "third visit (check remembered)", "firstScreenMs": 683, "longestTaskMs": 239, "checks": 2}
+ ]
+}

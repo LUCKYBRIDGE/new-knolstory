@@ -1,5 +1,7 @@
 # STATUS — current development state
 
+2026-10-31 시작 속도 개선: 사용자가 고른 네 가지를 main(5c30c60·b42613e·14c1a73)으로 만들어 Pages(5925234c)·Worker·운영 ingress에 배포했다. 작품을 한 번 연 뒤 다시 시작할 때 ‘화면 불러오는 중’이 5.2–5.7초(4.8초 멈춤)에서 1.1초(업데이트 뒤 첫 시작)·0.7초(그다음)로 줄었다(같은 검사의 반복 계산 제거·빌드별 검사 기억). Ren’Py 실행 파일 두 개를 미리 압축한 사본으로 보내 첫 이야기 열기의 전송량이 34.8MB에서 21.9MB로 줄었고, 같은 시간대 비교에서 26.3·27.3초 대 29.3·31.8초였다(이 Mac의 느린 회선). 무대 준비 화면에 실제로 받은 양을 보여 준다. 실제 주소에서 파일 1536개·핵심 해시 9개와 회귀 검사 20개가 통과했다. 글꼴 줄이기는 한자가 사라져 하지 않았다. 첫 열기에서 남은 가장 긴 구간은 실행 파일이 도착한 뒤에야 받기 시작하는 game.zip(13.2MB)이다. [측정·변경·검증·후속 근거](docs/architecture/evidence/startup-speed-2026-10-31/checkpoint.json).
+
 2026-10-31 사이트 이름: 사용자 승인으로 브라우저 탭 제목을 ‘놀스토리’, 설명을 ‘이야기를 읽고 직접 만드는 놀스토리’로 바꿨다(이전 실험 이름 대체). Pages(6a60fa95)와 운영 ingress를 같은 빌드로 갱신했고, story.knolquiz.com에서 새 제목과 파일 1534개·핵심 해시 7개를 확인했다. [근거](docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).
 
 2026-10-31 운영 도메인 연결: 사용자 승인으로 운영 DB를 백업하고 API·ingress를 main으로 갱신했다(migration 007, 자료 수 변화 없음, 휴지통 경로 응답 확인). 이어서 Workers 권한을 받아 정적 전달 Worker를 배포하고 story.knolquiz.com 경로를 붙였다(19:42, 하루 한도 초과 시 Mac mini가 응답하는 fail-open). 이제 story.knolquiz.com의 화면·그림·음원·Ren’Py 실행 파일은 Pages가, `/api`는 Mac mini가 응답한다. 실제 브라우저에서 파일 1534개와 핵심 해시 7개가 Pages 후보와 같았다. 카카오 로그인·업로드를 사람이 확인하는 일은 남아 있다. [갱신·연결·검증 근거](docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).

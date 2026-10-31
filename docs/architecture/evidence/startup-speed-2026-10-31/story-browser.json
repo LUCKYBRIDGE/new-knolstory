@@ -1,0 +1,34 @@
+{
+ "origin": "https://story.knolquiz.com",
+ "measuredAt": "2026-10-31 23:21 KST, after Pages 5925234c, Worker version 225ab00e-6eff-4100-8a9f-8237807ba9eb and the ingress rebuild",
+ "method": "measurement/browser-verify.mjs against the candidate .cache/pages-release-20261031e (local only): HEAD for every served file from a Chromium page on the origin, SHA-256 of the decoded body for the key files, and a 1 KiB Range request for the smallest WAV, OGG and MP3.",
+ "landingStatus": 200,
+ "sourceCommit": "14c1a732bc50bc3afcba12a4b3b82ac0b790185c",
+ "checked": 1536,
+ "retried": 0,
+ "unexpected": [],
+ "encodedSummary": {
+  "zstd": 81,
+  "br": 2,
+  "brPaths": ["runtime/renpy.data", "runtime/renpy.wasm"],
+  "note": "The two br answers are the stored copies from the Worker; the zstd answers are Cloudflare's own compression of text files."
+ },
+ "acaoValues": [null],
+ "hashes": [
+  {"path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp", "status": 200, "match": true},
+  {"path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp", "status": 200, "match": true},
+  {"path": "assets/characters/stature-v2/seonnyeo.character.classic-children.webp", "status": 200, "match": true},
+  {"path": "index.html", "status": 200, "match": true},
+  {"path": "runtime/game.zip", "status": 200, "match": true},
+  {"path": "runtime/index.html", "status": 200, "match": true},
+  {"path": "runtime/renpy.data", "status": 200, "match": true},
+  {"path": "runtime/renpy.wasm", "status": 200, "match": true},
+  {"path": "runtime/runtime-contract.js", "status": 200, "match": true}
+ ],
+ "ranges": [
+  {"path": "assets/audio/step.wav", "status": 200, "bytes": 22094, "contentRange": null, "acceptRanges": null, "wholeFileMatch": true, "firstBytesMatch": true},
+  {"path": "assets/audio/cc0/kenney-interface/v1/click-002.ogg", "status": 200, "bytes": 4275, "contentRange": null, "acceptRanges": null, "wholeFileMatch": true, "firstBytesMatch": true},
+  {"path": "assets/audio/pixabay/352704.mp3", "status": 200, "bytes": 71424, "contentRange": null, "acceptRanges": null, "wholeFileMatch": true, "firstBytesMatch": true}
+ ],
+ "success": true
+}

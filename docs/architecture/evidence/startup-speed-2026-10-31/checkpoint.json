@@ -2,8 +2,9 @@
   "date": "2026-10-31",
   "scope": "The user's report that loading works at the start felt too slow: measurement on story.knolquiz.com, the two causes found, and the approved fixes A1 (same check, less computation), A2 (remember checks per build), B1 (brotli transport copies) and B4 (real download progress). B2 (font subsetting) was measured and not done. Not a release judgement, a physical school device test or a screen reader test.",
   "provenance": {
-    "recordedBy": "Kiro, 2026-10-31 21:00-23:20 KST, on the Mac mini that also serves production.",
-    "localOnly": "Measurement scripts are in .cache/perf-check/ and .cache/edge-verify/ (Git-ignored, this machine only)."
+    "recordedBy": "Kiro, 2026-10-31 21:00-23:50 KST, on the Mac mini that also serves production.",
+    "scripts": "The measurement specs, the live regression set and the deployment browser check used here are kept in measurement/ (copied from the Git-ignored .cache/perf-check and .cache/edge-verify of this machine; paths adjusted, otherwise unchanged). Run them from the repository root; results go to .cache/ again.",
+    "localOnly": "The deployed candidate .cache/pages-release-20261031e and the raw Playwright output folders exist only on this machine."
   },
   "userDecision": "After the diagnosis the user chose A1, A2, B1 and B4, and asked how many characters B2 would remove, to skip it if the difference was not big ('a1,2 하고 b1하고 b2는 글꼴 몇개나 빠지려고? 차이가 크지않다 판단되면 b2는 하지말자 b4도 해줘').",
   "before": {
@@ -42,5 +43,37 @@
     "browserSpecs": "18 of 18 of the live set passed on the local build (relative stature, three/four actors, work files, eight native entries, OGG/MP3 background music, source ranges, audio preview in both range modes, editing return, contrast). tests/e2e/stage-loading-progress.spec.ts 2 of 2 at 1440x900 and 390x844.",
     "unitAndScripts": "vitest 255 files, 2,182 passed, 2 skipped (CI set); Python script tests 162 OK."
   },
-  "liveAfterDeploy": "Pending: recorded after the commit, CI and deployment."
+  "liveAfterDeploy": {
+    "deployment": {
+      "commits": "5c30c60 (B1), b42613e (B4; by a staging mistake it also carries A1 and A2, recorded in 14c1a73), 14c1a73 (records). main CI run 41208883074 success.",
+      "candidate": ".cache/pages-release-20261031e (local only): source 14c1a732bc50bc3afcba12a4b3b82ac0b790185c, 1,537 files, 592,638,728 bytes. SHA-256 manifest.json 4c8bc0f0104ab188911821b54126dce5de945084ec333c399dd6f0c49ba3de2a, index.html 9608c8ba14f8bc965274a97f3217e6477a0e6fbd6ffd18ab5bf6945704917ced, runtime/index.html 28af08f2230b725c5d6b869b3ff17994e0a503283c7157c9e5e16ffdc236d3a5. The static delivery audit reviews the two .br copies as their runtime bundle sources (5 runtime-bundle-review-required in total, as the policy expects).",
+      "pages": "wrangler pages deploy to the project new-knolstory, deployment 5925234c (31 files uploaded, 1,505 already present). No --force.",
+      "worker": "knolstory-story-edge version 225ab00e-6eff-4100-8a9f-8237807ba9eb, replacing 365bcde3-70e3-4380-b77f-5a922bf6da9a (19:42). The route story.knolquiz.com/* stayed attached; fail-open unchanged.",
+      "ingress": "API and ingress images rebuilt from the same main. The previous images are tagged knolstory-next-api:rollback-20261031c and knolstory-next-ingress:rollback-20261031c. The API restarted for a few seconds. The ingress /site/index.html has the same SHA-256 as Pages and the ingress also has renpy.data.br."
+    },
+    "delivery": {
+      "curl": "With Accept-Encoding br: renpy.data 200, content-encoding br, 3,749,251 bytes, identical to renpy.data.br; renpy.wasm br, 4,191,788 bytes, application/wasm. The very first request right after the Worker deploy still got the identity file, presumably before the new version reached that edge. Without br: renpy.data 15,057,379 bytes, equal to the original. A Range request with br gets the identity file (200). /api/v1/auth/config 200, /api/v1/me 401 without a session.",
+      "browser": "story-browser.json: 1,536 served files, none unexpected, 9 of 9 key hashes equal including the decoded renpy.data and renpy.wasm. 2 br answers (the stored copies) and 81 zstd answers (Cloudflare's own text compression)."
+    },
+    "firstStoryOpen": {
+      "method": "measurement/persistent.spec.ts and measurement/ab-encoding.spec.ts: empty disk profile, Chromium 1280x800, from the click on the first built-in story to the first rendered Ren'Py scene, on this Mac's line.",
+      "beforeDeploy": "23:17 KST, old deployment: 33.0 s, 34.81 MB (live-before-deploy.json).",
+      "sameTimeComparison": "23:27-23:29 KST, order ABBA (live-ab-encoding.json). With the stored brotli copies: 26.3 s and 27.3 s, 21.85 and 21.92 MB. With br left out (Accept-Encoding gzip, deflate, zstd: renpy.data uncompressed as before; renpy.wasm 5,687 KB from Cloudflare, the size the old deployment sent): 29.3 s and 31.8 s, 34.68 and 34.79 MB. About 3.8 s (12%) faster with 12.8 MB (37%) less.",
+      "otherSamples": "Single runs after the deploy: 29.6 s (23:23, live-after-deploy.json), 29.6 s (23:25, first visit in live-returning-start.json) and 23.3, 29.1, 25.1 and 26.5 s (23:41-23:42, the C1 experiment below, whose change did not take effect). Single runs move by several seconds with the line, so compare same-time runs.",
+      "whyNotMore": "game.zip (13.2 MB, unchanged) is requested only after renpy.wasm has arrived (renpy-pre.js loadGameZip after the wasm instantiates). With the copies the wasm arrives at 9-13 s, and then game.zip downloads alone for 12-16 s (about 0.8-1.2 MB/s). Without the copies renpy.data and game.zip shared the connection and the total rate was higher (about 1.3 MB/s against 0.9-1.0 MB/s), so the saved bytes did not turn into the same share of time. game.zip is now the critical path.",
+      "engineAfterDownload": "2.6-2.8 s from the last runtime byte to the first scene, unchanged."
+    },
+    "returningStart": "live-returning-start.json: after one story was opened, the next start leaves '화면 불러오는 중' after 1,071 ms (first start after the update: full check once, longest task 474 ms) and then 683 ms (check remembered, longest task 239 ms). Before: 5,217-5,686 ms with one 4,775 ms task. In the persistent runs the later visit reached the library in 1,436 ms against 6,089 ms before.",
+    "laterStoryOpen": "Story open after closing and reopening the browser (files in the disk cache): 3.6 s after against 3.0 s before, one run each (0.11 and 0.19 MB). In the after run the revalidation of all three runtime files took longer, including the unchanged game.zip (200 ms against 75 ms), so it is not attributed to the br copies. measurement/ab-later.spec.ts (same time, with and without br) is written but not run.",
+    "progress": "live-ab-encoding.json: 108 download events, never decreasing, ratio 1 and then start. From the first event the share passed 25% at 5.5 s, 50% at 9.9 s, 75% at 15.1 s and 99% at 20.8 s, start at 20.9 s, so the transfer-size weights give an even pace. The host bar showed 77 distinct values with '무대 자료를 받고 있어요 · N%', then '무대를 열고 있어요'. live-stage-progress.png is the live screen at 40%. Another run sent 115 events (live-returning-start.json).",
+    "liveSpecs": "measurement/live-set.playwright.config.ts on story.knolquiz.com, 23:32-23:38 KST: 20 of 20 passed in 6.3 min. remote 8 (relative stature at 1280 and 390, three and four automatic actors, KnolStory and ShortStory downloaded work files without server or browser storage, eight native entries without an API, OGG and MP3 background music across cuts), audio 3 (source range end in native playback, standalone previews with server ranges and with full-file responses), editor 7 (editing return at 1440x900, 390x844 and 844x390, keyboard return while the runtime is unavailable, no editing return from the library, bright-stage and white-card contrast), progress 2 (stage loading progress at 1440x900 and 390x844, fake runtime page on the deployed host)."
+  },
+  "followUps": [
+    "C1, a proposal the user has not decided: start game.zip together with renpy.wasm and renpy.data. game.zip is now the critical path, so this should save several seconds on a slow line; the size of the saving is not measured. A first experiment had no effect: an init script meant to start game.zip in the runtime frame and hand that response to the engine ran only for the frame's initial about:blank document, not for /runtime/ (Pages answers /runtime/index.html with 308 to /runtime/). A working experiment needs another injection point, for example the runtime page served through a Playwright route with one extra script. A product change would sit in the runtime page or the bridge, must count B4 progress from the early request, and must leave renpy-pre.js unchanged.",
+    "B2 stays not done (user decision). Since game.zip is now the critical path, its 3.36 MB would be about 3 s on this line, but Hanja would disappear from any work.",
+    "The stage loading overlay lets about 3% of the runtime frame show at its edges: its outer gradient stop is var(--story-menu-bg), rgba(17,34,35,.97). Ren'Py's own 'Downloading ...' box and the runtime page's loading text are faintly visible under the host progress (live-stage-progress.png, contrast-boosted). The 2026-10-20 evidence story-loading-live-2026-10-20/actual-reader-loading.png shows the same, so it predates this change. Candidate fix: an opaque outer stop for the stage overlay. Not done.",
+    "Later story open 3.0 s against 3.6 s (single runs): run measurement/ab-later.spec.ts to settle it.",
+    "From the cutover: the user's own Kakao login and upload on story.knolquiz.com through the Worker are still unchecked."
+  ],
+  "limits": "Only this Mac's line (about 1 MB/s per stream, edge NRT/HKG) and Chromium. The decoded-byte counting for renpy.data follows Chromium's XHR behaviour; Firefox and Safari were not measured. Not a school network, a target device, a screen reader check of the new progressbar or a release judgement."
 }
