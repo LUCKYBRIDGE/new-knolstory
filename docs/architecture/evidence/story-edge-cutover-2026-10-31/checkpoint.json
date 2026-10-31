@@ -106,7 +106,7 @@
   },
   "observations": [
     "One Homebrew cloudflared process on this Mac receives its tunnel token on the command line, where any local process list shows it; which hostnames that tunnel serves was not checked. The knolstory-stg tunnel already uses --token-file. The token was not recorded anywhere.",
-    "Between 18:44 and 19:04 KST, outside this session, the guard-shell and guard-write hooks were set to enabled: false and three knolart hooks (art-*.json) appeared in this repository's .kiro/hooks. They are left uncommitted for the user to decide.",
+    "Between 18:44 and 19:04 KST, outside this session, the guard-shell and guard-write hooks were set to enabled: false and three knolart hooks (art-*.json) appeared in this repository's .kiro/hooks. The knolart hooks were removed again at 19:58 KST, also outside this session. The disabled hooks are left uncommitted for the user to decide.",
     "Ego lite reports an available update (current 0.6.1.13); not installed without the user's approval."
   ],
   "next": [
