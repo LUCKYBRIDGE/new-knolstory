@@ -18,7 +18,7 @@ jobs:
       - run: pnpm docs:check
       - run: pnpm test:docs
       # Fixed source-art transforms are tested without publishing the private media corpus.
-      - run: python3 -m pip install --disable-pip-version-check Pillow==11.3.0
+      - run: python3 -m pip install --disable-pip-version-check Pillow==11.3.0 fonttools==4.60.2
       - run: pnpm test:scripts
       - run: pnpm audit --prod --audit-level=moderate
       - run: pnpm typecheck

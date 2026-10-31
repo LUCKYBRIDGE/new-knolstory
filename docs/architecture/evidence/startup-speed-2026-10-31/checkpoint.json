@@ -4,7 +4,7 @@
   "provenance": {
     "recordedBy": "Kiro, 2026-10-31 21:00 to 2026-11-01 00:50 KST, on the Mac mini that also serves production.",
     "scripts": "The measurement specs, the live regression set and the deployment browser check used here are kept in measurement/ (copied from the Git-ignored .cache/perf-check and .cache/edge-verify of this machine; paths adjusted, otherwise unchanged). Run them from the repository root; results go to .cache/ again.",
-    "localOnly": "The deployed candidate .cache/pages-release-20261031e and the raw Playwright output folders exist only on this machine."
+    "localOnly": "The deployed candidate .cache/pages-release-20261031e and the raw Playwright output folders exist only on this machine. Screenshots in this folder (live-stage-progress.png) are Git-ignored by repository policy because they contain legacy art; they stay on this machine."
   },
   "userDecision": "After the diagnosis the user chose A1, A2, B1 and B4, and asked how many characters B2 would remove, to skip it if the difference was not big ('a1,2 하고 b1하고 b2는 글꼴 몇개나 빠지려고? 차이가 크지않다 판단되면 b2는 하지말자 b4도 해줘').",
   "before": {

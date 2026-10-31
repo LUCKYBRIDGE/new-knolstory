@@ -1,0 +1,392 @@
+{
+ "sides": {
+  "old": "http://127.0.0.1:3150",
+  "new": "http://127.0.0.1:3151"
+ },
+ "measuredAt": "2026-10-31T16:44:33.773Z",
+ "report": [
+  {
+   "id": "phone-portrait-short",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 422,
+     "over64": 0,
+     "max": 48
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-sentences",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 2890,
+     "over64": 23,
+     "max": 127
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-numbers-latin",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 2873,
+     "over64": 4,
+     "max": 67
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-punctuation",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 1218,
+     "over64": 2,
+     "max": 86
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-paragraphs",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 2399,
+     "over64": 9,
+     "max": 82
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-long",
+   "pages": {
+    "old": 4,
+    "new": 4
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 4195,
+     "over64": 77,
+     "max": 126
+    },
+    {
+     "pixels": 329160,
+     "changed": 4256,
+     "over64": 77,
+     "max": 126
+    },
+    {
+     "pixels": 329160,
+     "changed": 4256,
+     "over64": 77,
+     "max": 126
+    },
+    {
+     "pixels": 329160,
+     "changed": 4200,
+     "over64": 76,
+     "max": 126
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-jamo-kana",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 788,
+     "over64": 4,
+     "max": 86
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-emoji",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 1757,
+     "over64": 8,
+     "max": 83
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-hanja",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 1901,
+     "over64": 808,
+     "max": 210
+    }
+   ]
+  },
+  {
+   "id": "phone-portrait-choices",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 329160,
+     "changed": 1589,
+     "over64": 6,
+     "max": 133
+    }
+   ]
+  },
+  {
+   "id": "desktop-short",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 730,
+     "over64": 3,
+     "max": 86
+    }
+   ]
+  },
+  {
+   "id": "desktop-sentences",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 5153,
+     "over64": 96,
+     "max": 105
+    }
+   ]
+  },
+  {
+   "id": "desktop-numbers-latin",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 5260,
+     "over64": 33,
+     "max": 152
+    }
+   ]
+  },
+  {
+   "id": "desktop-punctuation",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 2592,
+     "over64": 275,
+     "max": 210
+    }
+   ]
+  },
+  {
+   "id": "desktop-paragraphs",
+   "pages": {
+    "old": 2,
+    "new": 2
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 2767,
+     "over64": 64,
+     "max": 118
+    },
+    {
+     "pixels": 921600,
+     "changed": 1968,
+     "over64": 23,
+     "max": 97
+    }
+   ]
+  },
+  {
+   "id": "desktop-long",
+   "pages": {
+    "old": 4,
+    "new": 4
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 7553,
+     "over64": 187,
+     "max": 175
+    },
+    {
+     "pixels": 921600,
+     "changed": 7694,
+     "over64": 194,
+     "max": 175
+    },
+    {
+     "pixels": 921600,
+     "changed": 7694,
+     "over64": 194,
+     "max": 175
+    },
+    {
+     "pixels": 921600,
+     "changed": 7569,
+     "over64": 190,
+     "max": 175
+    }
+   ]
+  },
+  {
+   "id": "desktop-jamo-kana",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 1404,
+     "over64": 8,
+     "max": 152
+    }
+   ]
+  },
+  {
+   "id": "desktop-emoji",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 3073,
+     "over64": 69,
+     "max": 171
+    }
+   ]
+  },
+  {
+   "id": "desktop-hanja",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 4062,
+     "over64": 2429,
+     "max": 210
+    }
+   ]
+  },
+  {
+   "id": "desktop-choices",
+   "pages": {
+    "old": 1,
+    "new": 1
+   },
+   "samePageBoundaries": true,
+   "sameGeometry": true,
+   "pixels": [
+    {
+     "pixels": 921600,
+     "changed": 3653,
+     "over64": 123,
+     "max": 185
+    }
+   ]
+  }
+ ],
+ "note": "Screenshots were written to .cache/font-compare (local only); stage-font-punctuation.png and stage-font-hanja.png are kept here."
+}

@@ -9,7 +9,12 @@ import subprocess
 from loading import brand_loading_html
 from pixel_budget import cap_runtime_pixel_ratio
 from asset_versions import version_runtime_html
+from placeholders import shrink_placeholders
+from stage_font import write_stage_font
 from transport import embed_transfer_info, transfer_info, write_brotli_copies
+
+# Reviewed output of stage_font.py for the pinned source font and fontTools version.
+STAGE_FONT_SHA256 = 'f934737fbbde38eebe52d002c8fd898e830bfba1778676e38c3b0c4283fa94c9'
 
 ROOT = Path(__file__).resolve().parents[2]
 subprocess.run(['python3', str(ROOT / 'scripts/check-service-audio.py'), '--source-only'], check=True)
@@ -38,7 +43,11 @@ if not font.exists():
     raise SystemExit('Download the OFL NotoSansKR font as documented in spikes/renpy-web/README.md.')
 if hashlib.sha256(font.read_bytes()).hexdigest() != '194018e6b2b293a7964f037b25c0249ce1418bc9ab3c971060a03aa57861e252':
     raise SystemExit('Unexpected NotoSansKR font checksum; review font upgrade explicitly.')
-shutil.copy2(font, project / 'game/NotoSansKR.ttf')
+# The stage draws the 'regular' instance only and the service uses no Hanja (user decision 2026-11-01).
+stage_font = write_stage_font(font, project / 'game/NotoSansKR.ttf')
+if hashlib.sha256((project / 'game/NotoSansKR.ttf').read_bytes()).hexdigest() != STAGE_FONT_SHA256:
+    raise SystemExit('Unexpected stage font checksum; review the spikes/renpy-web/stage_font.py output explicitly.')
+print(f"Stage font: {stage_font['characters']} characters ({stage_font['hangulSyllables']} Hangul syllables), {stage_font['hanjaRemoved']} Hanja left out, {stage_font['bytes']} bytes")
 shutil.copy2(ROOT / 'spikes/renpy-web/FONT-LICENSE.txt', project / 'game/NotoSansKR-LICENSE.txt')
 # One shared asset corpus, never a story-specific runtime package.
 assets = ROOT / 'apps/web/public/assets'
@@ -53,6 +62,9 @@ if assets.exists():
     shutil.copytree(assets, project / 'game/assets', ignore=ignore_service_assets)
 env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy')
 subprocess.run(['bash', str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
+# 64-colour placeholders (user decision 2026-11-01), before transfer sizes and content versions are read.
+placeholder_sizes = shrink_placeholders(output / 'game.zip')
+print(f"Placeholders: {placeholder_sizes['placeholders']} files, {placeholder_sizes['bytesBefore']} -> {placeholder_sizes['bytesAfter']} bytes")
 # Bound the SDL framebuffer density, not browser DPR or authored coordinates.
 engine_js = output / 'renpy.js'
 engine_js.write_text(cap_runtime_pixel_ratio(engine_js.read_text()))
