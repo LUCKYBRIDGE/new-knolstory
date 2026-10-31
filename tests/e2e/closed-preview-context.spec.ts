@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+// The phone fullscreen offer (2026-10-29) is covered by its own spec; here it would cover the editor at 390px.
+test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 for(const target of ['audio','direction'])for(const viewport of [{width:390,height:844},{width:844,height:390},{width:768,height:1024},{width:1280,height:800}])test(`closed ${target} details keep return focus visible ${viewport.width}`,async({page},info)=>{
  await page.setViewportSize(viewport);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const id=await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue(),before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
  const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();await page.getByRole('checkbox',{name:target==='audio'?'음향 편집 사용':'연출 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption(target);

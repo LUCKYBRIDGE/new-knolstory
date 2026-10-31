@@ -1,5 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
+// The phone fullscreen offer (2026-10-29) is covered by its own spec; here it would cover the editor at 390px.
+test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 async function openDirection(page:Page){
  const position=page.getByLabel('현재 장과 컷 이동',{exact:true}),id=await position.inputValue();const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const settings=page.getByText('편집 설정',{exact:true}).locator('..');if(!await settings.evaluate(el=>(el as HTMLDetailsElement).open))await settings.locator(':scope>summary').click();await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('direction');const row=page.getByTestId(`editing-cut-${id}`),detail=row.locator('details').filter({has:page.getByText('1컷 연출 수정',{exact:true})});if(!await detail.evaluate(el=>(el as HTMLDetailsElement).open))await detail.locator(':scope>summary').click();return row;
 }

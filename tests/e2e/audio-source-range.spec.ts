@@ -2,6 +2,8 @@ import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+// The phone fullscreen offer (2026-10-29) is covered by its own spec; here it would cover the editor at 390px.
+test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 const base=createBlankStoryProject({id:'source-range',chapterId:'ch',lineId:'a',title:'원본 사용 구간'}),project={...base,lines:base.lines.map(line=>({...line,text:'원본은 보존하며 선택한 구간만 재생합니다.',audio:{music:{action:'play' as const,assetId:'audio:music:forest',loop:false}}}))};
 test('invalid audio end draft blocks file shortcut until corrected',async({page})=>{
  await page.addInitScript(()=>{const root=window as unknown as {rangeFile:{picks:number;writes:number;contents:string};showSaveFilePicker:()=>Promise<unknown>};root.rangeFile={picks:0,writes:0,contents:''};root.showSaveFilePicker=async()=>{root.rangeFile.picks++;return {name:'audio-range.knolstory',getFile:async()=>({text:async()=>root.rangeFile.contents}),createWritable:async()=>({write:async(text:string)=>{root.rangeFile.writes++;root.rangeFile.contents=text;},close:async()=>{},abort:async()=>{}})};};});
