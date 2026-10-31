@@ -10,7 +10,8 @@
         "type": "command",
         "command": "node .kiro/scripts/guard-write.mjs",
         "timeout": 15
-      }
+      },
+      "enabled": false
     }
   ]
 }

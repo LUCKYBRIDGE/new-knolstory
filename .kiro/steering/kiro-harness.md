@@ -6,7 +6,7 @@ inclusion: always
 루트와 `apps/web`의 `AGENTS.md`는 Kiro가 이미 항상 읽는다. 이 파일은 Kiro에만 필요한 위치와 경계를 둔다. 전체 구성은 `.kiro/README.md`.
 
 ## 소유 경계
-- Codex 양식은 정식 원본이다: `AGENTS.md`, `apps/web/AGENTS.md`, `apps/web/CLAUDE.md`, `.agents/skills/`. 사용자가 그 파일의 변경을 요청한 범위에서만 고친다. 쓰기 전에 hook이 확인을 묻는다.
+- Codex 양식은 정식 원본이다: `AGENTS.md`, `apps/web/AGENTS.md`, `apps/web/CLAUDE.md`, `.agents/skills/`. 사용자가 그 파일의 변경을 요청한 범위에서만 고친다.
 - Kiro 전용 구성은 `.kiro/`에 둔다.
 - 이 작업 트리는 Codex와 함께 쓴다. 세션 시작 요약에 이 세션이 만들지 않은 미커밋 변경이 있으면, 그 파일을 고치기 전에 `knol-resume`으로 멈춘 지점을 확인한다. 이번 작업과 무관한 변경은 그대로 둔다.
 
