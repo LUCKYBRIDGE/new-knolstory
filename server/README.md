@@ -457,7 +457,9 @@ editing. The production DB retains the validation account and document. Original
 legacy Docker resources, staging Pages/Worker and SSH access are still preserved;
 permanent deletion requires the exact final inventory confirmation.
 
-## story.knolquiz.com 정적 전달 Worker (2026-10-31 준비, 미배포)
+## story.knolquiz.com 정적 전달 Worker (2026-10-31 연결)
+
+2026-10-31 19:42 KST에 아래 순서로 연결했다. 이전 이미지는 `knolstory-next-api:rollback-20261031`, `knolstory-next-ingress:rollback-20261031` 태그로 남겼고, 갱신 전 DB 백업은 `~/.local/share/knolstory-next-production/backups/20261031-193223/`에 있다.
 
 [ADR0026 연결 방식](../docs/decisions/0026-static-reading-authoring-and-optional-api.md#운영-도메인-연결-방식--2026-10-31)의 구현이다. `operations/story-edge-worker.mjs`는 `/api`·`/api/` 밖의 GET/HEAD를 Pages `new-knolstory`에서 가져오고, 그 밖의 요청은 손대지 않고 zone origin(Tunnel → 위 ingress)으로 보낸다. Pages로는 cookie·인증 헤더를 보내지 않으며 요청 경로가 다른 호스트를 고르지 못하게 한다.
 

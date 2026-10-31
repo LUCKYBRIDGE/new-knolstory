@@ -1,8 +1,8 @@
 {
   "date": "2026-10-31",
-  "scope": "Main CI security-audit fix, Pages redeploy from the fixed main, the story.knolquiz.com cutover design and Worker code, and the production API compatibility check that gates the cutover. The cutover itself was not performed: no Worker, route, DNS, Tunnel, API image or database was changed.",
+  "scope": "Main CI security-audit fix, Pages redeploy from the fixed main, the production API compatibility check, the production API/ingress update, and the story.knolquiz.com cutover (19:42 KST): static reads now come from Cloudflare Pages through an edge Worker and /api stays on the Mac mini. DNS and the Tunnel were not changed. Not a rights approval, a full release judgement, or a test of Kakao login and upload by a person.",
   "provenance": {
-    "recordedBy": "Kiro, 2026-10-31 19:10 KST, on the primary development Mac mini that also runs the production containers.",
+    "recordedBy": "Kiro, 2026-10-31 19:10 KST (preparation) and 19:55 KST (update and cutover), on the primary development Mac mini that also runs the production containers.",
     "localOnly": ".cache/pages-release-20261031b, .cache/edge-verify, .cache/compat-check and /tmp/knol-prod-api are Git-ignored or outside the checkout and exist only on this machine."
   },
   "ciFix": {
@@ -66,18 +66,52 @@
     "measuredRequests": "On pages.dev with an empty browser cache (.cache/edge-verify/request-count.spec.ts, 2026-10-31 19:20 KST): first visit to the library 35 requests (4 of them /api), the first built-in story with five advances 27, a full editor page load 32. About 94 requests for that session, so the free limit covers roughly a thousand such sessions a day; longer stories add requests for each new picture and sound.",
     "rollback": "node server/operations/story-edge-route.mjs detach. Traffic returns to the Mac mini origin immediately; the Worker script can stay."
   },
-  "blocked": {
-    "workerDeploy": "wrangler deploy failed at GET /workers/scripts/knolstory-story-edge/secrets: 'No access to the specified resource'. The stored wrangler OAuth login only has user:read, offline_access, account:read, pages:write and zone:read. Deploying needs workers_scripts:write and the route needs workers_routes:write. Nothing was created. An earlier note that this login had Workers scopes was wrong.",
-    "localDev": "wrangler dev could not start workerd on this machine (spawn error -88), so the Worker was not run in workerd before deployment."
+  "permissions": {
+    "firstAttempt": "19:00 KST: wrangler deploy failed at GET /workers/scripts/knolstory-story-edge/secrets ('No access to the specified resource'). The stored wrangler OAuth login only had user:read, offline_access, account:read, pages:write and zone:read. Nothing was created. An earlier note that this login had Workers scopes was wrong.",
+    "approval": "The user approved adding Workers script and route edit permissions and the production API/ingress update ('진행' in chat, before the 19:31 KST login).",
+    "loginAttempts": "Two wrangler logins that opened the default browser (ego lite) timed out: wrangler closes its localhost:8976 callback after 120 seconds, and the user's approval arrived after that. The third run used `wrangler login --browser=false --scopes account:read user:read pages:write zone:read workers_scripts:write workers_routes:write`; Kiro opened the printed link in an ego lite agent task space, checked that the consent page listed exactly the approved set (User Read, Background Access, Account read, three Developer Platform permissions, one DNS & Zones read) for the user's own account, and pressed Authorize at about 19:41 KST.",
+    "result": "Saved scopes: user:read, offline_access, account:read, pages:write, zone:read, workers_scripts:write, workers_routes:write. The token stays in wrangler's own config file and was never printed.",
+    "localDev": "wrangler dev could not start workerd on this machine (spawn error -88), so the Worker was not run in workerd before deployment; the unit tests and the live checks below cover it."
+  },
+  "productionUpdate": {
+    "backup": "19:32 KST, before any change: pg_dump custom format of knolstory_next_production, 45,622 bytes, sha256 9024cdfaab2fd53874b1b7d75d1f2f72fe973ab897921146ccf7ef64c8bde201, 10 table-data entries, in ~/.local/share/knolstory-next-production/backups/20261031-193223/ (directory 0700, file 0600, this Mac only).",
+    "rollbackImages": "knolstory-next-api:rollback-20261031 (f8690cfc93f8, 2026-10-17) and knolstory-next-ingress:rollback-20261031 (1a4544ff0201) tag the images that were running.",
+    "migrationCheck": "The production journal sha256 of migrations 001-006 equals the repository files.",
+    "commands": "node server/operations/production-compose.mjs build, then migrate, then start (19:33-19:37 KST). Migration 007 applied; the journal now lists 1-7. api and ingress were recreated on the new images and reported healthy; db was not restarted.",
+    "dataBeforeAndAfter": "Row counts unchanged: accounts 1, identities 1, sessions 5, private_documents 1, records 1, document_creations 1. The one document has state_version 1 and is not in the trash.",
+    "checks": "Before the Worker route, through the Tunnel: story.knolquiz.com/ HTML sha256 7ab312be5a39… equals Pages; /api/v1/auth/config 200; /api/v1/me 401; /api/v1/documents 401; GET ?state=trash and POST /{id}/trash now 401 SESSION_REQUIRED (trash routes present); Kakao start 302 with redirect_uri https://story.knolquiz.com/api/v1/auth/kakao/callback.",
+    "rollback": "Re-tag the rollback images as :production and run production-compose.mjs start. Migration 007 only adds columns and a table, so the 2026-10-17 API keeps serving; its /health/ready reports not ready because it expects six journal rows (Compose health uses /health/live). Restoring the backup is only for data damage and would discard later writes."
+  },
+  "cutover": {
+    "worker": "wrangler deploy --config server/operations/story-edge.wrangler.toml at 19:42 KST: script knolstory-story-edge, version 365bcde3-70e3-4380-b77f-5a922bf6da9a, 3.18 KiB, no route, no workers.dev URL.",
+    "route": "19:42:54 KST, story-edge-route.mjs attach: story.knolquiz.com/* → knolstory-story-edge with request_limit_fail_open true. story-next.knolquiz.com has no route and still answers 308 to story.knolquiz.com.",
+    "servedBy": "A byte-range request for /assets/audio/step.wav answered 206 with accept-ranges from the Mac mini ingress before the route, and 200 with x-frame-options: SAMEORIGIN from Pages after it, on three repeated requests. The home page now carries Pages' referrer-policy and x-frame-options and no access-control-allow-origin.",
+    "api": "After the route: /api/v1/auth/config 200, /api/v1/me 401, trash list and trash command 401, Kakao start 302 with the same redirect_uri. These still come from the Mac mini.",
+    "browserVerification": {
+      "result": "story-browser.json",
+      "files": "1534 of 1534 files from the same candidate returned 200 on https://story.knolquiz.com from a Chromium page, with no retries.",
+      "hashes": "7 of 7 critical files match manifest size and SHA-256.",
+      "ranges": "WAV, OGG and MP3 range requests return 200 with the whole file and matching SHA-256, as on Pages.",
+      "headers": "No response carries access-control-allow-origin."
+    },
+    "liveBrowserSpecs": {
+      "origin": "https://story.knolquiz.com after the route, Chromium, 19:46-19:54 KST (.cache/edge-verify/story-live.playwright.config.ts: the same 18 specs that passed on pages.dev).",
+      "firstRun": "17 of 18 passed. Failed: static-candidate 'progressive BGM MP3 keeps playback across cuts'. One of the 16 sampled music positions was empty (NaN), so the check that every sample is a finite number failed; the other 15 samples moved through the 800 ms loop (0.597, 0.352, 0.09, 0.687 ...) and the wrap count passed. The MP3 bytes, length, type and etag are identical on pages.dev and story.knolquiz.com.",
+      "rerun": "The same MP3 spec alone with --repeat-each 3 on story.knolquiz.com: 3 of 3 passed (19:55-19:57 KST). Recorded as an intermittent empty position sample in native telemetry, not as a delivery difference; the first failure is kept here and the two runs are not merged into one green suite.",
+      "passed": "Relative stature at 1280 and 390, three and four automatic actors, KnolStory and ShortStory downloaded files reopen, eight native entries without an API, progressive OGG, native source-range playback, the editor's standalone preview in server-range and full-file modes, editing return at 1440x900, 390x844 and 844x390, and the bright-scene contrast checks (dialogue panel median luminance 0.052, menu icon 4.51, chapter label 15.1, editing return 12.67, white card history 8.05 and quick save 9.55)."
+    },
+    "routeCommand": "The route was attached with routeAction from server/operations/story-edge-route.mjs, using the wrangler OAuth token of this Mac read by a local helper (.cache/edge-verify/route-with-wrangler-login.mjs) instead of a separate CLOUDFLARE_API_TOKEN. That token expires about an hour after each wrangler refresh, so a later rollback needs a fresh wrangler login, an API token or the dashboard.",
+    "headerChange": "story.knolquiz.com now sends x-frame-options: SAMEORIGIN and referrer-policy: strict-origin-when-cross-origin from apps/web/public/_headers. A page on another origin can no longer frame it; no such embedding is known.",
+    "rollback": "CLOUDFLARE_API_TOKEN=… node server/operations/story-edge-route.mjs detach, or delete the story.knolquiz.com/* route under Workers Routes in the Cloudflare dashboard. The Mac mini ingress holds the same web build, so the site keeps the same version."
   },
   "observations": [
     "One Homebrew cloudflared process on this Mac receives its tunnel token on the command line, where any local process list shows it; which hostnames that tunnel serves was not checked. The knolstory-stg tunnel already uses --token-file. The token was not recorded anywhere.",
-    "The user turned off the Kiro guard-shell and guard-write hooks ('enabled': false) at 18:44; the change is left uncommitted for the user to decide."
+    "Between 18:44 and 19:04 KST, outside this session, the guard-shell and guard-write hooks were set to enabled: false and three knolart hooks (art-*.json) appeared in this repository's .kiro/hooks. They are left uncommitted for the user to decide.",
+    "Ego lite reports an available update (current 0.6.1.13); not installed without the user's approval."
   ],
   "next": [
-    "User: approve a wrangler login that adds workers_scripts:write and workers_routes:write, and approve the production API/ingress update.",
-    "Back up the production database (pg_dump custom format to a private 0700 directory), tag the current api and ingress images for rollback, then production-compose.mjs build, migrate (007, additive) and start. Check health, the trash routes (401 before login) and that the ingress HTML equals Pages.",
-    "Deploy the Worker, attach the fail-open route, then verify story.knolquiz.com: browser file check against the candidate, critical hashes, API probe as above, Kakao start redirect, the eight remote browser specs, audition in both modes, editor return and contrast. Detach on any failure.",
-    "Then record the cutover in ADR 0026, STATUS and the plan, and ask the user to try Kakao login and an upload."
+    "User: sign in with Kakao on story.knolquiz.com and upload one work, to confirm the session cookie, CSRF and upload through the Worker in a real account.",
+    "Watch the Workers daily request count for the first days; fail-open keeps the site up if the free limit is reached.",
+    "Promote .cache/edge-verify/browser-verify.mjs into the repository with tests if later deploys need it on another machine."
   ]
 }

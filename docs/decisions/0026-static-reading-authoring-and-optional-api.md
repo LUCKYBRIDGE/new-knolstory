@@ -57,4 +57,4 @@ Ren’Py iframe과 브리지는 현재 같은 출처 메시지·부모 접근 �
 - 경로는 `request_limit_fail_open`으로 둔다. Workers Free의 하루 100,000 요청을 넘으면 Worker를 건너뛰어 Mac mini가 모두 응답한다. 그래서 ingress 안의 정적 파일도 Pages와 같은 빌드여야 한다. 정적 요청도 모두 이 한도에 포함되므로 사용량을 측정한 뒤 유료 전환이나 Pages 사용자 도메인을 다시 판단한다.
 - 되돌리기는 경로 삭제다. 즉시 Mac mini가 모두 응답한다.
 - 연결 조건: 운영 API를 현재 main으로 함께 갱신한다. 2026-10-17 운영 API에는 휴지통 경로가 없고, 이후 추가된 편집 기능을 쓴 작품 28개를 업로드에서 거부한다(현재 코드로 읽히는 작품과 새 빈 작품 142개 중). 추가형 migration 007을 적용하기 전에 운영 DB를 백업한다.
-- 현재 상태: Worker 코드·검사·경로 명령은 준비했지만 배포하지 않았다. 저장된 Cloudflare 로그인에 Workers 스크립트·경로 편집 권한이 없다. [준비·호환성 근거](../architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).
+- 현재 상태(2026-10-31 19:42 연결): 사용자 승인 후 운영 DB를 백업하고 API·ingress를 main으로 갱신했다(migration 007 적용, 자료 수 변화 없음). 이어서 Worker를 배포하고 fail-open 경로를 붙였다. story.knolquiz.com의 파일 1534개와 핵심 해시 7개가 Pages 후보와 같고, `/api`와 카카오 시작 경로는 Mac mini가 응답한다. DNS·Tunnel은 바꾸지 않았다. 사람이 하는 카카오 로그인·업로드 확인은 남아 있다. [준비·갱신·연결 근거](../architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).
