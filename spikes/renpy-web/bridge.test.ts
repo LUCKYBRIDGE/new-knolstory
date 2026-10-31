@@ -127,12 +127,12 @@ it('exposes the actual unlock canvas for either sequence channel without fabrica
 
 describe('runtime download progress for the host loading screen',()=>{
  type Listener=(event:{loaded:number})=>void;
- function progressBridge(transfer:unknown={version:1,wasm:{bytes:400,weight:100},data:{bytes:1000,weight:100},game:{bytes:200,weight:200}}){
-  const events:Record<string,unknown>[]=[];const pending:{url:string;resolve:(response:Response)=>void}[]=[];
+ function progressBridge(transfer:unknown={version:1,wasm:{bytes:400,weight:100},data:{bytes:1000,weight:100},game:{bytes:200,weight:200}},gameZipURL?:string){
+  const events:Record<string,unknown>[]=[];const pending:{url:string;init:unknown;resolve:(response:Response)=>void;reject:(error:unknown)=>void}[]=[];
   const parent={postMessage:(event:Record<string,unknown>)=>events.push(event),document:{activeElement:null}};
   class FakeRequest{listeners:Record<string,Listener[]>={};status=0;url='';addEventListener(name:string,fn:Listener){(this.listeners[name]??=[]).push(fn);}open(_method:string,url:string){this.url=url;}fire(name:string,event={loaded:0}){for(const fn of this.listeners[name]??[])fn(event);}}
-  const nativeFetch=(input:unknown)=>new Promise<Response>(resolve=>pending.push({url:String(input),resolve}));
-  const window:Record<string,unknown>={knolRuntimeTransfer:transfer,fetch:nativeFetch,XMLHttpRequest:FakeRequest,frameElement:{}};
+  const nativeFetch=(input:unknown,init?:unknown)=>new Promise<Response>((resolve,reject)=>pending.push({url:String(input),init,resolve,reject}));
+  const window:Record<string,unknown>={knolRuntimeTransfer:transfer,fetch:nativeFetch,XMLHttpRequest:FakeRequest,frameElement:{},...(gameZipURL?{gameZipURL}:{})};
   const canvas={getBoundingClientRect:()=>({x:0,y:0,width:800,height:600}),getAttribute:()=>null,setAttribute:()=>{},removeAttribute:()=>{}};
   runInNewContext(readFileSync('spikes/renpy-web/bridge.js','utf8'),{window,parent,location:{origin:'https://story.knolquiz.com'},structuredClone,addEventListener:()=>{},document:{getElementById:()=>canvas}});
   const body=(...chunks:number[])=>new Response(new ReadableStream({start(controller){for(const size of chunks)controller.enqueue(new Uint8Array(size));controller.close();}}));
@@ -159,6 +159,43 @@ describe('runtime download progress for the host loading screen',()=>{
   const audio=fetch('assets/audio/music.ogg');const response=body(10);pending[0]!.resolve(response);expect(await audio).toBe(response);
   api.emit({protocol:1,type:'ready'});
   const wasm=fetch('renpy.wasm');pending[1]!.resolve(body(400));await (await wasm).arrayBuffer();await settle();
+  expect(progress()).toEqual([]);
+ });
+ // renpy-pre.js asks for game.zip only after renpy.wasm has arrived; the bridge starts that request at once.
+ it('starts game.zip at once, keeps it downloading and hands that response to the engine',async()=>{
+  const {window,pending,body,settle,progress}=progressBridge(undefined,'game.zip?v=abc');
+  expect(pending.map(item=>[item.url,item.init])).toEqual([['game.zip?v=abc',undefined]]);
+  const early=body(100,100);pending[0]!.resolve(early);await settle();
+  expect(progress().at(-1),'its bytes count before the engine asks').toEqual({protocol:1,type:'loadProgress',stage:'download',ratio:0.5});
+  const fetch=window.fetch as (input:string)=>Promise<Response>;
+  const handed=await fetch('game.zip?v=abc');
+  expect(handed,'the engine gets the original response, not a second request').toBe(early);expect(pending).toHaveLength(1);
+  expect((await handed.arrayBuffer()).byteLength).toBe(200);
+  void fetch('game.zip?v=abc');expect(pending,'only the first request is handed over').toHaveLength(2);
+ });
+ it('lets the engine make its own game.zip request when the early one failed',async()=>{
+  const {window,pending,body,settle,progress}=progressBridge(undefined,'game.zip?v=abc');
+  pending[0]!.reject(new TypeError('network'));await settle();
+  const fetch=window.fetch as (input:string)=>Promise<Response>;
+  const result=fetch('game.zip?v=abc');await settle();
+  expect(pending.map(item=>item.url)).toEqual(['game.zip?v=abc','game.zip?v=abc']);
+  const retry=body(200);pending[1]!.resolve(retry);expect(await result).toBe(retry);
+  await retry.arrayBuffer();await settle();
+  expect(progress().at(-1)).toEqual({protocol:1,type:'loadProgress',stage:'download',ratio:0.5});
+ });
+ it('does not hand the early response to another URL or a request with options',()=>{
+  const {window,pending}=progressBridge(undefined,'game.zip?v=abc');
+  const fetch=window.fetch as (input:string,init?:unknown)=>Promise<Response>;
+  void fetch('game.zip?v=old');void fetch('game.zip?v=abc',{method:'HEAD'});
+  expect(pending.map(item=>[item.url,item.init])).toEqual([['game.zip?v=abc',undefined],['game.zip?v=old',undefined],['game.zip?v=abc',{method:'HEAD'}]]);
+ });
+ it('starts game.zip early without the sizes too, and then reports no progress',async()=>{
+  const {window,pending,body,settle,progress}=progressBridge(null,'game.zip?v=abc');
+  expect(pending.map(item=>item.url)).toEqual(['game.zip?v=abc']);
+  const early=body(50);pending[0]!.resolve(early);await settle();
+  const fetch=window.fetch as (input:string)=>Promise<Response>;
+  expect(await fetch('game.zip?v=abc')).toBe(early);expect((await early.arrayBuffer()).byteLength).toBe(50);
+  void fetch('renpy.wasm');expect(pending.map(item=>item.url)).toEqual(['game.zip?v=abc','renpy.wasm']);
   expect(progress()).toEqual([]);
  });
  it('installs nothing without the sizes from the runtime build',()=>{

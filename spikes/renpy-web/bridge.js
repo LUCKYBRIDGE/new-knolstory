@@ -48,8 +48,8 @@
   }
   // Download progress for the host loading screen (contract event loadProgress). Counts the bytes the
   // browser actually receives for renpy.wasm, renpy.data and game.zip against their decoded sizes from
-  // the build (window.knolRuntimeTransfer), weighted by estimated transfer size. Observation only: the
-  // engine still gets its own requests and the original responses. Without sizes nothing is reported.
+  // the build (window.knolRuntimeTransfer), weighted by estimated transfer size. The engine keeps the
+  // original responses; only game.zip is requested earlier (below). Without sizes nothing is reported.
   const transfer = window.knolRuntimeTransfer;
   const progressKinds = transfer && transfer.version === 1
     ? ['wasm', 'data', 'game'].filter(kind => transfer[kind] && transfer[kind].bytes > 0 && transfer[kind].weight > 0) : [];
@@ -70,27 +70,45 @@
     lastRatio = ratio; lastSentAt = now;
     sendProgress({ stage: 'download', ratio: Math.min(ratio, 0.999) });
   }
+  // Reads a clone to the end. That also pulls the whole body now, so a response nobody reads yet still
+  // arrives; the original keeps every byte for its reader.
   async function countBody(kind, response) {
     if (!response.ok || !response.body) return;
+    const size = progressKinds.includes(kind) ? transfer[kind].bytes : 0;
     const reader = response.body.getReader();
     let received = 0;
     for (;;) {
       const { done, value } = await reader.read();
       if (done) break;
       received += value.byteLength;
-      setProgress(kind, received / transfer[kind].bytes);
+      if (size) setProgress(kind, received / size);
     }
     setProgress(kind, 1);
   }
   const progressKind = (url) => /(?:^|\/)renpy\.wasm(?:[?#]|$)/.test(url) ? 'wasm' : /(?:^|\/)game\.zip(?:[?#]|$)/.test(url) ? 'game' : null;
   const nativeFetch = window.fetch;
-  if (progressKinds.length && typeof nativeFetch === 'function') {
+  // A clone tees the stream: wasm streaming compilation keeps the original response and its URL.
+  const counted = (kind, result) => result.then(response => { try { countBody(kind, response.clone()).catch(() => {}); } catch { /* observation only */ } return response; });
+  // game.zip: renpy-pre.js requests it in preRun, which waits until renpy.wasm has arrived and compiled, so
+  // on a slow line it downloaded alone at the end (2026-10-31 measurement). The same plain request starts
+  // here instead, next to the engine's renpy.wasm and renpy.data, and the engine's first plain request for
+  // that URL gets this response. If it failed, the engine makes its own request as before.
+  const gameZipUrl = typeof window.gameZipURL === 'string' && window.gameZipURL ? window.gameZipURL : null;
+  let earlyGameZip = null;
+  if (gameZipUrl && typeof nativeFetch === 'function') {
+    try { earlyGameZip = counted('game', nativeFetch.call(window, gameZipUrl)); earlyGameZip.catch(() => {}); } catch { earlyGameZip = null; }
+  }
+  if ((progressKinds.length || earlyGameZip) && typeof nativeFetch === 'function') {
     window.fetch = function (input, init) {
+      const url = typeof Request !== 'undefined' && input instanceof Request ? input.url : String(input);
+      if (earlyGameZip && init === undefined && url === gameZipUrl) {
+        const early = earlyGameZip;
+        earlyGameZip = null;
+        return early.catch(() => counted('game', nativeFetch.call(window, input)));
+      }
       const result = nativeFetch.call(window, input, init);
-      const kind = progressKind(typeof Request !== 'undefined' && input instanceof Request ? input.url : String(input));
-      if (!kind) return result;
-      // A clone tees the stream: wasm streaming compilation keeps the original response and its URL.
-      return result.then(response => { try { countBody(kind, response.clone()).catch(() => {}); } catch { /* observation only */ } return response; });
+      const kind = progressKinds.length ? progressKind(url) : null;
+      return kind ? counted(kind, result) : result;
     };
   }
   const NativeRequest = window.XMLHttpRequest;
