@@ -34,6 +34,7 @@
     "delivery:check": "python3 scripts/static-delivery-audit.py --check",
     "delivery:prepare": "python3 scripts/prepare-static-candidate.py",
     "delivery:preview": "python3 scripts/serve-static-candidate.py",
+    "delivery:verify": "python3 scripts/verify-static-deployment.py",
     "test:e2e:static": "playwright test --config tests/static-delivery.playwright.config.ts"
   },
   "devDependencies": {
