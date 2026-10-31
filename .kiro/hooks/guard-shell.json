@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "셸 명령 안전 확인",
+      "trigger": "PreToolUse",
+      "description": "되돌리기 어려운 셸 명령은 막고(exit 2), push·배포·운영 변경·보호 경로 쓰기는 사용자 확인을 묻는다.",
+      "matcher": "shell",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/scripts/guard-shell.mjs",
+        "timeout": 15
+      }
+    }
+  ]
+}

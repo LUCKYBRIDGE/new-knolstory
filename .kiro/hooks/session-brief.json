@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "세션 시작 요약",
+      "trigger": "SessionStart",
+      "description": "세션을 시작할 때 브랜치·origin/main 관계·미커밋 파일과 수정 시각·최근 .cache 흔적·Codex 실행 여부를 읽기 전용으로 요약한다.",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/skills/knol-status/scripts/status.mjs --brief",
+        "timeout": 20
+      }
+    }
+  ]
+}

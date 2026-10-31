@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "파일 쓰기 안전 확인",
+      "trigger": "PreToolUse",
+      "description": "Codex 양식·기존 근거·생성기 출력·hook 자체·작업 공간 밖 파일을 바꾸기 전에 사용자 확인을 묻는다. 막지는 않는다.",
+      "matcher": "^(fs_write|fs_append|str_replace|delete_file|smart_relocate)$",
+      "action": {
+        "type": "command",
+        "command": "node .kiro/scripts/guard-write.mjs",
+        "timeout": 15
+      }
+    }
+  ]
+}
