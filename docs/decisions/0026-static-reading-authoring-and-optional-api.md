@@ -51,3 +51,10 @@ Ren’Py iframe과 브리지는 현재 같은 출처 메시지·부모 접근 �
 빌드 산출물의 ID·URL·크기·SHA-256·MIME·사용 작품·권리·Git 추적 여부를 읽기전용으로 대조한다. 누락·오래된 권리 해시·개인 원고/진단·미확인 재배포·호스팅 크기 제한은 차단 사유다. `scene-integrated` 음원 사용과 원음의 독립 공개 재배포 허가는 같은 것이 아니며 기존 권리 검사를 우회하지 않는다. 런타임 ZIP에 포함된 그림도 별도 공개 승인으로 간주하지 않는다.
 
 실제 자산 패키지와 URL/캐시 후보가 성립한 뒤, 별도 API가 꺼진 정적 환경에서8판본 전체 갈래·새 작품의 편집/저장/다른 환경 재열기/실제 재생·대상 기기/느린 망을 확인한다. 기존 유효한 편집 근거는 재사용하되 정적 공개 준비 완료로 확대하지 않는다. DNS·Tunnel·운영 전환·외부 자산 업로드는 검토된 산출물과 필요한 권한이 갖춰진 마지막 단계에서 수행한다.
+## 운영 도메인 연결 방식 — 2026-10-31
+사용자가 story.knolquiz.com에서 그림·음원·실행 파일을 Pages로 제공하고 실제 주소에서 동작을 확인하도록 요청했다. Cloudflare Worker를 zone 경로 `story.knolquiz.com/*`에 둔다. `/api`와 `/api/` 아래, 그리고 읽기(GET/HEAD)가 아닌 요청은 그대로 Tunnel 뒤 Mac mini ingress로 보낸다. 나머지 읽기 요청은 Pages `new-knolstory`에서 가져온다. 브라우저에는 한 출처만 보이므로 같은 출처 Ren’Py 프레임·cookie·CSRF·카카오 callback 계약을 바꾸지 않는다. Pages로는 cookie와 인증 헤더를 보내지 않고, Pages가 붙이는 와일드카드 CORS 헤더는 지운다.
+- 버린 대안: Pages 사용자 도메인(DNS 변경과 API 전용 호스트가 필요하다), Origin Rules(규칙 권한이 필요하다), ingress의 Pages 중계(바이트가 계속 Mac mini를 지난다), `/assets`·`/runtime`만 Pages로 보내기(화면과 실행 파일의 판본이 어긋날 수 있다).
+- 경로는 `request_limit_fail_open`으로 둔다. Workers Free의 하루 100,000 요청을 넘으면 Worker를 건너뛰어 Mac mini가 모두 응답한다. 그래서 ingress 안의 정적 파일도 Pages와 같은 빌드여야 한다. 정적 요청도 모두 이 한도에 포함되므로 사용량을 측정한 뒤 유료 전환이나 Pages 사용자 도메인을 다시 판단한다.
+- 되돌리기는 경로 삭제다. 즉시 Mac mini가 모두 응답한다.
+- 연결 조건: 운영 API를 현재 main으로 함께 갱신한다. 2026-10-17 운영 API에는 휴지통 경로가 없고, 이후 추가된 편집 기능을 쓴 작품 28개를 업로드에서 거부한다(현재 코드로 읽히는 작품과 새 빈 작품 142개 중). 추가형 migration 007을 적용하기 전에 운영 DB를 백업한다.
+- 현재 상태: Worker 코드·검사·경로 명령은 준비했지만 배포하지 않았다. 저장된 Cloudflare 로그인에 Workers 스크립트·경로 편집 권한이 없다. [준비·호환성 근거](../architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).

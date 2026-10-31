@@ -1,0 +1,78 @@
+{
+ "origin": "https://new-knolstory.pages.dev",
+ "landingStatus": 200,
+ "sourceCommit": "4f69bda1b65cf49f6cd488dcfa6f6a7f42d59879",
+ "checked": 1534,
+ "retried": 0,
+ "unexpected": [],
+ "acaoValues": [
+  "*"
+ ],
+ "hashes": [
+  {
+   "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+   "status": 200,
+   "match": true
+  },
+  {
+   "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+   "status": 200,
+   "match": true
+  },
+  {
+   "path": "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+   "status": 200,
+   "match": true
+  },
+  {
+   "path": "index.html",
+   "status": 200,
+   "match": true
+  },
+  {
+   "path": "runtime/game.zip",
+   "status": 200,
+   "match": true
+  },
+  {
+   "path": "runtime/index.html",
+   "status": 200,
+   "match": true
+  },
+  {
+   "path": "runtime/runtime-contract.js",
+   "status": 200,
+   "match": true
+  }
+ ],
+ "ranges": [
+  {
+   "path": "assets/audio/step.wav",
+   "status": 200,
+   "bytes": 22094,
+   "contentRange": null,
+   "acceptRanges": null,
+   "wholeFileMatch": true,
+   "firstBytesMatch": true
+  },
+  {
+   "path": "assets/audio/cc0/kenney-interface/v1/click-002.ogg",
+   "status": 200,
+   "bytes": 4275,
+   "contentRange": null,
+   "acceptRanges": null,
+   "wholeFileMatch": true,
+   "firstBytesMatch": true
+  },
+  {
+   "path": "assets/audio/pixabay/352704.mp3",
+   "status": 200,
+   "bytes": 71424,
+   "contentRange": null,
+   "acceptRanges": null,
+   "wholeFileMatch": true,
+   "firstBytesMatch": true
+  }
+ ],
+ "success": true
+}

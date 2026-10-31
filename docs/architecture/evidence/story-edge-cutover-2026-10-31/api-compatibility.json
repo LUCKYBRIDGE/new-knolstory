@@ -1,0 +1,751 @@
+{
+ "scope": "Would the production API image built 2026-10-17 accept snapshots the current web uploads? Each file was decoded and prepared with current code, then checked by the current server validation and by checkedSnapshot copied from the running production API bundle.",
+ "oldBundleSha256": "ed3eb797da934250783cbba88943d728bfd880867764575941b1ab6238c402d5",
+ "rows": [
+  {
+   "file": "docs/architecture/evidence/audio-attributes/attributes.knolstory",
+   "current": "CATALOG_MEDIA_REQUIRED",
+   "old": "CATALOG_MEDIA_REQUIRED"
+  },
+  {
+   "file": "docs/architecture/evidence/audio-source-range-2026-10-21/source-range.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/authoring-format/all-fields-shortstory.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/authoring-format/all-fields-story.knolstory",
+   "current": "CATALOG_MEDIA_REQUIRED",
+   "old": "CATALOG_MEDIA_REQUIRED"
+  },
+  {
+   "file": "docs/architecture/evidence/book-entry-cover/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/book-entry-cover/heungbu-native-input.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/book-entry-cover/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/chapter-audio-split-2026-10-21/ambience-continuous.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/chapter-audio-split-2026-10-21/music-continuous.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/combined-duration-2026-10-21/browser/combined.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/combined-editing-2026-10-21/browser/combined-editing-combined--539cb-undtrip-preserve-manuscript/combined.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/combined-editing-2026-10-21/browser/editor-effect-pane-animati-a7638--changing-unrelated-content/aligned-effects.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/combined-editing-2026-10-21/current-browser/combined.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/combined-range-2026-10-21/browser/combined.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/combined-time-2026-10-21/browser/combined.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/compound-branch-2026-10-23/screens/compound.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/conditional-audio-split-2026-10-21/conditional-flow-1.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/conditional-audio-split-2026-10-21/conditional-flow-2.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/conditional-audio-split-2026-10-21/conditional-flow-3.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/conditional-audio-split-2026-10-21/conditional-flow-4.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/conditional-text-2026-10-22/conditional.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/continuous-audio-split-2026-10-21/ambience-continuous.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/continuous-audio-split-2026-10-21/music-continuous.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/creative-reading/forest-promise.knolstory",
+   "current": "CATALOG_MEDIA_REQUIRED",
+   "old": "CATALOG_MEDIA_REQUIRED"
+  },
+  {
+   "file": "docs/architecture/evidence/editor-context-repair-2026-10-21/ego-motion.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/editor-context-repair-2026-10-21/motion-preserved.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/editor-finish-2026-10-21/forest-promise.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/editor-offline-2026-10-26/final.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/editor-soak-2026-10-24/final.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/editor-terminology/seconds-story.knolstory",
+   "current": "CATALOG_MEDIA_REQUIRED",
+   "old": "CATALOG_MEDIA_REQUIRED"
+  },
+  {
+   "file": "docs/architecture/evidence/editor-visibility-integration-2026-10-23/screens/visibility.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/effect-placement-2026-10-21/actual-editor/aligned-effects.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/effect-placement-2026-10-21/actual-pointer/aligned-effects.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/heungbu-classic.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/heungbu.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/onggojib-classic.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/onggojib.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/rabbit-classic.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/rabbit.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/seonnyeo-classic.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/existing-story-enhancement/seonnyeo.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/four-work-library/entry-cover/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/four-work-library/entry-cover/heungbu-native-input.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/four-work-library/entry-cover/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/four-work-library/shortstory/heungbu-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/four-work-library/shortstory/onggojib-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/four-work-library/shortstory/rabbit-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/four-work-library/shortstory/seonnyeo-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/full-current-final-2026-10-14/interrupted-artifacts/cc0-audio-CC0-Korean-label-3e349-me-plays-all-three-channels-host/cc0-edited.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/full-current-protected-final-2026-10-15/run-artifacts/shortstory/heungbu-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/full-current-protected-final-2026-10-15/run-artifacts/shortstory/onggojib-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/full-current-protected-final-2026-10-15/run-artifacts/shortstory/rabbit-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/full-current-protected-final-2026-10-15/run-artifacts/shortstory/seonnyeo-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/legacy-parity-implementation/memo-roundtrip.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-book-design/cover-redesign/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-book-design/cover-redesign/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-book-design/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-book-design/heungbu-native-input.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-book-design/introduction-reference-correction/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-book-design/introduction-reference-correction/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-book-design/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/caught-diagnostics/forest-library.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/caught-diagnostics/moonlight-letter.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/caught-diagnostics/sea-story.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/caught-preplay/forest-library.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/caught-preplay/moonlight-letter.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/caught-preplay/sea-story.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/forest-library.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/moonlight-letter.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/rewind-final/forest-library.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/rewind-final/moonlight-letter.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/rewind-final/sea-story.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/library-native-current/sea-story.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/local-library/forest-library.knolstory",
+   "current": "CATALOG_MEDIA_REQUIRED",
+   "old": "CATALOG_MEDIA_REQUIRED"
+  },
+  {
+   "file": "docs/architecture/evidence/local-library/moonlight-letter.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/local-library/sea-story.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "\"docs/architecture/evidence/local-work-files-2026-10-18/native-files/\\353\\241\\234\\354\\273\\254 \\355\\214\\214\\354\\235\\274 \\354\\240\\200\\354\\236\\245 \\352\\262\\200\\354\\246\\235.shortstory\"",
+   "current": "DECODE_FAILED",
+   "old": "-"
+  },
+  {
+   "file": "docs/architecture/evidence/manuscript-choice-relocation-2026-10-21/1-split.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/manuscript-choice-relocation-2026-10-21/2-merged.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/manuscript-choice-relocation-2026-10-21/3-split.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/manuscript-choice-relocation-2026-10-21/4-merged.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/music-sequence-2026-10-22/ambience.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/music-sequence-2026-10-22/authored-sequence.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/music-sequence-2026-10-22/music.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/native-current-2026-10-14/cover-second/entry-cover/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-current-2026-10-14/cover-second/entry-cover/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-second-artifacts/score-narrative-score-only-2d23a--work-through-native-return-stories-runtime/score-only-before.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third-artifacts/creative-reading-journey-U-9b7ea--actual-RenPy-reading-paths-stories-runtime/after-reading.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third-artifacts/creative-reading-journey-U-9b7ea--actual-RenPy-reading-paths-stories-runtime/fresh.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third-artifacts/score-narrative-score-only-2d23a--work-through-native-return-stories-runtime/score-only-after-first-route.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third-artifacts/score-narrative-score-only-2d23a--work-through-native-return-stories-runtime/score-only-after-native.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third-artifacts/score-narrative-score-only-2d23a--work-through-native-return-stories-runtime/score-only-before.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third-artifacts/score-narrative-score-only-2d23a--work-through-native-return-stories-runtime/score-only-edited.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third-artifacts/score-narrative-score-only-2d23a--work-through-native-return-stories-runtime/score-only-reopened.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/focused-third/creative-reading/forest-promise.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/cc0-audio-CC0-Korean-label-3e349-me-plays-all-three-channels-host/cc0-edited.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host/memo-roundtrip.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-host/google.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/excel.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/non-audio-transition-autho-99396-ing-manuscript-or-placement-host/confirm.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "\"docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/pixabay-scene-audio-Pixaba-2ab72-rences-and-played-in-Ren\\342\\200\\231Py-host/pixabay-scene-reference.knolstory\"",
+   "current": "DECODE_FAILED",
+   "old": "-"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-invalid-sc-71b56-ile-can-be-opened-afterward-host/before-invalid.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-invalid-sc-71b56-ile-can-be-opened-afterward-host/protected-reopened.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-invalid-sc-71b56-ile-can-be-opened-afterward-host/protected.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/score-before.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/score-edited.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/score-reopened.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/score-restored.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/score-routes-moved.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-defi-5d373-workbook-and-file-reopening-host/score-workbook-restored.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-rout-ee03b--text-in-different-chapters-host/target-labels-after.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-narrative-score-rout-ee03b--text-in-different-chapters-host/target-labels-before.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/staged-audio-staged-shared-f9fe8-gh-file-and-native-playback-host/staged-reference.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/outputs/entry-cover/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/outputs/entry-cover/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/outputs/shortstory/heungbu-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/outputs/shortstory/onggojib-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/outputs/shortstory/rabbit-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/native-resume-2026-10-15/host-final/outputs/shortstory/seonnyeo-copy.shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/non-audio-direction/rabbit-effect-duration.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/range-external-current/catalog-only/range-source.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/range-external-current/range-source.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/remaining-current-2026-10-14/baseline-artifacts/non-audio-external-actual--4c9eb-eturns-with-exact-full-work-host/google.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/remaining-current-2026-10-14/baseline-artifacts/non-audio-external-actual--6aca8-eturns-with-exact-full-work-host/excel.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/remaining-current-2026-10-14/baseline-artifacts/non-audio-transition-autho-99396-ing-manuscript-or-placement-host/confirm.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/remaining-current-2026-10-14/host-final-artifacts/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host/memo-roundtrip.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "\"docs/architecture/evidence/remaining-current-2026-10-14/host-final-artifacts/pixabay-scene-audio-Pixaba-2ab72-rences-and-played-in-Ren\\342\\200\\231Py-host/pixabay-scene-reference.knolstory\"",
+   "current": "DECODE_FAILED",
+   "old": "-"
+  },
+  {
+   "file": "docs/architecture/evidence/remaining-current-2026-10-14/migrated-first-artifacts/memo-authoring-memo-fields-ad169-port-on-five-viewport-sizes-host/memo-roundtrip.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "\"docs/architecture/evidence/remaining-current-2026-10-14/migrated-second-artifacts/pixabay-scene-audio-Pixaba-2ab72-rences-and-played-in-Ren\\342\\200\\231Py-host/pixabay-scene-reference.knolstory\"",
+   "current": "DECODE_FAILED",
+   "old": "-"
+  },
+  {
+   "file": "\"docs/architecture/evidence/remaining-current-2026-10-14/native-final-artifacts/pixabay-scene-audio-Pixaba-2ab72-rences-and-played-in-Ren\\342\\200\\231Py-stories-runtime/pixabay-scene-reference.knolstory\"",
+   "current": "DECODE_FAILED",
+   "old": "-"
+  },
+  {
+   "file": "\"docs/architecture/evidence/remaining-current-2026-10-14/native-first-artifacts/pixabay-scene-audio-Pixaba-2ab72-rences-and-played-in-Ren\\342\\200\\231Py-stories-runtime/pixabay-scene-reference.knolstory\"",
+   "current": "DECODE_FAILED",
+   "old": "-"
+  },
+  {
+   "file": "\"docs/architecture/evidence/remaining-current-2026-10-14/native-second-artifacts/pixabay-scene-audio-Pixaba-2ab72-rences-and-played-in-Ren\\342\\200\\231Py-stories-runtime/pixabay-scene-reference.knolstory\"",
+   "current": "DECODE_FAILED",
+   "old": "-"
+  },
+  {
+   "file": "docs/architecture/evidence/reproducible-test-environment/heungbu-native-input.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/responsive-audio/branching-demo.knolstory",
+   "current": "CATALOG_MEDIA_REQUIRED",
+   "old": "CATALOG_MEDIA_REQUIRED"
+  },
+  {
+   "file": "docs/architecture/evidence/scene-visibility-2026-10-23/screens/conditional.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/scene-visibility-2026-10-23/screens/visibility.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/score-narrative/score-story.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/sequence-origin-move-2026-10-22/ambience-moved.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/sequence-origin-move-2026-10-22/music-moved.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/sequence-time-edit-2026-10-22/timeline-sequence.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/sound-split-2026-10-21/split.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "docs/architecture/evidence/vn-workflow/branch-chapters-demo.knolstory",
+   "current": "CATALOG_MEDIA_REQUIRED",
+   "old": "CATALOG_MEDIA_REQUIRED"
+  },
+  {
+   "file": "docs/architecture/evidence/voiceover-native-2026-10-18/before.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/walnut-library/entry-cover/heungbu-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "docs/architecture/evidence/walnut-library/entry-cover/seonnyeo-classic-cover.knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "test-results-audio-preview-manual/미리-듣기-확인.knolstory",
+   "current": "accepted",
+   "old": "INVALID_SNAPSHOT"
+  },
+  {
+   "file": "blank knolstory",
+   "current": "accepted",
+   "old": "accepted"
+  },
+  {
+   "file": "blank shortstory",
+   "current": "accepted",
+   "old": "accepted"
+  }
+ ]
+}

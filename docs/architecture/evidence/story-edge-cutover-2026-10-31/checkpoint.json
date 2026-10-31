@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-31",
+  "scope": "Main CI security-audit fix, Pages redeploy from the fixed main, the story.knolquiz.com cutover design and Worker code, and the production API compatibility check that gates the cutover. The cutover itself was not performed: no Worker, route, DNS, Tunnel, API image or database was changed.",
+  "provenance": {
+    "recordedBy": "Kiro, 2026-10-31 19:10 KST, on the primary development Mac mini that also runs the production containers.",
+    "localOnly": ".cache/pages-release-20261031b, .cache/edge-verify, .cache/compat-check and /tmp/knol-prod-api are Git-ignored or outside the checkout and exist only on this machine."
+  },
+  "ciFix": {
+    "failure": "Main CI run 41178522714 on 2470004 failed at `pnpm audit --prod --audit-level=moderate`: GHSA-g3hv-75wg-m249 (minimatch <11.0.1), published 2026-10-30.",
+    "paths": [
+      "packages__compatibility > exceljs > archiver > archiver-utils > glob 7 > minimatch",
+      "packages__compatibility > exceljs > archiver > readdir-glob > minimatch",
+      "packages__compatibility > exceljs > unzipper > fstream > rimraf 2 > glob 7 > minimatch"
+    ],
+    "change": "pnpm-workspace.yaml overrides 'archiver-utils>glob': ^14.0.3, 'readdir-glob>minimatch': ^11.0.1, 'rimraf@2>glob': ^14.0.3 (commit 4f69bda).",
+    "rejected": [
+      "'glob@7>minimatch': glob 7 throws TypeError reading 'charAt' at glob/sync.js:148 with minimatch 11.",
+      "'exceljs>unzipper': ^0.12.5 drops fstream, but its optional @aws-sdk/client-s3 require breaks the Turbopack build."
+    ],
+    "localChecks": "Root and server audits: no known vulnerabilities. CI-equivalent vitest with coverage: 250 files, 2152 passed, 2 skipped. docs:check, test:docs, test:scripts, typecheck and lint passed. packages/compatibility 328 passed / 2 skipped and an exceljs write/load round trip passed before the commit. glob 14 resolves for both archiver-utils copies and rimraf 2; minimatch 11.0.3 for readdir-glob.",
+    "remote": "Main CI run 41190206087 on 4f69bda: success."
+  },
+  "pagesRedeploy": {
+    "deployment": "633aa225",
+    "project": "new-knolstory",
+    "environment": "Production, branch main",
+    "source": "4f69bda1b65cf49f6cd488dcfa6f6a7f42d59879",
+    "command": "wrangler pages deploy .cache/pages-release-20261031b/site --project-name new-knolstory --branch main --commit-hash 4f69bda (wrangler 4.156.0, no --force)",
+    "upload": "22 new files, 1512 already uploaded, plus _headers.",
+    "candidate": {"files": 1535, "servedFiles": 1534, "bytes": 584690063, "excluded": "runtime.zip (download-only archive)", "manifestSha256": "51eb337b9a1dc0a86a8e6c161ae330e7e8a26a948b6fdd14ece6a6dc009ce191", "indexHtmlSha256": "7ab312be5a399d447f4dae9e1cec899a89b3b8b9a81dcb88bb850f7f7fd9b01c"},
+    "differenceFromPrevious": "Against deployment 904b59eb (source 2470004): a new Next build ID, one chunk that differs only by module id, and the HTML/RSC files that name them. Runtime, pictures and sound are byte-identical.",
+    "browserVerification": {
+      "result": "pages-dev-browser.json",
+      "method": "Same-origin fetch() from a Chromium page on https://new-knolstory.pages.dev (.cache/edge-verify/browser-verify.mjs, sha256 013186fdc2c29d37729c70aae628c82de8e16fbb5d992b01fb552aee504f2b76). Python urllib is refused by Cloudflare (transportBlocked) on pages.dev as well, so scripts/verify-static-deployment.py cannot complete there.",
+      "files": "1534 of 1534 HEAD requests returned 200; Pages answers /x.html with 308 to /x, followed.",
+      "hashes": "7 of 7 critical files match manifest size and SHA-256 (index.html, runtime/index.html, runtime/runtime-contract.js, runtime/game.zip, three stature-v2 pictures).",
+      "ranges": "Range bytes=0-1023 on the smallest WAV, OGG and MP3 returned 200 with the whole file; whole-file SHA-256 and first bytes match. Pages does not answer partial ranges.",
+      "headers": "Every response carries access-control-allow-origin: * from Pages."
+    },
+    "liveBrowserSpecs": {
+      "origin": "https://new-knolstory.pages.dev (deployment 633aa225), Chromium, 2026-10-31 19:00-19:12 KST",
+      "remote": "8 of 8 passed in 4.2 minutes (.cache/pages-deploy-20261030/remote.playwright.config.ts): relative stature at 1280 and 390, three and four automatic actors, KnolStory and ShortStory downloaded files reopen without a server or earlier browser storage, split static tiers with eight native entries and no API, progressive OGG and MP3 background music across cuts.",
+      "audio": "3 of 3 passed (.cache/pages-deploy-20261030/range.playwright.config.ts): native source-range playback, and the editor's standalone preview in both server-range and full-file modes. This repeats on Pages the audition run that the 2026-10-30 record listed as not yet repeated.",
+      "editor": "7 of 7 passed (.cache/edge-verify/editor-live.playwright.config.ts): editor-preview-return at 1440x900, 390x844 and 844x390 and reader-light-contrast."
+    }
+  },
+  "productionBefore": {
+    "serving": "story.knolquiz.com reaches the Mac mini through the cloudflared Tunnel: container knolstory-next-production-ingress-1 serves static files from /site inside its image and proxies /api/ to the API container. story-next.knolquiz.com answers 308 to story.knolquiz.com.",
+    "images": "Ingress image created 2026-10-17T15:02Z with the web export baked in (HTML sha256 301eceab3f12…, byte-identical to what the zone serves, so the zone does not rewrite HTML). API image created 2026-10-17T12:22Z, container started 2026-10-23, migrations 001-006 only.",
+    "apiProbe": "GET /api/v1/auth/config 200 (kakao true, google false); /api/v1/me 401; /api/v1/documents 401; /api/v1/auth/kakao/start 302 to kauth.kakao.com with redirect_uri https://story.knolquiz.com/api/v1/auth/kakao/callback; google start and link 503 PROVIDER_UNAVAILABLE. GET /api/v1/documents?state=trash and POST /api/v1/documents/{id}/trash answer 400 INVALID_REQUEST, where the current server answers 401 before login: the production API has no trash routes."
+  },
+  "apiCompatibility": {
+    "result": "api-compatibility.json",
+    "method": "Every tracked .knolstory/.shortstory file, the 2026-10-31 manual audio-preview work file and two new blank works were decoded and prepared with current code, then checked by the current server checkedSnapshot and by checkedSnapshot copied unchanged from the running production API bundle (main.mjs sha256 ed3eb797…; only the trailing main() call removed). Nothing was sent to the production API.",
+    "counts": "147 files: 7 cannot be decoded by current code (old external-audio fixtures). Of the remaining 140 files plus 2 blank works: 107 accepted by both, 28 accepted only by the current server (production answers INVALID_SNAPSHOT), 7 refused by both for non-catalog media (CATALOG_MEDIA_REQUIRED).",
+    "rejectedFamilies": "Works that use features added after 2026-10-17: audio source ranges, chapter/continuous/conditional audio splits, combined timeline duration/time, compound branches, conditional text, scene visibility, choice relocation, music sequences and sequence editing, sound splits.",
+    "meaning": "Serving the current web while the 2026-10-17 API runs would keep reading, local editing, file save, login and simple uploads working, but uploads of works using those features would fail with the 'cannot check the work, nothing uploaded' notice (device manuscript kept) and the online trash tab would fail. server/README.md already warns not to mix the stateVersion-less API with the current web. The production API (with migration 007, additive) and the ingress must be rebuilt from the same main before or together with the cutover."
+  },
+  "cutoverDesign": {
+    "decision": "A Cloudflare Worker on the zone route story.knolquiz.com/* (ADR 0026, 2026-10-31 section).",
+    "behaviour": "GET/HEAD outside /api and /api/ are fetched from https://new-knolstory.pages.dev with only accept, accept-language, conditional and range headers and user-agent; cookies and authorization are not sent. /api, /api/ and every other method go to the zone origin unchanged with fetch(request). Pages' wildcard CORS header and any set-cookie are removed, Pages redirects are rewritten to the public origin, and a request path can never select another upstream host. A broken variable falls back to the Mac mini; an unreachable Pages answers 502.",
+    "code": ["server/operations/story-edge-worker.mjs", "server/operations/story-edge.wrangler.toml", "server/operations/story-edge-route.mjs", "server/operations/story-edge-worker.test.ts", "server/operations/story-edge-route.test.ts"],
+    "tests": "10 vitest cases pass, including the `//other.host/x` path that a naive URL join would turn into an open proxy. wrangler deploy --dry-run bundles 3.18 KiB.",
+    "route": "Kept out of wrangler.toml: wrangler deploy PUTs the full route list when routes are listed (wrangler 4.156.0 publishRoutes), which would reset request_limit_fail_open. story-edge-route.mjs attaches it with request_limit_fail_open=true and detaches it for rollback.",
+    "quota": "Workers Free allows 100,000 requests a day (https://developers.cloudflare.com/workers/platform/limits/). Every static request counts. In fail-open mode a spent quota bypasses the Worker and the Mac mini answers, so its ingress must hold the same build as Pages.",
+    "rollback": "node server/operations/story-edge-route.mjs detach. Traffic returns to the Mac mini origin immediately; the Worker script can stay."
+  },
+  "blocked": {
+    "workerDeploy": "wrangler deploy failed at GET /workers/scripts/knolstory-story-edge/secrets: 'No access to the specified resource'. The stored wrangler OAuth login only has user:read, offline_access, account:read, pages:write and zone:read. Deploying needs workers_scripts:write and the route needs workers_routes:write. Nothing was created. An earlier note that this login had Workers scopes was wrong.",
+    "localDev": "wrangler dev could not start workerd on this machine (spawn error -88), so the Worker was not run in workerd before deployment."
+  },
+  "observations": [
+    "One Homebrew cloudflared process on this Mac receives its tunnel token on the command line, where any local process list shows it; which hostnames that tunnel serves was not checked. The knolstory-stg tunnel already uses --token-file. The token was not recorded anywhere.",
+    "The user turned off the Kiro guard-shell and guard-write hooks ('enabled': false) at 18:44; the change is left uncommitted for the user to decide."
+  ],
+  "next": [
+    "User: approve a wrangler login that adds workers_scripts:write and workers_routes:write, and approve the production API/ingress update.",
+    "Back up the production database (pg_dump custom format to a private 0700 directory), tag the current api and ingress images for rollback, then production-compose.mjs build, migrate (007, additive) and start. Check health, the trash routes (401 before login) and that the ingress HTML equals Pages.",
+    "Deploy the Worker, attach the fail-open route, then verify story.knolquiz.com: browser file check against the candidate, critical hashes, API probe as above, Kakao start redirect, the eight remote browser specs, audition in both modes, editor return and contrast. Detach on any failure.",
+    "Then record the cutover in ADR 0026, STATUS and the plan, and ask the user to try Kakao login and an upload."
+  ]
+}
