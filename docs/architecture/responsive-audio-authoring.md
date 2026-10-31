@@ -32,6 +32,8 @@ Core의 `textboxRect`는 최소 상자와 아래쪽 기준을 제공한다. Ren�
 
 편집기 안내는390×844 참고치로 한 줄 한글 약18자×약9줄, Enter 없는 연속 한글 약162자를 표시한다. 문자 묶음 기준 글자 수와 예상 행 수를 함께 보여주며, Enter·빈 줄은 별도 행을 소비한다. 이 값은 글꼴·기기·문장 경계에 따른 추정이며 강제 제한이 아니다.
 
+RuntimeEvent의 선택적 `loadProgress`(2026-10-31)는 `ready` 전에만 보낸다. bridge가 `renpy.wasm`·`renpy.data`·`game.zip`의 실제 받은 바이트를 빌드가 넣은 원본 크기(`window.knolRuntimeTransfer`)와 비교해 `{stage:'download',ratio}`를, 모두 받은 뒤 `{stage:'start'}`를 보낸다. 엔진 요청과 응답은 그대로 두고 복제본만 센다. protocol1을 유지하며 모르는 host는 버리고, 어떤 host도 이 이벤트를 기다리지 않는다. 표시 규칙은 [DESIGN 진행률](../../DESIGN.md#무대-준비의-진행률--2026-10-31-사용자-결정)이 소유한다.
+
 RuntimeEvent의 sceneRendered는 선택적인 dialoguePage(index,count)를 보고한다. 같은revision의 페이지 변경도 host가 반영하며 자동읽기 키에 포함한다. 중간페이지는 부모창→bridge의동일출처/장면/revision검증된nextDialoguePage명령으로글만넘기고마지막에서만Core가컷을진행한다. 수동입력과겹쳐도해당명령은다음컷이벤트를생성하지않는다. 오디오잠금/전환중에는이동하지않는다.
 
 [통합 캡처와 목업](evidence/reader-details-2026-10-18/mockups/index.html), [구현·검증 근거](evidence/reader-details-2026-10-18/checkpoint.json). 실제Core는 세로의 연결화자한명중앙/가로좌우인물유지를기존대로소비한다. 후보는 아직운영에배포하지않았으므로 로컬export를운영이미지로자동승격하지않는다. 이전목업은당시검토기록이다.

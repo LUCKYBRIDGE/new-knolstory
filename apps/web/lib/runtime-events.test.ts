@@ -19,6 +19,13 @@ describe('runtime event boundary', () => {
     expect(parseRuntimeEvent({ protocol: 1, type: 'error', message: 'failed' })?.type).toBe('error');
     expect(parseRuntimeEvent({ protocol: 1, type: 'error' })).toBeNull();
   });
+  it('accepts only real download shares and the engine start step as load progress', () => {
+    for (const ratio of [0, 0.42, 1]) expect(parseRuntimeEvent({ protocol: 1, type: 'loadProgress', stage: 'download', ratio })?.type).toBe('loadProgress');
+    expect(parseRuntimeEvent({ protocol: 1, type: 'loadProgress', stage: 'start' })?.type).toBe('loadProgress');
+    for (const event of [{ stage: 'download' }, { stage: 'download', ratio: 1.01 }, { stage: 'download', ratio: -0.1 }, { stage: 'download', ratio: NaN },
+      { stage: 'download', ratio: '0.5' }, { stage: 'start', ratio: 1 }, { stage: 'finish', ratio: 1 }])
+      expect(parseRuntimeEvent({ protocol: 1, type: 'loadProgress', ...event })).toBeNull();
+  });
   it('preserves page changes reported for the same scene revision', () => {
     const rect = { x: 0, y: 10, width: 390, height: 330 };
     const report = { protocol: 1, type: 'sceneRendered', revision: 3, sceneId: 'x', renderMs: 10, rendererRect: rect, textboxRect: rect };

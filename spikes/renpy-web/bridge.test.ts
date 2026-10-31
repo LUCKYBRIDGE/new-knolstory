@@ -124,3 +124,48 @@ it('exposes the actual unlock canvas for either sequence channel without fabrica
   expect(canvas.getAttribute('role')).toBe('button');expect(canvas.getAttribute('aria-label')).toContain('소리 켜고 시작');api.emit({protocol:1,type:'sceneRendered',sceneId:'probe',revision:1,audioState:{unlocked:true}});expect(canvas.getAttribute('role')).toBeNull();
  }
 });
+
+describe('runtime download progress for the host loading screen',()=>{
+ type Listener=(event:{loaded:number})=>void;
+ function progressBridge(transfer:unknown={version:1,wasm:{bytes:400,weight:100},data:{bytes:1000,weight:100},game:{bytes:200,weight:200}}){
+  const events:Record<string,unknown>[]=[];const pending:{url:string;resolve:(response:Response)=>void}[]=[];
+  const parent={postMessage:(event:Record<string,unknown>)=>events.push(event),document:{activeElement:null}};
+  class FakeRequest{listeners:Record<string,Listener[]>={};status=0;url='';addEventListener(name:string,fn:Listener){(this.listeners[name]??=[]).push(fn);}open(_method:string,url:string){this.url=url;}fire(name:string,event={loaded:0}){for(const fn of this.listeners[name]??[])fn(event);}}
+  const nativeFetch=(input:unknown)=>new Promise<Response>(resolve=>pending.push({url:String(input),resolve}));
+  const window:Record<string,unknown>={knolRuntimeTransfer:transfer,fetch:nativeFetch,XMLHttpRequest:FakeRequest,frameElement:{}};
+  const canvas={getBoundingClientRect:()=>({x:0,y:0,width:800,height:600}),getAttribute:()=>null,setAttribute:()=>{},removeAttribute:()=>{}};
+  runInNewContext(readFileSync('spikes/renpy-web/bridge.js','utf8'),{window,parent,location:{origin:'https://story.knolquiz.com'},structuredClone,addEventListener:()=>{},document:{getElementById:()=>canvas}});
+  const body=(...chunks:number[])=>new Response(new ReadableStream({start(controller){for(const size of chunks)controller.enqueue(new Uint8Array(size));controller.close();}}));
+  const settle=async()=>{for(let i=0;i<10;i++)await new Promise(resolve=>setTimeout(resolve,0));};
+  const progress=()=>events.filter(event=>event.type==='loadProgress');
+  return {window,events,pending,body,settle,progress,nativeFetch,FakeRequest,api:window.knolBridge as {emit(event:unknown):void}};
+ }
+ it('counts real bytes of all three runtime files and then reports the engine start',async()=>{
+  const {window,pending,body,settle,progress}=progressBridge();
+  const fetch=window.fetch as (input:string)=>Promise<Response>;
+  const wasm=fetch('renpy.wasm');pending[0]!.resolve(body(200,200));const original=await wasm;expect(original.ok).toBe(true);await original.arrayBuffer();
+  const xhr=new (window.XMLHttpRequest as new()=>{open(m:string,u:string):void;fire(n:string,e?:{loaded:number}):void;status:number})();xhr.open('GET','renpy.data');xhr.fire('progress',{loaded:500});
+  await settle();
+  expect(progress().at(-1)).toEqual({protocol:1,type:'loadProgress',stage:'download',ratio:0.375});
+  xhr.status=200;xhr.fire('load');
+  const game=fetch('game.zip?v=abc');pending[1]!.resolve(body(200));await (await game).arrayBuffer();await settle();
+  const ratios=progress().filter(event=>event.stage==='download').map(event=>event.ratio as number);
+  expect(ratios).toEqual([...ratios].sort((a,b)=>a-b));
+  expect(progress().slice(-2)).toEqual([{protocol:1,type:'loadProgress',stage:'download',ratio:1},{protocol:1,type:'loadProgress',stage:'start'}]);
+ });
+ it('leaves other requests untouched and stops reporting once the engine is ready',async()=>{
+  const {window,pending,body,settle,progress,api}=progressBridge();
+  const fetch=window.fetch as (input:string)=>Promise<Response>;
+  const audio=fetch('assets/audio/music.ogg');const response=body(10);pending[0]!.resolve(response);expect(await audio).toBe(response);
+  api.emit({protocol:1,type:'ready'});
+  const wasm=fetch('renpy.wasm');pending[1]!.resolve(body(400));await (await wasm).arrayBuffer();await settle();
+  expect(progress()).toEqual([]);
+ });
+ it('installs nothing without the sizes from the runtime build',()=>{
+  for(const transfer of [null,{version:2},{version:1,wasm:{bytes:0,weight:1}}]){
+   const {window,nativeFetch,FakeRequest}=progressBridge(transfer);
+   expect(window.fetch).toBe(nativeFetch);
+   expect(FakeRequest.prototype.open.toString()).toMatch(/^open\(_method, url\)/);
+  }
+ });
+});

@@ -97,3 +97,14 @@ export function audioPreviewPath(project:StoryProject,lineId:string):string[] {
  const chapter=orderedStoryFlowLines(project).filter(l=>l.chapterId===line.chapterId);
  return chapter.slice(0,chapter.findIndex(l=>l.id===lineId)+1).map(l=>l.id);
 }
+/** audioPreviewPath for every cut at once, deriving each chapter's order only once (whole-work checks). */
+export function audioPreviewPaths(project:StoryProject):ReadonlyMap<string,readonly string[]> {
+ const lines=new Map(project.lines.map(l=>[l.id,l]));const ordered=orderedStoryFlowLines(project);
+ const chapters=new Map<string,string[]>(),paths=new Map<string,string[]>();
+ for(const [id,line] of lines){
+  let chapter=chapters.get(line.chapterId);
+  if(!chapter){chapter=ordered.filter(l=>l.chapterId===line.chapterId).map(l=>l.id);chapters.set(line.chapterId,chapter);}
+  paths.set(id,chapter.slice(0,chapter.indexOf(id)+1));
+ }
+ return paths;
+}

@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { getRepresentativeStory } from '@knolstory/compatibility';
 import { parseStoryDocument, serializeStoryDocument } from '@knolstory/story-domain';
 import { isRuntimeAudio } from '@knolstory/runtime-contract';
-import { compileStoryAudio, audioPreviewPath } from '../src/audio';
+import { compileStoryAudio, audioPreviewPath, audioPreviewPaths } from '../src/audio';
+import { classicStories, representativeStories } from '@knolstory/compatibility';
 const resolve = (id: string) => id === 'music' || id === 'sound' ? { runtimePath: `assets/audio/${id}.ogg` } : undefined;
 function project() {
  const p = getRepresentativeStory('rabbit').project;
@@ -49,6 +50,13 @@ it('keeps branch music through merges, chapter changes and explicit maintain',()
 });
 
 it("builds chapter-local direct preview paths",()=>{const p=project();expect(audioPreviewPath(p,p.lines[1].id)).toEqual(p.lines.slice(0,2).map(l=>l.id));expect(()=>audioPreviewPath(p,"missing")).toThrow();});
+it("derives every cut's direct preview path at once exactly as one cut at a time",()=>{
+ for(const work of [...representativeStories,...classicStories]){
+  const paths=audioPreviewPaths(work.project);
+  expect(paths.size,work.id).toBe(new Set(work.project.lines.map(l=>l.id)).size);
+  for(const line of work.project.lines)expect(paths.get(line.id),`${work.id}/${line.id}`).toEqual(audioPreviewPath(work.project,line.id));
+ }
+});
 
 it('runs chapter sounds once on chapter entry alongside up to four cut sounds',()=>{
  const p=project(),[a,b]=p.lines;

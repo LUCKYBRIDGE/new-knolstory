@@ -11,12 +11,19 @@
 .tip p{margin:0}
 .tip .label{color:#c6b28f;font-size:11px;letter-spacing:.04em;margin-bottom:8px}
 .rule{position:relative;display:block;width:120px;height:1px;margin:24px auto 0;overflow:hidden;background:#53605a}
+/* Runtime download progress: real received share, reusing the loading palette. */
+.progress{width:min(100%,280px);margin:16px auto 0}
+.progressLabel{margin:0 0 8px;color:var(--story-menu-ink,#f5ead4);font-size:13px;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+.progressValue{font-variant-numeric:tabular-nums}
+.progressTrack{position:relative;display:block;height:4px;border-radius:2px;overflow:hidden;background:#53605a}
+.progressFill{position:absolute;top:0;bottom:0;left:0;background:#d3bb91;transition:width .25s linear}
 .rule::after{content:"";position:absolute;width:40%;height:100%;left:-40%;background:#d3bb91;animation:story-loading-travel 2.4s ease-in-out infinite}
 @keyframes story-loading-travel{to{left:100%}}
 @container (max-height:360px){.content{width:min(100%,580px);display:grid;grid-template-columns:minmax(90px,.7fr) minmax(0,1.3fr);align-items:center;gap:20px}.art{height:clamp(80px,45cqh,160px);margin:0}.brand{margin-bottom:6px}.tip{margin-top:12px;font-size:12px}.rule{margin-top:14px}.title{font-size:16px}.hint{font-size:11px}}
 @media(max-height:460px) and (min-width:520px){.loading:not([data-story-loading=stage]) .content{display:grid;grid-template-columns:160px minmax(0,1fr);align-items:center;gap:24px;width:min(100%,650px)}.art{height:150px;margin-bottom:0}.tip{margin-top:14px}.rule{margin-top:16px}}
-@media(prefers-reduced-motion:reduce){.art img,.rule::after{animation:none}.rule::after{left:30%}}
-@container (max-height:280px){.brand,.hint{display:none}.content{gap:12px}.art{height:min(120px,45cqh)}.title{font-size:15px}.tip{margin-top:10px;font-size:11px;line-height:1.75}.tip .label{font-size:10px;margin-bottom:4px}.rule{margin-top:12px}}
+@media(prefers-reduced-motion:reduce){.art img,.rule::after{animation:none}.rule::after{left:30%}.progressFill{transition:none}}
+@container (max-height:360px){.progress{margin-top:10px}.progressLabel{font-size:11px;margin-bottom:6px}}
+@container (max-height:280px){.brand,.hint{display:none}.progress{margin-top:6px}.content{gap:12px}.art{height:min(120px,45cqh)}.title{font-size:15px}.tip{margin-top:10px;font-size:11px;line-height:1.75}.tip .label{font-size:10px;margin-bottom:4px}.rule{margin-top:12px}}
 .art picture{display:block;height:100%;max-width:100%}
 /* The picture must fill its reserved art box, never its intrinsic sprite height. */
 .art{overflow:hidden}

@@ -21,9 +21,33 @@ export function isStoryFlow(value: unknown): value is StoryFlow {
     new Set(flow.options.map(option => option.id)).size === flow.options.length;
 }
 
+type OrderInputs = Readonly<{ chapters: readonly unknown[]; lineRefs: readonly unknown[]; lineChapters: readonly unknown[];
+  lineOrders: readonly unknown[]; chapterRefs: readonly unknown[]; chapterIds: readonly unknown[]; chapterOrders: readonly unknown[]; ordered: readonly StoryLine[] }>;
+// Keyed by the lines array. A hit is used only when every line and chapter is the same object with the
+// same id/chapter/order as when it was computed, so in-place edits and replaced arrays recompute.
+const orderCache = new WeakMap<object, OrderInputs>();
+function sameOrderInputs(cached: OrderInputs, lines: readonly StoryLine[], chapters: readonly StoryProject["chapters"][number][]) {
+  if (cached.chapters !== chapters || cached.lineRefs.length !== lines.length || cached.chapterRefs.length !== chapters.length) return false;
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index]!;
+    if (cached.lineRefs[index] !== line || cached.lineChapters[index] !== line.chapterId || cached.lineOrders[index] !== line.order) return false;
+  }
+  for (let index = 0; index < chapters.length; index++) {
+    const chapter = chapters[index]!;
+    if (cached.chapterRefs[index] !== chapter || cached.chapterIds[index] !== chapter.id || cached.chapterOrders[index] !== chapter.order) return false;
+  }
+  return true;
+}
+/** Cuts in reading order. Returns a new array on every call; the ordering itself is computed once per unchanged project. */
 export function orderedStoryFlowLines(project: Pick<StoryProject, "chapters" | "lines">) {
-  return [...project.chapters].sort((a, b) => a.order - b.order).flatMap(chapter =>
-    project.lines.filter(line => line.chapterId === chapter.id).sort((a, b) => a.order - b.order));
+  const { lines, chapters } = project;
+  const cached = orderCache.get(lines);
+  if (cached && sameOrderInputs(cached, lines, chapters)) return cached.ordered.slice();
+  const ordered = [...chapters].sort((a, b) => a.order - b.order).flatMap(chapter =>
+    lines.filter(line => line.chapterId === chapter.id).sort((a, b) => a.order - b.order));
+  orderCache.set(lines, { chapters, lineRefs: [...lines], lineChapters: lines.map(line => line.chapterId), lineOrders: lines.map(line => line.order),
+    chapterRefs: [...chapters], chapterIds: chapters.map(chapter => chapter.id), chapterOrders: chapters.map(chapter => chapter.order), ordered });
+  return ordered.slice();
 }
 
 export function storyFlowTargets(lines: StoryLine[], index: number): (string | null)[] {

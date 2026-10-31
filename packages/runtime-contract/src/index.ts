@@ -52,6 +52,10 @@ export type RuntimeEvent =
       engineLogicalSize?: Readonly<{width:number;height:number}>;
       audioState?: Readonly<{unlocked?:boolean;ambiencePath?:string|null;ambienceStartCount?:number;musicPath:string|null;musicPosition:number|null;musicStartCount:number;soundPlayCount:number;soundPaths?:readonly string[]}> }>
   | Readonly<{ protocol: 1; type: 'viewportChanged'; rendererRect: Rect }>
+  /** Optional, before `ready`: real share of runtime bytes received, then 'start' while the engine starts.
+   * Informational only (protocol stays 1): hosts that do not know it drop it, and no host may wait for it. */
+  | Readonly<{ protocol: 1; type: 'loadProgress'; stage: 'download'; ratio: number }>
+  | Readonly<{ protocol: 1; type: 'loadProgress'; stage: 'start' }>
   | Readonly<{ protocol: 1; type: 'error'; message: string }>
   | Readonly<{ protocol: 1; type: 'advanceRequested' | 'backRequested' | 'presentationDone'; sceneId: string; revision: number }>
   | Readonly<{ protocol: 1; type: 'choiceSelected'; sceneId: string; revision: number; choiceId: string }>;
@@ -170,6 +174,7 @@ export function isRuntimeEvent(value: unknown): value is RuntimeEvent {
     case 'sceneThumbnailFailed': return text(value.requestId,100)&&!!value.requestId&&text(value.sceneId,200)&&!!value.sceneId&&revision(value.revision);
     case 'ready': return value.contractVersion === 1 && text(value.runtimeVersion, 100) && !!value.runtimeVersion;
     case 'viewportChanged': return isRect(value.rendererRect);
+    case 'loadProgress': return value.stage === 'start' ? value.ratio === undefined : value.stage === 'download' && finite(value.ratio) && value.ratio >= 0 && value.ratio <= 1;
     case 'error': return text(value.message, 2000);
     case 'choiceSelected': return text(value.choiceId, 200) && !!value.choiceId && text(value.sceneId, 200) && !!value.sceneId && revision(value.revision);
     case 'advanceRequested':

@@ -66,6 +66,7 @@ import {WorkspaceManagement} from "./workspace-management";
 import {LocalBookshelf,type BookshelfIntent} from "./local-bookshelf";
 import {StoryPreparation} from "./story-preparation";
 import {WORKSPACE_KEY,preflight,readWorkspace,captureContext,writeWorkspace as writeWorkspaceSnapshot,type WorkContexts,type WorkspaceView} from "../lib/workspace-storage";
+import {readWorkspaceChecks,workspaceCheckBuild,writeWorkspaceChecks} from "../lib/workspace-checks";
 import {readPlayerSaves,loadPlayerSlot} from "../lib/player-saves";
 import { StoryFlowMap } from "./story-flow-map";
 import { StoryFlowContext } from "./story-flow-context";
@@ -238,8 +239,10 @@ export function StoryWorkspace() {
         const raw = localStorage.getItem(WORKSPACE_KEY);
         const visited=loadLandingVisit(localStorage);
         const reload=(performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming|undefined)?.type==='reload';
+        let storedDeletedWork:ReturnType<typeof readWorkspace>['deletedWork'];
         if(raw){
-          const loaded=readWorkspace(raw);contexts.current=loaded.contexts;savedProjects.current=loaded.works;setEditingPaths(Object.fromEntries(Object.entries(loaded.contexts).map(([key,context])=>[key,context.editingPath??[context.lineId]])));
+          // Works that already passed in this build skip the whole-work scene check; parsing still runs.
+          const loaded=readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)});writeWorkspaceChecks(localStorage,workspaceCheckBuild,loaded.checked);storedDeletedWork=loaded.deletedWork;contexts.current=loaded.contexts;savedProjects.current=loaded.works;setEditingPaths(Object.fromEntries(Object.entries(loaded.contexts).map(([key,context])=>[key,context.editingPath??[context.lineId]])));
           setImportedWorks(Object.fromEntries(Object.entries(loaded.works).filter(([id])=>id.startsWith('new:')||id.startsWith('import:')).map(([id,work])=>[id,work.title])));
           setProject(loaded.project);setStoryId(loaded.storyId);
           const context=loaded.contexts[loaded.storyId]!;setLineId(context.lineId);setEditorView(context.editorView);setActiveTool(context.activeTool);setWriterChapterId(context.writerChapterId);setPreviewProfile(context.previewProfile);
@@ -250,7 +253,8 @@ export function StoryWorkspace() {
         }else{setView(resolveEntryView({visited,hasWorkspace:false,reload,directEditor:directEditor.current,directLibrary}));setRuntimeMounted(directEditor.current);}
 
         if(directLibrary){const url=new URL(location.href);url.searchParams.delete('view');history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);}
-        try{const raw=localStorage.getItem(WORKSPACE_KEY);setDeletedWork(raw?readWorkspace(raw).deletedWork??readDeletedWork(localStorage):readDeletedWork(localStorage));}catch(issue){setError(String(issue));}
+        // The workspace was read once above; reading it again only to find the deleted work doubled the start time.
+        try{setDeletedWork(raw?storedDeletedWork??readDeletedWork(localStorage):readDeletedWork(localStorage));}catch(issue){setError(String(issue));}
         setHydrated(true);
       } catch {
         if(directEditor.current){setView('editor');setRuntimeMounted(true);}
@@ -856,7 +860,7 @@ export function StoryWorkspace() {
               }}
             />
             {mode==='play'&&<div className={styles.readerContext} data-reader-context="true" style={{left:runtime.fit.offsetX+12,top:runtime.fit.offsetY+12,maxWidth:Math.max(1,scene.width*runtime.fit.scale-80)}}>{chapterLabel(chapter)}</div>}
-            {!runtime.ready && <StoryLoading stage/>}
+            {!runtime.ready && <StoryLoading stage progress={runtime.loadProgress}/>}
             {mode === "edit" && editingScreen === "characters" && activeTool === "assets" &&
               runtime.ready &&
               scene.actors.map((actor) => (

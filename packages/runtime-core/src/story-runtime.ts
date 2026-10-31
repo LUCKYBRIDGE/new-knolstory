@@ -226,7 +226,8 @@ export function compileStoryScene(project: StoryProject, lineId: string, revisio
   const sourceSize = background ? getBackgroundSize(background.id) : undefined;
   const backgroundFit = line.presentation?.backgroundFit ?? (viewport || background?.backgroundRole === 'scenery' ? 'cover' as const : 'contain' as const);
   const focal = line.presentation?.backgroundFocal;
-  const replayProject=options.mode==='edit'?{...project,lines:project.lines.map(line=>{const {visibility:_visibility,...rest}=line;return rest;})}:project;
+  // Editing ignores reader visibility. Without any visibility the copy would equal the project, so skip it.
+  const replayProject=options.mode==='edit'&&project.lines.some(line=>line.visibility)?{...project,lines:project.lines.map(line=>{const {visibility:_visibility,...rest}=line;return rest;})}:project;
   const path=options.playbackState?.path??options.playbackPath??audioPreviewPath(project,lineId);const presentation=compileStoryPresentation(replayProject,lineId,path,options.playbackState?.choiceHistory,options.mode==='edit'||options.playbackState?.status==='ended'?Infinity:options.playbackState?.effectStep??0);
   const effectSteps=storyEffectSteps(project,options.playbackState??{lineId,path,status:'reading'});
   const scene: RuntimeScene = { contractVersion: 1, sceneId: `${project.id}/${line.id}`, revision, width, height,

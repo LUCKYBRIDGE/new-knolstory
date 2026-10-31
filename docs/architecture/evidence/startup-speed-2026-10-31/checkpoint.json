@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-31",
+  "scope": "The user's report that loading works at the start felt too slow: measurement on story.knolquiz.com, the two causes found, and the approved fixes A1 (same check, less computation), A2 (remember checks per build), B1 (brotli transport copies) and B4 (real download progress). B2 (font subsetting) was measured and not done. Not a release judgement, a physical school device test or a screen reader test.",
+  "provenance": {
+    "recordedBy": "Kiro, 2026-10-31 21:00-23:20 KST, on the Mac mini that also serves production.",
+    "localOnly": "Measurement scripts are in .cache/perf-check/ and .cache/edge-verify/ (Git-ignored, this machine only)."
+  },
+  "userDecision": "After the diagnosis the user chose A1, A2, B1 and B4, and asked how many characters B2 would remove, to skip it if the difference was not big ('a1,2 하고 b1하고 b2는 글꼴 몇개나 빠지려고? 차이가 크지않다 판단되면 b2는 하지말자 b4도 해줘').",
+  "before": {
+    "line": "This Mac's connection was slow during the measurements: Google's CDN 0.46 MB/s, speed.cloudflare.com 1.02 MB/s, new-knolstory.pages.dev 1.5-2.1 MB/s. story.knolquiz.com answered from Cloudflare HKG/NRT, pages.dev from ICN.",
+    "firstStoryOpen": "Empty cache, first built-in story, click to first Ren'Py scene: 28.9 s (Playwright context) and 21.0 s (disk profile). 34.9 MB transferred: renpy.data 14.7 MB sent uncompressed (application/octet-stream), game.zip 13.2 MB, renpy.wasm 5.7 MB (brotli from Pages). game.zip starts only after the wasm has arrived (Emscripten preRun). The engine then needs about 2.5 s.",
+    "laterStoryOpen": "Disk profile after closing and reopening the browser: 2.9 s, 0.14 MB transferred (all runtime files revalidated). The Playwright default context does not keep the 13-15 MB files, so its 24 s 'warm' result was a test artifact. Before the 19:42 cutover the Mac mini ingress sent no ETag or Last-Modified with no-cache, so browsers had to download the runtime again on every visit; that was not measured.",
+    "returningStart": "A browser that opened one story stays on '화면 불러오는 중' for 5.2-5.7 s on the next start with no network request. One task of 4.8 s. CPU profile: about 3.0 s in orderedStoryFlowLines (sorting all cuts again for every cut through audioPreviewPath), 0.7 s copying all cuts without visibility for every edit-mode scene. Opening 선녀와 나무꾼 원작 once stores the 1,613-cut 놀스토리 edition as well, so readWorkspace builds 1,779 scenes, and the start called readWorkspace twice (once only to find the deleted work)."
+  },
+  "changes": {
+    "A1": [
+      "packages/story-domain/src/legacy/story-flow.ts: orderedStoryFlowLines computes the order once per unchanged project. A cache hit needs every cut and chapter to be the same object with the same id, chapter and order; it returns a new array each time (tests/story-flow-order.test.ts, including in-place edits).",
+      "packages/runtime-core/src/audio.ts: audioPreviewPaths gives every cut's direct-jump path at once; a test compares it with audioPreviewPath for every cut of the eight built-in works.",
+      "packages/runtime-core/src/story-runtime.ts: edit mode copies the cuts without visibility only when some cut has visibility.",
+      "apps/web/lib/workspace-storage.ts: preflight passes the precomputed path; one read checks identical content once.",
+      "apps/web/components/story-workspace.tsx: the start reads the workspace once instead of twice."
+    ],
+    "A2": "apps/web/lib/workspace-checks.ts and readWorkspace options: key knolstory-workspace-checks-v1 holds fingerprints of works that passed in this build (one identity per build from apps/web/next.config.ts env KNOLSTORY_BUILD_ID; off in development and tests). Parsing always runs; a changed work, a new build or a malformed record runs the full check. Contract: authoring-storage-contract.md, 시작 검사 기억.",
+    "B1": "spikes/renpy-web/transport.py (runtime build): renpy.data.br and renpy.wasm.br at brotli 11, kept only when they decode to the exact bytes. server/operations/story-edge-worker.mjs serves them with Content-Encoding: br, Vary: Accept-Encoding and encodeBody manual when the browser accepts br and the request is not a range; otherwise, or if the copy is missing, the identity file. scripts/static-delivery-audit.py reviews a .br as its source; scripts/verify-static-deployment.py gains --expect-brotli and rejects an encoded answer to an identity request.",
+    "B4": "Contract event loadProgress (protocol 1, optional, before ready). spikes/renpy-web/bridge.js counts received bytes of renpy.wasm and game.zip on a response clone and renpy.data through XHR progress, against the decoded sizes the runtime build writes into index.html, weighted by estimated transfer size. The host merges values forward only and StoryLoading shows '무대 자료를 받고 있어요 · N%' with a progressbar, then '무대를 열고 있어요' without a number. DESIGN.md 무대 준비의 진행률. A Chromium experiment (.cache/perf-check/xhr-units.spec.ts) showed XHR progress counts decoded bytes and reports no total for a brotli response, which is why the bridge counts against decoded sizes."
+  },
+  "sizes": {
+    "renpy.data": "15,057,379 bytes; brotli copy 3,749,251 (24.9%), Node brotli 11 in 23.7 s",
+    "renpy.wasm": "21,586,559 bytes; brotli copy 4,191,788 (19.4%) against 5.68 MB from Pages' own compression",
+    "game.zip": "13,496,179 bytes, already compressed; NotoSansKR.ttf is 5.38 MB of it"
+  },
+  "b2Measurement": {
+    "font": "NotoSansKR.ttf is a variable font (wght axis), 10,414,588 bytes, 24,964 glyphs, 23,174 mapped characters: 11,172 Hangul syllables, 8,653 Hanja, 451 Hangul jamo, 205 kana, 2,449 symbols, 244 Latin.",
+    "subset": "Keeping Latin, punctuation, symbols, jamo and all 11,172 Hangul syllables (fontTools 4.60.2) leaves 15,166 glyphs and shrinks the zip-deflated font from 5,345,299 to 1,986,137 bytes: 3.36 MB less, about 15% of the first download after B1.",
+    "decision": "Not done. Hanja would render as missing glyphs in any work that uses them, and the saving is a third of what B1 saves. Left for the user to ask for later."
+  },
+  "afterLocal": {
+    "origin": "This Mac, the new build served by scripts/serve-static-candidate.py from .cache/pages-release-20261031d (no network latency; the start phase is CPU-bound, so its numbers compare with the live 'before').",
+    "preflightNode": "Whole-work check per built-in work in Node: 선녀와 나무꾼 놀스토리 1,613 cuts 503 ms, 옹고집전 453 cuts 57 ms, the other six 2-25 ms.",
+    "returningStart": "After one story: second start (first after the update, full check once) 804 ms to the first screen, longest task 441 ms; third start (check remembered) 406 ms, longest task 163 ms. Before: 5,217-5,686 ms and one 4,775 ms task.",
+    "progress": "A real Ren'Py boot sent 30 loadProgress events, never decreasing, ending with ratio 1 and stage start.",
+    "browserSpecs": "18 of 18 of the live set passed on the local build (relative stature, three/four actors, work files, eight native entries, OGG/MP3 background music, source ranges, audio preview in both range modes, editing return, contrast). tests/e2e/stage-loading-progress.spec.ts 2 of 2 at 1440x900 and 390x844.",
+    "unitAndScripts": "vitest 255 files, 2,182 passed, 2 skipped (CI set); Python script tests 162 OK."
+  },
+  "liveAfterDeploy": "Pending: recorded after the commit, CI and deployment."
+}

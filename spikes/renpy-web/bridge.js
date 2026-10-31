@@ -46,6 +46,65 @@
     return { x: box.x + (box.width - logicalWidth * scale) / 2, y: box.y + (box.height - logicalHeight * scale) / 2,
       width: logicalWidth * scale, height: logicalHeight * scale };
   }
+  // Download progress for the host loading screen (contract event loadProgress). Counts the bytes the
+  // browser actually receives for renpy.wasm, renpy.data and game.zip against their decoded sizes from
+  // the build (window.knolRuntimeTransfer), weighted by estimated transfer size. Observation only: the
+  // engine still gets its own requests and the original responses. Without sizes nothing is reported.
+  const transfer = window.knolRuntimeTransfer;
+  const progressKinds = transfer && transfer.version === 1
+    ? ['wasm', 'data', 'game'].filter(kind => transfer[kind] && transfer[kind].bytes > 0 && transfer[kind].weight > 0) : [];
+  const progressParts = new Map();
+  let progressClosed = false, startSent = false, lastRatio = -1, lastSentAt = 0;
+  function sendProgress(event) { parent.postMessage({ protocol: 1, type: 'loadProgress', ...event }, origin); }
+  function setProgress(kind, fraction) {
+    if (progressClosed || !progressKinds.includes(kind) || !(fraction >= 0)) return;
+    progressParts.set(kind, Math.max(progressParts.get(kind) ?? 0, Math.min(1, fraction)));
+    if (progressKinds.every(item => progressParts.get(item) === 1)) {
+      if (!startSent) { startSent = true; sendProgress({ stage: 'download', ratio: 1 }); sendProgress({ stage: 'start' }); }
+      return;
+    }
+    const total = progressKinds.reduce((sum, item) => sum + transfer[item].weight, 0);
+    const ratio = progressKinds.reduce((sum, item) => sum + transfer[item].weight * (progressParts.get(item) ?? 0), 0) / total;
+    const now = Date.now();
+    if (ratio - lastRatio < 0.01 && now - lastSentAt < 250) return;
+    lastRatio = ratio; lastSentAt = now;
+    sendProgress({ stage: 'download', ratio: Math.min(ratio, 0.999) });
+  }
+  async function countBody(kind, response) {
+    if (!response.ok || !response.body) return;
+    const reader = response.body.getReader();
+    let received = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      received += value.byteLength;
+      setProgress(kind, received / transfer[kind].bytes);
+    }
+    setProgress(kind, 1);
+  }
+  const progressKind = (url) => /(?:^|\/)renpy\.wasm(?:[?#]|$)/.test(url) ? 'wasm' : /(?:^|\/)game\.zip(?:[?#]|$)/.test(url) ? 'game' : null;
+  const nativeFetch = window.fetch;
+  if (progressKinds.length && typeof nativeFetch === 'function') {
+    window.fetch = function (input, init) {
+      const result = nativeFetch.call(window, input, init);
+      const kind = progressKind(typeof Request !== 'undefined' && input instanceof Request ? input.url : String(input));
+      if (!kind) return result;
+      // A clone tees the stream: wasm streaming compilation keeps the original response and its URL.
+      return result.then(response => { try { countBody(kind, response.clone()).catch(() => {}); } catch { /* observation only */ } return response; });
+    };
+  }
+  const NativeRequest = window.XMLHttpRequest;
+  if (progressKinds.includes('data') && NativeRequest && NativeRequest.prototype) {
+    const open = NativeRequest.prototype.open;
+    NativeRequest.prototype.open = function (method, url) {
+      if (/(?:^|\/)renpy\.data(?:[?#]|$)/.test(String(url))) {
+        // Chromium reports decoded bytes for brotli responses, so count against the decoded size.
+        this.addEventListener('progress', event => setProgress('data', event.loaded / transfer.data.bytes));
+        this.addEventListener('load', () => { if (this.status >= 200 && this.status < 300) setProgress('data', 1); });
+      }
+      return open.apply(this, arguments);
+    };
+  }
   window.knolBridge = Object.freeze({
     drain() { const commands = [...(queued ? [queued] : []), ...(queuedPageInput ? [queuedPageInput] : []), ...queuedThumbnails]; queued = null; queuedPageInput = null; queuedThumbnails = []; return JSON.stringify(commands); },
     emit(event) {
@@ -55,6 +114,7 @@
           (['play','sequence'].includes(audio?.music?.action) || ['play','sequence'].includes(audio?.ambience?.action) || !!audio?.sounds?.length));
       }
       if (event.engineViewport) engineViewport = event.engineViewport;
+      if (event.type === 'ready') progressClosed = true;
       parent.postMessage({ ...event, rendererRect: rendererRect() }, origin);
     },
   });

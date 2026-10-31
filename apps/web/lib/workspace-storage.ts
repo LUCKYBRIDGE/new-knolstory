@@ -1,5 +1,6 @@
 import {createStoryDocument,parseStoryDocument,type StoryProject} from '@knolstory/story-domain';
-import {compileStoryScene,createPlayback,orderedLines,restorePlayback,type PlaybackState} from '@knolstory/runtime-core';
+import {audioPreviewPaths,compileStoryScene,createPlayback,orderedLines,restorePlayback,type PlaybackState} from '@knolstory/runtime-core';
+import {workFingerprint} from './workspace-checks';
 import {normalizeEditingPath} from './editor-navigation';
 import {normalizePreviewProfile,type PreviewProfile} from './story-viewport';
 export const WORKSPACE_KEY='knolstory-next-workspace-v1';
@@ -11,7 +12,19 @@ export type WorkspaceState=Readonly<{deletedWork?:WorkspaceDeletedWork;storyId:s
 export type WorkContexts=Readonly<Record<string,WorkContext>>;
 export function preflight(project:StoryProject){
  const cuts=orderedLines(project);if(!cuts.length)throw Error('편집할 컷이 없는 작품입니다.');
- for(const cut of cuts)compileStoryScene(project,cut.id,0,{mode:'edit'});
+ // The direct-jump path compileStoryScene would derive for each cut, computed once for the whole work.
+ const paths=audioPreviewPaths(project);
+ for(const cut of cuts)compileStoryScene(project,cut.id,0,{mode:'edit',playbackPath:paths.get(cut.id)});
+}
+/** Fingerprints that already passed in this build may skip the scene check; parsing always runs. */
+export type WorkspaceCheckOptions=Readonly<{verified?:ReadonlySet<string>}>;
+function checkedProject(document:unknown,failure:string,options:WorkspaceCheckOptions,checked:Set<string>):StoryProject{
+ const result=parseStoryDocument(document);if(!result.ok)throw Error(failure);
+ const fingerprint=workFingerprint(document);
+ // The same document is stored as the current work and in the work list: check it once per read.
+ if(!fingerprint||!checked.has(fingerprint)&&!options.verified?.has(fingerprint))preflight(result.document.project);
+ if(fingerprint)checked.add(fingerprint);
+ return result.document.project;
 }
 export function captureContext(project:StoryProject,previous:WorkContext|undefined,state:WorkspaceState):WorkContext{
  const lineId=project.lines.some(line=>line.id===state.lineId)?state.lineId:orderedLines(project)[0]!.id;
@@ -26,14 +39,14 @@ export function writeWorkspace(storage:Pick<Storage,'setItem'>,project:StoryProj
  storage.setItem(WORKSPACE_KEY,JSON.stringify(data));return {works:nextWorks,contexts:nextContexts};
 }
 /** Additive reader: the original key and document envelope remain readable by older hosts. */
-export function readWorkspace(raw:string):{deletedWork?:WorkspaceDeletedWork;project:StoryProject;storyId:string;works:Record<string,StoryProject>;contexts:Record<string,WorkContext>;view:WorkspaceView;playback:PlaybackState;mode:'play'|'edit';warning:string}{
+export function readWorkspace(raw:string,options:WorkspaceCheckOptions={}):{deletedWork?:WorkspaceDeletedWork;project:StoryProject;storyId:string;works:Record<string,StoryProject>;contexts:Record<string,WorkContext>;view:WorkspaceView;playback:PlaybackState;mode:'play'|'edit';warning:string;checked:string[]}{
  const value:unknown=JSON.parse(raw);if(!value||typeof value!=='object'||Array.isArray(value))throw Error('기기 저장 형식을 확인해 주세요. 원본은 보존합니다.');
  const stored=value as Record<string,unknown>;
  if(stored.workspaceVersion!==undefined&&stored.workspaceVersion!==2)throw Error('이 기기 저장은 다른 버전에서 만들어졌습니다. 원본은 보존합니다.');
- const parsed=parseStoryDocument(stored.document);if(!parsed.ok)throw Error('저장된 작품 형식을 확인해 주세요. 원본은 보존합니다.');
- const project=parsed.document.project;preflight(project);
+ const checked=new Set<string>();
+ const project=checkedProject(stored.document,'저장된 작품 형식을 확인해 주세요. 원본은 보존합니다.',options,checked);
  if(stored.works!==undefined&&(!stored.works||typeof stored.works!=='object'||Array.isArray(stored.works)))throw Error('저장된 작품 목록을 확인해 주세요. 원본은 보존합니다.');
- const works=Object.fromEntries(Object.entries((stored.works??{}) as Record<string,unknown>).map(([id,document])=>{const result=parseStoryDocument(document);if(!result.ok)throw Error('저장된 작품 목록에 읽을 수 없는 작품이 있습니다. 원본은 보존합니다.');preflight(result.document.project);return [id,result.document.project];}));
+ const works=Object.fromEntries(Object.entries((stored.works??{}) as Record<string,unknown>).map(([id,document])=>[id,checkedProject(document,'저장된 작품 목록에 읽을 수 없는 작품이 있습니다. 원본은 보존합니다.',options,checked)]));
  const storyId=typeof stored.storyId==='string'?stored.storyId:`import:${project.id}`;const allWorks={...works,[storyId]:project};
  const view:WorkspaceView=['home','library','prepare','book','cover'].includes(String(stored.view))?stored.view as WorkspaceView:'editor';
  let playback=createPlayback(project);let warning='';
@@ -52,8 +65,9 @@ export function readWorkspace(raw:string):{deletedWork?:WorkspaceDeletedWork;pro
  if(stored.deletedWork!==undefined){
   const entry=stored.deletedWork as Record<string,unknown>;
   if(!entry||typeof entry.key!=='string'||!entry.key.startsWith('new:')&&!entry.key.startsWith('import:'))throw Error('삭제 복구 기록 형식을 확인해 주세요. 원본은 보존합니다.');
-  const recovery=readWorkspace(JSON.stringify({document:entry.document,storyId:entry.key,contexts:entry.context===undefined?{}:{[entry.key]:entry.context}}));
+  const recovery=readWorkspace(JSON.stringify({document:entry.document,storyId:entry.key,contexts:entry.context===undefined?{}:{[entry.key]:entry.context}}),{verified:new Set([...options.verified??[],...checked])});
+  for(const fingerprint of recovery.checked)checked.add(fingerprint);
   deletedWork={key:entry.key,project:recovery.project,context:entry.context===undefined?undefined:recovery.contexts[entry.key]};
  }
- return {deletedWork,project,storyId,works:allWorks,contexts,view,playback,mode:stored.mode==='play'?'play' as const:'edit' as const,warning};
+ return {deletedWork,project,storyId,works:allWorks,contexts,view,playback,mode:stored.mode==='play'?'play' as const:'edit' as const,warning,checked:[...checked]};
 }

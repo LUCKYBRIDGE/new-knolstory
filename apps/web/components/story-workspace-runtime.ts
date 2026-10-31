@@ -9,6 +9,7 @@ import {readerPresentationReady} from "../lib/reader-presentation-ready";
 import {ServiceAudioDelivery} from '../lib/service-audio-delivery';
 import { listAudioResources } from "../lib/audio-resources";
 import { parseRuntimeEvent } from "../lib/runtime-events";
+import { mergeLoadProgress, type LoadProgress } from "../lib/runtime-load-progress";
 import { initialRuntimeStatus, runtimeStatusReducer } from "../lib/runtime-status";
 
 /** One runtime instance; scene updates never change iframe identity or source. */
@@ -26,6 +27,9 @@ export function useStoryRuntime(
   const frame = useRef<HTMLIFrameElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
   const [ready, setReady] = useState(false);
+  // Optional download progress before `ready`; a runtime that never reports it simply shows none.
+  const [loadProgress, setLoadProgress] = useState<LoadProgress | null>(null);
+  const readySeen = useRef(false);
   const [rendered, setRendered] = useState(-1);
   const [renderEvidence,setRenderEvidence]=useState<Extract<RuntimeEvent,{type:"sceneRendered"}>|null>(null);
   const [runtimeStatus, updateStatus] = useReducer(runtimeStatusReducer, initialRuntimeStatus);
@@ -75,8 +79,14 @@ export function useStoryRuntime(
         return;
       const event = parseRuntimeEvent(message.data);
       if (!event) return;
+      if (event.type === "loadProgress") {
+        if (!readySeen.current) setLoadProgress(previous => mergeLoadProgress(previous, event));
+        return;
+      }
       if (event.type === "ready") {
         confirmedServicePaths.current=new Set();
+        readySeen.current = true;
+        setLoadProgress(null);
         setReady(true);
         updateStatus(event);
       }
@@ -191,6 +201,7 @@ export function useStoryRuntime(
     attachContainer,
     frame,
     ready,
+    loadProgress,
     rendered,
     renderEvidence,
     status: runtimeStatus.message,
