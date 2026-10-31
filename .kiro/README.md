@@ -64,6 +64,7 @@ front matter 형식, 포함 참조 대상, 경로 패턴이 실제 파일과 맞
 ## 외부 서비스 작업에서 배운 것
 - Cloudflare 권한은 기록이나 요약을 믿지 말고 `/knol-status`의 'wrangler 로그인 권한' 줄로 확인한다.
 - `wrangler login`의 승인 창은 120초 뒤 닫힌다. 이 Mac의 기본 브라우저는 ego lite다. 사용자가 권한 추가를 승인했으면 `wrangler login --browser=false --scopes …`로 링크만 받고, ego 작업 공간에서 그 링크를 연다. 동의 화면에 적힌 권한이 승인 범위와 같은지 확인한 뒤 Authorize를 누르거나 사용자에게 넘긴다.
+- git의 스테이징·커밋·push는 한 번에 하나의 셸 호출로만 한다. 2026-10-31에 두 커밋을 병렬 호출로 실행해 A1·A2 변경이 B4 커밋(b42613e)에 섞였다.
 - 2분이 넘는 명령은 `control_bash_process`로 돌린다. `run_in_background`가 `;`로 이은 명령을 떼어 내지 못해 120초에 끊긴 적이 있다.
 - Cloudflare는 Python urllib 요청을 403(error 1010)으로 막는다. 배포 파일 확인은 그 주소를 연 실제 브라우저 안의 같은 출처 fetch로 한다([2026-10-31 근거](../docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json)).
 ## Codex와 함께 쓰기
