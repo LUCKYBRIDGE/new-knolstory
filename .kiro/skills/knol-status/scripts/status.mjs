@@ -170,6 +170,14 @@ function serversSection() {
     const related = containers.filter(([name]) => /knol|story/i.test(name));
     out(`- Docker: 이 프로젝트 관련 ${related.length}개${containers.length > related.length ? ` (그 밖 ${containers.length - related.length}개)` : ''}`);
     for (const [name, state] of related) out(`  ${name}: ${state}`);
+    // 운영 이미지는 빌드 시점의 코드·Web을 담는다. main이 그 뒤에 바뀌었으면 운영이 뒤처졌을 수 있다.
+    for (const [name] of related.filter(([name]) => /^knolstory-next-production-(api|ingress)-/.test(name))) {
+      const imageId = run('docker', ['inspect', name, '--format', '{{.Image}}'], 8000);
+      const created = imageId && run('docker', ['image', 'inspect', imageId, '--format', '{{.Created}}'], 8000);
+      const paths = name.includes('-api-') ? ['server', 'packages'] : ['apps/web', 'renpy', 'packages'];
+      const changed = git('log', '-1', '--format=%cI', 'origin/main', '--', ...paths);
+      if (created && changed && new Date(changed) > new Date(created)) out(`  ! ${name} 이미지(${created.slice(0, 10)})가 origin/main의 ${paths.join('·')} 마지막 변경(${changed.slice(0, 10)})보다 오래됐다: 운영이 main보다 뒤처졌을 수 있다`);
+    }
   }
 }
 
@@ -207,6 +215,13 @@ function cloudflareSection(originMain) {
   for (const item of list.slice(0, 3)) out(`  ${item.Environment} · ${item.Branch} · source ${item.Source} · ${item.Status} · ${item.Deployment}`);
   const production = list.find(item => item.Environment === 'Production');
   if (production && originMain) out(production.Source && originMain.startsWith(production.Source.slice(0, 7)) ? `  운영 배포 source가 origin/main(${originMain})과 같다` : `  ! 운영 배포 source(${production.Source})가 origin/main(${originMain})과 다르다`);
+  // 기억이나 요약이 아니라 실제 로그인 권한으로 할 수 있는 일을 판단한다(2026-10-31: 요약이 Workers 권한을 잘못 적었다).
+  const whoami = run(command, [...prefix, 'whoami'], 60000);
+  const scopes = whoami ? [...whoami.matchAll(/^- ([a-z_.]+)(?: \((read|write)\))?/gm)].map(match => (match[2] ? `${match[1]}:${match[2]}` : match[1])) : [];
+  if (!scopes.length) return out('- wrangler 로그인 권한: 확인 못 함');
+  out(`- wrangler 로그인 권한: ${scopes.join(', ')}`);
+  const missing = ['pages:write', 'workers_scripts:write', 'workers_routes:write'].filter(scope => !scopes.includes(scope));
+  if (missing.length) out(`  ! 없음: ${missing.join(', ')} (Pages 배포는 pages:write, story.knolquiz.com Worker 배포·경로는 workers_scripts:write·workers_routes:write가 필요하다. 사용자 승인 후 wrangler login --scopes)`);
 }
 
 async function httpSection() {
