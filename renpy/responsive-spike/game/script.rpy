@@ -806,16 +806,25 @@ screen knol_stage():
         if knol_waiting_for_audio():
             key "K_RETURN" action Function(knol_unlock_audio)
             key "K_SPACE" action Function(knol_unlock_audio)
+            # The whole stage starts audio, but only the scene above the dialogue panel is washed:
+            # a pale wash over the dark panel made its text and the host tools on it unreadable.
+            $ gate_height = int(knol_scene["height"]) if knol_scene.get("transitionOnly") else max(1, int(textbox["y"]))
             button:
                 xysize (int(knol_scene["width"]), int(knol_scene["height"]))
-                background Solid("#fffdf4cc")
+                background None
+                hover_background None
                 action Function(knol_unlock_audio)
-                vbox:
-                    align (.5, .5)
-                    xsize int(knol_scene["width"] - 48)
-                    spacing 20
-                    text "소리 켜고 시작" color knol_ink size int(text_size) font "NotoSansKR.ttf" xalign .5
-                    text "무대를 누르거나 Enter·Space로 소리와 이야기를 시작하세요." color knol_ink size int(text_size) font "NotoSansKR.ttf" text_align .5 xalign .5
+                fixed:
+                    xysize (int(knol_scene["width"]), int(knol_scene["height"]))
+                    add Solid("#fffdf4cc") xysize (int(knol_scene["width"]), gate_height)
+                    vbox:
+                        xalign .5
+                        yanchor .5
+                        ypos gate_height // 2
+                        xsize int(knol_scene["width"] - 48)
+                        spacing 20
+                        text "소리 켜고 시작" color knol_ink size int(text_size) font "NotoSansKR.ttf" xalign .5
+                        text "무대를 누르거나 Enter·Space로 소리와 이야기를 시작하세요." color knol_ink size int(text_size) font "NotoSansKR.ttf" text_align .5 xalign .5
     else:
         text "편집 화면 연결 중…" color knol_ink size 32 font "NotoSansKR.ttf" align (0.5, 0.5)
 

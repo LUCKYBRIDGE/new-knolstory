@@ -17,6 +17,7 @@ it('explains current file actions and catalog-only sounds using actual names',()
  expect(findEditorTerms('파일로 보관','파일·표지').map(term=>term.name)).toContain('작품 파일 저장');
  expect(findEditorTerms('소리 파일','소리')[0].example).toContain('등록된');expect(findEditorTerms('소리 파일','소리')[0].example).toContain('외부 파일은 업로드할 수 없어요');expect(findEditorTerms('기록 파일로 보관','파일·표지').map(term=>term.name)).toContain('이전 원고 파일로 저장');
  expect(findEditorTerms('이 컷부터 재생','그림·연출')[0].description).toContain('읽고 있던 컷');
+ expect(findEditorTerms('편집으로 돌아가기','그림·연출').map(term=>term.name)).toContain('이 컷부터 재생');
 });
 
 describe('current product vocabulary',()=>{

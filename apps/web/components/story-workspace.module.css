@@ -864,3 +864,5 @@
 /* Fullscreen stays in the header flow, never over the preview or cut controls. */
 .shell.editorShell:not(.playMode)>.header>.fullscreenShortcut { order:3; flex:0 0 44px; width:44px; min-width:44px; max-width:44px; height:44px; padding:6px; display:inline-flex; align-items:center; justify-content:center; }
 .shell.editorShell:not(.playMode)>.header>.fullscreenShortcut[aria-pressed=true] { background:var(--mint); border-color:var(--mint-strong); }
+/* The chapter label over the scene uses the same dark halo as the transparent reader tools (2026-10-31). */
+.readerContext { text-shadow:0 0 2px #183331,0 0 2px #183331,0 1px 3px #183331; }

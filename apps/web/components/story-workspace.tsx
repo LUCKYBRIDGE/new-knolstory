@@ -855,7 +855,7 @@ export function StoryWorkspace() {
                 pointerEvents:mode==='play'&&readerBusy?'none':undefined,
               }}
             />
-            {mode==='play'&&<div className={styles.readerContext} style={{left:runtime.fit.offsetX+12,top:runtime.fit.offsetY+12,maxWidth:Math.max(1,scene.width*runtime.fit.scale-80)}}>{chapterLabel(chapter)}</div>}
+            {mode==='play'&&<div className={styles.readerContext} data-reader-context="true" style={{left:runtime.fit.offsetX+12,top:runtime.fit.offsetY+12,maxWidth:Math.max(1,scene.width*runtime.fit.scale-80)}}>{chapterLabel(chapter)}</div>}
             {!runtime.ready && <StoryLoading stage/>}
             {mode === "edit" && editingScreen === "characters" && activeTool === "assets" &&
               runtime.ready &&

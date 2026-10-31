@@ -71,3 +71,10 @@
 .dialog[data-chapter-history=true] .historyBody{display:flex;flex-direction:column;flex:1;overflow:hidden}
 .historyBody>.previousChapters,.historyIntro{flex-shrink:0}
 .dialog[data-chapter-history=true] .historyScroll{flex:1;height:auto;max-height:none;min-height:0}
+/* Editor playback (2026-10-31): the way back to editing stays visible beside the menu trigger, in the system-menu palette so it reads over any scene. */
+.menu .editorReturn{position:absolute;right:60px;top:8px;display:inline-flex;align-items:center;gap:6px;height:44px;min-height:44px;padding:0 12px;white-space:nowrap;font-size:14px;line-height:1;color:var(--story-menu-ink);background:var(--story-menu-bg);border:1px solid var(--story-menu-line);border-radius:5px;box-shadow:0 4px 14px #07141455}
+.menu .editorReturn:hover{color:var(--story-menu-accent)}
+.menu .editorReturn:focus-visible{outline:2px solid var(--story-menu-accent);outline-offset:2px}
+/* Transparent reader tools stay legible over bright scenes and white cards (2026-10-31): a dark halo keeps them transparent instead of adding boxes. */
+.menu .topTrigger svg{filter:drop-shadow(0 0 1px #183331) drop-shadow(0 0 2px #183331)}
+.quick button{text-shadow:0 0 2px #183331,0 0 2px #183331,0 1px 3px #183331}
