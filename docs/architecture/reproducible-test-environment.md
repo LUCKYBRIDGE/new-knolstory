@@ -251,6 +251,8 @@ pnpm delivery:preview --candidate .cache/pages-candidate --port 3000
 
 패키징 변경 후에는 `runtime:build → Web build → 후보 준비` 순서를 지키고, `.agents/skills/runtime-qa/SKILL.md`의 정적 전달 절차를 따른다. 현재 결과와 한계는 [패키지 축소 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)에서 확인한다.
 
+2026-11-01부터 `runtime:build`에는 `python3 -m pip install fonttools==4.60.2 Pillow==11.3.0`이 필요하다. 무대 글꼴을 보통 굵기 고정·한자 제외 글꼴로 만들고 그 해시를 확인하며, `game.zip`의 흐린 미리보기 그림을 64색 PNG로 다시 저장한다(`spikes/renpy-web/stage_font.py`, `placeholders.py`). 버전이 다르거나 해시가 다르면 빌드가 멈춘다.
+
 2026-10-31부터 `runtime:build`는 `runtime/renpy.data.br`과 `runtime/renpy.wasm.br`도 만든다. 원본을 brotli 11로 압축하고, 풀었을 때 원본과 바이트가 같아야 남긴다(`spikes/renpy-web/transport.py`). 공개 주소의 edge Worker가 브라우저가 br을 받을 때 이 사본을 `Content-Encoding: br`로 보낸다. 범위 요청과 Pages 단독 주소는 원본을 그대로 받는다. 감사는 이 사본을 원본과 같은 실행 묶음으로 분류해 같은 검토 차단을 적용하고, 원본이 없으면 `missing-transport-source`로 막는다. 공개 주소에서 사본 전달을 확인할 때는 `pnpm delivery:verify … --expect-brotli`를 쓴다. 로컬 미리보기는 압축 협상을 하지 않으므로 이 경로를 대신 확인하지 않는다. [근거](evidence/startup-speed-2026-10-31/checkpoint.json).
 
 ## 인물 상대 크기 파생 이미지 복원 — 2026-10-30

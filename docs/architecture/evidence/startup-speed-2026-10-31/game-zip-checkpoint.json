@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-01",
+  "scope": "Smaller game.zip by user decision: the stage font becomes the static Regular instance without Hanja, and the progressive-image placeholders become 64-colour PNGs. Measurement, build, local checks, deployment and live checks. Not a release judgement, a physical device test or a screen reader test.",
+  "userDecision": "After the byte measurement (checkpoint.json, byteCandidates): '글꼴 변경 좋다. 그리고 한자는 우리 쓸 일이 없어. 미리보기 색 줄이기 좋아.' Kana were not mentioned and stay.",
+  "provenance": {
+    "recordedBy": "Kiro, 2026-11-01 01:00-, on the Mac mini that also serves production.",
+    "localOnly": "Candidates .cache/pages-release-20261031e (before) and .cache/pages-release-20261101a (after), and the raw screenshots in .cache/font-compare, exist only on this machine. stage-font-punctuation.png and stage-font-hanja.png in this folder are Git-ignored by repository policy (screen evidence stays local); rerun measurement/stage-font-compare.mjs to regenerate them."
+  },
+  "changes": {
+    "stageFont": "spikes/renpy-web/stage_font.py, called by spikes/renpy-web/build.py instead of copying the upstream font. fontTools 4.60.2 instancer at wght 400 (Ren'Py draws a variable font with its 'regular' instance when no instance is set, SDK doc/text.html; the presenter sets no instance, axis or bold), then a subset without CJK ideographs, Extension A/B and later, compatibility ideographs, CJK radicals, Kangxi radicals and ideographic description characters. Keeps all layout features, names, hinting tables and .notdef. Version and unique ID name records say it is a modified stage font; no name uses the Reserved Font Name 'Source'. Self-checks: no fvar or gvar, exactly the expected characters, OS/2 weight 400. build.py stops unless the output SHA-256 is f934737fbbde38eebe52d002c8fd898e830bfba1778676e38c3b0c4283fa94c9 (deterministic: two runs gave the same bytes).",
+    "placeholders": "spikes/renpy-web/placeholders.py, run by build.py right after the SDK web build and before the transport copies, transfer sizes and content versions. Every _placeholders/ entry is decoded, quantized to 64 colours (Pillow 11.3.0 FASTOCTREE) and saved as a palette PNG; fully transparent pixels stay fully transparent and fully opaque pixels stay opaque. A placeholder that is not a PNG stops the build. Other entries keep their bytes, order, dates and attributes; deflated entries are compressed again at level 9.",
+    "tests": "scripts/tests/test_runtime_stage_font.py (synthetic variable font: static, outline and advance at wght 400, Hanja ranges, names, deterministic output, a static source refused) and scripts/tests/test_runtime_placeholders.py (synthetic archive: palette PNG, at most 64 colours, exact full transparency and opacity, other entries unchanged, a non-PNG placeholder stops and keeps the archive). CI installs fonttools==4.60.2 next to Pillow==11.3.0.",
+    "docs": "spikes/renpy-web/README.md, docs/architecture/reproducible-test-environment.md (runtime:build needs fonttools 4.60.2 and Pillow 11.3.0), DESIGN.md 무대 글꼴 — 2026-11-01 사용자 결정."
+  },
+  "sizes": {
+    "font": "NotoSansKR.ttf 10,414,588 -> 3,314,052 bytes (14,180 characters kept, 11,172 Hangul syllables, 8,994 Hanja and radicals left out). In game.zip 5,382,314 -> 1,276,159 compressed bytes.",
+    "placeholders": "432 placeholders 1,132,471 -> 433,574 bytes.",
+    "gameZip": "13,496,179 -> 8,642,126 bytes (-4,854,053, -36%). With renpy.data.br 3,749,251 and renpy.wasm.br 4,191,788, unchanged, a first story open sends about 16.6 MB of runtime files instead of 21.4 MB.",
+    "engineUnchanged": "renpy.wasm, renpy.data, renpy.js, renpy-pre.js and knol-bridge.js have the same SHA-256 as in the deployed candidate .cache/pages-release-20261031e.",
+    "candidate": ".cache/pages-release-20261101a (local only): source 267678c531d259fe4f4ec80e9859b361d10d9234 (branch kiro/game-zip-font-placeholders), 1,537 files, 587,784,673 bytes. game.zip?v=2894baad8620ad4d."
+  },
+  "stageFontComparison": {
+    "method": "measurement/stage-font-compare.mjs: the runtime page of each candidate (before on port 3150, after on 3151, scripts/serve-static-candidate.py) loaded alone in an iframe and driven with the same RuntimeScene messages: 10 texts (short, sentences, numbers and Latin, punctuation and symbols, paragraphs, four pages of long text, old Hangul jamo and kana, emoji with a combining accent, Hanja, choices) at 390x844 (720x1558 logical, font 32) and 1280x720 (font 30). Every page screenshotted and compared.",
+    "result": "20 of 20 cases: the same page boundaries (dialoguePage index, count and offsets) and the same text box, dialogue and choice rectangles. Pixels differ only at glyph edges: for example desktop long text 7,553 changed pixels per page, 187 by more than 64 of 255; stage-font-punctuation.png shows before, after and the amplified difference. The Hanja case draws a box for each Hanja (stage-font-hanja.png), as decided.",
+    "file": "stage-font-compare.json"
+  },
+  "localChecks": {
+    "scriptTests": "python3 -m unittest for the two new test files: 6 of 6.",
+    "runtimeProjects": "KNOL_TEST_STATIC=1 playwright --project=runtime, runtime-dpr-1.5, runtime-dpr-2 (tests/e2e/renpy-runtime.spec.ts): 3 of 3 failed, each after Ren'Py had rendered revision 41, at line 72 waiting for a button named '글 편집 영역 접기'. That label no longer exists anywhere in apps/web (0 matches), so the failure is the stale selector already listed in the resume point ('사라진 편집 선택자를 기다리는 host E2E 정리'), not the font change. The steps before line 72 (connection, revisions 0-41, the same frame, alignment through resize) ran.",
+    "storiesRuntime": "Pending."
+  },
+  "liveAfterDeploy": "Pending."
+}
