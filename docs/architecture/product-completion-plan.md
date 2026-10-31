@@ -4,14 +4,15 @@
 
 ## 재개 지점
 
-마지막 확인: 2026-10-29. 세션 전환 시 이 절을 교체하고 실제 파일·프로세스·결과를 대조한다.
+마지막 확인: 2026-10-31 12:40. 세션 전환 시 이 절을 교체하고 실제 파일·프로세스·결과를 대조한다.
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | 2026-10-30 사용자 명시 요청으로 전체 서비스 자산의 Pages 업로드를 진행한다. 기존 사용자 원고·고지/조건부 음향 정책은 보존하고 실제 프로젝트/HTTP/native 응답을 확인한다. [ADR0026](../decisions/0026-static-reading-authoring-and-optional-api.md)에 따라 Pages 단독 크기 조건을 충족한 정적 실행 패키지를 구성했다. [현재 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json). API 없는 로컬 정적 후보의8판본 진입/다음 컷·두 작품 파일 왕복은 확인했으며 전체 갈래·공개 배포 완료는 아니다. 기존 편집 완료·로그인 정책과 전체 목표를 유지한다. |
+| 현재 작업 | 2026-10-30 사용자 명시 요청으로 전체 서비스 자산을 Cloudflare Pages `new-knolstory`에 배포했다(배포 9fc18741, source 8882b7c). 실제 주소의 브라우저 검사8개가 통과했다. Pages가 Range 요청에 전체 파일로 응답해 편집 미리 듣기의 원본 구간 재생이 깨지는 결함을 찾았고, Codex가 고치다 멈춘 수정을 2026-10-31 Kiro가 이어받아 결함 하나를 더 고쳤다. [배포·수정 근거](evidence/pages-deploy-2026-10-30/checkpoint.json). 같은 날 사용자 요청으로 편집 중 재생의 ‘편집으로 돌아가기’와 밝은 장면의 읽기 도구 대비를 고쳤다([근거](evidence/editor-return-contrast-2026-10-31/checkpoint.json)). 사용자가 main 반영과 story.knolquiz.com에서 Pages 자산 제공을 요청해 진행 중이다. 정적 화면·자산·실행 파일은 Pages, `/api`는 Mac mini가 응답하게 한다([ADR0026](../decisions/0026-static-reading-authoring-and-optional-api.md)). 기존 편집 완료·로그인 정책과 전체 목표를 유지한다. |
+| 진행 중 미커밋 | 미리 듣기 수정(`apps/web/components/audio-audition.tsx`, `apps/web/lib/audio-audition-source.ts`와 테스트, `tests/e2e/audio-audition.spec.ts`)과 Codex의 배포 검증 스크립트(`scripts/verify-static-deployment.py`와 테스트, `package.json`의 `delivery:verify`). 2026-10-31 커밋해 main에 반영한다. 이어받기 전 파일별 해시는 근거에 있다. `.kiro/`(Kiro 하네스)도 함께 반영한다. |
 | 종료된 로컬 checkpoint | PC-01 host389 종료:352통과/37native 전용 제외, source/보호artifact 변경0. 필수 native 동선 이행은 [실행별 결과](evidence/native-resume-2026-10-15/native-result.json). PC-02 네 제작 모드 대조와 점수 전용 native 빈 셀 보완. 물리 기기·출시 전체 완료 아님 |
 | 우선 읽을 증거 | [로컬 작품 파일 현재 checkpoint](evidence/local-work-files-2026-10-18/checkpoint.json), [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [온라인 휴지통 후속](evidence/online-trash-2026-10-18/checkpoint.json). 원고/최대 화면/접근성의 기존 근거는 해당 소유 문서에서 재사용. |
-| 다음 행동 | SD-02의 권리/런타임 번들 출처 차단을 해소할 후보를 정리하고 SD-03의 실제 전달·캐시·실패 복귀를 검증한다. 배경음 반복·음향 편집/파일 왕복 확인을 보존하고 SD-04의8판본 전체 갈래·느린 망/목표 실기기 검증을 이어간다. Pages 단독 크기 조건은 충족했으므로 R2를 필수로 두지 않는다. 운영 전환·외부 업로드는 별도이며 완료된 편집·유효한 기기 근거를 반복하지 않는다. |
+| 다음 행동 | ① main CI 확인 → 새 Pages 후보로 `new-knolstory` 재배포(`--force` 없이) → pages.dev 확인 → story.knolquiz.com을 Pages로 연결(정적은 Pages, `/api`는 Mac mini) → story.knolquiz.com에서 재생·편집·파일·로그인 시작 경로 확인 → 근거·STATUS·이 절 갱신. ② 페이지 제목·설명(`apps/web/app/layout.tsx`의 이전 실험 이름) 결정. ③ 확인 후 넘기기 전환에서 도구 줄과 ‘계속’ 버튼이 겹치는 문제. ④ 사라진 편집 선택자를 기다리는 host E2E 정리. ⑤ 이후 기존 순서: SD-02의 권리/런타임 번들 출처 차단을 해소할 후보를 정리하고 SD-03의 실제 전달·캐시·실패 복귀를 검증한다. 배경음 반복·음향 편집/파일 왕복 확인을 보존하고 SD-04의8판본 전체 갈래·느린 망/목표 실기기 검증을 이어간다. Pages 단독 크기 조건은 충족했으므로 R2를 필수로 두지 않는다. 운영 전환·외부 업로드는 별도이며 완료된 편집·유효한 기기 근거를 반복하지 않는다. |
 | 인물 표시 후속 | 공통 캔버스 상대 키·자세, 어린 인물 파생본, 자동 다인 공통 축소를 구현했다. [현재 수정 근거](evidence/character-relative-size-2026-10-30/fix-checkpoint.json). 가로/세로 읽기·편집·파일 재열기·3/4인 native 확인을 마쳤으며 원본/수동 구도와 정적 배포 전체 큐를 유지한다. |
 | 이전 후보 검증 기록 | 작업별 설정·작품 분리5개와 현행 큰 화면에 맞춘 통합 재생 복귀1개는 각각 통과했다. 로그는 `.cache/editor-candidate-20261027-host.log`와 `.cache/editor-candidate-20261027-tablet.log`다. 최초6개 실행의 전체 통과로 합산하지 않는다. 최근 숫자 입력 저장·채널 취소·점수 설정 복귀의 근거는 편집 요구 대조에 보존한다. |
 | Docker 상태 | Next production db/api/ingress running at final origin https://story.knolquiz.com; loopback15501 only. Default production-compose start now preserves final origin; story-next GET/HEAD redirects308. Legacy five running containers unchanged. |

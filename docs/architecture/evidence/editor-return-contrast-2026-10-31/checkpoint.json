@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-31",
+  "scope": "User-reported editor issues found while testing the Pages audio-preview fix: (1) editor-started playback had no visible way back to editing, (2) white reader tools and text were invisible on bright scenes, white transition cards and the audio start gate. Local static build and local Ren'Py runtime only; not yet deployed when recorded.",
+  "sourceBase": "8882b7c5e6e5bab725affe4bf0c89a9b196cacea",
+  "userRequests": [
+    "2026-10-31: editor playback must differ from story reading; returning to the editing window must be easy.",
+    "2026-10-31: on bright white screens some white buttons or text cannot be seen."
+  ],
+  "findings": {
+    "editorReturn": "The only way back was the reader menu's '이 컷 편집하기'. Visible controls during editor playback were the reader menu icon and the reading tool bar (1440x900: 읽기 메뉴, 지난기록, 저장, 불러오기, 자동, 빠른 저장, 빠른 불러오기; 390x844: 읽기 메뉴, 지난기록, 빠른 저장, 설정).",
+    "audioGate": "The native audio start gate laid a pale wash (#fffdf4cc) over the whole stage, including the dark dialogue panel, so the cream dialogue text and the white host tools on it became nearly invisible.",
+    "transparentTools": "The reader menu icon, tool bar labels and chapter label are white without a backdrop by design; on white transition cards and bright scenes they had little or no dark edge."
+  },
+  "changes": [
+    "Editor-started playback shows '편집으로 돌아가기' beside the reader menu icon at the top right of the stage (44px high, system menu palette). Same action as the menu's '이 컷 편집하기'. Not shown for library reading.",
+    "The editor term guide finds '이 컷부터 재생' by '편집으로 돌아가기' and describes the stage button.",
+    "Reader menu icon, tool bar labels and chapter label use a dark halo (text-shadow or drop-shadow) instead of adding boxes.",
+    "renpy/responsive-spike/game/script.rpy: the audio start gate's pale wash and its message cover only the scene above the dialogue panel; the whole stage still starts audio and Enter/Space are unchanged. Runtime rebuilt with pnpm runtime:build (game.zip 13,496,178 bytes).",
+    "Test maintenance: audio-source-range, preview-context and closed-preview-context specs suppress the phone fullscreen offer (added 2026-10-29), which covered the editor at 390px; the offer has its own spec."
+  ],
+  "measurements": {
+    "method": "tests/e2e/reader-light-contrast.spec.ts at 1440x900. Panel: median luminance of the dialogue panel. Tools: darkest paint against brightest backdrop inside each control box (a heuristic for legibility of transparent controls, not a WCAG text measurement). Editor return: rendered text contrast via tests/e2e/rendered-contrast.ts.",
+    "before": {
+      "audioGatePanelMedianLuminance": 0.679,
+      "readerMenuIconOnGate": 1.08,
+      "readerMenuIconOnWhiteCard": 1.08,
+      "historyButtonOnWhiteCard": 1.26,
+      "quickSaveButtonOnWhiteCard": 1.26,
+      "log": ".cache/reader-contrast-red2.log"
+    },
+    "after": {
+      "audioGatePanelMedianLuminance": 0.052,
+      "readerMenuIconOnGate": 4.51,
+      "readerMenuIconOnWhiteCard": 4.52,
+      "historyButtonOnWhiteCard": 8.05,
+      "quickSaveButtonOnWhiteCard": 9.55,
+      "chapterLabel": 15.1,
+      "editorReturnTextContrast": 12.67,
+      "log": ".cache/reader-contrast-green2.log"
+    }
+  },
+  "validation": {
+    "newSpecs": "tests/e2e/editor-preview-return.spec.ts (1440x900, 390x844, 844x390, keyboard with runtime unavailable, library reading has no editing return) and tests/e2e/reader-light-contrast.spec.ts. Both failed before the change (.cache/editor-return-red.log, .cache/reader-contrast-red.log) and passed after.",
+    "staticRegression": "KNOL_TEST_STATIC=1 host project on the rebuilt static export (pnpm build after pnpm runtime:build): editor-preview-return, reader-light-contrast, audio-audition, audio-source-range, preview-context, closed-preview-context, combined-preview-return, non-audio-transition, perspective-cue. 31 passed, 2 failed (.cache/release-20261031-e2e-static.log). Both failures are closed-preview-context at 390px waiting for a '이 컷 선택' button that the phone single-cut layout does not render; 844, 768 and 1280 pass. Pre-existing stale test, not claimed green.",
+    "unit": "pnpm test: 252 files, 2155 passed, 2 skipped (.cache/release-20261031-vitest.log)",
+    "typecheck": "pnpm typecheck: exit 0",
+    "lint": "pnpm lint: exit 0",
+    "python": "pnpm test:scripts: 154 passed",
+    "docs": "pnpm docs:check and pnpm test:docs: exit 0"
+  },
+  "openIssues": [
+    "On a confirm-mode transition card the reading tool bar overlaps the lower part of the native '계속' button. Pre-existing layout; not changed here.",
+    "Confirm-mode transition cards continue only via their button; tapping elsewhere does not continue (existing tested design). Auto mode, the default, continues by itself.",
+    "approved-reader and accessibility-reader host specs still wait for retired editor selectors ('보기 설정'); they failed before this change (.cache/editor-return-baseline.log)."
+  ],
+  "limits": [
+    "Chromium on this Mac only; no physical phone, tablet or screen reader check.",
+    "Contrast numbers cover the tested scenes; arbitrary authored backgrounds are not exhaustively measured."
+  ],
+  "next": "Commit, push to main, redeploy Pages and verify these behaviours on the deployed origins."
+}

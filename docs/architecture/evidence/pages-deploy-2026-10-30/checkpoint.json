@@ -1,0 +1,154 @@
+{
+  "date": "2026-10-31",
+  "scope": "2026-10-30 Cloudflare Pages deployment of the full service build and its remote verification, the editor audio-preview defect found on Pages, and the continuation of Codex's interrupted fix through local verification. Not a redeploy, rights approval, production-domain cutover or full product release.",
+  "provenance": {
+    "recordedBy": "Kiro, 2026-10-31. Facts dated 2026-10-30 are transcribed from Codex command logs under .cache (primary development Mac only, Git-ignored) and were not re-run unless listed under rechecked.",
+    "transcribedLogs": [
+      ".cache/pages-deploy-project-create.log",
+      ".cache/pages-deploy-project-create-pages.log",
+      ".cache/pages-deploy-prepare.log",
+      ".cache/pages-deploy-upload.log",
+      ".cache/pages-deploy-git-push.log",
+      ".cache/pages-release-20261030/manifest.json",
+      ".cache/pages-release-20261030/publication-authorization.json",
+      ".cache/pages-deploy-20261030/remote-browser.log",
+      ".cache/pages-deploy-20261030/browser-files-final.json",
+      ".cache/pages-deploy-20261030/browser-critical.json",
+      ".cache/pages-deploy-20261030/range-curl-headers.txt",
+      ".cache/pages-deploy-20261030/range-browser.log",
+      ".cache/pages-deploy-20261030/urllib-policy-report-current.json",
+      ".cache/pages-deploy-20261030/python-tests-final.log",
+      ".cache/pages-audition-source-red.log",
+      ".cache/pages-audition-source-green.log",
+      ".cache/pages-audition-lint.log",
+      ".cache/pages-audition-types.log"
+    ],
+    "rechecked": [
+      {
+        "at": "2026-10-31 00:57 KST",
+        "command": "node .kiro/skills/knol-status/scripts/status.mjs --fetch",
+        "result": "origin/main 8882b7c; latest main CI success on 8882b7c; Pages project new-knolstory has one Production deployment with source 8882b7c; new-knolstory.pages.dev returns 200; story.knolquiz.com and story-next.knolquiz.com return the same HTML as each other."
+      },
+      {
+        "at": "2026-10-31 08:02 and 08:15 KST",
+        "command": "node .cache/pages-audition-probe.mjs; node .cache/pages-audition-ogg-probe.mjs",
+        "result": "Read-only Chromium measurements of seeking under a Range-capable server, a simulated Range-ignoring host and the live Pages site. See defect.measurement."
+      },
+      {
+        "at": "2026-10-31 08:2x KST",
+        "command": "curl -H 'Range: bytes=0-99' on new-knolstory.pages.dev and story-maker-5b1.pages.dev",
+        "result": "200 without Accept-Ranges or Content-Range for /assets/audio/forest.wav, /runtime/renpy.wasm and a /_next/static chunk; the separate story-maker Pages project answers the same way, so this is host behaviour rather than this project's _headers."
+      }
+    ]
+  },
+  "sourceBase": "8882b7c5e6e5bab725affe4bf0c89a9b196cacea",
+  "deployment": {
+    "host": "Cloudflare Pages, direct upload (no Git integration)",
+    "project": "new-knolstory",
+    "deployment": "9fc18741",
+    "environment": "Production",
+    "branch": "main",
+    "source": "8882b7c",
+    "url": "https://new-knolstory.pages.dev",
+    "uploadedFiles": 1534,
+    "uploadSeconds": 81.99,
+    "headers": "apps/web/public/_headers applied: same-origin frames, no-cache for fixed URLs, immutable /_next/static.",
+    "projectCreation": "The first create attempt was delegated to Cloudflare Workers and deployed nothing. The project was then created directly on Pages with --force. Wrangler notice: do not pass --force on later commands."
+  },
+  "candidate": {
+    "directory": ".cache/pages-release-20261030 (local only)",
+    "command": "pnpm delivery:prepare --pages-only --output .cache/pages-release-20261030",
+    "manifestSha256": "b9f3ba74b7266efbb89bb695ddc73fe13d1af6d796dc5c6f3e00edce1bf7f99a",
+    "files": 1535,
+    "bytes": 584685071,
+    "excluded": [
+      {
+        "path": "runtime.zip",
+        "bytes": 228854970,
+        "reason": "download-only archive"
+      }
+    ],
+    "rights": "The publication authorization records the user-approved publishing action, not legal clearance. Unverified media rights (918) and runtime bundle review items (3) remain unchanged."
+  },
+  "remoteValidation": {
+    "browserE2E": "8 of 8 passed against https://new-knolstory.pages.dev in 5.6 minutes: relative stature at 1280 and 390, three and four automatic actors, KnolStory and ShortStory downloaded work files reopen without a server or previous browser storage, eight native entries without an API, progressive BGM OGG and MP3 across cuts.",
+    "files": "Same-origin browser HEAD requests: 1534 of 1534 returned the expected status; 12 initial 25-second timeouts succeeded on retry.",
+    "hashes": "7 critical files (index.html, runtime/index.html, runtime/runtime-contract.js, runtime/game.zip and three stature-v2 derivatives) matched manifest SHA-256 and size.",
+    "nonBrowserTransport": "Python urllib requests received Cloudflare 403 (origin HTTP policy). Recorded as blocked transport, not as missing files."
+  },
+  "defect": {
+    "symptom": "On Pages, the editor's standalone audio preview could not start at an authored source range. tests/e2e/audio-audition.spec.ts failed against Pages; tests/e2e/audio-source-range.spec.ts (native playback of the same ranges) passed.",
+    "cause": "Cloudflare Pages answers Range requests with 200 and the whole file. Chromium then reports a seekable window of [0,0] for WAV and an unbounded duration for OGG, so seeking to the range start is ignored.",
+    "measurement": {
+      "rangeRequests": "2026-10-30: forest.wav, score-calm.ogg and oga-forest.mp3 returned 200 instead of 206.",
+      "chromium": "Same 8-second WAV: a Range-capable server reports seekable [0,8] and honours a seek to 1s; a simulated Range-ignoring host and the live Pages site report seekable [0,0] and leave playback near 0.36s. Live Pages OGG reports duration Infinity. An in-memory copy of a local OGG restores duration 24.02s and seeking."
+    },
+    "notAffected": "Native Ren'Py playback of source ranges (audio-source-range E2E passed on Pages)."
+  },
+  "interruptedFix": {
+    "author": "Codex, 2026-10-30 16:57 to 17:04, uncommitted",
+    "approach": "When a ranged preview plays from a host that cannot seek, fetch the whole file once (bounded size, same-origin credentials, no redirects) into an object URL and play that copy; cancel and revoke on source change. The deployment verifier gained --allow-full-range-response, and package.json gained delivery:verify.",
+    "stepsAtInterruption": {
+      "unit": "7 passed",
+      "lint": "passed",
+      "python": "154 passed",
+      "webTypecheck": "failed: TS2493 at apps/web/lib/audio-audition-source.test.ts 16:31",
+      "notRun": ["audition E2E", "commit", "push", "Pages redeploy", "evidence and plan records"]
+    },
+    "sha256AtInterruption": {
+      "apps/web/components/audio-audition.tsx": "439a7329ea434959f253633129d7e3679f646bf428033d43289a7b31aa8d73e2",
+      "apps/web/lib/audio-audition-source.ts": "64df3a7fa3f969b511d04e84cc11fabe6469d1f3382037bb70f507f96e3de4f6",
+      "apps/web/lib/audio-audition-source.test.ts": "2e45fc5554320f9bfb0e5047d74cee2478b56eb04ad1488ad3b257df8943bbf4",
+      "tests/e2e/audio-audition.spec.ts": "c6d497956f1242f78c7a27372394e148e38311ab17248d9e5267dc30ff9cabed",
+      "package.json": "7acdf543b85be5fc1c609a0db752df91644490d88c6132a70962098aff76bba7",
+      "scripts/verify-static-deployment.py": "4b061a215b6bfc58359a51e18db2e0aa25972fb6a3a640ff911f4e56368324c2",
+      "scripts/tests/test_verify_static_deployment.py": "5b4b67c880d4e4380bac2a29f15ecc669be9aaed24c357c5f27f153e79545e7b"
+    }
+  },
+  "continuation": {
+    "by": "Kiro, 2026-10-31, at the user's request to continue Codex's work",
+    "changes": [
+      "Typed the fetch mock in the unit test, which cleared TS2493.",
+      "The first local E2E showed server-range mode passing and full-file mode failing: the in-memory copy was never used. The trigger required seekable.length === 0, but Chromium reports one [0,0] window. The trigger now copies an HTTP source when the seekable end is shorter than the duration, or when the duration is not finite (Pages OGG).",
+      "The unit test now encodes the measured Chromium windows; it failed before the trigger change and passed after it."
+    ],
+    "validation": {
+      "webTypecheck": "pnpm --filter @knolstory/web typecheck: exit 0 (.cache/pages-audition-types-green2.log)",
+      "unit": "audition unit tests: red 1 failed 4 passed (.cache/pages-audition-unit-red2.log), then 7 passed (.cache/pages-audition-unit-green2.log)",
+      "lint": "eslint on the four changed web and E2E files: exit 0 (.cache/pages-audition-lint-green2.log)",
+      "python": "pnpm test:scripts: 154 passed (.cache/pages-verifier-python-fixed.log)",
+      "fullUnit": "pnpm test: 252 files, 2155 passed, 2 skipped (.cache/pages-audition-vitest-full.log)",
+      "auditionE2E": "host project on local next dev. Before the trigger change: server ranges passed, full file responses failed (.cache/pages-audition-e2e.log). After: 2 of 2 passed (.cache/pages-audition-e2e-green2.log).",
+      "pagesLikeLocal": "2026-10-31 09:18 KST. Rebuilt apps/web/out with pnpm build and served it from a loopback server that ignores Range like Pages (.cache/serve-pages-like.py). A manual-check work file with ranged WAV, long OGG and short OGG previews played only the authored ranges; audio-source-range passed 2 with its host-only touch-size test skipped, and audio-audition passed in both modes (.cache/pages-audition-pageslike.log).",
+      "relatedE2E": "Five other host specs that open audio previews (pixabay-scene-audio, preview-context, responsive-audio-authoring, sfx-list, sound-purpose; 25 tests) on local next dev: 8 passed, 11 failed, 1 interrupted, 3 skipped, 2 not run before the 25-minute command limit (.cache/pages-audition-e2e-related.log). Every failure waits for UI that the current editor no longer renders ([data-additional-tools] is used only by an unimported component; [data-writing-tools] is absent from source) or is blocked at 390px by the phone fullscreen offer added 2026-10-29. They are stale specs independent of this change and are not claimed green."
+    },
+    "sha256AfterContinuation": {
+      "apps/web/components/audio-audition.tsx": "061b31cfb3c1d05e6b0dae2528fd32324dd510977ce7a106506de9eb985c1ca5",
+      "apps/web/lib/audio-audition-source.ts": "67cbdf48f6d12a739abca0a25413069913295e5e174708f3402c4bf16dd3c6bd",
+      "apps/web/lib/audio-audition-source.test.ts": "203c3212c2c3dc8ab8aaecd78a5f67de5c0957103ba2a705155c9eebe1d73dcb",
+      "tests/e2e/audio-audition.spec.ts": "c6d497956f1242f78c7a27372394e148e38311ab17248d9e5267dc30ff9cabed",
+      "package.json": "7acdf543b85be5fc1c609a0db752df91644490d88c6132a70962098aff76bba7",
+      "scripts/verify-static-deployment.py": "4b061a215b6bfc58359a51e18db2e0aa25972fb6a3a640ff911f4e56368324c2",
+      "scripts/tests/test_verify_static_deployment.py": "5b4b67c880d4e4380bac2a29f15ecc669be9aaed24c357c5f27f153e79545e7b"
+    },
+    "sideEffectsRestored": [
+      "next dev rewrote apps/web/next-env.d.ts; restored to HEAD.",
+      "pnpm test rewrote docs/architecture/evidence/authoring-format/knolstory-blank-v2.xlsx and shortstory-blank-v2.xlsx with new generation timestamps only; restored to HEAD."
+    ]
+  },
+  "limits": [
+    "The fix is verified on local next dev only. It is not deployed, and the Pages run of audio-audition.spec.ts has not been repeated.",
+    "Chromium only. Safari and Firefox seeking behaviour on a Range-ignoring host is unmeasured.",
+    "Seeking to a timestamp inside a long track still downloads the whole file once; the size bound is 25 MiB per preview.",
+    "No change to native Ren'Py playback, authored files, Asset IDs or delivery tiers.",
+    "Remote validation covers the listed specs, not every branch, ending, device or slow network."
+  ],
+  "openIssues": [
+    "Pages title and description are still the spike's '놀스토리 · 반응형 편집 실험' and 'Ren’Py 무대와 반응형 편집기의 연결 검증' (apps/web/app/layout.tsx).",
+    "story.knolquiz.com and story-next.knolquiz.com still serve the existing Mac mini origin; the Pages cutover is not done (ADR0026).",
+    "Many host E2E specs wait for retired editor selectors or the phone fullscreen offer; the host suite cannot be used as a whole-suite green signal until they are updated.",
+    "pnpm test rewrites two tracked blank workbook files with timestamp-only changes."
+  ],
+  "next": "Commit the audition fix and the deployment verifier, push to main and confirm CI, run pnpm build and a new Pages candidate, redeploy new-knolstory without --force, then repeat the audition E2E in both modes and the eight remote specs against the Pages URL and record a follow-up checkpoint. Push and redeploy wait for user confirmation.",
+  "nextOwner": "Kiro (user asked Kiro to continue Codex's work, 2026-10-31)"
+}
