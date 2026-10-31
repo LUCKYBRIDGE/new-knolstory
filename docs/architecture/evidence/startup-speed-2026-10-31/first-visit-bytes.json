@@ -1,0 +1,69 @@
+{
+ "origin": "http://127.0.0.1:3000",
+ "measuredAt": "2026-10-31T16:14:05.742Z",
+ "firstVisitMs": {
+  "library": 3711,
+  "storyOpen": 3386
+ },
+ "table": {
+  "1 library": {
+   "web app code": {
+    "files": 14,
+    "bytes": 5541897
+   },
+   "host images": {
+    "files": 15,
+    "bytes": 3340038
+   },
+   "host fonts": {
+    "files": 1,
+    "bytes": 2254584
+   },
+   "other": {
+    "files": 4,
+    "bytes": 1964
+   }
+  },
+  "2 book dialog": {
+   "host images": {
+    "files": 1,
+    "bytes": 406102
+   }
+  },
+  "3 story open": {
+   "runtime engine files": {
+    "files": 10,
+    "bytes": 50608249
+   },
+   "host images": {
+    "files": 2,
+    "bytes": 314838
+   },
+   "other": {
+    "files": 1,
+    "bytes": 14476
+   },
+   "runtime image (progressive)": {
+    "files": 3,
+    "bytes": 656016
+   }
+  }
+ },
+ "runtimeImages": [
+  {
+   "path": "/runtime/game/assets/legacy-18da4fc/BG04-cottage-day.webp",
+   "bytes": 464186,
+   "phase": "3 story open"
+  },
+  {
+   "path": "/runtime/game/assets/legacy-18da4fc/M02-neutral.webp",
+   "bytes": 73322,
+   "phase": "3 story open"
+  },
+  {
+   "path": "/runtime/game/assets/legacy-18da4fc/seonnyeo.character.classic-mother.webp",
+   "bytes": 118508,
+   "phase": "3 story open"
+  }
+ ]
+}
