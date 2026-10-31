@@ -209,6 +209,11 @@ export function useStoryRuntime(
       audioPending || scene.mode === "play" &&
       scene.presentation?.transition?.mode === "confirm" &&
       confirmed !== presentationPhase(scene),
+    /** A confirm transition card covers the stage until the reader presses its button. */
+    transitionPending:
+      scene.mode === "play" &&
+      scene.presentation?.transition?.mode === "confirm" &&
+      confirmed !== presentationPhase(scene),
     fit: fitStage(size, { width: scene.width, height: scene.height }),
   };
 }

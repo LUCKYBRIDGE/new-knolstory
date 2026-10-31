@@ -14,7 +14,7 @@ import seonnyeoEdits from './reader-edit-seonnyeo.json';
 import onggojibClassic from '../../../tests/fixtures/stories/onggojib-classic.json';
 import onggojibEdits from './reader-edit-onggojib.json';
 import {enhanceExistingStory} from './story-direction';
-import {connectCatalogPerspective} from './catalog-perspective';
+import {connectCatalogPerspective,connectPreviousCatalogPerspective} from './catalog-perspective';
 export type ReaderTextEdit=Readonly<{projectId:string;lineId:string;before:string;after:string;reason:string}>;
 export const readerTextEdits:readonly ReaderTextEdit[]=[...first,...second,...rabbitEdits,...heungbuEdits,...seonnyeoEdits,...onggojibEdits];
 // Storage validators may reorder object keys. Array order and every JSON value remain exact.
@@ -54,7 +54,8 @@ export function resolveProvidedCatalogStory(original: StoryProject, stored?: Sto
   const refined=refineProvidedStory(original);
   const enhanced=enhanceExistingStory(refined);
   const current=connectCatalogPerspective(enhanced);
-  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,current].map(catalogFingerprint));
+  // The confirm-card cue published until 2026-10-31 is a known version too, so it refreshes to the current one.
+  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),current].map(catalogFingerprint));
   versions={known,current};catalogVersions.set(original.id,versions);
  }
  if(stored&&!versions.known.has(catalogFingerprint(stored)))return stored;

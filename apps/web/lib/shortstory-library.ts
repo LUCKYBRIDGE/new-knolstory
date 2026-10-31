@@ -31,6 +31,20 @@ export function addShortStoryBook(library:ShortStoryLibrary,project:ShortStoryPr
 export function copyShortStoryBook(library:ShortStoryLibrary,project:ShortStoryProject):ShortStoryLibrary {
  return addShortStoryBook(library,{...project,id:crypto.randomUUID(),title:`${project.title} · 내 사본`,pages:project.pages.map(page=>({...page,id:crypto.randomUUID()})),updatedAt:new Date().toISOString()});
 }
+/** Another tab saved while this tab still had an unsaved change. `base` is what this tab last saved or
+ * read. Everything comes from the other tab except the current book when this tab changed it; if the
+ * other tab changed that book too, its version is kept as a separate book, so nothing is lost. */
+export function mergeShortStoryLibraries(mine:ShortStoryLibrary,stored:ShortStoryLibrary,base:ShortStoryLibrary|null,currentId:string):{library:ShortStoryLibrary;conflict:boolean}{
+ const find=(library:ShortStoryLibrary|null,id:string)=>library?.books.find(book=>book.id===id);
+ const same=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b);
+ const mineBook=find(mine,currentId),baseBook=find(base,currentId),storedBook=find(stored,currentId);
+ if(!mineBook||same(mineBook,baseBook))return {library:{...stored,activeId:mine.activeId},conflict:false};
+ const books=storedBook?stored.books.map(book=>book.id===currentId?mineBook:book):[...stored.books,mineBook];
+ let library:ShortStoryLibrary={...stored,books,deleted:stored.deleted.filter(book=>book.id!==currentId),positions:{...stored.positions,[currentId]:mine.positions[currentId]??0},activeId:mine.activeId};
+ const conflict=!!storedBook&&!same(storedBook,baseBook);
+ if(conflict)library={...addShortStoryBook(library,{...storedBook!,id:crypto.randomUUID(),title:`${storedBook!.title} · 다른 탭`,pages:storedBook!.pages.map(page=>({...page,id:crypto.randomUUID()}))}),activeId:mine.activeId};
+ return {library,conflict};
+}
 export function deleteShortStoryBook(library:ShortStoryLibrary,id:string):ShortStoryLibrary {
  const book=library.books.find(book=>book.id===id);if(!book)return library;
  return {...library,books:library.books.filter(book=>book.id!==id),deleted:[...library.deleted,book],activeId:library.activeId===id?'':library.activeId};

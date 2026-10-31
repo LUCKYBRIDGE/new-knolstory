@@ -48,4 +48,22 @@ describe('workspace autosave at browser navigation', () => {
     expect(stale).not.toHaveBeenCalled();
     expect(current).toHaveBeenCalledTimes(1);
   });
+  it('saves at once when the tab is left, so the next tab the reader uses starts from it', () => {
+    vi.useFakeTimers();
+    const host = browserHost();
+    const page = Object.assign(new EventTarget(), {visibilityState: 'visible' as DocumentVisibilityState});
+    const save = vi.fn();
+    const cancel = scheduleWorkspaceAutosave(host, save, page);
+    page.dispatchEvent(new Event('visibilitychange'));
+    expect(save).not.toHaveBeenCalled();
+    page.visibilityState = 'hidden';
+    page.dispatchEvent(new Event('visibilitychange'));
+    expect(save).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(200);
+    host.leave();
+    expect(save).toHaveBeenCalledTimes(1);
+    cancel();
+    page.dispatchEvent(new Event('visibilitychange'));
+    expect(save).toHaveBeenCalledTimes(1);
+  });
 });

@@ -12,7 +12,7 @@ import {createOnlineWorkStore,saveOnlineWork} from '../../lib/online-work-bindin
 import type {OnlineDocument} from '../../lib/document-api';
 import {assertCatalogOnlyMedia} from '../../lib/catalog-only-authoring';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { newShortStory, newShortStoryPage, prepareJsonbSnapshot, restoreJsonbSnapshot, decodeShortStory, createAuthoringArchive, encodeAuthoringArchive, exportAuthoringExcel, blankAuthoringArchive, importShortStoryTable, exportShortStoryTable, serializeTableTsv, parseTableTsv, googleSheetTsvUrl, shortStoryOriginals, getShortStoryOriginal, isShortStoryWorkKey, type ShortStoryProject } from '@knolstory/compatibility';
 import { resolveAsset } from '@knolstory/asset-registry';
 import { useStorageWriter } from '../../components/use-storage-writer';
@@ -21,7 +21,7 @@ import { BookCover } from '../../components/book-cover';
 import { BookCoverEditor } from '../../components/book-cover-editor';
 import { shortStoryCoverProject, applyShortStoryCover } from '../../lib/shortstory-cover';
 import { trapDialogTab } from '../../lib/dialog-keyboard';
-import { SHORTSTORY_LIBRARY_KEY, SHORTSTORY_LEGACY_KEY, loadShortStoryLibrary, parseShortStoryLibrary, emptyShortStoryLibrary, addShortStoryBook, copyShortStoryBook, deleteShortStoryBook, restoreShortStoryBook, saveShortStoryLibrary, type ShortStoryLibrary } from '../../lib/shortstory-library';
+import { SHORTSTORY_LIBRARY_KEY, SHORTSTORY_LEGACY_KEY, loadShortStoryLibrary, parseShortStoryLibrary, emptyShortStoryLibrary, addShortStoryBook, copyShortStoryBook, deleteShortStoryBook, restoreShortStoryBook, saveShortStoryLibrary, mergeShortStoryLibraries, type ShortStoryLibrary } from '../../lib/shortstory-library';
 import { previewAuthoringFile } from '../../lib/story-file-preview';
 import {EditorTermGuide} from '../../components/editor-term-guide';
 import { AuthoringImportDialog } from '../../components/authoring-import-dialog';
@@ -51,16 +51,18 @@ export function ShortStoryWorkspace() {
  const [notice,setNotice]=useState(''),[error,setError]=useState(''),[blocked,setBlocked]=useState(false),[sheet,setSheet]=useState(''),[busy,setBusy]=useState(false);
  const [recoveryConfirmation,setRecoveryConfirmation]=useState<'reload'|'restart'|null>(null);
  const [deleteTarget,setDeleteTarget]=useState<'book'|'page'|null>(null),[deletedPage,setDeletedPage]=useState<{bookId:string;page:Page;index:number}|null>(null);
- const writer=useStorageWriter(SHORTSTORY_LIBRARY_KEY);
+ // Several open tabs: the tab in use becomes the writer and first takes what another tab saved.
+ const adoptStored=useRef<(raw:string|null)=>void>(()=>{});
+ const writer=useStorageWriter(SHORTSTORY_LIBRARY_KEY,{onTakeover:raw=>adoptStored.current(raw)});
  const [storageConflict,setStorageConflict]=useState(false);
  const [importPreview,setImportPreview]=useState<Project|null>(null);
  const initialized=useRef(false),composing=useRef(false),onlineGeneration=useRef(0);
  const [compositionActive,setCompositionActive]=useState(false);
  useEffect(()=>{onlineGeneration.current++;},[library,project,index,editing,coverOpen,blocked,storageConflict,compositionActive]);
- const conflict=storageConflict||writer.status==='blocked'||writer.status==='unavailable';
+ const conflict=storageConflict||writer.status==='unavailable';
  const [localFileSession]=useState(createLocalWorkFileSession);
  const [leaveTracker]=useState(createWorkLeaveTracker);
- const file=useRef<HTMLInputElement>(null),dirty=useRef(false),latest=useRef<ShortStoryLibrary|null>(null);
+ const file=useRef<HTMLInputElement>(null),dirty=useRef(false),latest=useRef<ShortStoryLibrary|null>(null),saved=useRef<ShortStoryLibrary|null>(null);
  useEffect(()=>{if(writer.status==='loading'||initialized.current)return;const timer=setTimeout(()=>{
   initialized.current=true;
   try {
@@ -72,13 +74,33 @@ export function ShortStoryWorkspace() {
    const read=isShortStoryWorkKey(key)&&params.get('mode')!=='edit';
    if(!selected){loaded=addShortStoryBook(loaded,newShortStory());selected=loaded.books.at(-1)!;if(writer.status==='owned')saveShortStoryLibrary(storage,loaded);}
    if(isShortStoryWorkKey(key)&&params.get('mode')==='edit'){loaded=copyShortStoryBook(loaded,selected);selected=loaded.books.at(-1)!;if(writer.status==='owned')saveShortStoryLibrary(storage,loaded);window.history.replaceState(null,'',window.location.pathname);}
-   loaded={...loaded,activeId:selected.id};latest.current=loaded;setLibrary(loaded);setProject(selected);setIndex(Math.min(loaded.positions[selected.id]??0,selected.pages.length-1));let returnEditing:boolean|null=null;try{returnEditing=consumeShortStoryAccountView(sessionStorage,location.search,selected.id);}catch{/* Optional view state never alters the library. */}setEditing(!originalById(selected.id)&&(returnEditing??!read));
+   loaded={...loaded,activeId:selected.id};latest.current=loaded;saved.current=loaded;setLibrary(loaded);setProject(selected);setIndex(Math.min(loaded.positions[selected.id]??0,selected.pages.length-1));let returnEditing:boolean|null=null;try{returnEditing=consumeShortStoryAccountView(sessionStorage,location.search,selected.id);}catch{/* Optional view state never alters the library. */}setEditing(!originalById(selected.id)&&(returnEditing??!read));
   }catch(e){setError(`보관함을 열지 못했어요. 원본을 보존하고 복구해 주세요. ${e instanceof Error?e.message:''}`);setBlocked(true);const empty=emptyShortStoryLibrary();latest.current=empty;setLibrary(empty);const key=new URLSearchParams(window.location.search).get('work');setProject(isShortStoryWorkKey(key)?getShortStoryOriginal(key):newShortStory());setEditing(false);}
  },0);return()=>clearTimeout(timer);},[writer.status,writer.guard]);
- useEffect(()=>{const flush=()=>{if(!latest.current||blocked||conflict)return;try{saveShortStoryLibrary(writer.guard.current!,latest.current);dirty.current=false;}catch{dirty.current=true;}};const leave=(event:BeforeUnloadEvent)=>{flush();if(dirty.current){event.preventDefault();}};window.addEventListener('pagehide',flush);window.addEventListener('beforeunload',leave);return()=>{window.removeEventListener('pagehide',flush);window.removeEventListener('beforeunload',leave);};},[blocked,conflict,writer.guard]);
+ useEffect(()=>{const flush=()=>{if(!latest.current||blocked||conflict||!writer.guard.current?.isOwned())return;try{saveShortStoryLibrary(writer.guard.current,latest.current);saved.current=latest.current;dirty.current=false;}catch{dirty.current=true;}};const leave=(event:BeforeUnloadEvent)=>{flush();if(dirty.current){event.preventDefault();}};window.addEventListener('pagehide',flush);window.addEventListener('beforeunload',leave);return()=>{window.removeEventListener('pagehide',flush);window.removeEventListener('beforeunload',leave);};},[blocked,conflict,writer.guard]);
+
+ // Another tab saved while this tab was not the writer. With nothing unsaved here, take its library and
+ // stay on this tab's book; otherwise merge so that neither tab's writing is lost.
+ useLayoutEffect(()=>{adoptStored.current=raw=>{
+  if(!initialized.current||!latest.current||raw===null||blocked||!project)return;
+  const stored=parseShortStoryLibrary(raw);
+  if(!dirty.current){
+   const next={...stored,activeId:latest.current.activeId};latest.current=next;saved.current=stored;setLibrary(next);
+   const book=stored.books.find(item=>item.id===project.id);if(book){setProject(book);setIndex(value=>Math.min(value,book.pages.length-1));}
+   return;
+  }
+  const {library:merged,conflict}=mergeShortStoryLibraries(latest.current,stored,saved.current,project.id);
+  latest.current=merged;saved.current=stored;setLibrary(merged);
+  if(conflict)setNotice('다른 탭에서도 이 그림책을 고쳤어요. 이 탭의 글을 그대로 두고, 다른 탭의 글은 ‘· 다른 탭’ 그림책으로 남겼어요.');
+ };});
+ // After taking over, save what this tab kept meanwhile.
+ useEffect(()=>{if(writer.status!=='owned'||!dirty.current||!latest.current||blocked)return;try{saveShortStoryLibrary(writer.guard.current!,latest.current);saved.current=latest.current;dirty.current=false;}catch{/* The next change tries again. */}},[writer.status,blocked,writer.guard,library]);
  if(!project||!library)return <main className={styles.shell}><p>그림책을 여는 중이에요.</p></main>;
  const original=!!originalById(project.id),current=project.pages[Math.min(index,project.pages.length-1)];
- const commit=(next:ShortStoryLibrary,preserveDraft=false)=>{if(blocked)return false;try{saveShortStoryLibrary(writer.guard.current!,next);latest.current=next;setLibrary(next);dirty.current=false;setError('');setNotice('브라우저에 복구본을 보관했어요.');return true;}catch{if(writer.status!=='owned')setStorageConflict(true);else {try{writer.guard.current!.assertWritable();}catch{setStorageConflict(true);}}if(preserveDraft){latest.current=next;setLibrary(next);}dirty.current=true;setError('브라우저에 복구본을 보관하지 못했어요. 작품 파일로 저장하거나 복구본 보관을 다시 시도해 주세요. 복구본을 보관할 때까지 다른 그림책으로 전환하지 않아요.');return false;}};
+ const commit=(next:ShortStoryLibrary,preserveDraft=false)=>{if(blocked)return false;
+  // Another tab is the writer for a moment: keep the change here; it is saved once this tab takes over.
+  if(!writer.guard.current?.isOwned()&&writer.status!=='unavailable'){latest.current=next;setLibrary(next);dirty.current=true;void writer.claim();return true;}
+  try{saveShortStoryLibrary(writer.guard.current!,next);latest.current=next;saved.current=next;setLibrary(next);dirty.current=false;setError('');setNotice('브라우저에 복구본을 보관했어요.');return true;}catch{if(writer.status!=='owned')setStorageConflict(true);else {try{writer.guard.current!.assertWritable();}catch{setStorageConflict(true);}}if(preserveDraft){latest.current=next;setLibrary(next);}dirty.current=true;setError('브라우저에 복구본을 보관하지 못했어요. 작품 파일로 저장하거나 복구본 보관을 다시 시도해 주세요. 복구본을 보관할 때까지 다른 그림책으로 전환하지 않아요.');return false;}};
  const update=(next:Project,targetIndex=index)=>{if(original||blocked)return;const changed={...next,updatedAt:new Date().toISOString()};setProject(changed);commit({...library,books:library.books.map(book=>book.id===changed.id?changed:book),positions:{...library.positions,[changed.id]:targetIndex}},true);};
  const patch=(values:Partial<Page>)=>update({...project,pages:project.pages.map(page=>page.id===current.id?{...page,...values}:page)});
  const position=(target:number)=>{setIndex(target);if(!blocked)commit({...library,positions:{...library.positions,[project.id]:target}},true);};
@@ -126,7 +148,7 @@ export function ShortStoryWorkspace() {
  <WorkLeaveGuard tracker={leaveTracker} work={project} ready={!!library}/>
   <header className={styles.header}><div><Link href="/?view=library">놀스토리 서재로 돌아가기</Link><h1>숏스토리 그림책</h1>{!editing&&<h2 className={styles.bookTitle}>{project.title}</h2>}<p>{original?'원본 그림책을 읽고 내 사본으로 글을 써요.':'그림과 글을 구성하고 내 그림책으로 보관해요.'}</p></div><div className={styles.actions}>{editing&&<EditorTermGuide/>}{!coverOpen&&<><AccountMenu returnTo="shortstory" disabled={compositionActive||blocked||conflict} beforeNavigate={beforeAccount}/><OnlineWorksPanel acceptedFormat="shortstory" works={library.books.map(book=>({key:`shortstory:${book.id}`,title:book.title}))} disabled={compositionActive||blocked||conflict} onSaveNew={saveOnline} onOpen={openOnline}/></>}<button disabled={blocked} onClick={()=>{if(original)accept(project,true);else setEditing(true);}} aria-pressed={editing}>{original?'내 사본으로 쓰기':'쓰기'}</button><button onClick={()=>setEditing(false)} aria-pressed={!editing}>읽기</button></div></header>
   {error&&<p role="alert" className={styles.error}>{error}</p>}{notice&&<p role="status">{notice}</p>}
-  {conflict&&<div role="alert" className={styles.error}><p>다른 탭에서 보관함을 사용 중이거나 저장된 내용이 변경됐어요. 이 탭의 초안은 계속 편집하고 파일로 보관할 수 있어요. 현재 작품을 파일로 보관한 뒤 다른 탭을 닫고 저장된 보관함을 다시 열어 주세요.</p><button onClick={()=>void run(exportFile)}>현재 초안 파일로 보관</button><button onClick={()=>{if(dirty.current){setRecoveryConfirmation('reload');return;}window.location.reload();}}>저장된 보관함 다시 열기</button></div>}
+  {conflict&&<div role="alert" className={styles.error}><p>브라우저에 그림책을 자동으로 보관하지 못했어요. 지금 화면의 그림책은 그대로 있어요. 작품 파일로 저장해 두세요.</p><button onClick={()=>void run(exportFile)}>현재 초안 파일로 보관</button><button onClick={()=>{if(dirty.current){setRecoveryConfirmation('reload');return;}window.location.reload();}}>저장된 보관함 다시 열기</button></div>}
   {!editing&&workspace}
   {blocked&&<div className={styles.actions}><button onClick={()=>{const raw=localStorage.getItem(SHORTSTORY_LIBRARY_KEY)??localStorage.getItem(SHORTSTORY_LEGACY_KEY);if(raw)download(raw,'그림책-복구원본.json','application/json');}}>복구용 원본 보관</button><button onClick={()=>setRecoveryConfirmation('restart')}>보관함 새로 시작</button></div>}
   <details className={styles.library} open><summary>그림책 보관함 · 내 그림책 {library.books.length}권</summary><div className={styles.bookList}>

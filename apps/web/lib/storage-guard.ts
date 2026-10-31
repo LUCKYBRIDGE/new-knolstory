@@ -1,13 +1,18 @@
-/** A synchronous writer used only while its host holds the origin's Web Lock. */
+/** A synchronous writer used only while its host holds the origin's Web Lock.
+ * `expected` is the raw value this tab last read or wrote. When the tab takes the writer over from
+ * another tab, it adopts whatever that tab saved (`changedSince`) and then `resync`s before writing. */
 export function createStorageGuard(storage:Pick<Storage,'getItem'|'setItem'>,key:string){
  let expected=storage.getItem(key);
  let owned=false;
  const assertWritable=()=>{
-  if(!owned)throw Error('다른 탭에서 보관함을 사용 중이에요. 현재 작품을 파일로 보관하고 그 탭을 닫은 뒤 새로고침해 주세요.');
-  if(storage.getItem(key)!==expected)throw Error('보관함이 다른 탭에서 변경됐어요. 현재 작품을 파일로 보관한 뒤 새로고침해 주세요.');
+  if(!owned)throw Error('이 탭에서 저장할 준비를 하고 있어요. 잠시 뒤 다시 해 주세요.');
+  if(storage.getItem(key)!==expected)throw Error('다른 탭에서 저장한 내용을 먼저 불러오고 있어요. 잠시 뒤 다시 해 주세요.');
  };
  return {
   setOwned(value:boolean){owned=value;},
+  isOwned:()=>owned,
+  changedSince:(raw:string|null)=>raw!==expected,
+  resync(raw:string|null=storage.getItem(key)){expected=raw;},
   assertWritable,
   getItem:(name:string)=>storage.getItem(name),
   setItem(name:string,value:string){
@@ -16,3 +21,4 @@ export function createStorageGuard(storage:Pick<Storage,'getItem'|'setItem'>,key
   },
  };
 }
+export type StorageGuard=ReturnType<typeof createStorageGuard>;

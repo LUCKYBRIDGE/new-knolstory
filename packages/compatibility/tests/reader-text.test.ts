@@ -1,5 +1,5 @@
 import {describe,expect,it} from 'vitest';
-import {connectCatalogPerspective} from '../src/catalog-perspective';
+import {connectCatalogPerspective,connectPreviousCatalogPerspective} from '../src/catalog-perspective';
 import {representativeStories,classicStories,refineProvidedStory,readerTextEdits,enhanceExistingStory,resolveProvidedCatalogStory} from '../src';
 import {parseStoryDocument,createStoryDocument,type StoryProject,type StoryLine} from '@knolstory/story-domain';
 import {createAuthoringArchive,encodeAuthoringArchive,decodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot} from '../src/authoring-archive';
@@ -54,7 +54,7 @@ describe('provided original and creative editions edited reading text',()=>{
   expect(entries).toHaveLength(8);
   for(const entry of entries){
    const original=entry.project,current=connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)));
-   const editions=[original,enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original)),current];
+   const editions=[original,enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original)),connectPreviousCatalogPerspective(enhanceExistingStory(refineProvidedStory(original))),current];
    expect(resolveProvidedCatalogStory(original)).toEqual(current);
    for(const edition of editions){
     const before=structuredClone(edition);
@@ -147,4 +147,21 @@ describe('provided original and creative editions edited reading text',()=>{
   expect(entry.project).toEqual(original);
  },20000);
 
+});
+
+describe('옹고집전 perspective title without a confirm button (2026-11-01)',()=>{
+ it('shows the reviewed titles by themselves and refreshes a saved copy of the button version',()=>{
+  const entry=[...representativeStories,...classicStories].find(item=>item.project.id==='pinky-review-main-003')!;
+  const base=enhanceExistingStory(refineProvidedStory(entry.project));
+  const current=connectCatalogPerspective(base),previous=connectPreviousCatalogPerspective(base);
+  const cues=current.lines.filter(line=>line.presentation?.transition?.type==='perspective-blackout');
+  expect(cues.length).toBeGreaterThan(0);
+  // No card in the current edition waits for a button; the titles stay exactly as reviewed.
+  for(const cue of cues){const transition=cue.presentation!.transition!;expect(transition.mode).toBe('auto');expect(transition.actionLabel).toBeUndefined();expect(transition.durationMs).toBe(1800);expect(transition.title).toBe(cue.text);}
+  expect(current.lines.map(line=>line.text)).toEqual(base.lines.map(line=>line.text));
+  expect(previous.lines.filter(line=>line.presentation?.transition?.mode==='confirm')).toHaveLength(cues.length);
+  expect(resolveProvidedCatalogStory(entry.project,previous)).toEqual(current);
+  const edited={...previous,lines:previous.lines.map((line,index)=>index===0?{...line,text:`${line.text} 고침`}:line)};
+  expect(resolveProvidedCatalogStory(entry.project,edited)).toBe(edited);
+ });
 });
