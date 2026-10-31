@@ -63,6 +63,7 @@
     "tests": "10 vitest cases pass, including the `//other.host/x` path that a naive URL join would turn into an open proxy. wrangler deploy --dry-run bundles 3.18 KiB.",
     "route": "Kept out of wrangler.toml: wrangler deploy PUTs the full route list when routes are listed (wrangler 4.156.0 publishRoutes), which would reset request_limit_fail_open. story-edge-route.mjs attaches it with request_limit_fail_open=true and detaches it for rollback.",
     "quota": "Workers Free allows 100,000 requests a day (https://developers.cloudflare.com/workers/platform/limits/). Every static request counts. In fail-open mode a spent quota bypasses the Worker and the Mac mini answers, so its ingress must hold the same build as Pages.",
+    "measuredRequests": "On pages.dev with an empty browser cache (.cache/edge-verify/request-count.spec.ts, 2026-10-31 19:20 KST): first visit to the library 35 requests (4 of them /api), the first built-in story with five advances 27, a full editor page load 32. About 94 requests for that session, so the free limit covers roughly a thousand such sessions a day; longer stories add requests for each new picture and sound.",
     "rollback": "node server/operations/story-edge-route.mjs detach. Traffic returns to the Mac mini origin immediately; the Worker script can stay."
   },
   "blocked": {
