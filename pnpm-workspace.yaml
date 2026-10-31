@@ -4,3 +4,12 @@ packages:
 
 overrides:
   uuid: 11.1.1
+  # GHSA-g3hv-75wg-m249 (2026-10-30): exceljs > archiver pulls minimatch <11.0.1 through glob 7 and readdir-glob.
+  # glob 7 breaks on minimatch 11, so archiver-utils gets glob 14 (its file.expand only calls glob.sync);
+  # readdir-glob keeps working on minimatch 11. Scoped so ESLint's own minimatch is untouched.
+  'archiver-utils>glob': ^14.0.3
+  'readdir-glob>minimatch': ^11.0.1
+  # The same advisory reaches exceljs > unzipper > fstream > rimraf 2 > glob 7. unzipper 0.12 would drop fstream but its
+  # optional S3 require breaks the Turbopack build. rimraf 2 only calls glob.hasMagic for literal paths (fstream passes
+  # concrete file paths), so glob 14 is safe there; exceljs never extracts to disk.
+  'rimraf@2>glob': ^14.0.3
