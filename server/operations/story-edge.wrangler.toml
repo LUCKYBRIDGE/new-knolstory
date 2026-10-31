@@ -1,0 +1,16 @@
+# Cloudflare Worker in front of story.knolquiz.com (ADR 0026, 2026-10-31 cutover).
+# Deploy from any directory: npx wrangler@4 deploy --config server/operations/story-edge.wrangler.toml
+# The zone route story.knolquiz.com/* is managed by story-edge-route.mjs with
+# request_limit_fail_open=true. It is deliberately absent here: when routes are listed,
+# `wrangler deploy` replaces every route of this script and would reset that mode.
+# Never enable the global_fetch_strictly_public flag: fetch(request) must keep reaching
+# the zone origin (the Mac mini Tunnel) instead of looping back into this Worker.
+name = "knolstory-story-edge"
+main = "story-edge-worker.mjs"
+compatibility_date = "2026-10-15"
+workers_dev = false
+preview_urls = false
+
+[vars]
+PUBLIC_ORIGIN = "https://story.knolquiz.com"
+PAGES_ORIGIN = "https://new-knolstory.pages.dev"

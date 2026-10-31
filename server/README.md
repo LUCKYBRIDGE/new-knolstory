@@ -457,6 +457,21 @@ editing. The production DB retains the validation account and document. Original
 legacy Docker resources, staging Pages/Worker and SSH access are still preserved;
 permanent deletion requires the exact final inventory confirmation.
 
+## story.knolquiz.com 정적 전달 Worker (2026-10-31 준비, 미배포)
+
+[ADR0026 연결 방식](../docs/decisions/0026-static-reading-authoring-and-optional-api.md#운영-도메인-연결-방식--2026-10-31)의 구현이다. `operations/story-edge-worker.mjs`는 `/api`·`/api/` 밖의 GET/HEAD를 Pages `new-knolstory`에서 가져오고, 그 밖의 요청은 손대지 않고 zone origin(Tunnel → 위 ingress)으로 보낸다. Pages로는 cookie·인증 헤더를 보내지 않으며 요청 경로가 다른 호스트를 고르지 못하게 한다.
+
+필요한 Cloudflare 권한은 Workers 스크립트 편집, Workers 경로 편집, Zone 읽기다. 순서를 지킨다.
+
+1. 운영 API와 ingress를 Pages와 같은 main 빌드로 먼저 갱신한다. 운영 DB를 백업한 뒤 `production-compose.mjs build`, `migrate`, `start`를 실행한다. fail-open이나 되돌리기에서 Mac mini가 응답해도 같은 판본이 나와야 하고, 현재 Web은 휴지통 경로와 최근 원고 검사를 가진 API가 필요하다.
+2. Worker를 올린다(경로 없음): `npx wrangler@4 deploy --config server/operations/story-edge.wrangler.toml`
+3. 경로를 붙인다: `CLOUDFLARE_API_TOKEN=… node server/operations/story-edge-route.mjs attach`. 하루 요청 한도를 넘으면 Worker를 건너뛰는 fail-open으로 만든다. `status`로 상태를 본다. 토큰은 출력하지 않는다.
+4. story.knolquiz.com에서 화면 HTML 해시가 Pages 후보와 같은지, 전체 파일·핵심 해시, `/api/v1/auth/config` 200, `/api/v1/me` 401, 카카오 시작 302와 같은 callback 주소, 실제 재생·편집·파일 검사를 확인한다.
+
+되돌리기: `node server/operations/story-edge-route.mjs detach`. 경로가 사라지면 즉시 Mac mini가 모두 응답한다. 경로는 wrangler 설정에 넣지 않는다. 넣으면 `wrangler deploy`가 이 Worker의 경로 목록을 통째로 바꿔 fail-open 설정을 지운다. `global_fetch_strictly_public` 호환 플래그도 켜지 않는다. 켜면 origin으로 가야 할 요청이 Worker로 되돌아온다.
+
+검사: `pnpm exec vitest run server/operations/story-edge-worker.test.ts server/operations/story-edge-route.test.ts`(루트 vitest 설정에 포함되어 CI에서도 실행된다). [준비·호환성 근거](../docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).
+
 ## 실제 온라인 휴지통·오프라인 파일 결합 검사
 
 현재 정적 Web과 동일 출처의 로컬 게이트웨이, 제공자 로그인이 꺼진 전용 테스트 API/PostgreSQL을 준비한 뒤 다음을 실행한다. 운영용 컨테이너·실제 계정·보관 정책을 변경하는 명령이 아니다. API 이미지에 현재 휴지통 코드와007 migration이 포함되어 있어야 하며, 과거 이미지가 반환한 stateVersion 없는 목록을 현재 Web과 섞지 않는다.
