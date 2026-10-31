@@ -251,6 +251,8 @@ pnpm delivery:preview --candidate .cache/pages-candidate --port 3000
 
 패키징 변경 후에는 `runtime:build → Web build → 후보 준비` 순서를 지키고, `.agents/skills/runtime-qa/SKILL.md`의 정적 전달 절차를 따른다. 현재 결과와 한계는 [패키지 축소 근거](evidence/static-delivery-2026-10-29/pages-audio-checkpoint.json)에서 확인한다.
 
+2026-10-31부터 `runtime:build`는 `runtime/renpy.data.br`과 `runtime/renpy.wasm.br`도 만든다. 원본을 brotli 11로 압축하고, 풀었을 때 원본과 바이트가 같아야 남긴다(`spikes/renpy-web/transport.py`). 공개 주소의 edge Worker가 브라우저가 br을 받을 때 이 사본을 `Content-Encoding: br`로 보낸다. 범위 요청과 Pages 단독 주소는 원본을 그대로 받는다. 감사는 이 사본을 원본과 같은 실행 묶음으로 분류해 같은 검토 차단을 적용하고, 원본이 없으면 `missing-transport-source`로 막는다. 공개 주소에서 사본 전달을 확인할 때는 `pnpm delivery:verify … --expect-brotli`를 쓴다. 로컬 미리보기는 압축 협상을 하지 않으므로 이 경로를 대신 확인하지 않는다. [근거](evidence/startup-speed-2026-10-31/checkpoint.json).
+
 ## 인물 상대 크기 파생 이미지 복원 — 2026-10-30
 
 고정 원본을 보유한 개발 환경에서 `python3 -m pip install Pillow==11.3.0`을 준비한다. 원본 그림의 권리가 새로 승인되는 것은 아니다. `restore-legacy-media.py`는 기록된 원본 해시를 확인한 뒤 어린 인물 파생본을 재생성하고 현재 카탈로그 해시·geometry를 대조한다. 원본이 이미 있는 환경에서는 다음 명령으로 파생본만 복원할 수 있다.

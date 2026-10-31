@@ -11,7 +11,7 @@ import json
 import mimetypes
 import os
 import subprocess
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +23,9 @@ SPEC = importlib.util.spec_from_file_location('delivery_provenance', ROOT / 'scr
 PROVENANCE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(PROVENANCE)
 BUNDLES = {'.wasm', '.data', '.zip'}
+# A transport copy (for example runtime/renpy.data.br) decodes to its source file. It is classified and
+# reviewed as that source, never as an ordinary web build file, and needs the source to be present.
+TRANSPORT = {'.br': 'br'}
 MIME = {'.wasm': 'application/wasm', '.js': 'text/javascript',
         '.data': 'application/octet-stream', '.zip': 'application/zip',
         '.ogg': 'audio/ogg', '.mp3': 'audio/mpeg', '.wav': 'audio/wav'}
@@ -46,7 +49,15 @@ def source_path(name):
     return 'apps/web/public/' + name
 
 
+def transport_source(name):
+    path = PurePosixPath(name)
+    return (path.with_suffix('').as_posix(), TRANSPORT[path.suffix.lower()]) if path.suffix.lower() in TRANSPORT else (None, None)
+
+
 def media_type(path):
+    source, _ = transport_source(Path(path).as_posix())
+    if source is not None:
+        return media_type(Path(source))
     suffix = path.suffix.lower()
     if suffix in BUNDLES and path.parts[0] == 'runtime':
         return 'runtime-bundle'
@@ -117,7 +128,7 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
         raise ValueError('Static build directory is missing; build the Web app first.')
     by_source = {record['file']: record for record in provenance}
     catalog_by_path = {}
-    blockers, files, found = [], [], set()
+    blockers, files, found, transports = [], [], set(), []
 
     def block(name, reason, **detail):
         blockers.append({'path': name, 'reason': reason, **detail})
@@ -138,8 +149,12 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
             found.add(relative)
             size, sha = path.stat().st_size, digest(path)
             source = source_path(relative)
-            record = by_source.get(source)
+            transport_of, encoding = transport_source(relative)
+            # A transport copy has no rights record of its own; it inherits its source's review.
+            record = None if transport_of else by_source.get(source)
             kind = media_type(Path(relative))
+            if transport_of:
+                transports.append((relative, transport_of))
             rights = 'not-media-clearance'
             if relative == 'runtime.zip':
                 block(relative, 'non-serving-artifact')
@@ -175,9 +190,11 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
                     rights = 'review-required'
                     block(relative, 'runtime-bundle-review-required' if kind == 'runtime-bundle'
                           else 'unverified-media-rights')
+            mime_name = transport_of or relative
             files.append({'path': relative, 'bytes': size, 'sha256': sha,
                           'mimeBasis': 'extension-inferred',
-                          'mime': MIME.get(path.suffix.lower()) or mimetypes.guess_type(relative)[0] or 'application/octet-stream',
+                          'mime': MIME.get(PurePosixPath(mime_name).suffix.lower()) or mimetypes.guess_type(mime_name)[0] or 'application/octet-stream',
+                          **({'contentEncoding': encoding, 'transportOf': transport_of} if transport_of else {}),
                           'mediaType': kind,
                           'assetIds': sorted(set(catalog_by_path.get(relative, []) + (record or {}).get('assetIds', []))),
                           'usageReferences': (record or {}).get('usageReferences', []),
@@ -198,9 +215,12 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
     for name in required:
         if name not in found:
             block(name, 'missing-runtime' if name.startswith('runtime/') else 'missing-entrypoint')
+    for name, transport_of in transports:
+        if transport_of not in found:
+            block(name, 'missing-transport-source', source=transport_of)
     if len(files) > max_files:
         block('.', 'pages-file-count-exceeded', files=len(files), limit=max_files)
-    return {'version': 1, 'policy': 'Read-only evidence. Unknown rights and opaque runtime bundles block publication. No network or deployment performed.',
+    return {'version': 1, 'policy': 'Read-only evidence. Unknown rights and opaque runtime bundles block publication; a transport copy such as renpy.data.br is reviewed as its source. No network or deployment performed.',
             'limits': {'host': 'Cloudflare Pages', 'maxFileBytes': max_file_bytes, 'maxFiles': max_files,
                        'reference': 'https://developers.cloudflare.com/pages/platform/limits/'},
             'summary': {'files': len(files), 'bytes': sum(item['bytes'] for item in files),

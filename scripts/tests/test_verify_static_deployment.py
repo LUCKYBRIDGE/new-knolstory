@@ -182,6 +182,44 @@ class StaticDeploymentTests(unittest.TestCase):
         self.assertTrue(report['success'])
         self.assertEqual(next(row for row in report['files'] if row['path'] == '404.html')['status'], 404)
 
+    def brotli_opener(self, vary='Accept-Encoding', body=None):
+        def opener(request, timeout):
+            name = request.full_url.removeprefix('https://example.pages.dev/')
+            if name.startswith('runtime/renpy.data'):
+                self.calls.append(request)
+                if name == 'runtime/renpy.data' and request.get_header('Accept-encoding') == 'br':
+                    data = self.data['runtime/renpy.data.br'] if body is None else body
+                    return Response(data, 200, {'Content-Type': 'application/octet-stream', 'Content-Encoding': 'br', 'Vary': vary}, request.full_url)
+                data = self.data[name]
+                return Response(data, 200, {'Content-Type': 'application/octet-stream', 'Content-Length': str(len(data))}, request.full_url)
+            return self.opener(request, timeout)
+        return opener
+    def with_brotli_copy(self):
+        self.data.update({'runtime/renpy.data': b'engine data', 'runtime/renpy.data.br': b'compressed'})
+        self.manifest()
+    def test_identity_request_answered_with_an_encoding_fails(self):
+        def encoded(request, timeout):
+            response = self.opener(request, timeout)
+            if request.full_url.endswith('index.html'): response.headers['Content-Encoding'] = 'br'
+            return response
+        report = self.verify(encoded)
+        self.assertFalse(report['success'])
+        self.assertIn('An identity request received an encoded response.', {error['error'] for error in report['errors']})
+    def test_public_origin_must_serve_the_stored_brotli_copy_when_asked(self):
+        self.with_brotli_copy()
+        self.assertEqual(self.verify(self.brotli_opener())['negotiated'], [])
+        report = self.verify(self.brotli_opener(), expect_brotli=True)
+        self.assertTrue(report['success'], report['errors'])
+        self.assertEqual([(row['path'], row['copy']) for row in report['negotiated']], [('runtime/renpy.data', 'runtime/renpy.data.br')])
+        for opener in (self.brotli_opener(vary='Origin'), self.brotli_opener(body=b'other bytes')):
+            self.assertFalse(self.verify(opener, expect_brotli=True)['success'])
+        def identity_only(request, timeout):
+            name = request.full_url.removeprefix('https://example.pages.dev/')
+            data = self.data[name] if name in self.data else b''
+            if name.startswith('runtime/renpy.data'):
+                return Response(data, 200, {'Content-Type': 'application/octet-stream', 'Content-Length': str(len(data))}, request.full_url)
+            return self.opener(request, timeout)
+        self.assertFalse(self.verify(identity_only, expect_brotli=True)['success'])
     def test_origin_credentials_or_path_are_rejected_without_requests(self):
         for origin in ['http://example.pages.dev', 'https://name:secret@example.pages.dev', 'https://example.pages.dev/path', 'https://example.pages.dev?x=1', 'https://example.pages.dev\n', 'https://example.pages.dev ']:
             with self.assertRaises(ValueError): MODULE.verify(self.root, origin, opener=self.opener)

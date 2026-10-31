@@ -109,7 +109,9 @@ def inspect(origin, row, opener, *, method='HEAD', range_end=None, allow_full_ra
             if expected_mimes and mime not in expected_mimes:
                 raise ValueError('Unexpected Content-Type.')
             encoding = response.headers.get('Content-Encoding', 'identity')
-            if (range_end is None or whole_file_fallback) and encoding in ('identity', '') and result['contentLength'] is not None and result['contentLength'] != str(row['bytes']):
+            if encoding not in ('identity', ''):
+                raise ValueError('An identity request received an encoded response.')
+            if (range_end is None or whole_file_fallback) and result['contentLength'] is not None and result['contentLength'] != str(row['bytes']):
                 raise ValueError('Unexpected Content-Length.')
             if method == 'GET':
                 limit = range_end+1 if range_end is not None and not whole_file_fallback else row['bytes']
@@ -151,7 +153,33 @@ def inspect(origin, row, opener, *, method='HEAD', range_end=None, allow_full_ra
     return result
 
 
-def verify(candidate, origin, *, opener=None, output=None, allow_full_range_response=False):
+def inspect_brotli(origin, row, copy, opener):
+    """GET a file with Accept-Encoding: br; the raw body must be the candidate's stored brotli copy."""
+    result = {'path': row['path'], 'method': 'GET', 'acceptEncoding': 'br', 'copy': copy['path']}
+    request = urllib.request.Request(origin+'/'+urllib.parse.quote(row['path'], safe='/'), headers={'Accept-Encoding': 'br'}, method='GET')
+    try:
+        with opener(request, timeout=60) as response:
+            if origin_key(response.geturl()) != origin_key(origin):
+                raise ValueError('Response origin changed.')
+            result.update(status=response.status, contentType=response.headers.get('Content-Type'),
+                          contentEncoding=response.headers.get('Content-Encoding'), vary=response.headers.get('Vary'))
+            if response.status != 200 or (result['contentEncoding'] or '').lower() != 'br':
+                raise ValueError('Expected the brotli copy with Content-Encoding: br.')
+            if 'accept-encoding' not in (result['vary'] or '').lower():
+                raise ValueError('A negotiated response must vary on Accept-Encoding.')
+            expected_mimes = MIMES.get(PurePosixPath(row['path']).suffix.lower())
+            if expected_mimes and (result['contentType'] or '').split(';')[0].strip().lower() not in expected_mimes:
+                raise ValueError('Unexpected Content-Type.')
+            data = response.read(copy['bytes']+1)
+            result['sha256'] = hashlib.sha256(data).hexdigest()
+            if len(data) != copy['bytes'] or result['sha256'] != copy['sha256']:
+                raise ValueError('The negotiated body differs from the candidate brotli copy.')
+    except (OSError, ValueError, urllib.error.HTTPError) as issue:
+        result['error'] = str(issue) if isinstance(issue, ValueError) else 'Network/HTTP request failed.'
+    return result
+
+
+def verify(candidate, origin, *, opener=None, output=None, allow_full_range_response=False, expect_brotli=False):
     parsed = urllib.parse.urlsplit(origin)
     origin_key(origin)
     if parsed.path not in ('', '/') or parsed.query or parsed.fragment:
@@ -161,7 +189,7 @@ def verify(candidate, origin, *, opener=None, output=None, allow_full_range_resp
     if opener is None:
         opener = urllib.request.build_opener(SameOriginRedirect(origin)).open
     served = [row for row in rows if row['path'] not in CONFIG]
-    heads, hashes, ranges = [], [], []
+    heads, hashes, ranges, negotiated = [], [], [], []
     # Probe once before fanout: a browser-integrity policy rejection is not
     # evidence of hundreds of missing assets, and must not trigger retries.
     first = inspect(origin, served[0], opener)
@@ -184,12 +212,19 @@ def verify(candidate, origin, *, opener=None, output=None, allow_full_range_resp
             if actual is not None and actual != expected:
                 result['error'] = 'Deployed range bytes differ from the candidate.'
             ranges.append(result)
-    errors = [dict(result) for result in heads+hashes+ranges if result.get('error')]
+        if expect_brotli:
+            # Only the public origin negotiates (edge Worker); Pages alone serves the identity file.
+            by_path = {row['path']: row for row in served}
+            for copy in sorted((row for row in served if row['path'].endswith('.br')), key=lambda item: item['path']):
+                source = by_path.get(copy['path'][:-3])
+                if source is not None:
+                    negotiated.append(inspect_brotli(origin, source, copy, opener))
+    errors = [dict(result) for result in heads+hashes+ranges+negotiated if result.get('error')]
     report = {'origin': origin, 'sourceCommit': manifest.get('sourceCommit'), 'success': not errors,
               'scope': 'Static delivery evidence, not rights approval or complete application validation.',
               'candidateFiles': len(served), 'checkedFiles': len(heads),
               'transportBlocked': bool(first.get('transportBlocked')), 'configurationFiles': sorted(row['path'] for row in rows if row['path'] in CONFIG),
-              'errors': errors, 'files': heads, 'hashes': hashes, 'ranges': ranges}
+              'errors': errors, 'files': heads, 'hashes': hashes, 'ranges': ranges, 'negotiated': negotiated}
     if output is not None:
         path = Path(output)
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -203,9 +238,10 @@ def main():
     parser.add_argument('--origin', required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--allow-full-range-response', action='store_true', help='Accept an HTTP200 whole-file range fallback only after exact length/SHA and first-byte verification; does not claim partial-range support.')
+    parser.add_argument('--expect-brotli', action='store_true', help='For each candidate .br copy, require the public origin to serve it for Accept-Encoding: br (edge Worker negotiation).')
     args = parser.parse_args()
     try:
-        report = verify(args.candidate, args.origin, output=args.output, allow_full_range_response=args.allow_full_range_response)
+        report = verify(args.candidate, args.origin, output=args.output, allow_full_range_response=args.allow_full_range_response, expect_brotli=args.expect_brotli)
     except (OSError, ValueError, KeyError) as issue:
         parser.error(str(issue))
     print(json.dumps({'checkedFiles': report['checkedFiles'], 'errors': len(report['errors']), 'success': report['success'], 'transportBlocked': report['transportBlocked']}))

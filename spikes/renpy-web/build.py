@@ -9,6 +9,7 @@ import subprocess
 from loading import brand_loading_html
 from pixel_budget import cap_runtime_pixel_ratio
 from asset_versions import version_runtime_html
+from transport import embed_transfer_info, transfer_info, write_brotli_copies
 
 ROOT = Path(__file__).resolve().parents[2]
 subprocess.run(['python3', str(ROOT / 'scripts/check-service-audio.py'), '--source-only'], check=True)
@@ -63,6 +64,9 @@ end = html.index('  </script>', start)
 html = html[:start] + html[end:]
 html = html.replace('</style>', '\n#ContextContainer { display:none !important; }\nhtml, #canvas { background: ' + tokens['paper'] + '; }\n</style>')
 html = brand_loading_html(html)
+# Transport copies for the edge Worker, and the decoded sizes the loading screen counts against.
+write_brotli_copies(output)
+html = embed_transfer_info(html, transfer_info(output))
 (output / 'index.html').write_text(html)
 for extension in ['css', 'js']:
     shutil.copy2(ROOT / f'spikes/renpy-web/loading.{extension}', output / f'knol-loading.{extension}')

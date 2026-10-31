@@ -470,6 +470,8 @@ permanent deletion requires the exact final inventory confirmation.
 3. 경로를 붙인다: `CLOUDFLARE_API_TOKEN=… node server/operations/story-edge-route.mjs attach`. 하루 요청 한도를 넘으면 Worker를 건너뛰는 fail-open으로 만든다. `status`로 상태를 본다. 토큰은 출력하지 않는다.
 4. story.knolquiz.com에서 화면 HTML 해시가 Pages 후보와 같은지, 전체 파일·핵심 해시, `/api/v1/auth/config` 200, `/api/v1/me` 401, 카카오 시작 302와 같은 callback 주소, 실제 재생·편집·파일 검사를 확인한다.
 
+`/runtime/renpy.data`와 `/runtime/renpy.wasm`은 브라우저가 `Accept-Encoding`에 br을 넣고 범위 요청이 아닐 때 Pages의 `.br` 사본을 `Content-Encoding: br`, `Vary: Accept-Encoding`, `encodeBody: 'manual'`로 보낸다. 사본이 없거나 받지 못하면 원본을 보낸다. 배포 뒤에는 `pnpm delivery:verify --candidate … --origin https://story.knolquiz.com --output … --expect-brotli`로 사본 전달을 확인한다(비브라우저 요청이 Cloudflare에 막히면 브라우저 검사로 대신한다).
+
 되돌리기: `node server/operations/story-edge-route.mjs detach`. 경로가 사라지면 즉시 Mac mini가 모두 응답한다. 경로는 wrangler 설정에 넣지 않는다. 넣으면 `wrangler deploy`가 이 Worker의 경로 목록을 통째로 바꿔 fail-open 설정을 지운다. `global_fetch_strictly_public` 호환 플래그도 켜지 않는다. 켜면 origin으로 가야 할 요청이 Worker로 되돌아온다.
 
 검사: `pnpm exec vitest run server/operations/story-edge-worker.test.ts server/operations/story-edge-route.test.ts`(루트 vitest 설정에 포함되어 CI에서도 실행된다). [준비·호환성 근거](../docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).

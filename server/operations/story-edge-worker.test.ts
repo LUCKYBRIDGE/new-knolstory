@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { edgeConfig, handleEdgeRequest } from './story-edge-worker.mjs';
+import { acceptsBrotli, brotliResponseInit, edgeConfig, handleEdgeRequest } from './story-edge-worker.mjs';
 
 const env = { PUBLIC_ORIGIN: 'https://story.knolquiz.com', PAGES_ORIGIN: 'https://new-knolstory.pages.dev' };
 function recorder(reply: (request: Request) => Response = () => new Response('ok')) {
@@ -78,5 +78,62 @@ describe('story edge worker', () => {
     const failing = await handleEdgeRequest(at('/'), env, async () => { throw new TypeError('network'); });
     expect(failing.status).toBe(502);
     expect(failing.headers.get('cache-control')).toBe('no-store');
+  });
+});
+
+describe('brotli copies of large runtime files', () => {
+  const chrome = 'gzip, deflate, br, zstd';
+  it('negotiates br only when the browser lists it with a non-zero quality', () => {
+    expect(acceptsBrotli(chrome)).toBe(true);
+    expect(acceptsBrotli('br;q=0.5')).toBe(true);
+    for (const value of [null, '', 'gzip', 'br;q=0', 'BR;Q=0.0', 'brotli', '*']) expect(acceptsBrotli(value)).toBe(false);
+  });
+
+  it('serves the stored brotli copy with the runtime file type and Vary', async () => {
+    for (const [path, type] of [['/runtime/renpy.data', 'application/octet-stream'], ['/runtime/renpy.wasm', 'application/wasm']]) {
+      const { seen, upstream } = recorder(() => new Response('BROTLI', { status: 200, headers: { 'content-type': 'application/octet-stream', 'content-length': '6', etag: '"br"', 'access-control-allow-origin': '*' } }));
+      const response = await handleEdgeRequest(at(path, { headers: { 'accept-encoding': chrome, 'if-none-match': '"old"' } }), env, upstream);
+      expect(seen.map(request => request.url)).toEqual([`https://new-knolstory.pages.dev${path}.br`]);
+      expect(seen[0].headers.get('if-none-match')).toBe('"old"');
+      expect(seen[0].headers.has('accept-encoding')).toBe(false);
+      expect(response.status).toBe(200);
+      expect(await response.text()).toBe('BROTLI');
+      expect(Object.fromEntries(response.headers)).toMatchObject({ 'content-encoding': 'br', 'content-type': type, vary: 'Accept-Encoding', etag: '"br"', 'content-length': '6' });
+      expect(response.headers.has('access-control-allow-origin')).toBe(false);
+    }
+  });
+
+  it('sends the stored bytes without re-encoding and keeps 304 free of a body encoding', async () => {
+    const init = brotliResponseInit(new Response('x', { status: 200, headers: { vary: 'Origin' } }), { path: '/runtime/renpy.data.br', type: 'application/octet-stream' });
+    expect(init.encodeBody).toBe('manual');
+    expect(init.headers.get('vary')).toBe('Origin, Accept-Encoding');
+    const { upstream } = recorder(() => new Response(null, { status: 304, headers: { etag: '"br"' } }));
+    const response = await handleEdgeRequest(at('/runtime/renpy.data', { headers: { 'accept-encoding': chrome } }), env, upstream);
+    expect(response.status).toBe(304);
+    expect(response.headers.get('etag')).toBe('"br"');
+    expect(response.headers.has('content-encoding')).toBe(false);
+  });
+
+  it('uses the identity file for ranges, browsers without br, other files and a missing copy', async () => {
+    const plain = (init: RequestInit) => { const { seen, upstream } = recorder(); return handleEdgeRequest(at('/runtime/renpy.data', init), env, upstream).then(response => ({ seen, response })); };
+    for (const headers of [{ 'accept-encoding': chrome, range: 'bytes=0-9' }, { 'accept-encoding': chrome, 'if-range': '"e"' }, { 'accept-encoding': 'gzip' }, {}]) {
+      const { seen, response } = await plain({ headers });
+      expect(seen.map(request => new URL(request.url).pathname)).toEqual(['/runtime/renpy.data']);
+      expect(response.headers.get('vary')).toBe('Accept-Encoding');
+      expect(response.headers.has('content-encoding')).toBe(false);
+    }
+    const other = recorder();
+    await handleEdgeRequest(at('/runtime/game.zip', { headers: { 'accept-encoding': chrome } }), env, other.upstream);
+    expect(other.seen.map(request => new URL(request.url).pathname)).toEqual(['/runtime/game.zip']);
+    const missing = recorder(request => new URL(request.url).pathname.endsWith('.br') ? new Response('missing', { status: 404 }) : new Response('PLAIN'));
+    const fallback = await handleEdgeRequest(at('/runtime/renpy.wasm', { headers: { 'accept-encoding': chrome } }), env, missing.upstream);
+    expect(missing.seen.map(request => new URL(request.url).pathname)).toEqual(['/runtime/renpy.wasm.br', '/runtime/renpy.wasm']);
+    expect(await fallback.text()).toBe('PLAIN');
+    let calls = 0;
+    const unreachable = await handleEdgeRequest(at('/runtime/renpy.data', { headers: { 'accept-encoding': chrome } }), env, async request => {
+      calls += 1; if (new URL(request.url).pathname.endsWith('.br')) throw new TypeError('network'); return new Response('PLAIN');
+    });
+    expect(calls).toBe(2);
+    expect(await unreachable.text()).toBe('PLAIN');
   });
 });

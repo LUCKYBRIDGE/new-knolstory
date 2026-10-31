@@ -62,6 +62,24 @@ class StaticDeliveryAuditTests(unittest.TestCase):
         result = self.audit()
         self.assertEqual({item['reason'] for item in result['blockers']}, {'unverified-media-rights', 'runtime-bundle-review-required'})
 
+    def test_transport_copy_is_reviewed_as_its_runtime_source(self):
+        self.write('runtime/renpy.data', b'engine data')
+        self.write('runtime/renpy.data.br', b'compressed')
+        result = self.audit()
+        copy = next(item for item in result['files'] if item['path'] == 'runtime/renpy.data.br')
+        self.assertEqual(copy['mediaType'], 'runtime-bundle')
+        self.assertEqual(copy['contentEncoding'], 'br')
+        self.assertEqual(copy['transportOf'], 'runtime/renpy.data')
+        self.assertEqual(copy['mime'], 'application/octet-stream')
+        self.assertEqual(copy['rightsStatus'], 'review-required')
+        reasons = {(item['path'], item['reason']) for item in result['blockers']}
+        self.assertIn(('runtime/renpy.data.br', 'runtime-bundle-review-required'), reasons)
+        self.assertNotIn('transportOf', next(item for item in result['files'] if item['path'] == 'runtime/renpy.data'))
+    def test_transport_copy_without_its_source_is_blocked(self):
+        self.write('runtime/renpy.wasm.br', b'compressed')
+        result = self.audit()
+        self.assertIn({'path': 'runtime/renpy.wasm.br', 'reason': 'missing-transport-source', 'source': 'runtime/renpy.wasm'}, result['blockers'])
+        self.assertEqual(result['files'][0]['mime'], 'application/wasm')
     def test_download_only_runtime_archive_is_not_a_serving_input(self):
         self.write('runtime.zip', b'small-bundle')
         result = self.audit()
