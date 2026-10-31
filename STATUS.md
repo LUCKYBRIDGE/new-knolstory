@@ -1,5 +1,7 @@
 # STATUS — current development state
 
+2026-10-31 사이트 이름: 사용자 승인으로 브라우저 탭 제목을 ‘놀스토리’, 설명을 ‘이야기를 읽고 직접 만드는 놀스토리’로 바꿨다(이전 실험 이름 대체). Pages(6a60fa95)와 운영 ingress를 같은 빌드로 갱신했고, story.knolquiz.com에서 새 제목과 파일 1534개·핵심 해시 7개를 확인했다. [근거](docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).
+
 2026-10-31 운영 도메인 연결: 사용자 승인으로 운영 DB를 백업하고 API·ingress를 main으로 갱신했다(migration 007, 자료 수 변화 없음, 휴지통 경로 응답 확인). 이어서 Workers 권한을 받아 정적 전달 Worker를 배포하고 story.knolquiz.com 경로를 붙였다(19:42, 하루 한도 초과 시 Mac mini가 응답하는 fail-open). 이제 story.knolquiz.com의 화면·그림·음원·Ren’Py 실행 파일은 Pages가, `/api`는 Mac mini가 응답한다. 실제 브라우저에서 파일 1534개와 핵심 해시 7개가 Pages 후보와 같았다. 카카오 로그인·업로드를 사람이 확인하는 일은 남아 있다. [갱신·연결·검증 근거](docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json).
 
 2026-10-31 운영 도메인 연결 준비(같은 날 위 항목으로 이어짐): main CI의 보안 감사 실패(minimatch GHSA-g3hv-75wg-m249)를 exceljs 경로에 한정한 의존성 고정으로 고쳐 CI를 통과시켰고(4f69bda), 같은 main으로 Pages를 다시 배포했다(633aa225, 실제 브라우저에서 파일1534개·핵심 해시7개 확인). story.knolquiz.com의 정적 요청을 Pages로, `/api`를 Mac mini로 보내는 Worker와 되돌리기 명령을 만들었지만, 저장된 Cloudflare 로그인에 Workers 권한이 없어 연결하지 않았다. 운영 API(2026-10-17 이미지)는 휴지통 경로가 없고 최근 편집 기능을 쓴 작품 28개의 업로드를 거부하므로, 연결 전에 운영 DB 백업과 API·ingress 갱신이 필요하다. [근거·호환성 대조](docs/architecture/evidence/story-edge-cutover-2026-10-31/checkpoint.json). story.knolquiz.com은 아직 2026-10-17 화면이다.

@@ -1,6 +1,6 @@
 {
   "date": "2026-10-31",
-  "scope": "Main CI security-audit fix, Pages redeploy from the fixed main, the production API compatibility check, the production API/ingress update, and the story.knolquiz.com cutover (19:42 KST): static reads now come from Cloudflare Pages through an edge Worker and /api stays on the Mac mini. DNS and the Tunnel were not changed. Not a rights approval, a full release judgement, or a test of Kakao login and upload by a person.",
+  "scope": "Main CI security-audit fix, Pages redeploy from the fixed main, the production API compatibility check, the production API/ingress update, the story.knolquiz.com cutover (19:42 KST): static reads now come from Cloudflare Pages through an edge Worker and /api stays on the Mac mini, and the approved page title redeploy (20:33 KST). DNS and the Tunnel were not changed. Not a rights approval, a full release judgement, or a test of Kakao login and upload by a person.",
   "provenance": {
     "recordedBy": "Kiro, 2026-10-31 19:10 KST (preparation) and 19:55 KST (update and cutover), on the primary development Mac mini that also runs the production containers.",
     "localOnly": ".cache/pages-release-20261031b, .cache/edge-verify, .cache/compat-check and /tmp/knol-prod-api are Git-ignored or outside the checkout and exist only on this machine."
@@ -104,10 +104,20 @@
     "headerChange": "story.knolquiz.com now sends x-frame-options: SAMEORIGIN and referrer-policy: strict-origin-when-cross-origin from apps/web/public/_headers. A page on another origin can no longer frame it; no such embedding is known.",
     "rollback": "CLOUDFLARE_API_TOKEN=… node server/operations/story-edge-route.mjs detach, or delete the story.knolquiz.com/* route under Workers Routes in the Cloudflare dashboard. The Mac mini ingress holds the same web build, so the site keeps the same version."
   },
+  "titleRedeploy": {
+    "decision": "After the cutover report the user approved the open recommendations ('다 승인해', about 20:05 KST): page title '놀스토리' and description '이야기를 읽고 직접 만드는 놀스토리', and the ego lite update. The guard hooks stay off on purpose.",
+    "change": "apps/web/app/layout.tsx metadata only (commit 08fb966). No test or current document asserted the old title; the old wording remains only in dated evidence.",
+    "ci": "Main CI run 41196901344 on 88ab671 (the title commit plus the hook decision): success.",
+    "build": "pnpm build at 20:27 KST; apps/web/out/index.html and shortstory.html carry <title>놀스토리</title> and the new description.",
+    "candidate": {"directory": ".cache/pages-release-20261031c (local only)", "sourceCommit": "88ab6716772d1a9df2eceafc500f327c296920b0", "files": 1535, "bytes": 584689337, "manifestSha256": "edb1b909ddd112e127a522377444799e056bd8cb8718b3bd28dae5886b87b7df", "indexHtmlSha256": "2ef06b0217c177513a92e36be1ee61f0aef30fbdde9359dc9c8cc7ab44df5d24", "differenceFromPrevious": "Against .cache/pages-release-20261031b: a new Next build ID (3 manifest files renamed) and 21 changed HTML/RSC files. No picture, sound, runtime or script chunk changed."},
+    "pages": "Deployment 6a60fa95 (Production, branch main, source 88ab671), about 20:33 KST: 21 new files, 1513 already uploaded, no --force.",
+    "production": "Running images tagged knolstory-next-api:rollback-20261031b and knolstory-next-ingress:rollback-20261031b, then production-compose.mjs build and start. The ingress restarted at 20:34:45 KST with /site/index.html equal to the candidate (2ef06b0217c1…). The API image has the same 8 layers and creation time as before but a new image ID, so Compose also recreated the API container at 20:34:39 KST: /api was unavailable for a few seconds. No migration, no database change.",
+    "verification": "Through the Worker: story.knolquiz.com/ and new-knolstory.pages.dev/ return the same HTML (2ef06b0217c1…) with <title>놀스토리</title>; /shortstory also shows 놀스토리. /api/v1/auth/config 200, /api/v1/me 401, the trash list 401 and Kakao start 302 with the story.knolquiz.com callback. Same-origin browser check on story.knolquiz.com against this candidate: 1534 of 1534 files, 7 of 7 critical hashes, whole-file answers for WAV, OGG and MP3 ranges, no access-control-allow-origin (story-browser-title.json). The same 18 live browser specs on story.knolquiz.com, 20:37-20:44 KST: 18 of 18 passed in one run, including the MP3 background-music spec that failed once before the title change.",
+    "egoLite": "ego-browser upgrade installed ego lite 0.6.2.5 (/Applications Info.plist). The running app was still 0.6.1.13 at 20:37 KST; the new version applies when ego lite restarts, which the updater may hold behind a confirmation in the browser."
+  },
   "observations": [
     "One Homebrew cloudflared process on this Mac receives its tunnel token on the command line, where any local process list shows it; which hostnames that tunnel serves was not checked. The knolstory-stg tunnel already uses --token-file. The token was not recorded anywhere.",
-    "Between 18:44 and 19:04 KST, outside this session, the guard-shell and guard-write hooks were set to enabled: false and three knolart hooks (art-*.json) appeared in this repository's .kiro/hooks. The knolart hooks were removed again at 19:58 KST, also outside this session. The disabled hooks are left uncommitted for the user to decide.",
-    "Ego lite reports an available update (current 0.6.1.13); not installed without the user's approval."
+    "Between 18:44 and 19:04 KST, outside this session, the guard-shell and guard-write hooks were set to enabled: false and three knolart hooks (art-*.json) appeared in this repository's .kiro/hooks. The knolart hooks were removed again at 19:58 KST, also outside this session. The user then confirmed that the guard hooks are off on purpose; that state is committed in 88ab671 and noted in .kiro/README.md."
   ],
   "next": [
     "User: sign in with Kakao on story.knolquiz.com and upload one work, to confirm the session cookie, CSRF and upload through the Worker in a real account.",
