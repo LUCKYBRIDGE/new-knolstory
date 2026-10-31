@@ -1,0 +1,393 @@
+{
+ "origin": "https://story.knolquiz.com",
+ "measuredAt": "2026-10-31T15:40:11.468Z",
+ "order": "ABBAABBA",
+ "bridges": {
+  "A": {
+   "file": ".cache/perf-check/bridge-deployed.js",
+   "sha256": "c09f977ab9d35139632622b4c0bac7fbe091ed5a1c29850e2b5e092724e2c349"
+  },
+  "B": {
+   "file": ".cache/perf-check/bridge-early.js",
+   "sha256": "d74ebc67d85aafd8f26358b66dfc6caaed01a43bf961b0dd7bd60a71a2bd341e"
+  }
+ },
+ "results": [
+  {
+   "mode": "A",
+   "startedAt": "2026-10-31T15:36:08.762Z",
+   "bridgeServed": 1,
+   "label": "A (1)",
+   "libraryMs": 2010,
+   "storyMs": 27583,
+   "storyRequests": 16,
+   "storyTransferMB": 21.93,
+   "storyDecodedMB": 50.99,
+   "runtimeDownloadEndMs": 24782,
+   "afterDownloadToSceneMs": 2801,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 1715,
+     "endMs": 12871
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 1713,
+     "endMs": 12736
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 12887,
+     "endMs": 24782
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 817,
+     "endMs": 1706
+    }
+   },
+   "progress": {
+    "events": 112,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  },
+  {
+   "mode": "B",
+   "startedAt": "2026-10-31T15:36:38.760Z",
+   "bridgeServed": 1,
+   "label": "B (2)",
+   "libraryMs": 1791,
+   "storyMs": 26497,
+   "storyRequests": 17,
+   "storyTransferMB": 22.06,
+   "storyDecodedMB": 51.12,
+   "runtimeDownloadEndMs": 23408,
+   "afterDownloadToSceneMs": 3089,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 1412,
+     "endMs": 15541
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 1410,
+     "endMs": 13706
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 802,
+     "endMs": 23408
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 391,
+     "endMs": 1402
+    }
+   },
+   "progress": {
+    "events": 113,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  },
+  {
+   "mode": "B",
+   "startedAt": "2026-10-31T15:37:07.427Z",
+   "bridgeServed": 1,
+   "label": "B (3)",
+   "libraryMs": 2403,
+   "storyMs": 38214,
+   "storyRequests": 15,
+   "storyTransferMB": 21.88,
+   "storyDecodedMB": 50.94,
+   "runtimeDownloadEndMs": 35536,
+   "afterDownloadToSceneMs": 2678,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 2151,
+     "endMs": 23117
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 2149,
+     "endMs": 20716
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 902,
+     "endMs": 35536
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 744,
+     "endMs": 2142
+    }
+   },
+   "progress": {
+    "events": 143,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  },
+  {
+   "mode": "A",
+   "startedAt": "2026-10-31T15:37:48.425Z",
+   "bridgeServed": 1,
+   "label": "A (4)",
+   "libraryMs": 1808,
+   "storyMs": 25572,
+   "storyRequests": 16,
+   "storyTransferMB": 21.88,
+   "storyDecodedMB": 50.94,
+   "runtimeDownloadEndMs": 22833,
+   "afterDownloadToSceneMs": 2739,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 1436,
+     "endMs": 10497
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 1434,
+     "endMs": 10093
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 10553,
+     "endMs": 22833
+    },
+    "renpy.js": {
+     "transferKB": 87,
+     "decodedKB": 387,
+     "startMs": 475,
+     "endMs": 1426
+    }
+   },
+   "progress": {
+    "events": 110,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  },
+  {
+   "mode": "A",
+   "startedAt": "2026-10-31T15:38:16.183Z",
+   "bridgeServed": 1,
+   "label": "A (5)",
+   "libraryMs": 2036,
+   "storyMs": 30174,
+   "storyRequests": 16,
+   "storyTransferMB": 21.94,
+   "storyDecodedMB": 51,
+   "runtimeDownloadEndMs": 27484,
+   "afterDownloadToSceneMs": 2690,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 2329,
+     "endMs": 13389
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 2327,
+     "endMs": 11779
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 13410,
+     "endMs": 27484
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 826,
+     "endMs": 2319
+    }
+   },
+   "progress": {
+    "events": 117,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  },
+  {
+   "mode": "B",
+   "startedAt": "2026-10-31T15:38:48.747Z",
+   "bridgeServed": 1,
+   "label": "B (6)",
+   "libraryMs": 2255,
+   "storyMs": 26749,
+   "storyRequests": 17,
+   "storyTransferMB": 21.89,
+   "storyDecodedMB": 50.95,
+   "runtimeDownloadEndMs": 24031,
+   "afterDownloadToSceneMs": 2718,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 1963,
+     "endMs": 14983
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 1962,
+     "endMs": 15236
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 1054,
+     "endMs": 24031
+    },
+    "renpy.js": {
+     "transferKB": 88,
+     "decodedKB": 387,
+     "startMs": 918,
+     "endMs": 1954
+    }
+   },
+   "progress": {
+    "events": 117,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  },
+  {
+   "mode": "B",
+   "startedAt": "2026-10-31T15:39:18.146Z",
+   "bridgeServed": 1,
+   "label": "B (7)",
+   "libraryMs": 1821,
+   "storyMs": 27093,
+   "storyRequests": 17,
+   "storyTransferMB": 22.07,
+   "storyDecodedMB": 51.13,
+   "runtimeDownloadEndMs": 24428,
+   "afterDownloadToSceneMs": 2665,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 2914,
+     "endMs": 15878
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 2913,
+     "endMs": 15885
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 1021,
+     "endMs": 24428
+    },
+    "renpy.js": {
+     "transferKB": 87,
+     "decodedKB": 387,
+     "startMs": 832,
+     "endMs": 2906
+    }
+   },
+   "progress": {
+    "events": 116,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  },
+  {
+   "mode": "A",
+   "startedAt": "2026-10-31T15:39:47.424Z",
+   "bridgeServed": 1,
+   "label": "A (8)",
+   "libraryMs": 1827,
+   "storyMs": 21973,
+   "storyRequests": 16,
+   "storyTransferMB": 22.01,
+   "storyDecodedMB": 51.07,
+   "runtimeDownloadEndMs": 19300,
+   "afterDownloadToSceneMs": 2673,
+   "files": {
+    "renpy.wasm": {
+     "transferKB": 4094,
+     "decodedKB": 21081,
+     "startMs": 1885,
+     "endMs": 9688
+    },
+    "renpy.data": {
+     "transferKB": 3662,
+     "decodedKB": 14704,
+     "startMs": 1884,
+     "endMs": 9341
+    },
+    "game.zip": {
+     "transferKB": 13180,
+     "decodedKB": 13180,
+     "startMs": 9704,
+     "endMs": 19300
+    },
+    "renpy.js": {
+     "transferKB": 87,
+     "decodedKB": 387,
+     "startMs": 1009,
+     "endMs": 1876
+    }
+   },
+   "progress": {
+    "events": 106,
+    "monotonic": true,
+    "last": [
+     "download:1",
+     "start"
+    ]
+   }
+  }
+ ]
+}
