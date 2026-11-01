@@ -1,3 +1,4 @@
+import {connectCatalogNarrativeSeams} from './catalog-narrative-seams';
 import {connectCatalogChapterIdentity} from './catalog-chapter-identity';
 import {parseStoryDocument,type StoryProject} from '@knolstory/story-domain';
 import seonnyeo from '../../../tests/fixtures/stories/seonnyeo.json';
@@ -55,9 +56,10 @@ export function resolveProvidedCatalogStory(original: StoryProject, stored?: Sto
   const refined=refineProvidedStory(original);
   const enhanced=enhanceExistingStory(refined);
   const previousIdentity=connectCatalogPerspective(enhanced);
-  const current=connectCatalogChapterIdentity(previousIdentity);
+  const previousChapters=connectCatalogChapterIdentity(previousIdentity);
+  const current=connectCatalogNarrativeSeams(previousChapters);
   // The confirm-card cue published until 2026-10-31 is a known version too, so it refreshes to the current one.
-  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,current].map(catalogFingerprint));
+  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,previousChapters,current].map(catalogFingerprint));
   versions={known,current};catalogVersions.set(original.id,versions);
  }
  if(stored&&!versions.known.has(catalogFingerprint(stored)))return stored;

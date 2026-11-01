@@ -1,7 +1,7 @@
 {
   "date": "2026-11-01",
   "baseline": "d95f237",
-  "status": "local-verified-awaiting-release",
+  "status": "chapter-labels-deployed-live-verified; four-narrative-seams-local-verification",
   "request": "원작·놀스토리에서1장→22장→2장처럼어색한장의순서·내용연결확인및개선",
   "cause": "제작용배열order가chapterNumber부재시읽기장번호로노출. 갈래복제저장순서가서사순서와달랐음.",
   "audit": {
@@ -58,6 +58,74 @@
     "KNOL_REMOTE_ORIGIN=https://story.knolquiz.com pnpm exec playwright test --config tests/catalog-chapter.playwright.config.ts"
   ],
   "release": {
-    "status": "pending"
+    "sourceCommit": "07846e1d55e967f92fee0e94ec2bf8537bd2a783",
+    "appImplementation": "c31d3173208c235f3a9e1b5b68dd505acb67fc51",
+    "ci": {
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41290067853",
+      "status": "success",
+      "files": 263,
+      "passed": 2242,
+      "skipped": 2,
+      "coverage": {
+        "statements": 91.8,
+        "branches": 90.62,
+        "functions": 95.06,
+        "lines": 95.13
+      }
+    },
+    "pages": {
+      "Id": "9969db88-8c67-495c-9a6a-19bfabff0c5a",
+      "Environment": "Production",
+      "Branch": "main",
+      "Source": "07846e1",
+      "Deployment": "https://9969db88.new-knolstory.pages.dev",
+      "Status": "14 seconds ago",
+      "Build": "https://dash.cloudflare.com/e579cab8638cf20fed82fa7480ff6ddb/pages/view/new-knolstory/9969db88-8c67-495c-9a6a-19bfabff0c5a"
+    },
+    "origin": "https://story.knolquiz.com",
+    "liveBrowser": "기존공식보관본재열기·장번호/제목정렬/6장복귀1통과4.1s + 실제RenPy1장→2장A·지난기록1통과20.8s",
+    "liveFiles": "1536 files,unexpected0,key hashes9/9,audio byte checks3/3",
+    "ingress": "Same candidate Web build; index/game.zip SHA match; API/DB/Worker unchanged. rollback-20261101-chapters retained.",
+    "media": "1490 runtime/assets files unchanged; game.zip8643696 bytes",
+    "provenance": "Existing923 provenance-review blockers retained; publication follows earlier explicit user authorization; no new media or rights clearance."
+  },
+  "narrativeReview": {
+    "scope": "출발마지막2~3컷·선택문구·도착첫2~3컷과필요주변사건수동검토;전체문장전수교정아님",
+    "boundaries": {
+      "onggojibAndHeungbu": 42,
+      "seonnyeoUniqueAfterDeduplication": 84,
+      "rabbit": 10,
+      "fourOriginals": 20
+    },
+    "finding": "확정인과/시점/잘못된합류없음. 선택지문구가자동해설로남은옹고집3컷과같은날저녁시간명료화선녀1컷교정",
+    "edits": [
+      {
+        "ids": [
+          "review-main-003:real-loop-testimony:17",
+          "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+          "review-main-003:real-loop-testimony-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:17"
+        ],
+        "before": "아이를 감싸 준 옹고집과 돌아간다",
+        "after": "부인은 아이를 감싸 준 옹고집을 바라보았다.",
+        "reason": "실제선택없는자동해설을몸짓으로교정;다음부인대사의결정반복예고방지"
+      },
+      {
+        "ids": [
+          "E4-7-v36-1"
+        ],
+        "before": "다음 저녁, 어제보다 조금 더 이지러진 달이 뜬다.",
+        "after": "그날 저녁, 어젯밤보다 조금 더 이지러진 달이 뜬다.",
+        "reason": "앞아침대사오늘밤까지/뒤하루종일요와같은날저녁으로연결"
+      }
+    ],
+    "preservation": "정확공식판전체fingerprintgate;직전장번호판도knownversion으로갱신. 개인수정/원작4종/Flow/ID/선택/음향/연출그대로",
+    "notChanged": "선녀첫눈→생활요약은회고가능성이있어확정오류로보지않고유지",
+    "review": "별도읽기전용검토완료,확정추가문제없음",
+    "redBoundary": "본문4교정은수동감사후구현과회귀를함께추가했으며사전RED증거없음. 장번호/보관갱신RED와구분.",
+    "focused": "5파일37검사통과;전체archive/.knolstory/XLSX및개인수정원고보존",
+    "release": "pending",
+    "browser": "최종빌드4/4통과10.3s:기존공식보관재열기/실제RenPy1→2A/옹고집·선녀교정글과Flow보존·reload",
+    "recoveredCheck": "정적export교체중첫실행native장표시대기1건미전환. 빌드완료뒤동일검사4/4재검증;전후데이터비교약화없음.",
+    "fullUnit": "264파일2244통과2제외;statements91.81/branches90.63/functions95.06/lines95.13"
   }
 }
