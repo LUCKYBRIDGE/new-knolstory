@@ -351,7 +351,7 @@ def main(argv=None):
                        tracked=tracked_sources(), max_file_bytes=args.max_file_bytes,
                        max_files=args.max_files, target=args.target, usage_scope=args.usage_scope,
                        scene_audio_approvals=reviewed_scene_audio_approvals() if args.usage_scope == 'story-service' else None,
-                       runtime_review=RUNTIME_REVIEW.reviewed_runtime_files() if args.usage_scope == 'story-service' else None)
+                       runtime_review=RUNTIME_REVIEW.reviewed_runtime_files(ROOT) if args.usage_scope == 'story-service' else None)
     except (ValueError, OSError, subprocess.CalledProcessError) as issue:
         parser.error(str(issue))
     text = json.dumps(result, ensure_ascii=False, indent=2) + '\n'

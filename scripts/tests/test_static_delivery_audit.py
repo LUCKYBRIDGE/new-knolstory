@@ -268,7 +268,7 @@ class StaticDeliveryAuditTests(unittest.TestCase):
         (registry / 'catalog.json').write_text('[]')
         (registry / 'media-provenance.json').write_text('{"entries":[]}')
         report = Path(self.temp.name) / 'report.json'
-        with patch.object(MODULE, 'ROOT', repo), patch.object(MODULE, 'tracked_sources', return_value=set()):
+        with patch.object(MODULE, 'ROOT', repo), patch.object(MODULE, 'tracked_sources', return_value=set()), patch.object(MODULE.RUNTIME_REVIEW, 'ROOT', Path('/must-not-read-global-runtime')):
             self.assertEqual(MODULE.main(['--root', str(self.root), '--output', str(report)]), 0)
             self.assertTrue(report.is_file())
             self.assertEqual(MODULE.main(['--root', str(self.root), '--output', str(report), '--check']), 1)
