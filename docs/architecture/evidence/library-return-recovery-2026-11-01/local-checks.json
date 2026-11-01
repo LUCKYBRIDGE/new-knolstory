@@ -1,0 +1,35 @@
+{
+  "library-return-current-tests.log": [
+    "  10 passed (13.4s)"
+  ],
+  "library-return-regression.log": [
+    "  13 passed (49.3s)"
+  ],
+  "library-return-native.log": [
+    "  2 passed (1.0m)"
+  ],
+  "library-return-all-units.log": [
+    " Test Files  258 passed (258)",
+    "      Tests  2210 passed | 2 skipped (2212)"
+  ],
+  "library-return-types-final.log": [],
+  "library-return-lint-final.log": [
+    "✖ 1 problem (0 errors, 1 warning)"
+  ],
+  "library-return-docs.log": [
+    "Project docs: 58 active documents checked; 0 link errors. Historical evidence excluded.",
+    "Product language: 237 current surfaces, 385 historical surfaces preserved; 0 retired-term occurrences. Semantic review remains required."
+  ],
+  "library-return-doc-tests.log": [
+    "# fail 0"
+  ],
+  "library-return-audit.log": [
+    "No known vulnerabilities found"
+  ],
+  "library-return-live-tests.log": [
+    "10 passed (25.2s)"
+  ],
+  "library-return-live-native.log": [
+    "2 passed (2.3m)"
+  ]
+}

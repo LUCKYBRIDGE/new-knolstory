@@ -1,6 +1,6 @@
 {
   "date": "2026-11-01",
-  "status": "local-verified-awaiting-release",
+  "status": "deployed-and-live-recovery-verified",
   "baseline": "37ae6ea",
   "causes": [
     "임시 보관 예외 시 편집 서재 이동을 차단하고 문구만 표시",
@@ -25,7 +25,8 @@
     "interactive": "ego TaskSpace13 실제 RenPy 편집 미리보기에서 quota 주입, 취소 후 글 유지/확인 후 서재 확인; 검사창 정리",
     "typecheck": "pass",
     "lint": "0 errors,existing img warning1",
-    "audit": "no known vulnerabilities"
+    "audit": "no known vulnerabilities",
+    "nativeLocal": "실제 RenPy 터치·설정 유지390x844/844x390:2/2"
   },
   "reproduce": [
     "pnpm build",
@@ -38,6 +39,34 @@
     "임시 보관은 실제 작품 파일 저장을 대체하지 않음"
   ],
   "release": {
-    "status": "pending"
+    "sourceCommit": "c5d10113cd582e67860c40dec0910a0b3e8662f9",
+    "ci": {
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41283273249",
+      "status": "success",
+      "files": 258,
+      "passed": 2210,
+      "skipped": 2,
+      "coverage": {
+        "statements": 91.76,
+        "branches": 90.65,
+        "functions": 94.94,
+        "lines": 95.11
+      }
+    },
+    "pages": {
+      "id": "518782ad-12e1-4c77-98ba-179da1b754e4",
+      "url": "https://518782ad.new-knolstory.pages.dev"
+    },
+    "origin": "https://story.knolquiz.com",
+    "ingress": "Same Web build; index/game.zip SHA match; API and DB unchanged. rollback-20261101-library-return retained.",
+    "liveRecoveryTests": "10/10 passed25.2s",
+    "files": "1536 files,unexpected0,key hashes9/9,audio byte checks3/3",
+    "assetPreservation": "1490 runtime/assets files unchanged against preceding deployment; game.zip8643696 bytes",
+    "api": {
+      "/api/v1/auth/config": 200,
+      "/api/v1/me": 401
+    },
+    "nativeLive": "2/2 passed2.3m; actual RenPy touch/settings390x844 and844x390",
+    "provenance": "Existing923 site-audit provenance blockers retained; unchanged media publication under prior explicit authorization. Deployment does not resolve source rights review."
   }
 }
