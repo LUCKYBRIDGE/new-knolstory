@@ -61,7 +61,7 @@ for(const viewport of [{width:390,height:844},{width:844,height:390}]){
   await expect(dialog.getByLabel('화면 터치 방식')).toHaveValue('next');
   await dialog.getByLabel('화면 터치 방식').selectOption('halves');
   await expect(dialog.getByLabel('화면 터치 방식')).toHaveValue('halves');
-  await dialog.getByRole('heading').tap();await assertStill(page,'long',0);
+  await dialog.getByRole('heading',{name:'읽기 설정',exact:true}).tap();await assertStill(page,'long',0);
   expect(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)!).tapMode,READER_PREFERENCES_KEY)).toBe('halves');
   await page.screenshot({path:info.outputPath('touch-settings.png')});await closeMenu(page);
   await stageTap(page,'right');await expect.poll(async()=>(await textPage(page)).index).toBe(1);

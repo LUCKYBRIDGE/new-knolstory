@@ -78,3 +78,64 @@
 /* Transparent reader tools stay legible over bright scenes and white cards (2026-10-31): a dark halo keeps them transparent instead of adding boxes. */
 .menu .topTrigger svg{filter:drop-shadow(0 0 1px #183331) drop-shadow(0 0 2px #183331)}
 .quick button{text-shadow:0 0 2px #183331,0 0 2px #183331,0 1px 3px #183331}
+
+/* System menus: solid framed windows, visible actions and quieter supporting text. */
+.menu .topMenu,.menu .dialog{background:#14292a;box-shadow:0 16px 48px #0008,inset 0 0 0 3px #a58d661c;color:#f5ead4;border-radius:10px}
+.menu .topMenu{width:min(320px,calc(100% - 24px));padding:16px;gap:10px;overscroll-behavior:contain;scrollbar-gutter:stable}
+.menuHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;min-width:0;margin-bottom:2px}
+.menuHeader>div{min-width:0}
+.menuHeader h2{margin:0;font-size:16px;font-weight:700;line-height:1.4;letter-spacing:.03em;color:#e3cda5}
+.menuHeader p{margin:5px 0 0;font-size:12px;line-height:1.5;color:#c1c9ba;overflow-wrap:anywhere}
+.menu .topMenu button,.menu .dialog button{min-height:44px;color:#f5ead4;background:#213b3b;border:1px solid #61736c;border-radius:6px;font-size:14px;font-weight:500;line-height:1.45;padding:10px 12px;text-align:left;letter-spacing:0}
+.menu .topMenu button{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+.menu .topMenu button>span[aria-hidden=true]{flex:none;color:#c6e3cf;font-size:18px;line-height:1}
+.menu .topMenu .menuClose{flex:none;width:auto;min-width:44px;min-height:44px;padding:8px;font-size:12px;background:#14292a;border-color:#61736c;justify-content:center}
+.menu .topMenu .resume{background:#c6e3cf;color:#15302a;border-color:#c6e3cf;font-weight:700}
+.menu .topMenu .resume>span[aria-hidden=true]{color:inherit;font-size:12px}
+.menuPair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.menuPair button{justify-content:center!important}
+.menuNavigation,.menuDestinations{display:grid;gap:8px;min-width:0}
+.menuDestinations{padding-top:10px;border-top:1px solid #6c6854}
+.menu .topMenu .menuDestinations button{background:#192f30}
+.menu .topMenu button:hover:not(:disabled),.menu .dialog button:hover:not(:disabled){background:#304e49;color:#f5ead4;border-color:#c6e3cf}
+.menu .topMenu .resume:hover:not(:disabled){background:#d6eddf;color:#15302a}
+.menu .topMenu button:focus-visible,.menu .dialog :is(button,input,select,summary):focus-visible{outline:3px solid #c6e3cf;outline-offset:3px}
+.menu .dialog{padding:20px}
+.menu .dialog .header{top:-20px;padding:12px 0;background:#14292a;border-bottom-color:#6c6854}
+.menu .dialog .header h2{font-size:20px;font-weight:700;color:#e3cda5}
+.menu .dialog .header>button{font-size:13px;min-width:56px;text-align:center;background:#192f30}
+.menu .dialog :is(p,small,.location){line-height:1.65}
+.menu .dialog>p,.menu .dialog .settingsHelp p{font-size:13px;color:#c1c9ba}
+.menu .dialog .settings{gap:16px}
+.settingsSection{display:grid;gap:12px;min-width:0;padding:16px;background:#192f30;border:1px solid #56645e;border-radius:8px}
+.settingsSection h3{font-size:14px;color:#e3cda5;font-weight:700;line-height:1.5;margin:0 0 2px}
+.menu .dialog .settingsSection>label{display:grid;grid-template-columns:minmax(132px,1fr) minmax(0,1.6fr);align-items:center;gap:8px 16px;min-width:0;font-size:14px}
+.settingsSection>label>span:first-child{font-weight:500}
+.menu .dialog .settings :is(input,select){background:#102526;color:#f5ead4;border:1px solid #85978c;border-radius:6px;min-height:44px;padding:8px 10px;font-size:14px}
+.menu .dialog .settingsSection>button{width:100%}
+.menu .dialog button[aria-pressed=true]{background:#c6e3cf;color:#15302a;border-color:#c6e3cf;font-weight:700;text-decoration:none}
+.menu .dialog .settingsActions{gap:8px}
+.menu .dialog .settingsActions button{text-align:center}
+.settingsHelp{min-width:0;border-top:1px solid #56645e;padding-top:4px}
+.settingsHelp summary{display:flex;align-items:center;gap:8px;list-style:none;min-height:44px;padding:8px 10px;box-sizing:border-box;border:1px solid #61736c;border-radius:6px;color:#c6e3cf;font-size:13px;background:#192f30;cursor:pointer}
+.settingsHelp summary::before{content:'+';font-size:18px;line-height:1}
+.settingsHelp[open] summary::before{content:'−'}
+.settingsHelp p{margin:10px 10px 0!important}
+.menu .dialog .resetSettings{color:#c1c9ba;background:#14292a;border-color:#61736c;font-size:13px}
+@media(max-width:540px){.menu .dialog{padding:14px}.menu .dialog .header{top:-14px}.settingsSection{padding:12px}.menu .dialog .settingsSection>label{grid-template-columns:minmax(0,1fr);gap:6px}.menu .dialog .header h2{font-size:18px}}
+@media(max-height:500px) and (min-width:520px){.menu .topMenu{padding:12px}.menu .topMenu .menuHeader{margin:0}.menuHeader p{display:none}.menu .topMenu{gap:8px}.menuNavigation,.menuDestinations{grid-template-columns:repeat(2,minmax(0,1fr))}.menuDestinations{padding-top:8px}}
+.menu[data-phone=true] .dialog .header{top:-14px}
+
+.menuHeader p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+
+/* The fixed history window allocates the remaining height to the script, even in
+   short landscape viewports; larger action/header spacing must not push it out. */
+.menu .dialog[open][data-chapter-history=true]{display:grid;grid-template-rows:auto minmax(0,1fr);height:min(740px,calc(100dvh - 24px));overflow:hidden}
+.menu .dialog[data-chapter-history=true]>.header{box-sizing:border-box;position:static;min-height:0;padding:0 0 12px;margin:0 0 12px}
+.menu .dialog[data-chapter-history=true] .historyBody{display:grid;grid-template-rows:auto auto minmax(0,1fr);min-height:0;min-width:0;overflow:hidden;gap:10px}
+.dialog[data-chapter-history=true] .previousChapters{grid-row:1;max-height:116px;min-height:0}
+.dialog[data-chapter-history=true] .historyIntro{grid-row:2;min-height:0}
+.menu .dialog[data-chapter-history=true] .historyScroll{grid-row:3;align-self:stretch;min-height:0;height:auto;max-height:none;overflow:auto}
+@media(max-height:500px){.menu .dialog[data-chapter-history=true]{padding:12px}.menu .dialog[data-chapter-history=true]>.header{padding-bottom:8px;margin-bottom:8px}.menu .dialog[data-chapter-history=true] .historyBody{gap:8px}.dialog[data-chapter-history=true] .previousChapters{max-height:60px}}
+
+.settingsHelp p{ text-wrap:pretty; }

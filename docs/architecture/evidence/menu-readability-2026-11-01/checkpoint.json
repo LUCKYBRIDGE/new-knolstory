@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-01",
+  "status": "locally-verified-awaiting-ci-and-deployment",
+  "scope": "사용자 첨부 화면의 읽기·편집 메뉴 가독성/조작 구분 개선. 원고·파일 형식·재생 의미·서버는 변경하지 않는다.",
+  "baseline": "9141e1e; implementation before this task0267e84 already deployed.",
+  "problem": [
+    "반투명 창 뒤로 원고/장면이 비침",
+    "버튼이 기본상태에서 투명한 배경/테두리여서 설명문처럼 보임",
+    "저장 안내 중복과 큰 행 간격",
+    "작품 제목이 길면 고정 헤더가 낮은 화면의 조작부를 가릴 수 있음"
+  ],
+  "implementation": [
+    "공통 팝업 배경 불투명; 실재 배경/테두리/44px 버튼과 선택 상태",
+    "읽기 메뉴 제목/닫기/계속 읽기 및 동작 그룹, 설정 세 그룹과 접힌 도움말",
+    "편집 메뉴 제목/닫기와 명확한 기능 그룹, 파일 저장 강조, 중복 설명 접기",
+    "긴 제목 두 줄, 매우 낮은 화면의 고정 헤더 해제"
+  ],
+  "checks": {
+    "red": "기존 정적 빌드390px editor menu opacity0.97, expected1에서 실패. .cache/menu-readability-red.log/기존 근거 폴더 보존.",
+    "newUi": "Final publish build:6of6 passed in10.9s at1440x900/390x844/844x390. Opaque bounded panels,44px bordered action surfaces,save contrast>=4.5,collapsed help open/close,editor close/focus,full manuscript unchanged,reader preference persists. Host runtime mocked only for these UI tests.",
+    "newTestCorrection": "getByLabel exact selector failed despite accessible combobox visible; updated to exact role/accessible name, no product condition weakened.",
+    "units": "3files48passed: reader preferences,player saves,local work files.",
+    "typecheck": "passed on finalsource",
+    "lint": "0errors,1existing img warning",
+    "existingBounds": "10of10 viewport checks passed (1440x900 down to390x200) with longtitle, all advanced opt-ins, save control hit and Escape focus.",
+    "interactive": "Ego TaskSpace12 reviewed native editor/menu/settings. Actual option change to halves and reduced-motion selected styling verified; screenshots inspected. Space finished, no user tabs changed. Local gallery .cache/menu-redesign-review/gallery.html (notpublished).",
+    "fileFlows": "4of4 passed: actual KnolStory andShortStory downloads/fresh-context reopen,verified file handle/save-as/external change guard,save before library return.",
+    "nativeTouch": "2of2 native phone portrait/landscape touch/pagination/settings persistence passed after exact settings-title heading selector matched new section headings.",
+    "history": "First attempt blocked by independent fullscreen offer; fixture now suppresses it (dedicated fullscreen tests retained). First corrected run found last text below area; diagnostic retry passed. Scoped grid header/body/script sizing fixed. New build repeated2of2 passed in34.6s, area365/dialog378/viewport390 with newest text inside. No claim first run was all-green.",
+    "docs": "docs:check andtest:docs passed",
+    "audit": "no known production vulnerabilities",
+    "build": "Web-only build passed after finalCSS. Runtime unchanged, no runtime rebuild required."
+  },
+  "deployment": "not started",
+  "limits": "전체 제품/실기기/화면 낭독기/실제 계정 로그인/업로드 검증 아님. 기존 원고와 지난 증거는 보존한다.",
+  "references": "design-references.md records official Fluent2/Spectrum and installed UI skill use; no external code/assets added or new dependencies."
+}

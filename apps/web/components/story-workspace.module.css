@@ -716,7 +716,8 @@
 .shell.editorShell:not(.playMode)>.header .management .viewTools>.controls { position:static; width:auto; max-width:100%; box-shadow:none; border:0; }
 .shell.editorShell:not(.playMode)>.header .management>div>div>details>summary { min-height:44px; cursor:pointer; }
 
-/* Settings share the story game's ink-and-parchment frame without changing editor chrome. */
+/* Editor settings are a solid story-game panel, with distinct headings and action surfaces. */
+.systemMenuSettings{display:contents}
 .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor] {
  --ink:var(--story-menu-ink,#f5ead4);
  --ink-soft:var(--story-menu-muted,#c1c9ba);
@@ -726,126 +727,74 @@
  --white:var(--story-menu-surface,#213b3b);
  --mint:var(--story-menu-surface,#213b3b);
  --mint-strong:var(--story-menu-accent,#c6e3cf);
- color-scheme:dark;
- color:var(--story-menu-ink,#f5ead4);
- background:var(--story-menu-bg,rgba(17,34,35,.96));
- border:2px solid var(--story-menu-line,#a58d66);
- border-radius:4px;
- padding:16px;
- gap:8px;
- box-shadow:0 16px 48px #0009,inset 0 0 0 3px #f5ead40a;
- scrollbar-color:var(--story-menu-line,#a58d66) transparent;
- overscroll-behavior:contain;
+ color-scheme:dark;color:var(--story-menu-ink,#f5ead4);
+ background:#112223;border:1px solid var(--story-menu-line,#a58d66);border-radius:10px;
+ display:flex;flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:16px;
+ width:min(480px,calc(100vw - 24px));max-width:calc(100vw - 24px);
+ max-height:min(760px,calc(100dvh - var(--work-menu-top,56px) - 12px));
+ padding:14px;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;
+ box-shadow:0 18px 54px #0009,inset 0 0 0 3px #a58d6615;
+ scrollbar-width:thin;scrollbar-color:#a58d66 #112223;
+ word-break:keep-all;overflow-wrap:anywhere;line-break:strict;
 }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,.import) {
- min-height:44px;
- padding:9px 12px;
- font-size:14px;
- line-height:1.5;
- text-align:left;
- color:var(--story-menu-ink,#f5ead4);
- background:transparent;
- border:1px solid transparent;
- border-radius:2px;
- box-shadow:none;
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>*{flex-shrink:0;min-width:0}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,.import){
+ box-sizing:border-box;min-height:44px;height:auto;min-width:0;max-width:100%;margin:0;
+ display:flex;align-items:center;justify-content:flex-start;gap:8px;
+ padding:10px 12px;font-size:14px;font-weight:500;line-height:1.45;text-align:left;
+ white-space:normal;word-break:keep-all;overflow-wrap:anywhere;
+ color:var(--story-menu-ink,#f5ead4);background:#1d3736;border:1px solid #688578;
+ border-radius:6px;box-shadow:0 1px 0 #0003;cursor:pointer;
 }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,.import):hover {
- color:var(--story-menu-accent,#c6e3cf);
- background:#c6e3cf0d;
- border-color:#a58d6666;
+.shell.editorShell:not(.playMode) [data-system-menu=editor] summary{list-style:none}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] summary::-webkit-details-marker{display:none}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] summary::after{content:'⌄';margin-left:auto;flex:none;color:var(--story-menu-accent,#c6e3cf);font-size:16px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] details[open]>summary::after{transform:rotate(180deg)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,.import):hover:not(:disabled){background:#2d4a43;border-color:var(--story-menu-accent,#c6e3cf);color:#fff8e8}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,input,select,textarea,.import):focus-visible{outline:2px solid var(--story-menu-accent,#c6e3cf);outline-offset:2px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] button[aria-pressed=true]{color:#112223;background:var(--story-menu-accent,#c6e3cf);border-color:var(--story-menu-accent,#c6e3cf);font-weight:700}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,input,select):disabled{opacity:.5;cursor:not-allowed}
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.systemMenuHeader{
+ position:sticky;top:-14px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;
+ margin:-14px -14px 0;padding:14px;background:#112223;border-bottom:1px solid #a58d6655;
 }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,input,select,textarea,.import):focus-visible {
- outline:2px solid var(--story-menu-accent,#c6e3cf);
- outline-offset:2px;
+.systemMenuHeader>div{display:grid;gap:4px;min-width:0}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>div>span{font-size:12px;line-height:1.4;color:var(--story-menu-accent,#c6e3cf);font-weight:600;letter-spacing:.06em}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader strong{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:17px;line-height:1.45;font-weight:650;color:var(--story-menu-ink,#f5ead4)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button{flex:none;white-space:nowrap;min-width:68px;padding:8px 10px;background:#1d3736}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .systemMenuHeader>button>span{font-size:20px;line-height:1}
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.systemMenuSettings,
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;align-items:start;min-width:0;width:100%}
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup{padding-top:14px;margin:0;border-top:1px solid #a58d664d}
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.systemMenuSettings>:is(details,label,div),
+.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup>:is(.workMenuHeading,small,details,[role=group]){grid-column:1/-1;min-width:0}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .workMenuHeading{font-size:12px;font-weight:700;line-height:1.5;letter-spacing:.06em;color:var(--story-menu-accent,#c6e3cf);margin:0 0 2px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(small,p,.workMenuHint){font-size:12px;line-height:1.65;color:var(--story-menu-muted,#c1c9ba);margin:4px 0;word-break:keep-all;overflow-wrap:anywhere}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] [role=alert]{color:var(--story-menu-danger,#ffb5a6)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(input:not([type=checkbox]):not([type=range]):not([type=file]),select,textarea){box-sizing:border-box;min-height:44px;color:var(--story-menu-ink,#f5ead4);background:#1d3736;border:1px solid #688578;border-radius:6px;font-size:16px;padding:8px 10px;max-width:100%}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] option{color:var(--story-menu-ink,#f5ead4);background:#1d3736}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] input:is([type=checkbox],[type=range]){accent-color:var(--story-menu-accent,#c6e3cf)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] fieldset{color:var(--story-menu-ink,#f5ead4);background:#172e2c;border:1px solid #688578;border-radius:6px;min-width:0;padding:12px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] legend{color:var(--story-menu-accent,#c6e3cf);font-size:13px;font-weight:600}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] details[open]>summary{color:#fff8e8;background:#29473e;border-color:var(--story-menu-accent,#c6e3cf)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] details[open]>:not(summary){margin-top:10px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] .viewTools>.controls{display:flex;flex-wrap:wrap;color:var(--story-menu-ink,#f5ead4);background:transparent;padding:10px 0 0;gap:8px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] a{color:var(--story-menu-accent,#c6e3cf)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions]>:is(small,details,p){grid-column:1/-1}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions]>button:first-child{background:#c6e3cf;color:#112223;border-color:#c6e3cf;font-weight:700}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>select){display:grid;grid-template-columns:minmax(0,1fr);gap:6px;align-items:start;min-width:0;margin:2px 0;font-size:13px;font-weight:600;color:var(--story-menu-muted,#c1c9ba)}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] label>select{width:100%;max-width:100%;min-width:0;margin:0;font-weight:500}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>input[type=checkbox]){display:flex;align-items:center;gap:10px;min-height:44px;margin:4px 0;min-width:0;font-size:14px}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] input[type=checkbox]{flex:none;width:18px;height:18px;min-height:18px;padding:0}
+@media(max-width:380px){
+ .shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup,
+ .shell.editorShell:not(.playMode) [data-system-menu=editor]>.systemMenuSettings,
+ .shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions]{grid-template-columns:minmax(0,1fr)}
 }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] button[aria-pressed=true] {
- color:var(--story-menu-accent,#c6e3cf);
- background:#c6e3cf14;
- border-color:var(--story-menu-line,#a58d66);
+@media(max-height:500px){
+ .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor]{max-height:calc(100dvh - var(--work-menu-top,52px) - 8px)}
 }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,input,select):disabled {
- color:var(--story-menu-muted,#c1c9ba);
- opacity:.55;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(strong,legend,.workMenuHeading) {
- color:var(--story-menu-ink,#f5ead4);
- font-size:14px;
- line-height:1.5;
- letter-spacing:.035em;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup {
- padding-top:12px;
- margin-top:4px;
- border-top:1px solid #a58d6670;
- gap:4px;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(small,p,.workMenuHint) {
- color:var(--story-menu-muted,#c1c9ba);
- font-size:12px;
- line-height:1.6;
- overflow-wrap:anywhere;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] [role=alert] {
- color:var(--story-menu-danger,#ffb5a6);
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(input:not([type=checkbox]):not([type=range]):not([type=file]),select,textarea) {
- min-height:44px;
- color:var(--story-menu-ink,#f5ead4);
- background:var(--story-menu-surface,#213b3b);
- border:1px solid var(--story-menu-line,#a58d66);
- border-radius:2px;
- font-size:16px;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] option {
- color:var(--story-menu-ink,#f5ead4);
- background:var(--story-menu-surface,#213b3b);
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] input:is([type=checkbox],[type=range]) {
- accent-color:var(--story-menu-accent,#c6e3cf);
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] fieldset {
- color:var(--story-menu-ink,#f5ead4);
- background:transparent;
- border:1px solid #a58d6670;
- border-radius:2px;
- min-width:0;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] details[open]>summary {
- color:var(--story-menu-accent,#c6e3cf);
- background:#c6e3cf0d;
- border-color:#a58d6666;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] .viewTools>.controls {
- color:var(--story-menu-ink,#f5ead4);
- background:transparent;
- padding:8px 0;
- gap:8px;
-}
-.shell.editorShell:not(.playMode) [data-system-menu=editor] a {
- color:var(--story-menu-accent,#c6e3cf);
-}
-@media(max-width:700px) {
- .shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor] { padding:12px; }
-}
-
-/* Settings groups use rows/grids instead of loose inline text and tiny labels. */
-.shell.editorShell:not(.playMode) [data-system-menu=editor] { display:flex; flex-direction:column; align-items:stretch; word-break:keep-all; overflow-wrap:anywhere; line-break:strict; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary,label,p,small,strong,legend) { word-break:keep-all; overflow-wrap:anywhere; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; align-items:start; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor]>.workMenuGroup>:is(.workMenuHeading,small,details,label,[role=group]) { grid-column:1/-1; min-width:0; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions] { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] [data-local-file-actions]>small { grid-column:1/-1; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>select) { display:grid; grid-template-columns:minmax(0,1fr); gap:6px; align-items:start; min-width:0; margin:8px 0; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] label>select { width:100%; max-width:100%; min-width:0; margin:0; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>input[type=checkbox]) { display:flex; flex-wrap:nowrap; align-items:center; gap:8px; margin:8px 0; min-width:0; min-height:44px; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] input[type=checkbox] { flex:none; width:18px; height:18px; min-height:18px; padding:0; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(button,summary) { min-width:0; text-align:left; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(p,small) { margin:6px 0; }
-.shell.editorShell:not(.playMode) [data-work-menu][open]>[data-system-menu=editor] { flex-wrap:nowrap; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor]>* { flex-shrink:0; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor]>div:has(>label>select[aria-label="편집화면 선택"]) { width:100%; min-width:0; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] label:has(>select[aria-label="편집화면 선택"]) { width:100%; min-width:0; }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] select[aria-label="편집화면 선택"] { width:100%; max-width:none; min-width:0; }
 
 /* A fixed viewport must keep recovery actions inside its own layout. */
 .shell .storageWarning { flex:0 0 auto; max-height:min(28dvh,12rem); overflow:auto; overscroll-behavior:contain; margin:4px 8px; padding:8px; }
@@ -866,3 +815,7 @@
 .shell.editorShell:not(.playMode)>.header>.fullscreenShortcut[aria-pressed=true] { background:var(--mint); border-color:var(--mint-strong); }
 /* The chapter label over the scene uses the same dark halo as the transparent reader tools (2026-10-31). */
 .readerContext { text-shadow:0 0 2px #183331,0 0 2px #183331,0 1px 3px #183331; }
+
+@media(max-height:360px){.shell.editorShell:not(.playMode) [data-system-menu=editor]>.systemMenuHeader{position:static}}
+
+.shell.editorShell:not(.playMode) [data-system-menu=editor] :is(.workMenuHint,[data-file-save-help] p){text-wrap:pretty}

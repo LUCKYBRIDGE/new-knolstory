@@ -15,6 +15,7 @@ const project={...base,chapters:[{...chapter,title:'지난 장'},{...chapter,id:
 async function rendered(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-scene-revision');return revision!==null&&revision===await status.getAttribute('data-rendered-revision');},{timeout:120000}).toBe(true);return status;}
 async function workspace(page:Page){return page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));}
 async function openHistory(page:Page){await page.getByRole('button',{name:'지난기록',exact:true}).click();return page.getByRole('dialog');}
+test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 test('chapter script opens at newest text and only previous chapter starts can rewind choices and scores',async({page},info)=>{
  await page.setViewportSize({width:1280,height:800});await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();
@@ -50,6 +51,7 @@ test('chapter script opens at newest text and only previous chapter starts can r
  await page.setViewportSize({width:844,height:390});await rendered(page);dialog=await openHistory(page);await expect.poll(atBottom).toBe(true);
  await expect.poll(atBottom).toBe(true);
  const bounds=await dialog.evaluate(el=>{const script=el.querySelector('[data-reader-current-script] li:last-child')!,area=el.querySelector('[data-reader-history-scroll]')!;return {last:script.getBoundingClientRect().bottom,area:area.getBoundingClientRect().bottom,dialog:el.getBoundingClientRect().bottom,viewport:innerHeight};});
+ console.log('[chapter history viewport]',JSON.stringify(bounds));
  expect(bounds.last).toBeLessThanOrEqual(bounds.area+1);expect(bounds.area).toBeLessThanOrEqual(bounds.dialog);expect(bounds.dialog).toBeLessThanOrEqual(bounds.viewport);
  await page.screenshot({path:info.outputPath('landscape-newest.png')});
  expect(await dialog.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);

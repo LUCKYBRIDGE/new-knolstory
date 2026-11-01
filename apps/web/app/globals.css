@@ -48,4 +48,4 @@ footer { padding:0 28px 24px; color:var(--ink-soft); font-size:12px; }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto !important; } }
 
 /* Shared story-game system menu palette; applied only to popup surfaces. */
-:root { --story-menu-bg:rgba(17,34,35,.97); --story-menu-surface:#213b3b; --story-menu-ink:#f5ead4; --story-menu-muted:#c1c9ba; --story-menu-line:#a58d66; --story-menu-accent:#c6e3cf; --story-menu-danger:#ffb5a6; }
+:root { --story-menu-bg:#112223; --story-menu-surface:#213b3b; --story-menu-ink:#f5ead4; --story-menu-muted:#c1c9ba; --story-menu-line:#a58d66; --story-menu-accent:#c6e3cf; --story-menu-danger:#ffb5a6; }

@@ -4,6 +4,10 @@
 .surface.surface :is(button,input,select,textarea) { color:var(--story-menu-ink); background:var(--story-menu-surface); border-color:var(--story-menu-line); border-radius:3px; min-height:44px; max-width:100%; }
 .surface.surface :is(button,summary,label,p,small,h2,h3,legend,dt,dd) { word-break:keep-all; overflow-wrap:anywhere; }
 .surface.surface button { white-space:normal; }
+.surface.surface button:not(:disabled),.surface.surface summary { cursor:pointer; }
+.surface.surface summary { min-height:44px; box-sizing:border-box; padding:10px 12px; color:var(--story-menu-ink); background:var(--story-menu-surface); border:1px solid var(--story-menu-line); border-radius:5px; }
+.surface.surface summary::marker { color:var(--story-menu-accent); }
+.surface.surface :is(p,small) { line-height:1.65; }
 .surface.surface header { min-width:0; }
 .surface.surface header>div { min-width:0; }
 .surface.surface header>button { flex-shrink:0; white-space:nowrap; }
