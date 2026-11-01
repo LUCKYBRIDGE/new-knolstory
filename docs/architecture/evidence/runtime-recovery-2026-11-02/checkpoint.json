@@ -63,7 +63,14 @@
     "sourceCommit": "a397d6989f7536331b557f8cbd514b50984882ca",
     "pages": "https://dc637370.new-knolstory.pages.dev",
     "origin": "https://story.knolquiz.com",
-    "ci": "41362631759 in progress",
+    "ci": {
+      "id": 41362631759,
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41362631759",
+      "status": "success",
+      "sourceCommit": "a397d6989f7536331b557f8cbd514b50984882ca",
+      "proofBoundary": "Remote public CI excludes private catalogue/audio-byte suites; local full media and actual native checks remain separately recorded",
+      "summary": []
+    },
     "liveFiles": "1560 checked,0 unexpected,key9hashes/audio3match;live-files.json",
     "newImages": "22paths200/exactSHA;live-images.json",
     "ingress": "same reviewed candidate;index/game.zip/license200/exactSHA;rollback-20261102-recovery retained;API/DB/Worker unchanged",
