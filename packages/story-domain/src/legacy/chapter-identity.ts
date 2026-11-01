@@ -8,7 +8,8 @@ export function normalizeChapterTitle(title:string):string {
 /** A chapter's narrative identity is independent of its list order and its cuts. */
 export function chapterLabel(chapter: Pick<Chapter, 'order' | 'title' | 'chapterNumber' | 'branchLabel'>): string {
   const number = chapter.chapterNumber ?? chapter.order;
-  const identity = `${number}장${chapter.branchLabel?.trim() ?? ''}`;
+  const branch=chapter.branchLabel?.trim()??'';
+  const identity = `${number}장${branch?(/^[A-Za-z]+$/u.test(branch)?branch:` · ${branch}`):''}`;
   const title = normalizeChapterTitle(chapter.title).trim();
   if (!title) return identity;
   // Old files often put numbering into the title. Preserve that authored label once.
@@ -22,4 +23,9 @@ export function chapterLabel(chapter: Pick<Chapter, 'order' | 'title' | 'chapter
 }
 export function cutLabel(chapter: Chapter, cut: Pick<StoryLine, 'order'>): string {
   return `${chapterLabel(chapter)} · ${cut.order}컷`;
+}
+
+/** Display chapter identities in narrative order without changing runtime list order. */
+export function chaptersForDisplay<T extends Pick<Chapter, 'order'|'chapterNumber'>>(chapters:readonly T[]):T[]{
+ return [...chapters].sort((a,b)=>(a.chapterNumber??a.order)-(b.chapterNumber??b.order));
 }

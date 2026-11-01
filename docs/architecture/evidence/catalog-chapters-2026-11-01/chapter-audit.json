@@ -1,0 +1,1843 @@
+[
+  {
+    "edition": "seonnyeo",
+    "chapters": 166,
+    "highestNumber": 43,
+    "backwardsBefore": 22,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [
+      {
+        "id": "C1-A-v106",
+        "before": "선택 1-A 반응",
+        "after": "바위 위에 놓인 물통"
+      },
+      {
+        "id": "C2-A-v83",
+        "before": "선택 2-A 반응",
+        "after": "함께 찾기로 한 약속"
+      },
+      {
+        "id": "C3-A-v53",
+        "before": "선택 3-A 반응",
+        "after": "그리운 하늘의 가족"
+      },
+      {
+        "id": "C6C-A-v25",
+        "before": "마지막 선택 A",
+        "after": "약속을 재촉하지 않는 말"
+      },
+      {
+        "id": "C6C-B-v26",
+        "before": "마지막 선택 B",
+        "after": "붙잡고 싶은 약속"
+      },
+      {
+        "id": "C6L-A-v33",
+        "before": "마지막 선택 A",
+        "after": "문 앞에서 멈추다"
+      },
+      {
+        "id": "C6L-B-v34",
+        "before": "마지막 선택 B",
+        "after": "문 옆으로 물러서다"
+      },
+      {
+        "id": "C3-B-v74",
+        "before": "선택 3-B 반응",
+        "after": "떠날까 두려운 마음"
+      },
+      {
+        "id": "C2-B-v99",
+        "before": "선택 2-B 반응",
+        "after": "기다려 주는 마음"
+      },
+      {
+        "id": "C3-A-v85",
+        "before": "선택 3-A 반응",
+        "after": "그리운 하늘의 가족"
+      },
+      {
+        "id": "C3-B-v90",
+        "before": "선택 3-B 반응",
+        "after": "떠날까 두려운 마음"
+      },
+      {
+        "id": "C1-B-v161",
+        "before": "선택 1-B 반응",
+        "after": "앞서 걷는 나무꾼"
+      },
+      {
+        "id": "C2-A-v139",
+        "before": "선택 2-A 반응",
+        "after": "함께 찾기로 한 약속"
+      },
+      {
+        "id": "C3-A-v123",
+        "before": "선택 3-A 반응",
+        "after": "그리운 하늘의 가족"
+      },
+      {
+        "id": "C3-B-v130",
+        "before": "선택 3-B 반응",
+        "after": "떠날까 두려운 마음"
+      },
+      {
+        "id": "C2-B-v154",
+        "before": "선택 2-B 반응",
+        "after": "기다려 주는 마음"
+      },
+      {
+        "id": "C3-A-v143",
+        "before": "선택 3-A 반응",
+        "after": "그리운 하늘의 가족"
+      },
+      {
+        "id": "C3-B-v145",
+        "before": "선택 3-B 반응",
+        "after": "떠날까 두려운 마음"
+      }
+    ],
+    "chaptersAfter": [
+      {
+        "id": "P1-v166",
+        "title": "계곡",
+        "order": 1,
+        "number": 1
+      },
+      {
+        "id": "P2-v165",
+        "title": "폭풍",
+        "order": 2,
+        "number": 2
+      },
+      {
+        "id": "P3-v164",
+        "title": "빗속의 하늘길",
+        "order": 3,
+        "number": 3
+      },
+      {
+        "id": "1-v163",
+        "title": "나무꾼의 등장",
+        "order": 4,
+        "number": 4
+      },
+      {
+        "id": "C1-v162",
+        "title": "어떻게 도울까?",
+        "order": 5,
+        "number": 5
+      },
+      {
+        "id": "C1-A-v106",
+        "title": "바위 위에 놓인 물통",
+        "order": 6,
+        "number": 6,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C1-B-v161",
+        "title": "앞서 걷는 나무꾼",
+        "order": 112,
+        "number": 6,
+        "branchLabel": "B"
+      },
+      {
+        "id": "2-v105",
+        "title": "작은 집",
+        "order": 7,
+        "number": 7,
+        "branchLabel": "A"
+      },
+      {
+        "id": "2-v160",
+        "title": "작은 집",
+        "order": 113,
+        "number": 7,
+        "branchLabel": "B"
+      },
+      {
+        "id": "3-v104",
+        "title": "첫 식사",
+        "order": 8,
+        "number": 8,
+        "branchLabel": "A"
+      },
+      {
+        "id": "3-v159",
+        "title": "첫 식사",
+        "order": 114,
+        "number": 8,
+        "branchLabel": "B"
+      },
+      {
+        "id": "4-v103",
+        "title": "정체",
+        "order": 9,
+        "number": 9,
+        "branchLabel": "A"
+      },
+      {
+        "id": "4-v158",
+        "title": "정체",
+        "order": 115,
+        "number": 9,
+        "branchLabel": "B"
+      },
+      {
+        "id": "5-v102",
+        "title": "옷을 찾는 날들",
+        "order": 10,
+        "number": 10,
+        "branchLabel": "A"
+      },
+      {
+        "id": "5-v157",
+        "title": "옷을 찾는 날들",
+        "order": 116,
+        "number": 10,
+        "branchLabel": "B"
+      },
+      {
+        "id": "6-v101",
+        "title": "한 달 뒤",
+        "order": 11,
+        "number": 11,
+        "branchLabel": "A"
+      },
+      {
+        "id": "6-v156",
+        "title": "한 달 뒤",
+        "order": 117,
+        "number": 11,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C2-v100",
+        "title": "계속 찾을까?",
+        "order": 12,
+        "number": 12,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C2-v155",
+        "title": "계속 찾을까?",
+        "order": 118,
+        "number": 12,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C2-A-v83",
+        "title": "함께 찾기로 한 약속",
+        "order": 13,
+        "number": 13,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C2-B-v99",
+        "title": "기다려 주는 마음",
+        "order": 96,
+        "number": 13,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C2-A-v139",
+        "title": "함께 찾기로 한 약속",
+        "order": 119,
+        "number": 13,
+        "branchLabel": "C"
+      },
+      {
+        "id": "C2-B-v154",
+        "title": "기다려 주는 마음",
+        "order": 152,
+        "number": 13,
+        "branchLabel": "D"
+      },
+      {
+        "id": "7-v82",
+        "title": "첫눈",
+        "order": 14,
+        "number": 14,
+        "branchLabel": "A"
+      },
+      {
+        "id": "7-v98",
+        "title": "첫눈",
+        "order": 97,
+        "number": 14,
+        "branchLabel": "B"
+      },
+      {
+        "id": "7-v138",
+        "title": "첫눈",
+        "order": 120,
+        "number": 14,
+        "branchLabel": "C"
+      },
+      {
+        "id": "7-v153",
+        "title": "첫눈",
+        "order": 153,
+        "number": 14,
+        "branchLabel": "D"
+      },
+      {
+        "id": "8-v81",
+        "title": "서로의 생활",
+        "order": 15,
+        "number": 15,
+        "branchLabel": "A"
+      },
+      {
+        "id": "8-v97",
+        "title": "서로의 생활",
+        "order": 98,
+        "number": 15,
+        "branchLabel": "B"
+      },
+      {
+        "id": "8-v137",
+        "title": "서로의 생활",
+        "order": 121,
+        "number": 15,
+        "branchLabel": "C"
+      },
+      {
+        "id": "8-v152",
+        "title": "서로의 생활",
+        "order": 154,
+        "number": 15,
+        "branchLabel": "D"
+      },
+      {
+        "id": "9-v80",
+        "title": "마음을 확인하다",
+        "order": 16,
+        "number": 16,
+        "branchLabel": "A"
+      },
+      {
+        "id": "9-v96",
+        "title": "마음을 확인하다",
+        "order": 99,
+        "number": 16,
+        "branchLabel": "B"
+      },
+      {
+        "id": "9-v136",
+        "title": "마음을 확인하다",
+        "order": 122,
+        "number": 16,
+        "branchLabel": "C"
+      },
+      {
+        "id": "9-v151",
+        "title": "마음을 확인하다",
+        "order": 155,
+        "number": 16,
+        "branchLabel": "D"
+      },
+      {
+        "id": "10-v79",
+        "title": "선녀의 선택",
+        "order": 17,
+        "number": 17,
+        "branchLabel": "A"
+      },
+      {
+        "id": "10-v95",
+        "title": "선녀의 선택",
+        "order": 100,
+        "number": 17,
+        "branchLabel": "B"
+      },
+      {
+        "id": "10-v135",
+        "title": "선녀의 선택",
+        "order": 123,
+        "number": 17,
+        "branchLabel": "C"
+      },
+      {
+        "id": "10-v150",
+        "title": "선녀의 선택",
+        "order": 156,
+        "number": 17,
+        "branchLabel": "D"
+      },
+      {
+        "id": "11-v78",
+        "title": "약속",
+        "order": 18,
+        "number": 18,
+        "branchLabel": "A"
+      },
+      {
+        "id": "11-v94",
+        "title": "약속",
+        "order": 101,
+        "number": 18,
+        "branchLabel": "B"
+      },
+      {
+        "id": "11-v134",
+        "title": "약속",
+        "order": 124,
+        "number": 18,
+        "branchLabel": "C"
+      },
+      {
+        "id": "11-v149",
+        "title": "약속",
+        "order": 157,
+        "number": 18,
+        "branchLabel": "D"
+      },
+      {
+        "id": "12-v77",
+        "title": "평범한 부부",
+        "order": 19,
+        "number": 19,
+        "branchLabel": "A"
+      },
+      {
+        "id": "12-v93",
+        "title": "평범한 부부",
+        "order": 102,
+        "number": 19,
+        "branchLabel": "B"
+      },
+      {
+        "id": "12-v133",
+        "title": "평범한 부부",
+        "order": 125,
+        "number": 19,
+        "branchLabel": "C"
+      },
+      {
+        "id": "12-v148",
+        "title": "평범한 부부",
+        "order": 158,
+        "number": 19,
+        "branchLabel": "D"
+      },
+      {
+        "id": "13-v76",
+        "title": "기러기",
+        "order": 20,
+        "number": 20,
+        "branchLabel": "A"
+      },
+      {
+        "id": "13-v92",
+        "title": "기러기",
+        "order": 103,
+        "number": 20,
+        "branchLabel": "B"
+      },
+      {
+        "id": "13-v132",
+        "title": "기러기",
+        "order": 126,
+        "number": 20,
+        "branchLabel": "C"
+      },
+      {
+        "id": "13-v147",
+        "title": "기러기",
+        "order": 159,
+        "number": 20,
+        "branchLabel": "D"
+      },
+      {
+        "id": "C3-v75",
+        "title": "선녀의 그리움 앞에서",
+        "order": 21,
+        "number": 21,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C3-v91",
+        "title": "선녀의 그리움 앞에서",
+        "order": 104,
+        "number": 21,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C3-v131",
+        "title": "선녀의 그리움 앞에서",
+        "order": 127,
+        "number": 21,
+        "branchLabel": "C"
+      },
+      {
+        "id": "C3-v146",
+        "title": "선녀의 그리움 앞에서",
+        "order": 160,
+        "number": 21,
+        "branchLabel": "D"
+      },
+      {
+        "id": "C3-A-v53",
+        "title": "그리운 하늘의 가족",
+        "order": 22,
+        "number": 22,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C3-B-v74",
+        "title": "떠날까 두려운 마음",
+        "order": 75,
+        "number": 22,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C3-A-v85",
+        "title": "그리운 하늘의 가족",
+        "order": 105,
+        "number": 22,
+        "branchLabel": "C"
+      },
+      {
+        "id": "C3-B-v90",
+        "title": "떠날까 두려운 마음",
+        "order": 107,
+        "number": 22,
+        "branchLabel": "D"
+      },
+      {
+        "id": "C3-A-v123",
+        "title": "그리운 하늘의 가족",
+        "order": 128,
+        "number": 22,
+        "branchLabel": "E"
+      },
+      {
+        "id": "C3-B-v130",
+        "title": "떠날까 두려운 마음",
+        "order": 145,
+        "number": 22,
+        "branchLabel": "F"
+      },
+      {
+        "id": "C3-A-v143",
+        "title": "그리운 하늘의 가족",
+        "order": 161,
+        "number": 22,
+        "branchLabel": "G"
+      },
+      {
+        "id": "C3-B-v145",
+        "title": "떠날까 두려운 마음",
+        "order": 165,
+        "number": 22,
+        "branchLabel": "H"
+      },
+      {
+        "id": "14-v52",
+        "title": "두 번째 폭풍",
+        "order": 23,
+        "number": 23,
+        "branchLabel": "A"
+      },
+      {
+        "id": "14-v73",
+        "title": "두 번째 폭풍",
+        "order": 76,
+        "number": 23,
+        "branchLabel": "B"
+      },
+      {
+        "id": "14-v84",
+        "title": "두 번째 폭풍",
+        "order": 106,
+        "number": 23,
+        "branchLabel": "C"
+      },
+      {
+        "id": "14-v89",
+        "title": "두 번째 폭풍",
+        "order": 108,
+        "number": 23,
+        "branchLabel": "D"
+      },
+      {
+        "id": "14-v122",
+        "title": "두 번째 폭풍",
+        "order": 129,
+        "number": 23,
+        "branchLabel": "E"
+      },
+      {
+        "id": "14-v129",
+        "title": "두 번째 폭풍",
+        "order": 146,
+        "number": 23,
+        "branchLabel": "F"
+      },
+      {
+        "id": "14-v142",
+        "title": "두 번째 폭풍",
+        "order": 162,
+        "number": 23,
+        "branchLabel": "G"
+      },
+      {
+        "id": "14-v144",
+        "title": "두 번째 폭풍",
+        "order": 166,
+        "number": 23,
+        "branchLabel": "H"
+      },
+      {
+        "id": "C4-v51",
+        "title": "선녀옷을 어떻게 할까?",
+        "order": 24,
+        "number": 24,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C4-v72",
+        "title": "선녀옷을 어떻게 할까?",
+        "order": 77,
+        "number": 24,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C4-v88",
+        "title": "선녀옷을 어떻게 할까?",
+        "order": 109,
+        "number": 24,
+        "branchLabel": "C"
+      },
+      {
+        "id": "C4-v121",
+        "title": "선녀옷을 어떻게 할까?",
+        "order": 130,
+        "number": 24,
+        "branchLabel": "D"
+      },
+      {
+        "id": "C4-v128",
+        "title": "선녀옷을 어떻게 할까?",
+        "order": 147,
+        "number": 24,
+        "branchLabel": "E"
+      },
+      {
+        "id": "C4-v141",
+        "title": "선녀옷을 어떻게 할까?",
+        "order": 163,
+        "number": 24,
+        "branchLabel": "F"
+      },
+      {
+        "id": "R1-v13",
+        "title": "보자기",
+        "order": 25,
+        "number": 25,
+        "branchLabel": "A"
+      },
+      {
+        "id": "H1-v50",
+        "title": "장작 창고",
+        "order": 38,
+        "number": 25,
+        "branchLabel": "B"
+      },
+      {
+        "id": "R1-v61",
+        "title": "보자기",
+        "order": 78,
+        "number": 25,
+        "branchLabel": "C"
+      },
+      {
+        "id": "H1-v71",
+        "title": "장작 창고",
+        "order": 86,
+        "number": 25,
+        "branchLabel": "D"
+      },
+      {
+        "id": "R1-v86",
+        "title": "보자기",
+        "order": 110,
+        "number": 25,
+        "branchLabel": "E"
+      },
+      {
+        "id": "H1-v87",
+        "title": "장작 창고",
+        "order": 111,
+        "number": 25,
+        "branchLabel": "F"
+      },
+      {
+        "id": "R1-v107",
+        "title": "보자기",
+        "order": 131,
+        "number": 25,
+        "branchLabel": "G"
+      },
+      {
+        "id": "H1-v120",
+        "title": "장작 창고",
+        "order": 132,
+        "number": 25,
+        "branchLabel": "H"
+      },
+      {
+        "id": "H1-v127",
+        "title": "장작 창고",
+        "order": 148,
+        "number": 25,
+        "branchLabel": "I"
+      },
+      {
+        "id": "H1-v140",
+        "title": "장작 창고",
+        "order": 164,
+        "number": 25,
+        "branchLabel": "J"
+      },
+      {
+        "id": "R2-v12",
+        "title": "돌려준 날 밤",
+        "order": 26,
+        "number": 26,
+        "branchLabel": "A"
+      },
+      {
+        "id": "H2-v49",
+        "title": "첫날 저녁",
+        "order": 39,
+        "number": 26,
+        "branchLabel": "B"
+      },
+      {
+        "id": "R2-v60",
+        "title": "돌려준 날 밤",
+        "order": 79,
+        "number": 26,
+        "branchLabel": "C"
+      },
+      {
+        "id": "H2-v70",
+        "title": "첫날 저녁",
+        "order": 87,
+        "number": 26,
+        "branchLabel": "D"
+      },
+      {
+        "id": "H2-v119",
+        "title": "첫날 저녁",
+        "order": 133,
+        "number": 26,
+        "branchLabel": "E"
+      },
+      {
+        "id": "H2-v126",
+        "title": "첫날 저녁",
+        "order": 149,
+        "number": 26,
+        "branchLabel": "F"
+      },
+      {
+        "id": "R3-v11",
+        "title": "둘째 날",
+        "order": 27,
+        "number": 27,
+        "branchLabel": "A"
+      },
+      {
+        "id": "H3-v48",
+        "title": "다음 날 아침",
+        "order": 40,
+        "number": 27,
+        "branchLabel": "B"
+      },
+      {
+        "id": "R3-v59",
+        "title": "둘째 날",
+        "order": 80,
+        "number": 27,
+        "branchLabel": "C"
+      },
+      {
+        "id": "H3-v69",
+        "title": "다음 날 아침",
+        "order": 88,
+        "number": 27,
+        "branchLabel": "D"
+      },
+      {
+        "id": "H3-v118",
+        "title": "다음 날 아침",
+        "order": 134,
+        "number": 27,
+        "branchLabel": "E"
+      },
+      {
+        "id": "H3-v125",
+        "title": "다음 날 아침",
+        "order": 150,
+        "number": 27,
+        "branchLabel": "F"
+      },
+      {
+        "id": "R4-v10",
+        "title": "선녀 자신의 고민",
+        "order": 28,
+        "number": 28,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C4H-v47",
+        "title": "다음 날 아침의 선택",
+        "order": 41,
+        "number": 28,
+        "branchLabel": "B"
+      },
+      {
+        "id": "R4-v58",
+        "title": "선녀 자신의 고민",
+        "order": 81,
+        "number": 28,
+        "branchLabel": "C"
+      },
+      {
+        "id": "C4H-v68",
+        "title": "다음 날 아침의 선택",
+        "order": 89,
+        "number": 28,
+        "branchLabel": "D"
+      },
+      {
+        "id": "C4H-v117",
+        "title": "다음 날 아침의 선택",
+        "order": 135,
+        "number": 28,
+        "branchLabel": "E"
+      },
+      {
+        "id": "C4H-v124",
+        "title": "다음 날 아침의 선택",
+        "order": 151,
+        "number": 28,
+        "branchLabel": "F"
+      },
+      {
+        "id": "C5R-v9",
+        "title": "선녀의 선택을 어떻게 마주할까?",
+        "order": 29,
+        "number": 29,
+        "branchLabel": "A"
+      },
+      {
+        "id": "HA1-v22",
+        "title": "이튿날의 고백",
+        "order": 42,
+        "number": 29,
+        "branchLabel": "B"
+      },
+      {
+        "id": "HB1-v46",
+        "title": "둘째 날",
+        "order": 51,
+        "number": 29,
+        "branchLabel": "C"
+      },
+      {
+        "id": "C5R-v57",
+        "title": "선녀의 선택을 어떻게 마주할까?",
+        "order": 82,
+        "number": 29,
+        "branchLabel": "D"
+      },
+      {
+        "id": "HA1-v67",
+        "title": "이튿날의 고백",
+        "order": 90,
+        "number": 29,
+        "branchLabel": "E"
+      },
+      {
+        "id": "HB1-v116",
+        "title": "둘째 날",
+        "order": 136,
+        "number": 29,
+        "branchLabel": "F"
+      },
+      {
+        "id": "E1-1-v4",
+        "title": "서로 확인하다",
+        "order": 30,
+        "number": 30,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E2-1-v8",
+        "title": "남고 싶은 삶",
+        "order": 34,
+        "number": 30,
+        "branchLabel": "B"
+      },
+      {
+        "id": "HA2-v21",
+        "title": "생각할 시간",
+        "order": 43,
+        "number": 30,
+        "branchLabel": "C"
+      },
+      {
+        "id": "HB2-v45",
+        "title": "셋째 날",
+        "order": 52,
+        "number": 30,
+        "branchLabel": "D"
+      },
+      {
+        "id": "E2-1-v56",
+        "title": "남고 싶은 삶",
+        "order": 83,
+        "number": 30,
+        "branchLabel": "E"
+      },
+      {
+        "id": "HA2-v66",
+        "title": "생각할 시간",
+        "order": 91,
+        "number": 30,
+        "branchLabel": "F"
+      },
+      {
+        "id": "HB2-v115",
+        "title": "셋째 날",
+        "order": 137,
+        "number": 30,
+        "branchLabel": "G"
+      },
+      {
+        "id": "E1-2-v3",
+        "title": "올라가는 날",
+        "order": 31,
+        "number": 31,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E2-2-v7",
+        "title": "남기로 한 밤",
+        "order": 35,
+        "number": 31,
+        "branchLabel": "B"
+      },
+      {
+        "id": "R4-v20",
+        "title": "선녀 자신의 고민",
+        "order": 44,
+        "number": 31,
+        "branchLabel": "C"
+      },
+      {
+        "id": "HB3-v44",
+        "title": "직접 묻는 선녀",
+        "order": 53,
+        "number": 31,
+        "branchLabel": "D"
+      },
+      {
+        "id": "E2-2-v55",
+        "title": "남기로 한 밤",
+        "order": 84,
+        "number": 31,
+        "branchLabel": "E"
+      },
+      {
+        "id": "R4-v65",
+        "title": "선녀 자신의 고민",
+        "order": 92,
+        "number": 31,
+        "branchLabel": "F"
+      },
+      {
+        "id": "HB3-v114",
+        "title": "직접 묻는 선녀",
+        "order": 138,
+        "number": 31,
+        "branchLabel": "G"
+      },
+      {
+        "id": "E1-3-v2",
+        "title": "남은 마당",
+        "order": 32,
+        "number": 32,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C5R-v19",
+        "title": "선녀의 선택을 어떻게 마주할까?",
+        "order": 45,
+        "number": 32,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C5H-v43",
+        "title": "진실을 말할까?",
+        "order": 54,
+        "number": 32,
+        "branchLabel": "C"
+      },
+      {
+        "id": "C5R-v64",
+        "title": "선녀의 선택을 어떻게 마주할까?",
+        "order": 93,
+        "number": 32,
+        "branchLabel": "D"
+      },
+      {
+        "id": "C5H-v113",
+        "title": "진실을 말할까?",
+        "order": 139,
+        "number": 32,
+        "branchLabel": "E"
+      },
+      {
+        "id": "E1-1-v16",
+        "title": "서로 확인하다",
+        "order": 46,
+        "number": 33,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E2-1-v18",
+        "title": "남고 싶은 삶",
+        "order": 49,
+        "number": 33,
+        "branchLabel": "B"
+      },
+      {
+        "id": "E3-1-v30",
+        "title": "꺼내 놓은 옷",
+        "order": 55,
+        "number": 33,
+        "branchLabel": "C"
+      },
+      {
+        "id": "E4-1-v42",
+        "title": "직접적인 거짓말",
+        "order": 63,
+        "number": 33,
+        "branchLabel": "D"
+      },
+      {
+        "id": "E2-1-v63",
+        "title": "남고 싶은 삶",
+        "order": 94,
+        "number": 33,
+        "branchLabel": "E"
+      },
+      {
+        "id": "E3-1-v108",
+        "title": "꺼내 놓은 옷",
+        "order": 140,
+        "number": 33,
+        "branchLabel": "F"
+      },
+      {
+        "id": "E4-1-v112",
+        "title": "직접적인 거짓말",
+        "order": 141,
+        "number": 33,
+        "branchLabel": "G"
+      },
+      {
+        "id": "E1-2-v15",
+        "title": "올라가는 날",
+        "order": 47,
+        "number": 34,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E2-2-v17",
+        "title": "남기로 한 밤",
+        "order": 50,
+        "number": 34,
+        "branchLabel": "B"
+      },
+      {
+        "id": "E3-2-v29",
+        "title": "거리 두기",
+        "order": 56,
+        "number": 34,
+        "branchLabel": "C"
+      },
+      {
+        "id": "E4-2-v41",
+        "title": "더 깊이 숨기다",
+        "order": 64,
+        "number": 34,
+        "branchLabel": "D"
+      },
+      {
+        "id": "E2-2-v62",
+        "title": "남기로 한 밤",
+        "order": 95,
+        "number": 34,
+        "branchLabel": "E"
+      },
+      {
+        "id": "E4-2-v111",
+        "title": "더 깊이 숨기다",
+        "order": 142,
+        "number": 34,
+        "branchLabel": "F"
+      },
+      {
+        "id": "E2-3-v6",
+        "title": "시간이 흐른다",
+        "order": 36,
+        "number": 35,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E1-3-v14",
+        "title": "남은 마당",
+        "order": 48,
+        "number": 35,
+        "branchLabel": "B"
+      },
+      {
+        "id": "E3-3-v28",
+        "title": "떠날 준비",
+        "order": 57,
+        "number": 35,
+        "branchLabel": "C"
+      },
+      {
+        "id": "E4-3-v40",
+        "title": "달빛",
+        "order": 65,
+        "number": 35,
+        "branchLabel": "D"
+      },
+      {
+        "id": "E2-3-v54",
+        "title": "시간이 흐른다",
+        "order": 85,
+        "number": 35,
+        "branchLabel": "E"
+      },
+      {
+        "id": "E4-3-v110",
+        "title": "달빛",
+        "order": 143,
+        "number": 35,
+        "branchLabel": "F"
+      },
+      {
+        "id": "E1-4-v1",
+        "title": "존중과 이별",
+        "order": 33,
+        "number": 36,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E2-4-v5",
+        "title": "지상에서의 약속",
+        "order": 37,
+        "number": 36,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C6C-v27",
+        "title": "마지막으로 무엇을 말할까?",
+        "order": 58,
+        "number": 36,
+        "branchLabel": "C"
+      },
+      {
+        "id": "E4-4-v39",
+        "title": "마주하다",
+        "order": 66,
+        "number": 36,
+        "branchLabel": "D"
+      },
+      {
+        "id": "E4-4-v109",
+        "title": "마주하다",
+        "order": 144,
+        "number": 36,
+        "branchLabel": "E"
+      },
+      {
+        "id": "C6C-A-v25",
+        "title": "약속을 재촉하지 않는 말",
+        "order": 59,
+        "number": 37,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C6C-B-v26",
+        "title": "붙잡고 싶은 약속",
+        "order": 62,
+        "number": 37,
+        "branchLabel": "B"
+      },
+      {
+        "id": "E4-5-v38",
+        "title": "떠나지 않은 밤",
+        "order": 67,
+        "number": 37,
+        "branchLabel": "C"
+      },
+      {
+        "id": "E3-4-v24",
+        "title": "하늘로",
+        "order": 60,
+        "number": 38,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E4-6-v37",
+        "title": "다음 날",
+        "order": 68,
+        "number": 38,
+        "branchLabel": "B"
+      },
+      {
+        "id": "E3-5-v23",
+        "title": "늦은 고백과 다시 내린 비",
+        "order": 61,
+        "number": 39,
+        "branchLabel": "A"
+      },
+      {
+        "id": "E4-7-v36",
+        "title": "짐을 챙기다",
+        "order": 69,
+        "number": 39,
+        "branchLabel": "B"
+      },
+      {
+        "id": "C6L-v35",
+        "title": "마지막 순간",
+        "order": 70,
+        "number": 40
+      },
+      {
+        "id": "C6L-A-v33",
+        "title": "문 앞에서 멈추다",
+        "order": 71,
+        "number": 41,
+        "branchLabel": "A"
+      },
+      {
+        "id": "C6L-B-v34",
+        "title": "문 옆으로 물러서다",
+        "order": 74,
+        "number": 41,
+        "branchLabel": "B"
+      },
+      {
+        "id": "E4-8-v32",
+        "title": "문을 나서다",
+        "order": 72,
+        "number": 42
+      },
+      {
+        "id": "E4-9-v31",
+        "title": "영원히 닫힌 문",
+        "order": 73,
+        "number": 43
+      }
+    ]
+  },
+  {
+    "edition": "heungbu",
+    "chapters": 14,
+    "highestNumber": 12,
+    "backwardsBefore": 0,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [],
+    "chaptersAfter": [
+      {
+        "id": "chapter-1",
+        "title": "반쪽짜리 떡",
+        "order": 1,
+        "number": 1
+      },
+      {
+        "id": "chapter-2",
+        "title": "곳간 앞의 두 형제",
+        "order": 2,
+        "number": 2
+      },
+      {
+        "id": "chapter-3",
+        "title": "각자의 몫",
+        "order": 3,
+        "number": 3
+      },
+      {
+        "id": "chapter-4",
+        "title": "겨울 문턱",
+        "order": 4,
+        "number": 4
+      },
+      {
+        "id": "chapter-5a",
+        "title": "빌린 곡식",
+        "order": 5,
+        "number": 5,
+        "branchLabel": "A"
+      },
+      {
+        "id": "chapter-5b",
+        "title": "빈손의 겨울",
+        "order": 6,
+        "number": 5,
+        "branchLabel": "B"
+      },
+      {
+        "id": "chapter-6",
+        "title": "제비가 머문 집",
+        "order": 7,
+        "number": 6
+      },
+      {
+        "id": "chapter-7",
+        "title": "박이 열리던 날",
+        "order": 8,
+        "number": 7
+      },
+      {
+        "id": "chapter-8",
+        "title": "놀부에게 생긴 불편한 마음",
+        "order": 9,
+        "number": 8
+      },
+      {
+        "id": "chapter-9",
+        "title": "같아 보이는 방법",
+        "order": 10,
+        "number": 9
+      },
+      {
+        "id": "chapter-10",
+        "title": "다른 박",
+        "order": 11,
+        "number": 10
+      },
+      {
+        "id": "chapter-11",
+        "title": "뒤바뀐 문 앞",
+        "order": 12,
+        "number": 11
+      },
+      {
+        "id": "chapter-12a",
+        "title": "함께 짓는 밭",
+        "order": 13,
+        "number": 12,
+        "branchLabel": "A"
+      },
+      {
+        "id": "chapter-12b",
+        "title": "두 집 사이의 길",
+        "order": 14,
+        "number": 12,
+        "branchLabel": "B"
+      }
+    ]
+  },
+  {
+    "edition": "onggojib",
+    "chapters": 28,
+    "highestNumber": 11,
+    "backwardsBefore": 4,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [
+      {
+        "id": "review-main-003:b-meal-act",
+        "before": "돌아온 뒤",
+        "after": "아이의 이야기를 듣다"
+      },
+      {
+        "id": "review-main-003:b-meal-slip",
+        "before": "돌아온 뒤",
+        "after": "말을 삼킨 아이들"
+      },
+      {
+        "id": "review-main-003:b-after-meal-days",
+        "before": "돌아온 뒤",
+        "after": "장작 스무 단과 약속한 삯"
+      },
+      {
+        "id": "review-main-003:b-child-scene",
+        "before": "돌아온 뒤",
+        "after": "말없이 지난 며칠"
+      },
+      {
+        "id": "review-main-003:b-vase-care",
+        "before": "돌아온 뒤",
+        "after": "약속한 몫을 주다"
+      },
+      {
+        "id": "review-main-003:b-vase-care-after-harsh",
+        "before": "돌아온 뒤",
+        "after": "아이에게 다시 묻다"
+      },
+      {
+        "id": "review-main-003:b-vase-stick",
+        "before": "돌아온 뒤",
+        "after": "돌이킨 한마디"
+      },
+      {
+        "id": "review-main-003:b-before-confession-days",
+        "before": "돌아온 뒤",
+        "after": "웃음이 돌아온 저녁"
+      }
+    ],
+    "chaptersAfter": [
+      {
+        "id": "review-main-003:start",
+        "title": "아내의 대답",
+        "order": 1,
+        "number": 1
+      },
+      {
+        "id": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+        "title": "대문 앞 사내",
+        "order": 17,
+        "number": 2,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+        "title": "대문 앞 사내",
+        "order": 23,
+        "number": 2,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+        "title": "돌아온 옹고집",
+        "order": 18,
+        "number": 3,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:fake-first-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+        "title": "첫 번째 판결",
+        "order": 20,
+        "number": 3,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:real-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+        "title": "돌아온 옹고집",
+        "order": 24,
+        "number": 3,
+        "branchLabel": "C"
+      },
+      {
+        "id": "review-main-003:fake-first-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+        "title": "첫 번째 판결",
+        "order": 26,
+        "number": 3,
+        "branchLabel": "D"
+      },
+      {
+        "id": "review-main-003:real-route",
+        "title": "돌아온 옹고집",
+        "order": 2,
+        "number": 3,
+        "branchLabel": "미연결 원고"
+      },
+      {
+        "id": "review-main-003:fake-first-verdict",
+        "title": "첫 번째 판결",
+        "order": 4,
+        "number": 3,
+        "branchLabel": "미연결 원고"
+      },
+      {
+        "id": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+        "title": "되풀이된 판정",
+        "order": 19,
+        "number": 4,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:real-loop-testimony-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+        "title": "되풀이된 판정",
+        "order": 25,
+        "number": 4,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:real-loop-testimony",
+        "title": "되풀이된 판정",
+        "order": 3,
+        "number": 4,
+        "branchLabel": "미연결 원고"
+      },
+      {
+        "id": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+        "title": "두 번째 판결",
+        "order": 21,
+        "number": 5,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:fake-repeat-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+        "title": "두 번째 판결",
+        "order": 27,
+        "number": 5,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:fake-repeat-verdict",
+        "title": "두 번째 판결",
+        "order": 5,
+        "number": 5,
+        "branchLabel": "미연결 원고"
+      },
+      {
+        "id": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+        "title": "쫓겨난 옹고집",
+        "order": 22,
+        "number": 6,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+        "title": "쫓겨난 옹고집",
+        "order": 28,
+        "number": 6,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:fake-route",
+        "title": "쫓겨난 옹고집",
+        "order": 6,
+        "number": 6,
+        "branchLabel": "미연결 원고"
+      },
+      {
+        "id": "review-main-003:b-meal-act",
+        "title": "아이의 이야기를 듣다",
+        "order": 7,
+        "number": 7,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:b-meal-slip",
+        "title": "말을 삼킨 아이들",
+        "order": 8,
+        "number": 7,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:b-after-meal-days",
+        "title": "장작 스무 단과 약속한 삯",
+        "order": 9,
+        "number": 8,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:b-child-scene",
+        "title": "말없이 지난 며칠",
+        "order": 10,
+        "number": 8,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:b-vase-care",
+        "title": "약속한 몫을 주다",
+        "order": 11,
+        "number": 9,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-003:b-vase-care-after-harsh",
+        "title": "아이에게 다시 묻다",
+        "order": 12,
+        "number": 9,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-003:b-vase-stick",
+        "title": "돌이킨 한마디",
+        "order": 13,
+        "number": 9,
+        "branchLabel": "C"
+      },
+      {
+        "id": "review-main-003:b-fake-warning",
+        "title": "갈라진 순간",
+        "order": 14,
+        "number": 9,
+        "branchLabel": "D"
+      },
+      {
+        "id": "review-main-003:b-before-confession-days",
+        "title": "웃음이 돌아온 저녁",
+        "order": 15,
+        "number": 10
+      },
+      {
+        "id": "review-main-003:b-final-acts",
+        "title": "옹고집의 고백",
+        "order": 16,
+        "number": 11
+      }
+    ]
+  },
+  {
+    "edition": "rabbit",
+    "chapters": 10,
+    "highestNumber": 7,
+    "backwardsBefore": 0,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [],
+    "chaptersAfter": [
+      {
+        "id": "review-main-002:start",
+        "title": "용궁 대청",
+        "order": 1,
+        "number": 1
+      },
+      {
+        "id": "review-main-002:obey-route",
+        "title": "첫마디: 용궁 잔치",
+        "order": 2,
+        "number": 2,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-002:hesitate-route",
+        "title": "첫마디: 도움 요청",
+        "order": 3,
+        "number": 2,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-002:sea-route",
+        "title": "바닷속 길",
+        "order": 4,
+        "number": 3
+      },
+      {
+        "id": "review-main-002:palace",
+        "title": "초대가 함정으로 바뀌는 순간",
+        "order": 5,
+        "number": 4
+      },
+      {
+        "id": "review-main-002:ending-1",
+        "title": "진실을 말한 자라",
+        "order": 6,
+        "number": 5,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-002:shield-route",
+        "title": "확인하러 가겠다는 말",
+        "order": 7,
+        "number": 5,
+        "branchLabel": "B"
+      },
+      {
+        "id": "review-main-002:shoreAfterShield",
+        "title": "육지 모래톱",
+        "order": 8,
+        "number": 6
+      },
+      {
+        "id": "review-main-002:ending-2",
+        "title": "돌아가지 않은 길",
+        "order": 9,
+        "number": 7,
+        "branchLabel": "A"
+      },
+      {
+        "id": "review-main-002:ending-3",
+        "title": "돌아온 자라",
+        "order": 10,
+        "number": 7,
+        "branchLabel": "B"
+      }
+    ]
+  },
+  {
+    "edition": "seonnyeo-classic",
+    "chapters": 6,
+    "highestNumber": 6,
+    "backwardsBefore": 0,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [],
+    "chaptersAfter": [
+      {
+        "id": "classic-seonnyeo-1",
+        "title": "사슴의 보은",
+        "order": 1
+      },
+      {
+        "id": "classic-seonnyeo-2",
+        "title": "연못의 날개옷",
+        "order": 2
+      },
+      {
+        "id": "classic-seonnyeo-3",
+        "title": "다시 나타난 날개옷",
+        "order": 3
+      },
+      {
+        "id": "classic-seonnyeo-4",
+        "title": "하늘로 떠난 가족",
+        "order": 4
+      },
+      {
+        "id": "classic-seonnyeo-5",
+        "title": "두레박 너머 하늘나라",
+        "order": 5
+      },
+      {
+        "id": "classic-seonnyeo-6",
+        "title": "돌아오지 못한 길",
+        "order": 6
+      }
+    ]
+  },
+  {
+    "edition": "heungbu-classic",
+    "chapters": 7,
+    "highestNumber": 7,
+    "backwardsBefore": 0,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [],
+    "chaptersAfter": [
+      {
+        "id": "classic-heungbu-1",
+        "title": "쫓겨난 흥부",
+        "order": 1
+      },
+      {
+        "id": "classic-heungbu-2",
+        "title": "빈 쌀독",
+        "order": 2
+      },
+      {
+        "id": "classic-heungbu-3",
+        "title": "다친 제비",
+        "order": 3
+      },
+      {
+        "id": "classic-heungbu-4",
+        "title": "흥부가 박을 타다",
+        "order": 4
+      },
+      {
+        "id": "classic-heungbu-5",
+        "title": "놀부와 제비",
+        "order": 5
+      },
+      {
+        "id": "classic-heungbu-6",
+        "title": "놀부가 박을 타다",
+        "order": 6
+      },
+      {
+        "id": "classic-heungbu-7",
+        "title": "다시 만난 형제",
+        "order": 7
+      }
+    ]
+  },
+  {
+    "edition": "onggojib-classic",
+    "chapters": 6,
+    "highestNumber": 6,
+    "backwardsBefore": 0,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [],
+    "chaptersAfter": [
+      {
+        "id": "classic-onggojib-1",
+        "title": "닫힌 대문",
+        "order": 1
+      },
+      {
+        "id": "classic-onggojib-2",
+        "title": "또 하나의 옹고집",
+        "order": 2
+      },
+      {
+        "id": "classic-onggojib-3",
+        "title": "두 옹고집",
+        "order": 3
+      },
+      {
+        "id": "classic-onggojib-4",
+        "title": "누가 진짜인가",
+        "order": 4
+      },
+      {
+        "id": "classic-onggojib-5",
+        "title": "쫓겨난 옹고집",
+        "order": 5
+      },
+      {
+        "id": "classic-onggojib-6",
+        "title": "다시 열린 대문",
+        "order": 6
+      }
+    ]
+  },
+  {
+    "edition": "rabbit-classic",
+    "chapters": 5,
+    "highestNumber": 5,
+    "backwardsBefore": 0,
+    "backwardsAfter": 0,
+    "edgesUnchanged": true,
+    "titleChanges": [],
+    "chaptersAfter": [
+      {
+        "id": "classic-rabbit-1",
+        "title": "용궁에 닥친 근심",
+        "order": 1
+      },
+      {
+        "id": "classic-rabbit-2",
+        "title": "육지에서 만난 토끼",
+        "order": 2
+      },
+      {
+        "id": "classic-rabbit-3",
+        "title": "바닷속 용궁으로",
+        "order": 3
+      },
+      {
+        "id": "classic-rabbit-4",
+        "title": "토끼가 낸 꾀",
+        "order": 4
+      },
+      {
+        "id": "classic-rabbit-5",
+        "title": "다시 밟은 육지",
+        "order": 5
+      }
+    ]
+  }
+]

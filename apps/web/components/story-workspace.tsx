@@ -1,4 +1,5 @@
 "use client";
+import {refreshProvidedWorkspace} from '../lib/provided-workspace-refresh';
 import {hasUnappliedAuthoringInput,UNAPPLIED_AUTHORING_NOTICE} from '../lib/unapplied-authoring-input';
 import {WorkLeaveGuard} from './work-leave-guard';
 import {LibraryReturnDialog} from './library-return-dialog';
@@ -140,7 +141,7 @@ export function StoryWorkspace() {
   const [fullscreenAvailable,setFullscreenAvailable]=useState(false);
   const fullscreenSwitchPending=useRef(false);
   const [project, setProject] = useState<StoryProject>(
-    () => getRepresentativeStory(FIRST.id).project,
+    () => resolveProvidedCatalogStory(getRepresentativeStory(FIRST.id).project),
   );
   const [storyId, setStoryId] = useState<string>(FIRST.id);
   const savedProjects = useRef<Record<string, StoryProject>>({});
@@ -259,7 +260,7 @@ export function StoryWorkspace() {
         let storedDeletedWork:ReturnType<typeof readWorkspace>['deletedWork'];
         if(raw){
           // Works that already passed in this build skip the whole-work scene check; parsing still runs.
-          const loaded=readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)});writeWorkspaceChecks(localStorage,workspaceCheckBuild,loaded.checked);storedDeletedWork=loaded.deletedWork;contexts.current=loaded.contexts;savedProjects.current=loaded.works;setEditingPaths(Object.fromEntries(Object.entries(loaded.contexts).map(([key,context])=>[key,context.editingPath??[context.lineId]])));
+          const loaded=refreshProvidedWorkspace(readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)}));writeWorkspaceChecks(localStorage,workspaceCheckBuild,loaded.checked);storedDeletedWork=loaded.deletedWork;contexts.current=loaded.contexts;savedProjects.current=loaded.works;setEditingPaths(Object.fromEntries(Object.entries(loaded.contexts).map(([key,context])=>[key,context.editingPath??[context.lineId]])));
           setImportedWorks(Object.fromEntries(Object.entries(loaded.works).filter(([id])=>id.startsWith('new:')||id.startsWith('import:')).map(([id,work])=>[id,work.title])));
           setProject(loaded.project);setStoryId(loaded.storyId);
           const context=loaded.contexts[loaded.storyId]!;setLineId(context.lineId);setEditorView(context.editorView);setActiveTool(context.activeTool);setWriterChapterId(context.writerChapterId);setPreviewProfile(context.previewProfile);
@@ -348,8 +349,8 @@ export function StoryWorkspace() {
     if(!hydrated)return;
     try{assertTakeoverCollectionExists(raw,beforeRaw);}catch(issue){setStorageError(issue instanceof Error?issue.message:'기기 보관함을 확인해 주세요.');setSaveStatus('임시 보관 중지');throw issue;}
     if(raw===null)return;
-    const loaded=readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)});
-    const base=beforeRaw===null?{}:readWorkspace(beforeRaw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)}).works;
+    const loaded=refreshProvidedWorkspace(readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)}));
+    const base=beforeRaw===null?{}:refreshProvidedWorkspace(readWorkspace(beforeRaw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)})).works;
     const before=base[storyId],stored=loaded.works[storyId];
     let conflict=false,merged=loaded.works;
     try{const result=mergeWorkspaceProjects(localStorage,{...savedProjects.current,[storyId]:project},loaded.works,base,storyId);conflict=result.conflict;merged=result.works;}

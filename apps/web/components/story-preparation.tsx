@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from 'react';
-import { chapterLabel, type StoryPlanning, type StoryProject } from '@knolstory/story-domain';
+import { chapterLabel,chaptersForDisplay, type StoryPlanning, type StoryProject } from '@knolstory/story-domain';
 import {COVER_THEMES} from '@knolstory/story-domain';
 import {resolveStoryCover} from '../lib/book-cover';
 import { AssetPickerField } from './asset-picker-field';
@@ -44,7 +44,7 @@ export function StoryPreparation({scoresEnabled=true,project,onProjectChange,onO
     onProjectChange(addPreparationMemo(project,crypto.randomUUID(),new Date().toISOString(),lineId));
   };
   const cover=resolveStoryCover(project);
-  const chapters=project.chapters.slice().sort((a,b)=>a.order-b.order);
+  const chapters=chaptersForDisplay(project.chapters);
   const cuts=chapters.flatMap(chapter=>project.lines.filter(l=>l.chapterId===chapter.id).slice().sort((a,b)=>a.order-b.order).map((line,index)=>({id:line.id,label:`${chapterLabel(chapter)} · ${index+1}컷`})));
   const updateCover=(patch:Parameters<typeof updatePreparationCover>[1])=>onProjectChange(updatePreparationCover(project,patch));
   const planningFields=(items:typeof basicPlanning)=>items.map(([key,label])=><label key={key}>{label}<textarea aria-label={label} rows={key==='premise'?3:2} value={project.planning[key]} onChange={e=>onProjectChange(updatePreparationPlanning(project,{[key]:e.target.value}))}/></label>);
@@ -121,7 +121,7 @@ function MemoEditor({memo,index,project,cuts,onChange,onDelete,onOpenCut}:{memo:
     </form>
     <label>메모 연결 위치<select aria-label={`메모 ${index+1} 연결 위치`} value={primary} onChange={e=>changeLink(e.target.value)}><option value="">작품 전체</option>
       {primary && ![...project.chapters.map(c=>`chapter:${c.id}`),...cuts.map(c=>`cut:${c.id}`)].includes(primary) && <option value={primary}>찾을 수 없는 연결 — 새 위치를 선택해 주세요</option>}
-      {project.chapters.slice().sort((a,b)=>a.order-b.order).map(c=><option key={c.id} value={`chapter:${c.id}`}>{chapterLabel(c)}</option>)}
+      {chaptersForDisplay(project.chapters).map(c=><option key={c.id} value={`chapter:${c.id}`}>{chapterLabel(c)}</option>)}
       {cuts.map(c=><option key={c.id} value={`cut:${c.id}`}>{c.label}</option>)}
     </select></label>
     {links.length>1 && <p className={styles.hint}>여러 장·컷의 연결이 보존되어 있어요. 위에서 위치를 새로 고르면 선택한 한 곳으로 연결됩니다.</p>}

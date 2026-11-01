@@ -1,9 +1,9 @@
 'use client';
-import {chapterLabel,cutLabel,type StoryProject,type StoryLine} from '@knolstory/story-domain';
+import {chapterLabel,chaptersForDisplay,cutLabel,type StoryProject,type StoryLine} from '@knolstory/story-domain';
 import {adjacentManuscriptCuts} from './editor-context';
 import styles from './story-workspace.module.css';
 type Props={project:StoryProject;line:StoryLine;ordered:StoryLine[];onSelect:(id:string)=>void|boolean;disabled:boolean};
-export function StoryCutPosition(p:Props){return <label className={styles.cutPosition}><span className={styles.cutPositionLabel}>현재 장 · 컷</span><select aria-label="현재 장과 컷 이동" value={p.line.id} disabled={p.disabled} onChange={event=>{if(p.onSelect(event.target.value)===false)event.currentTarget.value=p.line.id;}}>{p.project.chapters.map(chapter=><optgroup key={chapter.id} label={chapterLabel(chapter)}>{p.ordered.filter(cut=>cut.chapterId===chapter.id).map(cut=><option key={cut.id} value={cut.id}>{cutLabel(chapter,cut)} · {cut.text.slice(0,36)||'빈 컷'}</option>)}</optgroup>)}</select></label>;}
+export function StoryCutPosition(p:Props){return <label className={styles.cutPosition}><span className={styles.cutPositionLabel}>현재 장 · 컷</span><select aria-label="현재 장과 컷 이동" value={p.line.id} disabled={p.disabled} onChange={event=>{if(p.onSelect(event.target.value)===false)event.currentTarget.value=p.line.id;}}>{chaptersForDisplay(p.project.chapters).map(chapter=><optgroup key={chapter.id} label={chapterLabel(chapter)}>{p.ordered.filter(cut=>cut.chapterId===chapter.id).map(cut=><option key={cut.id} value={cut.id}>{cutLabel(chapter,cut)} · {cut.text.slice(0,36)||'빈 컷'}</option>)}</optgroup>)}</select></label>;}
 export function StoryAdjacentCut(p:Props&{direction:'previous'|'next'}){
  const cut=adjacentManuscriptCuts(p.ordered,p.line.id)[p.direction];
  const label=p.direction==='previous'?'이전 컷':'다음 컷';

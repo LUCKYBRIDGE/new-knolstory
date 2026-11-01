@@ -86,3 +86,6 @@ describe('chapter identity distinct from cut order and graph order',()=>{
  });
 
 });
+it('separates descriptive branch labels from the number and sorts display identities without changing runtime order',async()=>{
+ const {chaptersForDisplay}=await import('@knolstory/story-domain');const a={...base().chapters[0],id:'a',order:1,chapterNumber:6,branchLabel:'미연결 원고'},b={...base().chapters[0],id:'b',order:2,chapterNumber:2};expect(chapterLabel(a)).toContain('6장 · 미연결 원고 · ');expect(chaptersForDisplay([a,b]).map(c=>c.id)).toEqual(['b','a']);expect(a.order).toBe(1);expect(b.order).toBe(2);
+});

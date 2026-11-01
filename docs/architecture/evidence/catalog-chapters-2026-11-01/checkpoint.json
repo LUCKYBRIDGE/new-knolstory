@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-01",
+  "baseline": "d95f237",
+  "status": "local-verified-awaiting-release",
+  "request": "원작·놀스토리에서1장→22장→2장처럼어색한장의순서·내용연결확인및개선",
+  "cause": "제작용배열order가chapterNumber부재시읽기장번호로노출. 갈래복제저장순서가서사순서와달랐음.",
+  "audit": {
+    "editions": 8,
+    "originals": "선녀6/흥부7/옹고집6/별주부5장 순차진행 정상; 번호변환대상아님",
+    "backwardsBefore": {
+      "seonnyeo": 22,
+      "onggojib": 4
+    },
+    "backwardsAfter": 0,
+    "reachableCuts": {
+      "seonnyeo": 1613,
+      "heungbu": 277,
+      "rabbit": 292,
+      "onggojib": 345
+    },
+    "onggojibPreservedUnlinked": "현재시작경로에미연결인5개장108컷을삭제하지않고미연결원고로표시. 전체453컷보존",
+    "wrongImplicitLink": "확정결함없음;장간실제연결과경계사건중심감사"
+  },
+  "implementation": [
+    "제공작품exact-version gate에서만chapter DAG에따른서사번호·동단계갈래A/B부여",
+    "표시목록은장번호순,런타임order/컷/Flow/선택ID/점수/배경/인물/음향그대로",
+    "옹고집8개반복제목과선녀18개제작형제목을사건별제목으로개선",
+    "기존공식보관본startup과탭인계loaded/base를동일하게갱신;개인수정/가져온사본/읽기·편집·삭제context보존",
+    "한국어갈래표시를장번호와분리;짧은용어안내에갈래문자의뜻추가"
+  ],
+  "checks": {
+    "validRed": "catalog4유효결함+초기기존음향보완기대범위오류1건;워크스페이스helper2RED;실제old startup 장목록1RED",
+    "catalogAndFormat": "68파일355통과2제외;현재8판본전체archive/workbook/XLSX/JSONB왕복포함",
+    "fullUnit": "263파일2242통과2제외;statements91.8/branches90.62/functions95.06/lines95.13",
+    "lastFocused": "용어·보관본갱신·장정체성3파일23통과",
+    "refreshCoverage": "statements/branches/functions/lines100%",
+    "browser": "기존보관본갱신·6장재열기와실제RenPy1장→2장A·지난기록2검사통과6.6s",
+    "multiTab": "실제다중탭인계9/9통과28.4s",
+    "types": "pnpm typecheck pass",
+    "lint": "0errors,existing img warning1",
+    "audit": "pnpm audit --prod --audit-level=moderate no known vulnerabilities",
+    "interactive": "ego-browser TaskSpace15에서서재→제공작품편집사본→28장선택목록의번호/정렬/미연결표시확인;old22장장면은6장A로표시;검사사본만삭제(기존삭제보관본없음확인)/서재복귀/검사창정리"
+  },
+  "limits": [
+    "모든본문문장의전수재교정/모든선택조합직접재생/물리기기·스크린리더완료아님",
+    "갈래길이가다른합류에서는순방향번호를건너뛸수있음;A/B등은동단계갈래구분이며직전선택지문자와일대일이아님",
+    "이전독자저장슬롯은작품갱신확인이한번나올수있음;컷ID·경로는유지"
+  ],
+  "recoveredChecks": [
+    "native선택지의접근성버튼은캔버스아래의미계층이므로실제키보드Enter로선택검사",
+    "중간컷부터시작한검사에서미방문첫컷지난기록을기대했던검사를기존방문보호계약에맞게교정"
+  ],
+  "reproduce": [
+    "pnpm exec vitest run packages/compatibility/tests/catalog-chapter-identity.test.ts packages/compatibility/tests/reader-text.test.ts apps/web/lib/provided-workspace-refresh.test.ts packages/runtime-core/tests/chapter-identity.test.ts",
+    "pnpm exec playwright test --config tests/catalog-chapter.playwright.config.ts",
+    "KNOL_REMOTE_ORIGIN=https://story.knolquiz.com pnpm exec playwright test --config tests/catalog-chapter.playwright.config.ts"
+  ],
+  "release": {
+    "status": "pending"
+  }
+}

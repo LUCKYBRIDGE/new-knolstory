@@ -2,6 +2,10 @@
 
 Current UX owner. Dated notes record refinements; later scoped corrections take precedence. Current four-book selection and introduction rules below are authoritative. Plans/contract changes follow [documentation governance](docs/architecture/documentation-governance.md).
 
+## 제공 이야기의 장 번호와 갈래 — 2026-11-01
+
+기본 제공 놀스토리의 장 번호는 제작용 저장 순서와 분리한다. 실제 이야기 연결을 따라 역행하지 않는 번호와 같은 단계의 갈래 A/B를 표시한다. 갈래 문자는 같은 단계의 다른 장을 구분하며, 합류 전 길이가 다른 갈래에서는 다음 번호를 건너뛸 수 있다. 편집의 장·컷 선택과 메모 연결 목록도 장 번호 순으로 보여 준다. 읽기의 현재 장·지난기록·편집은 공통 장 이름을 사용한다. 미연결 이전 원고는 삭제하지 않고 명시적으로 구분한다. 원작의 정상 번호와 개인이 고친 원고는 유지한다. [구조·내용 경계·보존·검증](docs/architecture/evidence/catalog-chapters-2026-11-01/checkpoint.json).
+
 ## 여러 편집 화면과 파일 교환의 입력 일관성 — 2026-11-01
 
 글·배경·인물·음향·연출은 같은 작품을 편집한다. 정상 입력은 blur/Enter에서 적용한 최신 값으로 저장하며 화면 전환만으로 원고를 바꾸지 않는다. 미적용·잘못된 입력이 남으면 작품 파일 저장/직접 내보내기/Excel 내보내기와 화면·컷 이동, 현재 기능 끄기, 새 작품 적용을 중단하고 값을 확인하도록 알린다. 거부된 선택기와 체크 상태는 실제 현재 화면으로 복원한다. 숫자가 기존의 유효한 값으로 자동 복원된 경우에는 안내만 남기고 저장을 불필요하게 차단하지 않는다. 파일 결과는 실제 내용·배치·음향·연출을 보관하며 작업용 확대/선택/보조선과 변경 취소 이력을 원고로 혼동하지 않는다. [통합 편집·교환 근거](docs/architecture/evidence/authoring-format-audit-2026-11-01/checkpoint.json).
