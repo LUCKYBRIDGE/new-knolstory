@@ -155,5 +155,68 @@
     "browser": "최종빌드4/4통과10.3s:기존공식보관재열기/실제RenPy1→2A/옹고집·선녀교정글과Flow보존·reload",
     "recoveredCheck": "정적export교체중첫실행native장표시대기1건미전환. 빌드완료뒤동일검사4/4재검증;전후데이터비교약화없음.",
     "fullUnit": "264파일2244통과2제외;statements91.81/branches90.63/functions95.06/lines95.13"
+  },
+  "branchNarrativeReview": {
+    "date": "2026-11-01",
+    "status": "implemented-local-verified-release-pending",
+    "reason": "사용자 요구: 장번호보다 줄거리·선택별 기억·겹치는 사건과 합류 우선, 전체 대조 후 최소 교정",
+    "basis": "실제 resolveProvidedCatalogStory 결과; raw fixture/과거 교정 목록만으로 판정하지 않음",
+    "manualScope": {
+      "seonnyeo": {
+        "paths": 64,
+        "reachableCuts": 1613,
+        "endings": 4
+      },
+      "onggojib": {
+        "paths": 16,
+        "reachableCuts": 345,
+        "endings": 2
+      },
+      "heungbu": {
+        "paths": 4,
+        "reachableCuts": 277,
+        "endings": 2
+      },
+      "rabbit": {
+        "paths": 6,
+        "reachableCuts": 292,
+        "endings": 3
+      },
+      "originals": {
+        "paths": 4,
+        "cuts": 335
+      }
+    },
+    "reviews": [
+      "branch-fairy-review.md",
+      "branch-onggojib-heungbu-review.md",
+      "branch-rabbit-review.md",
+      "branch-originals-review.md"
+    ],
+    "edits": {
+      "heungbu": "scene-7-13의 빌린 것은→빌린 것이 있으면. 이전 간결화 교정이 지운 조건 복원",
+      "seonnyeo": "E3-1-v30/v108의 7·8컷. 셋째 날 밤 고백과 맞게 사흘 전/사흘?→이틀 전/이틀?",
+      "rabbit": "palace:3/4/15/16. 서로 배타적인 두 초대를 토끼가 모두 회상하던 문구를 양쪽에 성립하는 공통 질문·비판으로 변경"
+    },
+    "preservation": "9컷 text만 변경. 모든 선택/Flow/컷ID/order/장번호/갈래/결말/자산/음향/연출 동일. 이전 공식판 전체fingerprint만 갱신하며 개인수정본은 그대로",
+    "deferred": [
+      "흥부 scene-11-12는 A경로 정서 편향이나 확정 불가능한 기억으로 단정하지 않아 유지",
+      "선녀 이른 첫눈 뒤 가을 요약은 계절 역행 확정 아님",
+      "흥부 원작 가을→제비 둥지의 기다림 생략은 시간 명시가 없어 모순 확정 보류"
+    ],
+    "reviewCorrection": "옹고집/흥부 최초 추출에서 before검사없는 after대입 발견. 실제resolver로 전체 재검증하고 독립 추출본과 동일 확인. 흥부 실제 회귀는 유지판정, 옹고집 최근3컷은 현재본문으로 재대조",
+    "limits": [
+      "모든 90경로의 실제RenPy 전체재생·실기기·시각음향 완료 아님",
+      "옹고집 미연결 옛108컷은 보존하며 현재 시작경로로 간주하지 않음",
+      "원전 고증·완전 무결점 또는 모든 문체의 재교정 완료 아님"
+    ],
+    "checks": {
+      "red": "5failed4passed before9cutrevision",
+      "focused": "6files46pass beforeperspectiveintegration",
+      "fullBeforePerspective": "267files2256pass2skip,91.82/90.64/95.07/95.14coverage",
+      "browser": "7pass14.9s afterperspectiveintegration",
+      "preservation": "4creative90paths identicalbeforeafter,9textonly;8editionsarchive/.knolstory/XLSXroundtrip;personalpreserved",
+      "core": "rabbitbothinvitations×3endings6pathsactualCoreplayback"
+    }
   }
 }

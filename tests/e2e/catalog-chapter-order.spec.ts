@@ -22,7 +22,10 @@ test('actual Onggojib choice advances from chapter 1 to chapter 2A and history u
 for(const [storyId,file,lineId,text] of [
  ['onggojib','onggojib','review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17','부인은 아이를 감싸 준 옹고집을 바라보았다.'],
  ['seonnyeo','seonnyeo','E4-7-v36-1','그날 저녁, 어젯밤보다 조금 더 이지러진 달이 뜬다.'],
-] as const)test(`${storyId}: reviewed narrative seam appears when reopening the unchanged saved work`,async({page})=>{
+ ['heungbu','heungbu','scene-7-13',/빌린 것이 있으면 갚았다\./u],
+ ['seonnyeo','seonnyeo','E3-1-v30-7','“이틀 전에 찾았소.”'],
+ ['rabbit','rabbit','review-main-002:palace:3','이상하군.\n반기는 사람이 하나도 없소.'],
+] as const)test(`${storyId}/${lineId}: reviewed narrative seam appears when reopening the unchanged saved work`,async({page})=>{
  const raw=JSON.parse(readFileSync(`tests/fixtures/stories/${file}.json`,'utf8')),project=raw.project??raw;
  await page.addInitScript(({key,project,storyId,lineId})=>{if(!localStorage.getItem(key))localStorage.setItem(key,JSON.stringify({storyId,lineId,view:'editor',mode:'edit',document:{documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-11-01T00:00:00.000Z',appVersion:'test',project}}));sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');},{key,project,storyId,lineId});await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.locator('[data-current-cut] textarea')).toHaveValue(text);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.reload();await expect(page.locator('[data-current-cut] textarea')).toHaveValue(text);const data=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)!).document.project,key);expect(data.lines.find((l:{id:string})=>l.id===lineId).flow).toEqual(project.lines.find((l:{id:string})=>l.id===lineId).flow);
 });

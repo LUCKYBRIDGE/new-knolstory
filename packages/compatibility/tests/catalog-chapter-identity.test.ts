@@ -1,3 +1,5 @@
+import {simplifyCatalogPerspectiveCard} from '../src/catalog-perspective-card';
+import {connectCatalogBranchNarrative} from '../src/catalog-branch-narrative';
 import {connectCatalogNarrativeSeams} from '../src/catalog-narrative-seams';
 import {expect,it} from 'vitest';
 import {representativeStories,classicStories,resolveProvidedCatalogStory,refineProvidedStory,enhanceExistingStory} from '../src';
@@ -26,5 +28,5 @@ it('keeps originals unchanged and does not rewrite any personally edited chapter
  for(const entry of representativeStories){const current=resolveProvidedCatalogStory(entry.project);const edited={...current,chapters:current.chapters.map((c,i)=>i?c:{...c,chapterNumber:77,title:'내가 고친 장'})};expect(resolveProvidedCatalogStory(entry.project,edited)).toBe(edited);}
 });
 it('changes chapter presentation only: preserves every cut, runtime order and all other authored fields',()=>{
- for(const entry of representativeStories){const before=connectCatalogNarrativeSeams(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)))),after=resolveProvidedCatalogStory(entry.project);expect(after.lines).toEqual(before.lines);expect({...after,chapters:before.chapters}).toEqual(before);const strip=(p:StoryProject)=>p.chapters.map(({chapterNumber:_n,branchLabel:_b,title:_t,...chapter})=>chapter).sort((a,b)=>a.id.localeCompare(b.id));expect(strip(after)).toEqual(strip(before));}
+ for(const entry of representativeStories){const before=simplifyCatalogPerspectiveCard(connectCatalogBranchNarrative(connectCatalogNarrativeSeams(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)))))),after=resolveProvidedCatalogStory(entry.project);expect(after.lines).toEqual(before.lines);expect({...after,chapters:before.chapters}).toEqual(before);const strip=(p:StoryProject)=>p.chapters.map(({chapterNumber:_n,branchLabel:_b,title:_t,...chapter})=>chapter).sort((a,b)=>a.id.localeCompare(b.id));expect(strip(after)).toEqual(strip(before));}
 });

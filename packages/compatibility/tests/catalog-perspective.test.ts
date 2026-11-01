@@ -1,3 +1,4 @@
+import {simplifyCatalogPerspectiveCard} from '../src/catalog-perspective-card';
 import {connectCatalogNarrativeSeams} from '../src/catalog-narrative-seams';
 import {it,expect} from 'vitest';
 import {representativeStories} from '../src';
@@ -11,7 +12,7 @@ it('connects all six reviewed Onggojib perspective cues without changing text, i
  const current=resolveProvidedCatalogStory(source,previous);
  const cues=current.lines.filter(line=>line.speakerName==='시점 전환');expect(cues).toHaveLength(6);
  for(const line of cues){expect(line.presentation?.transition).toMatchObject({type:'perspective-blackout',title:line.text});expect(compileStoryScene(current,line.id,1,{mode:'play'}).transitionOnly).toBe(true);}
- expect(current.lines.map(({presentation,...line})=>line)).toEqual(connectCatalogNarrativeSeams(previous).lines.map(({presentation,...line})=>line));
+ expect(current.lines.map(({presentation,...line})=>line)).toEqual(simplifyCatalogPerspectiveCard(connectCatalogNarrativeSeams(previous)).lines.map(({presentation,...line})=>line));
  expect(previous).toEqual(before);
  const authored={...previous,title:'내가 고친 작품'};expect(resolveProvidedCatalogStory(source,authored)).toBe(authored);
 });

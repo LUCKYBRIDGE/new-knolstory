@@ -1,4 +1,6 @@
 import {connectCatalogNarrativeSeams} from './catalog-narrative-seams';
+import {connectCatalogBranchNarrative} from './catalog-branch-narrative';
+import {simplifyCatalogPerspectiveCard} from './catalog-perspective-card';
 import {connectCatalogChapterIdentity} from './catalog-chapter-identity';
 import {parseStoryDocument,type StoryProject} from '@knolstory/story-domain';
 import seonnyeo from '../../../tests/fixtures/stories/seonnyeo.json';
@@ -57,9 +59,11 @@ export function resolveProvidedCatalogStory(original: StoryProject, stored?: Sto
   const enhanced=enhanceExistingStory(refined);
   const previousIdentity=connectCatalogPerspective(enhanced);
   const previousChapters=connectCatalogChapterIdentity(previousIdentity);
-  const current=connectCatalogNarrativeSeams(previousChapters);
+  const previousSeams=connectCatalogNarrativeSeams(previousChapters);
+  const previousBranches=connectCatalogBranchNarrative(previousSeams);
+  const current=simplifyCatalogPerspectiveCard(previousBranches);
   // The confirm-card cue published until 2026-10-31 is a known version too, so it refreshes to the current one.
-  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,previousChapters,current].map(catalogFingerprint));
+  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,previousChapters,previousSeams,previousBranches,current].map(catalogFingerprint));
   versions={known,current};catalogVersions.set(original.id,versions);
  }
  if(stored&&!versions.known.has(catalogFingerprint(stored)))return stored;

@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-01",
+  "status": "implemented-local-verified-release-pending",
+  "request": "시점 전환을 상단 안내 나열 대신 화면 중앙의 그럴싸한 연출로 개선; 공통연출/옹고집/다른작품함께확인",
+  "source": "RenPy공통전환화면 script.rpy/presentation.rpy; 제공판 exactfingerprint resolver",
+  "catalog": "8판본조사,옹고집6카드뿐(부인2,시작1,쫓겨난옹고집3중미연결옛원고1);부인카드2의중복cue/description만제거",
+  "implementation": [
+    "실제Text렌더높이로짧은카드무대중앙배치;가로/세로동일논리",
+    "제목44px/세로42px,보조설명22px,구분문16px와색차이;280ms등장,동작줄이기즉시표시",
+    "긴작가제목/설명은가용높이내viewport스크롤,확인버튼앞여백확보",
+    "공식판만간결화;개인설명/컷ID/Flow/본문/시간/자동전환유지"
+  ],
+  "checks": {
+    "red": "Python새helper배치2검사RED;공식6카드중2중복설명검사RED",
+    "geometry": "3pass:가로세로중앙/긴설명버튼앞/동작줄이기",
+    "native": "가로1280×800/세로390×844 각각옹고집·부인카드4pass30.0s,실제pixel제목중앙44~56%/자동다음컷",
+    "longConfirm": "기존현재파일긴설명·긴확인문구실제RenPy2pass9.2s",
+    "adjacent": "장번호/기존보관갱신/서사9컷/재열기/native7pass14.9s",
+    "scripts": "전체170pass이후fade검사1개추가pass",
+    "types": "pnpm typecheck pass",
+    "lint": "집중eslint0errors",
+    "docs": "docs:check/test:docs pass",
+    "audit": "no known vulnerabilities",
+    "fullUnit": "268files2257pass2skip;91.82statements/90.64branches/95.07functions/95.14lines;maxWorkers2"
+  },
+  "recovered": [
+    "runtime:build완료전webbuild복사로out/index에bridge미주입. runtime생성완료후webbuild직렬재실행해복구. 과거산출물로비교해새geometry결함으로오판하지않음",
+    "첫화면샷이소리시작gate를찍은검사를gate해제후350ms실제카드로교정;자동전환확인은숨은편집select대신실제보관playback기준",
+    "부하높은full unit에서기존5초XLSX왕복2개timeout;기대값약화없이maxWorkers2로전체268files2257pass2skip재검증"
+  ],
+  "browserLimit": "ego기존TaskSpace16이사라져임의새공간생성하지않음;Playwright실제RenPy와저장스크린샷을검증근거로사용",
+  "limits": [
+    "실제S25/스크린리더전체검증아님",
+    "모든작가문장길이·모든효과조합의무결점보장아님",
+    "전체제품/원고모든분기의native전체재생완료아님"
+  ],
+  "screenshots": [
+    "landscape-onggojib.png",
+    "landscape-wife.png",
+    "portrait-onggojib.png",
+    "portrait-wife.png"
+  ],
+  "review": "독립읽기전용code/catalog검토확정제품결함없음;준비대기의null조건과설명만수정보존검사보강,fade reduced검사추가",
+  "selfReview": {
+    "accuracy": "4:실제pixel/native/원고보존근거있음;전체실기기미검증경계명시",
+    "completeness": "4:공통연출과6카드/기존작가설명처리완료;90경로native전수는별도",
+    "clarity": "4:제목한줄중앙·문서범위분리",
+    "actionability": "4:재현가능테스트/스크린샷",
+    "conciseness": "4:중복시점안내제거"
+  }
+}

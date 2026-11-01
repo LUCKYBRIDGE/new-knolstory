@@ -763,22 +763,25 @@ screen knol_stage():
                 $ transition_height = int(knol_scene["height"])
                 $ duration = .1 if knol_scene.get("reducedMotion") else transition.get("durationMs", 900) / 1000.0
                 $ white = transition["type"] == "white-fade"
+                $ card = knol_transition_card_layout(knol_scene)
                 frame:
                     at Transform(function=knol_transition_fade), Transform(function=knol_title_shake)
                     xysize (transition_width, transition_height)
                     background Solid("#ffffff" if white else "#080b12")
-                    padding (min(80, int(transition_width * .06)), 16)
+                    padding (0, 0)
                     fixed:
-                        xysize (transition_width - 2 * min(80, int(transition_width * .06)), transition_height - 32)
+                        xysize (transition_width, transition_height)
                         viewport:
-                            xysize (transition_width - 2 * min(80, int(transition_width * .06)), max(80, transition_height - 140))
+                            pos (card["x"], card["y"])
+                            xysize (card["width"], card["height"])
                             mousewheel True
                             draggable True
                             vbox:
-                                xsize transition_width - 2 * min(80, int(transition_width * .06))
-                                spacing 8
-                                for field in ("cue", "title", "description"):
-                                    text knol_literal(transition.get(field, "")) substitute False color (knol_ink if white else "#ffffff") size 24 font "NotoSansKR.ttf" xalign .5
+                                at Transform(function=knol_card_text_fade)
+                                xsize card["width"]
+                                spacing card["spacing"]
+                                for field, value, field_size in card["fields"]:
+                                    text knol_literal(value) substitute False color (knol_ink if white else ("#fff9ed" if field == "title" else "#c6d3d0")) size field_size font "NotoSansKR.ttf" xsize card["width"] text_align .5 xalign .5
                         if knol_transition_active and transition.get("mode") == "confirm":
                             button:
                                 background Solid(knol_mint)
@@ -786,7 +789,7 @@ screen knol_stage():
                                 xsize transition_width - 2 * min(80, int(transition_width * .06))
                                 ysize 80
                                 xalign .5
-                                ypos transition_height - 112
+                                ypos card["buttonY"]
                                 action Function(knol_finish_transition)
                                 viewport:
                                     mousewheel True

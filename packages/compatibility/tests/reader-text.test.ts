@@ -1,3 +1,5 @@
+import {simplifyCatalogPerspectiveCard} from '../src/catalog-perspective-card';
+import {connectCatalogBranchNarrative} from '../src/catalog-branch-narrative';
 import {connectCatalogNarrativeSeams} from '../src/catalog-narrative-seams';
 import {connectCatalogChapterIdentity} from '../src/catalog-chapter-identity';
 import {describe,expect,it} from 'vitest';
@@ -55,7 +57,7 @@ describe('provided original and creative editions edited reading text',()=>{
   const entries=[...representativeStories,...classicStories];
   expect(entries).toHaveLength(8);
   for(const entry of entries){
-   const original=entry.project,current=connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)))));
+   const original=entry.project,current=simplifyCatalogPerspectiveCard(connectCatalogBranchNarrative(connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)))))));
    const editions=[original,enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original)),connectPreviousCatalogPerspective(enhanceExistingStory(refineProvidedStory(original))),current];
    expect(resolveProvidedCatalogStory(original)).toEqual(current);
    for(const edition of editions){
@@ -68,7 +70,7 @@ describe('provided original and creative editions edited reading text',()=>{
  // Full-manuscript roundtrips exceed the short unit default on shared CI CPUs.
  it('preserves the same reference and every field after any authored edit to any official edition',{timeout:30000},()=>{
   for(const entry of [...representativeStories,...classicStories]){
-   const original=entry.project,current=connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)))));
+   const original=entry.project,current=simplifyCatalogPerspectiveCard(connectCatalogBranchNarrative(connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)))))));
    const editions=[original,enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original)),current];
    for(const edition of editions){
     const changes:Record<string,StoryProject>={
@@ -92,7 +94,7 @@ describe('provided original and creative editions edited reading text',()=>{
 
  it('refreshes earlier directed editions after document creation and storage parsing reorder object fields',()=>{
   for(const entry of [...representativeStories,...classicStories]){
-   const original=entry.project,current=connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)))));
+   const original=entry.project,current=simplifyCatalogPerspectiveCard(connectCatalogBranchNarrative(connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(original)))))));
    for(const edition of [enhanceExistingStory(original),enhanceExistingStory(priorProvidedEdition(original))]){
     const document=createStoryDocument({project:edition,savedAt:'2026-10-18T00:00:00.000Z',appVersion:'reader-storage-test'});
     const parsed=parseStoryDocument(JSON.parse(JSON.stringify(document)));
@@ -113,7 +115,7 @@ describe('provided original and creative editions edited reading text',()=>{
  });
  it('isolates later catalog resolution from consumer edits to returned projects',()=>{
   for(const entry of [...representativeStories,...classicStories]){
-   const before=structuredClone(entry.project),expected=connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)))));
+   const before=structuredClone(entry.project),expected=simplifyCatalogPerspectiveCard(connectCatalogBranchNarrative(connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)))))));
    const returned=resolveProvidedCatalogStory(entry.project);
    // Simulate a consumer editing a selected work in place, including a nested manuscript line.
    returned.title='내 개인 제목';
@@ -155,7 +157,7 @@ describe('옹고집전 perspective title without a confirm button (2026-11-01)',
  it('shows the reviewed titles by themselves and refreshes a saved copy of the button version',()=>{
   const entry=[...representativeStories,...classicStories].find(item=>item.project.id==='pinky-review-main-003')!;
   const base=enhanceExistingStory(refineProvidedStory(entry.project));
-  const current=connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(base))),previous=connectPreviousCatalogPerspective(base);
+  const current=simplifyCatalogPerspectiveCard(connectCatalogNarrativeSeams(connectCatalogChapterIdentity(connectCatalogPerspective(base)))),previous=connectPreviousCatalogPerspective(base);
   const cues=current.lines.filter(line=>line.presentation?.transition?.type==='perspective-blackout');
   expect(cues.length).toBeGreaterThan(0);
   // No card in the current edition waits for a button; the titles stay exactly as reviewed.

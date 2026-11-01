@@ -2,6 +2,10 @@
 
 Current UX owner. Dated notes record refinements; later scoped corrections take precedence. Current four-book selection and introduction rules below are authoritative. Plans/contract changes follow [documentation governance](docs/architecture/documentation-governance.md).
 
+## 시점 전환 카드 — 2026-11-01
+
+시점 전환은 본문 위에 안내문을 나열하지 않고 무대 중앙의 짧은 제목으로 보여 준다. 검은 바탕과 따뜻한 흰 제목을 사용하고 제목은 설명보다 크게, 보조 문구는 작고 낮은 대비로 구분한다. 실제 글 높이를 측정해 가로16:9·세로9:16의 가운데에 배치하며 긴 작가 설명은 제한된 영역 안에서 스크롤할 수 있게 한다. 짧은 등장 효과는 동작 줄이기에서 생략한다. 제공 옹고집전은 ‘옹고집의 시점’, ‘부인의 시점’ 등 제목만 남기며 중복된 ‘시점 전환’·사용 안내는 제거한다. 개인 작품의 설명·확인형 선택은 유지한다. [원고 조사](docs/architecture/evidence/perspective-card-2026-11-01/catalog-review.md).
+
 ## 제공 이야기의 장 번호와 갈래 — 2026-11-01
 
 기본 제공 놀스토리의 장 번호는 제작용 저장 순서와 분리한다. 실제 이야기 연결을 따라 역행하지 않는 번호와 같은 단계의 갈래 A/B를 표시한다. 갈래 문자는 같은 단계의 다른 장을 구분하며, 합류 전 길이가 다른 갈래에서는 다음 번호를 건너뛸 수 있다. 편집의 장·컷 선택과 메모 연결 목록도 장 번호 순으로 보여 준다. 읽기의 현재 장·지난기록·편집은 공통 장 이름을 사용한다. 미연결 이전 원고는 삭제하지 않고 명시적으로 구분한다. 원작의 정상 번호와 개인이 고친 원고는 유지한다. [구조·내용 경계·보존·검증](docs/architecture/evidence/catalog-chapters-2026-11-01/checkpoint.json).
