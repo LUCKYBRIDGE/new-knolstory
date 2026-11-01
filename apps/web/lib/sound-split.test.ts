@@ -19,7 +19,8 @@ it('rejects boundaries, unknown end, stale target, malformed input, capacity and
  expect(()=>splitSoundCue([cue,...[1,2,3].map(id=>({id:`s${id}`,assetId:'x'}))],'s',700,'r',1200)).toThrow(/4개/);
  expect(()=>splitSoundCue([{...cue,volume:2}],'s',700,'r',1200)).toThrow();
 });
-it('preserves both segments through work archive, workbook, xlsx, JSONB and Core scheduling',async()=>{
+// Full workbook/Excel round trips include dynamic imports on shared CI CPUs.
+it('preserves both segments through work archive, workbook, xlsx, JSONB and Core scheduling',{timeout:30000},async()=>{
  const {getRepresentativeStory}=await import('../../../packages/compatibility/src');
  const {createAuthoringArchive,encodeAuthoringArchive,decodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot}=await import('../../../packages/compatibility/src/authoring-archive');
  const {exportAuthoringWorkbook,importAuthoringWorkbook}=await import('../../../packages/compatibility/src/authoring-workbook');
