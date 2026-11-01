@@ -1,6 +1,6 @@
 {
   "date": "2026-11-01",
-  "status": "implemented-local-verified-release-pending",
+  "status": "completed-for-reviewed-narrative-and-perspective-scope",
   "request": "시점 전환을 상단 안내 나열 대신 화면 중앙의 그럴싸한 연출로 개선; 공통연출/옹고집/다른작품함께확인",
   "source": "RenPy공통전환화면 script.rpy/presentation.rpy; 제공판 exactfingerprint resolver",
   "catalog": "8판본조사,옹고집6카드뿐(부인2,시작1,쫓겨난옹고집3중미연결옛원고1);부인카드2의중복cue/description만제거",
@@ -21,7 +21,8 @@
     "lint": "집중eslint0errors",
     "docs": "docs:check/test:docs pass",
     "audit": "no known vulnerabilities",
-    "fullUnit": "268files2257pass2skip;91.82statements/90.64branches/95.07functions/95.14lines;maxWorkers2"
+    "fullUnit": "268files2257pass2skip;91.82statements/90.64branches/95.07functions/95.14lines;maxWorkers2",
+    "harnessFollowup": "rev null준비대기보강뒤가로/세로2pass14.6s;운영4검사는보강후실행"
   },
   "recovered": [
     "runtime:build완료전webbuild복사로out/index에bridge미주입. runtime생성완료후webbuild직렬재실행해복구. 과거산출물로비교해새geometry결함으로오판하지않음",
@@ -47,5 +48,38 @@
     "clarity": "4:제목한줄중앙·문서범위분리",
     "actionability": "4:재현가능테스트/스크린샷",
     "conciseness": "4:중복시점안내제거"
+  },
+  "release": {
+    "sourceCommit": "e086bb04a878d538357d5118a4ae6897b441ba95",
+    "ci": {
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41309954689",
+      "status": "success",
+      "files": 266,
+      "passed": 2254,
+      "skipped": 2,
+      "coverage": {
+        "statements": 91.82,
+        "branches": 90.64,
+        "functions": 95.07,
+        "lines": 95.14
+      },
+      "pythonTests": 171
+    },
+    "pages": {
+      "Id": "bc85f1e4-fa38-42a4-b7e5-ac09d132c163",
+      "Environment": "Production",
+      "Branch": "main",
+      "Source": "e086bb0",
+      "Deployment": "https://bc85f1e4.new-knolstory.pages.dev",
+      "Status": "34 seconds ago",
+      "Build": "https://dash.cloudflare.com/e579cab8638cf20fed82fa7480ff6ddb/pages/view/new-knolstory/bc85f1e4-fa38-42a4-b7e5-ac09d132c163"
+    },
+    "origin": "https://story.knolquiz.com",
+    "liveFiles": "1536checked,unexpected0,criticalhash9/9,audiobytes3/3;live-files.json",
+    "ingress": "same build index/game.zip SHA verified; rollback-20261101-perspective retained;API/DB/Worker unchanged",
+    "assets": "999 assets unchanged;game.zip8646432bytes",
+    "rights": "existing923 provenance review blockers preserved; publication follows previous explicit user authorization; no new media or rights clearance",
+    "liveBrowser": "4/4pass1.7m:1280x800/390x844,옹고집·부인실제제목중앙/자동진행",
+    "liveAdjacent": "7/7pass1.0m:장번호/보관갱신/actualRenPy선택/교정9컷대표재열기"
   }
 }

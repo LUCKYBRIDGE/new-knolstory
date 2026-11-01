@@ -158,7 +158,7 @@
   },
   "branchNarrativeReview": {
     "date": "2026-11-01",
-    "status": "implemented-local-verified-release-pending",
+    "status": "completed-for-reviewed-branch-scope",
     "reason": "사용자 요구: 장번호보다 줄거리·선택별 기억·겹치는 사건과 합류 우선, 전체 대조 후 최소 교정",
     "basis": "실제 resolveProvidedCatalogStory 결과; raw fixture/과거 교정 목록만으로 판정하지 않음",
     "manualScope": {
@@ -217,6 +217,8 @@
       "browser": "7pass14.9s afterperspectiveintegration",
       "preservation": "4creative90paths identicalbeforeafter,9textonly;8editionsarchive/.knolstory/XLSXroundtrip;personalpreserved",
       "core": "rabbitbothinvitations×3endings6pathsactualCoreplayback"
-    }
+    },
+    "releaseEvidence": "../perspective-card-2026-11-01/checkpoint.json",
+    "releaseSummary": "e086bb0 CI266files2254pass2skip;Pagesbc85f1e4+sameingress;actualorigin7branchtests+4perspective;1536files+9hashmatch"
   }
 }

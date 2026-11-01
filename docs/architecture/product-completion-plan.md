@@ -4,22 +4,22 @@
 
 ## 재개 지점
 
-2026-11-01 사용자 추가 요구: 장 번호보다 선택별 줄거리·합류의 인과를 우선해 8판본을 다시 대조한다. 90개 창작 완결 경로와 원작 4종의 본문을 검토하고 확정된 9컷만 최소 교정했다. 현재 구현·검사·배포 경계는 [분기 서사 재검토](evidence/catalog-chapters-2026-11-01/checkpoint.json)의 `branchNarrativeReview`를 따른다. 기존 완료·전체 큐는 보존한다.
+2026-11-01 사용자 추가 요구: 장 번호보다 선택별 줄거리·합류의 인과를 우선해 8판본을 다시 대조한다. 90개 창작 완결 경로와 원작 4종의 본문을 검토하고 확정된 9컷만 최소 교정했다. 현재 구현·검사·배포 경계는 [분기 서사 재검토](evidence/catalog-chapters-2026-11-01/checkpoint.json)의 `branchNarrativeReview`를 따른다. 이어 받은 사용자 시점 카드 요구는 [시점 연출](evidence/perspective-card-2026-11-01/checkpoint.json)을 함께 따른다. 기존 완료·전체 큐는 보존한다.
 
 마지막 확인: 2026-11-01. Codex 인계 후 실제 파일·검사와 대조했다. 세션 전환 시 최신 근거와 원격 상태를 함께 확인한다.
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | 원작·놀스토리8판본의장번호/연결감사. 저장순서노출로생긴번호역행을서사번호/갈래/표시정렬로해결하고26개제목을다듬었다. 원고/연결/개인편집을보존하고기존보관본/탭인계/실제RenPy를검증했다. 구현 `c31d317`/검사보완 `07846e1` CI통과, Pages `9969db88`·ingress와실제주소2검사·1536파일/핵심해시9일치. 사용자후속장경계156개검토후4컷본문교정 `d3bfc87` CI통과, Pages `6b9a5e61`/ingress·실제주소4검사통과. [최신근거](evidence/catalog-chapters-2026-11-01/checkpoint.json). |
-| 다른 곳에서 이어갈 때 | GitHub main을 받는다. `codex/book-entry-cover`와 `kiro/tab-handover` 원격도 같은 최종 기록까지 갱신한다. 앱 배포 소스는 `d3bfc87`이며 뒤의 기록 커밋은 앱을 바꾸지 않는다. C1은 `kiro/c1-early-game-zip`에 미배포 실험으로 보존한다. `.cache/` 후보·원시 결과, wrangler 로그인, 운영 Docker와 DB 백업은 이 Mac 전용이다. 다른 컴퓨터의 배포는 그곳의 wrangler 로그인이 필요하고 운영 ingress는 Mac mini에서만 갱신한다. Web 변경 시 Pages와 ingress를 같은 빌드로 맞춘다. |
+| 현재 작업 | 8판본의 번호/장 경계 감사 뒤, 사용자 요구에 따라 90개 창작 경로와 원작335컷을 실제 제공 본문으로 대조했다. 확정된 선택 기억·날짜9컷만 교정하고 Flow·합류·결말은 유지했다. 공통 시점 카드는 중앙 제목으로 개선하고 옹고집 중복 안내2곳을 제거했다. 구현 `e086bb0` CI 통과, Pages `bc85f1e4`·같은 ingress 반영 및 실제 주소11검사·1536파일/해시9 일치. [서사 근거](evidence/catalog-chapters-2026-11-01/checkpoint.json), [화면·배포](evidence/perspective-card-2026-11-01/checkpoint.json). |
+| 다른 곳에서 이어갈 때 | GitHub main을 받는다. `codex/book-entry-cover`와 `kiro/tab-handover` 원격도 같은 최종 기록까지 갱신한다. 앱 배포 소스는 `e086bb0`이며 뒤의 기록 커밋은 앱을 바꾸지 않는다. C1은 `kiro/c1-early-game-zip`에 미배포 실험으로 보존한다. `.cache/` 후보·원시 결과, wrangler 로그인, 운영 Docker와 DB 백업은 이 Mac 전용이다. 다른 컴퓨터의 배포는 그곳의 wrangler 로그인이 필요하고 운영 ingress는 Mac mini에서만 갱신한다. Web 변경 시 Pages와 ingress를 같은 빌드로 맞춘다. |
 | 이전 작업(10-31 낮) | 사용자 요청(작업 기록, GitHub main 반영, story.knolquiz.com에서 그림·음원·실행 파일을 Pages로 제공)을 마쳤다. main CI 보안 감사 실패 수정(4f69bda), Pages 재배포(633aa225), 운영 DB 백업 후 API·ingress 갱신(migration 007), 정적 전달 Worker 배포와 fail-open 경로 연결(19:42)까지 했다. 이제 story.knolquiz.com의 정적 요청은 Pages, `/api`는 Mac mini가 응답한다. 이어서 승인된 사이트 이름(‘놀스토리’)을 Pages(6a60fa95)와 운영 ingress에 같은 빌드로 반영했다. 실제 브라우저에서 파일 1534개·핵심 해시 7개가 Pages 후보와 같았다. [갱신·연결·검증 근거](evidence/story-edge-cutover-2026-10-31/checkpoint.json), [연결 방식](../decisions/0026-static-reading-authoring-and-optional-api.md#운영-도메인-연결-방식--2026-10-31). 이전 Pages 배포·미리 듣기 수정은 [그때 근거](evidence/pages-deploy-2026-10-30/checkpoint.json), 편집 복귀·대비는 [그 근거](evidence/editor-return-contrast-2026-10-31/checkpoint.json)를 따른다. |
-| 진행 중 미커밋 | 제공장번호·제목·공식보관본갱신·표시정렬·검증·문서를반영했다. 실제git status와checkpoint.release부터대조한다. |
+| 진행 중 미커밋 | 이번 서사·시점 구현과 검증·배포 기록은 커밋해 공유한다. 이어갈 때 실제 `git status`와 최신 checkpoint.release를 먼저 대조한다. |
 | 종료된 로컬 checkpoint | PC-01 host389 종료:352통과/37native 전용 제외, source/보호artifact 변경0. 필수 native 동선 이행은 [실행별 결과](evidence/native-resume-2026-10-15/native-result.json). PC-02 네 제작 모드 대조와 점수 전용 native 빈 셀 보완. 물리 기기·출시 전체 완료 아님 |
 | 우선 읽을 증거 | [로컬 작품 파일 현재 checkpoint](evidence/local-work-files-2026-10-18/checkpoint.json), [저장 계약](authoring-storage-contract.md#로컬-작업파일-우선--2026-10-18), [온라인 휴지통 후속](evidence/online-trash-2026-10-18/checkpoint.json). 원고/최대 화면/접근성의 기존 근거는 해당 소유 문서에서 재사용. |
 | 다음 행동 | ① 사용자가 실제 카카오 로그인과 작품 업로드를 확인한다. 자동 검사는 인증 시작302·callback·보안 쿠키·기본 API 응답까지만 확인했다. 이전 버전 탭은 작품 파일을 저장하고 새로고침해 협력형 인계를 공유한다. ② Workers 요청 수와 필요 시 `ab-later.spec.ts`의 같은 시간대 재열기 비교를 확인한다. C1은 효과가 없어 미배포 실험으로 보존한다. ③ 남은 오래된 E2E 선택자는 영향 범위별로 갱신한다. ④ SD-02 권리/실행 파일 출처 검토, SD-03 캐시·실패 복귀, SD-04 8판본 전체 갈래·느린 망/목표 실기기를 이어간다. 완료된 편집·디자인과 유효한 검사를 반복하지 않는다. |
 | 인물 표시 후속 | 공통 캔버스 상대 키·자세, 어린 인물 파생본, 자동 다인 공통 축소를 구현했다. [현재 수정 근거](evidence/character-relative-size-2026-10-30/fix-checkpoint.json). 가로/세로 읽기·편집·파일 재열기·3/4인 native 확인을 마쳤으며 원본/수동 구도와 정적 배포 전체 큐를 유지한다. |
 | 이전 후보 검증 기록 | 작업별 설정·작품 분리5개와 현행 큰 화면에 맞춘 통합 재생 복귀1개는 각각 통과했다. 로그는 `.cache/editor-candidate-20261027-host.log`와 `.cache/editor-candidate-20261027-tablet.log`다. 최초6개 실행의 전체 통과로 합산하지 않는다. 최근 숫자 입력 저장·채널 취소·점수 설정 복귀의 근거는 편집 요구 대조에 보존한다. |
-| Docker 상태 | Next production db/api/ingress 동작, loopback15501. `d3bfc87` 정적 빌드로 ingress만 갱신했으며 Pages `6b9a5e61`와 index/game.zip 해시가 같다. API·DB와 기존 Worker/fail-open 경로는 이번 Web 수정에서 변경하지 않았다. `rollback-20261101-narrative` 및 이전 후보/되돌리기 이미지를 보존했다. 정적 요청은 Pages, /api는 Mac mini가 응답한다. |
+| Docker 상태 | Next production db/api/ingress 동작, loopback15501. `e086bb0` 정적 빌드로 ingress만 갱신했으며 Pages `bc85f1e4`와 index/game.zip 해시가 같다. API·DB와 기존 Worker/fail-open 경로는 이번 Web 수정에서 변경하지 않았다. `rollback-20261101-perspective` 및 이전 후보/되돌리기 이미지를 보존했다. 정적 요청은 Pages, /api는 Mac mini가 응답한다. |
 | 중요한 수정 | 최초 적용001 변경을 checksum이 거부했다. journal hash와 일치하는001 복원, blob trigger는002 전진 migration. DB/journal 초기화하지 않음. rollback 실패client는 release(true) 폐기. 과거 실패 로그 유지 |
 | 미검증 범위 | 운영 ingress 뒤 요청 제한 버킷 공유의 신뢰 경계/전용 키 정책, Google OAuth·온라인 휴지통의 운영/실기기 검증·장기 오프라인·물리기기·스크린리더·최초Chrome154 원인·새외부앱·공개 배포·외부/전체 운영 백업복원. 로컬 저장/순수 계정/DB 검사를 이 완료로 확대하지 않음 |
 | 결정 | 카카오 가입/로그인, 이후 Google 연결 및 연결 후 Google 로그인, 현재 Mac mini Docker는 확정. 교사/학급 승인·공유/공개·보관 기간만 미결. 확정 내용을 다시 질문하지 않음 |

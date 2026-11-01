@@ -1,6 +1,6 @@
 # STATUS — current development state
 
-2026-11-01 분기 서사 재검토와 시점카드 후속: 실제 제공본의90개 창작경로와 원작335컷을 읽어 확정된 선택 기억·날짜9컷만 교정하고 연결·결말은 유지했다. 공통 RenPy 전환제목을 중앙배치·크기구분·짧은등장으로 개선하고 옹고집 부인시점의 중복안내2곳을 정리했다. 구현·실제가로세로화면·파일보존과 배포경계는 [서사검토](docs/architecture/evidence/catalog-chapters-2026-11-01/checkpoint.json)의 branchNarrativeReview와 [시점카드](docs/architecture/evidence/perspective-card-2026-11-01/checkpoint.json)를 따른다.
+2026-11-01 분기 서사 재검토와 시점카드 후속: 실제 제공본의90개 창작경로와 원작335컷을 읽어 확정된 선택 기억·날짜9컷만 교정하고 연결·결말은 유지했다. 공통 RenPy 전환제목을 중앙배치·크기구분·짧은등장으로 개선하고 옹고집 부인시점의 중복안내2곳을 정리했다. 구현 `e086bb0` CI 통과 후 Pages `bc85f1e4`와 같은 ingress에 반영했고 실제주소11검사·1536파일/해시9 일치를 확인했다. 실제가로세로화면·파일보존과 배포경계는 [서사검토](docs/architecture/evidence/catalog-chapters-2026-11-01/checkpoint.json)의 branchNarrativeReview와 [시점카드](docs/architecture/evidence/perspective-card-2026-11-01/checkpoint.json)를 따른다.
 
 2026-11-01 제공 작품 장 번호 보완: 놀스토리의 저장 순서 노출로 생긴 선녀22곳·옹고집4곳의 번호 역행을 제거하고, 갈래·목록 정렬과26개 장 제목을 개선했다. 원작4종의 정상 번호, 전체 본문·연결·자산·개인 수정본을 보존했다. 기존 보관본 재열기·탭 인계와 실제 RenPy 표시를 확인했다. CI263파일/2242통과·2제외 후 Pages `9969db88`와 ingress 반영, 실제 주소2검사·1536파일/핵심해시9 일치. 장 경계156개수동검토후자동해설잔재3컷·시간표현1컷교정을구현 `d3bfc87` CI264파일/2244통과·2제외와Pages `6b9a5e61`/ingress에반영했다. 실제주소4검사·1536파일/핵심해시9일치. 전체문장재교정과구분한다. [검증·한계·배포 상태](docs/architecture/evidence/catalog-chapters-2026-11-01/checkpoint.json).
 
