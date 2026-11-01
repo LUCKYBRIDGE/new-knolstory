@@ -15,3 +15,9 @@
 고정 URL은 기존 `_headers`의 `no-cache`, 빌드 해시 파일은 immutable 정책을 유지한다. 이전 배포→새 배포를 한 브라우저 캐시에서 넘나드는 확인과 정적 전송 실패·기기/느린 망 전체 검증은 별도 후속이다.
 
 초기 대기 검사에서 브라우저 전체 가상 시계를 사용했을 때 Ren’Py WebAssembly의 시간 기준까지 바뀌어 런타임 예외가 났다. 이 결과를 제품 재연결 실패로 단정하지 않고, 호스트의90초 타이머 하나만 단축하며 실제 실행기의 Date/performance/타이머는 그대로 둔 검사로 분리했다.
+
+## 이전 배포에서 새 배포로 이동
+
+[재현 스크립트](measurement/cache-release-transition.mjs)는 실제 두 불변 빌드와 제품의 production ingress를 사용한다. 같은 브라우저 origin과 기본 캐시를 유지하며, API는503으로 둔다. 이전 빌드에서 쓴 글을 임시 보관한 뒤 서버의 제공 빌드만 바꾸고 새로고침했다. 새 hash script 목록·현재 후보 파일 존재, 원고 동일성, 이전/이후 실제 Ren’Py sceneRendered, 페이지 오류0과 HTML no-cache를 확인했다. [결과](cache-transition.json). 이 실행은 Cloudflare edge의 이전 캐시를 가진 실제 브라우저를 배포 순간에 유지한 검사는 아니다. 현재 운영 edge의 파일/SHA 검증과 구분한다.
+
+[운영 파일 검사](live-files.json)와 [신규 그림 검사](live-images.json), [같은 후보의 ingress 검사](ingress-check.json)를 완료했다. 최종 CI와 원격 브랜치는 체크포인트에서 확인한다.
