@@ -2,7 +2,7 @@
   "date": "2026-11-02",
   "scope": "Provided KnolStory eight-edition layered visual revision; covers/ShortStory illustration selection retained",
   "baselineCommit": "ec9b761dbbc51881559c037f99640509f072993c",
-  "state": "validated-local-candidate",
+  "state": "deployed-and-live-verified",
   "audit": {
     "editions": 8,
     "cuts": 2970,
@@ -86,7 +86,18 @@
     }
   },
   "release": {
-    "status": "local checks passed; GitHub/Pages/ingress pending"
+    "sourceCommit": "deec66a7104230b89c5908a942e4e1cc2aacd8df",
+    "pages": "https://fc5d9d29.new-knolstory.pages.dev",
+    "origin": "https://story.knolquiz.com",
+    "ci": {
+      "implementation": "41361236595 success",
+      "latestTestFollowup": "41361616438 pending"
+    },
+    "liveFiles": "1560 checked,0 unexpected,9 key hashes and3audio checks match; live-files.json",
+    "liveNewImages": "22 original/progressive URLs all200 and exact SHA;live-images.json",
+    "ingress": "same reviewed candidate;rollback-20261102-layered retained;API/DB/Worker unchanged",
+    "gameZipBytes": 8657310,
+    "gameZipIncreaseBytes": 10878
   },
   "limits": [
     "No physical phone validation in this run",
@@ -94,5 +105,5 @@
     "Existing personally edited copies keep their own images; they do not silently auto-refresh",
     "Standalone legacy asset redistribution permission not expanded"
   ],
-  "next": "Finish final native/editor picker/relative stature checks; docs/lint; publish same reviewed candidate to GitHub main, Pages and ingress, verify actual URLs; then resume SD-03."
+  "next": "SD-03: cached version/incomplete stage failure and retry/return recovery; retain full product queue"
 }
