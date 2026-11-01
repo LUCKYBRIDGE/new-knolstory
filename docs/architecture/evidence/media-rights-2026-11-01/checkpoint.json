@@ -1,7 +1,7 @@
 {
   "startedAt": "2026-11-01",
   "reviewedAt": "2026-11-02",
-  "status": "implemented-scoped-source-review-local-verified-release-pending",
+  "status": "completed-for-current-scoped-service-distribution",
   "request": "이미지는 대부분 자체제작/구놀스토리계승,음원은CC0요청과직접제작이라는사용자설명을실제근거에연결",
   "previousAudit": {
     "blockedFileRows": 923,
@@ -58,7 +58,15 @@
     "limits": "service-scope technical provenance/use review, not unrestricted raw-asset distribution or independent legal review of all third-party rights",
     "independentReview": "2 independent read-only audits: exact candidate0blockers; empty-notice API boundary corrected and regression added",
     "docs": "docs:check/test:docs pass",
-    "security": "pnpm audit --prod --audit-level=moderate: no known vulnerabilities"
+    "security": "pnpm audit --prod --audit-level=moderate: no known vulnerabilities",
+    "commercialServiceCandidate": "--target commercial --usage-scope story-service:1539files0blockers",
+    "standaloneBoundary": "--usage-scope standalone-assets:906blockedfileRows; project-owned service permission and scene-only audio do not become unrestricted redistribution",
+    "recoveredCi": [
+      "CI41319785338 synthetic CLI root leakage corrected; focused24pass and actualcandidate0blockers",
+      "CI41319906776 existing sound-split full workbook/XLSX roundtrip exceeded default5s; explicit30s for that test only, all equality/scheduling assertions retained; focused4pass",
+      "Final CI41320565936 success;266files2254pass2skip,Python188"
+    ],
+    "unchangedServingBytes": "1490 assets/runtime files identical to preceding deployed candidate; only licenses/README.md and licenses/RenPy-8.5.3-LICENSE.txt added"
   },
   "limits": [
     "SDK icons/placeholders traced to exact input and generator; not all regenerated independently",
@@ -67,5 +75,37 @@
     "permission for a standalone asset library was not granted",
     "future binary/member/image changes fail exact hash review"
   ],
-  "release": null
+  "release": {
+    "sourceCommit": "745948436be8fda34714b483013bd372f4c0128d",
+    "implementationCommit": "aac2165b19f81730fd3a5f667874631075490d51",
+    "ci": {
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41320565936",
+      "status": "success",
+      "testFiles": 266,
+      "passed": 2254,
+      "skipped": 2,
+      "python": 188,
+      "coverage": {
+        "statements": 91.82,
+        "branches": 90.64,
+        "functions": 95.07,
+        "lines": 95.14
+      }
+    },
+    "pages": {
+      "Id": "2f90c8ff-3314-4cfc-9aa8-772fb6f5bb94",
+      "Environment": "Production",
+      "Branch": "main",
+      "Source": "7459484",
+      "Deployment": "https://2f90c8ff.new-knolstory.pages.dev",
+      "Status": "53 seconds ago",
+      "Build": "https://dash.cloudflare.com/e579cab8638cf20fed82fa7480ff6ddb/pages/view/new-knolstory/2f90c8ff-3314-4cfc-9aa8-772fb6f5bb94"
+    },
+    "origin": "https://story.knolquiz.com",
+    "notices": "2publicfiles200andexactSHA;live-notices.json",
+    "liveFiles": "1538checked,unexpected0,keyhash9/9,audiobytechecks3/3;live-files.json",
+    "ingress": "same candidate; index/game.zip/license SHA match; rollback-20261102-rights retained;API/DB/Worker unchanged",
+    "unchangedMedia": "1490assets/runtime exactsamehash as previous deployment;2publicnoticefilesadded",
+    "serviceUseAudit": "free/commercial story-service scope1539files0blockers; standalone-assets remains906blockedrows"
+  }
 }
