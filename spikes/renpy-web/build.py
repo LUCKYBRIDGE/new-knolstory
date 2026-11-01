@@ -84,6 +84,10 @@ for extension in ['css', 'js']:
     shutil.copy2(ROOT / f'spikes/renpy-web/loading.{extension}', output / f'knol-loading.{extension}')
 shutil.copy2(ROOT / 'spikes/renpy-web/bridge.js', output / 'knol-bridge.js')
 shutil.copy2(ROOT / 'spikes/renpy-web/FONT-LICENSE.txt', output / 'FONT-LICENSE.txt')
+# Preserve the pinned SDK's complete notices independently of the game archive.
+notice = ROOT / 'apps/web/public/licenses/RenPy-8.5.3-LICENSE.txt'
+if not notice.is_file() or notice.read_bytes() != (sdk / 'LICENSE.txt').read_bytes():
+    raise SystemExit('Pinned SDK license notice is missing or changed; review before building.')
 subprocess.run(['node', '-e', "const fs=require('fs'),ts=require('typescript');const audio=ts.transpileModule(fs.readFileSync(require('path').join(require('path').dirname(process.argv[1]),'audio.ts'),'utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;const source=fs.readFileSync(process.argv[1],'utf8');const code=ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS}}).outputText;fs.writeFileSync(process.argv[2],'(()=>{const audioExports={};(()=>{const exports=audioExports;'+audio+'})();const require=()=>audioExports;const exports={};'+code+';window.KnolRuntimeContract=Object.freeze(exports);})();');", str(ROOT / 'packages/runtime-contract/src/index.ts'), str(output / 'runtime-contract.js')], cwd=ROOT, check=True)
 # Apply content versions after all boot dependencies have been generated.
 (output / 'index.html').write_text(version_runtime_html((output / 'index.html').read_text(), output))

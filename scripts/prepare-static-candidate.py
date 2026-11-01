@@ -72,7 +72,9 @@ def publication_audit(source):
     catalog = json.loads((registry / 'catalog.json').read_text())
     provenance = json.loads((registry / 'media-provenance.json').read_text())['entries']
     return AUDIT.audit(source, catalog=catalog, provenance=provenance,
-                       tracked=AUDIT.tracked_sources())
+                       tracked=AUDIT.tracked_sources(), usage_scope='story-service',
+                       scene_audio_approvals=AUDIT.reviewed_scene_audio_approvals(),
+                       runtime_review=AUDIT.RUNTIME_REVIEW.reviewed_runtime_files())
 
 
 def verify_audit_inputs(records, report):

@@ -44,6 +44,120 @@ class StaticDeliveryAuditTests(unittest.TestCase):
         self.assertEqual(entry['usageReferences'], [{'work': 'fixture'}])
         self.assertEqual(entry['rightsStatus'], 'verified')
 
+    def scene_approval(self, name):
+        evidence = 'docs/scene-rights.json'
+        proof = Path(self.temp.name) / 'repo' / evidence
+        proof.parent.mkdir(parents=True, exist_ok=True)
+        proof.write_text('{"review":"conditional-scene-use"}')
+        row = {'id':'audio:sound:pixabay-test', 'src':'/' + name,
+               'sha256': hashlib.sha256((self.root / name).read_bytes()).hexdigest(),
+               'license':'Pixabay Content License', 'commercialUse':'permitted',
+               'redistribution':'restricted', 'editorProvision':'scene-integrated',
+               'usage':'scene-integrated', 'standaloneDownload':'prohibited',
+               'preview':'scene', 'exportMode':'reference',
+               'sourceUrl':'https://pixabay.com/sound-effects/test-123/', 'evidence':[evidence]}
+        formal = self.record(name, assetIds=[row['id']], license=row['license'],
+                             redistribution='restricted', source=row['sourceUrl'])
+        approvals = {'version':2, 'scope':'common-editor-playback-and-project-file-transfer',
+                     'checkedAt':'2026-10-10', 'assets':[row]}
+        return row, formal, approvals
+
+    def test_compact_usage_reference_resolves_only_from_identical_source_bytes(self):
+        import copy
+        self.write('assets/scene.webp', b'original bytes')
+        self.write('runtime/game/assets/scene.webp', b'original bytes')
+        original=self.record('assets/scene.webp',usageReferences=[{'work':'story','documentLocation':'$.lines[0]'}])
+        duplicate=self.record('runtime/game/assets/scene.webp',usageReferences=[],usageReferencesFrom=original['file'])
+        stored=copy.deepcopy([original,duplicate])
+        result=self.audit(provenance=[original,duplicate])
+        self.assertEqual(result['blockers'],[])
+        row=next(item for item in result['files'] if item['path']=='runtime/game/assets/scene.webp')
+        self.assertEqual(row['usageReferences'],original['usageReferences'])
+        self.assertEqual([original,duplicate],stored)
+
+    def test_missing_or_changed_usage_reference_source_blocks_publication(self):
+        self.write('assets/scene.webp', b'original bytes')
+        self.write('runtime/game/assets/scene.webp', b'original bytes')
+        original=self.record('assets/scene.webp')
+        for reference,origin in [('apps/web/public/missing.webp',original),
+                                 (original['file'],{**original,'sha256':'0'*64}),
+                                 (original['file'],{**original,'usageReferencesFrom':original['file']})]:
+            with self.subTest(reference=reference,origin=origin):
+                duplicate=self.record('runtime/game/assets/scene.webp',usageReferences=[],usageReferencesFrom=reference)
+                result=self.audit(provenance=[origin,duplicate])
+                self.assertIn({'path':'runtime/game/assets/scene.webp','reason':'provenance-reference-mismatch'},result['blockers'])
+                self.assertFalse(result['summary']['passesPreflight'])
+
+    def test_approved_scene_audio_keeps_its_restrictions_and_runtime_copy_identity(self):
+        name='assets/audio/pixabay/test.mp3'
+        self.write(name, b'scene bytes')
+        row, formal, approvals=self.scene_approval(name)
+        duplicate='runtime/game/' + name
+        self.write(duplicate, b'scene bytes')
+        copy={**formal, 'file':'apps/web/public/'+duplicate, 'derivedFrom':formal['file']}
+        with patch.object(MODULE, 'ROOT', Path(self.temp.name)/'repo'):
+            result=self.audit(provenance=[formal,copy], usage_scope='story-service', scene_audio_approvals=approvals)
+        self.assertEqual(result['blockers'],[])
+        self.assertEqual({f['rightsStatus'] for f in result['files']},{'verified-scene-use'})
+        self.assertEqual({f['license'] for f in result['files']},{'Pixabay Content License'})
+        self.assertEqual({f['redistribution'] for f in result['files']},{'restricted'})
+        self.assertTrue(all(f['usageScope']=='scene-integrated' and f['standaloneDownload']=='prohibited' for f in result['files']))
+
+    def test_scene_approval_does_not_authorize_standalone_or_unapproved_restricted_audio(self):
+        name='assets/audio/pixabay/test.mp3'
+        self.write(name)
+        _, formal, approvals=self.scene_approval(name)
+        with patch.object(MODULE, 'ROOT', Path(self.temp.name)/'repo'):
+            for kwargs in [{}, {'usage_scope':'story-service'}, {'scene_audio_approvals':approvals},
+                           {'usage_scope':'standalone-assets','scene_audio_approvals':approvals}]:
+                result=self.audit(provenance=[formal],**kwargs)
+                self.assertEqual(result['files'][0]['rightsStatus'],'review-required')
+                self.assertEqual(result['blockers'][0]['reason'],'unverified-media-rights')
+
+    def test_changed_or_incomplete_scene_approvals_never_clear_publication(self):
+        import copy
+        name='assets/audio/pixabay/test.mp3'
+        self.write(name)
+        _, formal, approvals=self.scene_approval(name)
+        cases=[]
+        for field,value in [('sha256','0'*64), ('id','audio:sound:other'), ('sourceUrl','https://example.com/other'),
+                            ('standaloneDownload','permitted'), ('redistribution','permitted'),
+                            ('evidence',[]), ('evidence',['../outside.json']), ('evidence',['docs/missing.json'])]:
+            changed=copy.deepcopy(approvals);changed['assets'][0][field]=value;cases.append(changed)
+        changed=copy.deepcopy(approvals);changed['scope']='arbitrary';cases.append(changed)
+        with patch.object(MODULE, 'ROOT', Path(self.temp.name)/'repo'):
+            for candidate in cases:
+                with self.subTest(candidate=candidate):
+                    result=self.audit(provenance=[formal],usage_scope='story-service',scene_audio_approvals=candidate)
+                    self.assertEqual(result['files'][0]['rightsStatus'],'review-required')
+                    self.assertTrue(result['blockers'])
+            self.write(name,b'changed bytes')
+            result=self.audit(provenance=[formal],usage_scope='story-service',scene_audio_approvals=approvals)
+            self.assertEqual(result['blockers'][0]['reason'],'provenance-hash-mismatch')
+
+    def test_scene_approval_does_not_clear_opaque_runtime_bundles(self):
+        name='assets/audio/pixabay/test.mp3'
+        self.write(name)
+        _, formal, approvals=self.scene_approval(name)
+        self.write('runtime/game.zip')
+        with patch.object(MODULE, 'ROOT', Path(self.temp.name)/'repo'):
+            result=self.audit(provenance=[formal],usage_scope='story-service',scene_audio_approvals=approvals)
+        self.assertEqual(result['blockers'],[{'path':'runtime/game.zip','reason':'runtime-bundle-review-required'}])
+
+    def test_scene_approvals_require_existing_source_audio_gate(self):
+        repo=Path(self.temp.name)/'repo'
+        source=repo/'packages/asset-registry/src/audio-service-approvals.json'
+        source.parent.mkdir(parents=True)
+        source.write_text('{"version":2,"assets":[]}')
+        with patch.object(MODULE.SERVICE_AUDIO,'audit',return_value=['Changed approved bytes']) as gate:
+            with self.assertRaisesRegex(ValueError,'Scene audio approval verification failed'):
+                MODULE.reviewed_scene_audio_approvals(repo)
+            gate.assert_called_once_with(root=repo,source_only=True)
+        with patch.object(MODULE.SERVICE_AUDIO,'audit',return_value=[]) as gate:
+            self.assertEqual(MODULE.reviewed_scene_audio_approvals(repo),{'version':2,'assets':[]})
+            gate.assert_called_once_with(root=repo,source_only=True)
+        self.assertIsNone(MODULE.reviewed_scene_audio_approvals(repo/'missing'))
+
     def test_missing_catalog_and_runtime_are_blocked(self):
         result = self.audit(catalog=[{'id': 'missing', 'src': '/assets/missing.webp'}], required=['runtime/renpy.wasm'])
         self.assertEqual({item['reason'] for item in result['blockers']}, {'missing-asset', 'missing-runtime'})

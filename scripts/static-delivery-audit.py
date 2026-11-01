@@ -10,6 +10,7 @@ import importlib.util
 import json
 import mimetypes
 import os
+import re
 import subprocess
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urlsplit
@@ -22,6 +23,11 @@ REQUIRED = ['index.html', 'runtime/index.html', 'runtime/renpy.js',
 SPEC = importlib.util.spec_from_file_location('delivery_provenance', ROOT / 'scripts/media-provenance.py')
 PROVENANCE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(PROVENANCE)
+SERVICE_SPEC = importlib.util.spec_from_file_location('delivery_service_audio', ROOT / 'scripts/check-service-audio.py')
+SERVICE_AUDIO = importlib.util.module_from_spec(SERVICE_SPEC)
+SERVICE_SPEC.loader.exec_module(SERVICE_AUDIO)
+RUNTIME_SPEC=importlib.util.spec_from_file_location('delivery_runtime_review',ROOT/'scripts/runtime-distribution-review.py')
+RUNTIME_REVIEW=importlib.util.module_from_spec(RUNTIME_SPEC);RUNTIME_SPEC.loader.exec_module(RUNTIME_REVIEW)
 BUNDLES = {'.wasm', '.data', '.zip'}
 # A transport copy (for example runtime/renpy.data.br) decodes to its source file. It is classified and
 # reviewed as that source, never as an ordinary web build file, and needs the source to be present.
@@ -121,8 +127,76 @@ def local_asset_path(src):
     return name
 
 
+def reviewed_scene_audio_approvals(root=None):
+    """Reuse the existing source/hash/evidence gate; absent fixture approvals grant nothing."""
+    root = ROOT if root is None else Path(root)
+    source = root / 'packages/asset-registry/src/audio-service-approvals.json'
+    if not source.is_file():
+        return None
+    errors = SERVICE_AUDIO.audit(root=root, source_only=True)
+    if errors:
+        raise ValueError('Scene audio approval verification failed: ' + '; '.join(errors))
+    return json.loads(source.read_text())
+
+
+def scene_evidence_exists(evidence):
+    if not isinstance(evidence, list) or not evidence:
+        return False
+    for name in evidence:
+        if not isinstance(name, str) or PurePosixPath(name).is_absolute() or '\\' in name or '..' in PurePosixPath(name).parts:
+            return False
+        path = ROOT / name
+        if not path.resolve().is_relative_to(ROOT.resolve()) or not path.is_file() or path.is_symlink():
+            return False
+    return True
+
+
+def scene_audio_approval(record, relative, sha, approvals):
+    """Identify reviewed scene-only bytes, never grant standalone redistribution."""
+    if (not record or record.get('attribution') != 'not-required' or
+            not isinstance(approvals, dict) or approvals.get('version') != 2 or
+            approvals.get('scope') != 'common-editor-playback-and-project-file-transfer' or
+            not isinstance(approvals.get('checkedAt'), str) or
+            not re.fullmatch(r'\d{4}-\d{2}-\d{2}', approvals['checkedAt']) or
+            not isinstance(approvals.get('assets'), list)):
+        return None
+    required = {'license': 'Pixabay Content License', 'commercialUse': 'permitted',
+                'redistribution': 'restricted', 'editorProvision': 'scene-integrated',
+                'usage': 'scene-integrated', 'standaloneDownload': 'prohibited',
+                'preview': 'scene', 'exportMode': 'reference'}
+    matches = []
+    for row in approvals['assets']:
+        if not isinstance(row, dict) or any(row.get(key) != value for key, value in required.items()):
+            continue
+        src, identity = row.get('src'), row.get('id')
+        if (not isinstance(src, str) or not src.startswith('/assets/audio/pixabay/') or
+                '\\' in src or '..' in PurePosixPath(src).parts or src != PurePosixPath(src).as_posix() or
+                PurePosixPath(src).suffix.lower() not in {'.mp3', '.ogg', '.wav'} or
+                relative not in {src.lstrip('/'), 'runtime/game' + src} or
+                not isinstance(identity, str) or not re.fullmatch(r'audio:(?:music|sound):[a-zA-Z0-9_-]+', identity) or
+                identity not in record.get('assetIds', []) or
+                row.get('sha256') != sha or record.get('sha256') != sha or
+                any(record.get(key) != row[key] for key in ('license', 'commercialUse', 'redistribution'))):
+            continue
+        source = row.get('sourceUrl')
+        if not isinstance(source, str) or record.get('source') != source:
+            continue
+        try:
+            parsed = urlsplit(source)
+        except ValueError:
+            continue
+        if parsed.scheme != 'https' or parsed.netloc != 'pixabay.com':
+            continue
+        if scene_evidence_exists(row.get('evidence')):
+            matches.append(row)
+    return matches[0] if len(matches) == 1 else None
+
+
 def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
-          max_file_bytes=PAGES_MAX_BYTES, max_files=PAGES_MAX_FILES, target='free'):
+          max_file_bytes=PAGES_MAX_BYTES, max_files=PAGES_MAX_FILES, target='free',
+          usage_scope='standalone-assets', scene_audio_approvals=None, runtime_review=None):
+    if usage_scope not in {'standalone-assets', 'story-service'}:
+        raise ValueError('Unsupported publication usage scope.')
     build_root = Path(build_root).resolve()
     if not build_root.is_dir():
         raise ValueError('Static build directory is missing; build the Web app first.')
@@ -156,6 +230,7 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
             if transport_of:
                 transports.append((relative, transport_of))
             rights = 'not-media-clearance'
+            scoped_audio = None
             if relative == 'runtime.zip':
                 block(relative, 'non-serving-artifact')
             if private_artifact(relative) or manuscript_json(path, size):
@@ -184,12 +259,29 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
                     block(relative, 'missing-distributed-credit', evidence=missing_credits)
                 if changed_credits:
                     block(relative, 'distributed-credit-hash-mismatch', evidence=changed_credits)
-                if record and not missing_credits and not changed_credits and PROVENANCE.release_allowed(record, target):
-                    rights = 'verified'
+                if kind == 'audio' and usage_scope == 'story-service':
+                    scoped_audio = scene_audio_approval(record, relative, sha, scene_audio_approvals)
+                if record and not missing_credits and not changed_credits and PROVENANCE.release_allowed(record, target, usage_scope=usage_scope):
+                    rights = 'verified-service-use' if record.get('license') == 'project-owner-authorized-service-use' else 'verified'
+                elif kind == 'runtime-bundle' and usage_scope == 'story-service' and RUNTIME_REVIEW.matches_deployed_review(runtime_review, relative, sha, build_root):
+                    rights = 'verified-runtime-distribution'
+                elif scoped_audio and not missing_credits and not changed_credits:
+                    rights = 'verified-scene-use'
                 else:
                     rights = 'review-required'
                     block(relative, 'runtime-bundle-review-required' if kind == 'runtime-bundle'
                           else 'unverified-media-rights')
+            usage_references = (record or {}).get('usageReferences', [])
+            if record and 'usageReferencesFrom' in record:
+                reference = record['usageReferencesFrom']
+                origin = by_source.get(reference) if isinstance(reference, str) else None
+                if (not origin or 'usageReferencesFrom' in origin or
+                        origin.get('sha256') != record.get('sha256') or origin.get('sha256') != sha or
+                        not isinstance(origin.get('usageReferences'), list)):
+                    rights = 'reference-mismatch'
+                    block(relative, 'provenance-reference-mismatch')
+                else:
+                    usage_references = origin['usageReferences']
             mime_name = transport_of or relative
             files.append({'path': relative, 'bytes': size, 'sha256': sha,
                           'mimeBasis': 'extension-inferred',
@@ -197,10 +289,17 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
                           **({'contentEncoding': encoding, 'transportOf': transport_of} if transport_of else {}),
                           'mediaType': kind,
                           'assetIds': sorted(set(catalog_by_path.get(relative, []) + (record or {}).get('assetIds', []))),
-                          'usageReferences': (record or {}).get('usageReferences', []),
+                          'usageReferences': usage_references,
                           'license': (record or {}).get('license', 'not-recorded'),
                           'redistribution': (record or {}).get('redistribution', 'not-reviewed'),
                           'rightsStatus': rights,
+                          **({'usageScope': 'story-service', 'standaloneDownload': 'not-authorized'}
+                             if rights == 'verified-service-use' else {}),
+                          **({'usageScope': scoped_audio['usage'],
+                              'standaloneDownload': scoped_audio['standaloneDownload'],
+                              'preview': scoped_audio['preview'],
+                              'exportMode': scoped_audio['exportMode'],
+                              'rightsEvidence': list(scoped_audio['evidence'])} if scoped_audio else {}),
                           'source': {'path': source if (ROOT / source).is_file() else None,
                                      'gitTracked': source in tracked,
                                      'kind': 'public-source' if (ROOT / source).is_file() else 'generated-build'}})
@@ -220,7 +319,8 @@ def audit(build_root, *, catalog, provenance, tracked, required=REQUIRED,
             block(name, 'missing-transport-source', source=transport_of)
     if len(files) > max_files:
         block('.', 'pages-file-count-exceeded', files=len(files), limit=max_files)
-    return {'version': 1, 'policy': 'Read-only evidence. Unknown rights and opaque runtime bundles block publication; a transport copy such as renpy.data.br is reviewed as its source. No network or deployment performed.',
+    return {'version': 1, 'policy': 'Read-only evidence. Unknown rights and opaque runtime bundles block publication. Verified scene/service use retains its scoped restrictions, not standalone redistribution rights. A transport copy such as renpy.data.br is reviewed as its source. No network or deployment performed.',
+            'usageScope': usage_scope,
             'limits': {'host': 'Cloudflare Pages', 'maxFileBytes': max_file_bytes, 'maxFiles': max_files,
                        'reference': 'https://developers.cloudflare.com/pages/platform/limits/'},
             'summary': {'files': len(files), 'bytes': sum(item['bytes'] for item in files),
@@ -235,6 +335,8 @@ def main(argv=None):
     parser.add_argument('--output', type=Path, help='Write JSON report here; default is stdout. Never writes into the build.')
     parser.add_argument('--check', action='store_true', help='Exit 1 if publication blockers exist.')
     parser.add_argument('--target', choices=['free', 'commercial'], default='free')
+    parser.add_argument('--usage-scope', choices=['story-service', 'standalone-assets'], default='story-service',
+                        help='Reviewed story service use or standalone asset redistribution; conditional approvals never grant the latter.')
     parser.add_argument('--max-file-bytes', type=int, default=PAGES_MAX_BYTES)
     parser.add_argument('--max-files', type=int, default=PAGES_MAX_FILES)
     args = parser.parse_args(argv)
@@ -247,7 +349,9 @@ def main(argv=None):
         provenance = json.loads((ROOT / 'packages/asset-registry/src/media-provenance.json').read_text())['entries']
         result = audit(args.root, catalog=catalog, provenance=provenance,
                        tracked=tracked_sources(), max_file_bytes=args.max_file_bytes,
-                       max_files=args.max_files, target=args.target)
+                       max_files=args.max_files, target=args.target, usage_scope=args.usage_scope,
+                       scene_audio_approvals=reviewed_scene_audio_approvals() if args.usage_scope == 'story-service' else None,
+                       runtime_review=RUNTIME_REVIEW.reviewed_runtime_files() if args.usage_scope == 'story-service' else None)
     except (ValueError, OSError, subprocess.CalledProcessError) as issue:
         parser.error(str(issue))
     text = json.dumps(result, ensure_ascii=False, indent=2) + '\n'

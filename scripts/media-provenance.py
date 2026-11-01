@@ -1,12 +1,16 @@
 """Build/check exhaustive distributed media provenance, including unknown legacy rights."""
-import argparse, hashlib, json, math
+import argparse, hashlib, json, math, importlib.util
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'packages/asset-registry/src/media-provenance.json'
 OVERRIDES=ROOT/'packages/asset-registry/src/media-provenance-overrides.json'
+SPEC=importlib.util.spec_from_file_location('project_media_authorization',ROOT/'scripts/project-media-authorization.py')
+OWNER=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(OWNER)
 EXT={'.webp','.png','.jpg','.jpeg','.svg','.gif','.wav','.ogg','.mp3','.ttf','.woff','.woff2','.otf','.mp4','.webm'}
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
-def release_allowed(record,target):
+def release_allowed(record,target,usage_scope='standalone-assets'):
+ if record.get('license')==OWNER.LICENSE:
+  return usage_scope=='story-service' and OWNER.service_authorized(record,ROOT) and (target!='commercial' or record.get('commercialUse')=='permitted')
  if record['redistribution'] not in ['permitted','permitted-with-license'] or record['license'] in ['unknown','unverified']:
   return False
  if target=='commercial' and record['commercialUse']!='permitted':return False
@@ -70,20 +74,25 @@ def inventory():
   if relative in overrides:
    override=overrides[relative];assert override['sha256']==record['sha256'],f'Rights evidence must be rechecked after changed file: {relative}'
    record.update(override)
+  record=OWNER.apply_authorization(record,ROOT)
   record['usageReferences']=[usage for asset_id in record['assetIds'] for usage in usages.get(asset_id,[])]
   entries.append(record)
  authoritative={item['sha256']:item for item in entries if item['license']!='unknown'}
  for item in entries:
   origin=authoritative.get(item['sha256'])
   if item['license']=='unknown' and origin:
-   for key in ['assetIds','provider','source','authorOrRightsHolder','license','commercialUse','redistribution','attribution','generationPlan','replacementRequiredBeforeCommercialRelease','usageReferences']:item[key]=origin[key]
+   for key in ['assetIds','provider','source','authorOrRightsHolder','license','commercialUse','redistribution','attribution','generationPlan','replacementRequiredBeforeCommercialRelease']:item[key]=origin[key]
+   item['usageReferences']=[]
+   item['usageReferencesFrom']=origin['file']
+   for key in ['serviceAuthorization','rightsEvidenceStatus']:
+    if key in origin:item[key]=origin[key]
    if 'attributionEvidence' in origin:item['attributionEvidence']=origin['attributionEvidence']
    item['derivedFrom']=origin['file']
  return {'version':1,'policy':'Unknown provenance is recorded, never inferred to be copyright-clear. Source ownership label is not a redistribution license. Update records before production rights decisions.','entries':entries}
 if __name__=='__main__':
- parser=argparse.ArgumentParser();parser.add_argument('--check',action='store_true');parser.add_argument('--release',choices=['free','commercial']);args=parser.parse_args();current=inventory()
+ parser=argparse.ArgumentParser();parser.add_argument('--check',action='store_true');parser.add_argument('--release',choices=['free','commercial']);parser.add_argument('--usage-scope',choices=['standalone-assets','story-service'],default='standalone-assets');args=parser.parse_args();current=inventory()
  if args.release:
-  blocked=[r['file'] for r in current['entries'] if not release_allowed(r,args.release)]
+  blocked=[r['file'] for r in current['entries'] if not release_allowed(r,args.release,usage_scope=args.usage_scope)]
   print(json.dumps({'target':args.release,'blockedFiles':blocked,'allowed':not blocked},ensure_ascii=False,indent=2));raise SystemExit(1 if blocked else 0)
  if args.check:
   stored=json.loads(OUT.read_text());assert stored==current,'Media provenance is stale or incomplete. Rebuild inventory and review added/changed files.'

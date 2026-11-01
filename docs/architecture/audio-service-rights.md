@@ -2,6 +2,10 @@
 
 확인일: 2026-10-10. 최신 사용자 결정은 공용 선택을 유지하면서 원음의 독립 재배포를 제한하는 구조다. 앞선14개 일괄 제외/CC0만 허용 판단을 사용 범위별 정책으로 수정한다. 이전 판단의 증거는 `evidence/audio-service-rights/`와 ADR0020에 보존한다. 현재 구현은 [ADR0021](../decisions/0021-scene-integrated-audio-rights.md)이 소유한다.
 
+## 2026-11-02 실제 서비스 배포 감사 연결
+
+현재 승인530개는 CC0516개(직접합성26+외부490)와 Pixabay14개다. CC0·직접제작 음원은 기존 정적 배포 차단923행에 포함되지 않았다. 음원 차단21행은 기존 승인된 Pixabay14개의 원본과 전달 사본이며 출처 미상이 아니다. `static-delivery-audit.py --usage-scope story-service`는 기존 원본·출처·SHA·근거·참조 내보내기 제한을 검증한 승인에만 `verified-scene-use`를 표시한다. 라이선스와 `redistribution=restricted`는 그대로 유지하며 `standalone-assets`에서는 통과하지 않는다. [이미지·음원·SDK 감사](evidence/media-rights-2026-11-01/checkpoint.json). 이전 장면 결합 허용을 새 CC0 허가로 바꾸지 않는다.
+
 ## 현재 선택 자료와 권리 범위
 
 현재 편집 목록530개: 배경음78·주변 소리28·효과음424. CC0 516개와 Pixabay14개를 같은 권리로 취급하지 않는다. 2026-10-13 추가469개·별칭23개와 현재 native 전달은 [편입 계약](cc0-library-integration-plan.md), [검증](cc0-library-integration-validation.md)이 소유한다. 기존61개 승인 행·ID·bytes·권리는 보존했다.

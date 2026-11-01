@@ -88,7 +88,7 @@ The first browser visit opens **책 소개**. Enter the library and select one o
 
 The four **숏스토리** originals reuse the fixed legacy illustration packs and text. Reading, editing a personal copy, storing several picture books and reopening them live at `/shortstory/`. Use official `.shortstory` v2 or full Excel workbooks to move picture books; prior Next TSV is a limited path and **A4 인쇄** to print them. Unsupported legacy v2/old spreadsheet formats are rejected explicitly; see [format and preservation boundaries](docs/architecture/four-work-shortstory.md). [Current comparison audit and follow-up goals](docs/architecture/four-work-library-audit.md) distinguish local functionality from server-dependent accounts, classes, assignments and sharing.
 
-The repository contains source, document fixtures, original procedural audio/effect resources and licensed cover fonts. **Legacy images and screenshots containing them are not published in this repository while their redistribution evidence remains unverified.** For authorized local testing with the existing legacy checkout, restore exact fixed-baseline media without overwriting the current Next source:
+The repository contains source, document fixtures, original procedural audio/effect resources and licensed cover fonts. **Project images remain outside the source repository as a separate media corpus. Owner-authorized KnolStory service use is recorded with exact hashes in `packages/asset-registry/src/project-media-authorization.json`; this is not a CC0 dedication or a grant to redistribute an independent asset library.** For authorized local testing with the existing legacy checkout, restore exact fixed-baseline media without overwriting the current Next source:
 
 Prerequisites: Git, Node.js `>=22.13.0`, the `pnpm@10.33.0` pinned in `package.json`, Python `>=3.9`, and an **existing authorized** `story-maker` checkout containing the baseline commit. Enable Corepack if necessary (`corepack enable`). On Windows run preparation inside WSL2 with Linux Node/pnpm/Python; native Windows and school/Android hardware have not been validated.
 
@@ -126,3 +126,7 @@ The original/forked manuscripts' project data and audio cues are in [existing-wo
 공개 CI는 별도 복원 원본이 필요한 `catalog.test.ts`와 `approved-audio-bytes.test.ts`를 제외하고, 음원 등록·권리 정책 메타데이터 검사는 계속 실행한다. 로컬 전체 검사는 승인된 원음의 해시까지 확인한다. 원음 파일을 소스에 공개하거나 해시 검사를 제거해 CI를 통과시키지 않는다.
 
 `build:source`는 공개 소스의 정적 컴파일 검사 전용이다. 실제 실행/배포 후보는 승인 자료를 복원한 뒤 일반 `pnpm build`를 사용하며, 그 명령의 음원 해시·권리 검사는 유지된다.
+
+## 실행 프로그램의 출처·라이선스
+
+This program contains free software licensed under a number of licenses, including the GNU Lesser General Public License. A complete list of software is available at [Ren’Py license documentation](https://www.renpy.org/doc/html/license.html). The pinned Ren’Py 8.5.3 license is preserved in [our distributed notice](apps/web/public/licenses/RenPy-8.5.3-LICENSE.txt) and inside `runtime/game.zip` at `renpy/LICENSE.txt`. [Sources and other notices](apps/web/public/licenses/README.md).
