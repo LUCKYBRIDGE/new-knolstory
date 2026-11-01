@@ -1,7 +1,7 @@
 {
   "date": "2026-11-01",
   "baseline": "d95f237",
-  "status": "chapter-labels-deployed-live-verified; four-narrative-seams-local-verification",
+  "status": "completed-for-chapter-and-reviewed-seam-scope",
   "request": "원작·놀스토리에서1장→22장→2장처럼어색한장의순서·내용연결확인및개선",
   "cause": "제작용배열order가chapterNumber부재시읽기장번호로노출. 갈래복제저장순서가서사순서와달랐음.",
   "audit": {
@@ -123,7 +123,35 @@
     "review": "별도읽기전용검토완료,확정추가문제없음",
     "redBoundary": "본문4교정은수동감사후구현과회귀를함께추가했으며사전RED증거없음. 장번호/보관갱신RED와구분.",
     "focused": "5파일37검사통과;전체archive/.knolstory/XLSX및개인수정원고보존",
-    "release": "pending",
+    "release": {
+      "sourceCommit": "d3bfc870eda05d209a7b3228fe215b59e4647863",
+      "ci": {
+        "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41294423018",
+        "status": "success",
+        "files": 264,
+        "passed": 2244,
+        "skipped": 2,
+        "coverage": {
+          "statements": 91.81,
+          "branches": 90.63,
+          "functions": 95.06,
+          "lines": 95.13
+        }
+      },
+      "pages": {
+        "Id": "6b9a5e61-5119-4f82-814c-62a5fd45baf4",
+        "Environment": "Production",
+        "Branch": "main",
+        "Source": "d3bfc87",
+        "Deployment": "https://6b9a5e61.new-knolstory.pages.dev",
+        "Status": "13 seconds ago",
+        "Build": "https://dash.cloudflare.com/e579cab8638cf20fed82fa7480ff6ddb/pages/view/new-knolstory/6b9a5e61-5119-4f82-814c-62a5fd45baf4"
+      },
+      "liveBrowser": "4/4passed29.3s;기존공식보관재열기/실제RenPy1→2A/옹고집·선녀본문교정/Flow보존/reload",
+      "liveFiles": "1536files,unexpected0,corehashes9/9,audiobytes3/3",
+      "ingress": "same build index/game.zip SHA match; API/DB/Worker unchanged; rollback-20261101-narrative retained",
+      "media": "1490 runtime/assets unchanged; game.zip8643696 bytes"
+    },
     "browser": "최종빌드4/4통과10.3s:기존공식보관재열기/실제RenPy1→2A/옹고집·선녀교정글과Flow보존·reload",
     "recoveredCheck": "정적export교체중첫실행native장표시대기1건미전환. 빌드완료뒤동일검사4/4재검증;전후데이터비교약화없음.",
     "fullUnit": "264파일2244통과2제외;statements91.81/branches90.63/functions95.06/lines95.13"
