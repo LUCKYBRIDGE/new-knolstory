@@ -4,7 +4,7 @@ import {builtinShelfCard} from './library-entry';
 import {BUILTIN_WORKS} from '../../apps/web/lib/builtin-works';
 for(const [width,height] of [[320,256],[640,360],[320,740]])test(`book service text and actions reflow at CSS viewport ${width}x${height}`,async({page},info)=>{
  await page.setViewportSize({width,height});await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
- const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});
+ const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});
  await builtinShelfCard(page,'seonnyeo').getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await focus.getByLabel('바탕 판본',{exact:true}).selectOption('original');
  const before=await authored(),reports=[];
  async function capture(name:string,root:Locator){

@@ -12,7 +12,7 @@ test('actual native reading retains menu focus and semantic advance at phone wid
  const stageBox=(await page.getByTestId('story-runtime-frame').boundingBox())!;
  await page.mouse.click(stageBox.x+stageBox.width*.5,stageBox.y+stageBox.height*.1);
  await expect(state).toHaveAttribute('data-audio-unlocked','true');
- const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};});
+ const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};});
  const before=await authored(),frame=await page.getByTestId('story-runtime-frame').elementHandle();
  const mirror=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}),text=mirror.locator('[aria-live="polite"]>p').last();
  const initial=await text.innerText();expect(initial.trim()).not.toBe('');

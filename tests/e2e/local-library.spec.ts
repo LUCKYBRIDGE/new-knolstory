@@ -437,18 +437,19 @@ test('example preparation makes an independent own copy and duplicate import kee
  await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`${originalTitle} · 내 사본`);await library(page);await expect(builtinShelfCard(page,'seonnyeo')).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
  const catalogFile=catalogForestFile();
  await importShelfFile(page,catalogFile);await saved(page);await library(page);
- const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
+ // Match readWorkspace's complete library without requiring duplicate active bytes in storage.
+ const before=await page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,works:{...value.works,[value.storyId]:value.document}};});
  const originalKey=before.storyId;
  await importShelfFile(page,catalogFile);await saved(page);await library(page);
  await expect(page.getByRole('region',{name:'가져온 작품'}).getByRole('article')).toHaveCount(2);
- const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
+ const after=await page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,works:{...value.works,[value.storyId]:value.document}};});
  expect(after.storyId).not.toBe(originalKey);
  expectIndependentImportedProject(after.document.project,before.works[originalKey].project);
  expect(Object.keys(after.works)).toHaveLength(Object.keys(before.works).length+1);
  for(const [key,document] of Object.entries(before.works))expect(after.works[key]).toEqual({...document as object,savedAt:after.works[key].savedAt});
  await page.reload();await library(page);
  await expect(page.getByRole('region',{name:'가져온 작품'}).getByRole('article')).toHaveCount(2);
- const restored=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
+ const restored=await page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,works:{...value.works,[value.storyId]:value.document}};});
  expect(restored.works[originalKey]).toEqual({...before.works[originalKey],savedAt:restored.works[originalKey].savedAt});
  expect(restored.works[after.storyId]).toEqual({...after.works[after.storyId],savedAt:restored.works[after.storyId].savedAt});
 });

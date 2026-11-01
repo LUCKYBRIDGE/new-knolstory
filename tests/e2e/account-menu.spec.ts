@@ -12,9 +12,9 @@ async function mockedAccount(page:Page,enabled=true){
  });return calls;
 }
 async function openAccount(page:Page){const menu=page.locator('[data-account-menu]');await menu.locator('summary').click();await expect(menu.getByRole('button',{name:'로그인 상태 다시 확인',exact:true})).toBeEnabled();return menu;}
-async function authored(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([id,document])=>[id,(document as {project:unknown}).project])),storyId:value.storyId,lineId:value.lineId};});}
+async function authored(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([id,document])=>[id,(document as {project:unknown}).project])),storyId:value.storyId,lineId:value.lineId};});}
 // Envelope savedAt changes during normal hydration; compare every other field.
-async function workspaceContent(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,document:{...value.document,savedAt:undefined},works:Object.fromEntries(Object.entries(value.works).map(([id,document])=>[id,{...(document as Record<string,unknown>),savedAt:undefined}]))};});}
+async function workspaceContent(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,document:{...value.document,savedAt:undefined},works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([id,document])=>[id,{...(document as Record<string,unknown>),savedAt:undefined}]))};});}
 for(const width of [1440,768,390,844])test(`account login return and logout preserve local authored work ${width}`,async({page})=>{
  await page.setViewportSize({width,height:width===844?390:900});const calls=await mockedAccount(page);await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('계정과 독립된 원고');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();

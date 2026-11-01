@@ -34,7 +34,7 @@ try{
    }else{
     await page.getByLabel('이야기 제목',{exact:true}).fill('실제 휴지통 그림책 검사');await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('온라인 휴지통과 별개로 유지할 한글 원고');
    }
-   const local=()=>page.evaluate(format=>{const key=format==='knolstory'?'knolstory-next-workspace-v1':'knolstory-shortstory-library-v1',value=JSON.parse(localStorage.getItem(key));return format==='knolstory'?{project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([key,document])=>{const {savedAt:_savedAt,...content}=document;return [key,content];})),selected:value.storyId}:{books:value.books,activeId:value.activeId,selected:'shortstory:'+value.activeId};},format);
+   const local=()=>page.evaluate(format=>{const key=format==='knolstory'?'knolstory-next-workspace-v1':'knolstory-shortstory-library-v1',value=JSON.parse(localStorage.getItem(key));return format==='knolstory'?{project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([key,document])=>{const {savedAt:_savedAt,...content}=document;return [key,content];})),selected:value.storyId}:{books:value.books,activeId:value.activeId,selected:'shortstory:'+value.activeId};},format);
    const before=await local();await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});
    await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();await panel.getByLabel('온라인에 업로드할 기기 작품',{exact:true}).selectOption(before.selected);
    await context.setOffline(true);

@@ -2,6 +2,10 @@
 
 Current UX owner. Dated notes record refinements; later scoped corrections take precedence. Current four-book selection and introduction rules below are authoritative. Plans/contract changes follow [documentation governance](docs/architecture/documentation-governance.md).
 
+## 임시 보관 실패 시 서재 이동 — 2026-11-01
+
+임시 보관 실패를 이동 버튼 무응답으로 만들지 않는다. 편집에서는 원인을 짧게 알리고 ‘작품 파일 저장하고 서재로’, ‘임시 보관 다시 시도’, ‘계속 편집하기’, ‘서재로 이동’을 구분한다. 기본 초점은 계속 편집하기이며 Escape도 취소한다. 확인 후 이동해도 적용된 원고는 이 탭에서 다시 열 수 있지만 새로고침·탭 종료 시 소실 가능성을 안내한다. 미적용 입력은 별도 경고한다. 파일 쓰기·재읽기 검증이 끝났을 때만 자동 이동하며 다운로드 요청·취소·실패는 저장 완료로 표현하지 않는다. 읽기는 진행 저장 실패 시 재시도와 ‘진행 저장 없이 서재로’를 제공한다. [동작·검증 근거](docs/architecture/evidence/library-return-recovery-2026-11-01/checkpoint.json).
+
 ## 읽기·편집 메뉴의 가독성과 조작 구분 — 2026-11-01 사용자 보완
 
 읽기 메뉴와 편집 설정은 이야기 게임의 짙은 청록·크림·차분한 금색을 유지하되, 창 배경을 불투명하게 하여 뒤의 원고·장면이 글자에 겹치지 않게 한다. 이전의 투명한 메뉴 버튼·설명과 실행 항목을 같은 글씨로 나열하는 방식은 이 범위에서 대체한다. 장면 위의 읽기 도구 자체와 메뉴 창은 구분하며 기존 읽기 무대·저장 계약은 유지한다.

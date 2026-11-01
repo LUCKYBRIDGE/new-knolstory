@@ -17,7 +17,7 @@ for(const format of ['knolstory','shortstory'] as const)for(const width of [1440
   return route.fulfill({status:404,json:{success:false,error:{code:'NOT_FOUND'}}});
  });
  if(format==='knolstory'){await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');}else{await page.goto('/shortstory');await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('휴지통과 별도로 보존할 그림책 원고');}
- const authored=()=>page.evaluate(format=>{if(format==='shortstory')return JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);const s=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:s.document.project,works:s.works};},format);const before=await authored();
+ const authored=()=>page.evaluate(format=>{if(format==='shortstory')return JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')!);const s=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:s.document.project,works:{...s.works,[s.storyId]:s.document}};},format);const before=await authored();
  await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await panel.getByRole('button',{name:'목록 새로고침',exact:true}).click();
  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();const confirmation=panel.getByRole('group',{name:'온라인 휴지통 이동 확인',exact:true});await confirmation.getByRole('button',{name:'취소',exact:true}).click();expect(sent).toEqual([]);
  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();await confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true}).click();await expect(panel.getByRole('alert')).toBeVisible();

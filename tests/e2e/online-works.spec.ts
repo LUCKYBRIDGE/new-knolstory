@@ -18,7 +18,7 @@ async function onlineHarness(page:Page){
   return route.fulfill({json:{success:true,data:{documents:[metadata],nextCursor:null}}});
  });return {project,snapshot,created:()=>created};
 }
-async function local(page:Page){return page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));}
+async function local(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,works:{...value.works,[value.storyId]:value.document}};});}
 for(const width of [1440,390])test(`explicit online new save and independent copy preserve local originals ${width}`,async({page})=>{
  await page.setViewportSize({width,height:900});const remote=await onlineHarness(page);await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('기기에 남길 개인 원고');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();await page.getByLabel('대사 / 해설',{exact:true}).fill('온라인 작업과 별개로 보존할 글');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await local(page);

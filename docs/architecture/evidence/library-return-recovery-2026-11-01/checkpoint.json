@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-01",
+  "status": "local-verified-awaiting-release",
+  "baseline": "37ae6ea",
+  "causes": [
+    "임시 보관 예외 시 편집 서재 이동을 차단하고 문구만 표시",
+    "독자 진행 저장 실패도 서재 이동 차단",
+    "현재 document와 works에 같은 원고 중복 기록",
+    "비동기 writer 인계 완료 전 동기 저장 가능"
+  ],
+  "causalBoundary": "사용자 브라우저 최초 예외는 수집하지 않았다. quota 주입과 코드로 차단을 재현했다. 선녀1613컷 원고 약2198192 UTF16 bytes의 중복 제거이며 브라우저 용량 부족 자체가 없어지지는 않는다.",
+  "implementation": [
+    "편집 실패 시 파일 저장 후 이동/재시도/계속 편집/확인 후 이동",
+    "검증된 파일 저장만 자동 이동; 다운로드 요청/취소/실패는 완료로 처리하지 않음",
+    "읽기 진행 저장 실패 시 재시도 또는 진행 저장 없이 서재로",
+    "workspace2의 document 유지하고 works에는 다른 작품만 기록; 이전 중복 형식도 계속 읽음",
+    "기존 협력 lock 유지; 최신 원고 채택 후 저장; 취소/화면 종료 후 늦은 이동 방지"
+  ],
+  "checks": {
+    "unit": "258 files,2210 passed,2 skipped; private자료 의존2 suite 제외",
+    "storageCoverage": "statements90%,branches89.89%,functions100%,lines100%",
+    "red": "구형390px 빌드에서 이동 확인창 부재; 중복 기록 quota2건 RED",
+    "browser": "최종 Web 빌드10/10:1280/390px 취소/확인·원고 재열기, 모의 파일 쓰기 검증/다운로드/취소/거부, 임시 보관 재시도, 읽기 실패",
+    "existingRegression": "13/13:다중 탭·이전 원고·파일 다운로드·파일 저장 후 이동",
+    "interactive": "ego TaskSpace13 실제 RenPy 편집 미리보기에서 quota 주입, 취소 후 글 유지/확인 후 서재 확인; 검사창 정리",
+    "typecheck": "pass",
+    "lint": "0 errors,existing img warning1",
+    "audit": "no known vulnerabilities"
+  },
+  "reproduce": [
+    "pnpm build",
+    "pnpm exec playwright test --config tests/library-return.playwright.config.ts",
+    "KNOL_REMOTE_ORIGIN=https://story.knolquiz.com pnpm exec playwright test --config tests/library-return.playwright.config.ts --output=.cache/library-return-live-results"
+  ],
+  "limits": [
+    "이번 물리 Android/OS 파일 선택기 미검증; 자동화 파일 핸들은 모의 객체",
+    "원고/ID/Flow/StageComposition/공용 자산/Runtime/API/DB 변경 없음",
+    "임시 보관은 실제 작품 파일 저장을 대체하지 않음"
+  ],
+  "release": {
+    "status": "pending"
+  }
+}

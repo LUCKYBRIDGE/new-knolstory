@@ -10,7 +10,7 @@ test('native BODY and canvas Tab return to semantic reading controls after audio
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const authored=()=>page.evaluate(()=>{
   const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);
-  return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};
+  return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};
  });
  const before=await authored();
   const status=page.getByTestId('story-runtime-status'),frame=page.getByTestId('story-runtime-frame');

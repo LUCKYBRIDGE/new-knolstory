@@ -52,3 +52,33 @@ it('reads a retired classic preview as landscape without changing the authored p
  const project=work();const raw=JSON.stringify({...state(project),previewProfile:'classic',document:doc(project)});
  const loaded=readWorkspace(raw);expect(loaded.contexts['new:a'].previewProfile).toBe('landscape');expect(loaded.project).toEqual(project);expect(JSON.parse(raw).previewProfile).toBe('classic');
 });
+
+it('keeps a large active work within a 1 MiB recovery budget without duplicating its content',()=>{
+ const base=work('large');
+ const project={...base,lines:Array.from({length:250},(_,index)=>({...base.lines[0]!,id:`large-${index}`,order:index+1,text:'가'.repeat(1000),flow:{type:'goto' as const,targetLineId:null}}))};
+ let raw='previous raw';
+ const storage={setItem:(_key:string,value:string)=>{if(value.length*2>1024*1024)throw new DOMException('Recovery quota exceeded','QuotaExceededError');raw=value;}};
+ expect(()=>writeWorkspace(storage,project,{}, {},state(project))).not.toThrow();
+ const restored=readWorkspace(raw);expect(restored.project).toEqual(project);expect(restored.works[`new:${project.id}`]).toEqual(project);
+ const compact=JSON.parse(raw),duplicated=JSON.stringify({...compact,works:{...compact.works,[compact.storyId]:compact.document}});
+ expect(duplicated.length*2).toBeGreaterThan(1024*1024);
+ expect(raw.length*2).toBeLessThan(1024*1024);
+});
+
+it('roundtrips every work, context, deletion recovery and reader path when the active work is stored once',()=>{
+ const a=work('active'),b=work('other'),deleted=work('deleted');
+ const contextB={...captureContext(b,undefined,{...state(b),mode:'play',playback:advancePlayback(b,createPlayback(b))}),editingPath:['other-second','other-first']};
+ const current={...state(a),mode:'play' as const,playback:advancePlayback(a,createPlayback(a)),editingPath:['active-first','active-second','active-first'],view:'library' as const,deletedWork:{key:'new:deleted',project:deleted,context:captureContext(deleted,undefined,state(deleted))}};
+ let raw='';const result=writeWorkspace({setItem:(_key,value)=>{raw=value;}},a,{'new:active':a,'import:other':b},{'import:other':contextB},current);
+ const stored=JSON.parse(raw);expect(stored.workspaceVersion).toBe(2);expect(stored.document.project).toEqual(a);expect(stored.works['import:other'].project).toEqual(b);expect(stored.works['new:active']).toBeUndefined();
+ const loaded=readWorkspace(raw);expect(loaded.works).toEqual(result.works);expect(loaded.works).toEqual({'new:active':a,'import:other':b});expect(loaded.contexts).toEqual(result.contexts);expect(loaded.playback).toEqual(current.playback);expect(loaded.deletedWork).toEqual(current.deletedWork);expect(loaded.view).toBe('library');
+});
+
+it('accepts both prior duplicated-v2 and sparse-v2 storage while validating every remaining document',()=>{
+ const a=work('active'),b=work('other'),s=state(a),context=captureContext(a,undefined,s);
+ const common={workspaceVersion:2,...s,document:doc(a),contexts:{[s.storyId]:context}};
+ const prior=JSON.stringify({...common,works:{[s.storyId]:doc(a),'import:other':doc(b)}}),compact=JSON.stringify({...common,works:{'import:other':doc(b)}});
+ expect(readWorkspace(prior)).toEqual(readWorkspace(compact));
+ expect(()=>readWorkspace(JSON.stringify({...common,works:{'import:other':{broken:true}}}))).toThrow('저장된 작품 목록에 읽을 수 없는 작품이 있습니다');
+ expect(()=>readWorkspace(JSON.stringify({...common,document:{broken:true},works:{'import:other':doc(b)}}))).toThrow('저장된 작품 형식을 확인해 주세요');
+});

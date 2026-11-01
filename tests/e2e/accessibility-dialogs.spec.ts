@@ -2,7 +2,7 @@ import {test,expect,type Page,type Locator,type TestInfo} from '@playwright/test
 import axe from 'axe-core';
 import {writeFile} from 'node:fs/promises';
 import {startShelfCreation,shelfCoverButton,builtinShelfCard} from './library-entry';
-const authored=(page:Page)=>page.evaluate(()=>{const state=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {active:state.document.project,works:Object.fromEntries(Object.entries(state.works).map(([id,document])=>[id,(document as {project:unknown}).project]))};});
+const authored=(page:Page)=>page.evaluate(()=>{const state=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {active:state.document.project,works:Object.fromEntries(Object.entries({...state.works,[state.storyId]:state.document}).map(([id,document])=>[id,(document as {project:unknown}).project]))};});
 async function create(page:Page){await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('열린 화면 접근성 검사');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
 async function scan(page:Page,root:Locator,surface:string,info:TestInfo){
  await page.addScriptTag({content:axe.source});

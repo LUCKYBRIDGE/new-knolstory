@@ -21,7 +21,7 @@ export type WorkspaceCheckOptions=Readonly<{verified?:ReadonlySet<string>}>;
 function checkedProject(document:unknown,failure:string,options:WorkspaceCheckOptions,checked:Set<string>):StoryProject{
  const result=parseStoryDocument(document);if(!result.ok)throw Error(failure);
  const fingerprint=workFingerprint(document);
- // The same document is stored as the current work and in the work list: check it once per read.
+ // Prior v2 snapshots may repeat the active document in works: validate identical content once per read.
  if(!fingerprint||!checked.has(fingerprint)&&!options.verified?.has(fingerprint))preflight(result.document.project);
  if(fingerprint)checked.add(fingerprint);
  return result.document.project;
@@ -35,7 +35,10 @@ export function captureContext(project:StoryProject,previous:WorkContext|undefin
 const documentFor=(project:StoryProject)=>createStoryDocument({project,savedAt:new Date().toISOString(),appVersion:'knolstory-next-0.1'});
 export function writeWorkspace(storage:Pick<Storage,'setItem'>,project:StoryProject,works:Readonly<Record<string,StoryProject>>,contexts:WorkContexts,state:WorkspaceState){
  const nextWorks={...works,[state.storyId]:project};const nextContexts={...contexts,[state.storyId]:captureContext(project,contexts[state.storyId],state)};
- const data={workspaceVersion:2,...state,deletedWork:state.deletedWork?{key:state.deletedWork.key,context:state.deletedWork.context,document:documentFor(state.deletedWork.project)}:undefined,document:documentFor(project),works:Object.fromEntries(Object.entries(nextWorks).map(([id,work])=>[id,documentFor(work)])),contexts:nextContexts};
+ // The top-level document is the active work. Existing v2 readers merge it into works on read,
+ // so store only other works here instead of spending the browser quota on the same manuscript twice.
+ const otherDocuments=Object.fromEntries(Object.entries(nextWorks).filter(([id])=>id!==state.storyId).map(([id,work])=>[id,documentFor(work)]));
+ const data={workspaceVersion:2,...state,deletedWork:state.deletedWork?{key:state.deletedWork.key,context:state.deletedWork.context,document:documentFor(state.deletedWork.project)}:undefined,document:documentFor(project),works:otherDocuments,contexts:nextContexts};
  storage.setItem(WORKSPACE_KEY,JSON.stringify(data));return {works:nextWorks,contexts:nextContexts};
 }
 /** Additive reader: the original key and document envelope remain readable by older hosts. */

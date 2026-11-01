@@ -2,7 +2,7 @@ import {test,expect,type Page,type Locator} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {startShelfCreation} from './library-entry';
 const evidence='docs/architecture/evidence/accessibility-contrast-2026-10-17';
-async function authored(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});}
+async function authored(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});}
 async function named(control:Locator,name:string,text:string){
  await expect(control).toHaveAccessibleName(name);await expect(control).toHaveText(text);
  return {role:'button',visibleText:await control.innerText(),expectedName:name,computedAriaSnapshot:await control.ariaSnapshot(),enabled:await control.isEnabled()};

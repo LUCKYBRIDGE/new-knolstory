@@ -10,7 +10,7 @@ async function setup(page:Page){
  const frame=page.frameLocator('[data-testid="story-runtime-frame"]'),status=page.getByTestId('story-runtime-status');await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);return {frame,status};
 }
 for(const ownership of ['waiting','other','other-then-body'])test(`delayed native acknowledgment retains focus ownership ${ownership}`,async({page},info)=>{
- test.setTimeout(90000);const {frame,status}=await setup(page);const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};});const before=await authored();
+ test.setTimeout(90000);const {frame,status}=await setup(page);const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};});const before=await authored();
  const mirror=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}),summary=mirror.locator('summary'),choice=mirror.getByRole('button',{name:'초점 소유권 검사 선택',exact:true}),other=page.getByRole('button',{name:'읽기 메뉴',exact:true});
  await frame.locator('body').evaluate(()=>{(window as unknown as {hold:boolean}).hold=true;});await choice.focus();await choice.press('Enter');await expect.poll(async()=>frame.locator('body').evaluate(()=>(window as unknown as {held?:{revision:number}}).held?.revision)).toBeGreaterThanOrEqual(0);
  if(ownership!=='waiting'){await other.focus();if(ownership==='other-then-body')await other.evaluate(node=>(node as HTMLElement).blur());}
@@ -21,7 +21,7 @@ for(const ownership of ['waiting','other','other-then-body'])test(`delayed nativ
 });
 test('automatic reading does not take focus from a closed reader menu trigger',async({page},info)=>{
  test.setTimeout(90000);const {status}=await setup(page);
- const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries(value.works).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};});const before=await authored();
+ const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([id,entry])=>[id,(entry as {project:unknown}).project]))};});const before=await authored();
  const choice=page.getByRole('button',{name:'초점 소유권 검사 선택',exact:true});await choice.focus();await choice.press('Enter');
  await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);
  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await page.getByRole('spinbutton',{name:'자동 넘기기 대기 시간 초',exact:true}).fill('1');await page.keyboard.press('Escape');

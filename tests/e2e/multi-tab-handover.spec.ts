@@ -116,7 +116,7 @@ test('a work deleted in another tab is not resurrected and this tab’s remainin
  const focus=second.getByRole('dialog');await focus.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();
  await focus.getByRole('button',{name:'내 작품 삭제',exact:true}).click();
  await second.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();
- await expect.poll(()=>second.evaluate(key=>Object.hasOwn(JSON.parse(localStorage.getItem(key)!).works,'new:tab-handover'),workspace)).toBe(false);
+ await expect.poll(()=>second.evaluate(key=>{const value=JSON.parse(localStorage.getItem(key)!);return Object.hasOwn({...value.works,[value.storyId]:value.document},'new:tab-handover');},workspace)).toBe(false);
  // Release the deleting tab after flushing its pending snapshot; its savedAt may otherwise
  // legitimately change while the old tab is taking over.
  await second.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
@@ -137,7 +137,7 @@ test('a save from another tab that this tab had not heard of yet is adopted inst
  await field.fill('처음 보관한 글');await expect.poll(()=>storedText(page,id)).toBe('처음 보관한 글');
  // Another tab took the writer over and saved before this tab heard that it lost the writer
  // (no storage event reaches this tab for its own window, as in that race).
- await page.evaluate(({key,id})=>{const stored=JSON.parse(localStorage.getItem(key)!);for(const document of [stored.document,stored.works[stored.storyId]])document.project.lines.find((line:{id:string})=>line.id===id).text='다른 탭이 막 보관한 글';localStorage.setItem(key,JSON.stringify(stored));},{key:workspace,id});
+ await page.evaluate(({key,id})=>{const stored=JSON.parse(localStorage.getItem(key)!);for(const document of [stored.document,stored.works[stored.storyId]].filter(Boolean))document.project.lines.find((line:{id:string})=>line.id===id).text='다른 탭이 막 보관한 글';localStorage.setItem(key,JSON.stringify(stored));},{key:workspace,id});
  await setTextQuietly(page,'이 탭에서 이어 쓴 글');
  await expect.poll(()=>storedText(page,id)).toBe('이 탭에서 이어 쓴 글');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await expect(field).toHaveValue('이 탭에서 이어 쓴 글');await expect(page.getByText(/임시 보관 실패|보관하지 못했어요/)).toHaveCount(0);

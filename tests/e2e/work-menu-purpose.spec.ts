@@ -65,7 +65,7 @@ for(const fail of [false,true])test(`public sheet import uses current edits and 
  }else{
   await expect(page.getByRole('heading',{name:'공개 시트에서 가져온 작품',exact:true})).toBeVisible();
   await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
-  const preserved=await page.evaluate(id=>Object.values(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).works).map(document=>(document as {project:{id:string;updatedAt:string}}).project).find(project=>project.id===id)!,originalId);
+  const preserved=await page.evaluate(id=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return Object.values({...value.works,[value.storyId]:value.document}).map(document=>(document as {project:{id:string;updatedAt:string}}).project).find(project=>project.id===id)!;},originalId);
   expect(preserved).toEqual({...edited,updatedAt:preserved.updatedAt});
   const imported=await savedProject();expect(imported.id).not.toBe(originalId);expect(imported).toEqual({...archive.document.project,id:imported.id});
   await page.reload();await expect(page.getByRole('heading',{name:'공개 시트에서 가져온 작품',exact:true})).toBeVisible();expect(await savedProject()).toEqual(imported);

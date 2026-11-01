@@ -4,7 +4,7 @@ import {mkdirSync,writeFileSync} from 'node:fs';
 import {enterLibrary,beginSelectedBook,openBuiltinEdition,builtinEditions} from './library-entry';
 const evidence=`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/four-work-library`; // Outputs only.
 async function ready(page:Page){const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.evaluate(n=>n.getAttribute('data-rendered-revision')===n.getAttribute('data-scene-revision')),{timeout:30000}).toBe(true);}
-async function stored(page:Page){return page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));}
+async function stored(page:Page){return page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {...value,works:{...value.works,[value.storyId]:value.document}};});}
 test('four books retain eight independent native reading paths and manual save slots across reload',async({page},info)=>{
  test.skip(info.project.name!=='stories-runtime');test.setTimeout(480000);mkdirSync(evidence,{recursive:true});await page.goto('/');await enterLibrary(page);await expect(page.locator('article[data-work-id]')).toHaveCount(4);
  const records:Array<{workId:string;edition:string;key:string;projectId:string;lineId:string;path:string[]}> = [];

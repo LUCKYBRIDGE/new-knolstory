@@ -1,5 +1,7 @@
 "use client";
 import {WorkLeaveGuard} from './work-leave-guard';
+import {LibraryReturnDialog} from './library-return-dialog';
+import {workspaceSaveFailure} from '../lib/workspace-save-error';
 import {createWorkLeaveTracker} from '../lib/work-leave-tracker';
 import type {ReaderTapMode} from '../lib/reader-preferences';
 import {MobileFullscreenOffer} from './mobile-fullscreen-offer';
@@ -107,6 +109,12 @@ export function StoryWorkspace() {
   const [pendingArchive,setPendingArchive]=useState<AuthoringArchive|null>(null);
   const [importBusy,setImportBusy]=useState(false);
   const [confirmStorageReload,setConfirmStorageReload]=useState(false);
+  const [libraryReturn,setLibraryReturn]=useState<{reason:string;workId:string}|null>(null);
+  const [libraryReturnBusy,setLibraryReturnBusy]=useState<'checking'|'saving'|null>(null),[libraryReturnNotice,setLibraryReturnNotice]=useState('');
+  const libraryReturnGeneration=useRef(0),libraryRetryAction=useRef<()=>void>(()=>{});
+  const [libraryRetry,setLibraryRetry]=useState(0);
+  useEffect(()=>()=>{libraryReturnGeneration.current++;},[]);
+  const [manualSaveRequest,setManualSaveRequest]=useState<{workId:string;sequence:number}|null>(null),manualSaveAction=useRef<()=>void>(()=>{}),manualSaveSequence=useRef(0);
   const importReadSequence=useRef(0);
   const [deletedWork,setDeletedWork]=useState<DeletedWork|undefined>();
   const [pendingWorkDelete,setPendingWorkDelete]=useState<string|null>(null);
@@ -158,7 +166,7 @@ export function StoryWorkspace() {
   const [hydrated, setHydrated] = useState(false);
   const [loadComplete, setLoadComplete] = useState(false);
   const [saveStatus, setSaveStatus] = useState("임시 보관 준비 중");
-  const displayedSaveStatus=writer.status==='unavailable'?'임시 보관 중지':saveStatus;
+  const displayedSaveStatus=writer.status==='unavailable'?'임시 보관 중지':writer.status==='standby'&&saveStatus!=='임시 보관됨'?'임시 보관 대기 중':saveStatus;
   const [error, setError] = useState("");
   const [storageError, setStorageError] = useState("");
   const keyboard=useEditorKeyboard();
@@ -290,7 +298,7 @@ export function StoryWorkspace() {
         // Another tab took the writer over and saved a moment ago: this tab adopts that save and then saves.
         if(retryAfterTakeover())return;
         setSaveStatus("임시 보관 실패 — 작품 파일로 저장해 주세요");
-        setError(`브라우저에 복구본을 보관하지 못했어요. 현재 원고는 화면에 유지됩니다. 작품 파일로 저장해 주세요. ${String(issue)}`);
+        setError(workspaceSaveFailure(issue));
       }
     }, document);
   }, [project, storyId, lineId, hydrated, mode, playback, view,editorView,activeTool,writerChapterId,previewProfile,writer.status,writer.guard,retryAfterTakeover,deletedWork,editingPath]);
@@ -386,16 +394,48 @@ export function StoryWorkspace() {
     if(composing){setError('한글 입력을 마친 뒤 로그인해 주세요.');return false;}
     try{persistWorkspace();return true;}catch{setError('현재 원고의 복구본을 보관하지 못해 로그인 화면으로 이동하지 않았어요. 작품 파일로 저장하거나 브라우저 보관함을 복구한 뒤 다시 시도해 주세요.');return false;}
   }
-  function returnToLibrary(){
-    if(composing){setError('한글 입력을 마친 뒤 서재로 이동해 주세요.');return;}
-    // Editing must be kept before leaving. Reading only adds the reading position, which the reading
-    // slot already holds, so leaving a story never waits for the browser storage.
-    if(view==='prepare'||view==='editor'&&mode==='edit')try{persistWorkspace();}catch{setError('서재로 이동하기 전 원고를 임시 보관하지 못했어요. 현재 편집을 유지합니다. 작품 파일로 저장하거나 기기 보관함을 복구한 뒤 다시 시도해 주세요.');return;}
-    else if(view==='editor')try{persistWorkspace();}catch{/* Reading position stays in the reading slot. */}
-    rememberCurrent();setMemoRequest(null);setMode('edit');setFlowMapOpen(false);setView('library');setManageOpen(false);
-    if(document.fullscreenElement)void document.exitFullscreen();
+  function completeLibraryReturn(notice=''){
+    libraryReturnGeneration.current++;setLibraryReturn(null);setLibraryReturnBusy(null);setLibraryReturnNotice('');
+    rememberCurrent();setMemoRequest(null);setMode('edit');setFlowMapOpen(false);setView('library');setManageOpen(false);setError(notice);
+    if(document.fullscreenElement)void document.exitFullscreen().catch(()=>setError('서재로 이동했어요. 전체 화면은 설정에서 해제할 수 있어요.'));
     if(location.search)history.replaceState(null,'',location.pathname);
     directEditor.current=false;
+  }
+  function cancelLibraryReturn(){libraryReturnGeneration.current++;setLibraryReturn(null);setLibraryReturnBusy(null);setLibraryReturnNotice('');}
+  async function retryLibraryReturn(){
+    const generation=++libraryReturnGeneration.current;setLibraryReturnBusy('checking');setLibraryReturnNotice('');
+    const claimed=await writer.claim();if(generation!==libraryReturnGeneration.current)return;
+    if(claimed)setLibraryRetry(generation);
+    else {setLibraryReturnBusy(null);setLibraryReturnNotice('임시 보관을 아직 완료하지 못했어요. 작품 파일로 저장하거나 현재 원고를 이 탭에 두고 서재로 이동할 수 있어요.');}
+  }
+  // Claiming can adopt another tab's manuscript. Run the write after React has committed that adoption,
+  // never from the stale project closure which started the asynchronous claim.
+  useLayoutEffect(()=>{libraryRetryAction.current=()=>{
+    if(!libraryReturn||libraryRetry!==libraryReturnGeneration.current)return;
+    if(document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]')){setLibraryReturnBusy(null);setLibraryReturnNotice('아직 작품에 적용하지 않은 입력이 있어요. 계속 편집해 내용을 확인하거나 서재로 이동을 선택해 주세요.');return;}
+    if(project.id!==libraryReturn.workId){setLibraryReturnBusy(null);setLibraryReturnNotice('다른 작품으로 바뀌어 이동을 멈췄어요. 현재 원고를 확인해 주세요.');return;}
+    try{persistWorkspace();setSaveStatus('임시 보관됨');completeLibraryReturn();}
+    catch(issue){setLibraryReturnBusy(null);setLibraryReturnNotice(workspaceSaveFailure(issue));}
+  };});
+  useEffect(()=>{if(!libraryRetry)return;const timer=setTimeout(()=>libraryRetryAction.current(),0);return()=>clearTimeout(timer);},[libraryRetry]);
+  async function saveFileAndReturn(){
+    const generation=++libraryReturnGeneration.current;setLibraryReturnBusy('saving');setLibraryReturnNotice('');
+    try{
+      const result=await leaveTracker.saveCurrent();if(generation!==libraryReturnGeneration.current)return;
+      if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();
+      else {setLibraryReturnBusy(null);setLibraryReturnNotice(result==='download-requested'?'다운로드를 요청했어요. 파일을 열어 내용을 확인한 뒤 ‘서재로 이동’을 눌러 주세요.':result==='saved'?'파일은 저장했지만 다른 변경이 남아 있어요. 확인 후 서재로 이동해 주세요.':'파일 저장을 완료하지 못했어요. 현재 원고는 그대로 있어요. 다시 저장하거나 계속 편집할 수 있어요.');}
+    }catch{if(generation===libraryReturnGeneration.current){setLibraryReturnBusy(null);setLibraryReturnNotice('파일 저장을 완료하지 못했어요. 현재 원고는 그대로 있어요.');}}
+  }
+  function returnToLibrary(){
+    if(composing){setError('한글 입력을 마친 뒤 서재로 이동해 주세요.');return;}
+    if(view==='prepare'||view==='editor'&&mode==='edit'){
+      if(document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]')){setManageOpen(false);setLibraryReturn({reason:'아직 작품에 적용하지 않은 입력이 있어요. 서재로 이동하면 적용 전 입력은 사라질 수 있어요. 필요한 내용은 계속 편집해 적용해 주세요.',workId:project.id});setLibraryReturnNotice('');return;}
+      try{persistWorkspace();completeLibraryReturn();}
+      catch(issue){setManageOpen(false);setLibraryReturn({reason:workspaceSaveFailure(issue),workId:project.id});setLibraryReturnNotice('');if(writer.status!=='unavailable'&&!writer.guard.current?.isOwned())void retryLibraryReturn();}
+      return;
+    }
+    try{if(writer.guard.current?.isOwned())persistWorkspace();}catch{/* Reading position is best effort; a browser recovery failure must not trap the reader. */}
+    completeLibraryReturn();
   }
   function prepareWork(memoId?:string,section?:WorkSection){if(composing){setError('한글 입력을 마친 뒤 작품 설정을 열어 주세요.');return;}const id=typeof memoId==='string'?memoId:undefined;const origin=document.activeElement;settingsReturnFocus.current=section==='scores'&&view==='editor'&&origin instanceof HTMLElement&&shell.current?.contains(origin)?{projectId:project.id,lineId:line.id,field:origin}:null;if(id!==undefined){try{persistWorkspace();}catch(issue){setError(`현재 원고의 복구본을 보관하지 못해 작품 설정을 열지 않았어요. ${String(issue)}`);return;}}setMemoRequest(id!==undefined?{projectId:project.id,memoId:id,lineId:line.id,section,returnToEditor:true,editorContext:view==='editor'&&mode==='edit'?{editorView,activeTool,writerChapterId,soundTool}:undefined}:null);if(protectAuthoring('prepare'))return;rememberCurrent();setMode('edit');setView('prepare');setManageOpen(false);}
   async function preserveCopyAudio(source:StoryProject,target:StoryProject){
@@ -518,16 +558,18 @@ export function StoryWorkspace() {
       return true;
     } catch (issue) { setError(`새 작품을 시작하지 못했어요. ${String(issue)}`); return false; }
   }
-  function saveNow() {
-    if (!hydrated) return;
-    try {
-      persistWorkspace();
-      setSaveStatus("임시 보관됨");
-      setError("");
-    } catch (issue) {
-      setSaveStatus("임시 보관 실패 — 작품 파일로 저장해 주세요");
-      setError(`브라우저에 복구본을 보관하지 못했어요. 작품 파일로 저장해 주세요. ${String(issue)}`);
-    }
+  function performManualSave(){
+    try{persistWorkspace();setSaveStatus('임시 보관됨');setError('');}
+    catch(issue){setSaveStatus('임시 보관 실패 — 작품 파일로 저장해 주세요');setError(workspaceSaveFailure(issue));}
+  }
+  useLayoutEffect(()=>{manualSaveAction.current=()=>{if(manualSaveRequest?.workId===project.id&&loadComplete)performManualSave();};});
+  useEffect(()=>{if(!manualSaveRequest)return;const timer=setTimeout(()=>manualSaveAction.current(),0);return()=>clearTimeout(timer);},[manualSaveRequest]);
+  async function saveNow(){
+    if(!hydrated){setError('기존 보관 원고를 보호하고 있어요. 현재 원고를 작품 파일로 저장해 주세요.');return;}
+    if(writer.guard.current?.isOwned()){performManualSave();return;}
+    const workId=project.id,sequence=++manualSaveSequence.current;setSaveStatus('임시 보관 대기 중');
+    if(await writer.claim())setManualSaveRequest({workId,sequence});
+    else {setSaveStatus('임시 보관 대기 중');setError('임시 보관을 아직 이어받지 못했어요. 작품 파일 저장은 사용할 수 있어요.');}
   }
   function addCut() {
     const id = crypto.randomUUID();
@@ -869,7 +911,7 @@ export function StoryWorkspace() {
     target.addEventListener("lostpointercapture", end);
   }
   function changeWorkSection(section:WorkSection){setMemoRequest(current=>({projectId:project.id,memoId:current?.projectId===project.id?current.memoId:'',lineId:current?.projectId===project.id?current.lineId:line.id,section,returnToEditor:current?.projectId===project.id?current.returnToEditor:false,editorContext:current?.projectId===project.id?current.editorContext:undefined}));setManageOpen(false);}
-  const workHeader=(children:ReactNode)=><WorkspaceManagement fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} settingsExtras={<><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))returnToLibrary();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장되지 않은 변경이 있어 편집을 유지합니다. 작품 파일 저장 상태를 확인해 주세요.');}}>작품 파일 저장하고 서재로</button><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="장 추가·보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<EditorTermGuide/>
+  const workHeader=(children:ReactNode)=><WorkspaceManagement fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} settingsExtras={<><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장되지 않은 변경이 있어 편집을 유지합니다. 작품 파일 저장 상태를 확인해 주세요.');}}>작품 파일 저장하고 서재로</button><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="장 추가·보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<EditorTermGuide/>
             <p>컷 미리보기 · 가로 16:9 고정. 읽기 화면에서는 16:9 또는 9:16을 선택할 수 있어요.</p>
           <button aria-pressed={reducedMotion || motionOverride} onClick={() => { setMotionOverride(value => !value); setRevision(value => value + 1); }} disabled={reducedMotion}>동작 줄이기</button>
           <button disabled={composing} onClick={()=>switchMode('play',true)}>처음부터 읽기</button></div></details>}<button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button><div ref={setSettingsHost}/></>} scoresEnabled={logic.scores} localFileActions={<LocalWorkFileActions registerSave={leaveTracker.registerSave} onVerifiedSave={leaveTracker.saved} onSavingChange={leaveTracker.saving} shortcutsEnabled={view==='prepare'||view==='editor'&&mode==='edit'} fileSession={localFileSession} workKey={project.id} name={project.title} extension=".knolstory" disabled={composing||!loadComplete} serialize={()=>serializeLocalWork()}/>} disabled={composing} recovery={<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>} project={project} compact={true} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={open=>{setManageOpen(open);if(open)shell.current?.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open]').forEach(detail=>{detail.open=false;});if(open&&viewToolsMenu.current)viewToolsMenu.current.open=false;}} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportArchive={archive=>{setError('');setPendingArchive(archive);}} onError={setError} onLibrary={returnToLibrary} onPrepare={section=>view==='prepare'?changeWorkSection(section):prepareWork('',section)}>{children}</WorkspaceManagement>;
@@ -968,6 +1010,7 @@ export function StoryWorkspace() {
   const storageRecovery = storageError&&<section aria-label="기기 보관함 복구" className={`${styles.error} ${styles.storageWarning}`}><p>{storageError}</p><button onClick={()=>{try{const raw=localStorage.getItem(WORKSPACE_KEY);if(raw!==null)downloadArtifact(raw,'놀스토리-복구원본.json','application/json');}catch(issue){setError(String(issue));}}}>복구용 원본 보관</button><button onClick={restartProtectedStorage} disabled={!storageWritable}>손상 원본 보존하고 새 보관함 시작</button></section>;
   return (<StoryBranchEditingContext.Provider value={logic.branches}>
     <WorkLeaveGuard tracker={leaveTracker} work={project} ready={loadComplete}/>
+    {libraryReturn&&<LibraryReturnDialog reason={libraryReturn.reason} notice={libraryReturnNotice} busy={libraryReturnBusy} onCancel={cancelLibraryReturn} onRetry={()=>void retryLibraryReturn()} onSave={()=>void saveFileAndReturn()} onContinue={()=>completeLibraryReturn('임시 보관을 완료하지 못한 원고를 이 탭에 유지했어요. 새로고침하거나 닫기 전에 작품 파일로 저장해 주세요.')}/>}
     <MobileFullscreenOffer enabled={['editor','prepare'].includes(view)&&!composing} onEnter={()=>void toggleFullscreen()}/>
     {['editor','prepare','book','cover'].includes(view)&&excludedAudio.length>0&&<p role="alert" className={styles.error}>이 작품에 서비스에서 제외한 기본 소리가 있습니다: {excludedAudio.map(asset=>asset.name).join(', ')}. 해당 소리는 재생하지 않으며 원고의 소리 지정은 보존합니다. 음향 편집에서 사용할 소리로 교체해 주세요.</p>}
     {importBusy&&!pendingArchive&&<p role='status' className={styles.status}>작품 파일의 연결·연출·첨부를 확인하고 있어요. 긴 작품은 잠시 걸릴 수 있습니다.</p>}
@@ -998,7 +1041,7 @@ export function StoryWorkspace() {
 
         </div>
       </section>)}
-      {mode==='play'&&<StoryPlayerMenu toolsHidden={!!scene.transitionOnly||runtime.transitionPending} tapMode={readerTapMode} onTapModeChange={value=>{setReaderTapMode(value);setRevision(v=>v+1);}} format={readerFormat} onFormatChange={format=>{setReaderFormat(format);setRevision(v=>v+1);}} toolFontSizePx={11} stageBounds={{x:runtime.fit.offsetX,y:runtime.fit.offsetY,width:scene.width*runtime.fit.scale,height:scene.height*runtime.fit.scale}} thumbnailReady={runtime.rendered===scene.revision} captureThumbnail={runtime.captureThumbnail} project={project} playback={playback} visibleDialogue={runtime.renderEvidence?.revision===scene.revision&&runtime.renderEvidence.sceneId===scene.sceneId&&runtime.renderEvidence.dialoguePage?.endOffset!==undefined?{lineId:line.id,endOffset:runtime.renderEvidence.dialoguePage.endOffset}:undefined} dialoguePosition={runtime.renderEvidence?.revision===scene.revision?{lineId:line.id,offset:runtime.renderEvidence.dialoguePage?.offset??0}:undefined} onRestore={(state,position)=>{try{compileStoryScene(project,state.lineId??state.path.at(-1)!,revision+1,{mode:'play',playbackPath:state.path,playbackState:state});setReaderResume(position??null);setPlayback(state);setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setRevision(v=>v+1);}catch(e){setError(String(e));throw e;}}} stageContainer={runtime.container.current} textboxBounds={(()=>{const box=runtime.renderEvidence?.revision===scene.revision?runtime.renderEvidence.textboxRect:scene.textboxRect;if(!box)return undefined;return {x:runtime.fit.offsetX+box.x*runtime.fit.scale,y:runtime.fit.offsetY+box.y*runtime.fit.scale,width:box.width*runtime.fit.scale,height:box.height*runtime.fit.scale};})()} onInteractionChange={setReaderBusy} presentationReady={runtime.presentationReady} manualEffectPending={!!scene.effectSteps&&scene.effectSteps.current<scene.effectSteps.total} presentationKey={`${project.id}/${playbackRun}/${presentationEntry}/${line.id}/${scene.effectSteps?.current??0}/${runtime.renderEvidence?.revision===scene.revision?runtime.renderEvidence.dialoguePage?.index??0:0}`} textScale={readerTextScale} onTextScaleChange={scale=>{setReaderTextScale(scale);setRevision(v=>v+1);}} onRestart={()=>{setReaderResume(null);setPlayback(createPlayback(project));setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setRevision(v=>v+1);}} onExit={readingFromEditor?()=>switchMode('edit'):undefined} onLibrary={()=>{void writer.claim().then(()=>returnToLibrary());}} onFullscreen={()=>void toggleFullscreen()} fullscreen={fullscreen} onAdvance={()=>advance()} onReducedMotion={()=>{setMotionOverride(v=>!v);setRevision(v=>v+1);}} reducedMotion={reducedMotion||motionOverride} motionDisabled={reducedMotion} hasMoreText={!!runtime.renderEvidence?.dialoguePage&&runtime.renderEvidence.revision===scene.revision&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1} advanceDisabled={(playback.status!=='reading'&&!(scene.effectSteps&&scene.effectSteps.current<scene.effectSteps.total)&&!(runtime.renderEvidence?.revision===scene.revision&&runtime.renderEvidence.dialoguePage&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1))||runtime.presentationPending} disabled={!runtime.ready}/>}
+      {mode==='play'&&<StoryPlayerMenu toolsHidden={!!scene.transitionOnly||runtime.transitionPending} tapMode={readerTapMode} onTapModeChange={value=>{setReaderTapMode(value);setRevision(v=>v+1);}} format={readerFormat} onFormatChange={format=>{setReaderFormat(format);setRevision(v=>v+1);}} toolFontSizePx={11} stageBounds={{x:runtime.fit.offsetX,y:runtime.fit.offsetY,width:scene.width*runtime.fit.scale,height:scene.height*runtime.fit.scale}} thumbnailReady={runtime.rendered===scene.revision} captureThumbnail={runtime.captureThumbnail} project={project} playback={playback} visibleDialogue={runtime.renderEvidence?.revision===scene.revision&&runtime.renderEvidence.sceneId===scene.sceneId&&runtime.renderEvidence.dialoguePage?.endOffset!==undefined?{lineId:line.id,endOffset:runtime.renderEvidence.dialoguePage.endOffset}:undefined} dialoguePosition={runtime.renderEvidence?.revision===scene.revision?{lineId:line.id,offset:runtime.renderEvidence.dialoguePage?.offset??0}:undefined} onRestore={(state,position)=>{try{compileStoryScene(project,state.lineId??state.path.at(-1)!,revision+1,{mode:'play',playbackPath:state.path,playbackState:state});setReaderResume(position??null);setPlayback(state);setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setRevision(v=>v+1);}catch(e){setError(String(e));throw e;}}} stageContainer={runtime.container.current} textboxBounds={(()=>{const box=runtime.renderEvidence?.revision===scene.revision?runtime.renderEvidence.textboxRect:scene.textboxRect;if(!box)return undefined;return {x:runtime.fit.offsetX+box.x*runtime.fit.scale,y:runtime.fit.offsetY+box.y*runtime.fit.scale,width:box.width*runtime.fit.scale,height:box.height*runtime.fit.scale};})()} onInteractionChange={setReaderBusy} presentationReady={runtime.presentationReady} manualEffectPending={!!scene.effectSteps&&scene.effectSteps.current<scene.effectSteps.total} presentationKey={`${project.id}/${playbackRun}/${presentationEntry}/${line.id}/${scene.effectSteps?.current??0}/${runtime.renderEvidence?.revision===scene.revision?runtime.renderEvidence.dialoguePage?.index??0:0}`} textScale={readerTextScale} onTextScaleChange={scale=>{setReaderTextScale(scale);setRevision(v=>v+1);}} onRestart={()=>{setReaderResume(null);setPlayback(createPlayback(project));setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setRevision(v=>v+1);}} onExit={readingFromEditor?()=>switchMode('edit'):undefined} onLibrary={returnToLibrary} onFullscreen={()=>void toggleFullscreen()} fullscreen={fullscreen} onAdvance={()=>advance()} onReducedMotion={()=>{setMotionOverride(v=>!v);setRevision(v=>v+1);}} reducedMotion={reducedMotion||motionOverride} motionDisabled={reducedMotion} hasMoreText={!!runtime.renderEvidence?.dialoguePage&&runtime.renderEvidence.revision===scene.revision&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1} advanceDisabled={(playback.status!=='reading'&&!(scene.effectSteps&&scene.effectSteps.current<scene.effectSteps.total)&&!(runtime.renderEvidence?.revision===scene.revision&&runtime.renderEvidence.dialoguePage&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1))||runtime.presentationPending} disabled={!runtime.ready}/>}
       {mode === "edit" && logic.branches && activeTool === "flow" && flowNodes.get(line.id) && <StoryFlowContext node={flowNodes.get(line.id)!} graph={flowGraph} onSelectCut={editFromFlow} />}
       {logic.branches && flowMapOpen && <StoryFlowMap project={project} currentLineId={line.id} onSelectCut={editFromFlow} onClose={() => setFlowMapOpen(false)} />}
       {deleteId && <CutDeleteDialog connections={incomingStoryConnections(project,deleteId)} text={project.lines.find(cut=>cut.id===deleteId)?.text??''} incomingLinks={getStoryCutDeletionImpact(project,deleteId).incomingLinks} rangeEnds={getStoryCutDeletionImpact(project,deleteId).rangeEnds} branchConditions={getStoryCutDeletionImpact(project,deleteId).branchConditions} onCancel={()=>setDeleteId(null)} onDelete={confirmDelete}/>}
