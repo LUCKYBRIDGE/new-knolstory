@@ -1,6 +1,6 @@
 {
   "date": "2026-11-01",
-  "status": "deployed-verifying-production",
+  "status": "completed-for-scoped-handover-and-production-fixes",
   "scope": "Kiro의 미완료 다중 탭 보관·시점 안내를 Codex가 이어 검증한다. 전체 출시 완료가 아니다.",
   "baseline": {
     "localHead": "5b62bad",
@@ -184,7 +184,7 @@
   ],
   "limits": "로컬 Chromium·모의 화면 크기 검사다. 실제 휴대폰·화면 낭독기·사용자 카카오 로그인/업로드·전체 제품 출시 완료가 아니다. 이전 원고·ID·자산·수동 구도와 기존 근거를 보존한다. 단위 검사 중 재생성된 과거 XLSX 두 파일은 HEAD 원본 바이트로 복구하고 생성본은 .cache에만 보관했다.",
   "cooperativeFollowup": {
-    "status": "locally-verified-awaiting-ci-deploy",
+    "status": "deployed-and-verified",
     "reason": "Web Locks steal can leave prior callback running without exclusivity; normal queued acquisition keeps synchronous writes exclusive.",
     "implementation": "BroadcastChannel release request, ordinary non-stealable WebLock, AbortController and2.5s bounded waiting; unsupported/old owner remains standby.",
     "units": "3 files15 focused checks passed; new cooperative helper4 tests passed with statements89.33/branches81.81/functions100/lines96.66 percent",
@@ -194,6 +194,141 @@
     "review": "Read-only review confirms normal lock callback is granted after old holder release, pending abort/dispose cannot acquire later; no concrete HIGH/CRITICAL remains in changed paths.",
     "browser": "22 of22 authoring/recovery static checks passed in1.4min.",
     "publication": "Same existing service publication scope; no new assets/API/DB change.",
-    "userClarification": "사용자가 지금 조작하는 탭을 주 작업 탭으로 하고 기존 탭의 보관 권한을 넘기는 방식에 동의. 이전 탭 초안과 충돌 판본은 보존한다."
+    "userClarification": "사용자가 지금 조작하는 탭을 주 작업 탭으로 하고 기존 탭의 보관 권한을 넘기는 방식에 동의. 이전 탭 초안과 충돌 판본은 보존한다.",
+    "sourceCommit": "0267e84bdd3671e572090acc39412ce31408abcb",
+    "CI": {
+      "id": 41265375095,
+      "conclusion": "success",
+      "tests": "257files,2206passed,2skipped",
+      "coverage": {
+        "statements": 91.76,
+        "branches": 90.64,
+        "functions": 94.94,
+        "lines": 95.11
+      }
+    },
+    "pages": {
+      "id": "ad64e7cd-af5b-4d1b-bab4-a98d1b1c9590",
+      "url": "https://ad64e7cd.new-knolstory.pages.dev"
+    },
+    "ingress": "Rebuilt from same apps/web/out and only ingress recreated. index SHA256 b0993b4b5d6b9882468d3b5fb70a950a91ea9625703af679efc75a1ce6e66f87; game.zip SHA256 remains5ee2de462418a8d7b4af85c2380cea90ff66e7c26438aefe93d40e7f97a5b96e. API/DB unchanged.",
+    "localBrowser": "22 of22 passed in1.4min.",
+    "liveRegression": {
+      "passed": 16,
+      "failed": 0,
+      "duration": "2.0min",
+      "scope": "Actual story.knolquiz.com, targeted affected paths on0267e84. Not summed as a single51-test run with11c0525."
+    },
+    "liveCommand": "pnpm exec playwright test --config docs/architecture/evidence/tab-handover-2026-11-01/live.playwright.config.ts --project=handover --project=editor --grep 'tab|editor playback|way back|story reading|audio gate|white transition'",
+    "apiSmoke": "auth/config200; anonymous/me401",
+    "rollback": "Previous Pages35ac44d7 and candidate .cache/pages-release-20261101-takeover retained. Earlier immutable ingress rollback-20261101-takeover also retained; attempted tagging of immediately previous untagged image failed because image no longer in engine image list. No rollback executed.",
+    "liveFiles": {
+      "origin": "https://story.knolquiz.com",
+      "sourceCommit": "0267e84bdd3671e572090acc39412ce31408abcb",
+      "checked": 1536,
+      "retried": 0,
+      "unexpected": [],
+      "hashes": [
+        {
+          "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "index.html",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/game.zip",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/index.html",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/renpy.data",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/renpy.wasm",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/runtime-contract.js",
+          "status": 200,
+          "match": true
+        }
+      ],
+      "ranges": [
+        {
+          "path": "assets/audio/step.wav",
+          "status": 200,
+          "bytes": 22094,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        },
+        {
+          "path": "assets/audio/cc0/kenney-interface/v1/click-002.ogg",
+          "status": 200,
+          "bytes": 4275,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        },
+        {
+          "path": "assets/audio/pixabay/352704.mp3",
+          "status": 200,
+          "bytes": 71424,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        }
+      ],
+      "success": true,
+      "encodedRuntime": [
+        {
+          "path": "runtime/renpy.data",
+          "encoding": "br",
+          "length": null
+        },
+        {
+          "path": "runtime/renpy.wasm",
+          "encoding": "br",
+          "length": null
+        }
+      ]
+    }
+  },
+  "remaining": [
+    "사용자의 실제 카카오 로그인과 작품 업로드 완료 확인. 인증 시작302와 올바른 callback/보안 쿠키는 검사했으나 실제 계정으로 끝까지 로그인하지 않음.",
+    "이전 강제 인계 코드를 실행 중인 탭은 원고를 파일로 저장하고 새로고침해야 새 협력형 프로토콜을 공유함.",
+    "보관 용량 부족·삭제 충돌·메시지 미지원/응답 없는 탭에서는 자동 보관을 보장하지 않고 초안을 유지하며 파일 저장을 제공함.",
+    "SD-02 권리·런타임 출처, SD-03 캐시·실패 복귀, SD-04 전체 갈래·실기기·보조 기술 등 제품 전체 큐 유지."
+  ],
+  "reproduce": {
+    "local": "KNOL_TEST_STATIC=1 pnpm exec playwright test --project=host tests/e2e/multi-tab-handover.spec.ts tests/e2e/storage-recovery.spec.ts tests/e2e/shortstory-conflict.spec.ts tests/e2e/basic-draft-recovery.spec.ts",
+    "fullLive": "pnpm exec playwright test --config docs/architecture/evidence/tab-handover-2026-11-01/live.playwright.config.ts",
+    "targetedLive": "pnpm exec playwright test --config docs/architecture/evidence/tab-handover-2026-11-01/live.playwright.config.ts --project=handover --project=editor --grep 'tab|editor playback|way back|story reading|audio gate|white transition'",
+    "fileVerification": "node docs/architecture/evidence/startup-speed-2026-10-31/measurement/browser-verify.mjs <candidate-dir> https://story.knolquiz.com <output.json>"
   }
 }
