@@ -1,0 +1,38 @@
+{
+  "format-all-compatibility-final.log": [
+    " Test Files  66 passed (66)",
+    "      Tests  342 passed | 2 skipped (344)"
+  ],
+  "format-office-v9.log": [
+    " Test Files  1 passed (1)",
+    "      Tests  3 passed (3)"
+  ],
+  "format-editing-full-unit.log": [
+    " Test Files  261 passed (261)",
+    "      Tests  2224 passed | 2 skipped (2226)",
+    "Statements   : 91.72% ( 8731/9519 )",
+    "Branches     : 90.64% ( 9572/10560 )",
+    "Functions    : 94.99% ( 2355/2479 )",
+    "Lines        : 95.08% ( 4975/5232 )"
+  ],
+  "editor-format-release.log": [
+    "  8 passed (21.9s)"
+  ],
+  "format-editing-library-final.log": [
+    "  10 passed (13.9s)"
+  ],
+  "format-editing-office-final.log": [
+    "  2 passed (14.2s)"
+  ],
+  "format-editing-docs.log": [
+    "Project docs: 58 active documents checked; 0 link errors. Historical evidence excluded.",
+    "Product language: 238 current surfaces, 385 historical surfaces preserved; 0 retired-term occurrences. Semantic review remains required."
+  ],
+  "format-editing-lint-release.log": [
+    "✖ 1 problem (0 errors, 1 warning)"
+  ],
+  "production-editor-format": [
+    "8 passed (1.2m)",
+    "mixed workflow56.8s; manuscripts and all authored fields compared in fresh contexts"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-01",
-  "status": "local-verified-awaiting-release",
+  "status": "completed-for-current-editor-file-interchange-scope",
   "decision": "과거 파일 호환은 목표 아님. 현재 편집기의 최적화·완성도 우선, 필요시 버전 개편; 기존 원본은 보존.",
   "versions": {
     "StoryDocument": 8,
@@ -58,7 +58,9 @@
       "이전 검사 종료와 공유 서버 충돌한 실행은 제품 실패로 합산하지 않고 외부origin 또는 독립 서버 설정으로 재검증",
       "최초 미적용 입력 RED fixture의 ISO timestamp 오류를 수정하고 이전 후보에서 정상 fixture로4RED 재확인",
       "차단되는 checkbox에 uncheck()를 사용한 검사 사후조건 오류는 click()+checked assertion으로 교정",
-      "차단된 화면선택에서 메뉴가 무조건 닫히던 경로를 성공/거부 반환으로 구분하고 실제 표시 선택값 복원"
+      "차단된 화면선택에서 메뉴가 무조건 닫히던 경로를 성공/거부 반환으로 구분하고 실제 표시 선택값 복원",
+      "추가 회귀 첫 실행은 이전 턴의3001 검사 서버 종료로 접속이 거부됨. 소유 검사 서버를 재시작하고10/10·2/2 재검증.",
+      "실제 주소 첫 실행에서 Excel 처리 모듈 다운로드 중15초 검사 제한을 넘김. 다운로드/가져오기60초, 전체180초 한도로만 검사 대기를 조정하고8/8 전체 원고 비교를 다시 통과. 앱 코드는 이 대기 조정으로 변경하지 않음."
     ],
     "editingOperations": "실제 UI 연산으로 컷 나누기·합치기/선택 조건 참조 재연결/복제·선택 ID 재발급/컷·장 추가/글·화자 수정/음원 조각 나누기·자르기·순서 변경/효과 끝 보조선 정렬 후 .knolstory/workbook/XLSX/JSONB 전체 동일성1검사 통과. UI직접검사와 구분.",
     "editingBrowser": "blank3컷→글2개→배경·맞춤→인물·중앙·방향·크기→원본음원0.2~1.8초·음량0·종료컷→효과클릭2·대기0.23·지속1.2·종료컷·undo→6화면왕복→두파일내보내기→각freshcontext재열기/독립ID 전체비교; 미적용저장3경로·화면/기능/컷전환·정상blur반영·자동원복후저장·새가져오기 보호 포함8/8 통과"
@@ -68,7 +70,45 @@
     "물리 기기·모든 실제 사용자 원고 및 전체 제품 완료를 뜻하지 않음"
   ],
   "release": {
-    "status": "pending"
+    "sourceCommit": "463c0974a4b0491bf8aa1b0f9079c261ca68d4b2",
+    "ci": {
+      "status": "success",
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41286887365",
+      "files": 261,
+      "passed": 2224,
+      "skipped": 2,
+      "coverage": {
+        "statements": 91.72,
+        "branches": 90.64,
+        "functions": 94.99,
+        "lines": 95.08
+      }
+    },
+    "pages": {
+      "Id": "d2d16cb6-f9c9-4ed8-8694-3bbb969f9aa8",
+      "Environment": "Production",
+      "Branch": "main",
+      "Source": "463c097",
+      "Deployment": "https://d2d16cb6.new-knolstory.pages.dev",
+      "Status": "19 seconds ago",
+      "Build": "https://dash.cloudflare.com/e579cab8638cf20fed82fa7480ff6ddb/pages/view/new-knolstory/d2d16cb6-f9c9-4ed8-8694-3bbb969f9aa8"
+    },
+    "origin": "https://story.knolquiz.com",
+    "ingress": "same build; index/game.zip hashes match; API/DB/Worker unchanged; running-image rollback retained as rollback-20261101-authoring",
+    "liveEditing": "8/8 passed1.2m; real mixed editor workflow56.8s including cold XLSX module download/import on this connection",
+    "liveFiles": {
+      "checked": 1536,
+      "unexpected": 0,
+      "hashes": "9/9",
+      "audioBytes": "3/3"
+    },
+    "liveApi": {
+      "/api/v1/auth/config": 200,
+      "/api/v1/me": 401
+    },
+    "mediaPreservation": "1490 runtime/assets files unchanged; game.zip8643696 bytes",
+    "priorScopeRegression": "latest local build library/save recovery10/10 and actual RenPy/office browser2/2 passed",
+    "provenance": "Existing unresolved923 source-provenance blockers retained; unchanged media publication follows prior explicit authorization; deployment does not settle rights review."
   },
   "reproduce": [
     "pnpm exec vitest run packages/compatibility/tests",
