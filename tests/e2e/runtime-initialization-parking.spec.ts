@@ -1,4 +1,6 @@
 import {test,expect} from '@playwright/test';
+// Fullscreen is covered separately; keep its first-use offer from covering navigation.
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 for(const destination of ['text','library'] as const)test(`native engine initializes with nonzero surface after early ${destination} navigation`,async({page},info)=>{
  test.setTimeout(150000);await page.setViewportSize({width:390,height:844});let release!:()=>void;const gate=new Promise<void>(resolve=>{release=resolve;});let requested=false;const errors:string[]=[];
  page.on('console',message=>{const t=message.text();if(/FS\.syncfs operations in flight|ZeroDivisionError|NoneType.*update/.test(t)&&errors.length<12)errors.push(t);});page.on('pageerror',error=>{if(errors.length<12)errors.push(error.message);});

@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-02",
+  "stage": "SD-03",
+  "status": "local implementation verified; release preparation",
+  "changes": [
+    "recoverable native wait/error panel with retry/edit exit",
+    "explicit retry replaces failed iframe; ordinary scene changes reuse it",
+    "async resource generation isolation and cache-confirmation reset",
+    "no manuscript or progress deletion"
+  ],
+  "checks": {
+    "unit": {
+      "files": 269,
+      "passed": 2266,
+      "skipped": 2,
+      "coverage": {
+        "statements": 91.91,
+        "branches": 90.71,
+        "functions": 95.12,
+        "lines": 95.2
+      }
+    },
+    "nativeRecovery": {
+      "passed": 2,
+      "scenarios": [
+        "native index connection failure→host wait→new iframe→same authored work",
+        "registered on-demand music503→clear/retry→request again→native sceneRendered",
+        "same-origin diagnostic error→safe wording→editing exit"
+      ]
+    },
+    "nativeReuseRegression": {
+      "passed": 2,
+      "scenarios": [
+        "early text navigation",
+        "early library navigation"
+      ],
+      "fixedTestSetup": "phone first-use fullscreen offer suppressed; its own suite remains unchanged"
+    },
+    "typecheck": "passed",
+    "build": "passed; shared runtime bytes unchanged",
+    "lint": "0errors; existing story-player-menu img warning",
+    "docs": "passed10tests andcurrentlink/termchecks",
+    "firstCoverageAttempt": "3 full-manuscript5second timeouts during concurrent native testing; not passed; bounded2worker rerun passed",
+    "failedClockAttempt": "global fake clock altered WebAssembly timing; native failure not interpreted as product regression; top-only waiting timer used in final test",
+    "serviceUseCandidate": {
+      "files": 1561,
+      "bytes": 596966849,
+      "blockers": 0,
+      "passesPreflight": true
+    },
+    "mediaProvenance": "1985files no staleSHA",
+    "securityProductionAudit": "no known vulnerabilities",
+    "review": "independent reviewer checked stale IDB and old-window message isolation; both corrected",
+    "visual": "ego-browser TaskSpace17: actual recovery panel typography/button contrast reviewed, retry to native rendering verified in E2E; screenshot recovery-desktop.png local"
+  },
+  "release": {
+    "status": "not committed or deployed; production is layered-scene release fc5d9d29"
+  },
+  "remaining": [
+    "publish reviewed candidate to GitHub/Pages/ingress and verify actual URLs",
+    "cached previous→current deployment proof",
+    "full SD-04 branch/device/slow-network and online-provider checks remain"
+  ]
+}

@@ -12,7 +12,7 @@ import { parseRuntimeEvent } from "../lib/runtime-events";
 import { mergeLoadProgress, type LoadProgress } from "../lib/runtime-load-progress";
 import { initialRuntimeStatus, runtimeStatusReducer } from "../lib/runtime-status";
 
-/** One runtime instance; scene updates never change iframe identity or source. */
+/** One runtime instance; ordinary scene updates keep it. An explicit recovery replaces a failed instance. */
 export function useStoryRuntime(
   scene: RuntimeScene,
   composing: boolean,
@@ -27,6 +27,8 @@ export function useStoryRuntime(
   const frame = useRef<HTMLIFrameElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
   const [ready, setReady] = useState(false);
+  const [attempt,setAttempt]=useState(0);
+  const generation=useRef(0);
   // Optional download progress before `ready`; a runtime that never reports it simply shows none.
   const [loadProgress, setLoadProgress] = useState<LoadProgress | null>(null);
   const readySeen = useRef(false);
@@ -148,16 +150,23 @@ export function useStoryRuntime(
       sendTimer.current = null;
       seq.current += 1;
       const current = latest.current;
+      const currentGeneration=generation.current;
       const paths=runtimeAudioPaths(current.audio);
       const servicePaths=runtimeServiceAudioPaths(current.audio);
       let audioResources,serviceAudioResources;
-      try { audioResources=paths.some(path=>/assets\/audio\/[a-f0-9]{64}\./.test(path)) ? (await listAudioResources()).filter(r=>!confirmedResources.current.has(r.id)&&paths.some(path=>path.includes(r.id.split(':')[2]))) : [];serviceAudioResources=await serviceDelivery.current!.load(servicePaths,confirmedServicePaths.current); }
+      try {
+        audioResources=paths.some(path=>/assets\/audio\/[a-f0-9]{64}\./.test(path))
+          ? (await listAudioResources()).filter(r=>!confirmedResources.current.has(r.id)&&paths.some(path=>path.includes(r.id.split(':')[2]))) : [];
+        // A retry may have cleared the loader while IndexedDB was still reading.
+        if(currentGeneration!==generation.current||current.revision!==latest.current.revision)return;
+        serviceAudioResources=await serviceDelivery.current!.load(servicePaths,confirmedServicePaths.current);
+      }
       catch(issue) {
         console.error('Story audio resources failed to load', issue);
-        if(current.revision===latest.current.revision) updateStatus({ type: 'audioFailed' });
+        if(currentGeneration===generation.current&&current.revision===latest.current.revision) updateStatus({ type: 'audioFailed' });
         return;
       }
-      if(current.revision!==latest.current.revision)return;
+      if(currentGeneration!==generation.current||current.revision!==latest.current.revision)return;
       pendingResources.current.set(current.revision,audioResources.map(r=>r.id));
       pendingServicePaths.current.set(current.revision,servicePaths);
       frame.current?.contentWindow?.postMessage(
@@ -186,15 +195,31 @@ export function useStoryRuntime(
       90000,
     );
     return () => window.clearTimeout(timer);
-  }, [ready]);
+  }, [ready,attempt]);
   useEffect(() => {
     if (!ready || composing || rendered === scene.revision) return;
     const timer = window.setTimeout(() => updateStatus({ type: 'waiting' }), 15000);
     return () => window.clearTimeout(timer);
   }, [ready, composing, rendered, scene.revision]);
+  const retry=useCallback(()=>{
+    generation.current+=1;
+    if(sendTimer.current!==null)window.clearTimeout(sendTimer.current);
+    sendTimer.current=null;
+    readySeen.current=false;
+    confirmedResources.current.clear();pendingResources.current.clear();
+    confirmedServicePaths.current=new Set();pendingServicePaths.current.clear();
+    serviceDelivery.current?.clear();
+    renderedRevision.current=-1;consumedRevision.current=-1;confirmedPhase.current=null;
+    setReady(false);setRendered(-1);setRenderEvidence(null);setConfirmed(null);setLoadProgress(null);
+    updateStatus({type:'retry'});setAttempt(value=>value+1);
+  },[]);
   const audioPending=scene.mode==='play' && runtimeAudioPaths(scene.audio).length>0 && renderEvidence?.audioState?.unlocked!==true;
   return {
     captureThumbnail,
+    retry,
+    frameKey:attempt,
+    recoverable:runtimeStatus.recoverable,
+    frameSource:attempt?`/runtime/index.html?retry=${attempt}`:'/runtime/index.html',
     presentationReady: readerPresentationReady(scene, rendered, confirmed, audioPending, runtimeStatus.failed),
     audioPending,
     container,

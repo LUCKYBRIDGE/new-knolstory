@@ -932,7 +932,7 @@ export function StoryWorkspace() {
           <button disabled={composing} onClick={()=>switchMode('play',true)}>처음부터 읽기</button></div></details>}<button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button><div ref={setSettingsHost}/></>} scoresEnabled={logic.scores} localFileActions={<LocalWorkFileActions registerSave={leaveTracker.registerSave} onVerifiedSave={leaveTracker.saved} onSavingChange={leaveTracker.saving} shortcutsEnabled={view==='prepare'||view==='editor'&&mode==='edit'} fileSession={localFileSession} workKey={project.id} name={project.title} extension=".knolstory" disabled={composing||!loadComplete} serialize={()=>serializeLocalWork()}/>} disabled={composing} recovery={<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>} project={project} compact={true} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={open=>{setManageOpen(open);if(open)shell.current?.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open]').forEach(detail=>{detail.open=false;});if(open&&viewToolsMenu.current)viewToolsMenu.current.open=false;}} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportArchive={archive=>{if(stopForUnappliedInput())return;setError('');setPendingArchive(archive);}} onError={setError} onLibrary={returnToLibrary} onPrepare={section=>view==='prepare'?changeWorkSection(section):prepareWork('',section)}>{children}</WorkspaceManagement>;
   const nativeStage=runtimeMounted?<section className={styles.stage} aria-label="이야기 무대">
           <div className={styles.toolbar}>
-            <strong>{mode === "edit" ? "장면 미리보기" : "이야기 읽기"}</strong><small>휴대폰은 가로 읽기를 권장합니다. 세로에서는 말하는 인물만 표시합니다.</small>
+            <strong>{mode === "edit" ? "장면 미리보기" : "이야기 읽기"}</strong><small>세로에서는 말하는 인물이나 장면의 주목 인물을 크게 표시합니다.</small>
             {mode === "edit" && <button disabled={composing} onClick={() => switchMode("play")}>이 컷부터 재생</button>}
 
           </div>
@@ -943,8 +943,9 @@ export function StoryWorkspace() {
             data-testid="story-stage-viewport"
           >
             <iframe
+              key={runtime.frameKey}
               ref={runtime.frame}
-              src="/runtime/index.html"
+              src={runtime.frameSource}
               title="Ren’Py 이야기 무대"
               data-testid="story-runtime-frame"
               allow="autoplay; fullscreen"
@@ -962,7 +963,7 @@ export function StoryWorkspace() {
               }}
             />
             {mode==='play'&&<div className={styles.readerContext} data-reader-context="true" style={{left:runtime.fit.offsetX+12,top:runtime.fit.offsetY+12,maxWidth:Math.max(1,scene.width*runtime.fit.scale-80)}}>{chapterLabel(chapter)}</div>}
-            {!runtime.ready && <StoryLoading stage progress={runtime.loadProgress}/>}
+            {(!runtime.ready||runtime.recoverable)&&<StoryLoading stage progress={runtime.loadProgress} recovery={runtime.recoverable?{message:runtime.status,onRetry:runtime.retry,onEdit:()=>switchMode('edit')}:undefined}/>}
             {mode === "edit" && editingScreen === "characters" && activeTool === "assets" &&
               runtime.ready &&
               scene.actors.map((actor) => (

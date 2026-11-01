@@ -28,3 +28,12 @@ describe('runtime status recovery', () => {
     expect(runtimeStatusReducer(waiting, { type: 'rendered' }).message).toBe('이야기 무대 연결됨');
   });
 });
+
+it('offers a recoverable wait and resets only on an explicit retry',()=>{
+ const waiting=runtimeStatusReducer(initialRuntimeStatus,{type:'waiting'});
+ expect(waiting.recoverable).toBe(true);
+ const failed=runtimeStatusReducer(waiting,{type:'audioFailed'});
+ expect(failed.recoverable).toBe(true);
+ expect(runtimeStatusReducer(failed,{type:'retry'})).toEqual(initialRuntimeStatus);
+ expect(runtimeStatusReducer(failed,{type:'ready',protocol:1,contractVersion:1,runtimeVersion:'8.5.3'})).toBe(failed);
+});

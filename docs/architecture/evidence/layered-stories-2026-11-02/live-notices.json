@@ -1,0 +1,23 @@
+{
+  "origin": "https://story.knolquiz.com",
+  "checkedAt": "2026-11-01T23:27:00.065Z",
+  "files": [
+    {
+      "path": "licenses/README.md",
+      "sha256": "a8f0c46c3f502858200ff95893f5b1ca500b482fcbacae12d1250987e2e014d0",
+      "status": 200,
+      "observedSha256": "a8f0c46c3f502858200ff95893f5b1ca500b482fcbacae12d1250987e2e014d0",
+      "bytes": 1061,
+      "match": true
+    },
+    {
+      "path": "licenses/RenPy-8.5.3-LICENSE.txt",
+      "sha256": "b5d4610dfb530c53d5ce681e913f313903948616eb7b4ff8e8ddd19337852c1e",
+      "status": 200,
+      "observedSha256": "b5d4610dfb530c53d5ce681e913f313903948616eb7b4ff8e8ddd19337852c1e",
+      "bytes": 101413,
+      "match": true
+    }
+  ],
+  "success": true
+}
