@@ -1,6 +1,6 @@
 {
   "date": "2026-11-01",
-  "status": "locally-verified-awaiting-ci-and-deployment",
+  "status": "deployed-verifying-production",
   "scope": "사용자 첨부 화면의 읽기·편집 메뉴 가독성/조작 구분 개선. 원고·파일 형식·재생 의미·서버는 변경하지 않는다.",
   "baseline": "9141e1e; implementation before this task0267e84 already deployed.",
   "problem": [
@@ -31,7 +31,130 @@
     "audit": "no known production vulnerabilities",
     "build": "Web-only build passed after finalCSS. Runtime unchanged, no runtime rebuild required."
   },
-  "deployment": "not started",
+  "deployment": {
+    "sourceCommit": "ba2df08a778bba12e8463a6d7990f8ff3b14e61c",
+    "CI": {
+      "id": 41269013157,
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41269013157",
+      "conclusion": "success",
+      "tests": "257files,2206passed,2skipped",
+      "coverage": {
+        "statements": 91.76,
+        "branches": 90.64,
+        "functions": 94.94,
+        "lines": 95.11
+      }
+    },
+    "pages": {
+      "id": "b095bbe2-cc39-42ee-aff8-97ece3f78adb",
+      "url": "https://b095bbe2.new-knolstory.pages.dev"
+    },
+    "origin": "https://story.knolquiz.com",
+    "candidate": ".cache/pages-release-20261101-menu",
+    "servingFiles": 1536,
+    "siteFilesIncludingHeaders": 1537,
+    "bytes": 587807915,
+    "ingress": "Same build; indexSHA256 cb59c05a1dbc1c11b7fc21cd4433f13098bd73e388b60608129919bda43d8499. game.zip unchanged5ee2de462418a8d7b4af85c2380cea90ff66e7c26438aefe93d40e7f97a5b96e. Only ingress recreated. API,DB,Worker route unchanged.",
+    "rollback": "knolstory-next-ingress:rollback-20261101-menu, prior Pagesad64e7cd and local candidates retained.",
+    "publication": "Existing authorized service assets only. Site audit retains918 unverified-media-rights and5 runtime-bundle-review-required; no new asset acquisition or legal clearance. No size/private/hash blocker in serving site.",
+    "apiSmoke": "auth/config200,anonymous/me401",
+    "live": "6menu UI checks passed so far;3nativechecks andfileverification running.",
+    "fileVerification": {
+      "origin": "https://story.knolquiz.com",
+      "sourceCommit": "ba2df08a778bba12e8463a6d7990f8ff3b14e61c",
+      "checked": 1536,
+      "retried": 0,
+      "unexpected": [],
+      "hashes": [
+        {
+          "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "index.html",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/game.zip",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/index.html",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/renpy.data",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/renpy.wasm",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/runtime-contract.js",
+          "status": 200,
+          "match": true
+        }
+      ],
+      "ranges": [
+        {
+          "path": "assets/audio/step.wav",
+          "status": 200,
+          "bytes": 22094,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        },
+        {
+          "path": "assets/audio/cc0/kenney-interface/v1/click-002.ogg",
+          "status": 200,
+          "bytes": 4275,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        },
+        {
+          "path": "assets/audio/pixabay/352704.mp3",
+          "status": 200,
+          "bytes": 71424,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        }
+      ],
+      "success": true
+    }
+  },
   "limits": "전체 제품/실기기/화면 낭독기/실제 계정 로그인/업로드 검증 아님. 기존 원고와 지난 증거는 보존한다.",
-  "references": "design-references.md records official Fluent2/Spectrum and installed UI skill use; no external code/assets added or new dependencies."
+  "references": "design-references.md records official Fluent2/Spectrum and installed UI skill use; no external code/assets added or new dependencies.",
+  "reproduce": {
+    "local": "pnpm exec playwright test --config tests/menu-readability.playwright.config.ts (menu-ui6,menu-native3; serves existing static build)",
+    "live": "KNOL_REMOTE_ORIGIN=https://story.knolquiz.com pnpm exec playwright test --config tests/menu-readability.playwright.config.ts",
+    "files": "node docs/architecture/evidence/startup-speed-2026-10-31/measurement/browser-verify.mjs <candidate-dir> https://story.knolquiz.com <output.json>"
+  },
+  "inputSizeFollowup": {
+    "scope": "Retain original16px settings input/select text while menu labels/buttons remain14px. No JS/runtime/file behavior change.",
+    "local": "6of6 menu checks passed on rebuilt input-size followup.",
+    "deployment": "pending",
+    "config": "tests/menu-readability.playwright.config.ts now has menu-ui6 andmenu-native3 projects so both host andactualnativeQA are reproducible on local orKNOL_REMOTE_ORIGIN."
+  }
 }

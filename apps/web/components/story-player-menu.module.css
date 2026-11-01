@@ -111,7 +111,7 @@
 .settingsSection h3{font-size:14px;color:#e3cda5;font-weight:700;line-height:1.5;margin:0 0 2px}
 .menu .dialog .settingsSection>label{display:grid;grid-template-columns:minmax(132px,1fr) minmax(0,1.6fr);align-items:center;gap:8px 16px;min-width:0;font-size:14px}
 .settingsSection>label>span:first-child{font-weight:500}
-.menu .dialog .settings :is(input,select){background:#102526;color:#f5ead4;border:1px solid #85978c;border-radius:6px;min-height:44px;padding:8px 10px;font-size:14px}
+.menu .dialog .settings :is(input,select){background:#102526;color:#f5ead4;border:1px solid #85978c;border-radius:6px;min-height:44px;padding:8px 10px;font-size:16px}
 .menu .dialog .settingsSection>button{width:100%}
 .menu .dialog button[aria-pressed=true]{background:#c6e3cf;color:#15302a;border-color:#c6e3cf;font-weight:700;text-decoration:none}
 .menu .dialog .settingsActions{gap:8px}
