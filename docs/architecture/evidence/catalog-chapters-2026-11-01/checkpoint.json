@@ -48,7 +48,9 @@
   ],
   "recoveredChecks": [
     "native선택지의접근성버튼은캔버스아래의미계층이므로실제키보드Enter로선택검사",
-    "중간컷부터시작한검사에서미방문첫컷지난기록을기대했던검사를기존방문보호계약에맞게교정"
+    "중간컷부터시작한검사에서미방문첫컷지난기록을기대했던검사를기존방문보호계약에맞게교정",
+    "CI41289493835에서 기존 실제 XLSX 셀 편집1검사만5초기본제한초과(나머지2241통과2제외). 파일 생성/재해석 전체비교를 유지하고 이 검사만30초로 명시. 재검증 결과는 release에 기록.",
+    "native검사의초기보관본주입을최초한번으로제한하여같은출처RenPy iframe에서반복주입하지않게함. 교정후2/2통과6.8s."
   ],
   "reproduce": [
     "pnpm exec vitest run packages/compatibility/tests/catalog-chapter-identity.test.ts packages/compatibility/tests/reader-text.test.ts apps/web/lib/provided-workspace-refresh.test.ts packages/runtime-core/tests/chapter-identity.test.ts",
