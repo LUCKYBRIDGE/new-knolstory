@@ -273,6 +273,20 @@ class ResourceAndViewportTests(unittest.TestCase):
         self.ns['renpy'].get_mouse_pos = lambda: (1000, 300)
         self.ns['knol_stage_tap']()
         self.assertEqual(self.tap_calls, [1, 1])
+    def test_touch_uses_event_position_after_mouse_closed_the_host_menu(self):
+        self.tap_setup('halves', page=0, can_back=False)
+        # SDL's pointer can still name the last mouse location after a touch. The
+        # triggering event has the actual touch position in physical pixels.
+        self.ns['renpy'].get_mouse_pos = lambda: (1200, 100)
+        self.ns['renpy'].game.interface.last_event = types.SimpleNamespace(pos=(80, 200))
+        self.ns['renpy'].display = types.SimpleNamespace(draw=types.SimpleNamespace(translate_point=lambda x, y: (x * 2, y * 2)))
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [])
+        self.ns['renpy'].game.interface.last_event.pos = (500, 200)
+        self.ns['renpy'].get_mouse_pos = lambda: (100, 100)
+        self.ns['knol_stage_tap']()
+        self.assertEqual(self.tap_calls, [1])
+
     def test_halves_previous_page_precedes_host_back_and_absent_history_is_noop(self):
         self.tap_setup('halves', page=1, can_back=False)
         self.ns['knol_stage_tap']()
@@ -524,6 +538,21 @@ class NativeDirectionTests(unittest.TestCase):
     def test_confirm_and_perspective_remain_overlay_transitions(self):
         self.assertFalse(self.ns['knol_should_use_native_transition'](self.scene({'type':'fade-black','durationMs':900,'mode':'confirm'})))
         self.assertFalse(self.ns['knol_should_use_native_transition'](self.scene({'type':'perspective-blackout','durationMs':900,'mode':'auto'})))
+    def test_transition_clock_starts_with_the_reader_after_the_sound_gate(self):
+        # An automatic title timed behind the sound gate passed unseen, and the story went straight on.
+        waiting = [True]
+        self.ns.update(knol_transition_active=True, knol_waiting_for_audio=lambda *args: waiting[0])
+        self.assertFalse(self.ns['knol_transition_clock_running']())
+        waiting[0] = False
+        self.assertTrue(self.ns['knol_transition_clock_running']())
+        self.ns['knol_transition_active'] = False
+        self.assertFalse(self.ns['knol_transition_clock_running']())
+        # Both screen timers that finish a transition (native and card) use that clock.
+        lines = (ROOT / 'renpy/responsive-spike/game/script.rpy').read_text().splitlines()
+        timers = [index for index, line in enumerate(lines) if line.strip().startswith('timer ') and 'knol_finish_transition' in line]
+        self.assertEqual(len(timers), 2)
+        for index in timers:
+            self.assertIn('knol_transition_clock_running()', lines[index - 1])
     def test_atl_motion_keeps_authored_delay_before_interpolation(self):
         scene = self.scene(None)
         self.ns['knol_transition_active']=False

@@ -42,6 +42,7 @@ async function assertStill(page:Page,expectedLine:string,index:number){
 for(const viewport of [{width:390,height:844},{width:844,height:390}]){
  test(`native touch navigation and persisted reading controls at ${viewport.width}x${viewport.height}`,async({page},info)=>{
   test.setTimeout(150000);
+  await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
   await page.route('**/api/**',route=>route.abort());
   await page.setViewportSize({width:1280,height:800});await page.goto('/?view=editor');
   await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');

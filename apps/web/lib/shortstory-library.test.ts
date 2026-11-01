@@ -35,4 +35,27 @@ describe('two tabs saving the same picture-book library',()=>{
   const other=merged.books.find(book=>book.id!==a.id)!;expect(other.title).toMatch(/· 다른 탭$/);expect(other.pages[0]!.text).toBe('다른 탭의 글');expect(merged.activeId).toBe(base.activeId);
   expect(()=>parseShortStoryLibrary(JSON.stringify(merged))).not.toThrow();
  });
+ it('keeps an unsaved new book and edits to another book while switching books before takeover',()=>{
+  const a=newShortStory(),b=newShortStory(),created=newShortStory(),base=library(a,b);
+  const mine={...addShortStoryBook(base,created),books:[withText(a,'첫 책의 미보관 글'),b,created]};
+  const stored={...base,books:[a,withText(b,'다른 탭의 둘째 책')]};
+  const {library:merged}=mergeShortStoryLibraries(mine,stored,base,created.id);
+  expect(merged.books.find(book=>book.id===a.id)!.pages[0]!.text).toBe('첫 책의 미보관 글');
+  expect(merged.books.find(book=>book.id===b.id)!.pages[0]!.text).toBe('다른 탭의 둘째 책');
+  expect(merged.books.find(book=>book.id===created.id)).toEqual(created);
+ });
+ it('keeps the other tab’s deletion when the local book is unchanged',()=>{
+  const a=newShortStory(),b=newShortStory(),base=library(a,b),stored=deleteShortStoryBook(base,a.id);
+  const {library:merged}=mergeShortStoryLibraries(base,stored,base,a.id);
+  expect(merged.books.some(book=>book.id===a.id)).toBe(false);expect(merged.deleted).toContainEqual(a);
+ });
+ it('retains the edited revision separately when the local tab deleted that book',()=>{
+  const a=newShortStory(),base=library(a),mine=deleteShortStoryBook(base,a.id);
+  const stored={...base,books:[withText(a,'삭제와 동시에 고친 글')]};
+  const {library:merged,conflict}=mergeShortStoryLibraries(mine,stored,base,a.id);
+  expect(conflict).toBe(true);expect(merged.deleted).toContainEqual(a);
+  expect(merged.books).toHaveLength(1);expect(merged.books[0]!.id).not.toBe(a.id);
+  expect(merged.books[0]!.pages[0]!.text).toBe('삭제와 동시에 고친 글');
+  expect(()=>parseShortStoryLibrary(JSON.stringify(merged))).not.toThrow();
+ });
 });

@@ -4,6 +4,7 @@ import {existingPrivateWorkspace} from './existing-private-audio';
 import {startReading,restartReading,editReadCut,advanceReading} from './native-reader';
 import {readFileSync} from 'node:fs';
 import {test,expect} from '@playwright/test';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 async function confirmTransition(page:import('@playwright/test').Page){const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('전환 화면',{timeout:15000});await page.getByTestId('story-stage-viewport').scrollIntoViewIfNeeded();const box=(await page.getByTestId('story-runtime-frame').boundingBox())!;await page.getByTestId('story-stage-viewport').screenshot({path:`${process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/native-current'}/authoring-format/native-confirm.png`});const logicalHeight=Number(await status.getAttribute('data-scene-height'));await page.mouse.click(box.x+box.width*.5,box.y+box.height*(1-64/logicalHeight));await expect(status).not.toContainText('전환 화면',{timeout:15000});}
 async function rendered(page:import('@playwright/test').Page){const s=page.getByTestId('story-runtime-status');await expect(s).toContainText('연결됨',{timeout:90000});await expect.poll(()=>s.evaluate(n=>n.getAttribute('data-scene-revision')===n.getAttribute('data-rendered-revision')),{timeout:30000}).toBe(true);}
 for(const source of ['google','excel','korean-google','korean-excel']) {
@@ -46,6 +47,6 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   await page.mouse.click(frame.x+frame.width*.5,frame.y+frame.height*.1);
   await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-audio-unlocked','true');
   await confirmTransition(page);
-  await expect(page.getByTestId('playback-status')).not.toHaveText('이야기 끝');
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.status)).toMatch(/^(reading|choice)$/);
  });
 }

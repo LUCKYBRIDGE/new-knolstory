@@ -101,6 +101,11 @@ init python:
             return False
         return transition.get("type") in ("fade-black", "white-fade", "dissolve")
 
+    def knol_transition_clock_running():
+        # A transition is timed from when the reader starts: behind the sound gate an automatic title
+        # would pass unseen and the story would go straight on after the gate.
+        return knol_transition_active and not knol_waiting_for_audio()
+
     knol_native_transition_phase = None
 
     def knol_start_native_transition(scene):

@@ -66,4 +66,18 @@ describe('workspace autosave at browser navigation', () => {
     page.dispatchEvent(new Event('visibilitychange'));
     expect(save).toHaveBeenCalledTimes(1);
   });
+  it('does not write a completed snapshot again when the tab is hidden and then closed', () => {
+    vi.useFakeTimers();
+    const host = browserHost();
+    const page = Object.assign(new EventTarget(), {visibilityState: 'visible' as DocumentVisibilityState});
+    const save = vi.fn();
+    const cancel = scheduleWorkspaceAutosave(host, save, page);
+    vi.advanceTimersByTime(100);
+    expect(save).toHaveBeenCalledTimes(1);
+    page.visibilityState = 'hidden';
+    page.dispatchEvent(new Event('visibilitychange'));
+    host.leave();
+    expect(save).toHaveBeenCalledTimes(1);
+    cancel();
+  });
 });

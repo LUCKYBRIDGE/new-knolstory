@@ -31,18 +31,28 @@ export function addShortStoryBook(library:ShortStoryLibrary,project:ShortStoryPr
 export function copyShortStoryBook(library:ShortStoryLibrary,project:ShortStoryProject):ShortStoryLibrary {
  return addShortStoryBook(library,{...project,id:crypto.randomUUID(),title:`${project.title} · 내 사본`,pages:project.pages.map(page=>({...page,id:crypto.randomUUID()})),updatedAt:new Date().toISOString()});
 }
-/** Another tab saved while this tab still had an unsaved change. `base` is what this tab last saved or
- * read. Everything comes from the other tab except the current book when this tab changed it; if the
- * other tab changed that book too, its version is kept as a separate book, so nothing is lost. */
+/** Three-way merge of every book, including unsaved imports and edits made before switching books.
+ * A conflicting stored revision stays as a separate book; deletion never discards a concurrent edit. */
 export function mergeShortStoryLibraries(mine:ShortStoryLibrary,stored:ShortStoryLibrary,base:ShortStoryLibrary|null,currentId:string):{library:ShortStoryLibrary;conflict:boolean}{
- const find=(library:ShortStoryLibrary|null,id:string)=>library?.books.find(book=>book.id===id);
+ const find=(library:ShortStoryLibrary|null,id:string)=>{
+  const active=library?.books.find(book=>book.id===id);if(active)return {book:active,deleted:false};
+  const removed=library?.deleted.find(book=>book.id===id);return removed?{book:removed,deleted:true}:undefined;
+ };
  const same=(a:unknown,b:unknown)=>JSON.stringify(a)===JSON.stringify(b);
- const mineBook=find(mine,currentId),baseBook=find(base,currentId),storedBook=find(stored,currentId);
- if(!mineBook||same(mineBook,baseBook))return {library:{...stored,activeId:mine.activeId},conflict:false};
- const books=storedBook?stored.books.map(book=>book.id===currentId?mineBook:book):[...stored.books,mineBook];
- let library:ShortStoryLibrary={...stored,books,deleted:stored.deleted.filter(book=>book.id!==currentId),positions:{...stored.positions,[currentId]:mine.positions[currentId]??0},activeId:mine.activeId};
- const conflict=!!storedBook&&!same(storedBook,baseBook);
- if(conflict)library={...addShortStoryBook(library,{...storedBook!,id:crypto.randomUUID(),title:`${storedBook!.title} · 다른 탭`,pages:storedBook!.pages.map(page=>({...page,id:crypto.randomUUID()}))}),activeId:mine.activeId};
+ let library:ShortStoryLibrary={...stored,activeId:mine.activeId},conflict=false;
+ for(const local of [...mine.books,...mine.deleted]){
+  const mineEntry=find(mine,local.id)!,baseEntry=find(base,local.id),storedEntry=find(stored,local.id);
+  if(same(mineEntry,baseEntry))continue;
+  const collided=!!storedEntry&&!same(storedEntry,baseEntry)&&!same(storedEntry,mineEntry);
+  const books=library.books.filter(book=>book.id!==local.id),deleted=library.deleted.filter(book=>book.id!==local.id);
+  library={...library,books:mineEntry.deleted?books:[...books,local],deleted:mineEntry.deleted?[...deleted,local]:deleted,positions:{...library.positions,[local.id]:mine.positions[local.id]??0}};
+  if(collided){
+   conflict=true;const other=storedEntry.book;
+   library={...addShortStoryBook(library,{...other,id:crypto.randomUUID(),title:`${other.title} · 다른 탭`,pages:other.pages.map(page=>({...page,id:crypto.randomUUID()}))}),activeId:mine.activeId};
+  }
+ }
+ // Reading position belongs to this tab's current book even if its text did not change.
+ if(mine.positions[currentId]!==undefined)library={...library,positions:{...library.positions,[currentId]:mine.positions[currentId]!}};
  return {library,conflict};
 }
 export function deleteShortStoryBook(library:ShortStoryLibrary,id:string):ShortStoryLibrary {

@@ -45,15 +45,17 @@ test('audio gate keeps the dialogue panel dark and every tool over the scene leg
  expect.soft(measured.editorReturn,'editor return text').toBeGreaterThanOrEqual(4.5);
 });
 
-test('reader tools stay legible over a white transition card',async({page},info)=>{
+test('white transition keeps menu legible and hides quick tools that overlap its continue button',async({page},info)=>{
  const base=createBlankStoryProject({id:'light-card',chapterId:'ch',lineId:'a',title:'하얀 전환 대비'});
  const project={...base,lines:base.lines.map(line=>({...line,text:'하얀 전환 위에서도 도구가 보여야 해요.',presentation:{transition:{type:'white-fade' as const,mode:'confirm' as const,durationMs:900,title:'하얀 장면'}}}))};
  await playFromEditor(page,project);
  const frame=await boxOf(page.getByTestId('story-runtime-frame'));
  const shot=PNG.sync.read(await page.screenshot({path:info.outputPath('white-card.png')}));
  const tools=page.getByRole('group',{name:'읽기 도구',exact:true});
- const measured={cardMedianLuminance:median(shot,{x:frame.x+frame.width*.3,y:frame.y+frame.height*.1,width:frame.width*.4,height:frame.height*.1}),history:edgeContrast(shot,await boxOf(tools.getByRole('button',{name:'지난기록',exact:true}))),quickSave:edgeContrast(shot,await boxOf(tools.getByRole('button',{name:'빠른 저장',exact:true}))),menuIcon:edgeContrast(shot,await boxOf(page.locator('[data-reader-menu-trigger]'))),chapterLabel:edgeContrast(shot,await boxOf(page.locator('[data-reader-context]')))};
+ await expect(tools.getByRole('button',{name:'지난기록',exact:true})).toHaveCount(0);
+ await expect(tools.getByRole('button',{name:'빠른 저장',exact:true})).toHaveCount(0);
+ const measured={cardMedianLuminance:median(shot,{x:frame.x+frame.width*.3,y:frame.y+frame.height*.1,width:frame.width*.4,height:frame.height*.1}),menuIcon:edgeContrast(shot,await boxOf(page.locator('[data-reader-menu-trigger]'))),chapterLabel:edgeContrast(shot,await boxOf(page.locator('[data-reader-context]')))};
  console.log('[contrast white card]',JSON.stringify(measured));
  expect.soft(measured.cardMedianLuminance,'white card is showing').toBeGreaterThan(.85);
- for(const key of ['history','quickSave','menuIcon','chapterLabel'] as const)expect.soft(measured[key],key).toBeGreaterThanOrEqual(3);
+ for(const key of ['menuIcon','chapterLabel'] as const)expect.soft(measured[key],key).toBeGreaterThanOrEqual(3);
 });

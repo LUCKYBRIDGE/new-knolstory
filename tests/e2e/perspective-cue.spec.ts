@@ -1,9 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {confirmAuthoringImport} from './authoring-file';
-import {readFileSync} from 'node:fs';
-import {parseStoryDocument} from '../../packages/story-domain/src';
-import {connectCatalogPerspective} from '../../packages/compatibility/src/catalog-perspective';
+import {enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry';
 
 const base=createBlankStoryProject({id:'perspective-cue',chapterId:'a',lineId:'intro',title:'시점 안내 확인'}),cut=base.lines[0]!;
 const transition={type:'perspective-blackout' as const,mode:'confirm' as const,durationMs:300,title:'친구의 시점',actionLabel:'친구의 이야기 읽기'};
@@ -43,27 +41,29 @@ test('perspective cue confirms once, proceeds to real dialogue and preserves the
  expect((await state(page)).playback.path).toEqual(['intro']);expect((await state(page)).document.project).toEqual(original);
 });
 
-
-test('provided Onggojib opens with one perspective entrance and proceeds directly into its story',async({page},info)=>{
- const parsed=parseStoryDocument(JSON.parse(readFileSync('tests/fixtures/stories/onggojib.json','utf8')),{savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test'});
- if(!parsed.ok)throw Error('제공 원고를 확인해 주세요.');
- const current=connectCatalogPerspective(parsed.document.project);
- await page.setViewportSize({width:1280,height:800});await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');
- await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();
- await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'onggojib.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project:current}))});
- await confirmAuthoringImport(page);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const original=(await state(page)).document.project;
- await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=await rendered(page),frame=page.getByTestId('story-runtime-frame');
- const gate=frame.contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});if(await gate.count())await gate.press('Enter');
- await expect(status).toContainText('전환 화면에서 계속을 눌러 주세요');
- const cue=(await state(page)).playback.lineId;expect(current.lines.find(line=>line.id===cue)?.text).toBe('옹고집의 시점');
+// User report 2026-11-01: the provided title waited behind a '계속 읽기' button that the reader tools covered.
+test('provided Onggojib shows its perspective title by itself after the sound gate and goes on into its story',async({page},info)=>{
+ await page.setViewportSize({width:1280,height:800});await page.route('**/api/**',route=>route.abort());
+ await page.goto('/');await enterLibrary(page);await openBuiltinEdition(page,'onggojib','knolstory','start');await beginSelectedBook(page);
+ const status=await rendered(page),frame=page.getByTestId('story-runtime-frame');
+ const original=(await state(page)).document.project,cue=(await state(page)).playback.lineId;
+ expect(original.lines.find((line:{id:string})=>line.id===cue)?.text).toBe('옹고집의 시점');
+ // The title covers the stage: no reader tool row over it and nothing to press.
+ const tools=page.getByRole('group',{name:'읽기 도구',exact:true}).locator('[style*="--reader-tool-font-size"]');
+ await expect(tools).toHaveCount(0);await expect(status).not.toContainText('전환 화면에서 계속을 눌러 주세요');
+ // Readers often look at the sound gate for a while; the title must still be shown after it.
+ const gate=frame.contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});
+ await expect(gate).toHaveCount(1);await page.waitForTimeout(2500);
+ await gate.press('Enter');await expect(status).toHaveAttribute('data-audio-unlocked','true');const started=Date.now();
  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('onggojib-entrance.png')});
- const bounds=(await frame.boundingBox())!,height=Number(await status.getAttribute('data-scene-height'));
- await page.touchscreen.tap(bounds.x+bounds.width*.5,bounds.y+bounds.height*(height-56)/height);
- await expect.poll(async()=>(await state(page)).playback.lineId).not.toBe(cue);await rendered(page);
+ await expect.poll(async()=>(await state(page)).playback.lineId,{timeout:15000,intervals:[100]}).not.toBe(cue);
+ expect(Date.now()-started).toBeGreaterThan(1000);
+ await rendered(page);await expect(tools).toBeVisible();await expect(status).not.toContainText('전환 화면에서 계속을 눌러 주세요');
  const mirror=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})});
  await expect(mirror).not.toContainText('시점 전환');await expect(mirror).not.toContainText('옹고집의 시점');
  expect((await state(page)).document.project).toEqual(original);
  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('onggojib-first-prose.png')});
+ const bounds=(await frame.boundingBox())!;
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();
  await page.getByRole('dialog').getByLabel('화면 터치 방식').selectOption('halves');await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await rendered(page);
  const prose=(await state(page)).playback.lineId,revision=await status.getAttribute('data-scene-revision');
@@ -74,5 +74,4 @@ test('provided Onggojib opens with one perspective entrance and proceeds directl
  await page.touchscreen.tap(bounds.x+bounds.width*.8,bounds.y+bounds.height*.2);
  await expect.poll(async()=>`${(await state(page)).playback.lineId}/${await status.getAttribute('data-dialogue-page')}`).not.toBe(`${prose}/${previousPage}`);
  expect((await state(page)).document.project).toEqual(original);
-
 });

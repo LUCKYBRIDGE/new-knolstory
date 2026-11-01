@@ -5,6 +5,8 @@ export async function openEditorDetails(page:Page,label:string){
  if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await summary.click();
 }
 export async function startReading(page:Page){
+ const settings=page.locator('[data-work-menu]');
+ if(await settings.count()&&!await settings.evaluate(node=>(node as HTMLDetailsElement).open))await settings.locator(':scope>summary').click();
  await openEditorDetails(page,'보기 설정');
  await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();
 }

@@ -252,11 +252,21 @@ init python:
         elif not knol_scene.get("choices") or (kind == "choiceSelected" and choice_id is not None):
             knol_input(kind, choice_id)
 
+    def knol_pointer_position():
+        # A touch can follow mouse input in the host menu. On Web the SDL mouse
+        # position may still point at that mouse click; use this event's location
+        # and the engine's physical-to-stage mapping before falling back to it.
+        event = getattr(renpy.game.interface, "last_event", None)
+        position = getattr(event, "pos", None)
+        if position is not None:
+            return renpy.display.draw.translate_point(*position)
+        return renpy.get_mouse_pos()
+
     def knol_stage_tap():
         if not knol_ready or not knol_scene or knol_scene.get("mode") != "play" or knol_transition_active or (knol_scene.get("transitionOnly") and not knol_manual_title()) or knol_waiting_for_audio():
             return
         # Explicit choices own forward input; halves mode may still go back.
-        left = renpy.get_mouse_pos()[0] < knol_scene["width"] / 2.0
+        left = knol_pointer_position()[0] < knol_scene["width"] / 2.0
         if knol_scene.get("readerTapMode", "next") == "halves" and left:
             if knol_text_page > 0 and not knol_scene.get("ended") and not knol_scene.get("transitionOnly"):
                 knol_change_text_page(-1)
@@ -744,7 +754,7 @@ screen knol_stage():
                     hover_background None
                     action Function(knol_text_input, "advanceRequested")
                     text ("다음 효과 ›" if knol_effect_step_pending() else "›") color "#fffdf5" size (min(20, page_text_size) if knol_effect_step_pending() else page_text_size) font "NotoSansKR.ttf" align (.5, .5)
-            if knol_transition_active and knol_should_use_native_transition(knol_scene):
+            if knol_transition_clock_running() and knol_should_use_native_transition(knol_scene):
                 timer knol_transition_duration(knol_scene) action Function(knol_finish_transition)
             if (knol_transition_active or knol_scene.get("transitionOnly")) and not knol_should_use_native_transition(knol_scene):
                 $ transition = knol_scene["presentation"]["transition"]
@@ -782,7 +792,7 @@ screen knol_stage():
                                     mousewheel True
                                     draggable True
                                     text knol_button_text(transition.get("actionLabel", "계속")) substitute False font "NotoSansKR.ttf" size 28 color knol_ink xsize (transition_width - 2 * min(80, int(transition_width * .06)) - 48) text_align .5 xalign .5
-                if knol_transition_active and transition.get("mode") != "confirm":
+                if knol_transition_clock_running() and transition.get("mode") != "confirm":
                     timer duration action Function(knol_finish_transition)
             if knol_manual_title() and not knol_transition_active and not knol_scene.get("ended"):
                 # A title card is the visible background here. Screen/background

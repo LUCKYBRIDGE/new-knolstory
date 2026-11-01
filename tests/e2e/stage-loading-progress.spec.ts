@@ -1,4 +1,5 @@
 import {test,expect,type Page} from '@playwright/test';
+import {PNG} from 'pngjs';
 /** The stage loading screen shows only the runtime's real download share, then the start step, then the stage. */
 const runtime=`<!doctype html><script>
 const send=value=>parent.postMessage({protocol:1,...value},location.origin);
@@ -20,6 +21,10 @@ for(const size of [{width:1440,height:900},{width:390,height:844}])test(`stage l
  const bar=loading.getByRole('progressbar',{name:'무대 자료 받기'});
  await expect(bar,'nothing is shown before the runtime reports progress').toHaveCount(0);
  const frame=await controls(page);
+ // A bright engine page must never bleed through the host's loading screen edges.
+ const edge=async()=>{const shot=PNG.sync.read(await loading.screenshot());const offset=(Math.floor(shot.height/2)*shot.width+4)*4;return [...shot.data.subarray(offset,offset+4)];};
+ await frame.run("document.documentElement.style.background='#000000'");const dark=await edge();
+ await frame.run("document.documentElement.style.background='#ff00ff'");expect(await edge()).toEqual(dark);
  await frame.run('knolTest.progress(0.1);knolTest.progress(0.426)');
  await expect(bar).toHaveAttribute('aria-valuenow','42');
  await expect(loading.getByText('무대 자료를 받고 있어요 · 42%',{exact:true})).toBeVisible();

@@ -8,7 +8,7 @@ export type StorageWriterStatus='loading'|'owned'|'standby'|'unavailable';
 type Options=Readonly<{
  /** Runs after this tab took the writer over and before it writes, only when another tab saved since
   * this tab last read or wrote. The host adopts that save; it must not write here. */
- onTakeover?:(raw:string|null)=>void;
+ onTakeover?:(raw:string|null,beforeRaw:string|null)=>void;
 }>;
 
 /** One writer per local collection at a time (Web Lock). The tab the reader or author is using takes
@@ -20,13 +20,18 @@ export function useStorageWriter(key:string,options:Options={}){
  const takeover=useRef(options.onTakeover);
  useEffect(()=>{takeover.current=options.onTakeover;});
  const claimRef=useRef<()=>Promise<boolean>>(()=>Promise.resolve(false));
+ const behindRef=useRef<()=>boolean>(()=>false);
  useEffect(()=>{
   let disposed=false,release:(()=>void)|undefined,generation=0,hideTimer:number|undefined,waiting:Promise<boolean>|null=null;
   const owned=()=>guard.current?.isOwned()===true;
   const stop=()=>{generation++;guard.current?.setOwned(false);release?.();release=undefined;waiting=null;};
+  // Another tab saved since this tab last read or wrote: that tab took the writer over a moment ago,
+  // possibly before this tab heard that it lost it.
+  const behind=()=>{try{return !!guard.current&&guard.current.changedSince(localStorage.getItem(key));}catch{return false;}};
+  behindRef.current=behind;
   const acquire=(steal:boolean):Promise<boolean>=>{
    if(disposed)return Promise.resolve(false);
-   if(owned())return Promise.resolve(true);
+   if(owned()){if(!behind())return Promise.resolve(true);stop();setStatus('standby');}
    if(waiting)return waiting;
    try{guard.current??=createStorageGuard(localStorage,key);}catch{setStatus('unavailable');return Promise.resolve(false);}
    if(!navigator.locks){setStatus('unavailable');return Promise.resolve(false);}
@@ -39,7 +44,7 @@ export function useStorageWriter(key:string,options:Options={}){
      if(!lock){setStatus('standby');done(false);return;}
      try{
       const stored=localStorage.getItem(key);
-      if(guard.current!.changedSince(stored))takeover.current?.(stored);
+      if(guard.current!.changedSince(stored))takeover.current?.(stored,guard.current!.snapshot());
       guard.current!.resync(stored);
      }catch{guard.current!.setOwned(false);setStatus('unavailable');done(false);return;}
      guard.current!.setOwned(true);setStatus('owned');done(true);
@@ -72,7 +77,13 @@ export function useStorageWriter(key:string,options:Options={}){
    window.removeEventListener('focus',inUse);document.removeEventListener('visibilitychange',visibility);
    document.removeEventListener('pointerdown',inUse,true);document.removeEventListener('keydown',inUse,true);};
  },[key]);
+ // Visible to checks and diagnostics only (<html data-local-writer="owned|standby|...">).
+ useEffect(()=>{document.documentElement.dataset.localWriter=status;},[status]);
  /** Takes the writer for this tab now if it is not already. Resolves whether this tab may write. */
  const claim=useCallback(()=>claimRef.current(),[]);
- return {guard,status,claim};
+ /** After a failed write. True when it failed only because another tab took the writer over and saved
+  * before this tab heard of it: this tab then takes the writer back, adopts that save first and saves
+  * again once it is 'owned' again, so the caller keeps its change and reports no failure. */
+ const retryAfterTakeover=useCallback(()=>{if(!guard.current?.isOwned()||!behindRef.current())return false;void claimRef.current();return true;},[]);
+ return {guard,status,claim,retryAfterTakeover};
 }

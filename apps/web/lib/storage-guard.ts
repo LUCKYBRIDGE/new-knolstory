@@ -11,6 +11,8 @@ export function createStorageGuard(storage:Pick<Storage,'getItem'|'setItem'>,key
  return {
   setOwned(value:boolean){owned=value;},
   isOwned:()=>owned,
+  /** Last value actually read or successfully written by this guard, before a takeover resync. */
+  snapshot:()=>expected,
   changedSince:(raw:string|null)=>raw!==expected,
   resync(raw:string|null=storage.getItem(key)){expected=raw;},
   assertWritable,
