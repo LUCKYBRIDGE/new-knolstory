@@ -81,7 +81,7 @@ export async function importLoadedAuthoringExcel(book:Awaited<ReturnType<typeof 
  const unknown=book.worksheets.filter(sheet=>!['사용 안내','작품 자료 참고','자산 참고'].includes(sheet.name)&&!specs.some(spec=>spec.title===sheet.name||previousTitles[spec.title]===sheet.name));
  if(unknown.some(sheet=>sheet.rowCount>0))throw new WorkbookIssue('편집 양식',0,'탭','지원하지 않는 작성 탭이 있습니다. 원본을 보존하고 가져오기를 중단했습니다.');
  const tables:Record<string,AuthoringTable>={};for(const spec of specs){const current=book.getWorksheet(spec.title),previous=previousTitles[spec.title]?book.getWorksheet(previousTitles[spec.title]):undefined;if(current&&previous)throw new WorkbookIssue(spec.title,0,'탭','같은 항목의 이전 이름·현재 이름 탭이 중복되었습니다.');const sheet=current??previous;if(sheet)tables[spec.key]=values(sheet);}
- const version=Number(metadata.rows[0]?.[metadata.headers.indexOf('version')]);if(version!==2&&version!==3&&version!==4&&version!==5&&version!==6&&version!==7&&version!==8)throw new WorkbookIssue('형식 정보',3,'표 버전','지원하지 않는 편집 양식 버전입니다.');
+ const version=Number(metadata.rows[0]?.[metadata.headers.indexOf('version')]);if(version!==2&&version!==3&&version!==4&&version!==5&&version!==6&&version!==7&&version!==8&&version!==9)throw new WorkbookIssue('형식 정보',3,'표 버전','지원하지 않는 편집 양식 버전입니다.');
  readTable(tables as AuthoringTables,specs[0]);
  return importAuthoringWorkbook({format:'knolstory-authoring-workbook',formatVersion:version,workKind:kind,tables});
 }

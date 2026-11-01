@@ -25,7 +25,7 @@ it('preserves separate ordered click cues, IDs, exact choice conditions and the 
  expect(archive.formatVersion).toBe(2);expect(archive.format==='knolstory'&&archive.document.schemaVersion).toBe(8);
  expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
  const workbook=await exportAuthoringWorkbook(archive),table=workbook.tables.presentationEffects;
- expect(workbook.formatVersion).toBe(8);
+ expect(workbook.formatVersion).toBe(9);
  expect(table.rows.slice(0,3).map(row=>row[table.headers.indexOf('trigger')])).toEqual(['클릭하면','컷 시작 때','클릭하면']);
  expect(table.headers).not.toContain('clickGroup');
  expect(await importAuthoringWorkbook(workbook)).toEqual(archive);
@@ -58,10 +58,10 @@ it('roundtrips explicit shared click order and keeps omitted click order absent'
  expect(await restoreJsonbSnapshot(await prepareJsonbSnapshot(archive))).toEqual(archive);
 });
 
-it('reads existing workbook8 without the additive click order column without inventing authored values',async()=>{
+it('rejects missing click order in the current workbook',async()=>{
  const {original}=fixture(),archive=await createAuthoringArchive({format:'knolstory',document:original}),workbook=await exportAuthoringWorkbook(archive),table=workbook.tables.presentationEffects;
  const older={...workbook,tables:{...workbook.tables,presentationEffects:{headers:table.headers.filter(key=>key!=='clickStep'),rows:table.rows.map(row=>row.filter((_,i)=>table.headers[i]!=='clickStep'))}}};
- expect(await importAuthoringWorkbook(older)).toEqual(archive);
+ await expect(importAuthoringWorkbook(older)).rejects.toThrow(/열|헤더/);
 });
 
 it.each([0,4,1.5,-1,NaN,Infinity])('rejects invalid click order %s before storage',async clickStep=>{
@@ -76,7 +76,7 @@ it('rejects a click order on automatic effects',async()=>{
  await expect(createAuthoringArchive({format:'knolstory',document:invalid})).rejects.toThrow();
 });
 
-it('opens existing XLSX sheets without click order and exposes its new bounded Korean help',{timeout:30000},async()=>{
+it('exposes bounded Korean help and rejects a deleted current XLSX click order column',{timeout:30000},async()=>{
  const ExcelJS=(await import('exceljs')).default;
  const {original}=fixture(),archive=await createAuthoringArchive({format:'knolstory',document:original});
  const book=new ExcelJS.Workbook();await book.xlsx.load(await exportAuthoringExcel(archive) as never);
@@ -84,5 +84,5 @@ it('opens existing XLSX sheets without click order and exposes its new bounded K
  expect(sheet.getCell(1,column).value).toBe('클릭 순서');
  expect(String(sheet.getCell(1,column).note)).toMatch(/1~3.*클릭하면/);
  sheet.spliceColumns(column,1);
- expect(await importAuthoringExcel(new Uint8Array(await book.xlsx.writeBuffer()))).toEqual(archive);
+ await expect(importAuthoringExcel(new Uint8Array(await book.xlsx.writeBuffer()))).rejects.toThrow();
 });

@@ -1,5 +1,7 @@
 # STATUS — current development state
 
+2026-11-01 현재 편집 형식 감사: workbook9의 완전한 구조 검사와 예약 ID 조건별 글 복원을 구현했다. 과거 호환보다 현행 형식의 완성도 우선이라는 사용자 결정을 계약·ADR·스킬에 반영했다. [진행·필드별 검토·검증 한계](docs/architecture/evidence/authoring-format-audit-2026-11-01/checkpoint.json).
+
 2026-11-01 임시 보관 실패 복귀 보완: 현재 원고의 브라우저 중복 기록을 제거하고, 편집·읽기에서 저장 실패 후 서재로 이동할 수 있는 명시적 선택과 파일 저장/재시도를 제공했다. CI258파일/2210통과·2제외, Pages `518782ad`와 운영 ingress 반영 완료. 실제 주소 복귀10검사·실제 RenPy 터치2검사 및1536파일/핵심해시9 일치. [현재 근거와 검증 한계](docs/architecture/evidence/library-return-recovery-2026-11-01/checkpoint.json).
 
 2026-11-01 메뉴 가독성 운영 반영: 불투명한 읽기·편집 메뉴, 명확한 실행 버튼/펼침/제목/설명, 접힌 도움말·파일 저장 안내와16px 설정 입력을 적용했다. 구현 `278c728` CI는257파일/2206통과·2제외이며 Pages `395417f5`와 운영 ingress를 같은 빌드로 갱신했다. 로컬 메뉴6·화면경계10·파일동선4, 실제 읽기 터치와 지난기록 반복 검사를 확인했다. 최종 실제 주소7검사 및 제공파일1536·핵심해시9 일치다. [범위·실패 보완·재현·공식 참고자료](docs/architecture/evidence/menu-readability-2026-11-01/checkpoint.json).

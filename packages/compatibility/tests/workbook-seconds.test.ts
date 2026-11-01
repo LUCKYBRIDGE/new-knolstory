@@ -15,7 +15,7 @@ it('rejects nondecimal time notation instead of accepting hex values',()=>{
 });
 it('writes current workbook and round trips all time fields through actual xlsx',async()=>{
  const document=completeStoryDocument(),book=await exportAuthoringWorkbook({format:'knolstory',document,audioResources:completeAudioResources()});
- expect(book.formatVersion).toBe(8);
+ expect(book.formatVersion).toBe(9);
  const archive=await importAuthoringWorkbook(book);
  expect((await importAuthoringExcel(await exportAuthoringExcel(archive)))).toEqual(archive);
  const old={...book,formatVersion:3 as const,tables:Object.fromEntries(Object.entries(book.tables).filter(([key])=>key!=='resourceTags').map(([key,inputTable])=>{
@@ -46,7 +46,7 @@ it('uses seconds and Korean guidance in every declared time column, never change
 });
 it('rejects unknown workbook versions and inconsistent declared metadata units',async()=>{
  const workbook=await exportAuthoringWorkbook({format:'knolstory',document:completeStoryDocument(),audioResources:completeAudioResources()});
- await expect(importAuthoringWorkbook({...workbook,formatVersion:9 as never})).rejects.toThrow(/지원하지 않는/);
+ await expect(importAuthoringWorkbook({...workbook,formatVersion:10 as never})).rejects.toThrow(/지원하지 않는/);
  await expect(importAuthoringWorkbook({...workbook,formatVersion:3})).rejects.toThrow(/일치하지/);
 });
 it('preserves fractional millisecond authored values through tables, xlsx and jsonb',async()=>{

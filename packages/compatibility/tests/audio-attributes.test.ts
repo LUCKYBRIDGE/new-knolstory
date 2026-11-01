@@ -10,7 +10,7 @@ async function fixture(){
 it('preserves all searchable attributes through file, JSONB and editable workbook/XLSX',async()=>{
  const archive=await fixture();expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
  expect(await restoreJsonbSnapshot(await prepareJsonbSnapshot(archive))).toEqual(archive);
- const workbook=await exportAuthoringWorkbook(archive);expect(workbook.formatVersion).toBe(8);expect(workbook.tables.resourceTags.rows).toHaveLength(3);
+ const workbook=await exportAuthoringWorkbook(archive);expect(workbook.formatVersion).toBe(9);expect(workbook.tables.resourceTags.rows).toHaveLength(3);
  expect(await importAuthoringWorkbook(workbook)).toEqual(archive);expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);
 });
 it('rejects unknown tag IDs and metadata presence conflicts',async()=>{

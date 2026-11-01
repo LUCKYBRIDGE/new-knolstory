@@ -10,7 +10,7 @@ it('preserves a full work with independent effect and music cut ends in every fo
  const archive=await createAuthoringArchive({format:'knolstory',document:createStoryDocument({project,savedAt:'2026-10-11T00:00:00.000Z',appVersion:'test'})});
  expect(archive.format==='knolstory'&&archive.document.schemaVersion).toBe(8);
  expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
- const workbook=await exportAuthoringWorkbook(archive);expect(workbook.formatVersion).toBe(8);
+ const workbook=await exportAuthoringWorkbook(archive);expect(workbook.formatVersion).toBe(9);
  expect(workbook.tables.presentationEffects.headers).toContain('endLineId');expect(workbook.tables.audioTracks.headers).toContain('endLineId');
  expect(await importAuthoringWorkbook(workbook)).toEqual(archive);expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);
  expect(await restoreJsonbSnapshot(await prepareJsonbSnapshot(archive))).toEqual(archive);

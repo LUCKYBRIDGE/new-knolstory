@@ -11,7 +11,7 @@ async function fixture(){
  return {original,second,third,archive:await createAuthoringArchive({format:'knolstory',document:{...original,project}})};
 }
 it('exports editable v7 range columns from a real work and precisely preserves unrelated authoring',async()=>{
- const {archive,third}=await fixture();if(archive.format!=='knolstory')throw Error('kind');const workbook=await exportAuthoringWorkbook(archive);expect(workbook.formatVersion).toBe(8);
+ const {archive,third}=await fixture();if(archive.format!=='knolstory')throw Error('kind');const workbook=await exportAuthoringWorkbook(archive);expect(workbook.formatVersion).toBe(9);
  const withEnd=(name:'presentationEffects'|'audioTracks')=>{const table=workbook.tables[name],column=table.headers.indexOf('endLineId');expect(column).toBeGreaterThanOrEqual(0);return {...table,rows:table.rows.map((row,index)=>index?row:row.map((value,i)=>i===column?third.id:value))};};
  const edited=await importAuthoringWorkbook({...workbook,tables:{...workbook.tables,presentationEffects:withEnd('presentationEffects'),audioTracks:withEnd('audioTracks')}});
  const expected={...archive,document:{...archive.document,project:{...archive.document.project,lines:archive.document.project.lines.map((line,index)=>index?line:{...line,presentation:{...line.presentation,effects:line.presentation!.effects!.map(effect=>({...effect,endLineId:third.id}))},audio:{...line.audio,music:{...line.audio!.music!,endLineId:third.id}}})}}};

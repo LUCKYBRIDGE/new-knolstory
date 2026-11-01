@@ -1,5 +1,9 @@
 # 공식 편집 파일과 향후 API · JSONB 저장 계약
 
+## 현재 교환 형식 우선 — 2026-11-01
+
+사용자 재확정: 배포 전 현재 편집기의 최적화·완성도를 우선하며 과거 파일을 못 열더라도 새 형식 개선을 제한하지 않는다. 원본 원고와 과거 검증은 별도 보존한다. 현재 콘텐츠는 StoryDocument8, 작품 파일은 archive2, Excel 교환은 workbook9다.9판은 전체 표·열을 엄격히 확인하며 삭제된 열을 과거 양식으로 추측하지 않는다. 옛 reader를 유지하는 경우도 새 양식의 구조·검증을 제한하지 않는다. [형식 계약](authoring-workbook-v2.md), [최신 감사](evidence/authoring-format-audit-2026-11-01/checkpoint.json).
+
 ## 브라우저 임시 보관의 중복 제거와 실패 복귀 — 2026-11-01
 
 기기 workspace version2의 `document`는 현재 작품을 소유한다. 새 쓰기는 `works`에 다른 작품만 직렬화하고 읽기는 `{...works,[storyId]:project}`로 활성 작품을 합친다. 메모리의 작품 목록은 현재 작품도 포함한다. 이전의 활성 작품을 중복 포함한 version2도 동일하게 읽는다. 원고·ID·Flow·StageComposition·작품별 context·휴지통·읽기 경로와 공식 작품 파일 형식은 유지한다. 손상 문서는 중복 제거를 이유로 허용하지 않는다.

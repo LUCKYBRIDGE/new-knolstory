@@ -1,8 +1,10 @@
-# 공식 저작 편집 양식 — 현재 workbook v8
+# 공식 저작 편집 양식 — 현재 workbook v9
+
+2026-11-01: 현재 편집 기능을 담는 양식9판을 사용한다. 모든 탭과 숨은 연결 열을 유지해야 하며, 삭제된 클릭 순서·음원 사용 구간 등을 구형 양식으로 추측해 미설정으로 가져오지 않는다. 빠진 탭·열은 위치와 함께 오류로 알리고 현재 원고를 유지한다. 문서8/공식 파일2의 콘텐츠 의미는 바뀌지 않는다. 과거 형식 호환을 새 구조의 필수 조건으로 두지 않는다. 아래8판 확장 설명은 해당 기능의 도입 기록이며 새 내보내기는9판이다. [현재 감사·검증](evidence/authoring-format-audit-2026-11-01/checkpoint.json).
 
 2026-10-21: 연출 효과의 ‘클릭하면’과 ‘클릭 순서’ 열을 추가했다. 기존 workbook8의 열 누락 보충과 역방향 호환 한계는 [클릭 효과 저장 계약](authoring-storage-contract.md#클릭-효과의-추가-저작-필드--2026-10-21)을 따른다. 생성 XLSX 왕복과 외부 Excel/Google 앱의 실제 조작 검증은 구분한다.
 
-현재: StoryDocument schema8, archive formatVersion2, workbook8. 점수·조건은5판, 효과 지속 시간은6판, 효과/배경음/주변 소리의 종료 컷은7판에서 연결했다. [종료 컷 계약](cut-range-authoring-contract.md)과 [점수 저작 계약](score-narrative-contract.md)을 따른다. 컷의 작업 제목·목적·감정·연출 메모는 기존 필드이며 앱 입력을 연결해도 새 저작 버전을 만들지 않는다. 이 파일 경로는 기존 문서 링크를 유지하기 위해 보존한다.
+현재: StoryDocument schema8, archive formatVersion2, workbook9. 점수·조건은5판, 효과 지속 시간은6판, 효과/배경음/주변 소리의 종료 컷은7판에서 연결했다. [종료 컷 계약](cut-range-authoring-contract.md)과 [점수 저작 계약](score-narrative-contract.md)을 따른다. 컷의 작업 제목·목적·감정·연출 메모는 기존 필드이며 앱 입력을 연결해도 새 저작 버전을 만들지 않는다. 이 파일 경로는 기존 문서 링크를 유지하기 위해 보존한다.
 
 2026-10-10의 점수 확장 이전 workbook2 감사와 실제 외부 앱 결과는 아래의 **이전 형식 검증 기록**으로 보존한다. 새 점수 검증은 [점수 개발 계획](score-narrative-development-plan.md)에서 별도로 판정한다. 실제 서버/DB와 실기기 검증은 후속 범위다.
 

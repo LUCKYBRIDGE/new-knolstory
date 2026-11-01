@@ -14,7 +14,7 @@ it('preserves authored effect duration and the whole real work through archive, 
  expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
  expect(await restoreJsonbSnapshot(await prepareJsonbSnapshot(archive))).toEqual(archive);
  const workbook=await exportAuthoringWorkbook(archive),table=workbook.tables.presentationEffects;
- expect(workbook.formatVersion).toBe(8);
+ expect(workbook.formatVersion).toBe(9);
  expect(table.rows[0][table.headers.indexOf('durationMs')]).toBe('1.23');
  expect(await importAuthoringWorkbook(workbook)).toEqual(archive);
  expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);

@@ -13,7 +13,7 @@ import {AUDIO_SPECS,exportAudioTables,readAudioTables} from './audio';
 import {PRESENTATION_SPECS,exportPresentationTables,readPresentationTables} from './presentation';
 import {COVER_SPECS,exportCoverTables,readCoverTables,exportCoverDesignTables,readCoverDesignTables} from './cover';
 import {PREPARATION_SPECS,exportPreparationTables,readPreparationTables} from './preparation';
-import {makeTable,readTable,WorkbookIssue,requireUnique,type Column,type TableSpec,type AuthoringWorkbook,type AuthoringTables,type WorkbookScalar} from './model';
+import {CURRENT_WORKBOOK_VERSION,makeTable,readTable,WorkbookIssue,requireUnique,type Column,type TableSpec,type AuthoringWorkbook,type AuthoringTables,type WorkbookScalar} from './model';
 export * from './model';
 const c=(key:string,label:string,type:Column['type']='text',optional=false):Column=>({key,label,type,optional});
 const meta:TableSpec={key:'metadata',title:'형식 정보',columns:[c('format','형식'),c('version','표 버전','number'),c('kind','작품 종류'),c('schemaVersion','문서 버전','number'),c('savedAt','파일 저장 시각'),c('appVersion','앱 버전'),c('assetCatalogVersion','작품 자료 목록 버전','text',true)]};
@@ -47,7 +47,7 @@ function readResources(tables:AuthoringTables):AuthoringAudioResource[]{
 }
 export async function exportAuthoringWorkbook(input:AuthoringArchiveInput|AuthoringArchive):Promise<AuthoringWorkbook>{
  const archive=await ('formatVersion' in input?validateAuthoringArchive(input):createAuthoringArchive(input)),kind=archive.format;
- const metadata={format:'knolstory-authoring-workbook',version:8,kind,schemaVersion:kind==='knolstory'?archive.document.schemaVersion:1,savedAt:kind==='knolstory'?archive.document.savedAt:archive.project.updatedAt,appVersion:kind==='knolstory'?archive.document.appVersion:'knolstory-next',assetCatalogVersion:kind==='knolstory'?archive.document.assetCatalogVersion:undefined};
+ const metadata={format:'knolstory-authoring-workbook',version:CURRENT_WORKBOOK_VERSION,kind,schemaVersion:kind==='knolstory'?archive.document.schemaVersion:1,savedAt:kind==='knolstory'?archive.document.savedAt:archive.project.updatedAt,appVersion:kind==='knolstory'?archive.document.appVersion:'knolstory-next',assetCatalogVersion:kind==='knolstory'?archive.document.assetCatalogVersion:undefined};
  let tables:AuthoringTables;
  if(kind==='knolstory'){
   const p=archive.document.project;
@@ -56,7 +56,7 @@ export async function exportAuthoringWorkbook(input:AuthoringArchiveInput|Author
   const p=archive.project;
   tables={[shortProject.key]:makeTable(shortProject,[{id:p.id,title:p.title,description:p.description,authorDisplayName:p.authorDisplayName,updatedAt:p.updatedAt,backgroundId:p.cover.backgroundId,characterId:p.cover.characterId,authorNote:p.cover.authorNote,sourcePresent:p.source!==undefined,sourceKind:p.source?.kind,presetId:p.source?.presetId}]),[pages.key]:makeTable(pages,p.pages),...exportCoverDesignTables(p.cover.design)};
  }
- return {format:'knolstory-authoring-workbook',formatVersion:8,workKind:kind,tables:{[meta.key]:makeTable(meta,[metadata]),...tables}};
+ return {format:'knolstory-authoring-workbook',formatVersion:CURRENT_WORKBOOK_VERSION,workKind:kind,tables:{[meta.key]:makeTable(meta,[metadata]),...tables}};
 }
 /** Explicit pre-score v2 adapter. Missing or partial current tabs never use this path. */
 function upgradePreviousWorkbook(input:AuthoringWorkbook):AuthoringWorkbook {
@@ -134,6 +134,16 @@ function upgradeBranchConditions(input:AuthoringWorkbook):AuthoringWorkbook{
  return {...input,formatVersion:8,tables};
 }
 export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<AuthoringArchive>{
+ // Current templates are complete schemas. Never infer an old extension from a damaged current file.
+ if(input.formatVersion===CURRENT_WORKBOOK_VERSION){
+  for(const spec of authoringWorkbookSpecs(input.workKind)){
+   const table=input.tables[spec.key];
+   if(!table)throw new WorkbookIssue(spec.title,1,'탭','현재 양식의 필수 탭이 없습니다. 새 양식을 사용하거나 원본 파일을 확인해 주세요.');
+   const keys=spec.columns.map(column=>column.key);
+   if(table.headers.length!==keys.length||new Set(table.headers).size!==keys.length||table.headers.some(key=>!keys.includes(key)))throw new WorkbookIssue(spec.title,2,'헤더','현재 양식의 열 이름·중복·누락을 확인해 주세요. 내용을 추측해 가져오지 않습니다.');
+  }
+ }
+
  if(input.formatVersion<8&&(VISIBILITY_SPECS.some(spec=>input.tables[spec.key]?.rows.length)||(()=>{const t=input.tables.cuts,i=t?.headers.indexOf('visibilityPresent')??-1;return i>=0&&t.rows.some(row=>!['false','없음'].includes((row[i]??'').toLowerCase()));})()))throw new WorkbookIssue('컷 표시 조건',0,'버전','컷 표시 조건은 표 버전8에서 작성해 주세요.');
  if(input.formatVersion<8&&(input.tables.branchConditionTerms?.rows.length||['presentationEffects','audioTracks','audioSounds'].some(key=>{const t=input.tables[key],index=t?.headers.indexOf('branchConditionMode')??-1;return index>=0&&t.rows.some(row=>row[index]!=='⟪미설정⟫');})))throw new WorkbookIssue('선택 조건 묶음',0,'버전','선택 조건 묶음은 표 버전8로 작성하세요.');
  if(input.formatVersion<8&&(input.tables.textVariants?.rows.length||input.tables.textVariantConditions?.rows.length))throw new WorkbookIssue('조건별 글',0,'버전','조건별 글은 표 버전8에서 작성해 주세요.');
@@ -148,7 +158,7 @@ export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<A
  }
  const upgraded=upgradeBranchConditions(upgradeCutEnds(upgradeEffectDuration(upgradeAudioAttributes(upgradeMillisecondsWorkbook(upgradePreviousWorkbook(input))))));
  const workbook=upgraded.workKind==='knolstory'?{...upgraded,tables:upgradeVisibilityTables(upgradeBranchGroupTables(upgradeTextVariantTables(upgraded.tables)))}:upgraded;
- if(workbook.format!=='knolstory-authoring-workbook'||workbook.formatVersion!==8||!['knolstory','shortstory'].includes(workbook.workKind))throw new WorkbookIssue(meta.title,0,'버전','지원하지 않는 편집 양식입니다.');
+ if(workbook.format!=='knolstory-authoring-workbook'||![8,CURRENT_WORKBOOK_VERSION].includes(workbook.formatVersion)||!['knolstory','shortstory'].includes(workbook.workKind))throw new WorkbookIssue(meta.title,0,'버전','지원하지 않는 편집 양식입니다.');
  const specs=authoringWorkbookSpecs(workbook.workKind),unknown=Object.keys(workbook.tables).filter(key=>!specs.some(spec=>spec.key===key));
  if(unknown.length)throw new WorkbookIssue('편집 양식',0,'탭',`지원하지 않는 탭 ${unknown.join(', ')}가 있습니다.`);
  const ms=readTable(workbook.tables,meta);if(ms.length!==1)throw new WorkbookIssue(meta.title,3,'행','정보 행은 한 개여야 합니다.');const m=ms[0];

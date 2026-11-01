@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-01",
+  "status": "local-verified-awaiting-release",
+  "decision": "과거 파일 호환은 목표 아님. 현재 편집기의 최적화·완성도 우선, 필요시 버전 개편; 기존 원본은 보존.",
+  "versions": {
+    "StoryDocument": 8,
+    "archive": 2,
+    "workbook": 9,
+    "jsonbEnvelope": 1
+  },
+  "findings": [
+    {
+      "issue": "최신 workbook8의 clickStep/원본 음원 시작·끝 열 삭제를 구형으로 추측해 미설정 값으로 읽음",
+      "fix": "새 workbook9는 필수 탭/정확한 헤더 전체를 구형 보완 전에 검사; 값/누락 추측 안 함. 원래 존재하는8 이하 reader는 새 형식을 제약하지 않음.",
+      "red": "current-workbook-integrity7실패 중 실제6실패+검사 탭 이름 오류1. 잘못된 탭 이름은 sceneVisibilityScores로 수정.",
+      "green": "현재 구조10검사 통과"
+    },
+    {
+      "issue": "조건별 글 컷 ID를 raw 셀 문자열로 join하여 예약문자 escape된 ID의 정상 파일 재열기 거부",
+      "fix": "공통 typed decoder로 컷 ID/있음 표시 복원",
+      "red": "예약 ID3종 실패",
+      "green": "전체 archive/workbook/XLSX/JSONB3검사 및 관련14통과"
+    },
+    {
+      "issue": "일반 템플릿 테스트가 과거 evidence XLSX를 새 형식으로 덮어씀",
+      "fix": "매 실행 .cache의 독립 폴더에 현행 버전 템플릿 생성; 과거 근거 원본 복원"
+    }
+  ],
+  "fieldAudit": {
+    "text": "화자/본문/빈 글/공백·줄바꿈·특수 문자열/점수 조건별 글",
+    "images": "배경/초점/맞춤/장 기본/여러 인물·위치·배율·방향·깊이·동작/표지",
+    "audio": "장·컷/배경음·주변소리·효과음/재생·중지·유지/이어재생 조각/원본 시작·끝/음량0/반복false/페이드/대기/종료 컷/선택 조건",
+    "direction": "클릭 순서/시작·지속·반복·적용 구간/효과 대상/시점 전환 문구·설명·버튼/그리고·또는 조건"
+  },
+  "checks": {
+    "baseline": "관련9파일84통과",
+    "compatibility": "66파일342통과2제외",
+    "focused": "현행구조·클릭·초·예약ID4파일34통과",
+    "schemaDrift": "generator --check pass",
+    "types": "pass",
+    "lint": "0error,existing img warning1",
+    "office": "LibreOfficeDev26.8 실제 저장3/3; 최신 복합작품/전체항목 작품/숏스토리 archive 전체 동일",
+    "browser": "외부 저장본→웹 가져오기→글 수정→RenPy 재생→.knolstory 및XLSX 내보내기→각각 새 ID 사본 재가져오기; 숏스토리 포함2/2",
+    "fullUnit": "260파일2223통과2제외; statements91.72/branches90.61/functions94.95/lines95.12",
+    "interactive": "ego TaskSpace14 별도 검사창에서 외부 저장본 가져오기/실제 글 수정/고급 음향·연출 보존값 직접 확인; 창 정리",
+    "review": "독립 읽기 전용 검토에서 확정 데이터 소실·보안 우회 없음. 사본 ID 별도 검사를 보강함.",
+    "recoveredTestRuns": [
+      "초기 외부 브라우저 검사의5초 원고 반영 대기를 긴 작품 기준30초로 조정",
+      "Node에서TS codec 직접 import 시JSON 모듈 제약을 확인; 웹 재가져기로 실제 전체 동작을 검사하도록 변경",
+      "글 수정일 변경을 정상 반영하고 다른 필드 전체 비교 유지",
+      "이전 검사 종료와 공유 서버 충돌한 실행은 제품 실패로 합산하지 않고 외부origin 또는 독립 서버 설정으로 재검증"
+    ]
+  },
+  "limits": [
+    "새 Microsoft Excel/Google Sheets 앱 직접 편집·저장은 미검증; 이전 증거는 당시 형식 범위로 유지",
+    "물리 기기·모든 실제 사용자 원고 및 전체 제품 완료를 뜻하지 않음"
+  ],
+  "release": {
+    "status": "pending"
+  },
+  "reproduce": [
+    "pnpm exec vitest run packages/compatibility/tests",
+    "pnpm test:office-roundtrip",
+    "KNOLSTORY_OFFICE_RESULTS=<successful-office-output> pnpm test:e2e:office"
+  ]
+}

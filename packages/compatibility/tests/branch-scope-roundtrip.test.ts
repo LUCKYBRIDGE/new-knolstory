@@ -14,7 +14,7 @@ async function fixture(){
 it('preserves the entire branch-conditioned work across archive, workbook, XLSX and JSONB including same-target choices',async()=>{
  const archive=await fixture();expect(archive.format==='knolstory'&&archive.document.schemaVersion).toBe(8);
  expect(await decodeAuthoringArchive(await encodeAuthoringArchive(archive))).toEqual(archive);
- const book=await exportAuthoringWorkbook(archive);expect(book.formatVersion).toBe(8);
+ const book=await exportAuthoringWorkbook(archive);expect(book.formatVersion).toBe(9);
  for(const key of ['presentationEffects','audioTracks','audioSounds'])expect(book.tables[key].headers).toEqual(expect.arrayContaining(['branchConditionPresent','branchSourceLineId','branchChoiceId']));
  expect(await importAuthoringWorkbook(book)).toEqual(archive);
  expect(await importAuthoringExcel(await exportAuthoringExcel(archive))).toEqual(archive);

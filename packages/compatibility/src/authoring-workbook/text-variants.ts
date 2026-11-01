@@ -15,7 +15,10 @@ export function upgradeTextVariantTables(tables:AuthoringTables):AuthoringTables
 }
 export function readTextVariantTables(tables:AuthoringTables,project:StoryProject):StoryProject{
  const vs=readTable(tables,variants),cs=readTable(tables,conditions),cuts=tables.cuts,marker=cuts.headers.indexOf('textVariantsPresent'),idColumn=cuts.headers.indexOf('id');
- const present=new Set(cuts.rows.filter(row=>['true','있음'].includes(row[marker]?.toLowerCase())).map(row=>row[idColumn]));
+ // Cut IDs use the same escaped literal encoding as conditional-text rows. Decode both
+ // identity and presence through the shared cell reader before joining the tables.
+ const markerRows=readTable({cuts:{headers:['lineId','present'],rows:cuts.rows.map(row=>[row[idColumn],row[marker]])}},{key:'cuts',title:'컷',columns:[c('lineId','컷 ID'),{key:'present',label:'조건별 글 있음',type:'boolean'}]});
+ const present=new Set(markerRows.filter(row=>row.present).map(row=>row.lineId));
  for(const row of vs)if(!present.has(String(row.lineId))||!project.lines.some(line=>line.id===row.lineId))throw new WorkbookIssue(variants.title,0,'컷 ID','조건별 글 있음으로 표시한 실제 컷에 연결해 주세요.');
  for(const row of cs)if(!vs.some(v=>v.lineId===row.lineId&&v.id===row.variantId))throw new WorkbookIssue(conditions.title,0,'조건별 글 ID','연결된 글이 없습니다.');
  return {...project,lines:project.lines.map(line=>{if(!present.has(line.id))return line;const rows=ordered(vs.filter(row=>row.lineId===line.id),variants),values=rows.map(row=>{const terms=ordered(cs.filter(c=>c.lineId===line.id&&c.variantId===row.id),conditions);if(!terms.length||terms.some(term=>term.mode!==terms[0].mode))throw new WorkbookIssue(conditions.title,0,'조건','한 개 이상의 조건과 같은 묶음을 써 주세요.');return {id:row.id,text:row.text,condition:{mode:terms[0].mode,terms:terms.map(term=>({scoreId:term.scoreId,operator:term.operator,value:term.value}))}};});if(!isStoryTextVariants(values))throw new WorkbookIssue(variants.title,0,'글','ID·본문·조건을 확인해 주세요.');return {...line,textVariants:values as StoryTextVariant[]};})};
