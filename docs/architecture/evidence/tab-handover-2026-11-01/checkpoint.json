@@ -1,6 +1,6 @@
 {
   "date": "2026-11-01",
-  "status": "locally-verified-awaiting-deployment",
+  "status": "deployed-verifying-production",
   "scope": "Kiro의 미완료 다중 탭 보관·시점 안내를 Codex가 이어 검증한다. 전체 출시 완료가 아니다.",
   "baseline": {
     "localHead": "5b62bad",
@@ -30,9 +30,149 @@
     "review": "Read-only second review: all three high/medium findings addressed; no remaining HIGH/CRITICAL in changed paths. Not a whole-product audit.",
     "loading": "Engine background black vs bright magenta: pre-fix390 test failed, post-fix1440/390 both passed. Real runtime native inset alpha was replaced with opaque stage background.",
     "nativeExtra": "After updating stale settings path, fullscreen fixture interference and removed status selector: four native checks all passed in1.2min (long transition at1280/390 and touch/settings persistence at390x844/844x390).",
-    "build": "runtime:build then build passed; later Web-only status and opaque overlay followups built sequentially. Release output is .cache/takeover-web-build-release.log."
+    "build": "runtime:build then build passed; later Web-only status and opaque overlay followups built sequentially. Release output is .cache/takeover-web-build-release.log.",
+    "githubFinalUnits": "256 files,2202 passed,2 skipped in successful CI41263546923",
+    "githubFinalCoverage": {
+      "statements": 91.77,
+      "branches": 90.67,
+      "functions": 94.91,
+      "lines": 95.1
+    }
   },
-  "deployment": "Pending CI and production verification. Use live.playwright.config.ts for reproducible35-check live set.",
+  "deployment": {
+    "sourceCommit": "11c0525a04b3d08b59e6b46ba3ec3bd5a7d313aa",
+    "githubCI": {
+      "id": 41263546923,
+      "conclusion": "success",
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41263546923"
+    },
+    "pages": {
+      "id": "35ac44d7-46c0-4379-ace5-5a4efadc2d9d",
+      "url": "https://35ac44d7.new-knolstory.pages.dev",
+      "productionOrigin": "https://story.knolquiz.com"
+    },
+    "candidate": ".cache/pages-release-20261101-takeover",
+    "servedFiles": 1536,
+    "siteFilesIncludingHeaders": 1537,
+    "totalBytes": 587794622,
+    "gameZipBytes": 8643696,
+    "runtimeZip": "excluded download-only archive",
+    "publicationAudit": "Site has no size/private/hash blockers;918 unverified media rights and5 runtime bundle reviews remain recorded. Existing explicit service publication authorization retained, not rights clearance.",
+    "ingress": "Same candidate index/runtime index/game.zip SHA-256 verified in production container. Only ingress recreated; API and DB unchanged.",
+    "rollback": "knolstory-next-ingress:rollback-20261101-takeover",
+    "worker": "Existing Worker and fail-open route unchanged.",
+    "apiSmoke": {
+      "status": 302,
+      "providerHost": "kauth.kakao.com",
+      "callback": "https://story.knolquiz.com/api/v1/auth/kakao/callback",
+      "setsHttpOnlyCookie": true,
+      "secureCookie": true
+    },
+    "liveRegression": {
+      "sourceCommit": "11c0525",
+      "passed": 35,
+      "failed": 0,
+      "duration": "9.8min",
+      "config": "live.playwright.config.ts",
+      "scope": "실제 운영 주소 Chromium. 후속 협력형 잠금 변경은 별도 검사/배포 전."
+    },
+    "liveFiles": {
+      "origin": "https://story.knolquiz.com",
+      "sourceCommit": "11c0525a04b3d08b59e6b46ba3ec3bd5a7d313aa",
+      "checked": 1536,
+      "retried": 0,
+      "unexpected": [],
+      "hashes": [
+        {
+          "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "index.html",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/game.zip",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/index.html",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/renpy.data",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/renpy.wasm",
+          "status": 200,
+          "match": true
+        },
+        {
+          "path": "runtime/runtime-contract.js",
+          "status": 200,
+          "match": true
+        }
+      ],
+      "ranges": [
+        {
+          "path": "assets/audio/step.wav",
+          "status": 200,
+          "bytes": 22094,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        },
+        {
+          "path": "assets/audio/cc0/kenney-interface/v1/click-002.ogg",
+          "status": 200,
+          "bytes": 4275,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        },
+        {
+          "path": "assets/audio/pixabay/352704.mp3",
+          "status": 200,
+          "bytes": 71424,
+          "contentRange": null,
+          "acceptRanges": null,
+          "wholeFileMatch": true,
+          "firstBytesMatch": true
+        }
+      ],
+      "success": true,
+      "encodedRuntime": [
+        {
+          "path": "runtime/renpy.data",
+          "encoding": "br",
+          "length": null
+        },
+        {
+          "path": "runtime/renpy.wasm",
+          "encoding": "br",
+          "length": null
+        }
+      ]
+    }
+  },
   "fixes": [
     "실제 마지막 보관 원문을 기준으로 다중 탭 원고를 병합한다. 이전 원고 기록 실패·삭제된 작품·삭제된 보관함은 덮어쓰지 않는다. 현재 초안은 파일로 내보낼 수 있다.",
     "숏스토리의 신규·변경·삭제된 모든 책을 병합하고 현재 화면도 병합본으로 맞춘다. 읽기 전용 종료는 쓰지 않고, 인계 후 공간 부족은 알린다.",
@@ -42,5 +182,18 @@
     "보관 기능이 없는 브라우저의 초기·새로고침 상태를 임시 보관 중지로 표시한다.",
     "무대 준비 화면의 바깥 배경을 불투명하게 하여 실행 화면의 안내가 비치지 않는다."
   ],
-  "limits": "로컬 Chromium·모의 화면 크기 검사다. 실제 휴대폰·화면 낭독기·사용자 카카오 로그인/업로드·전체 제품 출시 완료가 아니다. 이전 원고·ID·자산·수동 구도와 기존 근거를 보존한다. 단위 검사 중 재생성된 과거 XLSX 두 파일은 HEAD 원본 바이트로 복구하고 생성본은 .cache에만 보관했다."
+  "limits": "로컬 Chromium·모의 화면 크기 검사다. 실제 휴대폰·화면 낭독기·사용자 카카오 로그인/업로드·전체 제품 출시 완료가 아니다. 이전 원고·ID·자산·수동 구도와 기존 근거를 보존한다. 단위 검사 중 재생성된 과거 XLSX 두 파일은 HEAD 원본 바이트로 복구하고 생성본은 .cache에만 보관했다.",
+  "cooperativeFollowup": {
+    "status": "locally-verified-awaiting-ci-deploy",
+    "reason": "Web Locks steal can leave prior callback running without exclusivity; normal queued acquisition keeps synchronous writes exclusive.",
+    "implementation": "BroadcastChannel release request, ordinary non-stealable WebLock, AbortController and2.5s bounded waiting; unsupported/old owner remains standby.",
+    "units": "3 files15 focused checks passed; new cooperative helper4 tests passed with statements89.33/branches81.81/functions100/lines96.66 percent",
+    "limits": "Older tabs running old steal logic must refresh. No claim of controlling old code.",
+    "typecheck": "passed",
+    "lint": "0errors,1existing img warning",
+    "review": "Read-only review confirms normal lock callback is granted after old holder release, pending abort/dispose cannot acquire later; no concrete HIGH/CRITICAL remains in changed paths.",
+    "browser": "22 of22 authoring/recovery static checks passed in1.4min.",
+    "publication": "Same existing service publication scope; no new assets/API/DB change.",
+    "userClarification": "사용자가 지금 조작하는 탭을 주 작업 탭으로 하고 기존 탭의 보관 권한을 넘기는 방식에 동의. 이전 탭 초안과 충돌 판본은 보존한다."
+  }
 }

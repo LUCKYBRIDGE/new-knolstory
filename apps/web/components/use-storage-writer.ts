@@ -1,6 +1,7 @@
 'use client';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {createStorageGuard,type StorageGuard} from '../lib/storage-guard';
+import {createCooperativeWriter} from '../lib/cooperative-writer';
 
 /** 'standby': another tab is the writer now. Nothing is wrong and nothing is shown; this tab takes the
  * writer over as soon as it is used again. 'unavailable': this browser cannot keep the collection. */
@@ -11,8 +12,8 @@ type Options=Readonly<{
  onTakeover?:(raw:string|null,beforeRaw:string|null)=>void;
 }>;
 
-/** One writer per local collection at a time (Web Lock). The tab the reader or author is using takes
- * the writer over by itself (visible, focused or touched), so several open tabs never block each other.
+/** One writer per local collection at a time (Web Lock). The tab the reader or author is using cooperatively receives
+ * the writer by itself (visible, focused or touched), so several open tabs never block each other.
  * pagehide releases it for the back/forward cache; pageshow takes it again. */
 export function useStorageWriter(key:string,options:Options={}){
  const guard=useRef<StorageGuard|null>(null);
@@ -22,47 +23,39 @@ export function useStorageWriter(key:string,options:Options={}){
  const claimRef=useRef<()=>Promise<boolean>>(()=>Promise.resolve(false));
  const behindRef=useRef<()=>boolean>(()=>false);
  useEffect(()=>{
-  let disposed=false,release:(()=>void)|undefined,generation=0,hideTimer:number|undefined,waiting:Promise<boolean>|null=null;
+  let disposed=false,hideTimer:number|undefined;
   const owned=()=>guard.current?.isOwned()===true;
-  const stop=()=>{generation++;guard.current?.setOwned(false);release?.();release=undefined;waiting=null;};
-  // Another tab saved since this tab last read or wrote: that tab took the writer over a moment ago,
-  // possibly before this tab heard that it lost it.
   const behind=()=>{try{return !!guard.current&&guard.current.changedSince(localStorage.getItem(key));}catch{return false;}};
   behindRef.current=behind;
-  const acquire=(steal:boolean):Promise<boolean>=>{
-   if(disposed)return Promise.resolve(false);
-   if(owned()){if(!behind())return Promise.resolve(true);stop();setStatus('standby');}
-   if(waiting)return waiting;
-   try{guard.current??=createStorageGuard(localStorage,key);}catch{setStatus('unavailable');return Promise.resolve(false);}
-   if(!navigator.locks){setStatus('unavailable');return Promise.resolve(false);}
-   const request=++generation;
-   const result=new Promise<boolean>(resolve=>{
-    let settled=false;
-    const done=(value:boolean)=>{if(settled)return;settled=true;if(waiting===result)waiting=null;resolve(value);};
-    navigator.locks.request(`${key}-writer`,steal?{steal:true}:{ifAvailable:true},async lock=>{
-     if(disposed||request!==generation){done(false);return;}
-     if(!lock){setStatus('standby');done(false);return;}
-     try{
-      const stored=localStorage.getItem(key);
-      if(guard.current!.changedSince(stored))takeover.current?.(stored,guard.current!.snapshot());
-      guard.current!.resync(stored);
-     }catch{guard.current!.setOwned(false);setStatus('unavailable');done(false);return;}
-     guard.current!.setOwned(true);setStatus('owned');done(true);
-     await new Promise<void>(resolve=>{release=resolve;});
-    }).catch((error:unknown)=>{
-     // AbortError: another tab took the writer over. This tab waits until it is used again.
-     if(request===generation)guard.current?.setOwned(false);
-     if(!disposed&&request===generation)setStatus(error instanceof DOMException&&error.name==='AbortError'?'standby':'unavailable');
-     done(false);
-    });
-   });
-   waiting=result;
+  let channel:BroadcastChannel|undefined;
+  try{if(typeof BroadcastChannel!=='undefined')channel=new BroadcastChannel(`${key}-writer-handover`);}catch{/* Waiting still stays bounded without cross-tab messaging. */}
+  const lease=navigator.locks?createCooperativeWriter({
+   locks:navigator.locks,name:`${key}-writer`,channel,
+   acquire:()=>{
+    if(disposed)throw new DOMException('Writer disposed','AbortError');
+    guard.current??=createStorageGuard(localStorage,key);
+    const stored=localStorage.getItem(key);
+    if(guard.current.changedSince(stored))takeover.current?.(stored,guard.current.snapshot());
+    guard.current.resync(stored);guard.current.setOwned(true);setStatus('owned');
+   },
+   release:()=>{guard.current?.setOwned(false);if(!disposed)setStatus('standby');},
+   error:()=>{guard.current?.setOwned(false);if(!disposed)setStatus('unavailable');},
+  }):undefined;
+  if(!lease)channel?.close();
+  const stop=()=>lease?.release();
+  const acquire=async(wait:boolean):Promise<boolean>=>{
+   if(disposed)return false;
+   try{guard.current??=createStorageGuard(localStorage,key);}catch{setStatus('unavailable');return false;}
+   if(!lease){setStatus('unavailable');return false;}
+   if(owned()){if(!behind())return true;stop();}
+   const result=await lease.claim(wait);
+   if(!result&&!disposed)setStatus(current=>current==='unavailable'?current:'standby');
    return result;
   };
   claimRef.current=()=>acquire(true);
   const visible=()=>document.visibilityState==='visible';
   const inUse=()=>{if(!owned()&&visible())void acquire(true);};
-  const visibility=()=>{if(visible())inUse();};
+  const visibility=()=>{if(visible()){window.clearTimeout(hideTimer);inUse();}else hide();};
   const hide=()=>{hideTimer=window.setTimeout(()=>{stop();if(!disposed)setStatus('loading');},0);};
   const show=(event:PageTransitionEvent)=>{if(event.persisted){window.clearTimeout(hideTimer);void acquire(visible());}};
   // Only the writer writes; a save seen while this tab is the writer means it is out of step: take the
@@ -72,7 +65,7 @@ export function useStorageWriter(key:string,options:Options={}){
   window.addEventListener('pagehide',hide);window.addEventListener('pageshow',show);window.addEventListener('storage',changed);
   window.addEventListener('focus',inUse);document.addEventListener('visibilitychange',visibility);
   document.addEventListener('pointerdown',inUse,true);document.addEventListener('keydown',inUse,true);
-  return()=>{disposed=true;window.clearTimeout(timer);window.clearTimeout(hideTimer);stop();
+  return()=>{disposed=true;window.clearTimeout(timer);window.clearTimeout(hideTimer);stop();lease?.dispose();
    window.removeEventListener('pagehide',hide);window.removeEventListener('pageshow',show);window.removeEventListener('storage',changed);
    window.removeEventListener('focus',inUse);document.removeEventListener('visibilitychange',visibility);
    document.removeEventListener('pointerdown',inUse,true);document.removeEventListener('keydown',inUse,true);};
