@@ -1,0 +1,38 @@
+import {test,expect,type Page,type Locator} from '@playwright/test';
+import {readFileSync} from 'node:fs';
+import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
+import type {StoryProject} from '../../packages/story-domain/src';
+import {confirmAuthoringImport,parseAuthoringFile,expectIndependentImportedProject} from './authoring-file';
+const key='knolstory-next-workspace-v1',ids=['format-a','format-b','format-c'];
+const seed=createBlankStoryProject({id:'editor-format-workflow',chapterId:'format-chapter',lineId:ids[0],title:'여러 편집 화면과 작품 파일'});
+const project={...seed,lines:ids.map((id,index)=>({...seed.lines[0],id,order:index+1,text:`편집 전 ${index+1}컷`,flow:{type:'goto' as const,targetLineId:ids[index+1]??null}}))};
+const row=(page:Page,index:number)=>page.getByTestId(`editing-cut-${ids[index]}`);
+async function stored(page:Page):Promise<StoryProject>{return page.evaluate(key=>JSON.parse(localStorage.getItem(key)!).document.project,key);}
+async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(element=>(element as HTMLDetailsElement).open))await node.locator(':scope>summary').click();return node;}
+async function screen(page:Page,label:string){await menu(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption({label});}
+async function seconds(scope:Locator,name:string,value:string){const field=scope.getByLabel(name,{exact:true});await field.fill(value);await field.press('Enter');await expect(field).not.toHaveAttribute('aria-invalid','true');}
+async function chooseImage(page:Page,scope:Locator,label:string){
+ await scope.getByRole('button',{name:new RegExp(`^${label} 이미지 찾기 ·`)}).click();const dialog=page.getByRole('dialog',{name:`이미지 선택 · ${label}`,exact:true});
+ const item=dialog.locator('[data-asset-id]:visible').first(),id=(await item.getAttribute('data-asset-id'))!;expect(id).toBeTruthy();await item.click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();return id;
+}
+async function open(page:Page){await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
+async function importFile(page:Page,file:string|{name:string;mimeType:string;buffer:Buffer}){await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file);await confirmAuthoringImport(page);}
+
+test('real text, background, character, audio and direction editing survives file and XLSX export/reopen',async({page,browser},info)=>{
+ await open(page);await importFile(page,{name:'editor-format.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-11-01T00:00:00.000Z',appVersion:'test',project}))});
+ await expect.poll(()=>stored(page),{timeout:30000}).toEqual(project);
+ await screen(page,'글 편집');await row(page,0).getByRole('textbox',{name:'1컷 글',exact:true}).fill('001 첫 글\n=문구와 이모지 🌳를 보존해요.');await row(page,1).getByRole('textbox',{name:'2컷 글',exact:true}).fill('다음 컷을 함께 보며 수정한 두 번째 글.');
+ await screen(page,'배경 편집');const background=await chooseImage(page,row(page,0),'1컷 배경');await row(page,0).getByText('1컷 배경 표시 조정',{exact:true}).click();await row(page,0).getByLabel('1컷 배경 표시',{exact:true}).selectOption('contain');
+ await menu(page);const settings=page.getByText('편집 설정',{exact:true});if(!await settings.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await settings.click();for(const name of ['인물 편집 사용','음향 편집 사용','연출 편집 사용'])await page.getByRole('checkbox',{name,exact:true}).check();
+ await screen(page,'인물 편집');const actor=await chooseImage(page,row(page,0),'1컷 인물 추가');await row(page,0).getByRole('combobox',{name:'1컷 인물 1 배치 위치',exact:true}).selectOption('center');await row(page,0).getByRole('combobox',{name:'1컷 인물 1 방향',exact:true}).selectOption('left');await row(page,0).getByRole('slider',{name:'1컷 인물 1 크기',exact:true}).press('End');
+ await screen(page,'음향 편집');await row(page,0).getByText('1컷 음향 수정',{exact:true}).click();await row(page,0).getByLabel('컷 배경음 동작',{exact:true}).selectOption('play');await row(page,0).getByLabel('배경음 종료 컷',{exact:true}).selectOption(ids[2]);await row(page,0).getByText('컷 배경음 원본 사용 구간',{exact:true}).click();await seconds(row(page,0),'컷 배경음 원본 사용 시작 (초)','0.2');await seconds(row(page,0),'컷 배경음 원본 사용 끝 (초)','1.8');await row(page,0).getByRole('slider',{name:'컷 배경음 음량',exact:true}).press('Home');
+ await screen(page,'연출 편집');await row(page,0).getByText('1컷 연출 수정',{exact:true}).click();await row(page,0).getByLabel('조정할 연출',{exact:true}).selectOption('effects');await row(page,0).getByLabel('효과',{exact:true}).selectOption('shake');await page.getByRole('dialog',{name:'화면 흔들림',exact:true}).getByRole('button',{name:'사용',exact:true}).click();
+ await row(page,0).getByLabel('효과 시작',{exact:true}).selectOption('on-click');await row(page,0).getByLabel('효과 클릭 순서',{exact:true}).selectOption('2');await row(page,0).getByLabel('효과 적용 범위',{exact:true}).selectOption('following');await row(page,0).getByLabel('효과 종료 컷',{exact:true}).selectOption(ids[2]);await seconds(row(page,0),'효과 대기 시간 (초)','0.23');
+ await seconds(row(page,0),'효과 지속 시간 (초)','1.2');await row(page,0).getByRole('button',{name:'마지막 효과 변경 취소',exact:true}).click();await expect(row(page,0).getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('0.6');await seconds(row(page,0),'효과 지속 시간 (초)','1.2');
+ await expect.poll(async()=>{const p=await stored(page);return p.lines[0].presentation?.effects?.[0]?.durationMs;}).toBe(1200);const authored=await stored(page);
+ expect(authored.lines[0]).toMatchObject({text:'001 첫 글\n=문구와 이모지 🌳를 보존해요.',backgroundId:background,stageComposition:{leftActors:[{assetId:actor,position:'center',facing:'left',scaleMultiplier:1.4}]},audio:{music:{action:'play',sourceStartMs:200,sourceEndMs:1800,volume:0,endLineId:ids[2]}},presentation:{backgroundFit:'contain',effects:[{type:'shake',trigger:'on-click',clickStep:2,delayMs:230,durationMs:1200,scope:'following',endLineId:ids[2]}]}});expect(authored.lines[1].text).toBe('다음 컷을 함께 보며 수정한 두 번째 글.');expect(authored.lines[2]).toEqual(project.lines[2]);
+ for(const label of ['기본편집','글 편집','배경 편집','인물 편집','음향 편집','연출 편집'])await screen(page,label);expect(await stored(page)).toEqual(authored);
+ await page.screenshot({path:info.outputPath('authored-across-editors.png')});await menu(page);let pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const workPath=info.outputPath('edited.knolstory');await(await pending).saveAs(workPath);expect(parseAuthoringFile(readFileSync(workPath,'utf8')).project).toEqual(authored);
+ const controls=await menu(page);await controls.getByText('Excel · Google 시트',{exact:true}).click();pending=page.waitForEvent('download');await controls.getByRole('button',{name:'Excel 내보내기',exact:true}).click();const excelPath=info.outputPath('edited.xlsx');await(await pending).saveAs(excelPath);
+ for(const file of [workPath,excelPath]){const context=await browser.newContext(),fresh=await context.newPage();try{await open(fresh);await importFile(fresh,file);await expect.poll(()=>stored(fresh),{timeout:30000}).toEqual(authored);await importFile(fresh,file);await expect.poll(async()=>{const next=await stored(fresh);return next.id===authored.id;},{timeout:30000}).toBe(false);expectIndependentImportedProject(await stored(fresh),authored);}finally{await context.close();}}
+});

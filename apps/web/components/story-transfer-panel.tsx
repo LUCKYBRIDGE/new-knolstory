@@ -1,4 +1,5 @@
 'use client';
+import {hasUnappliedAuthoringInput,UNAPPLIED_AUTHORING_NOTICE} from '../lib/unapplied-authoring-input';
 import {useLayoutEffect,useRef,useState} from 'react';
 import {exportAuthoringExcel,blankAuthoringArchive,exportStoryTable,serializeTableTsv,googleSheetTsvUrl} from '@knolstory/compatibility';
 import {parseStoryDocument,type StoryProject} from '@knolstory/story-domain';
@@ -12,6 +13,8 @@ export function StoryTransferPanel({project,onImport,onError}:{project:StoryProj
  useLayoutEffect(()=>{scope.current+=1;return()=>{scope.current+=1;};},[project.id]);
  const [url,setUrl]=useState(''),[busy,setBusy]=useState(false);
  async function exportTable(kind:'xlsx'|'tsv'){
+  if(hasUnappliedAuthoringInput()){onError(UNAPPLIED_AUTHORING_NOTICE);return;}
+  onError('');
   setBusy(true);try{const portable=await portableStory(project),parsed=parseStoryDocument(portable);if(!parsed.ok)throw new Error('작품 형식을 확인하세요.');
    const name=project.title.replace(/[\\/:*?"<>|]/g,'_');
    if(kind==='xlsx'){const bytes=await exportAuthoringExcel({format:'knolstory',document:parsed.document,audioResources:portable.audioResources??[]});downloadArtifact(bytes as unknown as BlobPart,`${name}.xlsx`,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');}

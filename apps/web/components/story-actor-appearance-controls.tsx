@@ -36,5 +36,5 @@ function OpacityInput({label,value,onChange}:{label:string;value:number;onChange
   if(next===null){setDraft(String(Number((value*100).toFixed(3))));setError('0~100% 사이의 값을 입력해 주세요. 기존 값은 유지됩니다.');return;}
   setError('');if(next!==value)onChange(next);
  }
- return <label>{label} (%)<input type="number" inputMode="decimal" min={0} max={100} step="0.1" aria-label={`${label} (%)`} aria-invalid={error?true:undefined} aria-describedby={error?errorId:undefined} value={draft} onChange={event=>{setDraft(event.target.value);setError('');}} onBlur={commit} onKeyDown={event=>{if(event.key==='Enter'){event.preventDefault();event.currentTarget.blur();}}}/>{error&&<small id={errorId} role="alert">{error}</small>}</label>;
+ return <label>{label} (%)<input type="number" inputMode="decimal" min={0} max={100} step="0.1" aria-label={`${label} (%)`} aria-invalid={error&&draft!==String(Number((value*100).toFixed(3)))?true:undefined} aria-describedby={error?errorId:undefined} value={draft} onChange={event=>{setDraft(event.target.value);setError('');}} onBlur={commit} onKeyDown={event=>{if(event.key==='Enter'){event.preventDefault();event.currentTarget.blur();}}}/>{error&&<small id={errorId} role="alert">{error}</small>}</label>;
 }

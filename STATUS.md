@@ -1,6 +1,6 @@
 # STATUS — current development state
 
-2026-11-01 현재 편집 형식 감사: workbook9의 완전한 구조 검사와 예약 ID 조건별 글 복원을 구현했다. 과거 호환보다 현행 형식의 완성도 우선이라는 사용자 결정을 계약·ADR·스킬에 반영했다. [진행·필드별 검토·검증 한계](docs/architecture/evidence/authoring-format-audit-2026-11-01/checkpoint.json).
+2026-11-01 현재 편집 형식 감사: workbook9의 완전한 구조 검사와 예약 ID 조건별 글 복원을 구현했다. 실제 여러 편집 UI와 두 파일 교환8검사, 편집 연산 연속 왕복을 확인했고 미적용 입력의 저장/화면 전환/가져오기 소실을 막았다. 과거 호환보다 현행 형식의 완성도 우선이라는 사용자 결정을 계약·ADR·스킬에 반영했다. [진행·필드별 검토·검증 한계](docs/architecture/evidence/authoring-format-audit-2026-11-01/checkpoint.json).
 
 2026-11-01 임시 보관 실패 복귀 보완: 현재 원고의 브라우저 중복 기록을 제거하고, 편집·읽기에서 저장 실패 후 서재로 이동할 수 있는 명시적 선택과 파일 저장/재시도를 제공했다. CI258파일/2210통과·2제외, Pages `518782ad`와 운영 ingress 반영 완료. 실제 주소 복귀10검사·실제 RenPy 터치2검사 및1536파일/핵심해시9 일치. [현재 근거와 검증 한계](docs/architecture/evidence/library-return-recovery-2026-11-01/checkpoint.json).
 

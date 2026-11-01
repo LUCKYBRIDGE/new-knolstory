@@ -6,7 +6,8 @@
     "StoryDocument": 8,
     "archive": 2,
     "workbook": 9,
-    "jsonbEnvelope": 1
+    "jsonbEnvelope": 1,
+    "editingState": "작품 파일은 실제 원고/배치/효과/음향 결과를 보관; 선택 도구·보조선·화면 확대·읽던 진행·undo 이력은 원고 필드와 구분"
   },
   "findings": [
     {
@@ -24,6 +25,12 @@
     {
       "issue": "일반 템플릿 테스트가 과거 evidence XLSX를 새 형식으로 덮어씀",
       "fix": "매 실행 .cache의 독립 폴더에 현행 버전 템플릿 생성; 과거 근거 원본 복원"
+    },
+    {
+      "issue": "미적용 잘못된 음원 끝 입력을 남긴 채 파일 저장/내보내기/화면 변경/기능 끄기/컷 이동/새 파일 가져오기로 이전 적용값만 저장하거나 draft 입력을 잃을 수 있음",
+      "fix": "미적용 입력 공통 가드. 파일3경로와 화면·컷·구조·설정·가져오기 진입/확정 보호, 거부된 선택기/체크 상태 원복. 자동으로 기존값에 복원된 초·투명도는 유효한 표시값을 다시 invalid로 처리하지 않음.",
+      "red": "정상 ISO fixture를 사용한 이전 후보3002 검사4개 실패. 최초 fixture ISO 오류로 실패한 실행은 결함 근거에서 제외.",
+      "green": "최종 Web 빌드에서 편집/미적용/파일 통합8/8 통과21.9s"
     }
   ],
   "fieldAudit": {
@@ -41,15 +48,20 @@
     "lint": "0error,existing img warning1",
     "office": "LibreOfficeDev26.8 실제 저장3/3; 최신 복합작품/전체항목 작품/숏스토리 archive 전체 동일",
     "browser": "외부 저장본→웹 가져오기→글 수정→RenPy 재생→.knolstory 및XLSX 내보내기→각각 새 ID 사본 재가져오기; 숏스토리 포함2/2",
-    "fullUnit": "260파일2223통과2제외; statements91.72/branches90.61/functions94.95/lines95.12",
+    "fullUnit": "261파일2224통과2제외; statements91.72/branches90.64/functions94.99/lines95.08 (마지막 navigation 방어 추가 뒤 타입/린트·8개 UI 검사 별도 통과; 최종 CI는 release에 기록)",
     "interactive": "ego TaskSpace14 별도 검사창에서 외부 저장본 가져오기/실제 글 수정/고급 음향·연출 보존값 직접 확인; 창 정리",
     "review": "독립 읽기 전용 검토에서 확정 데이터 소실·보안 우회 없음. 사본 ID 별도 검사를 보강함.",
     "recoveredTestRuns": [
       "초기 외부 브라우저 검사의5초 원고 반영 대기를 긴 작품 기준30초로 조정",
       "Node에서TS codec 직접 import 시JSON 모듈 제약을 확인; 웹 재가져기로 실제 전체 동작을 검사하도록 변경",
       "글 수정일 변경을 정상 반영하고 다른 필드 전체 비교 유지",
-      "이전 검사 종료와 공유 서버 충돌한 실행은 제품 실패로 합산하지 않고 외부origin 또는 독립 서버 설정으로 재검증"
-    ]
+      "이전 검사 종료와 공유 서버 충돌한 실행은 제품 실패로 합산하지 않고 외부origin 또는 독립 서버 설정으로 재검증",
+      "최초 미적용 입력 RED fixture의 ISO timestamp 오류를 수정하고 이전 후보에서 정상 fixture로4RED 재확인",
+      "차단되는 checkbox에 uncheck()를 사용한 검사 사후조건 오류는 click()+checked assertion으로 교정",
+      "차단된 화면선택에서 메뉴가 무조건 닫히던 경로를 성공/거부 반환으로 구분하고 실제 표시 선택값 복원"
+    ],
+    "editingOperations": "실제 UI 연산으로 컷 나누기·합치기/선택 조건 참조 재연결/복제·선택 ID 재발급/컷·장 추가/글·화자 수정/음원 조각 나누기·자르기·순서 변경/효과 끝 보조선 정렬 후 .knolstory/workbook/XLSX/JSONB 전체 동일성1검사 통과. UI직접검사와 구분.",
+    "editingBrowser": "blank3컷→글2개→배경·맞춤→인물·중앙·방향·크기→원본음원0.2~1.8초·음량0·종료컷→효과클릭2·대기0.23·지속1.2·종료컷·undo→6화면왕복→두파일내보내기→각freshcontext재열기/독립ID 전체비교; 미적용저장3경로·화면/기능/컷전환·정상blur반영·자동원복후저장·새가져오기 보호 포함8/8 통과"
   },
   "limits": [
     "새 Microsoft Excel/Google Sheets 앱 직접 편집·저장은 미검증; 이전 증거는 당시 형식 범위로 유지",
@@ -61,6 +73,7 @@
   "reproduce": [
     "pnpm exec vitest run packages/compatibility/tests",
     "pnpm test:office-roundtrip",
-    "KNOLSTORY_OFFICE_RESULTS=<successful-office-output> pnpm test:e2e:office"
+    "KNOLSTORY_OFFICE_RESULTS=<successful-office-output> pnpm test:e2e:office",
+    "KNOL_REMOTE_ORIGIN=<served-build> pnpm exec playwright test --config tests/editor-format.playwright.config.ts"
   ]
 }

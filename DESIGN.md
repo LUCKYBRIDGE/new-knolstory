@@ -2,6 +2,10 @@
 
 Current UX owner. Dated notes record refinements; later scoped corrections take precedence. Current four-book selection and introduction rules below are authoritative. Plans/contract changes follow [documentation governance](docs/architecture/documentation-governance.md).
 
+## 여러 편집 화면과 파일 교환의 입력 일관성 — 2026-11-01
+
+글·배경·인물·음향·연출은 같은 작품을 편집한다. 정상 입력은 blur/Enter에서 적용한 최신 값으로 저장하며 화면 전환만으로 원고를 바꾸지 않는다. 미적용·잘못된 입력이 남으면 작품 파일 저장/직접 내보내기/Excel 내보내기와 화면·컷 이동, 현재 기능 끄기, 새 작품 적용을 중단하고 값을 확인하도록 알린다. 거부된 선택기와 체크 상태는 실제 현재 화면으로 복원한다. 숫자가 기존의 유효한 값으로 자동 복원된 경우에는 안내만 남기고 저장을 불필요하게 차단하지 않는다. 파일 결과는 실제 내용·배치·음향·연출을 보관하며 작업용 확대/선택/보조선과 변경 취소 이력을 원고로 혼동하지 않는다. [통합 편집·교환 근거](docs/architecture/evidence/authoring-format-audit-2026-11-01/checkpoint.json).
+
 ## 임시 보관 실패 시 서재 이동 — 2026-11-01
 
 임시 보관 실패를 이동 버튼 무응답으로 만들지 않는다. 편집에서는 원인을 짧게 알리고 ‘작품 파일 저장하고 서재로’, ‘임시 보관 다시 시도’, ‘계속 편집하기’, ‘서재로 이동’을 구분한다. 기본 초점은 계속 편집하기이며 Escape도 취소한다. 확인 후 이동해도 적용된 원고는 이 탭에서 다시 열 수 있지만 새로고침·탭 종료 시 소실 가능성을 안내한다. 미적용 입력은 별도 경고한다. 파일 쓰기·재읽기 검증이 끝났을 때만 자동 이동하며 다운로드 요청·취소·실패는 저장 완료로 표현하지 않는다. 읽기는 진행 저장 실패 시 재시도와 ‘진행 저장 없이 서재로’를 제공한다. [동작·검증 근거](docs/architecture/evidence/library-return-recovery-2026-11-01/checkpoint.json).

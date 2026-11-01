@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {hasUnappliedAuthoringInput,UNAPPLIED_AUTHORING_NOTICE} from '../lib/unapplied-authoring-input';
 import {flushSync} from 'react-dom';
 import {createLocalWorkFileSaver,createLocalWorkFileSession,localWorkFileErrorMessage,type LocalFileSession,type LocalWorkFilePicker} from '../lib/local-work-file';
 import {downloadArtifact} from '../lib/story-archive';
@@ -16,6 +17,7 @@ export function LocalWorkFileActions({fileSession,workKey,name,extension,seriali
  const [localSession]=useState(createLocalWorkFileSession),session=fileSession??localSession;
  async function save(saveAs=false){
   if(disabled||saving.current)return 'unavailable';
+  if(hasUnappliedAuthoringInput(group.current?.closest('main')??document)){setMessageWork(workKey);setNotice('');setError(UNAPPLIED_AUTHORING_NOTICE);return 'failed';}
   const key=workKey,generation=lifetime.current;
   const saver=session.getOrCreate(()=>{
    const browser=window as Window&{showSaveFilePicker?:LocalWorkFilePicker};

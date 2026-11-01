@@ -8,7 +8,7 @@
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | 현재 음향·연출·이미지·글 편집과 작품 파일/Excel 교환을 감사한다. workbook9 구조 엄격화·조건별 글 ID 복원·일반 검사 과거 파일 덮어쓰기 방지를 구현했고 외부 저장/웹 왕복을 검증 중이다. 과거 형식 호환은 필수 목표가 아니다. [현재 근거](evidence/authoring-format-audit-2026-11-01/checkpoint.json). |
+| 현재 작업 | 현재 음향·연출·이미지·글 편집과 작품 파일/Excel 교환을 감사한다. workbook9 구조 엄격화·조건별 글 ID 복원·일반 검사 과거 파일 덮어쓰기 방지를 구현했고 외부 저장·실제 여러 편집 화면·저장/새 환경 재열기와 미적용 입력 보호를 검증했다. 최종 CI·운영 반영을 진행한다. 과거 형식 호환은 필수 목표가 아니다. [현재 근거](evidence/authoring-format-audit-2026-11-01/checkpoint.json). |
 | 다른 곳에서 이어갈 때 | GitHub main을 받는다. `codex/book-entry-cover`와 `kiro/tab-handover` 원격도 같은 최종 기록까지 갱신한다. 앱 배포 소스는 `c5d1011`이며 뒤의 기록 커밋은 앱을 바꾸지 않는다. C1은 `kiro/c1-early-game-zip`에 미배포 실험으로 보존한다. `.cache/` 후보·원시 결과, wrangler 로그인, 운영 Docker와 DB 백업은 이 Mac 전용이다. 다른 컴퓨터의 배포는 그곳의 wrangler 로그인이 필요하고 운영 ingress는 Mac mini에서만 갱신한다. Web 변경 시 Pages와 ingress를 같은 빌드로 맞춘다. |
 | 이전 작업(10-31 낮) | 사용자 요청(작업 기록, GitHub main 반영, story.knolquiz.com에서 그림·음원·실행 파일을 Pages로 제공)을 마쳤다. main CI 보안 감사 실패 수정(4f69bda), Pages 재배포(633aa225), 운영 DB 백업 후 API·ingress 갱신(migration 007), 정적 전달 Worker 배포와 fail-open 경로 연결(19:42)까지 했다. 이제 story.knolquiz.com의 정적 요청은 Pages, `/api`는 Mac mini가 응답한다. 이어서 승인된 사이트 이름(‘놀스토리’)을 Pages(6a60fa95)와 운영 ingress에 같은 빌드로 반영했다. 실제 브라우저에서 파일 1534개·핵심 해시 7개가 Pages 후보와 같았다. [갱신·연결·검증 근거](evidence/story-edge-cutover-2026-10-31/checkpoint.json), [연결 방식](../decisions/0026-static-reading-authoring-and-optional-api.md#운영-도메인-연결-방식--2026-10-31). 이전 Pages 배포·미리 듣기 수정은 [그때 근거](evidence/pages-deploy-2026-10-30/checkpoint.json), 편집 복귀·대비는 [그 근거](evidence/editor-return-contrast-2026-10-31/checkpoint.json)를 따른다. |
 | 진행 중 미커밋 | 형식 감사 구현·계약·양식·ADR·스킬·회귀 검사. checkpoint.release와 실제 git status부터 대조한다. |
