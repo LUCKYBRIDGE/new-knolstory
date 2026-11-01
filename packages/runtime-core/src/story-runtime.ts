@@ -197,7 +197,10 @@ export function compileStoryScene(project: StoryProject, lineId: string, revisio
   const chapter = project.chapters.find(item => item.id === line.chapterId);
   const stage = resolveStageComposition(chapter, line, project);
   const speaker = activeStageSpeaker(stage, line);
-  const sourceActors = (['left', 'right'] as const).flatMap(side => stage[side === 'left' ? 'leftActors' : 'rightActors'].filter(actor=>!viewport?.portrait || actor.key===speaker).map((actor, index, group) => {
+  // A narrative cut may designate its action subject without turning it into dialogue.
+  const portraitFocus = line.flow?.type==='choice' ? undefined
+    : speaker ?? stage.speakerActorKey ?? stage.leftActors[0]?.key ?? stage.rightActors[0]?.key;
+  const sourceActors = (['left', 'right'] as const).flatMap(side => stage[side === 'left' ? 'leftActors' : 'rightActors'].filter(actor=>!viewport?.portrait || actor.key===portraitFocus).map((actor, index, group) => {
     const asset = resolveAsset(actor.assetId);
     if (!asset?.geometry) throw new Error(`인물 자산을 찾을 수 없어요: ${actor.assetId}`);
     const override = mergeActorOverride(actor,index,line.presentation?.actors?.[side]);

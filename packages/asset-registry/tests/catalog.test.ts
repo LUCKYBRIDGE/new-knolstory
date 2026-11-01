@@ -4,7 +4,8 @@ import { readFileSync } from 'node:fs';
 import { ASSET_CATALOG, resolveAsset } from '../src/index';
 describe('baseline asset registry', () => {
   it('resolves every stable ID with byte-verified revision and character geometry', () => {
-    expect(ASSET_CATALOG).toHaveLength(421);
+    expect(ASSET_CATALOG.filter(a=>!a.metadata.layeredStoryAsset)).toHaveLength(421);
+    expect(ASSET_CATALOG.filter(a=>a.metadata.layeredStoryAsset)).toHaveLength(11);
     for (const asset of ASSET_CATALOG) {
       expect(resolveAsset(asset.id)).toBe(asset);
       const bytes = readFileSync(`apps/web/public${asset.src}`);

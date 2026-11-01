@@ -1,5 +1,12 @@
 # DESIGN.md — KnolStory Next Design & UX SSOT
 
+## 장면의 배경·인물 분리 — 2026-11-02 사용자 후속 결정
+
+놀스토리의 컷 배경은 인물이 없는 장소 그림을 기본으로 하고, 인물은 개별 투명 이미지로 글상자 위에 배치한다. 제공 원작·놀스토리8판본에도 적용한다. 그림책의 완성 삽화와 표지 선택은 별도 용도이므로 유지한다. 기존 개인 원고·자산ID·원본을 덮어쓰지 않으며 정확한 공식 판본만 시각 교정한다. 기본 컷 배경 선택기는 인물이 포함된 삽화를 새 배경으로 제안하지 않지만, 기존 선택은 확인할 수 있다.
+
+넝마옷·짚신 교체·치료·회복 같은 상태는 대사와 앞뒤 행동에 맞춰 유지한다. 선 자세·숙인 자세·앉은 자세를 같은 실루엣 높이로 확대하지 않는다. 얼굴·몸통·팔다리 크기를 기준으로 균일 배율과 투명 여백을 사용한다. 세로 읽기는 화자를 우선하고, 해설에서는 지정한 행동 주체 또는 첫 인물을 크게 표시한다. 인물 없는 시점 장면과 선택지는 빈 인물 구도를 유지하며 저장된 전체 출연진은 가로 읽기·편집에서 보존한다. [제작·검토 근거](docs/architecture/evidence/layered-stories-2026-11-02/review.md).
+
+
 Current UX owner. Dated notes record refinements; later scoped corrections take precedence. Current four-book selection and introduction rules below are authoritative. Plans/contract changes follow [documentation governance](docs/architecture/documentation-governance.md).
 
 ## 시점 전환 카드 — 2026-11-01

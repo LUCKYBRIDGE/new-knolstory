@@ -1,4 +1,6 @@
-import {simplifyCatalogPerspectiveCard} from '../src/catalog-perspective-card';
+import {simplifyCatalogPerspectiveCard as previousCard} from '../src/catalog-perspective-card';
+import {connectCatalogLayeredScenes} from '../src/catalog-layered-scenes';
+const simplifyCatalogPerspectiveCard=(p:Parameters<typeof previousCard>[0])=>connectCatalogLayeredScenes(previousCard(p));
 import {connectCatalogNarrativeSeams} from '../src/catalog-narrative-seams';
 import {it,expect} from 'vitest';
 import {representativeStories} from '../src';

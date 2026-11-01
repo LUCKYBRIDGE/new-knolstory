@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-02",
+  "scope": "Provided KnolStory eight-edition layered visual revision; covers/ShortStory illustration selection retained",
+  "baselineCommit": "ec9b761dbbc51881559c037f99640509f072993c",
+  "state": "validated-local-candidate",
+  "audit": {
+    "editions": 8,
+    "cuts": 2970,
+    "characterBearingBackgroundCuts": 37,
+    "uniqueBackgrounds": 12,
+    "visualCutsChanged": 204,
+    "byEdition": {
+      "heungbu": 2,
+      "onggojib": 192,
+      "rabbit-classic": 10
+    },
+    "newSprites": 10,
+    "newBackgrounds": 1,
+    "existingImagesPreserved": 421
+  },
+  "preservation": [
+    "exact official catalog fingerprint gate; personally edited projects unchanged",
+    "prose, flow, choices, score, audio, presentation effects preserved",
+    "old image bytes/IDs, original manuscript fixtures, picture-book and cover illustration usage preserved",
+    "ghost identities and spectral side effects retained; important off-screen companions stay in prose"
+  ],
+  "evidence": {
+    "audit": "audit.json",
+    "generation": "generation.json",
+    "review": "review.md",
+    "runtime": "runtime-review.json",
+    "runtimeDelta": "runtime-delta.json"
+  },
+  "checks": {
+    "unit": {
+      "files": 269,
+      "passed": 2265,
+      "skipped": 2,
+      "coverage": {
+        "statements": 91.91,
+        "branches": 90.71,
+        "functions": 95.12,
+        "lines": 95.2
+      }
+    },
+    "python": 188,
+    "typecheck": "passed",
+    "securityAudit": {
+      "high": 0,
+      "moderate": 4,
+      "devToolPatches": [
+        "vitest>vite8.3.3",
+        "eslint-plugin-react-hooks>zod4.6.6"
+      ]
+    },
+    "native": {
+      "passed": 6,
+      "viewports": [
+        "390x844",
+        "1280x800"
+      ],
+      "layeredScenesPerViewport": 7,
+      "flows": [
+        "native play → edit",
+        "file export equality",
+        "reload restoration",
+        "actor search → preview → cancel → apply → reload",
+        "relative child/adult/sitting stature including3/4actors"
+      ]
+    },
+    "docs": {
+      "links": "passed",
+      "language": "passed",
+      "tests": 10
+    },
+    "build": "runtime then web passed",
+    "lint": "0 errors; one pre-existing next/no-img-element warning",
+    "provenance": {
+      "records": 1985,
+      "staleOrMissing": 0
+    },
+    "serviceCandidate": {
+      "files": 1561,
+      "blockers": 0,
+      "scope": "commercial story-service; runtime.zip excluded"
+    }
+  },
+  "release": {
+    "status": "local checks passed; GitHub/Pages/ingress pending"
+  },
+  "limits": [
+    "No physical phone validation in this run",
+    "No claim of all-cut human visual inspection or exact historical costume verification",
+    "Existing personally edited copies keep their own images; they do not silently auto-refresh",
+    "Standalone legacy asset redistribution permission not expanded"
+  ],
+  "next": "Finish final native/editor picker/relative stature checks; docs/lint; publish same reviewed candidate to GitHub main, Pages and ingress, verify actual URLs; then resume SD-03."
+}

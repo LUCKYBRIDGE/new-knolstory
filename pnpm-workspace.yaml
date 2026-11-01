@@ -13,3 +13,7 @@ overrides:
   # optional S3 require breaks the Turbopack build. rimraf 2 only calls glob.hasMagic for literal paths (fstream passes
   # concrete file paths), so glob 14 is safe there; exceljs never extracts to disk.
   'rimraf@2>glob': ^14.0.3
+
+  # 2026-11-02: narrow dev-tool fixes GHSA-587h-7wmj-h5pm and GHSA-mrhx-c7xc-m3w5.
+  'vitest>vite': 8.3.3
+  'eslint-plugin-react-hooks>zod': 4.6.6

@@ -1,3 +1,4 @@
+import {connectCatalogLayeredScenes} from '../src/catalog-layered-scenes';
 import {simplifyCatalogPerspectiveCard} from '../src/catalog-perspective-card';
 import {describe,expect,it} from 'vitest';
 import {orderedStoryFlowLines,storyFlowTargets,type StoryProject} from '@knolstory/story-domain';
@@ -40,7 +41,7 @@ describe('reviewed catalog choice memory',()=>{
   expect(byId.get('review-main-002:palace:18')!.text).toContain('죽을 수도');
  });
  for(const [id,count] of [['seonnyeo',64],['heungbu',4],['onggojib',16],['rabbit',6]] as const)it(`${id}: all ${count} complete reading routes and endings remain the same`,()=>{
-  const source=representativeStories.find(s=>s.id===id)!.project,before=prior(source),after=resolveProvidedCatalogStory(source);
+  const source=representativeStories.find(s=>s.id===id)!.project,before=connectCatalogLayeredScenes(prior(source)),after=resolveProvidedCatalogStory(source);
   const beforePaths=paths(before),afterPaths=paths(after);expect(afterPaths).toHaveLength(count);expect(afterPaths).toEqual(beforePaths);
   expect(after.lines.map(({text:_text,...line})=>line)).toEqual(before.lines.map(({text:_text,...line})=>line));
   expect({...after,lines:before.lines}).toEqual(before);

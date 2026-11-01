@@ -9,9 +9,19 @@ describe('portrait primary speaker only',()=>{
   expect(JSON.stringify(p)).toBe(before);
   expect(compileStoryScene(p,'l',2,{mode:'play',viewport:{width:844,height:390}}).actors).toHaveLength(2);
  });
- it('keeps narration, no-image POV and choices without a designated speaker empty',()=>{
-  const p=project();for(const patch of [{type:'narration' as const,speaker:'narration' as const},{stageComposition:{leftActors:[],rightActors:[]},speakerName:'나'}]) {
+ it('keeps no-image POV empty and uses the designated narrative focus without changing speakers',()=>{
+  const narrated=patchStoryLine(project(),'l',{type:'narration',speaker:'narration',stageComposition:project().lines[0].stageComposition});
+  expect(compileStoryScene(narrated,'l',1,{mode:'play',viewport:{width:360,height:800}}).actors.map(a=>a.id)).toEqual(['adult']);
+  const p=project();for(const patch of [{stageComposition:{leftActors:[],rightActors:[]},speakerName:'나'}]) {
    const next=patchStoryLine(p,'l',patch);expect(compileStoryScene(next,'l',1,{mode:'play',viewport:{width:360,height:800}}).actors).toEqual([]);
   }
  });
+});
+
+it('uses a narrative subject without a speaker and keeps choice overlays clear',()=>{
+ const p=project(),stage={leftActors:p.lines[0].stageComposition!.leftActors,rightActors:p.lines[0].stageComposition!.rightActors};
+ const narrated=patchStoryLine(p,'l',{type:'narration',speaker:'narration',stageComposition:stage});
+ expect(compileStoryScene(narrated,'l',1,{mode:'play',viewport:{width:390,height:844}}).actors.map(a=>a.id)).toEqual(['child']);
+ const choice=patchStoryLine(narrated,'l',{flow:{type:'choice',options:[{id:'a',label:'끝내기',targetLineId:null},{id:'b',label:'다른 끝',targetLineId:null}]}});
+ expect(compileStoryScene(choice,'l',1,{mode:'play',viewport:{width:390,height:844}}).actors).toEqual([]);
 });

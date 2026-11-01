@@ -27561,5 +27561,759 @@
         "결심"
       ]
     }
+  },
+  {
+    "id": "onggojib.character.layered-ragged-replacement-shoes-v1",
+    "displayName": "진짜 옹고집 · 넝마옷 · 갈아 신은 낡은 짚신 · 서 있기",
+    "label": "진짜 옹고집 · 넝마옷 · 갈아 신은 낡은 짚신 · 서 있기",
+    "story": "옹고집전",
+    "type": "character",
+    "group": "진짜 옹고집",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/onggojib-ragged-replacement-shoes.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-ragged-replacement-shoes-v1",
+    "copyright": "놀퀴즈",
+    "revision": "e92695ddd7ad2e39e2641192c27f488a98ab4116fe2e06f25ae84f2043881614",
+    "geometry": {
+      "left": 0.23875,
+      "right": 0.81,
+      "top": 0.20833333333333334,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "진짜 옹고집",
+      "넝마옷 · 갈아 신은 낡은 짚신",
+      "서 있기",
+      "귀가하기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.real"
+      ],
+      "primaryCharacterId": "onggojib.real",
+      "framing": "full",
+      "expressions": [
+        "지침"
+      ],
+      "actions": [
+        "서 있기",
+        "귀가하기"
+      ],
+      "variantId": "넝마옷 · 갈아 신은 낡은 짚신",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.real.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "onggojib.character.layered-ragged-standing-v1",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "artFamily": "onggojib-watercolor-v2",
+      "displayName": "진짜 옹고집 · 헤진 옷으로 움츠림",
+      "composition": "single",
+      "bodyFraming": "full",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "진짜 옹고집",
+        "넝마옷 · 갈아 신은 낡은 짚신",
+        "서 있기",
+        "귀가하기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "onggojib.character.layered-ragged-seated-outside-v1",
+    "displayName": "진짜 옹고집 · 넝마옷 · 해진 짚신 · 주저앉기",
+    "label": "진짜 옹고집 · 넝마옷 · 해진 짚신 · 주저앉기",
+    "story": "옹고집전",
+    "type": "character",
+    "group": "진짜 옹고집",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/onggojib-ragged-seated-outside.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-ragged-seated-outside-v1",
+    "copyright": "놀퀴즈",
+    "revision": "71f7fe162213160cd6f0a495ef34db7362de0361fb0ed4eacbd36e9be5ea73a7",
+    "geometry": {
+      "left": 0.13375,
+      "right": 0.89625,
+      "top": 0.42083333333333334,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "진짜 옹고집",
+      "넝마옷 · 해진 짚신",
+      "주저앉기",
+      "지친 채 올려다보기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.real"
+      ],
+      "primaryCharacterId": "onggojib.real",
+      "framing": "full",
+      "expressions": [
+        "지침"
+      ],
+      "actions": [
+        "주저앉기",
+        "지친 채 올려다보기"
+      ],
+      "variantId": "넝마옷 · 해진 짚신",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.real.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "artFamily": "onggojib-watercolor-v2",
+      "displayName": "진짜 옹고집 · 헤진 옷으로 움츠림",
+      "composition": "single",
+      "bodyFraming": "full",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "진짜 옹고집",
+        "넝마옷 · 해진 짚신",
+        "주저앉기",
+        "지친 채 올려다보기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "onggojib.character.layered-ragged-chopping-v1",
+    "displayName": "진짜 옹고집 · 넝마옷 · 해진 짚신 · 도끼질",
+    "label": "진짜 옹고집 · 넝마옷 · 해진 짚신 · 도끼질",
+    "story": "옹고집전",
+    "type": "character",
+    "group": "진짜 옹고집",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/onggojib-ragged-chopping.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-ragged-chopping-v1",
+    "copyright": "놀퀴즈",
+    "revision": "2695f82812f0e27a587e28751fc5b4018634246661de291767c3993f99484d40",
+    "geometry": {
+      "left": 0.1225,
+      "right": 0.9675,
+      "top": 0.27,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "진짜 옹고집",
+      "넝마옷 · 해진 짚신",
+      "도끼질",
+      "장작 패기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.real"
+      ],
+      "primaryCharacterId": "onggojib.real",
+      "framing": "full",
+      "expressions": [
+        "지침"
+      ],
+      "actions": [
+        "도끼질",
+        "장작 패기"
+      ],
+      "variantId": "넝마옷 · 해진 짚신",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.real.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "artFamily": "onggojib-watercolor-v2",
+      "displayName": "진짜 옹고집 · 헤진 옷으로 움츠림",
+      "composition": "single",
+      "bodyFraming": "full",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "진짜 옹고집",
+        "넝마옷 · 해진 짚신",
+        "도끼질",
+        "장작 패기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "onggojib.character.layered-ragged-standing-v1",
+    "displayName": "진짜 옹고집 · 넝마옷 · 해진 짚신 · 서 있기",
+    "label": "진짜 옹고집 · 넝마옷 · 해진 짚신 · 서 있기",
+    "story": "옹고집전",
+    "type": "character",
+    "group": "진짜 옹고집",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/onggojib-ragged-standing.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-ragged-standing-v1",
+    "copyright": "놀퀴즈",
+    "revision": "09f675aed34596988e7ba5a69d9d753ba0be559b3cad6e7bd609672c3942d41f",
+    "geometry": {
+      "left": 0.23875,
+      "right": 0.8075,
+      "top": 0.20916666666666667,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "진짜 옹고집",
+      "넝마옷 · 해진 짚신",
+      "서 있기",
+      "추위에 떨기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.real"
+      ],
+      "primaryCharacterId": "onggojib.real",
+      "framing": "full",
+      "expressions": [
+        "지침"
+      ],
+      "actions": [
+        "서 있기",
+        "추위에 떨기"
+      ],
+      "variantId": "넝마옷 · 해진 짚신",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.real.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "artFamily": "onggojib-watercolor-v2",
+      "displayName": "진짜 옹고집 · 헤진 옷으로 움츠림",
+      "composition": "single",
+      "bodyFraming": "full",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "진짜 옹고집",
+        "넝마옷 · 해진 짚신",
+        "서 있기",
+        "추위에 떨기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "onggojib.character.layered-ragged-seated-treatment-v1",
+    "displayName": "진짜 옹고집 · 넝마옷 · 맨발과 붕대 · 앉기",
+    "label": "진짜 옹고집 · 넝마옷 · 맨발과 붕대 · 앉기",
+    "story": "옹고집전",
+    "type": "character",
+    "group": "진짜 옹고집",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/onggojib-ragged-seated-treatment.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-ragged-seated-treatment-v1",
+    "copyright": "놀퀴즈",
+    "revision": "1718e188cf7ba50fa1663dc16177388544fcbcbcd7493f172aaffd80881526a2",
+    "geometry": {
+      "left": 0.08125,
+      "right": 0.885,
+      "top": 0.405,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "진짜 옹고집",
+      "넝마옷 · 맨발과 붕대",
+      "앉기",
+      "치료받기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.real"
+      ],
+      "primaryCharacterId": "onggojib.real",
+      "framing": "full",
+      "expressions": [
+        "지침"
+      ],
+      "actions": [
+        "앉기",
+        "치료받기"
+      ],
+      "variantId": "넝마옷 · 맨발과 붕대",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.real.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "artFamily": "onggojib-watercolor-v2",
+      "displayName": "진짜 옹고집 · 헤진 옷으로 움츠림",
+      "composition": "single",
+      "bodyFraming": "full",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "진짜 옹고집",
+        "넝마옷 · 맨발과 붕대",
+        "앉기",
+        "치료받기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "onggojib.character.layered-clean-seated-treatment-v1",
+    "displayName": "진짜 옹고집 · 깨끗한 도포 · 맨발과 붕대 · 앉기",
+    "label": "진짜 옹고집 · 깨끗한 도포 · 맨발과 붕대 · 앉기",
+    "story": "옹고집전",
+    "type": "character",
+    "group": "진짜 옹고집",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/onggojib-clean-seated-treatment.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-clean-seated-treatment-v1",
+    "copyright": "놀퀴즈",
+    "revision": "b7a858487af41693fae3b92b4639aebcb7b66abbf350380464bbde9bbf23fc20",
+    "geometry": {
+      "left": 0.135,
+      "right": 0.865,
+      "top": 0.37583333333333335,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "진짜 옹고집",
+      "깨끗한 도포 · 맨발과 붕대",
+      "앉기",
+      "치료받기",
+      "사과하기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.real"
+      ],
+      "primaryCharacterId": "onggojib.real",
+      "framing": "full",
+      "expressions": [
+        "기본"
+      ],
+      "actions": [
+        "앉기",
+        "치료받기",
+        "사과하기"
+      ],
+      "variantId": "깨끗한 도포 · 맨발과 붕대",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.real.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "onggojib.character.real-remorse-consistent-pixel",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "artFamily": "onggojib-watercolor-v2",
+      "composition": "single",
+      "bodyFraming": "full",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "진짜 옹고집",
+        "깨끗한 도포 · 맨발과 붕대",
+        "앉기",
+        "치료받기",
+        "사과하기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "onggojib.character.layered-wife-kneeling-treatment-v1",
+    "displayName": "옹고집의 아내 · 저고리와 치마 · 치료 도구 · 무릎 꿇기",
+    "label": "옹고집의 아내 · 저고리와 치마 · 치료 도구 · 무릎 꿇기",
+    "story": "옹고집전",
+    "type": "character",
+    "group": "옹고집의 아내",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/onggojib-wife-kneeling-treatment.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-wife-kneeling-treatment-v1",
+    "copyright": "놀퀴즈",
+    "revision": "53a4b38367248e0b26ea421ebb84bef3870ae6fef873ad7525b15ba38062eddc",
+    "geometry": {
+      "left": 0.155,
+      "right": 0.89125,
+      "top": 0.39,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "옹고집의 아내",
+      "저고리와 치마 · 치료 도구",
+      "무릎 꿇기",
+      "치료하기",
+      "물대야 준비"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.wife"
+      ],
+      "primaryCharacterId": "onggojib.wife",
+      "framing": "full",
+      "expressions": [
+        "기본"
+      ],
+      "actions": [
+        "무릎 꿇기",
+        "치료하기",
+        "물대야 준비"
+      ],
+      "variantId": "저고리와 치마 · 치료 도구",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.wife.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "onggojib.character.wife-pixel",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "artFamily": "onggojib-watercolor-v2",
+      "composition": "single",
+      "bodyFraming": "full",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "옹고집의 아내",
+        "저고리와 치마 · 치료 도구",
+        "무릎 꿇기",
+        "치료하기",
+        "물대야 준비",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.layered-fish-courtier-v1",
+    "displayName": "물고기 신하 · 푸른 관복 · 공손히 서기",
+    "label": "물고기 신하 · 푸른 관복 · 공손히 서기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "물고기 신하",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/rabbit-fish-courtier.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#rabbit-turtle.character.layered-fish-courtier-v1",
+    "copyright": "놀퀴즈",
+    "revision": "b1feed6ae63efb43572356fab8ff885e169f3a033de3d5d6343ddae083edfde5",
+    "geometry": {
+      "left": 0.2775,
+      "right": 0.72625,
+      "top": 0.23583333333333334,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "물고기 신하",
+      "푸른 관복",
+      "공손히 서기",
+      "고개 숙이기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "rabbit-turtle.fish-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.fish-courtier",
+      "framing": "full",
+      "expressions": [
+        "기본"
+      ],
+      "actions": [
+        "공손히 서기",
+        "고개 숙이기"
+      ],
+      "variantId": "푸른 관복",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.fish-courtier.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "bodyFraming": "full",
+      "composition": "single",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "물고기 신하",
+        "푸른 관복",
+        "공손히 서기",
+        "고개 숙이기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.layered-crab-courtier-v1",
+    "displayName": "게 신하 · 갈색 관복 · 공손히 서기",
+    "label": "게 신하 · 갈색 관복 · 공손히 서기",
+    "story": "별주부전",
+    "type": "character",
+    "group": "게 신하",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/rabbit-crab-courtier.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#rabbit-turtle.character.layered-crab-courtier-v1",
+    "copyright": "놀퀴즈",
+    "revision": "d2982c3531c45ff8de9ccdedd561c1e28699cd65649a131c8f202df4841de41a",
+    "geometry": {
+      "left": 0.23625,
+      "right": 0.78625,
+      "top": 0.48083333333333333,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "게 신하",
+      "갈색 관복",
+      "공손히 서기",
+      "머뭇거리기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "rabbit-turtle.crab-courtier"
+      ],
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "framing": "full",
+      "expressions": [
+        "기본"
+      ],
+      "actions": [
+        "공손히 서기",
+        "머뭇거리기"
+      ],
+      "variantId": "갈색 관복",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.crab-courtier.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "bodyFraming": "full",
+      "composition": "single",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "게 신하",
+        "갈색 관복",
+        "공손히 서기",
+        "머뭇거리기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "heungbu.character.layered-dokkaebi-hat-v1",
+    "displayName": "도깨비 · 작은 도깨비 · 놀부의 갓 · 달리기",
+    "label": "도깨비 · 작은 도깨비 · 놀부의 갓 · 달리기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "group": "도깨비",
+    "framing": "전신",
+    "src": "/assets/characters/layered-v1/heungbu-dokkaebi-hat.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#heungbu.character.layered-dokkaebi-hat-v1",
+    "copyright": "놀퀴즈",
+    "revision": "f8d504c1a478210ca8c943f6934d013b2380bb504c37906182fbc3a5e432d1b3",
+    "geometry": {
+      "left": 0.23625,
+      "right": 0.8025,
+      "top": 0.44583333333333336,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "tags": [
+      "도깨비",
+      "작은 도깨비 · 놀부의 갓",
+      "달리기",
+      "갓을 들고 도망가기"
+    ],
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "heungbu.dokkaebi"
+      ],
+      "primaryCharacterId": "heungbu.dokkaebi",
+      "framing": "full",
+      "expressions": [
+        "기본"
+      ],
+      "actions": [
+        "달리기",
+        "갓을 들고 도망가기"
+      ],
+      "variantId": "작은 도깨비 · 놀부의 갓",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.dokkaebi.layered-v1",
+      "pairingStatus": "missing-upper",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "heungbu.character.nolbu-angry",
+        "evidence": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+        "reason": "얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음"
+      },
+      "bodyFraming": "full",
+      "composition": "single",
+      "layeredStoryAsset": true,
+      "searchTerms": [
+        "도깨비",
+        "작은 도깨비 · 놀부의 갓",
+        "달리기",
+        "갓을 들고 도망가기",
+        "개별 인물",
+        "투명 배경"
+      ]
+    }
+  },
+  {
+    "id": "heungbu.background.layered-goblin-courtyard-v1",
+    "displayName": "놀부의 마당 · 두 번째 박 · 인물 없음",
+    "label": "놀부의 마당 · 두 번째 박 · 인물 없음",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "놀부의 집",
+    "backgroundRole": "scenery",
+    "src": "/assets/backgrounds/layered-v1/heungbu-goblin-courtyard.webp",
+    "sourcePath": "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#heungbu.background.layered-goblin-courtyard-v1",
+    "copyright": "놀퀴즈",
+    "revision": "09ba63b92dcb8ffa8ad5a3740d0ddacb6d62ab2e87bd123faaa4e5dec250ec24",
+    "geometry": null,
+    "tags": [
+      "인물 없음",
+      "도깨비",
+      "두 번째 박",
+      "온전한 집",
+      "흩어진 곡식"
+    ],
+    "metadata": {
+      "kind": "background",
+      "placementRole": "background-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "containsCharacters": false,
+      "layeredStoryAsset": true,
+      "background": {
+        "location": "놀부의 마당",
+        "space": "outdoor",
+        "time": "낮",
+        "season": "가을",
+        "state": "두 번째 박 · 집이 무너지기 전"
+      },
+      "searchTerms": [
+        "인물 없음",
+        "두 번째 박",
+        "도깨비가 나온 마당",
+        "흩어진 곡식"
+      ],
+      "artFamily": "heungbu-traditional-picturebook"
+    }
   }
 ]

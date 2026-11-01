@@ -1,0 +1,5025 @@
+{
+  "date": "2026-11-02",
+  "editions": 8,
+  "totalCuts": 2970,
+  "characterBearingBackgroundCuts": 37,
+  "replacements": [
+    {
+      "edition": "heungbu",
+      "lineId": "scene-10-9",
+      "chapterId": "chapter-10",
+      "reachable": true,
+      "backgroundId": "heungbu.scene.nolbu-goblin-chaos",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "heungbu.character.nolbu-angry"
+        },
+        {
+          "key": "R1",
+          "assetId": "heungbu.character.wife-nolbu-shocked"
+        }
+      ],
+      "speakerName": "해설",
+      "text": "두 번째 박에서는 도깨비들이 튀어나왔다.\n\n마당을 뛰며 장독 뚜껑을 뒤집었다. 곡식 자루를 굴리고, 놀부의 갓을 빼앗아 달아났다."
+    },
+    {
+      "edition": "heungbu",
+      "lineId": "scene-10-10",
+      "chapterId": "chapter-10",
+      "reachable": true,
+      "backgroundId": "heungbu.scene.nolbu-goblin-chaos",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "heungbu.character.nolbu-angry"
+        },
+        {
+          "key": "R1",
+          "assetId": "heungbu.character.wife-nolbu-shocked"
+        }
+      ],
+      "speakerName": "놀부",
+      "text": "“내 갓! 거기 서!”"
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:real-loop-testimony:16",
+      "chapterId": "review-main-003:real-loop-testimony",
+      "reachable": false,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-01",
+      "actors": [],
+      "speakerName": "지문",
+      "text": "막내는 또 다른 옹고집의 옷자락을 잡은 채 부인을 올려다봤다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:7",
+      "chapterId": "review-main-003:fake-route",
+      "reachable": false,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-02",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "거센 눈발에 집 모양도 흐릿했다. 옹고집이 큰 대문을 두드렸다. 누군가 문틈으로 내다보았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:18",
+      "chapterId": "review-main-003:fake-route",
+      "reachable": false,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-03",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "밤이 깊도록 도끼질이 이어졌다. 젖은 장작은 쉽게 갈라지지 않았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:31",
+      "chapterId": "review-main-003:fake-route",
+      "reachable": false,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-04",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "일어나지 못한 채 앉아 있을 때, 누군가 그의 앞에 주먹밥 두 개와 낡은 짚신을 내려놓았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:60",
+      "chapterId": "review-main-003:fake-route",
+      "reachable": false,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-05",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "부인은 따뜻한 물이 담긴 대야와 약상자를 가져왔다. 아이들은 멀찍이서 말없이 지켜보았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:61",
+      "chapterId": "review-main-003:fake-route",
+      "reachable": false,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-05",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "부인은 눈길에 상한 발과 손을 씻고 약을 발라 주었다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-meal-act:1",
+      "chapterId": "review-main-003:b-meal-act",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-06",
+      "actors": [],
+      "speakerName": "둘째",
+      "text": "까치가 장독대 위에 있었어요. 나뭇가지를 물고 있었어요."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-vase-care:1",
+      "chapterId": "review-main-003:b-vase-care",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-07",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "일꾼들은 처음 약속한 삯을 모두 받아 돌아갔다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:3",
+      "chapterId": "review-main-003:b-final-acts",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-08",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "옹고집은 사내를 안으로 들였다. 부인이 죽을 내오는 동안 젖은 신을 벗게 했다. 아랫방에는 자리를 폈다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:4",
+      "chapterId": "review-main-003:b-final-acts",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-09",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "사내를 재운 뒤, 부인은 약상자를 가져왔다. 옹고집의 발에는 상처가 남아 있었다. 아직 약을 더 발라야 했다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:16",
+      "chapterId": "review-main-003:b-final-acts",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-10",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "봄날 아침, 옹고집이 빗장을 풀었다. 아이들이 함께 대문을 밀었다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:35",
+      "chapterId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-01",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "포졸들이 분노한 옹고집을 뒤로 물리자, 막내는 조용한 옹고집 뒤로 숨었다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "chapterId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-01",
+      "actors": [],
+      "speakerName": "지문",
+      "text": "막내는 또 다른 옹고집의 옷자락을 잡은 채 부인을 올려다봤다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "chapterId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-02",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "거센 눈발에 집 모양도 흐릿했다. 옹고집이 큰 대문을 두드렸다. 누군가 문틈으로 내다보았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "chapterId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-03",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "밤이 깊도록 도끼질이 이어졌다. 젖은 장작은 쉽게 갈라지지 않았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:22",
+      "chapterId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-04",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "일어나지 못한 채 앉아 있을 때, 누군가 그의 앞에 주먹밥 두 개와 낡은 짚신을 내려놓았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:51",
+      "chapterId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-05",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "부인은 따뜻한 물이 담긴 대야와 약상자를 가져왔다. 아이들은 멀찍이서 말없이 지켜보았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:52",
+      "chapterId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-05",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "부인은 눈길에 상한 발과 손을 씻고 약을 발라 주었다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:36",
+      "chapterId": "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-01",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "포졸들이 분노한 옹고집을 뒤로 물리자, 막내는 조용한 옹고집 뒤로 숨었다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:real-loop-testimony-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:16",
+      "chapterId": "review-main-003:real-loop-testimony-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-01",
+      "actors": [],
+      "speakerName": "지문",
+      "text": "막내는 또 다른 옹고집의 옷자락을 잡은 채 부인을 올려다봤다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:4",
+      "chapterId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-02",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "거센 눈발에 집 모양도 흐릿했다. 옹고집이 큰 대문을 두드렸다. 누군가 문틈으로 내다보았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:12",
+      "chapterId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-03",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "밤이 깊도록 도끼질이 이어졌다. 젖은 장작은 쉽게 갈라지지 않았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:23",
+      "chapterId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-04",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "일어나지 못한 채 앉아 있을 때, 누군가 그의 앞에 주먹밥 두 개와 낡은 짚신을 내려놓았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:52",
+      "chapterId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-05",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "부인은 따뜻한 물이 담긴 대야와 약상자를 가져왔다. 아이들은 멀찍이서 말없이 지켜보았다."
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:53",
+      "chapterId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl",
+      "reachable": true,
+      "backgroundId": "onggojib.scene.shortstory-knolstory-05",
+      "actors": [],
+      "speakerName": "해설",
+      "text": "부인은 눈길에 상한 발과 손을 씻고 약을 발라 주었다."
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-06",
+      "chapterId": "classic-rabbit-1",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "용왕",
+      "text": "토끼의 간이라니! 그렇다면 누가 육지로 나가 토끼를 데려오겠느냐?"
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-07",
+      "chapterId": "classic-rabbit-1",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "해설",
+      "text": "신하들은 갑자기 바닥만 내려다보았다. 조금 전까지 제 의견을 말하던 이들도 선뜻 나서지 못했다. 육지에 다녀오라는 말 때문이었다."
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-08",
+      "chapterId": "classic-rabbit-1",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "해설",
+      "text": "누구는 육지를 잘 모른다 하고, 누구는 자신에게 맞지 않는 일이라고 했다. 말은 많았지만 정작 나서는 신하는 없었다."
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-09",
+      "chapterId": "classic-rabbit-1",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "용왕",
+      "text": "그 많은 신하 가운데 육지에 다녀올 자가 하나도 없단 말이냐?"
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-3-line-09",
+      "chapterId": "classic-rabbit-3",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "rabbit-turtle.character.rabbit-white-unified-720x900"
+        },
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "해설",
+      "text": "별주부가 토끼를 데리고 대전에 들어섰다. 수궁의 신하들이 일제히 토끼를 바라보았다. 토끼는 자신을 환영하는 줄 알고 어깨를 폈다."
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-3-line-11",
+      "chapterId": "classic-rabbit-3",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "rabbit-turtle.character.rabbit-shocked"
+        },
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "용왕",
+      "text": "오오, 네가 바로 토끼로구나! 어서 저 토끼를 붙잡아라. 저 토끼의 간을 얻어야 내 병을 고칠 수 있다!"
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-01",
+      "chapterId": "classic-rabbit-4",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "rabbit-turtle.character.rabbit-shocked"
+        },
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "해설",
+      "text": "토끼는 순간 자기 귀를 의심했다. 높은 벼슬도 귀한 대접도 모두 자신을 이곳까지 데려오기 위한 거짓말이었다."
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-02",
+      "chapterId": "classic-rabbit-4",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "rabbit-turtle.character.rabbit-shocked"
+        },
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "토끼",
+      "text": "잠깐만요! 지금 제 간을 얻겠다고 하셨습니까?"
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-03",
+      "chapterId": "classic-rabbit-4",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "rabbit-turtle.character.rabbit-shocked"
+        },
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "용왕",
+      "text": "그렇다. 네 간이 내 병을 낫게 할 귀한 약이라고 하였다. 내가 살려면 네 간이 꼭 필요하다."
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-04",
+      "chapterId": "classic-rabbit-4",
+      "reachable": true,
+      "backgroundId": "rabbit-turtle.background.classic-court",
+      "actors": [
+        {
+          "key": "L1",
+          "assetId": "rabbit-turtle.character.rabbit-shocked"
+        },
+        {
+          "key": "R1",
+          "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+        }
+      ],
+      "speakerName": "해설",
+      "text": "수궁의 신하들이 토끼를 에워쌌다. 문밖으로 달아난다 해도 사방은 깊은 바다였다. 토끼에게는 도망칠 길이 없었다."
+    }
+  ],
+  "changedVisualCuts": [
+    {
+      "edition": "heungbu",
+      "lineId": "scene-10-9",
+      "speaker": "해설",
+      "text": "두 번째 박에서는 도깨비들이 튀어나왔다.\n\n마당을 뛰며 장독 뚜껑을 뒤집었다. 곡식 자루를 굴리고, 놀부의 갓을 빼앗아 달아났다.",
+      "beforeBackground": "heungbu.scene.nolbu-goblin-chaos",
+      "afterBackground": "heungbu.background.layered-goblin-courtyard-v1",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "heungbu.character.nolbu-angry"
+          },
+          {
+            "key": "L2",
+            "assetId": "heungbu.character.layered-dokkaebi-hat-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "heungbu.character.wife-nolbu-shocked"
+          }
+        ],
+        "speakerActorKey": "L2"
+      }
+    },
+    {
+      "edition": "heungbu",
+      "lineId": "scene-10-10",
+      "speaker": "놀부",
+      "text": "“내 갓! 거기 서!”",
+      "beforeBackground": "heungbu.scene.nolbu-goblin-chaos",
+      "afterBackground": "heungbu.background.layered-goblin-courtyard-v1",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "heungbu.character.nolbu-angry"
+          },
+          {
+            "key": "L2",
+            "assetId": "heungbu.character.layered-dokkaebi-hat-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "heungbu.character.wife-nolbu-shocked"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:real-loop-testimony:16",
+      "speaker": "지문",
+      "text": "막내는 또 다른 옹고집의 옷자락을 잡은 채 부인을 올려다봤다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-01",
+      "afterBackground": "onggojib.background.magistrate-yard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.real-angry-pixel"
+          }
+        ],
+        "speakerActorKey": "L2"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:4",
+      "speaker": "해설",
+      "text": "그 뒤로 얼마나 지났는지 옹고집은 알지 못했다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:5",
+      "speaker": "해설",
+      "text": "주막 행랑과 남의 헛간을 전전했다. 끼니를 거르는 날이 이어졌다. 갈아입지 못한 옷과 짚신도 해져 갔다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:6",
+      "speaker": "옹고집",
+      "text": "누구를 탓할 힘도 없고, 돌아갈 곳도 없었다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:7",
+      "speaker": "해설",
+      "text": "거센 눈발에 집 모양도 흐릿했다. 옹고집이 큰 대문을 두드렸다. 누군가 문틈으로 내다보았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-02",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1",
+            "position": "center"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:8",
+      "speaker": "옹고집",
+      "text": "어느 집인지 살필 겨를도 없었다. 밥 한 그릇이 급했다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:9",
+      "speaker": "해설",
+      "text": "옹고집은 대문을 두드린 뒤, 간신히 밥을 청했다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:10",
+      "speaker": "옹고집",
+      "text": "나리... 밥 한 그릇만 주시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:11",
+      "speaker": "문 안의 사내",
+      "text": "내 집 문전에서 밥을 청해? 썩 물러가라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:12",
+      "speaker": "여인의 목소리",
+      "text": "서방님, 저 사람 손이 다 터졌습니다. 죽 한 그릇만 내주면 안 되겠습니까.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:13",
+      "speaker": "지문",
+      "text": "옹고집은 아내의 목소리를 알아듣고 입을 열었다가 아무 말도 하지 못했다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:14",
+      "speaker": "문 안의 사내",
+      "text": "그 손이 터진 게 내 탓이오? 문을 열면 이런 자들이 줄을 설 것이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:15",
+      "speaker": "문 안의 사내",
+      "text": "밥은 거저 못 준다. 일할 힘이 남았으면 장작이나 패라. 다 패면 죽 한 그릇과 삯을 주겠다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:16",
+      "speaker": "옹고집",
+      "text": "낯익은 말이었지만, 그는 더 따질 수 없었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:17",
+      "speaker": "지문",
+      "text": "옹고집은 대문 옆에 세워 둔 도끼자루를 집었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:18",
+      "speaker": "해설",
+      "text": "밤이 깊도록 도끼질이 이어졌다. 젖은 장작은 쉽게 갈라지지 않았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-03",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-chopping-v1",
+            "position": "center"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:19",
+      "speaker": "옹고집",
+      "text": "나리, 장작을 다 팼습니다. 약속하신 죽과 삯을 주십시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:20",
+      "speaker": "지문",
+      "text": "문이 조금 열리고 하인이 죽 한 그릇을 내놓았다. 옹고집은 두 손으로 그릇을 받아 비웠다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:21",
+      "speaker": "문 안의 사내",
+      "text": "죽 한 그릇은 줬으니 됐다. 젖은 장작은 쓸 데가 없으니 삯은 반만 받고 물러가라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:22",
+      "speaker": "해설",
+      "text": "문틈으로 던진 엽전 몇 닢이 빈 죽그릇 옆으로 굴러왔다. 옹고집은 눈 위의 엽전을 주웠다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:23",
+      "speaker": "해설",
+      "text": "문 안쪽에서 빈 그릇을 거두는 소리가 났다. 곧 빗장이 걸렸고, 마당은 다시 조용해졌다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:24",
+      "speaker": "해설",
+      "text": "새벽녘, 옹고집이 걸음을 떼자 찢어진 짚신 사이로 눈이 들이쳤다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:25",
+      "speaker": "옹고집",
+      "text": "버리는 짚신이라도 좋습니다. 눈길을 걸을 것만 주십시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:26",
+      "speaker": "여인의 목소리",
+      "text": "서방님, 헛간에 낡은 짚신이 한 켤레 있습니다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:27",
+      "speaker": "문 안의 사내",
+      "text": "낡은 것도 내 집 물건이오. 죽도 먹고 삯도 받았으면 됐지, 짚신까지 달라느냐. 썩 가라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:28",
+      "speaker": "해설",
+      "text": "옹고집은 젖은 짚신을 끌고 돌아섰다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:29",
+      "speaker": "옹고집",
+      "text": "내가 남에게 한 그대로구나. 누굴 욕하겠느냐.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:30",
+      "speaker": "해설",
+      "text": "몇 걸음 가지 못해 눈길에 주저앉았다. 뒤에서 빗장 거는 소리가 났다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:31",
+      "speaker": "해설",
+      "text": "일어나지 못한 채 앉아 있을 때, 누군가 그의 앞에 주먹밥 두 개와 낡은 짚신을 내려놓았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-04",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:32",
+      "speaker": "또 다른 옹고집",
+      "text": "주먹밥은 길에서 드시오. 짚신도 갈아 신으시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:33",
+      "speaker": "해설",
+      "text": "옹고집이 고개를 들자, 눈발 사이로 저와 꼭 같은 얼굴이 보였다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:34",
+      "speaker": "옹고집",
+      "text": "당신은 대체 누구요. 왜 나와 같은 얼굴을 하고 있소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:35",
+      "speaker": "또 다른 옹고집",
+      "text": "당신이 남에게 한 일을 당신 자리에서 되돌려 준 사람이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:36",
+      "speaker": "또 다른 옹고집",
+      "text": "주먹밥과 짚신은 당신 부인이 몰래 내놓은 것이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:37",
+      "speaker": "지문",
+      "text": "옹고집은 주먹밥 하나를 먹고 낡은 짚신으로 갈아 신었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:38",
+      "speaker": "옹고집",
+      "text": "아내가... 내가 누군지 알고 내놓았다는 말이오?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:39",
+      "speaker": "또 다른 옹고집",
+      "text": "당신인 줄 모르고도 내놓았소.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:40",
+      "speaker": "옹고집",
+      "text": "내가 없는 동안... 아내와 아이들은 어찌 지냈소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:41",
+      "speaker": "또 다른 옹고집",
+      "text": "당신에게는 반 년이 넘었지만, 이 집에는 일주일밖에 흐르지 않았소.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:42",
+      "speaker": "옹고집",
+      "text": "일주일이라니……. 아내는 관아에서 있었던 일도 기억하지 못하오?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:43",
+      "speaker": "또 다른 옹고집",
+      "text": "그렇소. 부인과 아이들은 나를 만난 일도, 관아에 갔던 일도 기억하지 못하오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:44",
+      "speaker": "또 다른 옹고집",
+      "text": "그 기억은 당신에게만 남을 것이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:45",
+      "speaker": "옹고집",
+      "text": "그럼 나는... 이제 어떻게 해야 하오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:46",
+      "speaker": "또 다른 옹고집",
+      "text": "이제 다시 대문을 두드려 보시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:47",
+      "speaker": "해설",
+      "text": "그 말만 남기고 그는 눈발 속으로 걸어갔다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:48",
+      "speaker": "해설",
+      "text": "옹고집이 뒤따라 몇 걸음 나섰지만 눈 위의 발자국은 곧 끊겨 있었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:49",
+      "speaker": "해설",
+      "text": "옹고집이 다시 대문을 두드리자 안쪽에서 빗장이 풀렸다. 부인이 문을 열었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:50",
+      "speaker": "부인",
+      "text": "서방님! 일주일째 소식이 없어 걱정했습니다. 어디서 이리 다치셨습니까?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:51",
+      "speaker": "옹고집",
+      "text": "우리가 관아에 갔던 일은 기억나지 않소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:52",
+      "speaker": "부인",
+      "text": "관아요? 서방님은 장사길에 오른 뒤 오늘 처음 돌아오셨습니다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:53",
+      "speaker": "해설",
+      "text": "옹고집은 더 묻지 않았다. 부인은 그를 부축해 안으로 들였다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:54",
+      "speaker": "해설",
+      "text": "막내가 안방 문 앞까지 달려왔다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:55",
+      "speaker": "막내",
+      "text": "아버지!",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:56",
+      "speaker": "해설",
+      "text": "아이는 달려오다 멈췄다. 부인은 아이를 재촉하지 않았다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-cautious-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:57",
+      "speaker": "해설",
+      "text": "부인은 옹고집을 화로 옆에 앉혔다. 막내는 안방 문 뒤로 물러섰다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:58",
+      "speaker": "부인",
+      "text": "따뜻한 물을 가져오겠습니다. 조금만 기다리십시오.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:59",
+      "speaker": "옹고집",
+      "text": "고맙소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:60",
+      "speaker": "해설",
+      "text": "부인은 따뜻한 물이 담긴 대야와 약상자를 가져왔다. 아이들은 멀찍이서 말없이 지켜보았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-05",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:61",
+      "speaker": "해설",
+      "text": "부인은 눈길에 상한 발과 손을 씻고 약을 발라 주었다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-05",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:62",
+      "speaker": "부인",
+      "text": "상처가 깊습니다. 당분간 제대로 쉬셔야 합니다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route:63",
+      "speaker": "옹고집",
+      "text": "그러겠소. 고맙소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-meal-act:1",
+      "speaker": "둘째",
+      "text": "까치가 장독대 위에 있었어요. 나뭇가지를 물고 있었어요.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-06",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.real-remorse-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-vase-care:1",
+      "speaker": "해설",
+      "text": "일꾼들은 처음 약속한 삯을 모두 받아 돌아갔다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-07",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.real-remorse-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.worker-woodcutter-v2-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.servant-household-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-fake-warning:2",
+      "speaker": "가짜 옹고집",
+      "text": "약속한 대로 모두 주어라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "onggojib-double",
+            "characterKey": "onggojib.double",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel",
+            "xAnchor": 25,
+            "facing": "right",
+            "scaleMultiplier": 1
+          },
+          {
+            "key": "onggojib.worker",
+            "assetId": "onggojib.character.worker-woodcutter-v2-pixel",
+            "characterKey": "onggojib.worker",
+            "scaleMultiplier": 1,
+            "xAnchor": 48
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "onggojib-real",
+            "characterKey": "onggojib.real",
+            "assetId": "onggojib.character.real-angry-pixel",
+            "xAnchor": 64,
+            "facing": "right",
+            "scaleMultiplier": 1
+          }
+        ],
+        "speakerActorKey": "onggojib-double"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-fake-warning:3",
+      "speaker": "지문",
+      "text": "하인은 진짜 옹고집 바로 앞을 지나쳤다. 돈주머니는 가짜 옹고집에게 건넸다. 일꾼도 그쪽에만 고개를 숙였다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "onggojib-double",
+            "characterKey": "onggojib.double",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel",
+            "xAnchor": 25,
+            "facing": "right",
+            "scaleMultiplier": 1
+          },
+          {
+            "key": "onggojib.servant",
+            "assetId": "onggojib.character.servant-household-pixel",
+            "characterKey": "onggojib.servant",
+            "scaleMultiplier": 1,
+            "xAnchor": 48
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "onggojib-real",
+            "characterKey": "onggojib.real",
+            "assetId": "onggojib.character.real-angry-pixel",
+            "xAnchor": 70,
+            "facing": "right",
+            "scaleMultiplier": 1
+          }
+        ],
+        "speakerActorKey": "onggojib.servant"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-fake-warning:8",
+      "speaker": "부인",
+      "text": "서방님, 안으로 드세요. 아이들이 기다립니다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "onggojib-double",
+            "characterKey": "onggojib.double",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel",
+            "xAnchor": 25,
+            "facing": "left",
+            "scaleMultiplier": 1
+          },
+          {
+            "key": "onggojib.wife",
+            "assetId": "onggojib.character.wife-concerned-pixel",
+            "characterKey": "onggojib.wife",
+            "scaleMultiplier": 1,
+            "xAnchor": 48
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "onggojib-real",
+            "characterKey": "onggojib.real",
+            "assetId": "creative.character.onggojib-ghost-neutral",
+            "xAnchor": 84,
+            "facing": "right",
+            "scaleMultiplier": 1
+          }
+        ],
+        "speakerActorKey": "onggojib.wife"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-fake-warning:9",
+      "speaker": "둘째",
+      "text": "아버지, 까치 이야기 마저 해도 돼요?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "onggojib-double",
+            "characterKey": "onggojib.double",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel",
+            "xAnchor": 25,
+            "facing": "right",
+            "scaleMultiplier": 1
+          },
+          {
+            "key": "onggojib.second-child",
+            "assetId": "onggojib.character.second-child-pixel",
+            "characterKey": "onggojib.second-child",
+            "scaleMultiplier": 1,
+            "xAnchor": 48
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "onggojib-real",
+            "characterKey": "onggojib.real",
+            "assetId": "creative.character.onggojib-ghost-neutral",
+            "xAnchor": 88,
+            "facing": "right",
+            "scaleMultiplier": 1
+          }
+        ],
+        "speakerActorKey": "onggojib.second-child"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:3",
+      "speaker": "해설",
+      "text": "옹고집은 사내를 안으로 들였다. 부인이 죽을 내오는 동안 젖은 신을 벗게 했다. 아랫방에는 자리를 폈다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-08",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.real-resolve-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.stranger-hidden-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:4",
+      "speaker": "해설",
+      "text": "사내를 재운 뒤, 부인은 약상자를 가져왔다. 옹고집의 발에는 상처가 남아 있었다. 아직 약을 더 발라야 했다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-09",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:5",
+      "speaker": "부인",
+      "text": "상처가 좀처럼 아물지 않습니다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:6",
+      "speaker": "옹고집",
+      "text": "부인, 할 말이 있소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:7",
+      "speaker": "부인",
+      "text": "말씀하십시오.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:8",
+      "speaker": "옹고집",
+      "text": "죽 한 그릇을 얻으려고 밤새 장작을 팼소. 하지만 삯은 반밖에 받지 못했소. 눈길을 걸을 짚신도 없었소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:9",
+      "speaker": "지문",
+      "text": "옹고집은 붕대를 감은 발을 내려다보았다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:10",
+      "speaker": "옹고집",
+      "text": "나도 당신과 아이들, 집안사람들에게 모질게 굴었소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:11",
+      "speaker": "옹고집",
+      "text": "미안하오.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:12",
+      "speaker": "부인",
+      "text": "서방님이 목소리를 높일까 아직 겁부터 납니다. 오래 그렇게 살아 왔으니까요.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:13",
+      "speaker": "옹고집",
+      "text": "그 말을 잊지 않겠소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:14",
+      "speaker": "부인",
+      "text": "오늘 같은 날이 계속된다면, 저도 다시 믿어 보고 싶습니다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:15",
+      "speaker": "옹고집",
+      "text": "고맙소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-clean-seated-treatment-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:b-final-acts:16",
+      "speaker": "해설",
+      "text": "봄날 아침, 옹고집이 빗장을 풀었다. 아이들이 함께 대문을 밀었다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-10",
+      "afterBackground": "onggojib.background.spring-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.real-remorse-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:35",
+      "speaker": "해설",
+      "text": "포졸들이 분노한 옹고집을 뒤로 물리자, 막내는 조용한 옹고집 뒤로 숨었다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-01",
+      "afterBackground": "onggojib.background.magistrate-yard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.real-angry-pixel"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.posol-pixel"
+          }
+        ],
+        "speakerActorKey": "L2"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "speaker": "지문",
+      "text": "막내는 또 다른 옹고집의 옷자락을 잡은 채 부인을 올려다봤다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-01",
+      "afterBackground": "onggojib.background.magistrate-yard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.real-angry-pixel"
+          }
+        ],
+        "speakerActorKey": "L2"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "speaker": "해설",
+      "text": "그 뒤로 얼마나 지났는지 옹고집은 알지 못했다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "speaker": "해설",
+      "text": "주막 행랑과 남의 헛간을 전전했다. 끼니를 거르는 날이 이어졌다. 갈아입지 못한 옷과 짚신도 해져 갔다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "speaker": "해설",
+      "text": "거센 눈발에 집 모양도 흐릿했다. 옹고집이 큰 대문을 두드렸다. 누군가 문틈으로 내다보았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-02",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1",
+            "position": "center"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "speaker": "옹고집",
+      "text": "나리... 밥 한 그릇만 주시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "speaker": "여인의 목소리",
+      "text": "서방님, 저 사람 손이 다 터졌습니다. 죽 한 그릇만 내주면 안 되겠습니까.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "speaker": "지문",
+      "text": "옹고집은 아내의 목소리를 알아듣고 입을 열었다가 아무 말도 하지 못했다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "speaker": "문 안의 사내",
+      "text": "밥은 거저 못 준다. 장작부터 패라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:9",
+      "speaker": "문 안의 사내",
+      "text": "다 패면 죽 한 그릇과 삯을 주마.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:10",
+      "speaker": "지문",
+      "text": "옹고집은 대문 옆에 세워 둔 도끼자루를 집었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "speaker": "해설",
+      "text": "밤이 깊도록 도끼질이 이어졌다. 젖은 장작은 쉽게 갈라지지 않았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-03",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-chopping-v1",
+            "position": "center"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:12",
+      "speaker": "옹고집",
+      "text": "나리, 장작을 다 팼습니다. 약속하신 죽과 삯을 주십시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+      "speaker": "지문",
+      "text": "문이 조금 열리고 하인이 죽 한 그릇을 내놓았다. 옹고집은 두 손으로 그릇을 받아 비웠다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:14",
+      "speaker": "문 안의 사내",
+      "text": "죽 한 그릇은 줬으니 됐다. 젖은 장작은 쓸 데가 없으니 삯은 반만 받고 물러가라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:15",
+      "speaker": "해설",
+      "text": "문틈으로 던진 엽전 몇 닢이 빈 죽그릇 옆으로 굴러왔다. 옹고집은 눈 위의 엽전을 주웠다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "speaker": "해설",
+      "text": "새벽녘, 옹고집이 걸음을 떼자 찢어진 짚신 사이로 눈이 들이쳤다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+      "speaker": "옹고집",
+      "text": "버리는 짚신이라도 좋습니다. 눈길을 걸을 것만 주십시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:18",
+      "speaker": "여인의 목소리",
+      "text": "서방님, 헛간에 낡은 짚신이 한 켤레 있습니다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:19",
+      "speaker": "문 안의 사내",
+      "text": "낡은 것도 내 집 물건이오. 죽도 먹고 삯도 받았으면 됐지, 짚신까지 달라느냐. 썩 가라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:20",
+      "speaker": "해설",
+      "text": "옹고집은 젖은 짚신을 끌고 돌아섰다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:21",
+      "speaker": "해설",
+      "text": "몇 걸음 가지 못해 눈길에 주저앉았다. 뒤에서 빗장 거는 소리가 났다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:22",
+      "speaker": "해설",
+      "text": "일어나지 못한 채 앉아 있을 때, 누군가 그의 앞에 주먹밥 두 개와 낡은 짚신을 내려놓았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-04",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:23",
+      "speaker": "또 다른 옹고집",
+      "text": "주먹밥은 길에서 드시오. 짚신도 갈아 신으시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24",
+      "speaker": "해설",
+      "text": "옹고집이 고개를 들자, 눈발 사이로 저와 꼭 같은 얼굴이 보였다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:25",
+      "speaker": "옹고집",
+      "text": "당신은 대체 누구요. 왜 나와 같은 얼굴을 하고 있소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:26",
+      "speaker": "또 다른 옹고집",
+      "text": "당신이 남에게 한 일을 당신 자리에서 되돌려 준 사람이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:27",
+      "speaker": "또 다른 옹고집",
+      "text": "주먹밥과 짚신은 당신 부인이 몰래 내놓은 것이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:28",
+      "speaker": "지문",
+      "text": "옹고집은 주먹밥 하나를 먹고 낡은 짚신으로 갈아 신었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:29",
+      "speaker": "옹고집",
+      "text": "아내가... 내가 누군지 알고 내놓았다는 말이오?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:30",
+      "speaker": "또 다른 옹고집",
+      "text": "당신인 줄 모르고도 내놓았소.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31",
+      "speaker": "옹고집",
+      "text": "내가 없는 동안... 아내와 아이들은 어찌 지냈소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:32",
+      "speaker": "또 다른 옹고집",
+      "text": "당신에게는 반 년이 넘었지만, 이 집에는 일주일밖에 흐르지 않았소.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:33",
+      "speaker": "옹고집",
+      "text": "일주일이라니……. 아내는 관아에서 있었던 일도 기억하지 못하오?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:34",
+      "speaker": "또 다른 옹고집",
+      "text": "그렇소. 부인과 아이들은 나를 만난 일도, 관아에 갔던 일도 기억하지 못하오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:35",
+      "speaker": "또 다른 옹고집",
+      "text": "그 기억은 당신에게만 남을 것이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36",
+      "speaker": "옹고집",
+      "text": "그럼 나는... 이제 어떻게 해야 하오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:37",
+      "speaker": "또 다른 옹고집",
+      "text": "이제 다시 대문을 두드려 보시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:38",
+      "speaker": "해설",
+      "text": "그 말만 남기고 그는 눈발 속으로 걸어갔다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:39",
+      "speaker": "해설",
+      "text": "옹고집이 뒤따라 몇 걸음 나섰지만 눈 위의 발자국은 곧 끊겨 있었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:40",
+      "speaker": "해설",
+      "text": "옹고집이 다시 대문을 두드리자 안쪽에서 빗장이 풀렸다. 부인이 문을 열었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:41",
+      "speaker": "부인",
+      "text": "서방님! 일주일째 소식이 없어 걱정했습니다. 어디서 이리 다치셨습니까?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:42",
+      "speaker": "옹고집",
+      "text": "우리가 관아에 갔던 일은 기억나지 않소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:43",
+      "speaker": "부인",
+      "text": "관아요? 서방님은 장사길에 오른 뒤 오늘 처음 돌아오셨습니다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:44",
+      "speaker": "해설",
+      "text": "옹고집은 더 묻지 않았다. 부인은 그를 부축해 안으로 들였다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:45",
+      "speaker": "해설",
+      "text": "막내가 안방 문 앞까지 달려왔다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:46",
+      "speaker": "막내",
+      "text": "아버지!",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:47",
+      "speaker": "해설",
+      "text": "아이는 달려오다 멈췄다. 부인은 아이를 재촉하지 않았다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-cautious-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:48",
+      "speaker": "해설",
+      "text": "부인은 옹고집을 화로 옆에 앉혔다. 막내는 안방 문 뒤로 물러섰다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:49",
+      "speaker": "부인",
+      "text": "따뜻한 물을 가져오겠습니다. 조금만 기다리십시오.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:50",
+      "speaker": "옹고집",
+      "text": "고맙소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:51",
+      "speaker": "해설",
+      "text": "부인은 따뜻한 물이 담긴 대야와 약상자를 가져왔다. 아이들은 멀찍이서 말없이 지켜보았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-05",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:52",
+      "speaker": "해설",
+      "text": "부인은 눈길에 상한 발과 손을 씻고 약을 발라 주었다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-05",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:53",
+      "speaker": "부인",
+      "text": "상처가 깊습니다. 당분간 제대로 쉬셔야 합니다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:54",
+      "speaker": "옹고집",
+      "text": "그러겠소. 고맙소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:36",
+      "speaker": "해설",
+      "text": "포졸들이 분노한 옹고집을 뒤로 물리자, 막내는 조용한 옹고집 뒤로 숨었다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-01",
+      "afterBackground": "onggojib.background.magistrate-yard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.real-angry-pixel"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.posol-pixel"
+          }
+        ],
+        "speakerActorKey": "L2"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:real-loop-testimony-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:16",
+      "speaker": "지문",
+      "text": "막내는 또 다른 옹고집의 옷자락을 잡은 채 부인을 올려다봤다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-01",
+      "afterBackground": "onggojib.background.magistrate-yard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.real-angry-pixel"
+          }
+        ],
+        "speakerActorKey": "L2"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:2",
+      "speaker": "해설",
+      "text": "그 뒤로 얼마나 지났는지 옹고집은 알지 못했다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:3",
+      "speaker": "해설",
+      "text": "주막 행랑과 남의 헛간을 전전했다. 끼니를 거르는 날이 이어졌다. 갈아입지 못한 옷과 짚신도 해져 갔다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:4",
+      "speaker": "해설",
+      "text": "거센 눈발에 집 모양도 흐릿했다. 옹고집이 큰 대문을 두드렸다. 누군가 문틈으로 내다보았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-02",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1",
+            "position": "center"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:5",
+      "speaker": "옹고집",
+      "text": "나리... 밥 한 그릇만 주시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:6",
+      "speaker": "여인의 목소리",
+      "text": "서방님, 저 사람 손이 다 터졌습니다. 죽 한 그릇만 내주면 안 되겠습니까.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:7",
+      "speaker": "지문",
+      "text": "옹고집은 아내의 목소리를 알아듣고 입을 열었다가 아무 말도 하지 못했다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:8",
+      "speaker": "문 안의 사내",
+      "text": "거지에게 내줄 밥은 없다. 썩 물러가라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:9",
+      "speaker": "옹고집",
+      "text": "거저 달라는 뜻은 아닙니다. 시킬 일이 있으면 하겠습니다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:10",
+      "speaker": "문 안의 사내",
+      "text": "그럼 저 젖은 장작을 다 패라. 끝내기 전에는 죽도 없다. 다 패면 죽 한 그릇과 삯을 주마.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:11",
+      "speaker": "지문",
+      "text": "옹고집은 대문 옆에 세워 둔 도끼자루를 집었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:12",
+      "speaker": "해설",
+      "text": "밤이 깊도록 도끼질이 이어졌다. 젖은 장작은 쉽게 갈라지지 않았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-03",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-chopping-v1",
+            "position": "center"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:13",
+      "speaker": "옹고집",
+      "text": "나리, 장작을 다 팼습니다. 약속하신 죽과 삯을 주십시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:14",
+      "speaker": "지문",
+      "text": "문이 조금 열리고 하인이 죽 한 그릇을 내놓았다. 옹고집은 두 손으로 그릇을 받아 비웠다.",
+      "beforeBackground": "onggojib.background.snow-village-road-pixel",
+      "afterBackground": "onggojib.background.snow-village-road-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:15",
+      "speaker": "문 안의 사내",
+      "text": "죽 한 그릇은 줬으니 됐다. 도끼질이 느려 밤이 다 갔으니 삯은 반만 받고 물러가라.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:16",
+      "speaker": "해설",
+      "text": "문틈으로 던진 엽전 몇 닢이 빈 죽그릇 옆으로 굴러왔다. 옹고집은 눈 위의 엽전을 주웠다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:17",
+      "speaker": "해설",
+      "text": "새벽녘, 옹고집이 걸음을 떼자 찢어진 짚신 사이로 눈이 들이쳤다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:18",
+      "speaker": "옹고집",
+      "text": "버리는 짚신이라도 좋습니다. 눈길을 걸을 것만 주십시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:19",
+      "speaker": "여인의 목소리",
+      "text": "서방님, 헛간에 낡은 짚신이 한 켤레 있습니다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:20",
+      "speaker": "문 안의 사내",
+      "text": "버리는 짚신도 네 몫은 없다. 맨발로 가든 기어가든 내 알 바 아니오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": [],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:21",
+      "speaker": "해설",
+      "text": "옹고집은 젖은 짚신을 끌고 돌아섰다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-standing-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:22",
+      "speaker": "해설",
+      "text": "몇 걸음 가지 못해 눈길에 주저앉았다. 뒤에서 빗장 거는 소리가 났다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:23",
+      "speaker": "해설",
+      "text": "일어나지 못한 채 앉아 있을 때, 누군가 그의 앞에 주먹밥 두 개와 낡은 짚신을 내려놓았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-04",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1",
+            "xAnchor": 40
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel",
+            "xAnchor": 60
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:24",
+      "speaker": "또 다른 옹고집",
+      "text": "주먹밥은 길에서 드시오. 짚신도 갈아 신으시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:25",
+      "speaker": "해설",
+      "text": "옹고집이 고개를 들자, 눈발 사이로 저와 꼭 같은 얼굴이 보였다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:26",
+      "speaker": "옹고집",
+      "text": "당신은 대체 누구요. 왜 나와 같은 얼굴을 하고 있소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:27",
+      "speaker": "또 다른 옹고집",
+      "text": "당신이 남에게 한 일을 당신 자리에서 되돌려 준 사람이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:28",
+      "speaker": "또 다른 옹고집",
+      "text": "주먹밥과 짚신은 당신 부인이 몰래 내놓은 것이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-outside-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:29",
+      "speaker": "지문",
+      "text": "옹고집은 주먹밥 하나를 먹고 낡은 짚신으로 갈아 신었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-offering-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:30",
+      "speaker": "옹고집",
+      "text": "아내가... 내가 누군지 알고 내놓았다는 말이오?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31",
+      "speaker": "또 다른 옹고집",
+      "text": "당신인 줄 모르고도 내놓았소.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:32",
+      "speaker": "옹고집",
+      "text": "내가 없는 동안... 아내와 아이들은 어찌 지냈소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:33",
+      "speaker": "또 다른 옹고집",
+      "text": "당신에게는 반 년이 넘었지만, 이 집에는 일주일밖에 흐르지 않았소.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:34",
+      "speaker": "옹고집",
+      "text": "일주일이라니……. 아내는 관아에서 있었던 일도 기억하지 못하오?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:35",
+      "speaker": "또 다른 옹고집",
+      "text": "그렇소. 부인과 아이들은 나를 만난 일도, 관아에 갔던 일도 기억하지 못하오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:36",
+      "speaker": "또 다른 옹고집",
+      "text": "그 기억은 당신에게만 남을 것이오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:37",
+      "speaker": "옹고집",
+      "text": "그럼 나는... 이제 어떻게 해야 하오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:38",
+      "speaker": "또 다른 옹고집",
+      "text": "이제 다시 대문을 두드려 보시오.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:39",
+      "speaker": "해설",
+      "text": "그 말만 남기고 그는 눈발 속으로 걸어갔다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.double-blue-gentle-consistent-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:40",
+      "speaker": "해설",
+      "text": "옹고집이 뒤따라 몇 걸음 나섰지만 눈 위의 발자국은 곧 끊겨 있었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": []
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:41",
+      "speaker": "해설",
+      "text": "옹고집이 다시 대문을 두드리자 안쪽에서 빗장이 풀렸다. 부인이 문을 열었다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:42",
+      "speaker": "부인",
+      "text": "서방님! 일주일째 소식이 없어 걱정했습니다. 어디서 이리 다치셨습니까?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:43",
+      "speaker": "옹고집",
+      "text": "우리가 관아에 갔던 일은 기억나지 않소?",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:44",
+      "speaker": "부인",
+      "text": "관아요? 서방님은 장사길에 오른 뒤 오늘 처음 돌아오셨습니다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:45",
+      "speaker": "해설",
+      "text": "옹고집은 더 묻지 않았다. 부인은 그를 부축해 안으로 들였다.",
+      "beforeBackground": "onggojib.background.winter-courtyard-pixel",
+      "afterBackground": "onggojib.background.winter-courtyard-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:46",
+      "speaker": "해설",
+      "text": "막내가 안방 문 앞까지 달려왔다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:47",
+      "speaker": "막내",
+      "text": "아버지!",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:48",
+      "speaker": "해설",
+      "text": "아이는 달려오다 멈췄다. 부인은 아이를 재촉하지 않았다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-replacement-shoes-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.youngest-child-cautious-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:49",
+      "speaker": "해설",
+      "text": "부인은 옹고집을 화로 옆에 앉혔다. 막내는 안방 문 뒤로 물러섰다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ]
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:50",
+      "speaker": "부인",
+      "text": "따뜻한 물을 가져오겠습니다. 조금만 기다리십시오.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:51",
+      "speaker": "옹고집",
+      "text": "고맙소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.wife-concerned-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:52",
+      "speaker": "해설",
+      "text": "부인은 따뜻한 물이 담긴 대야와 약상자를 가져왔다. 아이들은 멀찍이서 말없이 지켜보았다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-05",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:53",
+      "speaker": "해설",
+      "text": "부인은 눈길에 상한 발과 손을 씻고 약을 발라 주었다.",
+      "beforeBackground": "onggojib.scene.shortstory-knolstory-05",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "onggojib.character.youngest-child-pixel"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          },
+          {
+            "key": "R2",
+            "assetId": "onggojib.character.second-child-pixel"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:54",
+      "speaker": "부인",
+      "text": "상처가 깊습니다. 당분간 제대로 쉬셔야 합니다.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "onggojib",
+      "lineId": "review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:55",
+      "speaker": "옹고집",
+      "text": "그러겠소. 고맙소.",
+      "beforeBackground": "onggojib.background.warm-room-pixel",
+      "afterBackground": "onggojib.background.warm-room-pixel",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "onggojib.character.layered-ragged-seated-treatment-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "onggojib.character.layered-wife-kneeling-treatment-v1"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-06",
+      "speaker": "용왕",
+      "text": "토끼의 간이라니! 그렇다면 누가 육지로 나가 토끼를 데려오겠느냐?",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-07",
+      "speaker": "해설",
+      "text": "신하들은 갑자기 바닥만 내려다보았다. 조금 전까지 제 의견을 말하던 이들도 선뜻 나서지 못했다. 육지에 다녀오라는 말 때문이었다.",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-08",
+      "speaker": "해설",
+      "text": "누구는 육지를 잘 모른다 하고, 누구는 자신에게 맞지 않는 일이라고 했다. 말은 많았지만 정작 나서는 신하는 없었다.",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-1-line-09",
+      "speaker": "용왕",
+      "text": "그 많은 신하 가운데 육지에 다녀올 자가 하나도 없단 말이냐?",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-3-line-09",
+      "speaker": "해설",
+      "text": "별주부가 토끼를 데리고 대전에 들어섰다. 수궁의 신하들이 일제히 토끼를 바라보았다. 토끼는 자신을 환영하는 줄 알고 어깨를 폈다.",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.rabbit-white-unified-720x900"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          },
+          {
+            "key": "R2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-3-line-11",
+      "speaker": "용왕",
+      "text": "오오, 네가 바로 토끼로구나! 어서 저 토끼를 붙잡아라. 저 토끼의 간을 얻어야 내 병을 고칠 수 있다!",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.rabbit-shocked"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          },
+          {
+            "key": "R2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-01",
+      "speaker": "해설",
+      "text": "토끼는 순간 자기 귀를 의심했다. 높은 벼슬도 귀한 대접도 모두 자신을 이곳까지 데려오기 위한 거짓말이었다.",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.rabbit-shocked"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          },
+          {
+            "key": "R2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-02",
+      "speaker": "토끼",
+      "text": "잠깐만요! 지금 제 간을 얻겠다고 하셨습니까?",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.rabbit-shocked"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          },
+          {
+            "key": "R2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-03",
+      "speaker": "용왕",
+      "text": "그렇다. 네 간이 내 병을 낫게 할 귀한 약이라고 하였다. 내가 살려면 네 간이 꼭 필요하다.",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.rabbit-shocked"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          },
+          {
+            "key": "R2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "speakerActorKey": "R1"
+      }
+    },
+    {
+      "edition": "rabbit-classic",
+      "lineId": "classic-rabbit-4-line-04",
+      "speaker": "해설",
+      "text": "수궁의 신하들이 토끼를 에워쌌다. 문밖으로 달아난다 해도 사방은 깊은 바다였다. 토끼에게는 도망칠 길이 없었다.",
+      "beforeBackground": "rabbit-turtle.background.classic-court",
+      "afterBackground": "rabbit-turtle.background.rabbit-turtle-bg-palace",
+      "actors": {
+        "leftActors": [
+          {
+            "key": "L1",
+            "assetId": "rabbit-turtle.character.rabbit-shocked"
+          },
+          {
+            "key": "L2",
+            "assetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+          }
+        ],
+        "rightActors": [
+          {
+            "key": "R1",
+            "assetId": "rabbit-turtle.character.dragonking-sick-elder-attached"
+          },
+          {
+            "key": "R2",
+            "assetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+          }
+        ],
+        "speakerActorKey": "L1"
+      }
+    }
+  ]
+}

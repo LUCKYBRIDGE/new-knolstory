@@ -92,8 +92,8 @@ export function matchesAssetSearch(asset: Asset, search = ''): boolean {
     return [normalized, ...(SEARCH_TERM_ALIASES[normalized] ?? []).map(normalizeAssetSearch)].some(candidate => text.includes(candidate));
   });
 }
-export function isSelectableAsset(asset: Asset | undefined): asset is Asset {
-  return !!asset && asset.metadata.pickerVisibility !== 'hidden'
+export function isSelectableAsset(asset: Asset | undefined, allowSceneIllustrations=false): asset is Asset {
+  return !!asset && (allowSceneIllustrations || asset.type!=='background' || asset.metadata.containsCharacters!==true) && asset.metadata.pickerVisibility !== 'hidden'
     && ['approved', 'secondary'].includes(String(asset.metadata.qualityStatus))
     && !['REJECT', 'HIDE-DUPLICATE', 'MANUAL-REVIEW', 'LEGACY', 'REFERENCE-REMAKE'].includes(String(record(asset.metadata.qualityReview).decision ?? ''));
 }
@@ -121,14 +121,14 @@ export function rankAssets(assets: readonly Asset[], context: AssetRankingContex
   });
 }
 export type AssetSearchOptions = AssetRankingContext & Readonly<{
-  type: Asset['type']; search?: string; filters?: Partial<Record<FacetKey, readonly string[]>>;
+  type: Asset['type']; allowSceneIllustrations?:boolean; search?: string; filters?: Partial<Record<FacetKey, readonly string[]>>;
   view?: 'all'|'chapter'|'favorites'|'recent'; sameCharacterAssetId?: string;
 }>;
 export function searchAssets(options: AssetSearchOptions): Asset[] {
   const sameCharacter = resolveAsset(options.sameCharacterAssetId ?? '');
   const characterIds = sameCharacter ? assetCharacterIds(sameCharacter) : [];
   const assets = ASSET_CATALOG.filter(asset => {
-    if (asset.type !== options.type || !isSelectableAsset(asset)) return false;
+    if (asset.type !== options.type || !isSelectableAsset(asset,options.allowSceneIllustrations)) return false;
     if (options.view === 'chapter' && !options.chapterAssetIds?.includes(asset.id)) return false;
     if (options.view === 'favorites' && !options.favoriteIds?.includes(asset.id)) return false;
     if (options.view === 'recent' && !options.recentIds?.includes(asset.id)) return false;

@@ -476,5 +476,38 @@
       "heungbu-nolbu"
     ],
     "representativeAssetId": "heungbu.scene.nolbu-goblin-chaos"
+  },
+  {
+    "id": "rabbit-turtle.fish-courtier",
+    "name": "물고기 신하",
+    "aliases": [
+      "신하"
+    ],
+    "storyPackIds": [
+      "rabbit-turtle"
+    ],
+    "representativeAssetId": "rabbit-turtle.character.layered-fish-courtier-v1"
+  },
+  {
+    "id": "rabbit-turtle.crab-courtier",
+    "name": "게 신하",
+    "aliases": [
+      "신하"
+    ],
+    "storyPackIds": [
+      "rabbit-turtle"
+    ],
+    "representativeAssetId": "rabbit-turtle.character.layered-crab-courtier-v1"
+  },
+  {
+    "id": "heungbu.dokkaebi",
+    "name": "도깨비",
+    "aliases": [
+      "갓을 가져간 도깨비"
+    ],
+    "storyPackIds": [
+      "heungbu-nolbu"
+    ],
+    "representativeAssetId": "heungbu.character.layered-dokkaebi-hat-v1"
   }
 ]

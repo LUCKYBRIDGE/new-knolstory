@@ -4,6 +4,8 @@
 
 ## 재개 지점
 
+2026-11-02 사용자 후속 우선: 인물 포함 컷 배경을 인물 없는 배경+개별 인물로 분리한다. 8판본 전체 조사, 복장·신발·치료 상태 연결, 자세별 비율과 편집기 자료 선택·파일 왕복·실제 Ren’Py를 확인한다. [현재 연결·검증·배포 체크포인트](evidence/layered-stories-2026-11-02/checkpoint.json)와 [검토](evidence/layered-stories-2026-11-02/review.md)에서 이어간다. 아래 이전 권리·서사 증거 및 전체 제품 큐는 보존하며, 이 후속 뒤 SD-03을 재개한다.
+
 2026-11-02 출처 후속: 사용자 자체제작·구놀스토리 계승 설명을 고정 원본/제작 근거와 연결했다. 프로젝트 이미지의 서비스 사용, CC0, Pixabay 조건부 장면 사용, SDK 고지를 구분한다. 기존923차단행은 권리위반수가 아니며 정확한 서비스 사용 범위 후보는0차단이다. [현재 권리·출처 근거와 배포 상태](evidence/media-rights-2026-11-01/checkpoint.json)를 먼저 확인한다. SD-02의 일반 원음/이미지 라이브러리 재배포 허가로 확대하지 않는다.
 
 2026-11-01 사용자 추가 요구: 장 번호보다 선택별 줄거리·합류의 인과를 우선해 8판본을 다시 대조한다. 90개 창작 완결 경로와 원작 4종의 본문을 검토하고 확정된 9컷만 최소 교정했다. 현재 구현·검사·배포 경계는 [분기 서사 재검토](evidence/catalog-chapters-2026-11-01/checkpoint.json)의 `branchNarrativeReview`를 따른다. 이어 받은 사용자 시점 카드 요구는 [시점 연출](evidence/perspective-card-2026-11-01/checkpoint.json)을 함께 따른다. 기존 완료·전체 큐는 보존한다.
@@ -12,7 +14,7 @@
 
 | 항목 | 현재 재개 정보 |
 |---|---|
-| 현재 작업 | SD-02의 현행 서비스 사용 범위 출처·권한·SDK고지 연결을 마쳤다. 고정 구 원본/제작 기록·사용자 소유 확인, CC0516·Pixabay14 조건부 사용과 SDK1076항목을 대조했다. 후보1539파일0차단, 구현 `aac2165`/검사보완 `a31bf00`·`7459484` CI통과, Pages `2f90c8ff`·같은 ingress와 실제주소1538파일/해시9·공개고지2개 일치. [현재 근거](evidence/media-rights-2026-11-01/checkpoint.json). 다음은 SD-03 캐시·실패복귀 검증이다. 기존 서사·시점/편집 검증은 보존한다. |
+| 현재 작업 | 배경·인물 분리: 제공8판본의37개 인물 포함 배경 컷과 인접 상태를 교정하고 새 인물10·배경1을 공통 목록/검색/재생에 연결한다. 최종 검사와 실제 배포 상태는 [현재 체크포인트](evidence/layered-stories-2026-11-02/checkpoint.json)가 소유한다. 앞선 권리·서사·시점 검증은 유지한다. 완료 후 SD-03 캐시·실패복귀 검증으로 돌아간다. |
 | 다른 곳에서 이어갈 때 | GitHub main을 받는다. `codex/book-entry-cover`와 `kiro/tab-handover` 원격도 같은 최종 기록까지 갱신한다. 현재 배포 후보 소스는 `7459484`(실행 동작은 기존 `e086bb0` 그대로, 공개고지2파일 추가)이며 뒤의 기록 커밋은 앱을 바꾸지 않는다. C1은 `kiro/c1-early-game-zip`에 미배포 실험으로 보존한다. `.cache/` 후보·원시 결과, wrangler 로그인, 운영 Docker와 DB 백업은 이 Mac 전용이다. 다른 컴퓨터의 배포는 그곳의 wrangler 로그인이 필요하고 운영 ingress는 Mac mini에서만 갱신한다. Web 변경 시 Pages와 ingress를 같은 빌드로 맞춘다. |
 | 이전 작업(10-31 낮) | 사용자 요청(작업 기록, GitHub main 반영, story.knolquiz.com에서 그림·음원·실행 파일을 Pages로 제공)을 마쳤다. main CI 보안 감사 실패 수정(4f69bda), Pages 재배포(633aa225), 운영 DB 백업 후 API·ingress 갱신(migration 007), 정적 전달 Worker 배포와 fail-open 경로 연결(19:42)까지 했다. 이제 story.knolquiz.com의 정적 요청은 Pages, `/api`는 Mac mini가 응답한다. 이어서 승인된 사이트 이름(‘놀스토리’)을 Pages(6a60fa95)와 운영 ingress에 같은 빌드로 반영했다. 실제 브라우저에서 파일 1534개·핵심 해시 7개가 Pages 후보와 같았다. [갱신·연결·검증 근거](evidence/story-edge-cutover-2026-10-31/checkpoint.json), [연결 방식](../decisions/0026-static-reading-authoring-and-optional-api.md#운영-도메인-연결-방식--2026-10-31). 이전 Pages 배포·미리 듣기 수정은 [그때 근거](evidence/pages-deploy-2026-10-30/checkpoint.json), 편집 복귀·대비는 [그 근거](evidence/editor-return-contrast-2026-10-31/checkpoint.json)를 따른다. |
 | 진행 중 미커밋 | 이번 서사·시점 구현과 검증·배포 기록은 커밋해 공유한다. 이어갈 때 실제 `git status`와 최신 checkpoint.release를 먼저 대조한다. |

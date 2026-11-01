@@ -5,12 +5,13 @@ import { assetDisplayName, resolveAsset } from '@knolstory/asset-registry';
 import { AssetBrowserDialog } from './asset-browser-dialog';
 import styles from './asset-browser-dialog.module.css';
 export type AssetPickerFieldProps = {
+  allowSceneIllustrations?:boolean;
   label: string; type: 'character' | 'background'; value: string; onChange: (id: string) => void;
   chapterAssetIds?: readonly string[]; allowNone?: boolean; allowDefault?: boolean; defaultLabel?: string;
   /** Resolved default artwork for display only; value remains the authored empty selection. */
   inheritedPreviewId?: string;
 };
-export function AssetPickerField({ label, type, value, onChange, chapterAssetIds, allowNone = false, allowDefault = false, defaultLabel = '장의 기본 이미지', inheritedPreviewId }: AssetPickerFieldProps) {
+export function AssetPickerField({ allowSceneIllustrations=false, label, type, value, onChange, chapterAssetIds, allowNone = false, allowDefault = false, defaultLabel = '장의 기본 이미지', inheritedPreviewId }: AssetPickerFieldProps) {
   const [open, setOpen] = useState(false);
   const hintId=useId();
   const inherited = value === '' && allowDefault && !!inheritedPreviewId;
@@ -26,6 +27,6 @@ export function AssetPickerField({ label, type, value, onChange, chapterAssetIds
       <span><strong>{displayName}</strong><small id={hintId}>{inherited?defaultLabel:'썸네일로 이미지 찾기'}</small></span>
     </button>
 
-    {open && <AssetBrowserDialog emptyOptions={emptyOptions} label={label} type={type} value={value} chapterAssetIds={chapterAssetIds} onSelect={onChange} onClose={() => setOpen(false)} />}
+    {open && <AssetBrowserDialog allowSceneIllustrations={allowSceneIllustrations} emptyOptions={emptyOptions} label={label} type={type} value={value} chapterAssetIds={chapterAssetIds} onSelect={onChange} onClose={() => setOpen(false)} />}
   </div>;
 }

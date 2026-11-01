@@ -62,7 +62,7 @@ export function StoryPreparation({scoresEnabled=true,project,onProjectChange,onO
           {cover.design && <p className={styles.hint}>이 작품에는 고급 표지 디자인이 저장되어 있어요. 기본 표지 설정을 바꿔도 기존 디자인은 보존됩니다.</p>}
           <label>표지 색감<select aria-label="표지 색감" value={cover.theme} onChange={e=>updateCover({theme:e.target.value as typeof cover.theme})}>{Object.entries(COVER_THEMES).map(([key,theme])=><option key={key} value={key}>{theme.label}</option>)}</select></label>
           <label>표지 배치<select aria-label="표지 배치" value={cover.layout} onChange={e=>updateCover({layout:e.target.value as typeof cover.layout})}><option value="classic">기본 책</option><option value="picture">장면형</option><option value="bold">인물형</option></select></label>
-          <AssetPickerField label="표지 배경" type="background" value={cover.backgroundId} allowNone onChange={id=>updateCover({backgroundId:id})}/>
+          <AssetPickerField allowSceneIllustrations label="표지 배경" type="background" value={cover.backgroundId} allowNone onChange={id=>updateCover({backgroundId:id})}/>
           <AssetPickerField label="표지 인물" type="character" value={cover.characterId} allowNone onChange={id=>updateCover({characterId:id})}/>
         </details>
       </section>

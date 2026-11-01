@@ -1,0 +1,287 @@
+{
+  "date": "2026-11-02",
+  "tool": "built-in image_gen",
+  "sourcePolicy": "Generated originals retained locally; existing assets not overwritten",
+  "assets": [
+    {
+      "id": "onggojib.character.layered-ragged-replacement-shoes-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-f3b07d2b-bc76-4118-8506-1c66bad7fdbd.png",
+      "sourceSha256": "402577341801f84678ab4f3189ec6d25672802ca97032940bb325ba2c2286ba8",
+      "output": "apps/web/public/assets/characters/layered-v1/onggojib-ragged-replacement-shoes.webp",
+      "outputSha256": "e92695ddd7ad2e39e2641192c27f488a98ab4116fe2e06f25ae84f2043881614",
+      "referenceAssetId": "onggojib.character.layered-ragged-standing-v1",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.78125,
+        "offset": [
+          0,
+          -1
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 1.0
+      },
+      "promptSummary": "진짜 옹고집; 넝마옷 · 갈아 신은 낡은 짚신; 서 있기, 귀가하기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "onggojib.character.layered-ragged-seated-outside-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-17fe2c03-54cb-41c4-b6ac-38b2639214a2.png",
+      "sourceSha256": "baa5bd56b772104a2737af49bddf141d710f0c28606062641612d085d42698ef",
+      "output": "apps/web/public/assets/characters/layered-v1/onggojib-ragged-seated-outside.webp",
+      "outputSha256": "71f7fe162213160cd6f0a495ef34db7362de0361fb0ed4eacbd36e9be5ea73a7",
+      "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.625,
+        "offset": [
+          80,
+          331
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.8
+      },
+      "promptSummary": "진짜 옹고집; 넝마옷 · 해진 짚신; 주저앉기, 지친 채 올려다보기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "onggojib.character.layered-ragged-chopping-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-f973055b-825c-4083-9ecb-b214ee2048b5.png",
+      "sourceSha256": "5a999220878dd04731641e95189efbec951e16b8cc88b8183c8e330c0e8a93b3",
+      "output": "apps/web/public/assets/characters/layered-v1/onggojib-ragged-chopping.webp",
+      "outputSha256": "2695f82812f0e27a587e28751fc5b4018634246661de291767c3993f99484d40",
+      "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.78125,
+        "offset": [
+          0,
+          -15
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 1.0
+      },
+      "promptSummary": "진짜 옹고집; 넝마옷 · 해진 짚신; 도끼질, 장작 패기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "onggojib.character.layered-ragged-standing-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-f785c643-db6f-4520-ac22-cf112c4a9165.png",
+      "sourceSha256": "070d9f59f88651fe883fcc4bf31c5b9cdf3574a664dca4ba31c433d527f66f72",
+      "output": "apps/web/public/assets/characters/layered-v1/onggojib-ragged-standing.webp",
+      "outputSha256": "09f675aed34596988e7ba5a69d9d753ba0be559b3cad6e7bd609672c3942d41f",
+      "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.703125,
+        "offset": [
+          40,
+          109
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.9
+      },
+      "promptSummary": "진짜 옹고집; 넝마옷 · 해진 짚신; 서 있기, 추위에 떨기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "onggojib.character.layered-ragged-seated-treatment-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-5b74027c-a9c8-4759-990a-282eeeb9c112.png",
+      "sourceSha256": "f22783e4920c39519406f109d3cf4eee6ef40e657508b6dd3d275862d750d4be",
+      "output": "apps/web/public/assets/characters/layered-v1/onggojib-ragged-seated-treatment.webp",
+      "outputSha256": "1718e188cf7ba50fa1663dc16177388544fcbcbcd7493f172aaffd80881526a2",
+      "referenceAssetId": "onggojib.character.real-exiled-consistent-pixel",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.6875,
+        "offset": [
+          48,
+          182
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.88
+      },
+      "promptSummary": "진짜 옹고집; 넝마옷 · 맨발과 붕대; 앉기, 치료받기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "onggojib.character.layered-clean-seated-treatment-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-c06e3715-bd04-443d-9cc6-615cd4e51bd4.png",
+      "sourceSha256": "b1fd801022594d984a35d640b000fd51fe65e8722e93d811b75ca70848de82ac",
+      "output": "apps/web/public/assets/characters/layered-v1/onggojib-clean-seated-treatment.webp",
+      "outputSha256": "b7a858487af41693fae3b92b4639aebcb7b66abbf350380464bbde9bbf23fc20",
+      "referenceAssetId": "onggojib.character.real-remorse-consistent-pixel",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.609375,
+        "offset": [
+          88,
+          290
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.78
+      },
+      "promptSummary": "진짜 옹고집; 깨끗한 도포 · 맨발과 붕대; 앉기, 치료받기, 사과하기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "onggojib.character.layered-wife-kneeling-treatment-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-35a4060a-fade-484c-98f7-fc903eff429b.png",
+      "sourceSha256": "78f73868eb701a9da042f00b81e853df33ceb55d2f16dff5f21d2e1d2c1a2145",
+      "output": "apps/web/public/assets/characters/layered-v1/onggojib-wife-kneeling-treatment.webp",
+      "outputSha256": "53a4b38367248e0b26ea421ebb84bef3870ae6fef873ad7525b15ba38062eddc",
+      "referenceAssetId": "onggojib.character.wife-pixel",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.6640625,
+        "offset": [
+          60,
+          206
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.85
+      },
+      "promptSummary": "옹고집의 아내; 저고리와 치마 · 치료 도구; 무릎 꿇기, 치료하기, 물대야 준비; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "rabbit-turtle.character.layered-fish-courtier-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-4ab935c1-922a-4578-9000-4711bc514bb0.png",
+      "sourceSha256": "2f5158bc3b18f8139250d1b69aff6bbe9e451adbb7c7787db3a758176eccae06",
+      "output": "apps/web/public/assets/characters/layered-v1/rabbit-fish-courtier.webp",
+      "outputSha256": "b1feed6ae63efb43572356fab8ff885e169f3a033de3d5d6343ddae083edfde5",
+      "referenceAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.6875,
+        "offset": [
+          48,
+          156
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.88
+      },
+      "promptSummary": "물고기 신하; 푸른 관복; 공손히 서기, 고개 숙이기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "rabbit-turtle.character.layered-crab-courtier-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-cb782f7f-5f0f-4bd4-8373-d641ad05a2bf.png",
+      "sourceSha256": "290f2ee6d7f27a190f76ecdfc51bff0e0433d3faa96f7b978df0c2031269fc6b",
+      "output": "apps/web/public/assets/characters/layered-v1/rabbit-crab-courtier.webp",
+      "outputSha256": "d2982c3531c45ff8de9ccdedd561c1e28699cd65649a131c8f202df4841de41a",
+      "referenceAssetId": "rabbit-turtle.character.dragonking-sick-elder-attached",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.625,
+        "offset": [
+          80,
+          310
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.8
+      },
+      "promptSummary": "게 신하; 갈색 관복; 공손히 서기, 머뭇거리기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "heungbu.character.layered-dokkaebi-hat-v1",
+      "sourceFile": ".cache/layered-assets/sources/exec-4ea10ac6-06a9-4592-89d2-e513cec32a13.png",
+      "sourceSha256": "2235374da674d4835088ca5536cb6eb91f29649e8bbae3f86fd1db17be67e90a",
+      "output": "apps/web/public/assets/characters/layered-v1/heungbu-dokkaebi-hat.webp",
+      "outputSha256": "f8d504c1a478210ca8c943f6934d013b2380bb504c37906182fbc3a5e432d1b3",
+      "referenceAssetId": "heungbu.character.nolbu-angry",
+      "tool": "image_gen",
+      "transparent": true,
+      "normalization": {
+        "method": "uniform-resize-transparent-canvas",
+        "scale": 0.484375,
+        "offset": [
+          152,
+          464
+        ],
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "proportionReview": {
+        "basis": "face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height",
+        "extraUniformScale": 0.62
+      },
+      "promptSummary": "도깨비; 작은 도깨비 · 놀부의 갓; 달리기, 갓을 들고 도망가기; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale"
+    },
+    {
+      "id": "heungbu.background.layered-goblin-courtyard-v1",
+      "tool": "image_gen",
+      "sourceFile": ".cache/layered-assets/sources/exec-1b8ddd4a-b670-4dcc-9fe8-eb103fcdf9a6.png",
+      "sourceSha256": "680d26c133655c1e1804155cb9a8e6bc1db0045430710422890082bc70c3554c",
+      "referenceAssetId": "heungbu.scene.nolbu-goblin-chaos",
+      "output": "apps/web/public/assets/backgrounds/layered-v1/heungbu-goblin-courtyard.webp",
+      "outputSha256": "09ba63b92dcb8ffa8ad5a3740d0ddacb6d62ab2e87bd123faaa4e5dec250ec24",
+      "promptSummary": "remove all goblins/people, preserve intact mansion, second split gourd, spilled grain and overturned jars; same Korean autumn watercolor courtyard"
+    }
+  ]
+}

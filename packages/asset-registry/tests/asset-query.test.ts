@@ -24,7 +24,7 @@ describe('legacy asset query reuse', () => {
     expect(searchAssets({ type: hidden.type, currentAssetId: hidden.id, search: '없는검색어', view: 'favorites' })[0]).toBe(hidden);
   });
   it('ranks current, same character, chapter, favorites and recents without mutating catalog', () => {
-    const assets = ASSET_CATALOG.filter(isSelectableAsset).slice(0, 6);
+    const assets = ASSET_CATALOG.filter(asset=>isSelectableAsset(asset)).slice(0, 6);
     const ranked = rankAssets(assets, { currentAssetId: assets[5].id, chapterAssetIds: [assets[4].id], favoriteIds: [assets[3].id], recentIds: [assets[2].id] });
     expect(ranked[0]).toBe(assets[5]);
     expect(assets[0]).not.toBe(ranked[0]);
@@ -53,4 +53,13 @@ describe('legacy asset query reuse', () => {
     expect(searchAssets({ type: 'character', view: 'favorites', favoriteIds: [asset.id] })).toEqual([asset]);
     expect(searchAssets({ type: 'character', sameCharacterAssetId: asset.id }).every(other => facetValues(other, 'characterIds').some(id => facetValues(asset, 'characterIds').includes(id)))).toBe(true);
   });
+});
+
+it('separates character-free scene backgrounds from illustration-enabled book and cover choices',()=>{
+ const scene=searchAssets({type:'background'});
+ expect(scene.every(a=>a.metadata.containsCharacters!==true)).toBe(true);
+ const illustration='onggojib.scene.shortstory-knolstory-03';
+ expect(searchAssets({type:'background',allowSceneIllustrations:true}).some(a=>a.id===illustration)).toBe(true);
+ expect(searchAssets({type:'background',currentAssetId:illustration}).some(a=>a.id===illustration)).toBe(true);
+ expect(searchAssets({type:'character',search:'옹고집 넝마 도끼질'}).some(a=>a.id==='onggojib.character.layered-ragged-chopping-v1')).toBe(true);
 });

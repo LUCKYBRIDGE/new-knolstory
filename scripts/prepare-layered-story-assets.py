@@ -1,0 +1,47 @@
+"""Prepare reviewed generated originals with uniform scale and transparent canvas padding.
+No body part is stretched; sources and existing catalog assets remain untouched.
+"""
+import argparse,copy,hashlib,json
+from pathlib import Path
+from PIL import Image
+ROOT=Path(__file__).resolve().parents[1]
+EVIDENCE=ROOT/'docs/architecture/evidence/layered-stories-2026-11-02'
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+RECIPES=[
+ ('onggojib.character.layered-ragged-replacement-shoes-v1','onggojib-ragged-replacement-shoes','exec-f3b07d2b-bc76-4118-8506-1c66bad7fdbd.png','onggojib','진짜 옹고집','넝마옷 · 갈아 신은 낡은 짚신',['서 있기','귀가하기'],1.0,'onggojib.character.layered-ragged-standing-v1'),
+ ('onggojib.character.layered-ragged-seated-outside-v1','onggojib-ragged-seated-outside','exec-17fe2c03-54cb-41c4-b6ac-38b2639214a2.png','onggojib','진짜 옹고집','넝마옷 · 해진 짚신',['주저앉기','지친 채 올려다보기'],.80,'onggojib.character.real-exiled-consistent-pixel'),
+ ('onggojib.character.layered-ragged-chopping-v1','onggojib-ragged-chopping','exec-f973055b-825c-4083-9ecb-b214ee2048b5.png','onggojib','진짜 옹고집','넝마옷 · 해진 짚신',['도끼질','장작 패기'],1.0,'onggojib.character.real-exiled-consistent-pixel'),
+ ('onggojib.character.layered-ragged-standing-v1','onggojib-ragged-standing','exec-f785c643-db6f-4520-ac22-cf112c4a9165.png','onggojib','진짜 옹고집','넝마옷 · 해진 짚신',['서 있기','추위에 떨기'],.90,'onggojib.character.real-exiled-consistent-pixel'),
+ ('onggojib.character.layered-ragged-seated-treatment-v1','onggojib-ragged-seated-treatment','exec-5b74027c-a9c8-4759-990a-282eeeb9c112.png','onggojib','진짜 옹고집','넝마옷 · 맨발과 붕대',['앉기','치료받기'],.88,'onggojib.character.real-exiled-consistent-pixel'),
+ ('onggojib.character.layered-clean-seated-treatment-v1','onggojib-clean-seated-treatment','exec-c06e3715-bd04-443d-9cc6-615cd4e51bd4.png','onggojib','진짜 옹고집','깨끗한 도포 · 맨발과 붕대',['앉기','치료받기','사과하기'],.78,'onggojib.character.real-remorse-consistent-pixel'),
+ ('onggojib.character.layered-wife-kneeling-treatment-v1','onggojib-wife-kneeling-treatment','exec-35a4060a-fade-484c-98f7-fc903eff429b.png','onggojib','옹고집의 아내','저고리와 치마 · 치료 도구',['무릎 꿇기','치료하기','물대야 준비'],.85,'onggojib.character.wife-pixel'),
+ ('rabbit-turtle.character.layered-fish-courtier-v1','rabbit-fish-courtier','exec-4ab935c1-922a-4578-9000-4711bc514bb0.png','rabbit-turtle','물고기 신하','푸른 관복',['공손히 서기','고개 숙이기'],.88,'rabbit-turtle.character.dragonking-sick-elder-attached'),
+ ('rabbit-turtle.character.layered-crab-courtier-v1','rabbit-crab-courtier','exec-cb782f7f-5f0f-4bd4-8373-d641ad05a2bf.png','rabbit-turtle','게 신하','갈색 관복',['공손히 서기','머뭇거리기'],.80,'rabbit-turtle.character.dragonking-sick-elder-attached'),
+ ('heungbu.character.layered-dokkaebi-hat-v1','heungbu-dokkaebi-hat','exec-4ea10ac6-06a9-4592-89d2-e513cec32a13.png','heungbu-nolbu','도깨비','작은 도깨비 · 놀부의 갓',['달리기','갓을 들고 도망가기'],.62,'heungbu.character.nolbu-angry'),
+]
+NAMES={'onggojib':'옹고집전','rabbit-turtle':'별주부전','heungbu-nolbu':'흥부와 놀부'}
+def main():
+ parser=argparse.ArgumentParser();parser.add_argument('--sources',type=Path,required=True);args=parser.parse_args();args.sources=args.sources.resolve()
+ catalog_path=ROOT/'packages/asset-registry/src/catalog.json';catalog=json.loads(catalog_path.read_text());by_id={a['id']:a for a in catalog};records=[];new=[]
+ for id,name,file,pack,group,variant,actions,factor,reference in RECIPES:
+  source=args.sources/file;image=Image.open(source).convert('RGBA');assert image.getextrema()[3][0]==0,'Transparent source required'
+  scale=800/image.width*factor;size=(round(image.width*scale),round(image.height*scale));resized=image.resize(size,Image.Resampling.LANCZOS);alpha=resized.getchannel('A');bbox=alpha.point(lambda a:255 if a>=16 else 0).getbbox();assert bbox
+  offset=(round((800-size[0])/2),1150-bbox[3]);assert bbox[1]+offset[1]>=0
+  canvas=Image.new('RGBA',(800,1200),(0,0,0,0));canvas.alpha_composite(resized,offset)
+  path=ROOT/f'apps/web/public/assets/characters/layered-v1/{name}.webp';path.parent.mkdir(parents=True,exist_ok=True);canvas.save(path,'WEBP',lossless=True,method=6)
+  l,t,r,b=canvas.getchannel('A').point(lambda a:255 if a>=16 else 0).getbbox();ref=by_id[reference];metadata=copy.deepcopy(ref['metadata']);character_id='onggojib.real' if group=='진짜 옹고집' else 'onggojib.wife' if pack=='onggojib' else 'rabbit-turtle.fish-courtier' if group=='물고기 신하' else 'rabbit-turtle.crab-courtier' if group=='게 신하' else 'heungbu.dokkaebi'
+  metadata.update(kind='character',placementRole='character-slot',storyPackIds=[pack],qualityStatus='approved',pickerVisibility='primary',characterIds=[character_id],primaryCharacterId=character_id,poseSetId=character_id+'.layered-v1',variantId=variant,actions=actions,expressions=['지침'] if '넝마' in variant else ['기본'],bodyFraming='full',framing='full',composition='single',layeredStoryAsset=True,searchTerms=[group,variant,*actions,'개별 인물','투명 배경'],qualityReview={'decision':'KEEP','referenceAssetId':reference,'evidence':'docs/architecture/evidence/layered-stories-2026-11-02/generation.json','reason':'얼굴·의상·몸통·팔다리와 동작 비교, 가로세로 같은 배율/투명 여백; 앉기·숙임을 서 있는 높이로 늘리지 않음'})
+  new.append({'id':id,'displayName':group+' · '+variant+' · '+actions[0],'label':group+' · '+variant+' · '+actions[0],'story':NAMES[pack],'type':'character','group':group,'framing':'전신','src':'/'+path.relative_to(ROOT/'apps/web/public').as_posix(),'sourcePath':'docs/architecture/evidence/layered-stories-2026-11-02/generation.json#'+id,'copyright':'놀퀴즈','revision':sha(path),'geometry':{'left':l/800,'right':r/800,'top':t/1200,'bottom':b/1200,'width':800,'height':1200},'tags':[group,variant,*actions],'metadata':metadata})
+  records.append({'id':id,'sourceFile':source.relative_to(ROOT).as_posix() if source.is_relative_to(ROOT) else file,'sourceSha256':sha(source),'output':path.relative_to(ROOT).as_posix(),'outputSha256':sha(path),'referenceAssetId':reference,'tool':'image_gen','transparent':True,'normalization':{'method':'uniform-resize-transparent-canvas','scale':scale,'offset':list(offset),'canvas':[800,1200]},'proportionReview':{'basis':'face/shoulder/torso/limbs compared to named reference; pose not normalized by head-to-foot height','extraUniformScale':factor},'promptSummary':f'{group}; {variant}; {", ".join(actions)}; exact referenced identity and clothing; full individual figure and props, alpha transparency; natural pose and shared anatomical scale'})
+ bg_id='heungbu.background.layered-goblin-courtyard-v1';source=args.sources/'exec-1b8ddd4a-b670-4dcc-9fe8-eb103fcdf9a6.png';image=Image.open(source).convert('RGB');image=image.resize((1600,round(image.height*1600/image.width)),Image.Resampling.LANCZOS);path=ROOT/'apps/web/public/assets/backgrounds/layered-v1/heungbu-goblin-courtyard.webp';path.parent.mkdir(parents=True,exist_ok=True);image.save(path,'WEBP',quality=95,method=6)
+ new.append({'id':bg_id,'displayName':'놀부의 마당 · 두 번째 박 · 인물 없음','label':'놀부의 마당 · 두 번째 박 · 인물 없음','story':'흥부와 놀부','type':'background','group':'놀부의 집','backgroundRole':'scenery','src':'/'+path.relative_to(ROOT/'apps/web/public').as_posix(),'sourcePath':'docs/architecture/evidence/layered-stories-2026-11-02/generation.json#'+bg_id,'copyright':'놀퀴즈','revision':sha(path),'geometry':None,'tags':['인물 없음','도깨비','두 번째 박','온전한 집','흩어진 곡식'],'metadata':{'kind':'background','placementRole':'background-slot','storyPackIds':['heungbu-nolbu'],'qualityStatus':'approved','pickerVisibility':'primary','containsCharacters':False,'layeredStoryAsset':True,'background':{'location':'놀부의 마당','space':'outdoor','time':'낮','season':'가을','state':'두 번째 박 · 집이 무너지기 전'},'searchTerms':['인물 없음','두 번째 박','도깨비가 나온 마당','흩어진 곡식'],'artFamily':'heungbu-traditional-picturebook'}})
+ records.append({'id':bg_id,'tool':'image_gen','sourceFile':source.relative_to(ROOT).as_posix(),'sourceSha256':sha(source),'referenceAssetId':'heungbu.scene.nolbu-goblin-chaos','output':path.relative_to(ROOT).as_posix(),'outputSha256':sha(path),'promptSummary':'remove all goblins/people, preserve intact mansion, second split gourd, spilled grain and overturned jars; same Korean autumn watercolor courtyard'})
+ new_ids={a['id'] for a in new};catalog=[a for a in catalog if a['id'] not in new_ids]+new;catalog_path.write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n')
+ sizes_path=ROOT/'packages/asset-registry/src/background-sizes.json';sizes=json.loads(sizes_path.read_text());sizes[bg_id]={'width':image.width,'height':image.height};sizes_path.write_text(json.dumps(sizes,ensure_ascii=False,indent=2)+'\n')
+ chars_path=ROOT/'packages/asset-registry/src/characters.json';chars=json.loads(chars_path.read_text())
+ for id,name,pack,asset in [('rabbit-turtle.fish-courtier','물고기 신하','rabbit-turtle','rabbit-turtle.character.layered-fish-courtier-v1'),('rabbit-turtle.crab-courtier','게 신하','rabbit-turtle','rabbit-turtle.character.layered-crab-courtier-v1'),('heungbu.dokkaebi','도깨비','heungbu-nolbu','heungbu.character.layered-dokkaebi-hat-v1')]:
+  if not any(c['id']==id for c in chars):chars.append({'id':id,'name':name,'aliases':['신하'] if 'courtier' in id else ['갓을 가져간 도깨비'],'storyPackIds':[pack],'representativeAssetId':asset})
+ chars_path.write_text(json.dumps(chars,ensure_ascii=False,indent=2)+'\n')
+ EVIDENCE.mkdir(parents=True,exist_ok=True);(EVIDENCE/'generation.json').write_text(json.dumps({'date':'2026-11-02','tool':'built-in image_gen','sourcePolicy':'Generated originals retained locally; existing assets not overwritten','assets':records},ensure_ascii=False,indent=2)+'\n')
+ print(json.dumps({'newAssets':len(new),'existingIdsPreserved':len(catalog)-len(new)}))
+if __name__=='__main__':main()

@@ -55,7 +55,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
   const add=(type:'text'|'image',assetType:'background'|'character'='background')=>{
     if(!design)return;
     const id=`box-${crypto.randomUUID()}`,box={x:.12,y:.25,w:.76,h:.18};
-    const asset=ASSET_CATALOG.find(asset=>asset.type===assetType&&isSelectableAsset(asset));
+    const asset=ASSET_CATALOG.find(asset=>asset.type===assetType&&isSelectableAsset(asset,true));
     if(type==='image'&&!asset){setMessage('선택할 그림 자료가 없어요.');return;}
     const element:CoverElement=type==='text'?{id,type,role:'custom',region:'face',content:{text:'새 글'},box,style:{fontId:cover.font,fontSize:.06,color:design.finish.ink,align:'center',writing:'horizontal'}}
       :{id,type,role:assetType==='character'?'actor':'scene',assetId:asset!.id,assetType,box:{...box,h:.4},frame:'rect',crop:{fit:'contain',zoom:1,x:50,y:50}};
@@ -98,7 +98,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
           <Select label="제목 위치" value={cover.titlePosition} options={[["top","위쪽"],["middle","가운데"],["bottom","아래쪽"]]} onChange={value=>patch({titlePosition:value as StoryCover['titlePosition']})}/>
           <Select label="지은이 위치" value={cover.authorPosition} options={[["under-title","제목 바로 아래"],["bottom","맨 아래"]]} onChange={value=>patch({authorPosition:value as StoryCover['authorPosition']})}/>
           <Select label="글 정렬" value={cover.align} options={[["left","왼쪽"],["center","가운데"]]} onChange={value=>patch({align:value as StoryCover['align']})}/>
-          <AssetPickerField label="표지 배경" type="background" value={cover.backgroundId} allowNone onChange={backgroundId=>patch({backgroundId})}/>
+          <AssetPickerField allowSceneIllustrations label="표지 배경" type="background" value={cover.backgroundId} allowNone onChange={backgroundId=>patch({backgroundId})}/>
           <AssetPickerField label="표지 인물" type="character" value={cover.characterId} allowNone onChange={characterId=>patch({characterId})}/>
           <Select label="인물 위치" value={cover.characterPosition} options={[["left","왼쪽"],["center","가운데"],["right","오른쪽"]]} onChange={value=>patch({characterPosition:value as StoryCover['characterPosition']})}/>
           <details><summary>내 마음대로 배치</summary><button type="button" aria-pressed={Boolean(cover.composition)} onClick={()=>{if(cover.composition){const next={...cover};delete next.composition;commit(next);}else patch({composition:defaultCoverComposition(cover)});}}>{cover.composition?'자유 배치 끄기':'자유 배치 시작'}</button>

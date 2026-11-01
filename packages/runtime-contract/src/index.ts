@@ -84,14 +84,25 @@ function optionalChoice(value: unknown, values: readonly unknown[]): boolean {
 }
 // Reviewed canvas-padding derivatives keep stable asset IDs without replacing
 // fixed-baseline source files. This is an allowlist, not an arbitrary URL root.
-const STATURE_IMAGE_PATHS: ReadonlySet<string> = new Set([
+const REVIEWED_IMAGE_PATHS: ReadonlySet<string> = new Set([
+  "assets/characters/layered-v1/onggojib-ragged-replacement-shoes.webp",
   "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-unified-720x900.webp",
   "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
   "assets/characters/stature-v2/seonnyeo.character.classic-children.webp",
+  "assets/characters/layered-v1/onggojib-ragged-seated-outside.webp",
+  "assets/characters/layered-v1/onggojib-ragged-chopping.webp",
+  "assets/characters/layered-v1/onggojib-ragged-standing.webp",
+  "assets/characters/layered-v1/onggojib-ragged-seated-treatment.webp",
+  "assets/characters/layered-v1/onggojib-clean-seated-treatment.webp",
+  "assets/characters/layered-v1/onggojib-wife-kneeling-treatment.webp",
+  "assets/characters/layered-v1/rabbit-fish-courtier.webp",
+  "assets/characters/layered-v1/rabbit-crab-courtier.webp",
+  "assets/characters/layered-v1/heungbu-dokkaebi-hat.webp",
+  "assets/backgrounds/layered-v1/heungbu-goblin-courtyard.webp",
 ]);
 export function isRuntimeImagePath(value: unknown): value is string {
   return text(value, 500) && (/^assets\/legacy-18da4fc\/[a-zA-Z0-9._-]+\.(webp|png|jpg|jpeg)$/.test(value)
-    || STATURE_IMAGE_PATHS.has(value));
+    || REVIEWED_IMAGE_PATHS.has(value));
 }
 export function isRuntimePresentation(value: unknown): value is RuntimePresentation {
   if (!record(value)) return false;

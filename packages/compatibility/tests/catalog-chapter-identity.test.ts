@@ -1,4 +1,6 @@
-import {simplifyCatalogPerspectiveCard} from '../src/catalog-perspective-card';
+import {simplifyCatalogPerspectiveCard as previousCard} from '../src/catalog-perspective-card';
+import {connectCatalogLayeredScenes} from '../src/catalog-layered-scenes';
+const simplifyCatalogPerspectiveCard=(p:Parameters<typeof previousCard>[0])=>connectCatalogLayeredScenes(previousCard(p));
 import {connectCatalogBranchNarrative} from '../src/catalog-branch-narrative';
 import {connectCatalogNarrativeSeams} from '../src/catalog-narrative-seams';
 import {expect,it} from 'vitest';
@@ -24,7 +26,7 @@ it('keeps disconnected Onggojib manuscripts explicitly marked and every original
  expect(p.chapters.filter(c=>c.title==='돌아온 뒤')).toHaveLength(0);
 });
 it('keeps originals unchanged and does not rewrite any personally edited chapter',()=>{
- for(const entry of classicStories)expect(resolveProvidedCatalogStory(entry.project).chapters).toEqual(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project))).chapters);
+ for(const entry of classicStories)expect(resolveProvidedCatalogStory(entry.project).chapters).toEqual(connectCatalogLayeredScenes(connectCatalogPerspective(enhanceExistingStory(refineProvidedStory(entry.project)))).chapters);
  for(const entry of representativeStories){const current=resolveProvidedCatalogStory(entry.project);const edited={...current,chapters:current.chapters.map((c,i)=>i?c:{...c,chapterNumber:77,title:'내가 고친 장'})};expect(resolveProvidedCatalogStory(entry.project,edited)).toBe(edited);}
 });
 it('changes chapter presentation only: preserves every cut, runtime order and all other authored fields',()=>{

@@ -26,6 +26,8 @@ def release_allowed(record,target,usage_scope='standalone-assets'):
 def asset_provenance(asset):
  """Describe byte lineage, never infer a license from a local image transform."""
  base={'assetIds':[asset['id']],'authorOrRightsHolder':asset.get('copyright','unknown')}
+ if asset.get('metadata',{}).get('layeredStoryAsset'):
+  return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; reviewed uniform canvas normalization in scripts/prepare-layered-story-assets.py'}
  transform=asset.get('metadata',{}).get('statureTransform')
  if transform is None:
   return {**base,'provider':'legacy-repository','source':f"story-maker@18da4fc:{asset.get('sourcePath','unknown')}"}
@@ -60,6 +62,10 @@ def inventory():
    for key,item in value.items():scan(item,work,f'{location}.{key}')
  for work in (ROOT/'docs/architecture/evidence/existing-story-enhancement').glob('*.knolstory'):scan(json.loads(work.read_text()).get('project',{}),work.stem)
  for work in (ROOT/'tests/fixtures/stories').glob('*.json'):scan(json.loads(work.read_text()),'baseline:'+work.stem)
+ layered=ROOT/'docs/architecture/evidence/layered-stories-2026-11-02/audit.json'
+ if layered.is_file():
+  for index,row in enumerate(json.loads(layered.read_text()).get('changedVisualCuts',[])):
+   scan(row,'catalog:'+row['edition'],f'layered-stories-2026-11-02/audit.json.changedVisualCuts[{index}]')
  entries=[]
  for file in sorted(set(p for p in files if p.is_file() and p.suffix.lower() in EXT)):
   relative=file.relative_to(ROOT).as_posix();pub=relative.removeprefix('apps/web/public/');asset=by_path.get(pub);cue=scores.get(pub)

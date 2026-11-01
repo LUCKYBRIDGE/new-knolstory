@@ -1,5 +1,8 @@
 # STATUS — current development state
 
+2026-11-02 배경·인물 분리 후속: 제공8판본2,970컷의 배경을 대조해 인물 포함 배경37컷을 개별 인물 배치로 바꾸고, 인접한 복장·신발·치료 상태도 연결한다. 기존421이미지·원고·개인 편집본과 그림책/표지용 완성 삽화는 보존한다. 새 생성 자료는 인물10개·배경1개이며 공식 시각 교정과 공통 Core의 세로 해설 주목 인물, 편집기 검색·선택을 연결했다. 최종 검사/배포의 현재 판정은 [현재 체크포인트](docs/architecture/evidence/layered-stories-2026-11-02/checkpoint.json)를 따른다. 권리 검토·서사/시점·SD-03 이후 전체 제품 큐는 유지한다.
+
+
 2026-11-02 이미지·음원·SDK 출처 후속: 프로젝트 소유자 설명과 고정 구 원본·생성 기록을 연결하고, CC0와 Pixabay 장면 사용·SDK 배포 고지를 분리했다. 기존923차단행은 권리위반수가 아니며 서비스 범위 후보 감사0차단이다. 그림·음원·원고 bytes를 바꾸지 않았다. 구현 `aac2165`와 검사 보완 `a31bf00`/`7459484` CI통과 후 Pages `2f90c8ff`·같은 ingress 반영, 실제주소1538파일/해시9와 공개고지2개 일치를 확인했다. 구현·검증·권한 범위와 운영 반영 상태는 [출처 감사](docs/architecture/evidence/media-rights-2026-11-01/checkpoint.json)를 따른다.
 
 2026-11-01 분기 서사 재검토와 시점카드 후속: 실제 제공본의90개 창작경로와 원작335컷을 읽어 확정된 선택 기억·날짜9컷만 교정하고 연결·결말은 유지했다. 공통 RenPy 전환제목을 중앙배치·크기구분·짧은등장으로 개선하고 옹고집 부인시점의 중복안내2곳을 정리했다. 구현 `e086bb0` CI 통과 후 Pages `bc85f1e4`와 같은 ingress에 반영했고 실제주소11검사·1536파일/해시9 일치를 확인했다. 실제가로세로화면·파일보존과 배포경계는 [서사검토](docs/architecture/evidence/catalog-chapters-2026-11-01/checkpoint.json)의 branchNarrativeReview와 [시점카드](docs/architecture/evidence/perspective-card-2026-11-01/checkpoint.json)를 따른다.
