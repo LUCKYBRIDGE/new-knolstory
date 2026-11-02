@@ -1,0 +1,87 @@
+
+Running 15 tests using 2 workers
+
+(node:24460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24461) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[catalog-native knolstory-3] 1/172: review-main-003:start:0
+[catalog-native knolstory-4] 1/160: review-main-003:start:0
+[catalog-native knolstory-3] 41/172: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-4] 41/160: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-3] 81/172: review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4
+[catalog-native knolstory-4] 81/160: review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4
+[catalog-native knolstory-3] 121/172: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36
+[catalog-native knolstory-4] 121/160: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36
+  ✓   2 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-4: complete native route with API unavailable (1.6m)
+[catalog-native knolstory-3] 161/172: review-main-003:b-final-acts:6
+[catalog-native knolstory-5] 1/140: review-main-003:start:0
+  ✓   1 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-3: complete native route with API unavailable (1.7m)
+[catalog-native knolstory-6] 1/142: review-main-003:start:0
+[catalog-native knolstory-5] 41/140: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-6] 41/142: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-5] 81/140: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24
+[catalog-native knolstory-6] 81/142: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24
+[catalog-native knolstory-5] 121/140: review-main-003:b-before-confession-days:0
+[catalog-native knolstory-6] 121/142: review-main-003:b-vase-stick:2
+  ✓   3 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-5: complete native route with API unavailable (1.4m)
+[catalog-native knolstory-7] 1/144: review-main-003:start:0
+  ✓   4 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-6: complete native route with API unavailable (1.4m)
+[catalog-native knolstory-8] 1/132: review-main-003:start:0
+[catalog-native knolstory-7] 41/144: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-8] 41/132: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-7] 81/144: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24
+[catalog-native knolstory-8] 81/132: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24
+[catalog-native knolstory-7] 121/144: review-main-003:b-vase-care-after-harsh:2
+[catalog-native knolstory-8] 121/132: review-main-003:b-fake-warning:2
+  ✓   6 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-8: complete native route with API unavailable (1.3m)
+  ✓   5 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-7: complete native route with API unavailable (1.4m)
+[catalog-native knolstory-9] 1/170: review-main-003:start:0
+[catalog-native knolstory-10] 1/172: review-main-003:start:0
+[catalog-native knolstory-9] 41/170: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-10] 41/172: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-9] 81/170: review-main-003:fake-repeat-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:3
+[catalog-native knolstory-10] 81/172: review-main-003:fake-repeat-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:3
+[catalog-native knolstory-9] 121/170: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:35
+[catalog-native knolstory-10] 121/172: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:35
+[catalog-native knolstory-9] 161/170: review-main-003:b-final-acts:8
+[catalog-native knolstory-10] 161/172: review-main-003:b-final-acts:6
+  ✓   7 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-9: complete native route with API unavailable (1.6m)
+  ✓   8 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-10: complete native route with API unavailable (1.6m)
+[catalog-native knolstory-11] 1/174: review-main-003:start:0
+[catalog-native knolstory-12] 1/162: review-main-003:start:0
+[catalog-native knolstory-11] 41/174: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-12] 41/162: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-11] 81/174: review-main-003:fake-repeat-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:3
+[catalog-native knolstory-12] 81/162: review-main-003:fake-repeat-verdict-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:3
+[catalog-native knolstory-11] 121/174: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:35
+[catalog-native knolstory-12] 121/162: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:35
+[catalog-native knolstory-11] 161/174: review-main-003:b-final-acts:4
+[catalog-native knolstory-12] 161/162: review-main-003:b-fake-warning:12
+  ✓  10 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-12: complete native route with API unavailable (1.7m)
+  ✓   9 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-11: complete native route with API unavailable (1.8m)
+[catalog-native knolstory-13] 1/142: review-main-003:start:0
+[catalog-native knolstory-14] 1/144: review-main-003:start:0
+[catalog-native knolstory-13] 41/142: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-14] 41/144: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-13] 81/142: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:23
+[catalog-native knolstory-14] 81/144: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:23
+[catalog-native knolstory-13] 121/142: review-main-003:b-vase-care:0
+[catalog-native knolstory-14] 121/144: review-main-003:b-vase-stick:0
+  ✓  11 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-13: complete native route with API unavailable (1.4m)
+  ✓  12 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-14: complete native route with API unavailable (1.4m)
+[catalog-native knolstory-15] 1/146: review-main-003:start:0
+[catalog-native knolstory-16] 1/134: review-main-003:start:0
+[catalog-native knolstory-15] 41/146: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-16] 41/134: review-main-003:part1-court-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:31
+[catalog-native knolstory-15] 81/146: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:23
+[catalog-native knolstory-16] 81/134: review-main-003:fake-route-cruelty-drive-away__work-no-food__wage-too-slow__shoe-crawl:23
+[catalog-native knolstory-15] 121/146: review-main-003:b-vase-care-after-harsh:0
+[catalog-native knolstory-16] 121/134: review-main-003:b-fake-warning:0
+  ✓  14 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-16: complete native route with API unavailable (1.3m)
+  ✓  13 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-15: complete native route with API unavailable (1.4m)
+[catalog-native original-1] 1/71: classic-onggojib-1-line-01
+[catalog-native original-1] 41/71: classic-onggojib-4-line-05
+  ✓  15 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib original-1: complete native route with API unavailable (39.8s)
+
+  15 passed (11.1m)

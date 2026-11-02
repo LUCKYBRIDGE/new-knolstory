@@ -30,4 +30,19 @@ pnpm exec playwright test --config docs/architecture/evidence/catalog-native-pat
 
 별주부전은 `manifest-rabbit.json`과 `native-rabbit-paths.log`를 사용한다. 흥부의 이미 통과한 경로/manifest는 별주부전 확장 때문에 다시 실행하거나 바꾸지 않는다. 새 실행은 `complete-path-evidence.json` 영수증을 실제 결과 폴더에 기록하며, 이전 list reporter 실행의 개별 attachment가 파일로 남지 않은 점과 구분한다.
 
-별주부전 놀스토리 6경로와 원작 1경로도 실제 첫 컷부터 결말까지 통과했다(1,290컷별 검사). `rabbit-route-receipts/`에 완주별 기록을 보존했다. 흥부전과 합쳐 12경로이며, 옹고집전·선녀와 나무꾼 전체 경로는 아직 남아 있다.
+별주부전 놀스토리 6경로와 원작 1경로도 실제 첫 컷부터 결말까지 통과했다(1,290컷별 검사). `rabbit-route-receipts/`에 완주별 기록을 보존했다. 흥부전과 합쳐 12경로이며, 옹고집전 창작16·원작1경로도 이어서 통과했다(2,543컷별 검사). 첫2경로와 나머지15경로를 겹치지 않는 두 묶음으로 실행했으며 영수증은 `onggojib-route-receipts/`에 보존한다. 세 작품 합계29경로/4,850컷별 검사이며 선녀와 나무꾼은 남아 있다.
+
+옹고집전은 최신 전환 조작 빌드를15407에서 제공했다. `KNOL_CATALOG_BASE_URL`로 고정 후보 주소를 선택한다. 두 작업자를 쓸 때에도 각 경로는 독립 문맥이며 같은 경로를 반복하지 않는다. 자동 시점 안내는 실제 `presentationDone` 뒤 호스트가 다음 본문으로 이동하는 것을 확인한다.
+
+
+## 선녀와 나무꾼의 검증 순서 — 2026-11-02
+
+전체64창작+원작1경로의 현재 Core 명세는 `manifest-seonnyeo-all.json`에 남긴다. [분석](seonnyeo-coverage-analysis.json)으로 모든 고유 장면 상태·점수상태·선택 간선·합류 입구·결말을 포함하는14창작+원작1 완결 경로를 먼저 골랐다. 이는 동일한 앞부분의 반복을 줄이는 우선순위 변경이며, 나머지50조합 전체를 실제로 재생했다는 뜻이 아니다. 미실행 조합은 선택 명세의 `unrunFullCombinations`에 보존한다.
+
+장면 서명은 고정 가로·기본 글씨에서 실제 전달된 본문·화자·배경·인물 위치/크기·선택·음향(시퀀스 진입ID 포함)·연출·수동 효과를 대조한다. 화면 크기·폰트·글상자 배치·브라우저 음향 세션ID 검증은 이 서명의 범위가 아니다. 기존 가로/세로 전환 조작·레이아웃 검사는 별도 근거로 유지한다. Core의 모든 점수상태 해석과 native 실제 선택/장면 대조도 구분한다.
+
+```sh
+KNOL_CATALOG_BASE_URL=http://127.0.0.1:15407 pnpm exec playwright test --config docs/architecture/evidence/catalog-native-paths-2026-11-02/playwright.config.ts --grep 'seonnyeo ' --fully-parallel --workers 2 --output=test-results/catalog-native-paths-seonnyeo
+```
+
+명세를 브라우저에 주입하지 않으며 선정된 각 경로는 새 문맥에서 실제 첫 컷부터 끝까지 읽는다. 이미 성공한 경로는 다음 묶음에서 제외한다. 이 범위가 통과해도 SD-04의 파일·조건 조합·느린망·실기기와 전체 native50조합은 남는다.

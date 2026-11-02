@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {representativeStories,classicStories,resolveProvidedCatalogStory} from '../../../../packages/compatibility/src';
 import {advancePlayback,advanceEffectPlayback,createPlayback,compileStoryScene,type PlaybackState} from '../../../../packages/runtime-core/src/story-runtime';
 const canonical=(value:unknown):string=>JSON.stringify(value,(_key,item:unknown)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))):item);
-for(const [workId,classicId,pathCount,output] of [['heungbu','heungbu-classic',4,'manifest.json'],['rabbit','rabbit-classic',6,'manifest-rabbit.json']] as const)it(`exports current ${workId} complete paths`,()=>{
+for(const [workId,classicId,pathCount,output] of [['heungbu','heungbu-classic',4,'manifest.json'],['rabbit','rabbit-classic',6,'manifest-rabbit.json'],['onggojib','onggojib-classic',16,'manifest-onggojib.json']] as const)it(`exports current ${workId} complete paths`,()=>{
  const editions=[{entry:representativeStories.find(e=>e.id===workId)!,edition:'knolstory',expected:pathCount},{entry:classicStories.find(e=>e.id===classicId)!,edition:'original',expected:1}];
  const result=editions.map(({entry,edition,expected})=>{
   const project=resolveProvidedCatalogStory(entry.project),byId=new Map(project.lines.map(line=>[line.id,line]));

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "status": "implemented and local native verified; release pending",
+  "status": "implemented, local/live native verified, main CI passed and Pages/ingress deployed",
   "problem": {
     "confirmed": "Native fixed logical confirmation shrank to34.95CSSpx at320px portrait; manual title action also shrank.",
     "staleIssue": "Toolbar overlap was already fixed by c5d1011 on2026-11-01; preserve the existing hide-during-transition policy."
@@ -44,5 +44,35 @@
     "Existing Heungbu/Rabbit full-path evidence uses frozen prior runtime; story/Flow/artwork data unchanged by this action-size delta.",
     "All Onggojib/Seonnyeo paths,slow network,external account and policy checks retain the widerqueue."
   ],
-  "release": null
+  "release": {
+    "sourceCommit": "22d0cf182061fe1100cc3838ec55fe31ea6b10a0",
+    "pages": "https://ccde4a82.new-knolstory.pages.dev",
+    "origin": "https://story.knolquiz.com",
+    "ci": {
+      "id": 41420806521,
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41420806521",
+      "status": "success",
+      "publicSuite": "268files2268passed2skipped; excludes private catalogue/audio-byte suites"
+    },
+    "liveNative": {
+      "passed": 7,
+      "log": "live-native.log",
+      "scope": "fresh Chromium contexts at public origin; API intercepted in authoring tests, no account writes"
+    },
+    "files": "1560checked0unexpected,key9hashes/audio3match;live-files.json",
+    "ingress": {
+      "image": "sha256:69050b867a642b960c7266904678c44fb21438d6aa3c592d77e5c815feb1ef3e",
+      "proof": "ingress.json",
+      "rollback": "knolstory-next-ingress:rollback-20261102-controls"
+    },
+    "api": "existing432asset image retained;public config200/documents401;api-recovered.json",
+    "database": "11tablesunchanged after already-stoppedDocker VM recovery;database-integrity.json"
+  },
+  "operationalIncident": {
+    "disk": "Ingress copy hit ENOSPC. Removed only two superseded current-task candidates and incomplete copy; manifests/logs and final/previous release retained.",
+    "docker": "VM had stopped gracefully; root cause not proven. Daemon/desktop IPC timed out and normal restart failed. Stalled Desktop host processes closed, Docker reopened, existing containers resumed without deleting/recreating data volumes.",
+    "apiInterruption": "Actual anonymous API502 observed during downtime;api-unavailable-during-recovery.json. Restored200/401 and row-content hashes verified.",
+    "candidatePreview": "Hard-linking the validated final candidate into build context changed file ctime without changing bytes. Strict preview correctly refused409. Restarted preview after metadata stopped changing; no product failure inferred.",
+    "followUp": "Keep low-disk space visible before further large immutable candidate copies; no general cache/image prune performed."
+  }
 }

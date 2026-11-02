@@ -1,0 +1,18 @@
+
+Running 17 tests using 1 worker
+
+(node:23946) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[catalog-native knolstory-1] 1/168: review-main-003:start:0
+[catalog-native knolstory-1] 41/168: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-1] 81/168: review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4
+[catalog-native knolstory-1] 121/168: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36
+[catalog-native knolstory-1] 161/168: review-main-003:b-final-acts:10
+  ✓   1 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-1: complete native route with API unavailable (1.5m)
+[catalog-native knolstory-2] 1/170: review-main-003:start:0
+[catalog-native knolstory-2] 41/170: review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31
+[catalog-native knolstory-2] 81/170: review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4
+[catalog-native knolstory-2] 121/170: review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36
+[catalog-native knolstory-2] 161/170: review-main-003:b-final-acts:8
+  ✓   2 tests/e2e/catalog-reading-paths.spec.ts:62:65 › onggojib knolstory-2: complete native route with API unavailable (1.5m)
+[catalog-native knolstory-3] 1/172: review-main-003:start:0

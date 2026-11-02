@@ -1,0 +1,19 @@
+
+Running 1 test using 1 worker
+
+(node:30225) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[catalog-native knolstory-39] 1/412: P1-v166-1
+[catalog-native knolstory-39] 41/412: 1-v163-1
+[catalog-native knolstory-39] 81/412: 3-v159-13
+[catalog-native knolstory-39] 121/412: 5-v157-16
+[catalog-native knolstory-39] 161/412: 8-v137-5
+[catalog-native knolstory-39] 201/412: 11-v134-1
+[catalog-native knolstory-39] 241/412: C3-A-v123-10
+[catalog-native knolstory-39] 281/412: H2-v119-5
+[catalog-native knolstory-39] 321/412: E4-1-v112-3
+[catalog-native knolstory-39] 361/412: E4-4-v109-21
+[catalog-native knolstory-39] 401/412: E4-8-v32-5
+  ✓  1 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-39: complete native route with API unavailable (3.5m)
+
+  1 passed (3.6m)

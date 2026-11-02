@@ -1,0 +1,861 @@
+{
+  "workId": "onggojib",
+  "edition": "knolstory",
+  "route": "knolstory-4",
+  "projectSha256": "07916289c6a621a98e405973f16a17fe27832e84c9618bd1363a8a05496d0cc6",
+  "visitedCuts": [
+    {
+      "lineId": "review-main-003:start:0",
+      "textSha256": "8c690e5468f881af0530183f716e748cb85536459833ae1632546d6f9b36df8a"
+    },
+    {
+      "lineId": "review-main-003:start:1",
+      "textSha256": "70a407ab44d33673affed896962de8d3d114ee27c6dfacb1f27f1cce655e4718"
+    },
+    {
+      "lineId": "review-main-003:start:2",
+      "textSha256": "92ef26505b7faa8b5c837b41683e5e4b5926f02f192e6cae9829252963fee31f"
+    },
+    {
+      "lineId": "review-main-003:start:3",
+      "textSha256": "fe23f9074d76fdbc5132374b94866ae42fd55e4d6d9fe29921f586072709823c"
+    },
+    {
+      "lineId": "review-main-003:start:4",
+      "textSha256": "da89df0cf0d9a0f0d2c76a8c51d58337e3769d78baf8026f3dccb4598e5a9ade"
+    },
+    {
+      "lineId": "review-main-003:start:5",
+      "textSha256": "50fb5c43686720acfc6627338d2b3d368e7e9b8168dd0e26d5bfbbb10b086b63"
+    },
+    {
+      "lineId": "review-main-003:start:6",
+      "textSha256": "c458a3ef00b88bd6631514b6dfcb15b54ebcb0f9f8f7e7a99143ed498e4c9fb8"
+    },
+    {
+      "lineId": "review-main-003:start:7",
+      "textSha256": "bab493aad36d88ad2d5496f7bf7c3819f2da0c7ae1c3d6117e781503e0258f65"
+    },
+    {
+      "lineId": "review-main-003:start:8",
+      "textSha256": "7ec885203985ccb55ddcfb3089c8ff5f024343c7e554f08a70f621f3617efd09"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "textSha256": "ff72d3332852268b8f6d64f827537c0bff6a011b474bfed6b901b118053a519e"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "textSha256": "0452ed5734bc98533f8fd97a0ce51a8367b3651a45e2767f8be9128e7a2629af"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "textSha256": "8b50e6538740212f6d3ba8c2785c01811e928ee46ef9656b03d6e7f34d65de06"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "textSha256": "5fda68e99a028063111647dd0e7c218362cdf22835560632c540f3a380e20086"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "textSha256": "656538ffa1abb9f53765a9d7b14328e50c4c4fa5ec426233708f16f1bb8d227f"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "textSha256": "ed90906962ab72f5e098485db3a035e6fa0cca9d4decdf8e8ebc6c88d9f3bf43"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "textSha256": "e5b2f941202e12bd0d4db51d54746b6da906b15f69f92131c39b8a85606ac04f"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "textSha256": "4bf2cfd50f15ae41aef20aea8fcd0c660ede99ecdd831f37aa7776a60c39998d"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "textSha256": "7f1fb7b1a603d67f8c362abf4020afe9b3f5a3fd56d1119fe1cd98bad852adcf"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:9",
+      "textSha256": "8802f05a0dc0b85f76e54be2003c464d6126d669847490d5f5ae0068a28f7686"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:10",
+      "textSha256": "f5ebf55703927d6590a303cb092e51fbbe7a482e2609b56cbc6cf6b65bca2204"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "textSha256": "76d8a1350bdaf7179419626715187ff31f310930efdf0088283802c21fc8276f"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:12",
+      "textSha256": "11cd072954c89960af792ce044ef97452d239baf17c1e7a4ccc2e51dd6ff767b"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+      "textSha256": "43e603ad9d25c088b73866229cb886c272b8658e11213e48185617315fdbf143"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:14",
+      "textSha256": "a73f414e38ffa322b641b9a4cb8b44992e59b70b9bdd84de9a757d01f18bedce"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:15",
+      "textSha256": "e4459a9305617e7ab93259d660297ac45ec5f6bb09e3d31546a6366391f84212"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "textSha256": "5f451969b26d210139f11d8a2c773ff30d4722bf54ac8ae0c1597a7335fe4a97"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+      "textSha256": "559e1b61e47779c4b54f20cfd591dc24a3c1dfeb879bf377b274b70c71b6021b"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:18",
+      "textSha256": "6ef9aa2dda887cc5f1e3f391dffd9eeb8b377a3087357237ef04f58c4a89efbd"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:19",
+      "textSha256": "2feefdff7a5b175ac395e25a5601418a1436203d8a62af7799e66dedc19af9fc"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:20",
+      "textSha256": "3aa75d54d2f3e12e39738345f5f94f031333a7071c5d115a65878a4b9f164d45"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:21",
+      "textSha256": "6d6cc87276a37d6a5245d36fbdd643f9a7e13b0c4153be5404430d764f47e639"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:22",
+      "textSha256": "b76fb862e6242c28820ce6399681be62d5040734beedf1567eb306a1debb294e"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:23",
+      "textSha256": "d7107125f720a051e196f8fc54be6e18ab4ca585810882ea24ef9cc370c7ede4"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24",
+      "textSha256": "8580b3d9454470afddd5e78b76b37012bf02d9f93317aa274c21b2067c8d1396"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:25",
+      "textSha256": "7ecbd814601d1fc63efa7e8ba4517c300bb77e796d2887a71700759ead2263e0"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:26",
+      "textSha256": "47ff1acbaae4f2dc49bfb43b02ab930af163d516676b7c890ab7ff5ff99f3dd3"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:27",
+      "textSha256": "e7b85308879351ae5de0e12734945805da2629a3fcbf9ff8b937dcca99df16ad"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:28",
+      "textSha256": "f236fbf0ad9b6439b5af7c6e2a73c9bffd438641343a85437bf410fe02a8a914"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:29",
+      "textSha256": "b2c77cc007a9fbf769ad32fa66bdb1633288781ad03b3ecc993c16cb3058a3b4"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:30",
+      "textSha256": "904754202b3079687e38d37b7d642d6d17be2f44f6ea8504ea16ba589beb021d"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31",
+      "textSha256": "023255bad237a0c630c604a8adda8e1f30a0add7d0244232f2d0ed06af04c3b6"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:32",
+      "textSha256": "b8036245b06484dc4e355db0938fe2310aec09c5cf4a1d4c5af8e457c54a82fc"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:33",
+      "textSha256": "37b2e62acd743fff2765bfc07ed4cccd922c8df8daec6ef295f8dcbdba7e0d7f"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:34",
+      "textSha256": "4dd00a47f9338bed7bda4b37ba5cdd704b41164994567abf27677ba6e48414a4"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:35",
+      "textSha256": "086619bceab0d5ff0442be135bfebae70e2aefef12bbd26f4bc082d8dae51628"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36",
+      "textSha256": "17b8dbf64bc296359d7980feb08a8a64d0fb369bc3f077e2bd6ef621067b7b4c"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:37",
+      "textSha256": "34292ad8045c7fbdf848d3f53cf252726f34751121ab84de2a1fb1c5b18c6274"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:38",
+      "textSha256": "faf8827c7c413b6ccde410ee843854d7421b70962432f95c18583eb428f136ae"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:39",
+      "textSha256": "544a6e7de08292c73c538aa8918e1f202dd867ff94b513e640bc0b614c117316"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "textSha256": "e77d811323b74dda0fc20080747eabe6adb5ed52523a50f1f52676ee442d0d99"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "textSha256": "d6a02b6fa42da171d7ea38157bf58e9ba81bef3fd70ad5f076fc048178470045"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "textSha256": "84528e39630192e21720d57d82057f511438ece91cacc15e92083287067d563f"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "textSha256": "1aee174ef7eed109a6fc82ae8f75d16926d34cf3ff8e994554ec57f535068cb2"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "textSha256": "fc1ca4fcdd7c00913f0f140620cb06516d6388526511b0f0ce2e320f2569d0eb"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "textSha256": "357faa28434b7a6d4504c124528919c7a2efbac74fe91baef43bbe65d09b9c17"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "textSha256": "439e7a04d4d8e8420cdcf7c3b0f1c8a050329e43d7a8f2dd7c5bbccd1570de3e"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "textSha256": "041d35e3c1424886f87ee3edd04a716b207b28530ef2fcc5e31fcf9c8c4eaef8"
+    },
+    {
+      "lineId": "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "textSha256": "d2b5a252db34b9af277dea3fb75f1638de1d710e010354ce63b8a374ea3baf6b"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "textSha256": "5c557ec4e53de4433abfc8494416506dbead0f96d7b33782fb5898e94b3a36f7"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "textSha256": "cbb7b1a79e0653a0b2080722783407a7f1ff79f0cc658555154a5f41dd6e9e96"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "textSha256": "9ac52af5b7ee8709fb43e6f1bcfed06a1cf546ee7f4934ca7992d6a3c117c934"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "textSha256": "a0a0ed3772aceb7e1b06dad221aeaa90db7da8896e3eec6adfbb5f44bc0d4ce5"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "textSha256": "c4018c9636b715bf0f1d06ea12e9c4499fbc1560d3d6f68baec37aa75d1eec31"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "textSha256": "8174bbb524c6ff366f14aed6a87c4a4bb4cfb536bc2cfa8c5a13cbf7515e13b9"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "textSha256": "0afbac76ca29986aa4828d30cdf8c1d6d7f18f6e091fd711d9326c8078e72008"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "textSha256": "cb3ff07dc47fbfce984048eeb2aed23fcfce4f7cdb6a10cee94c80b147a53a23"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "textSha256": "4205fd03e358c2bd7f46d662f88d8ff3d347df7103f93b72b92fb2eebec11c7a"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:9",
+      "textSha256": "944dd5ec596eaf51e0ca76c77436afa05a5a99b43ac52ad20d6cbe7d912670a8"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:10",
+      "textSha256": "b6691e9b0b99273b5ce648a0fd66cff8ea58c222d1d0b2c8d9bf7fcc6eeb8259"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "textSha256": "08a9d6ddb196d61ad33c29ee6033c9fd3743a6659f68159243f6421fcf0798d5"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:12",
+      "textSha256": "1598c960e8082626e322fd1b69152f4faf8e99e49a484996eea01620aa3c01cf"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+      "textSha256": "ddcaaa8b2cbc4e3320892bff5741274a334c9d82e95e58e76d6d2d49a20fc08a"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:14",
+      "textSha256": "b4792da8aed7ffa3a959fc65ff303bc8d6524366426becf003a573e6dc63ffce"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:15",
+      "textSha256": "ac518b8f702bc292cf5b2cc0b83f00425799bd53bc80e2c84f2da85d0bb26027"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "textSha256": "12c7e198bc6fbc656d2bcd53809ed8e5e373e3432ab3632c5ec348fbbadf7abf"
+    },
+    {
+      "lineId": "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+      "textSha256": "896fa8339595e60fe69e6557e628517e63eda98b9c82e256a0864b95b3ac2de9"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "textSha256": "8780d01eab557c64f683fb5ecd940857fc9aa9f592e8735f81e9945709a4652b"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "textSha256": "c5196d058e92ec1e9c7a97684102fae550d448a56ce15eacd4ad43188a7e1a55"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "textSha256": "1ab8e7b4f072a8c53eec8fbfa518849f9d84247d6b78694252d208610b0ac117"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "textSha256": "960eeaebeb6ae4dbffba263ff4c83ad4bd56a140a2bc2ac1769c0a385dd52624"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "textSha256": "0a3da4f4059fb00dd9bdf6542106e062e92321eeed8158b3f627544807bc0ab5"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "textSha256": "d6a02b6fa42da171d7ea38157bf58e9ba81bef3fd70ad5f076fc048178470045"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "textSha256": "5a684b66a98f5da6d7a137e22496fee040a6a1e6a5c51454a9d3ba81ceae8777"
+    },
+    {
+      "lineId": "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "textSha256": "6fe7bd8a4d7af4df5a17147e6845547f394f20e5d50a3a0b0bf397b94b56d4bb"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "textSha256": "4c7840ca28acc8be95a33bc23ff79f748603a288d58334fe14475083e2b84b75"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "textSha256": "1b93bc9bdf08ebee3f8c5e6e638e1d61027a9d4a8d08c96505897a2a5c50b973"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "textSha256": "a19fe1a3c8a8a3331524abc50ea14634f4e0614743024188121e99025766a738"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "textSha256": "365dd8f4ce04931fddb216314766574df0e97b76408f2e71787fd152118fbc8f"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "textSha256": "002705b53acfac728b9e3949eff0201cf2ad6bf9d7168061a2527d52419cdb45"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "textSha256": "cb9048d11470d238ec5973973dbf7ec9002c9125098e8b8527b346796740b28b"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "textSha256": "3981216092474b47e74a0d6d53a699cec68779affc8c0101f4293867eabb6c85"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "textSha256": "2c1286897cb3e6c7ff2b51f03098d6a2289344099cd02df8e19687c34a497dd0"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "textSha256": "ff72d3332852268b8f6d64f827537c0bff6a011b474bfed6b901b118053a519e"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:9",
+      "textSha256": "0452ed5734bc98533f8fd97a0ce51a8367b3651a45e2767f8be9128e7a2629af"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:10",
+      "textSha256": "631492861e910ee48764c03ff0efb596f179890ebbeb6db5d64f2178b46bbf95"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "textSha256": "349bfca767d03552fdbdb700ad5b884a001579c0bfaa1f03585ae32e62ee52c1"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:12",
+      "textSha256": "5fda68e99a028063111647dd0e7c218362cdf22835560632c540f3a380e20086"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+      "textSha256": "79ad1d41849da316b3daf37d7dca4175e95efe16904bb0e4e59bd13fd409ebe6"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:14",
+      "textSha256": "ed90906962ab72f5e098485db3a035e6fa0cca9d4decdf8e8ebc6c88d9f3bf43"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:15",
+      "textSha256": "7521fbf2fb106ea778cec2b1150324eaa61b8c6eb0a3648168f2ea86f135790d"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "textSha256": "021ea8de4a31d8e0d028d7e673c677fe7d8a1b5fa4fce286bb3bef95e9dee586"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+      "textSha256": "4bf2cfd50f15ae41aef20aea8fcd0c660ede99ecdd831f37aa7776a60c39998d"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:18",
+      "textSha256": "7f1fb7b1a603d67f8c362abf4020afe9b3f5a3fd56d1119fe1cd98bad852adcf"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:19",
+      "textSha256": "8802f05a0dc0b85f76e54be2003c464d6126d669847490d5f5ae0068a28f7686"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:20",
+      "textSha256": "b452c2fdba59a9c50dc7d354d366736a8491dbe34d40a5ea5b4fc8dbe7a891f4"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:21",
+      "textSha256": "986c91491441d69dba81f6242226238a537be5a96b17b55d13d3d01157ed7490"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:22",
+      "textSha256": "b96ff9fa7a98a66830ec96ffb6cf24474526132c4d47965fb3c8eddc721d3a7f"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:23",
+      "textSha256": "b20b878cf08398121f5b0d7cf5df101f4b99520ab10a94f75ae48dce4db44000"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24",
+      "textSha256": "a45c5a28a6af77d5faedba24a2a852fb9bd852655fb14ed714a72ed9723606f5"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:25",
+      "textSha256": "c6cc3710639ef03f6cb0848027e472186cf67a6a612b3011c2a2d6ae4f2a63d2"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:26",
+      "textSha256": "648e5391a3f66bff1afb48e5ccb5a74d00edf8d0d326db119638c51a26744720"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:27",
+      "textSha256": "1b58077a84222ccfe69aa82dca2b24db26ba54c6472bb628107db478e90a1fec"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:28",
+      "textSha256": "b191a1db47ad57da148967f03e9776f33ce2bf45e6538d5def2ae70f8077cb52"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:29",
+      "textSha256": "1c0bdf1dd2e2823f653a893de80372ac7c6ca799d6fe51e9826b87b9f4d97737"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:30",
+      "textSha256": "9a3de19e3480d8bd70b4e9937a1505643b4e81fc7e7e026105dc2ca1ccc35c8e"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31",
+      "textSha256": "bac1e2fbfde51b746f24c353576e30f7109590d9eb81ab0f6cd16b238427d3d2"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:32",
+      "textSha256": "8ec585e5390d18dbe4d455ad960d1f65013221d44bb0a37f5e65fe4ce1e5b02d"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:33",
+      "textSha256": "093d51a71681cbeb9d39594ae8ffcf8db67052dba8ceda37651fd92d6b04c328"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:34",
+      "textSha256": "fbe9e1c363d2981c1596a5c97e787c009c22939b9acfe260f7e1a390618e750e"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:35",
+      "textSha256": "18da185e7ea1b9febdae3de87bce578077c8a0ce5993ba427402d7d15891963f"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36",
+      "textSha256": "2ebd00b67cb552d157d1eeb9a5ef3b2bdaf3e7317dc007cb98c57b8595de2175"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:37",
+      "textSha256": "1631028819dbac0bfb687d8ae862c16dcdbce155255bb2a877776e40888b2a22"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:38",
+      "textSha256": "6f70a8bf1dcf86ebfa995afa6dec6503ddedcfc79ca5d0d54abbe32e54ce67b6"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:39",
+      "textSha256": "e0de38efa7f8da9c7c22194b6b8d1c773a27a0d806db44c8cce87cf34595452d"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:40",
+      "textSha256": "cc272fb6d8c68855642c795ec5140b378f16928a7bff8525a7276ed07add5941"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:41",
+      "textSha256": "7563b5cbaa94ed3295f10e2776d9a562389023e997b6ddf59fada16105990bf6"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:42",
+      "textSha256": "f43dad301b2813c33962c6955f180d28ee40d50052ddef0ff8bdd747da4dbb9c"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:43",
+      "textSha256": "91e998c43a745600c08aa65c5617c267077247d9057eae5ee31531cb5b15618a"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:44",
+      "textSha256": "9ec145540e2f1dcd638c919956e46604f930fac700a72c265ef88f39bb6861b2"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:45",
+      "textSha256": "94b178adca9341e225537a6b7bfec9d8b80cde1bca17f288259198093e6c8fbe"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:46",
+      "textSha256": "2e9bd39409c3a5de34f0db30b6173e62a204201666e37766bb5baeca04ccf615"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:47",
+      "textSha256": "85cbad319348a5d119737bedc5c1da00b0ba8bb5a521dcbc2d8c9dc935077469"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:48",
+      "textSha256": "c897a2490f0770aa51871f866b4ab2a30e0669e1193e574573d3b3f1351fb6d8"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:49",
+      "textSha256": "80261025a8f33319656e9410c4f4d4700eef481736d7eca1e60084f18bb05590"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:50",
+      "textSha256": "ffcdf77cf665f827b1a25ec1fcc12ef818bdcc2663393e997689fe076b1e0afd"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:51",
+      "textSha256": "3053b4f885fb143c3cdbe76efd9ae4f2ecc0797738bd3a363ae03fb38f5b37db"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:52",
+      "textSha256": "85b6f23005fc359a51c7ff63267876473267bd842127f71a92b2e0d115c313a5"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:53",
+      "textSha256": "4e8bf252f38f121a069811101d8205b015517490364725d8b9682785d35eeaaa"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:54",
+      "textSha256": "0a3634e9941bad0ba7c848f04aac2920bc54255bd8b8076506515ee3cf754e52"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:55",
+      "textSha256": "91449b5203e6e60b55b7ea9dbb802ff2c103d76935dccc4f4471daa7dbceb2b6"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:56",
+      "textSha256": "54af30d897511929a6e3410ec4630aab5e5ac39ab611d048bc4b49d2ffae11a0"
+    },
+    {
+      "lineId": "review-main-003:b-meal-slip:0",
+      "textSha256": "4d3adef442153fd10a8ad81fd18e50a17cfa7c6270354b66ae5dd9bccb277316"
+    },
+    {
+      "lineId": "review-main-003:b-meal-slip:1",
+      "textSha256": "2afac690ce0db73f7e0276632a27a15e3655b6a2c76b3302282788f2d5722665"
+    },
+    {
+      "lineId": "review-main-003:b-child-scene:0",
+      "textSha256": "095472818b482f616d71da669249314ba0f758843c4b3337098f073660d8a48d"
+    },
+    {
+      "lineId": "review-main-003:b-child-scene:1",
+      "textSha256": "726406f9b2a8f728d9234ef710ebf686ba1e3eb8cee3ce35f3e8387be76dacb6"
+    },
+    {
+      "lineId": "review-main-003:b-child-scene:2",
+      "textSha256": "d2f74d2eff8f95f6860f7b9685ebf613b4f31b25137a0617fcd1a5bbc113bb77"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:0",
+      "textSha256": "9583ad136f8340c098b7a3aea79d65ca782d3168911d825543038df1b518d938"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:1",
+      "textSha256": "19b4078b076f0522e5d85dee0ab04b53edcfef25b78f93529f8532357bac19d7"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:2",
+      "textSha256": "7c7b1a678cff4c30ab9411308e0db8efee65c43834aa9c51c3f5d5da509fe914"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:3",
+      "textSha256": "bfadee074d6e3d17b50143b53db623b8cac29206798b7f9e30b47591278bdec0"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:4",
+      "textSha256": "3ad365cec17bc9ca739d0b085d963409a1304bd9344f288f03976a2862465bfc"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:5",
+      "textSha256": "cd5ce7dbcc4f47c9b553809c8dcb341d36254231687198d9875e347e0910e2e7"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:6",
+      "textSha256": "bc0aa731a0b5bf2237138d3dcd4b00d74b35e11a5ef7e28726dfcbdcb65144a4"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:7",
+      "textSha256": "b8d05c7a9ec8d308fedee13ce22192b36b8e778614776361c3ef52e310f50412"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:8",
+      "textSha256": "edacc5237000a84cded0a1e27828086fc73aee32abcac303c11793f1dae86e7e"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:9",
+      "textSha256": "606dc6ade4810773ab7e8c78336767d268611cd9c2a61760bc106540a68d8e06"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:10",
+      "textSha256": "8ad7c7b768bb8a2362670ce632cbdab5da0f5b139803f79101206d97986c84ea"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:11",
+      "textSha256": "93b97bc72eaca8b54e4e5b5074fe23b992f98615055d8a4e435e589e8a337aef"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:12",
+      "textSha256": "7299bca59cd6388ec64e1e4e855ce7d4f0ab1950f694d9dbec52ea49452b8db0"
+    },
+    {
+      "lineId": "review-main-003:b-fake-warning:13",
+      "textSha256": "d7b2a05b150895229f727743263da2c30e8e60b2b1b7af470064a199ba0abee7"
+    }
+  ],
+  "decisions": [
+    {
+      "lineId": "review-main-003:start:8",
+      "choiceId": "cruelty-labor-first",
+      "label": "“밥은 거저 못 준다. 장작부터 패라.”"
+    },
+    {
+      "lineId": "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:39",
+      "choiceId": "point-real",
+      "label": "오래 함께 산 옹고집과 돌아간다"
+    },
+    {
+      "lineId": "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:56",
+      "choiceId": "voice-rises",
+      "label": "그런 시시한 이야기로 나를 귀찮게 하느냐. 그만해라."
+    },
+    {
+      "lineId": "review-main-003:b-child-scene:2",
+      "choiceId": "cut-wage",
+      "label": "쌓은 모양이 엉망이다. 삯은 반만 줘라."
+    }
+  ],
+  "finalPlayback": {
+    "lineId": null,
+    "path": [
+      "review-main-003:start:0",
+      "review-main-003:start:1",
+      "review-main-003:start:2",
+      "review-main-003:start:3",
+      "review-main-003:start:4",
+      "review-main-003:start:5",
+      "review-main-003:start:6",
+      "review-main-003:start:7",
+      "review-main-003:start:8",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:9",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:10",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:12",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:14",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:15",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:18",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:19",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:20",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:21",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:22",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:23",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:25",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:26",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:27",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:28",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:29",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:30",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:32",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:33",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:34",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:35",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:37",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:38",
+      "review-main-003:part1-court-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:39",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "review-main-003:real-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:9",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:10",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:12",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:14",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:15",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "review-main-003:real-loop-testimony-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "review-main-003:fake-repeat-verdict-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:0",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:1",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:2",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:3",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:4",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:5",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:6",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:7",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:8",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:9",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:10",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:11",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:12",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:13",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:14",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:15",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:16",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:17",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:18",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:19",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:20",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:21",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:22",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:23",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:24",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:25",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:26",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:27",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:28",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:29",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:30",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:31",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:32",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:33",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:34",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:35",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:36",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:37",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:38",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:39",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:40",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:41",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:42",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:43",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:44",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:45",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:46",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:47",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:48",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:49",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:50",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:51",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:52",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:53",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:54",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:55",
+      "review-main-003:fake-route-cruelty-labor-first__work-promised__wage-wet-wood__shoe-poverty:56",
+      "review-main-003:b-meal-slip:0",
+      "review-main-003:b-meal-slip:1",
+      "review-main-003:b-child-scene:0",
+      "review-main-003:b-child-scene:1",
+      "review-main-003:b-child-scene:2",
+      "review-main-003:b-fake-warning:0",
+      "review-main-003:b-fake-warning:1",
+      "review-main-003:b-fake-warning:2",
+      "review-main-003:b-fake-warning:3",
+      "review-main-003:b-fake-warning:4",
+      "review-main-003:b-fake-warning:5",
+      "review-main-003:b-fake-warning:6",
+      "review-main-003:b-fake-warning:7",
+      "review-main-003:b-fake-warning:8",
+      "review-main-003:b-fake-warning:9",
+      "review-main-003:b-fake-warning:10",
+      "review-main-003:b-fake-warning:11",
+      "review-main-003:b-fake-warning:12",
+      "review-main-003:b-fake-warning:13"
+    ],
+    "status": "ended",
+    "choiceHistory": [
+      {
+        "pathIndex": 8,
+        "choiceId": "cruelty-labor-first"
+      },
+      {
+        "pathIndex": 48,
+        "choiceId": "point-real"
+      },
+      {
+        "pathIndex": 140,
+        "choiceId": "voice-rises"
+      },
+      {
+        "pathIndex": 145,
+        "choiceId": "cut-wage"
+      }
+    ]
+  },
+  "apiRequests": 4,
+  "nativeSelections": [
+    "cruelty-labor-first",
+    "point-real",
+    "voice-rises",
+    "cut-wage"
+  ]
+}
