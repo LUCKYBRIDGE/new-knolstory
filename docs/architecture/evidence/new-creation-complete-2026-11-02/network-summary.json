@@ -1,0 +1,26 @@
+{
+  "network": {
+    "offline": false,
+    "latency": 180,
+    "downloadThroughput": 262144,
+    "uploadThroughput": 131072
+  },
+  "firstProgress": 1,
+  "failedFetch": true,
+  "requests": [
+    {
+      "url": "http://127.0.0.1:15427/runtime/game.zip?v=b814c25f032f23fe",
+      "failure": "net::ERR_INTERNET_DISCONNECTED"
+    }
+  ],
+  "elapsedMs": 93760,
+  "realTimeout": true,
+  "manuscriptPreserved": true,
+  "downloadedFileMatches": true,
+  "actualNativeRecovered": true,
+  "limits": [
+    "Chromium network emulation, not a physical slow connection",
+    "Recovery uses unrestricted network; no uninterrupted slow-start budget claim",
+    "No long-term offline or next-deployment edge-cache claim"
+  ]
+}

@@ -1,0 +1,38 @@
+
+Running 1 test using 1 worker
+
+(node:76791) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/image-preload.spec.ts:76:1 › downloaded images survive a fresh runtime when image requests are unavailable (21.3s)
+
+
+  1) tests/e2e/image-preload.spec.ts:76:1 › downloaded images survive a fresh runtime when image requests are unavailable
+
+    TimeoutError: locator.evaluate: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByTestId('story-runtime-status')
+
+
+       7 | const source=parseAuthoringFile(readFileSync('docs/architecture/evidence/new-creation-complete-2026-11-02/new-creation.knolstory','utf8')).project;
+       8 | const backgrounds=['assets/legacy-18da4fc/BG01-valley-day.webp','assets/legacy-18da4fc/BG04-cottage-day.webp'];
+    >  9 | async function ready(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(()=>status.evaluate(n=>Number(n.getAttribute('data-rendered-revision'))>=0&&n.getAttribute('data-rendered-revision')===n.getAttribute('data-scene-revision')),{timeout:90000}).toBe(true);}
+         |                                                                                                                    ^
+      10 | async function setup(page:Page,mode='upcoming',splitChapters=false){
+      11 |  await page.addInitScript(({mode})=>{if(window!==window.top||location.protocol==='about:')return;sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');localStorage.setItem('knolstory-reader-preferences-v1',JSON.stringify({version:1,textScale:1,autoDelaySeconds:3,format:'auto',tapMode:'next',imagePreloadMode:mode,imagePreloadCount:3}));},{mode});
+      12 |  await page.route('**/api/**',r=>r.fulfill({status:503,body:'unavailable'}));
+        at expect.poll.timeout (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/image-preload.spec.ts:9:116)
+        at ready (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/image-preload.spec.ts:9:87)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/image-preload.spec.ts:96:90
+
+    Error Context: test-results/image-preload/image-preload-downloaded-i-3f701-ge-requests-are-unavailable/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/image-preload/image-preload-downloaded-i-3f701-ge-requests-are-unavailable/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/image-preload/image-preload-downloaded-i-3f701-ge-requests-are-unavailable/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/image-preload.spec.ts:76:1 › downloaded images survive a fresh runtime when image requests are unavailable

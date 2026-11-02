@@ -1,0 +1,24 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/image-preload.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/image-preload.test.ts [ packages/runtime-core/src/image-preload.test.ts ]
+Error: Cannot find module './image-preload' imported from /Users/wan/ai_dev/apps/new-knolstory/packages/runtime-core/src/image-preload.test.ts
+ ❯ packages/runtime-core/src/image-preload.test.ts:7:1
+      5| import {advancePlayback,createPlayback} from './story-runtime';
+      6| import {playbackScores} from './story-scores';
+      7| import {planStoryImagePreload} from './image-preload';
+       | ^
+      8|
+      9| const backgrounds=['BG01-valley-day','BG02-valley-storm','BG03-valley-…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:13:52
+   Duration  555ms (transform 302ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

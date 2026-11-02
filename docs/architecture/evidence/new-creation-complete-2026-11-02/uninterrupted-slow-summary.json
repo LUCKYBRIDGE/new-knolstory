@@ -1,0 +1,513 @@
+{
+  "network": {
+    "offline": false,
+    "latency": 180,
+    "downloadThroughput": 524288,
+    "uploadThroughput": 131072
+  },
+  "firstProgress": 1,
+  "firstRenderedMs": 93152,
+  "progress": [
+    {
+      "elapsedMs": 3119,
+      "value": 0
+    },
+    {
+      "elapsedMs": 4881.700000047684,
+      "value": 1
+    },
+    {
+      "elapsedMs": 6139.5,
+      "value": 2
+    },
+    {
+      "elapsedMs": 7650.800000071526,
+      "value": 3
+    },
+    {
+      "elapsedMs": 9161.800000071526,
+      "value": 4
+    },
+    {
+      "elapsedMs": 10421.900000095367,
+      "value": 5
+    },
+    {
+      "elapsedMs": 11931.300000071526,
+      "value": 6
+    },
+    {
+      "elapsedMs": 13442.5,
+      "value": 7
+    },
+    {
+      "elapsedMs": 14702,
+      "value": 8
+    },
+    {
+      "elapsedMs": 16211.600000023842,
+      "value": 9
+    },
+    {
+      "elapsedMs": 17722.400000095367,
+      "value": 10
+    },
+    {
+      "elapsedMs": 19232.200000047684,
+      "value": 11
+    },
+    {
+      "elapsedMs": 20492.800000071526,
+      "value": 12
+    },
+    {
+      "elapsedMs": 22002.400000095367,
+      "value": 13
+    },
+    {
+      "elapsedMs": 23513.5,
+      "value": 14
+    },
+    {
+      "elapsedMs": 24771.300000071526,
+      "value": 15
+    },
+    {
+      "elapsedMs": 26281.800000071526,
+      "value": 16
+    },
+    {
+      "elapsedMs": 27541.300000071526,
+      "value": 17
+    },
+    {
+      "elapsedMs": 29050.800000071526,
+      "value": 18
+    },
+    {
+      "elapsedMs": 30562,
+      "value": 19
+    },
+    {
+      "elapsedMs": 32072.5,
+      "value": 20
+    },
+    {
+      "elapsedMs": 33331,
+      "value": 21
+    },
+    {
+      "elapsedMs": 34841.90000009537,
+      "value": 22
+    },
+    {
+      "elapsedMs": 36353.90000009537,
+      "value": 23
+    },
+    {
+      "elapsedMs": 37610.60000002384,
+      "value": 24
+    },
+    {
+      "elapsedMs": 39121.800000071526,
+      "value": 25
+    },
+    {
+      "elapsedMs": 40631.10000002384,
+      "value": 26
+    },
+    {
+      "elapsedMs": 41894.800000071526,
+      "value": 27
+    },
+    {
+      "elapsedMs": 43403.800000071526,
+      "value": 28
+    },
+    {
+      "elapsedMs": 44914.60000002384,
+      "value": 29
+    },
+    {
+      "elapsedMs": 46173.90000009537,
+      "value": 30
+    },
+    {
+      "elapsedMs": 47684.700000047684,
+      "value": 31
+    },
+    {
+      "elapsedMs": 49196,
+      "value": 32
+    },
+    {
+      "elapsedMs": 50455.200000047684,
+      "value": 33
+    },
+    {
+      "elapsedMs": 51964.700000047684,
+      "value": 34
+    },
+    {
+      "elapsedMs": 53476.300000071526,
+      "value": 35
+    },
+    {
+      "elapsedMs": 54733.800000071526,
+      "value": 36
+    },
+    {
+      "elapsedMs": 56245.10000002384,
+      "value": 37
+    },
+    {
+      "elapsedMs": 57755.60000002384,
+      "value": 38
+    },
+    {
+      "elapsedMs": 59015.10000002384,
+      "value": 39
+    },
+    {
+      "elapsedMs": 60523.300000071526,
+      "value": 40
+    },
+    {
+      "elapsedMs": 62033.200000047684,
+      "value": 41
+    },
+    {
+      "elapsedMs": 63795.200000047684,
+      "value": 42
+    },
+    {
+      "elapsedMs": 65305.5,
+      "value": 43
+    },
+    {
+      "elapsedMs": 67068.70000004768,
+      "value": 44
+    },
+    {
+      "elapsedMs": 68576.20000004768,
+      "value": 45
+    },
+    {
+      "elapsedMs": 70337.80000007153,
+      "value": 46
+    },
+    {
+      "elapsedMs": 71848.80000007153,
+      "value": 47
+    },
+    {
+      "elapsedMs": 73606.10000002384,
+      "value": 48
+    },
+    {
+      "elapsedMs": 73857,
+      "value": 49
+    },
+    {
+      "elapsedMs": 74109.60000002384,
+      "value": 50
+    },
+    {
+      "elapsedMs": 74361.20000004768,
+      "value": 51
+    },
+    {
+      "elapsedMs": 74864.70000004768,
+      "value": 52
+    },
+    {
+      "elapsedMs": 75115.90000009537,
+      "value": 53
+    },
+    {
+      "elapsedMs": 75367.90000009537,
+      "value": 54
+    },
+    {
+      "elapsedMs": 75868.60000002384,
+      "value": 55
+    },
+    {
+      "elapsedMs": 76124,
+      "value": 56
+    },
+    {
+      "elapsedMs": 76371.80000007153,
+      "value": 57
+    },
+    {
+      "elapsedMs": 76623,
+      "value": 58
+    },
+    {
+      "elapsedMs": 77127.70000004768,
+      "value": 59
+    },
+    {
+      "elapsedMs": 77376.5,
+      "value": 60
+    },
+    {
+      "elapsedMs": 77628.60000002384,
+      "value": 61
+    },
+    {
+      "elapsedMs": 77879.80000007153,
+      "value": 62
+    },
+    {
+      "elapsedMs": 78382.5,
+      "value": 63
+    },
+    {
+      "elapsedMs": 78632.10000002384,
+      "value": 64
+    },
+    {
+      "elapsedMs": 78884,
+      "value": 65
+    },
+    {
+      "elapsedMs": 79135.5,
+      "value": 66
+    },
+    {
+      "elapsedMs": 79639,
+      "value": 67
+    },
+    {
+      "elapsedMs": 79891.10000002384,
+      "value": 68
+    },
+    {
+      "elapsedMs": 80143.70000004768,
+      "value": 69
+    },
+    {
+      "elapsedMs": 80394.90000009537,
+      "value": 70
+    },
+    {
+      "elapsedMs": 80898.10000002384,
+      "value": 71
+    },
+    {
+      "elapsedMs": 81149.40000009537,
+      "value": 72
+    },
+    {
+      "elapsedMs": 81401.20000004768,
+      "value": 73
+    },
+    {
+      "elapsedMs": 81653.40000009537,
+      "value": 74
+    },
+    {
+      "elapsedMs": 82157.10000002384,
+      "value": 75
+    },
+    {
+      "elapsedMs": 82408.5,
+      "value": 76
+    },
+    {
+      "elapsedMs": 82660.70000004768,
+      "value": 77
+    },
+    {
+      "elapsedMs": 83160.90000009537,
+      "value": 78
+    },
+    {
+      "elapsedMs": 83414.70000004768,
+      "value": 79
+    },
+    {
+      "elapsedMs": 83664.90000009537,
+      "value": 80
+    },
+    {
+      "elapsedMs": 83917,
+      "value": 81
+    },
+    {
+      "elapsedMs": 84417.30000007153,
+      "value": 82
+    },
+    {
+      "elapsedMs": 84669.10000002384,
+      "value": 83
+    },
+    {
+      "elapsedMs": 84920.40000009537,
+      "value": 84
+    },
+    {
+      "elapsedMs": 85172,
+      "value": 85
+    },
+    {
+      "elapsedMs": 85673,
+      "value": 86
+    },
+    {
+      "elapsedMs": 85925.20000004768,
+      "value": 87
+    },
+    {
+      "elapsedMs": 86176.90000009537,
+      "value": 88
+    },
+    {
+      "elapsedMs": 86428,
+      "value": 89
+    },
+    {
+      "elapsedMs": 86931.40000009537,
+      "value": 90
+    },
+    {
+      "elapsedMs": 87184.60000002384,
+      "value": 91
+    },
+    {
+      "elapsedMs": 87434.70000004768,
+      "value": 92
+    },
+    {
+      "elapsedMs": 87684.40000009537,
+      "value": 93
+    },
+    {
+      "elapsedMs": 88188.10000002384,
+      "value": 94
+    },
+    {
+      "elapsedMs": 88439.40000009537,
+      "value": 95
+    },
+    {
+      "elapsedMs": 88691.20000004768,
+      "value": 96
+    },
+    {
+      "elapsedMs": 88944.40000009537,
+      "value": 97
+    }
+  ],
+  "runtimeRequests": [
+    {
+      "url": "http://127.0.0.1:15427/runtime/index.html",
+      "startedMs": 103,
+      "responseMs": 291,
+      "status": 200,
+      "contentLength": "7647",
+      "finishedMs": 305
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/knol-loading.css?v=43e5ed9c18176959",
+      "startedMs": 304,
+      "responseMs": 494,
+      "status": 200,
+      "contentLength": "4010",
+      "finishedMs": 529
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/knol-loading.js?v=293c0aeb94ac0370",
+      "startedMs": 304,
+      "responseMs": 515,
+      "status": 200,
+      "contentLength": "2215",
+      "finishedMs": 515
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/runtime-contract.js?v=78f416501e4e55a8",
+      "startedMs": 306,
+      "responseMs": 661,
+      "status": 200,
+      "contentLength": "19813",
+      "finishedMs": 662
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/knol-bridge.js?v=c09f977ab9d35139",
+      "startedMs": 306,
+      "responseMs": 789,
+      "status": 200,
+      "contentLength": "9602",
+      "finishedMs": 789
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/renpy-pre.js?v=aef6c9d0aee065bc",
+      "startedMs": 306,
+      "responseMs": 947,
+      "status": 200,
+      "contentLength": "29575",
+      "finishedMs": 947
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/renpy.js?v=498a0981c1fe0e8d",
+      "startedMs": 306,
+      "responseMs": 2871,
+      "status": 200,
+      "contentLength": "396176",
+      "finishedMs": 2872
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/renpy.data",
+      "startedMs": 2878,
+      "responseMs": 3073,
+      "status": 200,
+      "contentLength": "15057379",
+      "finishedMs": 60656
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/renpy.wasm",
+      "startedMs": 2878,
+      "responseMs": 3066,
+      "status": 200,
+      "contentLength": "21586559",
+      "finishedMs": 73121
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/game.zip?v=b814c25f032f23fe",
+      "startedMs": 73122,
+      "responseMs": 73307,
+      "status": 200,
+      "contentLength": "8660652",
+      "finishedMs": 89890
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp",
+      "startedMs": 92240,
+      "responseMs": 92430,
+      "status": 200,
+      "contentLength": "625656"
+    },
+    {
+      "url": "http://127.0.0.1:15427/runtime/game/assets/legacy-18da4fc/M01-base.webp",
+      "startedMs": 92240,
+      "responseMs": 92427,
+      "status": 200,
+      "contentLength": "58896",
+      "finishedMs": 92707
+    }
+  ],
+  "actualNativeScene": {
+    "sceneId": "4768905f-6258-4fff-9a17-255653eb7e13/76c476c3-32af-4756-8ff4-3f63c45314f9",
+    "text": "친구와 함께 다리를 건널까요?"
+  },
+  "manuscriptPreserved": true,
+  "clock": "real; no timer overrides",
+  "link": "same simulated throttle retained through first actual render",
+  "limits": [
+    "Chromium simulation, not physical network or device measurements",
+    "One first startup observation; no performance-budget or release-completion claim",
+    "Content-Length records response headers, not independently measured decoded or transferred body sizes"
+  ]
+}

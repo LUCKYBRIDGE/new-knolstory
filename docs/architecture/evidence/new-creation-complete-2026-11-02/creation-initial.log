@@ -1,0 +1,42 @@
+
+Running 1 test using 1 worker
+
+(node:63626) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/new-creation-complete.spec.ts:71:1 › new scored story retains conditional native media through isolated edit and re-save (16.3s)
+
+
+  1) tests/e2e/new-creation-complete.spec.ts:71:1 › new scored story retains conditional native media through isolated edit and re-save
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Array [
+        "9c0bcd22-d385-4fb1-a5c5-bc8342ca5438",
+    +   "ff03579f-a354-4aca-bf78-c3eb17819fe8",
+        "86547a43-de90-4ed8-9ce5-59cbb39762fb",
+      ]
+
+      156 |    await reading.getByTestId('story-stage-viewport').screenshot({path:info.outputPath(`native-${active?'active':'inactive'}.png`)});
+      157 |    await advanceReading(reading);await expect(reading.getByTestId('playback-status')).toHaveText('이야기 끝');
+    > 158 |    expect(await reading.evaluate(key=>JSON.parse(localStorage.getItem(key)!).playback.path,workspace)).toEqual(active?ids:[ids[0],ids[2]]);
+          |                                                                                                        ^
+      159 |    expect(await identity!.evaluate(node=>node===document.querySelector('[data-testid=story-runtime-frame]'))).toBe(true);
+      160 |   }
+      161 |   await reading.getByRole('button',{name:'편집으로 돌아가기',exact:true}).click();await screen(reading,'basic');
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/new-creation-complete.spec.ts:158:104
+
+    Error Context: test-results/new-creation-complete/new-creation-complete-new--11b76-h-isolated-edit-and-re-save/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/new-creation-complete/new-creation-complete-new--11b76-h-isolated-edit-and-re-save/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/new-creation-complete/new-creation-complete-new--11b76-h-isolated-edit-and-re-save/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/new-creation-complete.spec.ts:71:1 › new scored story retains conditional native media through isolated edit and re-save

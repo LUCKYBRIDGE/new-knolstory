@@ -11,6 +11,7 @@ import { listAudioResources } from "../lib/audio-resources";
 import { parseRuntimeEvent } from "../lib/runtime-events";
 import { mergeLoadProgress, type LoadProgress } from "../lib/runtime-load-progress";
 import { initialRuntimeStatus, runtimeStatusReducer } from "../lib/runtime-status";
+import {RuntimeImagePreparation,ImagePreparationCancelled} from '../lib/runtime-image-preparation';
 
 /** One runtime instance; ordinary scene updates keep it. An explicit recovery replaces a failed instance. */
 export function useStoryRuntime(
@@ -20,6 +21,7 @@ export function useStoryRuntime(
   onDisplaySize?: (size: {width:number;height:number}) => void,
   enabled = true,
   inputBlocked = false,
+  imagePreparation?:Readonly<{paths:readonly string[];enabled:boolean}>,
 ) {
   const container = useRef<HTMLDivElement>(null);
   const [containerNode,setContainerNode]=useState<HTMLDivElement|null>(null);
@@ -27,6 +29,20 @@ export function useStoryRuntime(
   const frame = useRef<HTMLIFrameElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
   const [ready, setReady] = useState(false);
+  const [imageSupported,setImageSupported]=useState(false);
+  const [imagePending,setImagePending]=useState(false);
+  const [imageError,setImageError]=useState('');
+  const [imageRetry,setImageRetry]=useState(0);
+  const imageGeneration=useRef(0);
+  const imageDelivery=useRef<RuntimeImagePreparation|null>(null);
+  useEffect(()=>{
+    const delivery=new RuntimeImagePreparation(command=>{
+      const target=frame.current?.contentWindow;if(!target)throw Error('Missing runtime frame');
+      target.postMessage(command,location.origin);
+    });
+    imageDelivery.current=delivery;
+    return()=>delivery.cancel();
+  },[]);
   const [attempt,setAttempt]=useState(0);
   const generation=useRef(0);
   // Optional download progress before `ready`; a runtime that never reports it simply shows none.
@@ -37,7 +53,7 @@ export function useStoryRuntime(
   const [runtimeStatus, updateStatus] = useReducer(runtimeStatusReducer, initialRuntimeStatus);
   const callback = useRef(onEvent);
   const blocked = useRef(inputBlocked);
-  useEffect(() => { blocked.current = inputBlocked; }, [inputBlocked]);
+  useEffect(() => { blocked.current = inputBlocked||imagePending||!!imageError; }, [inputBlocked,imagePending,imageError]);
   const sizeCallback = useRef(onDisplaySize);
   useEffect(() => { sizeCallback.current = onDisplaySize; }, [onDisplaySize]);
   const latest = useRef(scene);
@@ -81,11 +97,13 @@ export function useStoryRuntime(
         return;
       const event = parseRuntimeEvent(message.data);
       if (!event) return;
+      if(event.type==='imagesPrepared'){imageDelivery.current?.receive(event);return;}
       if (event.type === "loadProgress") {
         if (!readySeen.current) setLoadProgress(previous => mergeLoadProgress(previous, event));
         return;
       }
       if (event.type === "ready") {
+        setImageSupported(event.imagePreparationVersion===1);
         confirmedServicePaths.current=new Set();
         readySeen.current = true;
         setLoadProgress(null);
@@ -141,6 +159,7 @@ export function useStoryRuntime(
   }, []);
   useEffect(() => {
     if (!ready || composing) {
+      imageDelivery.current?.cancel();
       if (sendTimer.current !== null) window.clearTimeout(sendTimer.current);
       sendTimer.current = null;
       return;
@@ -151,6 +170,23 @@ export function useStoryRuntime(
       seq.current += 1;
       const current = latest.current;
       const currentGeneration=generation.current;
+      const currentImageGeneration=++imageGeneration.current;
+      const required=[...new Set([current.background?.imagePath,...current.actors.map(actor=>actor.imagePath)].filter((path):path is string=>!!path))];
+      if(imageSupported){
+        if(imagePreparation?.enabled&&current.mode==='play'){
+          setImagePending(required.length>0);setImageError('');
+          try{await imageDelivery.current!.prepare(imagePreparation.paths,required);}
+          catch(issue){
+            if(!(issue instanceof ImagePreparationCancelled)&&currentImageGeneration===imageGeneration.current){setImageError(issue instanceof Error?issue.message:'그림을 받지 못했어요. 다시 받아 주세요.');setImagePending(false);}
+            return;
+          }
+          if(currentImageGeneration!==imageGeneration.current||currentGeneration!==generation.current||current.revision!==latest.current.revision)return;
+          setImagePending(false);
+        }else{
+          imageDelivery.current?.cancel();setImagePending(false);setImageError('');
+          frame.current?.contentWindow?.postMessage({protocol:1,type:'prepareImages',requestId:`disabled-${currentImageGeneration}`,paths:[],required:[]},location.origin);
+        }
+      }
       const paths=runtimeAudioPaths(current.audio);
       const servicePaths=runtimeServiceAudioPaths(current.audio);
       let audioResources,serviceAudioResources;
@@ -180,7 +216,11 @@ export function useStoryRuntime(
         location.origin,
       );
     }, 33);
-  }, [ready, scene, composing]);
+    return()=>{
+      imageDelivery.current?.cancel();imageGeneration.current++;
+      if(sendTimer.current!==null){window.clearTimeout(sendTimer.current);sendTimer.current=null;}
+    };
+  }, [ready, scene, composing,imageSupported,imagePreparation,imageRetry]);
   useEffect(
     () => () => {
       if (sendTimer.current !== null) window.clearTimeout(sendTimer.current);
@@ -197,11 +237,12 @@ export function useStoryRuntime(
     return () => window.clearTimeout(timer);
   }, [ready,attempt]);
   useEffect(() => {
-    if (!ready || composing || rendered === scene.revision) return;
+    if (!ready || composing || imagePending || imageError || rendered === scene.revision) return;
     const timer = window.setTimeout(() => updateStatus({ type: 'waiting' }), 15000);
     return () => window.clearTimeout(timer);
-  }, [ready, composing, rendered, scene.revision]);
+  }, [ready, composing, rendered, scene.revision,imagePending,imageError]);
   const retry=useCallback(()=>{
+    imageDelivery.current?.cancel();imageGeneration.current++;setImagePending(false);setImageError('');setImageSupported(false);
     generation.current+=1;
     if(sendTimer.current!==null)window.clearTimeout(sendTimer.current);
     sendTimer.current=null;
@@ -216,11 +257,14 @@ export function useStoryRuntime(
   const audioPending=scene.mode==='play' && runtimeAudioPaths(scene.audio).length>0 && renderEvidence?.audioState?.unlocked!==true;
   return {
     captureThumbnail,
+    imagePending,
+    imageError,
+    retryImages:()=>{setImageError('');setImageRetry(value=>value+1);},
     retry,
     frameKey:attempt,
     recoverable:runtimeStatus.recoverable,
     frameSource:attempt?`/runtime/index.html?retry=${attempt}`:'/runtime/index.html',
-    presentationReady: readerPresentationReady(scene, rendered, confirmed, audioPending, runtimeStatus.failed),
+    presentationReady: !imagePending&&!imageError&&readerPresentationReady(scene, rendered, confirmed, audioPending, runtimeStatus.failed),
     audioPending,
     container,
     attachContainer,
@@ -231,7 +275,7 @@ export function useStoryRuntime(
     renderEvidence,
     status: runtimeStatus.message,
     presentationPending:
-      audioPending || scene.mode === "play" &&
+      imagePending || !!imageError || audioPending || scene.mode === "play" &&
       scene.presentation?.transition?.mode === "confirm" &&
       confirmed !== presentationPhase(scene),
     /** A confirm transition card covers the stage until the reader presses its button. */

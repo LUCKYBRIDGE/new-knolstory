@@ -43,10 +43,13 @@ export type RuntimeScene = Readonly<{
 /** Read-only render request: never loads or advances the active story scene. */
 export type RuntimeThumbnailRequest=Readonly<{protocol:1;type:'renderSceneThumbnail';requestId:string;payload:RuntimeScene}>;
 export type RuntimeSceneThumbnail=Readonly<{width:320;height:180;dataUrl:string}>;
+/** File preparation is independent of scene revisions, playback and authored data. */
+export type RuntimeImagePreparationRequest=Readonly<{protocol:1;type:'prepareImages';requestId:string;paths:readonly string[];required:readonly string[]}>;
 export type RuntimeEvent =
+  | Readonly<{protocol:1;type:'imagesPrepared';requestId:string;ok:boolean;prepared:number;total:number}>
   | (Readonly<{protocol:1;type:'sceneThumbnail';requestId:string;sceneId:string;revision:number}>&RuntimeSceneThumbnail)
   | Readonly<{protocol:1;type:'sceneThumbnailFailed';requestId:string;sceneId:string;revision:number}>
-  | Readonly<{ protocol: 1; type: 'ready'; runtimeVersion: string; contractVersion: 1 }>
+  | Readonly<{ protocol: 1; type: 'ready'; runtimeVersion: string; contractVersion: 1; imagePreparationVersion?:1 }>
   | Readonly<{ protocol: 1; type: 'sceneRendered'; revision: number; sceneId: string;
       renderMs: number; rendererRect: Rect; textboxRect: Rect; dialogueRects?:Readonly<{speaker:Rect;body:Rect}>; choicesRect?:Rect;
       /** offset is the resume anchor; endOffset is the exclusive displayed-page end in Unicode code points. */
@@ -182,12 +185,18 @@ export function isRuntimeScene(value: unknown): value is RuntimeScene {
 export function isRuntimeThumbnailRequest(value:unknown):value is RuntimeThumbnailRequest{
  return record(value)&&value.protocol===1&&value.type==='renderSceneThumbnail'&&text(value.requestId,100)&&!!value.requestId&&isRuntimeScene(value.payload)&&value.payload.mode==='edit'&&value.payload.width===1280&&value.payload.height===720;
 }
+export function isRuntimeImagePreparationRequest(value:unknown):value is RuntimeImagePreparationRequest{
+ return record(value)&&value.protocol===1&&value.type==='prepareImages'&&text(value.requestId,160)&&!!value.requestId
+  &&Array.isArray(value.paths)&&value.paths.length<=1024&&value.paths.every(isRuntimeImagePath)&&new Set(value.paths).size===value.paths.length
+  &&Array.isArray(value.required)&&value.required.length<=8&&value.required.every(isRuntimeImagePath)&&new Set(value.required).size===value.required.length;
+}
 export function isRuntimeEvent(value: unknown): value is RuntimeEvent {
   if (!record(value) || value.protocol !== 1) return false;
   switch (value.type) {
+    case 'imagesPrepared': return text(value.requestId,160)&&!!value.requestId&&typeof value.ok==='boolean'&&revision(value.prepared)&&revision(value.total)&&value.total<=8&&value.prepared<=value.total;
     case 'sceneThumbnail': return text(value.requestId,100)&&!!value.requestId&&text(value.sceneId,200)&&!!value.sceneId&&revision(value.revision)&&value.width===320&&value.height===180&&text(value.dataUrl,550000)&&/^data:image\/png;base64,[A-Za-z0-9+/]+={0,2}$/.test(value.dataUrl);
     case 'sceneThumbnailFailed': return text(value.requestId,100)&&!!value.requestId&&text(value.sceneId,200)&&!!value.sceneId&&revision(value.revision);
-    case 'ready': return value.contractVersion === 1 && text(value.runtimeVersion, 100) && !!value.runtimeVersion;
+    case 'ready': return value.contractVersion === 1 && text(value.runtimeVersion, 100) && !!value.runtimeVersion&&(value.imagePreparationVersion===undefined||value.imagePreparationVersion===1);
     case 'viewportChanged': return isRect(value.rendererRect);
     case 'loadProgress': return value.stage === 'start' ? value.ratio === undefined : value.stage === 'download' && finite(value.ratio) && value.ratio >= 0 && value.ratio <= 1;
     case 'error': return text(value.message, 2000);

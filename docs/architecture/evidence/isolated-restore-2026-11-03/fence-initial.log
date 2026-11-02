@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/isolated-restore-2026-11-03/measurement/restore-backup.py", line 213, in <module>
+    main()
+  File "/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/isolated-restore-2026-11-03/measurement/restore-backup.py", line 199, in main
+    raise RuntimeError('Unable to verify audit-target cleanup; no existing container changed.')
+RuntimeError: Unable to verify audit-target cleanup; no existing container changed.

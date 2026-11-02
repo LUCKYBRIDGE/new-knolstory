@@ -69,7 +69,7 @@ print(f"Placeholders: {placeholder_sizes['placeholders']} files, {placeholder_si
 engine_js = output / 'renpy.js'
 engine_js.write_text(cap_runtime_pixel_ratio(engine_js.read_text()))
 html = (output / 'index.html').read_text()
-html = html.replace('<script src="renpy-pre.js">', '<script src="runtime-contract.js"></script>\n  <script src="knol-bridge.js"></script>\n  <script src="renpy-pre.js">')
+html = html.replace('<script src="renpy-pre.js">', '<script src="runtime-contract.js"></script>\n  <script src="knol-image-preload.js"></script>\n  <script src="knol-bridge.js"></script>\n  <script src="renpy-pre.js">')
 # Spike stays local, avoids stale service-worker cache between builds.
 start = html.index('      // Register the service worker.')
 end = html.index('  </script>', start)
@@ -83,6 +83,12 @@ html = embed_transfer_info(html, transfer_info(output))
 for extension in ['css', 'js']:
     shutil.copy2(ROOT / f'spikes/renpy-web/loading.{extension}', output / f'knol-loading.{extension}')
 shutil.copy2(ROOT / 'spikes/renpy-web/bridge.js', output / 'knol-bridge.js')
+image_version = hashlib.sha256()
+for image in sorted((output / 'game/assets').rglob('*')):
+    if image.is_file() and image.suffix.lower() in {'.webp', '.png', '.jpg', '.jpeg'}:
+        image_version.update(image.relative_to(output / 'game').as_posix().encode())
+        image_version.update(hashlib.sha256(image.read_bytes()).digest())
+(output / 'knol-image-preload.js').write_text('window.knolImagePreloadAssetVersion=' + json.dumps(image_version.hexdigest()[:24]) + ';\n' + (ROOT / 'spikes/renpy-web/image-preload.js').read_text())
 shutil.copy2(ROOT / 'spikes/renpy-web/FONT-LICENSE.txt', output / 'FONT-LICENSE.txt')
 # Preserve the pinned SDK's complete notices independently of the game archive.
 notice = ROOT / 'apps/web/public/licenses/RenPy-8.5.3-LICENSE.txt'

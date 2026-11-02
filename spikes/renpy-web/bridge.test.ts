@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { describe, expect, it } from 'vitest';
-import { isRuntimeScene,isRuntimeThumbnailRequest,isRuntimeServiceAudioResources,runtimeServiceAudioPaths } from '../../packages/runtime-contract/src/index';
+import { isRuntimeScene,isRuntimeThumbnailRequest,isRuntimeServiceAudioResources,runtimeServiceAudioPaths,isRuntimeImagePreparationRequest } from '../../packages/runtime-contract/src/index';
 
 const scene = { contractVersion: 1, sceneId: 'probe', revision: 1, width: 1280, height: 720,
   actors: [{ id: 'heungbu', name: '흥부', rect: { x: 20, y: 20, width: 100, height: 200 } }],
@@ -13,7 +13,8 @@ function bridge() {
   const attrs=new Map<string,string>([['tabindex','-1']]);
   const canvas={getBoundingClientRect:()=>({x:0,y:0,width:800,height:600}),getAttribute:(name:string)=>attrs.get(name)??null,setAttribute:(name:string,value:string)=>attrs.set(name,value),removeAttribute:(name:string)=>attrs.delete(name)};
   const parent = { postMessage: (event: unknown) => events.push(event), document: {activeElement: frameElement as unknown} };
-  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene,isRuntimeThumbnailRequest,isRuntimeServiceAudioResources,runtimeServiceAudioPaths }, frameElement };
+  const preparations:unknown[]=[];
+  const window: Record<string, unknown> = { KnolRuntimeContract: { isRuntimeScene,isRuntimeThumbnailRequest,isRuntimeServiceAudioResources,runtimeServiceAudioPaths,isRuntimeImagePreparationRequest }, frameElement,knolImagePreload:{prepare:(command:unknown)=>preparations.push(command),isCurrent:(id:string)=>id==='current'} };
   runInNewContext(readFileSync('spikes/renpy-web/bridge.js', 'utf8'), {
     window, parent, location: { origin: 'https://story.knolquiz.com' }, structuredClone,
     addEventListener: (name: string, fn: (event: unknown) => void) => { listeners[name] = fn; },
@@ -24,9 +25,18 @@ function bridge() {
     origin: 'https://story.knolquiz.com', source: parent,
     data: { protocol: 1, type: 'loadScene', seq, revision, payload }, ...overrides,
   });
-  return { api, events, send, parent, frameElement, listeners,canvas };
+  return { api, events, send, parent, frameElement, listeners,canvas,preparations };
 }
 describe('actual runtime iframe bridge', () => {
+  it('validates independent image plans without changing active scene revisions or accepting stale replies',()=>{
+    const h=bridge();h.send();
+    const command={protocol:1,type:'prepareImages',requestId:'current',paths:['assets/legacy-18da4fc/a.webp'],required:[]};
+    const send=(data:unknown,origin='https://story.knolquiz.com')=>h.listeners.message({origin,source:h.parent,data});
+    send(command,'https://other.invalid');send({...command,paths:['../secret']});expect(h.preparations).toEqual([]);
+    send(command);expect(h.preparations).toEqual([command]);expect(JSON.parse(h.api.drain())[0].payload).toEqual(scene);
+    h.api.emit({protocol:1,type:'imagesPrepared',requestId:'old',ok:true,prepared:0,total:0});expect(h.events).toEqual([]);
+    h.api.emit({protocol:1,type:'imagesPrepared',requestId:'current',ok:true,prepared:0,total:0});expect(h.events).toHaveLength(1);
+  });
   it('renders at most two editing thumbnails without replacing the active scene or revision',()=>{
     const {api,send,listeners,parent,events}=bridge();send(1,1,{...scene,mode:'edit'});api.drain();
     const request=(requestId:string,overrides={})=>listeners.message({origin:'https://story.knolquiz.com',source:parent,data:{protocol:1,type:'renderSceneThumbnail',requestId,payload:{...scene,sceneId:requestId,revision:0,mode:'edit'}},...overrides});

@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:64498) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/creation-network-recovery.spec.ts:8:1 › slow first preview survives a network interruption and reconnects without changing the work (1.6m)
+
+  1 passed (1.6m)

@@ -1,0 +1,210 @@
+{
+  "format": "knolstory",
+  "formatVersion": 2,
+  "document": {
+    "documentType": "story-maker-project",
+    "schemaVersion": 8,
+    "savedAt": "2026-11-02T14:53:17.810Z",
+    "appVersion": "knolstory-next",
+    "project": {
+      "scores": [
+        {
+          "id": "ff931340-da1e-4de3-86f3-f52083c5bbf4",
+          "name": "신뢰",
+          "description": "친구와 함께 건넌 마음",
+          "initial": 0
+        }
+      ],
+      "choiceMode": "simple",
+      "id": "4768905f-6258-4fff-9a17-255653eb7e13",
+      "title": "함께 건넌 숲의 다리 · 새 창작 검사",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "ba133543-137b-4243-87ad-b701437cfd1f",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "76c476c3-32af-4756-8ff4-3f63c45314f9",
+          "chapterId": "ba133543-137b-4243-87ad-b701437cfd1f",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "친구와 함께 다리를 건널까요?",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "inheritActors": false,
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "actor-654b539f-2320-40fe-9b11-c0f845230bfd",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "choice",
+            "options": [
+              {
+                "id": "76c476c3-32af-4756-8ff4-3f63c45314f9-choice-1",
+                "label": "함께 건넌다",
+                "targetLineId": "6c4e920d-c13c-4212-ab6e-e9a284c4c40c",
+                "effects": [
+                  {
+                    "scoreId": "ff931340-da1e-4de3-86f3-f52083c5bbf4",
+                    "operation": "add",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "id": "76c476c3-32af-4756-8ff4-3f63c45314f9-choice-2",
+                "label": "혼자 건넌다",
+                "targetLineId": "6c4e920d-c13c-4212-ab6e-e9a284c4c40c"
+              }
+            ]
+          }
+        },
+        {
+          "id": "6c4e920d-c13c-4212-ab6e-e9a284c4c40c",
+          "chapterId": "ba133543-137b-4243-87ad-b701437cfd1f",
+          "order": 2,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "친구는 내 손을 잡고 다리를 건넜다.",
+          "visibility": {
+            "scores": {
+              "mode": "all",
+              "terms": [
+                {
+                  "scoreId": "ff931340-da1e-4de3-86f3-f52083c5bbf4",
+                  "operator": "gte",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "actor-654b539f-2320-40fe-9b11-c0f845230bfd",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": []
+          }
+        },
+        {
+          "id": "a3005557-ae64-4ae9-9405-2a4def636d37",
+          "chapterId": "ba133543-137b-4243-87ad-b701437cfd1f",
+          "order": 3,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "우리는 다리 건너 숲에서 다시 만났다.",
+          "leftAssetId": "seonnyeo.character.M01-base",
+          "rightAssetId": "",
+          "backgroundId": "seonnyeo.background.BG01-valley-day",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "audio": {
+            "sounds": [
+              {
+                "id": "sound-9d4c35ac-5f31-4c1b-83fa-5d6bd15f1e2e",
+                "assetId": "audio:sound:chime",
+                "volume": 1,
+                "delayMs": 0,
+                "branchCondition": {
+                  "sourceLineId": "76c476c3-32af-4756-8ff4-3f63c45314f9",
+                  "choiceId": "76c476c3-32af-4756-8ff4-3f63c45314f9-choice-1"
+                }
+              }
+            ]
+          },
+          "stageComposition": {
+            "leftActors": [
+              {
+                "key": "actor-654b539f-2320-40fe-9b11-c0f845230bfd",
+                "assetId": "seonnyeo.character.M01-base"
+              }
+            ],
+            "rightActors": []
+          },
+          "flow": {
+            "type": "goto",
+            "targetLineId": null
+          },
+          "presentation": {
+            "effects": [
+              {
+                "branchCondition": {
+                  "choiceId": "76c476c3-32af-4756-8ff4-3f63c45314f9-choice-1",
+                  "sourceLineId": "76c476c3-32af-4756-8ff4-3f63c45314f9"
+                },
+                "intensity": "normal",
+                "type": "shake"
+              }
+            ]
+          }
+        }
+      ],
+      "updatedAt": "2026-11-02T14:53:17.496Z"
+    }
+  },
+  "audioResources": []
+}

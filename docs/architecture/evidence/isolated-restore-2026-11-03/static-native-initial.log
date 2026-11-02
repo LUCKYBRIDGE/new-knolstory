@@ -1,0 +1,39 @@
+
+Running 1 test using 1 worker
+
+(node:80829) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/restored-image-delivery.spec.ts:10:1 › independently restored static files render imported choices and conditional media (11.2s)
+
+
+  1) tests/e2e/restored-image-delivery.spec.ts:10:1 › independently restored static files render imported choices and conditional media
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      40 |  const scene=await runtime.evaluate(()=>(window as unknown as {renpy_exec:(script:string)=>Promise<{text:string;effects:unknown[];sounds:unknown[];paths:string[]}>}).renpy_exec('result = {"text": knol_scene["dialogue"]["text"], "effects": knol_scene["presentation"].get("effects", []), "sounds": knol_scene["audio"].get("sounds", []), "paths": knol_prepared_image_paths}'));
+      41 |  expect(scene.text).toBe(authored.lines[2].text);expect(scene.effects).toHaveLength(1);expect(scene.sounds).toHaveLength(1);expect(scene.paths.length).toBeGreaterThan(0);
+    > 42 |  await expect.poll(async()=>Number(await page.getByTestId('story-runtime-status').getAttribute('data-sound-play-count'))).toBeGreaterThan(0);
+         |                                                                                                                           ^
+      43 |  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.lineId)).toBe(authored.lines[2].id);
+      44 |  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(authored);
+      45 |  expect(resources.has('/runtime/game.zip')).toBe(true);expect([...resources].some(path=>path.startsWith('/runtime/game/assets/'))).toBe(true);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/restored-image-delivery.spec.ts:42:123
+
+    Error Context: test-results/restored-image-delivery/restored-image-delivery-in-89d00-oices-and-conditional-media/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/restored-image-delivery/restored-image-delivery-in-89d00-oices-and-conditional-media/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/restored-image-delivery/restored-image-delivery-in-89d00-oices-and-conditional-media/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/restored-image-delivery.spec.ts:10:1 › independently restored static files render imported choices and conditional media

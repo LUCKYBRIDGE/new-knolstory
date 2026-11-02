@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:64365) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/creation-network-recovery.spec.ts:8:1 › slow first preview survives a network interruption and reconnects without changing the work (12.0s)
+
+
+  1) tests/e2e/creation-network-recovery.spec.ts:8:1 › slow first preview survives a network interruption and reconnects without changing the work
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      35 |  await context.setOffline(true);
+      36 |  const failedFetch=await page.evaluate(()=>fetch('/?offline-check',{cache:'no-store'}).then(()=>false).catch(()=>true));
+    > 37 |  expect(failedFetch).toBe(true);
+         |                      ^
+      38 |  await page.locator('[data-work-menu]>summary').click();
+      39 |  const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+      40 |  const file=info.outputPath('interrupted.knolstory');await(await pending).saveAs(file);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creation-network-recovery.spec.ts:37:22
+
+    Error Context: test-results/new-creation-complete/creation-network-recovery--bd103-s-without-changing-the-work/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/new-creation-complete/creation-network-recovery--bd103-s-without-changing-the-work/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/new-creation-complete/creation-network-recovery--bd103-s-without-changing-the-work/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/creation-network-recovery.spec.ts:8:1 › slow first preview survives a network interruption and reconnects without changing the work

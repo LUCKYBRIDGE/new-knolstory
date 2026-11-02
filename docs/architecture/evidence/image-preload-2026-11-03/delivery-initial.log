@@ -1,0 +1,6 @@
+usage: static-delivery-audit.py [-h] [--root ROOT] [--output OUTPUT] [--check]
+                                [--target {free,commercial}]
+                                [--usage-scope {story-service,standalone-assets}]
+                                [--max-file-bytes MAX_FILE_BYTES]
+                                [--max-files MAX_FILES]
+static-delivery-audit.py: error: Runtime changed; renew source review: runtime/game.zip

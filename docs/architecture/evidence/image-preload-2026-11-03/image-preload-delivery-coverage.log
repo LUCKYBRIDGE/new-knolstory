@@ -1,0 +1,31 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  3 passed (3)
+      Tests  8 passed (8)
+   Start at  00:35:52
+   Duration  217ms (transform 80ms, setup 0ms, import 107ms, tests 43ms, environment 0ms)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   16.66 |     9.78 |   19.35 |   14.94 |
+ apps/web/lib      |   87.09 |       90 |     100 |   92.85 |
+  ...reparation.ts |   87.09 |       90 |     100 |   92.85 | 17
+ spikes/renpy-web  |       0 |        0 |       0 |       0 |
+  image-preload.js |       0 |        0 |       0 |       0 | 2-99
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 16.66% ( 27/162 )
+Branches     : 9.78% ( 9/92 )
+Functions    : 19.35% ( 6/31 )
+Lines        : 14.94% ( 13/87 )
+================================================================================
+ERROR: Coverage for lines (14.94%) does not meet global threshold (80%)
+ERROR: Coverage for functions (19.35%) does not meet global threshold (80%)
+ERROR: Coverage for statements (16.66%) does not meet global threshold (80%)
+ERROR: Coverage for branches (9.78%) does not meet global threshold (80%)

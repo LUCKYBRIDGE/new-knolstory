@@ -6,11 +6,11 @@ describe('reader preferences',()=>{
  });
  it('round trips supported settings using only the dedicated namespace',()=>{
   const values=new Map<string,string>();const storage={getItem:(key:string)=>values.get(key)??null,setItem:(key:string,value:string)=>{values.set(key,value);}};
-  const preferences={version:1 as const,textScale:1.3,autoDelaySeconds:4.5,format:'landscape' as const,tapMode:'halves' as const};writeReaderPreferences(storage,preferences);
+  const preferences={...DEFAULT_READER_PREFERENCES,textScale:1.3,autoDelaySeconds:4.5,format:'landscape' as const,tapMode:'halves' as const};writeReaderPreferences(storage,preferences);
   expect([...values.keys()]).toEqual([READER_PREFERENCES_KEY]);expect(readReaderPreferences(storage)).toEqual(preferences);
  });
  it('migrates older preferences without a format to automatic and rejects unsupported formats',()=>{
-  expect(readReaderPreferences({getItem:()=>JSON.stringify({version:1,textScale:1.15,autoDelaySeconds:5})})).toEqual({version:1,textScale:1.15,autoDelaySeconds:5,format:'auto',tapMode:'next'});
+  expect(readReaderPreferences({getItem:()=>JSON.stringify({version:1,textScale:1.15,autoDelaySeconds:5})})).toEqual({...DEFAULT_READER_PREFERENCES,textScale:1.15,autoDelaySeconds:5,format:'auto',tapMode:'next'});
   for(const format of ['auto','landscape','portrait'])expect(readReaderPreferences({getItem:()=>JSON.stringify({...DEFAULT_READER_PREFERENCES,format})}).format).toBe(format);
   expect(readReaderPreferences({getItem:()=>JSON.stringify({...DEFAULT_READER_PREFERENCES,format:'wide'})})).toEqual(DEFAULT_READER_PREFERENCES);
   expect(()=>writeReaderPreferences({setItem:()=>{throw Error('should not write');}},{...DEFAULT_READER_PREFERENCES,format:'wide'} as never)).toThrow('읽기 설정 값을 확인해 주세요.');
@@ -18,7 +18,7 @@ describe('reader preferences',()=>{
  it('reads retired 4:3 settings as landscape without rewriting or losing other preferences',()=>{
   const original=JSON.stringify({version:1,textScale:1.3,autoDelaySeconds:7.5,format:'classic'});let writes=0;
   const storage={getItem:()=>original,setItem:()=>{writes++;}};
-  expect(readReaderPreferences(storage)).toEqual({version:1,textScale:1.3,autoDelaySeconds:7.5,format:'landscape',tapMode:'next'});expect(writes).toBe(0);
+  expect(readReaderPreferences(storage)).toEqual({...DEFAULT_READER_PREFERENCES,textScale:1.3,autoDelaySeconds:7.5,format:'landscape',tapMode:'next'});expect(writes).toBe(0);
   expect(()=>writeReaderPreferences(storage,{...DEFAULT_READER_PREFERENCES,format:'classic'} as never)).toThrow('읽기 설정 값을 확인해 주세요.');expect(writes).toBe(0);
  });
  it('rejects nonfinite or unsupported user settings before writing',()=>{
@@ -36,5 +36,27 @@ describe('reader preferences',()=>{
  });
  it('does not suppress storage access failures',()=>{
   expect(()=>readReaderPreferences({getItem:()=>{throw Error('blocked');}})).toThrow('blocked');expect(()=>writeReaderPreferences({setItem:()=>{throw Error('full');}},DEFAULT_READER_PREFERENCES)).toThrow('full');
+ });
+ it('defaults old image preparation settings to the next three cuts without changing storage',()=>{
+  const raw=JSON.stringify({version:1,textScale:1.15,autoDelaySeconds:6,format:'portrait',tapMode:'halves'});let writes=0;
+  const storage={getItem:()=>raw,setItem:()=>{writes++;}};
+  expect(readReaderPreferences(storage)).toEqual({...DEFAULT_READER_PREFERENCES,textScale:1.15,autoDelaySeconds:6,format:'portrait',tapMode:'halves',imagePreloadMode:'upcoming',imagePreloadCount:3});
+  expect(storage.getItem()).toBe(raw);expect(writes).toBe(0);
+ });
+ it('round trips each supported preparation mode and an independent cut count',()=>{
+  for(const imagePreloadMode of ['upcoming','chapter','work','none'] as const){
+   let raw='';const storage={getItem:()=>raw,setItem:(key:string,value:string)=>{expect(key).toBe(READER_PREFERENCES_KEY);raw=value;}};
+   const value={...DEFAULT_READER_PREFERENCES,imagePreloadMode,imagePreloadCount:10};
+   writeReaderPreferences(storage,value);expect(readReaderPreferences(storage)).toEqual(value);
+  }
+ });
+ it('rejects explicit malformed image preparation settings before any write',()=>{
+  let writes=0;
+  for(const change of [{imagePreloadMode:'future'},{imagePreloadMode:null},{imagePreloadCount:0},{imagePreloadCount:11},{imagePreloadCount:1.5},{imagePreloadCount:Infinity},{imagePreloadCount:'3'},{imagePreloadCount:null}]){
+   const value={...DEFAULT_READER_PREFERENCES,...change};
+   expect(readReaderPreferences({getItem:()=>JSON.stringify(value)})).toEqual(DEFAULT_READER_PREFERENCES);
+   expect(()=>writeReaderPreferences({setItem:()=>{writes++;}},value as never)).toThrow('읽기 설정 값을 확인해 주세요.');
+  }
+  expect(writes).toBe(0);
  });
 });

@@ -419,7 +419,7 @@ init python:
         if not renpy.emscripten:
             return
         if not knol_ready:
-            knol_emit({"protocol": 1, "type": "ready", "runtimeVersion": "8.5.3", "contractVersion": 1})
+            knol_emit({"protocol": 1, "type": "ready", "runtimeVersion": "8.5.3", "contractVersion": 1, "imagePreparationVersion": 1})
             knol_ready = True
         viewport = knol_viewport()
         if viewport != knol_last_viewport:
@@ -448,6 +448,9 @@ init python:
         raw = renpy.emscripten.run_script_string("window.knolBridge.drain()")
         messages = json.loads(raw)
         for command in messages:
+            if command.get("type") == "decodePreparedImages":
+                knol_decode_prepared_images(command)
+                continue
             if command.get("type") == "renderSceneThumbnail":
                 knol_render_thumbnail(command)
                 continue

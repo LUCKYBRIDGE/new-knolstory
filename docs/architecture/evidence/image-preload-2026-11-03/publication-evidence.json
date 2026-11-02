@@ -1,0 +1,367 @@
+{
+  "rawLogRoot": ".cache/image-preload-publication-raw-20261103",
+  "formatOnly": "Published log copies normalize trailing spaces and final newlines; complete raw bytes remain local; test results and failure records unchanged.",
+  "logs": [
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/cache-reopen-green.log",
+      "rawSha256": "e7c4acef0cc94a5f81f3e495a378147c3aee1db42610ef25ac69382e6e2160c8",
+      "publishedSha256": "b53f131912c93c2100d247b9efc82570aaa3513b484f166b0897ce4a0f42dc59"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/cache-reopen-green2.log",
+      "rawSha256": "094716562e208a3fa995c181de406a22519af54958a72ee534c7763ecaaa5812",
+      "publishedSha256": "094716562e208a3fa995c181de406a22519af54958a72ee534c7763ecaaa5812"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/cache-reopen-initial.log",
+      "rawSha256": "f5c0481778f24d824855c6fd12106427c215109e0aa862d5bd52ae03fc3c7281",
+      "publishedSha256": "420e97b0d3073e632821dfed30fdf6e46474acd38f29773313df9e3a53a53811"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/cache-reopen-lint-final.log",
+      "rawSha256": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+      "publishedSha256": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/cache-reopen-types-final.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publishedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/candidate-prepare.log",
+      "rawSha256": "cd8d161f3fa420437cf0b10a249f12dcc9966976e3e3814e4f1e3d81cbafb2c2",
+      "publishedSha256": "cd8d161f3fa420437cf0b10a249f12dcc9966976e3e3814e4f1e3d81cbafb2c2"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/continuation-doc-tests.log",
+      "rawSha256": "cb13d97128c36613d87bec45d8f2d25113a6845bcb35b6667bf40b3eea06c806",
+      "publishedSha256": "cb13d97128c36613d87bec45d8f2d25113a6845bcb35b6667bf40b3eea06c806"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/continuation-docs.log",
+      "rawSha256": "77b5c35ff62c1f76c1b081e7a3ca29828f07700392b83802c37e8afbab31c38a",
+      "publishedSha256": "77b5c35ff62c1f76c1b081e7a3ca29828f07700392b83802c37e8afbab31c38a"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/delivery-initial.log",
+      "rawSha256": "022ed423eab7ccb1efbf183c6f48f370ada063cb061197a68c69b9d3ce4bbce1",
+      "publishedSha256": "022ed423eab7ccb1efbf183c6f48f370ada063cb061197a68c69b9d3ce4bbce1"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-bridge-green.log",
+      "rawSha256": "c3652858036635125bb4f423e3546b6ab5bcf14b1ade98e9a370373163706baf",
+      "publishedSha256": "010e037bb86cbe85bfa589346c0edd8696eb33ab27c7db8ea995b7dc319012bf"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-core-coverage.log",
+      "rawSha256": "6ace720abb3ba66383397d634553f4f4a1a9bc1db95a3d75d147e71ec8d9e50c",
+      "publishedSha256": "321a678221ca47fdd83cc6e1fe45f452b410977fab209360247e8b0e9c3e7b47"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-core-green.log",
+      "rawSha256": "2f239e7b0e2141fd67a4c56be3a1ae8314b4d5a69b10c946f5f309671d141f78",
+      "publishedSha256": "5c3f74e0b4a3f4d219aa4754d6063a723bd17e2d06d0a8a79382351188ff39ee"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-core-overflow-green.log",
+      "rawSha256": "ff79e52b2bd61c321d5abca6a674db221e82863d04ee95ab24a166d3d05a0464",
+      "publishedSha256": "28afcaf28892eec771ad638a41a25e38f5d769368124a59f1cff7659eae1c22f"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-core-overflow-red.log",
+      "rawSha256": "a19a93d0c8794d036f21e67cb6560228240a60dd73568f03d2f9f273c73bf782",
+      "publishedSha256": "d35e5413d3057a02a0886b4fe20f9c79f67489ec4806f8b92ba9e4bd2674cd95"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-core-red.log",
+      "rawSha256": "440a987e86be2143e526af46d91f38e30df6bd906d9e1194c1b7035a346f0b7b",
+      "publishedSha256": "0e84f75226cd89919d60cdac8bead4877472703f5f3435da56b363f183f052fb"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-creation-regression.log",
+      "rawSha256": "8f45ca711bc3159bca514a377ce90e3246d67382bf47f9c2bb7c97cc03ebe63e",
+      "publishedSha256": "8f45ca711bc3159bca514a377ce90e3246d67382bf47f9c2bb7c97cc03ebe63e"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-delivery-coverage.log",
+      "rawSha256": "5ac0627d45be3bce0d4cdfa35b9b1682d029d02eb2cfe99cd5dcdf47c16cee44",
+      "publishedSha256": "4851d259c131a986eba6c83ec83fd9563e3a2e88fa6d73b25fd08203da7537f8"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-doc-tests-final.log",
+      "rawSha256": "9f9b71ff0b32dd28dd33c391a89238fdb09487526efd89b6b227267a47d7953e",
+      "publishedSha256": "9f9b71ff0b32dd28dd33c391a89238fdb09487526efd89b6b227267a47d7953e"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-docs-final.log",
+      "rawSha256": "77b5c35ff62c1f76c1b081e7a3ca29828f07700392b83802c37e8afbab31c38a",
+      "publishedSha256": "77b5c35ff62c1f76c1b081e7a3ca29828f07700392b83802c37e8afbab31c38a"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-e2e-types2.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publishedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-final-test-lint.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publishedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-host-coverage.log",
+      "rawSha256": "91f87791622513246deda07b6f5f78e6c31614ab59ae3275c94ddeb262080d2d",
+      "publishedSha256": "8786f9db396a8a5dfbc0bd3940c52e46a7a7d256cf8634f6b3af8eb920a82703"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-host-green.log",
+      "rawSha256": "f730908659e0dcd25c0320b0391302c8d6c549c28e0cae5219d3399b28ea3976",
+      "publishedSha256": "a592bedd1e08633bdee278dbdd3f02fcb38a3795ca7782b2b85a44d1cd1d394d"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-host-red.log",
+      "rawSha256": "41c414dd4258cf7d4e9da2f3f34efe1c425a9eb5c13f85bd0c06969dce7b989c",
+      "publishedSha256": "18bfa06a20f776e43c3be99f2d17841d7e71200d4edd726793071d5653822b46"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-integrated-unit.log",
+      "rawSha256": "92e2983742bf690ccd7115f0fe8a565da517c0be878d8cc79567505a6b846482",
+      "publishedSha256": "73f3e95070ba4546c2fc527aea653f521ab3e9d55e25e8ea6fdf01eb2212f516"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-lint-final.log",
+      "rawSha256": "d4cafe0a4df9e75082af4cead7e544ab1c90a324ce25d540a39f449e87187b63",
+      "publishedSha256": "6253302fc8663ad47f896dc7fbe429497a94860333933d7748baf0e0afbac120"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-modes.log",
+      "rawSha256": "c12843bbacb957094befad2cff824e93dd36258f33a4c741d87e1737523f7938",
+      "publishedSha256": "c12843bbacb957094befad2cff824e93dd36258f33a4c741d87e1737523f7938"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-native-final.log",
+      "rawSha256": "0dec1f5f33da1d958a17a930fd80ed553e175d30a349df287896a0dddd1ae197",
+      "publishedSha256": "0dec1f5f33da1d958a17a930fd80ed553e175d30a349df287896a0dddd1ae197"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-native-green.log",
+      "rawSha256": "52aad54876aef82076e6c0cfc742a20dc0f55142ef8f1afe85bc7142eabda3a1",
+      "publishedSha256": "52aad54876aef82076e6c0cfc742a20dc0f55142ef8f1afe85bc7142eabda3a1"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-native-initial.log",
+      "rawSha256": "1098b07285dd699352ea457d7a6a6d288cb785e22e0fce40ef4c6de0a1934cb4",
+      "publishedSha256": "9d7ac4ff80a28e1559afb354533308168e8252b16bb8acef3294386924f92a3c"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-python.log",
+      "rawSha256": "37a3d33f14db19ae0cf6027f173c9adc0c702f4e56a168ecf4709532f244333e",
+      "publishedSha256": "37a3d33f14db19ae0cf6027f173c9adc0c702f4e56a168ecf4709532f244333e"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-runtime-build.log",
+      "rawSha256": "b5c0263cfdfd2ba53c3924d52f85f80e324fda4dfa467b7ef41dd44c1514db3a",
+      "publishedSha256": "a8856c05c9359dbdb608915caa9fa6524b595964e6e91cbddd53cbfc07327bba"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-runtime-green.log",
+      "rawSha256": "b9b7794c6b16a478a5288f2ff5eafdaa6076da53d3dde90e11ca89967be11a1e",
+      "publishedSha256": "9082e9d1d95e76f20cf2dd043641af6d102ba9aa9890fd9b021ef295d88e27c0"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-runtime-red.log",
+      "rawSha256": "150759534d1e331adefb0edd722c2dbe2cf46c14a2f98e064b372c9a2c3f5782",
+      "publishedSha256": "c695845ed5dc894c02c3c2321ce180ae75af84a11615f58c2eaec896b7aa6b37"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-settings-coverage.log",
+      "rawSha256": "17eb2842f565c2cf7863688450559eba8c32fd82e1b334f8f14c5efab487b0d0",
+      "publishedSha256": "a8e4f6e4a803c85aa75981ae8e08007379b6ddf54a48a6db4bfaa012b1935317"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-settings-green.log",
+      "rawSha256": "996165eacbdf9e0d41a378ba14e315ad9f6aeafef2138749057be487286ad948",
+      "publishedSha256": "3ac7bcfd76fe17c5849d6290ee97be6d635d2e73d3d5abbf353fc47b11c0435b"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-settings-red.log",
+      "rawSha256": "18e180d8fa899b1d7967218f1fa1bf36bc4841bca2b89a4eb50303760f56fe08",
+      "publishedSha256": "619bb47d00a8d4e5b5198c0ff05cb1b69e275d728b05da4adf4bdde988f20173"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-types-final.log",
+      "rawSha256": "0e01505c1abc89917b2c9b0e83065a7d5f0cf0599c0346de90d1c91ef962e792",
+      "publishedSha256": "eb6638bb7ce7efcda7e4e504d71fcf186c92044bfa46c4e03dd31de812a4c778"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-unit-all.log",
+      "rawSha256": "288dbf988205b58610150b987a664af7c6185a7425cfeb7fafb98e5e2d413e57",
+      "publishedSha256": "abbca445e3de88c7c6966c49ff80f68253d4eb9fd99951487cfd8d4b216c4bac"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-unit-coverage-final.log",
+      "rawSha256": "0b35f79594455a585af4a53f43f279ee6b871ce00ca9c8c624f27ecff444492d",
+      "publishedSha256": "c1071bd6bc4bcdd29e9b84ce39a6c780e5c429d30c7d7537a0e824461df1386a"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-unit-final.log",
+      "rawSha256": "977f99a0c42f0714130fc4d63b49c03d2a95d156dd48d87a72889241f7a9e507",
+      "publishedSha256": "0e471260f93828e355cf90c35470df5dc02983278a2e1468c86aefbbc388c345"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-vm-coverage-final.log",
+      "rawSha256": "8b92478c97321b559045ad00f275bd4f939c3c63ab632a690baecf1c329cfbef",
+      "publishedSha256": "9d529772a902082ea77a455f06616b80221f63a3b4826904d4383630cc0fc4b9"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-vm-coverage.log",
+      "rawSha256": "cd426270b8d9cf73ad9ec1cfe3ee8a34e3534a821625892f4df388ea7ba57eb9",
+      "publishedSha256": "388a6169843d22f473385221d9c7eccc6d8e072833ceb7885430338792d4ac3a"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-vm-coverage2.log",
+      "rawSha256": "fe54d1958d56538dfb055712c28e7bd7d89c4e119e4a4dd642038edb1b9006b1",
+      "publishedSha256": "9b7282c935b8967cc819bf5021c45a02ff74e22b86447d13ea25fe2d841e30eb"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-vm-coverage3.log",
+      "rawSha256": "c5612005947be140843a05b10a1c4973c81aa302fe2ba0fbc51fbbc3185fa788",
+      "publishedSha256": "d82bef09768fa76ea06087cf57f545e9ec5b644f25b0f3defe8ec3e2a84d9f38"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/image-preload-web-build-final.log",
+      "rawSha256": "c3242c848c374946f883432556142b4cbb79ad964a0c065421f0ff2f68bc1fc1",
+      "publishedSha256": "166c2dd0679eca5591c85ced0bc609b36a8a2d3f0119cb4bdc96d75f969e6128"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/release-tests.log",
+      "rawSha256": "87b3ab366fa1e623b13b45b7651c7d40cbca85f83dd31f708063f529be0321f0",
+      "publishedSha256": "87b3ab366fa1e623b13b45b7651c7d40cbca85f83dd31f708063f529be0321f0"
+    },
+    {
+      "file": "docs/architecture/evidence/image-preload-2026-11-03/runtime-review.log",
+      "rawSha256": "3fab505705d2df857dc417b0142ec1e76c7b7dacae1cb773215c547ed8da2e84",
+      "publishedSha256": "3fab505705d2df857dc417b0142ec1e76c7b7dacae1cb773215c547ed8da2e84"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/docs-check.log",
+      "rawSha256": "665e72db031e4576d74d983b9646bf603e40ef31904cfca152519948bb35fa8a",
+      "publishedSha256": "665e72db031e4576d74d983b9646bf603e40ef31904cfca152519948bb35fa8a"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/docs-tests.log",
+      "rawSha256": "1f940ae1f16b71193cac5fe560c04d83ef18962fd7505fcd1a0c615b88b2628d",
+      "publishedSha256": "1f940ae1f16b71193cac5fe560c04d83ef18962fd7505fcd1a0c615b88b2628d"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/fence-green.log",
+      "rawSha256": "142742ad79669c9bf1991a242d25c3db3763473ae7879226bd2dcf7a8e88834d",
+      "publishedSha256": "142742ad79669c9bf1991a242d25c3db3763473ae7879226bd2dcf7a8e88834d"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/fence-initial.log",
+      "rawSha256": "88e23e80359d70d18dd4b153fb43ab0f8ff17aca094fab0441b5a3a18f2d6557",
+      "publishedSha256": "88e23e80359d70d18dd4b153fb43ab0f8ff17aca094fab0441b5a3a18f2d6557"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/isolated-restore-content-initial.log",
+      "rawSha256": "142742ad79669c9bf1991a242d25c3db3763473ae7879226bd2dcf7a8e88834d",
+      "publishedSha256": "142742ad79669c9bf1991a242d25c3db3763473ae7879226bd2dcf7a8e88834d"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/isolated-restore-initial.log",
+      "rawSha256": "142742ad79669c9bf1991a242d25c3db3763473ae7879226bd2dcf7a8e88834d",
+      "publishedSha256": "142742ad79669c9bf1991a242d25c3db3763473ae7879226bd2dcf7a8e88834d"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/isolated-restore-types.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publishedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/recovery-doc-tests-final.log",
+      "rawSha256": "eb75dbd07a06549e20c6e0d1ed5cf45e0aa215b872f181e614c4930e92f8be90",
+      "publishedSha256": "eb75dbd07a06549e20c6e0d1ed5cf45e0aa215b872f181e614c4930e92f8be90"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/recovery-docs-final.log",
+      "rawSha256": "665e72db031e4576d74d983b9646bf603e40ef31904cfca152519948bb35fa8a",
+      "publishedSha256": "665e72db031e4576d74d983b9646bf603e40ef31904cfca152519948bb35fa8a"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/static-native-green.log",
+      "rawSha256": "b9b94b98a922b56a288a2b671ced177f52af9b135c6d6094dee778b56de6ef90",
+      "publishedSha256": "b9b94b98a922b56a288a2b671ced177f52af9b135c6d6094dee778b56de6ef90"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/static-native-initial.log",
+      "rawSha256": "6e3e54f1d3708a0ab7d3c8068e91a8d615e58d390cb24eaec3d27e8fd1d383dc",
+      "publishedSha256": "b50dfd898efaaa8cf65a99944bfcd896ff9dfb7746fb5f94f46cd547e8cef20d"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/static-native-lint.log",
+      "rawSha256": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+      "publishedSha256": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f"
+    },
+    {
+      "file": "docs/architecture/evidence/isolated-restore-2026-11-03/static-native-types.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publishedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/creation-green.log",
+      "rawSha256": "0076341970e1fb8210b1478540373e6f3626838363d57c14b7c5b5ad92ddebd5",
+      "publishedSha256": "4c04f044482cb7641ff49f72e3002a4fe05ef29c0316d168ed05a749b127fbc1"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/creation-green2.log",
+      "rawSha256": "5d116b94695da665c815a57a5018307b38e59f497643fa7a16c64f14a702f3eb",
+      "publishedSha256": "5d116b94695da665c815a57a5018307b38e59f497643fa7a16c64f14a702f3eb"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/creation-initial.log",
+      "rawSha256": "7552f54ff7abceb839e2cac3ceef7629bfae53f339007dc487d32e29d672b03a",
+      "publishedSha256": "b28950ac05b49ddfd172673f7b1b6647371d9d127862efdf754f81dd902096c3"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/docs-check.log",
+      "rawSha256": "557dc49d80ae52e8e15241d506e4eb8f872cc87e10751a78045e6406db8bdf59",
+      "publishedSha256": "557dc49d80ae52e8e15241d506e4eb8f872cc87e10751a78045e6406db8bdf59"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/docs-tests.log",
+      "rawSha256": "25a3a4eba949304426c663d8e583e8f780ba17dd2bec2aebbeac9e0abfff837d",
+      "publishedSha256": "25a3a4eba949304426c663d8e583e8f780ba17dd2bec2aebbeac9e0abfff837d"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/lint-final.log",
+      "rawSha256": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f",
+      "publishedSha256": "272e4c2b0e16e307699713ad6b529510bfa6a765ef48eba689f6f501a403e27f"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/network-green.log",
+      "rawSha256": "4b6fbd4c4e3c644f1cdf8aa0fd3b1cfc7bfe2ca7810d9e3b88ae5a408df6a5cf",
+      "publishedSha256": "4b6fbd4c4e3c644f1cdf8aa0fd3b1cfc7bfe2ca7810d9e3b88ae5a408df6a5cf"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/network-initial.log",
+      "rawSha256": "7ecb3e245a54bfd8ddd2e42b6adce48e78de3cf0edf237b7f7bb0176974893be",
+      "publishedSha256": "5ea06face7431231d4ce529a5bf9cb176252649ac5222d11145fd575f214186f"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/slow-green.log",
+      "rawSha256": "8866b3ca9ce0efa228a29a01e3d41980a0aa3374f53804f526d029eaf8d790f9",
+      "publishedSha256": "8866b3ca9ce0efa228a29a01e3d41980a0aa3374f53804f526d029eaf8d790f9"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/slow-initial.log",
+      "rawSha256": "f7285306a593b316c965d44206b2bcbf3e1907de1b200b88f2b21853068fd41f",
+      "publishedSha256": "234f90d652405e6982b43ebdbcde9689aa20dc4c55140be9076ef957bf79d1e5"
+    },
+    {
+      "file": "docs/architecture/evidence/new-creation-complete-2026-11-02/types-final.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "publishedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    }
+  ],
+  "audits": "Full raw audit originals remain at the recorded .cache paths; source/licensing contracts and per-file hashes remain tracked."
+}

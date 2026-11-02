@@ -1,0 +1,9 @@
+
+Running 2 tests using 1 worker
+
+(node:74010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/image-preload.spec.ts:19:1 › next-cut image bytes arrive while current is read; native decode is complete before advancing (4.6s)
+  ✓  2 tests/e2e/image-preload.spec.ts:39:1 › required image failure retains old native scene and retries without losing path or manuscript (5.4s)
+
+  2 passed (10.5s)

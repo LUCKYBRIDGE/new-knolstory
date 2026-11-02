@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+(node:65209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/creation-network-recovery.spec.ts:67:1 › uninterrupted slow first runtime startup renders the imported work unchanged (1.7m)
+
+
+  1) tests/e2e/creation-network-recovery.spec.ts:67:1 › uninterrupted slow first runtime startup renders the imported work unchanged
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 100
+    Received: 97
+
+      128 |   });
+      129 |   expect(samples.some(sample=>sample.value>0&&sample.value<100)).toBe(true);
+    > 130 |   expect(samples.at(-1)?.value).toBe(100);
+          |                                 ^
+      131 |   for(const [index,sample] of samples.entries())if(index)expect(sample.value).toBeGreaterThanOrEqual(samples[index-1]!.value);
+      132 |   const receipts=[...requests.values()];
+      133 |   const core=receipts.filter(receipt=>/\/(?:renpy\.(?:wasm|data)|game\.zip)$/.test(new URL(receipt.url).pathname));
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/creation-network-recovery.spec.ts:130:33
+
+    Error Context: test-results/new-creation-complete/creation-network-recovery--f93e1-the-imported-work-unchanged/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/new-creation-complete/creation-network-recovery--f93e1-the-imported-work-unchanged/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/new-creation-complete/creation-network-recovery--f93e1-the-imported-work-unchanged/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/creation-network-recovery.spec.ts:67:1 › uninterrupted slow first runtime startup renders the imported work unchanged

@@ -402,6 +402,10 @@ KnolStory 저장 준비 중 삭제/작업 변경은 workspace generation으로 �
 
 ## Next 전용 DB 논리 백업·복원 (2026-10-16)
 
+2026-11-03의 [최신 정적 후보 복원 후속](evidence/isolated-restore-2026-11-03/checkpoint.json)은 실제 배포 파일만 새 비공개 백업/복원 디렉터리로 복사하고 동일 manifest와 복원 주소의 native 재생을 확인했다. 원본 개발 서버를 대체 응답으로 쓰지 않으며 각 runtime 응답의 복원 manifest를 검사했다. 같은 디스크의 독립 논리 사본이므로 외부 내구성·DB/정적 파일의 단일 원자적 snapshot이나 실물 장애 전환으로 확대하지 않는다.
+
+2026-11-03 운영 백업 후속은 [격리 복원 근거](evidence/isolated-restore-2026-11-03/checkpoint.json)를 따른다. 이미 봉인한 비공개 백업을 새 네트워크 격리·포트 없는 임시 PostgreSQL에 복원하고 현행 projection·migration 검증을 적용했다. 아래 전용 테스트 도구를 운영 대상으로 바꾸거나 운영 DB에 복원한 것이 아니다. 운영 연결은 읽기 전용 인벤토리와 schema-only dump뿐이며, 공개 근거는 원문 대신 건수·해시·일치 여부만 보관한다. 검사 전후 운영 인벤토리의 일치를 시간 전체가 하나의 export snapshot이었다는 뜻으로 확대하지 않는다. 기존 인증 무효화·권한/secret·실제 트래픽 전환 gate는 별도로 유지한다.
+
 `server/operations/backup-restore.mjs`는 고정 Next 테스트 컨테이너/DB만 백업한다. repeatable-read transaction에서 export한 snapshot을 pg_dump와 source inventory가 함께 사용하므로 동시 변경 시점이 달라진 비교를 하지 않는다. custom archive는 새로 발급한 restore DB에만 single-transaction/exit-on-error로 복원한다. source 덮기·DROP·clean·기존 DB 재사용은 제공하지 않는다. [PostgreSQL16 pg_dump](https://www.postgresql.org/docs/16/app-pgdump.html), [pg_restore](https://www.postgresql.org/docs/16/app-pgrestore.html)의 동작을 확인했다.
 
 백업 파일과 상세 inventory는 checkout 밖 사용자 전용 디렉터리에0700/0600으로 보관한다. 원고/bytes/세션 자료·자격증명을 공개 evidence에 복사하지 않는다. 공개 결과는 archive SHA256/크기·테이블별 행 수/내용 SHA256·스키마 객체 수만 보관한다. 보관 기간·자동 삭제·백업 주기·외부 전송은 정하지 않았다.
@@ -421,6 +425,8 @@ snapshot exporter는 정상 ROLLBACK 뒤 close를 기다리고, grace 기한 후
 
 
 ## 복원본의 과거 인증 무효화 (2026-10-16)
+
+2026-11-03에는 [현재 운영 백업의 새 비활성 사본](evidence/isolated-restore-2026-11-03/checkpoint.json)에서도 같은 canonical 함수를 확인했다. 기존 전용 CLI의 host/user 제한은 바꾸지 않았다. 별도 실행기는 새 복원 DB의 네트워크 격리 공간만 공유하고 API·provider·운영 secret을 시작하거나 주입하지 않는다. 실제 복원 세션/flow의 정리·멱등성과 나머지 자료 보존을 확인했으며 운영 세션은 바꾸지 않았다. 이번 데이터의 HTTP 쿠키 왕복이나 실제 트래픽 활성화를 확인한 것으로 확대하지 않는다.
 
 이전 backup 이후 취소된 쿠키/진행 중인 로그인 요청을 역사적 snapshot 복원으로 되살리지 않도록, 별도 오프라인 유지보수 명령을 구현했다. `restore-session-fence.mjs`는 새 restore UUID 이름과 실제 current_database의 정확한 일치를 쓰기 전에 확인한다. 다른 client backend가 있으면 거부하며, sessions/flows 잠금을 제한 시간 안에 얻어 기존 세션을 전부 revoked 처리하고 진행 flow를 한 트랜잭션에서 제거한다. 계정·identity 연결·문서·자산·receipt·journal 및 세션 조상 행을 삭제하지 않는다.
 

@@ -1,0 +1,213 @@
+{
+  "backupSha256": "ec203315f44ed5393021a5ebd2deeba77b125a19c2968bda216bc6c6941ca1f0",
+  "backupBytes": 46131,
+  "sourceAccess": "Read-only SQL plus schema-only pg_dump; no backup/migration/restore/data writes on production.",
+  "target": "Fresh generated network-none/portless/read-only-root PostgreSQL container with temporary memory-only data.",
+  "activation": "No API, traffic, restored credentials or source roles activated.",
+  "limits": [
+    "Logical data/schema restore only; no cluster-role/grant/secret restore.",
+    "No off-host durability/encryption/retention policy selected.",
+    "No application API/content-validator or restore-session-fence execution claimed."
+  ],
+  "sourceBefore": {
+    "tables": [
+      {
+        "rows": 1,
+        "table": "knolstory_auth.accounts",
+        "sha256": "b72be435462c1e83684ca58d7c8559809b91acd51052548bc02c18ebd6aef45b"
+      },
+      {
+        "rows": 8,
+        "table": "knolstory_auth.flows",
+        "sha256": "d33781e55aaf006e5e414abfe0820042c6c31415e16e99ddca15b6dc16d9bbc0"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_auth.identities",
+        "sha256": "e0166c661375a364ba04b3f91deff26998deca97621694eef1a5e2f9284dacc7"
+      },
+      {
+        "rows": 5,
+        "table": "knolstory_auth.sessions",
+        "sha256": "97e765175e5278805353896f4de214aae6f9167e192912fcfd2807dd69c2e8fb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.blobs",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.document_creations",
+        "sha256": "acbe70d2fa64e9914f7a178d3b92b1cad6bb493ae4a4f53b59d0562b002dbb4d"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.document_state_commands",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 7,
+        "table": "knolstory_storage.migrations",
+        "sha256": "4f139b0706f51a0a2d13d905ca3b4045ba008d29572d479f25b49584fa785e90"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.private_documents",
+        "sha256": "f8dcbcb1cd58a7abe8724e845ebe0a729af082676a17be793ac5254c10aeaefb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.receipts",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.records",
+        "sha256": "812b25acbd3ca2500ec7b9e417e1439f8642c4c915e90c75db5cdb1b0638aa46"
+      }
+    ],
+    "schemaSha256": "cf2d5820bfb6584e352b26d69074f55cc04dfe49e06852585caf8a2fba450fde",
+    "objectCounts": {
+      "tables": 11,
+      "indexes": 16,
+      "sequences": 0
+    }
+  },
+  "restored": {
+    "tables": [
+      {
+        "rows": 1,
+        "table": "knolstory_auth.accounts",
+        "sha256": "b72be435462c1e83684ca58d7c8559809b91acd51052548bc02c18ebd6aef45b"
+      },
+      {
+        "rows": 8,
+        "table": "knolstory_auth.flows",
+        "sha256": "d33781e55aaf006e5e414abfe0820042c6c31415e16e99ddca15b6dc16d9bbc0"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_auth.identities",
+        "sha256": "e0166c661375a364ba04b3f91deff26998deca97621694eef1a5e2f9284dacc7"
+      },
+      {
+        "rows": 5,
+        "table": "knolstory_auth.sessions",
+        "sha256": "97e765175e5278805353896f4de214aae6f9167e192912fcfd2807dd69c2e8fb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.blobs",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.document_creations",
+        "sha256": "acbe70d2fa64e9914f7a178d3b92b1cad6bb493ae4a4f53b59d0562b002dbb4d"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.document_state_commands",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 7,
+        "table": "knolstory_storage.migrations",
+        "sha256": "4f139b0706f51a0a2d13d905ca3b4045ba008d29572d479f25b49584fa785e90"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.private_documents",
+        "sha256": "f8dcbcb1cd58a7abe8724e845ebe0a729af082676a17be793ac5254c10aeaefb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.receipts",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.records",
+        "sha256": "812b25acbd3ca2500ec7b9e417e1439f8642c4c915e90c75db5cdb1b0638aa46"
+      }
+    ],
+    "schemaSha256": "cf2d5820bfb6584e352b26d69074f55cc04dfe49e06852585caf8a2fba450fde",
+    "objectCounts": {
+      "tables": 11,
+      "indexes": 16,
+      "sequences": 0
+    }
+  },
+  "sourceAfter": {
+    "tables": [
+      {
+        "rows": 1,
+        "table": "knolstory_auth.accounts",
+        "sha256": "b72be435462c1e83684ca58d7c8559809b91acd51052548bc02c18ebd6aef45b"
+      },
+      {
+        "rows": 8,
+        "table": "knolstory_auth.flows",
+        "sha256": "d33781e55aaf006e5e414abfe0820042c6c31415e16e99ddca15b6dc16d9bbc0"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_auth.identities",
+        "sha256": "e0166c661375a364ba04b3f91deff26998deca97621694eef1a5e2f9284dacc7"
+      },
+      {
+        "rows": 5,
+        "table": "knolstory_auth.sessions",
+        "sha256": "97e765175e5278805353896f4de214aae6f9167e192912fcfd2807dd69c2e8fb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.blobs",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.document_creations",
+        "sha256": "acbe70d2fa64e9914f7a178d3b92b1cad6bb493ae4a4f53b59d0562b002dbb4d"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.document_state_commands",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 7,
+        "table": "knolstory_storage.migrations",
+        "sha256": "4f139b0706f51a0a2d13d905ca3b4045ba008d29572d479f25b49584fa785e90"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.private_documents",
+        "sha256": "f8dcbcb1cd58a7abe8724e845ebe0a729af082676a17be793ac5254c10aeaefb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.receipts",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.records",
+        "sha256": "812b25acbd3ca2500ec7b9e417e1439f8642c4c915e90c75db5cdb1b0638aa46"
+      }
+    ],
+    "schemaSha256": "cf2d5820bfb6584e352b26d69074f55cc04dfe49e06852585caf8a2fba450fde",
+    "objectCounts": {
+      "tables": 11,
+      "indexes": 16,
+      "sequences": 0
+    }
+  },
+  "sourceUnchanged": true,
+  "restoredMatchesSource": true,
+  "isolationVerified": true,
+  "restoredSessionsInactive": true,
+  "status": "isolated-logical-restore-matches-current-source",
+  "temporaryTargetStoppedAndAutoRemoved": true
+}

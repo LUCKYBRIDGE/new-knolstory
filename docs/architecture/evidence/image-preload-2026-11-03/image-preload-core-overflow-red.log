@@ -1,0 +1,32 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/runtime-core/src/image-preload.test.ts (11 tests | 1 failed) 21ms
+     × omits only failed hypothetical score successors while preparing safe siblings and deeper choices 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/runtime-core/src/image-preload.test.ts > image preloading uses the canonical scene and flow semantics > omits only failed hypothetical score successors while preparing safe siblings and deeper choices
+Error: 이야기 점수는 -1,000,000부터 1,000,000까지 정수여야 해요.
+ ❯ checkedStoryScore packages/runtime-core/src/score-values.ts:6:75
+      4| type Effect=Readonly<StoryScoreEffect>;
+      5| export function checkedStoryScore(value:number):number{
+      6|  if(!Number.isSafeInteger(value)||Math.abs(value)>STORY_SCORE_LIMIT)th…
+       |                                                                           ^
+      7|  return value;
+      8| }
+ ❯ packages/runtime-core/src/score-values.ts:29:39
+ ❯ applyStoryScoreEffects packages/runtime-core/src/score-values.ts:26:17
+ ❯ targetForLine packages/runtime-core/src/story-runtime.ts:62:5
+ ❯ advanceKnownScores packages/runtime-core/src/story-runtime.ts:85:55
+ ❯ advancePlayback packages/runtime-core/src/story-runtime.ts:81:10
+ ❯ packages/runtime-core/src/image-preload.ts:38:67
+ ❯ nextStates packages/runtime-core/src/image-preload.ts:38:55
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 10 passed (11)
+   Start at  00:32:54
+   Duration  527ms (transform 278ms, setup 0ms, import 395ms, tests 21ms, environment 0ms)

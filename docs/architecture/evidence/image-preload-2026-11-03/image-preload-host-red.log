@@ -1,0 +1,23 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/runtime-image-preparation.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/runtime-image-preparation.test.ts [ apps/web/lib/runtime-image-preparation.test.ts ]
+Error: Cannot find module './runtime-image-preparation' imported from /Users/wan/ai_dev/apps/new-knolstory/apps/web/lib/runtime-image-preparation.test.ts
+ ❯ apps/web/lib/runtime-image-preparation.test.ts:2:1
+      1| import {describe,it,expect,vi} from 'vitest';
+      2| import {RuntimeImagePreparation,ImagePreparationCancelled} from './run…
+       | ^
+      3|
+      4| describe('runtime image preparation acknowledgements',()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  00:16:08
+   Duration  123ms (transform 9ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)

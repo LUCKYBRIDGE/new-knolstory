@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+      Coverage enabled with v8
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  00:36:54
+   Duration  236ms (transform 24ms, setup 0ms, import 33ms, tests 68ms, environment 0ms)
+
+ % Coverage report from v8
+------------------|---------|----------|---------|---------|-------------------
+File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+------------------|---------|----------|---------|---------|-------------------
+All files         |   93.12 |     75.6 |     100 |   98.63 |
+ image-preload.js |   93.12 |     75.6 |     100 |   98.63 | 19
+------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 93.12% ( 122/131 )
+Branches     : 75.6% ( 62/82 )
+Functions    : 100% ( 25/25 )
+Lines        : 98.63% ( 72/73 )
+================================================================================
+ERROR: Coverage for branches (75.6%) does not meet global threshold (80%)

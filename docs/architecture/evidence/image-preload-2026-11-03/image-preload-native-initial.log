@@ -1,0 +1,79 @@
+
+Running 2 tests using 1 worker
+
+(node:73441) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/image-preload.spec.ts:19:1 › next-cut image bytes arrive while current is read; native decode is complete before advancing (1.7m)
+(node:73963) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/image-preload.spec.ts:39:1 › required image failure retains old native scene and retries without losing path or manuscript (5.2s)
+
+
+  1) tests/e2e/image-preload.spec.ts:19:1 › next-cut image bytes arrive while current is read; native decode is complete before advancing
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 90000ms exceeded while waiting on the predicate
+
+       6 | const source=parseAuthoringFile(readFileSync('docs/architecture/evidence/new-creation-complete-2026-11-02/new-creation.knolstory','utf8')).project;
+       7 | const backgrounds=['assets/legacy-18da4fc/BG01-valley-day.webp','assets/legacy-18da4fc/BG04-cottage-day.webp'];
+    >  8 | async function ready(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(()=>status.evaluate(n=>Number(n.getAttribute('data-rendered-revision'))>=0&&n.getAttribute('data-rendered-revision')===n.getAttribute('data-scene-revision')),{timeout:90000}).toBe(true);}
+         |                                                                                                                                                                                                                                                                                        ^
+       9 | async function setup(page:Page,mode='upcoming'){
+      10 |  await page.addInitScript(({mode})=>{if(window!==window.top||location.protocol==='about:')return;sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');localStorage.setItem('knolstory-reader-preferences-v1',JSON.stringify({version:1,textScale:1,autoDelaySeconds:3,format:'auto',tapMode:'next',imagePreloadMode:mode,imagePreloadCount:3}));},{mode});
+      11 |  await page.route('**/api/**',r=>r.fulfill({status:503,body:'unavailable'}));
+        at ready (/Users/wan/ai_dev/apps/new-knolstory/tests/e2e/image-preload.spec.ts:8:280)
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/image-preload.spec.ts:25:35
+
+    Error Context: test-results/image-preload/image-preload-next-cut-ima-b7c72-s-complete-before-advancing/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/image-preload/image-preload-next-cut-ima-b7c72-s-complete-before-advancing/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/image-preload/image-preload-next-cut-ima-b7c72-s-complete-before-advancing/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/image-preload.spec.ts:39:1 › required image failure retains old native scene and retries without losing path or manuscript
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 2
+
+      Object {
+    -   "lineId": "76c476c3-32af-4756-8ff4-3f63c45314f9",
+    +   "lineId": "6c4e920d-c13c-4212-ab6e-e9a284c4c40c",
+        "path": Array [
+          "76c476c3-32af-4756-8ff4-3f63c45314f9",
+    +     "6c4e920d-c13c-4212-ab6e-e9a284c4c40c",
+        ],
+        "status": "reading",
+      }
+
+      49 |  await expect(page.getByRole('button',{name:'그림 다시 받기',exact:true})).toHaveCount(0);
+      50 |  const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
+    > 51 |  expect(after.playback).toEqual(before.playback);expect(after.document.project).toEqual(before.document.project);
+         |                         ^
+      52 | });
+      53 |
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/image-preload.spec.ts:51:25
+
+    Error Context: test-results/image-preload/image-preload-required-ima-5c1be-t-losing-path-or-manuscript/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/image-preload/image-preload-required-ima-5c1be-t-losing-path-or-manuscript/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/image-preload/image-preload-required-ima-5c1be-t-losing-path-or-manuscript/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/image-preload.spec.ts:19:1 › next-cut image bytes arrive while current is read; native decode is complete before advancing
+    tests/e2e/image-preload.spec.ts:39:1 › required image failure retains old native scene and retries without losing path or manuscript

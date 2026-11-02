@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-03",
+  "status": "Imagepreloadinglocallyverified;userauthorizedcommit/mainpush/Pages+ingressdeployment;actualreleaseverificationpending",
+  "userDecision": [
+    "Four configurable modes:nextNcuts,currentchapter,wholework,none",
+    "Latest correction uses rolling nextfewCUTS while current is read,not nextfewchapters",
+    "Defaultnext3,adjustable1..10;no forcedchapterstop;existingreaderautosave reused"
+  ],
+  "implementation": {
+    "planner": "Core resolves actual inherited backgrounds/actors;Nfuturedepth,BFSeligiblebranches64statebudget;hypotheticalscore/visibility/manualeffectstate only;speculativeoverflow isolated;actualproject/pathunchanged",
+    "preferences": "Browserreaderpreferencesv1optionalfields,migratereadwithoutwrites;noStoryDocument/archive/workbookchange;invalidnumericdraftstaysunapplied",
+    "native": "prepareImages verifiedpaths/requestId only;ready capability1;complete exact/runtime/game responses beforecurrentFSinstall/flushplaceholdercache/native decode;imagesPrepared gatesloadScene withoutchangingseq/revision;olderruntimekeepsoldbehavior",
+    "delivery": "currentrequiredpriority,concurrency2;compressedmemory24MiB/native24MiB/file8MiB;current+previousnativefilesonly;planrestcompressedbytesbrowsercache",
+    "cache": "CacheStorage keyed byimagepath+content hashversion;diskbrowserquota-managed,NOTlimited24MiB;cachewritefailurefallbackHTTP/memory;no user/othercachedeleted",
+    "failure": "Previoussceneheld,300msdelayedautomaticnotice,required503/timeouterror+retry;none modeescape viareadingmenu;stalegeneration/revisionignored",
+    "autosave": "Existing150ms auto-reader slot afteractualscene ready retained;no filewrite ormanualslotoverwrite"
+  },
+  "verification": {
+    "focusedNative": "5passed27.9s,image-preload-native-final.log:nextcutactualbytesbeforenextdisplay+instrumentedplaceholderhits0;chapteronlyscope/workincludenextchapterscope/nonehelperempty;390and1280settings;503oldscene/retry/pathprojectsame",
+    "creationRegression": "1passed19s,image-preload-creation-regression.log:UIcreatedscores/conditionalaudioeffects/bothnativepaths/filefreshcontexts unchanged",
+    "interactive": "ego-browserTaskSpace19:p1fourmodes/N4 persistedafterreload,screenshotinspected,restoreddefault3,nohorizontaloverflow;onlytestdrafttouched",
+    "allUnit": "Final279files2313passed2skipped;image-preload-unit-coverage-final.log",
+    "focusedCoverage": {
+      "core": "statements95.58/branches93.61/functions93.75/lines100",
+      "preferences": "all100",
+      "hostAcknowledgement": "statements87.09/branches90/functions100/lines92.85",
+      "browserDelivery": "statements96.18/branches82.92/functions100/lines100;10tests;actualVMfilenamerequiredforV8coverage"
+    },
+    "types": "pnpmtypecheckinclserver exit0;strictnewE2Etypesexit0",
+    "lint": "0errors;onehostcleanuprefwarning,newcodeandtestslintlogged",
+    "python": "193passed",
+    "build": "runtime:build then Webbuild sequential;bothpassed,staticoutputservedlocal15427",
+    "docs": "58active docs0links;241currentlanguage surfaces0retiredterms;10doc-checker tests passed",
+    "coverageOverall": {
+      "statements": 92,
+      "branches": 90.76,
+      "functions": 95.15,
+      "lines": 95.29
+    },
+    "cacheReopen": "Additional focused1passed10.5s:closeoldpage,actualshelfresumeinnewpage/runtime,allimageHTTPrequestsblocked,CacheStorageexactnativeassetsreused,nextchaptersharpnative,0imagenetworkattempts,auto-slot+wholemanuscriptpreserved;cache-reopen.json",
+    "continuationDocs": "58active docs0linkerrors;241currentlanguage surfaces0retiredterms;10docchecks pass;gitdiffcheckclean"
+  },
+  "failuresAndFixes": {
+    "nativeInitial": "Diagnostic Image.load monkeypatch keptoriginalfunction inexec-localnamespace;callbackfailed. Storeoriginalandhitlist onrenpymodule. Separatefailuretestreadstoredpathbeforedebouncedwrite;polltargetpathbeforecompare. Product notchangedforthesetestfixes.",
+    "coverage": "FirstVMcoveragewithoutfilename reported0;addingrealfilenamegivesactualV8coverage. Branchcoveragegrewfrom68to82.92 withcachequota,absentFS,oversizeandmemoryevictiontests;allfailedattemptlogsretained.",
+    "review": "Read-onlyreviewcaughtspeculativeoverflowcrashandone-time300mswaitflag;fixedboth. Diskcachelimitclarifiedratherthanclaim24MiBtotal.",
+    "cacheReopen": "Initialtestwronglyexpectedfreshpage toauto-mountreader;secondattemptstoppedatbookcover. Followactualintroduction→shelf→resume→bookstartresume;requireauto-slotpersistbeforeclose. Noappchange."
+  },
+  "preservation": "Originalcatalogue/manuscripts/assets/old evidence untouched. Onlyindependenttestcopies imported. Newruntimegeneratedlocally;productionPages/ingress/API/DB notmodified. Initialcheckoutwasclean;allcurrentchangesleftuncommitted.",
+  "limits": [
+    "Localnewbuild only;productionstillpriorrainycourtyardrelease",
+    "No new physicaldevice/realnetwork/humanaudible/assistivetechnologyclaim",
+    "Newrequiredimageswaituses45stimeout;retry ornoneescape",
+    "Diskcachecanbeevicted orquota-limited;not apermanentofflineworkdownload",
+    "SDKeditorpreviewsretainprogressivebehavior;newconfigbelongsreading",
+    "Longtermoffline,realauthenticatedupload,Googleprovider,policyandreleasequeue remain"
+  ],
+  "sourceSha256": {
+    "packages/runtime-core/src/image-preload.ts": "8f2e64b3d6cc599749ccb94e4fe9db738e045e14857aedad761b1d15cfbf3808",
+    "packages/runtime-core/src/image-preload.test.ts": "bd41469321567dd6ccea1136190a1f11abd4ab684c511c4913ff85bb9bbb2cc7",
+    "packages/runtime-contract/src/index.ts": "d0d51607219f6dc3785c5caec47fa5f8e1b4f7bc1f4aae9f18e9c3efebb4a1ff",
+    "apps/web/lib/reader-preferences.ts": "4128cea5fed183bfca56170abb660eb261a8df494c02bab0382bbef1325bf557",
+    "apps/web/lib/reader-preferences.test.ts": "0959aaa89e82955693cfc1e4f19c669073ee7de1421cec440e0b30fe24ab3ddf",
+    "apps/web/lib/runtime-image-preparation.ts": "e1c494e5050bd77514cf39912f36bac4ec907a40fb67d484028b058de4ae20ff",
+    "apps/web/components/story-workspace-runtime.ts": "c99b00b849d7eeb1c440bab5350ff0c3024080ff2f8698ff32bb80208c4d3c5a",
+    "apps/web/components/story-workspace.tsx": "6c9890c655a6af0e06c2ccfbd17f8b222b9bdda4cecab1fa694273c999da7a03",
+    "apps/web/components/story-player-menu.tsx": "208dfd3fede6feff556609d31d0cb3b56cb08952a1eeb30653a55e23a92b4d40",
+    "apps/web/components/story-image-preparation.tsx": "662f6d0f728d3d2d99787369e9b8067302f81dd6af8f6ce99823db4cdc3dccf2",
+    "spikes/renpy-web/bridge.js": "91d9c6fbe5113688c14a96475cc723a9bb0ec6d7e289fb9fd170ae3595759244",
+    "spikes/renpy-web/image-preload.js": "50a6ee08901e4d22ef095a8b46502bc27537778097ffce8253c07a6f6ba2ea20",
+    "spikes/renpy-web/build.py": "d8ce2aba6cd17275ca24e54689b433737e44c0459d6c6db91525e3d63cf047db",
+    "renpy/responsive-spike/game/image_preload.rpy": "68841b250d6b20c98449c0414f0e38e836c3774c0026c9f604a8d5828667f474",
+    "renpy/responsive-spike/game/script.rpy": "be8627245325db6ce649b54b6b2021f55a55ffba006adae8fa492165a7236c63",
+    "tests/e2e/image-preload.spec.ts": "7235d84976226c90aa2a93085f80f7a6cd8f6ac5f7bf34424aa7abf8131b9fd0",
+    "scripts/runtime-distribution-review.py": "7c5a9ddf28590a59cf7884b985d8c37e20f45c3fe8a708da11ec6108d98b06f5"
+  },
+  "buildSha256": {
+    "index.html": "57c82a77ab472b3a9e984ea284f30b75951ebe2d674bd0e1a24bbf057cd9b23d",
+    "runtime/game.zip": "b9a918457380fed921549241cc0d200498576e868efee3700c95e19519cdbe3a",
+    "runtime/knol-bridge.js": "91d9c6fbe5113688c14a96475cc723a9bb0ec6d7e289fb9fd170ae3595759244",
+    "runtime/knol-image-preload.js": "8bd39f3b4eac1d27af03729e0c2eeaee404750113eb62555ec49598abfce045e",
+    "runtime/runtime-contract.js": "c00cb97f2acc7de19a86684af3e1bfc389ae992c11d84a77bf242a601ed6f609"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Native+files+types/build proven;production/hardware/longoffline remainexplicit. One canonicalcheckpoint linked fromplan/status/designcontract;no duplicativeplan."
+  },
+  "releasePreparation": {
+    "candidate": ".cache/pages-candidate-image-preload-20261103",
+    "localOnly": true,
+    "deployed": false,
+    "runtimeReview": "runtime-review.json",
+    "runtimeDelta": "runtime-delta.json",
+    "runtimeMembers": 1094,
+    "newMembers": [
+      "game/image_preload.rpy",
+      "game/image_preload.rpyc"
+    ],
+    "reviewBoundary": "AllpriorSDK/image/audio/generatedplaceholder/progressive/noticebytes unchanged;projectexactfilesandbuildmetadata updatedbyactualpinnedbuild;SDK/engine/transportinputsverified",
+    "reviewConsumer": "scripts/runtime-distribution-review.py nowpoints tonewsource-reviewedbytes,notclaimofdeployment",
+    "sourceAudit": "source-audit.json:includesnonservingruntime.zip,2expectedblockers",
+    "candidateAudit": "candidate-audit.json:1564files598187818bytes,0blockers,passesPreflighttrue",
+    "manifestBoundary": "manifestpassesPreflight derivesfromsourceauditandremainsfalsebecauseexcludedruntime.zip;separateservingcandidateauditprovesexactexcludedscopepasses",
+    "tests": "30Pythonruntime-review/staticaudit tests passed;release-tests.log",
+    "publicChanges": "None: no commit/push/deployment/API/DB/credentials writes"
+  },
+  "externalAuthorization": {
+    "date": "2026-11-03",
+    "answer": "커밋·main 반영·운영 배포 진행",
+    "scope": "Imagepreloadingimplementation+verificationrecords commit/mainpushandPages+ingresssamebuilddeployment. Doesnotauthorizenewrate-trustactivation,keys/configchangesorAPIdeployment."
+  }
+}

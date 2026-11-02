@@ -1,0 +1,166 @@
+{
+  "method": "Single ego-browser CDP session, warm runtime: offline verified by navigator + failed fresh fetch; UI edit/export/preview; network restored200",
+  "before": {
+    "online": false,
+    "fetch": "TypeError: Failed to fetch",
+    "project": {
+      "choiceMode": "simple",
+      "id": "2b242bfe-9d72-4348-abe5-04175c8824f7",
+      "title": "느린 망 복귀 검사 사본",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "09f733e5-d7b4-4a09-9dfc-f77f89c97a3a",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "3a0dd777-f3b4-40bd-b58b-fa71c190eff1",
+          "chapterId": "09f733e5-d7b4-4a09-9dfc-f77f89c97a3a",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "망이 끊겨도 이 글과 작품 파일은 남아 있어야 한다.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-11-02T14:51:13.030Z"
+    }
+  },
+  "offline": {
+    "online": false,
+    "status": "이야기 무대 연결됨",
+    "project": {
+      "choiceMode": "simple",
+      "id": "2b242bfe-9d72-4348-abe5-04175c8824f7",
+      "title": "느린 망 복귀 검사 사본",
+      "description": "",
+      "planning": {
+        "premise": "",
+        "structureMode": "free",
+        "material": "",
+        "theme": "",
+        "mainCharacter": "",
+        "mainGoal": "",
+        "centralProblem": "",
+        "stakes": "",
+        "endingChange": "",
+        "opening": "",
+        "middle": "",
+        "crisis": "",
+        "climax": "",
+        "ending": "",
+        "characterNotes": "",
+        "worldNotes": "",
+        "mood": "",
+        "openQuestions": "",
+        "freeNotes": ""
+      },
+      "creativeMemos": [],
+      "sheetUrl": "",
+      "sheetEditable": false,
+      "speakerNames": [],
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "id": "09f733e5-d7b4-4a09-9dfc-f77f89c97a3a",
+          "order": 1,
+          "title": "첫 번째 장",
+          "summary": "",
+          "purpose": "",
+          "mood": "",
+          "keyEvents": "",
+          "nextChapterIdea": "",
+          "storyStageKeys": [],
+          "chapterSpeakerNames": [],
+          "characterAssetIds": [],
+          "backgroundAssetIds": [],
+          "backgroundId": "",
+          "leftAssetId": "",
+          "rightAssetId": ""
+        }
+      ],
+      "lines": [
+        {
+          "id": "3a0dd777-f3b4-40bd-b58b-fa71c190eff1",
+          "chapterId": "09f733e5-d7b4-4a09-9dfc-f77f89c97a3a",
+          "order": 1,
+          "type": "narration",
+          "speaker": "narration",
+          "speakerName": "",
+          "text": "망이 끊긴 동안 고친 글도 작품 파일에 남아 있어야 한다.",
+          "leftAssetId": "",
+          "rightAssetId": "",
+          "backgroundId": "",
+          "purposeNote": "",
+          "emotionNote": "",
+          "directionNote": "",
+          "stageComposition": {
+            "leftActors": [],
+            "rightActors": []
+          }
+        }
+      ],
+      "updatedAt": "2026-11-02T14:53:09.692Z"
+    }
+  },
+  "restored": {
+    "online": true,
+    "fetch": 200
+  },
+  "downloadedProjectEqualsOffline": true,
+  "limits": [
+    "Earlier cross-round CDP offline state did not persist; superseded by this single-session check",
+    "No cold startup throttle measurement,long-term offline,PWA,or physical device claim"
+  ]
+}

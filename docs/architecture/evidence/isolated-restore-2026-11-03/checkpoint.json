@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-03",
+  "status": "InactiveoperationalDB/content/auth-fenceandlateststaticcandidateprivatebackup/restoreverifiedlocally;widerproductactive",
+  "authorizationScope": "Canonical product plan priority5 isolated operational restoration;no deployment/authentication/credential or production-data-write authorization inferred",
+  "backup": {
+    "priorProof": "../rainy-courtyard-2026-11-02/backup.json",
+    "bytes": 46131,
+    "sha256": "ec203315f44ed5393021a5ebd2deeba77b125a19c2968bda216bc6c6941ca1f0",
+    "privateArchiveVerified": true,
+    "permissions": "Existingbackupandlocalinput0600;newprivateauditdirectory0700/inputandvalidatorlog0600;outsidecheckout;actualpathsnotpublished"
+  },
+  "inventory": {
+    "proof": "database-restore.json",
+    "contentRunProof": "database-restore-content.json",
+    "tables": 11,
+    "indexes": 16,
+    "sequences": 0,
+    "totalRows": 25,
+    "sourceBeforeEqualsRestoredEqualsSourceAfter": true,
+    "scope": "Rowcount/sortedrowSHA256 andowner/grant-excluded schemaSHA256/objectcounts;notoneexportedsnapshotforallqueries"
+  },
+  "content": {
+    "restoredContent": {
+      "records": 1,
+      "knolstory": 1,
+      "shortstory": 0,
+      "audioResources": 0,
+      "migrations": 7
+    },
+    "currentCanonicalValidationPassed": true,
+    "identitiesAndRevisionsPassed": true,
+    "immutableMigrationHashesPassed": true,
+    "rawContentPublished": false
+  },
+  "execution": {
+    "commands": [
+      "python3 docs/architecture/evidence/isolated-restore-2026-11-03/measurement/restore-backup.py",
+      "python3 docs/architecture/evidence/isolated-restore-2026-11-03/measurement/restore-backup.py --content-check"
+    ],
+    "runs": "Originalinventory-onlyproof/content-validationproof preserved;additionalfencecopy addsactualcopied-authmaintenanceandpreservation,withinitialcleanupfailureandfreshcorrectiverunseparate.",
+    "postgresImageDigest": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+    "source": "Existingproductioncontainer:explicitREPEATABLEREADREADONLYSQL+schema-onlypgdump;no productionpg_restore,migration,backupreplacement,datachange",
+    "target": "Newrandomname+per-runlabel,existingdigest--pullnever,networknone,noports,readonlyroot,tmpfsdata,256MiB/0.5CPU/64pids;noexistingvolume",
+    "cleanup": "Bothauditcontainersstoppedandautoremoveverified;privatearchive/validatorinputretained",
+    "noRestoredAuthOrTrafficActivation": true
+  },
+  "review": {
+    "independentReadOnly": "No source-write,rawprivatecontentleak,wrongcontainercleanuporfalsemigrationfingerprintblockerfound",
+    "correctiveChanges": [
+      "ReadinesschecksfinalTCPloopbackserver,avoidingofficialentrypointtemporaryUnixsocketserverrace",
+      "Cleanupchecksownname+exactlabel evenifdockerruntimedoutbeforecreatedack;neverstopsexistingunownedcontainer"
+    ],
+    "privacy": "Canonicalvalidatorstdout/stderrkeptprivate;publiconlyfixedcounts/booleans. Genericerrorneverprintsprojection/credentials."
+  },
+  "verification": {
+    "strictTypes": "isolated-restore-types.log exit0",
+    "actualRestore": "Bothcommands exit0;all11tablecontentsand16indexes/schemaequaltocurrentsource;no sourceinventorydrift",
+    "actualContent": "DedicatedsingleVitesttestonrestoredcopy:1KnolStory/0ShortStory/0privateaudio;projectioncontentSHA+assetrefs+explicitmigration+format/projectidentity/revisionvalid;7SQLmigrationhashesmatchcurrentimmutablesources",
+    "syntax": "py_compilepassed",
+    "docs": "58active docs0linkerrors;241currentlanguage surfaces0retiredterms;10doc-checkertests pass;gitdiffcheckclean",
+    "followupDocs": "58active docs0linkerrors;241currentlanguage surfaces0retiredterms;10doc-checker tests pass;syntax/type/lint scoped to new harnesses;existingvalidapp/native suitesnotrerun"
+  },
+  "limits": [
+    "Thissealedbackuphas1KnolStoryrecord,nolongerfixturecollection;notnewShortStory/privateaudio/bulkrestorecoverage",
+    "No authenticatedAPIread/upload/ownershiporrealOAuthproven",
+    "No clusterroles/grants/secrets,sequencevalueprobe(sequences0),offhostdurability,encryption,retentionorcompleteoutagerehearsal",
+    "Before/afterequality isobservedinventorynotexportedsnapshotatomicityoverallcommands",
+    "Originalexactinventory/contentcopiesnotactivated;historicalauthinvalidatedonlyinafurthernewcopy;see fenceFollowup forcurrentboundary.",
+    "Lateststaticservingcandidatebackup/restorecheckedseparatelyinstaticFollowup;publicdeploymentcachecutoverstillunverified."
+  ],
+  "sourceSha256": {
+    "docs/architecture/evidence/isolated-restore-2026-11-03/measurement/restore-backup.py": "183f47ab8123cbfca67efced009602c20cd9045fc3fbac16e322d83cfb5beeed",
+    "docs/architecture/evidence/isolated-restore-2026-11-03/measurement/validate-content.test.ts": "30e33b8d6993e7f134ff203e7a2b43c2008ef7079f10469ceaa8b9676dc68b84",
+    "docs/architecture/evidence/isolated-restore-2026-11-03/measurement/validate-content.vitest.config.ts": "e8f59fab6fb0e9b253afaf69e7cd8b1852ab8bf5cc5345831c9a7e2351325dc2",
+    "server/storage/snapshot-projection.ts": "781cd28423fa2f846e912af081e720b9c332ba0a4acd466f0af4890c5a36fe10",
+    "packages/compatibility/src/authoring-archive.ts": "ab994a7902e4ecdeccfe156f9f0d1ffcbc63e148c03693d6a2dda8dd7e6e987a"
+  },
+  "artifactSha256": {
+    "database-restore.json": "ca1c2e96ed4e65358aeaa48f91493e50096be83983e5b138d68834123833174c",
+    "database-restore-content.json": "01cbd41760b3e41f1aa1718b844ac131a05ba48300820bea8e0d61dd6ba4ca7c",
+    "database-restore-fence.json": "a175e6b4d83168977901aa340c9512cbb00af169559cde370d19e25c2a6fe029",
+    "static-restore.json": "9b5cd20fae1b284f52e847b823e32bfce36245477d60da0d200d53cb285c966e"
+  },
+  "selfEvaluation": {
+    "accuracy": 4,
+    "completeness": 4,
+    "clarity": 4,
+    "actionability": 4,
+    "conciseness": 4,
+    "evidence": "Actualisolatedrestoreandcurrentvalidatorproven;noauthactivation/offhost/wholeproductclaim. Existingproceduresnotretargetedtoproduction."
+  },
+  "fenceFollowup": {
+    "status": "Canonical unchanged restored-auth helper verified on a fresh offline copy;production untouched",
+    "proof": "database-restore-fence.json",
+    "command": "python3 docs/architecture/evidence/isolated-restore-2026-11-03/measurement/restore-backup.py --fence-check",
+    "actual": {
+      "restoreSessionFence": {
+        "before": {
+          "sessions": 3,
+          "flows": 8
+        },
+        "after": {
+          "sessions": 0,
+          "flows": 0
+        },
+        "revokedSessions": 3,
+        "removedFlows": 8,
+        "idempotent": true,
+        "helper": "unchanged canonical fenceRestoredSessions"
+      },
+      "noTokensOrAccountIdentifiersPublished": true,
+      "noApiOrProviderStarted": true,
+      "unrelatedTablesAndSchemaPreserved": true,
+      "runnerImageDigest": "sha256:ea762d05a7a1e86f5caa65f6c09d241f45c4702f202992c6beee15f79a827103",
+      "sourceHelperSha256": "635e21ac7a105299c30c419de676cfef92a3e7189bdb381cb957699069619d34"
+    },
+    "preservation": "Onlycopy sessionsrevoked andcopyflowsremoved;9othertablesandfullschemahashunchanged;pre-fencecopy=currentproduction;productionbefore/afterinventoryequal",
+    "targetIsolation": "Freshvalidatedknolstory_next_restore_UUID;PGnetworknone/noports/readonlyroot/tmpfs;Nodeusernode/capdropALL/no-new-privileges/readonlyroot sharesONLYfreshDBnetworknamespace;existingAPIimageDIGEST --pullnever forpgdependency,notAPIstartup;nootherenvironments/secrets mounted",
+    "cleanup": "NewrunnerandDBUUIDnames+exactperrunlabels verifiedabsentaftercleanup;private0600runledger supportsfailedprocessrecovery",
+    "review": "Independentread-onlyreviewfoundnoblockingproductionwrite/privateleak/activationissue;--usernode explicitly added perreview",
+    "failurePreserved": "fence-initial.log/fence-initial-cleanup.json:already-auto-removedrunnerDockerCLIreportedlowercaseno-such-object;case-sensitiveabsencecheckfailedbeforeDBcleanup. SpecificownedDBmanuallycleaned;positivefencecountsnotclaimedfromfailedrun. NewcodeusesexactDockerpsinventory,noterrorwording,thenfreshcorrectiveexecutionpassed.",
+    "scopeLimits": [
+      "No productioncookie/session revoked",
+      "No currentdataset HTTP200→401/providerverification;onlyactualrestore-rowmaintenance+idempotence",
+      "Existing historicalauthenticatedHTTPfenceevidenceremainsseparate",
+      "No generalAPI/CLIhostrestrictionrelaxed,notactivatedrestoretraffic"
+    ],
+    "sourceSha256": {
+      "docs/architecture/evidence/isolated-restore-2026-11-03/measurement/restore-backup.py": "7b0d0f8eb8d1297abdce430b268ce009ab4fe166658a0aee84927fea0af6272e",
+      "docs/architecture/evidence/isolated-restore-2026-11-03/measurement/fence-copy.mjs": "af962dbe3041d85ad0b639548d12c3421dd9f07b505bea4e183c4957d03e386c",
+      "server/operations/restore-session-fence.mjs": "635e21ac7a105299c30c419de676cfef92a3e7189bdb381cb957699069619d34"
+    }
+  },
+  "staticFollowup": {
+    "proof": "static-restore.json",
+    "source": ".cache/pages-candidate-image-preload-20261103/site",
+    "backup": {
+      "run": "2d2113103e0c4c6db71a0df5e86dd3ec",
+      "files": 1564,
+      "bytes": 598187818,
+      "manifestSha256": "9168566dafb83cc18127c751651fb43f7dd25864a04f2b15b6f6094fc990328a"
+    },
+    "restore": {
+      "run": "2d2113103e0c4c6db71a0df5e86dd3ec",
+      "files": 1564,
+      "bytes": 598187818,
+      "manifestSha256": "9168566dafb83cc18127c751651fb43f7dd25864a04f2b15b6f6094fc990328a",
+      "restoreRun": "626e449f73584944b2d0ddfc2f1e2cd7"
+    },
+    "allManifestsEqual": true,
+    "method": "Existingstatic_release.backup_release(candidate/site)thenrestore_release(run,manifestSha256);notcopyingnon-servingruntime.zip;fresh0700directories/0600filesoutsidecheckout;original+eachprivatecopyallfilesindependentlyhashed",
+    "spaceGuard": "Freebytes>=2*servingsize+1GiB checked before copying;noexistingbackupdeleted",
+    "serving": "Existingserve_static_restore.py,newloopback15428;allrequestedfilesallowlisted+manifestSHAvalidatedbeforeeachresponse;noAPI",
+    "native": "Dedicatedrestored-image-delivery.spec.ts1passed4.7s:independentrevisedfileimport,actualRenPychoice->trust2->conditionalcut->commontext/sound/effect,requirednativeimagesprepared,wholeprojectequal",
+    "responseAssertions": "Allsuccessful/runtime/responsescarriedexpectedrestoredmanifest;game.zipand>=1nativeassetobserved;allrequestsusedrestoredorigin,nooriginaldevelopmentserverfallback. Passedassertionsrecordedintest/log;listreporterdidnotpersistbodyattachmentasper-resourcereceiptfile.",
+    "visual": "static-restored-native.png inspected:background+individualactor+revisedKoreanbodyandeditreturnvisible",
+    "initialFailure": "static-native-initial.log:audioappearsfirstoncommoncut,initialcutunlockcheckaloneleftnativeaudiogateunanswered,soundcount0. RespondtoactualcommongatewithEnterbeforerequiringplaycount;noappchange.",
+    "tests": "StrictTypeScript andESLint0errors(existingReactdetectwarning);types/logsaved",
+    "limits": [
+      "SameMac/samediskprivatebackup/restore,notexternaldurability/encryption/retention",
+      "DBandstaticcopiescheckedseparately,notonecoordinatedatomicbackup",
+      "No productionactivation/publicedgecachecutover/physicaldevice/human-audibleclaim"
+    ],
+    "sourceSha256": {
+      "server/operations/static_release.py": "80f909e6235d7ff5c12aa66abddc5dea70ff4d027dd670158d64495dbbfef42d",
+      "server/operations/serve_static_restore.py": "31a708b690a79f950bde194ad881fcbbd55a041a06b36106df0aa559a151b3dc",
+      "tests/e2e/restored-image-delivery.spec.ts": "1aa79474316507976cd672537dd8d072fa4913d3e9546decd00ff1467da968f6",
+      "tests/restored-image.playwright.config.ts": "0eed1f7cd8c9af1ff86020f87851604dc0ec5c604bb3a0eb36bbc165341ba439"
+    }
+  },
+  "externalAuthorization": {
+    "date": "2026-11-03",
+    "answer": "커밋·main 반영·운영 배포 진행",
+    "scope": "Imagepreloadingimplementation+verificationrecords commit/mainpushandPages+ingresssamebuilddeployment. Doesnotauthorizenewrate-trustactivation,keys/configchangesorAPIdeployment."
+  }
+}

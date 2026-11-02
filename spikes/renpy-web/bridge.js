@@ -3,6 +3,7 @@
   let queued = null;
   let queuedPageInput = null;
   let queuedThumbnails = [];
+  let queuedImageDecode = null;
   let lastSeq = -1;
   let lastRevision = -1;
   let engineViewport = null;
@@ -106,8 +107,9 @@
     };
   }
   window.knolBridge = Object.freeze({
-    drain() { const commands = [...(queued ? [queued] : []), ...(queuedPageInput ? [queuedPageInput] : []), ...queuedThumbnails]; queued = null; queuedPageInput = null; queuedThumbnails = []; return JSON.stringify(commands); },
+    drain() { const commands = [...(queuedImageDecode ? [queuedImageDecode] : []), ...(queued ? [queued] : []), ...(queuedPageInput ? [queuedPageInput] : []), ...queuedThumbnails]; queuedImageDecode = null; queued = null; queuedPageInput = null; queuedThumbnails = []; return JSON.stringify(commands); },
     emit(event) {
+      if (event.type === 'imagesPrepared' && !window.knolImagePreload?.isCurrent(event.requestId)) return;
       if (event.type === 'sceneRendered' && currentScene && event.sceneId === currentScene.sceneId && event.revision === currentScene.revision) {
         const audio = currentScene.audio;
         audioEntry(currentScene.mode === 'play' && event.audioState?.unlocked === false &&
@@ -122,6 +124,13 @@
     if (event.origin !== origin || event.source !== parent) return;
     const c = event.data;
     if (!c || c.protocol !== 1) return;
+    if (c.type === 'prepareImages') {
+      if (window.KnolRuntimeContract.isRuntimeImagePreparationRequest(c)) {
+        queuedImageDecode = null;
+        window.knolImagePreload?.prepare(c, command => { queuedImageDecode = command; }, event => window.knolBridge.emit(event));
+      }
+      return;
+    }
     if(c.type==='renderSceneThumbnail'){
       if(currentScene?.mode==='edit'&&window.KnolRuntimeContract.isRuntimeThumbnailRequest(c)){
         queuedThumbnails=queuedThumbnails.filter(item=>item.requestId!==c.requestId);

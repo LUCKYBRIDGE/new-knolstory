@@ -1,0 +1,27 @@
+{
+  "prior": "docs/architecture/evidence/rainy-courtyard-2026-11-02/runtime-review.json",
+  "archiveMembers": 1094,
+  "newMembers": {
+    "game/image_preload.rpy": "renpy/responsive-spike/game/image_preload.rpy",
+    "game/image_preload.rpyc": "renpy/responsive-spike/game/image_preload.rpyc"
+  },
+  "changedMembers": [
+    "game/cache/build_info.json",
+    "game/cache/bytecode-312.rpyb",
+    "game/cache/py3analysis.rpyb",
+    "game/cache/screens.rpyb",
+    "game/script.rpy",
+    "game/script.rpyc"
+  ],
+  "categories": {
+    "directory": 49,
+    "project-exact": 64,
+    "sdk-build-metadata-exact": 2,
+    "sdk-root-launcher-exact": 2,
+    "sdk-exact": 366,
+    "sdk-bytecode-exact": 166,
+    "generated-placeholder": 444,
+    "generated-progressive-index": 1
+  },
+  "boundary": "Exact source/member/SDK/engine/transport/license comparison. No new media, hosting action or deployment."
+}

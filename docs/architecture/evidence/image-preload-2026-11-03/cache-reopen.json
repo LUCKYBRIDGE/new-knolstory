@@ -1,0 +1,41 @@
+{
+  "cacheBefore": [
+    {
+      "name": "knolstory-runtime-images-v1-9b20c65a702cadd979e367bc",
+      "urls": [
+        "http://127.0.0.1:15427/runtime/game/assets/legacy-18da4fc/M01-base.webp",
+        "http://127.0.0.1:15427/runtime/game/assets/legacy-18da4fc/BG01-valley-day.webp",
+        "http://127.0.0.1:15427/runtime/game/assets/legacy-18da4fc/BG04-cottage-day.webp",
+        "http://127.0.0.1:15427/runtime/game/assets/legacy-18da4fc/BG05-cottage-snow.webp"
+      ]
+    }
+  ],
+  "networkAttempts": 0,
+  "previousPlayback": {
+    "lineId": "6c4e920d-c13c-4212-ab6e-e9a284c4c40c",
+    "path": [
+      "76c476c3-32af-4756-8ff4-3f63c45314f9",
+      "6c4e920d-c13c-4212-ab6e-e9a284c4c40c"
+    ],
+    "status": "reading"
+  },
+  "nativeAfterReopen": {
+    "text": "친구는 내 손을 잡고 다리를 건넜다.",
+    "paths": [
+      "assets/legacy-18da4fc/BG04-cottage-day.webp",
+      "assets/legacy-18da4fc/M01-base.webp"
+    ]
+  },
+  "nativeNextChapter": {
+    "text": "우리는 다리 건너 숲에서 다시 만났다.",
+    "paths": [
+      "assets/legacy-18da4fc/BG05-cottage-snow.webp",
+      "assets/legacy-18da4fc/M01-base.webp"
+    ]
+  },
+  "wholeManuscriptPreserved": true,
+  "limits": [
+    "Fresh runtime in same browser context; engine/app boot remained online",
+    "Image network was unavailable; not offline HTML/PWA startup or long-term eviction proof"
+  ]
+}

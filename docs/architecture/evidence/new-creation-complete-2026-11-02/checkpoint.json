@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-02",
+  "status": "New-creation compound developer journey and interrupted/uninterrupted simulated-slow verification complete; wider SD-04/product remains active",
+  "scope": "New checks and evidence only. No product code, original manuscript, assets, runtime, service credentials, database or deployment changed. Initial checkout clean.",
+  "priorEvidenceReused": [
+    "../author-journey-2026-10-27/checkpoint.json",
+    "../first-creation-walkthrough-2026-10-28/checkpoint.json"
+  ],
+  "build": {
+    "proof": "build-match.json",
+    "sourceCommit": "f2392e8076506ffa29f46c26a5e0e6fabf871913",
+    "meaning": "Existing verified release output reused, all1563candidate files equal. No rebuild or redeploy."
+  },
+  "creation": {
+    "test": "tests/e2e/new-creation-complete.spec.ts",
+    "command": "pnpm exec playwright test --config tests/new-creation.playwright.config.ts new-creation-complete",
+    "log": "creation-green2.log",
+    "result": "1passed18.1s",
+    "steps": [
+      "Blank work created via UI, text/background/actor, optional choice/score/condition/audio/direction enabled",
+      "3cuts, two choices target same score-conditioned cut; first choice adds2trust, second stays0",
+      "Common final cut has actual choice-ID-conditioned chime+shake authored through UI",
+      "Primary save downloads actual archive2/schema8; OS picker deliberately unavailable",
+      "Fresh context/API503 imports complete work unchanged",
+      "Both routes actual RenPy: trust2shows optional cut,trust0jumps directly to common; knol_scene effects/sounds present only on active choice; sound-play-count increments only active; renderedrevision and sameiframe preserved",
+      "Ending keeps structural visits; replayStoryVisits separates visible path; exact raw path checked",
+      "Editor return preserves whole original; change only common text and updatedAt, primary save; reload whole revised project equal",
+      "Third fresh context imports/reexports revised file, whole project exactly equal"
+    ]
+  },
+  "network": {
+    "test": "tests/e2e/creation-network-recovery.spec.ts",
+    "command": "pnpm exec playwright test --config tests/new-creation.playwright.config.ts creation-network-recovery",
+    "log": "network-green.log",
+    "result": "1passed about94seconds",
+    "summary": "network-summary.json",
+    "steps": [
+      "Fresh browser context, existing authored test file imported from library, first runtime mount after CDPthrottle",
+      "180ms latency,262144B/s download,131072B/s upload configured; actual loadprogress1percent before interruption",
+      "Offline verified by failed uncached fetch and game.zip ERR_INTERNET_DISCONNECTED",
+      "Edit during preparation then actual offline archive download equals whole edited project",
+      "Natural clock recovery path, no timer acceleration; realTimeout field means no clock shim, not separate measured90s latency",
+      "Remove throttle/restore network; press actual retry; RenPy sceneRendered matches revision; all manuscript fields unchanged; edited text in actual reading"
+    ]
+  },
+  "interactive": {
+    "browser": "ego-browser TaskSpace19,p1; previousTaskSpace10 no longer existed",
+    "proof": "offline-browser.json",
+    "file": "offline-draft.knolstory",
+    "result": "Within one CDPsession:navigatoroffline,freshfetchfails;UIedit/export/actualpreparednativepreview succeed;download project exactly matches;restorefetch200",
+    "visual": "offline-native.png inspected: edited Korean body and editing-return control visible",
+    "cleanup": "Read-onlyproductionp2closed;localp1kept in editor for continuation;user tabs/profile data untouched"
+  },
+  "failuresPreserved": {
+    "creation-initial.log": "Expected hidden structural visit to disappear. Core intentionally retains it. Test expectation was wrong; no app bug.",
+    "creation-green.log": "Polling alone did not change wrong expectation. Read canonical scene-visits + existing unit; assert structural path plus visible replay, actual currentCut/score/native independent assertions retained.",
+    "network-initial.log": "Own CDPonline emulation overrode context offline state. Offline fresh fetch succeeded; test correctly failed. Set sameCDPsession offline as well, require actualruntime requestfailure.",
+    "interactive": "Cross-invocation ego CDPstate did not persist; superseded by single-session offline proof with failedfetch and navigatoroffline.",
+    "slow-initial.log": "Actual native render/whole manuscript passed; expected observer to see100butlast97. Loader100canbeunmountedwithinonesameMutationObserverbatch. Requireobservedboundedmonotonicprogress + completedcoreHTTPrequests + actualnative text instead; no syntheticprogresssample."
+  },
+  "verification": {
+    "strictTypes": "types-final.log exit0",
+    "eslint": "lint-final.log exit0; existingReact version detection warning only",
+    "review": "Independent read-only reviews found no blocking correctness or false-positive issue; proof limits retained",
+    "docs": "pnpm docs:check:58active docs,0link errors;239current language surfaces,0retired terms;pnpm test:docs10passed"
+  },
+  "currentDependencies": {
+    "account": "account-readiness.json:actualproductionauthconfig200,Kakaoenabled,Googlefalse;currentEgosession/me401;noaccountwrites/login performed",
+    "devices": "device-readiness.json:0authorizedADBdevices;nohardwareinteraction",
+    "next": [
+      "Longer offline/session reopen only if needed; interrupted and uninterrupted simulated-slow startup now both verified.",
+      "Next necessary real deployment must include old-cache to new-version boundary; do not deploy solely to test cache",
+      "Physical target device when accessible, preserve prior valid hardware evidence",
+      "Kakao authenticated433asset upload/reopen/edit/trash/restore; user authentication needed; Googleprovider setup is disabled",
+      "Existing policy/operationalrestore/finalrelease queue remains in canonical plan"
+    ]
+  },
+  "limits": [
+    "Developer verification, not novice usability research",
+    "Chromiumdesktop1280x900 and ego1052x843 only; previousphone/tablet/creationchapter evidence reused, no new physical-device proof",
+    "Actual sound counter proves native playback invocation, not human audible monitoring; resolved nativeeffect does not prove everyanimationframe",
+    "Revised file full-content equality verified; revised text not replayed natively in third context",
+    "Networkthrottle is simulated; recoveryunthrottled;94s iswholetesttime, not startupbudget",
+    "No longtermoffline/PWA/reloadwhileoffline promise; no edge deploymentcache transition",
+    "Actual OSfilepicker and in-place overwrite not newly verified; fallback files reallydownloaded",
+    "No authenticatedupload,Googlelink,classpolicy,fullproductcompletion claim"
+  ],
+  "artifactsSha256": {
+    "native-diagnostics.jsonl": "fdb67ae6c139cc79dbd8d74d0ee346e6328cf842ffe85be0ff1628a9b1b05b0b",
+    "uninterrupted-slow-native.png": "598474db22027e8575ad4e8cb0a2eb0e7ce8dc1cba0c73c1b44214e20b1ee295",
+    "new-creation.knolstory": "08fe782dbfc3bd5b769c50bf58030b846c32f4a149de6174526f403763eb21cf",
+    "offline-native.png": "2b29ca3b879491ff4eeda2c0882f1b1cb115b854f6e5f65feb4b72f3a6628eef",
+    "native-inactive.png": "eee5f76d18912dbd2565adc741d147473be47bfbe9f7fd7ce1438d225977b3be",
+    "recovered-native.png": "dd5fd685b660c13b28612285203a82c8cd12e3b3773905c9722b83ee84476eff",
+    "native-active.png": "2ee31ffde9aad31b061faec50eac8a049d30cb81735ac64af0da982b484215ce",
+    "new-creation-revised.knolstory": "200820efec6e80bd5a587432f1ea99a5dc5f18344e1b4ca6a77a7df88d8236d1",
+    "slow-download.png": "f1651e2a7fa6d0816e15cf2c650bcb1ab4db9b7aee36a0fb67c9bb227412d338",
+    "offline-draft.knolstory": "aa663745f8bfe56a009a5003c90611674d89dced95b0e1ce18264eb13691f363",
+    "interrupted.knolstory": "481b43d1e8324a5d8ac84c4964b0b07c742a9ccbeff8c03006a2fb355bb162f9",
+    "uninterrupted-slow-download.png": "f0b44a20ee63d1dac97d08d0870c793a21bb579f1207530322518a909cbe2de6",
+    "interrupted-retry.png": "f108c5c7514e5deeb9f6991def3fdec2db75273a916ed661eebb332fba30b094"
+  },
+  "sourceSha256": {
+    "tests/e2e/new-creation-complete.spec.ts": "95af0e131cac6fcb6af49fd48066cf5010bb984816634410b14a6aaa954af11d",
+    "tests/e2e/creation-network-recovery.spec.ts": "58f0e2cc2ebbe7fa4a6c872f80565547692079c321aed4c5a8bd38bd08c6edaf",
+    "tests/new-creation.playwright.config.ts": "55c77625d53a5185d049e94df384a4821db07eda785c76a1950d54fbb74ccbab"
+  },
+  "verificationFinishedDate": "2026-11-03",
+  "uninterruptedSlow": {
+    "log": "slow-green.log",
+    "result": "1passed; firstRenderedMs=93152",
+    "summary": "uninterrupted-slow-summary.json",
+    "scope": "Fresh context,serviceWorkersblocked,512KiB/sdownload,128KiB/supload,180mslatency retained through first actualRenPy sceneId/dialogue; wholemanuscript equal; genuine runtimeHTTP200/completion receipts; monotonic observed progress;no physical/performance-budget claim"
+  },
+  "newUserSteering": "2026-11-03 user requests configurable image preloading; latest correction prioritizes rolling next few cuts while current is being read. Subsequent implementation is separate from this fixed build evidence."
+}

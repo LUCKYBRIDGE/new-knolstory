@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:80898) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/restored-image-delivery.spec.ts:10:1 › independently restored static files render imported choices and conditional media (4.7s)
+
+  1 passed (5.1s)

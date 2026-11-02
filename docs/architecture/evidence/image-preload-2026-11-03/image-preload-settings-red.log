@@ -1,0 +1,86 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/reader-preferences.test.ts (11 tests | 3 failed) 8ms
+     × defaults old image preparation settings to the next three cuts without changing storage 3ms
+     × round trips each supported preparation mode and an independent cut count 1ms
+     × rejects explicit malformed image preparation settings before any write 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/reader-preferences.test.ts > reader preferences > defaults old image preparation settings to the next three cuts without changing storage
+AssertionError: expected { version: 1, textScale: 1.15, …(3) } to deeply equal { version: 1, textScale: 1.15, …(5) }
+
+- Expected
++ Received
+
+  {
+    "autoDelaySeconds": 6,
+    "format": "portrait",
+-   "imagePreloadCount": 3,
+-   "imagePreloadMode": "upcoming",
+    "tapMode": "halves",
+    "textScale": 1.15,
+    "version": 1,
+  }
+
+ ❯ apps/web/lib/reader-preferences.test.ts:43:42
+     41|   const raw=JSON.stringify({version:1,textScale:1.15,autoDelaySeconds:…
+     42|   const storage={getItem:()=>raw,setItem:()=>{writes++;}};
+     43|   expect(readReaderPreferences(storage)).toEqual({...DEFAULT_READER_PR…
+       |                                          ^
+     44|   expect(storage.getItem()).toBe(raw);expect(writes).toBe(0);
+     45|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  apps/web/lib/reader-preferences.test.ts > reader preferences > round trips each supported preparation mode and an independent cut count
+AssertionError: expected { version: 1, textScale: 1, …(3) } to deeply equal { version: 1, textScale: 1, …(5) }
+
+- Expected
++ Received
+
+  {
+    "autoDelaySeconds": 3,
+    "format": "auto",
+-   "imagePreloadCount": 10,
+-   "imagePreloadMode": "upcoming",
+    "tapMode": "next",
+    "textScale": 1,
+    "version": 1,
+  }
+
+ ❯ apps/web/lib/reader-preferences.test.ts:50:81
+     48|    let raw='';const storage={getItem:()=>raw,setItem:(key:string,value…
+     49|    const value={...DEFAULT_READER_PREFERENCES,imagePreloadMode,imagePr…
+     50|    writeReaderPreferences(storage,value);expect(readReaderPreferences(…
+       |                                                                                 ^
+     51|   }
+     52|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  apps/web/lib/reader-preferences.test.ts > reader preferences > rejects explicit malformed image preparation settings before any write
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ apps/web/lib/reader-preferences.test.ts:58:81
+     56|    const value={...DEFAULT_READER_PREFERENCES,...change};
+     57|    expect(readReaderPreferences({getItem:()=>JSON.stringify(value)})).…
+     58|    expect(()=>writeReaderPreferences({setItem:()=>{writes++;}},value a…
+       |                                                                                 ^
+     59|   }
+     60|   expect(writes).toBe(0);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 8 passed (11)
+   Start at  00:13:15
+   Duration  146ms (transform 17ms, setup 0ms, import 24ms, tests 8ms, environment 0ms)

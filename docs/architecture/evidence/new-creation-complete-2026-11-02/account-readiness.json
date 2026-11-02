@@ -1,0 +1,16 @@
+{
+  "origin": "https://story.knolquiz.com/",
+  "providerConfigStatus": 200,
+  "providerConfig": {
+    "success": true,
+    "data": {
+      "signupProvider": "kakao",
+      "providers": {
+        "kakao": true,
+        "google": false
+      }
+    }
+  },
+  "sessionStatus": 401,
+  "authenticated": false
+}
