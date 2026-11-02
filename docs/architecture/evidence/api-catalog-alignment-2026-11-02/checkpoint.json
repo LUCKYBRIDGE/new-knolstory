@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-02",
+  "status": "production API aligned with current432image catalogue",
+  "problem": {
+    "beforeImage": "sha256:a5f79a56b21e0dc58549b2b5bf43afae62fe128246ed575f7a3534f1eed2482a",
+    "accepted": 421,
+    "registeredNow": 432,
+    "newLayeredImagesRejected": 11,
+    "failure": "checkedSnapshot maps unknown catalogue references to CATALOG_MEDIA_REQUIRED422"
+  },
+  "fix": {
+    "apiImage": "knolstory-next-api:catalog-20261102",
+    "runningImage": "sha256:79519cf4125d9bfd2a3b886322e1788dc801a5655162cb5590919d7d50fbc38d",
+    "catalogueAccepted": 432,
+    "layeredAccepted": 11,
+    "unregisteredAccepted": false,
+    "rollbackImage": "knolstory-next-api:rollback-20261102-catalog",
+    "backup": {
+      "directoryName": "20261102-catalog-1793576696215",
+      "bytes": 49640,
+      "sha256": "f7e0f3f70ce8c607b93017288c17d54199f63cfd0158739bab4cf2cb025c1561",
+      "tableDataEntries": 11,
+      "privatePermissions": "directory0700/file0600",
+      "restoreNotPerformed": true
+    },
+    "database": "11tables counts/content hashes unchanged; no migration or data writes",
+    "frontend": "Pagesdc637370 and ingress unchanged"
+  },
+  "checks": {
+    "actualImagePolicy": [
+      "before-policy.json",
+      "candidate-policy.json",
+      "production-policy.json"
+    ],
+    "serverRegression": "catalog-current.test.ts2passed: all8official snapshots accepted; unknownactor still422",
+    "typecheck": "passed",
+    "lint": "passed",
+    "serverProductionDependencies": "no known vulnerabilities",
+    "health": "health.json all200",
+    "anonymousPublic": "public-read-check.json config200/documents401",
+    "dbIntegrity": "database-integrity.json",
+    "documentServiceTests": {
+      "files": 4,
+      "passed": 49
+    }
+  },
+  "limits": [
+    "No human Kakao/Google login or authenticated HTTP upload performed",
+    "Image policy probe runs actual bundle in network-none/read-only container with main entrypoint disabled in memory",
+    "No claim of class/assignment/sharing or whole-product completion"
+  ],
+  "next": "Keep image-catalogue alignment gate whenever publishing new registered IDs; continue full native reading paths and unresolved online product scope."
+}

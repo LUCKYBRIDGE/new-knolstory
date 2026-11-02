@@ -1,0 +1,42 @@
+
+Running 5 tests using 1 worker
+
+(node:89430) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[catalog-native knolstory-1] 1/227: scene-1-1
+[catalog-native knolstory-1] 41/227: scene-3-15
+[catalog-native knolstory-1] 81/227: scene-5a-16
+[catalog-native knolstory-1] 121/227: scene-8-4
+[catalog-native knolstory-1] 161/227: scene-11-1
+[catalog-native knolstory-1] 201/227: scene-12a-13
+  ✓  1 tests/e2e/catalog-reading-paths.spec.ts:62:74 › Heungbu knolstory-1: complete native route with API unavailable (2.2m)
+[catalog-native knolstory-2] 1/221: scene-1-1
+[catalog-native knolstory-2] 41/221: scene-3-15
+[catalog-native knolstory-2] 81/221: scene-5a-16
+[catalog-native knolstory-2] 121/221: scene-8-4
+[catalog-native knolstory-2] 161/221: scene-11-1
+[catalog-native knolstory-2] 201/221: scene-12b-13
+  ✓  2 tests/e2e/catalog-reading-paths.spec.ts:62:74 › Heungbu knolstory-2: complete native route with API unavailable (2.0m)
+[catalog-native knolstory-3] 1/225: scene-1-1
+[catalog-native knolstory-3] 41/225: scene-3-15
+[catalog-native knolstory-3] 81/225: scene-5b-16
+[catalog-native knolstory-3] 121/225: scene-8-6
+[catalog-native knolstory-3] 161/225: scene-11-3
+[catalog-native knolstory-3] 201/225: scene-12a-15
+  ✓  3 tests/e2e/catalog-reading-paths.spec.ts:62:74 › Heungbu knolstory-3: complete native route with API unavailable (2.1m)
+[catalog-native knolstory-4] 1/219: scene-1-1
+[catalog-native knolstory-4] 41/219: scene-3-15
+[catalog-native knolstory-4] 81/219: scene-5b-16
+[catalog-native knolstory-4] 121/219: scene-8-6
+[catalog-native knolstory-4] 161/219: scene-11-3
+[catalog-native knolstory-4] 201/219: scene-12b-15
+  ✓  4 tests/e2e/catalog-reading-paths.spec.ts:62:74 › Heungbu knolstory-4: complete native route with API unavailable (2.0m)
+[catalog-native original-1] 1/125: classic-heungbu-1-line-01
+[catalog-native original-1] 41/125: classic-heungbu-3-line-11
+[catalog-native original-1] 81/125: classic-heungbu-5-line-16
+[catalog-native original-1] 121/125: classic-heungbu-7-line-15
+  ✓  5 tests/e2e/catalog-reading-paths.spec.ts:62:74 › Heungbu original-1: complete native route with API unavailable (1.2m)
+
+  Slow test file: tests/e2e/catalog-reading-paths.spec.ts (9.4m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  5 passed (9.4m)

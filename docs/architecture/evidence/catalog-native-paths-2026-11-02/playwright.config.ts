@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'../../../../tests/e2e',testMatch:'catalog-reading-paths.spec.ts',fullyParallel:false,workers:1,retries:0,timeout:360000,expect:{timeout:15000},outputDir:'../../../../test-results/catalog-native-paths',use:{baseURL:'http://127.0.0.1:15404',browserName:'chromium',trace:'retain-on-failure'},reporter:[['list']]});

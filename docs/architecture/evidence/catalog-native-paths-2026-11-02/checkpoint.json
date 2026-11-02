@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-02",
+  "status": "Heungbu five complete native paths passed; other works pending",
+  "execution": {
+    "command": "pnpm exec playwright test --config docs/architecture/evidence/catalog-native-paths-2026-11-02/playwright.config.ts",
+    "passed": 5,
+    "failed": 0,
+    "minutes": 9.4,
+    "api": "503 in fresh context per route",
+    "routes": [
+      {
+        "edition": "knolstory",
+        "id": "knolstory-1",
+        "cuts": 227,
+        "decisions": [
+          {
+            "lineId": "scene-4-23",
+            "choiceId": "choice-winter-borrow",
+            "label": "조건을 받아들이고 곡식을 빌린다"
+          },
+          {
+            "lineId": "scene-11-28",
+            "choiceId": "choice-ending-together",
+            "label": "겨울 동안 두 가족이 함께 지낸다"
+          }
+        ],
+        "terminalLineId": "scene-12a-39",
+        "finalStatus": "ended"
+      },
+      {
+        "edition": "knolstory",
+        "id": "knolstory-2",
+        "cuts": 221,
+        "decisions": [
+          {
+            "lineId": "scene-4-23",
+            "choiceId": "choice-winter-borrow",
+            "label": "조건을 받아들이고 곡식을 빌린다"
+          },
+          {
+            "lineId": "scene-11-28",
+            "choiceId": "choice-ending-separate",
+            "label": "놀부 가족이 따로 다시 시작하도록 돕는다"
+          }
+        ],
+        "terminalLineId": "scene-12b-33",
+        "finalStatus": "ended"
+      },
+      {
+        "edition": "knolstory",
+        "id": "knolstory-3",
+        "cuts": 225,
+        "decisions": [
+          {
+            "lineId": "scene-4-23",
+            "choiceId": "choice-winter-other-way",
+            "label": "곡식은 빌리지 않고 다른 방법을 찾는다"
+          },
+          {
+            "lineId": "scene-11-28",
+            "choiceId": "choice-ending-together",
+            "label": "겨울 동안 두 가족이 함께 지낸다"
+          }
+        ],
+        "terminalLineId": "scene-12a-39",
+        "finalStatus": "ended"
+      },
+      {
+        "edition": "knolstory",
+        "id": "knolstory-4",
+        "cuts": 219,
+        "decisions": [
+          {
+            "lineId": "scene-4-23",
+            "choiceId": "choice-winter-other-way",
+            "label": "곡식은 빌리지 않고 다른 방법을 찾는다"
+          },
+          {
+            "lineId": "scene-11-28",
+            "choiceId": "choice-ending-separate",
+            "label": "놀부 가족이 따로 다시 시작하도록 돕는다"
+          }
+        ],
+        "terminalLineId": "scene-12b-33",
+        "finalStatus": "ended"
+      },
+      {
+        "edition": "original",
+        "id": "original-1",
+        "cuts": 125,
+        "decisions": [],
+        "terminalLineId": "classic-heungbu-7-line-19",
+        "finalStatus": "ended"
+      }
+    ],
+    "cutReadAssertions": 1017,
+    "uniqueCreativeCuts": 277,
+    "uniqueOriginalCuts": 125,
+    "manifestSha256": "b0bf99d2cfa9619ae576abc0167754a533d5a80d90019c2a9b003aca0c6346a2",
+    "log": "native-all-paths.log",
+    "servedBuild": "served-build.json"
+  },
+  "assertions": [
+    "current official project SHA",
+    "real first-cut entry from library; no seek or storage path injection",
+    "native rendered revision for every cut",
+    "resolved full dialogue SHA and actual pagination",
+    "actual native choiceSelected events and full choice history",
+    "whole final playback/path equality and ended scene",
+    "unchanged manuscript and no page/runtime errors"
+  ],
+  "limits": [
+    "Assertions/log and ending screenshots retained; list reporter did not persist attached per-cut JSON as separate files",
+    "Landscape desktop browser; not physical phone or slow network",
+    "Rabbit/Onggojib/Seonnyeo complete paths remain; not all-eight-editions completion"
+  ],
+  "next": "Extend bounded runner to Rabbit six creative paths and one original before Onggojib16 and Seonnyeo64."
+}

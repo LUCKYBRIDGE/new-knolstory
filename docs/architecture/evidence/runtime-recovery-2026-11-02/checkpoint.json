@@ -69,7 +69,10 @@
       "status": "success",
       "sourceCommit": "a397d6989f7536331b557f8cbd514b50984882ca",
       "proofBoundary": "Remote public CI excludes private catalogue/audio-byte suites; local full media and actual native checks remain separately recorded",
-      "summary": []
+      "summary": [
+        "Test Files  267 passed (267)",
+        "Tests  2263 passed | 2 skipped (2265)"
+      ]
     },
     "liveFiles": "1560 checked,0 unexpected,key9hashes/audio3match;live-files.json",
     "newImages": "22paths200/exactSHA;live-images.json",
