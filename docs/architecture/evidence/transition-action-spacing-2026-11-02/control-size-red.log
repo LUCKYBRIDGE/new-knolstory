@@ -1,0 +1,55 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ apps/web/lib/story-viewport.test.ts (6 tests | 2 failed) 14ms
+     × always previews editing in 16:9 regardless of old settings and container shape 3ms
+     × fits both reading formats inside every available rectangle without changing scene composition 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/web/lib/story-viewport.test.ts > story display viewport > always previews editing in 16:9 regardless of old settings and container shape
+AssertionError: expected { …(2) } to deeply equal { …(3) }
+
+- Expected
++ Received
+
+@@ -1,10 +1,6 @@
+  {
+-   "controlDisplaySize": {
+-     "height": 844,
+-     "width": 390,
+-   },
+    "displaySize": {
+      "height": 720,
+      "width": 1280,
+    },
+    "viewport": {
+
+ ❯ apps/web/lib/story-viewport.test.ts:24:58
+     22|     for(const profile of ['auto','desktop','portrait','landscape'] as …
+     23|       for(const display of [{width:390,height:844},{width:844,height:3…
+     24|         expect(storySceneLayout('edit',profile,display)).toEqual({view…
+       |                                                          ^
+     25|       }
+     26|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  apps/web/lib/story-viewport.test.ts > story display viewport > fits both reading formats inside every available rectangle without changing scene composition
+AssertionError: expected NaN to be greater than or equal to 44
+ ❯ apps/web/lib/story-viewport.test.ts:38:89
+     36|         const {controlTargetSize:_baselineTarget,...baselineCompositio…
+     37|         expect(composition).toEqual(baselineComposition);
+     38|         expect(target!*Math.min(display.width/scene.width,display.heig…
+       |                                                                                         ^
+     39|         const fit=fitStage(display,scene);
+     40|         expect(fit.width).toBeLessThanOrEqual(display.width+1e-8);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  18:19:00
+   Duration  1.13s (transform 696ms, setup 0ms, import 1.02s, tests 14ms, environment 0ms)
+

@@ -7,7 +7,7 @@ import { isRuntimeScene, type RuntimeActor, type RuntimeScene } from '@knolstory
 import {mergeActorOverride} from './actor-overrides';
 import { resolveStageLayout } from './stage-layout';
 import { stageCharacterScale, stageReadableCharacterScale, stageSharedActor, stageShouldMirror } from './stage-view';
-import { resolveBackgroundRect, resolveStoryViewport, type StoryViewportSize, type DialogueDock } from './responsive-layout';
+import { resolveBackgroundRect, resolveStoryViewport, resolveControlTargetSize, type StoryViewportSize, type DialogueDock } from './responsive-layout';
 import {compileStoryPresentation,storyClickEffectGroupCount} from './presentation-scopes';
 import { initialStoryScores, type StoryScoreValues, availableStoryChoices, playbackScores, storyScoreCondition, applyStoryScoreEffects } from './story-scores';
 import { audioPreviewPath, compileStoryAudio, type AudioAssetResolver } from './audio';
@@ -181,7 +181,7 @@ export function patchStoryLine(project: StoryProject, lineId: string, patch: Par
 }
 
 export function compileStoryScene(project: StoryProject, lineId: string, revision: number,
-  options: Readonly<{ mode: 'edit' | 'play'; reducedMotion?: boolean; viewport?: StoryViewportSize; displaySize?:StoryViewportSize; dialogueDock?:DialogueDock; playbackPath?: readonly string[]; playbackState?:PlaybackState; audioResolver?: AudioAssetResolver; presentationEntry?: string }> = { mode: 'edit' }): RuntimeScene {
+  options: Readonly<{ mode: 'edit' | 'play'; reducedMotion?: boolean; viewport?: StoryViewportSize; displaySize?:StoryViewportSize; controlDisplaySize?:StoryViewportSize; dialogueDock?:DialogueDock; playbackPath?: readonly string[]; playbackState?:PlaybackState; audioResolver?: AudioAssetResolver; presentationEntry?: string }> = { mode: 'edit' }): RuntimeScene {
   if(options.mode==='play'&&options.playbackState?.status==='ended'&&project.lines.some(line=>line.visibility)){
     const state=options.playbackState,last=visibleStoryPathIndices(project,state).at(-1);
     if(last===undefined){const viewport=options.viewport?resolveStoryViewport(options.viewport,options.displaySize,options.dialogueDock):undefined;
@@ -233,7 +233,7 @@ export function compileStoryScene(project: StoryProject, lineId: string, revisio
   const replayProject=options.mode==='edit'&&project.lines.some(line=>line.visibility)?{...project,lines:project.lines.map(line=>{const {visibility:_visibility,...rest}=line;return rest;})}:project;
   const path=options.playbackState?.path??options.playbackPath??audioPreviewPath(project,lineId);const presentation=compileStoryPresentation(replayProject,lineId,path,options.playbackState?.choiceHistory,options.mode==='edit'||options.playbackState?.status==='ended'?Infinity:options.playbackState?.effectStep??0);
   const effectSteps=storyEffectSteps(project,options.playbackState??{lineId,path,status:'reading'});
-  const scene: RuntimeScene = { contractVersion: 1, sceneId: `${project.id}/${line.id}`, revision, width, height,
+  const scene: RuntimeScene = { ...(options.controlDisplaySize?{controlTargetSize:resolveControlTargetSize({width,height},options.controlDisplaySize)}:{}), contractVersion: 1, sceneId: `${project.id}/${line.id}`, revision, width, height,
     ...(viewport ? { viewportVersion: 1 as const, textboxRect: viewport.textboxRect, dialogueStyle: viewport.dialogueStyle } : {}),
     ...(options.presentationEntry ? { presentationEntry: options.presentationEntry } : {}),
     ...(options.mode==='play'&&effectSteps.total>0?{effectSteps}:{}),

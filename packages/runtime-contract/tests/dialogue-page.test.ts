@@ -57,3 +57,15 @@ describe('displayed source end boundary',()=>{
   for(const endOffset of [-1,.5,'12',null,Infinity,NaN,Number.MAX_SAFE_INTEGER+1])expect(isRuntimeEvent({...report,dialoguePage:{index:0,count:2,offset:0,endOffset}})).toBe(false);
  });
 });
+
+
+describe('native control target size',()=>{
+ const scene={contractVersion:1,sceneId:'cut',revision:1,width:1280,height:720,actors:[],dialogue:{speaker:'',text:'Hello'}};
+ it('accepts absent old scenes and finite bounded sizes',()=>{
+  expect(isRuntimeScene(scene)).toBe(true);
+  for(const controlTargetSize of [44,99.5,512])expect(isRuntimeScene({...scene,controlTargetSize})).toBe(true);
+ });
+ it('rejects malformed sizes at the runtime boundary',()=>{
+  for(const controlTargetSize of [NaN,Infinity,-Infinity,'44',null,43.99,512.01])expect(isRuntimeScene({...scene,controlTargetSize})).toBe(false);
+ });
+});

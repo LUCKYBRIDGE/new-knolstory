@@ -4,8 +4,8 @@ import {createHash} from 'node:crypto';
 import {representativeStories,classicStories,resolveProvidedCatalogStory} from '../../../../packages/compatibility/src';
 import {advancePlayback,advanceEffectPlayback,createPlayback,compileStoryScene,type PlaybackState} from '../../../../packages/runtime-core/src/story-runtime';
 const canonical=(value:unknown):string=>JSON.stringify(value,(_key,item:unknown)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))):item);
-it('exports the exact current official Heungbu manuscripts and all five complete reading paths',()=>{
- const editions=[{entry:representativeStories.find(e=>e.id==='heungbu')!,edition:'knolstory',expected:4},{entry:classicStories.find(e=>e.id==='heungbu-classic')!,edition:'original',expected:1}];
+for(const [workId,classicId,pathCount,output] of [['heungbu','heungbu-classic',4,'manifest.json'],['rabbit','rabbit-classic',6,'manifest-rabbit.json']] as const)it(`exports current ${workId} complete paths`,()=>{
+ const editions=[{entry:representativeStories.find(e=>e.id===workId)!,edition:'knolstory',expected:pathCount},{entry:classicStories.find(e=>e.id===classicId)!,edition:'original',expected:1}];
  const result=editions.map(({entry,edition,expected})=>{
   const project=resolveProvidedCatalogStory(entry.project),byId=new Map(project.lines.map(line=>[line.id,line]));
   const routes:Array<{id:string;decisions:Array<{lineId:string;choiceId:string;label:string}>;steps:Array<{lineId:string;textSha256:string}>;terminalLineId:string;finalState:PlaybackState}>=[];
@@ -23,7 +23,7 @@ it('exports the exact current official Heungbu manuscripts and all five complete
    }
   }
   visit(createPlayback(project),[],[]);expect(routes).toHaveLength(expected);
-  return {workId:'heungbu',edition,projectId:project.id,title:project.title,projectSha256:createHash('sha256').update(canonical(project)).digest('hex'),routes};
+  return {workId,edition,projectId:project.id,title:project.title,projectSha256:createHash('sha256').update(canonical(project)).digest('hex'),routes};
  });
- writeFileSync(new URL('./manifest.json',import.meta.url),JSON.stringify({version:1,basis:'Current resolveProvidedCatalogStory + Runtime Core complete traversal; expected data only, never injected into the browser',editions:result},null,2)+'\n');
+ writeFileSync(new URL('./'+output,import.meta.url),JSON.stringify({version:1,basis:'Current resolveProvidedCatalogStory + Runtime Core complete traversal; expected data only, never injected into the browser',editions:result},null,2)+'\n');
 });

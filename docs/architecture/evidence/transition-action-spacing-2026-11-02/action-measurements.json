@@ -1,0 +1,57 @@
+{
+  "basis": "Actual screenshot pixels at DPR1; separate native E2E verifies CSS bounds and dispatches real pointer input.",
+  "rows": [
+    {
+      "screenshot": "test-results/transition-action-spacing/transition-action-spacing--05c69-s-reading-tools-at-1280x800/confirmation-and-tools.png",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "paintedAction": {
+        "x": 76,
+        "y": 632,
+        "width": 1128,
+        "height": 80
+      }
+    },
+    {
+      "screenshot": "test-results/transition-action-spacing/transition-action-spacing--4fdfb-rs-reading-tools-at-320x568/confirmation-and-tools.png",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "paintedAction": {
+        "x": 19,
+        "y": 499,
+        "width": 281,
+        "height": 47
+      }
+    },
+    {
+      "screenshot": "test-results/transition-action-spacing/transition-action-spacing--90d10-rs-reading-tools-at-390x844/confirmation-and-tools.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "paintedAction": {
+        "x": 24,
+        "y": 694,
+        "width": 342,
+        "height": 48
+      }
+    },
+    {
+      "screenshot": "test-results/transition-action-spacing/transition-action-spacing--e3178-rs-reading-tools-at-844x390/confirmation-and-tools.png",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "paintedAction": {
+        "x": 116,
+        "y": 316,
+        "width": 611,
+        "height": 48
+      }
+    }
+  ]
+}

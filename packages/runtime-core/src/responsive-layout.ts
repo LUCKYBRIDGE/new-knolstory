@@ -5,6 +5,13 @@ export type DialogueDock = Readonly<{bottomInsetPx:number;safeBottomPx?:number}>
 function validSize(size: StoryViewportSize) {
   return Number.isFinite(size.width) && Number.isFinite(size.height) && size.width > 0 && size.height > 0;
 }
+/** Minimum native action size in logical pixels; does not reflow authored artwork or dialogue. */
+export function resolveControlTargetSize(viewport:StoryViewportSize,display:StoryViewportSize):number {
+  if(!validSize(viewport)||!validSize(display))throw new RangeError('Control display dimensions must be finite and positive.');
+  const scale=Math.min(display.width/viewport.width,display.height/viewport.height);
+  // Leave four CSS pixels for fitted-frame borders and native raster rounding.
+  return Math.min(512,Math.max(44,Math.ceil(48/scale)));
+}
 /** Two fixed stage shapes, contained without reframing the artwork. */
 export function resolveStoryViewport(viewport: StoryViewportSize, display:StoryViewportSize=viewport, dock?:DialogueDock) {
   if (!validSize(viewport) || !validSize(display)) throw new RangeError('Story viewport dimensions must be finite and positive.');

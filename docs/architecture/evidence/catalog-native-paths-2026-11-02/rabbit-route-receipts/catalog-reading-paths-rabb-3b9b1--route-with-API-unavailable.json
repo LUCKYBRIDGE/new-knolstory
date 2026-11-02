@@ -1,0 +1,806 @@
+{
+  "workId": "rabbit",
+  "edition": "knolstory",
+  "route": "knolstory-1",
+  "projectSha256": "7d4a930a94485f02cef60503e82e3b2c348072539f755751f69d907137264021",
+  "visitedCuts": [
+    {
+      "lineId": "review-main-002:start:0",
+      "textSha256": "1c75b9f1df11ab4baf467d111a77aedc9170cb30e0c2d2a10094dcd0ba46b8c3"
+    },
+    {
+      "lineId": "review-main-002:start:1",
+      "textSha256": "49b780b8a0700db256cde8d041e9b50e26c0741bd3f6328aa238894cdaacfef8"
+    },
+    {
+      "lineId": "review-main-002:start:2",
+      "textSha256": "96a9ec0fe82a894ffeb9122d4019ae2a87fc4397bd6f2aefcc37223b81595e80"
+    },
+    {
+      "lineId": "review-main-002:start:3",
+      "textSha256": "ab54325b6f39ee22d0e625777fd9ea00172680bcb63d6b9decc5009d0145b5aa"
+    },
+    {
+      "lineId": "review-main-002:start:4",
+      "textSha256": "6d8ba0d1ddc5ba3240c1f557760d6ec0d320c0f6f66fb259a02de01e0ee7e040"
+    },
+    {
+      "lineId": "review-main-002:start:5",
+      "textSha256": "dfa546952d9af43751971783e4072734e79e6b1129c4b4319075302567da078c"
+    },
+    {
+      "lineId": "review-main-002:start:6",
+      "textSha256": "b2c9836852ac2b6577ab2b64f5762214df1131f1b1cc0fb430c941ee710de8a1"
+    },
+    {
+      "lineId": "review-main-002:start:7",
+      "textSha256": "007b5f0f0d1d75cb17a60c90af581682c0a5214580ef8a307b0176178ede5adc"
+    },
+    {
+      "lineId": "review-main-002:start:8",
+      "textSha256": "9bd27970c0be0ed74b188f3b6be2967a7752e2666e9f9dfcfe3f9494646704a7"
+    },
+    {
+      "lineId": "review-main-002:start:9",
+      "textSha256": "4e45959160eca99a37b0344a5e694e107ddeda06bad461d13d18b637fe27c760"
+    },
+    {
+      "lineId": "review-main-002:start:10",
+      "textSha256": "476cbda88189765168cf1b2e9ccc31617f92fd06da231b9704bececd45e407ac"
+    },
+    {
+      "lineId": "review-main-002:start:11",
+      "textSha256": "442a43e320f50e07ae968ca9d074a285ae054821c2b90fbfc1d685efd366ba9d"
+    },
+    {
+      "lineId": "review-main-002:start:12",
+      "textSha256": "756b2cf25fdf7eff4ec04fd727100c2357f93931e2099cdc55c549a0b31916ea"
+    },
+    {
+      "lineId": "review-main-002:start:13",
+      "textSha256": "f5992da657557b5bbcfaf07ea85b63db55e92081c7c5f3d745b8cb6d63733169"
+    },
+    {
+      "lineId": "review-main-002:start:14",
+      "textSha256": "f737be5c284c57a9d122a872d3b884fdceb2b207bca77a18a3d16ad531272eba"
+    },
+    {
+      "lineId": "review-main-002:start:15",
+      "textSha256": "b42b3bd27d7fd5ff19fc3254a31c8ff2bfe5ac13c355d9615a27eb63dcf92cfc"
+    },
+    {
+      "lineId": "review-main-002:start:16",
+      "textSha256": "ea09ccffc114dccaa2c34cdfa3db7199aa234e7483bbaa57a79c9fa275f35f05"
+    },
+    {
+      "lineId": "review-main-002:start:17",
+      "textSha256": "adbd755d1486bae18a04bef8469095cfd061dd19315b8ccbf81384e802884803"
+    },
+    {
+      "lineId": "review-main-002:start:18",
+      "textSha256": "448275bb3c3ad4e1984a6c9fdb5be3101b6e9d0bb4a70227f63229757e9998d2"
+    },
+    {
+      "lineId": "review-main-002:start:19",
+      "textSha256": "b148b1a099139cb058ea582a5c4f30e25ceee8f6d8e2c596c8f2bad1c581e50b"
+    },
+    {
+      "lineId": "review-main-002:start:20",
+      "textSha256": "5da7b562417b33c81e451e2f0e6e17b1701328c042e585f4feeeec24da78e1fa"
+    },
+    {
+      "lineId": "review-main-002:start:21",
+      "textSha256": "7eaff17978becfb14abcd64ac60cf9250846a6e12ba530b2570c2e74b07c2690"
+    },
+    {
+      "lineId": "review-main-002:start:22",
+      "textSha256": "385fe3e2c0e7128aacd64868d30c4572e66cfe3ab7337c028124c8ed25a6c2c7"
+    },
+    {
+      "lineId": "review-main-002:start:23",
+      "textSha256": "6ab569a5d6e47766f3e953a28506e5e6af9c9771017a3f581e3df0090db6fb13"
+    },
+    {
+      "lineId": "review-main-002:start:24",
+      "textSha256": "c8b0f48573ffd4c656a1724ea050acc0ce30a809678a15715575d4fcd089c6be"
+    },
+    {
+      "lineId": "review-main-002:start:25",
+      "textSha256": "7a3164822441b528a53bd456d119317a8bd0644ffe98daa33e5fb59a4e4eee05"
+    },
+    {
+      "lineId": "review-main-002:start:26",
+      "textSha256": "e259f1f3f021150697ba1ce77a52c1cdd480b31628e9be83edb97e0705212766"
+    },
+    {
+      "lineId": "review-main-002:start:27",
+      "textSha256": "77fbff2013a9f3c56eb8dc96169bbccd0b44d9d4c8a6f91ca21af1266b6b0160"
+    },
+    {
+      "lineId": "review-main-002:start:28",
+      "textSha256": "7f38dcf40fc7308f83f675aad6dad91dc405bb21235ae3b4b51eeb13568d9388"
+    },
+    {
+      "lineId": "review-main-002:start:29",
+      "textSha256": "fd7dd20bf3c5a449f1f9661c52fd3cdbe3160796600e776f14912625265bf409"
+    },
+    {
+      "lineId": "review-main-002:start:30",
+      "textSha256": "853d285f840877ab290f922124bb1156ee4879bebac3e3feb45cfadb7e2658af"
+    },
+    {
+      "lineId": "review-main-002:start:31",
+      "textSha256": "a01116e00f0fc4c472ee089de75e72a638b67148fc3865783dc32a2b6e1cd8df"
+    },
+    {
+      "lineId": "review-main-002:start:32",
+      "textSha256": "c3ff06cc0a3dda118ca3de55b7e1c26b1d75b34335f6f45d51523de4c2e849f4"
+    },
+    {
+      "lineId": "review-main-002:start:33",
+      "textSha256": "638d76bda3136d53d6eb7d45191fc227520f645735b8b9a58eba33977212e1ee"
+    },
+    {
+      "lineId": "review-main-002:start:34",
+      "textSha256": "ab18c454da1f3cff6aa64a03f32816d9067d5e96c1e2f0ee050da8bec2c9485f"
+    },
+    {
+      "lineId": "review-main-002:start:35",
+      "textSha256": "d8bbbd85d0fcad4b1d6853be41850ab10d83474fbe5da7357a95bafe7db2d681"
+    },
+    {
+      "lineId": "review-main-002:start:36",
+      "textSha256": "0a26887892fbb77c4a76cb72f98380788f416c3633ff8c1117b8c462ffab0810"
+    },
+    {
+      "lineId": "review-main-002:start:37",
+      "textSha256": "6ed9588e1f3568c68cf72f3e9dc8d43ced3fd0bb621ff31e520c778fb25263e3"
+    },
+    {
+      "lineId": "review-main-002:start:38",
+      "textSha256": "b3d0dfa299ec8ff63a34f6010dfb51bc5fbfebe98067eada85d1de0d586b775a"
+    },
+    {
+      "lineId": "review-main-002:start:39",
+      "textSha256": "1fd78fb0f11615abf1b03b41d528f68802c33a23639a400cbdbec9b271fe8c9b"
+    },
+    {
+      "lineId": "review-main-002:start:40",
+      "textSha256": "9e688c94aa22b20912bbe241fdc1843c25d1d8e79ab0b181eac6bfaa545b2ac1"
+    },
+    {
+      "lineId": "review-main-002:start:41",
+      "textSha256": "3d755b77bdcaf8ed3a22fdd583896c570ae0488884b26cfadf222075ab38b2f4"
+    },
+    {
+      "lineId": "review-main-002:start:42",
+      "textSha256": "cdd53d7abf4dfa4f6e7625dec7a85075e05e4379be49083895741882d9def27a"
+    },
+    {
+      "lineId": "review-main-002:start:43",
+      "textSha256": "5a1a929c44a1230089d3f5d185a72d1014b87332c01bd76dfc34bf5997b419db"
+    },
+    {
+      "lineId": "review-main-002:start:44",
+      "textSha256": "aca06c541d4f464dbc067cd6acce218a717e6a1dfdc68f4d7a101c448781f14d"
+    },
+    {
+      "lineId": "review-main-002:start:45",
+      "textSha256": "cd04f195e1d8b316df34c88d2a4c21fc54f0f50d3f1b0887fe98128f86758059"
+    },
+    {
+      "lineId": "review-main-002:start:46",
+      "textSha256": "398c2a3d9ea323351a2baf33f32513f1f8b38330e344dccd123f588a9d24d531"
+    },
+    {
+      "lineId": "review-main-002:start:47",
+      "textSha256": "d26d9e13b9833aae7e56a4ade4c8dfca72b26761b29e01c83db1ca9244797cf0"
+    },
+    {
+      "lineId": "review-main-002:start:48",
+      "textSha256": "67d3c00803e2f9788e6076e98de57dcbac1b673850778498f5606911caeb180b"
+    },
+    {
+      "lineId": "review-main-002:start:49",
+      "textSha256": "ddf297c0b1960c09f09aee625f9004af772fd7071f74e3858ef26d496464dd54"
+    },
+    {
+      "lineId": "review-main-002:start:50",
+      "textSha256": "d3488a324cfb882a14f389d0f5e73c74937083e319cb5f581136541a89690c86"
+    },
+    {
+      "lineId": "review-main-002:start:51",
+      "textSha256": "d87419c12d85d8569ac0222bacd2fc3a9f9d232b89914e5155360ec4b6b7e759"
+    },
+    {
+      "lineId": "review-main-002:start:52",
+      "textSha256": "014c3a3d81ce7404eb5f3ee3ac4963ededb41829cf98c2cdde7b47c88962acf8"
+    },
+    {
+      "lineId": "review-main-002:start:53",
+      "textSha256": "314497e2ff72f4fb121af20a8b8f3058fd1c71ea88538bd919190f0f6faababd"
+    },
+    {
+      "lineId": "review-main-002:start:54",
+      "textSha256": "b92036c77e446de840b059c073f27a1848061c068b24963a2c8bba66fd11eb29"
+    },
+    {
+      "lineId": "review-main-002:start:55",
+      "textSha256": "e0f9f6aeabfd8cc8a5d7638d61aabccea9e5056d044c0f7aff0d10e6e4fae440"
+    },
+    {
+      "lineId": "review-main-002:start:56",
+      "textSha256": "a6bc3d11618c7115c22163e557d96a7013de38bbd13fab9998c0f7582cd72951"
+    },
+    {
+      "lineId": "review-main-002:start:57",
+      "textSha256": "1d3126c82b0ee4eb513a17044872499c0e3cc3e70e3baec21396ef38fcf7d797"
+    },
+    {
+      "lineId": "review-main-002:obey-route:0",
+      "textSha256": "be04aef626e869ff27ef024de8df6db957eeab7ed3a64fb2ca0438bc498845af"
+    },
+    {
+      "lineId": "review-main-002:obey-route:1",
+      "textSha256": "831505a514da1809ff6cebdb32b16cd31814b21ac743c360b128cc7bf5636963"
+    },
+    {
+      "lineId": "review-main-002:obey-route:2",
+      "textSha256": "1c3f5205932c7f5862beef0efd42e9637144b5c383d9350b3795d11aa17298cf"
+    },
+    {
+      "lineId": "review-main-002:obey-route:3",
+      "textSha256": "1b4a3d83372cf0d0c2a0598d070c18ffb2f8b05527b2b25961cb60b0909c8bd0"
+    },
+    {
+      "lineId": "review-main-002:obey-route:4",
+      "textSha256": "8c1d8695be4298ab343adbc7af9b832c35568b93c061c41354f0ffa41b9046ce"
+    },
+    {
+      "lineId": "review-main-002:obey-route:5",
+      "textSha256": "282d79b60f24cef91b1f9b8ba56a58152470e173446f5b17bf749bda205bda75"
+    },
+    {
+      "lineId": "review-main-002:obey-route:6",
+      "textSha256": "c4e09f88c44c2345e0400440494fd39789f6a4f1a1a3ee0bdb568b20d380f153"
+    },
+    {
+      "lineId": "review-main-002:obey-route:7",
+      "textSha256": "ad3ab978fee89741a27f8a60f18d6a83b5cee2218d9410419f2d624f28302176"
+    },
+    {
+      "lineId": "review-main-002:obey-route:8",
+      "textSha256": "a05c89a58eb71ea2eadcf0005a1969703b04387458377c815c99667dfd6d7f23"
+    },
+    {
+      "lineId": "review-main-002:obey-route:9",
+      "textSha256": "2b03aa1a8147e6a2dadbd0f4b81a3a54af68d01cf1f3bf1896ff5658efd413ce"
+    },
+    {
+      "lineId": "review-main-002:obey-route:10",
+      "textSha256": "54560963996989ea9f584ad32f06f16542d719f03132f190c79171cf3f9f8613"
+    },
+    {
+      "lineId": "review-main-002:obey-route:11",
+      "textSha256": "c1a3561c96f91e5a499663ff50fba29df80f222ff837a6fdf86efeea52a674b9"
+    },
+    {
+      "lineId": "review-main-002:obey-route:12",
+      "textSha256": "ed95fc7f2b6f3ff95daf4d8c1e0c24bb97bc661a113e4599c57839c8e6b07339"
+    },
+    {
+      "lineId": "review-main-002:obey-route:13",
+      "textSha256": "b9a12ebaa0d78bbe56260af6ef43b3251f197fc98c366e488efec6e377708abd"
+    },
+    {
+      "lineId": "review-main-002:obey-route:14",
+      "textSha256": "e5279f2b36c471b32d62699b82b63a1fae87748c9481ac25be6f9d2ce5c5d4b5"
+    },
+    {
+      "lineId": "review-main-002:sea-route:0",
+      "textSha256": "31d3ec00480dc19a5193278ae75e3a6f3c340b6ba932a50f45f055d049858991"
+    },
+    {
+      "lineId": "review-main-002:sea-route:1",
+      "textSha256": "060cd0238e525a730d64d7790871e29b613cc4f46e5b448488c2d8e9d39d95bb"
+    },
+    {
+      "lineId": "review-main-002:sea-route:2",
+      "textSha256": "3162bbef16ecdff652cab275a926b3b7822c068dc9a8c4f2befdb4b8acd584e3"
+    },
+    {
+      "lineId": "review-main-002:sea-route:3",
+      "textSha256": "bccea74b183759de5a4dec9435be7045d6cd1aa1628c5dc46eea326d02884958"
+    },
+    {
+      "lineId": "review-main-002:sea-route:4",
+      "textSha256": "20e751cf1fef8a2082c8fd5d8d23c55a25315e7451e16da0bcc2eafaf4f74762"
+    },
+    {
+      "lineId": "review-main-002:sea-route:5",
+      "textSha256": "b3f578509bb2e99f04b01b386a5d01c5a862b8f59c8637942b1d3c982e330ab1"
+    },
+    {
+      "lineId": "review-main-002:sea-route:6",
+      "textSha256": "90eb4b0dd683265e61eee3307e052200d29290c1ed298320977ed2e5f9d98eb8"
+    },
+    {
+      "lineId": "review-main-002:sea-route:7",
+      "textSha256": "c79d7e4b712863b531b96b8a281842e4654de4748ca176faa770776d66f542a7"
+    },
+    {
+      "lineId": "review-main-002:sea-route:8",
+      "textSha256": "f6312a885a2c410b93b4cf63e04f45b24a4b6c7abb4e3e713394d61971329053"
+    },
+    {
+      "lineId": "review-main-002:sea-route:9",
+      "textSha256": "936aed609b65062a0f08b71de2e375d3d08eeb10e7182562bb70b01cca345402"
+    },
+    {
+      "lineId": "review-main-002:sea-route:10",
+      "textSha256": "697118931282500aef99e3b2dbfa53f03fd6821a29f4b177404faa3a49ebe10b"
+    },
+    {
+      "lineId": "review-main-002:palace:0",
+      "textSha256": "32ef0e86a511a4af3da3b94ad0af3402dcd2c55da7bf32bf2127ad9dc74bc153"
+    },
+    {
+      "lineId": "review-main-002:palace:1",
+      "textSha256": "af44b5a1e44b9a6d31d05ae4adb649c35a9519c487c33717a8316740a0b9b74b"
+    },
+    {
+      "lineId": "review-main-002:palace:2",
+      "textSha256": "2ca2e78405e3c04f30805970e68db5a73ae6380a645487de61b517c26bd812a9"
+    },
+    {
+      "lineId": "review-main-002:palace:3",
+      "textSha256": "502a530609ba957344bc52bcf8af0fec2d6408ff2c5d0b0d605d523284db2e1e"
+    },
+    {
+      "lineId": "review-main-002:palace:4",
+      "textSha256": "9a2f3361f4db935512effd607edf11310bc67c8879fde2cc14dc108d9152dbe9"
+    },
+    {
+      "lineId": "review-main-002:palace:5",
+      "textSha256": "ded850501b06f2c6ed6fe293877108bef00679ea8d2a7dcbdfc0c8475ec5ed4d"
+    },
+    {
+      "lineId": "review-main-002:palace:6",
+      "textSha256": "3e46034f477a686e2ad3601c162d1ba66bc09c38402b2ee80b01282019978c2d"
+    },
+    {
+      "lineId": "review-main-002:palace:7",
+      "textSha256": "fb76a7ff48de2d092718dca366130fd48a2c5be79d488cc9d0f80a9695884766"
+    },
+    {
+      "lineId": "review-main-002:palace:8",
+      "textSha256": "4068f42d474fc56f155b7e277a132c61331a8330d249e188382b9fa1329ce612"
+    },
+    {
+      "lineId": "review-main-002:palace:9",
+      "textSha256": "8f28cd0e3b9e8be6218f2a7543ff73a4bf05460e838accbd3adbbd6af5510b63"
+    },
+    {
+      "lineId": "review-main-002:palace:10",
+      "textSha256": "144b99dbc66527a489e56c8a3c798bc30c921daa69768a7f51fff42aa7a1dfa7"
+    },
+    {
+      "lineId": "review-main-002:palace:11",
+      "textSha256": "30b863368dce2c5a2ffd6f023086353c7a51eb43c7b756494306acf56a5b8dfc"
+    },
+    {
+      "lineId": "review-main-002:palace:12",
+      "textSha256": "2c1ee244b9ac9a687bd9f4cf50409ec230999812c4f07b7a9487fae37a55b553"
+    },
+    {
+      "lineId": "review-main-002:palace:13",
+      "textSha256": "7d5d0c805c59eb16847afbe04080b716e57a39997907cab2fa86c90f22d1b424"
+    },
+    {
+      "lineId": "review-main-002:palace:14",
+      "textSha256": "fa0ad39e56cd3a226b1a4d29c55083f5305cba860bcc701ed8671992418d1630"
+    },
+    {
+      "lineId": "review-main-002:palace:15",
+      "textSha256": "a46afca56ddcb04bd41e17cc1496c240ae3c63c04b8a1ad99fa46b306d1614b0"
+    },
+    {
+      "lineId": "review-main-002:palace:16",
+      "textSha256": "be32d81f629eda70a42a293fea88e34b48009eb0e15c4fee91fe7425d8f4bca6"
+    },
+    {
+      "lineId": "review-main-002:palace:17",
+      "textSha256": "1d5818b933b55772afb67367eaa7c8d9ad1ff1620b7c5d6844fbdf3efcc4b2e3"
+    },
+    {
+      "lineId": "review-main-002:palace:18",
+      "textSha256": "747cb9ca5071e8f7c66ff86cfa1c047e47ca5aaba04a5eadebcaa0f9978413bf"
+    },
+    {
+      "lineId": "review-main-002:palace:19",
+      "textSha256": "7e428bfac963e979a36c34565ac48fb5ecee5c830adfb7369fe7ce653be4c521"
+    },
+    {
+      "lineId": "review-main-002:palace:20",
+      "textSha256": "48223f95b88a0509e4dfb955270046001582bd80b249869427622177ba233420"
+    },
+    {
+      "lineId": "review-main-002:palace:21",
+      "textSha256": "aa776565c6c97f63d05f37c59acddb038e177c50c0609d7c4e589c2f4a48fd0a"
+    },
+    {
+      "lineId": "review-main-002:palace:22",
+      "textSha256": "37506a3c91f642603139c17ab7bf3f06a056268aa35b3ab40b67fd1fce63260c"
+    },
+    {
+      "lineId": "review-main-002:palace:23",
+      "textSha256": "48b225a5caa660df7911f0171f81cb442a1eeefd5812047dea89bec4389803aa"
+    },
+    {
+      "lineId": "review-main-002:palace:24",
+      "textSha256": "81733408c80fcb1c9dd125d4850e887d6b198c684d5c0879abd5522685032669"
+    },
+    {
+      "lineId": "review-main-002:palace:25",
+      "textSha256": "23dcf9aa0d77d726779432db0c840c10b838a2d363f55f663c239954944dfb47"
+    },
+    {
+      "lineId": "review-main-002:palace:26",
+      "textSha256": "1bf4ab3b9ca06d3a1f2fac501414d9ea1bddc49bf10e66670508d4b3bab3a8a9"
+    },
+    {
+      "lineId": "review-main-002:palace:27",
+      "textSha256": "22e189ef05d6c380a7a0e5ac52c2c3c478181c6a598c892ca32d28add1936cef"
+    },
+    {
+      "lineId": "review-main-002:palace:28",
+      "textSha256": "f9e10f72c3cd2afcb339c569afb0074208d3f6d64e5efa135ad4fcd257c90b36"
+    },
+    {
+      "lineId": "review-main-002:palace:29",
+      "textSha256": "7ba8a43323560b3b90d1d60bb2f3d75f91a7a357f6cb33abf3b77effe3ce3eb7"
+    },
+    {
+      "lineId": "review-main-002:palace:30",
+      "textSha256": "3b3356c610f625c52815e29d0a1bbfb608fdd8b3a0056f7e3934648ba26597e1"
+    },
+    {
+      "lineId": "review-main-002:palace:31",
+      "textSha256": "7affd3b6a521cc5ce57bd385402b4df28939896e1d6d2036b000e5bde3b65790"
+    },
+    {
+      "lineId": "review-main-002:palace:32",
+      "textSha256": "634ea01f3b44f38d049dde2c5e6b3833ba3f840f11e5a3006a10b1b46045c4f0"
+    },
+    {
+      "lineId": "review-main-002:palace:33",
+      "textSha256": "fe84ba2e7220c1583eec2880c910d31b012ef30d1b2a8231656f5e62741d7c9b"
+    },
+    {
+      "lineId": "review-main-002:palace:34",
+      "textSha256": "78151a2f9bcf6be4fdbc06485688fddd353be402c33e9d20bef3dcf25a9d4eaf"
+    },
+    {
+      "lineId": "review-main-002:palace:35",
+      "textSha256": "cc3fb46019c8e8598ce6f5711290e817f15963f4759535982547af4c2f6958f8"
+    },
+    {
+      "lineId": "review-main-002:palace:36",
+      "textSha256": "16a52726776d002e23b9121b62b6da7fca4a95088c61e9f9e3ea02976e4033df"
+    },
+    {
+      "lineId": "review-main-002:palace:37",
+      "textSha256": "ca4513983e0dccf6c929312cdc8480fdc66551cd579814a2a8cf535c47acd793"
+    },
+    {
+      "lineId": "review-main-002:palace:38",
+      "textSha256": "5efec10b4426ebe7e3de918bde90160f3cc6bc1b6b14078b508df3d21fc20475"
+    },
+    {
+      "lineId": "review-main-002:palace:39",
+      "textSha256": "37d5f5c2dacedc288073392328be4e0c8d787e545c714a022165680bd4cb44b5"
+    },
+    {
+      "lineId": "review-main-002:palace:40",
+      "textSha256": "554275b6fb9c0877bfcc2e6c0306361fdfbbbada13c08ffa950a256f24fbbc70"
+    },
+    {
+      "lineId": "review-main-002:palace:41",
+      "textSha256": "d08b325771e90c9cc7b07d76407d67aa61062fb0feca38ab5df76be41492b6d2"
+    },
+    {
+      "lineId": "review-main-002:palace:42",
+      "textSha256": "9cf87b058f527afb26ec2bc3828d4a09912533d375ae4959cb416551d0f5098c"
+    },
+    {
+      "lineId": "review-main-002:palace:43",
+      "textSha256": "c9e71daf2e3129e429a88b166a545e1af780f688f5187759c95a3f94dfe2248e"
+    },
+    {
+      "lineId": "review-main-002:palace:44",
+      "textSha256": "dc940759b9ca227890768957c77e38fa9ea9ee9847879aa7ad721223d7f0b5cb"
+    },
+    {
+      "lineId": "review-main-002:palace:45",
+      "textSha256": "f1e99bb119c5852aac7d0d9196e60cc1669490e705cddc0875772c112955d728"
+    },
+    {
+      "lineId": "review-main-002:palace:46",
+      "textSha256": "3611817fa809ca9c02cf96849b7157fa990a9b1dff322acaf8cd76812ad6a894"
+    },
+    {
+      "lineId": "review-main-002:palace:47",
+      "textSha256": "85600aabe140a335167413a3c77b319150e30c73c24a37ac2b65e2bddd6e0c07"
+    },
+    {
+      "lineId": "review-main-002:palace:48",
+      "textSha256": "2be47980b6f5e20b5d90b2f2bc1bbb5d7bb1f02977158fab354deab30a41a35b"
+    },
+    {
+      "lineId": "review-main-002:palace:49",
+      "textSha256": "12de25f6973f814b33aa596f021c8a47d7d4bcea689f90ee7ba6aed02057533a"
+    },
+    {
+      "lineId": "review-main-002:palace:50",
+      "textSha256": "4f57d444b5b9702538414519c66197c280a731011e0f8c944fb422a16de375f8"
+    },
+    {
+      "lineId": "review-main-002:palace:51",
+      "textSha256": "6519aecc9433d7e5d19cb28533023d63940da9705757668f6accba0ac78327e6"
+    },
+    {
+      "lineId": "review-main-002:palace:52",
+      "textSha256": "bb745d2de71ad1892af049dc9156d66a1cda7b6be6e2406e0bc7065dfab18f83"
+    },
+    {
+      "lineId": "review-main-002:ending-1:0",
+      "textSha256": "9f9d296cf293132fcadbf02224dbcdece0e0d6bb34981d09c2b7f6ce150f22c3"
+    },
+    {
+      "lineId": "review-main-002:ending-1:1",
+      "textSha256": "a7c05171106611fb15bd7557f020eca99dbac747ad7763b5d90659d8e12a3120"
+    },
+    {
+      "lineId": "review-main-002:ending-1:2",
+      "textSha256": "55ce1a4a72c370b9d9ca4f487921221e58bc58675336d601fb9379b15bc7783e"
+    },
+    {
+      "lineId": "review-main-002:ending-1:3",
+      "textSha256": "064ccae77eec987bbca959e8feb478c8d5723399fff24323fb0432dee578373c"
+    },
+    {
+      "lineId": "review-main-002:ending-1:4",
+      "textSha256": "dc776a48b387e1bc3adb6c530cc4745e281c7b18b03624c456a3fd9e1ded0084"
+    },
+    {
+      "lineId": "review-main-002:ending-1:5",
+      "textSha256": "9d717c1f872657835dd8a9c44faaa1511426188a9ca3efa16ce63fc37af58ee4"
+    },
+    {
+      "lineId": "review-main-002:ending-1:6",
+      "textSha256": "7afc8aaf6afb425a560bf4fee994701dfa0ebd62d32041df0b2c0d418c009c4f"
+    },
+    {
+      "lineId": "review-main-002:ending-1:7",
+      "textSha256": "5f70f55577be66ae84aa4ab85e0e424eb9278a7e8fea1f222d35dc565b24fe61"
+    },
+    {
+      "lineId": "review-main-002:ending-1:8",
+      "textSha256": "920be50764637f1b34319a04a5284addd6d5447babd31d380e83da1ffeddd35f"
+    },
+    {
+      "lineId": "review-main-002:ending-1:9",
+      "textSha256": "f56f08a528d86127a72e391b9af4a96bcbf097ce057d228d6938cd18bc52ce12"
+    },
+    {
+      "lineId": "review-main-002:ending-1:10",
+      "textSha256": "3eebf49b81a1fcdb1adaa8d94e0cdc7c408605a0eb0b708d97d376371b6d6fa9"
+    },
+    {
+      "lineId": "review-main-002:ending-1:11",
+      "textSha256": "9f99e87a9e68a33445bf198290a6a7c288d46ccb06df37803bfb9e80d02270ee"
+    },
+    {
+      "lineId": "review-main-002:ending-1:12",
+      "textSha256": "3c933c97305f7ea2303e1d8b2d42086fac09f3a91d9ff4942b5ec5fcf61b801a"
+    },
+    {
+      "lineId": "review-main-002:ending-1:13",
+      "textSha256": "1fd9490a2f67087e50b8c031c04ae14f972d513ea4e345cc5099efcf91468d07"
+    },
+    {
+      "lineId": "review-main-002:ending-1:14",
+      "textSha256": "4df443a8bd4dadabe70ae7234ac3e18164f646e1b9bd881e874e91631e5a7d5e"
+    },
+    {
+      "lineId": "review-main-002:ending-1:15",
+      "textSha256": "90c608dd568b831535754dcc06b10fa1867241783d2a6cd82140ef682d61ccda"
+    }
+  ],
+  "decisions": [
+    {
+      "lineId": "review-main-002:start:57",
+      "choiceId": "obey",
+      "label": "용궁 잔치의 손님으로 초대한다고 말한다."
+    },
+    {
+      "lineId": "review-main-002:palace:52",
+      "choiceId": "truth",
+      "label": "간을 몸 밖에 둘 수 없다고 말한다."
+    }
+  ],
+  "finalPlayback": {
+    "lineId": null,
+    "path": [
+      "review-main-002:start:0",
+      "review-main-002:start:1",
+      "review-main-002:start:2",
+      "review-main-002:start:3",
+      "review-main-002:start:4",
+      "review-main-002:start:5",
+      "review-main-002:start:6",
+      "review-main-002:start:7",
+      "review-main-002:start:8",
+      "review-main-002:start:9",
+      "review-main-002:start:10",
+      "review-main-002:start:11",
+      "review-main-002:start:12",
+      "review-main-002:start:13",
+      "review-main-002:start:14",
+      "review-main-002:start:15",
+      "review-main-002:start:16",
+      "review-main-002:start:17",
+      "review-main-002:start:18",
+      "review-main-002:start:19",
+      "review-main-002:start:20",
+      "review-main-002:start:21",
+      "review-main-002:start:22",
+      "review-main-002:start:23",
+      "review-main-002:start:24",
+      "review-main-002:start:25",
+      "review-main-002:start:26",
+      "review-main-002:start:27",
+      "review-main-002:start:28",
+      "review-main-002:start:29",
+      "review-main-002:start:30",
+      "review-main-002:start:31",
+      "review-main-002:start:32",
+      "review-main-002:start:33",
+      "review-main-002:start:34",
+      "review-main-002:start:35",
+      "review-main-002:start:36",
+      "review-main-002:start:37",
+      "review-main-002:start:38",
+      "review-main-002:start:39",
+      "review-main-002:start:40",
+      "review-main-002:start:41",
+      "review-main-002:start:42",
+      "review-main-002:start:43",
+      "review-main-002:start:44",
+      "review-main-002:start:45",
+      "review-main-002:start:46",
+      "review-main-002:start:47",
+      "review-main-002:start:48",
+      "review-main-002:start:49",
+      "review-main-002:start:50",
+      "review-main-002:start:51",
+      "review-main-002:start:52",
+      "review-main-002:start:53",
+      "review-main-002:start:54",
+      "review-main-002:start:55",
+      "review-main-002:start:56",
+      "review-main-002:start:57",
+      "review-main-002:obey-route:0",
+      "review-main-002:obey-route:1",
+      "review-main-002:obey-route:2",
+      "review-main-002:obey-route:3",
+      "review-main-002:obey-route:4",
+      "review-main-002:obey-route:5",
+      "review-main-002:obey-route:6",
+      "review-main-002:obey-route:7",
+      "review-main-002:obey-route:8",
+      "review-main-002:obey-route:9",
+      "review-main-002:obey-route:10",
+      "review-main-002:obey-route:11",
+      "review-main-002:obey-route:12",
+      "review-main-002:obey-route:13",
+      "review-main-002:obey-route:14",
+      "review-main-002:sea-route:0",
+      "review-main-002:sea-route:1",
+      "review-main-002:sea-route:2",
+      "review-main-002:sea-route:3",
+      "review-main-002:sea-route:4",
+      "review-main-002:sea-route:5",
+      "review-main-002:sea-route:6",
+      "review-main-002:sea-route:7",
+      "review-main-002:sea-route:8",
+      "review-main-002:sea-route:9",
+      "review-main-002:sea-route:10",
+      "review-main-002:palace:0",
+      "review-main-002:palace:1",
+      "review-main-002:palace:2",
+      "review-main-002:palace:3",
+      "review-main-002:palace:4",
+      "review-main-002:palace:5",
+      "review-main-002:palace:6",
+      "review-main-002:palace:7",
+      "review-main-002:palace:8",
+      "review-main-002:palace:9",
+      "review-main-002:palace:10",
+      "review-main-002:palace:11",
+      "review-main-002:palace:12",
+      "review-main-002:palace:13",
+      "review-main-002:palace:14",
+      "review-main-002:palace:15",
+      "review-main-002:palace:16",
+      "review-main-002:palace:17",
+      "review-main-002:palace:18",
+      "review-main-002:palace:19",
+      "review-main-002:palace:20",
+      "review-main-002:palace:21",
+      "review-main-002:palace:22",
+      "review-main-002:palace:23",
+      "review-main-002:palace:24",
+      "review-main-002:palace:25",
+      "review-main-002:palace:26",
+      "review-main-002:palace:27",
+      "review-main-002:palace:28",
+      "review-main-002:palace:29",
+      "review-main-002:palace:30",
+      "review-main-002:palace:31",
+      "review-main-002:palace:32",
+      "review-main-002:palace:33",
+      "review-main-002:palace:34",
+      "review-main-002:palace:35",
+      "review-main-002:palace:36",
+      "review-main-002:palace:37",
+      "review-main-002:palace:38",
+      "review-main-002:palace:39",
+      "review-main-002:palace:40",
+      "review-main-002:palace:41",
+      "review-main-002:palace:42",
+      "review-main-002:palace:43",
+      "review-main-002:palace:44",
+      "review-main-002:palace:45",
+      "review-main-002:palace:46",
+      "review-main-002:palace:47",
+      "review-main-002:palace:48",
+      "review-main-002:palace:49",
+      "review-main-002:palace:50",
+      "review-main-002:palace:51",
+      "review-main-002:palace:52",
+      "review-main-002:ending-1:0",
+      "review-main-002:ending-1:1",
+      "review-main-002:ending-1:2",
+      "review-main-002:ending-1:3",
+      "review-main-002:ending-1:4",
+      "review-main-002:ending-1:5",
+      "review-main-002:ending-1:6",
+      "review-main-002:ending-1:7",
+      "review-main-002:ending-1:8",
+      "review-main-002:ending-1:9",
+      "review-main-002:ending-1:10",
+      "review-main-002:ending-1:11",
+      "review-main-002:ending-1:12",
+      "review-main-002:ending-1:13",
+      "review-main-002:ending-1:14",
+      "review-main-002:ending-1:15"
+    ],
+    "status": "ended",
+    "choiceHistory": [
+      {
+        "pathIndex": 57,
+        "choiceId": "obey"
+      },
+      {
+        "pathIndex": 136,
+        "choiceId": "truth"
+      }
+    ]
+  },
+  "apiRequests": 4,
+  "nativeSelections": [
+    "obey",
+    "truth"
+  ]
+}

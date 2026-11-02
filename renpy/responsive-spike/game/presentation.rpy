@@ -16,14 +16,20 @@ init python:
         content_height = sum(renpy.render(Text(knol_literal(value), substitute=False, font="NotoSansKR.ttf",
                               size=size, text_align=.5, xsize=content_width), content_width, height, 0, 0).height
                              for key, value, size in fields) + max(0, len(fields) - 1) * spacing
+        from math import ceil
         confirm = transition.get("mode") == "confirm"
-        button_y = height - 128
-        available = max(80, (button_y - 96) if confirm else height - 144)
+        action_visible = confirm or bool(scene.get("transitionOnly") and scene.get("effectSteps") is not None)
+        # Core supplies the logical size of a 44px host control at the current display scale.
+        button_height = max(80 if confirm else 48, int(ceil(scene.get("controlTargetSize", 44))))
+        button_y = height - 48 - button_height
+        available = max(80, (button_y - 96) if action_visible else height - 144)
         viewport_height = min(max(1, content_height), available)
         # Short cards sit at the stage centre. Long authored copy remains scrollable.
         centre = min(height / 2, button_y / 2) if confirm else height / 2
+        if action_visible and not confirm:
+            centre = min(centre, button_y - 24 - viewport_height / 2)
         return {"x": int((width - content_width) / 2), "y": int(max(48, centre - viewport_height / 2)),
-                "width": content_width, "height": viewport_height, "buttonY": button_y,
+                "width": content_width, "height": viewport_height, "buttonY": button_y, "buttonHeight": button_height,
                 "titleSize": title_size, "bodySize": body_size, "spacing": spacing, "fields": fields}
 
     def knol_card_text_fade(trans, st, at):

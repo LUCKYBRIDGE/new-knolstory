@@ -19,6 +19,8 @@ export type RuntimeScene = Readonly<{
   artworkRect?: Rect;
   /** Initial source position counted in Unicode code points, matching native Python text indices. */
   dialogueOffset?: number;
+  /** Minimum native action size in logical pixels, resolved by Core from the fitted CSS display. */
+  controlTargetSize?: number;
   dialogueStyle?: Readonly<{fontSize:number;speakerFontSize:number;padding:number;
     /** Canonical pagination reference, independent of reader font scaling; native defaults to 32 when absent. */
     paginationFontSize?:number;
@@ -124,6 +126,7 @@ export function isRuntimePresentation(value: unknown): value is RuntimePresentat
 }
 function sceneExtras(value: Record<string, unknown>): boolean {
   if(value.effectSteps!==undefined){const steps=value.effectSteps;if(!record(steps)||!Number.isSafeInteger(steps.current)||!Number.isSafeInteger(steps.total)||(steps.current as number)<0||(steps.total as number)<1||(steps.total as number)>3||(steps.current as number)>(steps.total as number)||value.mode!=='play'||value.ended===true)return false;}
+  if(!optionalNumber(value.controlTargetSize,44,512))return false;
   if(value.dialogueOffset !== undefined && !revision(value.dialogueOffset))return false;
   if(value.viewportVersion !== undefined && value.viewportVersion !== 1)return false;
   if(value.textboxRect !== undefined && !isRect(value.textboxRect))return false;

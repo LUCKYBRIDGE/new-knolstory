@@ -1,0 +1,23 @@
+{
+  "changedMembers": [
+    "game/cache/build_info.json",
+    "game/cache/bytecode-312.rpyb",
+    "game/cache/py3analysis.rpyb",
+    "game/cache/screens.rpyb",
+    "game/presentation.rpy",
+    "game/presentation.rpyc",
+    "game/script.rpy",
+    "game/script.rpyc"
+  ],
+  "counts": {
+    "directory": 48,
+    "project-exact": 62,
+    "sdk-build-metadata-exact": 2,
+    "sdk-root-launcher-exact": 2,
+    "sdk-exact": 366,
+    "sdk-bytecode-exact": 166,
+    "generated-placeholder": 443,
+    "generated-progressive-index": 1
+  },
+  "boundary": "Exact-source equality checked; generated placeholder output not independently regenerated."
+}

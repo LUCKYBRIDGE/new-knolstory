@@ -16,7 +16,7 @@ export function previewViewport(profile:PreviewProfile,actual:DisplaySize):Displ
  */
 export function storySceneLayout(mode:'edit'|'play',profile:PreviewProfile,actual:DisplaySize){
  const viewport=previewViewport(mode==='edit'?'landscape':profile,actual);
- return {viewport,displaySize:viewport};
+ return {viewport,displaySize:viewport,controlDisplaySize:actual};
 }
 
 /** Retired preview choices are interpreted without rewriting stored manuscripts. */

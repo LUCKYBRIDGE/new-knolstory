@@ -1,5 +1,5 @@
 import {test,expect,type Page} from '@playwright/test';
-import {readFileSync} from 'node:fs';
+import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry';
 
@@ -10,7 +10,7 @@ type Edition={workId:string;edition:'original'|'knolstory';projectId:string;titl
 type Scene={sceneId:string;revision:number;width:number;height:number;mode:string;ended?:boolean;dialogue:{text:string};choices:Array<{id:string;text:string}>;presentation?:{transition?:unknown};effectSteps?:{current:number;total:number}};
 type NativeEvent={type:string;revision?:number;sceneId?:string;message?:string;choicesRect?:{x:number;y:number;width:number;height:number};dialoguePage?:{index:number;count:number};choiceId?:string};
 type ObservedWindow=Window&{__catalogPathScene?:Scene;__catalogPathEvents?:NativeEvent[]};
-const manifest=JSON.parse(readFileSync(new URL('../../docs/architecture/evidence/catalog-native-paths-2026-11-02/manifest.json',import.meta.url),'utf8')) as {editions:Edition[]};
+const editions=['manifest.json','manifest-rabbit.json'].flatMap(file=>(JSON.parse(readFileSync(new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url),'utf8')) as {editions:Edition[]}).editions);
 const canonical=(value:unknown)=>JSON.stringify(value,(_key,item:unknown)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))):item);
 const projectHash=(value:unknown)=>createHash('sha256').update(canonical(value)).digest('hex');
 const workspace=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
@@ -48,7 +48,7 @@ async function nativeChoice(page:Page,choice:{choiceId:string;label:string}){
  const state=await ready(page),scene=state.scene!,report=state.report!,index=scene.choices.findIndex(option=>option.id===choice.choiceId);
  expect(index,choice.label).toBeGreaterThanOrEqual(0);expect(scene.choices[index].text).toBe(choice.label);
  const rect=report.choicesRect;expect(rect,'Ren’Py must report the visible choice panel').toBeDefined();
- // Heungbu's short two-choice labels fit the native 96px button minimum.
+ // Reviewed short choice labels fit the native 96px button minimum.
  // Validate the reported layout before clicking; never silently guess a wrapped/scrolling row.
  expect(rect!.height).toBe(24*2+92+scene.choices.length*96+(scene.choices.length-1)*12);
  const frame=page.getByTestId('story-runtime-frame');await frame.scrollIntoViewIfNeeded();const bounds=(await frame.boundingBox())!;
@@ -59,7 +59,7 @@ async function nativeChoice(page:Page,choice:{choiceId:string;label:string}){
  await ready(page);
 }
 
-for(const edition of manifest.editions)for(const route of edition.routes)test(`Heungbu ${route.id}: complete native route with API unavailable`,async({page},info)=>{
+for(const edition of editions)for(const route of edition.routes)test(`${edition.workId} ${route.id}: complete native route with API unavailable`,async({page},info)=>{
  test.setTimeout(360000);await page.setViewportSize({width:1280,height:800});
  // Fresh Playwright contexts isolate all work. This flag only dismisses the optional browser-chrome offer.
  await page.addInitScript(()=>{
@@ -99,7 +99,9 @@ for(const edition of manifest.editions)for(const route of edition.routes)test(`H
   const nativeSelections=events.filter(event=>event.type==='choiceSelected').map(event=>event.choiceId);
   expect(nativeSelections).toEqual(route.decisions.map(choice=>choice.choiceId));
   expect(events.filter(event=>event.type==='error')).toEqual([]);
-  await info.attach('complete-path-evidence',{body:JSON.stringify({edition:edition.edition,route:route.id,projectSha256:edition.projectSha256,visitedCuts:visits,decisions:route.decisions,finalPlayback:after.playback,apiRequests,nativeSelections},null,2),contentType:'application/json'});
+  const receipt=JSON.stringify({workId:edition.workId,edition:edition.edition,route:route.id,projectSha256:edition.projectSha256,visitedCuts:visits,decisions:route.decisions,finalPlayback:after.playback,apiRequests,nativeSelections},null,2);
+  writeFileSync(info.outputPath('complete-path-evidence.json'),receipt+'\n');
+  await info.attach('complete-path-evidence',{body:receipt,contentType:'application/json'});
   await page.screenshot({path:info.outputPath(`${route.id}-ending.png`)});
  }catch(error){await info.attach('path-progress-on-failure',{body:JSON.stringify({route:route.id,visitedCuts:visits,last:await observed(page),workspace:await workspace(page)},null,2),contentType:'application/json'});throw error;}
 });

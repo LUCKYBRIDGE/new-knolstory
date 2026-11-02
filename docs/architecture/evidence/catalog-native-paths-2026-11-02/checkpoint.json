@@ -112,7 +112,51 @@
   "limits": [
     "Assertions/log and ending screenshots retained; list reporter did not persist attached per-cut JSON as separate files",
     "Landscape desktop browser; not physical phone or slow network",
-    "Rabbit/Onggojib/Seonnyeo complete paths remain; not all-eight-editions completion"
+    "Onggojib/Seonnyeo complete paths remain; not all-eight-editions completion"
   ],
-  "next": "Extend bounded runner to Rabbit six creative paths and one original before Onggojib16 and Seonnyeo64."
+  "next": "Extend bounded runner to Onggojib16 creative paths and one original, then Seonnyeo64 and original.",
+  "rabbitRun": {
+    "status": "passed",
+    "command": "pnpm exec playwright test --config docs/architecture/evidence/catalog-native-paths-2026-11-02/playwright.config.ts --grep 'rabbit (knolstory|original)-' --output=test-results/catalog-native-paths-rabbit",
+    "expectedCreativePaths": 6,
+    "expectedOriginalPaths": 1,
+    "expectedCutReads": 1290,
+    "manifest": "manifest-rabbit.json",
+    "manifestSha256": "06216a66684078329228b343c79f02f05d70b5691d2981e404352f19cc4e8599",
+    "log": "native-rabbit-paths.log",
+    "receipts": "test-results/catalog-native-paths-rabbit/**/complete-path-evidence.json",
+    "passed": 7,
+    "cutReadAssertions": 1290,
+    "boundary": "Desktop landscape Chromium against the frozen recovery build; not physical-device or slow-network proof.",
+    "retainedReceipts": [
+      {
+        "file": "rabbit-route-receipts/catalog-reading-paths-rabb-0ceb5--route-with-API-unavailable.json",
+        "sha256": "68da0f58a8942cd33a2b53b5d545b8f72a4ad5ebd434042cd78f2d331af2a242"
+      },
+      {
+        "file": "rabbit-route-receipts/catalog-reading-paths-rabb-3b9b1--route-with-API-unavailable.json",
+        "sha256": "aab308afc15ddc553722a026aaf4b5a205fe020895d39cc11cd46389446f1e10"
+      },
+      {
+        "file": "rabbit-route-receipts/catalog-reading-paths-rabb-3e9c3--route-with-API-unavailable.json",
+        "sha256": "08b56a8d161c097990a3658ea853bff3b9f0196d74f8dca5d8a840cc79c3b6be"
+      },
+      {
+        "file": "rabbit-route-receipts/catalog-reading-paths-rabb-aef98--route-with-API-unavailable.json",
+        "sha256": "65dc61e7340f24a38df521505c08c335b4cc45523f9f3a53c6cb6237917892f1"
+      },
+      {
+        "file": "rabbit-route-receipts/catalog-reading-paths-rabb-b7a95--route-with-API-unavailable.json",
+        "sha256": "2d680c996f6a3347e08a999af2bdb5ec78fc33bcbde959dc9a9bf8e75d5d4b5e"
+      },
+      {
+        "file": "rabbit-route-receipts/catalog-reading-paths-rabb-bc208--route-with-API-unavailable.json",
+        "sha256": "a5347e16b805fd4828f8681c3f2bcb95197149a175d786e018bd5274e444e4cb"
+      },
+      {
+        "file": "rabbit-route-receipts/catalog-reading-paths-rabb-f8c7c--route-with-API-unavailable.json",
+        "sha256": "49089bf4702b0bd052e1322b8c3566767275aa497af0a580c3db4e2be8e1643a"
+      }
+    ]
+  }
 }

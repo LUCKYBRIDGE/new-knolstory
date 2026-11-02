@@ -1260,3 +1260,8 @@ Excel·Google 시트의 항목명·선택 값은 한글이며, 내부 키는 숨
 - 전환 화면이 무대를 덮는 동안 하단 읽기 도구 줄을 숨긴다(위 절의 열린 과제 해결).
 
 [검증](docs/architecture/evidence/tab-handover-2026-11-01/checkpoint.json).
+
+
+## 읽기 전환 버튼의 표시 크기 — 2026-11-02
+
+시점·안내 전환은 기존 중앙 제목 연출을 유지한다. 확인 버튼과 수동 연출의 다음 버튼은 작품 전체 축소에 따라 손가락으로 누르기 어려워지지 않도록 실제 표시 크기를 반영한다. 검사한 최소320px 화면에서도44px 이상의 영역을 확보하고 긴 설명은 버튼 위에서 스크롤한다. 전환 중에는 기존 방침대로 아래 읽기 도구 줄을 숨기고 메뉴는 유지하며, 본문 복귀 후 도구 줄을 돌려준다. 작품 구도와 본문 페이지 분량은 바꾸지 않는다. [계약](docs/architecture/responsive-audio-authoring.md#전환-화면의-조작-크기--2026-11-02)과 [검증 범위](docs/architecture/evidence/transition-action-spacing-2026-11-02/checkpoint.json)를 따른다.

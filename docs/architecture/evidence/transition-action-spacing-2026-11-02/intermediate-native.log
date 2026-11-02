@@ -1,0 +1,68 @@
+
+Running 7 tests using 1 worker
+
+(node:20599) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/perspective-cue.spec.ts:18:1 › perspective cue confirms once, proceeds to real dialogue and preserves the authored manuscript (8.4s)
+  ✓  2 tests/e2e/perspective-cue.spec.ts:45:1 › provided Onggojib shows its perspective title by itself after the sound gate and goes on into its story (14.0s)
+  ✓  3 tests/e2e/transition-action-spacing.spec.ts:8:118 › native confirmation clears reading tools at 390x844 (3.4s)
+  ✘  4 tests/e2e/transition-action-spacing.spec.ts:8:118 › native confirmation clears reading tools at 320x568 (3.6s)
+(node:20932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 tests/e2e/transition-action-spacing.spec.ts:8:118 › native confirmation clears reading tools at 844x390 (4.4s)
+  ✓  6 tests/e2e/transition-action-spacing.spec.ts:8:118 › native confirmation clears reading tools at 1280x800 (3.4s)
+  ✘  7 tests/e2e/transition-action-spacing.spec.ts:21:1 › a manual title action stays touchable before and after its effect (5.1s)
+
+
+  1) tests/e2e/transition-action-spacing.spec.ts:8:118 › native confirmation clears reading tools at 320x568 
+
+    Error: touch target stays large after stage scaling
+
+    expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 43.9
+    Received:    42.9328125
+
+      14 |  await expect(page.getByRole('button',{name:'빠른 저장',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:'읽기 메뉴',exact:true})).toBeVisible();
+      15 |  await page.screenshot({path:info.outputPath('confirmation-and-tools.png')});
+    > 16 |  expect(action.y+action.height,'native action stays inside the stage').toBeLessThanOrEqual(frame.y+frame.height);expect(action.height,'touch target stays large after stage scaling').toBeGreaterThanOrEqual(43.9);
+         |                                                                                                                                                                                       ^
+      17 |  if(viewport.width<900)await page.touchscreen.tap(action.x+action.width/2,action.y+action.height/2);else await page.mouse.click(action.x+action.width/2,action.y+action.height/2);await expect(state).not.toContainText('전환 화면');await expect(page.getByRole('dialog')).toHaveCount(0);await expect(page.getByRole('button',{name:'빠른 저장',exact:true})).toBeVisible();
+      18 |  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);expect(saved.lines[0].text).toBe(project.lines[0].text);
+      19 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/transition-action-spacing.spec.ts:16:183
+
+    Error Context: test-results/transition-action-spacing/transition-action-spacing--4fdfb-rs-reading-tools-at-320x568/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transition-action-spacing/transition-action-spacing--4fdfb-rs-reading-tools-at-320x568/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/transition-action-spacing/transition-action-spacing--4fdfb-rs-reading-tools-at-320x568/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/transition-action-spacing.spec.ts:21:1 › a manual title action stays touchable before and after its effect 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    [Large manuscript diff omitted from tracked evidence; raw log retained locally in .cache/transition-controls-native.log.]
+    Expected: baseline still held the previously persisted built-in work.
+    Received: the imported two-cut manual-title test work.
+    Cause: the test captured localStorage before asynchronous import persistence.
+    Correction: wait for persisted first cut ID 'title' before capturing the baseline.
+
+    Error Context: test-results/transition-action-spacing/transition-action-spacing--a46fb-before-and-after-its-effect/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/transition-action-spacing/transition-action-spacing--a46fb-before-and-after-its-effect/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/transition-action-spacing/transition-action-spacing--a46fb-before-and-after-its-effect/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/transition-action-spacing.spec.ts:8:118 › native confirmation clears reading tools at 320x568 
+    tests/e2e/transition-action-spacing.spec.ts:21:1 › a manual title action stays touchable before and after its effect 
+  5 passed (44.0s)

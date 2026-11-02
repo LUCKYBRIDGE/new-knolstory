@@ -21,7 +21,7 @@ describe('story display viewport',()=>{
   it('always previews editing in 16:9 regardless of old settings and container shape',()=>{
     for(const profile of ['auto','desktop','portrait','landscape'] as const){
       for(const display of [{width:390,height:844},{width:844,height:390},{width:1024,height:768}]){
-        expect(storySceneLayout('edit',profile,display)).toEqual({viewport:{width:1280,height:720},displaySize:{width:1280,height:720}});
+        expect(storySceneLayout('edit',profile,display)).toEqual({viewport:{width:1280,height:720},displaySize:{width:1280,height:720},controlDisplaySize:display});
       }
     }
   });
@@ -32,7 +32,10 @@ describe('story display viewport',()=>{
       const baseline=compileStoryScene(work,cut,1,{mode:'play',...storySceneLayout('play',profile,{width:1280,height:720}),dialogueDock:{bottomInsetPx:0,safeBottomPx:0}});
       for(const display of [{width:390,height:844},{width:844,height:390},{width:1024,height:768},{width:1600,height:500},{width:250,height:900}]){
         const scene=compileStoryScene(work,cut,1,{mode:'play',...storySceneLayout('play',profile,display),dialogueDock:{bottomInsetPx:0,safeBottomPx:0}});
-        expect(scene).toEqual(baseline);
+        const {controlTargetSize:target,...composition}=scene;
+        const {controlTargetSize:_baselineTarget,...baselineComposition}=baseline;
+        expect(composition).toEqual(baselineComposition);
+        expect(target!*Math.min(display.width/scene.width,display.height/scene.height)).toBeGreaterThanOrEqual(44);
         const fit=fitStage(display,scene);
         expect(fit.width).toBeLessThanOrEqual(display.width+1e-8);
         expect(fit.height).toBeLessThanOrEqual(display.height+1e-8);
@@ -43,6 +46,12 @@ describe('story display viewport',()=>{
       }
     }
     expect(JSON.stringify(work)).toBe(original);
+  });
+  it('rejects invalid physical control rectangles before compiling a scene',()=>{
+    const work=representativeStories[0]!.project,cut=work.lines[0]!.id;
+    for(const display of [{width:0,height:720},{width:NaN,height:720},{width:320,height:Infinity}]){
+      expect(()=>compileStoryScene(work,cut,1,{mode:'play',...storySceneLayout('play','portrait',display)})).toThrow(RangeError);
+    }
   });
   it('automatic reading chooses only landscape or portrait and never a third shape',()=>{
     for(const display of [{width:1024,height:768},{width:800,height:800},{width:390,height:844},{width:1600,height:500}]){

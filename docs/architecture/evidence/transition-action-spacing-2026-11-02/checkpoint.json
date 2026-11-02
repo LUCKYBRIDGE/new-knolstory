@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-02",
+  "status": "implemented and local native verified; release pending",
+  "problem": {
+    "confirmed": "Native fixed logical confirmation shrank to34.95CSSpx at320px portrait; manual title action also shrank.",
+    "staleIssue": "Toolbar overlap was already fixed by c5d1011 on2026-11-01; preserve the existing hide-during-transition policy."
+  },
+  "implementation": [
+    "Host measures actual controlDisplaySize independently from stable artwork/dialogue displaySize.",
+    "Core resolves optional bounded controlTargetSize; contract guard rejects nonfinite/out-of-range values.",
+    "48CSS target leaves room for borders/raster rounding; native confirmation and manual-title actions use it.",
+    "Long text remains above the action; normal dialogue/cast/Flow/manuscript unaffected."
+  ],
+  "verification": {
+    "native": {
+      "passed": 7,
+      "log": "native.log",
+      "candidate": "served-build.json",
+      "screenshots": "test-results/transition-action-spacing (local)",
+      "measurements": "action-measurements.json"
+    },
+    "unit": {
+      "full": "270files2271passed2skipped before final48CSS margin adjustment; all-unit.log",
+      "finalAffected": "19passed after48CSS margin;focused-unit.log"
+    },
+    "python": "190passed including5transition-layout tests",
+    "other": [
+      "Web build after completed native build",
+      "Typecheck includingserver and strict E2E types",
+      "TargetedESLint",
+      "Commercialstory-service audit0blockers"
+    ],
+    "review": "Independent read-only review: no blocking findings; maximum512logical target limits extreme miniature displays."
+  },
+  "failuresPreserved": {
+    "control-size-red.log": "2expected failures before dedicated control sizing.",
+    "intermediate-native.log": "5passed2failed:320painted43px corrected with48CSS target; manual manuscript baseline read before async import storage completed, fixed by awaiting the imported title ID.",
+    "buildOrdering": "An early Web build was cancelled while native Brotli generation still ran. Final Web build started after runtime process exit; no QA used the cancelled build."
+  },
+  "limits": [
+    "Chromium viewport/touch emulation, not a newly verified physical phone.",
+    "Existing ego TaskSpace17 absent from inventory; no replacement space created; retained native screenshot review and repeatable regression.",
+    "Extreme fittedscale below approximately48/512 cannot guarantee48CSS under bounded contract.",
+    "Existing Heungbu/Rabbit full-path evidence uses frozen prior runtime; story/Flow/artwork data unchanged by this action-size delta.",
+    "All Onggojib/Seonnyeo paths,slow network,external account and policy checks retain the widerqueue."
+  ],
+  "release": null
+}

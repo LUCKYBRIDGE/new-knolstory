@@ -787,7 +787,7 @@ screen knol_stage():
                                 background Solid(knol_mint)
                                 padding (24, 16)
                                 xsize transition_width - 2 * min(80, int(transition_width * .06))
-                                ysize 80
+                                ysize card["buttonHeight"]
                                 xalign .5
                                 ypos card["buttonY"]
                                 action Function(knol_finish_transition)
@@ -806,8 +806,11 @@ screen knol_stage():
                         add knol_effect(effect, knol_scene.get("reducedMotion", False)) id ("title-effect-" + str(effect))
                 textbutton ("다음 효과 ›" if knol_effect_step_pending() else "계속 ›"):
                     xalign .5
-                    yalign .95
+                    ypos card["buttonY"]
+                    ysize card["buttonHeight"]
+                    xminimum card["buttonHeight"]
                     padding (24, 12)
+                    text_yalign .5
                     text_font "NotoSansKR.ttf"
                     text_size 24
                     text_color "#fffdf5"

@@ -1,0 +1,52 @@
+
+Running 7 tests using 1 worker
+
+(node:14405) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[catalog-native knolstory-1] 1/153: review-main-002:start:0
+[catalog-native knolstory-1] 41/153: review-main-002:start:40
+[catalog-native knolstory-1] 81/153: review-main-002:sea-route:7
+[catalog-native knolstory-1] 121/153: review-main-002:palace:36
+  ✓  1 tests/e2e/catalog-reading-paths.spec.ts:62:65 › rabbit knolstory-1: complete native route with API unavailable (1.4m)
+[catalog-native knolstory-2] 1/218: review-main-002:start:0
+[catalog-native knolstory-2] 41/218: review-main-002:start:40
+[catalog-native knolstory-2] 81/218: review-main-002:sea-route:7
+[catalog-native knolstory-2] 121/218: review-main-002:palace:36
+[catalog-native knolstory-2] 161/218: review-main-002:shield-route:23
+[catalog-native knolstory-2] 201/218: review-main-002:shoreAfterShield:35
+  ✓  2 tests/e2e/catalog-reading-paths.spec.ts:62:65 › rabbit knolstory-2: complete native route with API unavailable (1.9m)
+[catalog-native knolstory-3] 1/246: review-main-002:start:0
+[catalog-native knolstory-3] 41/246: review-main-002:start:40
+[catalog-native knolstory-3] 81/246: review-main-002:sea-route:7
+[catalog-native knolstory-3] 121/246: review-main-002:palace:36
+[catalog-native knolstory-3] 161/246: review-main-002:shield-route:23
+[catalog-native knolstory-3] 201/246: review-main-002:shoreAfterShield:35
+[catalog-native knolstory-3] 241/246: review-main-002:ending-3:37
+  ✓  3 tests/e2e/catalog-reading-paths.spec.ts:62:65 › rabbit knolstory-3: complete native route with API unavailable (2.2m)
+[catalog-native knolstory-4] 1/153: review-main-002:start:0
+[catalog-native knolstory-4] 41/153: review-main-002:start:40
+[catalog-native knolstory-4] 81/153: review-main-002:sea-route:7
+[catalog-native knolstory-4] 121/153: review-main-002:palace:36
+  ✓  4 tests/e2e/catalog-reading-paths.spec.ts:62:65 › rabbit knolstory-4: complete native route with API unavailable (1.4m)
+[catalog-native knolstory-5] 1/218: review-main-002:start:0
+[catalog-native knolstory-5] 41/218: review-main-002:start:40
+[catalog-native knolstory-5] 81/218: review-main-002:sea-route:7
+[catalog-native knolstory-5] 121/218: review-main-002:palace:36
+[catalog-native knolstory-5] 161/218: review-main-002:shield-route:23
+[catalog-native knolstory-5] 201/218: review-main-002:shoreAfterShield:35
+  ✓  5 tests/e2e/catalog-reading-paths.spec.ts:62:65 › rabbit knolstory-5: complete native route with API unavailable (1.9m)
+[catalog-native knolstory-6] 1/246: review-main-002:start:0
+[catalog-native knolstory-6] 41/246: review-main-002:start:40
+[catalog-native knolstory-6] 81/246: review-main-002:sea-route:7
+[catalog-native knolstory-6] 121/246: review-main-002:palace:36
+[catalog-native knolstory-6] 161/246: review-main-002:shield-route:23
+[catalog-native knolstory-6] 201/246: review-main-002:shoreAfterShield:35
+[catalog-native knolstory-6] 241/246: review-main-002:ending-3:37
+  ✓  6 tests/e2e/catalog-reading-paths.spec.ts:62:65 › rabbit knolstory-6: complete native route with API unavailable (2.1m)
+[catalog-native original-1] 1/56: classic-rabbit-1-line-01
+[catalog-native original-1] 41/56: classic-rabbit-4-line-07
+  ✓  7 tests/e2e/catalog-reading-paths.spec.ts:62:65 › rabbit original-1: complete native route with API unavailable (33.0s)
+
+  Slow test file: tests/e2e/catalog-reading-paths.spec.ts (11.3m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  7 passed (11.3m)
