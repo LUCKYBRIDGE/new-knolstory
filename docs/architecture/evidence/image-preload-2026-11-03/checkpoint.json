@@ -1,6 +1,6 @@
 {
   "date": "2026-11-03",
-  "status": "Imagepreloadinglocallyverified;userauthorizedcommit/mainpush/Pages+ingressdeployment;actualreleaseverificationpending",
+  "status": "ImagepreloadingcommittedtomainanddeployedtosamePages+ingressbuild;actualpublicoldcachetransitionpassed;overallproductcompletionremainsopen",
   "userDecision": [
     "Four configurable modes:nextNcuts,currentchapter,wholework,none",
     "Latest correction uses rolling nextfewCUTS while current is read,not nextfewchapters",
@@ -46,9 +46,8 @@
     "review": "Read-onlyreviewcaughtspeculativeoverflowcrashandone-time300mswaitflag;fixedboth. Diskcachelimitclarifiedratherthanclaim24MiBtotal.",
     "cacheReopen": "Initialtestwronglyexpectedfreshpage toauto-mountreader;secondattemptstoppedatbookcover. Followactualintroduction→shelf→resume→bookstartresume;requireauto-slotpersistbeforeclose. Noappchange."
   },
-  "preservation": "Originalcatalogue/manuscripts/assets/old evidence untouched. Onlyindependenttestcopies imported. Newruntimegeneratedlocally;productionPages/ingress/API/DB notmodified. Initialcheckoutwasclean;allcurrentchangesleftuncommitted.",
+  "preservation": "Originalcatalogue/manuscripts/assets/oldevidencepreserved.Independenttestcopyonly.Browserwholemanuscriptandreaderpathpreservedacrossactualpublicdeployment.APIandDBcontainersunchanged;11tableinventoryunchanged.Separaterate-trustexperimentsleftuncommittedandexcluded.",
   "limits": [
-    "Localnewbuild only;productionstillpriorrainycourtyardrelease",
     "No new physicaldevice/realnetwork/humanaudible/assistivetechnologyclaim",
     "Newrequiredimageswaituses45stimeout;retry ornoneescape",
     "Diskcachecanbeevicted orquota-limited;not apermanentofflineworkdownload",
@@ -87,12 +86,12 @@
     "clarity": 4,
     "actionability": 4,
     "conciseness": 4,
-    "evidence": "Native+files+types/build proven;production/hardware/longoffline remainexplicit. One canonicalcheckpoint linked fromplan/status/designcontract;no duplicativeplan."
+    "evidence": "Localnative/files/types/buildplusactualpublicold-cachetransitionandAPI/DBpreservationproven;physicaldevice/longoffline/authenticateduploadremainexplicit."
   },
   "releasePreparation": {
     "candidate": ".cache/pages-candidate-image-preload-20261103",
-    "localOnly": true,
-    "deployed": false,
+    "localOnly": false,
+    "deployed": true,
     "runtimeReview": "runtime-review.json",
     "runtimeDelta": "runtime-delta.json",
     "runtimeMembers": 1094,
@@ -106,11 +105,47 @@
     "candidateAudit": "candidate-audit.json:1564files598187818bytes,0blockers,passesPreflighttrue",
     "manifestBoundary": "manifestpassesPreflight derivesfromsourceauditandremainsfalsebecauseexcludedruntime.zip;separateservingcandidateauditprovesexactexcludedscopepasses",
     "tests": "30Pythonruntime-review/staticaudit tests passed;release-tests.log",
-    "publicChanges": "None: no commit/push/deployment/API/DB/credentials writes"
+    "publicChanges": "Historicalpreparationscopewaslocalonly;subsequentlyapprovedcommit/mainpushandPages+ingressdeploymentrecordedinrelease."
   },
   "externalAuthorization": {
     "date": "2026-11-03",
     "answer": "커밋·main 반영·운영 배포 진행",
     "scope": "Imagepreloadingimplementation+verificationrecords commit/mainpushandPages+ingresssamebuilddeployment. Doesnotauthorizenewrate-trustactivation,keys/configchangesorAPIdeployment."
+  },
+  "release": {
+    "sourceCommit": "22793422a8a734f93791fbed478681b2c2a59c1b",
+    "ci": "release-ci.json",
+    "publicOrigin": "https://story.knolquiz.com",
+    "pages": "https://610599d2.new-knolstory.pages.dev",
+    "ingressBuild": "ingress-build.json",
+    "ingressAllFiles": "ingress-files.json",
+    "ingressActivation": "ingress-activation.json",
+    "actualPublicOldCache": "live-cache-transition.json",
+    "rollback": {
+      "previousPages": "https://0816d226.new-knolstory.pages.dev",
+      "previousIngressDigest": "sha256:d61dd11511be1e4b07c05c74aac19eb3e619f8eb41a09f89282faa371670163c",
+      "retainedImageTag": "knolstory-next-ingress:rollback-20261103-image-preload",
+      "previousCandidate": ".cache/pages-release-20261102-rainy-final/site"
+    },
+    "artifactIdentity": "Servingcandidateexact1564files598187818bytesverifiedinsideingressimage;Pagesuploadsamecandidate.SourcecommitinoriginalmanifestisprecommitHEADc2c49b1andishistorical;approved2279342identifiedbyexactsourcehashesandCI,notbyrewritingoriginalmanifest.",
+    "audit": "Productiondependenciespnpm audit--prod--audit-level moderate:no known vulnerabilities.Fulldevelopmentaudit4moderate,0high/critical;no unrelateddependencyupgrade.",
+    "scope": "Ingressonlyreplacement;noAPIimage,migration,secret,providerorWorkerchange.ProductionDB11tableinventoryunchanged.",
+    "publicStaticDelivery": {
+      "browserReport": "live-browser-files.json",
+      "measurement": "../startup-speed-2026-10-31/measurement/browser-verify.mjs reused unchanged",
+      "files": 1563,
+      "configurationFilesExcluded": [
+        "_headers"
+      ],
+      "unexpected": 0,
+      "criticalHashes": "9/9",
+      "audioRanges": "3passed;Pages200wholeFileMatch",
+      "brotli": [
+        "runtime/renpy.data",
+        "runtime/renpy.wasm"
+      ],
+      "urllibFailure": "live-urllib-blocked.json preserves403HEAD;realbrowserrequestssucceededwithoutspoofingorsecuritychanges",
+      "boundary": "Allfilepresenceand9criticalhashes;notall1563bodyhashes.Precise1564bodyhashesverifiedinsideingressimage."
+    }
   }
 }

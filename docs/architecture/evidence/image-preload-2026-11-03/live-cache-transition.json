@@ -1,0 +1,91 @@
+{
+  "browser": "153.0.8010.12",
+  "origin": "https://story.knolquiz.com",
+  "isolatedContext": true,
+  "cacheCleared": false,
+  "before": {
+    "projectSha256": "81cec3358fcf403bd1db3d0ac01892b38333fee5ef51fe36ca05ab6a97eb1490",
+    "runtime": {
+      "preloadHelper": "undefined",
+      "scripts": [
+        "https://story.knolquiz.com/runtime/knol-loading.js?v=293c0aeb94ac0370",
+        "",
+        "https://story.knolquiz.com/runtime/runtime-contract.js?v=78f416501e4e55a8",
+        "",
+        "https://story.knolquiz.com/runtime/knol-bridge.js?v=c09f977ab9d35139",
+        "https://story.knolquiz.com/runtime/renpy-pre.js?v=aef6c9d0aee065bc",
+        "https://story.knolquiz.com/runtime/renpy.js?v=498a0981c1fe0e8d",
+        "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+      ]
+    },
+    "playback": {
+      "lineId": "76c476c3-32af-4756-8ff4-3f63c45314f9",
+      "path": [
+        "76c476c3-32af-4756-8ff4-3f63c45314f9"
+      ],
+      "status": "choice"
+    }
+  },
+  "after": {
+    "projectSha256": "81cec3358fcf403bd1db3d0ac01892b38333fee5ef51fe36ca05ab6a97eb1490",
+    "runtime": {
+      "preloadHelper": "object",
+      "scripts": [
+        "https://story.knolquiz.com/runtime/knol-loading.js?v=293c0aeb94ac0370",
+        "",
+        "https://story.knolquiz.com/runtime/runtime-contract.js?v=c00cb97f2acc7de1",
+        "https://story.knolquiz.com/runtime/knol-image-preload.js?v=8bd39f3b4eac1d27",
+        "",
+        "https://story.knolquiz.com/runtime/knol-bridge.js?v=91d9c6fbe5113688",
+        "https://story.knolquiz.com/runtime/renpy-pre.js?v=aef6c9d0aee065bc",
+        "https://story.knolquiz.com/runtime/renpy.js?v=498a0981c1fe0e8d",
+        "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092"
+      ]
+    },
+    "imageStatus": {
+      "requestId": "images-1",
+      "generation": 1,
+      "required": [
+        "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "assets/legacy-18da4fc/M01-base.webp"
+      ],
+      "prepared": [
+        "assets/legacy-18da4fc/M01-base.webp",
+        "assets/legacy-18da4fc/BG01-valley-day.webp"
+      ],
+      "installed": [
+        "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "assets/legacy-18da4fc/M01-base.webp"
+      ],
+      "nativeBytes": 684552,
+      "memoryBytes": 684552,
+      "maxMemoryBytes": 25165824,
+      "active": [],
+      "cacheName": "knolstory-runtime-images-v1-9b20c65a702cadd979e367bc"
+    },
+    "native": {
+      "text": "친구와 함께 다리를 건널까요?",
+      "images": [
+        "assets/legacy-18da4fc/BG01-valley-day.webp",
+        "assets/legacy-18da4fc/M01-base.webp"
+      ]
+    },
+    "playback": {
+      "lineId": "76c476c3-32af-4756-8ff4-3f63c45314f9",
+      "path": [
+        "76c476c3-32af-4756-8ff4-3f63c45314f9"
+      ],
+      "status": "choice"
+    }
+  },
+  "deployment": {
+    "sourceCommit": "22793422a8a734f93791fbed478681b2c2a59c1b",
+    "pages": "https://610599d2.new-knolstory.pages.dev",
+    "ingressImage": "sha256:3d374ab92ce7dc323e206d69be9cae7e08a0354d51f76bdb8f0480e98b050f29"
+  },
+  "wholeManuscriptAndReaderPathPreserved": true,
+  "limits": [
+    "One Chromium desktop context on the actual public origin; not a physical-device or all-browser proof.",
+    "No authentication/upload or user profile was used."
+  ]
+}

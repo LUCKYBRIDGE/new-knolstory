@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-11-02T23:06:28.998983+00:00",
+  "sourceCommit": "22793422a8a734f93791fbed478681b2c2a59c1b",
+  "newImageDigest": "sha256:3d374ab92ce7dc323e206d69be9cae7e08a0354d51f76bdb8f0480e98b050f29",
+  "apiAndDatabaseContainersUnchanged": true,
+  "databaseInventoryUnchanged": true,
+  "databaseTables": 11,
+  "indexSha256": "57c82a77ab472b3a9e984ea284f30b75951ebe2d674bd0e1a24bbf057cd9b23d",
+  "apiConfigStatus": 200,
+  "anonymousMeStatus": 401,
+  "providers": {
+    "kakao": true,
+    "google": false
+  },
+  "noCredentialValuesOrPathsPublished": true,
+  "activation": "Existing configuration reused in memory; ingress-only no-deps replacement. No API image, migration, credential generation or secret update."
+}

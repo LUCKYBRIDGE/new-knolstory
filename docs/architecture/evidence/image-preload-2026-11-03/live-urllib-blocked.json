@@ -1,0 +1,35 @@
+{
+  "origin": "https://story.knolquiz.com",
+  "sourceCommit": "c2c49b184844dd6066a9b53e3e0a325e0f3e5c7a",
+  "success": false,
+  "scope": "Static delivery evidence, not rights approval or complete application validation.",
+  "candidateFiles": 1563,
+  "checkedFiles": 1,
+  "transportBlocked": true,
+  "configurationFiles": [
+    "_headers"
+  ],
+  "errors": [
+    {
+      "path": "404.html",
+      "method": "HEAD",
+      "error": "Cloudflare rejected the HEAD transport; file presence is unverified.",
+      "status": 403,
+      "errorType": "origin-http-policy",
+      "transportBlocked": true
+    }
+  ],
+  "files": [
+    {
+      "path": "404.html",
+      "method": "HEAD",
+      "error": "Cloudflare rejected the HEAD transport; file presence is unverified.",
+      "status": 403,
+      "errorType": "origin-http-policy",
+      "transportBlocked": true
+    }
+  ],
+  "hashes": [],
+  "ranges": [],
+  "negotiated": []
+}

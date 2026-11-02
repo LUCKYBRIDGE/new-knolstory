@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "22793422a8a734f93791fbed478681b2c2a59c1b",
+  "imageTag": "knolstory-next-ingress:image-preload-20261103-2279342",
+  "imageDigest": "sha256:3d374ab92ce7dc323e206d69be9cae7e08a0354d51f76bdb8f0480e98b050f29",
+  "staticFiles": 1564,
+  "staticBytes": 598187818,
+  "sourceFiles": {
+    "server/Dockerfile.ingress": "f6dfe2b8da7eca7a295cef9b6164958151bcab6cf19f890b87c804a4acaa6c33",
+    "server/operations/production-ingress.mjs": "e289b5ea16adb4138ec62241e5d46e9d2d97422af1f166e2e1b081246e23b234"
+  },
+  "scope": "Only approved source plus exact candidate bytes; streamed context; no API, secrets, external registry push or activation."
+}
