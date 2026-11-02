@@ -24,7 +24,8 @@
     "packages/asset-registry/src/legacy-ui-media.json",
     "apps/web/public/assets/loading/README.md",
     "apps/web/public/brand/README.md",
-    "docs/architecture/evidence/layered-stories-2026-11-02/generation.json"
+    "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
+    "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json"
   ],
   "assets": [
     {
@@ -6781,6 +6782,18 @@
         "docs/architecture/evidence/layered-stories-2026-11-02/generation.json#onggojib.character.layered-ragged-replacement-shoes-v1"
       ],
       "creationMethodEvidence": "built-in image_gen; project owner requested generation and service/editor use 2026-11-02"
+    },
+    {
+      "file": "apps/web/public/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+      "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833",
+      "assetIds": [
+        "seonnyeo.background.cottage-rain-evening-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json#seonnyeo.background.cottage-rain-evening-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; project owner requested regeneration and service/editor use 2026-11-02"
     }
   ]
 }

@@ -1,0 +1,146 @@
+
+Running 14 tests using 2 workers
+
+(node:31733) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31734) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[catalog-native knolstory-6] 1/385: P1-v166-1
+[catalog-native knolstory-60] 1/345: P1-v166-1
+[catalog-native knolstory-6] 41/385: 1-v163-1
+[catalog-native knolstory-60] 41/345: 1-v163-1
+[catalog-native knolstory-6] 81/385: 3-v104-12
+[catalog-native knolstory-60] 81/345: 3-v159-13
+[catalog-native knolstory-6] 121/385: 5-v102-15
+[catalog-native knolstory-60] 121/345: 5-v157-16
+[catalog-native knolstory-6] 161/385: 8-v81-4
+[catalog-native knolstory-60] 161/345: 8-v152-9
+[catalog-native knolstory-6] 201/385: 10-v79-16
+[catalog-native knolstory-60] 201/345: 11-v149-5
+[catalog-native knolstory-6] 241/385: C3-A-v53-9
+[catalog-native knolstory-60] 241/345: 14-v144-3
+[catalog-native knolstory-6] 281/385: H2-v49-4
+[catalog-native knolstory-60] 281/345: HA1-v67-1
+[catalog-native knolstory-6] 321/385: E3-1-v30-2
+[catalog-native knolstory-60] 321/345: E2-1-v63-8
+[catalog-native knolstory-6] 361/385: E3-3-v28-5
+  ✓   2 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-60: complete native route with API unavailable (3.4m)
+[catalog-native knolstory-32] 1/398: P1-v166-1
+  ✓   1 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-6: complete native route with API unavailable (3.6m)
+[catalog-native knolstory-50] 1/340: P1-v166-1
+[catalog-native knolstory-32] 41/398: 1-v163-1
+[catalog-native knolstory-50] 41/340: 1-v163-1
+[catalog-native knolstory-32] 81/398: 3-v104-12
+[catalog-native knolstory-50] 81/340: 3-v159-13
+[catalog-native knolstory-32] 121/398: 5-v102-15
+[catalog-native knolstory-50] 121/340: 5-v157-16
+[catalog-native knolstory-32] 161/398: 8-v97-8
+[catalog-native knolstory-50] 161/340: 8-v152-9
+[catalog-native knolstory-32] 201/398: 11-v94-4
+[catalog-native knolstory-50] 201/340: 11-v149-5
+[catalog-native knolstory-32] 241/398: 14-v89-2
+[catalog-native knolstory-50] 241/340: C3-A-v143-14
+[catalog-native knolstory-32] 281/398: C4H-v68-1
+[catalog-native knolstory-50] 281/340: R1-v13-15
+[catalog-native knolstory-32] 321/398: E4-3-v40-2
+[catalog-native knolstory-50] 321/340: E2-2-v7-2
+[catalog-native knolstory-32] 361/398: E4-6-v37-2
+  ✓   4 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-50: complete native route with API unavailable (3.3m)
+[catalog-native knolstory-9] 1/329: P1-v166-1
+  ✓   3 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-32: complete native route with API unavailable (3.8m)
+[catalog-native knolstory-19] 1/344: P1-v166-1
+[catalog-native knolstory-9] 41/329: 1-v163-1
+[catalog-native knolstory-19] 41/344: 1-v163-1
+[catalog-native knolstory-9] 81/329: 3-v104-12
+[catalog-native knolstory-19] 81/344: 3-v104-12
+[catalog-native knolstory-9] 121/329: 5-v102-15
+[catalog-native knolstory-19] 121/344: 5-v102-15
+[catalog-native knolstory-9] 161/329: 8-v81-4
+[catalog-native knolstory-19] 161/344: 8-v97-8
+[catalog-native knolstory-9] 201/329: 10-v79-16
+[catalog-native knolstory-19] 201/344: 11-v94-4
+[catalog-native knolstory-9] 241/329: C3-B-v74-9
+[catalog-native knolstory-19] 241/344: C3-A-v85-13
+[catalog-native knolstory-9] 281/329: R1-v61-17
+[catalog-native knolstory-19] 281/344: H2-v49-8
+[catalog-native knolstory-9] 321/329: E1-2-v3-7
+  ✓   5 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-9: complete native route with API unavailable (3.6m)
+[catalog-native knolstory-45] 1/376: P1-v166-1
+[catalog-native knolstory-19] 321/344: C5R-v19-1
+[catalog-native knolstory-45] 41/376: 1-v163-1
+  ✓   6 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-19: complete native route with API unavailable (4.1m)
+[catalog-native knolstory-26] 1/333: P1-v166-1
+[catalog-native knolstory-45] 81/376: 3-v159-13
+[catalog-native knolstory-26] 41/333: 1-v163-1
+[catalog-native knolstory-45] 121/376: 5-v157-16
+[catalog-native knolstory-26] 81/333: 3-v104-12
+[catalog-native knolstory-45] 161/376: 8-v137-5
+[catalog-native knolstory-26] 121/333: 5-v102-15
+[catalog-native knolstory-45] 201/376: 11-v134-1
+[catalog-native knolstory-26] 161/333: 8-v97-8
+[catalog-native knolstory-45] 241/376: C3-B-v130-10
+[catalog-native knolstory-26] 201/333: 11-v94-4
+[catalog-native knolstory-45] 281/376: H3-v125-3
+[catalog-native knolstory-26] 241/333: 14-v89-2
+[catalog-native knolstory-26] 281/333: R1-v86-21
+[catalog-native knolstory-45] 321/376: E3-1-v108-10
+[catalog-native knolstory-26] 321/333: E2-3-v54-1
+[catalog-native knolstory-45] 361/376: C6C-A-v25-3
+  ✓   8 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-26: complete native route with API unavailable (4.0m)
+  ✓   7 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-45: complete native route with API unavailable (4.9m)
+[catalog-native knolstory-52] 1/353: P1-v166-1
+[catalog-native knolstory-33] 1/335: P1-v166-1
+[catalog-native knolstory-52] 41/353: 1-v163-1
+[catalog-native knolstory-33] 41/335: 1-v163-1
+[catalog-native knolstory-52] 81/353: 3-v159-13
+[catalog-native knolstory-33] 81/335: 3-v159-13
+[catalog-native knolstory-52] 121/353: 5-v157-16
+[catalog-native knolstory-33] 121/335: 5-v157-16
+[catalog-native knolstory-52] 161/353: 8-v152-9
+[catalog-native knolstory-33] 161/335: 8-v137-5
+[catalog-native knolstory-52] 201/353: 11-v149-5
+[catalog-native knolstory-33] 201/335: 11-v134-1
+[catalog-native knolstory-52] 241/353: C3-A-v143-14
+[catalog-native knolstory-33] 241/335: C3-A-v123-10
+[catalog-native knolstory-52] 281/353: H2-v119-9
+[catalog-native knolstory-33] 281/335: R1-v107-11
+[catalog-native knolstory-52] 321/353: E2-1-v18-1
+[catalog-native knolstory-33] 321/335: E1-2-v3-1
+  ✓  10 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-33: complete native route with API unavailable (3.3m)
+[catalog-native knolstory-11] 1/341: P1-v166-1
+  ✓   9 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-52: complete native route with API unavailable (3.5m)
+[catalog-native knolstory-57] 1/324: P1-v166-1
+[catalog-native knolstory-11] 41/341: 1-v163-1
+[catalog-native knolstory-57] 41/324: 1-v163-1
+[catalog-native knolstory-11] 81/341: 3-v104-12
+[catalog-native knolstory-57] 81/324: 3-v159-13
+[catalog-native knolstory-11] 121/341: 5-v102-15
+[catalog-native knolstory-57] 121/324: 5-v157-16
+[catalog-native knolstory-11] 161/341: 8-v81-4
+[catalog-native knolstory-57] 161/324: 8-v152-9
+[catalog-native knolstory-11] 201/341: 10-v79-16
+[catalog-native knolstory-57] 201/324: 11-v149-5
+[catalog-native knolstory-11] 241/341: C3-B-v74-9
+[catalog-native knolstory-57] 241/324: 14-v144-3
+[catalog-native knolstory-11] 281/341: H3-v69-2
+[catalog-native knolstory-57] 281/324: R1-v61-22
+[catalog-native knolstory-11] 321/341: E1-1-v16-3
+[catalog-native knolstory-57] 321/324: E1-3-v2-3
+  ✓  11 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-11: complete native route with API unavailable (3.6m)
+  ✓  12 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-57: complete native route with API unavailable (3.5m)
+[catalog-native knolstory-17] 1/332: P1-v166-1
+[catalog-native original-1] 1/83: classic-seonnyeo-1-line-01
+[catalog-native knolstory-17] 41/332: 1-v163-1
+[catalog-native original-1] 41/83: classic-seonnyeo-4-line-06
+[catalog-native knolstory-17] 81/332: 3-v104-12
+[catalog-native original-1] 81/83: classic-seonnyeo-6-line-21
+  ✓  14 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo original-1: complete native route with API unavailable (48.1s)
+[catalog-native knolstory-17] 121/332: 5-v102-15
+[catalog-native knolstory-17] 161/332: 8-v97-8
+[catalog-native knolstory-17] 201/332: 11-v94-4
+[catalog-native knolstory-17] 241/332: C3-A-v85-13
+[catalog-native knolstory-17] 281/332: R1-v13-14
+[catalog-native knolstory-17] 321/332: E1-2-v3-4
+  ✓  13 tests/e2e/catalog-reading-paths.spec.ts:63:65 › seonnyeo knolstory-17: complete native route with API unavailable (2.8m)
+
+  14 passed (25.2m)

@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:44800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/catalog-weather-continuity.spec.ts:149:1 › the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring (9.3s)
+
+  1 passed (9.7s)

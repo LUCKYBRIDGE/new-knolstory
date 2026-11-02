@@ -44,4 +44,12 @@ class DerivedImageEvidenceTests(unittest.TestCase):
    asset=self.asset();asset['metadata']['statureTransform'].update(patch)
    with self.assertRaisesRegex(ValueError,'transformation'):
     module.asset_provenance(asset)
+class GeneratedWeatherEvidenceTests(unittest.TestCase):
+ def test_generated_weather_records_its_own_recipe_without_legacy_or_cc0_inference(self):
+  asset={'id':'weather','sourcePath':'docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json#weather','copyright':'project owner','metadata':{'generatedWeatherAsset':True}}
+  fields=module.asset_provenance(asset)
+  self.assertEqual(fields['provider'],'project-generated-image')
+  self.assertIn('prepare-rainy-courtyard-asset.py',fields['generationPlan'])
+  self.assertEqual(fields['source'],asset['sourcePath'])
+  self.assertNotIn('license',fields)
 if __name__=='__main__':unittest.main()

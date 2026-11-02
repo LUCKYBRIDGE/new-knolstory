@@ -1,0 +1,14 @@
+{
+  "image": "sha256:ea762d05a7a1e86f5caa65f6c09d241f45c4702f202992c6beee15f79a827103",
+  "health": [
+    {
+      "path": "/health/live",
+      "status": 200
+    },
+    {
+      "path": "/health/ready",
+      "status": 200
+    }
+  ],
+  "success": true
+}

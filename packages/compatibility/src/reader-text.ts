@@ -1,3 +1,4 @@
+import {connectCatalogRainyCourtyard} from './catalog-rainy-courtyard';
 import {connectCatalogWeatherContinuity} from './catalog-weather-continuity';
 import {connectCatalogLayeredScenes} from './catalog-layered-scenes';
 import {connectCatalogNarrativeSeams} from './catalog-narrative-seams';
@@ -65,9 +66,10 @@ export function resolveProvidedCatalogStory(original: StoryProject, stored?: Sto
   const previousBranches=connectCatalogBranchNarrative(previousSeams);
   const previousCards=simplifyCatalogPerspectiveCard(previousBranches);
   const previousWeather=connectCatalogLayeredScenes(previousCards);
-  const current=connectCatalogWeatherContinuity(previousWeather);
+  const previousRainyCourtyard=connectCatalogWeatherContinuity(previousWeather);
+  const current=connectCatalogRainyCourtyard(previousRainyCourtyard);
   // The confirm-card cue published until 2026-10-31 is a known version too, so it refreshes to the current one.
-  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,previousChapters,previousSeams,previousBranches,previousCards,previousWeather,current].map(catalogFingerprint));
+  const known=new Set([original,enhanceExistingStory(original),previous,enhanceExistingStory(previous),refined,enhanced,connectPreviousCatalogPerspective(enhanced),previousIdentity,previousChapters,previousSeams,previousBranches,previousCards,previousWeather,previousRainyCourtyard,current].map(catalogFingerprint));
   versions={known,current};catalogVersions.set(original.id,versions);
  }
  if(stored&&!versions.known.has(catalogFingerprint(stored)))return stored;

@@ -1,0 +1,681 @@
+{
+  "workId": "seonnyeo",
+  "edition": "original",
+  "route": "original-1",
+  "projectSha256": "d7a4947a854f86a74897b0ed26e2d790d4da811b16ae141d8a1f24ff6d011265",
+  "visitedCuts": [
+    {
+      "lineId": "classic-seonnyeo-1-line-01",
+      "textSha256": "3fc87a1d94c10e4781432c1ade2df32cc784124d20894bc4522ed44160b21d18",
+      "semanticSha256": [
+        "1b1b2f3c945393e52f736dd761507ffcbb7fad2d01bc42d19b3b9a6729642895"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-02",
+      "textSha256": "9c6dc3d41df93ec1683c96112abb28c8bc5639871562a3fb5e66367c920fe1bb",
+      "semanticSha256": [
+        "c9fb85e9c4674c06782374ba0314db04c194d1f45acbdbfd86df0c3c02fb2eb0"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-03",
+      "textSha256": "03e1673d48d7ef1304f1d180eaef0520b1c82d05c94c26815e8134c160c62963",
+      "semanticSha256": [
+        "587811550f221847a449ec45f52cadcd1113abf35e6a4ba9c26f01f9487e4dfa"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-04",
+      "textSha256": "0ac25f4d9cced2ebb652e4b82558446d3f2b2040ae5b2a9cae5b7e06fc7c48f4",
+      "semanticSha256": [
+        "b4039458d519f36061cbc989b800464e852edf457690a21124be4b3f63bb87db"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-05",
+      "textSha256": "dd33908a1d7c572b5f002cc84785c5fdb9a7b4cb0a5958dcafaaab7c6720fa7b",
+      "semanticSha256": [
+        "566bdd36591ae77d8df6ce6f6c328177eda4134dfcff0f025b49defb750e5a09"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-06",
+      "textSha256": "b26c11a73b004e0f861af9b08edfcf04fcd6f654c68fecdb25ec3a48ca5364e4",
+      "semanticSha256": [
+        "dd7e11b959b50153a2b9927c722d8f4430f685b5519b40bf82fd37432f3fd62e"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-07",
+      "textSha256": "044b7f9ad3565eb4403cf1ca18ce9d138adf6464d77dc1845ada244de1a39002",
+      "semanticSha256": [
+        "2241c801582de21551ad5440bca19e03b65bc341fb5509834d251336435c8380"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-08",
+      "textSha256": "b6e0b2ac9cde65ba35b6c07ceb63aaef56e71201e11dda3d35e340875cd44088",
+      "semanticSha256": [
+        "8ffadb8958b430bce81f006132cdcb13d576369acec308b932666c38779f0d3e"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-09",
+      "textSha256": "a9f29547649a912c91582fe8701355ac3e6f9b354f589e16069844be7d2899ce",
+      "semanticSha256": [
+        "6e15ac44130ba1004b2552b3e7b5377b24fa3afef3a376dcf9f6267f6380b61a"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-10",
+      "textSha256": "0609e000af6c0a4251c2438c8dabde02310d76f23c22145517dceae0f58cd674",
+      "semanticSha256": [
+        "243f27b9749947da54538ea2089cbf30fff6fb500426ec88dbc3ca6181f069b1"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-11",
+      "textSha256": "390f1ee5a4410454189f7ca1d9c140e962b2ecb58516971208f5f042c9813116",
+      "semanticSha256": [
+        "fce3638dde0bc325aa469ad443d30040a96514a1d890ec81268f470f98d83bf4"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-1-line-12",
+      "textSha256": "f9a4043bf22313cc075fdba133a8c75753b43e473a84104d7d284d7f28434bd8",
+      "semanticSha256": [
+        "3575ed2eb4b466877e64cbc94810e2d77d728915c2efa4b2cd39e2a025ef2cfd"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-01",
+      "textSha256": "d1a06aa7e6cce596a8e2c852e2ea5268b0b8370567d78cdea671fa71406f0a62",
+      "semanticSha256": [
+        "725189bd7818eb640f7cba8e63903d414795117120cdae60d1450546f1fac94a"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-02",
+      "textSha256": "c7d057b2588665066596bc87f203407607d81fb96538454bd22f726c7f89dd07",
+      "semanticSha256": [
+        "c14078614d12d1c733984e385122cd7d737e0f89ff3ffd31d4c0df36804b3b96"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-03",
+      "textSha256": "eece83122ca68f74af8d6296ab10664c512bb940647577dbe2979933a9114d52",
+      "semanticSha256": [
+        "b070b29d4296f55551d409fa4feb9a74be9beb9ceb5de354dce087febdaf1be8"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-04",
+      "textSha256": "4da2d59a5f4964341daeed34195bfe3bee50b9ee982ca59adaae602c10c6b739",
+      "semanticSha256": [
+        "aefd15f0d59163b25ea691c0c326d39ee48a2d2107df9139d732c1ba8e8e68e6"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-05",
+      "textSha256": "ced28662caa16a9336db527cd916cbb3222a2795d472eb3465f0eecdb605334e",
+      "semanticSha256": [
+        "cd8c6c1e00733e447510daadb906590b7eee6417dd51ee2e4df2ae94e3a83903"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-06",
+      "textSha256": "a6fa48e957d9b2a0a5a0b98b02c27ee7ae46531b89943f5b83ba49484f19b55c",
+      "semanticSha256": [
+        "9f411345d9dce2ada79b8f2be3fe1b3e29f512d87359cfdef7359b2d989e3076"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-07",
+      "textSha256": "7f35d0feca677e445fb6cfedb0705030ffefbf4eca4fc5892c8e2e15a6334631",
+      "semanticSha256": [
+        "5034af3bcd88f22fcbb499bca3ff8a6dbe7ce1fe4205a2d99e4c78e0021d97eb"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-08",
+      "textSha256": "df950729771c553369c00f883f8cf1d15bdb721176008987d1f2acfe865322fe",
+      "semanticSha256": [
+        "b40e30f38a55b6726b362600baae689f6da6b16b85eea036d6875bf43d0c5a9e"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-09",
+      "textSha256": "c7da8f7b40e1ea0fa0331422379f636eb332d24ac8cd6c7ae3c4e3ef4be23222",
+      "semanticSha256": [
+        "fb5dec6fa552b9fac92ada96c8da3e8a3f40dd4e34c1635a1ea35f86e30fe4b5"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-10",
+      "textSha256": "970550bf0edce0a720d194d01619922c2d36909c4d55c0d419c92a68383b1cfd",
+      "semanticSha256": [
+        "86a865425ed76ec719dfa5306042f9db1e3dd198cc2d19d62725d6a015d3fbb5"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-11",
+      "textSha256": "d1d809654a2ecdcd733c987ca41024a64b44736ae3b6074129ed57e662b30c95",
+      "semanticSha256": [
+        "bce4abf82ef8e2ef313f661556ad3904b6f5083a9bc57e46ac348158276ae159"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-2-line-12",
+      "textSha256": "9a85e1c96a7547f01f7878f9d4931ece50f45645ebf201912be468feef99d2b3",
+      "semanticSha256": [
+        "60fdf0409cb082715e937cd742809418bf38b9fbcaeb3fb4b1382f5f89d8e08f"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-01",
+      "textSha256": "3078ba2780801ec29b18c8e5011a316fc1178ebb49c81e0b25ad8185842bf952",
+      "semanticSha256": [
+        "65ea1ec7df3fcaa777334afedd027c9ad38edb5e2df18f6a7ef738ae2ec689c7"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-02",
+      "textSha256": "15c4c73385cdd89db0904e3f54c07d8ee8a1e5a7781617a24cd2cc96806a9957",
+      "semanticSha256": [
+        "07067f33bbf00aa6457f24eece54859e372b53597b4b982c1c38d7f2cfe655b6"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-03",
+      "textSha256": "46c00d4a2845d504f3cfbd1d4adaf38d78c6081cb5a4a7c940aa99ad0304e3ef",
+      "semanticSha256": [
+        "78d0f4fc308d33f82e32ad04f27c1610e6b889b9dc79c8432bae445da8c1b700"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-04",
+      "textSha256": "2c2e02b61bffa8e68433cb070197316609699f3c3b0b19e1d1d9a66d240679ef",
+      "semanticSha256": [
+        "7881afbef6ed5531039fc7da78467651199e7c607c56eb0a3ebb57b4e9546b86"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-05",
+      "textSha256": "c6454d113f81996ee454c2a835391d4f26223404661d2b5f9e633b720095ec4c",
+      "semanticSha256": [
+        "ad8dc319bc071640381968a8cbefb6e4070df1c0e9cc970372516797b6af1d29"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-06",
+      "textSha256": "b8ab138ad111d80e1be85250000ceb57c1b2e78726dcd94aeb31099a72416e22",
+      "semanticSha256": [
+        "8b81cd55915f857597dcb1a7a8228485f6531a57d4eddd467e49d2e967440a09"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-07",
+      "textSha256": "ee0bed6902cc6acd948c928599541ff31d35b6512bb9b008f7fbd53224770604",
+      "semanticSha256": [
+        "6373c2a115aab03b3ea89d4f3adf8535f558f32d6242e4793e6bd1982e82d604"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-08",
+      "textSha256": "07085a993963fce20e9e925f9aef6c57b79ebfa735c891d9d4866833ec770434",
+      "semanticSha256": [
+        "0772a95b090fd5093765e7d45b0a98d954fdcaf860a67cf32add38e42cf3e57d"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-09",
+      "textSha256": "285047f60e10e4624865231a404fe3aba9924555e648b13b358920c4d4a164c1",
+      "semanticSha256": [
+        "9c7e3756c6a0f122dcca154283f89dc2c5276ac4cafa675ad7f15a5e08a7a03a"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-10",
+      "textSha256": "d209f48da2a46265a9f2b9174a1e72e467c7baf20cf1489881add47f6aed4f30",
+      "semanticSha256": [
+        "1f0123799570d6f42560fab804362fe5b0a26865ce57212e2bde9878dd3e185c"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-3-line-11",
+      "textSha256": "420c647849858f02532d5ce6e2f633345097e28bfe18b5d2f4bec99ae78db7c5",
+      "semanticSha256": [
+        "4d523f19a80718d11eabb42e7094589ab7a4d7a0d1a85fdc7dd45353c7843c88"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-01",
+      "textSha256": "228fdd88ba2ba8fb53488f0342544f769047e433fdbf85710893fb972e13f0b2",
+      "semanticSha256": [
+        "9b9aa60993936c203a521bdc80a10e21a51a6d1f0715c14f635b9c3f52bccee7"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-02",
+      "textSha256": "74e1a550549c98e796309931f2ceff49fd7e0be3880ebd693c5781427d5a9485",
+      "semanticSha256": [
+        "dd17c1cb098e2376f57b32f43d196365a2c44a6487469d9121d6c09c03a66c41"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-03",
+      "textSha256": "d32811002d04cb3263585f2c36e6d9d01c63c207eb363eee5b8f958abec6802e",
+      "semanticSha256": [
+        "a3ec5d886718d9eded9f45241fe39d884d06f5014f99621823593f8061b33593"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-04",
+      "textSha256": "f9d1731cee23f1f49d5867a6ae92772801c9b5e0e45d65416571be2925308a89",
+      "semanticSha256": [
+        "af326ff8acb85cc3641541ffd1a57e84c6096175cc9f6a566e0b22712f85a269"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-05",
+      "textSha256": "adeecbe7fde169bb76ee2498b969e1aa7159c871d2b82cb35c69b94dfa4f5c6c",
+      "semanticSha256": [
+        "9a62c1861a6c8dbdd6dd4c55cb4a4b8842572406170b1bad93b76f5935355ddd"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-06",
+      "textSha256": "c6a74290fffcdb757c1a026eee659868fe307d65760fb10aced152acabe91825",
+      "semanticSha256": [
+        "68c3b776f6ef8ad47fa75069e0be7fe6812b93fa3afd75317fbbdef54f7a2c01"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-07",
+      "textSha256": "87aa6b82108c1d648884333e84b43ede53a00cba09287d8f2ded75bc8224551c",
+      "semanticSha256": [
+        "665f2b16716b06db732edcaafd9439336773ccf9d6ea406e7fbe3712fc367440"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-08",
+      "textSha256": "4c7491e72d4273a27b0225f516ca79de2b466c4125e52d4e03e76bb24cca7015",
+      "semanticSha256": [
+        "afbce2ee7c6a1242ccddad36830ad6315c34fb225e382c64679518d6bb10f46e"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-09",
+      "textSha256": "f8ea5eb1c582769faeb533aa2dd1caaa0b611416cc81d905bd235dd5a7a41495",
+      "semanticSha256": [
+        "ab7625f26d1c99f81c5fca95bb653b660a1eb94029aec904dc8a91c4c5574279"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-10",
+      "textSha256": "dd0a06528c7bf9a27e7c8e468c38d41473674375e8a434e324ca2415b1481c07",
+      "semanticSha256": [
+        "5fa07755d04b1b80bb60975807157d471908924e676c85383d4dfd1172644a43"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-11",
+      "textSha256": "0d8e25a41d71b3ec05893c1cfbdd595c3beb6011e8b9fa7d2fcb72537251d6f4",
+      "semanticSha256": [
+        "fd087fe699b4f9bf8ea73b3569ce74f7c50df12f94392145ee615bdafa81f680"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-4-line-12",
+      "textSha256": "dcc041c46d1abfe58ae4ce4ebdbd28774fe72523dac6c545df9544284c394c0f",
+      "semanticSha256": [
+        "ba3b8fb27a040de84b3edf15a1e55e950ba55339ca21daf9a012248e64c0aca0"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-01",
+      "textSha256": "beb3febd826416640bb5e645db65b37f3c3a3b870c169565c8c8dcb4f73edeb4",
+      "semanticSha256": [
+        "37b21f595fae3d14f5c0a666dbff594b963b87e4144041c717a6123338fc6e49"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-02",
+      "textSha256": "dbf52ff160a8dbf3876380ddbbc47afd85fa8766f3e006835b8077a970fb9dd9",
+      "semanticSha256": [
+        "a4e8222a3659be5e2965cd67cf6b43a71aae30272eb4be6137b102182036fc04"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-03",
+      "textSha256": "7afe6d82e30c39965bf25cf451a84374ea307116aaaa26efcefb0404b3e80f33",
+      "semanticSha256": [
+        "1d3ebd2a55e58d663f8930d9eab06ad043946788aa0ea1ea20edf52b533b2525"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-04",
+      "textSha256": "3a32caec84cf02f06182e62ef83b7780a5b047b990d8f2bf5dbafa1d11c108bc",
+      "semanticSha256": [
+        "385a1e1fa165f228592be227a0d5d0228631b530263910ea26a8a51d7861bdd9"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-05",
+      "textSha256": "95060a6ba9dca7b46bd7c4bafb140765b703dcc3a2f9f6a5e0ef70332d65a739",
+      "semanticSha256": [
+        "dcf0fc24b6c8b884c844b979ef76ad6024ced9d9d5b489158838788cafa2700b"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-06",
+      "textSha256": "f58864dd5b54a5405b17035dcf6c0f6e7978d70a8cd43b7dee482df645a07d29",
+      "semanticSha256": [
+        "e25484a679eea949c985947fe4a60c528063623b3f1271d99a8558b7c5681cb6"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-07",
+      "textSha256": "18e8ab74a48ba0e485dfd7ee376dfd6225903de4fa9d3ce57528644c8e019965",
+      "semanticSha256": [
+        "3358333a7db38fc6c71966d9a746dfc738f9cde5f755f94ab6d7404d1d79bcb6"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-08",
+      "textSha256": "30a64d132dff7f1b7d98862dcce790054e15a5f90f6929623c42647c02303405",
+      "semanticSha256": [
+        "5ac28783bc1241aea9a5348707d9cf01eca5cf8410d44a56ff3682a7690ecaf4"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-09",
+      "textSha256": "17a68d8927ee162b6ccddae6318be693705651018ea30dc6ceb0f64a96a4f1cd",
+      "semanticSha256": [
+        "2ce315f89cc54ee65e0eb39d62beea5056c4865b7d87aa67222de7b7bd8d78b7"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-10",
+      "textSha256": "e87f9ca36f3d1e31eea05f43df577c4dfccfa2d673f6ea649d691ce53cd5a0de",
+      "semanticSha256": [
+        "e65ba2491c19899faa924d1cc0ea1803c3662a5cc7d98807dcc01cf16300a9e8"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-11",
+      "textSha256": "9a9f975af8494a647522228f2d4e55923f35256b1388482b48c6ffcd463ffa0b",
+      "semanticSha256": [
+        "a4541a20b721184387ff24a93435c410e5d57a42ac725b37484ee56a9fd885f6"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-12",
+      "textSha256": "3d63b730fada00d71b02f0fe57757a3111509937f46e9c678cf3e334a5dc0dd9",
+      "semanticSha256": [
+        "6f66150f120755e2970fb8a7d955995fb900a61488e7011645653dda591af6b0"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-5-line-13",
+      "textSha256": "8db3f1f8842aba712786a8b22ee6840a2f8fe080a83b8e7ab8d4d309e0c679a1",
+      "semanticSha256": [
+        "9d8a3d01efd3046551c19bc9729e19e56c4214a2e5b87a1b63b47d3f3f35c31c"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-01",
+      "textSha256": "3964410864d929310b8b2cc74fc8a73d814019631ba1fdb933dafefcdf866f03",
+      "semanticSha256": [
+        "c2674eb718bd980b5760cb1406cef69a52b7a9d99e6482c833fdf7212f97d7e8"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-02",
+      "textSha256": "41b2199578b5d9f0b616322838ed366f355d2f12008a54b27e94d5cce33616c5",
+      "semanticSha256": [
+        "80ade1603a498bbc78cc907f710ef5dc074b3423e986dcc5967fd30379ebc1aa"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-03",
+      "textSha256": "14926923c5ebabfb31dd0a15b23764fe80c7dae2483b37e1f04c97286cea21d2",
+      "semanticSha256": [
+        "20be36e5506feb1ace0f91f21b87d0bdad7c94028e961ce3dc700ea8f7286ee2"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-04",
+      "textSha256": "967d2ad1199b01e6cb990379db4c4b9c0ad607458de14a2176e26bfe95f90b7e",
+      "semanticSha256": [
+        "30fa7d00d622e5daf8f974e6eb02c4531cf45c8f9155d0bb7c43c2c3b235c98a"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-05",
+      "textSha256": "4b187821950daab1c15f2a4639fd4d0227cede4ea15090c38ca5b4b3eaa852dc",
+      "semanticSha256": [
+        "0618a54974a9b05b1517cc41bc8fcea5cd05380c37a77bd2d5fc76947dc5aea1"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-06",
+      "textSha256": "f96e5c01b4a14870be8129a0b253028868b79da7a457ce76a9069c4627b90a0a",
+      "semanticSha256": [
+        "ad7911ec6c9e19430883c6b2717f1cc6b75778eb6714a7c1db6e4c300dfc2e71"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-07",
+      "textSha256": "0f273e42dac2d83f9fabba4e52e5f3e6c67f4e2da3b48bf109380994023ee2fd",
+      "semanticSha256": [
+        "ea09dd121164c5f9c4666c863fae6453e8ead91fd1a40712e908e7f15b8a8c73"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-08",
+      "textSha256": "7b9e1fbf408271b954c1cc9a4e138764bea81f8582c9fcab66a0c34cbd11b425",
+      "semanticSha256": [
+        "3de8a16c7d7c7cd2ba41507a50d199d52013e8e0b28610b5d774a3526b140639"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-09",
+      "textSha256": "233772bdd388711d443e9d84eaa0b5255208473f528ee1e58a4681b340abe576",
+      "semanticSha256": [
+        "8e8022f138d17acf4add41aba2b8c4d21c7d9f66a427689f575554cc7d050784"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-10",
+      "textSha256": "beba1798380a2a1eeb8db758afa2e4b6346dc76e43bdeef5844cca4fcb9f4bb3",
+      "semanticSha256": [
+        "804d587bba57f0ffa14c3663c584ea300ed89497db257b8fd3f6785751872498"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-11",
+      "textSha256": "bc5d1a4604fdd98e03013411d36a1aaea51571c2517312059ea0fd68114b2ce0",
+      "semanticSha256": [
+        "9465f63f69fdf905f54ebb8e8af88d92569d3b13d64f07004e59fa42c9cfcbd8"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-12",
+      "textSha256": "a2c48167540a98288e4e6d335d90b3e2f088fed6207aa8525eb4193202532d3d",
+      "semanticSha256": [
+        "d0cbf9aa63eccf9ea9e8c73385ef4096c597387fc13a4cd480e9418907727f3c"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-13",
+      "textSha256": "76ccc4827546b4d9ef6c2dd2ce87c43c67e7b61e6aa5bc1cd7ff778b9e33ea07",
+      "semanticSha256": [
+        "6c856e9534573ab1ac8cff2f4881c9f8359146b868fc3032585dd9385e64e159"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-14",
+      "textSha256": "4287abf988c5ec192e024512c270cd038e6eb51473de8932edb4f5c397f725b8",
+      "semanticSha256": [
+        "e1b7f1e0f64ead8675164d68ab6baf2c3eafc45a0465567cb770d862d68788f5"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-15",
+      "textSha256": "471cda27e3b039bfd8587d518b8d5ac27a68fa9a20d8cfbe63e1a1a41d6f001a",
+      "semanticSha256": [
+        "9e83948e402c1f8eebe82f8a618670c362145f722e83880eddedf35d34a4385b"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-16",
+      "textSha256": "57cb87abd2bdb0f2dfee86ce167275a0f17013bce101124efeed860b375c7d33",
+      "semanticSha256": [
+        "569bcecfce165a1a346e8593ed61b38b300462248a4dbb8f0c70b3091a6ca9b1"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-17",
+      "textSha256": "37e94170d7da3197224ac67962f0d80fcd25b81c4fc253ce32d7f6358e95a6bf",
+      "semanticSha256": [
+        "cdb4505216e45ccc01faac22e13825bbbc5f52baca307bfb24f780079aa51579"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-18",
+      "textSha256": "416487360424e2c90ef25b822e11437f260bc38f6e485d12f9a9d8839bd13854",
+      "semanticSha256": [
+        "347554dc63cc8217933e4bedef48d1b5ba5f1fa63b8ed0a7317cbd5b956dd6c6"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-19",
+      "textSha256": "d3ff930a71bfae52c6c46eb56df41531d9aa607f5afb2b1ab74073e1ba4bc1b1",
+      "semanticSha256": [
+        "fe864225722a37e04d2c3c7adbd363339aea12e60dc7ca256e1258f0ccced7bd"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-20",
+      "textSha256": "d26cd82c884cbb6fbf9d938dd916e418b970fe46f99a635d57de4d1fb84c62e4",
+      "semanticSha256": [
+        "331d21d8bdd96a045168d59388c2b4faa0c409811c75bb58b0163c741c5eb08e"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-21",
+      "textSha256": "f253e6c3d1fe8c18233953310ab03ede79d7e4ae63afd2b43d88d78c8e448b99",
+      "semanticSha256": [
+        "cb9b4d7f8c1cb81cecb69648b84d62cb53a67e2ee7b54f763089f1f4b42d007e"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-22",
+      "textSha256": "8038ccf39860963236533f5d1a62b85fb68ca95c35fe80f1903eee0a2a4d1a0c",
+      "semanticSha256": [
+        "450e080b6dc8819f70933c13cbd75281503a3f954d4722a98662666c636e9974"
+      ]
+    },
+    {
+      "lineId": "classic-seonnyeo-6-line-23",
+      "textSha256": "4f2176ef91013ef085b9cad3d7eaa58aa83126ed5b7c12a7027c10cf27281f34",
+      "semanticSha256": [
+        "d1d1a102e2a7269db682a0c0be340cc0dfe0a9994a6ef5eb742cc1beef027124"
+      ]
+    }
+  ],
+  "decisions": [],
+  "finalPlayback": {
+    "lineId": null,
+    "path": [
+      "classic-seonnyeo-1-line-01",
+      "classic-seonnyeo-1-line-02",
+      "classic-seonnyeo-1-line-03",
+      "classic-seonnyeo-1-line-04",
+      "classic-seonnyeo-1-line-05",
+      "classic-seonnyeo-1-line-06",
+      "classic-seonnyeo-1-line-07",
+      "classic-seonnyeo-1-line-08",
+      "classic-seonnyeo-1-line-09",
+      "classic-seonnyeo-1-line-10",
+      "classic-seonnyeo-1-line-11",
+      "classic-seonnyeo-1-line-12",
+      "classic-seonnyeo-2-line-01",
+      "classic-seonnyeo-2-line-02",
+      "classic-seonnyeo-2-line-03",
+      "classic-seonnyeo-2-line-04",
+      "classic-seonnyeo-2-line-05",
+      "classic-seonnyeo-2-line-06",
+      "classic-seonnyeo-2-line-07",
+      "classic-seonnyeo-2-line-08",
+      "classic-seonnyeo-2-line-09",
+      "classic-seonnyeo-2-line-10",
+      "classic-seonnyeo-2-line-11",
+      "classic-seonnyeo-2-line-12",
+      "classic-seonnyeo-3-line-01",
+      "classic-seonnyeo-3-line-02",
+      "classic-seonnyeo-3-line-03",
+      "classic-seonnyeo-3-line-04",
+      "classic-seonnyeo-3-line-05",
+      "classic-seonnyeo-3-line-06",
+      "classic-seonnyeo-3-line-07",
+      "classic-seonnyeo-3-line-08",
+      "classic-seonnyeo-3-line-09",
+      "classic-seonnyeo-3-line-10",
+      "classic-seonnyeo-3-line-11",
+      "classic-seonnyeo-4-line-01",
+      "classic-seonnyeo-4-line-02",
+      "classic-seonnyeo-4-line-03",
+      "classic-seonnyeo-4-line-04",
+      "classic-seonnyeo-4-line-05",
+      "classic-seonnyeo-4-line-06",
+      "classic-seonnyeo-4-line-07",
+      "classic-seonnyeo-4-line-08",
+      "classic-seonnyeo-4-line-09",
+      "classic-seonnyeo-4-line-10",
+      "classic-seonnyeo-4-line-11",
+      "classic-seonnyeo-4-line-12",
+      "classic-seonnyeo-5-line-01",
+      "classic-seonnyeo-5-line-02",
+      "classic-seonnyeo-5-line-03",
+      "classic-seonnyeo-5-line-04",
+      "classic-seonnyeo-5-line-05",
+      "classic-seonnyeo-5-line-06",
+      "classic-seonnyeo-5-line-07",
+      "classic-seonnyeo-5-line-08",
+      "classic-seonnyeo-5-line-09",
+      "classic-seonnyeo-5-line-10",
+      "classic-seonnyeo-5-line-11",
+      "classic-seonnyeo-5-line-12",
+      "classic-seonnyeo-5-line-13",
+      "classic-seonnyeo-6-line-01",
+      "classic-seonnyeo-6-line-02",
+      "classic-seonnyeo-6-line-03",
+      "classic-seonnyeo-6-line-04",
+      "classic-seonnyeo-6-line-05",
+      "classic-seonnyeo-6-line-06",
+      "classic-seonnyeo-6-line-07",
+      "classic-seonnyeo-6-line-08",
+      "classic-seonnyeo-6-line-09",
+      "classic-seonnyeo-6-line-10",
+      "classic-seonnyeo-6-line-11",
+      "classic-seonnyeo-6-line-12",
+      "classic-seonnyeo-6-line-13",
+      "classic-seonnyeo-6-line-14",
+      "classic-seonnyeo-6-line-15",
+      "classic-seonnyeo-6-line-16",
+      "classic-seonnyeo-6-line-17",
+      "classic-seonnyeo-6-line-18",
+      "classic-seonnyeo-6-line-19",
+      "classic-seonnyeo-6-line-20",
+      "classic-seonnyeo-6-line-21",
+      "classic-seonnyeo-6-line-22",
+      "classic-seonnyeo-6-line-23"
+    ],
+    "status": "ended"
+  },
+  "apiRequests": 4,
+  "nativeSelections": []
+}

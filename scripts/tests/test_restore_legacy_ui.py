@@ -138,5 +138,27 @@ class DerivedCharacterRestoreTests(unittest.TestCase):
                     RESTORE.restore(Path('authorized checkout'))
 
 
+class GeneratedWeatherRestoreTests(unittest.TestCase):
+    def test_generated_weather_is_verified_from_checkout_without_fetching_legacy(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);LegacyRoomRestoreTests().setup_root(root)
+            registry=root/'packages/asset-registry/src';(registry/'legacy-ui-media.json').write_text('{"entries":[]}')
+            target=root/'apps/web/public/assets/backgrounds/weather-v1/courtyard.webp';target.parent.mkdir(parents=True);target.write_bytes(b'reviewed weather image')
+            row={'id':'weather','src':'/assets/backgrounds/weather-v1/courtyard.webp','revision':hashlib.sha256(target.read_bytes()).hexdigest(),'sourcePath':'docs/generation.json#weather','metadata':{'generatedWeatherAsset':True}}
+            (registry/'catalog.json').write_text(json.dumps([row]));commands=[]
+            def git(args,**kwargs):
+                commands.append(args);return subprocess.CompletedProcess(args,0,b'',b'')
+            with patch.object(RESTORE,'ROOT',root),patch.object(RESTORE.subprocess,'run',git):RESTORE.restore(Path('authorized checkout'))
+            self.assertEqual(len(commands),1)
+            self.assertIn('cat-file',commands[0]);self.assertEqual(target.read_bytes(),b'reviewed weather image')
+    def test_missing_generated_weather_requires_current_checkout_without_legacy_fallback(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);LegacyRoomRestoreTests().setup_root(root)
+            registry=root/'packages/asset-registry/src'
+            (registry/'catalog.json').write_text(json.dumps([{'id':'weather','src':'/assets/backgrounds/weather-v1/missing.webp','revision':'a'*64,'metadata':{'generatedWeatherAsset':True}}]))
+            with patch.object(RESTORE,'ROOT',root),patch.object(RESTORE.subprocess,'run',return_value=subprocess.CompletedProcess([],0,b'',b'')) as git:
+                with self.assertRaisesRegex(SystemExit,'current Git checkout'):RESTORE.restore(Path('authorized checkout'))
+            self.assertEqual(git.call_count,1)
+
 if __name__ == '__main__':
     unittest.main()

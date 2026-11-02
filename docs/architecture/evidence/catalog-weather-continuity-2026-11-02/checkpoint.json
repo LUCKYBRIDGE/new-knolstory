@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "status": "233background-only corrections implemented;272files2279unitpassed2skipped;focusednative4passed;release pending",
+  "status": "233background-only corrections deployed and verified; later5cut generatedcourtyard follow-up tracked separately",
   "trigger": "Actual first-choice screenshot showed a sunny valley while the woodcutter warned that rain could collapse the mountain path.",
   "manualReview": {
     "firstStorm": "P2/P3storm continues through1-v163,C1-v162,bothC1-A/B reactions; no clear-weather event before entering2-v105/160cottage.",
@@ -52,7 +52,20 @@
     "concurrency": "Initial unbounded full unit run overlapped long native+Corechecks and hit5sformat-test timeouts; final fullrun limits2workers. Prior boundedrun had2278pass/1stalechapterexpectationfailure now corrected.",
     "bounds": "No unrun check is counted as passed; old native full-route inputs and latest weather visual delta kept separate."
   },
-  "release": null,
+  "release": {
+    "sourceCommit": "caacff153595d10ed450e2dbcb16302eae00b815",
+    "pages": "https://bfe1cff9.new-knolstory.pages.dev",
+    "origin": "https://story.knolquiz.com",
+    "ci": {
+      "id": 41427103786,
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41427103786",
+      "status": "success"
+    },
+    "liveNative": "FirstchoiceA/B2passed;live-native.log",
+    "files": "1560checked0unexpected,key9hashes/audio3match;live-files.json",
+    "ingress": "samecandidate/index+gamezip+SDKnotice200/exactSHA;ingress.json",
+    "followUp": "../rainy-courtyard-2026-11-02/checkpoint.json"
+  },
   "remaining": [
     "five rainy courtyard reunion cuts need suitablebackgroundart",
     "other50Seonnyeo whole native path combinations explicitly unrun",

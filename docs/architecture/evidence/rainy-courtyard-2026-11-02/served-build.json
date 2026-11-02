@@ -1,0 +1,32 @@
+{
+  "candidate": ".cache/pages-release-20261102-rainy",
+  "sourceBase": "caacff153595d10ed450e2dbcb16302eae00b815",
+  "includesUncommittedRainyCourtyard": true,
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 8283,
+      "sha256": "47b9cc6755f3308597176980362e6df5c5210a594322f1280da3f521bc85f35b"
+    },
+    {
+      "path": "runtime/game.zip",
+      "bytes": 8660652,
+      "sha256": "b814c25f032f23fed60a42605b5e6b2df11a88087230bcc1df3f4a92e46cc922"
+    },
+    {
+      "path": "runtime/runtime-contract.js",
+      "bytes": 19813,
+      "sha256": "78f416501e4e55a8befae17990aa918cf3897ec9f18479f0baf1714c67292572"
+    },
+    {
+      "path": "assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+      "bytes": 597630,
+      "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833"
+    },
+    {
+      "path": "runtime/game/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+      "bytes": 597630,
+      "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833"
+    }
+  ]
+}

@@ -112,9 +112,9 @@
   "limits": [
     "Assertions/log and ending screenshots retained; list reporter did not persist attached per-cut JSON as separate files",
     "Landscape desktop browser; not physical phone or slow network",
-    "Seonnyeo complete paths remain; not all-eight-editions completion"
+    "Seonnyeo50wholecombination runs remain;selectedsemantic/edgecover is not all90creative whole native paths"
   ],
-  "next": "Seonnyeo64 creative paths and original1: generate all Core paths, prioritize distinct scene states/choice edges/merges/endings in native complete routes; retain explicit unrun full-combination queue.",
+  "next": "Generated rainy-courtyard5cut background and its editor/native/runtime/APIcatalogue release;then retain50Seonnyeo full-combination queue and proceed SD-04newauthoring/slow-network/device gaps.",
   "rabbitRun": {
     "status": "passed",
     "command": "pnpm exec playwright test --config docs/architecture/evidence/catalog-native-paths-2026-11-02/playwright.config.ts --grep 'rabbit (knolstory|original)-' --output=test-results/catalog-native-paths-rabbit",
@@ -268,7 +268,7 @@
     ]
   },
   "seonnyeoRun": {
-    "status": "pilot passed;remaining14selected routes running (13creative+original1)",
+    "status": "selected complete semantic/edge cover passed in two nonoverlapping batches1+14;remaining50fullnativecombinationsunrun",
     "method": "All64creative+original1 Core paths enumerated. Prioritize complete native routes covering all resolved semantic scene states/manualsteps,scorestates,edges/mergeentrances and endings. Do not equate semantic cover with all64native combinations.",
     "manifest": "manifest-seonnyeo-all.json",
     "selectedManifest": "manifest-seonnyeo-selected.json",
@@ -382,6 +382,104 @@
       "passed": true,
       "log": "native-seonnyeo-pilot.log"
     },
-    "remainingSelectedCommand": "KNOL_CATALOG_BASE_URL=http://127.0.0.1:15407 KNOL_CATALOG_VISUAL=1 pnpm exec playwright test --config docs/architecture/evidence/catalog-native-paths-2026-11-02/playwright.config.ts --grep 'seonnyeo ' --grep-invert 'knolstory-39:' --fully-parallel --workers 2 --output=test-results/catalog-native-paths-seonnyeo-rest"
+    "remainingSelectedCommand": "KNOL_CATALOG_BASE_URL=http://127.0.0.1:15407 KNOL_CATALOG_VISUAL=1 pnpm exec playwright test --config docs/architecture/evidence/catalog-native-paths-2026-11-02/playwright.config.ts --grep 'seonnyeo ' --grep-invert 'knolstory-39:' --fully-parallel --workers 2 --output=test-results/catalog-native-paths-seonnyeo-rest",
+    "passed": 15,
+    "cutReadAssertions": 5030,
+    "retainedReceipts": [
+      {
+        "file": "seonnyeo-route-receipts/knolstory-6.json",
+        "sha256": "b6c7cf8f96d826185d719e30916a84bc5fb454df4f7b0f26c57c015fd0e394ad",
+        "cuts": 385
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-9.json",
+        "sha256": "f5cf3956d260f470dbf8efefdcd6fe7484b69807ead45e0aee9dc682a1027df4",
+        "cuts": 329
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-11.json",
+        "sha256": "75996dd31961295d59a24d8f33b72e6d8e95262be5c9076c5c8ac87ae0f4f93e",
+        "cuts": 341
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-17.json",
+        "sha256": "36ef57bff72c64726494fa7f8a9e4b2b5ce68971b06946b3a254f914880e48a3",
+        "cuts": 332
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-19.json",
+        "sha256": "8ed9f94d88a397b55900c975813c8d9145a86725333211d8536e084201d00548",
+        "cuts": 344
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-26.json",
+        "sha256": "00d06e225b641b0f01ce642351b9db5ab34e0b9115d41f1af97a542968d71763",
+        "cuts": 333
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-32.json",
+        "sha256": "8528ee6f3ba06254eb3faf740402780758f30765fc13ebe163ada726889ab6d8",
+        "cuts": 398
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-33.json",
+        "sha256": "72b0b2b9a1b1f076a2ce6e15d36a635bdda1c198ed0295724729ed374ea88255",
+        "cuts": 335
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-39.json",
+        "sha256": "caa3a28be7b83d281b36b2e2dd7fb066112a5245638e1a18f224fbc11415d764",
+        "cuts": 412
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-45.json",
+        "sha256": "9650b4d26fda0d3210a05dd6dcecd4d055580a9887b30fe246750a1fb5c5bf1c",
+        "cuts": 376
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-50.json",
+        "sha256": "386c6639adefc73456720b7c0c911edd155e454754c5d491a315e5cec4b8f32a",
+        "cuts": 340
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-52.json",
+        "sha256": "9d20b967b07e509b9841ab2044c379c3c836495b4b7f8049a197a76a66527fd6",
+        "cuts": 353
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-57.json",
+        "sha256": "55f007b9d12da762a5d3b40292a09cd7f5116ac5f55fbd3e7d225b0022b883f2",
+        "cuts": 324
+      },
+      {
+        "file": "seonnyeo-route-receipts/knolstory-60.json",
+        "sha256": "1c8bc6bd092185cef6a0cf9a8d4d6f4d9db2e7ca0c0c4b6c4536398fe8354cfe",
+        "cuts": 345
+      },
+      {
+        "file": "seonnyeo-route-receipts/original-1.json",
+        "sha256": "56e2ae69baddc6c59187d6afa770e784c4619849f7f7e0716ad813f99b5a8d81",
+        "cuts": 83
+      }
+    ],
+    "logs": [
+      "native-seonnyeo-pilot.log",
+      "native-seonnyeo-rest.log"
+    ],
+    "proofBoundary": "All15native inputs are sealed pre-weather project49ef6648/frozencontrolsrelease22d0cf1. Subsequent233background-only correction has separate64Core/pathdelta and focusednative evidence; not15freshwhole-route reruns.",
+    "currentWeatherExpectations": {
+      "all": "manifest-seonnyeo-weather-all.json",
+      "selected": "manifest-seonnyeo-weather-selected.json",
+      "scope": "Futurecurrent-regressioninputs;priorcompletednative evidence keeps originalmanifest files."
+    }
+  },
+  "summary": {
+    "completeNativePaths": 44,
+    "cutReadAssertions": 9880,
+    "uniqueReachableCutsAtSealedInputs": 2862,
+    "originalEditions": 4,
+    "creativeWholeCombinationsRun": 40,
+    "creativeWholeCombinationsNotRun": 50,
+    "note": "Full manuscript2970includesunreachable/draftcuts;all2970nativeclaimnotmade. Fixeddefaultlandscape;notphysicaldeviceorslow-network proof."
   }
 }

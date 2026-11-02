@@ -1,0 +1,31 @@
+{
+  "prior": "docs/architecture/evidence/transition-action-spacing-2026-11-02/runtime-review.json",
+  "archiveMembers": 1092,
+  "changedMembers": [
+    "game/assets/backgrounds/weather-v1/",
+    "game/cache/build_info.json",
+    "_placeholders/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+    "game/renpyweb_remote_files.txt"
+  ],
+  "newMembers": [
+    "game/assets/backgrounds/weather-v1/",
+    "_placeholders/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp"
+  ],
+  "counts": {
+    "directory": 49,
+    "project-exact": 62,
+    "sdk-build-metadata-exact": 2,
+    "sdk-root-launcher-exact": 2,
+    "sdk-exact": 366,
+    "sdk-bytecode-exact": 166,
+    "generated-placeholder": 444,
+    "generated-progressive-index": 1
+  },
+  "registeredAssetCount": 433,
+  "newGeneratedAsset": {
+    "id": "seonnyeo.background.cottage-rain-evening-v1",
+    "source": "apps/web/public/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+    "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833"
+  },
+  "boundary": "Exact source equality checked member by member; pinned SDK archives/sources and sealed engine/transport unchanged. Generated placeholder output not independently regenerated."
+}

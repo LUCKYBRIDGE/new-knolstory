@@ -1,0 +1,1441 @@
+{
+  "verifiedAt": "2026-11-02",
+  "scope": "Current official Seonnyeo64 Core paths; only238background references differ from sealed pre-weather native input. Not a new64native run.",
+  "previousProjectSha256": "49ef6648976855c49c1aa6ba61779306718ab81eeb137638fdb6a13dd363ba68",
+  "currentProjectSha256": "59e80bf898819cdefad30c591bd701ffa99fea058d7dfa4301964ea740991291",
+  "paths": 64,
+  "cutVisits": 23432,
+  "changedCutCount": 238,
+  "nonBackgroundScenesUnchanged": true,
+  "allFinalPlaybackUnchanged": true,
+  "deltas": [
+    {
+      "lineId": "1-v163-1",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-2",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-3",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-4",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-5",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-6",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-7",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-8",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "1-v163-9",
+      "chapterId": "1-v163",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-v162-1",
+      "chapterId": "C1-v162",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-1",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-2",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-3",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-4",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-5",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-6",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-7",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-8",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-9",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-10",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-A-v106-11",
+      "chapterId": "C1-A-v106",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v52-1",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v52-9",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-10",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-11",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-12",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-13",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-14",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-15",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-16",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-17",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-18",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-19",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v52-20",
+      "chapterId": "14-v52",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "C4-v51-1",
+      "chapterId": "C4-v51",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "R1-v13-1",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-2",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-3",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-4",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-5",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-6",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-7",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-8",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-9",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-10",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-11",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-12",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-13",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-14",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-15",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-16",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-17",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-18",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-19",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-20",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-21",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-22",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v13-23",
+      "chapterId": "R1-v13",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "E3-5-v23-3",
+      "chapterId": "E3-5-v23",
+      "before": "seonnyeo.background.BG04-cottage-day",
+      "after": "seonnyeo.background.cottage-rain-evening-v1"
+    },
+    {
+      "lineId": "E3-5-v23-4",
+      "chapterId": "E3-5-v23",
+      "before": "seonnyeo.background.BG04-cottage-day",
+      "after": "seonnyeo.background.cottage-rain-evening-v1"
+    },
+    {
+      "lineId": "E3-5-v23-5",
+      "chapterId": "E3-5-v23",
+      "before": "seonnyeo.background.BG04-cottage-day",
+      "after": "seonnyeo.background.cottage-rain-evening-v1"
+    },
+    {
+      "lineId": "E3-5-v23-6",
+      "chapterId": "E3-5-v23",
+      "before": "seonnyeo.background.BG04-cottage-day",
+      "after": "seonnyeo.background.cottage-rain-evening-v1"
+    },
+    {
+      "lineId": "E3-5-v23-7",
+      "chapterId": "E3-5-v23",
+      "before": "seonnyeo.background.BG04-cottage-day",
+      "after": "seonnyeo.background.cottage-rain-evening-v1"
+    },
+    {
+      "lineId": "14-v73-1",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v73-9",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-10",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-11",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-12",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-13",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-14",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-15",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-16",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-17",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-18",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-19",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v73-20",
+      "chapterId": "14-v73",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "C4-v72-1",
+      "chapterId": "C4-v72",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "R1-v61-1",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-2",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-3",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-4",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-5",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-6",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-7",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-8",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-9",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-10",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-11",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-12",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-13",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-14",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-15",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-16",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-17",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-18",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-19",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-20",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-21",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-22",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v61-23",
+      "chapterId": "R1-v61",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "14-v84-1",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v84-9",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-10",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-11",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-12",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-13",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-14",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-15",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-16",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-17",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-18",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-19",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v84-20",
+      "chapterId": "14-v84",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-1",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v89-9",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-10",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-11",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-12",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-13",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-14",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-15",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-16",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-17",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-18",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-19",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v89-20",
+      "chapterId": "14-v89",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "C4-v88-1",
+      "chapterId": "C4-v88",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "R1-v86-1",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-2",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-3",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-4",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-5",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-6",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-7",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-8",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-9",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-10",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-11",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-12",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-13",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-14",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-15",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-16",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-17",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-18",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-19",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-20",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-21",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-22",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v86-23",
+      "chapterId": "R1-v86",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "C1-B-v161-1",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-2",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-3",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-4",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-5",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-6",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-7",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-8",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-9",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "C1-B-v161-10",
+      "chapterId": "C1-B-v161",
+      "before": "seonnyeo.background.BG01-valley-day",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v122-1",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v122-9",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-10",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-11",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-12",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-13",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-14",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-15",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-16",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-17",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-18",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-19",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v122-20",
+      "chapterId": "14-v122",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "C4-v121-1",
+      "chapterId": "C4-v121",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "R1-v107-1",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-2",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-3",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-4",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-5",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-6",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-7",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-8",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-9",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-10",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-11",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-12",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-13",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-14",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-15",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-16",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-17",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-18",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-19",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-20",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-21",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-22",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "R1-v107-23",
+      "chapterId": "R1-v107",
+      "before": "seonnyeo.background.BG09-room-day",
+      "after": "seonnyeo.background.BG-room-night"
+    },
+    {
+      "lineId": "14-v129-1",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v129-9",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-10",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-11",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-12",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-13",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-14",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-15",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-16",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-17",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-18",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-19",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v129-20",
+      "chapterId": "14-v129",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "C4-v128-1",
+      "chapterId": "C4-v128",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-1",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v142-9",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-10",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-11",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-12",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-13",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-14",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-15",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-16",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-17",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-18",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-19",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v142-20",
+      "chapterId": "14-v142",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "C4-v141-1",
+      "chapterId": "C4-v141",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-1",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG02-valley-storm"
+    },
+    {
+      "lineId": "14-v144-9",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-10",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-11",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-12",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-13",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-14",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-15",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-16",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-17",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-18",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-19",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    },
+    {
+      "lineId": "14-v144-20",
+      "chapterId": "14-v144",
+      "before": "seonnyeo.background.BG-forest-roots",
+      "after": "seonnyeo.background.BG03-valley-moon-gate"
+    }
+  ]
+}

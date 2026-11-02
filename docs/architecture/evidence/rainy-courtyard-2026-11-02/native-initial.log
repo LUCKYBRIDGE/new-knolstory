@@ -1,0 +1,51 @@
+
+Running 5 tests using 1 worker
+
+(node:44375) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/catalog-weather-continuity.spec.ts:35:68 › weather backgrounds preserve authoring and native playback at 390x844 (20.8s)
+  ✓  2 tests/e2e/catalog-weather-continuity.spec.ts:35:68 › weather backgrounds preserve authoring and native playback at 1280x800 (16.5s)
+  ✓  3 tests/e2e/catalog-weather-continuity.spec.ts:102:109 › provided Seonnyeo keeps the first-choice A path in the ongoing storm (25.3s)
+  ✓  4 tests/e2e/catalog-weather-continuity.spec.ts:102:109 › provided Seonnyeo keeps the first-choice B path in the ongoing storm (24.6s)
+  ✘  5 tests/e2e/catalog-weather-continuity.spec.ts:149:1 › the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring (8.0s)
+
+
+  1) tests/e2e/catalog-weather-continuity.spec.ts:149:1 › the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -68789,7 +68789,7 @@
+          "선녀의 기억",
+          "선녀의 과거 목소리",
+          "나무꾼의 과거 목소리",
+        ],
+        "title": "선녀와 나무꾼",
+    -   "updatedAt": "pinky-ne-site 804fe9f",
+    +   "updatedAt": "2026-11-02T10:33:32.617Z",
+      }
+
+      174 |  await expect.poll(async()=>(await workspace(page)).document.project.lines.find((line:{id:string})=>line.id===lineId).backgroundId).toBe(assetId);
+      175 |  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+    > 176 |  const expected={...before,lines:before.lines.map((line:{id:string})=>line.id===lineId?{...line,backgroundId:assetId}:line)};expect((await workspace(page)).document.project).toEqual(expected);
+          |                                                                                                                                                                               ^
+      177 |  await page.reload();await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(lineId);await expect(opener).toHaveAttribute('data-asset-value',assetId);
+      178 |  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');expect((await workspace(page)).document.project).toEqual(expected);
+      179 | });
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/catalog-weather-continuity.spec.ts:176:175
+
+    Error Context: test-results/rainy-courtyard/catalog-weather-continuity-180ab-t-after-reopening-authoring/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/rainy-courtyard/catalog-weather-continuity-180ab-t-after-reopening-authoring/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/rainy-courtyard/catalog-weather-continuity-180ab-t-after-reopening-authoring/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/catalog-weather-continuity.spec.ts:149:1 › the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring 
+  4 passed (1.6m)

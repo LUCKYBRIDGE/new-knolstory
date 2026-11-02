@@ -16,6 +16,7 @@ const samples=[
  {lineId:'14-v52-9',backgroundId:'seonnyeo.background.BG03-valley-moon-gate',name:'moonlit-descent'},
  {lineId:'C4-v51-1',backgroundId:'seonnyeo.background.BG03-valley-moon-gate',name:'moonlit-choice'},
  {lineId:'R1-v13-1',backgroundId:'seonnyeo.background.BG-room-night',name:'evening-room'},
+ {lineId:'E3-5-v23-4',backgroundId:'seonnyeo.background.cottage-rain-evening-v1',name:'rainy-reunion'},
 ];
 const workspace=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
 async function actualScene(page:Page){
@@ -142,4 +143,37 @@ for(const branch of [{index:0,successor:'C1-A-v106-1',name:'A'},{index:1,success
  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath(`provided-after-choice-${branch.name}.png`)});
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const after=await workspace(page);expect(after.document.project).toEqual(original);expect(after.playback.lineId).toBe(branch.successor);expect(after.playback.path[0]).toBe('P1-v166-1');expect(errors).toEqual([]);
+});
+
+
+test('the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring',async({page},info)=>{
+ test.setTimeout(120000);await page.setViewportSize({width:1280,height:800});
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/api/**',route=>route.abort());
+ await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await page.locator('[data-work-menu]>summary').click();
+ await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'rain-background-picker.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-11-02T00:00:00.000Z',appVersion:'test',project}))});
+ await confirmAuthoringImport(page);
+ await expect.poll(async()=>{const current=(await workspace(page)).document.project;return current.id!==project.id&&current.title===project.title&&current.lines.find((line:{id:string;backgroundId?:string})=>line.id==='E3-5-v23-4')?.backgroundId==='seonnyeo.background.cottage-rain-evening-v1';}).toBe(true);
+ const lineId='14-v52-2';await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(lineId);
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=(await workspace(page)).document.project;
+ const assetId='seonnyeo.background.cottage-rain-evening-v1';
+ const catalog=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8')) as Array<{id:string;src:string;metadata:{containsCharacters?:boolean}}>;
+ const asset=catalog.find(item=>item.id===assetId)!;expect(asset).toBeDefined();expect(asset.metadata.containsCharacters).toBe(false);
+ const opener=page.locator('[data-current-cut]').getByRole('button',{name:/배경 이미지 찾기 ·/}),oldValue=await opener.getAttribute('data-asset-value');expect(oldValue).toBe('seonnyeo.background.BG-forest-roots');
+ await opener.click();let dialog=page.getByRole('dialog',{name:/^이미지 선택 · [0-9]+컷 배경$/});
+ await dialog.getByLabel('이미지 검색',{exact:true}).fill('선녀 비 저녁 마당');
+ await dialog.locator(`[data-asset-id="${assetId}"]`).click();
+ const preview=dialog.getByText('선택 미리보기',{exact:true}).locator('..').locator('..').locator('img');
+ await expect(preview).toHaveAttribute('src',asset.src);await expect.poll(()=>preview.evaluate(node=>(node as HTMLImageElement).complete&&(node as HTMLImageElement).naturalWidth>0)).toBe(true);
+ // The registration declares a character-free scene; retain its visible preview for human review.
+ await dialog.screenshot({path:info.outputPath('rainy-yard-background-preview.png')});
+ await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(opener).toHaveAttribute('data-asset-value',oldValue!);expect((await workspace(page)).document.project).toEqual(before);
+ await opener.click();dialog=page.getByRole('dialog',{name:/^이미지 선택 · [0-9]+컷 배경$/});
+ await dialog.getByLabel('이미지 검색',{exact:true}).fill('선녀 비 저녁 마당');await dialog.locator(`[data-asset-id="${assetId}"]`).click();
+ const editStarted=Date.now();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(opener).toHaveAttribute('data-asset-value',assetId);
+ await expect.poll(async()=>(await workspace(page)).document.project.lines.find((line:{id:string})=>line.id===lineId).backgroundId).toBe(assetId);
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const changed=(await workspace(page)).document.project;expect(Number.isFinite(Date.parse(changed.updatedAt))).toBe(true);expect(Date.parse(changed.updatedAt)).toBeGreaterThanOrEqual(editStarted);const expected={...before,updatedAt:changed.updatedAt,lines:before.lines.map((line:{id:string})=>line.id===lineId?{...line,backgroundId:assetId}:line)};expect((await workspace(page)).document.project).toEqual(expected);
+ await page.reload();await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(lineId);await expect(opener).toHaveAttribute('data-asset-value',assetId);
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');expect((await workspace(page)).document.project).toEqual(expected);
 });

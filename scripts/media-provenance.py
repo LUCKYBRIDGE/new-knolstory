@@ -26,6 +26,8 @@ def release_allowed(record,target,usage_scope='standalone-assets'):
 def asset_provenance(asset):
  """Describe byte lineage, never infer a license from a local image transform."""
  base={'assetIds':[asset['id']],'authorOrRightsHolder':asset.get('copyright','unknown')}
+ if asset.get('metadata',{}).get('generatedWeatherAsset'):
+  return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; reviewed weather edit and format conversion in scripts/prepare-rainy-courtyard-asset.py'}
  if asset.get('metadata',{}).get('layeredStoryAsset'):
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; reviewed uniform canvas normalization in scripts/prepare-layered-story-assets.py'}
  transform=asset.get('metadata',{}).get('statureTransform')

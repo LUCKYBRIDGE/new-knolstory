@@ -46,3 +46,7 @@ KNOL_CATALOG_BASE_URL=http://127.0.0.1:15407 pnpm exec playwright test --config 
 ```
 
 명세를 브라우저에 주입하지 않으며 선정된 각 경로는 새 문맥에서 실제 첫 컷부터 끝까지 읽는다. 이미 성공한 경로는 다음 묶음에서 제외한다. 이 범위가 통과해도 SD-04의 파일·조건 조합·느린망·실기기와 전체 native50조합은 남는다.
+
+선녀의 우선14창작+원작1경로도 교정 전 고정 입력으로 통과했다(5,030컷별 검사). 다른 세 작품과 합계44완주/9,880컷별 검사다. `seonnyeo-route-receipts/`와 두 로그가 실제 실행 근거다. 남은50전체native 조합은 계속 미실행이다.
+
+배경233컷 교정 뒤 미래 회귀의 기본 예상값은 `manifest-seonnyeo-weather-all.json`/`manifest-seonnyeo-weather-selected.json`이다. 이전 두 선녀 명세는 완료한native입력으로 봉인해 보존한다. 생성기는 기본 새weather이름에 기록하며 기존 파일이 다르면 덮어쓰지 않는다. 추가 의미 변경 시 `KNOL_SEONNYEO_MANIFEST_PREFIX=manifest-seonnyeo-새버전`(영문소문자/숫자/하이픈만)으로 새 근거를 만든다. 새expected파일 자체가 새native완주 증거는 아니다.

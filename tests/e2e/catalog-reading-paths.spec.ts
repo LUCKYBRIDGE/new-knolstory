@@ -11,7 +11,7 @@ type Edition={workId:string;edition:'original'|'knolstory';projectId:string;titl
 type Scene={sceneId:string;revision:number;width:number;height:number;mode:string;ended?:boolean;dialogue:{text:string};choices:Array<{id:string;text:string}>;transitionOnly?:boolean;presentation?:{transition?:{mode?:'auto'|'confirm'}};effectSteps?:{current:number;total:number}};
 type NativeEvent={type:string;revision?:number;sceneId?:string;message?:string;choicesRect?:{x:number;y:number;width:number;height:number};dialoguePage?:{index:number;count:number};choiceId?:string};
 type ObservedWindow=Window&{__catalogPathScene?:Scene;__catalogPathEvents?:NativeEvent[]};
-const editions=['manifest.json','manifest-rabbit.json','manifest-onggojib.json','manifest-seonnyeo-selected.json'].flatMap(file=>(JSON.parse(readFileSync(new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url),'utf8')) as {editions:Edition[]}).editions);
+const editions=['manifest.json','manifest-rabbit.json','manifest-onggojib.json','manifest-seonnyeo-rainy-courtyard-selected.json'].flatMap(file=>(JSON.parse(readFileSync(new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url),'utf8')) as {editions:Edition[]}).editions);
 const canonical=(value:unknown)=>JSON.stringify(value,(_key,item:unknown)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))):item);
 const projectHash=(value:unknown)=>createHash('sha256').update(canonical(value)).digest('hex');
 const workspace=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));

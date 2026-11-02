@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-02",
+  "tool": "built-in image_gen",
+  "assetId": "seonnyeo.background.cottage-rain-evening-v1",
+  "referenceAssetId": "seonnyeo.background.BG04-cottage-day",
+  "referenceFile": "apps/web/public/assets/legacy-18da4fc/BG04-cottage-day.webp",
+  "referenceSha256": "aef5e27d6163c6bb6c191e233384b71b4a8af620db1222c6dd5ce19c198df002",
+  "sourceFile": ".cache/rainy-courtyard/sources/exec-400a770f-dfcb-46c8-9c96-c49a5e3a9da1.png",
+  "sourceSha256": "52f9f65de353cea84adb470d572b9c8b97cad21e3722254b7e158b423757e1bf",
+  "output": "apps/web/public/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+  "outputSha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833",
+  "dimensions": {
+    "width": 1672,
+    "height": 941
+  },
+  "transparent": false,
+  "containsCharacters": false,
+  "conversion": {
+    "format": "WebP",
+    "quality": 95,
+    "resize": false,
+    "method": 6
+  },
+  "prompt": "Lighting-weather edit of exact BG04-cottage-day architecture/framing: same Joseon-era thatched cottage, porch, lattice doors, hearth, firewood lean-to, wall and clear foreground; windy rainy late evening, diagonal rain, wet ground, blue-grey ambient and gentle existing-doorway light. Preserve hand-painted style and historical props. No people, silhouettes, animals, text, modern objects, portals or new structures.",
+  "review": "Exact cottage/porch/hearth/woodpile framing and readable empty foreground retained; rain/evening lighting verified. Existing source and all prior432catalogue assets preserved.",
+  "authorization": "Project-owner requested regeneration and service/editor use; project-generated weather edit, not a CC0 dedication."
+}

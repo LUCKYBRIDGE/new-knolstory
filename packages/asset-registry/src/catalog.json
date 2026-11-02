@@ -28315,5 +28315,64 @@
       ],
       "artFamily": "heungbu-traditional-picturebook"
     }
+  },
+  {
+    "id": "seonnyeo.background.cottage-rain-evening-v1",
+    "displayName": "작은 집 마당 · 비 오는 저녁 · 인물 없음",
+    "label": "작은 집 마당 · 비 오는 저녁 · 인물 없음",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "작은 집 마당",
+    "backgroundRole": "scenery",
+    "src": "/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+    "sourcePath": "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json#seonnyeo.background.cottage-rain-evening-v1",
+    "copyright": "놀퀴즈",
+    "revision": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833",
+    "geometry": null,
+    "tags": [
+      "선녀와 나무꾼",
+      "초가집",
+      "마당",
+      "비",
+      "저녁",
+      "재회",
+      "인물 없음"
+    ],
+    "metadata": {
+      "kind": "background",
+      "placementRole": "background-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "containsCharacters": false,
+      "generatedWeatherAsset": true,
+      "background": {
+        "location": "작은 집 마당",
+        "space": "outdoor",
+        "time": "저녁",
+        "season": "가을",
+        "weather": "비",
+        "state": "비바람 속 재회"
+      },
+      "searchTerms": [
+        "선녀",
+        "초가집",
+        "작은 집 마당",
+        "비",
+        "비바람",
+        "저녁",
+        "재회",
+        "인물 없음"
+      ],
+      "artFamily": "seonnyeo-painted-v2",
+      "qualityReview": {
+        "decision": "KEEP",
+        "referenceAssetId": "seonnyeo.background.BG04-cottage-day",
+        "evidence": "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json",
+        "reason": "기존 초가집 구도·조선 시대 건축·소품을 유지한 비 오는 저녁; 인물 없는 배경"
+      }
+    }
   }
 ]

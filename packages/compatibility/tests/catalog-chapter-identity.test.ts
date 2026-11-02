@@ -1,7 +1,7 @@
-import {connectCatalogWeatherContinuity} from '../src/catalog-weather-continuity';
+import {currentCatalogVisuals} from './current-catalog-visuals';
 import {simplifyCatalogPerspectiveCard as previousCard} from '../src/catalog-perspective-card';
 import {connectCatalogLayeredScenes} from '../src/catalog-layered-scenes';
-const simplifyCatalogPerspectiveCard=(p:Parameters<typeof previousCard>[0])=>connectCatalogWeatherContinuity(connectCatalogLayeredScenes(previousCard(p)));
+const simplifyCatalogPerspectiveCard=(p:Parameters<typeof previousCard>[0])=>currentCatalogVisuals(previousCard(p));
 import {connectCatalogBranchNarrative} from '../src/catalog-branch-narrative';
 import {connectCatalogNarrativeSeams} from '../src/catalog-narrative-seams';
 import {expect,it} from 'vitest';

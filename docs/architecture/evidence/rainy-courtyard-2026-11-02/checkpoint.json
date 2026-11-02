@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-02",
+  "status": "Generated asset+fivecut follow-up implemented and locally verified;API433deployed;Webreleasepending",
+  "userDecision": "필요하면 이미지도 재생성해야해.",
+  "content": {
+    "asset": "seonnyeo.background.cottage-rain-evening-v1",
+    "reference": "seonnyeo.background.BG04-cottage-day",
+    "appliedCuts": [
+      "E3-5-v23-3",
+      "E3-5-v23-4",
+      "E3-5-v23-5",
+      "E3-5-v23-6",
+      "E3-5-v23-7"
+    ],
+    "preservedCuts": [
+      "E3-5-v23-1",
+      "E3-5-v23-2"
+    ],
+    "scope": "Same cottage architecture/camera/empty foreground; rainy evening only. Existingindividualsprites,clothing/bodyproportions,manuscript,Flow/audio/effects unchanged.",
+    "combinedWeatherBackgroundDeltas": 238,
+    "source": "generation.json",
+    "prompt": "prompt.md",
+    "serviceImage": "apps/web/public/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+    "original432": "All prior catalogue rows/revisions/bytes retained;newtotal433. OriginalPNGretainedlocally,not a CC0 dedication."
+  },
+  "migration": "previousRainyCourtyard seals exact published233weather edition; only known official fingerprints refresh,anypersonaledit is preserved. Earlier layered versions remain known too.",
+  "verification": {
+    "native": "Initialbatch4passed/1failed;onlyfailedpicker rerun1passed aftercorrectingexpectedupdatedAt. No app change required for that test failure. Nativebody/screenshots+fileexport/reload390/1280,freshlibraryfirstchoiceA/B,search/preview/cancel/apply/reload all covered.",
+    "visual": "Actual390/1280rainyreunion frames inspected: same house,visible rain/wetground,characters independent;actor costumes/proportions preserved.",
+    "core": "64paths23432visits;only238background references differ from sealed pre-weather nativeinput;allnonbackgroundscenes/finalplayback equal;path-delta.json",
+    "unit": "275files2284passed2skipped;coverage.log",
+    "coverage": {
+      "statements": 91.98,
+      "branches": 90.73,
+      "functions": 95.15,
+      "lines": 95.26
+    },
+    "python": "193passed includinggeneratedasset provenance/restore guards",
+    "other": [
+      "Typecheckincludingserver and strictE2Etypes",
+      "ESLint0errors/preexistingimgwarning",
+      "Webbuild after runtimeexit0",
+      "Exact1092runtime members/pinnedSDKsources reviewed;runtime-review.json",
+      "Commercialstory-service static audit0blockers",
+      "Provenance1988filesverified"
+    ],
+    "review": "Independent read-only final review: no blocking correctness/security findings; exact imagepath,official-versionmigration,personalpreservation,238background-only scope and API/DB proof boundaries checked."
+  },
+  "api": {
+    "image": "sha256:ea762d05a7a1e86f5caa65f6c09d241f45c4702f202992c6beee15f79a827103",
+    "accepted": 433,
+    "unknownRejected": true,
+    "candidate": "api-candidate-policy.json",
+    "production": "api-production-policy.json",
+    "health": "api-health.json",
+    "backup": "backup.json",
+    "database": "database-integrity.json",
+    "rollback": "knolstory-next-api:rollback-20261102-rainy-courtyard",
+    "limits": "ActualauthenticatedHTTPupload notperformed;bundlepolicyprobeandanonymoushealth areseparate."
+  },
+  "failureDetails": {
+    "nativePicker": "Backgroundedit correctlyupdatesupdatedAt. Testexpectedlegacytimestampandfailedafterapply. AssertnewfiniteISOtimestamp>=editstart, compareallotherfieldswithonlyselectedbackgroundchanged, thenreload. Cancel stillpreserveswholeprojectincludingtimestamp.",
+    "runtimeReview": "Unknownnewemptygameassetdirectory rejectedfirst;allowlistrestrictedexactnewassetparent only beforegreen review."
+  },
+  "release": null,
+  "remaining": [
+    "50Seonnyeo whole-native combinations remain unrun;selectedsemantic/edgecover44totalwholepaths preserved separately",
+    "Physicaldevices/slow-network/newauthoringcompoundworkflows and externalaccount/classpolicies retain canonicalqueue"
+  ],
+  "proofBoundary": "Prior44nativewholepaths used sealed pre-weather inputs. Subsequent233+5visual follow-ups usefull64Core conservation checks plusfocusednative/file/picker proof,not rerunofall44wholepaths."
+}

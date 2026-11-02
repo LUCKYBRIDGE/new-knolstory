@@ -1,5 +1,5 @@
 import {it,expect} from 'vitest';
-import {writeFileSync} from 'node:fs';
+import {writeFileSync,readFileSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {representativeStories,classicStories,resolveProvidedCatalogStory} from '../../../../packages/compatibility/src';
 import {advancePlayback,advanceEffectPlayback,createPlayback,compileStoryScene,type PlaybackState} from '../../../../packages/runtime-core/src/story-runtime';
@@ -42,6 +42,11 @@ it('enumerates every current Seonnyeo path and selects a complete semantic/edge 
   return {...edition,routes:picked,coverage:{totalPaths:edition.routes.length,selectedPaths:picked.map(r=>r.id),unrunFullCombinations:edition.routes.filter(r=>!picked.includes(r)).map(r=>r.id),uniqueSemanticStates:[...universe].filter(k=>k.startsWith('scene:')).length,uniqueEdges:[...universe].filter(k=>k.startsWith('edge:')).length,uniqueScoreStates:[...universe].filter(k=>k.startsWith('scores:')).length,endings:[...universe].filter(k=>k.startsWith('ending:')),uncovered:0}};
  });
  const basis='Current official resolver + Core all paths; expected data only. Selected complete routes cover all resolved semantic scene states, manual steps, score states, edges/merge entrances and endings. Other full native combinations remain explicitly unrun.';
- for(const [name,value] of [['manifest-seonnyeo-all.json',editions],['manifest-seonnyeo-selected.json',selected]] as const)writeFileSync(new URL('./'+name,import.meta.url),JSON.stringify({version:1,basis,editions:value},null,2)+'\n');
+ const prefix=process.env.KNOL_SEONNYEO_MANIFEST_PREFIX??'manifest-seonnyeo-rainy-courtyard';
+ expect(prefix).toMatch(/^manifest-seonnyeo[a-z0-9-]*$/);
+ for(const [suffix,value] of [['all',editions],['selected',selected]] as const){
+  const target=new URL('./'+prefix+'-'+suffix+'.json',import.meta.url),data=JSON.stringify({version:1,basis,editions:value},null,2)+'\n';
+  if(existsSync(target)){expect(readFileSync(target,'utf8'),'Sealed evidence differs: choose a new versioned manifest prefix; do not overwrite earlier native inputs.').toBe(data);}else writeFileSync(target,data);
+ }
  console.log('[Seonnyeo coverage]',JSON.stringify(selected.map(e=>({edition:e.edition,cutReads:e.routes.reduce((n,r)=>n+r.steps.length,0),...e.coverage}))));
 },120000);
