@@ -1,0 +1,42 @@
+
+Running 3 tests using 1 worker
+
+(node:58041) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/catalog-weather-continuity.spec.ts:35:68 › weather backgrounds preserve authoring and native playback at 390x844 (32.2s)
+  ✓  2 tests/e2e/catalog-weather-continuity.spec.ts:35:68 › weather backgrounds preserve authoring and native playback at 1280x800 (31.8s)
+  ✘  3 tests/e2e/catalog-weather-continuity.spec.ts:149:1 › the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring (9.3s)
+
+
+  1) tests/e2e/catalog-weather-continuity.spec.ts:149:1 › the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      165 |  await dialog.locator(`[data-asset-id="${assetId}"]`).click();
+      166 |  const preview=dialog.getByText('선택 미리보기',{exact:true}).locator('..').locator('..').locator('img');
+    > 167 |  await expect(preview).toHaveAttribute('src',asset.src);await expect.poll(()=>preview.evaluate(node=>(node as HTMLImageElement).complete&&(node as HTMLImageElement).naturalWidth>0)).toBe(true);
+          |                                                                                                                                                                                       ^
+      168 |  // The registration declares a character-free scene; retain its visible preview for human review.
+      169 |  await dialog.screenshot({path:info.outputPath('rainy-yard-background-preview.png')});
+      170 |  await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(opener).toHaveAttribute('data-asset-value',oldValue!);expect((await workspace(page)).document.project).toEqual(before);
+        at /Users/wan/ai_dev/apps/new-knolstory/tests/e2e/catalog-weather-continuity.spec.ts:167:183
+
+    Error Context: test-results/rainy-courtyard-live/catalog-weather-continuity-180ab-t-after-reopening-authoring/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/rainy-courtyard-live/catalog-weather-continuity-180ab-t-after-reopening-authoring/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/rainy-courtyard-live/catalog-weather-continuity-180ab-t-after-reopening-authoring/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/e2e/catalog-weather-continuity.spec.ts:149:1 › the new rainy evening yard can be previewed, cancelled, applied and kept after reopening authoring 
+  2 passed (1.2m)

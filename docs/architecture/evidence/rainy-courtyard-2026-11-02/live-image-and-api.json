@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-11-02T13:55:38.800Z",
+  "images": [
+    {
+      "path": "/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+      "status": 200,
+      "bytes": 597630,
+      "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833"
+    },
+    {
+      "path": "/runtime/game/assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
+      "status": 200,
+      "bytes": 597630,
+      "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833"
+    }
+  ],
+  "expectedSha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833",
+  "api": [
+    {
+      "path": "/api/v1/auth/config",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/documents",
+      "status": 401
+    }
+  ],
+  "success": true,
+  "scope": "Freshanonymous GET; no login/upload/DBwrite or privatebody retained."
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "status": "Generated asset+fivecut follow-up implemented and locally verified;API433deployed;Webreleasepending",
+  "status": "Implemented,deployed and verified;latestimplementationmainCIpassed",
   "userDecision": "필요하면 이미지도 재생성해야해.",
   "content": {
     "asset": "seonnyeo.background.cottage-rain-evening-v1",
@@ -45,7 +45,8 @@
       "Commercialstory-service static audit0blockers",
       "Provenance1988filesverified"
     ],
-    "review": "Independent read-only final review: no blocking correctness/security findings; exact imagepath,official-versionmigration,personalpreservation,238background-only scope and API/DB proof boundaries checked."
+    "review": "Independent read-only final review: no blocking correctness/security findings; exact imagepath,official-versionmigration,personalpreservation,238background-only scope and API/DB proof boundaries checked.",
+    "liveNative": "Separate public-origin batch2passed/1preview-loadtimeout;rerunonlyfailedpicker1passed with30sactual-decode wait;live-native-initial.log/live-native-picker-green.log."
   },
   "api": {
     "image": "sha256:ea762d05a7a1e86f5caa65f6c09d241f45c4702f202992c6beee15f79a827103",
@@ -61,9 +62,35 @@
   },
   "failureDetails": {
     "nativePicker": "Backgroundedit correctlyupdatesupdatedAt. Testexpectedlegacytimestampandfailedafterapply. AssertnewfiniteISOtimestamp>=editstart, compareallotherfieldswithonlyselectedbackgroundchanged, thenreload. Cancel stillpreserveswholeprojectincludingtimestamp.",
-    "runtimeReview": "Unknownnewemptygameassetdirectory rejectedfirst;allowlistrestrictedexactnewassetparent only beforegreen review."
+    "runtimeReview": "Unknownnewemptygameassetdirectory rejectedfirst;allowlistrestrictedexactnewassetparent only beforegreen review.",
+    "livePreview": "Fresh public image returned200 but body/decode didnotfinish within5stestassertion. Trace retained locally. Bound actual decode wait30s,rerunonlyfailedpickerpassed29s; no productionUI change. Slow-network usability remains separate."
   },
-  "release": null,
+  "release": {
+    "sourceCommit": "f2392e8076506ffa29f46c26a5e0e6fabf871913",
+    "pages": "https://0816d226.new-knolstory.pages.dev",
+    "origin": "https://story.knolquiz.com",
+    "candidate": ".cache/pages-release-20261102-rainy-final",
+    "ci": {
+      "id": 41456882067,
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41456882067",
+      "status": "success",
+      "publicSuite": "273files2281passed2skipped;privatecatalogue/audio-byte suites excluded,local275files2284passed2skipped recordedseparately"
+    },
+    "previousImplementationCi": {
+      "id": 41456522315,
+      "sourceCommit": "19a2c15447961ad17c84e4622a2071bd264fcc41",
+      "status": "success"
+    },
+    "liveFiles": "1562checked0unexpected,key9hashes/audio3match;live-files.json",
+    "newImage": "BothWebandnativeprogressivepaths200/exact597630B/SHA;live-image-and-api.json",
+    "ingress": {
+      "image": "sha256:d61dd11511be1e4b07c05c74aac19eb3e619f8eb41a09f89282faa371670163c",
+      "proof": "ingress.json",
+      "rollback": "knolstory-next-ingress:rollback-20261102-rainy-final"
+    },
+    "api": "health200,anonymousconfig200/documents401,433registeredaccept/unknownreject;APIimageea762 unchanged byeditor-onlyseasonmetadataomission.",
+    "database": "11tablesunchanged;privatebackupretained;no migration orrestore"
+  },
   "remaining": [
     "50Seonnyeo whole-native combinations remain unrun;selectedsemantic/edgecover44totalwholepaths preserved separately",
     "Physicaldevices/slow-network/newauthoringcompoundworkflows and externalaccount/classpolicies retain canonicalqueue"

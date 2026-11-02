@@ -1,12 +1,12 @@
 {
-  "candidate": ".cache/pages-release-20261102-rainy",
+  "candidate": ".cache/pages-release-20261102-rainy-final",
   "sourceBase": "caacff153595d10ed450e2dbcb16302eae00b815",
   "includesUncommittedRainyCourtyard": true,
   "files": [
     {
       "path": "index.html",
       "bytes": 8283,
-      "sha256": "47b9cc6755f3308597176980362e6df5c5210a594322f1280da3f521bc85f35b"
+      "sha256": "2d05c427032acd58563e3c71bf8c2df2cb123f8b80f6f6d0b6a165bf10d11994"
     },
     {
       "path": "runtime/game.zip",
@@ -28,5 +28,6 @@
       "bytes": 597630,
       "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833"
     }
-  ]
+  ],
+  "verifiedImplementationCommit": "f2392e8076506ffa29f46c26a5e0e6fabf871913"
 }
