@@ -1,0 +1,60 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ packages/compatibility/tests/catalog-weather-continuity.test.ts (6 tests | 2 failed) 77ms
+   × keeps both first-choice reactions in the ongoing storm across exactly31cuts 16ms
+   × separates second-storm night, following daylight, moonlit descent and evening indoors in all reviewed copies 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/compatibility/tests/catalog-weather-continuity.test.ts > keeps both first-choice reactions in the ongoing storm across exactly31cuts
+AssertionError: expected [ { id: '1-v163-1', …(14) }, …(30) ] to have a length of 233 but got 31
+
+- Expected
++ Received
+
+- 233
++ 31
+
+ ❯ packages/compatibility/tests/catalog-weather-continuity.test.ts:22:64
+     20|  const expected=before.lines.filter(line=>rainyChapters.includes(line.…
+     21|  expect(expected).toHaveLength(31);expect(expected.every(line=>line.ba…
+     22|  expect(next.lines.filter((line,i)=>line!==original.lines[i])).toHaveL…
+       |                                                                ^
+     23|  for(const line of expected)expect(next.lines.find(item=>item.id===lin…
+     24|  expect(resolveAsset(storm)).toBeDefined();expect(resolveAsset(storm)?…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  packages/compatibility/tests/catalog-weather-continuity.test.ts > separates second-storm night, following daylight, moonlit descent and evening indoors in all reviewed copies
+AssertionError: 14-v52-1: expected { id: '14-v52-1', …(14) } to deeply equal { id: '14-v52-1', …(14) }
+
+- Expected
++ Received
+
+@@ -1,7 +1,7 @@
+  {
+-   "backgroundId": "seonnyeo.background.BG02-valley-storm",
++   "backgroundId": "seonnyeo.background.BG-forest-roots",
+    "chapterId": "14-v52",
+    "directionNote": "원전 장면: 14
+  원전 컷: 14-1
+  배경: roots",
+    "emotionNote": "",
+
+ ❯ packages/compatibility/tests/catalog-weather-continuity.test.ts:49:20
+     47|   const before=original.lines.find(line=>line.id===id),after=next.line…
+     48|   expect(before,id).toBeDefined();expect(before!.backgroundId,id).toBe…
+     49|   expect(after,id).toEqual({...before,backgroundId});
+       |                    ^
+     50|  }
+     51|  for(const chapter of secondStormChapters)for(let order=2;order<=8;ord…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 4 passed (6)
+   Start at  19:00:16
+   Duration  1.70s (transform 1.00s, setup 0ms, import 1.51s, tests 77ms, environment 0ms)
+

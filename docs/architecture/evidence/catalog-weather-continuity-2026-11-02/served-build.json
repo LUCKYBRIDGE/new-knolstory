@@ -1,0 +1,25 @@
+{
+  "candidate": ".cache/pages-release-20261102-weather",
+  "sourceBase": "d21a66d6c7bc776d0b64cbe3bcdebdcef644636e",
+  "includesUncommittedWeatherFix": true,
+  "files": [
+    {
+      "file": "index.html",
+      "bytes": 8283,
+      "sha256": "08796d62e8cc1b7ab6c2cc08c60ce5cf8f2b9e527c81f26cf58e9d7c93bf4c34",
+      "sameAsPreviousRuntime": null
+    },
+    {
+      "file": "runtime/game.zip",
+      "bytes": 8659083,
+      "sha256": "6fcb106c4248122800b099236ca5935d15b99acb34c9cd7f99c2a5f7d93b9ed7",
+      "sameAsPreviousRuntime": true
+    },
+    {
+      "file": "runtime/runtime-contract.js",
+      "bytes": 19741,
+      "sha256": "b824375d40c59b152f2aa0cd473c4d0e8c896be9dd7e51ab6a54d909eda92566",
+      "sameAsPreviousRuntime": true
+    }
+  ]
+}

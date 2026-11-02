@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:36420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/e2e/catalog-weather-continuity.spec.ts:34:68 › weather backgrounds preserve authoring and native playback at 390x844 (28.1s)
+  ✓  2 tests/e2e/catalog-weather-continuity.spec.ts:34:68 › weather backgrounds preserve authoring and native playback at 1280x800 (19.9s)
+  ✓  3 tests/e2e/catalog-weather-continuity.spec.ts:101:109 › provided Seonnyeo keeps the first-choice A path in the ongoing storm (33.0s)
+  ✓  4 tests/e2e/catalog-weather-continuity.spec.ts:101:109 › provided Seonnyeo keeps the first-choice B path in the ongoing storm (31.5s)
+
+  4 passed (1.9m)

@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-02",
+  "status": "233background-only corrections implemented;272files2279unitpassed2skipped;focusednative4passed;release pending",
+  "trigger": "Actual first-choice screenshot showed a sunny valley while the woodcutter warned that rain could collapse the mountain path.",
+  "manualReview": {
+    "firstStorm": "P2/P3storm continues through1-v163,C1-v162,bothC1-A/B reactions; no clear-weather event before entering2-v105/160cottage.",
+    "secondStorm": "Eight14-v chapters split into1nightstorm,2–8nextdayroot/robe discovery,9–20sunset/moonlit descent. Preserve daytime2–8; continue moonlight into sixC4choices.",
+    "room": "FourR1chapters begin at evening and discuss the moon outside; nextR2alreadyusesnightroom.",
+    "assetInspection": "ExistingBG02is character-free stormvalley. BG03shows ordinarymoonlitvalleywithoutportal; descent has already left discoveryroots. Existingnightroomhasnocharacters.",
+    "remainingFive": "E3-5-v23-3..7: reunion in rainy evening courtyard still needs same-cottage rainy-evening art. Nightcourtyardalone misses rain; stormvalley changes location. Do not replace wholechapter, since1..2remain sky/recollection."
+  },
+  "changes": {
+    "initialStorm": 31,
+    "laterStorm": 8,
+    "moonlitDescent": 96,
+    "moonlitChoices": 6,
+    "eveningRoom": 92,
+    "total": 233,
+    "assets": "Existing432 registered assets and their bytes unchanged. No new image generation in this correction.",
+    "runtime": "Same native package and bridge bytes; Web data/resolver change only.",
+    "preserved": [
+      "text",
+      "Flow",
+      "StageComposition",
+      "cast",
+      "audio",
+      "effects",
+      "chapter metadata",
+      "daytime/root discovery2–8",
+      "personal edited manuscripts"
+    ]
+  },
+  "migration": "previousWeather seals the prior layered edition in known fingerprints; only exact official versions refresh. Any user edit excludes the entire project.",
+  "verification": {
+    "focusedUnit": "25passed/3files;focused-unit.log",
+    "corePaths": "64complete current paths/23432visits; all nonbackgroundRuntimeScene fields and finalplayback identical to sealed pre-weather project;path-delta.json",
+    "native": "4passed:390/1280sixsamplesedit/play/export/reload +freshlibraryfirstchoiceA/B;native.log",
+    "visual": "Reviewed actual390storm/moonlitdescent and1280eveningroom screenshots. All native233scene aesthetic quality notclaimed.",
+    "fullUnit": "272files2279passed2skipped;unit.log",
+    "review": "Independentread-onlyreview found no blocking correctness/security issues.",
+    "other": [
+      "Webbuildpassed;nativepackageunchanged",
+      "Typecheckincludingserver and strict E2E types passed",
+      "TargetedESLintpassed",
+      "Commercialserviceaudit0blockers",
+      "docs:check/test:docs passed"
+    ]
+  },
+  "failures": {
+    "environment": "DirectPlaywright imports of JSON-bearing source modules failed Node import-attribute loading before anytests. Currentresolver/project+Coreexpectedscenes now exported by Vitest, read by Playwright; export command included inREADME.",
+    "testExpectations": "Prior chapter/perspective/seam/branch equality helpers stopped before the new visual-only follow-up. Apply weather policy symmetrically; dedicated233delta/personal-preservation checks still validate each change.",
+    "concurrency": "Initial unbounded full unit run overlapped long native+Corechecks and hit5sformat-test timeouts; final fullrun limits2workers. Prior boundedrun had2278pass/1stalechapterexpectationfailure now corrected.",
+    "bounds": "No unrun check is counted as passed; old native full-route inputs and latest weather visual delta kept separate."
+  },
+  "release": null,
+  "remaining": [
+    "five rainy courtyard reunion cuts need suitablebackgroundart",
+    "other50Seonnyeo whole native path combinations explicitly unrun",
+    "physical devices/slow network/newauthoringconditioncombos and externalaccount/policy queue"
+  ]
+}
