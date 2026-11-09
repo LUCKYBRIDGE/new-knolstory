@@ -3,7 +3,7 @@
 .meta small{overflow-wrap:anywhere}
 /* Legacy focus stage: the room supplies the atmosphere, not a second opaque panel. */
 .dialog{border:0;border-radius:0;background:transparent;box-shadow:none;padding:16px clamp(16px,4vw,32px);overflow:auto}
-.dialog::backdrop{background:radial-gradient(ellipse at 50% 35%,#442c19a6,#180d07e0);backdrop-filter:blur(3px)}
+.dialog::backdrop{background:radial-gradient(ellipse at 50% 35%,#442c19ee,#180d07f2);backdrop-filter:blur(3px)}
 .dialog header button{background:#3e291be6;border-color:#e1c28b;color:#fff2d8;border-radius:24px;min-height:44px}
 .showcase{margin:12px auto;gap:clamp(10px,3vw,32px)}
 .book{width:clamp(115px,min(34vw,calc((100dvh - 350px)/1.42)),185px)}
