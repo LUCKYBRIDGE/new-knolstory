@@ -3,9 +3,11 @@ import { test, expect,type Page } from '@playwright/test';
 import { createStoryBranches, createStoryDocument } from '../../packages/story-domain/src/index';
 import { createBlankStoryProject, insertStoryCut } from '../../packages/runtime-core/src/authoring';
 import { readFileSync } from 'node:fs';
+async function openExchange(page:Page){const exchange=page.locator('[data-file-exchange]');if(!await exchange.evaluate(node=>(node as HTMLDetailsElement).open))await exchange.locator(':scope>summary').click();}
 
-async function writer(page:Page){const details=page.locator('[data-writing-tools]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();}
-async function cuts(page:Page){const details=page.locator('[data-additional-tools]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();await page.getByRole('button',{name:'컷 목록',exact:true}).click();}
+async function chapterNumbers(page:Page){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const settings=page.locator('[data-chapter-settings]');if(!await settings.evaluate(node=>(node as HTMLDetailsElement).open))await settings.locator(':scope>summary').click();const detail=settings.locator('details').filter({has:page.locator('summary',{hasText:'장 번호·갈래 표시'})});if(!await detail.evaluate(node=>(node as HTMLDetailsElement).open))await detail.locator(':scope>summary').click();return {number:detail.getByRole('spinbutton',{name:'장 번호',exact:true}),branch:detail.getByRole('textbox',{name:'장 갈래 표시',exact:true})};}
+// Cuts across chapters and branches are listed in the current-cut mover; branch letters stay in each option label.
+async function cuts(page:Page){return page.getByLabel('현재 장과 컷 이동',{exact:true});}
 
 test('chapter identity and extended branch cuts survive editor, file export and reload',async({page})=>{
  let count=0;
@@ -22,33 +24,28 @@ test('chapter identity and extended branch cuts survive editor, file export and 
  const management=page.locator('[data-work-menu]>summary');if(!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();
  await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'chapter.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(document))}); await confirmAuthoringImport(page);
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
- if(!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();const baselineEvent=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const baseline=parseAuthoringFile(readFileSync((await(await baselineEvent).path())!,'utf8')).project;
- await writer(page);
- const panel=page.getByRole('region',{name:'장 전체 글 고치기',exact:true});
- await panel.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true}).click();
- await panel.getByLabel('장 번호',{exact:true}).fill('2');
- await panel.getByLabel('장 갈래 표시',{exact:true}).fill('');
- await expect(panel).toContainText('2장 · 갈림길');
- await page.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();
- await cuts(page);
- await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toContainText('3장A');
- await expect(page.getByRole('complementary',{name:'장과 컷 목록'})).toContainText('3장B');
- const branch=page.getByRole('complementary',{name:'장과 컷 목록'}).locator('details').filter({has:page.locator('[data-line-id="second-a"]')});if(!await branch.evaluate(node=>(node as HTMLDetailsElement).open))await branch.locator(':scope>summary').click();
- await page.locator('[data-line-id="second-a"]').click();
- await writer(page);
- await panel.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true}).click();
- await expect(panel.getByLabel('장 번호',{exact:true})).toHaveValue('3');
- await expect(panel.getByLabel('장 갈래 표시',{exact:true})).toHaveValue('A');
- await expect(panel.getByLabel('2컷 대사 / 해설')).toHaveValue('A 갈래에서만 읽는 두 번째 컷');
+ if(!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();const baselineEvent=page.waitForEvent('download');await openExchange(page).then(()=>page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click());const baseline=parseAuthoringFile(readFileSync((await(await baselineEvent).path())!,'utf8')).project;
+ const first=await chapterNumbers(page);
+ await first.number.fill('2');await first.number.blur();
+ await first.branch.fill('');await first.branch.blur();
+ await expect(page.getByLabel('현재 장과 컷 이동',{exact:true}).locator('option').first()).toContainText('2장 · 갈림길');
+ const mover=await cuts(page);
+ await expect(mover).toContainText('3장A');
+ await expect(mover).toContainText('3장B');
+ await mover.selectOption('second-a');
+ const second=await chapterNumbers(page);
+ await expect(second.number).toHaveValue('3');
+ await expect(second.branch).toHaveValue('A');
+ await page.keyboard.press('Escape');
+ await expect(page.locator('[data-current-cut] textarea[data-cut-id]')).toHaveValue('A 갈래에서만 읽는 두 번째 컷');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  if(!await management.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await management.click();
- const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+ const download=page.waitForEvent('download');await openExchange(page).then(()=>page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click());
  const exported=parseAuthoringFile(readFileSync((await(await download).path())!,'utf8')).project;
  expect({...exported,updatedAt:baseline.updatedAt}).toEqual(baseline);
  expect(exported.chapters.slice(1).map((c:{chapterNumber:number;branchLabel?:string})=>[c.chapterNumber,c.branchLabel])).toEqual([[3,'A'],[3,'B'],[4,undefined]]);
  expect(exported.lines.find((l:{id:string})=>l.id===a.targetLineId).flow).toBeUndefined();
  expect(exported.lines.find((l:{id:string})=>l.id==='second-a').flow).toEqual(project.lines.find(l=>l.id==='second-a')?.flow);
  await page.reload();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
- await writer(page);
- await expect(panel).toContainText('3장A');
+ await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toContainText('3장A');
 });
