@@ -18,6 +18,7 @@ const mixedIllustrations = storyIllustrations.flatMap((asset, index) => {
 }).concat(creativeIllustrations.slice(storyIllustrations.length));
 const seriesRoots = new Set(illustrations.flatMap(asset =>
  typeof asset.metadata.seriesId === 'string' ? [asset.metadata.seriesId] : []));
+const storyOptions = [...new Set(illustrations.map(asset => asset.story).filter((story): story is string => typeof story === 'string' && story.length > 0))];
 const seriesOptions = illustrations.filter(asset => seriesRoots.has(asset.id));
 
 export function ShortStoryIllustrationPicker({value, onSelect, onClose}: {
@@ -33,6 +34,7 @@ export function ShortStoryIllustrationPicker({value, onSelect, onClose}: {
  const [series, setSeries] = useState('');
  const [independentOnly,setIndependentOnly]=useState(false);
  const [limit, setLimit] = useState(pageSize);
+ const [story, setStory] = useState('');
 
  useEffect(() => {
   const opener = document.activeElement;
@@ -46,6 +48,7 @@ export function ShortStoryIllustrationPicker({value, onSelect, onClose}: {
 
  const collectionAssets = collection === 'all' ? mixedIllustrations : creative ? creativeIllustrations : storyIllustrations;
  const matches = collectionAssets.filter(asset =>
+  (!story || asset.story === story) &&
   (!creative || !independentOnly || asset.metadata.storyRelation === 'independent-event') &&
   (!creative || !series || asset.id === series || asset.metadata.seriesId === series) &&
   matchesAssetSearch(asset, query))
@@ -69,8 +72,9 @@ export function ShortStoryIllustrationPicker({value, onSelect, onClose}: {
    setQuery('');
    setLimit(pageSize);
   }}><option value="">모든 사건</option>{seriesOptions.map(asset=><option key={asset.id} value={asset.id}>{assetDisplayName(asset)}</option>)}</select></label>}
+  {storyOptions.length > 1 && <label>작품<select value={story} onChange={event => {setStory(event.target.value); setLimit(pageSize);}}><option value="">네 작품 모두</option>{storyOptions.map(option => <option key={option} value={option}>{option}</option>)}</select></label>}
   <label>삽화 검색<input autoFocus type="search" value={query} onChange={event => {setQuery(event.target.value); setLimit(pageSize);}}/></label>
-  {matches.length === 0 && <p role="status">찾은 삽화가 없어요.</p>}
+  <p role="status" className={styles.toolHint}>{matches.length === 0 ? '찾은 삽화가 없어요.' : `삽화 ${matches.length}장`}</p>
   <div className={styles.illustrationGrid}>
    {matches.slice(0, limit).map(asset => <button key={asset.id} data-asset-id={asset.id}
     aria-pressed={value === asset.id} onClick={() => onSelect(asset.id)}>

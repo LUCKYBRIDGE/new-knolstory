@@ -19,7 +19,7 @@ for(const work of works)test(`actual ${work} picture book read, isolated positio
  }
  await page.reload();await expect(reading).toContainText(original.pages.at(-1)!.text);
  await mkdir(evidence,{recursive:true});await page.screenshot({path:`${evidence}/${work}-reader.png`,fullPage:true});
- await page.getByText('표지·소개·Google 시트 편집',{exact:true}).click();await expect(page.getByRole('region',{name:'그림책 파일과 이름'}).getByText(original.title,{exact:true})).toBeVisible();
+ await openShortStoryDetails(page, '소개·마지막 인사·표지 그림');await expect(page.getByRole('region',{name:'그림책 파일과 이름'}).getByText(original.title,{exact:true})).toBeVisible();
  await page.emulateMedia({media:'print'});await expect(page.locator('[data-shortstory-print] article')).toHaveCount(original.pages.length+2);
  const pdf=await page.pdf({format:'A4',preferCSSPageSize:true,printBackground:true,path:`${evidence}/${work}-a4.pdf`});
  const pageCount=[...pdf.toString('latin1').matchAll(/\/Type \/Page\b/g)].length;
@@ -34,7 +34,7 @@ test('original copy, three-face cover, multiple books, page operations, reload a
  await page.getByRole('button',{name:'현재 쪽 복제',exact:true}).click();await page.getByLabel('이 쪽 제목').fill('복제한 쪽');await page.getByRole('button',{name:'쪽 앞으로 이동',exact:true}).click();
  await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
  await page.getByRole('button',{name:'현재 쪽 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 확인',exact:true}).click();await page.getByRole('button',{name:'쪽 삭제 되돌리기',exact:true}).click();await expect(page.getByLabel('이 쪽 제목')).toHaveValue('복제한 쪽');
- await page.getByText('표지·소개·Google 시트 편집',{exact:true}).click();await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();
+ await openShortStoryDetails(page, '소개·마지막 인사·표지 그림');await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});await dialog.getByLabel('작품 제목',{exact:true}).fill('사본의 표지 초안');await dialog.getByRole('button',{name:'닫기',exact:true}).click();await page.getByRole('dialog',{name:'표지 변경을 적용하지 않고 닫을까요?'}).getByRole('button',{name:'변경 버리고 닫기',exact:true}).click();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('토끼의 새 그림책');
  await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();await dialog.getByRole('button',{name:'책등',exact:true}).click();await dialog.getByRole('button',{name:'뒤표지',exact:true}).click();await dialog.getByRole('button',{name:'앞표지',exact:true}).click();await dialog.getByLabel('작품 제목',{exact:true}).fill('표지를 꾸민 토끼 그림책');await dialog.getByRole('button',{name:'표지 적용',exact:true}).click();
  await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('표지를 꾸민 토끼 그림책');
@@ -66,7 +66,7 @@ test('delayed Google picture book import retains books created and edited while 
  const downloading=page.waitForEvent('download');await openShortStoryDetails(page, '파일 교환·보관');await page.getByRole('button',{name:'간단 시트용 TSV 보관',exact:true}).click();const tsv=await readFile((await(await downloading).path())!,'utf8');
  let release:()=>void=()=>{};const pending=new Promise<void>(resolve=>{release=resolve;});let arrived:()=>void=()=>{};const requested=new Promise<void>(resolve=>{arrived=resolve;});
  await page.route('https://docs.google.com/spreadsheets/d/delayed-book/export?format=tsv&gid=0',async route=>{arrived();await pending;await route.fulfill({status:200,contentType:'text/tab-separated-values',body:tsv,headers:{'access-control-allow-origin':'*'}});});
- await page.getByText('표지·소개·Google 시트 편집',{exact:true}).click();await page.getByLabel('공개 Google 시트 주소').fill('https://docs.google.com/spreadsheets/d/delayed-book/edit#gid=0');await page.getByRole('button',{name:'간단 시트 가져오기',exact:true}).click();await requested;
+ await page.getByLabel('공개 Google 시트 주소').fill('https://docs.google.com/spreadsheets/d/delayed-book/edit#gid=0');await page.getByRole('button',{name:'간단 시트 가져오기',exact:true}).click();await requested;
  await openShortStoryDetails(page, '그림책 관리');await page.getByRole('button',{name:'새 그림책',exact:true}).click();await page.getByLabel('이야기 제목',{exact:true}).fill('응답을 기다리며 만든 책');await page.getByLabel('이 쪽의 이야기').fill('가져오는 동안 쓴 글을 보존해요.');
  release();await confirmAuthoringImport(page);await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue(getShortStoryOriginal('rabbit').title);
  await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);await page.getByRole('button',{name:'응답을 기다리며 만든 책',exact:true}).click();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('가져오는 동안 쓴 글을 보존해요.');await page.reload();await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('가져오는 동안 쓴 글을 보존해요.');
