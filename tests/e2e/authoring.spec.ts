@@ -210,7 +210,7 @@ test('corrupt stored workspace preserves raw bytes and blocks applying a pending
   await preview.getByRole('button',{name:'가져오기 취소',exact:true}).click();await expect(preview).toHaveCount(0);
   expect(await exportedProject(page)).toEqual(before);
   await menu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();
-  await expect(page.getByTestId('workspace-error')).toContainText('현재 편집을 유지합니다');
+  await expect(page.getByTestId('workspace-error')).toContainText('편집 화면에 머물렀어요');
   await expect(page.getByTestId('workspace-error')).not.toContainText('Error:');
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue(draft);
   expect(await page.evaluate(() => localStorage.getItem('knolstory-next-workspace-v1'))).toBe(originalRaw);

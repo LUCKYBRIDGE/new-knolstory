@@ -161,7 +161,7 @@ test('a picture-book draft reports a quota failure after taking over instead of 
  const stored=await second.evaluate(key=>localStorage.getItem(key),shortstory);
  await page.evaluate(key=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(name,value){if(name===key)throw new DOMException('full','QuotaExceededError');return original.call(this,name,value);};},shortstory);
  await page.getByLabel('이 쪽의 이야기').evaluate(el=>{const field=el as HTMLTextAreaElement;Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value')!.set!.call(field,'공간 부족에도 남아야 하는 그림책');field.dispatchEvent(new Event('input',{bubbles:true}));});
- await expect(page.getByRole('alert').filter({hasText:'자동으로 보관하지 못했어요'})).toBeVisible();
+ await expect(page.getByRole('alert').filter({hasText:'자동으로 임시 보관하지 못했어요'})).toBeVisible();
  await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('공간 부족에도 남아야 하는 그림책');
  expect(await page.evaluate(key=>localStorage.getItem(key),shortstory)).toBe(stored);
 });

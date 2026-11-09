@@ -43,7 +43,7 @@ test('explicit file handle save verifies write, reuses selected file, protects e
  await field.fill('같은 파일에 이어 쓴 원고');await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고 내용을 확인');
  const saved=await page.evaluate(()=>{const t=(window as unknown as {fileTest:{files:Map<string,string>;stats:{picks:number;writes:number}}}).fileTest;return {raw:t.files.get('selected-1.knolstory')!,stats:t.stats};});expect(saved.stats).toEqual({picks:1,writes:2});expect(JSON.parse(saved.raw).document.project.lines[0].text).toBe('같은 파일에 이어 쓴 원고');
  await page.evaluate(()=>(window as unknown as {fileTest:{files:Map<string,string>}}).fileTest.files.set('selected-1.knolstory','외부에서 편집한 파일'));
- await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('alert')).toContainText('외부에서 변경');await expect(field).toHaveValue('같은 파일에 이어 쓴 원고');
+ await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('alert')).toContainText('다른 곳에서 파일이 바뀌었어요');await expect(field).toHaveValue('같은 파일에 이어 쓴 원고');
  await group.getByRole('button',{name:'다른 파일로 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('selected-2.knolstory');
  await info.attach('file-handle-model-result',{body:JSON.stringify({scope:'Modeled browser file picker/stream; verifies product integration, not native OS picker',saved},null,2),contentType:'application/json'});
 });
@@ -93,7 +93,7 @@ test('file permission and disk failures keep the draft, hide native details and 
  const field=page.locator('[data-current-cut] textarea').first(),draft='권한 오류가 나도 보존할 원고입니다.\n다시 저장해도 문장은 그대로입니다.';
  await field.fill(draft);await page.locator('[data-work-menu]>summary').click();
  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true}),save=group.getByRole('button',{name:'작품 파일 저장',exact:true});
- await save.click();await expect(group.getByRole('alert')).toContainText('파일을 사용할 권한');await expect(group.getByRole('alert')).not.toContainText(/Permission|private|author-name/);await expect(field).toHaveValue(draft);
+ await save.click();await expect(group.getByRole('alert')).toContainText('파일을 쓸 권한이 없어요');await expect(group.getByRole('alert')).not.toContainText(/Permission|private|author-name/);await expect(field).toHaveValue(draft);
  await save.click();await expect(group.getByRole('status')).toContainText('retry-2.knolstory');
  const revised=`${draft}\n저장 후 덧붙인 한글도 보존합니다.`;await field.fill(revised);
  await page.evaluate(()=>(window as unknown as {fileFailure:{failWrite:boolean}}).fileFailure.failWrite=true);

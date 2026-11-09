@@ -62,7 +62,7 @@ test('changed-work slots show saved excerpt and require explicit compatible rest
  await page.keyboard.press('Escape');await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered(page);
  await page.getByRole('button',{name:'불러오기',exact:true}).click();const slot=page.getByRole('button',{name:'2번 불러오기',exact:true});
  await expect(slot).toContainText('아이와 어른은 숲의 두 길 앞에 섰다.');await expect(slot).not.toContainText('저장 뒤 바뀐 새 대사');await slot.click();await page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true}).getByRole('button',{name:'확인',exact:true}).click();
- await expect(page.getByRole('dialog',{name:'이 기록을 불러올까요?'})).toContainText('저장 이후 작품이 변경');await page.getByRole('button',{name:'변경된 작품에서 이어읽기',exact:true}).click();await rendered(page);
+ await expect(page.getByRole('dialog',{name:'이 기록을 불러올까요?'})).toContainText('저장한 뒤 작품이 바뀌었어요');await page.getByRole('button',{name:'변경된 작품에서 이어읽기',exact:true}).click();await rendered(page);
  const semantic=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})});await expect(semantic.getByText('저장 뒤 바뀐 새 대사',{exact:true})).toHaveCount(1);await edit(page);await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('저장 뒤 바뀐 새 대사');const after=parseAuthoringFile(readFileSync(await exported(page,'작품 파일 내보내기'),'utf8'));expect(after.project).toEqual({...baseline.project,updatedAt:after.project.updatedAt,lines:baseline.project.lines.map((cut:{id:string})=>cut.id==='opening'?{...cut,text:'저장 뒤 바뀐 새 대사'}:cut)});expect(after.audioResources).toEqual(baseline.audioResources);
 });
 

@@ -20,7 +20,7 @@ export async function beginSelectedBook(page:Page,resume=false){
 export async function openShelfAction(page:Page,book:import('@playwright/test').Locator,intent:string){
  await book.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();
  const dialog=page.getByRole('dialog');
- if(await book.getAttribute('data-work-id')){if(intent==='처음부터 읽기'||intent==='이어읽기'){await dialog.getByRole('button',{name:`원작 ${intent==='처음부터 읽기'?'읽기':'이어읽기'}`,exact:true}).click();return;}await dialog.getByLabel('바탕 판본',{exact:true}).selectOption('original');}
+ if(await book.getAttribute('data-work-id')){if(intent==='처음부터 읽기'||intent==='이어읽기'){await dialog.getByRole('button',{name:`원작 ${intent==='처음부터 읽기'?'읽기':'이어읽기'}`,exact:true}).click();return;}await dialog.getByLabel('편집할 이야기',{exact:true}).selectOption('original');}
  if(intent==='작품 준비'||intent==='책 표지 편집'||(intent==='파일로 보관'||intent==='작품 파일 내보내기'))await dialog.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();
  await dialog.getByRole('button',{name:intent==='작품 준비'?'작품 정보·기획':intent==='파일로 보관'?'작품 파일 내보내기':intent,exact:true}).click();
 }
@@ -44,7 +44,7 @@ export async function openBuiltinEdition(page:Page,workId:string,edition:'origin
  await builtinShelfCard(page,workId).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();
  const dialog=page.getByRole('dialog');await expect(dialog).toHaveAttribute('data-work-id',workId);
  if(intent==='start'||intent==='resume'){await dialog.getByRole('button',{name:`${edition==='original'?'원작':'놀스토리'} ${intent==='start'?'읽기':'이어읽기'}`,exact:true}).click();return;}
- await dialog.getByLabel('바탕 판본',{exact:true}).selectOption(edition);
+ await dialog.getByLabel('편집할 이야기',{exact:true}).selectOption(edition);
  if(intent!=='edit')await dialog.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();
  await dialog.getByRole('button',{name:({edit:'편집하기',prepare:'작품 정보·기획',cover:'책 표지 편집',export:'작품 파일 내보내기'} as const)[intent],exact:true}).click();
 }

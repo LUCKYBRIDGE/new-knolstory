@@ -19,7 +19,7 @@ const labels=['지난기록','저장','불러오기','자동 넘기기 · 꺼짐
 test('approved reader manual/quick slots, load confirmation, reopen and history use Core',async({page})=>{
  await ackRuntime(page);await start(page);
  const bar=page.getByRole('button',{name:'지난기록',exact:true}).locator('..');expect(await bar.locator('button').allTextContents()).toEqual(labels);
- await page.getByRole('button',{name:'빠른 불러오기',exact:true}).click();await expect(page.getByTestId('story-stage-viewport').getByRole('alert')).toContainText('빠른 저장한 진행이 없어요');
+ await page.getByRole('button',{name:'빠른 불러오기',exact:true}).click();await expect(page.getByTestId('story-stage-viewport').getByRole('alert')).toContainText('빠른 저장한 기록이 아직 없어요');
  await page.getByRole('button',{name:'빠른 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'빠른 저장 완료'})).toBeVisible();
  await page.getByRole('button',{name:'저장',exact:true}).click();await page.getByRole('button',{name:'1번 저장',exact:true}).click();await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  const slots=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-player-v1')!));expect(slots.version).toBe(3);const stored=Object.values(slots.works)[0] as Record<string,unknown>;expect(stored.quick).toBeTruthy();expect(stored['1']).toBeTruthy();expect(stored.auto).toBeTruthy();

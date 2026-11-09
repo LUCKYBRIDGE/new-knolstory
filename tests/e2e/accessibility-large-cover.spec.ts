@@ -21,7 +21,7 @@ for(const width of [390,1440])test(`original large front cover contrast on actua
   expect(await authored()).toEqual(authoredBefore);
  }
  for(const work of ['seonnyeo','heungbu','onggojib','rabbit']){
-  await builtinShelfCard(page,work).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await focus.getByLabel('바탕 판본',{exact:true}).selectOption('original');await measure(`${work}-focus`,focus);
+  await builtinShelfCard(page,work).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await focus.getByLabel('편집할 이야기',{exact:true}).selectOption('original');await measure(`${work}-focus`,focus);
   await focus.getByRole('button',{name:'원작 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();
   const selectedId=BUILTIN_WORKS.find(item=>item.id===work)!.originalDocumentId;
   // BookStart renders before the debounced workspace writer commits selection.

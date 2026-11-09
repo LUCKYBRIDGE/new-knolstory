@@ -119,7 +119,7 @@ test('unavailable-storage reload requires explicit confirmation and cancellation
  const reopen=second.getByRole('button',{name:'저장된 보관함 다시 열기',exact:true});
  await text.dispatchEvent('compositionstart');await expect(reopen).toBeDisabled();await text.dispatchEvent('compositionend');
  await reopen.click();const dialog=second.getByRole('dialog',{name:'저장된 보관함 다시 열기',exact:true});
- await expect(dialog).toBeVisible();await second.setViewportSize({width:390,height:844});await second.screenshot({path:testInfo.outputPath('reload-confirmation-390.png')});await expect(dialog).toContainText('현재 초안은 사라집니다');await expect(dialog.getByRole('button',{name:'취소',exact:true})).toBeFocused();
+ await expect(dialog).toBeVisible();await second.setViewportSize({width:390,height:844});await second.screenshot({path:testInfo.outputPath('reload-confirmation-390.png')});await expect(dialog).toContainText('이 탭의 초안이 사라져요');await expect(dialog.getByRole('button',{name:'취소',exact:true})).toBeFocused();
  await text.dispatchEvent('compositionstart');await expect(dialog.getByRole('button',{name:'현재 초안을 닫고 다시 열기',exact:true})).toBeDisabled();await text.dispatchEvent('compositionend');
  await second.keyboard.press('Shift+Tab');await expect(dialog.getByRole('button',{name:'현재 초안을 닫고 다시 열기',exact:true})).toBeFocused();
  await second.keyboard.press('Tab');await expect(dialog.getByRole('button',{name:'취소',exact:true})).toBeFocused();

@@ -5,7 +5,7 @@ const key='knolstory-shortstory-library-v1';
 /** A browser that cannot keep the library (no Web Locks). Two ordinary tabs hand the writer over by
  * themselves instead (multi-tab-handover.spec.ts). */
 const withoutLocks=(page:Page)=>page.addInitScript(()=>Object.defineProperty(navigator,'locks',{configurable:true,value:undefined}));
-const storageWarning=(page:Page)=>page.getByRole('alert').filter({hasText:'자동으로 보관하지 못했어요'});
+const storageWarning=(page:Page)=>page.getByRole('alert').filter({hasText:'자동으로 임시 보관하지 못했어요'});
 const firstText=(page:Page)=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)!).books[0].pages[0].text,key);
 test('a picture-book tab that cannot keep the library keeps its draft, exports it and reopens the stored book only after confirmation',async({page,context})=>{
  await page.goto('/shortstory');

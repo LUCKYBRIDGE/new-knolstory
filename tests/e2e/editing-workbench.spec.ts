@@ -296,7 +296,7 @@ test('library navigation is inside settings and returns to the same edited work'
 
 test('failed recovery write keeps the editor open when library navigation is requested',async({page})=>{
  await prepare(page);await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='knolstory-next-workspace-v1')throw Error('quota');return original.call(this,key,value);};});
- await openWorkMenu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(workbench(page)).toBeVisible();await expect(page.getByTestId('workspace-error')).toContainText('현재 편집을 유지');
+ await openWorkMenu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(workbench(page)).toBeVisible();await expect(page.getByTestId('workspace-error')).toContainText('편집 화면에 머물렀어요');
 });
 
 
