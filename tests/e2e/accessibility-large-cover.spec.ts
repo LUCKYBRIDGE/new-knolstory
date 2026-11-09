@@ -8,7 +8,7 @@ for(const width of [390,1440])test(`original large front cover contrast on actua
  const reports=[];
  const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});
  async function measure(surface:string,root:Locator){
-  await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>{image.addEventListener('load',()=>resolve(),{once:true});image.addEventListener('error',()=>resolve(),{once:true});})));});
+  await root.evaluate(async node=>{await document.fonts.ready;await Promise.all([...node.querySelectorAll('img')].filter(image=>image.loading!=='lazy'||image.getBoundingClientRect().top<innerHeight).map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>{image.addEventListener('load',()=>resolve(),{once:true});image.addEventListener('error',()=>resolve(),{once:true});})));});
   const authoredBefore=await authored();
   const targets=root.locator('[data-cover-face="front"] h2,[data-cover-face="front"] p,[data-cover-face="front"] span[class*="edition"]');
   expect(await targets.count()).toBeGreaterThan(0);
