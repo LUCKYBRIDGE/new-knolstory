@@ -327,3 +327,9 @@
 .emptyHint button { min-height:44px; }
 .backToBasic { min-height:44px; align-self:end; }
 .insertCut,.emptyHint button,.backToBasic{min-height:44px!important}
+/* Stacked (phone/tablet portrait): keep the continuation actions beside the next cut instead of clipped below it. */
+.shortLabel{display:none}
+.body[data-cut-arrangement=stacked] .nextSide{flex-direction:row;align-items:stretch}
+.body[data-cut-arrangement=stacked] .nextSide>.adjacent{flex:1 1 auto;min-width:0;max-height:none}
+.body[data-cut-arrangement=stacked] .nextSide>.insertCut{flex:0 0 auto;width:auto;margin:0;padding:0 10px;white-space:nowrap}
+@media(max-width:600px){.body[data-cut-arrangement=stacked] .nextSide .longLabel{display:none}.body[data-cut-arrangement=stacked] .nextSide .shortLabel{display:inline}}
