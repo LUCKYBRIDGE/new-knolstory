@@ -1,0 +1,319 @@
+{
+  "date": "2026-11-06",
+  "scope": "Eight reusable independent situations for mixing with familiar original and KnolStory scenes",
+  "existingCatalogEntriesPreserved": 481,
+  "images": [
+    {
+      "id": "shortstory.background.creative-rabbit-crossroads-v1",
+      "title": "갈림길에서 다른 길을 가리키는 두 친구",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-crossroads-v1.webp",
+      "sha256": "10c50549d679f67fc5930d66697ae8f079dd58bca62a02966100a90756454dfa",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 582164,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-9eac496e-38d3-4f03-b02b-8f96d57cb433.png",
+      "sourceSha256": "b73f93313f83b8e4e5bb188891230e216c0d1f4b477071bc121d73a549bfc778",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Use case: illustration-story. Create ONE finished 16:9 landscape Korean folktale picture-book illustration, no panels, no lettering, no border, no watermark. Reference image1 is the canonical warm grey rabbit, cream belly, large brown eyes, no clothes. Reference image2 is the canonical bipedal green turtle official, blue gold-trimmed robe and matching blue hat, visible brown shell. Preserve both identities, costumes and proportions exactly, change poses and expressions naturally for the scene. Warm detailed painterly watercolor storybook style consistent with references. Both characters fully readable, main action centered with comfortable margins for contain presentation. Scene: A woodland fork in a dirt road with a plain weathered wooden direction sign, no writing. The rabbit points toward a sunny uphill trail while the turtle consults a simple unfolded hand drawn map toward a shaded trail. Clear disagreement or decision, no outcome, no magic. Both paths visible.",
+      "catalogReferences": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "visual object and action review",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-rabbit-spilled-basket-v1",
+      "title": "길 위로 쏟아진 바구니",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-spilled-basket-v1.webp",
+      "sha256": "c6fdfd3d73395dac54c80570c1cd91c3e261351baeb601c959c106e1c4822778",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 558852,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-28fa340b-7b1f-402c-a7d1-3844a982a5b3.png",
+      "sourceSha256": "184488e6e2b51c3c34a62889f458a988a64ed8aeec7c798c122a5938c931fd60",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Use case: illustration-story. Create ONE finished 16:9 landscape Korean folktale picture-book illustration, no panels, no lettering, no border, no watermark. Reference image1 is the canonical warm grey rabbit, cream belly, large brown eyes, no clothes. Reference image2 is the canonical bipedal green turtle official, blue gold-trimmed robe and matching blue hat, visible brown shell. Preserve both identities, costumes and proportions exactly, change poses and expressions naturally for the scene. Warm detailed painterly watercolor storybook style consistent with references. Both characters fully readable, main action centered with comfortable margins for contain presentation. Scene: On a rural road a woven basket has tipped over; round red apples and a few carrots roll down a small slope. The rabbit kneels reaching to catch a rolling apple, the turtle braces the fallen basket. Cause and blame unknown. Distinct dynamic actions, believable hands and contact.",
+      "catalogReferences": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "visual object and action review",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-shared-well-v1",
+      "title": "우물가에 모인 빈 물동이",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-shared-well-v1.webp",
+      "sha256": "8cc371e835cd91af402e71e1e4613a3e424013c538efccf0bf04019c743846b7",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 685062,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-7c2f37fa-64da-4790-88d9-5d26ce8f23a2.png",
+      "sourceSha256": "65b1abf817657309bdf39773bec43ca762f5cb2debb18a314baca965baeaead7",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Use case: illustration-story. One finished 16:9 landscape Korean folktale picture-book illustration, warm detailed painterly watercolor consistent with supplied characters, no writing, no panels, no watermark. Image1 is canonical Heungbu daughter: young girl short dark bob with small tied side tuft blue ribbon, patched blue-grey jacket, ochre trousers, straw shoes. Image2 is canonical Heungbu: gentle adult male topknot white headband, patched beige vest over off-white hanbok, straw shoes. Preserve faces ages body proportions costumes and patches; natural new poses and facial expressions. Action centered and readable, enough scene context, no clipping. Scene: At a village stone well in daylight, a bucket on a rope is suspended over the well. Heungbu holds his empty bucket; the young girl extends an open palm toward several waiting villagers with jars, two adults gesture at the same rope. A visible question of turns, scarce water or disagreement; no villain, no settled outcome. Safe low stone parapet; nobody leans into the hole.",
+      "catalogReferences": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "visual object and action review",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-wind-laundry-v1",
+      "title": "바람에 날아간 빨래",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-wind-laundry-v1.webp",
+      "sha256": "226940be9ad1f2eba345262dc74d61a07cadbbaffeeb906671131845ef4758c4",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 695930,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-fa3f9462-f97c-49e9-8846-b6211d0332c5.png",
+      "sourceSha256": "d80bd1e7f80a77ef45468ef6da606df5a4c271d9374911b805b0f4848240df56",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Use case: illustration-story. One finished 16:9 landscape Korean folktale picture-book illustration, warm detailed painterly watercolor consistent with supplied characters, no writing, no panels, no watermark. Image1 is canonical Heungbu daughter: young girl short dark bob with small tied side tuft blue ribbon, patched blue-grey jacket, ochre trousers, straw shoes. Image2 is canonical Heungbu: gentle adult male topknot white headband, patched beige vest over off-white hanbok, straw shoes. Preserve faces ages body proportions costumes and patches; natural new poses and facial expressions. Action centered and readable, enough scene context, no clipping. Scene: A strong ordinary gust in a village yard lifts a cream cloth from the clothesline toward a low persimmon branch. Heungbu reaches up with a long smooth bamboo pole below the cloth while the girl holds the end of the clothesline and looks up. Two other cloths billow. A new practical interruption and collaboration, not magical levitation; nobody climbing dangerously.",
+      "catalogReferences": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "visual object and action review",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-broken-bridge-v1",
+      "title": "널빤지가 빠진 다리 앞에서",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-broken-bridge-v1.webp",
+      "sha256": "629a7d8d0e0a235781f26a87a3b467fba899de3d6fbd00d1969abc8140c9efa8",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 522140,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-e30c8a6d-9290-41a0-9a23-5a2a5ae7db38.png",
+      "sourceSha256": "a2dd90348bcb8ff79bee270ac2238705df6b31c0cf7edd557aa08305b9955ff5",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Edit this image precisely to correct bridge carpentry ONLY. Preserve both characters, their poses, faces, costumes, all vegetation, stream, lighting and art style. Current bridge has a WRONG long slot running in the direction people walk. REBUILD THE DECK as a row of uniform crosswise planks laid perpendicular to the walking direction, each plank spanning the full width from left longitudinal support beam to right longitudinal support beam. Exactly TWO ADJACENT crosswise deck planks are missing at the near end of the bridge. Thus the opening is one SHORT WIDE RECTANGULAR BAND ACROSS THE ENTIRE BRIDGE WIDTH, parallel to all the other deck planks, NOT a long narrow slot following the road. The remaining continuous deck must visibly have full-width crosswise boards on BOTH the near and far sides of that short band. Under the missing band show TWO bare longitudinal support beams along the deck's sides, with water visible between them. Remove the illogical isolated central lengthwise board. The loose plank in the man's hands is the SAME full-width length as each deck plank and is rotated parallel to the crosswise boards, ready to bridge the short missing band. No long slot, no lengthwise deck planks, no checkerboard hole, no new people, no text. Keep 16:9.",
+      "catalogReferences": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ],
+      "rejectedGenerationAttempts": [
+        {
+          "sourceGenerationArtifact": "exec-49c40862-e2d2-432d-b678-a04a8e1c5022.png",
+          "sourceSha256": "b6a09bb39a279b1ad0e6ecf2a5cccd656ff52a07176823feeefacf2bc3050e0d",
+          "reason": "User identified lengthwise gap inconsistent with crosswise bridge planks; replaced with corrected crosswise missing-board opening",
+          "retained": true
+        }
+      ],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "bridge deck and loose plank direction corrected after user review",
+        "remaining": "new output service-use authorization review"
+      },
+      "originalGenerationPrompt": "Use case: illustration-story. ONE complete 16:9 landscape Korean folktale picture-book scene, warm detailed painterly watercolor using supplied character identities. No panels, writing, watermark. Reference1 canonical Seonnyeo on earth: youthful woman dark long hair half up with green ribbon, cream jacket green trim and bow, long green skirt, green traditional shoes. Reference2 canonical woodcutter: young adult male topknot white headband, white rolled sleeves brown vest sash, grey brown trousers and dark straw shoes. Preserve faces ages costumes proportions; change poses naturally. Main storytelling action readable and centered within safe picture margins. Scene: A shallow woodland stream with a small wooden footbridge whose middle two planks are missing. On the near bank the woman studies the gap, the woodcutter crouches inspecting a loose intact plank. A tied bundle rests on the bank. Both remain on safe ground, far bank destination visible. Clear obstacle on a journey; unclear whether to repair or go another way. No magic, no dramatic flood."
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-lost-bundle-v1",
+      "title": "쉼터에 남겨진 보따리",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-lost-bundle-v1.webp",
+      "sha256": "c6c1a636a74e886644d8cd01eea6a140f5044656e6a85f022385cca78905be61",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 581714,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-2d5f7319-cc99-4341-92cb-74958e792eea.png",
+      "sourceSha256": "b732b0772cd719956d2a3d29ec05e98fdaf3689042e3878f2a81d2f7afd6ed77",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Use case: illustration-story. ONE complete 16:9 landscape Korean folktale picture-book scene, warm detailed painterly watercolor using supplied character identities. No panels, writing, watermark. Reference1 canonical Seonnyeo on earth: youthful woman dark long hair half up with green ribbon, cream jacket green trim and bow, long green skirt, green traditional shoes. Reference2 canonical woodcutter: young adult male topknot white headband, white rolled sleeves brown vest sash, grey brown trousers and dark straw shoes. Preserve faces ages costumes proportions; change poses naturally. Main storytelling action readable and centered within safe picture margins. Scene: At a quiet rural roadside resting pavilion, a closed indigo cloth bundle with a small wooden toggle lies alone on the bench. The woman points at it with a questioning expression, the woodcutter looks down the empty winding road for its owner. They do not open it; no glowing contents or text labels. A discovery which could mean a lost item, a delivery or a misunderstanding.",
+      "catalogReferences": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "visual object and action review",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-market-scales-v1",
+      "title": "장터의 기울어진 저울",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-market-scales-v1.webp",
+      "sha256": "0882907ca8e28dab4a121dbf1591ad8dd1efe771fa2cfa7bb4fcf13c527c7a5c",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 672402,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-ac8a8ef6-edc4-4873-ac3e-88e0328b24e7.png",
+      "sourceSha256": "f1c582c45b1af865885173fe3b7c39bac46c918813c19248c2746e5a4c8e1b07",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Use case: illustration-story. ONE finished 16:9 landscape Korean folktale picture-book watercolor scene with detailed warm painterly texture consistent with references. No panels, lettering, watermark. Ref1 canonical traveler: young Korean man black face cloth below eyes, battered black gat, ragged dark blue robe, purple rope belt, straw shoes; preserve mask hat face and costume. Ref2 canonical guard: middle aged man moustache and narrow goatee, dark blue uniform red belt cuffs and gaiters, broad black hat with red cord/tassel, wooden staff. Preserve identities and costume, natural new poses. Main action clearly legible within frame, sensible hands and objects. Scene: At a village market stall, a hanging balance scale is clearly tilted: one pan holds a cloth pouch of beans, the other a simple stone weight. The masked traveler points to the tilted beam, the guard bends to inspect the pans while a neutral merchant watches with open hands. No one accused, no words or labels; a question of weighing fairly, mistake or differing value. Make scale construction physically plausible with two distinct pans on chains.",
+      "catalogReferences": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "visual object and action review",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-rain-shelter-v1",
+      "title": "처마 아래 함께 비를 피하는 사람들",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-rain-shelter-v1.webp",
+      "sha256": "f45f0b4de15bc4a41d1eec3421ed0e1e090713c8b2f77c5adbd5a5f666c67afb",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 688698,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-b85a35bb-5999-4b06-b300-c84da3a05056.png",
+      "sourceSha256": "081f712fccd436235918f2c4426ce4fa7339191c6daacc93da4ef26d1cf9e2b3",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "prompt": "Use case: illustration-story. ONE finished 16:9 landscape Korean folktale picture-book watercolor scene with detailed warm painterly texture consistent with references. No panels, lettering, watermark. Ref1 canonical traveler: young Korean man black face cloth below eyes, battered black gat, ragged dark blue robe, purple rope belt, straw shoes; preserve mask hat face and costume. Ref2 canonical guard: middle aged man moustache and narrow goatee, dark blue uniform red belt cuffs and gaiters, broad black hat with red cord/tassel, wooden staff. Preserve identities and costume, natural new poses. Main action clearly legible within frame, sensible hands and objects. Scene: Sudden rain at a rural roadside roofed resting pavilion. The masked traveler and guard are making room on a wooden bench for an elderly woman carrying a covered basket. Traveler shifts his tied luggage aside; guard holds a plain oil-paper umbrella just outside the roof edge. Wet empty road beyond, a warm human pause, possible meeting or generosity, no magic.",
+      "catalogReferences": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "compared with actual canonical reference pair",
+        "action": "distinct reusable situation, cause and ending open",
+        "objectStructure": "visual object and action review",
+        "remaining": "new output service-use authorization review"
+      }
+    }
+  ]
+}

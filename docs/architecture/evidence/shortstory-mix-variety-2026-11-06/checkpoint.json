@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-06",
+  "status": "local-registration-and-static-verification-passed",
+  "scope": "Eight independent situations for freely mixing familiar and new scenes",
+  "generationEvidence": "generation.json",
+  "addedImages": 8,
+  "existingCatalogEntriesPreserved": 481,
+  "inventory": {
+    "selectableSceneIllustrations": 201,
+    "creativeImages": 54,
+    "independentEventImages": 46,
+    "independentEventFamilies": 22
+  },
+  "verification": {
+    "catalogTests": {
+      "passed": 8
+    },
+    "preservation": "all prior 481 catalog objects unchanged",
+    "build": "passed",
+    "staticBrowser": {
+      "passed": 2,
+      "widths": [
+        390,
+        1440
+      ],
+      "pagesPerBook": 9,
+      "checks": [
+        "all eight new scenes and familiar original selected in default mixed picker",
+        "images decoded",
+        "last page moved between familiar and new scenes",
+        "reload preserves text and art",
+        "export/import entire project equality in fresh context",
+        "all nine imported pages read and decoded"
+      ]
+    },
+    "staticFiles": {
+      "passed": 8,
+      "checks": [
+        "WebP content type",
+        "served SHA256"
+      ]
+    },
+    "egoBrowser": {
+      "result": "corrected bridge selected, text written, reload preserved; actual editor screenshot inspected",
+      "screenshot": "corrected-bridge-editor.png"
+    },
+    "mediaProvenance": {
+      "verifiedFiles": 2060
+    },
+    "independentReview": "no blocking issue; new E2E added to default host testMatch",
+    "docs": "passed",
+    "lint": "passed",
+    "diffCheck": "passed"
+  },
+  "remaining": [
+    "new output service-use rights review",
+    "API catalog alignment before production publishing",
+    "authenticated online upload not tested in this scope"
+  ]
+}

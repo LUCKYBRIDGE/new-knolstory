@@ -1,0 +1,433 @@
+{
+  "development": {
+    "stats": {
+      "startTime": "2026-11-04T16:30:33.558Z",
+      "duration": 30457.469,
+      "expected": 34,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "tests": [
+      {
+        "file": "external-shortstory-print.spec.ts",
+        "name": "actual excel edited ShortStory reopens and prints a complete A4 book",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2233
+          }
+        ]
+      },
+      {
+        "file": "external-shortstory-print.spec.ts",
+        "name": "actual google edited ShortStory reopens and prints a complete A4 book",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1439
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "actual rabbit picture book read, isolated position and complete A4 print",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2941
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "actual onggojib picture book read, isolated position and complete A4 print",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2350
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "actual seonnyeo picture book read, isolated position and complete A4 print",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2676
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "actual heungbu picture book read, isolated position and complete A4 print",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2260
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "original copy, three-face cover, multiple books, page operations, reload and independent file import",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3743
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "old single workspace backs up, immediate new/import preserve it, unsupported v2 rejects and storage failure blocks switching",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 878
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "delayed Google picture book import retains books created and edited while waiting",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1469
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "failed picture book deletion preserves its editable draft for save retry and reload",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 918
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "rabbit personal picture book copy preserves its original and travels to a fresh browser",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1726
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "onggojib personal picture book copy preserves its original and travels to a fresh browser",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1803
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "seonnyeo personal picture book copy preserves its original and travels to a fresh browser",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1882
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "heungbu personal picture book copy preserves its original and travels to a fresh browser",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1776
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "ShortStory keeps the current page in its copy and moves illustrated text through save and export",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3388
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "picture-book library starts empty and creates only on explicit action",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 754
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "mobile illustration selection and A4 preview fit the viewport",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 744
+          }
+        ]
+      },
+      {
+        "file": "shortstory-conflict.spec.ts",
+        "name": "a picture-book tab that cannot keep the library keeps its draft, exports it and reopens the stored book only after confirmation",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1388
+          }
+        ]
+      },
+      {
+        "file": "shortstory-conflict.spec.ts",
+        "name": "a second tab reading an original takes the writer over silently and never changes the saved library",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1014
+          }
+        ]
+      },
+      {
+        "file": "shortstory-conflict.spec.ts",
+        "name": "a reading tab that cannot keep the library never migrates, recovers or warns over the saved library",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1144
+          }
+        ]
+      },
+      {
+        "file": "shortstory-menu-contrast.spec.ts",
+        "name": "ShortStory account and online popup text retains contrast against parent styles 390",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1485
+          }
+        ]
+      },
+      {
+        "file": "shortstory-menu-contrast.spec.ts",
+        "name": "ShortStory account and online popup text retains contrast against parent styles 1280",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1518
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory explicit online create, independent copy and bound update preserve whole books 1440",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1118
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory explicit online create, independent copy and bound update preserve whole books 390",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1016
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory composition, cover drafts and failed local storage block online writes",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 901
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory delayed online validation cannot revive a deleted book or replace its checkpoint",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 885
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory login callback returns to the active book and page without writing KnolStory storage",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2064
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory login returns to reading mode as well as the stored page",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1631
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory edits during an in-flight save remain local and require a further save",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 626
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory session recheck retries the exact pending save with renewed csrf and preserves the book",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 749
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory library shows online-only books and deduplicates an explicitly linked local copy",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 622
+          }
+        ]
+      },
+      {
+        "file": "shortstory-online.spec.ts",
+        "name": "ShortStory authentication returns to the book library",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1776
+          }
+        ]
+      },
+      {
+        "file": "shortstory.spec.ts",
+        "name": "ShortStory edits static pages, saves, restores files and prints without runtime",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1228
+          }
+        ]
+      },
+      {
+        "file": "shortstory.spec.ts",
+        "name": "ShortStory pictures and Excel survive reopening on phone; unsupported audio is rejected",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2082
+          }
+        ]
+      }
+    ]
+  },
+  "static": {
+    "stats": {
+      "startTime": "2026-11-04T16:31:10.084Z",
+      "duration": 4936.303,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "tests": [
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "ShortStory keeps the current page in its copy and moves illustrated text through save and export",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2930
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "picture-book library starts empty and creates only on explicit action",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 554
+          }
+        ]
+      },
+      {
+        "file": "four-work-shortstory.spec.ts",
+        "name": "mobile illustration selection and A4 preview fit the viewport",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 543
+          }
+        ]
+      }
+    ]
+  }
+}

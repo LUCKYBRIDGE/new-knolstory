@@ -1,0 +1,294 @@
+{
+  "date": "2026-11-05",
+  "scope": "8 original mysterious independent-event ShortStory illustrations",
+  "images": [
+    {
+      "id": "shortstory.background.creative-rabbit-wandering-shadow-v1",
+      "title": "먼저 손을 흔드는 그림자",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-wandering-shadow-v1.webp",
+      "sha256": "1fefd0d53bda116dc65f2c7376947fbe41c31c1ff734dc7a62ee1f27cd9009cf",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 663066,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-0fe8e278-f4d6-43dc-a6ee-20b7a19d5083.png",
+      "sourceSha256": "25c31bfb670033f2a456aaef03107e94f4a8a324081f84cba5f4f02ee1d103d7",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "두 손을 내린 토끼와 달리 벽의 그림자는 문을 향해 손을 흔든다. 자라가 이를 발견하고 가리킨다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-rabbit-cloud-fish-v1",
+      "title": "항아리에서 떠오른 구름 물고기",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-cloud-fish-v1.webp",
+      "sha256": "47ee9d6f7acc1f68307d0f45d27fb6e4aa43a869eeddcddb51cd4414b888034b",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 576642,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-f01b61a1-6f44-4db8-84ae-aec67f5cf670.png",
+      "sourceSha256": "9ea49db27b367be83fcd8c89d4c55a71c97adea81a2d3b335b644351bcf9afd3",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "강가의 마른 항아리 위로 구름으로 된 은빛 물고기가 떠오르고 토끼와 자라가 놀란다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-floating-chest-v1",
+      "title": "별을 쏟아내는 공중의 상자",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-floating-chest-v1.webp",
+      "sha256": "14534920fbdff3b2f47cfdbb2b3b3057000dffd77408d793dc886d397fc31bec",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 606944,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-e9fbdf48-e921-4785-a937-521f83aaf04d.png",
+      "sourceSha256": "6bb6ef4bf565aa61245914ff678b6fd11c411178fd6abc82fec89a9b2825fa6c",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "청소하던 흥부와 아이 앞에 작은 나무 상자가 저절로 떠오르고 열린 뚜껑에서 별빛이 위로 나온다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-midnight-footprints-v1",
+      "title": "항아리 앞에서 멈춘 빛나는 발자국",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-midnight-footprints-v1.webp",
+      "sha256": "ad3ccf6a674b142d142d7a09fab0c2144b20e313ee5c63e1dbf6f847d274ce4e",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 603748,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-9ed5277a-8941-4826-945f-8233fca89879.png",
+      "sourceSha256": "c3be3e77c3ec9954895d9a699a993ea3401c199dcc155b186e72728385214b8c",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "비 그친 달밤에 주인 없는 푸른 맨발 자국이 대문에서 항아리까지 이어지고 흥부와 아이가 등불로 살핀다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-winter-reflection-v1",
+      "title": "여름 연못에 비친 겨울",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-winter-reflection-v1.webp",
+      "sha256": "3d06c4bd74d99925bad0de46fc17c40d85fb7bceb54deee4086f5140d8748d93",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 650058,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-b668640b-fbfd-4529-91fd-fc9a0cf94ab4.png",
+      "sourceSha256": "0e628c98d4abf469527e7fb9926c8a9a6c095b9e643c7b86481f1e41a2e6b5b9",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "주변 숲은 푸른 여름인데 연못 속에는 눈 덮인 겨울 나무가 비친다. 선녀와 나무꾼이 물가에서 들여다본다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-floating-steps-v1",
+      "title": "안개 속에 떠 있는 돌계단",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-floating-steps-v1.webp",
+      "sha256": "de70eee51a5234889ae53ef18ac31f293a3a5cb7b8eff422fca303b867d4cf4c",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 492138,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-46461cfc-9629-4154-8bd2-4d5f31b24c1e.png",
+      "sourceSha256": "06029b4f975074e2fa68c1184695a522dc6d6d754e2cd768ca9a8a9148637320",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "대나무 숲에서 받침 없는 돌들이 공중에 계단을 이루어 안개 속으로 이어진다. 선녀가 첫 돌에 손을 내민다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-walking-shoes-v1",
+      "title": "주인 없이 걸어가는 짚신",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-walking-shoes-v1.webp",
+      "sha256": "dd2b72d444647babc374b0215d5902ea4eb2e040b35d2ed68e42a1e302b5b4d5",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 552120,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-5aaacf3e-906e-4311-8e14-03ad1b2ec6fb.png",
+      "sourceSha256": "0b4164642e765eb85b41cd1c59c5194972ddc2f0da864690a7aef5449a035a12",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "빈 짚신 한 켤레가 눈길에서 저절로 발걸음을 옮긴다. 나그네와 포졸이 허리를 숙여 살핀다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-noon-night-door-v1",
+      "title": "한낮에 밤이 열린 문",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-noon-night-door-v1.webp",
+      "sha256": "91e01defbcc22afc2e4d5be36f612a589be31cfe52e710e7cda39a678ea9bb46",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 672506,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-78fb995e-440f-48ad-aad8-614e74acff7e.png",
+      "sourceSha256": "e70fd13f018c6d0719ee0915f7c66dd7ee7daec220aa0a9899ab98a381108271",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "햇빛 밝은 마을의 문을 열자 안쪽에 달과 별이 뜬 밤길이 나타난다. 포졸과 나그네가 문턱에서 들여다본다. 기준 인물의 얼굴·머리·복식을 유지하고 원인과 결말을 확정하지 않는다. 한 장면의 새 행동을 통일된 수채화 삽화로 그린다. 글자·표식·테두리 없음.",
+      "references": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, silhouettes, hair and costumes compared",
+        "event": "distinct visible unexplained event, no resolution fixed",
+        "remaining": "new output service-use authorization review"
+      }
+    }
+  ]
+}

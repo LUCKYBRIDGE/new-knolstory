@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "startTime": "2026-11-04T18:41:13.752Z",
+    "duration": 16237.586,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 인형극 keeps four illustrated pages through reload and file import 390",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2127
+        }
+      ]
+    },
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 떡 만들기 대회 keeps four illustrated pages through reload and file import 390",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1707
+        }
+      ]
+    },
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 떠내려가는 뗏목 keeps four illustrated pages through reload and file import 390",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1778
+        }
+      ]
+    },
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 찢어진 북 keeps four illustrated pages through reload and file import 390",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1713
+        }
+      ]
+    },
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 인형극 keeps four illustrated pages through reload and file import 1440",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2007
+        }
+      ]
+    },
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 떡 만들기 대회 keeps four illustrated pages through reload and file import 1440",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1811
+        }
+      ]
+    },
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 떠내려가는 뗏목 keeps four illustrated pages through reload and file import 1440",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1829
+        }
+      ]
+    },
+    {
+      "file": "shortstory-continuations.spec.ts",
+      "name": "ShortStory 찢어진 북 keeps four illustrated pages through reload and file import 1440",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1864
+        }
+      ]
+    }
+  ]
+}

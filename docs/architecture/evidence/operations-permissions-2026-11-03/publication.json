@@ -1,0 +1,54 @@
+{
+  "unit-red.log": {
+    "rawLocal": ".cache/permissions-audit-red.log",
+    "rawSha256": "dd59a40e7ddf2de98b9b3ea648ec88d6c140e5ef9e532f2c1d65fe1fd87360e4",
+    "publishedSha256": "99878cf18b04ebde3597c1eafd9fa597a6f6437743fe9c7d0a25795427ebdab4",
+    "normalization": "Trailing whitespace and machine-local repo/home prefixes normalized; original cache bytes retained."
+  },
+  "redaction-red.log": {
+    "rawLocal": ".cache/permissions-audit-redaction-red.log",
+    "rawSha256": "24ef0a4c2a0277cde66de1f628f0dad489b1b736bcd783e5f6ed83de0c8d2c37",
+    "publishedSha256": "7bd4d7c286f999d81cb7c525b87346541868d63f8f3c8317a8f356b7e01310dd",
+    "normalization": "Trailing whitespace and machine-local repo/home prefixes normalized; original cache bytes retained."
+  },
+  "required-file-red.log": {
+    "rawLocal": ".cache/permissions-missing-file-red.log",
+    "rawSha256": "56521584de33045e1dcd47cb4f0ccb8eaa64e116da390efde5e376c548f24a76",
+    "publishedSha256": "5c0dbb5bb6e0a7be4bc76c33aa678e89b9fbdf49adc303307243b232911ae2d9",
+    "normalization": "Trailing whitespace and machine-local repo/home prefixes normalized; original cache bytes retained."
+  },
+  "unit-final.log": {
+    "rawLocal": ".cache/permissions-audit-unit-final.log",
+    "rawSha256": "feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6",
+    "publishedSha256": "feabb4add9e2ca3374e538560634d1ec97dc4f4ce89aab12f3d726e36ea9b2f6",
+    "normalization": "Trailing whitespace and machine-local repo/home prefixes normalized; original cache bytes retained."
+  },
+  "audit-final.log": {
+    "rawLocal": ".cache/permissions-audit-final.log",
+    "rawSha256": "fe9c513f302f0bf525765e854da4dd7aaf15a5d18e2bf252e735e52fc82ddac0",
+    "publishedSha256": "fe9c513f302f0bf525765e854da4dd7aaf15a5d18e2bf252e735e52fc82ddac0",
+    "normalization": "Trailing whitespace and machine-local repo/home prefixes normalized; original cache bytes retained."
+  },
+  "docs.log": {
+    "rawLocal": ".cache/permissions-audit-docs.log",
+    "rawSha256": "23c118347532c78a645351e0ed450ffa79c5e58bb48037296da7a88271420351",
+    "publishedSha256": "54847b3a9b1e3e7517a8d2183d5c973c49c72646836f204513d4338732ee5069",
+    "normalization": "Trailing whitespace and machine-local repo/home prefixes normalized; original cache bytes retained."
+  },
+  "docs-tests.log": {
+    "rawLocal": ".cache/permissions-audit-doc-tests.log",
+    "rawSha256": "ed81dbdbc84f4c035b278800849812bffa32f5e1a013fbfbaa184946039f4641",
+    "publishedSha256": "c222c73417a140badf93a4f9fd2300c01c129e8033c7d279055e75a584dc1bb7",
+    "normalization": "Trailing whitespace and machine-local repo/home prefixes normalized; original cache bytes retained."
+  },
+  "docs-final.log": {
+    "rawLocal": ".cache/permissions-audit-docs-final.log",
+    "rawSha256": "23c118347532c78a645351e0ed450ffa79c5e58bb48037296da7a88271420351",
+    "publishedSha256": "54847b3a9b1e3e7517a8d2183d5c973c49c72646836f204513d4338732ee5069"
+  },
+  "docs-tests-final.log": {
+    "rawLocal": ".cache/permissions-audit-doc-tests-final.log",
+    "rawSha256": "6fc77248f4246c77fd64b485d51e1e2027d0d8272e30daf681f82f9a58362a47",
+    "publishedSha256": "3cc8e42f7623d265ef2f20c4b8223e6c285541e33e7b578082cdb66d55eb9623"
+  }
+}

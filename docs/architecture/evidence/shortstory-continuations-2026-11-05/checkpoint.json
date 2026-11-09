@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-05",
+  "status": "local-registration-and-static-verification-passed",
+  "scope": "Three continuation images for each of the four most recently added everyday events",
+  "interpretation": "Four existing starting scenes plus three follow-ups per event. Each four-image sequence offers one possible development.",
+  "generationEvidence": "generation.json",
+  "previousEvidence": "../shortstory-event-variety-2026-11-05/checkpoint.json",
+  "added": {
+    "images": 12,
+    "deliveryBytes": 7576164,
+    "series": 4,
+    "framesPerSeriesIncludingOriginal": 4
+  },
+  "inventory": {
+    "selectableSceneIllustrations": 181,
+    "creativeImages": 34,
+    "independentEventImages": 26,
+    "distinctIndependentEventFamilies": 14
+  },
+  "preservation": {
+    "existingCatalogEntriesUntouched": 457,
+    "originalEventFilesSameSha256": 4,
+    "authoredManuscripts": "not modified",
+    "sourceGenerationArtifacts": "retained; runtime delivery is WebP format conversion"
+  },
+  "verification": {
+    "catalogTests": {
+      "passed": 7,
+      "checks": [
+        "count and selection policy",
+        "known character references and hashes",
+        "parentEventId, seriesId and sequenceOrder2/3/4",
+        "prior-frame reference chain",
+        "common original-event title search"
+      ]
+    },
+    "staticBrowser": {
+      "passed": 8,
+      "unexpected": 0,
+      "widths": [
+        390,
+        1440
+      ],
+      "checks": [
+        "four four-page books authored through normal picker",
+        "all16 original+new frames selected with user prose",
+        "reload retains final page",
+        "whole-book export preserves ordered art and text",
+        "fresh-context import and reading decodes all four pages",
+        "document bounds"
+      ]
+    },
+    "staticImages": {
+      "passed": 12,
+      "checks": "WebP decode, actual size, content type and served SHA256",
+      "evidence": "static-images.json"
+    },
+    "build": "pnpm build passed; Web-only ShortStory assets remain outside native runtime payload",
+    "mediaProvenance": {
+      "files": 2040,
+      "result": "passed"
+    },
+    "docs": {
+      "tests": 10,
+      "result": "passed"
+    },
+    "diffCheck": "passed"
+  },
+  "remaining": [
+    "new output service-use rights review",
+    "production API catalog alignment before publishing",
+    "physical-device tests remain separate from viewport checks"
+  ],
+  "sourceSha256": {
+    "packages/asset-registry/src/catalog.json": "d3a21a7a7a35db643d33bd64a32d7fa9f7703605b4446f1d3928033984ddad2d",
+    "packages/asset-registry/src/background-sizes.json": "f8f03d2d07686cf4a12345862352a0d797d6428f8cf94b5d1e9ded5b82906678",
+    "packages/asset-registry/src/media-provenance.json": "2b5e8f8ccae88a2beeeb36498215cca11408ce4dd6c6f24a7ab4f0cd4645cfb4",
+    "packages/asset-registry/tests/catalog.test.ts": "bb61842c022544b4b690080e48a43c23ba1304a9c6822a46ce6c7be4f00175fd",
+    "tests/e2e/shortstory-continuations.spec.ts": "2912540c51d13057286dd245bf77377f78f825fe444367653fe9c3126b27313f",
+    ".agents/skills/shortstory-workflow/SKILL.md": "83ae34d326bd167d85d41b0e81f8c8ccfcd74bd60acf17fa33357cd5af7839b3"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-05",
+  "status": "local-implementation-and-focused-verification-passed",
+  "scope": "ShortStory illustration selection, independent events, copy editing, ordering, unified book library, file roundtrip and A4",
+  "illustrations": {
+    "additionalComposites": 8,
+    "additionalGeneratedScenes": 4,
+    "independentEvents": [
+      "shortstory.background.creative-forest-comet-v1",
+      "shortstory.background.creative-kite-rescue-v1"
+    ],
+    "providedStoryEvents": [
+      "shortstory.background.creative-swallow-care-v1",
+      "shortstory.background.creative-swallow-farewell-v1"
+    ],
+    "generationEvidence": "generation.json"
+  },
+  "verification": {
+    "browser": {
+      "count": 34,
+      "unexpected": 0,
+      "result": "passed"
+    },
+    "static": {
+      "count": 3,
+      "unexpected": 0,
+      "result": "passed",
+      "checks": [
+        "new generated independent-event illustration selected, saved, reloaded, reordered, exported and imported in fresh context",
+        "A4 PDF page count and screenshot",
+        "library explicit creation and return",
+        "390px picker filtering, focus return, and print preview bounds"
+      ]
+    },
+    "unit": {
+      "count": 21,
+      "result": "passed",
+      "files": [
+        "apps/web/lib/shortstory-library.test.ts",
+        "apps/web/lib/shortstory-account-view.test.ts",
+        "packages/compatibility/tests/shortstory-library.test.ts",
+        "packages/asset-registry/tests/catalog.test.ts"
+      ]
+    },
+    "runtimeBuild": "passed; ShortStory Web-only asset directory excluded",
+    "staticBuild": "passed",
+    "typecheck": "apps/web tsc passed",
+    "lint": "changed ShortStory workspace, illustration picker and online panel passed",
+    "mediaProvenance": {
+      "files": 2016,
+      "result": "passed"
+    },
+    "docs": {
+      "tests": 10,
+      "result": "passed"
+    },
+    "diffCheck": "passed"
+  },
+  "preservation": [
+    "provided manuscripts and old illustration IDs",
+    "existing personal titles, covers, page and asset IDs",
+    "separate local/online copies, account-scoped explicit links",
+    "unrelated dirty work and previous evidence"
+  ],
+  "decisions": [
+    "new original editing copies use numbered [내작품] title and blue default cover",
+    "original-story swallow scenes grouped under story scenes",
+    "independent events appear first in creative scenes and have dedicated filter",
+    "new generated outputs retain review-required distribution status"
+  ],
+  "remaining": [
+    "production service-use authorization review for newly generated/composited output bytes",
+    "API catalog alignment before publishing new image IDs",
+    "actual authenticated production upload and physical-device verification",
+    "physical paper output"
+  ],
+  "sourceSha256": {
+    "apps/web/app/shortstory/shortstory-workspace.tsx": "b7dccd8db3c744e22e1119412f8326e698ba784dde6e584d040f4a9654f73f1b",
+    "apps/web/app/shortstory/shortstory.module.css": "6e1877df36f4c26b2583aa061e3919ac89f6e36633195e453476dcef42bec3e3",
+    "apps/web/app/shortstory/shortstory-illustration-picker.tsx": "7240cde507fc49f0fb565c97141d215fc0b38440649dfc3eef11506979247be3",
+    "apps/web/lib/shortstory-library.ts": "b7a66061dac66e424bcfaf05f585849744b42829a09bab9fcb9d6aa0b303cbcd",
+    "apps/web/lib/shortstory-account-view.ts": "1decd2d2682218915992777ce4b8cf3cca6470c7027ed46a07825be1bc64418f",
+    "apps/web/components/online-works-panel.tsx": "41028098e948c6edd3a729205dc21d39a7db085027e37f0d9a04d52029480685",
+    "apps/web/components/local-bookshelf.tsx": "b2a550314e88c427e3b97f2a53891ee0ba2f921dc051866684feb40f2acc1465",
+    "packages/compatibility/src/shortstory.ts": "b2388e2a9c96fd81c29927eaaa677070576a901cd6ad288d9633d365939a3ec1",
+    "packages/asset-registry/src/catalog.json": "e9a3129ec75933ba90b9cae81b5d7ec2146e92265b703b0e259aaf6bc2514a07",
+    "packages/asset-registry/src/background-sizes.json": "1c033aee5a48676ee2f6e2104fbcfde475e2b141309cea6e7744d6261ea6b312",
+    "packages/asset-registry/src/media-provenance.json": "57d96863b6f6654cf41022e6a2d90ad44d50d6c7e0a58675af9336b630abfc8f",
+    "tests/e2e/four-work-shortstory.spec.ts": "f3649db61e883f59e5ff2143537dec2bc5f33b857a917dd1b6f5ebe04b976ba9",
+    "tests/e2e/shortstory-online.spec.ts": "fa6dc7324593a11023f93577e74fe0004d5da61981ef95227706b92a0a145f5f"
+  }
+}

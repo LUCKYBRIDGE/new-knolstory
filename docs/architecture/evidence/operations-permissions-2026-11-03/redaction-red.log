@@ -1,0 +1,13 @@
+.F.
+======================================================================
+FAIL: test_mode_summary_contains_only_metadata_and_checks_exact_private_modes (__main__.Boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>/docs/architecture/evidence/operations-permissions-2026-11-03/measurement/audit_test.py", line 15, in test_mode_summary_contains_only_metadata_and_checks_exact_private_modes
+    self.assertTrue(value['privateModeExpected']);self.assertNotIn(str(root),str(value));self.assertNotIn('/private',str(value))
+AssertionError: '/private' unexpectedly found in "{'isDirectory': True, 'isFile': False, 'isSymlink': False, 'uid': 501, 'gid': 20, 'mode': 448, 'path': '/private/not-public', 'privateModeExpected': True}"
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+FAILED (failures=1)

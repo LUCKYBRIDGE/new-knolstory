@@ -1,0 +1,18 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {isDeepStrictEqual} from 'node:util';
+import {createStoryDocument,type StoryProject} from '../../../../../packages/story-domain/src';
+import {resolveProvidedCatalogStory} from '../../../../../packages/compatibility/src/reader-text';
+import {createAuthoringArchive,encodeAuthoringArchive,decodeAuthoringArchive} from '../../../../../packages/compatibility/src/authoring-archive';
+const path='tests/fixtures/stories/seonnyeo.json',raw=await readFile(path,'utf8'),source=JSON.parse(raw)as StoryProject;
+const before=JSON.stringify(source),current=resolveProvidedCatalogStory(source),project={...current,title:'온라인 업로드 검사 · 선녀와 나무꾼 · 2026-11-04'};
+if(JSON.stringify(source)!==before)throw Error('Provided source mutated.');
+const requiredAsset='seonnyeo.background.cottage-rain-evening-v1';
+if(!JSON.stringify(project).includes(requiredAsset))throw Error('Latest433rd image is not referenced.');
+const document=createStoryDocument({project,savedAt:new Date().toISOString(),appVersion:'account-upload-readiness-20261104'});
+const archive=await createAuthoringArchive({format:'knolstory',document}),encoded=await encodeAuthoringArchive(archive),decoded=await decodeAuthoringArchive(encoded);
+if(!isDeepStrictEqual(decoded,archive))throw Error('Prepared archive round trip differs.');
+if(await readFile(path,'utf8')!==raw)throw Error('Original provided file changed.');
+await writeFile('.cache/account-upload-fixture-20261104.knolstory',encoded,{mode:0o600,flag:'wx'});
+const report={scope:'Local fixture prepared from existing provided work only; no UI import or server write.',source:path,sourceSha256:createHash('sha256').update(raw).digest('hex'),fileSha256:createHash('sha256').update(encoded).digest('hex'),bytes:Buffer.byteLength(encoded),formatVersion:archive.formatVersion,documentSchemaVersion:document.schemaVersion,requiredAsset,fullArchiveRoundTripEqual:true,sourceUnchanged:true,identityRule:'Future visible UI import must create an independent projectID; existing online/local works must not be replaced.',title:project.title,limits:['Not actual authentication/upload/reopen/restore evidence.','No native replay rerun or manuscript/image correction performed.']};
+await writeFile('docs/architecture/evidence/account-device-readiness-2026-11-04/upload-fixture.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report));

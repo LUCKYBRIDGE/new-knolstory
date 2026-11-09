@@ -1,0 +1,13 @@
+.E..
+======================================================================
+ERROR: test_missing_required_secret_file_cannot_look_like_a_complete_private_mount (__main__.Boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>/docs/architecture/evidence/operations-permissions-2026-11-03/measurement/audit_test.py", line 24, in test_missing_required_secret_file_cannot_look_like_a_complete_private_mount
+    value=audit.secret_mount(container,'/run/fixture',{'database':'db-password'},('database',))
+TypeError: secret_mount() takes 3 positional arguments but 4 were given
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=1)

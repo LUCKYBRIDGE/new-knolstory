@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-04",
+  "status": "Current account/device dependencies verified; local latest-catalog upload fixture prepared. Actual authenticated workflow waits for user login.",
+  "device": {
+    "tool": "Existing excluded Android PlatformTools, no install/update/reset.",
+    "authorizedDeviceCount": 0,
+    "serialsPublished": false,
+    "previousS25EvidencePreserved": "../phone-editor-return-2026-10-29/checkpoint.json",
+    "limits": [
+      "No connected physical target; no new physical-device or hardware-network proof."
+    ]
+  },
+  "account": "browser-account.json",
+  "fixture": "upload-fixture.json",
+  "browser": {
+    "taskSpace": 3,
+    "page": "p1",
+    "state": "handedOffToUser",
+    "preparedUi": "Actual public library Account panel with Kakao sign-in visible.",
+    "providerLoginClicked": false,
+    "userLoginConfirmationPending": true,
+    "existingUserTabsPreserved": true
+  },
+  "preparation": {
+    "archive2Schema8RoundTrip": true,
+    "latest433rdAssetReferenced": true,
+    "currentServerSnapshotValidationPassed": true,
+    "sourceProjectAndAssetsUnchanged": true,
+    "serverRequestSent": false,
+    "localAppImportPerformed": false
+  },
+  "failureHistory": [
+    "Initial pnpm exec esbuild was unavailable at workspace root, so no file was created. Used existing server esbuild dependency API to bundle preparation/check entry. No package install or production changes."
+  ],
+  "preservation": "No account/login/upload/edit/delete action, production setting/key/deploy/commit/push or original manuscript/media changes. Browser handed off; do not operate it before user confirms.",
+  "afterLogin": [
+    "GET me must return200 in same actual public browser; record only hashed account identity, never session/CSRF values.",
+    "Import prepared file using visible confirmation as independent copy; compare whole project allowing only explicit new identity. Preserve all pre-existing local/online works.",
+    "Exercise actual upload/reopen/update/conflict/trash/same-record restore on this owned test work, then preserve exported evidence. No existing work is a cleanup target.",
+    "Reuse completed native/authoring paths; test only new actual-account/catalog integration scope."
+  ],
+  "otherPending": "Separate rate-proof activation approval remains unanswered. Do not treat this goal continuation or login reply as deployment approval.",
+  "limits": [
+    "This is readiness plus local fixture validation, not successful actual authentication/upload or whole-product completion.",
+    "Google remains unconfigured; existing Google-provider decision/client-console history is preserved, no secret values requested in chat.",
+    "Long offline/device/teacher-class/share/retention policies and release gates remain in canonical plan."
+  ],
+  "sourceSha256": {
+    "docs/architecture/evidence/account-device-readiness-2026-11-04/measurement/check-upload-fixture.ts": "b8a5cb659e165b95fc2ece53125dcdf1405a9ea38b173258a44441e8edd4c188",
+    "docs/architecture/evidence/account-device-readiness-2026-11-04/measurement/prepare-upload-fixture.ts": "495cc314a51dc91058a655354818678d3dd2fc3ba8ccec9e862a4b66579a5795"
+  }
+}

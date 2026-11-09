@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-05",
+  "status": "local-registration-and-static-verification-passed",
+  "scope": "Event and plot variety; four realistic independent scenes",
+  "userDirection": "Focus on images enabling plot/event flows different from the original and KnolStory. Mystery and wonder are optional types within broader variety. Keep existing images.",
+  "generationEvidence": "generation.json",
+  "previousEvidence": "../shortstory-mystery-2026-11-05/checkpoint.json",
+  "added": {
+    "images": 4,
+    "deliveryBytes": 2549986,
+    "eventTypes": [
+      "performance preparation and repair",
+      "contest mishap",
+      "cargo and mooring problem",
+      "interrupted music rehearsal"
+    ]
+  },
+  "inventory": {
+    "selectableSceneIllustrations": 169,
+    "creative": 22,
+    "independentEvents": 14
+  },
+  "preservation": {
+    "existingCatalogEntriesUntouched": 453,
+    "previousMysteryFilesSameSha256": 8,
+    "authoredContent": "not modified"
+  },
+  "verification": {
+    "catalogTests": {
+      "passed": 6,
+      "checks": "counts, exact character references, activity search, selectable policy"
+    },
+    "staticBrowser": {
+      "passed": 2,
+      "unexpected": 0,
+      "widths": [
+        390,
+        1440
+      ],
+      "checks": [
+        "four new IDs in independent-event filter",
+        "queries 연극/대회/뗏목/북",
+        "contest image selection and authored text",
+        "save/reload and file fresh-context import/read"
+      ]
+    },
+    "staticImages": {
+      "passed": 4,
+      "checks": "WebP decode, content type, served bytes SHA256",
+      "evidence": "static-images.json"
+    },
+    "build": "pnpm build passed",
+    "mediaProvenance": {
+      "files": 2028,
+      "result": "passed"
+    },
+    "docs": {
+      "tests": 10,
+      "result": "passed"
+    },
+    "diffCheck": "passed"
+  },
+  "remaining": [
+    "new output service-use rights review",
+    "production API catalog alignment before publishing",
+    "physical-device verification remains outside these viewport tests"
+  ],
+  "sourceSha256": {
+    "packages/asset-registry/src/catalog.json": "df7129276720dc128761c55d0c909228ab36ffffaee3a68359cde88283629b47",
+    "packages/asset-registry/src/background-sizes.json": "bc6a5b1fe1b5ae8555aabf0e75c6252ded32604999c4478d09c6d17b64a4ae75",
+    "packages/asset-registry/src/media-provenance.json": "68d15882e753a74a3cd1580c4462055e0fc1321b648cdbdb329519f96ec88195",
+    "packages/asset-registry/tests/catalog.test.ts": "d44a054900831f20460ebfd34096b50d19940b3d0bd0acd3c50f2d78a4f02c38",
+    "tests/e2e/shortstory-everyday.spec.ts": "aff62eaccaf6c45bdc0acc8cf7c2ed1c95f60de80dd531b509f99e56bd858901",
+    "DESIGN.md": "594404e792d9ee7242261e275767a884998c1a51c3255ab08c2a70bf1644bf2a",
+    ".agents/skills/shortstory-workflow/SKILL.md": "a9a3be6881e2156d3c64b65cd29be5e9bbfa7b58e8185625b11a9ce0abaded49"
+  }
+}

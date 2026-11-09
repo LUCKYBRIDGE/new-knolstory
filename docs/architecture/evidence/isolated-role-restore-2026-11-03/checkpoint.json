@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-03",
+  "status": "Canonical role/GRANT rebuild and real fixture-password privilege probes passed on a fresh inactive restore; production unchanged.",
+  "result": "result.json",
+  "scope": "Sealed backup restored with no-owner/no-privileges on fresh PostgreSQL16 network-none/portless/read-only-root target. Existing pinned API image replays the exact canonical migration bundle in a validated target-only namespace, never API startup.",
+  "verification": {
+    "canonicalCommand": "Deployed migrate.mjs hash092eacc578a7a72d74af3f86b2e8140af7d73f9a82ed8081c6990d2d6c63f15c and7SQL members match the reviewed local build/current immutable migration inputs. No production migration executed.",
+    "initialState": "Restored app role absent; global roles are not supplied by logical pg_restore.",
+    "rebuild": "Unchanged canonical command ran twice; both privilege catalogs match captured production catalog, and second application preserves semantic privileges. No pg_authid/password-salt byte idempotence claimed.",
+    "dataPreservation": "All11table row-count/hash inventories and schema hash equal before/after both canonical runs and app probes.",
+    "authentication": "Actual app PostgreSQL login with fixture password succeeds; wrong fixture password rejected28P01. Loopback host auth configuredscram; no real owner/app/provider credentials copied.",
+    "denials": "Actual journalINSERT, columnUPDATE, DELETE, CREATE SCHEMA and CREATE TABLE rejected42501. Every probe transaction rolls back; service data zero-row UPDATE succeeds.",
+    "isolation": "Targetnetworknone/nohostports; runner joins exact target namespace, rootread-only/capdropALL/no-new-privileges, only three read-only fixture mounts. Probe checks UUIDmarker and db loopback before reading fixture keys. Target is created but not started until mount/network/image/ownership checks pass; TCP loopback readiness excludes the temporary initialization server.",
+    "source": "Production API/DB/ingress IDs/images unchanged. Source API only used to hash immutable code files; no production data/role SQL executed by this test.",
+    "cleanup": "Three owned containers removed; role label query empty; fixture secret files removed; original source and backup retained.",
+    "unit": "3 guard tests passed, including persistent-volume rejection, pre-start boundary checks, exact fixture mount sources and runner UID/network validation."
+  },
+  "failureHistory": [
+    "failure-6012f5247d894bfca706646811429184.json: first attempt failed before migration/probe runner creation; new audit SELECT lacked a terminator before borrowed helper COMMIT. Fixed audit call and added stage labels; canonical code unchanged, owned target cleaned.",
+    "result-before-probe-guard.json preserves prior successful result before adding pre-key runmarker/loopback guards. Affected final restore then reran and passed.",
+    "result-before-start-boundary.json preserves the successful result before strengthening mount validation and moving checks before container start.",
+    "failure-6b0954d23def4a079ca54fc990117c56.json: hardened attempt failed before canonical migration; target cleaned. Replaced readiness via local socket with explicit loopback TCP readiness and retained private command diagnostics. Final run e16470289de9469bba0494c2054c495f passed."
+  ],
+  "preservation": "No source DB schema/data/grant/key/container update, no credentials restored into live API, no current authoring files/assets altered. All writes limited to fresh inactive target and task-owned fixture files.",
+  "limits": [
+    "This rebuilds expected roles/grants from canonical code, not an exact cluster pg_dumpall/global-role/password restoration.",
+    "Actual restored old session rows stayed inactive because no externalnetwork/ports/API were started; previous separate fence proof is reused, not rerun or silently claimed.",
+    "No HTTP/provider authentication, real restored-secret activation, off-host encrypted storage, physical-device or whole product release proof."
+  ],
+  "next": [
+    "Cloudflare current Tunnel read-only inspection completed on2026-11-04; see rate-proxy-trust-2026-11-03/tunnel-current-2026-11-04.json. Activation remains separately gated.",
+    "Prepare actual credential/role restoration and activation sequence only after current configuration/approval gates; retain existing session-fence requirements.",
+    "Continue remaining independent release audit and explicit unresolved class/share/retention/device/upload gates."
+  ],
+  "sourceSha256": {
+    "docs/architecture/evidence/isolated-role-restore-2026-11-03/measurement/verify_test.py": "baad922693e3dc7ed28942f6930adac3b8f2a94260af90a266cb3ba9e2cdc88b",
+    "docs/architecture/evidence/isolated-role-restore-2026-11-03/measurement/verify.py": "901392277d0e77640c935fd0e2a53c06ba91da8eff1f39848c01782da16d4963",
+    "docs/architecture/evidence/isolated-role-restore-2026-11-03/measurement/probe.mjs": "a16da9b69f8a6aa6849ea314934561738a9055994728f9de350f007735c597ea",
+    "server/migrations/production.ts": "392c3c9812337c86f08525d99bec5e9b620aae2c18d5823b7095d3356a463a3e",
+    "server/migrations/runner.ts": "7722ba7aecaaa4a024c7aa4922ca6f37a6ae33b0155ebbd0aa740a2ebc4d2ece"
+  }
+}

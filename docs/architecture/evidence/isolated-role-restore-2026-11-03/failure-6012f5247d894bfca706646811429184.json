@@ -1,0 +1,34 @@
+{
+  "runId": "6012f5247d894bfca706646811429184",
+  "checkedAt": "2026-11-03T09:20:14.140797+00:00",
+  "backupSha256": "ec203315f44ed5393021a5ebd2deeba77b125a19c2968bda216bc6c6941ca1f0",
+  "backupBytes": 46131,
+  "migrationImage": "sha256:ea762d05a7a1e86f5caa65f6c09d241f45c4702f202992c6beee15f79a827103",
+  "postgresImage": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+  "migrationFilesSha256": {
+    "migrate.mjs": "092eacc578a7a72d74af3f86b2e8140af7d73f9a82ed8081c6990d2d6c63f15c",
+    "001-storage.sql": "a94e974c7bc248b7c34ab7fd531fa8fd982f0488d509fc9cf3307136f90096d0",
+    "002-immutable-blobs.sql": "8a594f998bb332b151dc77ea0fec424b2b32a8be862ad7624e7274e39e66adc7",
+    "003-identity-links.sql": "244e28dce32e0d26551d1de814a60fd8a162d34f5464f16acafb8ec18d762045",
+    "004-auth-state.sql": "a1e042a327c43cda93bfb67f069ec6d0c7477cea441a8a13a292f67d86d94633",
+    "005-session-rotation.sql": "2aaf9ae2a62d8eeb0cfeb7f4e6f323187ec2c787193e48ac9bd134dbb547dcd4",
+    "006-private-documents.sql": "60eb613e270c9cddc80e3e4921ee01ea6937cbe2c81c9914c203ef717b2c1537",
+    "007-document-trash.sql": "779593992ded36350113a739e82003011c02a06fd378758cb08b459244a957f8"
+  },
+  "scope": "Canonical migration and role rebuild only on fresh network-none inactive copy; fixture passwords; no production data SQL, key changes or HTTP API startup.",
+  "success": false,
+  "failureType": "RuntimeError",
+  "failure": "Isolated verification failed; private diagnostics retained without record/credential values in public proof.",
+  "cleanup": {
+    "ownedContainersRemoved": 1,
+    "remainingOwnedContainers": false,
+    "fixtureSecretFilesRemoved": true,
+    "sourceContainersNotRemoved": true
+  },
+  "limits": [
+    "No production role/grant/credential update; only fresh inactive copy targeted.",
+    "Role privileges rebuilt via unchanged canonical command, not an exact pg_dumpall/global-role/password restoration.",
+    "Application probe authenticates fixture pg password and zero-row/denied SQL, not OAuth, HTTP owner authorization or real provider login.",
+    "Restored old session rows stayed inactive by network/port/API isolation; no new session-fence execution claimed."
+  ]
+}

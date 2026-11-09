@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-05",
+  "status": "local-registration-and-static-verification-passed",
+  "scope": "Three additional images per each of four ongoing event flows",
+  "generationEvidence": "generation.json",
+  "previousEvidence": "../shortstory-continuations-2026-11-05/checkpoint.json",
+  "addedImages": 12,
+  "verification": {
+    "catalogTests": {
+      "passed": 7
+    },
+    "staticBrowser": {
+      "passed": 8,
+      "widths": [
+        390,
+        1440
+      ],
+      "pagesPerBook": 7,
+      "checks": [
+        "picker selection",
+        "save/reload",
+        "file export/import in fresh context",
+        "art decoding and sequence"
+      ]
+    },
+    "staticFiles": {
+      "passed": 12,
+      "checks": [
+        "WebP content type",
+        "served SHA256"
+      ]
+    },
+    "previousFollowupFilesPreserved": 12,
+    "build": "passed",
+    "systemRegression": {
+      "passed": 46,
+      "environment": "local static export, Chromium, mocked account and online API where applicable",
+      "checks": [
+        "ordered seven-scene event picker",
+        "all four seven-page books through save and fresh-context import",
+        "original book protection",
+        "local storage conflict",
+        "online operations and stale response after deletion",
+        "A4 PDF"
+      ]
+    }
+  },
+  "remaining": [
+    "new output service-use rights review",
+    "API catalog alignment before production publishing"
+  ],
+  "inventory": {
+    "selectableSceneIllustrations": 193,
+    "creativeImages": 46,
+    "independentEventImages": 38
+  }
+}
