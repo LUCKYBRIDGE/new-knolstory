@@ -113,7 +113,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
    <div className={styles.menuDestinations}><button disabled={disabled} onClick={()=>request({kind:'restart'})}>처음부터 읽기<span aria-hidden="true">↶</span></button>{onLibrary&&<button onClick={()=>request({kind:'library'})}>서재로 돌아가기<span aria-hidden="true">›</span></button>}{onExit&&<button onClick={()=>{setTopOpen(false);onExit();}}>이 컷 편집하기<span aria-hidden="true">›</span></button>}</div>
   </div>}
   {/* A transition card covers the whole stage; the tool row would sit over its button. */}
-  {!toolsHidden&&<div style={{...barStyle,'--reader-tool-font-size':`${Math.max(10,Math.min(12,toolFontSizePx))}px`} as CSSProperties} className={styles.quick}>
+  {!toolsHidden&&<div style={{...barStyle,'--reader-tool-font-size':`${Math.max(12,Math.min(13,toolFontSizePx))}px`} as CSSProperties} className={styles.quick}>
    <button disabled={disabled} onClick={()=>open('log')}>지난기록</button>
    {!phone&&<><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 넘기기 {auto?'켜짐':'꺼짐'}</button></>}
    <button disabled={disabled||saving} onClick={()=>save('quick')}>빠른 저장</button>

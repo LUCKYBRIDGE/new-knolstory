@@ -61,3 +61,8 @@
   .startActions { margin-top:18px; }
 }
 @media(prefers-reduced-motion:reduce) { .coverStand { transform:none; } }
+
+/* 2026-11-10 readability: helper text no smaller than 12–13px. */
+.startActions small { font-size:13px; }
+.readingHint { font-size:13px; }
+.editActions>span { font-size:12px; }

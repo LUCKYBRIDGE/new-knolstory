@@ -326,3 +326,4 @@
 .emptyHint { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:6px 0 0; color:var(--ink-soft); }
 .emptyHint button { min-height:44px; }
 .backToBasic { min-height:44px; align-self:end; }
+.insertCut,.emptyHint button,.backToBasic{min-height:44px!important}
