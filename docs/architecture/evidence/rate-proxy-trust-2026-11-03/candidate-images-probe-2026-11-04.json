@@ -1,0 +1,75 @@
+{
+  "scope": "Exact candidate images, fixture key only, private internal network/no host ports; no production DB/provider/auth startup.",
+  "runId": "32b681a24b71435ea965dcf3bb38eccd",
+  "checksObserved": {
+    "/api/v1/me": {
+      "relayMissing": 403,
+      "relayValid": 401,
+      "apiMissing": 403,
+      "apiValid": 401
+    },
+    "/api/v1/documents": {
+      "relayMissing": 403,
+      "relayValid": 401,
+      "apiMissing": 403,
+      "apiValid": 401
+    },
+    "static": 200,
+    "alias": 308,
+    "ready": 503
+  },
+  "success": true,
+  "nodeVersion": "v22.23.4",
+  "staticFiles": 1564,
+  "staticBytes": 598187818,
+  "allStaticHashesMatch": true,
+  "transportSourceHashesMatch": true,
+  "migrationSqlHashesMatch": true,
+  "apiCodeHashes": {
+    "main.mjs": "c502f5e887458b647de1bec09894df5f0ac80ab4f8675bd4e3954e49c68552a5",
+    "migrate.mjs": "092eacc578a7a72d74af3f86b2e8140af7d73f9a82ed8081c6990d2d6c63f15c",
+    "001-storage.sql": "a94e974c7bc248b7c34ab7fd531fa8fd982f0488d509fc9cf3307136f90096d0",
+    "002-immutable-blobs.sql": "8a594f998bb332b151dc77ea0fec424b2b32a8be862ad7624e7274e39e66adc7",
+    "003-identity-links.sql": "244e28dce32e0d26551d1de814a60fd8a162d34f5464f16acafb8ec18d762045",
+    "004-auth-state.sql": "a1e042a327c43cda93bfb67f069ec6d0c7477cea441a8a13a292f67d86d94633",
+    "005-session-rotation.sql": "2aaf9ae2a62d8eeb0cfeb7f4e6f323187ec2c787193e48ac9bd134dbb547dcd4",
+    "006-private-documents.sql": "60eb613e270c9cddc80e3e4921ee01ea6937cbe2c81c9914c203ef717b2c1537",
+    "007-document-trash.sql": "779593992ded36350113a739e82003011c02a06fd378758cb08b459244a957f8"
+  },
+  "result": {
+    "/api/v1/me": {
+      "relayMissing": 403,
+      "relayValid": 401,
+      "apiMissing": 403,
+      "apiValid": 401
+    },
+    "/api/v1/documents": {
+      "relayMissing": 403,
+      "relayValid": 401,
+      "apiMissing": 403,
+      "apiValid": 401
+    },
+    "static": 200,
+    "alias": 308,
+    "ready": 503
+  },
+  "candidateUid": 501,
+  "noHostPorts": true,
+  "internalNetworkOnly": true,
+  "productionContainersUnchanged": true,
+  "limits": [
+    "Fixture-only secret files and unauthenticated401 paths; no DB, OAuth/provider login, session/upload success or production-key equality proven.",
+    "Readiness503 expected because fixture DB is absent; this is not a service-ready or deploy claim.",
+    "No host UDS or actual Cloudflare headers tested by this probe."
+  ],
+  "cleanup": {
+    "ownedContainersRemoved": 4,
+    "ownedNetworkRemoved": true,
+    "fixtureSecretsRemoved": true
+  },
+  "candidateImageIds": {
+    "api": "sha256:f286fa11e3ecf42df2c0708923b68d4f3509410b2ffa3e8e1e47af6034281d96",
+    "ingress": "sha256:86e6a791a65f2073f3f2fee6e978623dcdbd4f7312ed2af5d9f538c9fbe2586d"
+  },
+  "identityMetadataNote": "Exact IDs added after the successful run from unchanged private ledger; probe creation guards enforced these IDs before starting each container. Behavioral suite was not repeated for this metadata amendment."
+}

@@ -5,8 +5,8 @@ import type {SqlPool} from '../storage/postgres-save-port';
 import {createDocumentRouter} from './document-routes';
 
 /** Authenticated personal document API; service metadata never enters authored snapshots. */
-export function createDocumentHttpService(config:AuthStateConfig,pool:SqlPool){
- return createDocumentRouter({origin:config.origin,
+export function createDocumentHttpService(config:AuthStateConfig & Readonly<{clientProofKey?:string}>,pool:SqlPool){
+ return createDocumentRouter({origin:config.origin,clientProofKey:config.clientProofKey,
   authState:createAuthStateService(config,createPostgresAuthStatePort(pool)),
   documents:createDocumentService(pool)});
 }

@@ -1,5 +1,9 @@
 import {createServer,request} from 'node:http';
 import {open,lstat,realpath} from 'node:fs/promises';
+import {readFileSync} from 'node:fs';
+import {isIP} from 'node:net';
+import {CLIENT_BUCKET_HEADER,createClientBucketSigner,createClientBucketVerifier} from '../http/client-bucket-proof.mjs';
+import {validateProtectedSocket,listenProtectedSocket} from './trusted-ingress-socket.mjs';
 import {isAbsolute,join,resolve} from 'node:path';
 import {pipeline} from 'node:stream';
 import {pathToFileURL} from 'node:url';
@@ -8,7 +12,7 @@ const hopHeaders=['connection','keep-alive','proxy-authenticate','proxy-authoriz
 const mediaTypes={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.wasm':'application/wasm','.css':'text/css; charset=utf-8','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.ico':'image/x-icon','.ogg':'audio/ogg','.mp3':'audio/mpeg','.wav':'audio/wav','.woff2':'font/woff2','.ttf':'font/ttf','.txt':'text/plain; charset=utf-8','.webm':'video/webm','.mp4':'video/mp4'};
 function cleanHeaders(input){
  const nominated=String(input.connection??'').split(',').map(value=>value.trim().toLowerCase());
- return Object.fromEntries(Object.entries(input).filter(([name])=>!hopHeaders.includes(name)&&!nominated.includes(name)&&!name.startsWith('x-forwarded-')&&name!=='forwarded'));
+ return Object.fromEntries(Object.entries(input).filter(([name])=>!hopHeaders.includes(name)&&!nominated.includes(name)&&!name.startsWith('x-forwarded-')&&name!=='forwarded'&&name!==CLIENT_BUCKET_HEADER));
 }
 function validateOrigin(value,api=false){
  const url=new URL(value);
@@ -23,12 +27,24 @@ function validateConfig(config){
   if(config.redirectFromOrigin===config.publicOrigin)throw Error('Invalid production ingress redirect origin.');
  }
  if(!isAbsolute(config.staticRoot)||!['127.0.0.1','0.0.0.0'].includes(config.host??'127.0.0.1')||!Number.isSafeInteger(config.timeoutMs??30000)||(config.timeoutMs??30000)<1||(config.timeoutMs??30000)>300000)throw Error('Invalid production ingress configuration.');
+ if(config.clientProofKey!==undefined&&(config.trustedClient!==undefined||typeof config.clientProofKey!=='string'||!/^[a-f0-9]{64}$/.test(config.clientProofKey)))throw Error('Invalid production ingress configuration.');
+ if(config.trustedClient!==undefined){
+  const trusted=config.trustedClient;
+  if(!trusted||typeof trusted.socketPath!=='string'||!isAbsolute(trusted.socketPath)||resolve(trusted.socketPath)!==trusted.socketPath||Buffer.byteLength(trusted.socketPath)>100||!/^([a-f0-9]{64})$/.test(trusted.key??''))throw Error('Invalid production ingress configuration.');
+ }
  return config;
 }
-export function loadProductionIngressConfig(env=process.env){
+export function loadProductionIngressConfig(env=process.env,read=path=>readFileSync(path,'utf8')){
+ try{
+ const socketPath=env.KNOLSTORY_INGRESS_SOCKET,keyFile=env.KNOLSTORY_CLIENT_PROOF_KEY_FILE;
+ if(socketPath!==undefined&&keyFile===undefined)throw Error();
+ if(keyFile!==undefined&&(typeof keyFile!=='string'||keyFile.trim()===''))throw Error();
+ const key=keyFile===undefined?undefined:read(keyFile).trim();
+ const trustedClient=key===undefined?{}:socketPath===undefined?{clientProofKey:key}:{trustedClient:{socketPath,key}};
  const port=Number(env.KNOLSTORY_INGRESS_PORT??15501);
  if(!Number.isSafeInteger(port)||port<1||port>65535||!/^\d+$/.test(env.KNOLSTORY_INGRESS_PORT??'15501')||!env.KNOLSTORY_STATIC_ROOT)throw Error('Invalid production ingress configuration.');
- return validateConfig({port,host:env.KNOLSTORY_INGRESS_HOST??'127.0.0.1',staticRoot:env.KNOLSTORY_STATIC_ROOT,publicOrigin:env.KNOLSTORY_PUBLIC_ORIGIN??'https://story.knolquiz.com',apiOrigin:env.KNOLSTORY_API_ORIGIN??'http://127.0.0.1:15400',timeoutMs:30000,...(env.KNOLSTORY_REDIRECT_FROM_ORIGIN===undefined||env.KNOLSTORY_REDIRECT_FROM_ORIGIN===''?{}:{redirectFromOrigin:env.KNOLSTORY_REDIRECT_FROM_ORIGIN})});
+ return validateConfig({...trustedClient,port,host:env.KNOLSTORY_INGRESS_HOST??'127.0.0.1',staticRoot:env.KNOLSTORY_STATIC_ROOT,publicOrigin:env.KNOLSTORY_PUBLIC_ORIGIN??'https://story.knolquiz.com',apiOrigin:env.KNOLSTORY_API_ORIGIN??'http://127.0.0.1:15400',timeoutMs:30000,...(env.KNOLSTORY_REDIRECT_FROM_ORIGIN===undefined||env.KNOLSTORY_REDIRECT_FROM_ORIGIN===''?{}:{redirectFromOrigin:env.KNOLSTORY_REDIRECT_FROM_ORIGIN})});
+ }catch{throw Error('Invalid production ingress configuration.');}
 }
 function reject(res,status,headers={}){res.writeHead(status,{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers});res.end();}
 function safePath(raw){
@@ -88,10 +104,10 @@ async function serveStatic(req,res,root,pathname){
   if(res.headersSent)res.destroy();else reject(res,500);
  }
 }
-function proxyApi(req,res,api,publicHost,timeoutMs){
+export function proxyIngressRequest(req,res,api,publicHost,timeoutMs,proof){
  let timedOut=false;
  const fail=()=>{if(res.destroyed||res.writableEnded)return;if(res.headersSent){res.destroy();return;}reject(res,timedOut?504:502);};
- const upstream=request({hostname:api.hostname.replace(/^\[|\]$/g,''),port:api.port||80,path:req.url,method:req.method,headers:{...cleanHeaders(req.headers),host:publicHost}},response=>{
+ const upstream=request({hostname:api.hostname.replace(/^\[|\]$/g,''),port:api.port||80,path:req.url,method:req.method,headers:{...cleanHeaders(req.headers),host:publicHost,...(proof?{[CLIENT_BUCKET_HEADER]:proof}:{})}},response=>{
   res.writeHead(response.statusCode??502,cleanHeaders(response.headers));
   pipeline(response,res,error=>{if(error)upstream.destroy();});
  });
@@ -102,6 +118,10 @@ function proxyApi(req,res,api,publicHost,timeoutMs){
 /** Trusted immutable static export plus streaming same-origin API ingress. */
 export async function createProductionIngress(config){
  validateConfig(config);
+ const trusted=config.trustedClient?{...config.trustedClient}:undefined;
+ if(trusted)await validateProtectedSocket(trusted.socketPath);
+ const sign=trusted?createClientBucketSigner({key:trusted.key,origin:config.publicOrigin}):undefined;
+ const verify=config.clientProofKey===undefined?undefined:createClientBucketVerifier({key:config.clientProofKey,origin:config.publicOrigin});
  const root=resolve(config.staticRoot);
  if(await realpath(root)!==root||(await lstat(root)).isSymbolicLink()||!(await lstat(join(root,'index.html'))).isFile())throw Error('Invalid production static export.');
  const publicOrigin=validateOrigin(config.publicOrigin),api=validateOrigin(config.apiOrigin,true);
@@ -117,18 +137,39 @@ export async function createProductionIngress(config){
   if(pathname.startsWith('/api/')){
    // Encoded route names cannot bypass the API/static boundary.
    if(!req.url.startsWith('/api/')){reject(res,400);return;}
-   proxyApi(req,res,api,publicOrigin.host,config.timeoutMs??30000);
+   let proof;
+   if(trusted){
+    // A returned factory server cannot be converted into a TCP signing oracle.
+    if(server.address()!==trusted.socketPath){reject(res,503);return;}
+    const values=req.rawHeaders.filter((value,index)=>index%2===0&&value.toLowerCase()==='cf-connecting-ip');
+    const ip=req.headers['cf-connecting-ip'];
+    if(values.length!==1||typeof ip!=='string'||!isIP(ip)){reject(res,400);return;}
+    try{proof=sign(req,ip);}catch{reject(res,400);return;}
+   }
+   if(verify){
+    const values=req.rawHeaders.filter((value,index)=>index%2===0&&value.toLowerCase()===CLIENT_BUCKET_HEADER);
+    if(values.length!==1||verify(req)===null){reject(res,403);return;}
+    proof=req.headers[CLIENT_BUCKET_HEADER];
+   }
+   proxyIngressRequest(req,res,api,publicOrigin.host,config.timeoutMs??30000,proof);
   }else void serveStatic(req,res,root,pathname);
  });
  server.on('upgrade',(_req,socket)=>socket.end('HTTP/1.1 400 Bad Request\r\nConnection: close\r\nContent-Length: 0\r\n\r\n'));
  server.headersTimeout=10000;server.requestTimeout=300000;server.maxHeadersCount=100;
  return server;
 }
+export async function listenProductionIngress(server,config){
+ if(config.trustedClient){await listenProtectedSocket(server,config.trustedClient.socketPath);return;}
+ await new Promise((resolve,reject)=>{
+  const failed=error=>reject(error);server.once('error',failed);
+  server.listen(config.port,config.host,()=>{server.off('error',failed);resolve();});
+ });
+}
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  try{
   const config=loadProductionIngressConfig(),server=await createProductionIngress(config);
   server.on('error',()=>{console.error('Production ingress listener failed.');process.exitCode=1;});
-  server.listen(config.port,config.host,()=>console.info('Production ingress listening.'));
+  await listenProductionIngress(server,config);console.info('Production ingress listening.');
   let stopping=false;
   const stop=()=>{if(stopping)return;stopping=true;server.close(()=>process.exit(0));server.closeIdleConnections();setTimeout(()=>{server.closeAllConnections();process.exit(1);},10000).unref();};
   process.once('SIGTERM',stop);process.once('SIGINT',stop);

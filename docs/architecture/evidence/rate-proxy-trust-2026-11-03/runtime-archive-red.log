@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "<repo>/docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/runtime_archive_test.py", line 6, in <module>
+    from runtime_archive import reviewed_members
+ModuleNotFoundError: No module named 'runtime_archive'

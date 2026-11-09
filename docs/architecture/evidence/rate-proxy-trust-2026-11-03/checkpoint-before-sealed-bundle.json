@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-03",
+  "status": "Local native-host UDS gateway and proof-verifying TCP ingress candidate verified; uncommitted, not deployed; live Tunnel revision/header and managed-service gates remain.",
+  "baseline": {
+    "functionalCommit": "22793422a8a734f93791fbed478681b2c2a59c1b",
+    "mainRecordCommit": "85666db07554c40a464e97370c06af98d1915274",
+    "recordCi": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41543516983",
+    "recordCiConclusion": "success",
+    "sourceBoundaries": "Image-preload release remains live. Source changes below belong to a separate local candidate."
+  },
+  "finding": {
+    "result": "result.json",
+    "deployedMarker": "deployed-marker.json",
+    "networkBoundary": "network-boundary.json",
+    "scope": "Real local ingress and auth/document routers, synthetic sessions and document list port. Distinct clients collapse into one socket bucket by default; forwarding-header changes cannot bypass it. Not live stress or real OAuth.",
+    "historicalNetworkMetadata": "network-boundary.json records the previous ingress digest before the approved image-preload replacement; API remained unchanged."
+  },
+  "implementation": [
+    "Default TCP/API configuration remains socket-based and ignores supplied client identity claims. No compose default changed.",
+    "Opt-in ingress uses a protected Unix socket and a key file. It signs only when actually bound to the configured socket; a TCP-bound trusted factory returns503 and never signs.",
+    "Only one valid CF client IP claim is accepted on the protected path. Inherited proof is removed and replaced; proof is removed from upstream responses.",
+    "Root/current UID directory ownership is checked through all ancestors; unsafe nonsticky writable ancestors, symlinks, existing files/sockets and incorrect parent permissions are refused. No existing object is deleted or repaired. Socket permissions0600, private parent0700.",
+    "Opaque stable HMAC bucket ID is separated from the proof domain. Proof binds version, HTTPS origin, timestamp, bucket, method and exact raw URL; age30s/future5s limits and timing-safe MAC check.",
+    "Explicit API opt-in rejects missing/duplicate/invalid proof with403 instead of socket fallback. Proof selects a bucket only; session, ownership, CSRF and document validation remain mandatory. Replaying proof consumes the same bucket.",
+    "Local Worker candidate rebuilds XRealIP from its first validated CF client value and removes inherited proof/forwarding claims on both normal origin requests and broken-config origin fallback. Worker limit fail-open configuration stays unchanged.",
+    "Native-host gateway and key-only TCP relay added for actual platform topology; direct UDS signer remains a mutually exclusive alternative. A fixed CI Node gate covers the transport modules and the shared MJS primitive is now included in repository V8 coverage."
+  ],
+  "verification": {
+    "allUnit": "Current283files,2403passed,2skipped; host-proof-unit-coverage.log; rerun after adding shared MJS to the coverage configuration.",
+    "overallCoverage": {
+      "statements": 92.07,
+      "branches": 90.87,
+      "functions": 95.17,
+      "lines": 95.34,
+      "scope": "Repository patterns now explicitly include server/http MJS proof primitive. Operations MJS modules are covered separately by fixed Node gate."
+    },
+    "primitive": "74 adversarial cases preserved; current repository V8 coverage includes this MJS primitive. Prior focused100% report remains valid for unchanged primitive bytes.",
+    "ingress": "Current fixed pnpm test:client-proof:33/33passed; combined operations coverage line99.07/branches92.88/functions86.11, enforced minimum80 each. host-proof-ci-gate-final.log.",
+    "integration": "Actual protected Unix socket plus both HTTP routers: each client gets[200,200,429] independently; proof replay[200,200,429]; forged/missing/duplicate403; valid proof with missing session401. rate-trust-integration-final.log",
+    "dockerSocket": "docker-socket-boundary.json is historical Linux shared-volume/UID evidence at its recorded hashes, not native cloudflared host reachability.",
+    "dockerImage": "Current actual Dockerfile fixture and native-host boundary in host-docker-boundary.json; actual UID501, private native UDS, ephemeral127.0.0.1 published ingress, internal-only API fixture. Image minimal static fixture, not whole product export.",
+    "types": "pnpm typecheck:server passed after explicit Server variable narrowed the new integration fixture; initial type failure retained in host-proof-types.log.",
+    "lint": "Relevant gateway/relay/route-plan/CI wrapper and new integration fixtures pass scoped ESLint; React auto-detection environment warning only. host-proof-lint.log and host-proof-plan-lint-final.log.",
+    "apiBuild": "pnpm --dir server run build:api passed; no runtime/Web rebuild required for server-only candidate.",
+    "docs": "Current58active documents0link errors;241current language surfaces0retired terms;10checker tests passed. host-proof-docs-final.log and host-proof-doc-tests-final.log.",
+    "measurementLint": "Final ingress/helper/measurement MJS ESLint0errors; environment React detection warning only.",
+    "hostGatewayIntegration": "host-proof real-routes integration1passed: host UDS -> actual TCP relay -> both actual routers; independent clients[200,200,429], staticGET/HEAD/Range, alias308/write400, missing-session401, auth/documentINVALID_CSRF403. Synthetic sessions/list port; no real OAuth/DB.",
+    "hostDocker": "host-docker-boundary.json passes after readiness fix; prior successful report and two internal-only publication failures preserved. Edge bridge is egress-capable; only scripted loopback/API fixture requests were made, not packet-capture isolation evidence. All owned resources cleaned, production container IDs unchanged.",
+    "routePlan": "Four pure Node tests verify only two owned services change, unrelated config/order preserved, duplicate/missing/precedence/catchall-path/empty-host rejected, observed version/hash drift and mutated drafts rejected. Public summary omits raw socket and other hosts. Synthetic snapshot only; no live config plan could be generated after remote401. Not remote atomic CAS."
+  },
+  "review": {
+    "finding": "HIGH: private immediate parent could be renamed through an unsafe writable ancestor.",
+    "fix": "Validate root/current UID ownership and writable/sticky rules through the full chain. Reviewer confirmed the corrected algorithm under that trust model.",
+    "testCorrection": "Initial ancestor test used too long a Mac temp path and rejected for the wrong reason; an early worker18-pass report inferred from coverage tail was incorrect. Short names, <=100-byte precondition and the specific helper error now pass; original failure logs preserved.",
+    "otherFindings": "No further CRITICAL/HIGH found in reviewed local boundary; this is not proof of live Cloudflare or production configuration safety.",
+    "followup": "Native gateway/relay review found no additional HIGH/CRITICAL. Two P2 route snapshot gaps (conditional last catchall and empty earlier host) received RED tests then fixes. Hash comparison is observed drift detection, not authorization or remote atomic compare-and-swap.",
+    "readinessFix": "Immediate SIGTERM test exposed ready log emitted before handler registration; moved readiness after SIGTERM/SIGINT handlers. Test cleanup also waited on an already signaled child; added signalCode guard. Exact owned stale fixture sockets/key had no active listeners and were removed. Failed run log preserved; current Node33 and affected actual hostDocker rerun pass."
+  },
+  "preservation": "No live API/Worker/compose/Tunnel/key/provider/migration/DB change. No production credential read or generation for this candidate. Authored content and private/original evidence untouched. All new source and evidence left uncommitted.",
+  "next": [
+    "Prepare a fixed native gateway package and reviewable managed-service/UID/key configuration without installing or generating production secrets.",
+    "Obtain read-only current Tunnel revision/config; existing OAuth GET returns401 and lacks reported Tunnel scope. Do not use historical log routes as an executable current snapshot.",
+    "After current header/route and fail-open provenance is established, prepare exact API/ingress/Worker/key/two-host route activation and rollback; require separate scoped user approval before new operational writes.",
+    "Keep real authenticated upload, physical devices/long offline, class/share/retention decisions and full release audit open."
+  ],
+  "limits": [
+    "Same UID and root are trusted principals; Unix permissions do not authenticate the cloudflared program.",
+    "Memory rate limiting remains per-process, reset on restart; clients sharing one external address may share a bucket.",
+    "Proof is not authorization, body integrity or human identity.",
+    "Production key/UID/volume, real Cloudflare headers and live OAuth remain unverified."
+  ],
+  "sourceSha256": {
+    "server/config.ts": "e0a801011f5d150231eb4ce36a1005bffe6748d8ee4ab4001d792b298845aa07",
+    "server/config.test.ts": "9a037e13c4b7d38e546a92fd3b269c5c9e57b923b6b055dd3d4080fdb15316e4",
+    "server/http/auth-routes.ts": "5a1cf93cca8db0c9da54023ac4848603bef4632755bcc4290333082be89f6477",
+    "server/http/auth-service.ts": "45d6e7f281c940e8217397025365f5530d1ceed24e267bb8a15b5ce60026d2ea",
+    "server/http/document-routes.ts": "ec6ed6f59932bc645ef93d22ad9012559a8991aab95cc9a877a7da5b9b4fcfa1",
+    "server/http/document-service.ts": "3ff4491bc2741727663166abe38ef488d752c64f2a83c665558d9a41a39952eb",
+    "server/http/rate-client.ts": "608585c6f375f043693f57c873b6f8cc449e14972878c09064a45ab3f9bbb2ff",
+    "server/http/rate-client.test.ts": "81122c0c91e74737deb29e469cf43f9e9df8028537f31155f1e6b2a70b770fa7",
+    "server/http/trusted-client-rate.test.ts": "f26545ff889e14c871f556a1a3c078ac03d2071168c02eb0ae002f6cd98bfa1b",
+    "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4",
+    "server/http/client-bucket-proof.d.mts": "161cf1ba6fabac9be94f9d0882b0e37067c5a33a8250c1892e90e22ec6257963",
+    "server/http/client-bucket-proof.test.ts": "15d02c27d91cf076cd7fa5c530594e3901b6a8622453c39fee026faab1675c88",
+    "server/operations/production-ingress.mjs": "931c35a7097c20ad20eea6a577794a33d60ab62080e4bb1bf5df60c07153a81b",
+    "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+    "server/operations/trusted-ingress-socket.test.mjs": "b4413695e0340b231b051c8616b2ba88eee99df7fcfa1e7776c7e005e14274f8",
+    "server/operations/story-edge-worker.mjs": "3868a082ba251c255770a3d10caa2d5016335dc36c5e1c1193a3e680729a80aa",
+    "server/operations/story-edge-worker.test.ts": "d044ee67391604f86a691ef68d4941f556194d3f5f107564d958795d63056dfd",
+    "server/Dockerfile.ingress": "acd48c419ccd6c64d2495c8ef5ac6efcda81804c3c2459043a33579c5a762eed",
+    "server/operations/client-proof-gateway.mjs": "31132c7fa17f64488c291bd34ca4b753c7f3585cc5c885a0b6621fc4966debe3",
+    "server/operations/client-proof-gateway.test.mjs": "ad12d91559d0117ab8ef89aeff78082b88f6e7d8575bb9113af36a38937b387c",
+    "server/operations/ingress-proof-relay.test.mjs": "ad9567ff525268d17de5432794e716e1405d35702808922193778c9d7f540a01",
+    "server/operations/client-proof-route-plan.mjs": "dd1c1c002af7f80988a1dfd4ba4482f167560805eb4fd9fdbbf20606a4c58824",
+    "server/operations/client-proof-route-plan.test.mjs": "083baf1bde73557c5b2fca4c091e9cf9080e01b9d7e31242bc22828bebd0899e",
+    "server/operations/test-client-proof.mjs": "2f61cdaedf8e54b94b62cb5257a3cd86d42cb8e78cbfb8d256ed102ac1b0e465",
+    "server/http/host-gateway-rate.test.ts": "08b2e654a5a79f3e1f99c6d405dc3f251614bcc85acb9832360eb881b62b124a",
+    "vitest.config.ts": "196a37f502889f67f326af23d1c8804d0815aca82563ccd92367a369d0e5c854",
+    "package.json": "4c68c8e3b5938658632ccced4e50d87dd316e44b5dde324f2c5a668cd7a4db58",
+    ".github/workflows/ci.yml": "9f5d60e1264bfd51cde593246b3624f5b7138b42d4a900a4bdc1cb2fab577c0d"
+  },
+  "documentation": [
+    "https://developers.cloudflare.com/fundamentals/reference/http-headers/",
+    "https://developers.cloudflare.com/workers/runtime-apis/request/"
+  ],
+  "history": "checkpoint-before-host-gateway.json preserves the earlier Docker-only boundary and source hashes.",
+  "topology": {
+    "actualHost": "host-tunnel-boundary.json",
+    "remoteLatestConfig": "Two GET-only attempts per tunnel still401/1001 after existing Wrangler session check; no write or permission expansion. Bounded logs suggest shared tunnel but are historical.",
+    "choice": "Native UID501 protected UDS gateway -> loopback Docker TCP ingress verifying exact proof -> API independently verifying proof. Alias Host preserved; all static bytes stream through existing Docker export.",
+    "rejectedAssumption": "A Docker VM named-volume UDS is not directly reachable by the actual native Mac cloudflared process. Previous Linux permission proof is preserved as that narrower scope."
+  },
+  "activationPlan": "activation-plan.md"
+}

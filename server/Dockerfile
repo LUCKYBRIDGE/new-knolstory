@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim AS build
+FROM node:22.23.4-bookworm-slim@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da AS build
 RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
 WORKDIR /workspace/server
 COPY server/package.json server/pnpm-lock.yaml ./
@@ -16,7 +16,7 @@ COPY server/operations/build-api.mjs ./operations/build-api.mjs
 RUN node operations/build-api.mjs
 RUN pnpm prune --prod --ignore-scripts
 
-FROM node:22-bookworm-slim
+FROM node:22.23.4-bookworm-slim@sha256:4b150b48b4116e2a22f2c39cc27025fbf4f153e2078fd3b14d159fdb5c7279da
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=build /workspace/server/dist ./

@@ -1,0 +1,30 @@
+{
+  "scope": "Current Worker rollback metadata/source preserved by GET; new compiled bytes frozen locally only.",
+  "currentVersion": "225ab00e-6eff-4100-8a9f-8237807ba9eb",
+  "currentVersionNumber": 2,
+  "currentBindingsMatchCanonical": true,
+  "currentRuntime": {
+    "compatibility_date": "2026-10-15",
+    "usage_model": "standard"
+  },
+  "currentContent": "worker-current-content-2026-11-04.json",
+  "currentRoute": "worker-route-current-2026-11-04.json",
+  "candidate": {
+    "entryBytes": 6370,
+    "entrySha256": "818c9afacc01177b33701957be9208fd963376a4d9dcf085e5263608744ebc1e",
+    "configSha256": "358bca9b3ba8dbf9e1846ad1f1b4a09ce2642f791b64597ae4f4f0dff5ab84a0",
+    "sourceSha256": "3868a082ba251c255770a3d10caa2d5016335dc36c5e1c1193a3e680729a80aa",
+    "canonicalConfigSha256": "68afe3bbf88854121357d25ed1edc8d67d23fdad19b4130de1258e9ccdf483a4",
+    "wranglerVersion": "4.156.0",
+    "noBundleDeploymentRequired": true,
+    "routeConfigurationOmitted": true,
+    "frozenNoBundleDryRunPassed": true
+  },
+  "remoteWrite": false,
+  "limits": [
+    "Current version/source/route must be fetched again immediately before approved deployment; snapshots do not lock remote state.",
+    "Dry-run does not prove live CF header provenance or quota fail-open.",
+    "Frozen Worker deploy remains separately approved; no routes changed."
+  ],
+  "apiReference": "https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/content/methods/get/"
+}

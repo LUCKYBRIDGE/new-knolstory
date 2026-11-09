@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: writes only reviewed module bytes, relative receipt and a sealed independent module tree
+ok 1 - writes only reviewed module bytes, relative receipt and a sealed independent module tree
+  ---
+  duration_ms: 134.783333
+  type: 'test'
+  ...
+# Subtest: stale, missing or extra review hashes refuse before creating a destination
+ok 2 - stale, missing or extra review hashes refuse before creating a destination
+  ---
+  duration_ms: 2.168
+  type: 'test'
+  ...
+# Subtest: existing destination, symlink destination and unsafe parent are preserved
+ok 3 - existing destination, symlink destination and unsafe parent are preserved
+  ---
+  duration_ms: 3.987875
+  type: 'test'
+  ...
+# Subtest: source links, nonfiles, unsafe paths and malformed review input refuse
+ok 4 - source links, nonfiles, unsafe paths and malformed review input refuse
+  ---
+  duration_ms: 1.254834
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 224.262875
+# start of coverage report
+# --------------------------------------------------------------------------
+# file                      | line % | branch % | funcs % | uncovered lines
+# --------------------------------------------------------------------------
+# server                    |        |          |         |
+#  operations               |        |          |         |
+#   client-proof-bundle.mjs | 100.00 |    89.13 |  100.00 |
+# --------------------------------------------------------------------------
+# all files                 | 100.00 |    89.13 |  100.00 |
+# --------------------------------------------------------------------------
+# end of coverage report

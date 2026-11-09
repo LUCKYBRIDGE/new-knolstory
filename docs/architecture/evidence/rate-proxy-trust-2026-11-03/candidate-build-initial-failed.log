@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<repo>/docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/build-candidate-images.py", line 70, in <module>
+    if __name__=='__main__':main()
+  File "<repo>/docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/build-candidate-images.py", line 37, in main
+    if expected!=actual or len(actual)!=1564 or sum(r['bytes']for r in actual)!=598187818:raise ValueError('Previous static serving candidate differs.')
+ValueError: Previous static serving candidate differs.

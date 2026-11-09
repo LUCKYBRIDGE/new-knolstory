@@ -1,0 +1,19 @@
+{
+  "httpStatus": 200,
+  "contentType": "multipart/form-data; boundary=6dab4e9b545fcfe87955e198a7cdb0b848213b65f5de7441db804e491b49",
+  "bytes": 16240,
+  "sha256": "8c52f3168d076e8ddbee42a1592d821066b4d5d3f4496eb06f3089022de91dc6",
+  "scope": "GET only; exact current Worker content privately preserved. No upload/deploy/route change.",
+  "parts": [
+    {
+      "name": "story-edge-worker.js",
+      "bytes": 5522,
+      "sha256": "4f19f93a6c71b80147fdaf65686f80130341ec428005bd14186181ff8f88847b"
+    },
+    {
+      "name": "story-edge-worker.js.map",
+      "bytes": 10237,
+      "sha256": "26b172396b848238f1e9e1a9117b877694138ad36bc339ffd998d63298be3a38"
+    }
+  ]
+}

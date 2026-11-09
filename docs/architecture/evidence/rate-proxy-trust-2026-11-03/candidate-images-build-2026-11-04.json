@@ -1,0 +1,33 @@
+{
+  "scope": "Local candidates only; production tags/containers unchanged. Explicit copied input whitelist excludes caches, credentials and unrelated worktrees.",
+  "images": {
+    "api": {
+      "id": "sha256:f286fa11e3ecf42df2c0708923b68d4f3509410b2ffa3e8e1e47af6034281d96",
+      "tag": "knolstory-next-api:proof-review-74dm3_pi",
+      "architecture": "arm64",
+      "user": "node"
+    },
+    "ingress": {
+      "id": "sha256:86e6a791a65f2073f3f2fee6e978623dcdbd4f7312ed2af5d9f538c9fbe2586d",
+      "tag": "knolstory-next-ingress:proof-review-74dm3_pi-public-read",
+      "architecture": "arm64",
+      "user": "node"
+    }
+  },
+  "staticFiles": 1564,
+  "staticBytes": 598187818,
+  "staticManifestSha256": "8af14573ca2b6c4cc70ef8ec840f99c34c882072057094bade6a28eb4c5e7c03",
+  "buildInputsSha256": "4a281c232497e936b5221ad393d6c4b6f6a986210b4df5369c7582349a3b2af6",
+  "buildInputFiles": 1728,
+  "productionContainersUnchanged": true,
+  "inputsUnchanged": true,
+  "limits": [
+    "Build success alone does not prove secret permissions, real auth, host routing, container-start behavior or deployment.",
+    "Context and raw build logs remain private and task-owned; candidate tags do not replace production tags."
+  ],
+  "publicModeFix": "candidate-image-public-mode-fix-2026-11-04.json",
+  "dockerfileSha256": {
+    "server/Dockerfile": "5349de9faf6da0ee84b9e058a4b52635a7635f89d9de5e306f4658a74b342d21",
+    "server/Dockerfile.ingress": "a0a2648ca7efa5f6cf77c5b17940654a37d07ddfb2c893841bd483519a2e4b80"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "scope": "Exact candidate images, fixture key only, private internal network/no host ports; no production DB/provider/auth startup.",
+  "runId": "55d8a1db0f8143839716631c5db5a652",
+  "checksObserved": {
+    "/api/v1/me": {
+      "relayMissing": 400,
+      "relayValid": 400,
+      "apiMissing": 403,
+      "apiValid": 401
+    },
+    "/api/v1/documents": {
+      "relayMissing": 400,
+      "relayValid": 400,
+      "apiMissing": 403,
+      "apiValid": 401
+    },
+    "static": 400,
+    "alias": 400,
+    "ready": 503
+  },
+  "cleanup": {
+    "ownedContainersRemoved": 4,
+    "ownedNetworkRemoved": true,
+    "fixtureSecretsRemoved": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-03T21:26:30.883Z",
+  "httpStatus": 200,
+  "version": 4,
+  "beforeConfigSha256": "98e577b6720eaed711731cf11336553b9b3ea4bb8c6be804d8c6f83a5355b50c",
+  "afterConfigSha256": "b74672e887e2154191b227e9481b24ace13914a7e21f0321cbac53f0602856a6",
+  "socketPathSha256": "6db06fe533166fb1a65639e8558e130be3e23ad0ae3bf8feed4ac6241cccabb6",
+  "changedRules": 2,
+  "preservedRules": 3,
+  "hostnames": [
+    "story.knolquiz.com",
+    "story-next.knolquiz.com"
+  ],
+  "previousService": "http://127.0.0.1:15501",
+  "nextServiceKind": "unix",
+  "atomicUpdateProven": false,
+  "scope": "Draft only; no remote update, credentials or process restart.",
+  "source": "Authenticated Cloudflare dashboard GET; current configuration version, not historical cloudflared logs.",
+  "sourceRawPrivate": true,
+  "remoteWrite": false,
+  "driftCheck": "Initial snapshot verified locally; a new authenticated GET is required immediately before any separately approved update."
+}

@@ -1,0 +1,44 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/rate-client.test.ts (0 test)
+ ❯ server/config.test.ts (20 tests | 1 failed) 6ms
+   × keeps client-proof trust disabled unless an explicit protected key file is configured 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/rate-client.test.ts [ server/http/rate-client.test.ts ]
+Error: Cannot find module './rate-client' imported from /Users/wan/ai_dev/apps/new-knolstory/server/http/rate-client.test.ts
+ ❯ server/http/rate-client.test.ts:3:1
+      1| import {describe,it,expect} from 'vitest';
+      2| import type {IncomingMessage} from 'node:http';
+      3| import {createRateClientResolver} from './rate-client';
+       | ^
+      4| import {CLIENT_BUCKET_HEADER,createClientBucketSigner} from './client-…
+      5| const origin='https://story.knolquiz.com',key='ab'.repeat(32);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/config.test.ts > keeps client-proof trust disabled unless an explicit protected key file is configured
+AssertionError: expected undefined to be 'ababababababababababababababababababa…' // Object.is equality
+
+- Expected:
+"abababababababababababababababababababababababababababababababab"
+
++ Received:
+undefined
+
+ ❯ server/config.test.ts:20:112
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  1 failed | 19 passed (20)
+   Start at  08:19:05
+   Duration  132ms (transform 34ms, setup 0ms, import 33ms, tests 6ms, environment 0ms)
+

@@ -1,3 +1,4 @@
+import {createRateClientResolver} from './rate-client';
 import { randomBytes } from 'node:crypto';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { authCookieNames, serializeAuthCookie, validateAuthOrigin, type createAuthStateService } from '../auth/auth-state';
@@ -14,6 +15,7 @@ export type AuthRouterOptions = Readonly<{
   completionPort: AuthCompletionPort;
   providers: Readonly<Partial<Record<Provider, OidcProvider>>>;
   clock?: () => number;
+  clientProofKey?: string;
   rateLimit?: Readonly<{ windowMs: number; maxRequests: number; maxEntries: number }>;
 }>;
 class HttpError extends Error {
@@ -57,12 +59,13 @@ function emptyBody(req: IncomingMessage, res: ServerResponse) {
 function limiter(options: AuthRouterOptions) {
   const config = { windowMs: 60_000, maxRequests: 120, maxEntries: 10_000, ...options.rateLimit };
   for (const value of Object.values(config)) if (!Number.isSafeInteger(value) || value <= 0) throw new HttpError(500, 'INVALID_CONFIG');
+  const client=createRateClientResolver({origin:options.origin,key:options.clientProofKey,clock:options.clock});
   const buckets = new Map<string, Readonly<{ count: number; expiresAt: number }>>();
   return (req: IncomingMessage) => {
     const now = (options.clock ?? Date.now)();
     if (!Number.isSafeInteger(now) || now < 0 || !Number.isSafeInteger(now + config.windowMs)) throw new HttpError(500, 'INVALID_CONFIG');
-    // Proxy headers are untrusted. Forwarding deployments need a separate reviewed policy.
-    const ip = req.socket.remoteAddress ?? 'unknown';
+    const ip = client(req);
+    if(ip===null)throw new HttpError(403,'INVALID_CLIENT_PROOF');
     const existing = buckets.get(ip);
     if (existing && existing.expiresAt > now) {
       if (existing.count >= config.maxRequests) throw new HttpError(429, 'RATE_LIMITED');

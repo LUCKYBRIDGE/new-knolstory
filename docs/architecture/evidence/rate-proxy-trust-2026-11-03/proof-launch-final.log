@@ -1,0 +1,39 @@
+TAP version 13
+# Subtest: draft uses only verified absolute bundle entry, fixed label and file paths; plutil accepts it without installation
+ok 1 - draft uses only verified absolute bundle entry, fixed label and file paths; plutil accepts it without installation
+  ---
+  duration_ms: 37.46975
+  type: 'test'
+  ...
+# Subtest: unsafe path collisions, wrong bundle identity and arbitrary executable are rejected
+ok 2 - unsafe path collisions, wrong bundle identity and arbitrary executable are rejected
+  ---
+  duration_ms: 28.654542
+  type: 'test'
+  ...
+# Subtest: paths with XML metacharacters are escaped and contain no raw markup injection
+ok 3 - paths with XML metacharacters are escaped and contain no raw markup injection
+  ---
+  duration_ms: 26.000958
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 174.098875
+# start of coverage report
+# --------------------------------------------------------------------------
+# file                      | line % | branch % | funcs % | uncovered lines
+# --------------------------------------------------------------------------
+# server                    |        |          |         |
+#  operations               |        |          |         |
+#   client-proof-launch.mjs | 100.00 |    97.78 |  100.00 |
+# --------------------------------------------------------------------------
+# all files                 | 100.00 |    97.78 |  100.00 |
+# --------------------------------------------------------------------------
+# end of coverage report

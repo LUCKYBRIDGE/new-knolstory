@@ -1,0 +1,15 @@
+{
+  "beforeConfigSha256": "d37c35f04a4f361f3490d1602a2eb685d22fb4c307aba77fda85ebe02c5c6593",
+  "afterConfigSha256": "3f7496eefb2f6db1a503e57f440c32f9f976848e6ea348148369495e576239b5",
+  "apiImage": "sha256:f286fa11e3ecf42df2c0708923b68d4f3509410b2ffa3e8e1e47af6034281d96",
+  "ingressImage": "sha256:8f8bdf5b9731843f2d7e4257b9b2bb59d6f57d628ee5c72518b654e65360106e",
+  "uid": 501,
+  "gid": 20,
+  "keyFileSha256": "68abaf85cf9adf5c616732d7a859ebd345db1a341cdb5ec5e422563b9db5763f",
+  "changedServices": 2,
+  "buildRemoved": true,
+  "keyMountReadOnly": true,
+  "missingKeyAutoCreation": false,
+  "databaseAndMigrationPreserved": true,
+  "scope": "Private draft only; fixed images must exist locally, actual key/permissions and separate activation approval remain required."
+}

@@ -1,0 +1,20 @@
+{
+  "scope": "Authorized read-only browser continuation; observed sign-in gate only.",
+  "taskSpace": 19,
+  "page": "p3",
+  "userAuthorizedReadOnlyResume": true,
+  "observed": "Cloudflare dashboard showed Sign in to Cloudflare before handoff.",
+  "handedOffToUser": true,
+  "userLoginConfirmationPending": true,
+  "settingsChanged": false,
+  "credentialsReadOrSubmitted": false,
+  "otherProfilesInspected": false,
+  "egoLiteUpdateNotice": {
+    "current": "0.6.2.5",
+    "upgradePerformed": false
+  },
+  "limits": [
+    "Do not infer current remote Tunnel revision from the sign-in screen or historical logs.",
+    "Wait for user login confirmation before resuming the handed-off browser; no substitute space/profile."
+  ]
+}

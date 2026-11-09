@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-04",
+  "status": "Fixed local API/ingress and Worker candidates, private compose and uninstalled native gateway draft prepared; activation not executed.",
+  "imageBuild": "candidate-images-build-2026-11-04.json",
+  "imageProbe": "candidate-images-probe-2026-11-04.json",
+  "compose": "compose-candidate-2026-11-04.json",
+  "worker": "worker-candidate-2026-11-04.json",
+  "nativeRuntime": "official-runtime-checkpoint-2026-11-04.json",
+  "imageIds": {
+    "api": "sha256:f286fa11e3ecf42df2c0708923b68d4f3509410b2ffa3e8e1e47af6034281d96",
+    "ingress": "sha256:86e6a791a65f2073f3f2fee6e978623dcdbd4f7312ed2af5d9f538c9fbe2586d"
+  },
+  "verification": {
+    "build": "Node22.23.4Bookworm image pinned by manifest digest in both Dockerfiles. Explicit source/static input whitelist; isolated unique image tags; current production containers unchanged.",
+    "static": "All1564files598187818bytes inside final ingress match existing approved serving manifest. No image/manuscript/Web rebuild or byte replacement.",
+    "compose": "5new TDD cases passed100line/98.15branch/100func. Actual resolved tools-profile configuration passes Docker schema/fullJSON roundtrip; onlyAPI/ingress changed, builds removed, immutableimages+pullnever, same singlefileRO bind with create_host_pathfalse. DB/migration/networks/ports/provider-file paths preserved.",
+    "images": "ActualUID501read-onlyroot/nohostports/internalnetwork: missingproof403; validproof+missinglogin401 in both auth/docs and relay/API; static200/alias308. DBabsent readiness503 explicitly expected. Fixturecontainers/network/keys removed.",
+    "transport": "56top-level Node tests passed under official22.23.4; coverage99.48line/93.79branch/91.80func.",
+    "server": "25files426server tests passed under official22.23.4; not a new full-product regression.",
+    "dependencyAudit": "Root+server production dependency audits both report no known vulnerabilities.",
+    "worker": "Current version225ab00e-6eff-4100-8a9f-8237807ba9eb and exact current source privately preserved through GET. Existing2vars/runtime match; actual route attached/failOpentrue. New frozen6370byte payload/config passed no-bundle dry-run only.",
+    "main": "Read-only fetch confirmedHEAD/originmain both85666db, divergence0/0. No commit or push.",
+    "allUnitNewRuntime": "283files2403passed/2skipped under selected officialNode22.23.4; coverage92.07statements/90.87branches/95.17functions/95.34lines. New complete unit run closes runtime-version gap; not UI/device/provider or release completion."
+  },
+  "independentReview": {
+    "scope": "Compose planner/tests, both Dockerfiles, image builder/probe scripts and evidence.",
+    "highCriticalFindings": 0,
+    "p2Resolved": "Probe now publishes exact imageIDs with explicit after-run metadata amendment note; future script records them before starts. Reviewer follow-up confirmed no residual finding.",
+    "limits": "Local preparation scope only; real keys/service/edge/provider behavior remain unverified."
+  },
+  "failuresPreserved": [
+    "Initial static comparison failed because Path ordering differed from string path ordering; per-file hashes/count/bytes unchanged. Inventory order fixed before build.",
+    "Initial resolved config used a DockerDesktopVM owner mount prefix and omitted tools profile. Actualhostdirectory normalization and explicittools read resolution corrected the private snapshot; no lifecycle action.",
+    "Initial ingress failed actualUID501read on a public source asset mode. Image-only a+rX fixed access; rebuilt ingress only and preserved previous candidate report/tag. See candidate-image-public-mode-fix-2026-11-04.json.",
+    "First boundary fixture used fetch with requestedHost that was not sent. All relay responses400 were preserved; isolated echo diagnosed fetchPreservedfalse/httpRequestPreservedtrue. Fixed fixture client, retained Host guard and passing directAPI403/401 semantics."
+  ],
+  "preservation": "No production key creation, managed service install, API/DB/ingress replacement, migration, Worker/Tunnel/DNS update, source manuscript/media changes, commit or push. Existing evidence/raw caches preserved; no unrelated worktree or container removed.",
+  "limits": [
+    "Fixturekeys only; actual future file equality/UID, immediate path/service preflight and installed service/manual recovery remain gated.",
+    "No authenticated provider/session/upload proof; DB readiness503 is not service-readiness evidence.",
+    "No actual TunnelUDS/CFheader provenance or fail-open quota proof; routeGET only observes current flag.",
+    "No remote atomic CAS; re-fetch Tunnel/Worker/deployment state immediately before approved changes.",
+    "NewAPIstrict/TCPrelay/Tunnel transition may temporarily interruptAPI requests; rollback ordering is required."
+  ],
+  "next": [
+    "Request separate approval for currentcandidate commit/main, newproofkey, nativegateway service, fixedAPI/ingress, Workerheadercandidate and exactly2ownedTunnelservices. Priorimage-preload approval does not cover these actions.",
+    "Afterapproval refresh private backups/oldimages/currentWorker+Tunnel snapshots and preflight exactkey/runtime/bundle/paths before applying; no migration or DBcontainer restart.",
+    "Afteractivation validate actualsameorigin/static/native/cache/auth/proof boundaries and retain physicaldevice/realprovider/class/share/retention/fullrelease gates."
+  ],
+  "publication": {
+    "compose-red.log": {
+      "rawLocal": ".cache/proof-compose-red-20261104.log",
+      "rawSha256": "5ee12c260fba354d32095e5a9a4dac92380d289d0b2433519b3ab6b0bfbfbfc5",
+      "publishedSha256": "fa929336915eea88ab61cfc5ecd1c33dd6028dd6f16d346c3a214d7745490b80"
+    },
+    "compose-focused-final.log": {
+      "rawLocal": ".cache/proof-compose-green-20261104.log",
+      "rawSha256": "623612255ef900e428e67b12158597d1a1c41460e4287396e574f7b2e781a223",
+      "publishedSha256": "623612255ef900e428e67b12158597d1a1c41460e4287396e574f7b2e781a223"
+    },
+    "candidate-transport-final.log": {
+      "rawLocal": ".cache/proof-candidate-transport-final-20261104.log",
+      "rawSha256": "4d43e62a3ced2d9a3ab5af01c42b29a26c56d0f43f66b323b4174bab861e6595",
+      "publishedSha256": "4d43e62a3ced2d9a3ab5af01c42b29a26c56d0f43f66b323b4174bab861e6595"
+    },
+    "candidate-server-unit-final.log": {
+      "rawLocal": ".cache/proof-candidate-server-unit-node224-20261104.log",
+      "rawSha256": "7573ebb9bbf66ca1a425762d1a8de42ec0a8654aa21bd1bff9b88ab256fdb9d9",
+      "publishedSha256": "674c95cafa891bd773601bf1d45813f2147e662035f70782e8e0ea500d801394"
+    },
+    "candidate-prod-audit.log": {
+      "rawLocal": ".cache/proof-candidate-prod-audit-20261104.log",
+      "rawSha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955",
+      "publishedSha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955"
+    },
+    "candidate-server-audit.log": {
+      "rawLocal": ".cache/proof-candidate-server-audit-20261104.log",
+      "rawSha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955",
+      "publishedSha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955"
+    },
+    "candidate-build-initial-failed.log": {
+      "rawLocal": ".cache/proof-candidate-images-build-20261104.log",
+      "rawSha256": "b96e3bb0d16fcb9b388337b5d0f95359bf6c5197d84244d13ae5474acfd512e9",
+      "publishedSha256": "901a97e29fb787363c5da8152334bc2d2a91e993097bb9d5c77762edac748ddb"
+    },
+    "candidate-image-probe-final.log": {
+      "rawLocal": ".cache/proof-candidate-images-probe-host-fixed-20261104.log",
+      "rawSha256": "84affaea0ff4ff51662830db7b29ff1f91e8f050eb97769ac34a4ab9885f0068",
+      "publishedSha256": "84affaea0ff4ff51662830db7b29ff1f91e8f050eb97769ac34a4ab9885f0068"
+    },
+    "worker-frozen-dry-run.log": {
+      "rawLocal": ".cache/proof-worker-frozen-dry-run-20261104.log",
+      "rawSha256": "29327ddd9b7157ec6f27e4a265d0c459ccb66e63b6043347c25d5c334cdf11f3",
+      "publishedSha256": "29327ddd9b7157ec6f27e4a265d0c459ccb66e63b6043347c25d5c334cdf11f3"
+    },
+    "candidate-all-unit-node224.log": {
+      "rawLocal": ".cache/proof-candidate-all-unit-node224-20261104.log",
+      "rawSha256": "0d6084323bcf54c0c646b7ac8e20c252cf2f4603711f30fcb6ca4fec89551a67",
+      "publishedSha256": "be77215fbc63d62887e4518241ca84085e62364095e5476005c4593473901683"
+    }
+  },
+  "sourceSha256": {
+    "server/Dockerfile": "5349de9faf6da0ee84b9e058a4b52635a7635f89d9de5e306f4658a74b342d21",
+    "server/Dockerfile.ingress": "a0a2648ca7efa5f6cf77c5b17940654a37d07ddfb2c893841bd483519a2e4b80",
+    "server/operations/client-proof-compose-plan.mjs": "953e2d1c71ac42e75f1a9ea79ced5351c59086b6dc0188cbc8e439125d12404c",
+    "server/operations/client-proof-compose-plan.test.mjs": "51740c88054c8ad71a33a15653e5b0e47427d410b2d55c364f2e8c6bca385c2e",
+    "server/operations/test-client-proof.mjs": "49b3fbf0b1230ada85d59cea57af041cb1dbf940a36550177feb003f3732be9a",
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/build-candidate-images.py": "95d0ce3e6c832696d8f2f312c4bbbb3f0dac3f7e37a64dd1cb97706b429d46b8",
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/probe-candidate-images.py": "d356edf85554232bec60d8cf8f36496af14b4b88f4fdbcfecdb099be8c1f487c"
+  }
+}

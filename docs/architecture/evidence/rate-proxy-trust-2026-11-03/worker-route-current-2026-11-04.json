@@ -1,0 +1,6 @@
+{
+  "pattern": "story.knolquiz.com/*",
+  "script": "knolstory-story-edge",
+  "failOpen": true,
+  "attached": true
+}

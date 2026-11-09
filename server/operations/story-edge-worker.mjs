@@ -89,11 +89,28 @@ export function brotliResponseInit(response, copy) {
   }
   return { status: response.status, statusText: response.statusText, headers, encodeBody: 'manual' };
 }
+/** Keep the first trusted Cloudflare client value when a same-zone Worker forwards.
+ * This is not origin authentication: Tunnel/Unix access and the zone remain trusted.
+ */
+export function originRequest(request) {
+  const headers = new Headers(request.headers);
+  for (const name of [...headers.keys()]) {
+    if (name === 'forwarded' || name.startsWith('x-forwarded-') || name === 'x-real-ip' || name === 'x-knolstory-client-proof') headers.delete(name);
+  }
+  const ip = request.headers.get('cf-connecting-ip') ?? '';
+  let canonical;
+  if (/^(?:0|[1-9]\d{0,2})(?:\.(?:0|[1-9]\d{0,2})){3}$/.test(ip) && ip.split('.').every(value => Number(value) <= 255)) canonical = ip;
+  else if (ip.includes(':') && /^[a-f\d:.]+$/i.test(ip)) {
+    try { canonical = new URL('http://[' + ip + ']/').hostname.slice(1, -1); } catch { /* Invalid claims remain unsigned downstream. */ }
+  }
+  if (canonical) headers.set('x-real-ip', canonical);
+  return new Request(request, { headers });
+}
 export async function handleEdgeRequest(request, env, upstream = fetch) {
   let config;
   // A broken variable keeps the previous behaviour (everything from the Mac mini) instead of failing the site.
-  try { config = edgeConfig(env); } catch { return upstream(request); }
-  if (staysOnOrigin(request, config)) return upstream(request);
+  try { config = edgeConfig(env); } catch { return upstream(originRequest(request)); }
+  if (staysOnOrigin(request, config)) return upstream(originRequest(request));
   try {
     const copy = brotliCopy(request);
     if (copy) {

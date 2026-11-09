@@ -1,0 +1,9 @@
+{
+  "scope": "Exact candidate images, fixture key only, private internal network/no host ports; no production DB/provider/auth startup.",
+  "runId": "835eb73405ad46808b9e1b14f9156192",
+  "cleanup": {
+    "ownedContainersRemoved": 2,
+    "ownedNetworkRemoved": false,
+    "fixtureSecretsRemoved": true
+  }
+}

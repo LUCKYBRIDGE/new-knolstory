@@ -47,6 +47,26 @@ origin defaults to `https://story.knolquiz.com`; an explicit HTTPS
 exact Host. Local HTTP with a public Host is a transport probe, not HTTPS or real
 OAuth evidence. Secure session cookies need the actual HTTPS origin.
 
+Both production Dockerfiles pin Node22.23.4 and its manifest digest. The ingress
+image makes only its copied public `/site` tree readable for the selected runtime
+UID; source asset bytes and host permissions are not changed.
+
+The optional local client rate-bucket proof candidate and its activation prerequisites
+are owned by the [storage contract](../docs/architecture/authoring-storage-contract.md#운영-요청-제한의-선택적-신뢰-경계--2026-11-03).
+The production compose defaults remain TCP/socket-based. Building the image does not
+enable the candidate. Actual Tunnel/UID/key/Worker activation requires separate review.
+Run `pnpm test:client-proof` from the repository root for the transport, sealed
+package, uninstalled launchd draft and read-only activation path checks. The draft uses explicit recovery
+after checking an owned stale socket; it does not install a job or enable automatic
+crash recovery. `inspectClientProofPaths` requires a freshly observed service-label
+inventory, a verified sealed bundle, private key/socket/log paths, and the current
+Node executable with safe ancestors. It reads key metadata only and refuses existing
+sockets. It does not establish ACLs, dynamic-library trust or a future runtime
+installation. `planClientProofCompose` produces a private, resolved configuration
+draft with fixed images and no build directives; it preserves DB/migration and
+adds the same read-only proof file to API/ingress without automatic host-path
+creation. It does not create keys or perform lifecycle actions. See the linked contract and current evidence for the remaining gates.
+
 `production-ingress.mjs` serves immutable static files with MIME/HEAD/byte ranges,
 and streams `/api/*` to the fixed internal API service. Hidden paths, traversal,
 symlinks, wrong Host and development websocket upgrades fail closed. It preserves

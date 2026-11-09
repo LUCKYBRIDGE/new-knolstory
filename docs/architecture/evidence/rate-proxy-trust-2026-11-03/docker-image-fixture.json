@@ -1,0 +1,22 @@
+{
+  "imageDigest": "sha256:eddf56ba1e50c3eee9bab29a8c758acc2d88b92d8724c10da11d157f43483336",
+  "inputs": {
+    "scope": "Minimal static fixture only; no product candidate, credentials or production activation.",
+    "sourceSha256": {
+      "server/Dockerfile.ingress": "acd48c419ccd6c64d2495c8ef5ac6efcda81804c3c2459043a33579c5a762eed",
+      "server/operations/production-ingress.mjs": "3f695730957778fb29ab7c99c53c579f92a5250cc01171593b6549ef60df5e11",
+      "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+      "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4"
+    }
+  },
+  "runtime": {
+    "uid": 1000,
+    "node": "v22.23.3",
+    "mode": "defaultTCP",
+    "status": 200,
+    "bodyMatches": true,
+    "scope": "Minimal fixture image package check only; no production activation."
+  },
+  "initialFailure": "A Node fetch fixture returned a mismatched response. Preserve initial run log; native node:http with the required canonical Host passed. No product change for this fixture correction.",
+  "boundary": "Only the Dockerfile layout and default TCP response with a minimal synthetic export; not the whole product candidate or production activation."
+}

@@ -1,0 +1,140 @@
+{
+  "run": "ee99677b-332b-453c-b370-a61ab75c2ebd",
+  "checkedAt": "2026-11-02T23:41:06.414301+00:00",
+  "scope": "Native UID501 private UDS -> ephemeral127.0.0.1 Docker ingress port on fresh edge bridge -> fresh internal-network-only API; actual shared verifier, synthetic two-request limiter; no OAuth/DB or native cloudflared process.",
+  "sourceSha256": {
+    "server/Dockerfile.ingress": "acd48c419ccd6c64d2495c8ef5ac6efcda81804c3c2459043a33579c5a762eed",
+    "server/operations/production-ingress.mjs": "931c35a7097c20ad20eea6a577794a33d60ab62080e4bb1bf5df60c07153a81b",
+    "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+    "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4"
+  },
+  "gatewaySourceSha256": {
+    "server/operations/client-proof-gateway.mjs": "cd34062a2e5006a8bde14b6591942ece150dffcc4591ee058ee207f97de3e120",
+    "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+    "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4",
+    "server/operations/production-ingress.mjs": "931c35a7097c20ad20eea6a577794a33d60ab62080e4bb1bf5df60c07153a81b"
+  },
+  "localOnly": true,
+  "imageDigest": "sha256:679ab6fc8607f28190670dd6d0cfcd92823e60aae23972e10a751c1aa4d700a7",
+  "publicationObserved": {
+    "ports": {
+      "8080/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "53228"
+        }
+      ]
+    },
+    "requestedBindings": {
+      "8080/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": ""
+        }
+      ]
+    },
+    "state": "running"
+  },
+  "networkBoundary": {
+    "apiServiceInternal": true,
+    "ingressEdgeBridgeInternal": false,
+    "ingressEdgeEgressCapable": true,
+    "onlyScriptedHostTcpDestination": "127.0.0.1",
+    "onlyScriptedContainerApiTarget": "api:4000",
+    "noExternalDestinationRequested": true,
+    "notPacketCaptureEvidence": true
+  },
+  "success": true,
+  "native": {
+    "uid": 501,
+    "gid": 20,
+    "parentMode": "0700",
+    "socketMode": "0600",
+    "socketUid": 501
+  },
+  "publishedIngress": {
+    "hostIp": "127.0.0.1",
+    "ephemeralPort": 53228,
+    "proofRequiredOnTcp": true,
+    "forgedDirectProofStatus": 403
+  },
+  "clients": {
+    "clientA": [
+      200,
+      200,
+      429
+    ],
+    "clientB": [
+      200,
+      200,
+      429
+    ]
+  },
+  "untrustedClaims": {
+    "missingStatus": 400,
+    "duplicateStatus": 400,
+    "rejectedBeforeApi": true,
+    "incomingForgedProofReplaced": true
+  },
+  "apiFixture": {
+    "total": 6,
+    "invalid": 0,
+    "bucketCounts": [
+      3,
+      3
+    ],
+    "uid": 501,
+    "gid": 20,
+    "keyUid": 501,
+    "keyMode": 384,
+    "keyRead": true
+  },
+  "ingressKeyRead": {
+    "uid": 501,
+    "keyUid": 501,
+    "keyMode": 384,
+    "keyRead": true
+  },
+  "static": {
+    "GET": 200,
+    "HEAD": 200,
+    "range": 206,
+    "rangeBodyMatched": true,
+    "aliasRedirect": 308,
+    "aliasLocation": "https://story.knolquiz.com/range.bin"
+  },
+  "containment": {
+    "knol-host-proof-api-ee99677b": {
+      "readOnlyRoot": true,
+      "capDropAll": true,
+      "noNewPrivileges": true,
+      "onlyFreshTaskNetworks": true,
+      "onlyInternalNetwork": true,
+      "user": "501:20"
+    },
+    "knol-host-proof-ingress-ee99677b": {
+      "readOnlyRoot": true,
+      "capDropAll": true,
+      "noNewPrivileges": true,
+      "onlyFreshTaskNetworks": true,
+      "onlyInternalNetwork": false,
+      "user": "501:20"
+    }
+  },
+  "productionContainerIdsUnchanged": true,
+  "cleanup": {
+    "nativeGatewayStopped": true,
+    "ownedContainersRemoved": true,
+    "ownedNetworkRemoved": true,
+    "ownedNativeSocketAndParentRemoved": true,
+    "fixtureKeyRemoved": true
+  },
+  "limits": [
+    "API fixture uses the actual shared verifier and a synthetic rate limiter; no production sessions, OAuth, database, account or document routes.",
+    "Native host gateway used actual UID501 and a private UDS, but no actual cloudflared process was invoked and no tunnel configuration changed.",
+    "CF headers are synthetic test inputs; edge authenticity and privileged same-UID callers remain separate activation-review conditions.",
+    "The fixture ingress also joined a new egress-capable edge bridge because Docker did not publish ports for internal-only topology; API joined only a fresh internal service network. No scripted external request was performed; this is not packet-capture evidence.",
+    "No Pages or fail-open deployment; static fixture only; no claim of all runtime/media bytes."
+  ],
+  "rawLocalDirectory": ".cache/host-docker-proof-ee99677b-332b-453c-b370-a61ab75c2ebd"
+}

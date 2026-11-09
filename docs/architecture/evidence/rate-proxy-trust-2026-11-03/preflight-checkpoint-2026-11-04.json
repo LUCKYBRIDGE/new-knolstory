@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-04",
+  "status": "Read-only path preflight implemented; current selected runtime not activation-ready.",
+  "verification": {
+    "focused": "8 real fixture cases; lines100%, branches96%, functions100%.",
+    "integrated": "44 top-level tests passed; on this host one wrapper asserts all8 child cases and independently enforces80% coverage. Aggregate lines99.44/branches93.19/functions91.15; not52 top-level tests.",
+    "host": "preflight-host-2026-11-04.json",
+    "lint": "Scoped ESLint passed with existing React detection warning; Python AST passed.",
+    "review": "Independent read-only review: no HIGH/CRITICAL; host rejection causal wording refined to distinguish process-path mismatch from direct ancestor metadata."
+  },
+  "blockingObservation": "Current selected Homebrew Node has one group-writable ancestor; no host chmod performed. Selected candidate key/socket/log absent and exact service label not registered in gui/user/system or standard plist paths.",
+  "failuresPreserved": [
+    "RED missing module.",
+    "Initial gate failed because child inherited NODE_TEST_CONTEXT and did not expose the expected child TAP; tests now strip it and enforce full8cases + child coverage.",
+    "Private runtime initially required relative libnode; fixture copies matching library but does not verify remaining dynamic dependency trust.",
+    "Host measurement first encountered Python without hashlib.file_digest; replaced it with bounded chunked SHA256, no production work occurred."
+  ],
+  "preservation": "No production key creation/read, chmod, service install, Tunnel/Worker/API/DB update, source manuscript/media changes, commit or push. Task-owned Node/key fixtures cleaned.",
+  "limits": [
+    "Metadata/supplied service inventory snapshot only; ACL/dynamic libraries/loader/key equality unverified.",
+    "KeepAlive=false remains manual recovery; no service registration or real UDS/Cloudflare header proof.",
+    "Future approved runtime requires a new launch draft and immediate preflight."
+  ],
+  "publication": {
+    "preflight-red.log": {
+      "rawLocal": ".cache/client-proof-preflight-red.log",
+      "rawSha256": "d7ebf2d1cdfc2443caaae095a593d4f91f360a8ef76408aa9beb6d0e3da664f2",
+      "publishedSha256": "be7e57af87a084038ac0f2006ebe13f6b448a76d8ac3c5a4c861f1b8eb7af758"
+    },
+    "preflight-integration-failed.log": {
+      "rawLocal": ".cache/client-proof-with-preflight-20261104.log",
+      "rawSha256": "4ea458bcb8945bf7a95b939465462bf5156a0cd5441dae1da2e97e124e0a5791",
+      "publishedSha256": "36e03666e96e9d5d1f767a051e4a995ac35ca5cb86f87427650907aac5c1a8d6"
+    },
+    "preflight-integration-final.log": {
+      "rawLocal": ".cache/client-proof-with-preflight-final-20261104.log",
+      "rawSha256": "be0c5d826a02a8ea212e851a08af8dfece8266481d1e4f31d73b323c3faab9c6",
+      "publishedSha256": "a0b5b12e1220aecf33ac7aeb8cab33b48d15940f0af424e7a8de7df3dc873c56"
+    },
+    "preflight-focused-final.log": {
+      "rawLocal": ".cache/client-proof-preflight-private-node-final.log",
+      "rawSha256": "39076d6727c4508cca5aa82b153e87285d87181259db5b4c0b73fa0df3b11b61",
+      "publishedSha256": "39076d6727c4508cca5aa82b153e87285d87181259db5b4c0b73fa0df3b11b61"
+    }
+  },
+  "sourceSha256": {
+    "server/operations/client-proof-preflight.mjs": "78ea01fea4e8e93e050b17339462a37fab94d7bdf208f9bcd467987feaf8b2d5",
+    "server/operations/client-proof-preflight.test.mjs": "7400db42fead08c70860f1a45541f4bd62fd1fe179e4791ed988df16d7eb0389",
+    "server/operations/test-client-proof.mjs": "dc8e6af23fadc4bbd2dbfea9f524decac9d7e08c3bd9af7ef18acfb451d7f082",
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/preflight-host.mjs": "895d2cfc757f4df1e52e2758844cfa1ecdbd38e4d83ee2ede9c2e3c21e54a654",
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/run-preflight-host.py": "dc88d9ecfbac8a6627e0631ee118940476f4f0543bb1f186c4b6949114b6e676"
+  }
+}

@@ -13,3 +13,10 @@ describe('API configuration',()=>{
  it('rejects short CSRF material',()=>expect(()=>loadApiConfig(env,()=> 'short')).toThrow());
  it.each(['0','65536','1.2'])('rejects invalid port %s',PORT=>expect(()=>loadApiConfig({...env,PORT},read)).toThrow());
 });
+
+it('keeps client-proof trust disabled unless an explicit protected key file is configured',()=>{
+ expect(loadApiConfig(env,read).auth.clientProofKey).toBeUndefined();
+ const configured={...env,KNOLSTORY_AUTH_ORIGIN:'https://story.knolquiz.com',KNOLSTORY_CLIENT_PROOF_KEY_FILE:'/secret/proof'};
+ expect(loadApiConfig(configured,path=>path==='/secret/proof'?'ab'.repeat(32):read(path)).auth.clientProofKey).toBe('ab'.repeat(32));
+ for(const value of ['', 'z'.repeat(64),'ab'.repeat(31),'ab'.repeat(33),'aa\n'+'a'.repeat(61)])expect(()=>loadApiConfig(configured,path=>path==='/secret/proof'?value:read(path))).toThrow('Invalid API configuration.');
+});

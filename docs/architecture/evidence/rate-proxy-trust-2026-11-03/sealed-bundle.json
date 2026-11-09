@@ -1,0 +1,76 @@
+{
+  "scope": "Sealed local review package and uninstalled launchd draft; actual independent native CLI fixture only.",
+  "bundle": {
+    "format": "knolstory-client-proof-bundle-v1",
+    "bundleId": "79fa37cb5f5c6bfbf04dbf6add976cd5e0070edc4aa442a9029cbbb212a04cb5",
+    "entryPath": "operations/client-proof-gateway.mjs",
+    "files": [
+      {
+        "path": "http/client-bucket-proof.mjs",
+        "bytes": 3147,
+        "sha256": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4"
+      },
+      {
+        "path": "operations/client-proof-gateway.mjs",
+        "bytes": 4687,
+        "sha256": "31132c7fa17f64488c291bd34ca4b753c7f3585cc5c885a0b6621fc4966debe3"
+      },
+      {
+        "path": "operations/production-ingress.mjs",
+        "bytes": 12102,
+        "sha256": "931c35a7097c20ad20eea6a577794a33d60ab62080e4bb1bf5df60c07153a81b"
+      },
+      {
+        "path": "operations/trusted-ingress-socket.mjs",
+        "bytes": 2074,
+        "sha256": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf"
+      }
+    ]
+  },
+  "launchDraft": {
+    "label": "com.knolstory.client-proof-gateway",
+    "bundleId": "79fa37cb5f5c6bfbf04dbf6add976cd5e0070edc4aa442a9029cbbb212a04cb5",
+    "configurationSha256": "a34fab4152e4e3ce796ee9286b0c6676e53732d5a01b6f05006ad081ad08bc5b",
+    "nodeVersion": "22.23.3",
+    "uid": 501,
+    "installed": false,
+    "productionKeyRead": false,
+    "recovery": "manual-after-stale-socket-check",
+    "automaticRestart": false,
+    "limits": [
+      "Draft does not verify future log/key/socket directory permissions or install a job.",
+      "After a crash, verify listener absence and owned stale socket before manual recovery; this draft does not delete sockets or provide automatic crash recovery."
+    ]
+  },
+  "plistSyntaxPassed": true,
+  "plistDecoded": true,
+  "runtime": {
+    "node": "v22.23.3",
+    "uid": 501,
+    "programAndCwdOutsideCheckout": true,
+    "environmentExplicitAndMinimal": true,
+    "requestStatus": 200,
+    "verifiedWithSealedPrimitive": true,
+    "shutdown": {
+      "code": 0,
+      "signal": null
+    },
+    "productionKeyUsed": false,
+    "fixtureKeyRemoved": true,
+    "nativeFixtureStopped": true
+  },
+  "preservation": {
+    "serviceInstalled": false,
+    "launchctlInvoked": false,
+    "productionConfigChanged": false,
+    "sourceManuscriptsChanged": false
+  },
+  "limits": [
+    "No launchd bootstrap, actual daemon restart/crash recovery or real Tunnel is proven.",
+    "KeepAlive is deliberately false; manual stale-socket verification is required before recovery.",
+    "Future key/log/socket parent permissions require activation preflight; no production key was created.",
+    "Review artifact is local and outside checkout; absolute locations remain in a private0600 cache pointer."
+  ],
+  "plistRoundTripEquivalent": true,
+  "measuredAt": "2026-11-03T08:39:27.875658+00:00"
+}

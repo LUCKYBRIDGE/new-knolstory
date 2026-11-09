@@ -1,0 +1,9 @@
+{"success": false, "report": "docs/architecture/evidence/rate-proxy-trust-2026-11-03/host-docker-boundary-failure-94ebac10.json", "cleanup": {"ownedContainersRemoved": true, "ownedNetworkRemoved": true, "ownedNativeSocketAndParentRemoved": true, "fixtureKeyRemoved": true}}
+Traceback (most recent call last):
+  File "/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/host-docker-boundary.py", line 199, in <module>
+    if __name__=='__main__':main()
+  File "/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/host-docker-boundary.py", line 196, in main
+    if failure:raise failure
+  File "/Users/wan/ai_dev/apps/new-knolstory/docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/host-docker-boundary.py", line 112, in main
+    if len(bindings)!=1 or bindings[0]['HostIp']!='127.0.0.1':raise RuntimeError('Fixture ingress publication is not loopback-only.')
+RuntimeError: Fixture ingress publication is not loopback-only.

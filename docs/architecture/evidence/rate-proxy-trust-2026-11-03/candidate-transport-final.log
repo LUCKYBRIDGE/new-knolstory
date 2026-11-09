@@ -1,0 +1,364 @@
+TAP version 13
+# Subtest: writes only reviewed module bytes, relative receipt and a sealed independent module tree
+ok 1 - writes only reviewed module bytes, relative receipt and a sealed independent module tree
+  ---
+  duration_ms: 144.827958
+  type: 'test'
+  ...
+# Subtest: stale, missing or extra review hashes refuse before creating a destination
+ok 2 - stale, missing or extra review hashes refuse before creating a destination
+  ---
+  duration_ms: 5.547375
+  type: 'test'
+  ...
+# Subtest: existing destination, symlink destination and unsafe parent are preserved
+ok 3 - existing destination, symlink destination and unsafe parent are preserved
+  ---
+  duration_ms: 15.690625
+  type: 'test'
+  ...
+# Subtest: source links, nonfiles, unsafe paths and malformed review input refuse
+ok 4 - source links, nonfiles, unsafe paths and malformed review input refuse
+  ---
+  duration_ms: 11.24475
+  type: 'test'
+  ...
+# Subtest: concurrent writers leave exactly one completed destination and do not replace it
+ok 5 - concurrent writers leave exactly one completed destination and do not replace it
+  ---
+  duration_ms: 41.07725
+  type: 'test'
+  ...
+# Subtest: verification rejects changed bytes, wrong identity, added files and a manifest link
+ok 6 - verification rejects changed bytes, wrong identity, added files and a manifest link
+  ---
+  duration_ms: 50.936
+  type: 'test'
+  ...
+# Subtest: individual source symlinks and directories cannot enter a reviewed bundle
+ok 7 - individual source symlinks and directories cannot enter a reviewed bundle
+  ---
+  duration_ms: 3.106667
+  type: 'test'
+  ...
+# Subtest: changes only reviewed service inputs and preserves unrelated configuration immutably
+ok 8 - changes only reviewed service inputs and preserves unrelated configuration immutably
+  ---
+  duration_ms: 4.024958
+  type: 'test'
+  ...
+# Subtest: rejects mutable image names, invalid identities and paths
+ok 9 - rejects mutable image names, invalid identities and paths
+  ---
+  duration_ms: 0.3135
+  type: 'test'
+  ...
+# Subtest: refuses wrong project, API UID, origin and unexpected published paths
+ok 10 - refuses wrong project, API UID, origin and unexpected published paths
+  ---
+  duration_ms: 0.233833
+  type: 'test'
+  ...
+# Subtest: refuses existing proof/socket modes and ambiguous key mount or missing service structure
+ok 11 - refuses existing proof/socket modes and ambiguous key mount or missing service structure
+  ---
+  duration_ms: 0.982334
+  type: 'test'
+  ...
+# Subtest: snapshot drift or mutated plan is rejected before proposed activation
+ok 12 - snapshot drift or mutated plan is rejected before proposed activation
+  ---
+  duration_ms: 0.318
+  type: 'test'
+  ...
+# Subtest: gateway config requires explicit private key/socket and loopback destination
+ok 13 - gateway config requires explicit private key/socket and loopback destination
+  ---
+  duration_ms: 0.927833
+  type: 'test'
+  ...
+# Subtest: canonical API signs the CF claim and streams method, target, body and cookies
+ok 14 - canonical API signs the CF claim and streams method, target, body and cookies
+  ---
+  duration_ms: 37.521458
+  type: 'test'
+  ...
+# Subtest: static and alias requests keep their Host and cannot inherit a proof
+ok 15 - static and alias requests keep their Host and cannot inherit a proof
+  ---
+  duration_ms: 23.094625
+  type: 'test'
+  ...
+# Subtest: invalid Host, targets and missing, duplicate or invalid client claims do not reach ingress
+ok 16 - invalid Host, targets and missing, duplicate or invalid client claims do not reach ingress
+  ---
+  duration_ms: 6.7525
+  type: 'test'
+  ...
+# Subtest: gateway factory cannot become a TCP signer; upstream failure stays explicit
+ok 17 - gateway factory cannot become a TCP signer; upstream failure stays explicit
+  ---
+  duration_ms: 5.017792
+  type: 'test'
+  ...
+# Subtest: gateway upstream timeout does not bypass the proof path
+ok 18 - gateway upstream timeout does not bypass the proof path
+  ---
+  duration_ms: 19.591375
+  type: 'test'
+  ...
+# Subtest: gateway CLI masks invalid config and shuts down its actual private socket cleanly
+ok 19 - gateway CLI masks invalid config and shuts down its actual private socket cleanly
+  ---
+  duration_ms: 103.660916
+  type: 'test'
+  ...
+# Subtest: draft uses only verified absolute bundle entry, fixed label and file paths; plutil accepts it without installation
+ok 20 - draft uses only verified absolute bundle entry, fixed label and file paths; plutil accepts it without installation
+  ---
+  duration_ms: 93.652541
+  type: 'test'
+  ...
+# Subtest: unsafe path collisions, wrong bundle identity and arbitrary executable are rejected
+ok 21 - unsafe path collisions, wrong bundle identity and arbitrary executable are rejected
+  ---
+  duration_ms: 49.677542
+  type: 'test'
+  ...
+# Subtest: paths with XML metacharacters are escaped and contain no raw markup injection
+ok 22 - paths with XML metacharacters are escaped and contain no raw markup injection
+  ---
+  duration_ms: 37.217875
+  type: 'test'
+  ...
+# Subtest: accepts sealed bundle, private fixture paths and absent service without creating outputs or exposing paths
+ok 23 - accepts sealed bundle, private fixture paths and absent service without creating outputs or exposing paths
+  ---
+  duration_ms: 84.300375
+  type: 'test'
+  ...
+# Subtest: requires explicit service inventory and rejects registered gateway and malformed labels
+ok 24 - requires explicit service inventory and rejects registered gateway and malformed labels
+  ---
+  duration_ms: 62.1805
+  type: 'test'
+  ...
+# Subtest: key must be private regular current-owner single-link file of expected byte length
+ok 25 - key must be private regular current-owner single-link file of expected byte length
+  ---
+  duration_ms: 58.826833
+  type: 'test'
+  ...
+# Subtest: rejects absent key, symlinks and nonprivate parents without changing them
+ok 26 - rejects absent key, symlinks and nonprivate parents without changing them
+  ---
+  duration_ms: 54.500583
+  type: 'test'
+  ...
+# Subtest: existing sockets or ordinary files at socket path refuse and are preserved
+ok 27 - existing sockets or ordinary files at socket path refuse and are preserved
+  ---
+  duration_ms: 30.754416
+  type: 'test'
+  ...
+# Subtest: logs may be absent or private regular files; unsafe log objects and hardlinks refuse
+ok 28 - logs may be absent or private regular files; unsafe log objects and hardlinks refuse
+  ---
+  duration_ms: 32.349209
+  type: 'test'
+  ...
+# Subtest: rejects path collisions, traversal, oversized socket, wrong bundle and arbitrary Node path
+ok 29 - rejects path collisions, traversal, oversized socket, wrong bundle and arbitrary Node path
+  ---
+  duration_ms: 26.619667
+  type: 'test'
+  ...
+# Subtest: private leaf parent does not excuse unsafe or symlinked ancestors
+ok 30 - private leaf parent does not excuse unsafe or symlinked ancestors
+  ---
+  duration_ms: 29.915375
+  type: 'test'
+  ...
+# Subtest: plan changes only the two owned services and preserves caller snapshot, all other rules and order
+ok 31 - plan changes only the two owned services and preserves caller snapshot, all other rules and order
+  ---
+  duration_ms: 4.098084
+  type: 'test'
+  ...
+# Subtest: drift in version or any unrelated config prevents applying an old plan
+ok 32 - drift in version or any unrelated config prevents applying an old plan
+  ---
+  duration_ms: 0.643834
+  type: 'test'
+  ...
+# Subtest: invalid topology and unsafe path do not produce an executable configuration
+ok 33 - invalid topology and unsafe path do not produce an executable configuration
+  ---
+  duration_ms: 0.4155
+  type: 'test'
+  ...
+# Subtest: version zero and private dot directories remain valid while mutated drafts are rejected
+ok 34 - version zero and private dot directories remain valid while mutated drafts are rejected
+  ---
+  duration_ms: 1.099542
+  type: 'test'
+  ...
+# Subtest: key-only CLI config enables relay, socket plus key enables signer, both modes cannot coexist
+ok 35 - key-only CLI config enables relay, socket plus key enables signer, both modes cannot coexist
+  ---
+  duration_ms: 21.723625
+  type: 'test'
+  ...
+# Subtest: valid relay proof reaches API byte-for-byte and is independently verifiable while body streams
+ok 36 - valid relay proof reaches API byte-for-byte and is independently verifiable while body streams
+  ---
+  duration_ms: 25.792666
+  type: 'test'
+  ...
+# Subtest: relay rejects missing, malformed, duplicate, stale, wrong-key and changed-target proofs
+ok 37 - relay rejects missing, malformed, duplicate, stale, wrong-key and changed-target proofs
+  ---
+  duration_ms: 12.708917
+  type: 'test'
+  ...
+# Subtest: Host, path, static and alias boundaries run before proof relay
+ok 38 - Host, path, static and alias boundaries run before proof relay
+  ---
+  duration_ms: 7.875583
+  type: 'test'
+  ...
+# Subtest: configuration rejects unsafe origins, paths, ports and timeouts
+ok 39 - configuration rejects unsafe origins, paths, ports and timeouts
+  ---
+  duration_ms: 2.351584
+  type: 'test'
+  ...
+# Subtest: static routes, HEAD, MIME, ranges and missing paths
+ok 40 - static routes, HEAD, MIME, ranges and missing paths
+  ---
+  duration_ms: 78.523666
+  type: 'test'
+  ...
+# Subtest: alternate origin accepts only a distinct approved HTTPS origin
+ok 41 - alternate origin accepts only a distinct approved HTTPS origin
+  ---
+  duration_ms: 0.30625
+  type: 'test'
+  ...
+# Subtest: alternate host redirects safe GET and HEAD to canonical origin without forwarding writes
+ok 42 - alternate host redirects safe GET and HEAD to canonical origin without forwarding writes
+  ---
+  duration_ms: 33.30275
+  type: 'test'
+  ...
+# Subtest: host, traversal, encoded separators, hidden files and symlinks fail closed
+ok 43 - host, traversal, encoded separators, hidden files and symlinks fail closed
+  ---
+  duration_ms: 14.8675
+  type: 'test'
+  ...
+# Subtest: API preserves streaming status, cookies and security headers while stripping proxy headers
+ok 44 - API preserves streaming status, cookies and security headers while stripping proxy headers
+  ---
+  duration_ms: 30.660458
+  type: 'test'
+  ...
+# Subtest: API unavailable and timeout fail closed without fabricated observation
+ok 45 - API unavailable and timeout fail closed without fabricated observation
+  ---
+  duration_ms: 71.851583
+  type: 'test'
+  ...
+# Subtest: partial upstream response is terminated and cannot become success
+ok 46 - partial upstream response is terminated and cannot become success
+  ---
+  duration_ms: 30.3695
+  type: 'test'
+  ...
+# Subtest: CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+ok 47 - CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+  ---
+  duration_ms: 98.302458
+  type: 'test'
+  ...
+# Subtest: trusted signing config requires strict key file; key-only relay and default TCP remain distinct
+ok 48 - trusted signing config requires strict key file; key-only relay and default TCP remain distinct
+  ---
+  duration_ms: 1.014959
+  type: 'test'
+  ...
+# Subtest: actual protected Unix listener signs one CF client, replaces spoofed proof, never leaks proof
+ok 49 - actual protected Unix listener signs one CF client, replaces spoofed proof, never leaks proof
+  ---
+  duration_ms: 36.470625
+  type: 'test'
+  ...
+# Subtest: Unix rejects missing, multiple or invalid CF claim and never calls API
+ok 50 - Unix rejects missing, multiple or invalid CF claim and never calls API
+  ---
+  duration_ms: 26.372416
+  type: 'test'
+  ...
+# Subtest: trusted factory accidentally bound to TCP cannot act as signer
+ok 51 - trusted factory accidentally bound to TCP cannot act as signer
+  ---
+  duration_ms: 2.296583
+  type: 'test'
+  ...
+# Subtest: existing file, existing socket, symlink and insecure parent are never replaced
+ok 52 - existing file, existing socket, symlink and insecure parent are never replaced
+  ---
+  duration_ms: 6.126167
+  type: 'test'
+  ...
+# Subtest: default TCP strips inherited and response proof without enabling signing
+ok 53 - default TCP strips inherited and response proof without enabling signing
+  ---
+  duration_ms: 5.874375
+  type: 'test'
+  ...
+# Subtest: a file appearing at bind time causes refusal without deleting that file
+ok 54 - a file appearing at bind time causes refusal without deleting that file
+  ---
+  duration_ms: 8.962334
+  type: 'test'
+  ...
+# Subtest: nonsticky writable ancestors are refused even when immediate parent is private
+ok 55 - nonsticky writable ancestors are refused even when immediate parent is private
+  ---
+  duration_ms: 25.717917
+  type: 'test'
+  ...
+# Subtest: sticky writable ancestors preserve the trusted-owner private child boundary
+ok 56 - sticky writable ancestors preserve the trusted-owner private child boundary
+  ---
+  duration_ms: 8.415
+  type: 'test'
+  ...
+1..56
+# tests 56
+# suites 0
+# pass 56
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 456.2815
+# start of coverage report
+# --------------------------------------------------------------------------------
+# file                            | line % | branch % | funcs % | uncovered lines
+# --------------------------------------------------------------------------------
+# server                          |        |          |         | 
+#  operations                     |        |          |         | 
+#   client-proof-bundle.mjs       | 100.00 |    90.80 |  100.00 | 
+#   client-proof-compose-plan.mjs | 100.00 |    98.15 |  100.00 | 
+#   client-proof-gateway.mjs      | 100.00 |    84.13 |   82.35 | 
+#   client-proof-launch.mjs       | 100.00 |    97.78 |  100.00 | 
+#   client-proof-preflight.mjs    | 100.00 |    96.00 |  100.00 | 
+#   client-proof-route-plan.mjs   | 100.00 |    97.92 |  100.00 | 
+#   production-ingress.mjs        |  98.31 |    95.33 |   83.33 | 103-105
+#   trusted-ingress-socket.mjs    | 100.00 |    84.62 |   85.71 | 
+# --------------------------------------------------------------------------------
+# all files                       |  99.48 |    93.79 |   91.80 | 
+# --------------------------------------------------------------------------------
+# end of coverage report

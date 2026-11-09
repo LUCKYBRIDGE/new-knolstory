@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-04",
+  "status": "Official Node22.23.4 local runtime and uninstalled draft verified; Homebrew ancestry blocker resolved for this selected candidate only.",
+  "officialRuntime": "official-runtime-2026-11-04.json",
+  "gatewayAndDraft": "official-runtime-gateway-2026-11-04.json",
+  "versionChoice": {
+    "selected": "v22.23.4",
+    "reason": "Official latest22 index and release note identify22.23.4 as security release.22.23.3 comparison artifacts retained; no host/global runtime changed.",
+    "releaseNote": "https://nodejs.org/en/blog/release/v22.23.4",
+    "verificationGuide": "https://github.com/nodejs/node#verifying-binaries"
+  },
+  "verification": {
+    "archive": "PGP signature verified using isolated gpgv home and pinned official release-key repository commit, exact selected archive SHA256 matches signed manifest before extraction.",
+    "extraction": "Only exact regular bin/node and LICENSE members read into exclusive private files; no extractall.7guard tests passed, stdlib trace reports84% statement-line coverage; no branch/function coverage claim.",
+    "platform": "codesign --verify --strict passed; direct Mach-O dependencies are4macOSsystem libraries, no Homebrew path. Minimal explicit environment probes correct darwin/arm64/version.",
+    "gateway": "Selected official executable and unchanged sealed4module bundle: fixture protected UDS signed request200; cleanSIGTERM exit0; key/socket fixtures removed.",
+    "draft": "New private0600plist differs only in Node executable; syntax and full decoded configuration equal. Not installed.",
+    "transport": "51top-level tests passed under official22.23.4/minimal env. Coverage99.44line/93.37branch/91.15function. No nested-wrapper test inflation; safe official path runs8preflight cases directly.",
+    "static": "Scoped ESLint, Python AST and diff check passed; no current app/manuscript/runtime-Web modification."
+  },
+  "failureHistory": [
+    "official-runtime-gateway-initial-failure.json: long fixture socket rejected before gateway creation; owned key directory cleaned; shorter fixture path and broader finally cleanup used on final run.",
+    "runtime-archive-trace-zero-tests.log preserves initial trace invocation that ran0tests; programmatic suite loader then explicitly asserted7tests and ran all7 under trace.",
+    "Independent archive-helper agent failed at usage limit before creating files; root implemented/reviewed/measured helpers. No independent review claimed for these new scripts."
+  ],
+  "preservation": "Existing Homebrew permissions/runtime, provider/DB/CSRF secrets, production API/DB/ingress/Worker/Tunnel, service registrations, source manuscripts/media and previous evidence preserved. Only local private review artifacts/drafts created. No commit/push/deploy.",
+  "limits": [
+    "PGP keys fetched from pinned official repository overHTTPS; not independent offline trust bootstrap.",
+    "Direct dependency list/code-signature verification trusts OS libraries and loader, not a complete loaded-memory or OS integrity attestation.",
+    "Fixture key/IP only; no real auth/provider upload, TunnelUDS routing or Cloudflare-header proof.",
+    "Actual production key/mounts, immediate service/path checks and service registration/crash recovery remain separately gated.",
+    "KeepAlivefalse/manual stale-socket recovery remains unchanged."
+  ],
+  "next": [
+    "Prepare exact fixed API/ingress images and compose/key inputs against current unchanged static serving artifact; do not deploy.",
+    "Immediately before any separately approved activation reverify runtime/bundle hashes, actual key/socket/log ownership, installed plist/service absence and fresh Tunnel version/hash.",
+    "Keep authenticated upload/device/policy/fullrelease gates in canonical plan."
+  ],
+  "publication": {
+    "runtime-archive-red.log": {
+      "rawLocal": ".cache/runtime-archive-red-20261104.log",
+      "rawSha256": "77ddcb43c98ba3806c978160fb072bb772e54c91610395d63fbc69ece01ce455",
+      "publishedSha256": "9a50bf4c2a4d1430732b05c9ef78263f6181c55e0cb7cbc4e1ef253fd6b649e6"
+    },
+    "runtime-archive-trace-zero-tests.log": {
+      "rawLocal": ".cache/runtime-archive-coverage-20261104.log",
+      "rawSha256": "98098b6edbc3ee708b247471871096c0c513162f5cdebacfa006eb311b21511e",
+      "publishedSha256": "69586e7f9f76feaa4572929b0dcb10e7a61671e55651205e154a836648f6cc42"
+    },
+    "runtime-archive-coverage-final.log": {
+      "rawLocal": ".cache/runtime-archive-coverage-final-20261104.log",
+      "rawSha256": "15792373d2ffae234a5b7e523044660113215720cd192a9ea50a1ff64a202565",
+      "publishedSha256": "2c4855930f32350c69913d3ba2b3127bb976df04da31423fd1fd8abf0a4a34a6"
+    },
+    "official-runtime-gateway-final.log": {
+      "rawLocal": ".cache/official-runtime-gateway-v22.23.4-final-20261104.log",
+      "rawSha256": "1047fb18f2283fd81d5b32a323502fae0a3b9e143ef7af8dd7518478a4bd487c",
+      "publishedSha256": "1047fb18f2283fd81d5b32a323502fae0a3b9e143ef7af8dd7518478a4bd487c"
+    },
+    "official-runtime-transport-final.log": {
+      "rawLocal": ".cache/client-proof-official-runtime-v22.23.4-20261104.log",
+      "rawSha256": "a503d004f491ecb839b8e802f27997618e47052423860b52e076edd562139cb8",
+      "publishedSha256": "a503d004f491ecb839b8e802f27997618e47052423860b52e076edd562139cb8"
+    }
+  },
+  "sourceSha256": {
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/runtime_archive.py": "3a9fc39bfa752b53f29b2d2027d1b2d94edf0541d5c92803a68385ed9e8b2dcc",
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/runtime_archive_test.py": "2af5117f63dbb66d7ef8ce0f84d566d981576469aca768fbcaeecfc1f9947330",
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/official-runtime.py": "6d60a6bc5a0847246e2fb51e4c8f6e64d6208caf1c968da66d5d30123612ad38",
+    "docs/architecture/evidence/rate-proxy-trust-2026-11-03/measurement/official-runtime-gateway.mjs": "4da588f9f985181e3c635f705b609a196c4c34dddb1d811e3c04bc3bc6b8e359"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "run": "94ebac10-177d-47e0-ae14-383dcc817061",
+  "checkedAt": "2026-11-02T23:39:35.877727+00:00",
+  "scope": "Native UID501 private UDS -> ephemeral127.0.0.1 Docker ingress published port -> fresh internal-network API; actual shared verifier, synthetic two-request limiter; no OAuth/DB or native cloudflared process.",
+  "sourceSha256": {
+    "server/Dockerfile.ingress": "acd48c419ccd6c64d2495c8ef5ac6efcda81804c3c2459043a33579c5a762eed",
+    "server/operations/production-ingress.mjs": "931c35a7097c20ad20eea6a577794a33d60ab62080e4bb1bf5df60c07153a81b",
+    "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+    "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4"
+  },
+  "gatewaySourceSha256": {
+    "server/operations/client-proof-gateway.mjs": "cd34062a2e5006a8bde14b6591942ece150dffcc4591ee058ee207f97de3e120",
+    "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+    "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4",
+    "server/operations/production-ingress.mjs": "931c35a7097c20ad20eea6a577794a33d60ab62080e4bb1bf5df60c07153a81b"
+  },
+  "localOnly": true,
+  "imageDigest": "sha256:577a78cc75ffcbb69969fd3cbbde5fbebb0e02853b817da7734a429f50dd1b34",
+  "success": false,
+  "error": "Fixture ingress publication is not loopback-only.",
+  "cleanup": {
+    "ownedContainersRemoved": true,
+    "ownedNetworkRemoved": true,
+    "ownedNativeSocketAndParentRemoved": true,
+    "fixtureKeyRemoved": true
+  },
+  "limits": [
+    "API fixture uses the actual shared verifier and a synthetic rate limiter; no production sessions, OAuth, database, account or document routes.",
+    "Native host gateway used actual UID501 and a private UDS, but no actual cloudflared process was invoked and no tunnel configuration changed.",
+    "CF headers are synthetic test inputs; edge authenticity and privileged same-UID callers remain separate activation-review conditions.",
+    "No Pages or fail-open deployment; static fixture only; no claim of all runtime/media bytes."
+  ],
+  "rawLocalDirectory": ".cache/host-docker-proof-94ebac10-177d-47e0-ae14-383dcc817061"
+}

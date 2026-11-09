@@ -1,0 +1,74 @@
+TAP version 13
+# Subtest: trusted config requires socket and strict key file together; default remains TCP
+ok 1 - trusted config requires socket and strict key file together; default remains TCP
+  ---
+  duration_ms: 1.178792
+  type: 'test'
+  ...
+# Subtest: actual protected Unix listener signs one CF client, replaces spoofed proof, never leaks proof
+ok 2 - actual protected Unix listener signs one CF client, replaces spoofed proof, never leaks proof
+  ---
+  duration_ms: 17.356
+  type: 'test'
+  ...
+# Subtest: Unix rejects missing, multiple or invalid CF claim and never calls API
+ok 3 - Unix rejects missing, multiple or invalid CF claim and never calls API
+  ---
+  duration_ms: 3.3685
+  type: 'test'
+  ...
+# Subtest: trusted factory accidentally bound to TCP cannot act as signer
+ok 4 - trusted factory accidentally bound to TCP cannot act as signer
+  ---
+  duration_ms: 2.237084
+  type: 'test'
+  ...
+# Subtest: existing file, existing socket, symlink and insecure parent are never replaced
+ok 5 - existing file, existing socket, symlink and insecure parent are never replaced
+  ---
+  duration_ms: 2.791375
+  type: 'test'
+  ...
+# Subtest: default TCP strips inherited and response proof without enabling signing
+ok 6 - default TCP strips inherited and response proof without enabling signing
+  ---
+  duration_ms: 2.895708
+  type: 'test'
+  ...
+# Subtest: a file appearing at bind time causes refusal without deleting that file
+ok 7 - a file appearing at bind time causes refusal without deleting that file
+  ---
+  duration_ms: 1.89225
+  type: 'test'
+  ...
+# Subtest: nonsticky writable ancestors are refused even when immediate parent is private
+not ok 8 - nonsticky writable ancestors are refused even when immediate parent is private
+  ---
+  duration_ms: 2.383291
+  type: 'test'
+  location: '/Users/wan/ai_dev/apps/new-knolstory/server/operations/trusted-ingress-socket.test.mjs:79:1'
+  failureType: 'testCodeFailure'
+  error: 'Invalid production ingress configuration.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    validateConfig (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/production-ingress.mjs:32:228)
+    createProductionIngress (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/production-ingress.mjs:117:2)
+    TestContext.<anonymous> (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/trusted-ingress-socket.test.mjs:85:22)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: sticky writable ancestors preserve the trusted-owner private child boundary
+ok 9 - sticky writable ancestors preserve the trusted-owner private child boundary
+  ---
+  duration_ms: 2.34275
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 8
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 121.110292

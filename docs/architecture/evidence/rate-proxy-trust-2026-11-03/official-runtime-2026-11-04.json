@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-11-03T22:53:49.518876+00:00",
+  "version": "v22.23.4",
+  "archive": "node-v22.23.4-darwin-arm64.tar.gz",
+  "keyRepositoryCommit": "481637f813e912c4aa3622d7964ab426c97b8e8d",
+  "scope": "Private local runtime review only; no service registration or production key/config changes.",
+  "officialUrls": {
+    "node-v22.23.4-darwin-arm64.tar.gz": "https://nodejs.org/download/release/v22.23.4/node-v22.23.4-darwin-arm64.tar.gz",
+    "SHASUMS256.txt": "https://nodejs.org/download/release/v22.23.4/SHASUMS256.txt",
+    "SHASUMS256.txt.sig": "https://nodejs.org/download/release/v22.23.4/SHASUMS256.txt.sig",
+    "pubring.kbx": "https://raw.githubusercontent.com/nodejs/release-keys/481637f813e912c4aa3622d7964ab426c97b8e8d/gpg/pubring.kbx"
+  },
+  "signatureVerified": true,
+  "signerFingerprint": "5BE8A3F6C8A5C01D106C0AD820B1A390B168D356",
+  "archiveSha256": "c9e1dbc748b33ed2d14f42445191ecaf14c56259c7a9a26d0042c49ec2b66428",
+  "downloadSha256": {
+    "node-v22.23.4-darwin-arm64.tar.gz": "c9e1dbc748b33ed2d14f42445191ecaf14c56259c7a9a26d0042c49ec2b66428",
+    "SHASUMS256.txt": "c90c3f1478fda8308b22cc1a1b0dc536169196444e67ee8b5c582fd351d02bce",
+    "SHASUMS256.txt.sig": "062fe0561f4e93d54dcb2f826a50a4ff26e2563f88b254dd8a3324809abffcd9",
+    "pubring.kbx": "610b8d249da3d5733f5a128def2dd0294dbbf5b5713e6ca2529db8db419dee00"
+  },
+  "nodeSha256": "2cc28a1880d0774616959f2210ee739bffa6ac695c887e8988a496a21271f6c0",
+  "licenseSha256": "c738ae413cf561f174e34f6961f8ca458aae2369a73640dda6234c629b98bcc4",
+  "nodeBytes": 113002944,
+  "dependencies": [
+    "/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation",
+    "/System/Library/Frameworks/Security.framework/Versions/A/Security",
+    "/usr/lib/libc++.1.dylib",
+    "/usr/lib/libSystem.B.dylib"
+  ],
+  "systemDependenciesOnly": true,
+  "codesignStrictPassed": true,
+  "minimalEnvironmentVersionProbe": true,
+  "success": true,
+  "limits": [
+    "PGP trust anchored in the pinned official Node release-key repository fetched over HTTPS, not an independent offline trust bootstrap.",
+    "System libraries and OS loader remain platform trust; direct Mach-O dependency list is not a complete loaded-image attestation.",
+    "This is a local review artifact, not a registered service or final approved runtime installation."
+  ]
+}

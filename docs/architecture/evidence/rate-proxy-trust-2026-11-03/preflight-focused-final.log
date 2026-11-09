@@ -1,0 +1,69 @@
+TAP version 13
+# Subtest: accepts sealed bundle, private fixture paths and absent service without creating outputs or exposing paths
+ok 1 - accepts sealed bundle, private fixture paths and absent service without creating outputs or exposing paths
+  ---
+  duration_ms: 48.981875
+  type: 'test'
+  ...
+# Subtest: requires explicit service inventory and rejects registered gateway and malformed labels
+ok 2 - requires explicit service inventory and rejects registered gateway and malformed labels
+  ---
+  duration_ms: 30.586459
+  type: 'test'
+  ...
+# Subtest: key must be private regular current-owner single-link file of expected byte length
+ok 3 - key must be private regular current-owner single-link file of expected byte length
+  ---
+  duration_ms: 36.679334
+  type: 'test'
+  ...
+# Subtest: rejects absent key, symlinks and nonprivate parents without changing them
+ok 4 - rejects absent key, symlinks and nonprivate parents without changing them
+  ---
+  duration_ms: 33.52125
+  type: 'test'
+  ...
+# Subtest: existing sockets or ordinary files at socket path refuse and are preserved
+ok 5 - existing sockets or ordinary files at socket path refuse and are preserved
+  ---
+  duration_ms: 30.899334
+  type: 'test'
+  ...
+# Subtest: logs may be absent or private regular files; unsafe log objects and hardlinks refuse
+ok 6 - logs may be absent or private regular files; unsafe log objects and hardlinks refuse
+  ---
+  duration_ms: 33.824458
+  type: 'test'
+  ...
+# Subtest: rejects path collisions, traversal, oversized socket, wrong bundle and arbitrary Node path
+ok 7 - rejects path collisions, traversal, oversized socket, wrong bundle and arbitrary Node path
+  ---
+  duration_ms: 27.270333
+  type: 'test'
+  ...
+# Subtest: private leaf parent does not excuse unsafe or symlinked ancestors
+ok 8 - private leaf parent does not excuse unsafe or symlinked ancestors
+  ---
+  duration_ms: 32.140125
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 349.0655
+# start of coverage report
+# -----------------------------------------------------------------------------
+# file                         | line % | branch % | funcs % | uncovered lines
+# -----------------------------------------------------------------------------
+# server                       |        |          |         | 
+#  operations                  |        |          |         | 
+#   client-proof-preflight.mjs | 100.00 |    96.00 |  100.00 | 
+# -----------------------------------------------------------------------------
+# all files                    | 100.00 |    96.00 |  100.00 | 
+# -----------------------------------------------------------------------------
+# end of coverage report
