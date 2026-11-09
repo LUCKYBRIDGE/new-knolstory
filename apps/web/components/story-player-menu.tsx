@@ -115,7 +115,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
   {/* A transition card covers the whole stage; the tool row would sit over its button. */}
   {!toolsHidden&&<div style={{...barStyle,'--reader-tool-font-size':`${Math.max(10,Math.min(12,toolFontSizePx))}px`} as CSSProperties} className={styles.quick}>
    <button disabled={disabled} onClick={()=>open('log')}>지난기록</button>
-   {!phone&&<><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 {auto?'ON':'OFF'}</button></>}
+   {!phone&&<><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 넘기기 {auto?'켜짐':'꺼짐'}</button></>}
    <button disabled={disabled||saving} onClick={()=>save('quick')}>빠른 저장</button>
    {phone?<button disabled={disabled} onClick={()=>open('settings')}>설정</button>:<button disabled={disabled} onClick={()=>request({kind:'load',id:'quick'})}>빠른 불러오기</button>}
   </div>}
@@ -137,13 +137,13 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
       {onTextScaleChange&&<label><span>본문 글씨 크기</span><select value={textScale} onChange={event=>updatePreferences({textScale:Number(event.target.value)})}><option value={.9}>작게 · 90%</option><option value={1}>보통 · 100%</option><option value={1.15}>크게 · 115%</option><option value={1.3}>더 크게 · 130%</option></select></label>}
       {onReducedMotion&&<button aria-pressed={reducedMotion} disabled={motionDisabled} onClick={onReducedMotion}>동작 줄이기 · {reducedMotion?'켜짐':'꺼짐'}</button>}
      </section>
-     {onImagePreloadChange&&<section className={styles.settingsSection} aria-labelledby={`${id}-reading-images`}><h3 id={`${id}-reading-images`}>이미지 준비</h3>
+     {onImagePreloadChange&&<details className={styles.settingsSection} aria-labelledby={`${id}-reading-images`}><summary><h3 id={`${id}-reading-images`}>그림 미리 받기 · {imagePreloadMode==='upcoming'?`다음 ${imagePreloadCount}컷`:imagePreloadMode==='chapter'?'현재 장':imagePreloadMode==='work'?'작품 전체':'끔'}</h3></summary>
       <label><span>이미지 미리 받기</span><select aria-label="이미지 미리 받기" value={imagePreloadMode} onChange={event=>{setImagePreloadInput({count:imagePreloadCount,value:String(preferences.current.imagePreloadCount)});updatePreferences({imagePreloadMode:event.target.value as ImagePreloadMode});}}><option value="upcoming">다음 컷 미리 받기</option><option value="chapter">현재 장 미리 받기</option><option value="work">작품 전체 미리 받기</option><option value="none">미리 받지 않기</option></select></label>
       {imagePreloadMode==='upcoming'&&<><label><span>미리 받을 컷 수</span><span className={styles.unitField}><input aria-label="미리 받을 컷 수" aria-describedby={!imagePreloadDraftValid?`${id}-image-count-error`:undefined} aria-invalid={!imagePreloadDraftValid} type="number" min="1" max="10" step="1" value={imagePreloadDraft} onChange={event=>{const value=event.target.value;setImagePreloadInput({count:imagePreloadCount,value});if(/^[1-9]\d*$/.test(value)&&Number(value)<=10)updatePreferences({imagePreloadCount:Number(value)});}}/><span>컷</span></span></label>{!imagePreloadDraftValid&&<p id={`${id}-image-count-error`} role="alert">1부터 10 사이의 정수로 입력해 주세요. 아직 설정에 적용하지 않았어요.</p>}</>}
-      <p>현재 컷을 읽는 동안 이미지를 미리 받아요. 미리 받지 않으면 원본을 받는 동안 흐린 미리보기 이미지가 잠시 보일 수 있어요. 이 설정은 작품 파일과 별개로 이 브라우저에 보관해요.</p>
-     </section>}
+      <p>읽는 동안 다음 그림을 미리 받아 두면 장면이 바로 바뀌어요. 미리 받지 않으면 잠깐 흐린 그림이 먼저 보일 수 있어요. 이 설정은 이 브라우저에만 저장돼요.</p>
+     </details>}
      <section className={styles.settingsSection} aria-labelledby={`${id}-reading-auto`}><h3 id={`${id}-reading-auto`}>자동 넘기기</h3>
-      <button className={styles.autoToggle} disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 {auto?'ON':'OFF'}</button>
+      <button className={styles.autoToggle} disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 넘기기 · {auto?'켜짐':'꺼짐'}</button>
       <label><span>자동 넘기기 대기 시간</span><span className={styles.unitField}><input type="number" min="1" max="30" step=".5" value={delay} onChange={event=>updatePreferences({autoDelaySeconds:autoForwardDelay(Number(event.target.value))/1000})}/><span>초</span></span></label>
      </section>
      <section className={styles.settingsSection} aria-labelledby={`${id}-reading-progress`}><h3 id={`${id}-reading-progress`}>읽던 진행</h3><div className={styles.settingsActions} aria-label="읽기 작업"><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled} onClick={()=>request({kind:'load',id:'quick'})}>빠른 불러오기</button></div></section>
