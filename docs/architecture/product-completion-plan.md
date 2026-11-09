@@ -4,6 +4,8 @@
 
 ## 재개 지점
 
+2026-11-10 사용자 요청: 숏스토리·놀스토리 편집을 직관적으로 개편하며 완성한다. 숏스토리 쓰기 화면 1·2차와 놀스토리 기본편집 이어 쓰기를 구현했다([STATUS](../../STATUS.md)). 다음 행동은 ① host E2E 묶음별 회귀 복구와 병합(현재 화면 기준, 의도 유지) ② 선녀와 나무꾼 전체 경로 검사 ③ 사용자 승인이 필요한 운영 API 재배포·새 삽화 권리 검토·실제 카카오 업로드·실기기 확인이다. 학급·공유 정책(Q-01~03)은 계속 미결이다.
+
 2026-11-05 사용자 추가 요청의 숏스토리 작업은 [삽화·편집·보관·인쇄 체크포인트](evidence/shortstory-2026-11-05/checkpoint.json)와 [자유 창작 삽화 확장](evidence/shortstory-mystery-2026-11-05/checkpoint.json), 이후 [사건 다양성 보정](evidence/shortstory-event-variety-2026-11-05/checkpoint.json)과 [연속 삽화](evidence/shortstory-continuations-2026-11-05/checkpoint.json), [연속 삽화 2차](evidence/shortstory-continuations-next-2026-11-05/checkpoint.json)에서 이어간다. 다음 외부 반영은 새 삽화의 권리와 API 자료 목록을 확인한 뒤 같은 정적 빌드로 진행한다. 실제 인증·물리기기·인쇄 검증은 해당 증거를 별도로 남긴다. 아래 전체 제품 큐와 기존 검증 기록을 함께 보존한다.
 
 2026-11-02 인계 우선: 배경·인물 분리와 날씨·재회 배경 후속은 구현·배포·집중 검증을 마쳤다. [배경·인물 분리](evidence/layered-stories-2026-11-02/checkpoint.json), [44개 실제 완주와 남은 조합](evidence/catalog-native-paths-2026-11-02/checkpoint.json), [비 오는 재회 마당의 현재 배포](evidence/rainy-courtyard-2026-11-02/checkpoint.json)와 이후 [새 창작 복합 사용·중단 복귀](evidence/new-creation-complete-2026-11-02/checkpoint.json)를 보존한다. 완료된 디자인·원고·이미지와 새 창작 검사를 다시 시작하지 않고 아래 남은 의존성부터 이어간다.
