@@ -25,7 +25,7 @@ test('automatic reading does not take focus from a closed reader menu trigger',a
  const choice=page.getByRole('button',{name:'초점 소유권 검사 선택',exact:true});await choice.focus();await choice.press('Enter');
  await expect.poll(async()=>await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision')).toBe(true);
  const trigger=page.getByRole('button',{name:'읽기 메뉴',exact:true});await trigger.click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await page.getByRole('spinbutton',{name:'자동 넘기기 대기 시간 초',exact:true}).fill('1');await page.keyboard.press('Escape');
- await page.getByRole('button',{name:'자동 OFF',exact:true}).click();await trigger.focus();
+ await page.getByRole('button',{name:'자동 넘기기 · 꺼짐',exact:true}).click();await trigger.focus();
  await expect.poll(async()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path.length),{timeout:10000}).toBeGreaterThanOrEqual(3);
  const focus=await page.evaluate(()=>({tag:document.activeElement?.tagName,label:document.activeElement?.getAttribute('aria-label')}));
  await writeFile(info.outputPath('automatic-before-assert.json'),JSON.stringify({scope:'Host acknowledgment harness; automatic Core advance only, no native rendering claim',focus,playback:await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback)},null,2)+'\n');

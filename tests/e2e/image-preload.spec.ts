@@ -29,6 +29,7 @@ test('next-cut image bytes arrive while current is read; native decode is comple
  await page.getByTestId('story-stage-viewport').screenshot({path:info.outputPath('prepared-second-cut.png')});
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(authored);
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();
+ await page.locator('summary').filter({hasText:'그림 미리 받기'}).click();
  await expect(page.getByLabel('이미지 미리 받기',{exact:true})).toHaveValue('upcoming');
  await page.getByLabel('미리 받을 컷 수',{exact:true}).fill('0');await expect(page.getByLabel('미리 받을 컷 수',{exact:true})).toHaveAttribute('aria-invalid','true');
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-reader-preferences-v1')!).imagePreloadCount)).toBe(3);
@@ -50,6 +51,7 @@ for(const mode of ['chapter','work','none'])test(`${mode} mode prepares exactly 
   const result=await status();expect(result.nativeBytes).toBeLessThanOrEqual(result.maxMemoryBytes);expect(result.installed).not.toContain(snow);
  }
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();
+ await page.locator('summary').filter({hasText:'그림 미리 받기'}).click();
  for(const size of [{width:390,height:844},{width:1280,height:900}]){
   await page.setViewportSize(size);await expect(page.getByLabel('이미지 미리 받기',{exact:true})).toHaveValue(mode);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

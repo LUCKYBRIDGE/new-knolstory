@@ -14,7 +14,7 @@ async function ackRuntime(page:Page){
 }
 async function start(page:Page){await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await startReading(page);await expect(page.getByRole('button',{name:'빠른 저장',exact:true})).toBeEnabled();}
 async function edit(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();}
-const labels=['지난기록','저장','불러오기','자동 OFF','빠른 저장','빠른 불러오기'];
+const labels=['지난기록','저장','불러오기','자동 넘기기 · 꺼짐','빠른 저장','빠른 불러오기'];
 
 test('approved reader manual/quick slots, load confirmation, reopen and history use Core',async({page})=>{
  await ackRuntime(page);await start(page);
@@ -39,8 +39,8 @@ test('approved phone bar is compact, always visible and exposes secondary action
  await expect(page.getByRole('button',{name:'읽기 도구 펼치기'})).toHaveCount(0);
  await page.getByRole('button',{name:'빠른 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'빠른 저장 완료'})).toBeVisible();
  await page.getByRole('button',{name:'설정',exact:true}).click();const settings=page.getByRole('dialog',{name:'읽기 설정',exact:true});
- for(const label of ['저장','불러오기','자동 OFF','빠른 불러오기'])await expect(settings.getByRole('button',{name:label,exact:true})).toBeVisible();
- await settings.getByRole('button',{name:'자동 OFF',exact:true}).click();await expect(settings.getByRole('button',{name:'자동 ON',exact:true})).toHaveAttribute('aria-pressed','true');await settings.getByRole('button',{name:'자동 ON',exact:true}).click();
+ for(const label of ['저장','불러오기','자동 넘기기 · 꺼짐','빠른 불러오기'])await expect(settings.getByRole('button',{name:label,exact:true})).toBeVisible();
+ await settings.getByRole('button',{name:'자동 넘기기 · 꺼짐',exact:true}).click();await expect(settings.getByRole('button',{name:'자동 넘기기 · 켜짐',exact:true})).toHaveAttribute('aria-pressed','true');await settings.getByRole('button',{name:'자동 넘기기 · 켜짐',exact:true}).click();
  await settings.getByRole('button',{name:'저장',exact:true}).click();await page.getByRole('button',{name:'1번 저장',exact:true}).click();await page.keyboard.press('Escape');
  await page.getByRole('button',{name:'설정',exact:true}).click();await settings.getByRole('button',{name:'불러오기',exact:true}).click();await expect(page.getByRole('button',{name:'1번 불러오기',exact:true})).toBeEnabled();await page.keyboard.press('Escape');
  await page.getByRole('button',{name:'설정',exact:true}).click();await settings.getByRole('button',{name:'빠른 불러오기',exact:true}).click();await expect(page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true})).toBeVisible();await page.getByRole('button',{name:'취소',exact:true}).click();await page.keyboard.press('Escape');
@@ -77,14 +77,14 @@ test('native approved dialogue and host bar align on a real RenPy phone stage',a
 test('automatic reading pauses for menus and advances only after current native acknowledgement',async({page})=>{
  await ackRuntime(page);await start(page);
  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await page.getByLabel('자동 넘기기 대기 시간').fill('1');await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await page.getByRole('button',{name:'자동 OFF',exact:true}).click();
+ await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await page.getByLabel('자동 넘기기 대기 시간').fill('1');await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await page.getByRole('button',{name:'자동 넘기기 · 꺼짐',exact:true}).click();
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();
  // A real waiting interval checks that an open menu cancels the already scheduled advance.
  await page.waitForTimeout(1300);
  const paused=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback);expect(paused.path).toEqual(before.path);
  await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).playback.path.length),{timeout:5000}).toBeGreaterThan(before.path.length);
- await page.getByRole('button',{name:'자동 ON',exact:true}).click();
+ await page.getByRole('button',{name:'자동 넘기기 · 켜짐',exact:true}).click();
 });
 
 test('reader top menu allows editing exit when native runtime is unavailable',async({page})=>{

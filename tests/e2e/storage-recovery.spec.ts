@@ -9,7 +9,7 @@ test('direct editor exposes corrupt-storage download and preserves raw bytes bef
  await page.addInitScript(({key,value})=>{if(localStorage.getItem(key)===null)localStorage.setItem(key,value);},{key:workspace,value:raw});
  await page.setViewportSize({width:390,height:844});await page.goto('/?view=editor');
  const recovery=page.getByRole('region',{name:'기기 보관함 복구',exact:true});await expect(recovery).toBeVisible();
- await expect(page.getByTestId('workspace-error')).toHaveCount(0);await expect(page.getByText('임시 보관을 읽지 못해 원본을 유지하고 자동 보관을 중지했어요. 현재 편집한 작품은 작품 파일로 저장해 주세요.',{exact:true})).toHaveCount(1);await expect(page.getByTestId('save-status')).toHaveText('임시 보관 중지');
+ await expect(page.getByTestId('workspace-error')).toHaveCount(0);await expect(page.getByText('임시 보관을 읽지 못해 원본은 그대로 두고 자동 보관을 멈췄어요. 지금 편집한 작품은 작품 파일로 저장해 주세요.',{exact:true})).toHaveCount(1);await expect(page.getByTestId('save-status')).toHaveText('임시 보관 중지');
  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(raw);
  await page.screenshot({path:testInfo.outputPath('corrupt-recovery-390.png')});
  const pending=page.waitForEvent('download');await recovery.getByRole('button',{name:'복구용 원본 보관',exact:true}).click({timeout:10000});const downloaded=await pending;

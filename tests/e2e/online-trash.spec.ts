@@ -23,7 +23,7 @@ for(const format of ['knolstory','shortstory'] as const)for(const width of [1440
   const book=page.getByRole('dialog',{name:'온라인 원고 · 온라인 작품',exact:true});
   const trash=book.getByRole('button',{name:'온라인 휴지통으로 이동',exact:true});
   const confirmation=book.getByRole('group',{name:'온라인 휴지통 이동 확인',exact:true});
-  const confirm=confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true});
+  const confirm=confirmation.getByRole('button',{name:'온라인 휴지통으로 옮기기',exact:true});
   await trash.click();await confirmation.getByRole('button',{name:'취소',exact:true}).click();expect(sent).toEqual([]);
   await trash.click();await confirm.click();await expect(book.getByRole('alert')).toBeVisible();
   await confirm.click();await expect(page.getByText(/이전에 보낸 요청의 처리를 확인했어요/)).toBeVisible();
@@ -38,8 +38,8 @@ for(const format of ['knolstory','shortstory'] as const)for(const width of [1440
  }else{
  await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await panel.getByRole('button',{name:'목록 새로고침',exact:true}).click();
  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();const confirmation=panel.getByRole('group',{name:'온라인 휴지통 이동 확인',exact:true});await confirmation.getByRole('button',{name:'취소',exact:true}).click();expect(sent).toEqual([]);
- await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();await confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true}).click();await expect(panel.getByRole('alert')).toBeVisible();
- await confirmation.getByRole('button',{name:'확인하고 온라인 휴지통으로 이동',exact:true}).click();await expect(panel.getByRole('status').filter({hasText:'이전에 보낸 요청의 처리를 확인했어요'})).toBeVisible();
+ await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();await confirmation.getByRole('button',{name:'온라인 휴지통으로 옮기기',exact:true}).click();await expect(panel.getByRole('alert')).toBeVisible();
+ await confirmation.getByRole('button',{name:'온라인 휴지통으로 옮기기',exact:true}).click();await expect(panel.getByRole('status').filter({hasText:'이전에 보낸 요청의 처리를 확인했어요'})).toBeVisible();
  expect(sent).toHaveLength(2);expect(sent[1]).toEqual(sent[0]);
  await panel.getByRole('button',{name:'온라인 휴지통',exact:true}).click();await panel.getByRole('button',{name:'온라인 원고 · 온라인 작품 복구',exact:true}).click();await expect(panel.getByRole('status').filter({hasText:'같은 온라인 작품과 이력'})).toBeVisible();
  await panel.getByRole('button',{name:'업로드한 작품',exact:true}).click();await expect(panel.getByRole('button',{name:'온라인 원고 · 기기에 사본으로 열기',exact:true})).toBeVisible();expect(await authored()).toEqual(before);expect(stateVersion).toBe(3);

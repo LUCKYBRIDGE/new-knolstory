@@ -33,9 +33,9 @@ test('fixed story formats, overlay, text preferences and saved page position wor
  await dialog.getByRole('button',{name:'글씨 크기·대기 시간 기본값으로',exact:true}).click();await expect(scale).toHaveValue('1');await rendered(page);
  await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await page.screenshot({path:info.outputPath('portrait-five-lines.png')});
  // Auto uses the same host-to-native page path and must retain actor placement.
- await bar.getByRole('button',{name:'설정',exact:true}).click();await dialog.getByRole('button',{name:'자동 OFF',exact:true}).click();await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+ await bar.getByRole('button',{name:'설정',exact:true}).click();await dialog.getByRole('button',{name:'자동 넘기기 · 꺼짐',exact:true}).click();await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).offset,{timeout:10000}).toBeGreaterThan(0);
- await bar.getByRole('button',{name:'설정',exact:true}).click();await dialog.getByRole('button',{name:'자동 ON',exact:true}).click();await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
+ await bar.getByRole('button',{name:'설정',exact:true}).click();await dialog.getByRole('button',{name:'자동 넘기기 · 켜짐',exact:true}).click();await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  const savedOffset=JSON.parse((await status.getAttribute('data-dialogue-page'))!).offset;
  await bar.getByRole('button',{name:'빠른 저장',exact:true}).click();await expect(page.getByRole('status').filter({hasText:/^빠른 저장 완료$/})).toBeVisible();
  const stored=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-player-v1')!));const slots=Object.values(stored.works) as Array<Record<string,{dialoguePosition?:{offset:number}}>>;expect(slots.some(work=>work.quick?.dialoguePosition?.offset===savedOffset)).toBe(true);

@@ -37,19 +37,19 @@ test('mobile capacity, explicit Enter, compact tools and native 40% pages work t
  await page.screenshot({path:info.outputPath('native-compact-tools.png')});
  await settings.click();
  const dialog=page.getByRole('dialog');
- for(const name of ['저장','불러오기','자동 OFF','빠른 불러오기']){
+ for(const name of ['저장','불러오기','자동 넘기기 · 꺼짐','빠른 불러오기']){
   const action=dialog.getByRole('button',{name,exact:true});await expect(action).toBeVisible();
   expect(await action.evaluate(n=>getComputedStyle(n).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
  }
- await dialog.getByRole('button',{name:'자동 OFF',exact:true}).click();
- expect(await dialog.getByRole('button',{name:'자동 ON',exact:true}).evaluate(n=>getComputedStyle(n).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
+ await dialog.getByRole('button',{name:'자동 넘기기 · 꺼짐',exact:true}).click();
+ expect(await dialog.getByRole('button',{name:'자동 넘기기 · 켜짐',exact:true}).evaluate(n=>getComputedStyle(n).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
  await page.screenshot({path:info.outputPath('mobile-settings.png')});
  await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();
  await page.waitForTimeout(3500);
  await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).index,{timeout:10000}).toBeGreaterThan(0);
  await page.setViewportSize({width:844,height:390});
  await expect(tools.getByRole('button',{name:'저장',exact:true})).toBeVisible();
- for(const name of ['지난기록','저장','불러오기','자동 ON','빠른 저장','빠른 불러오기'])await expect(tools.getByRole('button',{name,exact:true})).toBeVisible();
+ for(const name of ['지난기록','저장','불러오기','자동 넘기기 · 켜짐','빠른 저장','빠른 불러오기'])await expect(tools.getByRole('button',{name,exact:true})).toBeVisible();
  await expect.poll(async()=>{const d=await status.evaluate(n=>({...((n as HTMLElement).dataset)}));return JSON.parse(d.textboxRect!).width/Number(d.sceneWidth);}).toBeCloseTo(.84,2);
  const landscapeData=await status.evaluate(n=>({...((n as HTMLElement).dataset)}));
  expect(JSON.parse(landscapeData.textboxRect!).height*844/Number(landscapeData.sceneWidth)).toBeLessThan(125);

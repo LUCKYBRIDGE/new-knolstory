@@ -14,7 +14,7 @@ for(const [width,height] of [[320,256],[640,360],[320,740]])test(`book service t
  }
  await capture('focus-initial',focus);
  const meta=focus.locator('section').first();
- for(const target of await meta.locator('h2,p,small').all())await expect.soft(target).toBeVisible();await expect.soft(focus.getByText('읽던 위치와 저장한 진행은 판본별로 보관해요. 편집하면 선택한 판본의 내 사본을 만들어요.',{exact:true})).toBeVisible();
+ for(const target of await meta.locator('h2,p,small').all())await expect.soft(target).toBeVisible();await expect.soft(focus.getByText('읽던 위치와 저장한 진행은 원작과 놀스토리에 따로 보관돼요. 편집하면 고른 이야기로 내 사본을 만들어요.',{exact:true})).toBeVisible();
  expect.soft(await focus.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
  await focus.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();
  for(const control of await focus.locator('button:not(:disabled),a,select,summary').all()){

@@ -115,7 +115,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
   {/* A transition card covers the whole stage; the tool row would sit over its button. */}
   {!toolsHidden&&<div style={{...barStyle,'--reader-tool-font-size':`${Math.max(12,Math.min(13,toolFontSizePx))}px`} as CSSProperties} className={styles.quick}>
    <button disabled={disabled} onClick={()=>open('log')}>지난기록</button>
-   {!phone&&<><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 넘기기 {auto?'켜짐':'꺼짐'}</button></>}
+   {!phone&&<><button disabled={disabled} onClick={()=>open('save')}>저장</button><button disabled={disabled} onClick={()=>open('load')}>불러오기</button><button disabled={disabled||!onAdvance} aria-pressed={auto} onClick={()=>setAuto(value=>!value)}>자동 넘기기 · {auto?'켜짐':'꺼짐'}</button></>}
    <button disabled={disabled||saving} onClick={()=>save('quick')}>빠른 저장</button>
    {phone?<button disabled={disabled} onClick={()=>open('settings')}>설정</button>:<button disabled={disabled} onClick={()=>request({kind:'load',id:'quick'})}>빠른 불러오기</button>}
   </div>}
