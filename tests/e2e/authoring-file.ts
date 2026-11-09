@@ -42,3 +42,18 @@ export async function selectEditingScreen(page:Page,screen:'basic'|'text'|'backg
  }
  await select.selectOption(screen);
 }
+
+/** Open the current cut's "N컷 음향/연출 수정" detail on the audio or direction editing screen and return that cut row. */
+export async function openCutEditor(page:Page,screen:'audio'|'direction'){
+ await selectEditingScreen(page,screen);
+ const id=await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue();
+ const row=page.getByTestId(`editing-cut-${id}`);
+ const summary=row.locator('summary').filter({hasText:screen==='audio'?/컷 음향 수정$/:/컷 연출 수정$/});
+ if(!await summary.evaluate(node=>(node.parentElement as HTMLDetailsElement).open))await summary.click();
+ return row;
+}
+
+/** The editing-screen row of the cut selected in "현재 장과 컷 이동" (audio and direction screens list one row per cut). */
+export async function currentCutRow(page:Page){
+ return page.getByTestId(`editing-cut-${await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue()}`);
+}
