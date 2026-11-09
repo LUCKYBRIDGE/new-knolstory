@@ -30,7 +30,7 @@ export function usePreviewEditorContext(mode:'edit'|'play',scope:string,enabled=
    const matches=canFocus(savedField);
    const currentRow=matches?null:root.querySelector<HTMLElement>('[data-writer-scroll] [aria-current="step"]');
    const field=matches?savedField:
-    currentRow?.querySelector<HTMLTextAreaElement>('textarea[data-cut-id]')??currentRow?.querySelector<HTMLButtonElement>('header button[aria-pressed]')??root.querySelector<HTMLSelectElement>('[data-combined-details] select[aria-label="통합 화면 편집할 항목"]')??root.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea[data-cut-id], [data-writer-current="true"] textarea, #story-line-text');
+    currentRow?.querySelector<HTMLTextAreaElement>('textarea[data-cut-id]')??[...(currentRow?.querySelectorAll<HTMLButtonElement>('header button')??[])].find(canFocus)??root.querySelector<HTMLSelectElement>('[data-combined-details] select[aria-label="통합 화면 편집할 항목"]')??root.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea[data-cut-id], [data-writer-current="true"] textarea, #story-line-text');
    if(!canFocus(field))return;
    field.focus({preventScroll:true});
    if(matches&&snapshot){if(snapshot.start!==null&&snapshot.end!==null&&(field instanceof HTMLInputElement||field instanceof HTMLTextAreaElement))field.setSelectionRange(snapshot.start,snapshot.end,snapshot.direction);field.scrollLeft=snapshot.fieldLeft;field.scrollTop=snapshot.fieldScroll;root.scrollTop=snapshot.panelScroll;window.scrollTo({top:snapshot.pageScroll,behavior:'instant'});}else{
