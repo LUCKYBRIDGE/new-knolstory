@@ -52,4 +52,13 @@ class GeneratedWeatherEvidenceTests(unittest.TestCase):
   self.assertIn('prepare-rainy-courtyard-asset.py',fields['generationPlan'])
   self.assertEqual(fields['source'],asset['sourcePath'])
   self.assertNotIn('license',fields)
+class ShortStoryIllustrationEvidenceTests(unittest.TestCase):
+ def test_local_composite_records_source_revisions_without_granting_rights(self):
+  sources=[{'id':'backdrop','sha256':'a'*64},{'id':'actor','sha256':'b'*64}]
+  asset={'id':'shortstory.background.creative-scene-v1','sourcePath':'scripts/prepare-shortstory-illustrations.py','metadata':{'shortStoryCollection':'creative','sourceLayers':sources}}
+  fields=module.asset_provenance(asset)
+  self.assertEqual(fields['provider'],'local-composite-image')
+  self.assertEqual(fields['sourceLayers'],sources)
+  self.assertNotIn('license',fields)
+
 if __name__=='__main__':unittest.main()

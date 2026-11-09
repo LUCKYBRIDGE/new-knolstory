@@ -28373,5 +28373,2823 @@
         "reason": "기존 초가집 구도·조선 시대 건축·소품을 유지한 비 오는 저녁; 인물 없는 배경"
       }
     }
+  },
+  {
+    "id": "shortstory.background.creative-moon-pond-promise-v1",
+    "displayName": "달빛 연못의 약속",
+    "label": "달빛 연못의 약속",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/moon-pond-promise.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "0e91ee9ff3081d7352593d12a0f406937236d3543ea29753efc3aa995138c500",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "달빛 계곡 연못",
+        "막내 선녀",
+        "나무꾼 고마움 표현"
+      ],
+      "sourceLayers": [
+        {
+          "id": "creative.background.seonnyeo-moon-pond-v2",
+          "sha256": "fd388e7011236bde1303be9539d230409107ca0f5d0b456da02a73b865d3d23f"
+        },
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rainy-visitor-v1",
+    "displayName": "빗속에서 찾아온 사슴",
+    "label": "빗속에서 찾아온 사슴",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rainy-visitor.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "a3b2b89ff75c92abfb63dc197f41ce488bbbc53291a64ac57e828602eedac147",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "작은 집 마당",
+        "사슴 귀 기울이기",
+        "막내 선녀"
+      ],
+      "sourceLayers": [
+        {
+          "id": "seonnyeo.background.cottage-rain-evening-v1",
+          "sha256": "a2d166e804227a5b3a31c16a9665d5d9b232b7d2e52258c9c1e2c748c62d3833"
+        },
+        {
+          "id": "creative.character.seonnyeo-deer-listen",
+          "sha256": "9e7d52bbdafa02a26eca31a26a6710e73c4a6b3c9857dda9a83f811f3bb3eaa0"
+        },
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-market-greeting-v1",
+    "displayName": "가을 장터에서 인사하기",
+    "label": "가을 장터에서 인사하기",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/market-greeting.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "ce41c49fec31f6e0c6ee18a8b33434198c0431e3ad8a83113d1a5628d859adec",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "초가 마을 장터",
+        "이웃 농부 인사하기",
+        "흥부 격려하기"
+      ],
+      "sourceLayers": [
+        {
+          "id": "creative.background.heungbu-autumn-market-v2",
+          "sha256": "e706ebf5fb6a097e8cb1ad52e13ad443184a2d4b033ec7015a95034136c0d8e5"
+        },
+        {
+          "id": "creative.character.heungbu-neighbor-greet",
+          "sha256": "5cc60856e3c96b09238dcbe4a788e8c9c080e2190401c13ef72852ed0571cd69"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-market-help-v1",
+    "displayName": "장터에서 내민 손",
+    "label": "장터에서 내민 손",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/market-help.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "0a43a0ee5fc3f16e5f8769a89a72e139ab53a3dfee2801febbecb7ea14bbeae6",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "초가 마을 장터",
+        "거리 소녀 일어나 손 내밀기",
+        "흥부 격려하기"
+      ],
+      "sourceLayers": [
+        {
+          "id": "creative.background.heungbu-autumn-market-v2",
+          "sha256": "e706ebf5fb6a097e8cb1ad52e13ad443184a2d4b033ec7015a95034136c0d8e5"
+        },
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-meadow-discovery-v1",
+    "displayName": "꽃 들판에서 발견한 것",
+    "label": "꽃 들판에서 발견한 것",
+    "story": "별주부전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/meadow-discovery.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "b20fbd35a8f7ffd56b1311e4a5c316d2ae13857c8e50535d2d67aac7c5198b2f",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "소나무 물가 꽃 들판",
+        "토끼 귀 기울이기",
+        "자라"
+      ],
+      "sourceLayers": [
+        {
+          "id": "creative.background.rabbit-meadow-pixel-v2",
+          "sha256": "5a9e1a07d360da8dba535f3be8d4500123f20d7fa0eb65d7da4ed9e15057b30d"
+        },
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-meadow-counsel-v1",
+    "displayName": "풀밭에서 듣는 의관의 이야기",
+    "label": "풀밭에서 듣는 의관의 이야기",
+    "story": "별주부전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/meadow-counsel.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "849cd97e1abc0410eeebb9649bc0423ba45216b073b355570499d7cc98d364ad",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "소나무 물가 꽃 들판",
+        "의관 설명하기",
+        "토끼 귀 기울이기"
+      ],
+      "sourceLayers": [
+        {
+          "id": "creative.background.rabbit-meadow-pixel-v2",
+          "sha256": "5a9e1a07d360da8dba535f3be8d4500123f20d7fa0eb65d7da4ed9e15057b30d"
+        },
+        {
+          "id": "creative.character.physician-explain",
+          "sha256": "b59fdbb28dc6d4be0d6a2c9410719aca00ee948cb0b95a13b8b30b30e1384980"
+        },
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-winter-directions-v1",
+    "displayName": "겨울 골목에서 길을 묻다",
+    "label": "겨울 골목에서 길을 묻다",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/winter-directions.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "c61f6e385e131a18126e2dcca3305a66142e7a61eac9b8c7c39c132d8f76aaac",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "돌담 겨울길",
+        "수상한 나그네 조심스럽게 묻기",
+        "포졸 길 안내"
+      ],
+      "sourceLayers": [
+        {
+          "id": "creative.background.onggojib-winter-pixel-v2",
+          "sha256": "1c5436e4464d70f75c715abb9fd3b06e5c3ed97e9c1dd940acae6314b9c8442d"
+        },
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-winter-welcome-v1",
+    "displayName": "돌담길의 반가운 손인사",
+    "label": "돌담길의 반가운 손인사",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "자유 창작 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/winter-welcome.webp",
+    "sourcePath": "scripts/prepare-shortstory-illustrations.py",
+    "copyright": "놀퀴즈",
+    "revision": "738e11bd3ff6506b643c9474e8292aec7ad5bbed9f03a02aedeb7962eb42f8ff",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "searchTerms": [
+        "돌담 겨울길",
+        "옹고집전 아이 반갑게 손들기",
+        "진짜 옹고집 차분히 설명하기"
+      ],
+      "sourceLayers": [
+        {
+          "id": "creative.background.onggojib-winter-pixel-v2",
+          "sha256": "1c5436e4464d70f75c715abb9fd3b06e5c3ed97e9c1dd940acae6314b9c8442d"
+        },
+        {
+          "id": "creative.character.onggojib-child-wave",
+          "sha256": "f5001a39b8635bdf4d39b46c10df6039e2bc7e8c1452515243a7dd37ecbf3b2a"
+        },
+        {
+          "id": "creative.character.onggojib-real-explain",
+          "sha256": "ce4f5c7175986d6a5f3e90c64ff1c6a1f816408251071b7ec8147fd7d18c574d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-swallow-care-v1",
+    "displayName": "제비를 돌보는 두 사람",
+    "label": "제비를 돌보는 두 사람",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/generated-swallow-care-v1.png",
+    "sourcePath": "docs/architecture/evidence/shortstory-2026-11-05/generation.json#shortstory.background.creative-swallow-care-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "34ea0e85401c125ad6596f2fb9ff514aabb6ca43d9f6fd4aa511fc8bb276945b",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "story",
+      "generationMethod": "imagegen",
+      "containedCharacterIds": [
+        "heungbu.heungbu",
+        "heungbu.street-girl"
+      ],
+      "searchTerms": [
+        "흥부",
+        "아이",
+        "제비",
+        "봄",
+        "도움",
+        "돌봄"
+      ],
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ],
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "shortstory.background.creative-swallow-farewell-v1",
+    "displayName": "다시 날아오른 제비",
+    "label": "다시 날아오른 제비",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "작품 속 장면 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/generated-swallow-farewell-v1.png",
+    "sourcePath": "docs/architecture/evidence/shortstory-2026-11-05/generation.json#shortstory.background.creative-swallow-farewell-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "11c3db11040bbc98f083b0311e030a423d18360909fa1515efd85bc4bde6d2db",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "placementRole": "background-slot",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "story",
+      "generationMethod": "imagegen",
+      "containedCharacterIds": [
+        "heungbu.heungbu",
+        "heungbu.street-girl"
+      ],
+      "searchTerms": [
+        "흥부",
+        "아이",
+        "제비",
+        "봄",
+        "도움",
+        "작별"
+      ],
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        },
+        {
+          "id": "shortstory.background.creative-swallow-care-v1",
+          "sha256": "34ea0e85401c125ad6596f2fb9ff514aabb6ca43d9f6fd4aa511fc8bb276945b"
+        }
+      ],
+      "storyRelation": "provided-story-event"
+    }
+  },
+  {
+    "id": "shortstory.background.creative-forest-comet-v1",
+    "displayName": "숲에서 발견한 혜성",
+    "label": "숲에서 발견한 혜성",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/generated-forest-comet-v1.png",
+    "sourcePath": "docs/architecture/evidence/shortstory-2026-11-05/generation.json#shortstory.background.creative-forest-comet-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "fbcc745768f52e7721578becc8094311c2ce942b0632e556fdad88def6fb97c3",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "별",
+        "망원경",
+        "천문",
+        "관찰",
+        "혜성",
+        "숲",
+        "발견",
+        "밤",
+        "협력"
+      ],
+      "referenceAssets": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-kite-rescue-v1",
+    "displayName": "바람에 날아간 연을 되찾다",
+    "label": "바람에 날아간 연을 되찾다",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/generated-kite-rescue-v1.png",
+    "sourcePath": "docs/architecture/evidence/shortstory-2026-11-05/generation.json#shortstory.background.creative-kite-rescue-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "c0ae84746abb6cc911a9a9042f1124082db4e0d13a4c80d84a569d46f2ca9626",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "heungbu.heungbu",
+        "heungbu.street-girl"
+      ],
+      "searchTerms": [
+        "연",
+        "바람",
+        "나무",
+        "협력",
+        "도움",
+        "놀이",
+        "문제 해결",
+        "친구"
+      ],
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        },
+        {
+          "id": "shortstory.background.creative-swallow-care-v1",
+          "sha256": "34ea0e85401c125ad6596f2fb9ff514aabb6ca43d9f6fd4aa511fc8bb276945b"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-wandering-shadow-v1",
+    "displayName": "먼저 손을 흔드는 그림자",
+    "label": "먼저 손을 흔드는 그림자",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-wandering-shadow-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-rabbit-wandering-shadow-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "1fefd0d53bda116dc65f2c7376947fbe41c31c1ff734dc7a62ee1f27cd9009cf",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "moods": [
+        "수상한",
+        "기이한"
+      ],
+      "searchTerms": [
+        "그림자",
+        "손",
+        "문",
+        "햇빛",
+        "수상한",
+        "수상함",
+        "기이한",
+        "기이함"
+      ],
+      "description": "두 손을 내린 토끼와 달리 벽의 그림자는 문을 향해 손을 흔든다. 자라가 이를 발견하고 가리킨다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-cloud-fish-v1",
+    "displayName": "항아리에서 떠오른 구름 물고기",
+    "label": "항아리에서 떠오른 구름 물고기",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-cloud-fish-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-rabbit-cloud-fish-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "47ee9d6f7acc1f68307d0f45d27fb6e4aa43a869eeddcddb51cd4414b888034b",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "moods": [
+        "신기한",
+        "기이한"
+      ],
+      "searchTerms": [
+        "항아리",
+        "구름",
+        "물고기",
+        "안개",
+        "발견",
+        "신기한",
+        "신기함",
+        "기이한",
+        "기이함"
+      ],
+      "description": "강가의 마른 항아리 위로 구름으로 된 은빛 물고기가 떠오르고 토끼와 자라가 놀란다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-floating-chest-v1",
+    "displayName": "별을 쏟아내는 공중의 상자",
+    "label": "별을 쏟아내는 공중의 상자",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-floating-chest-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-heungbu-floating-chest-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "14534920fbdff3b2f47cfdbb2b3b3057000dffd77408d793dc886d397fc31bec",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "moods": [
+        "신기한",
+        "기이한"
+      ],
+      "searchTerms": [
+        "상자",
+        "별",
+        "보물",
+        "공중",
+        "저녁",
+        "신기한",
+        "신기함",
+        "기이한",
+        "기이함"
+      ],
+      "description": "청소하던 흥부와 아이 앞에 작은 나무 상자가 저절로 떠오르고 열린 뚜껑에서 별빛이 위로 나온다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-midnight-footprints-v1",
+    "displayName": "항아리 앞에서 멈춘 빛나는 발자국",
+    "label": "항아리 앞에서 멈춘 빛나는 발자국",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-midnight-footprints-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-heungbu-midnight-footprints-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "ad3ccf6a674b142d142d7a09fab0c2144b20e313ee5c63e1dbf6f847d274ce4e",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "moods": [
+        "수상한",
+        "기이한"
+      ],
+      "searchTerms": [
+        "발자국",
+        "달밤",
+        "항아리",
+        "흔적",
+        "등불",
+        "수상한",
+        "수상함",
+        "기이한",
+        "기이함"
+      ],
+      "description": "비 그친 달밤에 주인 없는 푸른 맨발 자국이 대문에서 항아리까지 이어지고 흥부와 아이가 등불로 살핀다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-winter-reflection-v1",
+    "displayName": "여름 연못에 비친 겨울",
+    "label": "여름 연못에 비친 겨울",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-winter-reflection-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-winter-reflection-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "3d06c4bd74d99925bad0de46fc17c40d85fb7bceb54deee4086f5140d8748d93",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "moods": [
+        "기이한",
+        "신기한"
+      ],
+      "searchTerms": [
+        "연못",
+        "여름",
+        "겨울",
+        "거울",
+        "반사",
+        "계절",
+        "기이한",
+        "기이함",
+        "신기한",
+        "신기함"
+      ],
+      "description": "주변 숲은 푸른 여름인데 연못 속에는 눈 덮인 겨울 나무가 비친다. 선녀와 나무꾼이 물가에서 들여다본다.",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-floating-steps-v1",
+    "displayName": "안개 속에 떠 있는 돌계단",
+    "label": "안개 속에 떠 있는 돌계단",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-floating-steps-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-floating-steps-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "de70eee51a5234889ae53ef18ac31f293a3a5cb7b8eff422fca303b867d4cf4c",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "moods": [
+        "신기한",
+        "기이한"
+      ],
+      "searchTerms": [
+        "돌계단",
+        "대나무",
+        "숲",
+        "안개",
+        "공중",
+        "모험",
+        "신기한",
+        "신기함",
+        "기이한",
+        "기이함"
+      ],
+      "description": "대나무 숲에서 받침 없는 돌들이 공중에 계단을 이루어 안개 속으로 이어진다. 선녀가 첫 돌에 손을 내민다.",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-walking-shoes-v1",
+    "displayName": "주인 없이 걸어가는 짚신",
+    "label": "주인 없이 걸어가는 짚신",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-walking-shoes-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-onggojib-walking-shoes-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "dd2b72d444647babc374b0215d5902ea4eb2e040b35d2ed68e42a1e302b5b4d5",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "moods": [
+        "수상한",
+        "기이한"
+      ],
+      "searchTerms": [
+        "짚신",
+        "신발",
+        "눈길",
+        "발자국",
+        "대문",
+        "수상한",
+        "수상함",
+        "기이한",
+        "기이함"
+      ],
+      "description": "빈 짚신 한 켤레가 눈길에서 저절로 발걸음을 옮긴다. 나그네와 포졸이 허리를 숙여 살핀다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-noon-night-door-v1",
+    "displayName": "한낮에 밤이 열린 문",
+    "label": "한낮에 밤이 열린 문",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-noon-night-door-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mystery-2026-11-05/generation.json#shortstory.background.creative-onggojib-noon-night-door-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "91e01defbcc22afc2e4d5be36f612a589be31cfe52e710e7cda39a678ea9bb46",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "moods": [
+        "신기한",
+        "기이한"
+      ],
+      "searchTerms": [
+        "문",
+        "한낮",
+        "밤",
+        "달",
+        "다른 세계",
+        "통로",
+        "신기한",
+        "신기함",
+        "기이한",
+        "기이함"
+      ],
+      "description": "햇빛 밝은 마을의 문을 열자 안쪽에 달과 별이 뜬 밤길이 나타난다. 포졸과 나그네가 문턱에서 들여다본다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+    "displayName": "공연 전에 무너진 인형극 무대",
+    "label": "공연 전에 무너진 인형극 무대",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-puppet-stage-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-event-variety-2026-11-05/generation.json#shortstory.background.creative-rabbit-puppet-stage-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "연극",
+        "인형극",
+        "무대",
+        "고장",
+        "공연",
+        "협력",
+        "준비",
+        "일상",
+        "현실적인 사건"
+      ],
+      "description": "마을 인형극을 준비하던 토끼와 자라 앞에서 무대가 무너진다. 토끼가 기둥을 붙들고 자라가 부러진 연결부를 살핀다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+    "displayName": "떡 만들기 대회에서 쏟아진 콩가루",
+    "label": "떡 만들기 대회에서 쏟아진 콩가루",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-ricecake-contest-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-event-variety-2026-11-05/generation.json#shortstory.background.creative-heungbu-ricecake-contest-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "searchTerms": [
+        "떡",
+        "대회",
+        "경쟁",
+        "실수",
+        "콩가루",
+        "장터",
+        "요리",
+        "일상",
+        "현실적인 사건"
+      ],
+      "description": "떡 만들기 대회에 나간 흥부와 아이의 탁자 위에 콩가루가 쏟아지고 두 사람이 당황한다. 옆 참가자는 가지런히 떡을 준비하고 있다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+    "displayName": "나루터에서 떠내려가는 짐 뗏목",
+    "label": "나루터에서 떠내려가는 짐 뗏목",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-drifting-raft-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-event-variety-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-drifting-raft-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "뗏목",
+        "밧줄",
+        "나루터",
+        "짐",
+        "협력",
+        "운반",
+        "강",
+        "일상",
+        "현실적인 사건"
+      ],
+      "description": "나루터에 매어 둔 짐 뗏목의 줄이 끊어진다. 나무꾼이 갈고리 장대로 줄을 잡으려 하고 선녀가 여분 밧줄을 들고 돕는다.",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+    "displayName": "잔치 연습 중 찢어진 북",
+    "label": "잔치 연습 중 찢어진 북",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-torn-drum-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-event-variety-2026-11-05/generation.json#shortstory.background.creative-onggojib-torn-drum-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "북",
+        "잔치",
+        "연습",
+        "공연",
+        "실수",
+        "수리",
+        "합주",
+        "일상",
+        "현실적인 사건"
+      ],
+      "description": "마을 잔치 연습 중 북 가죽이 찢어진다. 나그네는 북채를 든 채 멈추고 포졸은 찢어진 곳을 살핀다. 피리를 든 아이들이 기다린다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-puppet-plan-v1",
+    "displayName": "인형극 무대를 고칠 방법 찾기",
+    "label": "인형극 무대를 고칠 방법 찾기",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-puppet-plan-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-rabbit-puppet-plan-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "f6f93aa591b92fffee8e23c221e9a0738700eaa4ac298e279c90f547c42efe1b",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "seriesId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 2,
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "인형극",
+        "연극",
+        "무대",
+        "공연",
+        "협력",
+        "공연 전에 무너진 인형극 무대",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "남은 부품과 줄을 살피며 더 작은 무대를 만들 방법을 의논한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-puppet-rebuild-v1",
+    "displayName": "인형극의 작은 무대를 세우다",
+    "label": "인형극의 작은 무대를 세우다",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-puppet-rebuild-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-rabbit-puppet-rebuild-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "e750acdcde6aef5e9ca48f533f2340146a513e7a4f8043b7a2e00836a4ddbe0d",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "seriesId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 3,
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "인형극",
+        "연극",
+        "무대",
+        "공연",
+        "협력",
+        "공연 전에 무너진 인형극 무대",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "토끼가 작은 무대를 받치고 자라가 버팀대에 줄을 묶어 함께 조립한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-plan-v1",
+          "sha256": "f6f93aa591b92fffee8e23c221e9a0738700eaa4ac298e279c90f547c42efe1b"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-puppet-show-v1",
+    "displayName": "마을 사람들 앞에 올린 인형극",
+    "label": "마을 사람들 앞에 올린 인형극",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-puppet-show-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-rabbit-puppet-show-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "2d43ffa5efde6b308841db70a1489cf7643887c2edbbd48dc8d42422a6989cbe",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "seriesId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 4,
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "인형극",
+        "연극",
+        "무대",
+        "공연",
+        "협력",
+        "공연 전에 무너진 인형극 무대",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "고친 작은 무대에서 같은 나무 인형으로 마을 사람들에게 공연한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-rebuild-v1",
+          "sha256": "e750acdcde6aef5e9ca48f533f2340146a513e7a4f8043b7a2e00836a4ddbe0d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-ricecake-restart-v1",
+    "displayName": "떡 대회에서 다시 나눈 준비 일",
+    "label": "떡 대회에서 다시 나눈 준비 일",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-ricecake-restart-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-heungbu-ricecake-restart-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "0c0a3743903ecac94be8849b5c47d9c11bbca5657bea0cc17935d1e6afe988a4",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "seriesId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 2,
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "searchTerms": [
+        "떡",
+        "만들기",
+        "대회",
+        "경쟁",
+        "협력",
+        "떡 만들기 대회에서 쏟아진 콩가루",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "흥부가 깨끗한 떡을 챙기고 아이가 쏟아진 가루를 닦으며 다시 준비한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-ricecake-advice-v1",
+    "displayName": "떡 대회 이웃 참가자에게 배우다",
+    "label": "떡 대회 이웃 참가자에게 배우다",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-ricecake-advice-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-heungbu-ricecake-advice-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "f7fe0ad614d2225a10569f4c61b136d45966c7b8949670f56f11208e470edb94",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "seriesId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 3,
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "searchTerms": [
+        "떡",
+        "만들기",
+        "대회",
+        "경쟁",
+        "협력",
+        "떡 만들기 대회에서 쏟아진 콩가루",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "옆 참가자 할머니에게 떡 빚는 법을 배우며 경쟁 중 새로운 관계를 맺는다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-restart-v1",
+          "sha256": "0c0a3743903ecac94be8849b5c47d9c11bbca5657bea0cc17935d1e6afe988a4"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-ricecake-sharing-v1",
+    "displayName": "떡 대회에서 함께 나누는 한 접시",
+    "label": "떡 대회에서 함께 나누는 한 접시",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-ricecake-sharing-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-heungbu-ricecake-sharing-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "8a21b6788e4eae69d595de7bcbf1d431b56cdf6b9f3a444bb9e908189d0a867f",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "seriesId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 4,
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "searchTerms": [
+        "떡",
+        "만들기",
+        "대회",
+        "경쟁",
+        "협력",
+        "떡 만들기 대회에서 쏟아진 콩가루",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "새로 만든 떡을 마을 사람들과 나누며 함께 맛본다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-advice-v1",
+          "sha256": "f7fe0ad614d2225a10569f4c61b136d45966c7b8949670f56f11208e470edb94"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-raft-rope-v1",
+    "displayName": "뗏목의 밧줄을 붙잡다",
+    "label": "뗏목의 밧줄을 붙잡다",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-raft-rope-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-raft-rope-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "9d5f3b3bae7308cdae6d33fe1a72877c970433a80110006d46ea09c8c22903c8",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "seriesId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 2,
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "뗏목",
+        "밧줄",
+        "나루터",
+        "짐",
+        "협력",
+        "나루터에서 떠내려가는 짐 뗏목",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "갈고리로 뗏목의 줄을 붙잡고 새 밧줄을 기둥에 매어 끌어올 준비를 한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-raft-pull-v1",
+    "displayName": "함께 끌어당기는 짐 뗏목",
+    "label": "함께 끌어당기는 짐 뗏목",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-raft-pull-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-raft-pull-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "d6c8a25397e7feef9229f96025bd2a14a2f78874c509dd6207cf62032486609b",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "seriesId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 3,
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "뗏목",
+        "밧줄",
+        "나루터",
+        "짐",
+        "협력",
+        "나루터에서 떠내려가는 짐 뗏목",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "두 사람이 같은 줄을 잡고 나루터 쪽으로 뗏목을 당긴다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-rope-v1",
+          "sha256": "9d5f3b3bae7308cdae6d33fe1a72877c970433a80110006d46ea09c8c22903c8"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-raft-unload-v1",
+    "displayName": "나루터로 돌아온 짐 뗏목",
+    "label": "나루터로 돌아온 짐 뗏목",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-raft-unload-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-raft-unload-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "29a8270a78f750da82a258c028d8e6b34229912123b9aa900c107018e2dfd863",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "seriesId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 4,
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "뗏목",
+        "밧줄",
+        "나루터",
+        "짐",
+        "협력",
+        "나루터에서 떠내려가는 짐 뗏목",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "다시 묶은 줄을 확인하고 짐을 나루터로 옮긴다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-pull-v1",
+          "sha256": "d6c8a25397e7feef9229f96025bd2a14a2f78874c509dd6207cf62032486609b"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-drum-ideas-v1",
+    "displayName": "찢어진 북 대신 쓸 소리 찾기",
+    "label": "찢어진 북 대신 쓸 소리 찾기",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-drum-ideas-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-onggojib-drum-ideas-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "466336a436eb956513e3aedc6af958f0944bb706c7aee8b4fc5ab71ca9085f6d",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "seriesId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 2,
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "북",
+        "잔치",
+        "연습",
+        "공연",
+        "합주",
+        "잔치 연습 중 찢어진 북",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "나그네와 포졸, 아이들이 작은 북과 나무 박자를 놓고 사용할 소리를 의논한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-drum-practice-v1",
+    "displayName": "새로운 악기로 맞추는 잔치 박자",
+    "label": "새로운 악기로 맞추는 잔치 박자",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-drum-practice-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-onggojib-drum-practice-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "11f56d7fdfbde13d6939810eae73514bb09b1dfb039c24457970070d989b2c16",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "seriesId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 3,
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "북",
+        "잔치",
+        "연습",
+        "공연",
+        "합주",
+        "잔치 연습 중 찢어진 북",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "나무 박자와 작은 북, 피리로 함께 연습하며 호흡을 맞춘다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-ideas-v1",
+          "sha256": "466336a436eb956513e3aedc6af958f0944bb706c7aee8b4fc5ab71ca9085f6d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-drum-festival-v1",
+    "displayName": "함께 올리는 마을 잔치 공연",
+    "label": "함께 올리는 마을 잔치 공연",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-drum-festival-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-2026-11-05/generation.json#shortstory.background.creative-onggojib-drum-festival-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "8f85cf1fb3f70997fa078baed822471f1388887e616a4cc21ff2f664010d6f6e",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "seriesId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 4,
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "북",
+        "잔치",
+        "연습",
+        "공연",
+        "합주",
+        "잔치 연습 중 찢어진 북",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "같은 악기와 인물들이 마을 사람들 앞에서 새 구성을 연주한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-practice-v1",
+          "sha256": "11f56d7fdfbde13d6939810eae73514bb09b1dfb039c24457970070d989b2c16"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-puppet-invite-v1",
+    "displayName": "인형극을 해 보고 싶은 아이들",
+    "label": "인형극을 해 보고 싶은 아이들",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-puppet-invite-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-rabbit-puppet-invite-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "58741346a15f60602048faf356a54fe9043fcd6cbf3ed8f18221932d35ae5337",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "seriesId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 5,
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "인형극",
+        "연극",
+        "무대",
+        "공연",
+        "아이들",
+        "배우기",
+        "공연 전에 무너진 인형극 무대",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "공연을 본 아이들이 인형극을 해 보고 싶어 하고 토끼와 자라가 인형을 건넨다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-show-v1",
+          "sha256": "2d43ffa5efde6b308841db70a1489cf7643887c2edbbd48dc8d42422a6989cbe"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-puppet-lesson-v1",
+    "displayName": "아이들과 익히는 인형극 손놀림",
+    "label": "아이들과 익히는 인형극 손놀림",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-puppet-lesson-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-rabbit-puppet-lesson-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "d64a02774f4fd33b964148953cad207a4e6a8a5e9a3f4988ca0a682e0758eee1",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "seriesId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 6,
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "인형극",
+        "연극",
+        "무대",
+        "공연",
+        "아이들",
+        "배우기",
+        "공연 전에 무너진 인형극 무대",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "두 아이가 토끼와 자라에게 인형의 막대와 움직임을 배우며 연습한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-invite-v1",
+          "sha256": "58741346a15f60602048faf356a54fe9043fcd6cbf3ed8f18221932d35ae5337"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-puppet-children-v1",
+    "displayName": "아이들이 올린 새로운 인형극",
+    "label": "아이들이 올린 새로운 인형극",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-puppet-children-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-rabbit-puppet-children-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "979bf3f892e08815a28aa052244ea8ded878d428e38fe89a8d70b14a80de1830",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "seriesId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 7,
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "인형극",
+        "연극",
+        "무대",
+        "공연",
+        "아이들",
+        "배우기",
+        "공연 전에 무너진 인형극 무대",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "아이들이 같은 작은 무대에서 인형극을 하고 토끼와 자라가 곁에서 응원한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-lesson-v1",
+          "sha256": "d64a02774f4fd33b964148953cad207a4e6a8a5e9a3f4988ca0a682e0758eee1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-ricecake-shortage-v1",
+    "displayName": "떡을 기다리는 사람들과 빈 그릇",
+    "label": "떡을 기다리는 사람들과 빈 그릇",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-ricecake-shortage-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-heungbu-ricecake-shortage-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "4bf3dadb1be88404e97f28b192a26a19ac42f638c6e7a889a3d508a2b089c3ec",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "seriesId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 5,
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "searchTerms": [
+        "떡",
+        "만들기",
+        "대회",
+        "장터",
+        "재료",
+        "이웃",
+        "떡 만들기 대회에서 쏟아진 콩가루",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "사람들이 더 찾아왔지만 떡과 재료가 부족해져 세 사람이 남은 것을 살핀다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-sharing-v1",
+          "sha256": "8a21b6788e4eae69d595de7bcbf1d431b56cdf6b9f3a444bb9e908189d0a867f"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-ricecake-combine-v1",
+    "displayName": "남은 재료로 함께 빚는 새 떡",
+    "label": "남은 재료로 함께 빚는 새 떡",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-ricecake-combine-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-heungbu-ricecake-combine-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "6caa04b4384a5fe22f524275815baef2107f802006122d9267eb0d30edf66284",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "seriesId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 6,
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "searchTerms": [
+        "떡",
+        "만들기",
+        "대회",
+        "장터",
+        "재료",
+        "이웃",
+        "떡 만들기 대회에서 쏟아진 콩가루",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "흥부와 아이, 이웃 참가자가 남은 재료를 모아 역할을 나누어 새 떡을 만든다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-shortage-v1",
+          "sha256": "4bf3dadb1be88404e97f28b192a26a19ac42f638c6e7a889a3d508a2b089c3ec"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-ricecake-joint-stall-v1",
+    "displayName": "함께 차린 떡 장터",
+    "label": "함께 차린 떡 장터",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-ricecake-joint-stall-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-heungbu-ricecake-joint-stall-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "dc317dd1431e63df7f00de0839c60d8b33520fa6be1fcbcf814dc4c1ef59cd33",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "seriesId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 7,
+      "containedCharacterIds": [
+        "heungbu.street-girl",
+        "heungbu.heungbu"
+      ],
+      "searchTerms": [
+        "떡",
+        "만들기",
+        "대회",
+        "장터",
+        "재료",
+        "이웃",
+        "떡 만들기 대회에서 쏟아진 콩가루",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "세 사람이 함께 차린 가판에서 서로 일을 나누고 기다리던 사람들에게 떡을 건넨다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-combine-v1",
+          "sha256": "6caa04b4384a5fe22f524275815baef2107f802006122d9267eb0d30edf66284"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-raft-route-v1",
+    "displayName": "끊어진 다리 앞에서 찾는 새 길",
+    "label": "끊어진 다리 앞에서 찾는 새 길",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-raft-route-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-raft-route-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "54f6dcb87745726a870d0eb4820c22150fdd166a1d663f2b64454731d7415497",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "seriesId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 5,
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "뗏목",
+        "짐",
+        "나루터",
+        "다리",
+        "수레",
+        "운반",
+        "나루터에서 떠내려가는 짐 뗏목",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "짐을 마을로 옮겨야 하지만 작은 다리가 끊겨 세 사람이 지도로 돌아갈 길을 찾는다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-unload-v1",
+          "sha256": "29a8270a78f750da82a258c028d8e6b34229912123b9aa900c107018e2dfd863"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-raft-cart-v1",
+    "displayName": "숲길로 옮기는 뗏목의 짐",
+    "label": "숲길로 옮기는 뗏목의 짐",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-raft-cart-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-raft-cart-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "6200f7c5fd37d750f56539fcb01a9026cab958805771a287b5866bde9324d0c8",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "seriesId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 6,
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "뗏목",
+        "짐",
+        "나루터",
+        "다리",
+        "수레",
+        "운반",
+        "나루터에서 떠내려가는 짐 뗏목",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "같은 짐을 손수레에 싣고 세 사람이 숲길을 따라 나누어 끌고 민다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-route-v1",
+          "sha256": "54f6dcb87745726a870d0eb4820c22150fdd166a1d663f2b64454731d7415497"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-raft-delivery-v1",
+    "displayName": "물레방앗간에 도착한 짐",
+    "label": "물레방앗간에 도착한 짐",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-raft-delivery-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-seonnyeo-raft-delivery-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "471f3f5ab4bcb82b69a14f747fc3c1702a18ea2141007edae6a999530a103470",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "seriesId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 7,
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "뗏목",
+        "짐",
+        "나루터",
+        "다리",
+        "수레",
+        "운반",
+        "나루터에서 떠내려가는 짐 뗏목",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "돌아가는 길을 지나 물레방앗간에 도착해 같은 짐을 수레에서 내려 건넨다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-cart-v1",
+          "sha256": "6200f7c5fd37d750f56539fcb01a9026cab958805771a287b5866bde9324d0c8"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-drum-newcomer-v1",
+    "displayName": "잔치 합주에 들어온 새 친구",
+    "label": "잔치 합주에 들어온 새 친구",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-drum-newcomer-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-onggojib-drum-newcomer-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "e14285173b4e44da3e8b167447acb99fbf23744d590272286fdd7d451cc355dc",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "seriesId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 5,
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "북",
+        "잔치",
+        "합주",
+        "박자",
+        "공연",
+        "새 친구",
+        "잔치 연습 중 찢어진 북",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "새로 합주에 들어온 아이가 박자를 놓치자 나그네와 포졸이 연주를 잠시 멈추고 살핀다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-festival-v1",
+          "sha256": "8f85cf1fb3f70997fa078baed822471f1388887e616a4cc21ff2f664010d6f6e"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-drum-coach-v1",
+    "displayName": "천천히 함께 맞추는 첫 박자",
+    "label": "천천히 함께 맞추는 첫 박자",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-drum-coach-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-onggojib-drum-coach-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "8a1b8d35dd1c6b1420446f630b763b61c5c0ff79b813397faa727048f192cd09",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "seriesId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 6,
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "북",
+        "잔치",
+        "합주",
+        "박자",
+        "공연",
+        "새 친구",
+        "잔치 연습 중 찢어진 북",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "작은 아이가 포졸과 나그네의 느린 박자를 따라 연습하고 두 피리 연주자가 격려한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-newcomer-v1",
+          "sha256": "e14285173b4e44da3e8b167447acb99fbf23744d590272286fdd7d451cc355dc"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-drum-parade-v1",
+    "displayName": "마을 길을 함께 걷는 잔치 행렬",
+    "label": "마을 길을 함께 걷는 잔치 행렬",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-drum-parade-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-continuations-next-2026-11-05/generation.json#shortstory.background.creative-onggojib-drum-parade-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "ad3c9d51cc03f42888a98412ed28e21adb3d6aaa2d13205ab34d04f352f35b85",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "seriesId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 7,
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "북",
+        "잔치",
+        "합주",
+        "박자",
+        "공연",
+        "새 친구",
+        "잔치 연습 중 찢어진 북",
+        "이어지는 장면",
+        "연속 장면",
+        "후속"
+      ],
+      "description": "새 아이를 포함한 연주자들이 같은 악기를 들고 마을 길을 따라 행진하며 연주한다.",
+      "referenceAssets": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-coach-v1",
+          "sha256": "8a1b8d35dd1c6b1420446f630b763b61c5c0ff79b813397faa727048f192cd09"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-crossroads-v1",
+    "displayName": "갈림길에서 다른 길을 가리키는 두 친구",
+    "label": "갈림길에서 다른 길을 가리키는 두 친구",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-crossroads-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-rabbit-crossroads-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "10c50549d679f67fc5930d66697ae8f079dd58bca62a02966100a90756454dfa",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "선택",
+        "길",
+        "지도",
+        "갈등",
+        "여행",
+        "의견",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "토끼는 밝은 언덕길을 가리키고 자라는 지도를 펼쳐 다른 길을 살핀다. 목적지와 선택의 결과는 정하지 않는다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-rabbit-spilled-basket-v1",
+    "displayName": "길 위로 쏟아진 바구니",
+    "label": "길 위로 쏟아진 바구니",
+    "story": "별주부전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/rabbit-spilled-basket-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-rabbit-spilled-basket-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "c6fdfd3d73395dac54c80570c1cd91c3e261351baeb601c959c106e1c4822778",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "rabbit-turtle.rabbit",
+        "rabbit-turtle.turtle"
+      ],
+      "searchTerms": [
+        "실수",
+        "짐",
+        "과일",
+        "도움",
+        "수습",
+        "바구니",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "길에서 바구니가 넘어져 과일이 굴러간다. 토끼가 과일을 붙잡으려 하고 자라는 바구니를 받친다. 원인과 책임은 열어 둔다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-shared-well-v1",
+    "displayName": "우물가에 모인 빈 물동이",
+    "label": "우물가에 모인 빈 물동이",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-shared-well-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-heungbu-shared-well-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "8cc371e835cd91af402e71e1e4613a3e424013c538efccf0bf04019c743846b7",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "heungbu.heungbu",
+        "heungbu.street-girl"
+      ],
+      "searchTerms": [
+        "우물",
+        "물",
+        "순서",
+        "다툼",
+        "갈등",
+        "나눔",
+        "기다림",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "우물가에서 빈 물동이를 든 사람들이 같은 두레박을 바라본다. 흥부와 아이도 차례와 물을 어떻게 나눌지 살핀다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-heungbu-wind-laundry-v1",
+    "displayName": "바람에 날아간 빨래",
+    "label": "바람에 날아간 빨래",
+    "story": "흥부와 놀부",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/heungbu-wind-laundry-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-heungbu-wind-laundry-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "226940be9ad1f2eba345262dc74d61a07cadbbaffeeb906671131845ef4758c4",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "heungbu.heungbu",
+        "heungbu.street-girl"
+      ],
+      "searchTerms": [
+        "바람",
+        "빨래",
+        "협력",
+        "실수",
+        "집안일",
+        "도움",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "바람이 빨래를 낮은 나뭇가지로 날린다. 흥부는 대나무 장대를 들고 아이는 빨랫줄을 붙잡는다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-broken-bridge-v1",
+    "displayName": "널빤지가 빠진 다리 앞에서",
+    "label": "널빤지가 빠진 다리 앞에서",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-broken-bridge-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-seonnyeo-broken-bridge-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "629a7d8d0e0a235781f26a87a3b467fba899de3d6fbd00d1969abc8140c9efa8",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "다리",
+        "길",
+        "장애물",
+        "수리",
+        "우회",
+        "여행",
+        "협력",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "선녀와 나무꾼이 개울의 널빤지 빠진 다리 앞에서 멈춘다. 수리할지 돌아갈지는 정하지 않는다.",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-seonnyeo-lost-bundle-v1",
+    "displayName": "쉼터에 남겨진 보따리",
+    "label": "쉼터에 남겨진 보따리",
+    "story": "선녀와 나무꾼",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/seonnyeo-lost-bundle-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-seonnyeo-lost-bundle-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "c6c1a636a74e886644d8cd01eea6a140f5044656e6a85f022385cca78905be61",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "seonnyeo.fairy",
+        "seonnyeo.woodcutter"
+      ],
+      "searchTerms": [
+        "보따리",
+        "분실",
+        "발견",
+        "주인",
+        "오해",
+        "약속",
+        "기다림",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "쉼터 벤치에 닫힌 보따리가 남아 있다. 선녀가 보따리를 가리키고 나무꾼은 길을 살핀다. 내용물과 주인은 정하지 않는다.",
+      "referenceAssets": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-market-scales-v1",
+    "displayName": "장터의 기울어진 저울",
+    "label": "장터의 기울어진 저울",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-market-scales-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-onggojib-market-scales-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "0882907ca8e28dab4a121dbf1591ad8dd1efe771fa2cfa7bb4fcf13c527c7a5c",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "장터",
+        "저울",
+        "거래",
+        "공정",
+        "오해",
+        "갈등",
+        "확인",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "나그네가 저울을 가리키고 포졸은 양쪽 접시를 살핀다. 실수인지 다툼인지 어느 쪽이 옳은지는 정하지 않는다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shortstory.background.creative-onggojib-rain-shelter-v1",
+    "displayName": "처마 아래 함께 비를 피하는 사람들",
+    "label": "처마 아래 함께 비를 피하는 사람들",
+    "story": "옹고집전",
+    "type": "background",
+    "group": "새로운 사건 삽화",
+    "backgroundRole": "scene",
+    "src": "/assets/illustrations/shortstory-v1/onggojib-rain-shelter-v1.webp",
+    "sourcePath": "docs/architecture/evidence/shortstory-mix-variety-2026-11-06/generation.json#shortstory.background.creative-onggojib-rain-shelter-v1",
+    "copyright": "project-generated; rights review required",
+    "revision": "f45f0b4de15bc4a41d1eec3421ed0e1e090713c8b2f77c5adbd5a5f666c67afb",
+    "geometry": null,
+    "metadata": {
+      "kind": "scene-illustration",
+      "qualityStatus": "approved",
+      "pickerVisibility": "secondary",
+      "containsCharacters": true,
+      "shortStoryCollection": "creative",
+      "generationMethod": "imagegen",
+      "storyRelation": "independent-event",
+      "containedCharacterIds": [
+        "onggojib.stranger",
+        "onggojib.guard"
+      ],
+      "searchTerms": [
+        "비",
+        "쉼터",
+        "만남",
+        "양보",
+        "도움",
+        "기다림",
+        "여행",
+        "자유 창작",
+        "새로운 사건",
+        "섞어 쓰기"
+      ],
+      "description": "나그네가 짐을 옮겨 자리를 내고 포졸은 우산을 든다. 바구니를 든 노인이 비를 피해 들어온다. 이후 관계와 목적은 열어 둔다.",
+      "referenceAssets": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ]
+    }
   }
 ]

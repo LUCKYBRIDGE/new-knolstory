@@ -1,6 +1,7 @@
 import { tablePayload, readTablePayload, normalizeTableRows } from './story-table';
 import { isCoverDesign, coverDesignAssetReferences, type CoverDesign } from '../../story-domain/src/legacy/cover-design';
 import { STORY_ASSETS } from '../../story-domain/src/legacy/story-assets';
+import imageCatalog from '../../asset-registry/src/catalog.json' with {type:'json'};
 /** Static picture book format from fixed legacy baseline 18da4fc, refined strict keys. */
 export type ShortStoryPage = { id:string;order:number;title:string;text:string;backgroundId:string;leftAssetId:string;rightAssetId:string };
 export type ShortStoryProject = { id:string;title:string;description:string;authorDisplayName:string;source?:{kind:'original'|'preset';presetId?:string};cover:{backgroundId:string;characterId:string;authorNote:string;design?:CoverDesign};pages:ShortStoryPage[];updatedAt:string };
@@ -8,7 +9,13 @@ const MAX_BYTES=10*1024*1024;
 const record=(value:unknown):value is Record<string,unknown> => !!value&&typeof value==='object'&&!Array.isArray(value);
 const text=(value:unknown):value is string => typeof value==='string';
 const keys=(value:Record<string,unknown>, allowed:string[]) => Object.keys(value).every(key=>allowed.includes(key));
-const asset=(value:unknown,type:'character'|'background') => value===''||text(value)&&STORY_ASSETS.some(a=>a.id===value&&a.type===type);
+const creativeIllustrationIds=new Set(imageCatalog.filter(item=>item.type==='background'&&item.metadata.kind==='scene-illustration'&&'shortStoryCollection' in item.metadata&&['creative','story'].includes(String(item.metadata.shortStoryCollection))).map(item=>item.id));
+function asset(value:unknown,type:'character'|'background'):boolean {
+ if(value==='')return true;
+ if(!text(value))return false;
+ if(STORY_ASSETS.some(item=>item.id===value&&item.type===type))return true;
+ return type==='background'&&creativeIllustrationIds.has(value);
+}
 export function newShortStoryPage():ShortStoryPage { return {id:crypto.randomUUID(),order:1,title:'',text:'',backgroundId:'',leftAssetId:'',rightAssetId:''}; }
 export function newShortStory():ShortStoryProject { return {id:crypto.randomUUID(),title:'나의 짧은 이야기',description:'',authorDisplayName:'',source:{kind:'original'},cover:{backgroundId:'',characterId:'',authorNote:''},pages:[newShortStoryPage()],updatedAt:new Date().toISOString()}; }
 export function parseShortStory(value:unknown):ShortStoryProject {

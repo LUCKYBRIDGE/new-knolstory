@@ -13,7 +13,7 @@ it('registers one character-free rainy evening cottage and makes it selectable b
  expect(ASSET_CATALOG.filter(a=>a.metadata.generatedWeatherAsset)).toHaveLength(1);
 });
 it('retains the exact pre-existing432 catalogue rows and byte revisions',()=>{
- const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8')) as Array<{metadata?:{generatedWeatherAsset?:boolean}}>;
- const previous=rows.filter(row=>!row.metadata?.generatedWeatherAsset);expect(previous).toHaveLength(432);
+ const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8')) as Array<{metadata?:{generatedWeatherAsset?:boolean;shortStoryCollection?:string}}>;
+ const previous=rows.filter(row=>!row.metadata?.generatedWeatherAsset&&!row.metadata?.shortStoryCollection);expect(previous).toHaveLength(432);
  expect(createHash('sha256').update(JSON.stringify(previous)).digest('hex')).toBe('f5559656c2cad6ac43c4d031fba6bd9ebaeddf764f9872b1ef6b92080dd524d8');
 });

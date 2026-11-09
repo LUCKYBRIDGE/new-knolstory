@@ -26,6 +26,14 @@ def release_allowed(record,target,usage_scope='standalone-assets'):
 def asset_provenance(asset):
  """Describe byte lineage, never infer a license from a local image transform."""
  base={'assetIds':[asset['id']],'authorOrRightsHolder':asset.get('copyright','unknown')}
+ if asset.get('metadata',{}).get('generationMethod')=='imagegen':
+  return {**base,'provider':'project-generated-image','source':asset['sourcePath'],
+          'referenceAssets':asset['metadata']['referenceAssets'],
+          'generationPlan':'built-in image_gen; character identity reference and sequential scene review'}
+ if asset.get('metadata',{}).get('shortStoryCollection')=='creative':
+  return {**base,'provider':'local-composite-image','source':asset['sourcePath'],
+          'sourceLayers':asset['metadata']['sourceLayers'],
+          'generationPlan':'local layered composition; source revisions verified; rights review required for output'}
  if asset.get('metadata',{}).get('generatedWeatherAsset'):
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; reviewed weather edit and format conversion in scripts/prepare-rainy-courtyard-asset.py'}
  if asset.get('metadata',{}).get('layeredStoryAsset'):

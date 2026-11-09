@@ -58,7 +58,10 @@ if assets.exists():
     approvals = json.loads((ROOT / 'packages/asset-registry/src/audio-service-approvals.json').read_text())
     streamed = {row['src'] for row in approvals['assets'] if row.get('delivery') == 'on-demand'}
     def ignore_service_assets(folder, names):
-        return [name for name in names if name in {'cover-fonts', 'legacy-ui', 'loading'} or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]
+        web_only = {'cover-fonts', 'legacy-ui', 'loading'}
+        if Path(folder) == assets / 'illustrations':
+            web_only.add('shortstory-v1')
+        return [name for name in names if name in web_only or '/' + (Path(folder) / name).relative_to(ROOT / 'apps/web/public').as_posix() in streamed]
     shutil.copytree(assets, project / 'game/assets', ignore=ignore_service_assets)
 env = dict(os.environ, SDL_VIDEODRIVER='dummy', SDL_AUDIODRIVER='dummy')
 subprocess.run(['bash', str(sdk / 'renpy.sh'), str(sdk / 'launcher'), 'web_build', str(project), '--dest', str(output)], env=env, check=True)
