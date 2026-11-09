@@ -68,3 +68,13 @@ export async function openCurrentCutDetail(page:Page){
 export function currentCutPlay(page:Page){
  return currentCutArticle(page).getByRole('button',{name:'이 컷부터 재생',exact:true});
 }
+/** Opens 설정 > 현재 컷의 장 설정 > 장 기본 음향 and returns the 장 소리 설정 group (turning 음향 편집 on first). */
+export async function openChapterSound(page:Page){
+ await enableEditing(page,'음향');
+ const menu=await openSettings(page);
+ const settings=menu.locator('details[data-chapter-settings]');
+ if(!await settings.evaluate(node=>(node as HTMLDetailsElement).open))await settings.locator(':scope>summary').click();
+ const sound=settings.locator('details').filter({has:page.locator(':scope>summary',{hasText:/^장 기본 음향$/})}).first();
+ if(!await sound.evaluate(node=>(node as HTMLDetailsElement).open))await sound.locator(':scope>summary').click();
+ return sound.getByRole('group',{name:'장 소리 설정',exact:true});
+}
