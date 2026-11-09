@@ -141,3 +141,4 @@
 .settingsHelp p{ text-wrap:pretty; }
 details.settingsSection>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px}details.settingsSection>summary h3{margin:0;display:inline}details.settingsSection:not([open]){gap:0}
 details.settingsSection>summary::before{content:'▸';color:#e3cda5}details.settingsSection[open]>summary::before{content:'▾'}details.settingsSection>summary::-webkit-details-marker{display:none}
+.progress{margin:2px 0 0;font-size:12px;color:#c6d6cc}
