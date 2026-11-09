@@ -2,8 +2,10 @@ import {test,expect,type Page} from '@playwright/test';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createExcelWorkbook} from '../../packages/compatibility/src/excel';
 
+// The phone fullscreen offer has its own coverage; keep it from covering these file flows.
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 async function management(page:Page){const toggle=page.locator('[data-work-menu]>summary');if(!await toggle.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await toggle.click();}
-async function transfer(page:Page){await management(page);const toggle=page.getByText('Excel · Google 시트',{exact:true});if(!await toggle.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await toggle.click();}
+async function transfer(page:Page){await management(page);const exchange=page.locator('[data-file-exchange]');if(!await exchange.evaluate(node=>(node as HTMLDetailsElement).open))await exchange.locator(':scope>summary').click();const toggle=page.getByText('Excel · Google 시트',{exact:true});if(!await toggle.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await toggle.click();}
 async function download(page:Page,label:string){const pending=page.waitForEvent('download');await page.getByRole('button',{name:label,exact:true}).click();return (await(await pending).path())!;}
 async function imported(page:Page,path:string){await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(path);return page.getByRole('dialog',{name:'작품 가져오기 확인'});}
 
