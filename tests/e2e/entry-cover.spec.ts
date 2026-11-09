@@ -12,7 +12,7 @@ test('fresh browser entry introduces existing books and explicit navigation ente
  await expect(intro.locator('[data-intro-poster]')).toHaveCount(1);await expect(intro.getByRole('navigation',{name:'놀스토리 메인 메뉴'}).getByRole('button')).toHaveCount(2);
  await expect(page.getByTestId('story-runtime-frame')).toHaveCount(0);
  await page.getByRole('button',{name:'서재로 가기',exact:true}).click();
- await expect(page.getByRole('main',{name:'로컬 서재'})).toBeVisible();
+ await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  await page.goto('/');await expect(intro).toBeVisible();
  await page.reload();await expect(intro).toBeVisible();
  await page.getByRole('button',{name:'서재로 가기',exact:true}).click();
@@ -21,17 +21,17 @@ test('fresh browser entry introduces existing books and explicit navigation ente
  await expect(page.getByRole('main',{name:'책 표지와 소개',exact:true})).toBeVisible();
  await expect(page.getByTestId('story-runtime-frame')).toHaveCount(0);
  await page.getByRole('button',{name:'서재로',exact:true}).click();
- await expect(page.getByRole('main',{name:'로컬 서재'})).toBeVisible();
+ await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
 });
 
 import {mkdirSync,readFileSync,writeFileSync} from 'node:fs';
 import {enterLibrary,beginSelectedBook} from './library-entry';
 const evidence=process.env.KNOL_COVER_EVIDENCE_DIR||`${process.env.KNOL_TEST_EVIDENCE_DIR??process.env.KNOL_NATIVE_EVIDENCE_DIR??'test-results/current-evidence'}/entry-cover`;
-for(const [id,title] of [['seonnyeo-classic','선녀와 나무꾼'],['heungbu','흥부와 놀부, 서로의 몫']] as const)test(`${id}: full cover draft, cancellation, layered editing and archive restoration`,async({browser})=>{
+for(const [id,title] of [['seonnyeo-classic','선녀와 나무꾼'],['heungbu','흥부와 놀부']] as const)test(`${id}: full cover draft, cancellation, layered editing and archive restoration`,async({browser})=>{
  test.setTimeout(120000);mkdirSync(evidence,{recursive:true});const context=await browser.newContext({viewport:{width:1280,height:900}});const page=await context.newPage();page.setDefaultTimeout(15000);
  await page.goto('/');await enterLibrary(page);
  await openBuiltinEdition(page,id.replace('-classic',''),id.endsWith('-classic')?'original':'knolstory','prepare');
- await expect.poll(()=>page.evaluate(()=>{const raw=localStorage.getItem('knolstory-next-workspace-v1');return raw?JSON.parse(raw).document.project.title:null;})).toBe(`${title} · 내 사본`);
+ await expect.poll(()=>page.evaluate(()=>{const raw=localStorage.getItem('knolstory-next-workspace-v1');return raw?JSON.parse(raw).document.project.title:null;})).toBe(`[내작품] ${title}`);
  await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');
  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
  await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();let dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});
@@ -65,7 +65,7 @@ test('all eight existing editions enter actual RenPy through their stored book c
   const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.getAttribute('data-rendered-revision'),{timeout:30000}).toBe(await status.getAttribute('data-scene-revision'));
   const frame=page.getByTestId('story-runtime-frame');if(index===0)await frame.evaluate(n=>n.setAttribute('data-entry-instance','same'));else await expect(frame).toHaveAttribute('data-entry-instance','same');
   const rect=(await frame.boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.1);await expect(status).toHaveAttribute('data-audio-unlocked','true');await expect.poll(()=>status.getAttribute('data-music-path')).toContain('story-score/');
-  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재'})).toBeVisible();
+  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  }
  await page.screenshot({path:`${evidence}/all-eight-return-library.png`,fullPage:true});
 });

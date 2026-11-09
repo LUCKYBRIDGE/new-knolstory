@@ -7,9 +7,9 @@ export function shelfCoverButton(scope:Pick<Page,'getByRole'>,title:string){
 }
 /** Exercise actual first-visit introduction when a test needs the library. */
 export async function enterLibrary(page:Page){
- await expect.poll(async()=>await page.getByRole('main',{name:'로컬 서재',exact:true}).isVisible()||await page.getByRole('button',{name:'서재로 가기',exact:true}).isEnabled().catch(()=>false)).toBe(true);
+ await expect.poll(async()=>await page.getByRole('main',{name:'놀스토리 서재',exact:true}).isVisible()||await page.getByRole('button',{name:'서재로 가기',exact:true}).isEnabled().catch(()=>false)).toBe(true);
  if(await page.getByRole('main',{name:'책 소개',exact:true}).isVisible())await page.getByRole('button',{name:'서재로 가기',exact:true}).click();
- await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
 }
 export async function beginSelectedBook(page:Page,resume=false){
  await expect(page.getByRole('main',{name:'책 표지와 소개',exact:true})).toBeVisible();
@@ -35,7 +35,7 @@ export async function importShelfFile(page:Page,...args:Parameters<import('@play
 export async function startShelfCreation(page:Page){
  await openLibraryTools(page);await page.getByRole('button',{name:'새 작품 만들기',exact:true}).click();
 }
-export async function selectShelfCollection(page:Page,kind:string){await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind);}
+export async function selectShelfCollection(page:Page,kind:string){await page.getByLabel('책 분류',{exact:true}).selectOption(kind==='original'||kind==='example'?'builtin':kind==='imported'?'own':kind);}
 export async function fillShelfSearch(page:Page,query:string){await openLibraryTools(page);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).fill(query);await page.getByRole('searchbox',{name:'책 찾기',exact:true}).press('Enter');}
 
 export const builtinEditions = (['seonnyeo','heungbu','onggojib','rabbit'] as const).flatMap(id=>[[id,'original'],[id,'knolstory']] as const);

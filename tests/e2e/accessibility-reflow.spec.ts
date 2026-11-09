@@ -28,5 +28,5 @@ for(const [width,height] of [[320,256],[640,360],[320,740]])test(`book service t
  const description=start.locator('section>p').filter({hasText:selected.project.description});await expect.soft(description).toBeVisible();expect.soft(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  for(const control of await start.locator('button:not(:disabled),summary').all())await control.click({trial:true});
  await start.getByRole('button',{name:'처음부터 읽기',exact:true}).scrollIntoViewIfNeeded();await expect(start.getByRole('button',{name:'처음부터 읽기',exact:true})).toBeInViewport();await capture('book-start-action-scrolled',start);expect(await authored()).toEqual(selected);for(const [key,project] of Object.entries(before.works))expect(selected.works[key]).toEqual(project);
- await start.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ await start.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
 });

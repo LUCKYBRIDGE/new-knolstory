@@ -1,3 +1,4 @@
+import {openShortStoryDetails} from './shortstory-navigation';
 import {test,expect,type Page} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 const key='knolstory-shortstory-library-v1';
@@ -16,9 +17,9 @@ test('a picture-book tab that cannot keep the library keeps its draft, exports i
  await other.getByLabel('이 쪽의 이야기').fill('두 번째 탭의 초안');
  await expect(other.getByLabel('이 쪽의 이야기')).toHaveValue('두 번째 탭의 초안');
  expect(await firstText(page)).toBe('먼저 저장한 글');
- const downloadPromise=other.waitForEvent('download');await other.getByRole('button',{name:'작품 파일 내보내기'}).click();
+ const downloadPromise=other.waitForEvent('download');await openShortStoryDetails(other, '파일 교환·보관');await other.getByRole('button',{name:'작품 파일 내보내기'}).click();
  const download=await downloadPromise;expect(await readFile((await download.path())!,'utf8')).toContain('두 번째 탭의 초안');
- await other.getByRole('button',{name:'임시 보관',exact:true}).click();
+ await openShortStoryDetails(other, '파일 교환·보관');await other.getByRole('button',{name:'임시 보관',exact:true}).click();
  expect(await firstText(other)).toBe('먼저 저장한 글');
  await other.getByRole('button',{name:'저장된 보관함 다시 열기',exact:true}).click();
  const confirmation=other.getByRole('dialog',{name:'저장된 보관함 다시 열기',exact:true});await expect(confirmation).toBeVisible();await confirmation.getByRole('button',{name:'취소',exact:true}).click();await expect(other.getByLabel('이 쪽의 이야기')).toHaveValue('두 번째 탭의 초안');await other.getByRole('button',{name:'저장된 보관함 다시 열기',exact:true}).click();await confirmation.getByRole('button',{name:'보관함 다시 열기',exact:true}).click();

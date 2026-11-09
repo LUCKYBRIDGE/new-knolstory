@@ -1,4 +1,5 @@
 import type {StoryProject} from '@knolstory/story-domain';
+import {hasDefaultPersonalCover,personalCoverTitle} from './personal-library';
 import {coverElementText,resolveBookCover} from './book-cover';
 export type BookEdition='original'|'knolstory'|'own'|'imported';
 export const BOOK_EDITION_LABELS:Record<BookEdition,string>={original:'원작',knolstory:'놀스토리',own:'내 작품',imported:'가져온 작품'};
@@ -6,7 +7,9 @@ export const BOOK_EDITION_LABELS:Record<BookEdition,string>={original:'원작',k
 export function shelfCoverAccessibleLabel(title:string,project:StoryProject,edition:BookEdition):string{
  const model=resolveBookCover(project,'front'),{cover}=model;
  let parts:string[];
- if(cover.design){
+ if((edition==='own'||edition==='imported')&&hasDefaultPersonalCover(project)){
+  parts=['[내작품]',cover.subtitle,personalCoverTitle(project.title),...(cover.author?[`${cover.author} 지음`]:[])];
+ }else if(cover.design){
   const main=model.elements.filter(item=>item.type==='text'&&item.region!=='band');
   const band=model.elements.filter(item=>item.type==='text'&&item.region==='band');
   parts=[...main,...band].flatMap(item=>item.type==='text'?[coverElementText(item,model.context)]:[]);

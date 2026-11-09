@@ -12,7 +12,7 @@ for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]
  const first=await intro.getByRole('region',{name:'놀스토리 소개'}).getByRole('heading',{level:2}).innerText();await intro.getByRole('button',{name:'다른 이야기 표지로 바꾸기',exact:true}).click();await expect(intro.getByRole('region',{name:'놀스토리 소개'}).getByRole('heading',{level:2})).not.toHaveText(first);
  await page.screenshot({path:`${evidence}/intro-${width}.png`,fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await enterLibrary(page);await selectShelfCollection(page,'example');await expect(page.locator('[data-shelf-book]')).toHaveCount(4);await expect(page.getByRole('region',{name:'기본 작품',exact:true}).getByRole('article')).toHaveCount(4);
- await fillShelfSearch(page,'흥부');await expect(page.getByRole('main',{name:'로컬 서재'}).getByRole('article')).toHaveCount(1);await fillShelfSearch(page,'');await selectShelfCollection(page,'all');
+ await fillShelfSearch(page,'흥부');await expect(page.getByRole('main',{name:'놀스토리 서재'}).getByRole('article')).toHaveCount(1);await fillShelfSearch(page,'');await selectShelfCollection(page,'all');
  const card=builtinShelfCard(page,'seonnyeo');const opener=card.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/});await opener.click();const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();await expect(dialog.locator('[data-edition="knolstory"]')).toHaveCount(1);await page.screenshot({path:`${evidence}/focus-${width}.png`,fullPage:true});const title=await dialog.getByRole('heading').innerText();await dialog.getByRole('button',{name:'다음 책',exact:true}).click();await expect(dialog.getByRole('heading')).not.toHaveText(title);await page.keyboard.press('ArrowLeft');await expect(dialog.getByRole('heading')).toHaveText(title);await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(opener).toBeFocused();
  await page.screenshot({path:`${evidence}/library-${width}.png`,fullPage:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await context.close();
 });
@@ -34,7 +34,7 @@ test('imported shelf pages retain all existing-book copies and filter back to th
  for(let index=0;index<9;index++){
   const copy={...project,id:`shelf-copy-${index}`,title:`흥부전 서재 ${index+1}`};
   await importShelfFile(page,{name:`copy-${index}.knolstory`,mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:new Date().toISOString(),appVersion:'knolstory-next',project:copy}))});
-  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재'})).toBeVisible();
+  await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  }
  await selectShelfCollection(page,'imported');const region=page.getByRole('region',{name:'가져온 작품',exact:true});const capacity=Number(await page.locator('[data-capacity]').getAttribute('data-capacity'));await expect(region.getByRole('article')).toHaveCount(Math.min(9,capacity));const paging=page.getByRole('navigation',{name:'가져온 작품 선반 페이지'});await paging.getByRole('button',{name:'다음 선반'}).click();await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 9');await fillShelfSearch(page,'서재 1');await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 1');await fillShelfSearch(page,'');await paging.getByRole('button',{name:'이전 선반'}).click();await expect(region.getByRole('article')).toHaveCount(8);
 });
@@ -56,7 +56,7 @@ test('all eight books start native RenPy from the library focus and retain the s
   await openBuiltinEdition(page,workId,edition,'start');const start=page.getByRole('main',{name:'책 표지와 소개'});await expect(start.locator('[data-edition]')).toHaveAttribute('data-edition',edition);await start.getByRole('button',{name:'처음부터 읽기',exact:true}).click();
   const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.getAttribute('data-rendered-revision'),{timeout:30000}).toBe(await status.getAttribute('data-scene-revision'));
   const frame=page.getByTestId('story-runtime-frame');if(index===0)await frame.evaluate(node=>node.setAttribute('data-design-instance','persistent'));else await expect(frame).toHaveAttribute('data-design-instance','persistent');
-  const rect=(await frame.boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.1);await expect(status).toHaveAttribute('data-audio-unlocked','true');await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재'})).toBeVisible();
+  const rect=(await frame.boundingBox())!;await page.mouse.click(rect.x+rect.width*.5,rect.y+rect.height*.1);await expect(status).toHaveAttribute('data-audio-unlocked','true');await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  }
 });
 
@@ -82,13 +82,13 @@ test('cover title size changes the rendered typography without covering the whol
 test('books physically rest on shelf faces and room decoration frames the focused shelves',async({browser})=>{
  const context=await browser.newContext();const page=await context.newPage();await page.goto('/');await enterLibrary(page);
  for(const [width,height] of [[1365,900],[820,1180],[390,844],[844,390],[320,740]]){
-  await page.setViewportSize({width,height});await page.getByRole('main',{name:'로컬 서재'}).scrollIntoViewIfNeeded();
+  await page.setViewportSize({width,height});await page.getByRole('main',{name:'놀스토리 서재'}).scrollIntoViewIfNeeded();
   await expect(page.locator('[data-shelf-book]').first().getByRole('button')).toHaveCount(1);
   const contact=await page.locator('[data-shelf-book]').evaluateAll(nodes=>nodes.map(node=>{const cover=node.querySelector('[data-shelf-cover]')!.getBoundingClientRect();const plank=node.querySelector('[class*="plank"]')!.getBoundingClientRect();return Math.abs(cover.bottom-plank.top);}));expect(Math.max(...contact)).toBeLessThanOrEqual(2);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.screenshot({path:`${evidence}/shelf-contact-${width}.png`,fullPage:true});
  }
- const layers=await page.getByRole('main',{name:'로컬 서재'}).evaluate(root=>{const props=Array.from(root.querySelectorAll<HTMLElement>('[class*="foreground"]'));return props.map(node=>({filter:getComputedStyle(node).filter,pointerEvents:getComputedStyle(node).pointerEvents}));});expect(layers).toHaveLength(2);expect(layers.every(item=>item.filter.includes('blur(')&&item.pointerEvents==='none')).toBe(true);await context.close();
+ const layers=await page.getByRole('main',{name:'놀스토리 서재'}).evaluate(root=>{const props=Array.from(root.querySelectorAll<HTMLElement>('[class*="foreground"]'));return props.map(node=>({filter:getComputedStyle(node).filter,pointerEvents:getComputedStyle(node).pointerEvents}));});expect(layers).toHaveLength(2);expect(layers.every(item=>item.filter.includes('blur(')&&item.pointerEvents==='none')).toBe(true);await context.close();
 });
 
 test('cabinet preserves shelf capacity and at least two rows around four books',async({page})=>{

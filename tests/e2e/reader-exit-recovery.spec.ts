@@ -18,12 +18,12 @@ for(const width of [1280,390])test(`reader can explicitly leave after progress s
  const dialog=await requestLibrary(page);await dialog.getByRole('button',{name:'보관하고 서재로',exact:true}).click();await expect(dialog).toBeVisible();await expect(dialog.getByRole('alert')).toContainText('읽던 진행');
  await expect(dialog.getByRole('button',{name:'진행 저장 없이 서재로',exact:true})).toBeVisible();await expect(dialog).toContainText('이전 기록');
  await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByTestId('story-runtime-frame')).toBeVisible();expect(await page.evaluate(key=>localStorage.getItem(key),saves)).toBe(before);
- const again=await requestLibrary(page);await again.getByRole('button',{name:'보관하고 서재로',exact:true}).click();await again.getByRole('button',{name:'진행 저장 없이 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ const again=await requestLibrary(page);await again.getByRole('button',{name:'보관하고 서재로',exact:true}).click();await again.getByRole('button',{name:'진행 저장 없이 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  expect(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)!).document.project,workspace)).toEqual(original);expect(await page.evaluate(key=>localStorage.getItem(key),saves)).toBe(before);
 });
 test('retrying progress storage can return normally without claiming the failed attempt was saved',async({page})=>{
  await open(page);await page.evaluate(key=>{const original=Storage.prototype.setItem;let failing=true;(window as typeof window&{allowProgressSave:()=>void}).allowProgressSave=()=>{failing=false;};Storage.prototype.setItem=function(name,value){if(name===key&&failing)throw new DOMException('full','QuotaExceededError');return original.call(this,name,value);};},saves);
  const dialog=await requestLibrary(page);await dialog.getByRole('button',{name:'보관하고 서재로',exact:true}).click();await expect(dialog.getByRole('button',{name:'진행 저장 없이 서재로',exact:true})).toBeVisible();
- await page.evaluate(()=>(window as typeof window&{allowProgressSave:()=>void}).allowProgressSave());await dialog.getByRole('button',{name:'보관하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ await page.evaluate(()=>(window as typeof window&{allowProgressSave:()=>void}).allowProgressSave());await dialog.getByRole('button',{name:'보관하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  expect(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)!).works['reader-exit-recovery'].auto.playback.lineId,saves)).toBe('cut');
 });

@@ -21,10 +21,10 @@ import {useEditorPreferences} from '../lib/editor-preferences';
 import {LocalWorkFileActions} from './local-work-file-actions';
 import {createLocalWorkFileSession} from '../lib/local-work-file';
 import {useReaderDisplayViewport} from './use-reader-display-viewport';
-import {OnlineWorksPanel} from './online-works-panel';
+
 import {createOnlineWorkStore,saveOnlineWork} from '../lib/online-work-bindings';
 import type {OnlineDocument} from '../lib/document-api';
-import {AccountMenu} from './account-menu';
+
 import {consumeAccountReturnDestination} from '../lib/account-return';
 import {createChoiceWritingDraft} from '../lib/choice-writing';
 import {StoryChoiceWritingDialog} from './story-choice-writing-dialog';
@@ -69,7 +69,8 @@ import {
 import { useStoryRuntime } from "./story-workspace-runtime";
 import styles from "./story-workspace.module.css";
 import {WorkspaceManagement} from "./workspace-management";
-import {LocalBookshelf,type BookshelfIntent} from "./local-bookshelf";
+import type {BookshelfIntent} from "./local-bookshelf";
+import {PersonalLibrary} from "./personal-library";
 import {StoryPreparation} from "./story-preparation";
 import {WORKSPACE_KEY,preflight,readWorkspace,captureContext,writeWorkspace as writeWorkspaceSnapshot,type WorkContexts,type WorkspaceView} from "../lib/workspace-storage";
 import {readWorkspaceChecks,workspaceCheckBuild,writeWorkspaceChecks} from "../lib/workspace-checks";
@@ -89,7 +90,7 @@ import {StorageReloadDialog} from './storage-reload-dialog';
 import {createAuthoringArchive,encodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot,type AuthoringArchive} from '@knolstory/compatibility';
 import {importAudioResources,copyAudioWorkMetadata} from '../lib/audio-resources';
 import {PersonalLibraryTools} from './personal-library-tools';
-import {prepareImportedWork,copyPersonalWork,isPersonalWork,readDeletedWork,DELETED_WORK_KEY,type DeletedWork} from '../lib/personal-library';
+import {prepareImportedWork,copyPersonalWork,createCatalogEditCopy,isPersonalWork,readDeletedWork,DELETED_WORK_KEY,type DeletedWork} from '../lib/personal-library';
 import {useEditorMenus} from './use-editor-menus';
 import {StoryStageNavigation} from './story-stage-navigation';
 import {StoryTextAccessibility} from './story-text-accessibility';
@@ -113,6 +114,7 @@ export function StoryWorkspace() {
   const [pendingArchive,setPendingArchive]=useState<AuthoringArchive|null>(null);
   const [importBusy,setImportBusy]=useState(false);
   const [confirmStorageReload,setConfirmStorageReload]=useState(false);
+  const [confirmStorageRestart,setConfirmStorageRestart]=useState(false);
   const [libraryReturn,setLibraryReturn]=useState<{reason:string;workId:string}|null>(null);
   const [libraryReturnBusy,setLibraryReturnBusy]=useState<'checking'|'saving'|null>(null),[libraryReturnNotice,setLibraryReturnNotice]=useState('');
   const libraryReturnGeneration=useRef(0),libraryRetryAction=useRef<()=>void>(()=>{});
@@ -452,7 +454,7 @@ export function StoryWorkspace() {
   function protectAuthoring(target:'editor'|'prepare',requestedLine?:string){
     if(directEditor.current||!builtInStories.some(item=>item.id===storyId))return false;
     rememberCurrent();const source=contexts.current[storyId];
-    const next=copyPersonalWork(project,crypto.randomUUID(),new Date().toISOString());const key=`new:${next.id}`;
+    const next=createCatalogEditCopy(project,crypto.randomUUID(),new Date().toISOString(),savedProjects.current);const key=`new:${next.id}`;
     const editId=requestedLine??(mode==='play'?line.id:lineId);
     void preserveCopyAudio(project,next).then(ok=>{if(!ok)return;
     savedProjects.current={...savedProjects.current,[key]:next};
@@ -502,7 +504,7 @@ export function StoryWorkspace() {
     const fixture=builtInStories.find(item=>item.id===key);
     let next=fixture?structuredClone(catalogProject(fixture)):savedProjects.current[key];if(!next)return;
     if(fixture&&(intent==='edit'||intent==='prepare'||intent==='cover')){
-      const sourceContext=contexts.current[key],original=next;next=copyPersonalWork(next,crypto.randomUUID(),new Date().toISOString());
+      const sourceContext=contexts.current[key],original=next;next=createCatalogEditCopy(next,crypto.randomUUID(),new Date().toISOString(),savedProjects.current);
       if(!await preserveCopyAudio(original,next))return;key=`new:${next.id}`;
       if(sourceContext)contexts.current={...contexts.current,[key]:{...sourceContext,playback:undefined,hasRead:false}};
       setImportedWorks(current=>({...current,[key]:next!.title}));
@@ -729,7 +731,7 @@ export function StoryWorkspace() {
   async function saveOnlinePersonalWork(key:string,accountId:string,csrf:string,isCurrent:()=>boolean){
     const generation=onlineWorkspaceGeneration.current;
     const current=()=>isCurrent()&&generation===onlineWorkspaceGeneration.current;
-    if(!current())return;saveBeforeImport();
+    if(!current())return;saveBeforeImport(true);
     const work=key===storyId?project:savedProjects.current[key];
     if(!isPersonalWork(key)||!work)throw Error('기기에 보관한 개인 작품을 골라 주세요.');
     const portable=await portableStory(work);
@@ -777,10 +779,10 @@ export function StoryWorkspace() {
     }finally{if(sequence===importReadSequence.current)setImportBusy(false);}
   }
   function documentForExport(value:Awaited<ReturnType<typeof portableStory>>){const {audioResources:_resources,...document}=value;return document;}
-  function saveBeforeImport(){
+  function saveBeforeImport(forUpload=false){
     if(hasUnappliedAuthoringInput())throw new Error(UNAPPLIED_AUTHORING_NOTICE);
-    if(composing)throw new Error('한글 입력을 마친 뒤 가져온 작품을 열어 주세요.');
-    try{persistWorkspace();}catch(issue){throw new Error(`현재 원고의 복구본을 보관하지 못해 가져온 작품을 열지 않았어요. ${String(issue)}`);}
+    if(composing)throw new Error(forUpload?'한글 입력을 마친 뒤 업로드해 주세요.':'한글 입력을 마친 뒤 가져온 작품을 열어 주세요.');
+    try{persistWorkspace();}catch(issue){throw new Error(forUpload?'현재 원고를 기기에 보관하지 못해 업로드를 멈췄어요. 작품 파일로 먼저 저장해 주세요.':`현재 원고의 복구본을 보관하지 못해 가져온 작품을 열지 않았어요. ${String(issue)}`);}
   }
   async function applyPendingArchive(){
     if(!pendingArchive||pendingArchive.format!=='knolstory')return;
@@ -1028,7 +1030,7 @@ export function StoryWorkspace() {
   // Only when this browser cannot keep the workspace at all, and only while writing: reading is never
   // interrupted, and other open tabs are handled by the automatic writer handover.
   const storageWarning = writer.status==='unavailable'&&(view==='prepare'||view==='editor'&&mode==='edit')&&<section role="alert" className={`${styles.error} ${styles.storageWarning}`}><p>브라우저에 현재 원고를 임시 보관할 수 없어요. 현재 작품을 작품 파일로 저장해 주세요.</p><button onClick={()=>void exportFile()}>현재 초안 파일 내보내기</button><button disabled={composing} onClick={()=>{if(!composing)setConfirmStorageReload(true);}}>저장된 보관함 다시 열기</button></section>;
-  const storageRecovery = storageError&&<section aria-label="기기 보관함 복구" className={`${styles.error} ${styles.storageWarning}`}><p>{storageError}</p><button onClick={()=>{try{const raw=localStorage.getItem(WORKSPACE_KEY);if(raw!==null)downloadArtifact(raw,'놀스토리-복구원본.json','application/json');}catch(issue){setError(String(issue));}}}>복구용 원본 보관</button><button onClick={restartProtectedStorage} disabled={!storageWritable}>손상 원본 보존하고 새 보관함 시작</button></section>;
+  const storageRecovery = storageError&&<section aria-label="기기 보관함 복구" className={`${styles.error} ${styles.storageWarning}`}><p>{storageError}</p><button onClick={()=>{try{const raw=localStorage.getItem(WORKSPACE_KEY);if(raw!==null)downloadArtifact(raw,'놀스토리-복구원본.json','application/json');}catch(issue){setError(String(issue));}}}>복구용 원본 보관</button><button onClick={()=>setConfirmStorageRestart(true)} disabled={!storageWritable}>손상 원본 보존하고 새 보관함 시작</button></section>;
   return (<StoryBranchEditingContext.Provider value={logic.branches}>
     <WorkLeaveGuard tracker={leaveTracker} work={project} ready={loadComplete}/>
     {libraryReturn&&<LibraryReturnDialog reason={libraryReturn.reason} notice={libraryReturnNotice} busy={libraryReturnBusy} onCancel={cancelLibraryReturn} onRetry={()=>void retryLibraryReturn()} onSave={()=>void saveFileAndReturn()} onContinue={()=>completeLibraryReturn('임시 보관을 완료하지 못한 원고를 이 탭에 유지했어요. 새로고침하거나 닫기 전에 작품 파일로 저장해 주세요.')}/>}
@@ -1037,6 +1039,7 @@ export function StoryWorkspace() {
     {importBusy&&!pendingArchive&&<p role='status' className={styles.status}>작품 파일의 연결·연출·첨부를 확인하고 있어요. 긴 작품은 잠시 걸릴 수 있습니다.</p>}
     {pendingArchive&&pendingArchive.format==='knolstory'&&<AuthoringImportDialog title={pendingArchive.document.project.title} kind='knolstory' chapterCount={pendingArchive.document.project.chapters.length} cutCount={pendingArchive.document.project.lines.length} resourceCount={pendingArchive.audioResources.length} busy={importBusy} error={error} onCancel={()=>setPendingArchive(null)} onApply={applyPendingArchive}/>}
     {view!=='editor'&&storageWarning}
+    {confirmStorageRestart&&<StorageReloadDialog restart composing={composing} onCancel={()=>setConfirmStorageRestart(false)} onConfirm={()=>{setConfirmStorageRestart(false);restartProtectedStorage();}}/>}
     {confirmStorageReload&&<StorageReloadDialog composing={composing} onCancel={()=>setConfirmStorageReload(false)} onConfirm={()=>{if(!composing)location.reload();}}/>}
     {view!=='editor'&&storageRecovery}
     {(!!storageError&&view!=='prepare'&&view!=='editor')&&<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>}
@@ -1044,7 +1047,7 @@ export function StoryWorkspace() {
     {view==='book'&&<BookStart edition={storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory"} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>beginBook(false)} onResume={()=>beginBook(true)} onLibrary={returnToLibrary} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
     {view==='cover'&&<BookCoverEditor project={project} onApply={(cover,title)=>{preparationChange(renameStoryProject({...project,cover},title));setView('prepare');}} onCancel={()=>setView('prepare')}/>}
     {pendingBranch&&<StoryChoiceWritingDialog label={pendingBranch.label} sourceLabel={pendingBranch.sourceLabel} closesLinearTail={!!pendingBranch.closedLinearTailId} error={branchError} onCancel={()=>{setPendingBranch(null);setBranchError('');}} onCreate={startChoiceWriting}/>}
-    {view==='library'&&<><LocalBookshelf accountMenu={<><AccountMenu disabled={!loadComplete||composing} beforeNavigate={beforeAccountNavigation}/><OnlineWorksPanel works={libraryWorks.filter(work=>isPersonalWork(work.key)).map(work=>({key:work.key,title:work.project.title}))} disabled={!loadComplete||composing} onSaveNew={saveOnlinePersonalWork} onOpen={openOnlinePersonalWork}/></>} onDuplicate={duplicatePersonalWork} onDelete={key=>{if(isPersonalWork(key))setPendingWorkDelete(key);}} onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');if(new URLSearchParams(location.search).get('view')==='library')history.replaceState(null,'',location.pathname);}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={error}/><PersonalLibraryTools deleted={deletedWork} pendingTitle={pendingWorkDelete?libraryWorks.find(work=>work.key===pendingWorkDelete)?.project.title:undefined} onRestore={restorePersonalWork} onCancel={()=>setPendingWorkDelete(null)} onConfirm={deletePersonalWork}/><p data-testid="library-save-status" role="status">{displayedSaveStatus}</p></>}
+    {view==='library'&&<><PersonalLibrary onlineDisabled={composing} beforeAccountNavigation={beforeAccountNavigation} onSaveOnline={saveOnlinePersonalWork} onOpenOnline={openOnlinePersonalWork} onDuplicate={duplicatePersonalWork} onDelete={key=>{if(isPersonalWork(key))setPendingWorkDelete(key);}} onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');if(new URLSearchParams(location.search).get('view')==='library')history.replaceState(null,'',location.pathname);}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={error}/><PersonalLibraryTools deleted={deletedWork} pendingTitle={pendingWorkDelete?libraryWorks.find(work=>work.key===pendingWorkDelete)?.project.title:undefined} onRestore={restorePersonalWork} onCancel={()=>setPendingWorkDelete(null)} onConfirm={deletePersonalWork}/><p data-testid="library-save-status" role="status">{displayedSaveStatus}</p></>}
     {view==='prepare'&&<main className={`${styles.shell} ${styles.compact} ${styles.preparationShell}`}>{workHeader(<><strong>{project.title}</strong><EditorTermGuide/><p data-testid="preparation-save-status" role="status">{displayedSaveStatus}</p></>)}{error&&<p role="alert">{error}</p>}<StoryPreparation scoresEnabled={logic.scores} onComposing={setComposing} onSectionChange={changeWorkSection} initialSection={memoRequest?.projectId===project.id?memoRequest.section??'memos':'info'} focusMemoId={memoRequest?.projectId===project.id?memoRequest.memoId:undefined} onReturnToCut={memoRequest?.projectId===project.id&&memoRequest.returnToEditor?returnFromSettings:undefined} onEditCover={()=>setView('cover')} project={project} currentLineId={lineId} onProjectChange={preparationChange} onOpenCut={id=>editFromFlow(id)} onContinueWriting={continueWriting}/></main>}
     <main style={readerDisplay?{position:'fixed',left:readerDisplay.left,top:readerDisplay.top,width:readerDisplay.width,height:readerDisplay.height,minHeight:0}:undefined} data-parked={view!=='editor'} aria-hidden={view!=='editor'} inert={view!=='editor'} ref={shell} data-keyboard-occluded={mode==='edit'&&keyboard.occluded} className={`${styles.shell} ${styles.editorShell} ${compact ? styles.compact : ""} ${mode === "play" ? styles.playMode : ""} ${editorView==='writer'?styles.writing:''}`}>
       {view==='editor'&&storageWarning}

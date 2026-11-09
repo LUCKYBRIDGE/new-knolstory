@@ -28,6 +28,14 @@ function key(accountId:string,localKey:string){
  if(typeof accountId!=='string'||!uuid.test(accountId)||typeof localKey!=='string'||!localKey||localKey.length>256)invalid();
  return `knolstory-online-work-v1:${accountId}:${encodeURIComponent(localKey)}`;
 }
+export type OnlineShelfBinding=Readonly<{binding:OnlineWorkBinding|null;error:boolean}>;
+/** Account-scoped display data only. Corrupt journals stay untouched and do not hide other books. */
+export function readOnlineShelfBindings(storage:Pick<Storage,'getItem'>,accountId:string,localKeys:readonly string[]):Record<string,OnlineShelfBinding>{
+ return Object.fromEntries(localKeys.map(localKey=>{
+  try{return [localKey,{binding:structuredClone(parse(storage.getItem(key(accountId,localKey))).binding),error:false}];}
+  catch{return [localKey,{binding:null,error:true}];}
+ }));
+}
 /** Separate device journal. Failed acknowledgments retain the exact command for retry. */
 export function createOnlineWorkStore(storage:Disk,options:Readonly<{assertWritable?:()=>void}>={}){
  function read(accountId:string,localKey:string){const name=key(accountId,localKey),raw=storage.getItem(name);return {name,raw,state:parse(raw)};}

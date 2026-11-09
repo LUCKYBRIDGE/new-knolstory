@@ -329,3 +329,27 @@
 /* Korean cover typography keeps words together; fitting reduces copy within its own zone. */
 .titleBox>div{line-height:1.25}.title{line-height:1.25;word-break:keep-all;overflow-wrap:normal;text-wrap:pretty}.tagline,.titleBox .author{word-break:keep-all;overflow-wrap:normal;line-height:1.4}
 .copyBox[data-role="title"]{word-break:keep-all;overflow-wrap:normal}.copyBox[data-role="title"] .layerCopy{line-height:1.25;word-break:keep-all;overflow-wrap:normal;text-wrap:pretty}
+
+.book.personalDefault {
+  --cover-paper: #6aaed6;
+  --cover-ink: #102e4a;
+  --cover-accent: #3e82af;
+  background: #6aaed6;
+  color: #102e4a;
+  border: 1px solid #3e82af;
+  border-inline-start: 0.45rem solid #3e82af;
+}
+.book.personalDefault[data-cover-face="spine"] { background: #3e82af; color: #fff; }
+.personalBadge {
+  position: absolute;
+  top: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.3em 0.7em;
+  border-radius: 0.4em;
+  background: #ffffffb8;
+  color: #102e4a;
+  font: 700 8cqw/1.3 sans-serif;
+  white-space: nowrap;
+}
+.personalTitle { font: 700 13cqw/1.3 "Knol Story Serif", serif; }

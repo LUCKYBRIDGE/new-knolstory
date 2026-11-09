@@ -17,20 +17,29 @@ async function harness(page:Page){
  });return {content,snapshot,metadata,posts,puts};
 }
 for(const width of [1440,390])test(`ShortStory explicit online create, independent copy and bound update preserve whole books ${width}`,async({page})=>{
- await page.setViewportSize({width,height:900});const remote=await harness(page);await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('기기에 남긴 그림책');await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('사라지면 안 되는 그림책 원고');const before=await local(page);
+ await page.setViewportSize({width,height:900});const remote=await harness(page);await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('기기에 남긴 그림책');await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('사라지면 안 되는 그림책 원고');
+ await page.getByRole('button',{name:'삽화 고르기',exact:true}).click();
+ const picker=page.getByRole('dialog',{name:'삽화 고르기',exact:true});
+ await picker.getByRole('button',{name:'자유 창작',exact:true}).click();
+ const illustration=picker.locator('[data-asset-id]').first();
+ const illustrationId=await illustration.getAttribute('data-asset-id');
+ expect(illustrationId).toBeTruthy();
+ await illustration.click();
+ const before=await local(page);
+ expect(before.books[0].pages[0].backgroundId).toBe(illustrationId);
  await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();expect(remote.posts).toHaveLength(0);await panel.getByLabel('온라인에 업로드할 기기 작품',{exact:true}).selectOption('shortstory:'+before.activeId);await panel.getByRole('button',{name:'선택한 작품 업로드',exact:true}).click();await expect(panel.getByRole('status')).toContainText('업로드했어요');expect((remote.posts[0] as {snapshot:{content:{project:unknown}}}).snapshot.content.project).toEqual(before.books[0]);
  await panel.getByRole('button',{name:'목록 새로고침',exact:true}).click();await panel.getByRole('button',{name:'온라인 그림책 원고 · 기기에 사본으로 열기',exact:true}).click();await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('온라인 그림책 원고');const after=await local(page),copy=after.books.find((book:{id:string})=>book.id===after.activeId);expect(copy).toEqual({...remote.content.project,id:copy.id});expect(copy.id).not.toBe(remote.content.project.id);expect(after.books.find((book:{id:string})=>book.id===before.activeId)).toEqual(before.books[0]);
  await page.keyboard.press('Escape');await page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true}).fill('기기 사본에서 바꾼 글');await page.locator('[data-online-works]>summary').click();await panel.getByLabel('온라인에 업로드할 기기 작품',{exact:true}).selectOption('shortstory:'+copy.id);await panel.getByRole('button',{name:'선택한 작품 업로드',exact:true}).click();await expect.poll(()=>remote.puts.length).toBe(1);expect((remote.puts[0] as {snapshot:{content:{project:{id:string}}}}).snapshot.content.project.id).toBe(remote.content.project.id);expect((await local(page)).activeId).toBe(copy.id);
 });
 test('ShortStory composition, cover drafts and failed local storage block online writes',async({page})=>{
  const remote=await harness(page);await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('보호할 그림책');await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();const before=await local(page);await panel.getByLabel('온라인에 업로드할 기기 작품',{exact:true}).selectOption('shortstory:'+before.activeId);
- const title=page.getByLabel('이야기 제목',{exact:true});await title.dispatchEvent('compositionstart');await expect(panel.getByRole('button',{name:'선택한 작품 업로드',exact:true})).toBeDisabled();await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('button',{name:'Google 계정 연결',exact:true})).toBeDisabled();expect(remote.posts).toHaveLength(0);await title.dispatchEvent('compositionend');await page.keyboard.press('Escape');
+ const title=page.getByLabel('이야기 제목',{exact:true});await title.dispatchEvent('compositionstart');await expect(panel.getByRole('button',{name:'선택한 작품 업로드',exact:true})).toBeDisabled();await page.locator('[data-online-works]>summary').press('Escape');await page.locator('[data-account-menu]>summary').click();await expect(page.getByRole('button',{name:'Google 계정 연결',exact:true})).toBeDisabled();expect(remote.posts).toHaveLength(0);await title.dispatchEvent('compositionend');await page.keyboard.press('Escape');
  await page.getByText('표지·소개·Google 시트 편집',{exact:true}).click();await page.getByRole('button',{name:'표지 꾸미기',exact:true}).click();await expect(page.locator('[data-account-menu]')).toHaveCount(0);await expect(page.locator('[data-online-works]')).toHaveCount(0);await page.getByRole('dialog',{name:'내 책 표지 꾸미기',exact:true}).getByRole('button',{name:'취소',exact:true}).click();
  await page.locator('[data-online-works]>summary').click();await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();await panel.getByLabel('온라인에 업로드할 기기 작품',{exact:true}).selectOption('shortstory:'+before.activeId);await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='knolstory-shortstory-library-v1')throw Error('quota');return original.call(this,key,value);};});await panel.getByRole('button',{name:'선택한 작품 업로드',exact:true}).click();await expect(panel.getByRole('alert')).toBeVisible();expect(remote.posts).toHaveLength(0);expect((await local(page)).books).toEqual(before.books);
 });
 test('ShortStory delayed online validation cannot revive a deleted book or replace its checkpoint',async({page})=>{
  const remote=await harness(page);await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('삭제된 그림책');await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();await panel.getByRole('button',{name:'목록 새로고침',exact:true}).click();const before=await local(page);
- await page.evaluate(()=>{const target=window as unknown as {shortValidationPaused?:boolean;releaseShortValidation?:()=>void};const digest=crypto.subtle.digest.bind(crypto.subtle);let count=0;crypto.subtle.digest=async(...args:Parameters<SubtleCrypto['digest']>)=>{count++;if(count===4){target.shortValidationPaused=true;await new Promise<void>(resolve=>{target.releaseShortValidation=resolve;});}return digest(...args);};});await panel.getByRole('button',{name:'온라인 그림책 원고 · 기기에 사본으로 열기',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as unknown as {shortValidationPaused?:boolean}).shortValidationPaused)).toBe(true);await page.keyboard.press('Escape');await page.getByRole('button',{name:'이 그림책 삭제',exact:true}).click();await page.getByRole('dialog',{name:'삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).books).length).toBe(0);const deleted=await local(page);
+ await page.evaluate(()=>{const target=window as unknown as {shortValidationPaused?:boolean;releaseShortValidation?:()=>void};const digest=crypto.subtle.digest.bind(crypto.subtle);let count=0;crypto.subtle.digest=async(...args:Parameters<SubtleCrypto['digest']>)=>{count++;if(count===4){target.shortValidationPaused=true;await new Promise<void>(resolve=>{target.releaseShortValidation=resolve;});}return digest(...args);};});await panel.getByRole('button',{name:'온라인 그림책 원고 · 기기에 사본으로 열기',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as unknown as {shortValidationPaused?:boolean}).shortValidationPaused)).toBe(true);await page.keyboard.press('Escape');await page.getByText('그림책 관리',{exact:true}).click();await page.getByRole('button',{name:'이 그림책 삭제',exact:true}).click();await page.getByRole('dialog',{name:'삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();await expect.poll(async()=>Object.keys((await local(page)).books).length).toBe(0);const deleted=await local(page);
  await page.evaluate(()=>(window as unknown as {releaseShortValidation:()=>void}).releaseShortValidation());await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));expect((await local(page)).deleted).toEqual(deleted.deleted);expect((await local(page)).books).toEqual(deleted.books);expect(deleted.deleted[0].id).toBe(before.activeId);expect(remote.posts).toHaveLength(0);
 });
 test('ShortStory login callback returns to the active book and page without writing KnolStory storage',async({page})=>{
@@ -49,4 +58,28 @@ test('ShortStory session recheck retries the exact pending save with renewed csr
  await page.route('**/api/v1/documents',route=>{if(route.request().method()!=='POST')return route.fallback();const body=route.request().postDataJSON();requests.push({key:route.request().headers()['idempotency-key'],body,csrf:route.request().headers()['x-csrf-token']});return route.fulfill(renewed?{json:{success:true,data:{recordId,revision:1,contentSha256:body.snapshot.contentSha256,replayed:false}}}:{status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});});
  await page.goto('/shortstory');await page.getByLabel('이야기 제목',{exact:true}).fill('다시 로그인해도 남는 그림책');await page.locator('[data-online-works]>summary').click();const panel=page.getByRole('region',{name:'온라인 작품',exact:true});await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();const before=await local(page);await panel.getByLabel('온라인에 업로드할 기기 작품',{exact:true}).selectOption(`shortstory:${before.activeId}`);await panel.getByRole('button',{name:'선택한 작품 업로드',exact:true}).click();await expect(panel.getByRole('alert')).toContainText('로그인을 다시 확인');
  renewed=true;await panel.getByRole('button',{name:'로그인 상태 다시 확인',exact:true}).click();await expect(panel.getByRole('button',{name:'목록 새로고침',exact:true})).toBeEnabled();await panel.getByRole('button',{name:'선택한 작품 업로드',exact:true}).click();await expect(panel.getByRole('status')).toContainText('업로드했어요');expect(requests).toHaveLength(2);expect(requests[1]!.key).toBe(requests[0]!.key);expect(requests[1]!.body).toEqual(requests[0]!.body);expect(requests.map(item=>item.csrf)).toEqual(['expired-csrf','renewed-csrf']);expect((await local(page)).books).toEqual(before.books);
+});
+
+test('ShortStory library shows online-only books and deduplicates an explicitly linked local copy',async({page})=>{
+ await harness(page);
+ await page.goto('/shortstory?mode=library');
+ const books=page.locator('section[aria-label="내 그림책 목록"]');
+ await expect(books.getByRole('button',{name:'온라인 그림책 원고 · 기기에 사본으로 열기',exact:true})).toBeVisible();
+ await books.getByRole('button',{name:'온라인 그림책 원고 · 기기에 사본으로 열기',exact:true}).click();
+ await expect(page.getByLabel('이야기 제목',{exact:true})).toHaveValue('온라인 그림책 원고');
+ await page.getByRole('button',{name:'그림책 보관함 열기'}).click();
+ await expect(books.getByRole('button',{name:'온라인 그림책 원고',exact:true})).toBeVisible();
+ await expect(books.locator('[data-storage-kind="linked"]')).toHaveCount(1);
+ await expect(books.getByRole('button',{name:'온라인 그림책 원고 · 기기에 사본으로 열기',exact:true})).toHaveCount(0);
+});
+
+test('ShortStory authentication returns to the book library',async({page})=>{
+ await harness(page);
+ await page.route('**/api/v1/me',route=>route.fulfill({status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}}));
+ await page.route('**/api/v1/auth/kakao/start',route=>route.fulfill({status:302,headers:{location:'/?auth=success'}}));
+ await page.goto('/shortstory?mode=library');
+ await page.locator('[data-account-menu]>summary').click();
+ await page.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'그림책 보관함',exact:true})).toBeVisible();
+ expect((await local(page)).books).toHaveLength(0);
 });

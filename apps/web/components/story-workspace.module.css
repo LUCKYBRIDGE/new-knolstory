@@ -819,3 +819,5 @@
 @media(max-height:360px){.shell.editorShell:not(.playMode) [data-system-menu=editor]>.systemMenuHeader{position:static}}
 
 .shell.editorShell:not(.playMode) [data-system-menu=editor] :is(.workMenuHint,[data-file-save-help] p){text-wrap:pretty}
+
+.workMenuGroup>[data-storage-recovery]{grid-column:1/-1;width:100%;min-width:0}

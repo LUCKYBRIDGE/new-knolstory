@@ -18,7 +18,7 @@ async function save(page: Page) {
 async function menu(page:Page){const root=page.locator('[data-work-menu]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope>summary').click();}
 async function tool(page:Page,name:string){const pane=page.getByRole('region',{name:'작품 설정',exact:true});if(await pane.isVisible())await pane.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();const root=page.locator('[data-additional-tools]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope>summary').click();await page.getByRole('button',{name,exact:true}).click();}
 async function chooseCut(page:Page,id:string){await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);}
-async function shelf(page:Page){await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();}
+async function shelf(page:Page){await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();}
 async function createBranchingStory(page: Page) {
   await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
   await page.getByLabel('새 작품 제목', { exact: true }).fill(title);

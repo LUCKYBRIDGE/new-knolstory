@@ -29,7 +29,7 @@ async function saved(page: Page) {
 }
 async function library(page: Page) {
   await saved(page);
-  const main = page.getByRole('main', { name: '로컬 서재', exact: true });
+  const main = page.getByRole('main', { name: '놀스토리 서재', exact: true });
   if (!await main.isVisible()) {
     const direct=page.getByRole('button', { name: '서재로', exact: true });
     if(await direct.isVisible())await direct.click();
@@ -274,7 +274,7 @@ test('local library prepares three separate works and roundtrips preparation wit
     await open(page,'내 작품',ownTitle,'이어읽기');await ready(page);
     await expect(page.getByRole('region',{name:'이야기 무대',exact:true}).getByText('숲에서 친구에게 편지를 전했다.',{exact:true})).toBeVisible();
     await library(page);await openLibraryTools(page);await page.getByRole('link',{name:'숏스토리 그림책 열기',exact:true}).click();
-    await expect(page.getByRole('heading',{name:'숏스토리 그림책',exact:true})).toBeVisible();await expect(page.locator('iframe')).toHaveCount(0);
+    await expect(page.getByRole('heading',{name:'그림책 보관함',exact:true})).toBeVisible();await expect(page.locator('iframe')).toHaveCount(0);
     writeFileSync(`${evidence}/run-summary.json`,JSON.stringify({browser:await browser.version(),channel:process.env.KNOL_BROWSER_CHANNEL||'bundled Chromium',authorship:'Two works created through UI; twelve-cut fixture uses two registered sound references; historical private-media fixture unchanged',works:[ownTitle,secondTitle,forestTitle],checks:['info/cover/planning/memos','linked cut jump','per-work edit position','per-work native read resume','reload','export/import exact project/audio equality','existing rich lines/chapters preserved','PC/tablet/phone purpose selection and layout','ShortStory entry'],hardware:'Browser viewport conditions; native reading in desktop viewport; no Android hardware claim'},null,2));
   } finally {
     await stopCaught?.();
@@ -434,7 +434,7 @@ test('corrupt device storage preserves its raw bytes while a new draft and check
 test('example preparation makes an independent own copy and duplicate import keeps the original',async({page},info)=>{
  test.skip(info.project.name!=='host');await page.goto('/'); await enterLibrary(page);await library(page);
  const originalTitle='선녀와 나무꾼';await openBuiltinEdition(page,'seonnyeo','knolstory','prepare');
- await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`${originalTitle} · 내 사본`);await library(page);await expect(builtinShelfCard(page,'seonnyeo')).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
+ await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(`[내작품] ${originalTitle}`);await library(page);await expect(builtinShelfCard(page,'seonnyeo')).toContainText(originalTitle);await expect(page.getByRole('region',{name:'내 작품',exact:true}).getByRole('article')).toHaveCount(1);
  const catalogFile=catalogForestFile();
  await importShelfFile(page,catalogFile);await saved(page);await library(page);
  // Match readWorkspace's complete library without requiring duplicate active bytes in storage.

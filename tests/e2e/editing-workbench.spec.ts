@@ -289,7 +289,7 @@ test('one grouped settings menu replaces scattered editor controls',async({page}
 
 test('library navigation is inside settings and returns to the same edited work',async({page})=>{
  const before=await prepare(page);await mode(page,'글 편집');await row(page,1).getByRole('textbox',{name:'2컷 글',exact:true}).fill('설정 안에서 서재로 갔다 돌아와도 남는 원고');await row(page,1).getByRole('button',{name:'이 컷 선택',exact:true}).click();
- await expect(page.getByRole('button',{name:'서재로',exact:true})).not.toBeVisible();await openWorkMenu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ await expect(page.getByRole('button',{name:'서재로',exact:true})).not.toBeVisible();await openWorkMenu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await shelfCoverButton(page,before.title).click();await page.getByRole('dialog').getByRole('button',{name:'편집하기',exact:true}).click();await expect(workbench(page)).toBeVisible();await mode(page,'글 편집');await expect(row(page,1).getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue('설정 안에서 서재로 갔다 돌아와도 남는 원고');
  const after=(await exported(page)).project;expect(after.id).toBe(before.id);expect(after.lines[1].text).toBe('설정 안에서 서재로 갔다 돌아와도 남는 원고');expect(after.lines[1].stageComposition).toEqual(before.lines[1].stageComposition);expect(after.lines[1].flow).toEqual(before.lines[1].flow);
 });

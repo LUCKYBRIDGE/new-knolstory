@@ -5,14 +5,23 @@ import {rememberAccountReturn,accountCallbackNotice} from '../lib/account-return
 import {useAccountSession} from './use-account-session';
 import {useBoundedAccountPanel} from './use-bounded-account-panel';
 import styles from './account-menu.module.css';
-type Props={beforeNavigate:()=>boolean;disabled?:boolean;returnTo?:'library'|'shortstory'};
-export function AccountMenu({beforeNavigate,disabled=false,returnTo='library'}:Props){
- const account=useAccountSession(),menu=useRef<HTMLDetailsElement>(null),busy=useRef(false);
+type AccountState=ReturnType<typeof useAccountSession>;
+type Props={beforeNavigate:()=>boolean;disabled?:boolean;returnTo?:'library'|'shortstory';account?:AccountState};
+/** A shared account state avoids a second session request in the unified library. */
+export function AccountMenu({account,...props}:Props){
+ return account?<AccountMenuView {...props} account={account}/>:<ConnectedAccountMenu {...props}/>;
+}
+function ConnectedAccountMenu(props:Omit<Props,'account'>){
+ const account=useAccountSession();
+ return <AccountMenuView {...props} account={account}/>;
+}
+function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='library'}:Omit<Props,'account'>&{account:AccountState}){
+ const menu=useRef<HTMLDetailsElement>(null),busy=useRef(false);
  useBoundedAccountPanel(menu);
  const lifecycle=useRef({active:true}),guard=useRef(beforeNavigate),requestId=useRef(0),latestSession=useRef(account.session);
  useEffect(()=>{guard.current=beforeNavigate;},[beforeNavigate]);
  useEffect(()=>{const mounted=lifecycle.current;mounted.active=true;return()=>{mounted.active=false;};},[]);
- const [pending,setPending]=useState(false),[notice,setNotice]=useState(''),[callback,setCallback]=useState('');
+ const [pending,setPending]=useState(false),[notice,setNotice]=useState(''),[callback,setCallback]=useState({message:'',result:''});
  useEffect(()=>{
   const invalidate=()=>{requestId.current++;busy.current=false;setPending(false);};
   window.addEventListener('knolstory-account-session-changed',invalidate);
@@ -25,7 +34,7 @@ export function AccountMenu({beforeNavigate,disabled=false,returnTo='library'}:P
   const timer=window.setTimeout(()=>{if(requestId.current===invalidated)setPending(false);},0);
   return()=>window.clearTimeout(timer);
  },[account.session]);
- useEffect(()=>{const timer=window.setTimeout(()=>{setCallback(accountCallbackNotice(location.search));const url=new URL(location.href);url.searchParams.delete('auth');url.searchParams.delete('reason');history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);},0);return()=>{window.clearTimeout(timer);};},[]);
+ useEffect(()=>{const timer=window.setTimeout(()=>{const url=new URL(location.href),values=url.searchParams.getAll('auth');setCallback({message:accountCallbackNotice(location.search),result:values.length===1?values[0]!:''});url.searchParams.delete('auth');url.searchParams.delete('reason');history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);},0);return()=>{window.clearTimeout(timer);};},[]);
  function navigate(destination:string){
   if(!lifecycle.current.active||!guard.current())return false;
   try{rememberAccountReturn(sessionStorage,Date.now(),returnTo);location.assign(destination);return true;}
@@ -44,12 +53,25 @@ export function AccountMenu({beforeNavigate,disabled=false,returnTo='library'}:P
   finally{if(current()){busy.current=false;setPending(false);}}
  }
  const unavailable=disabled||pending||account.loading;
- return <details ref={menu} className={styles.menu} data-account-menu><summary>계정</summary><section aria-label="놀스토리 계정" className={styles.panel}>
-  <strong>{account.loading?'로그인 확인 중':account.error?'로그인 상태 확인 필요':account.session?'로그인됨':'로그인 전'}</strong>
-  <p>이 브라우저의 작품은 로그인이나 로그아웃 뒤에도 유지됩니다. 작품은 로컬 작품 파일로 저장하고, 온라인 작품 메뉴에서 별도로 업로드할 수 있어요.</p>
-  {callback&&<p role="status">{callback}</p>}{(notice||account.error)&&<p role="alert">{notice||account.error}</p>}
-  {account.session?<><button disabled={unavailable||!account.config?.providers.google} onClick={()=>void start('google',true)}>Google 계정 연결</button><button disabled={unavailable} onClick={()=>void account.logout()}>로그아웃</button></>:<><button disabled={unavailable||!account.config?.providers.kakao} onClick={()=>void start('kakao')}>카카오로 가입·로그인</button><button disabled={unavailable||!account.config?.providers.google} onClick={()=>void start('google')}>연결한 Google로 로그인</button><p>Google 로그인은 카카오로 가입한 뒤 연결한 계정에서 사용할 수 있어요.</p></>}
-  {account.config&&(!account.config.providers.kakao||!account.config.providers.google)&&<p>일부 로그인 제공자는 설정 준비 중이에요.</p>}
-  <button disabled={pending||account.loading} onClick={()=>{setNotice('');setCallback('');void account.refresh();}}>로그인 상태 다시 확인</button>
+ const state=account.loading?'loading':account.error?'unknown':account.session?'signed-in':'signed-out';
+ const summary=account.loading?'확인 중':account.session?'내 계정':'로그인';
+ const stateLabel=account.loading?'로그인 확인 중':account.error?'로그인 상태 확인 필요':account.session?'로그인됨':'로그인 전';
+ const callbackMessage=account.session&&!account.loading&&!account.error&&callback.result==='success'?'로그인했어요.':account.session&&!account.loading&&!account.error&&callback.result==='linked'?'로그인 상태를 확인했어요.':callback.message;
+ const googleAvailable=account.config?.providers.google===true;
+ const noProviders=account.config&&!account.config.providers.kakao&&!googleAvailable;
+ return <details ref={menu} className={styles.menu} data-account-menu><summary aria-label={`계정 · ${stateLabel}`}><svg className={styles.userIcon} viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21v-2.5a7.5 7.5 0 0 1 15 0V21"/></svg><span>{summary}</span><span className={styles.stateDot} data-state={state} aria-hidden="true"/></summary><section aria-label="놀스토리 계정" className={styles.panel}>
+  <strong>{stateLabel}</strong>
+  <p>{returnTo==='shortstory'?'온라인 작품 메뉴에서 그림책을 업로드할 수 있어요.':'내 작품에서 온라인 보관 여부를 확인하고 업로드할 수 있어요.'} 작품 파일은 기기에 따로 저장해 주세요.</p>
+  {callbackMessage&&<p role="status">{callbackMessage}</p>}{(notice||account.error)&&<p role="alert">{notice||account.error}</p>}
+  {account.session?<>
+   {googleAvailable&&<button disabled={unavailable} onClick={()=>void start('google',true)}>Google 계정 연결</button>}
+   <button disabled={unavailable} onClick={()=>void account.logout()}>로그아웃</button>
+   <p className={styles.keepLocal}>로그아웃해도 이 기기의 원고는 유지돼요.</p>
+  </>:<>
+   <button className={styles.primary} disabled={unavailable||!account.config?.providers.kakao} onClick={()=>void start('kakao')}>카카오로 가입·로그인</button>
+   {googleAvailable&&<><button disabled={unavailable} onClick={()=>void start('google')}>연결한 Google로 로그인</button><p>Google 로그인은 카카오로 가입한 뒤 연결한 계정에서 사용할 수 있어요.</p></>}
+   {noProviders&&<p>로그인 서비스 설정 준비 중이에요. 이 기기의 작품은 계속 사용할 수 있어요.</p>}
+  </>}
+  <button className={styles.refresh} disabled={pending||account.loading} onClick={()=>{setNotice('');setCallback({message:'',result:''});void account.refresh();}}>로그인 상태 다시 확인</button>
  </section></details>;
 }

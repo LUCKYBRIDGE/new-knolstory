@@ -16,6 +16,7 @@ test('direct editor exposes corrupt-storage download and preserves raw bytes bef
  expect(await readFile((await downloaded.path())!,'utf8')).toBe(raw);
  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(raw);
  await recovery.getByRole('button',{name:'손상 원본 보존하고 새 보관함 시작',exact:true}).click();
+ await page.getByRole('dialog',{name:'새 보관함 시작',exact:true}).getByRole('button',{name:'새 보관함 시작 확인',exact:true}).click();
  await expect(recovery).toHaveCount(0);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  expect(await page.evaluate(()=>Object.keys(localStorage).filter(key=>key.startsWith('knolstory-workspace-recovery-')).map(key=>localStorage.getItem(key)))).toEqual([raw]);
  const restarted=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)!),workspace);expect(restarted.document.project.lines.length).toBeGreaterThan(0);
@@ -54,6 +55,7 @@ test('corrupt storage stays byte-identical until explicit recovery, with checkpo
  await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue('정상 원고 · 내 사본');
  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe('broken-workspace-raw');
  await page.getByRole('button',{name:'손상 원본 보존하고 새 보관함 시작',exact:true}).click();
+ await page.getByRole('dialog',{name:'새 보관함 시작',exact:true}).getByRole('button',{name:'새 보관함 시작 확인',exact:true}).click();
  await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');
  expect(await page.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('knolstory-workspace-recovery-')).map(k=>localStorage.getItem(k)))).toContain('broken-workspace-raw');
  await page.reload();await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue('정상 원고 · 내 사본');
@@ -61,7 +63,7 @@ test('corrupt storage stays byte-identical until explicit recovery, with checkpo
 
 test('failed deletion preserves the previous deleted book and the current draft together',async({page})=>{
  await create(page,'이전 삭제 원고');await page.getByRole('button',{name:'서재로',exact:true}).click();
- async function remove(title:string){const book=page.getByRole('article',{name:`내 작품 · ${title}`,exact:true});await book.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await focus.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();await focus.getByRole('button',{name:'내 작품 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인'}).getByRole('button',{name:'삭제 확인',exact:true}).click();}
+ async function remove(title:string){const book=page.getByRole('article',{name:`내 작품 · ${title}`,exact:true});await book.getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await focus.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();await focus.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();await page.getByRole('dialog',{name:'내 작품 삭제 확인'}).getByRole('button',{name:'삭제 확인',exact:true}).click();}
  await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await remove('이전 삭제 원고');
  await create(page,'삭제 실패 원고');await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  const before=await page.evaluate(key=>localStorage.getItem(key),workspace);
