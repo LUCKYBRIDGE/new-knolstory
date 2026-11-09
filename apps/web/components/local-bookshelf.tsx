@@ -55,7 +55,7 @@ export function LocalBookshelf({online,accountMenu,works,onOpen,onCreate,onImpor
      <label className={styles.search}>책 찾기<input type="search" maxLength={200} placeholder="제목이나 지은이" value={query} onKeyDown={event=>{if(event.key==='Enter'&&!event.nativeEvent.isComposing&&event.nativeEvent.keyCode!==229){event.preventDefault();if(tools.current)tools.current.open=false;tools.current?.querySelector<HTMLElement>('summary')?.focus();}}} onChange={event=>setQuery(event.target.value)}/></label>
      <NewStoryForm disabled={disabled} onCreate={title=>onCreate(title)!==false}/>
      <label className={styles.import}>작품 파일 가져오기<input type="file" accept=".knolstory" aria-label="서재 작품 파일 가져오기" disabled={disabled} onChange={event=>{const file=event.target.files?.[0];if(file)onImport(file);event.target.value='';}}/></label>
-     <a href="/shortstory?mode=library">숏스토리 그림책 열기</a><p>이 브라우저에 저장한 작품을 다른 기기로 옮길 때는 작품 파일로 보관하세요.</p>
+     <a href="/shortstory?mode=library">숏스토리 그림책 열기</a><p>다른 기기에서 보려면 작품을 작품 파일로 저장해 두세요.</p>
     </div></details>
    </div>
   </header>

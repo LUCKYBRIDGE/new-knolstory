@@ -70,7 +70,7 @@ function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='librar
   </>:<>
    <button className={styles.primary} disabled={unavailable||!account.config?.providers.kakao} onClick={()=>void start('kakao')}>카카오로 가입·로그인</button>
    {googleAvailable&&<><button disabled={unavailable} onClick={()=>void start('google')}>연결한 Google로 로그인</button><p>Google 로그인은 카카오로 가입한 뒤 연결한 계정에서 사용할 수 있어요.</p></>}
-   {noProviders&&<p>로그인 서비스 설정 준비 중이에요. 이 기기의 작품은 계속 사용할 수 있어요.</p>}
+   {noProviders&&<p>로그인은 아직 준비 중이에요. 이 기기의 작품은 그대로 쓸 수 있어요.</p>}
   </>}
   <button className={styles.refresh} disabled={pending||account.loading} onClick={()=>{setNotice('');setCallback({message:'',result:''});void account.refresh();}}>로그인 상태 다시 확인</button>
  </section></details>;

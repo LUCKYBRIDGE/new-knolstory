@@ -68,7 +68,7 @@ export function useStoryRuntime(
   const sendTimer = useRef<number | null>(null);
   const consumedRevision = useRef(-1);
   const renderedRevision=useRef(-1);
-  const captureThumbnail=useCallback(async()=>{const snapshot=latest.current;if(snapshot.mode!=='play')return undefined;for(let attempt=0;attempt<20&&renderedRevision.current!==snapshot.revision;attempt++){await new Promise(resolve=>setTimeout(resolve,25));if(latest.current!==snapshot)throw Error('저장 중 장면이 바뀌었습니다. 현재 컷에서 다시 저장해 주세요.');}if(renderedRevision.current!==snapshot.revision)return undefined;return captureNativeSaveThumbnail(frame.current,()=>latest.current===snapshot&&renderedRevision.current===snapshot.revision);},[]);
+  const captureThumbnail=useCallback(async()=>{const snapshot=latest.current;if(snapshot.mode!=='play')return undefined;for(let attempt=0;attempt<20&&renderedRevision.current!==snapshot.revision;attempt++){await new Promise(resolve=>setTimeout(resolve,25));if(latest.current!==snapshot)throw Error('저장하는 사이 장면이 바뀌었어요. 지금 컷에서 다시 저장해 주세요.');}if(renderedRevision.current!==snapshot.revision)return undefined;return captureNativeSaveThumbnail(frame.current,()=>latest.current===snapshot&&renderedRevision.current===snapshot.revision);},[]);
   const confirmedPhase = useRef<string|null>(null);
   const [confirmed, setConfirmed] = useState<string|null>(null);
   useEffect(() => {

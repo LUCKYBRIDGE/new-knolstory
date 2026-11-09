@@ -48,7 +48,7 @@ function OnlineLibraryActions({status,disabled,signedIn,onUpload,onOpenOnline,on
  const [confirming,setConfirming]=useState(false);
  return <><LibraryStorageBadge status={status}/>{onUpload&&<><p>{signedIn?'바꾼 내용은 직접 업로드할 때 온라인에 반영돼요.':'로그인하면 이 책을 온라인에도 보관할 수 있어요.'}</p>{signedIn&&<button disabled={disabled||status.kind==='unknown'} onClick={onUpload}>{status.kind==='linked'?'다시 업로드':'온라인에 업로드'}</button>}</>}
   {signedIn&&onOpenOnline&&<button disabled={disabled} onClick={onOpenOnline}>온라인 사본 열기</button>}
-  {signedIn&&onTrash&&(confirming?<div role="group" aria-label="온라인 휴지통 이동 확인"><p>이 기기의 원고는 유지하고 온라인 작품만 휴지통으로 옮길까요?</p><button disabled={disabled} onClick={()=>setConfirming(false)}>취소</button><button disabled={disabled} onClick={onTrash}>확인하고 온라인 휴지통으로 이동</button></div>:<button disabled={disabled||status.record?.stateVersion===undefined} onClick={()=>setConfirming(true)}>온라인 휴지통으로 이동</button>)}
+  {signedIn&&onTrash&&(confirming?<div role="group" aria-label="온라인 휴지통 이동 확인"><p>이 기기의 원고는 유지하고 온라인 작품만 휴지통으로 옮길까요?</p><button disabled={disabled} onClick={()=>setConfirming(false)}>취소</button><button disabled={disabled} onClick={onTrash}>온라인 휴지통으로 옮기기</button></div>:<button disabled={disabled||status.record?.stateVersion===undefined} onClick={()=>setConfirming(true)}>온라인 휴지통으로 이동</button>)}
   {notice&&<p role="status">{notice}</p>}{error&&<p role="alert">{error}</p>}
  </>;
 }

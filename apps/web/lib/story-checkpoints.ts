@@ -11,7 +11,7 @@ export type StoryCheckpoint=Readonly<{
 }>;
 type CheckpointStorage=Pick<Storage,'getItem'|'setItem'>;
 type CheckpointOptions=Readonly<{id?:string;now?:string}>;
-const readFailure=()=>new Error('이 기기의 복구 기록을 읽지 못했어요. 저장된 원본은 보존합니다. 작품 파일을 따로 보관해 주세요.');
+const readFailure=()=>new Error('이 기기에 보관한 이전 원고를 읽지 못했어요. 저장된 원본은 그대로예요. 작품 파일을 따로 저장해 두세요.');
 function validDate(value:unknown):value is string{return typeof value==='string'&&value.length>0&&Number.isFinite(Date.parse(value));}
 function validReason(value:unknown):value is StoryCheckpointReason{return value==='manual'||value==='before-delete';}
 
@@ -47,7 +47,7 @@ export function createStoryCheckpoint(storage:CheckpointStorage,project:StoryPro
  preflight(parsed.document.project);
  const checkpoint:StoryCheckpoint={id,projectId:project.id,createdAt,reason,project:parsed.document.project};
  const records=[record(checkpoint),...existing.map(record)].slice(0,MAX_CHECKPOINTS);
- if(JSON.stringify([records[0]]).length*2>MAX_BYTES)throw new CheckpointCapacityError('이 작품은 복구 기록 용량(2MB)을 넘습니다. .knolstory 파일로 보관해 주세요.');
+ if(JSON.stringify([records[0]]).length*2>MAX_BYTES)throw new CheckpointCapacityError('이 작품은 이전 원고로 보관할 수 있는 용량(2MB)을 넘어요. .knolstory 파일로 저장해 주세요.');
  let retained=records;
  while(JSON.stringify(retained).length*2>MAX_BYTES)retained=retained.slice(0,-1);
  try{storage.setItem(CHECKPOINT_KEY,JSON.stringify(retained));}

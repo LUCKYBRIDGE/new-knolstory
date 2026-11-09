@@ -14,13 +14,13 @@ export class RuntimeImagePreparation {
    const timer=setTimeout(()=>{if(this.pending?.id!==requestId)return;this.pending=null;reject(new Error('그림을 받는 데 시간이 걸리고 있어요. 연결 상태를 확인하고 다시 받아 주세요.'));},45000);
    this.pending={id:requestId,resolve,reject,timer};
    try{this.post({protocol:1,type:'prepareImages',requestId,paths,required});}
-   catch{clearTimeout(timer);this.pending=null;reject(new Error('그림 준비를 요청하지 못했어요. 다시 받아 주세요.'));}
+   catch{clearTimeout(timer);this.pending=null;reject(new Error('그림을 준비하지 못했어요. 잠시 뒤 다시 시도해 주세요.'));}
   });
  }
  receive(event:Reply):void{
   const pending=this.pending;if(!pending||pending.id!==event.requestId)return;
   clearTimeout(pending.timer);this.pending=null;
-  if(event.ok)pending.resolve();else pending.reject(new Error('그림을 받지 못했어요. 연결 상태를 확인하고 다시 받아 주세요.'));
+  if(event.ok)pending.resolve();else pending.reject(new Error('그림을 받지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.'));
  }
  cancel():void{
   const pending=this.pending;if(!pending)return;

@@ -1,7 +1,7 @@
 import {isPlayerThumbnail,type PlayerThumbnail} from './player-saves';
 /** Copies native pixels only. Missing/tainted/blank canvases retain the saved text summary. */
 export async function captureNativeSaveThumbnail(frame:HTMLIFrameElement|null,isCurrent:()=>boolean):Promise<PlayerThumbnail|undefined>{
- const assertCurrent=()=>{if(!isCurrent())throw Error('저장 중 장면이 바뀌었습니다. 현재 컷에서 다시 저장해 주세요.');};
+ const assertCurrent=()=>{if(!isCurrent())throw Error('저장하는 사이 장면이 바뀌었어요. 지금 컷에서 다시 저장해 주세요.');};
  assertCurrent();if(!frame)return undefined;
  let thumbnail:PlayerThumbnail|undefined;
  try{

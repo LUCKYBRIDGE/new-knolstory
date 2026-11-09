@@ -9,9 +9,9 @@ export const initialRuntimeStatus: RuntimeStatus = { failed: false, recoverable:
 export function runtimeStatusReducer(status: RuntimeStatus, signal: RuntimeStatusSignal): RuntimeStatus {
   switch (signal.type) {
     case 'error':
-      return { failed: true, recoverable:true, message: '이야기 무대를 표시하지 못했습니다. 편집으로 돌아가 현재 컷의 그림·음원을 확인한 뒤 다시 읽기를 시작해 주세요.' };
+      return { failed: true, recoverable:true, message: '이야기 무대를 보여 주지 못했어요. 편집으로 돌아가 이 컷의 그림과 소리를 살펴본 뒤 다시 읽어 주세요.' };
     case 'audioFailed':
-      return { failed: true, recoverable:true, message: '음원을 불러오지 못했습니다. 편집으로 돌아가 현재 컷의 음악·효과음을 확인한 뒤 다시 읽기를 시작해 주세요.' };
+      return { failed: true, recoverable:true, message: '소리를 불러오지 못했어요. 편집으로 돌아가 이 컷의 음악·효과음을 살펴본 뒤 다시 읽어 주세요.' };
     case 'retry':
       return initialRuntimeStatus;
     case 'waiting':

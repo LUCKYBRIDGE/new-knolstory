@@ -285,7 +285,7 @@ export function StoryWorkspace() {
         // The recovery panel explains the failure without exposing parser text
         // (which can contain manuscript excerpts) or duplicating the notice.
         setError('');
-        setStorageError("임시 보관을 읽지 못해 원본을 유지하고 자동 보관을 중지했어요. 현재 편집한 작품은 작품 파일로 저장해 주세요.");
+        setStorageError("임시 보관을 읽지 못해 원본은 그대로 두고 자동 보관을 멈췄어요. 지금 편집한 작품은 작품 파일로 저장해 주세요.");
         setSaveStatus("임시 보관 중지");
       } finally {
         setLoadComplete(true);
@@ -353,7 +353,7 @@ export function StoryWorkspace() {
    * both changed it, this tab keeps its text and the other version goes to the previous manuscripts. */
   function adoptStoredWorkspace(raw:string|null,beforeRaw:string|null){
     if(!hydrated)return;
-    try{assertTakeoverCollectionExists(raw,beforeRaw);}catch(issue){setStorageError(issue instanceof Error?issue.message:'기기 보관함을 확인해 주세요.');setSaveStatus('임시 보관 중지');throw issue;}
+    try{assertTakeoverCollectionExists(raw,beforeRaw);}catch(issue){setStorageError(issue instanceof Error?issue.message:'기기 보관함을 열지 못했어요. 브라우저의 저장 공간을 확인해 주세요.');setSaveStatus('임시 보관 중지');throw issue;}
     if(raw===null)return;
     const loaded=refreshProvidedWorkspace(readWorkspace(raw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)}));
     const base=beforeRaw===null?{}:refreshProvidedWorkspace(readWorkspace(beforeRaw,{verified:readWorkspaceChecks(localStorage,workspaceCheckBuild)})).works;
@@ -361,7 +361,7 @@ export function StoryWorkspace() {
     let conflict=false,merged=loaded.works;
     try{const result=mergeWorkspaceProjects(localStorage,{...savedProjects.current,[storyId]:project},loaded.works,base,storyId);conflict=result.conflict;merged=result.works;}
     catch(issue){
-      setStorageError(`다른 탭의 변경과 현재 원고를 함께 보존할 수 없어 자동 보관을 중지했어요. 현재 원고를 작품 파일로 저장해 주세요. 다른 탭에서 보관한 내용은 그대로 유지됩니다. ${issue instanceof Error?issue.message:''}`);
+      setStorageError(`다른 탭의 변경과 지금 원고를 함께 보관할 수 없어 자동 보관을 멈췄어요. 지금 원고를 작품 파일로 저장해 주세요. 다른 탭에서 보관한 내용은 그대로예요. ${issue instanceof Error?issue.message:''}`);
       setSaveStatus('임시 보관 중지');
       throw issue;
     }
@@ -390,17 +390,17 @@ export function StoryWorkspace() {
   function restartProtectedStorage(){
     try{ensureWritable();const raw=localStorage.getItem(WORKSPACE_KEY);if(raw!==null)localStorage.setItem(`knolstory-workspace-recovery-${crypto.randomUUID()}`,raw);
       const saved=writeWorkspaceSnapshot(writer.guard.current!,project,{[storyId]:project},{},snapshot());savedProjects.current=saved.works;contexts.current=saved.contexts;
-      setImportedWorks(isPersonalWork(storyId)?{[storyId]:project.title}:{});setHydrated(true);setStorageError('');setError('손상 원본을 별도로 보존하고 현재 작품으로 새 보관함을 시작했어요.');setSaveStatus('임시 보관됨');
+      setImportedWorks(isPersonalWork(storyId)?{[storyId]:project.title}:{});setHydrated(true);setStorageError('');setError('열리지 않던 원본은 따로 남기고, 지금 작품으로 새 보관함을 시작했어요.');setSaveStatus('임시 보관됨');
     }catch(issue){setError(`복구하지 못했어요. 원본과 현재 작품은 유지됩니다. ${String(issue)}`);}
   }
   function persistWorkspace(overrides:Partial<ReturnType<typeof snapshot>>={}){
-    if(!hydrated)throw Error('기존 복구본을 보호하기 위해 브라우저 보관을 중지했어요. 현재 작품을 작품 파일로 저장하거나 브라우저 보관함을 복구한 뒤 다시 시도해 주세요.');
+    if(!hydrated)throw Error('이전에 보관한 내용을 지키려고 브라우저 보관을 멈췄어요. 지금 작품을 작품 파일로 저장하거나 브라우저 보관함을 복구한 뒤 다시 시도해 주세요.');
     const next=writeWorkspaceSnapshot(writer.guard.current!,project,savedProjects.current,contexts.current,{...snapshot(),...overrides});
     savedProjects.current=next.works;contexts.current=next.contexts;
   }
   function beforeAccountNavigation(){
     if(composing){setError('한글 입력을 마친 뒤 로그인해 주세요.');return false;}
-    try{persistWorkspace();return true;}catch{setError('현재 원고의 복구본을 보관하지 못해 로그인 화면으로 이동하지 않았어요. 작품 파일로 저장하거나 브라우저 보관함을 복구한 뒤 다시 시도해 주세요.');return false;}
+    try{persistWorkspace();return true;}catch{setError('지금 원고를 임시 보관하지 못해 로그인 화면으로 가지 않았어요. 작품 파일로 저장하거나 브라우저 보관함을 복구한 뒤 다시 시도해 주세요.');return false;}
   }
   function completeLibraryReturn(notice=''){
     libraryReturnGeneration.current++;setLibraryReturn(null);setLibraryReturnBusy(null);setLibraryReturnNotice('');
@@ -446,7 +446,7 @@ export function StoryWorkspace() {
     completeLibraryReturn();
   }
   function stopForUnappliedInput(){if(!hasUnappliedAuthoringInput()){setError(current=>current===UNAPPLIED_AUTHORING_NOTICE?'':current);return false;}setError(UNAPPLIED_AUTHORING_NOTICE);return true;}
-  function prepareWork(memoId?:string,section?:WorkSection){if(stopForUnappliedInput())return;if(composing){setError('한글 입력을 마친 뒤 작품 설정을 열어 주세요.');return;}const id=typeof memoId==='string'?memoId:undefined;const origin=document.activeElement;settingsReturnFocus.current=section==='scores'&&view==='editor'&&origin instanceof HTMLElement&&shell.current?.contains(origin)?{projectId:project.id,lineId:line.id,field:origin}:null;if(id!==undefined){try{persistWorkspace();}catch(issue){setError(`현재 원고의 복구본을 보관하지 못해 작품 설정을 열지 않았어요. ${String(issue)}`);return;}}setMemoRequest(id!==undefined?{projectId:project.id,memoId:id,lineId:line.id,section,returnToEditor:true,editorContext:view==='editor'&&mode==='edit'?{editorView,activeTool,writerChapterId,soundTool}:undefined}:null);if(protectAuthoring('prepare'))return;rememberCurrent();setMode('edit');setView('prepare');setManageOpen(false);}
+  function prepareWork(memoId?:string,section?:WorkSection){if(stopForUnappliedInput())return;if(composing){setError('한글 입력을 마친 뒤 작품 설정을 열어 주세요.');return;}const id=typeof memoId==='string'?memoId:undefined;const origin=document.activeElement;settingsReturnFocus.current=section==='scores'&&view==='editor'&&origin instanceof HTMLElement&&shell.current?.contains(origin)?{projectId:project.id,lineId:line.id,field:origin}:null;if(id!==undefined){try{persistWorkspace();}catch(issue){setError(`지금 원고를 임시 보관하지 못해 작품 설정을 열지 않았어요. ${String(issue)}`);return;}}setMemoRequest(id!==undefined?{projectId:project.id,memoId:id,lineId:line.id,section,returnToEditor:true,editorContext:view==='editor'&&mode==='edit'?{editorView,activeTool,writerChapterId,soundTool}:undefined}:null);if(protectAuthoring('prepare'))return;rememberCurrent();setMode('edit');setView('prepare');setManageOpen(false);}
   async function preserveCopyAudio(source:StoryProject,target:StoryProject){
     try{await copyAudioWorkMetadata(source.id,target.id);return true;}
     catch(issue){setError(`사본의 음원 정보를 보존하지 못했어요. 기존 작품은 유지됩니다. ${String(issue)}`);return false;}
@@ -476,13 +476,13 @@ export function StoryWorkspace() {
       setFlowMapOpen(false);setManageOpen(false);setPresentationEntry(value=>value+1);setRevision(value=>value+1);setMemoRequest(null);
       const focus=settingsReturnFocus.current;settingsReturnFocus.current=null;
       requestAnimationFrame(()=>{const root=shell.current;if(!root)return;const origin=focus?.projectId===project.id&&focus.lineId===memoRequest.lineId?focus.field:null;if(origin?.isConnected&&root.contains(origin)&&!origin.closest('[hidden],[inert]')&&origin.getClientRects().length){origin.focus({preventScroll:true});return;}if(root.contains(document.activeElement)&&document.activeElement instanceof HTMLElement&&document.activeElement.getClientRects().length)return;root.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea[data-cut-id], [data-writer-current="true"] textarea, #story-line-text')?.focus({preventScroll:true});});
-    }catch(issue){setError(`현재 원고의 복구본을 보관하지 못해 컷 편집으로 돌아가지 않았어요. ${String(issue)}`);}
+    }catch(issue){setError(`지금 원고를 임시 보관하지 못해 컷 편집으로 돌아가지 않았어요. ${String(issue)}`);}
   }
-  function continueWriting(){if(stopForUnappliedInput())return;try{persistWorkspace();}catch(issue){setError(`현재 글의 복구본을 보관하지 못해 복귀를 멈췄어요. ${String(issue)}`);return;}setView('editor');setRuntimeMounted(true);setMode('edit');setEditorView('cut');setWriterChapterId(null);setActiveTool('text');setRevision(v=>v+1);}
+  function continueWriting(){if(stopForUnappliedInput())return;try{persistWorkspace();}catch(issue){setError(`지금 글을 임시 보관하지 못해 돌아가기를 멈췄어요. ${String(issue)}`);return;}setView('editor');setRuntimeMounted(true);setMode('edit');setEditorView('cut');setWriterChapterId(null);setActiveTool('text');setRevision(v=>v+1);}
   function beginBook(resume:boolean){
     setReadingFromEditor(false);setReaderResume(null);
     const state=resume?resumeFor(storyId,project):createPlayback(project);
-    if(!state){setError('읽은 위치를 확인할 수 없어요. 처음부터 읽기를 선택해 주세요.');return;}
+    if(!state){setError('읽던 위치를 찾지 못했어요. 처음부터 읽기를 골라 주세요.');return;}
     if(resume)try{const slot=readPlayerSaves(localStorage).works[project.id]?.auto;if(slot){const saved=loadPlayerSlot(project,slot);if(JSON.stringify(saved.state)===JSON.stringify(state))setReaderResume(saved.dialoguePosition??null);}}catch{/* Unreadable records are preserved; continue at the validated cut. */}
     setPlayback(state);setMode('play');setView('editor');setRuntimeMounted(true);setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setRevision(v=>v+1);setError('');
   }
@@ -512,7 +512,7 @@ export function StoryWorkspace() {
     }
     const context=contexts.current[key];const editId=context?.lineId&&next.lines.some(cut=>cut.id===context.lineId)?context.lineId:orderedLines(next)[0]!.id;
     const resume=intent==='resume'?resumeFor(key,next):undefined;
-    if(intent==='resume'&&!resume){setError('이 작품의 읽기 위치를 확인할 수 없어요. 처음부터 읽기 또는 읽기 저장 메뉴를 이용해 주세요.');return;}
+    if(intent==='resume'&&!resume){setError('이 작품의 읽던 위치를 찾지 못했어요. 처음부터 읽거나 읽기 메뉴의 불러오기를 이용해 주세요.');return;}
     setProject(next);setStoryId(key);setLineId(editId);setEditorView(context?.editorView??'cut');setActiveTool(context?.activeTool??'text');setWriterChapterId(context?.writerChapterId??null);setPreviewProfile(context?.previewProfile??'auto');
     setPlayback(resume??createPlayback(next,intent==='edit'||intent==='prepare'?editId:undefined));setMode('edit');setView(intent==='cover'?'cover':intent==='prepare'?'prepare':intent==='start'||intent==='resume'?'book':'editor');setRuntimeMounted(current=>current||intent==='edit');setPresentationEntry(v=>v+1);setPlaybackRun(v=>v+1);setRevision(v=>v+1);setError('');
   }
@@ -621,14 +621,14 @@ export function StoryWorkspace() {
     if(composing){setBranchError('한글 입력을 마친 뒤 새 갈래를 만들어 주세요.');return;}
     if(pendingBranch.before!==project||pendingBranch.workId!==storyId){setBranchError('원고가 바뀌어 새 갈래를 아직 만들지 않았어요. 취소 후 선택지를 다시 확인해 주세요.');return;}
     try{
-      if(!hydrated)throw Error('기존 복구본을 보호하기 위해 브라우저 보관을 중지했어요.');
+      if(!hydrated)throw Error('이전에 보관한 내용을 지키려고 브라우저 보관을 멈췄어요.');
       ensureWritable();preflight(pendingBranch.project);
       const next=writeWorkspaceSnapshot(writer.guard.current!,pendingBranch.project,savedProjects.current,contexts.current,{...snapshot(),lineId:pendingBranch.line.id,editingPath:pendingBranch.editingPath,playback:createPlayback(pendingBranch.project,pendingBranch.line.id),editorView:'cut',activeTool:'text',writerChapterId:pendingBranch.line.chapterId});
       savedProjects.current=next.works;contexts.current=next.contexts;
       setEditingPaths(current=>({...current,[storyId]:pendingBranch.editingPath}));
       applyProject(pendingBranch.project,pendingBranch.line.id);setActiveTool('text');setEditorView('cut');setSoundTool(false);setPendingBranch(null);setBranchError('');setSaveStatus('임시 보관됨');
       requestAnimationFrame(()=>document.querySelector<HTMLTextAreaElement>('#story-line-text')?.focus());
-    }catch(issue){setBranchError(`새 갈래의 복구본을 보관하지 못해 기존 원고와 선택지를 유지했어요. ${String(issue)}`);}
+    }catch(issue){setBranchError(`새 갈래를 임시 보관하지 못해 기존 원고와 선택지는 그대로 뒀어요. ${String(issue)}`);}
   }
   function selectCut(id: string,visitIndex?:number) {
     if(stopForUnappliedInput())return false;
@@ -637,9 +637,9 @@ export function StoryWorkspace() {
     const nextPath=visitIndex===undefined?visitEditingCut(editingPath,id,project.lines.map(cut=>cut.id),lineId):returnToEditingVisit(editingPath,visitIndex,project.lines.map(cut=>cut.id),lineId);
     if(visitIndex!==undefined&&(!Number.isInteger(visitIndex)||visitIndex<0||visitIndex>=editingPath.length||nextPath.at(-1)!==id))return false;
     const nextPlayback=createPlayback(project,id);
-    try{persistWorkspace({lineId:id,editingPath:nextPath,playback:nextPlayback});}catch(issue){setError(`현재 글의 복구본을 보관하지 못해 이동을 멈췄어요. ${String(issue)}`);setSaveStatus("임시 보관 실패 — 작품 파일로 저장해 주세요");return false;}
+    try{persistWorkspace({lineId:id,editingPath:nextPath,playback:nextPlayback});}catch(issue){setError(`지금 글을 임시 보관하지 못해 이동을 멈췄어요. ${String(issue)}`);setSaveStatus("임시 보관 실패 — 작품 파일로 저장해 주세요");return false;}
     setEditingPaths(current=>({...current,[storyId]:nextPath}));
-    setError(current=>current==='한글 입력을 마친 뒤 컷을 이동해 주세요.'||current.startsWith('현재 글의 복구본을 보관하지 못해 이동을 멈췄어요.')?'':current);
+    setError(current=>current==='한글 입력을 마친 뒤 컷을 이동해 주세요.'||current.startsWith('지금 글을 임시 보관하지 못해 이동을 멈췄어요.')?'':current);
     setPresentationEntry(value=>value+1);
     dragCleanup.current?.();
     setLineId(id);
@@ -657,7 +657,7 @@ export function StoryWorkspace() {
   }
   function editFromFlow(id: string, repair?: { choiceId?: string; kind?: string }) {if(stopForUnappliedInput())return false;
     if(composing){setError('한글 입력을 마친 뒤 연결된 컷을 열어 주세요.');return false;}
-    try{persistWorkspace();}catch(issue){setError(`현재 글의 복구본을 보관하지 못해 이동을 멈췄어요. ${String(issue)}`);return false;}
+    try{persistWorkspace();}catch(issue){setError(`지금 글을 임시 보관하지 못해 이동을 멈췄어요. ${String(issue)}`);return false;}
     const copied=protectAuthoring('editor',id);
     if(!copied&&!selectCut(id))return false;
     setView("editor");setRuntimeMounted(true);
@@ -706,8 +706,8 @@ export function StoryWorkspace() {
     if(next==='play'&&stopForUnappliedInput())return;
     if(composing){setError('한글 입력을 마친 뒤 읽기를 시작해 주세요.');return;}
     let nextPlayback:typeof playback;
-    try{nextPlayback=createPlayback(project,sourceLineId??(fromStart?undefined:line.id));}catch(issue){setError(`재생할 컷을 확인해 주세요. ${String(issue)}`);return;}
-    if(next==='play')try{persistWorkspace();previewEditor.beforePreview();}catch(issue){setError(`현재 글의 복구본을 보관하지 못해 읽기를 시작하지 않았어요. ${String(issue)}`);return;}
+    try{nextPlayback=createPlayback(project,sourceLineId??(fromStart?undefined:line.id));}catch(issue){setError(`재생할 컷을 찾지 못했어요. ${String(issue)}`);return;}
+    if(next==='play')try{persistWorkspace();previewEditor.beforePreview();}catch(issue){setError(`지금 글을 임시 보관하지 못해 읽기를 시작하지 않았어요. ${String(issue)}`);return;}
     if(next==='edit'&&protectAuthoring('editor'))return;
     rememberCurrent();
     setPresentationEntry(value=>value+1);
@@ -782,7 +782,7 @@ export function StoryWorkspace() {
   function saveBeforeImport(forUpload=false){
     if(hasUnappliedAuthoringInput())throw new Error(UNAPPLIED_AUTHORING_NOTICE);
     if(composing)throw new Error(forUpload?'한글 입력을 마친 뒤 업로드해 주세요.':'한글 입력을 마친 뒤 가져온 작품을 열어 주세요.');
-    try{persistWorkspace();}catch(issue){throw new Error(forUpload?'현재 원고를 기기에 보관하지 못해 업로드를 멈췄어요. 작품 파일로 먼저 저장해 주세요.':`현재 원고의 복구본을 보관하지 못해 가져온 작품을 열지 않았어요. ${String(issue)}`);}
+    try{persistWorkspace();}catch(issue){throw new Error(forUpload?'현재 원고를 기기에 보관하지 못해 업로드를 멈췄어요. 작품 파일로 먼저 저장해 주세요.':`지금 원고를 임시 보관하지 못해 가져온 작품을 열지 않았어요. ${String(issue)}`);}
   }
   async function applyPendingArchive(){
     if(!pendingArchive||pendingArchive.format!=='knolstory')return;
@@ -803,7 +803,7 @@ export function StoryWorkspace() {
     if(work===project&&stopForUnappliedInput())return;
     try {
       const portable=await portableStory(work);const content=await encodeAuthoringArchive(await createAuthoringArchive({format:'knolstory',document:documentForExport(portable),audioResources:portable.audioResources??[]}));
-      if(new Blob([content]).size>25_000_000)throw new Error('작품 파일은25MB 이하여야 합니다.');
+      if(new Blob([content]).size>25_000_000)throw new Error('작품 파일은 25MB 이하여야 해요.');
       downloadArtifact(content,`${work.title.replace(/[\\/:*?"<>|]/g,'_')}.knolstory`,'application/octet-stream');setManageOpen(false);
     } catch (issue) {
       setError(`파일로 보관하지 못했어요. ${String(issue)}`);
@@ -932,8 +932,8 @@ export function StoryWorkspace() {
     target.addEventListener("lostpointercapture", end);
   }
   function changeWorkSection(section:WorkSection){if(stopForUnappliedInput())return;setMemoRequest(current=>({projectId:project.id,memoId:current?.projectId===project.id?current.memoId:'',lineId:current?.projectId===project.id?current.lineId:line.id,section,returnToEditor:current?.projectId===project.id?current.returnToEditor:false,editorContext:current?.projectId===project.id?current.editorContext:undefined}));setManageOpen(false);}
-  const workHeader=(children:ReactNode)=><WorkspaceManagement fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} exitActions={<><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장되지 않은 변경이 있어 편집을 유지합니다. 작품 파일 저장 상태를 확인해 주세요.');}}>작품 파일 저장하고 서재로</button></>} settingsExtras={<><button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button><div ref={setSettingsHost}/>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="장 추가·보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<EditorTermGuide/>
-            <p>컷 미리보기 · 가로 16:9 고정. 읽기 화면에서는 16:9 또는 9:16을 선택할 수 있어요.</p>
+  const workHeader=(children:ReactNode)=><WorkspaceManagement fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} exitActions={<><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장하지 않은 변경이 있어서 편집 화면에 머물렀어요. 작품 파일이 저장됐는지 확인해 주세요.');}}>작품 파일 저장하고 서재로</button></>} settingsExtras={<><button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button><div ref={setSettingsHost}/>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="장 추가·보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<EditorTermGuide/>
+            <p>컷 미리보기는 가로 16:9로 고정돼요. 읽기 화면에서는 16:9와 9:16 중에서 고를 수 있어요.</p>
           <button aria-pressed={reducedMotion || motionOverride} onClick={() => { setMotionOverride(value => !value); setRevision(value => value + 1); }} disabled={reducedMotion}>동작 줄이기</button>
           <button disabled={composing} onClick={()=>switchMode('play',true)}>처음부터 읽기</button></div></details>}</>} scoresEnabled={logic.scores} localFileActions={<LocalWorkFileActions registerSave={leaveTracker.registerSave} onVerifiedSave={leaveTracker.saved} onSavingChange={leaveTracker.saving} shortcutsEnabled={view==='prepare'||view==='editor'&&mode==='edit'} fileSession={localFileSession} workKey={project.id} name={project.title} extension=".knolstory" disabled={composing||!loadComplete} serialize={()=>serializeLocalWork()}/>} disabled={composing} recovery={<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>} project={project} compact={true} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={open=>{setManageOpen(open);if(open)shell.current?.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open]').forEach(detail=>{detail.open=false;});if(open&&viewToolsMenu.current)viewToolsMenu.current.open=false;}} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportArchive={archive=>{if(stopForUnappliedInput())return;setError('');setPendingArchive(archive);}} onError={setError} onLibrary={returnToLibrary} onPrepare={section=>view==='prepare'?changeWorkSection(section):prepareWork('',section)}>{children}</WorkspaceManagement>;
   const nativeStage=runtimeMounted?<section className={styles.stage} aria-label="이야기 무대">
@@ -1021,7 +1021,7 @@ export function StoryWorkspace() {
               ? " · 전환 화면에서 계속을 눌러 주세요"
               : ""}
           </div>
-          {mode==='edit'&&activeTool==='cuts'&&(line.ending?.endsStory||line.flow?.type==='goto')&&<p className={styles.hint}>이 컷 뒤에 추가하면 현재 엔딩/이동은 새 컷의 끝으로 옮겨져 이어집니다. 다른 갈래는 선택지에서 새 장으로 연결하세요.</p>}
+          {mode==='edit'&&activeTool==='cuts'&&(line.ending?.endsStory||line.flow?.type==='goto')&&<p className={styles.hint}>이 컷 뒤에 추가하면 지금의 엔딩·이동 설정이 새 컷으로 넘어가요. 다른 갈래는 선택지에서 새 장으로 연결하세요.</p>}
           <StoryStageNavigation mode={mode} activeTool={activeTool} line={line} chapterCuts={chapterCuts} chapterCutIndex={chapterCutIndex} playback={playback} onAdd={addCut} onMove={direction=>editStructure(()=>moveStoryCut(project,line.id,direction))} onSelect={selectCut} onRepair={()=>editFromFlow(line.id,{kind:'missing-target'})} onRestart={()=>{setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setPlayback(createPlayback(project));setRevision(v=>v+1);}}/>
           {!!project.scores?.length&&(mode==='play'||activeTool==='flow')&&<details className={`${styles.semantic} ${styles.scoreSummary}`}><summary>이야기 점수 확인</summary><p>{mode==='play'?'이번 읽기에서 선택한 결과로 계산합니다.':'편집 중에는 시작 점수를 기준으로 보여줍니다.'}</p>{project.scores.map(score=><p key={score.id}>{score.name}: <output aria-label={`${score.name} 현재 점수`}>{mode==='play'?playbackScores(project,playback)[score.id]:score.initial}</output></p>)}</details>}
           <StoryTextAccessibility sceneReady={runtime.rendered===scene.revision} nativeFrame={runtime.frame} onNativeBackTab={()=>runtime.container.current?.querySelector<HTMLButtonElement>('[data-reader-menu-trigger]')?.focus()} scene={scene} hasMoreText={!!runtime.renderEvidence?.dialoguePage&&runtime.renderEvidence.revision===scene.revision&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1} mode={mode} status={playback.status} presentationPending={runtime.presentationPending} readerBusy={readerBusy} onAdvance={advance} onBack={rewind} canGoBack={readerCanGoBack}/>
@@ -1033,10 +1033,10 @@ export function StoryWorkspace() {
   const storageRecovery = storageError&&<section aria-label="기기 보관함 복구" className={`${styles.error} ${styles.storageWarning}`}><p>{storageError}</p><button onClick={()=>{try{const raw=localStorage.getItem(WORKSPACE_KEY);if(raw!==null)downloadArtifact(raw,'놀스토리-복구원본.json','application/json');}catch(issue){setError(String(issue));}}}>복구용 원본 보관</button><button onClick={()=>setConfirmStorageRestart(true)} disabled={!storageWritable}>손상 원본 보존하고 새 보관함 시작</button></section>;
   return (<StoryBranchEditingContext.Provider value={logic.branches}>
     <WorkLeaveGuard tracker={leaveTracker} work={project} ready={loadComplete}/>
-    {libraryReturn&&<LibraryReturnDialog reason={libraryReturn.reason} notice={libraryReturnNotice} busy={libraryReturnBusy} onCancel={cancelLibraryReturn} onRetry={()=>void retryLibraryReturn()} onSave={()=>void saveFileAndReturn()} onContinue={()=>completeLibraryReturn('임시 보관을 완료하지 못한 원고를 이 탭에 유지했어요. 새로고침하거나 닫기 전에 작품 파일로 저장해 주세요.')}/>}
+    {libraryReturn&&<LibraryReturnDialog reason={libraryReturn.reason} notice={libraryReturnNotice} busy={libraryReturnBusy} onCancel={cancelLibraryReturn} onRetry={()=>void retryLibraryReturn()} onSave={()=>void saveFileAndReturn()} onContinue={()=>completeLibraryReturn('임시 보관이 안 된 원고가 이 탭에 있어요. 새로고침하거나 닫기 전에 작품 파일로 저장해 주세요.')}/>}
     <MobileFullscreenOffer enabled={['editor','prepare'].includes(view)&&!composing} onEnter={()=>void toggleFullscreen()}/>
     {['editor','prepare','book','cover'].includes(view)&&excludedAudio.length>0&&<p role="alert" className={styles.error}>이 작품에 서비스에서 제외한 기본 소리가 있습니다: {excludedAudio.map(asset=>asset.name).join(', ')}. 해당 소리는 재생하지 않으며 원고의 소리 지정은 보존합니다. 음향 편집에서 사용할 소리로 교체해 주세요.</p>}
-    {importBusy&&!pendingArchive&&<p role='status' className={styles.status}>작품 파일의 연결·연출·첨부를 확인하고 있어요. 긴 작품은 잠시 걸릴 수 있습니다.</p>}
+    {importBusy&&!pendingArchive&&<p role='status' className={styles.status}>작품 파일을 살펴보고 있어요. 긴 작품은 조금 걸릴 수 있어요.</p>}
     {pendingArchive&&pendingArchive.format==='knolstory'&&<AuthoringImportDialog title={pendingArchive.document.project.title} kind='knolstory' chapterCount={pendingArchive.document.project.chapters.length} cutCount={pendingArchive.document.project.lines.length} resourceCount={pendingArchive.audioResources.length} busy={importBusy} error={error} onCancel={()=>setPendingArchive(null)} onApply={applyPendingArchive}/>}
     {view!=='editor'&&storageWarning}
     {confirmStorageRestart&&<StorageReloadDialog restart composing={composing} onCancel={()=>setConfirmStorageRestart(false)} onConfirm={()=>{setConfirmStorageRestart(false);restartProtectedStorage();}}/>}
@@ -1094,7 +1094,7 @@ export function StoryWorkspace() {
         </div>
       </div>
       <p className={styles.footer}>
-        {storageError ? "기존 복구본을 보호하기 위해 브라우저 자동 보관을 중지했어요. 현재 편집한 작품은 작품 파일로 저장해 주세요." : "작품은 작품 파일로 저장해 주세요. 임시 보관은 작품 파일 저장을 대신하지 않아요."}
+        {storageError ? "이전에 보관한 내용을 지키려고 브라우저 자동 보관을 멈췄어요. 지금 편집한 작품은 작품 파일로 저장해 주세요." : "작품은 작품 파일로 저장해 주세요. 임시 보관은 작품 파일 저장을 대신하지 않아요."}
       </p>
     </main>
     </StoryBranchEditingContext.Provider>);

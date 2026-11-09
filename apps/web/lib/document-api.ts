@@ -8,9 +8,9 @@ const documentErrorMessages:ReadonlyMap<string,string>=new Map([
  ['REVISION_CONFLICT','다른 곳에서 수정한 작품이 있어요. 온라인 작품을 사본으로 불러와 비교해 주세요.'],
  ['DOCUMENT_TRASHED','온라인 휴지통에서 이 작품을 복구한 뒤 다시 업로드해 주세요. 기기의 원고는 유지됩니다.'],
  ['DOCUMENT_STATE_CONFLICT','온라인 작품 상태가 바뀌었어요. 목록을 새로고침한 뒤 다시 확인해 주세요.'],
- ['SESSION_REQUIRED','로그인을 다시 확인해 주세요.'],
+ ['SESSION_REQUIRED','다시 로그인해 주세요.'],
  ['CATALOG_MEDIA_REQUIRED','온라인 업로드에는 서비스에 등록된 그림과 소리만 사용할 수 있어요. 기기의 원고는 유지됩니다.'],
- ['RATE_LIMITED','요청이 많아 잠시 처리할 수 없어요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 유지됩니다.'],
+ ['RATE_LIMITED','지금 요청이 많아요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 그대로 있어요.'],
  ['INVALID_SNAPSHOT','작품 내용을 확인하지 못해 업로드하지 않았어요. 기기의 원고는 유지됩니다.'],
 ]);
 export class OnlineDocumentError extends Error{

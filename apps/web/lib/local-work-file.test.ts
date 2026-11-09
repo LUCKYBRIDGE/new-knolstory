@@ -33,13 +33,13 @@ describe('local work file saving', () => {
   it('protects external edits and permits an explicit saveAs afterward', async () => {
     const selected = file(); const saver = createLocalWorkFileSaver({pick: async () => selected.handle, download: vi.fn()});
     await saver.save(input()); selected.edit('external');
-    await expect(saver.save(input('a', 'new'))).rejects.toThrow(/외부/);
+    await expect(saver.save(input('a', 'new'))).rejects.toThrow(/다른 곳에서 파일이 바뀌었어요/);
     expect(selected.stream.write).toHaveBeenCalledTimes(1);
     expect((await saver.save({...input(), saveAs: true})).kind).toBe('saved');
   });
   it('protects edits occurring during serialization even on the first save', async () => {
     const selected = file(); const saver = createLocalWorkFileSaver({pick: async () => selected.handle, download: vi.fn()});
-    await expect(saver.save({...input(), serialize: async () => {selected.edit('external'); return 'mine';}})).rejects.toThrow(/외부/);
+    await expect(saver.save({...input(), serialize: async () => {selected.edit('external'); return 'mine';}})).rejects.toThrow(/다른 곳에서 파일이 바뀌었어요/);
     expect(selected.handle.createWritable).not.toHaveBeenCalled();
   });
   it('cancels a picker without serializing, and propagates permission failure', async () => {
@@ -194,7 +194,7 @@ describe('local file failure guidance', () => {
   });
   it('gives permission advice without exposing native paths or English details', () => {
     const message = localWorkFileErrorMessage(new DOMException('Permission denied /private/manuscript', 'NotAllowedError'));
-    expect(message).toContain('파일을 사용할 권한');
+    expect(message).toContain('파일을 쓸 권한이 없어요');
     expect(message).toContain('다른 파일로 저장');
     expect(message).not.toMatch(/Permission|private|manuscript/);
     expect(localWorkFileErrorMessage(new DOMException('blocked', 'SecurityError'))).toBe(message);
@@ -210,7 +210,7 @@ describe('local file failure guidance', () => {
     const selected = file(); const saver = createLocalWorkFileSaver({pick: async () => selected.handle, download: vi.fn()});
     await saver.save(input()); selected.edit('external');
     try {await saver.save(input()); throw new Error('expected conflict');}
-    catch (issue) {expect(localWorkFileErrorMessage(issue)).toContain('외부에서 변경');}
+    catch (issue) {expect(localWorkFileErrorMessage(issue)).toContain('다른 곳에서 파일이 바뀌었어요');}
     try {await saver.save({...input(), serialize: async () => 'a'.repeat(25_000_001)}); throw new Error('expected limit');}
     catch (issue) {expect(localWorkFileErrorMessage(issue)).toContain('작품 파일은 25 MB');}
   });

@@ -88,7 +88,7 @@ export function StoryChapterSettings({project,chapterId,onProjectChange,characte
   <details><summary>장 번호·갈래 표시</summary>
    <label>장 번호<ChapterNumberInput key={`${project.id}/${chapterId}`} value={getDisplayedChapterNumber(chapter)} errorId={errorId} disabled={disabled||composing} onCommit={draft=>{if(!composing)apply(()=>changeChapterNumber(project,chapterId,draft));}}/></label>
    <label>갈래 표시<input aria-label="장 갈래 표시" maxLength={20} placeholder="예: A, B · 표시하지 않으려면 비워 두세요" value={getDisplayedChapterBranch(chapter)} disabled={disabled} {...composition} onChange={event=>apply(()=>changeChapterBranchLabel(project,chapterId,event.target.value))}/></label>
-   <p>장 이름에 보이는 번호와 갈래 표시를 바꿔요. 장 순서나 컷 연결은 바뀌지 않아요. 갈래 표시를 적어도 새로운 이야기 갈래가 만들어지지는 않아요.</p>
+   <p>장 이름에 보이는 번호와 갈래 표시를 바꿔요. 장 순서와 컷 연결은 그대로예요. 갈래 표시만 적는다고 새 갈래가 생기지는 않아요.</p>
   </details>
   <label>장 개요<textarea aria-label={`${name} 장 개요`} value={chapter.summary} maxLength={20000} rows={3} disabled={disabled} {...composition} onChange={event=>patch({summary:event.target.value})}/></label>
   <fieldset disabled={disabled||composing}>

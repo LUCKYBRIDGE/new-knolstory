@@ -41,7 +41,7 @@ export function localWorkFileErrorMessage(issue: unknown): string {
   if (issue instanceof LocalWorkFileError) return issue.message;
   if (issue instanceof DOMException) {
     if (issue.name === 'NotAllowedError' || issue.name === 'SecurityError') {
-      return '파일을 사용할 권한을 확인해 주세요. 다시 시도할 때 권한을 허용하거나, 다른 파일로 저장해 주세요.';
+      return '파일을 쓸 권한이 없어요. 다시 시도할 때 권한을 허용하거나, 다른 파일로 저장해 주세요.';
     }
     if (issue.name === 'QuotaExceededError') {
       return '기기의 저장 공간을 확인한 뒤 다시 시도하거나, 다른 위치의 파일로 저장해 주세요.';
@@ -78,7 +78,7 @@ async function writeVerified(handle: LocalWorkFileHandle, text: string, isCurren
     if (delay) await new Promise(resolve => setTimeout(resolve, delay));
     if (await (await handle.getFile()).text() === text) return true;
   }
-  throw new LocalWorkFileError('저장한 파일의 내용을 확인하지 못했습니다. 다른 이름으로 저장해 주세요.');
+  throw new LocalWorkFileError('저장한 파일의 내용을 확인하지 못했어요. 다른 이름으로 저장해 주세요.');
 }
 
 /** Keep handles per work, never in browser storage or under another work identity. */
@@ -119,7 +119,7 @@ export function createLocalWorkFileSaver(options: {
           return {kind: 'download-requested', name};
         }
         if (await (await handle.getFile()).text() !== baseline) {
-          throw new LocalWorkFileError('파일이 외부에서 변경되었습니다. 원본을 보존하고 다른 이름으로 저장해 주세요.');
+          throw new LocalWorkFileError('다른 곳에서 파일이 바뀌었어요. 원본은 그대로 두고 다른 이름으로 저장해 주세요.');
         }
         if (input.isCurrent && !input.isCurrent()) return {kind: 'cancelled', name};
         if (!await writeVerified(handle, text, input.isCurrent)) return {kind: 'cancelled', name};

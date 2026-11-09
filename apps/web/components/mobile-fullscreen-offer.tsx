@@ -28,7 +28,7 @@ export function MobileFullscreenOffer({enabled,onEnter}:{enabled:boolean;onEnter
  useEffect(()=>{if(!open)return;const element=dialog.current,origin=document.activeElement as HTMLElement|null;element?.showModal();return()=>{element?.close();if(origin?.isConnected)origin.focus({preventScroll:true});};},[open]);
  if(!open)return null;
  return <dialog ref={dialog} aria-label="휴대폰 전체 화면 안내" className={`${styles.dialog} ${surface.surface}`} onCancel={event=>{event.preventDefault();setOpen(false);}} onKeyDown={event=>trapDialogTab(event,dialog.current)}>
-  <h2>전체 화면으로 볼까요?</h2><p>주소창을 숨겨 이야기와 편집 공간을 넓게 사용할 수 있어요.</p><p>나중에 설정에서 켜거나 끌 수 있어요.</p>
+  <h2>전체 화면으로 볼까요?</h2><p>주소창을 숨기면 화면이 더 넓어져요.</p><p>나중에 설정에서 켜거나 끌 수 있어요.</p>
   <div className={styles.actions}><button type="button" onClick={()=>setOpen(false)}>지금은 그대로</button><button type="button" onClick={()=>{setOpen(false);onEnter();}}>전체 화면 시작</button></div>
  </dialog>;
 }

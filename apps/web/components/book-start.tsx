@@ -21,10 +21,10 @@ export function BookStart({project,canResume,onStart,onResume,onLibrary,onPrepar
     {project.cover?.author&&<p className={styles.author}>지은이 · {project.cover.author}</p>}
     {project.cover?.authorNote&&<details className={styles.authorNote}><summary>작가의 말</summary><p>{project.cover.authorNote}</p></details>}
     <div className={styles.startActions}>
-     <button type="button" className={!canResume?styles.primary:undefined} disabled={!project.lines.length} onClick={onStart} aria-label="처음부터 읽기" aria-describedby={startDescriptionId} data-book-start-action="start"><strong>처음부터 읽기</strong><small id={startDescriptionId}>첫 장부터 이야기를 펼쳐요</small></button>
-     <button type="button" className={canResume?styles.primary:undefined} disabled={!canResume} onClick={onResume} aria-label="이어읽기" aria-describedby={resumeDescriptionId} data-book-start-action="resume"><strong>이어읽기</strong><small id={resumeDescriptionId}>{canResume?'읽던 장면에서 다시 만나요':'읽기 시작 후 이어갈 수 있어요'}</small></button>
+     <button type="button" className={!canResume?styles.primary:undefined} disabled={!project.lines.length} onClick={onStart} aria-label="처음부터 읽기" aria-describedby={startDescriptionId} data-book-start-action="start"><strong>처음부터 읽기</strong><small id={startDescriptionId}>첫 장부터 읽어요</small></button>
+     <button type="button" className={canResume?styles.primary:undefined} disabled={!canResume} onClick={onResume} aria-label="이어읽기" aria-describedby={resumeDescriptionId} data-book-start-action="resume"><strong>이어읽기</strong><small id={resumeDescriptionId}>{canResume?'읽던 장면부터 이어서 읽어요':'아직 읽은 기록이 없어요'}</small></button>
     </div>
-    <p className={styles.readingHint}>읽기 화면에서 무대를 한 번 누르면 소리와 이야기가 시작됩니다. 진행 저장과 지난기록은 읽기 메뉴에서 열 수 있어요.</p>
+    <p className={styles.readingHint}>읽기 화면에서 무대를 한 번 누르면 소리와 이야기가 시작돼요. 진행 저장과 지난기록은 읽기 메뉴에 있어요.</p>
     <div className={styles.editActions} role="group" aria-label="이 책 고쳐쓰기"><span>나의 손길 더하기</span><div><button type="button" onClick={onPrepare}>작품 정보·기획</button><button type="button" onClick={onEdit}>편집하기</button></div></div>
   </section></div>
  </main>;

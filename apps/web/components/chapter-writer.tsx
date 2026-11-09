@@ -113,7 +113,7 @@ export function ChapterWriter({ project, chapterId, lineId, onSelectCut, onProje
         <label>장 말하는 인물 추가<input aria-label="장 말하는 인물 추가" value={speakerDraft} maxLength={200} onChange={event => setSpeakerDraft(event.target.value)} /></label>
         <button type="button" disabled={!speakerDraft.trim()} onClick={() => { updateChapter({ chapterSpeakerNames: unique([...chapter.chapterSpeakerNames, speakerDraft.trim()]) }); setSpeakerDraft(""); }}>장 말하는 인물 등록</button>
       </fieldset>
-      <p className={styles.hint}>장 기본 자료는 이어받는 컷에 적용됩니다. 기본값을 비우면 작품 기본값을 이어받을 수 있으며, 직접 배치하거나 인물 없음을 지정한 컷은 유지됩니다.</p>
+      <p className={styles.hint}>장 기본 자료는 이어받는 컷에 적용돼요. 비우면 작품 기본값을 이어받아요. 직접 배치하거나 인물 없음으로 정한 컷은 그대로예요.</p>
       <AssetPickerField label="장 기본 배경" type="background" value={chapter.backgroundId} chapterAssetIds={pool} allowDefault defaultLabel="작품 기본 배경 이어받기" onChange={id => defaultAsset("backgroundId", id)} />
       <AssetPickerField label="장 기본 왼쪽 인물" type="character" value={chapter.leftAssetId} chapterAssetIds={pool} allowDefault defaultLabel="작품 기본 왼쪽 인물 이어받기" onChange={id => defaultAsset("leftAssetId", id)} />
       <AssetPickerField label="장 기본 오른쪽 인물" type="character" value={chapter.rightAssetId} chapterAssetIds={pool} allowDefault defaultLabel="작품 기본 오른쪽 인물 이어받기" onChange={id => defaultAsset("rightAssetId", id)} />
@@ -157,7 +157,7 @@ export function ChapterWriter({ project, chapterId, lineId, onSelectCut, onProje
           <button type="button" onClick={() => {
             const position=splitPosition?.id===line.id?splitPosition.position:textRef.current?.selectionStart??0;
             const id=crypto.randomUUID();
-            try {onProjectChange(splitStoryCut(project,line.id,id,position),id);setError("");setNotice("글을 나눴어요. 새 컷은 같은 배치와 연출·소리를 이어받으며, 선택지와 엔딩은 뒤 컷에 남고, 선택 조건 연결도 함께 유지해요.");}
+            try {onProjectChange(splitStoryCut(project,line.id,id,position),id);setError("");setNotice("글을 나눴어요. 새 컷은 같은 배치와 연출·소리를 이어받고, 선택지와 엔딩은 뒤 컷에 남아요. 선택 조건 연결도 그대로예요.");}
             catch(cause){setError(cause instanceof Error?cause.message:"나눌 위치를 확인해 주세요.");}
           }}>커서 위치에서 컷 나누기</button>
           {index<cuts.length-1&&<button type="button" onClick={() => {

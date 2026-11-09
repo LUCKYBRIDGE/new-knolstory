@@ -93,7 +93,7 @@ export function StorySpeakerControls({ project, line, stage, onProjectChange, pa
         {actorLabel(stage,actor.key)} · {(()=>{const asset=resolveAsset(actor.assetId);return asset?assetDisplayName(asset):'그림 선택';})()}
       </option>)}
     </select></label>
-    <p className={styles.hint}>배치한 인물을 지정하면 해당 인물의 말하는 인물 강조만 바뀝니다. 말하는 인물 이름과 대사/해설 종류는 그대로 유지해요.</p>
+    <p className={styles.hint}>배치한 인물을 고르면 그 인물의 말하는 표시만 바뀌어요. 말하는 인물 이름과 대사/해설 종류는 그대로예요.</p>
     <details className={styles.speakerSetup}>
       <summary>말하는 인물 설정 · 기본 이미지</summary>
     <div className={styles.controls}>

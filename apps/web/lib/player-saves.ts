@@ -85,7 +85,7 @@ export function writePlayerSaves(storage:Pick<Storage,'setItem'>,saves:PlayerSav
 export function loadPlayerSlot(project:StoryProject,slot:PlayerSlot,allowChanged=false):Readonly<{state:PlaybackState;changed:boolean;dialoguePosition?:PlayerDialoguePosition}>{
  if(!validateSlot(slot)||slot.projectId!==project.id)throw Error('이 작품의 읽기 저장이 아닙니다.');
  const changed=isPlayerSlotChanged(project,slot);
- if(changed&&!allowChanged)throw Error('저장 이후 작품이 변경되었습니다. 연결을 확인하고 현재 작품에서 이어읽기를 선택해 주세요.');
+ if(changed&&!allowChanged)throw Error('저장한 뒤 작품이 바뀌었어요. 지금 작품에서 이어읽기를 골라 주세요.');
  const state=restorePlayback(project,slot.playback);
  const dialoguePosition=changed?undefined:normalizeDialoguePosition(project,state,slot.dialoguePosition);
  return {state,changed,...(dialoguePosition?{dialoguePosition}:{})};
