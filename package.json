@@ -36,7 +36,8 @@
     "delivery:preview": "python3 scripts/serve-static-candidate.py",
     "delivery:verify": "python3 scripts/verify-static-deployment.py",
     "test:e2e:static": "playwright test --config tests/static-delivery.playwright.config.ts",
-    "test:client-proof": "node server/operations/test-client-proof.mjs"
+    "test:client-proof": "node server/operations/test-client-proof.mjs",
+    "test:e2e:registry": "node scripts/check-e2e-registration.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
