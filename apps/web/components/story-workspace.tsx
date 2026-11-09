@@ -627,7 +627,7 @@ export function StoryWorkspace() {
       savedProjects.current=next.works;contexts.current=next.contexts;
       setEditingPaths(current=>({...current,[storyId]:pendingBranch.editingPath}));
       applyProject(pendingBranch.project,pendingBranch.line.id);setActiveTool('text');setEditorView('cut');setSoundTool(false);setPendingBranch(null);setBranchError('');setSaveStatus('임시 보관됨');
-      requestAnimationFrame(()=>document.querySelector<HTMLTextAreaElement>('#story-line-text')?.focus());
+      requestAnimationFrame(()=>(document.querySelector<HTMLTextAreaElement>(`textarea[data-cut-id="${pendingBranch.line.id}"]`)??document.querySelector<HTMLTextAreaElement>('#story-line-text'))?.focus());
     }catch(issue){setBranchError(`새 갈래를 임시 보관하지 못해 기존 원고와 선택지는 그대로 뒀어요. ${String(issue)}`);}
   }
   function selectCut(id: string,visitIndex?:number) {
