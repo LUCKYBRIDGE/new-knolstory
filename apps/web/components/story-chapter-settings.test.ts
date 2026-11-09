@@ -50,7 +50,7 @@ describe('chapter settings',()=>{
   const html=renderToStaticMarkup(createElement(StoryChapterSettings,{project,chapterId:project.chapters[0].id,onProjectChange:()=>{},charactersEnabled:false,audioEnabled:false}));
   expect(html).toContain('<details><summary>장 번호·갈래 표시</summary>');
   expect(html).toContain('aria-label="장 번호"');expect(html).toContain('aria-label="장 갈래 표시"');
-  expect(html).toContain('장 순서나 컷 연결은 바뀌지 않아요');
+  expect(html).toContain('장 순서와 컷 연결은 그대로예요');
   expect(html).not.toContain(' open=""');
  });
  it('changes only the displayed number and preserves routes, authored identity and order',()=>{
