@@ -2,13 +2,15 @@ import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {readFile} from 'node:fs/promises';
 import type {StoryProject} from '../../packages/story-domain/src/index';
-import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+import {confirmAuthoringImport,parseAuthoringFile,openFileExchange} from './authoring-file';
 const source=JSON.parse(readFileSync('tests/fixtures/stories/presentation-polish.json','utf8')) as StoryProject;
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(n=>(n as HTMLDetailsElement).open))await node.locator(':scope>summary').click();return node;}
 async function chapter(page:Page){await menu(page);const details=page.locator('[data-chapter-settings]');if(!await details.evaluate(n=>(n as HTMLDetailsElement).open))await details.locator(':scope>summary').click();return details;}
 async function optins(page:Page){const node=await menu(page),details=node.getByText('편집 설정',{exact:true}).locator('..');if(!await details.evaluate(n=>(n as HTMLDetailsElement).open))await details.locator(':scope>summary').click();return node;}
 async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
-async function exportFile(page:Page){await saved(page);await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const raw=await readFile((await (await pending).path())!,'utf8');return {raw,project:parseAuthoringFile(raw).project as StoryProject};}
+async function exportFile(page:Page){await saved(page);await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const raw=await readFile((await (await pending).path())!,'utf8');return {raw,project:parseAuthoringFile(raw).project as StoryProject};}
+async function blockedExport(page:Page){await saved(page);await menu(page);await openFileExchange(page);const downloaded=page.waitForEvent('download',{timeout:2000}).then(()=>true,()=>false);await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await expect(page.getByRole('alert').filter({hasText:'아직 적용하지 못한 입력이 있어요'})).toBeVisible();expect(await downloaded).toBe(false);}
 async function importFile(page:Page,raw:string){await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'chapter.knolstory',mimeType:'application/json',buffer:Buffer.from(raw)});await confirmAuthoringImport(page);await saved(page);}
 
 test('chapter settings restore reachable defaults without opening advanced tools or changing cut overrides',async({page,browser},info)=>{
@@ -45,9 +47,10 @@ test('chapter display identity edits never reorder chapters or change story conn
  expect(after.chapters[0]).toEqual({...before.chapters[0],chapterNumber:3,branchLabel:'A'});
  expect(after.lines).toEqual(before.lines);expect(after.chapters.slice(1)).toEqual(before.chapters.slice(1));
  await chapter(page);if(!await detail.evaluate(node=>(node as HTMLDetailsElement).open))await detail.locator(':scope>summary').click();
- await number.fill('');await number.blur();expect((await exportFile(page)).project).toEqual(after);
+ await number.fill('');await number.blur();await blockedExport(page);expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(after);
  await chapter(page);if(!await detail.evaluate(node=>(node as HTMLDetailsElement).open))await detail.locator(':scope>summary').click();
  await branch.dispatchEvent('compositionstart');await expect(branch).toBeEnabled();await expect(number).toBeDisabled();await branch.dispatchEvent('compositionend');
+ await number.fill('3');await number.blur();
  const file=await exportFile(page);await page.reload();await saved(page);await chapter(page);
  await page.locator('[data-chapter-settings]').getByText('장 번호·갈래 표시',{exact:true}).click();
  await expect(page.getByRole('spinbutton',{name:'장 번호',exact:true})).toHaveValue('3');await expect(page.getByRole('textbox',{name:'장 갈래 표시',exact:true})).toHaveValue('A');
@@ -88,10 +91,14 @@ test('chapter settings do not carry an invalid numeric draft or error into anoth
  await importFile(page,JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project:fixture}));
  let controls=await chapter(page);await controls.getByText('장 번호·갈래 표시',{exact:true}).click();
  const number=controls.getByRole('spinbutton',{name:'장 번호',exact:true});await number.fill('');await number.blur();await expect(controls.getByRole('alert')).toContainText('1 이상의 정수');
+ // An unapplied invalid draft keeps the writer on this chapter instead of moving it elsewhere.
+ await page.keyboard.press('Escape');await page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true}).selectOption(fixture.lines.at(-1)!.id);
+ controls=await chapter(page);await expect(controls.getByRole('region',{name:'1장 · 넓은 무대의 하루 설정',exact:true})).toBeVisible();await expect(controls.getByRole('alert')).toContainText('1 이상의 정수');
+ await number.fill('3');await number.blur();await expect(controls.getByRole('alert')).toHaveCount(0);
  await page.keyboard.press('Escape');await page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true}).selectOption(fixture.lines.at(-1)!.id);
  controls=await chapter(page);await expect(controls.getByRole('alert')).toHaveCount(0);await controls.getByText('장 번호·갈래 표시',{exact:true}).click();await expect(controls.getByRole('spinbutton',{name:'장 번호',exact:true})).toHaveValue('2');
  await page.keyboard.press('Escape');await page.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true}).selectOption(fixture.lines[0].id);
- controls=await chapter(page);await expect(controls.getByRole('alert')).toHaveCount(0);await controls.getByText('장 번호·갈래 표시',{exact:true}).click();await expect(controls.getByRole('spinbutton',{name:'장 번호',exact:true})).toHaveValue('1');
+ controls=await chapter(page);await expect(controls.getByRole('alert')).toHaveCount(0);await controls.getByText('장 번호·갈래 표시',{exact:true}).click();await expect(controls.getByRole('spinbutton',{name:'장 번호',exact:true})).toHaveValue('3');
 });
 
 
