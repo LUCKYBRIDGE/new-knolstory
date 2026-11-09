@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {resolveStageComposition,type StoryProject} from '../../packages/story-domain/src';
 import {openEditorDetails} from './native-reader';
 import {enterLibrary,startShelfCreation} from './library-entry';
-import {confirmAuthoringImport,expectIndependentImportedProject,parseAuthoringFile} from './authoring-file';
+import {confirmAuthoringImport,expectIndependentImportedProject,parseAuthoringFile,openFileExchange} from './authoring-file';
 
 const title='숲에서 함께 만드는 이야기';
 const background='seonnyeo.background.BG01-valley-day';
@@ -15,7 +15,7 @@ async function saved(page:Page){await expect(page.getByTestId('save-status')).to
 async function selectCut(page:Page,id:string){await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);}
 async function pick(page:Page,label:string,id:string,query:string){await page.getByRole('button',{name:new RegExp(`^${label} 이미지 찾기 ·`)}).click();const dialog=page.getByRole('dialog',{name:`이미지 선택 · ${label}`,exact:true});await dialog.getByLabel('이미지 검색',{exact:true}).fill(query);await dialog.locator(`[data-asset-id="${id}"]`).click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();}
 async function flow(page:Page){await screen(page,'basic');await openEditorDetails(page,'현재 컷의 선택지·분기조건 편집');await expect(page.getByRole('combobox',{name:'진행 방식',exact:true})).toBeVisible();}
-async function download(page:Page,path:string,action='작품 파일 내보내기'){await saved(page);await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:action,exact:true}).click();const file=await pending;expect(file.suggestedFilename()).toMatch(/\.knolstory$/);await file.saveAs(path);return parseAuthoringFile(readFileSync(path,'utf8')).project as StoryProject;}
+async function download(page:Page,path:string,action='작품 파일 내보내기'){await saved(page);await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:action,exact:true}).click();const file=await pending;expect(file.suggestedFilename()).toMatch(/\.knolstory$/);await file.saveAs(path);return parseAuthoringFile(readFileSync(path,'utf8')).project as StoryProject;}
 
 for(const native of [false,true])test(native?'authored score choices show or skip the conditional cut in native RenPy':'author builds a scored conditional scene and reopens the complete work file',async({page,browser},info)=>{
  test.skip(info.project.name!==(native?'stories-runtime':'host'));test.setTimeout(240000);page.setDefaultTimeout(15000);await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/api/**',r=>r.abort());if(!native)await page.route('**/runtime/**',r=>r.abort());
