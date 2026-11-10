@@ -821,3 +821,4 @@
 .shell.editorShell:not(.playMode) [data-system-menu=editor] :is(.workMenuHint,[data-file-save-help] p){text-wrap:pretty}
 
 .workMenuGroup>[data-storage-recovery]{grid-column:1/-1;width:100%;min-width:0}
+.moveCut{display:flex;flex-wrap:wrap;align-items:end;gap:8px}.moveCut label{display:grid;gap:4px}.moveCut select,.moveCut button{min-height:44px}
