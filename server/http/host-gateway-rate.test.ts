@@ -18,7 +18,7 @@ it('streams host UDS through proof-verifying TCP ingress to strict API without c
  const a=await state.issueSession(randomUUID()),b=await state.issueSession(randomUUID());
  const rateLimit={windowMs:60000,maxRequests:2,maxEntries:10};
  const auth=createAuthRouter({origin,authState:state,providers:{},completionPort:{async complete(){throw Error('No provider');}},clientProofKey:key,rateLimit});
- const docs=createDocumentRouter({origin,authState:state,documents:{async list(){return {items:[],nextCursor:null};}} as unknown as DocumentRouterOptions['documents'],clientProofKey:key,rateLimit});
+ const docs=createDocumentRouter({origin,authState:state,roles:{async roleOf(){return 'teacher' as const;}},documents:{async list(){return {items:[],nextCursor:null};}} as unknown as DocumentRouterOptions['documents'],clientProofKey:key,rateLimit});
  let apiRequests=0;
  const api=createServer((req,res)=>{apiRequests++;void(req.url?.startsWith('/api/v1/documents')?docs(req,res):auth(req,res));});
  const root=await realpath(await mkdtemp(join(tmpdir(),'kh-'))),socketPath=join(root,'g.sock');

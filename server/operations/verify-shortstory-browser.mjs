@@ -9,7 +9,7 @@ if(!/^[A-Za-z0-9_-]{1,80}$/.test(run))throw Error('Invalid evidence run name.');
 const accountId=randomUUID(),token=randomBytes(32).toString('base64url'),tokenHash=createHash('sha256').update(token).digest('hex');
 const sql=text=>execFileSync('docker',['exec','-i','knolstory-next-storage-test-db-1','psql','-U','knolstory_next_storage_test','-d','knolstory_next_storage_test','-v','ON_ERROR_STOP=1','-q'],{input:text,stdio:['pipe','pipe','pipe']});
 // SQL contains only generated UUID/hash/integer primitives. No user input or credentials.
-sql(`BEGIN; INSERT INTO knolstory_auth.accounts(id,status) VALUES('${accountId}','active'); INSERT INTO knolstory_auth.sessions(token_hash,account_id,expires_at) VALUES('${tokenHash}','${accountId}',${Date.now()+600000}); COMMIT;`);
+sql(`BEGIN; INSERT INTO knolstory_auth.accounts(id,status,role) VALUES('${accountId}','active','teacher'); INSERT INTO knolstory_auth.sessions(token_hash,account_id,expires_at) VALUES('${tokenHash}','${accountId}',${Date.now()+600000}); COMMIT;`);
 const browser=await chromium.launch(),pageErrors=[],diagnosticPages=[];
 const library=page=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-shortstory-library-v1')));
 const active=value=>value.books.find(book=>book.id===value.activeId);

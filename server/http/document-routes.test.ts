@@ -13,7 +13,8 @@ afterEach(async () => { await Promise.all(servers.splice(0).map(s => new Promise
 async function harness(overrides: Partial<DocumentRouterOptions> = {}) {
   const documents = { create: vi.fn(async () => receipt), list: vi.fn(async () => ({ documents: [], nextCursor: null })), read: vi.fn(async () => ({ metadata: receipt, snapshot })), save: vi.fn(async () => ({ ...receipt, revision: 2 })) };
   const authState = { authenticate: vi.fn(async (value: string) => value === token ? { accountId: 'owner', csrf: 'csrf', expiresAt: Date.now() + 1000 } : null), verifyCsrf: vi.fn(async (value: string, csrf: string, requestOrigin: string) => { if (value !== token || csrf !== 'csrf' || requestOrigin !== origin) throw Error('private'); }) } as unknown as DocumentRouterOptions['authState'];
-  const router = createDocumentRouter({ origin, authState, documents: documents as unknown as DocumentService, ...overrides });
+  const roles = { roleOf: vi.fn(async () => 'teacher' as const) };
+  const router = createDocumentRouter({ origin, authState, documents: documents as unknown as DocumentService, roles, ...overrides });
   const server = createServer((req, res) => { void router(req, res); }); servers.push(server); await new Promise<void>(r => server.listen(0, '127.0.0.1', r));
   const address = server.address(); if (!address || typeof address === 'string') throw Error('address');
   const port = address.port;
@@ -21,9 +22,24 @@ async function harness(overrides: Partial<DocumentRouterOptions> = {}) {
   const request = (path = '/api/v1/documents', init: RequestInit = {}) => fetch(base + path, { ...init, headers: { cookie: `knolstory-next-session=${token}`, origin, 'x-csrf-token': 'csrf', ...init.headers } });
   const write = (body: unknown, path = '/api/v1/documents', method = 'POST') => { const { idempotencyKey, ...payload } = body as Record<string, unknown>; return request(path, { method, headers: { 'content-type': 'application/json', 'idempotency-key': typeof idempotencyKey === 'string' ? idempotencyKey : 'create-1' }, body: JSON.stringify(payload) }); };
   async function raw(request: string) { return new Promise<string>((resolve, reject) => { const socket = connect(port, '127.0.0.1'); let text = ''; const timer = setTimeout(() => { socket.destroy(); reject(Error('socket did not close')); }, 600); socket.on('connect', () => socket.write(request)); socket.on('data', chunk => { text += chunk; }); socket.on('close', () => { clearTimeout(timer); resolve(text); }); socket.on('error', error => { clearTimeout(timer); reject(error); }); }); }
-  return { request, write, raw, documents, authState };
+  return { request, write, raw, documents, authState, roles };
 }
 describe('document HTTP boundary', () => {
+  it.each(['member', 'student'] as const)('forbids the %s role before reading bodies or calling the service', async role => {
+    const h = await harness(); h.roles.roleOf.mockResolvedValue(role as never);
+    for (const [path, method] of [['', 'GET'], ['/' + recordId, 'GET'], ['', 'POST'], ['/' + recordId, 'PUT'], ['/' + recordId + '/trash', 'POST']] as const) {
+      const response = await h.request('/api/v1/documents' + path, { method, ...(method === 'GET' ? {} : { body: '{' }) });
+      expect(response.status).toBe(403); expect(await response.json()).toEqual({ success: false, error: { code: 'ROLE_NOT_ALLOWED' } });
+    }
+    for (const fn of Object.values(h.documents)) expect(fn).not.toHaveBeenCalled();
+    expect(h.roles.roleOf).toHaveBeenCalledWith('owner');
+  });
+  it('allows teachers and administrators and rejects accounts without a role row', async () => {
+    const h = await harness();
+    for (const role of ['teacher', 'admin'] as const) { h.roles.roleOf.mockResolvedValueOnce(role as never); expect((await h.request()).status).toBe(200); }
+    h.roles.roleOf.mockResolvedValueOnce(null as never);
+    const response = await h.request(); expect(response.status).toBe(401); expect(await response.json()).toEqual({ success: false, error: { code: 'SESSION_REQUIRED' } });
+  });
   it('accepts a matching expected account while cookie remains the authority', async () => {
     const h = await harness();
     vi.mocked(h.authState.authenticate).mockResolvedValue({ accountId: recordId, csrf: 'csrf', expiresAt: Date.now() + 1000 });

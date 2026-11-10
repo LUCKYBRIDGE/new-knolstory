@@ -6,6 +6,8 @@ export type DocumentRouterOptions = Readonly<{
   origin: string;
   authState: ReturnType<typeof createAuthStateService>;
   documents: DocumentService;
+  /** Personal online works are for teachers and administrators only. */
+  roles: Readonly<{ roleOf(accountId: string): Promise<'member' | 'teacher' | 'student' | 'admin' | null> }>;
   rateLimit?: Readonly<{ windowMs: number; maxRequests: number; maxEntries: number }>;
   clientProofKey?: string;
   bodyLimitBytes?: number;
@@ -130,6 +132,9 @@ export function createDocumentRouter(options: DocumentRouterOptions) {
       // This optional expectation prevents stale browser state using another
       // account's cookie. Authorization still comes exclusively from the session.
       if (expected !== undefined && expected !== authenticated.accountId.toLowerCase()) throw new HttpError(409, 'ACCOUNT_SESSION_CHANGED');
+      const role = await options.roles.roleOf(authenticated.accountId);
+      if (role === null) throw new HttpError(401, 'SESSION_REQUIRED');
+      if (role !== 'teacher' && role !== 'admin') throw new HttpError(403, 'ROLE_NOT_ALLOWED');
       const context = { token, accountId: authenticated.accountId }, writing = req.method !== 'GET';
       if (writing) {
         try { await options.authState.verifyCsrf(token, header(req, 'x-csrf-token'), header(req, 'origin')); }

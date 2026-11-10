@@ -13,7 +13,7 @@ import {createDocumentHttpService} from './document-service';
 const pool=new Pool({max:8});
 let server:Server,origin:string,config:{origin:string;flowTtlMs:number;sessionTtlMs:number;csrfSecret:string};
 async function user(){
- const accountId=randomUUID();await pool.query("INSERT INTO knolstory_auth.accounts(id,status) VALUES($1,'active')",[accountId]);
+ const accountId=randomUUID();await pool.query("INSERT INTO knolstory_auth.accounts(id,status,role) VALUES($1,'active','teacher')",[accountId]);
  const auth=createAuthStateService(config,createPostgresAuthStatePort(pool));
  const session=await auth.issueSession(accountId);
  return {auth,session,headers:{cookie:`${authCookieNames(origin).session}=${session.token}`,origin,'x-csrf-token':session.csrf,'content-type':'application/json'}};

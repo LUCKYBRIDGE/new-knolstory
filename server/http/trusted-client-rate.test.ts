@@ -19,7 +19,7 @@ it('keeps distinct clients separate through an actual protected ingress and enfo
  const a=await state.issueSession(randomUUID()),b=await state.issueSession(randomUUID());
  const limits={windowMs:60000,maxRequests:2,maxEntries:10};
  const auth=createAuthRouter({origin,authState:state,providers:{},completionPort:{async complete(){throw Error('No provider');}},rateLimit:limits,clientProofKey:key});
- const documents=createDocumentRouter({origin,authState:state,documents:{async list(){return {items:[],nextCursor:null};}} as unknown as DocumentRouterOptions['documents'],rateLimit:limits,clientProofKey:key});
+ const documents=createDocumentRouter({origin,authState:state,roles:{async roleOf(){return 'teacher' as const;}},documents:{async list(){return {items:[],nextCursor:null};}} as unknown as DocumentRouterOptions['documents'],rateLimit:limits,clientProofKey:key});
  const api=createServer((req,res)=>{void(req.url?.startsWith('/api/v1/documents')?documents(req,res):auth(req,res));});
  const root=await realpath(await mkdtemp(join(tmpdir(),'knol-trust-'))),socketPath=join(root,'ingress.sock');
  let ingress:Server|undefined;

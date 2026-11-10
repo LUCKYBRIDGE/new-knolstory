@@ -507,3 +507,14 @@ KNOLSTORY_EVIDENCE_RUN=unique-new-run node server/operations/verify-online-trash
 고유 실행 폴더가 이미 있으면 실패해 이전 증거를 덮어쓰지 않는다. 두 제작 모드에서 실제 업로드·취소·휴지통·동일 ID/내용 revision 복구·휴지통 중 읽기 거절을 확인한다. 서버 처리 뒤 첫 응답만 버리는 전송 오류를 주입하고 같은 요청 키/본문으로 재시도되는지 확인한다. 브라우저를 잠시 오프라인으로 바꾸어 업로드 실패 시 원고 유지와 파일 다운로드도 확인한다. 파일 선택 API 미지원 분기를 명시해 다운로드를 검사하며 OS 파일 선택기의 검증을 대신하지 않는다. 작품 비교는 전체 원고/목록을 유지하고 재직렬화되는 문서 포장 savedAt만 제외한다. 끝나면 생성한 검사 계정만 비활성화하고 세션 폐기를 조회해 cleanup.json에 확인한다. 이는 장기 오프라인·실물 다중 기기·Google 로그인·자동 영구삭제 정책까지 증명하지 않는다.
 
 [실제 결합 검증](../docs/architecture/evidence/online-trash-combined-2026-10-20/checkpoint.json).
+
+## 학급·교사·학생 API (`/api/v1/class`, migration 008)
+
+계약은 [학급 설계](../docs/architecture/classroom-design.md)가 정한다. 서버 코드는 `server/classroom/`(순수 로직·서비스)과 `server/http/classroom-routes.ts`에 있다.
+
+- 설정: `KNOL_CLASSROOM_SECRET`(32바이트 base64) 또는 `KNOL_CLASSROOM_SECRET_FILE`(파일 경로, 둘 다 주면 시작 실패)과 `KNOL_ADMIN_ACCOUNT_IDS`(쉼표로 구분한 계정 ID). 비밀키가 없으면 서버는 그대로 시작하고 `/api/v1/class/*`는 모두 503 `CLASSROOM_NOT_CONFIGURED`를 돌려준다. 값이 있으나 형식이 틀리면 시작하지 않는다.
+- migration 008은 `knolstory_auth.accounts.role`과 `knolstory_class` 스키마를 만든다. 운영 적용 명령(`migrate.mjs`)이 앱 역할에 새 스키마 권한도 준다.
+- 학생 로그인(`/student-login`, `/qr-login`)은 기존과 같은 세션 쿠키를 발급한다. 세션 없이 호출하며 CSRF 토큰은 필요 없지만 `Origin`이 서버 origin과 정확히 같아야 한다. 응답 본문에 `csrf`가 함께 온다.
+- 실패 제한: 학급 코드+번호별 10회/10분, 클라이언트별 100회/10분(실패만 센다). 교사 코드 시도는 계정별 10회/10분. 전체 요청은 클라이언트별 600회/분.
+- `/api/v1/documents`는 교사·관리자만 쓴다(403 `ROLE_NOT_ALLOWED`).
+- 검사: `pnpm -s vitest run server/classroom server/http/classroom-routes.test.ts`. 실제 PostgreSQL 검사는 `server/classroom/service.integration.ts`(기존 `test:integration`에 포함)이며 전용 테스트 DB에서만 실행한다.
