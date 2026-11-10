@@ -1,7 +1,10 @@
-import {expectIndependentImportedProject,parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {expectIndependentImportedProject,parseAuthoringFile,confirmAuthoringImport,currentCutRow,currentCutText} from './authoring-file';
+import {enableEditing,openChoiceEditing,openCurrentCutDetail,openEditingScreen} from './editor-screens';
 import {enterLibrary,startShelfCreation} from './library-entry';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
+test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
 const hero='heungbu.character.heungbu-swallow-care';
 const variant='heungbu.character.heungbu-young';
 // The picker lists primary backgrounds first; the former scene illustration is now a secondary candidate.
@@ -23,42 +26,64 @@ async function pick(page:Page,label:string,id:string,search=''){
  await expect(dialog).toBeVisible();if(search)await dialog.getByLabel('이미지 검색').fill(search);
  await dialog.locator(`[data-asset-id="${id}"]`).click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(dialog).toHaveCount(0);
 }
+/** Current-UI authoring: chapter settings in the 설정 menu, text and speaker in the basic view, character placement on 인물 편집, flow in the choice dock. */
+async function pickAsset(page:Page,button:string,dialogName:string,id:string,search=''){
+ await page.getByRole('button',{name:new RegExp(`^${button} ·`)}).click();
+ const dialog=page.getByRole('dialog',{name:dialogName,exact:true});await expect(dialog).toBeVisible();if(search)await dialog.getByLabel('이미지 검색').fill(search);
+ await dialog.locator(`[data-asset-id="${id}"]`).click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();await expect(dialog).toHaveCount(0);
+}
+async function pickTo(page:Page,label:string,id:string,search=''){await pickAsset(page,label.endsWith('이미지')?`${label} 찾기`:`${label} 이미지 찾기`,`이미지 선택 · ${label}`,id,search);}
+async function chooseCut(page:Page,id:string){await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);}
+async function setFlow(page:Page,value:string){
+ await page.getByLabel('진행 방식',{exact:true}).selectOption(value);
+ const confirm=page.getByRole('dialog',{name:'진행 방식 변경 확인',exact:true});if(await confirm.isVisible())await confirm.getByRole('button',{name:'진행 방식 변경',exact:true}).click();
+}
 async function author(page:Page){
  await page.goto('/');await enterLibrary(page);
  await startShelfCreation(page);await page.getByLabel('새 작품 제목').fill('장 대본과 그림 자료실');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
- const first=await currentId(page);let panel=await writer(page);
- await panel.getByText('장 설정 · 말하는 인물과 기본 자료',{exact:true}).click();await page.getByLabel('대본 장 제목').fill('첫 만남');await page.getByLabel('장 개요').fill('두 선택지로 서로 다른 이야기를 씁니다.');await page.getByLabel('장 말하는 인물 추가').fill('나');await panel.getByRole('button',{name:'장 말하는 인물 등록',exact:true}).click();
- await pick(page,'장 기본 배경',bg,'용궁');
- await pick(page,'장 자료에 인물 추가',hero,'흥부');
- await panel.getByLabel('1컷 글 종류').selectOption('dialogue');await panel.getByLabel('1컷 말하는 인물').selectOption('나');await panel.getByLabel('1컷 대사 / 해설').fill('나는 두 길 앞에서 흥부의 이야기를 들었다.');
- await panel.locator(`[data-writer-cut-id="${first}"]`).click();await tool(page,'글 편집');
- await page.getByText('말하는 인물 상세 설정',{exact:true}).click();await page.getByText('말하는 인물 설정 · 기본 이미지',{exact:true}).click();await page.getByLabel('새 말하는 인물 이름').fill('흥부');await page.getByRole('button',{name:'말하는 인물 등록',exact:true}).click();await page.getByLabel('등록된 말하는 인물').selectOption('흥부');
- await pick(page,'말하는 인물 기본 이미지',hero,'흥부');
+ const first=await currentId(page);
+ // Chapter title, outline and default background live in 설정 > 현재 컷의 장 설정. (The old chapter-wide speaker registry no longer exists; speakers are set per cut below.)
+ await management(page);const chapter=page.locator('details[data-chapter-settings]');if(!await chapter.evaluate(node=>(node as HTMLDetailsElement).open))await chapter.locator(':scope>summary').click();
+ await chapter.getByLabel('장 제목').fill('첫 만남');await chapter.getByLabel('장 개요').fill('두 선택지로 서로 다른 이야기를 씁니다.');
+ await pickTo(page,'장 기본 배경',bg,'용궁');
+ await enableEditing(page,'인물','선택지');
+ // Cut 1: dialogue by the speaker 나, written in the basic view.
+ await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('dialogue');await page.getByLabel('현재 컷 화자',{exact:true}).fill('나');await (await currentCutText(page)).fill('나는 두 길 앞에서 흥부의 이야기를 들었다.');
+ // Speaker details (folded in 현재 컷 상세·메모·정리): register 흥부 with a default image, then put it on stage.
+ const detail=await openCurrentCutDetail(page);
+ await detail.getByText('말하는 인물 상세 설정',{exact:true}).click();await detail.getByText('말하는 인물 설정 · 기본 이미지',{exact:true}).click();await detail.getByLabel('새 말하는 인물 이름').fill('흥부');await detail.getByRole('button',{name:'말하는 인물 등록',exact:true}).click();await detail.getByLabel('등록된 말하는 인물').selectOption('흥부');
+ await pickTo(page,'말하는 인물 기본 이미지',hero,'흥부');
  const before=(await exportProject(page)).project;expect(before.lines[0].stageComposition.leftActors).toEqual([]);
- await page.getByRole('button',{name:'기본 이미지를 무대에 배치',exact:true}).click();
+ await (await openCurrentCutDetail(page)).getByRole('button',{name:'기본 이미지를 무대에 배치',exact:true}).click();
  const composed=(await exportProject(page)).project;const key=composed.lines[0].stageComposition.leftActors[0].key;
- await page.getByLabel('말하는 인물 그림').selectOption(key);await tool(page,'배경·인물 편집');await page.getByLabel(`왼쪽 1번 인물 배치`,{exact:true}).selectOption('center');await page.getByLabel(`왼쪽 1번 인물 크기 배율`,{exact:true}).fill('0.9');await page.getByLabel(`왼쪽 1번 인물 방향`,{exact:true}).selectOption('original');
+ await (await openCurrentCutDetail(page)).getByLabel('말하는 인물 그림').selectOption(key);
+ // Placement, size and facing belong to the 인물 편집 screen's per-cut row.
+ await openEditingScreen(page,'인물 편집');const row=await currentCutRow(page);
+ await row.getByLabel('1컷 인물 1 배치 위치',{exact:true}).selectOption('center');await row.getByLabel('1컷 인물 1 크기',{exact:true}).fill('90');await row.getByLabel('1컷 인물 1 방향',{exact:true}).selectOption('original');
  const beforeVariant=(await exportProject(page)).project;
  // Draft selection and cancel must not mutate the current actor or its identity.
- await page.getByRole('button',{name:new RegExp(`^${`왼쪽 1번 인물 이미지 찾기`} ·`),exact:false}).click();
+ await row.getByRole('button',{name:/^1컷 인물 1 이미지 찾기 ·/}).click();
  let dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'장 자료',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${hero}"]`)).toBeVisible();await dialog.getByRole('button',{name:'전체',exact:true}).click();await dialog.getByRole('button',{name:'같은 인물의 다른 모습',exact:true}).click();await dialog.locator(`[data-asset-id="${variant}"]`).click();await dialog.getByRole('button',{name:'취소',exact:true}).click();
  expect((await exportProject(page)).project).toEqual(beforeVariant);
- await page.getByRole('button',{name:new RegExp(`^${`왼쪽 1번 인물 이미지 찾기`} ·`),exact:false}).click();dialog=page.getByRole('dialog');await dialog.getByLabel('이미지 검색').fill('흥부');const card=dialog.locator(`[data-asset-id="${variant}"]`);await card.click();await card.locator('..').getByRole('button',{name:/^즐겨찾기 /}).click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();
+ await row.getByRole('button',{name:/^1컷 인물 1 이미지 찾기 ·/}).click();dialog=page.getByRole('dialog');await dialog.getByLabel('이미지 검색').fill('흥부');const card=dialog.locator(`[data-asset-id="${variant}"]`);await card.click();await card.locator('..').getByRole('button',{name:/^즐겨찾기 /}).click();await dialog.getByRole('button',{name:'선택한 이미지 적용',exact:true}).click();
  const changed=(await exportProject(page)).project;expect(changed.lines[0].speakerName).toBe('흥부');expect(changed.lines[0].stageComposition.leftActors[0]).toMatchObject({key,assetId:variant,position:'center',scaleMultiplier:.9,facing:'original',characterKey:composed.characters[0].id});
- await page.getByRole('button',{name:new RegExp(`^${`왼쪽 1번 인물 이미지 찾기`} ·`),exact:false}).click();dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'즐겨찾기',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'최근 사용',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'취소',exact:true}).click();
- panel=await writer(page);await panel.getByRole('button',{name:'대사 컷 추가',exact:true}).click();const endA=await currentId(page);await panel.getByLabel('2컷 대사 / 해설').fill('첫 갈래의 끝입니다.');await panel.getByLabel('2컷 말하는 인물').selectOption('흥부');await panel.getByRole('button',{name:'해설 컷 추가',exact:true}).click();const endB=await currentId(page);await panel.getByLabel('3컷 대사 / 해설').fill('두 번째 갈래의 끝입니다.');
- for(const id of [endA,endB]){await selectCut(page,id);await tool(page,'선택지 편집');await page.getByLabel('진행 방식').selectOption('ending');}
- await selectCut(page,first);await tool(page,'선택지 편집');await page.getByLabel('진행 방식').selectOption('choice');await page.getByLabel('선택지 1 도착 컷').selectOption(endA);await page.getByLabel('선택지 2 도착 컷').selectOption(endB);await saved(page);
+ await row.getByRole('button',{name:/^1컷 인물 1 이미지 찾기 ·/}).click();dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'즐겨찾기',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'최근 사용',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'취소',exact:true}).click();
+ // Two ending cuts, appended with the next-cut card and written in the basic view.
+ await openEditingScreen(page,'기본편집');
+ await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endA=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('dialogue');await page.getByLabel('현재 컷 화자',{exact:true}).fill('흥부');await (await currentCutText(page)).fill('첫 갈래의 끝입니다.');
+ await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endB=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('narration');await (await currentCutText(page)).fill('두 번째 갈래의 끝입니다.');
+ for(const id of [endA,endB]){await chooseCut(page,id);await openChoiceEditing(page);await setFlow(page,'ending');}
+ await chooseCut(page,first);await openChoiceEditing(page);await setFlow(page,'choice');await page.getByLabel('선택지 1 도착 컷').selectOption(endA);await page.getByLabel('선택지 2 도착 컷').selectOption(endB);await saved(page);
  return {first,endA,endB,key};
 }
 for(const width of [1280,390]) test(`legacy authoring integrates manuscript, speakers, assets and safe cut operations at ${width}px`,async({page},info)=>{
  test.skip(info.project.name!=='host');page.setDefaultTimeout(10000);await page.setViewportSize({width,height:width===390?844:900});
- const ids=await author(page);await selectCut(page,ids.endA);let panel=await writer(page);await panel.getByText('컷 정리 · 복제/이동/삭제',{exact:true}).click();const beforeCopy=(await exportProject(page)).project;await panel.getByRole('button',{name:'현재 컷 복제',exact:true}).click();const afterCopy=(await exportProject(page)).project;expect(afterCopy.lines.find((line:{id:string})=>line.id===ids.endA)).toEqual(beforeCopy.lines.find((line:{id:string})=>line.id===ids.endA));const copy=await currentId(page);await panel.getByRole('button',{name:'현재 컷 위로',exact:true}).click();await panel.getByRole('button',{name:'현재 컷 아래로',exact:true}).click();
- await cutView(page);await tool(page,'컷 목록');await page.getByRole('button',{name:'새 장 추가',exact:true}).click();const secondChapter=(await exportProject(page)).project.lines.find((l:{id:string})=>l.id!==ids.first&&l.id!==ids.endA&&l.id!==ids.endB&&l.id!==copy).chapterId;
- await selectCut(page,copy);panel=await writer(page);await panel.getByText('컷 정리 · 복제/이동/삭제',{exact:true}).click();await panel.getByLabel('컷 이동할 장').selectOption(secondChapter);await panel.getByRole('button',{name:'다른 장으로 이동',exact:true}).click();const moved=(await exportProject(page)).project;expect(moved.lines.find((l:{id:string})=>l.id===copy).chapterId).toBe(secondChapter);expect(moved.lines.find((line:{id:string})=>line.id===ids.endA).flow).toEqual(beforeCopy.lines.find((line:{id:string})=>line.id===ids.endA).flow);
- await selectCut(page,ids.endA);panel=await writer(page);await panel.getByText('컷 정리 · 복제/이동/삭제',{exact:true}).click();const before=await exportProject(page);await panel.getByRole('button',{name:'현재 컷 삭제',exact:true}).click();const dialog=page.getByRole('dialog',{name:'컷 삭제 확인'});await expect(dialog).toContainText('명시 연결 1개');await dialog.getByRole('button',{name:'삭제 취소'}).click();expect((await exportProject(page)).project).toEqual(before.project);
- await panel.getByRole('button',{name:'현재 컷 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 실행'}).click();expect((await exportProject(page)).project.lines.find((l:{id:string})=>l.id===ids.first).flow.options[0].targetLineId).toBe('');await page.getByRole('button',{name:'삭제 되돌리기'}).click();expect((await exportProject(page)).project).toEqual(before.project);
- await page.getByLabel('작품 파일 가져오기').setInputFiles(before.path); await confirmAuthoringImport(page);await page.getByRole('region',{name:'작품 설정',exact:true}).getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();await saved(page);await page.reload();expectIndependentImportedProject((await exportProject(page)).project,before.project);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await writer(page);await page.screenshot({path:info.outputPath(`writer-${width}.png`)});
+ const ids=await author(page);await chooseCut(page,ids.endA);let panel=await openCurrentCutDetail(page);const beforeCopy=(await exportProject(page)).project;await (await openCurrentCutDetail(page)).getByRole('button',{name:'현재 컷 복제',exact:true}).click();const afterCopy=(await exportProject(page)).project;expect(afterCopy.lines.find((line:{id:string})=>line.id===ids.endA)).toEqual(beforeCopy.lines.find((line:{id:string})=>line.id===ids.endA));const copy=await currentId(page);panel=await openCurrentCutDetail(page);await panel.getByRole('button',{name:'현재 컷 위로',exact:true}).click();await panel.getByRole('button',{name:'현재 컷 아래로',exact:true}).click();
+ // Moving a cut into another chapter existed only in the removed chapter-wide writer (see report); adding a chapter and keeping every other cut's flow intact remains.
+ await management(page);const views=page.getByText('보기 설정',{exact:true}).locator('..');if(!await views.evaluate(node=>(node as HTMLDetailsElement).open))await views.locator(':scope>summary').click();await page.getByRole('button',{name:'장 추가',exact:true}).click();const withChapter=(await exportProject(page)).project;expect(withChapter.chapters.length).toBe(beforeCopy.chapters.length+1);expect(withChapter.lines.find((line:{id:string})=>line.id===ids.endA).flow).toEqual(beforeCopy.lines.find((line:{id:string})=>line.id===ids.endA).flow);
+ await chooseCut(page,ids.endA);panel=await openCurrentCutDetail(page);const before=await exportProject(page);await (await openCurrentCutDetail(page)).getByRole('button',{name:'현재 컷 삭제',exact:true}).click();const dialog=page.getByRole('dialog',{name:'컷 삭제 확인'});await expect(dialog).toContainText('이 컷으로 이어지는 곳');await expect(dialog).toContainText('1컷에서 ‘선택 1’를 선택하면');await expect(dialog).toContainText('도착지를 다시 정해야 해요');await dialog.getByRole('button',{name:'삭제 취소'}).click();expect((await exportProject(page)).project).toEqual(before.project);
+ await (await openCurrentCutDetail(page)).getByRole('button',{name:'현재 컷 삭제',exact:true}).click();await page.getByRole('button',{name:'삭제 실행'}).click();expect((await exportProject(page)).project.lines.find((l:{id:string})=>l.id===ids.first).flow.options[0].targetLineId).toBe('');await page.getByRole('button',{name:'삭제 되돌리기'}).click();expect((await exportProject(page)).project).toEqual(before.project);
+ await management(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(before.path); await confirmAuthoringImport(page);await page.getByRole('region',{name:'작품 설정',exact:true}).getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();await saved(page);await page.reload();expectIndependentImportedProject((await exportProject(page)).project,before.project);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`writer-${width}.png`)});
 });
 test('new manuscript story survives files and reaches both endings in native RenPy',async({page},info)=>{
  test.skip(info.project.name!=='stories-runtime');test.setTimeout(180000);page.setDefaultTimeout(10000);const ids=await author(page);await selectCut(page,ids.endA);let panel=await writer(page);await panel.getByText('컷 정리 · 복제/이동/삭제',{exact:true}).click();const sourceBefore=(await exportProject(page)).project.lines.find((line:{id:string})=>line.id===ids.endA);await panel.getByRole('button',{name:'현재 컷 복제',exact:true}).click();const copy=await currentId(page);expect((await exportProject(page)).project.lines.find((line:{id:string})=>line.id===ids.endA)).toEqual(sourceBefore);await cutView(page);await tool(page,'컷 목록');await page.getByRole('button',{name:'새 장 추가',exact:true}).click();const destination=(await exportProject(page)).project.lines.find((line:{id:string})=>![ids.first,ids.endA,ids.endB,copy].includes(line.id)).chapterId;await selectCut(page,copy);panel=await writer(page);await panel.getByText('컷 정리 · 복제/이동/삭제',{exact:true}).click();await panel.getByLabel('컷 이동할 장').selectOption(destination);await panel.getByRole('button',{name:'다른 장으로 이동',exact:true}).click();expect((await exportProject(page)).project.lines.find((line:{id:string})=>line.id===ids.endA).flow).toEqual(sourceBefore.flow);const file=await exportProject(page);await page.getByLabel('작품 파일 가져오기').setInputFiles(file.path); await confirmAuthoringImport(page);await page.getByRole('region',{name:'작품 설정',exact:true}).getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();await saved(page);await page.reload();
