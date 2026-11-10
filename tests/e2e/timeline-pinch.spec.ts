@@ -29,6 +29,15 @@ for(const viewport of [{width:390,height:844},{width:820,height:1180}])test(`two
 
 
  await page.setViewportSize(viewport);
+ if(viewport.width<=700){
+  // DESIGN.md: the combined timeline is a tablet/PC tool. A phone falls back to the single audio screen with guidance and keeps the work untouched.
+  await expect(page.locator('[data-combined-timeline]')).toHaveCount(0);
+  await expect(page.locator('[data-screen="audio"]')).toBeVisible();
+  await expect(page.getByText('통합 시간축은 태블릿·PC에서 사용할 수 있어요. 휴대폰에서는 음향과 연출을 각각 편집해 주세요.',{exact:true})).toBeVisible();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(before);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  return;
+ }
  const timeline=page.locator('[data-combined-timeline]'),area=page.getByRole('region',{name:'음향·연출 작업 영역',exact:true});
  const scrollBox=(await area.boundingBox())!,swipe=await page.context().newCDPSession(page);
  await area.evaluate(el=>{el.scrollLeft=0;});
