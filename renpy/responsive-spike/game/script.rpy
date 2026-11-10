@@ -843,7 +843,7 @@ screen knol_stage():
                         xsize int(knol_scene["width"] - 48)
                         spacing 20
                         text "소리 켜고 시작" color knol_ink size int(text_size) font "NotoSansKR.ttf" xalign .5
-                        text "무대를 누르거나 Enter·Space로 소리와 이야기를 시작하세요." color knol_ink size int(text_size) font "NotoSansKR.ttf" text_align .5 xalign .5
+                        text "화면을 누르면 소리와 함께 이야기가 시작돼요." color knol_ink size int(text_size) font "NotoSansKR.ttf" text_align .5 xalign .5
     else:
         text "편집 화면 연결 중…" color knol_ink size 32 font "NotoSansKR.ttf" align (0.5, 0.5)
 
