@@ -6,7 +6,18 @@ const project=createBlankStoryProject({id:'popup-overlap',chapterId:'ch',lineId:
 async function load(page:Page){await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'popup.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-22T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);const menu=page.locator('[data-work-menu]');if(await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();}
 async function reachable(action:Locator){await action.scrollIntoViewIfNeeded();await action.click({trial:true});expect(await action.evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.top>=0&&r.right<=innerWidth+1&&r.bottom<=innerHeight+1;})).toBe(true);expect(await action.evaluate(node=>{const r=node.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return !!hit&&(hit===node||node.contains(hit));})).toBe(true);}
 for(const viewport of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390},{width:320,height:568},{width:700,height:320},{width:701,height:320},{width:390,height:320}])test(`image and direction dialogs retain independent controls at ${viewport.width}x${viewport.height}`,async({page},info)=>{
- test.setTimeout(45000);await page.setViewportSize(viewport);await load(page);
+ test.setTimeout(45000);
+ // DESIGN.md "휴대폰 가로·높이440px 이하": short phone landscape is review-only, so the pickers are intentionally unreachable; assert that state and that nothing opens.
+ const review=viewport.width<=700&&viewport.width>viewport.height&&viewport.height<=440;
+ await page.setViewportSize(review?{width:390,height:844}:viewport);await load(page);
+ if(review){
+  await page.setViewportSize(viewport);
+  await expect(page.locator('[data-phone-editor=true]')).toBeVisible();
+  await expect(page.getByText('글을 수정하려면 휴대폰을 세로로 돌려 주세요.',{exact:true})).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  return;
+ }
  const image=page.getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false});await image.click();const picker=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경',exact:true});await expect(picker).toBeVisible();
  const card=picker.locator('article').first(),favorite=card.getByRole('button',{name:/즐겨찾기/}),select=card.locator('[data-asset-id]');
  const f=await favorite.boundingBox(),s=await select.boundingBox();expect(f).toBeTruthy();expect(s).toBeTruthy();const intersection=Math.max(0,Math.min(f!.x+f!.width,s!.x+s!.width)-Math.max(f!.x,s!.x))*Math.max(0,Math.min(f!.y+f!.height,s!.y+s!.height)-Math.max(f!.y,s!.y));expect(intersection).toBe(0);

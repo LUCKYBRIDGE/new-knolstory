@@ -329,7 +329,19 @@ test('popup audit: import confirmation traps focus, cancels without modifying th
 });
 
 for(const [width,height] of [[320,640],[640,360]])test(`popup audit: image selection pending cancel stays safe ${width}x${height}`,async({page},info)=>{
- await page.setViewportSize({width,height});const before=await prepare(page);await mode(page,'배경 편집');const opener=row(page,0).getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false});await opener.click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경',exact:true});await popupFits(dialog,page);const current=await opener.getAttribute('data-asset-value');await dialog.locator(`[data-asset-id]:not([data-asset-id="${current}"])`).first().click();await page.screenshot({path:info.outputPath(`asset-selector-${width}.png`),fullPage:true});await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(opener).toBeFocused();expect((await exported(page)).project).toEqual(before);
+ // DESIGN.md "휴대폰 가로·높이440px 이하": the short phone landscape is review-only, so the image picker is intentionally unreachable there; it must say so and leave the work untouched.
+ const review=width<=700&&width>height&&height<=440;
+ await page.setViewportSize(review?{width:360,height:640}:{width,height});const before=await prepare(page);
+ if(review){
+  await page.setViewportSize({width,height});
+  await expect(page.locator('[data-phone-editor=true]')).toBeVisible();
+  await expect(page.getByText('글을 수정하려면 휴대폰을 세로로 돌려 주세요.',{exact:true})).toBeVisible();
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.setViewportSize({width:360,height:640});await mode(page,'배경 편집');
+  await expect(row(page,0).getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false})).toBeVisible();
+  expect((await exported(page)).project).toEqual(before);return;
+ }
+ await mode(page,'배경 편집');const opener=row(page,0).getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false});await opener.click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경',exact:true});await popupFits(dialog,page);const current=await opener.getAttribute('data-asset-value');await dialog.locator(`[data-asset-id]:not([data-asset-id="${current}"])`).first().click();await page.screenshot({path:info.outputPath(`asset-selector-${width}.png`),fullPage:true});await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(opener).toBeFocused();expect((await exported(page)).project).toEqual(before);
 });
 
 test('popup audit: term search and flow map close back to settings without changing content',async({page},info)=>{
