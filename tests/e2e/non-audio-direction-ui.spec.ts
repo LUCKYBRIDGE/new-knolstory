@@ -71,18 +71,19 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await panel.getByLabel('효과 적용 범위',{exact:true}).selectOption('following');
  await panel.getByLabel('효과 지속 시간 (초)',{exact:true}).fill('1.2');await panel.getByLabel('효과 강도',{exact:true}).focus();
  await panel.getByRole('button',{name:'효과 추가',exact:true}).click();
- const second=panel.locator('details').nth(1);await second.locator('summary').click();
+ // 효과 추가 selects the new second effect card; only the selected card is shown.
  await panel.getByLabel('2번째 효과',{exact:true}).selectOption('flash');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();
  await panel.getByLabel('2번째 효과 대상',{exact:true}).selectOption('background');
  await panel.getByRole('button',{name:'2번째 효과 위로',exact:true}).click();
  await expect(panel.getByLabel('효과',{exact:true})).toHaveValue('flash');
  await panel.getByRole('button',{name:'마지막 효과 변경 취소',exact:true}).click();
  await expect(panel.getByLabel('효과',{exact:true})).toHaveValue('shake');
- await panel.getByRole('button',{name:'순서대로 시작',exact:true}).click();
+ await panel.getByRole('button',{name:'순서대로 시작',exact:true}).click();await panel.getByRole('button',{name:'2번째 효과 선택',exact:true}).click();
  await expect(panel.getByLabel('2번째 효과 대기 시간 (초)',{exact:true})).toHaveValue('1.2');
  await panel.getByLabel('2번째 효과 반복',{exact:true}).selectOption('loop');
  await panel.getByLabel('2번째 효과 반복 간격 (초)',{exact:true}).fill('2.6');await panel.getByLabel('2번째 효과 강도',{exact:true}).focus();
  // Invalid input must not replace the valid duration.
+ await panel.getByRole('button',{name:'1번째 효과 선택',exact:true}).click();
  await panel.getByLabel('효과 지속 시간 (초)',{exact:true}).fill('-1');await panel.getByLabel('효과 강도',{exact:true}).focus();
  await expect(panel.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('1.2');await expect(panel.getByRole('alert')).toContainText('기존 값은 유지됩니다');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
