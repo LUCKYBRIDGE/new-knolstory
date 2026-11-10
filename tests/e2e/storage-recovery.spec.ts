@@ -1,3 +1,4 @@
+import {openFileExchange} from './authoring-file';
 import {test,expect,type Page} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {enterLibrary,startShelfCreation,importShelfFile,openBuiltinEdition} from './library-entry';
@@ -44,7 +45,7 @@ test('previous manuscript opens as independent copy; both revisions survive relo
  // The current document is stored once; include it in the complete authored-library comparison.
  const titles=await page.evaluate(key=>{const value=JSON.parse(localStorage.getItem(key)!);return Object.values({...value.works,[value.storyId]:value.document}).map(d=>(d as {project:{title:string}}).project.title);},workspace);
  expect(titles).toEqual(expect.arrayContaining(['고쳐 쓴 현재 원고','복구하기 전 원고 · 내 사본']));const newerIdea=await page.evaluate(key=>{const value=JSON.parse(localStorage.getItem(key)!);return (Object.values({...value.works,[value.storyId]:value.document}) as {project:{title:string;planning:{premise:string}}}[]).find(document=>document.project.title==='고쳐 쓴 현재 원고')?.project.planning.premise;},workspace);expect(newerIdea).toBe('새로운 아이디어');
- await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await pending;expect(download.suggestedFilename()).toContain('내 사본');
+ await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await pending;expect(download.suggestedFilename()).toContain('내 사본');
  const bytes=await readFile((await download.path())!);const context=await browser.newContext();const moved=await context.newPage();await moved.goto('/');await enterLibrary(moved);await importShelfFile(moved,{name:download.suggestedFilename(),mimeType:'application/json',buffer:bytes});await purpose(moved,'planning');await expect(moved.getByRole('region',{name:'작품 설정'}).getByLabel('핵심 아이디어',{exact:true})).toHaveValue('원래 아이디어를 보호해요');await context.close();
 });
 test('corrupt storage stays byte-identical until explicit recovery, with checkpoint copy retained',async({page})=>{
