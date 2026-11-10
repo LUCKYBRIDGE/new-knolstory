@@ -1,4 +1,4 @@
-import {parseAuthoringFile} from './authoring-file';
+import {parseAuthoringFile,openFileExchange} from './authoring-file';
 import {advanceReading,editReadCut,loadReadSlot,openEditorDetails,readerLibrary,readerTools,restartReading,saveReadSlot} from './native-reader';
 import {createStoryDocument} from '../../packages/story-domain/src/index';
 import {openBuiltinEdition} from './library-entry';
@@ -204,6 +204,7 @@ for (const id of workIds) test(`${id}: actual browser reads the existing scored 
   await editReadCut(page);
   const manager = page.locator('[data-work-menu]>summary');
   if (!await manager.locator('..').evaluate(n => (n as HTMLDetailsElement).open)) await manager.click();
+  await openFileExchange(page);
   const download = page.waitForEvent('download');
   await page.getByRole('button', { name: '작품 파일 내보내기', exact: true }).click();
   const archive = parseAuthoringFile(readFileSync((await (await download).path())!, 'utf8'));

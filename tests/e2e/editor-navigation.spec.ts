@@ -1,12 +1,12 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+import {confirmAuthoringImport,parseAuthoringFile,openFileExchange} from './authoring-file';
 
 const original=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8'));
 const [a,b,join]=original.lines;
 const source={...original,id:'editing-path-story',lines:original.lines.map((line:{id:string})=>line.id===a.id?{...line,ending:undefined,flow:{type:'choice',options:[{id:'via-b',label:'옆 컷을 거쳐 만난다',targetLineId:b.id},{id:'direct',label:'바로 만난다',targetLineId:join.id}]}}:line.id===b.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:join.id}}:line.id===join.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:a.id}}:line)};
 async function menu(page:Page){const root=page.locator('[data-work-menu]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope > summary').click();}
-async function exportProject(page:Page){await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(readFileSync((await(await pending).path())!,'utf8')).project;}
+async function exportProject(page:Page){await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(readFileSync((await(await pending).path())!,'utf8')).project;}
 async function context(page:Page){const tools=page.locator('[data-writing-tools]');if(!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator(':scope > summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();return page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});}
 async function loaded(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨',{timeout:15000});}
 for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`chosen editing visits survive join, loop, reload and native reading without authoring content ${size.width}`,async({page},info)=>{
