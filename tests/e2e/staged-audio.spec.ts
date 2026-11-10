@@ -1,10 +1,10 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync,writeFileSync} from 'node:fs';
-import {confirmAuthoringImport} from './authoring-file';
+import {confirmAuthoringImport,openFileExchange} from './authoring-file';
 const music='audio.cc0.oga-tension.komiku-it-s-time-for-adventure-vol-2-12-tension-0',ambience='audio.cc0.oga-park.park-ambience-river',sound='audio.cc0.kenney-impact.footstep-carpet-001';
 const catalog=JSON.parse(readFileSync('packages/asset-registry/src/staged-cc0-audio.json','utf8')) as {id:string;runtimePath:string}[];
 async function menu(page:Page){const details=page.locator('[data-work-menu]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}
-async function exportWork(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨',{timeout:30000});await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return {download:await pending,archive:JSON.parse(readFileSync((await (await pending).path())!,'utf8'))};}
+async function exportWork(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨',{timeout:30000});await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return {download:await pending,archive:JSON.parse(readFileSync((await (await pending).path())!,'utf8'))};}
 async function soundTool(page:Page){
  await menu(page);const settings=page.getByText('편집 설정',{exact:true});
  if(!await settings.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await settings.click();
