@@ -20,6 +20,7 @@
     "config.test.ts",
     "main.ts",
     "documents/**/*.ts",
+    "classroom/**/*.ts",
     "operations/restore-content.integration.ts",
     "vitest.restore.config.ts",
     "operations/restore-fence.integration.ts",

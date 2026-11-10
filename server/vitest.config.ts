@@ -9,8 +9,8 @@ export default defineConfig({
     },
   },
   test: {
-    include: ['documents/**/*.test.ts', 'documents/**/*.integration.ts', 'config.test.ts', 'storage/**/*.integration.ts', 'auth/**/*.integration.ts', 'http/**/*.integration.ts', 'auth/**/*.test.ts', 'http/**/*.test.ts', 'storage/snapshot-projection.test.ts', 'storage/sql-client-lifecycle.test.ts'],
-    coverage: {provider:'v8', include:['documents/**/*.ts','config.ts','auth/**/*.ts','http/**/*.ts','storage/save-existing.ts','storage/snapshot-projection.ts','storage/postgres-save-port.ts','migrations/runner.ts'], exclude:['**/*.test.ts','**/*.integration.ts'], reporter:['text','json-summary'], thresholds:{lines:80,statements:80,branches:80,functions:80}},
+    include: ['classroom/**/*.test.ts', 'classroom/**/*.integration.ts', 'documents/**/*.test.ts', 'documents/**/*.integration.ts', 'config.test.ts', 'storage/**/*.integration.ts', 'auth/**/*.integration.ts', 'http/**/*.integration.ts', 'auth/**/*.test.ts', 'http/**/*.test.ts', 'storage/snapshot-projection.test.ts', 'storage/sql-client-lifecycle.test.ts'],
+    coverage: {provider:'v8', include:['classroom/**/*.ts','documents/**/*.ts','config.ts','auth/**/*.ts','http/**/*.ts','storage/save-existing.ts','storage/snapshot-projection.ts','storage/postgres-save-port.ts','migrations/runner.ts'], exclude:['**/*.test.ts','**/*.integration.ts'], reporter:['text','json-summary'], thresholds:{lines:80,statements:80,branches:80,functions:80}},
     maxWorkers: 1,
     fileParallelism: false,
     testTimeout: 30_000,

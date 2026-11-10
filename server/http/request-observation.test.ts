@@ -14,7 +14,7 @@ async function exchange(url:string,method='GET',status=200){
  }finally{server.close();await once(server,'close');}
 }
 describe('private API request observations',()=>{
- it.each([['/api/v1/auth/kakao/callback?code=oauth-secret&state=private','auth'],['/api/v1/documents/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee?cursor=private','documents'],['/health/ready?token=private','health'],['/private-manuscript-name','unmatched']])('records only a bounded route family for %s',async(url,route)=>{
+ it.each([['/api/v1/auth/kakao/callback?code=oauth-secret&state=private','auth'],['/api/v1/documents/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee?cursor=private','documents'],['/api/v1/class/student-login?x=private','classroom'],['/api/v1/classroom','unmatched'],['/health/ready?token=private','health'],['/private-manuscript-name','unmatched']])('records only a bounded route family for %s',async(url,route)=>{
   const {records,response}=await exchange(url);
   expect(records).toHaveLength(1);expect(response.id).toMatch(/^[a-f\d-]{36}$/);expect(response.id).not.toBe('attacker-secret');
   expect(records[0]).toEqual({event:'http_request',requestId:response.id,method:'GET',route,status:200,outcome:'completed',durationMs:expect.any(Number)});

@@ -22,12 +22,14 @@
     "config.ts",
     "config.test.ts",
     "main.ts",
-    "documents/**/*.ts"
+    "documents/**/*.ts",
+    "classroom/**/*.ts"
   ],
   "exclude": [
     "storage/**/*.integration.ts",
     "auth/**/*.integration.ts",
     "http/**/*.integration.ts",
-    "documents/**/*.integration.ts"
+    "documents/**/*.integration.ts",
+    "classroom/**/*.integration.ts"
   ]
 }
