@@ -57,3 +57,8 @@ export async function openCutEditor(page:Page,screen:'audio'|'direction'){
 export async function currentCutRow(page:Page){
  return page.getByTestId(`editing-cut-${await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue()}`);
 }
+
+/** The visible text field of the cut selected in "현재 장과 컷 이동"; its accessible name is "N컷 글" on the basic and text screens. */
+export async function currentCutText(page:Page){
+ return page.locator(`textarea[data-cut-id="${await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue()}"]`);
+}
