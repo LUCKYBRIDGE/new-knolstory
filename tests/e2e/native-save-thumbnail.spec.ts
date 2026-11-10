@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 for(const size of [{width:1440,height:900},{width:390,height:844}])test(`manual and quick saves use actual native pixels and survive reopen and load ${size.width}`,async({page},info)=>{
  await page.setViewportSize(size);
  await page.goto('/?view=editor');await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await expect.poll(async()=>{const s=page.getByTestId('story-runtime-status');return Number(await s.getAttribute('data-rendered-revision'))>=0&&(await s.getAttribute('data-rendered-revision'))===(await s.getAttribute('data-scene-revision'));},{timeout:120000}).toBe(true);
