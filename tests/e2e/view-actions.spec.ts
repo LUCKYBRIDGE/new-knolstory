@@ -1,7 +1,50 @@
 import {test,expect} from '@playwright/test';
+import {currentCutText} from './authoring-file';
+import {enableEditing} from './editor-screens';
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
+test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
 for(const width of [1440,768,390,844])test(`view settings contain view controls without duplicate editing actions ${width}`,async({page})=>{
- page.setDefaultTimeout(15000);await page.setViewportSize({width,height:width===844?390:900});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const text=page.getByLabel('대사 / 해설',{exact:true}),original=await text.inputValue();await expect(page.getByLabel('미리보기 화면 비율')).toBeHidden();await page.getByText('보기 설정',{exact:true}).click();expect(await page.getByText('보기 설정',{exact:true}).locator('..').locator(':scope>div').evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.width>=Math.min(300,innerWidth-24);})).toBe(true);await expect(page.getByRole('button',{name:'편집하기',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:'현재 컷부터 읽기',exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:/글 편집 영역/})).toHaveCount(0);await page.getByLabel('미리보기 화면 비율').selectOption('portrait');await expect(text).toHaveValue(original);await page.keyboard.press('Escape');await page.locator('[data-writing-tools]>summary').click();await page.getByRole('button',{name:'전체 흐름 보기',exact:true}).click();await expect(page.getByRole('dialog',{name:/흐름/})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('button',{name:'전체 흐름 보기',exact:true})).toBeFocused();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ page.setDefaultTimeout(15000);
+ await page.setViewportSize({width,height:width===844?390:900});
+ await page.goto('/?view=editor');
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const text=await currentCutText(page),original=await text.inputValue();
+ // The editor preview is fixed to 16:9 (DESIGN.md "편집 화면의 ... 컷 미리보기는 ... 가로16:9로 고정"), so no ratio selector exists anywhere.
+ await expect(page.getByLabel('미리보기 화면 비율')).toHaveCount(0);
+ const menu=page.locator('[data-work-menu]');
+ if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+ const view=menu.locator('details').filter({has:page.locator(':scope>summary',{hasText:/^보기 설정$/})}).first();
+ await view.locator(':scope>summary').click();
+ expect(await view.locator(':scope>div').evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.width>=Math.min(300,innerWidth-24);})).toBe(true);
+ await expect(page.getByLabel('미리보기 화면 비율')).toHaveCount(0);
+ await expect(page.getByRole('button',{name:'편집하기',exact:true})).toHaveCount(0);
+ await expect(page.getByRole('button',{name:'현재 컷부터 읽기',exact:true})).toHaveCount(0);
+ await expect(page.getByRole('button',{name:/글 편집 영역/})).toHaveCount(0);
+ await expect(text).toHaveValue(original);
+ await page.keyboard.press('Escape');
+ // The whole-flow map belongs to the 분기조건 rule in the 설정 menu.
+ await enableEditing(page,'분기조건');
+ if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+ await menu.getByRole('button',{name:'전체 흐름 보기',exact:true}).click();
+ await expect(page.getByRole('dialog',{name:/흐름/})).toBeVisible();
+ await page.keyboard.press('Escape');
+ await expect(page.getByRole('dialog',{name:/흐름/})).toHaveCount(0);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
 test('starting native reading respects composition and failed saves',async({page})=>{
- await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const text=page.getByLabel('대사 / 해설',{exact:true});await text.dispatchEvent('compositionstart');await expect(page.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeDisabled();await page.getByText('보기 설정',{exact:true}).click();await expect(page.getByRole('button',{name:'처음부터 읽기',exact:true})).toBeDisabled();await text.dispatchEvent('compositionend');await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});const stored=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));await text.fill('저장 실패 때 편집을 떠나지 않는다.');await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await expect(text).toHaveValue('저장 실패 때 편집을 떠나지 않는다.');await expect(page.getByTestId('workspace-error')).toContainText('저장');await expect(page.getByRole('button',{name:'읽기 메뉴',exact:true})).toHaveCount(0);expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(stored);
+ await page.goto('/?view=editor');
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const text=await currentCutText(page);
+ await text.dispatchEvent('compositionstart');
+ await expect(page.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeDisabled();
+ const menu=page.locator('[data-work-menu]');
+ if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+ await page.getByText('보기 설정',{exact:true}).click();
+ await expect(page.getByRole('button',{name:'처음부터 읽기',exact:true})).toBeDisabled();
+ await text.dispatchEvent('compositionend');
+ await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});const stored=await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'));
+ await text.fill('저장 실패 때 편집을 떠나지 않는다.');
+ await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();
+ await expect(text).toHaveValue('저장 실패 때 편집을 떠나지 않는다.');
+ await expect(page.getByTestId('workspace-error')).toContainText('저장');
+ await expect(page.getByRole('button',{name:'읽기 메뉴',exact:true})).toHaveCount(0);expect(await page.evaluate(()=>localStorage.getItem('knolstory-next-workspace-v1'))).toBe(stored);
 });
