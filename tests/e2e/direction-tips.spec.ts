@@ -1,10 +1,11 @@
 import {test,expect,type Page} from '@playwright/test';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 import {confirmAuthoringImport} from './authoring-file';
 const project=createBlankStoryProject({id:'direction-tips',chapterId:'a',lineId:'first',title:'연출 팁 확인'});
 async function work(page:Page){return page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);}
 test('contextual direction tips explain recommended use and preserve draft and focus',async({page},info)=>{
- page.setDefaultTimeout(12000);await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');
+ await suppressFullscreenOffer(page);page.setDefaultTimeout(12000);await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await page.locator('[data-work-menu]>summary').click();
  await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'tips.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
  const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
