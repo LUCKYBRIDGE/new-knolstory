@@ -1,13 +1,17 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {confirmAuthoringImport,parseAuthoringFile,openFileExchange} from './authoring-file';
+import {openChoiceEditing} from './editor-screens';
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
+test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
 
 const original=JSON.parse(readFileSync('tests/fixtures/stories/seonnyeo.json','utf8'));
 const [a,b,join]=original.lines;
 const source={...original,id:'editing-path-story',lines:original.lines.map((line:{id:string})=>line.id===a.id?{...line,ending:undefined,flow:{type:'choice',options:[{id:'via-b',label:'옆 컷을 거쳐 만난다',targetLineId:b.id},{id:'direct',label:'바로 만난다',targetLineId:join.id}]}}:line.id===b.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:join.id}}:line.id===join.id?{...line,ending:undefined,flow:{type:'goto',targetLineId:a.id}}:line)};
 async function menu(page:Page){const root=page.locator('[data-work-menu]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope > summary').click();}
 async function exportProject(page:Page){await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(readFileSync((await(await pending).path())!,'utf8')).project;}
-async function context(page:Page){const tools=page.locator('[data-writing-tools]');if(!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator(':scope > summary').click();await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();return page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});}
+/** The 현재 컷 연결 살펴보기 opener now lives in the folded 현재 컷의 선택지·분기조건 편집 dock (opened after switching 선택지 편집·분기조건 편집 on). */
+async function context(page:Page){await openChoiceEditing(page,'분기조건');await page.getByRole('button',{name:'현재 컷 연결 살펴보기',exact:true}).click();return page.getByRole('dialog',{name:'현재 컷 연결 살펴보기',exact:true});}
 async function loaded(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨',{timeout:15000});}
 for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`chosen editing visits survive join, loop, reload and native reading without authoring content ${size.width}`,async({page},info)=>{
  page.setDefaultTimeout(15000);await page.setViewportSize(size);await page.goto('/?view=editor');await loaded(page);await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'navigation.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-13T00:00:00.000Z',appVersion:'test',project:source}))});await confirmAuthoringImport(page);await loaded(page);
