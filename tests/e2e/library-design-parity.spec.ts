@@ -22,7 +22,7 @@ test('cover canvas supports keyboard, drag cancellation and one-operation undo w
  await dialog.getByRole('button',{name:'제목 선택',exact:true}).click();const title=dialog.getByRole('button',{name:'제목 위치 직접 조정',exact:true});const before=await title.getAttribute('style');await title.focus();await page.keyboard.press('ArrowDown');await expect(title).not.toHaveAttribute('style',before!);await dialog.getByRole('button',{name:'되돌리기',exact:true}).click();await expect(title).toHaveAttribute('style',before!);
  const rect=(await title.boundingBox())!;await page.mouse.move(rect.x+10,rect.y+10);await page.mouse.down();await page.mouse.move(rect.x+10,rect.y+40);await title.dispatchEvent('pointercancel',{pointerId:1});await page.mouse.up();await expect(title).toHaveAttribute('style',before!);
  const handle=dialog.getByRole('button',{name:'제목 크기 직접 조정'});expect((await handle.boundingBox())!.width).toBeGreaterThanOrEqual(44);
- await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(original);
+ await dialog.getByRole('button',{name:'취소',exact:true}).click();const discard=page.getByRole('dialog',{name:'표지 변경을 적용하지 않고 닫을까요?',exact:true});await expect(discard).toBeVisible();await discard.getByRole('button',{name:'변경 버리고 닫기',exact:true}).click();await expect(page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true})).toHaveValue(original);
 });
 
 test('imported shelf pages retain all existing-book copies and filter back to the first matching book',async({page})=>{
@@ -36,7 +36,7 @@ test('imported shelf pages retain all existing-book copies and filter back to th
   await importShelfFile(page,{name:`copy-${index}.knolstory`,mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:new Date().toISOString(),appVersion:'knolstory-next',project:copy}))});
   await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재'})).toBeVisible();
  }
- await selectShelfCollection(page,'imported');const region=page.getByRole('region',{name:'가져온 작품',exact:true});const capacity=Number(await page.locator('[data-capacity]').getAttribute('data-capacity'));await expect(region.getByRole('article')).toHaveCount(Math.min(9,capacity));const paging=page.getByRole('navigation',{name:'가져온 작품 선반 페이지'});await paging.getByRole('button',{name:'다음 선반'}).click();await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 9');await fillShelfSearch(page,'서재 1');await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 1');await fillShelfSearch(page,'');await paging.getByRole('button',{name:'이전 선반'}).click();await expect(region.getByRole('article')).toHaveCount(8);
+ await selectShelfCollection(page,'imported');const region=page.getByRole('region',{name:'내 작품',exact:true});const capacity=Number(await page.locator('[data-capacity]').getAttribute('data-capacity'));await expect(region.getByRole('article')).toHaveCount(Math.min(9,capacity));const paging=page.getByRole('navigation',{name:'내 작품 선반 페이지'});await paging.getByRole('button',{name:'다음 선반'}).click();await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 9');await fillShelfSearch(page,'서재 1');await expect(region.getByRole('article')).toHaveCount(1);await expect(region).toContainText('흥부전 서재 1');await fillShelfSearch(page,'');await paging.getByRole('button',{name:'이전 선반'}).click();await expect(region.getByRole('article')).toHaveCount(8);
 });
 
 test('layered front, spine and back covers keep direct edits in the draft until apply',async({page})=>{
@@ -45,7 +45,7 @@ test('layered front, spine and back covers keep direct edits in the draft until 
   await dialog.getByRole('button',{name:face,exact:true}).click();const target=dialog.getByRole('button',{name:/글 상자 직접 이동/}).first();const before=await target.getAttribute('style');await target.focus();await page.keyboard.press('ArrowDown');await expect(target).not.toHaveAttribute('style',before!);await dialog.getByRole('button',{name:'되돌리기',exact:true}).click();await expect(target).toHaveAttribute('style',before!);
   await target.click();const handle=dialog.getByRole('button',{name:'선택한 상자 크기 직접 조정'});await expect(handle).toBeVisible();expect((await handle.boundingBox())!.width).toBeGreaterThanOrEqual(44);
  }
- await dialog.getByRole('button',{name:'취소',exact:true}).click();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();await expect(page.getByRole('button',{name:'세 면과 글·그림 상자 편집 시작',exact:true})).toBeVisible();await page.keyboard.press('Escape');
+ await dialog.getByRole('button',{name:'취소',exact:true}).click();const discard=page.getByRole('dialog',{name:'표지 변경을 적용하지 않고 닫을까요?',exact:true});await expect(discard).toBeVisible();await discard.getByRole('button',{name:'변경 버리고 닫기',exact:true}).click();await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();await expect(page.getByRole('button',{name:'세 면과 글·그림 상자 편집 시작',exact:true})).toBeVisible();await page.keyboard.press('Escape');
 });
 
 test('all eight books start native RenPy from the library focus and retain the same runtime',async({page},info)=>{
