@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
+import {onlineEnabled} from '../lib/online-mode';
 import {accountGoogleLink} from '../lib/account-api';
 import {rememberAccountReturn,accountCallbackNotice} from '../lib/account-return';
 import {useAccountSession} from './use-account-session';
@@ -9,6 +10,7 @@ type AccountState=ReturnType<typeof useAccountSession>;
 type Props={beforeNavigate:()=>boolean;disabled?:boolean;returnTo?:'library'|'shortstory';account?:AccountState};
 /** A shared account state avoids a second session request in the unified library. */
 export function AccountMenu({account,...props}:Props){
+ if(!onlineEnabled)return null;
  return account?<AccountMenuView {...props} account={account}/>:<ConnectedAccountMenu {...props}/>;
 }
 function ConnectedAccountMenu(props:Omit<Props,'account'>){

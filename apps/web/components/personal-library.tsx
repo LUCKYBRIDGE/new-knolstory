@@ -1,5 +1,6 @@
 'use client';
 import {useMemo,useRef,useState,useEffect} from 'react';
+import {onlineEnabled} from '../lib/online-mode';
 import type {OnlineDocumentMetadata} from '../lib/document-api';
 import {readOnlineShelfBindings} from '../lib/online-work-bindings';
 import {projectOnlineShelf,type OnlineShelfStatus} from '../lib/unified-library';
@@ -36,11 +37,11 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
   {online.notice&&<p role="status">{target?`‘${target.title}’ · `:''}{online.notice}</p>}{online.error&&<p role="alert">{online.error}</p>}
  </div>;
  return <>
-  <LocalBookshelf {...shelf} accountMenu={<AccountMenu account={online.account} beforeNavigate={beforeAccountNavigation} disabled={onlineDisabled||shelf.disabled}/>} online={{records:projection.remoteOnly,byLocalKey:projection.byLocalKey,header,busy:online.busy,more:!!online.activeCursor,onMore:()=>void online.list(true,'active'),onOpen:record=>{setTarget({key:`remote:${record.recordId}`,title:record.title});void online.open(record);},renderLocalActions:work=>{
+  <LocalBookshelf {...shelf} accountMenu={onlineEnabled&&<AccountMenu account={online.account} beforeNavigate={beforeAccountNavigation} disabled={onlineDisabled||shelf.disabled}/>} online={onlineEnabled?{records:projection.remoteOnly,byLocalKey:projection.byLocalKey,header,busy:online.busy,more:!!online.activeCursor,onMore:()=>void online.list(true,'active'),onOpen:record=>{setTarget({key:`remote:${record.recordId}`,title:record.title});void online.open(record);},renderLocalActions:work=>{
    if(!isPersonalLibraryKind(work.kind))return null;
    const key=`local:${work.key}`,status=projection.byLocalKey[work.key]??{kind:'local' as const,label:'이 기기에 있음'};
    return <OnlineLibraryActions key={key} status={status} disabled={unavailable} signedIn={!!owner} {...feedback(key)} onUpload={()=>{setTarget({key,title:work.project.title});void online.save(work.key);}} onOpenOnline={status.record?()=>{setTarget({key,title:work.project.title});void online.open(status.record!);}:undefined} onTrash={status.record?()=>stateAction(status.record!,'trash',key):undefined}/>;
-  },renderRemoteActions:record=><OnlineLibraryActions key={record.recordId} status={{kind:'remote',label:'온라인에 있음',record}} disabled={unavailable} signedIn={!!owner} {...feedback(`remote:${record.recordId}`)} onTrash={()=>stateAction(record,'trash')}/>}}/>
+  },renderRemoteActions:record=><OnlineLibraryActions key={record.recordId} status={{kind:'remote',label:'온라인에 있음',record}} disabled={unavailable} signedIn={!!owner} {...feedback(`remote:${record.recordId}`)} onTrash={()=>stateAction(record,'trash')}/>}:undefined}/>
   {trashOpen&&owner&&<OnlineTrashDialog documents={online.range==='trash'?online.documents:[]} busy={online.busy} error={online.error} notice={online.notice} cursor={online.range==='trash'?online.cursor:null} onMore={()=>void online.list(true,'trash')} onClose={()=>{setTrashOpen(false);requestAnimationFrame(()=>trashTrigger.current?.focus());}} onRestore={record=>stateAction(record,'restore')}/>}
  </>;
 }
