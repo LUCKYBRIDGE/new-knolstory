@@ -1,11 +1,13 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {parseAuthoringFile} from './authoring-file';
+import {parseAuthoringFile,openFileExchange} from './authoring-file';
+import {openEditingTool} from './editor-screens';
 import {existingPrivateWorkspace,priorAudioResource} from './existing-private-audio';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 const source=parseAuthoringFile(readFileSync('tests/fixtures/responsive-audio.json','utf8'));
-async function sound(page:Page){const tools=page.locator('[data-additional-tools]');if(!await tools.evaluate(n=>(n as HTMLDetailsElement).open))await tools.locator(':scope>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await page.getByLabel('조정할 소리',{exact:true}).selectOption('sounds');}
+async function sound(page:Page){await openEditingTool(page,'소리 편집');await page.locator('article').getByLabel('조정할 소리',{exact:true}).selectOption('sounds');}
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(n=>(n as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
-async function exported(page:Page){await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,archive:parseAuthoringFile(readFileSync(path,'utf8'))};}
+async function exported(page:Page){await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,archive:parseAuthoringFile(readFileSync(path,'utf8'))};}
 test('existing private sound provenance keeps original bytes and full work while new attachment is refused',async({page,browser})=>{
  const bytes=readFileSync('apps/web/public/assets/audio/chime.wav'),resource=priorAudioResource(bytes,'이전 작품 출처 자료','sound','출처기록-검사.wav');
  const project={...source,id:'prior-provenance',lines:source.lines.map((line:typeof source.lines[number],index:number)=>index?line:{...line,audio:{...line.audio,sounds:[{id:'prior-provenance-cue',assetId:resource.id,volume:1,delayMs:0}]}})};
