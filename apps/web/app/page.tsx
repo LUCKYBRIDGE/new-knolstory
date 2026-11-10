@@ -1,2 +1,3 @@
 import { StoryWorkspace } from '../components/story-workspace';
-export default function Page() { return <StoryWorkspace />; }
+import { ClassLoginGate } from '../components/classroom/class-login-gate';
+export default function Page() { return <><StoryWorkspace /><ClassLoginGate /></>; }
