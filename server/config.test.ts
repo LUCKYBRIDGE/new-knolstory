@@ -20,3 +20,21 @@ it('keeps client-proof trust disabled unless an explicit protected key file is c
  expect(loadApiConfig(configured,path=>path==='/secret/proof'?'ab'.repeat(32):read(path)).auth.clientProofKey).toBe('ab'.repeat(32));
  for(const value of ['', 'z'.repeat(64),'ab'.repeat(31),'ab'.repeat(33),'aa\n'+'a'.repeat(61)])expect(()=>loadApiConfig(configured,path=>path==='/secret/proof'?value:read(path))).toThrow('Invalid API configuration.');
 });
+
+describe('classroom configuration',()=>{
+ const secret=Buffer.alloc(32,7).toString('base64'),admin='aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',other='BBBBBBBB-bbbb-4bbb-8bbb-bbbbbbbbbbbb';
+ it('starts without classroom settings and leaves the secret unset',()=>{
+  const c=loadApiConfig(env,read);expect(c.classroom).toEqual({adminAccountIds:[]});
+ });
+ it('accepts an inline base64 secret or a secret file and lowercases unique admin ids',()=>{
+  expect(loadApiConfig({...env,KNOL_CLASSROOM_SECRET:secret,KNOL_ADMIN_ACCOUNT_IDS:` ${admin}, ${other},${admin},`},read).classroom).toEqual({secret,adminAccountIds:[admin,other.toLowerCase()]});
+  expect(loadApiConfig({...env,KNOL_CLASSROOM_SECRET_FILE:'/secret/class'},path=>path.endsWith('class')?secret+'\n':read(path)).classroom.secret).toBe(secret);
+ });
+ it.each([['short',Buffer.alloc(16).toString('base64')],['not base64','###'],['empty','']])('fails closed on an invalid classroom secret: %s',(_,value)=>{
+  expect(()=>loadApiConfig({...env,KNOL_CLASSROOM_SECRET:value},read)).toThrow('Invalid API configuration.');
+ });
+ it('rejects both secret sources at once and malformed admin ids',()=>{
+  expect(()=>loadApiConfig({...env,KNOL_CLASSROOM_SECRET:secret,KNOL_CLASSROOM_SECRET_FILE:'/secret/class'},()=>secret)).toThrow('Invalid API configuration.');
+  expect(()=>loadApiConfig({...env,KNOL_ADMIN_ACCOUNT_IDS:'not-a-uuid'},read)).toThrow('Invalid API configuration.');
+ });
+});
