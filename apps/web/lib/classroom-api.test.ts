@@ -20,7 +20,7 @@ describe('classroom client',()=>{
  it('rejects malformed me',async()=>{await expect(classMe(vi.fn().mockResolvedValue(ok({role:'king',account:{id:'a'}})))).rejects.toThrow();});
  it('sends csrf and JSON on writes',async()=>{
   const classroom={id:'c',name:'3반',classCode:'ABC234',studentCount:0,defaultPermissions:ALL_EDITING_ALLOWED,students:[]};
-  const fetcher=vi.fn().mockResolvedValue(ok(classroom));
+  const fetcher=vi.fn().mockImplementation(async()=>ok(classroom));
   await classroomCreate('3반','csrf',fetcher);expect(fetcher.mock.calls[0][1]).toMatchObject({method:'POST',headers:{'x-csrf-token':'csrf','content-type':'application/json'},body:'{"name":"3반"}',redirect:'error'});
   await studentsPermissions([1,2],null,'csrf',fetcher);expect(fetcher.mock.calls[1][0]).toBe('/api/v1/class/classroom/students/permissions');expect(fetcher.mock.calls[1][1].body).toBe('{"numbers":[1,2],"permissions":null}');
  });
