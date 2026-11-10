@@ -1,6 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {confirmAuthoringImport} from './authoring-file';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 const base=createBlankStoryProject({id:'flow-change-protection',chapterId:'a',lineId:'first',title:'진행 방식 보호'}),cut=base.lines[0]!;
 const choice={type:'choice' as const,options:[{id:'preserved-a',label:'친구를 믿는다',targetLineId:'next',effects:[{scoreId:'trust',operation:'add' as const,value:2}],condition:{mode:'all' as const,terms:[{scoreId:'trust',operator:'gte' as const,value:1}]}},{id:'preserved-b',label:'조금 기다린다',targetLineId:'bonus'}]};
 const routed={type:'goto' as const,targetLineId:'next',routes:[{id:'preserved-route',condition:{mode:'all' as const,terms:[{scoreId:'trust',operator:'gte' as const,value:3}]},targetLineId:'bonus'}]};
