@@ -11,7 +11,12 @@ type Edition={workId:string;edition:'original'|'knolstory';projectId:string;titl
 type Scene={sceneId:string;revision:number;width:number;height:number;mode:string;ended?:boolean;dialogue:{text:string};choices:Array<{id:string;text:string}>;transitionOnly?:boolean;presentation?:{transition?:{mode?:'auto'|'confirm'}};effectSteps?:{current:number;total:number}};
 type NativeEvent={type:string;revision?:number;sceneId?:string;message?:string;choicesRect?:{x:number;y:number;width:number;height:number};dialoguePage?:{index:number;count:number};choiceId?:string};
 type ObservedWindow=Window&{__catalogPathScene?:Scene;__catalogPathEvents?:NativeEvent[]};
-const editions=['manifest.json','manifest-rabbit.json','manifest-onggojib.json','manifest-seonnyeo-rainy-courtyard-selected.json'].flatMap(file=>(JSON.parse(readFileSync(new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url),'utf8')) as {editions:Edition[]}).editions);
+const evidenceUrl=(file:string)=>new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url);
+const readEditions=(file:string)=>(JSON.parse(readFileSync(evidenceUrl(file),'utf8')) as {editions:Edition[]}).editions;
+// KNOL_CATALOG_SEONNYEO_SCOPE=remaining: run the seonnyeo routes of the full manifest that the selected manifest has not already verified. Unset keeps the default (selected) scope.
+const seonnyeoRemaining=process.env.KNOL_CATALOG_SEONNYEO_SCOPE==='remaining';
+const remainingSeonnyeo=()=>{const done=new Set(readEditions('manifest-seonnyeo-rainy-courtyard-selected.json').flatMap(edition=>edition.routes.map(route=>`${edition.workId}/${edition.edition}/${route.id}`)));return readEditions('manifest-seonnyeo-rainy-courtyard-all.json').map(edition=>({...edition,routes:edition.routes.filter(route=>!done.has(`${edition.workId}/${edition.edition}/${route.id}`))})).filter(edition=>edition.routes.length)};
+const editions=['manifest.json','manifest-rabbit.json','manifest-onggojib.json',...(seonnyeoRemaining?[]:['manifest-seonnyeo-rainy-courtyard-selected.json'])].flatMap(file=>(JSON.parse(readFileSync(new URL(`../../docs/architecture/evidence/catalog-native-paths-2026-11-02/${file}`,import.meta.url),'utf8')) as {editions:Edition[]}).editions).concat(seonnyeoRemaining?remainingSeonnyeo():[]);
 const canonical=(value:unknown)=>JSON.stringify(value,(_key,item:unknown)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))):item);
 const projectHash=(value:unknown)=>createHash('sha256').update(canonical(value)).digest('hex');
 const workspace=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
