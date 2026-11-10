@@ -1,3 +1,4 @@
+import {openWorkFileExchange} from './work-file-exchange';
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
@@ -6,7 +7,7 @@ const base=createBlankStoryProject({id:'split',chapterId:'ch',lineId:'a',title:'
 const sound={id:'original',assetId:'audio:sound:chime',sourceStartMs:200,sourceEndMs:1100,delayMs:200,volume:.5};
 const project={...base,lines:base.lines.map(line=>({...line,text:'원본 소리와 작성한 글을 보존합니다.',audio:{sounds:[sound]}}))};
 test('split a sound, undo, edit two pieces, reopen actual file and play scheduled native segments',async({page,browser},info)=>{
- test.setTimeout(150000);await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');
+ test.setTimeout(150000);await page.route('**/api/**',route=>route.abort());await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.goto('/?view=editor');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();
  await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'split.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-21T00:00:00.000Z',appVersion:'test',project}))});
@@ -29,7 +30,7 @@ test('split a sound, undo, edit two pieces, reopen actual file and play schedule
  await list.getByRole('button').nth(2).click();await row.getByRole('button',{name:'효과음 3 삭제',exact:true}).click();await expect(list.getByRole('button')).toHaveCount(2);
  for(const viewport of [{width:1280,height:800},{width:390,height:844}]){await page.setViewportSize(viewport);await list.scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath(`split-${viewport.width}.png`)});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
  await page.setViewportSize({width:1280,height:800});await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const current=await stored();
- await menu.locator(':scope>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('split.knolstory');await(await pending).saveAs(file);const saved=parseAuthoringFile(readFileSync(file,'utf8'));expect(saved.project).toEqual(current);expect(saved.project.lines[0].text).toBe(project.lines[0].text);
+ await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('split.knolstory');await(await pending).saveAs(file);const saved=parseAuthoringFile(readFileSync(file,'utf8'));expect(saved.project).toEqual(current);expect(saved.project.lines[0].text).toBe(project.lines[0].text);
  await menu.locator(':scope>summary').click();await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:120000});
  const gate=page.getByTestId('story-runtime-frame').contentFrame().getByRole('button',{name:'소리 켜고 시작 · Enter 또는 Space',exact:true});await expect(gate).toBeVisible({timeout:30000});await gate.press('Enter');
  await expect.poll(async()=>Number(await status.getAttribute('data-sound-play-count')),{timeout:30000,intervals:[50]}).toBe(1);const first=Date.now();
