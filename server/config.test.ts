@@ -37,4 +37,7 @@ describe('classroom configuration',()=>{
   expect(()=>loadApiConfig({...env,KNOL_CLASSROOM_SECRET:secret,KNOL_CLASSROOM_SECRET_FILE:'/secret/class'},()=>secret)).toThrow('Invalid API configuration.');
   expect(()=>loadApiConfig({...env,KNOL_ADMIN_ACCOUNT_IDS:'not-a-uuid'},read)).toThrow('Invalid API configuration.');
  });
+ it('treats the empty secret path and admin list that Compose passes as not configured',()=>{
+  expect(loadApiConfig({...env,KNOL_CLASSROOM_SECRET_FILE:'',KNOL_ADMIN_ACCOUNT_IDS:''},read).classroom).toEqual({adminAccountIds:[]});
+ });
 });

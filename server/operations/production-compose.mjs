@@ -37,7 +37,15 @@ export function prepareProduction(env=process.env){
    providerFiles[`${provider.toUpperCase()}_CLIENT_ID_FILE`]=present?`/run/knolstory-production/${provider}-client-id`:'';
    providerFiles[`${provider.toUpperCase()}_CLIENT_SECRET_FILE`]=present?`/run/knolstory-production/${provider}-client-secret`:'';
   }
-  return {KNOLSTORY_PRODUCTION_SECRET_DIR:dir,KNOLSTORY_PRODUCTION_OWNER_DIR:ownerDir,KNOLSTORY_AUTH_ORIGIN:origin,KNOLSTORY_REDIRECT_FROM_ORIGIN:origin==='https://story.knolquiz.com'?'https://story-next.knolquiz.com':'',KNOLSTORY_SECRET_UID:String(stat.uid),KNOLSTORY_SECRET_GID:String(stat.gid),...providerFiles};
+  // Classroom (docs/architecture/classroom-design.md): the AES key is created once and must be kept;
+  // replacing it makes saved student passwords unreadable. Admin IDs are a plain comma list.
+  const classroomSecret=join(dir,'classroom-secret');
+  if(!existsSync(classroomSecret))writeFileSync(classroomSecret,randomBytes(32).toString('base64')+'\n',{flag:'wx',mode:0o600});
+  privateFile(classroomSecret);
+  const adminFile=join(dir,'admin-account-ids');
+  const adminIds=existsSync(adminFile)?(privateFile(adminFile),readFileSync(adminFile,'utf8').trim()):'';
+  if(adminIds&&!/^[a-f0-9-]{36}(?:,[a-f0-9-]{36}){0,49}$/.test(adminIds))throw Error();
+  return {KNOL_CLASSROOM_SECRET_FILE:'/run/knolstory-production/classroom-secret',KNOL_ADMIN_ACCOUNT_IDS:adminIds,KNOLSTORY_PRODUCTION_SECRET_DIR:dir,KNOLSTORY_PRODUCTION_OWNER_DIR:ownerDir,KNOLSTORY_AUTH_ORIGIN:origin,KNOLSTORY_REDIRECT_FROM_ORIGIN:origin==='https://story.knolquiz.com'?'https://story-next.knolquiz.com':'',KNOLSTORY_SECRET_UID:String(stat.uid),KNOLSTORY_SECRET_GID:String(stat.gid),...providerFiles};
  }catch{throw Error('Invalid production configuration.');}
 }
 export function composeArguments(action){

@@ -29,7 +29,8 @@ export function loadApiConfig(env:Environment=process.env,read:(path:string)=>st
   const host=env.KNOLSTORY_BIND_HOST??'127.0.0.1';
   if(!['127.0.0.1','0.0.0.0'].includes(host))throw Error();
   // Classroom: the AES key is optional so existing deployments keep starting; routes answer 503 without it.
-  const inlineSecret=env.KNOL_CLASSROOM_SECRET,secretFile=env.KNOL_CLASSROOM_SECRET_FILE;
+  // Compose passes an empty secret path when the feature is not configured; treat it as unset.
+  const inlineSecret=env.KNOL_CLASSROOM_SECRET,secretFile=env.KNOL_CLASSROOM_SECRET_FILE||undefined;
   if(inlineSecret!==undefined&&secretFile!==undefined)throw Error();
   const classroomSecret=secretFile!==undefined?secret('KNOL_CLASSROOM_SECRET_FILE',256,1):inlineSecret;
   if(classroomSecret!==undefined)parseClassroomSecret(classroomSecret);

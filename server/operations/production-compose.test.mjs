@@ -55,3 +55,18 @@ test('fixed lifecycle actions never forward arbitrary Compose or destructive arg
  assert.deepEqual(composeArguments('status'),['ps']);
  for(const action of ['down','rm','prune','--volumes','stop','run','logs',undefined])assert.throws(()=>composeArguments(action));
 });
+test('classroom key is created once as 32-byte base64 and admin ids come from a private list',t=>{
+ const {secrets}=fixture(t),first=prepareProduction({KNOLSTORY_PRODUCTION_SECRET_DIR:secrets});
+ assert.equal(first.KNOL_CLASSROOM_SECRET_FILE,'/run/knolstory-production/classroom-secret');
+ assert.equal(first.KNOL_ADMIN_ACCOUNT_IDS,'');
+ const key=readFileSync(join(secrets,'classroom-secret'),'utf8');
+ assert.equal(Buffer.from(key.trim(),'base64').length,32);
+ prepareProduction({KNOLSTORY_PRODUCTION_SECRET_DIR:secrets});
+ assert.equal(readFileSync(join(secrets,'classroom-secret'),'utf8'),key);
+ assert.equal(JSON.stringify(first).includes(key.trim()),false);
+ const id='11111111-1111-4111-8111-111111111111';
+ writeFileSync(join(secrets,'admin-account-ids'),id+'\n',{mode:0o600});
+ assert.equal(prepareProduction({KNOLSTORY_PRODUCTION_SECRET_DIR:secrets}).KNOL_ADMIN_ACCOUNT_IDS,id);
+ writeFileSync(join(secrets,'admin-account-ids'),'not an id',{mode:0o600});
+ assert.throws(()=>prepareProduction({KNOLSTORY_PRODUCTION_SECRET_DIR:secrets}));
+});
