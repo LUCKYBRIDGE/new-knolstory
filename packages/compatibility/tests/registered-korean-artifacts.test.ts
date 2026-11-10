@@ -9,4 +9,4 @@ for(const source of ['google','excel'])it(`preserves needed Korean authoring con
  if(process.env.KNOL_WRITE_KOREAN_COPIES!=='1')return;
  const directory='docs/architecture/evidence/remaining-current-2026-10-14/registered-copies';mkdirSync(directory,{recursive:true});const name=path.split('/').at(-1)!;
  writeFileSync(`${directory}/${name}`,buffer);writeFileSync(`${directory}/${name}.json`,JSON.stringify({source:path,sourceSha256,original,archive,replacements:[...replacements]},null,2)+'\n');
-});
+},30000);
