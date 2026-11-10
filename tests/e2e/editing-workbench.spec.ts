@@ -3,7 +3,8 @@ import {readFile} from 'node:fs/promises';
 import {readFileSync} from 'node:fs';
 import type {StoryProject} from '../../packages/story-domain/src/index';
 import {shelfCoverButton} from './library-entry';
-import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+import {confirmAuthoringImport,parseAuthoringFile,openFileExchange} from './authoring-file';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 
 const source=JSON.parse(readFileSync('tests/fixtures/stories/presentation-polish.json','utf8')) as StoryProject;
 const fixture={...source,lines:source.lines.slice(0,3).map((line,index)=>index===2?{...line,flow:{type:'goto',targetLineId:null}}:line)};
@@ -18,7 +19,7 @@ async function openWorkMenu(page:Page){
 async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
 async function exported(page:Page){
  await saved(page);await openWorkMenu(page);
- const pending=page.waitForEvent('download');
+ await openFileExchange(page);const pending=page.waitForEvent('download');
  await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
  const file=await pending,raw=await readFile((await file.path())!,'utf8');
  return {raw,project:parseAuthoringFile(raw).project as StoryProject};
