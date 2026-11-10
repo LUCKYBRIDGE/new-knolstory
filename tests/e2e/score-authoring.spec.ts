@@ -1,7 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {enterLibrary,startShelfCreation} from './library-entry';
-import {parseAuthoringFile} from './authoring-file';
+import {parseAuthoringFile,openFileExchange} from './authoring-file';
 
 test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 
@@ -28,7 +28,7 @@ test('author creates custom plot score and preserves it through file export and 
   await initial.fill('2.5');await initial.blur();
   await expect(scores.getByRole('alert')).toContainText('정수를 입력');await expect(initial).toHaveAttribute('aria-invalid','true');const numberErrorId=await initial.getAttribute('aria-describedby');expect(numberErrorId).toBeTruthy();await expect(page.locator(`[id="${numberErrorId}"]`)).toContainText('현재 원고에 적용된 값은 2');
   await initial.fill('2');await initial.blur();await expect(initial).not.toHaveAttribute('aria-invalid','true');const name=scores.getByLabel('점수 1 이름',{exact:true});await name.fill('');await name.blur();await expect(name).toHaveAttribute('aria-invalid','true');const nameErrorId=await name.getAttribute('aria-describedby');expect(nameErrorId).toBeTruthy();await expect(page.locator(`[id="${nameErrorId}"]`)).toContainText('이웃에게 나눈 횟수');await name.fill('이웃에게 나눈 횟수');await name.blur();await expect(name).not.toHaveAttribute('aria-invalid','true');await expect(scores.getByRole('alert')).toHaveCount(0);
-  await page.locator('[data-work-menu]>summary').click();
+  {const work=page.locator('[data-work-menu]');if(!await work.evaluate(n=>(n as HTMLDetailsElement).open))await work.locator(':scope>summary').click();}await openFileExchange(page);
   const downloaded=page.waitForEvent('download');
   await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
   const path=info.outputPath('score.knolstory');await(await downloaded).saveAs(path);
