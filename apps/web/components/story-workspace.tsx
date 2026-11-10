@@ -99,6 +99,8 @@ import { storySceneLayout, type PreviewProfile } from "../lib/story-viewport";
 import {BookIntroduction} from './book-introduction';
 import {BookStart} from './book-start';
 import {EditorRelatedMemos} from './editor-related-memos';
+import {useEditorLimits,MEMBER_WORK_LIMIT} from './use-editor-limits';
+import {restrictEditorPreferences} from '../lib/editing-permissions';
 import {BookCoverEditor} from './book-cover-editor';
 import {loadLandingVisit,markLandingVisited,resolveEntryView} from '../lib/landing-visit';
 import {useStorageWriter} from './use-storage-writer';
@@ -187,7 +189,16 @@ export function StoryWorkspace() {
   const [error, setError] = useState("");
   const [storageError, setStorageError] = useState("");
   const keyboard=useEditorKeyboard();
-  const [editorPreferences,setEditorPreferences]=useEditorPreferences(project.id);
+  const [storedEditorPreferences,setEditorPreferences]=useEditorPreferences(project.id);
+  const editorLimits=useEditorLimits();
+  // Teacher limits apply on top of the author's own choices; the stored choices are kept for when limits lift.
+  const editorPreferences=restrictEditorPreferences(storedEditorPreferences,editorLimits.permissions);
+  /** Why a new personal work cannot be made right now, or null. */
+  function newWorkBlocked(){
+    if(!editorLimits.permissions.newWorks)return '선생님이 새 작품 만들기를 막아 두었어요.';
+    if(editorLimits.role==='member'&&Object.keys(savedProjects.current).filter(isPersonalWork).length>=MEMBER_WORK_LIMIT)return `내 작품은 ${MEMBER_WORK_LIMIT}개까지 만들 수 있어요. 쓰지 않는 작품을 지운 뒤 다시 해 주세요.`;
+    return null;
+  }
   const editingScreen=editorPreferences.screen;
   const logic=editorPreferences.logic;
   const [soundTool,setSoundTool]=useState(false);
@@ -514,6 +525,9 @@ export function StoryWorkspace() {
     const fixture=builtInStories.find(item=>item.id===key);
     let next=fixture?structuredClone(catalogProject(fixture)):savedProjects.current[key];if(!next)return;
     if(fixture&&(intent==='edit'||intent==='prepare'||intent==='cover')){
+      const forced=editorLimits.permissions.forcedStoryKey;
+      if(forced&&fixture.id!==forced&&!fixture.id.startsWith(`${forced}-`)){setError('선생님이 정한 작품만 편집할 수 있어요.');return;}
+      {const blocked=newWorkBlocked();if(blocked){setError(blocked);return;}}
       const sourceContext=contexts.current[key],original=next;next=createCatalogEditCopy(next,crypto.randomUUID(),new Date().toISOString(),savedProjects.current);
       if(!await preserveCopyAudio(original,next))return;key=`new:${next.id}`;
       if(sourceContext)contexts.current={...contexts.current,[key]:{...sourceContext,playback:undefined,hasRead:false}};
@@ -564,6 +578,7 @@ export function StoryWorkspace() {
   }
   function newStory(title: string) {
     if(stopForUnappliedInput())return false;
+    {const blocked=newWorkBlocked();if(blocked){setError(blocked);return false;}}
     try {
       const next = createBlankStoryProject({ id: crypto.randomUUID(), chapterId: crypto.randomUUID(), lineId: crypto.randomUUID(), title });
       if(hydrated)persistWorkspace();else ensureWritable();rememberCurrent();
@@ -775,6 +790,7 @@ export function StoryWorkspace() {
   async function importFile(file?: File) {
     if (!file) return;
     if(stopForUnappliedInput())return;
+    {const blocked=newWorkBlocked();if(blocked){setError(blocked);return;}}
     const sequence=++importReadSequence.current;setImportBusy(true);setPendingArchive(null);setError('');
     try {
       const next=await previewAuthoringFile(file);
@@ -821,6 +837,7 @@ export function StoryWorkspace() {
   }
   async function duplicatePersonalWork(key:string){
     if(!isPersonalWork(key))return;
+    {const blocked=newWorkBlocked();if(blocked){setError(blocked);return;}}
     rememberCurrent();const original=savedProjects.current[key];if(!original)return;
     const copy=copyPersonalWork(original,crypto.randomUUID(),new Date().toISOString());
     if(!await preserveCopyAudio(original,copy))return;const copyKey=`new:${copy.id}`;
@@ -1092,13 +1109,13 @@ export function StoryWorkspace() {
       <div className={`${styles.grid} ${mode==='edit'?styles.workbenchGrid:''}`} data-editing-screen={mode==='edit'?editingScreen:undefined}>
 
         <div ref={previewEditor.panel} onBlurCapture={previewEditor.onBlurCapture} className={styles.workbenchPanel} data-editor-inputs data-writer-scroll>
-          <StoryEditingWorkbench editingActive={view==='editor'&&mode==='edit'} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
+          <StoryEditingWorkbench editingActive={view==='editor'&&mode==='edit'} permissions={editorLimits.permissions} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
             onScreenChange={screen=>{if(composing||stopForUnappliedInput())return false;try{persistWorkspace();}catch(issue){setError(`편집 화면을 바꾸기 전 원고 보관에 실패했어요. ${issueText(issue)}`);return false;}setEditorPreferences(current=>({...current,screen}));setActiveTool('text');setSoundTool(false);setEditorView('cut');return true;}}
             onProjectChange={applyProject} onSelectCut={selectCut} onComposing={setComposing}
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}
             disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing}
             onPreview={id=>switchMode('play',false,id)}
-            additionalSettings={<fieldset disabled={composing||!loadComplete}><legend>이야기 규칙 편집</legend>{([['choices','선택지'],['scores','점수'],['branches','분기조건']] as const).map(([key,label])=><label key={key}><input type="checkbox" checked={logic[key]} onChange={event=>setEditorPreferences(current=>({...current,logic:{...current.logic,[key]:event.target.checked}}))}/>{label} 편집 사용</label>)}{logic.scores&&<button onClick={()=>prepareWork('','scores')}>이야기 점수 설정 열기</button>}{logic.branches&&<button onClick={()=>{setManageOpen(false);setFlowMapOpen(true);}}>전체 흐름 보기</button>}</fieldset>}
+            additionalSettings={<fieldset disabled={composing||!loadComplete}><legend>이야기 규칙 편집</legend>{([['choices','선택지'],['scores','점수'],['branches','분기조건']] as const).map(([key,label])=><label key={key}><input type="checkbox" checked={logic[key]} disabled={!editorLimits.permissions.choices} onChange={event=>setEditorPreferences(current=>({...current,logic:{...current.logic,[key]:event.target.checked}}))}/>{label} 편집 사용</label>)}{logic.scores&&<button onClick={()=>prepareWork('','scores')}>이야기 점수 설정 열기</button>}{logic.branches&&<button onClick={()=>{setManageOpen(false);setFlowMapOpen(true);}}>전체 흐름 보기</button>}</fieldset>}
             additionalEditor={<><details><summary>현재 컷 상세·메모·정리</summary><StoryWorkspaceInspector project={project} line={line} stage={stage} ordered={ordered} patch={patch} updateActor={updateActor} setComposing={setComposing} composing={composing} onProjectChange={applyProject} disabled={!loadComplete||mode!=='edit'} activeSection="text" speakerDetailsEnabled={editorPreferences.enabled.characters}/><fieldset disabled={composing||!loadComplete}><legend>현재 컷 정리</legend><button onClick={()=>editStructure(()=>duplicateStoryCut(project,line.id,crypto.randomUUID()))}>현재 컷 복제</button><button onClick={()=>setDeleteId(line.id)}>현재 컷 삭제</button><button onClick={()=>editStructure(()=>moveStoryCut(project,line.id,'up'))}>현재 컷 위로</button><button onClick={()=>editStructure(()=>moveStoryCut(project,line.id,'down'))}>현재 컷 아래로</button><button onClick={()=>editStructure(()=>splitStoryCut(project,line.id,crypto.randomUUID(),shell.current?.querySelector<HTMLTextAreaElement>('#story-line-text')?.selectionStart??line.text.length))}>상세 글의 커서에서 컷 나누기</button><button disabled={!ordered[ordered.findIndex(c=>c.id===line.id)+1]} onClick={()=>{const next=ordered[ordered.findIndex(c=>c.id===line.id)+1];if(next)editStructure(()=>mergeStoryCuts(project,line.id,next.id));}}>다음 컷과 합치기</button>{project.chapters.length>1&&<MoveCutToChapter key={line.id} chapters={project.chapters.filter(item=>item.id!==line.chapterId).map(item=>({id:item.id,label:chapterLabel(item)}))} onMove={chapterId=>editStructure(()=>moveStoryCutToChapter(project,line.id,chapterId))}/>}</fieldset></details>{(logic.choices||logic.branches)&&<details data-choice-dock><summary>현재 컷의 선택지·분기조건 편집</summary><StoryWorkspaceInspector project={project} line={line} stage={stage} ordered={ordered} patch={patch} updateActor={updateActor} setComposing={setComposing} composing={composing} onProjectChange={applyProject} disabled={!loadComplete||mode!=='edit'} activeSection="flow" choicesEnabled={logic.choices} scoresEnabled={logic.scores} branchesEnabled={logic.branches} onOpenScores={logic.scores?()=>prepareWork('','scores'):undefined} onCreateChoiceChapter={logic.branches?addChapter:undefined}/>{logic.branches&&flowNodes.get(line.id)&&<EditorFlowContext project={project} node={flowNodes.get(line.id)!} graph={flowGraph} disabled={composing} editingPath={editingPath} onReturnVisit={returnEditingVisit} onSelect={selectCut} onRepair={editFromFlow}/>}</details>}</>}/>
 
         </div>
