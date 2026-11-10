@@ -39,7 +39,7 @@ test('unconfigured account providers remain optional and service failure is retr
 test('failed local storage blocks account navigation without losing local works',async({page})=>{
  const calls=await mockedAccount(page);await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await authored(page);const menu=await openAccount(page);
  await page.evaluate(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='knolstory-next-workspace-v1')throw Error('quota');return original.call(this,key,value);};});
- await menu.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'로그인 화면으로 이동하지 않았어요'})).toBeVisible();expect(calls.filter(path=>path.endsWith('/start'))).toEqual([]);expect(await authored(page)).toEqual(before);await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
+ await menu.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(page.getByRole('status').filter({hasText:'로그인 화면으로 가지 않았어요'})).toBeVisible();expect(calls.filter(path=>path.endsWith('/start'))).toEqual([]);expect(await authored(page)).toEqual(before);await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
 });
 test('a delayed Google link cannot redirect or write a work after leaving the account menu',async({page})=>{
  await mockedAccount(page);let release:()=>void=()=>{};const delayed=new Promise<void>(resolve=>{release=resolve;});
@@ -62,7 +62,7 @@ test('a blocked second writer cannot start login or replace the saved work',asyn
  await page.route('**/writer-lock-fixture',route=>route.fulfill({contentType:'text/html',body:'<title>Writer fixture</title>'}));
  await page.goto('/writer-lock-fixture');
  await page.evaluate(()=>new Promise<void>(ready=>{void navigator.locks.request('knolstory-next-workspace-v1-writer',()=>{ready();return new Promise<void>(()=>{});});}));
- const other=await context.newPage();const calls=await mockedAccount(other);await other.goto('/?view=library');const menu=await openAccount(other);await menu.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(other.getByRole('status').filter({hasText:'로그인 화면으로 이동하지 않았어요'})).toBeVisible();expect(calls.filter(path=>path.endsWith('/start'))).toEqual([]);expect(await authored(other)).toEqual(before);await other.close();
+ const other=await context.newPage();const calls=await mockedAccount(other);await other.goto('/?view=library');const menu=await openAccount(other);await menu.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(other.getByRole('status').filter({hasText:'로그인 화면으로 가지 않았어요'})).toBeVisible();expect(calls.filter(path=>path.endsWith('/start'))).toEqual([]);expect(await authored(other)).toEqual(before);await other.close();
 });
 test('Google linking uses an empty CSRF POST and rechecks session after returning',async({page})=>{
  await mockedAccount(page);let meRequests=0;
