@@ -4,7 +4,6 @@ import {useRef,useState} from 'react';
 import {createPortal} from 'react-dom';
 import {flowMode,prepareFlowChange,type FlowMode} from '../lib/story-flow-change';
 import {StoryFlowChangeDialog} from './story-flow-change-dialog';
-import {StorySceneResources} from './story-scene-resources';
 import {SecondsInput} from './seconds-input';
 import {StoryStagingImport} from './story-staging-import';
 import {StoryCutNotes} from './story-cut-notes';
@@ -198,7 +197,6 @@ export function StoryWorkspaceInspector({
           else patch(side==='left'?{leftAssetId:id}:{rightAssetId:id});
         }}/>) }
         <details data-placement-details><summary>추가 인물·세부 배치</summary>
-        <StorySceneResources project={project} line={line} stage={stage} onFocus={focusField}/>
         <StoryStagingImport project={project} line={line} ordered={ordered} onChange={onProjectChange}/>
         <StoryCompositionControls project={project} line={line} stage={stage} ordered={ordered} patch={patch} />
         {[...stage.leftActors, ...stage.rightActors].map((actor) => {const actorLabel=authoringActorLabel(stage,actor.key);const asset=resolveAsset(actor.assetId);return (
