@@ -1,5 +1,6 @@
 'use client';
 import type {ReactNode} from 'react';
+import Link from 'next/link';
 import {onlineEnabled} from '../../lib/online-mode';
 import {useClassroomMe,type ClassroomMeState,type ClassroomRoleState} from '../use-classroom-me';
 import styles from './classroom.module.css';
@@ -7,7 +8,7 @@ type Props={title:string;roles:readonly ClassroomRoleState[];guest?:ReactNode;ch
 /** Shared frame for /teacher, /student and /admin: online switch, role gate and the way back to the library. */
 export function ClassroomShell({title,roles,guest,children}:Props){
  return <main className={styles.page} aria-label={title}><div className={styles.wrap}>
-  <div className={styles.top}><a className={styles.back} href="/?view=library">서재로</a><h1>{title}</h1></div>
+  <div className={styles.top}><Link className={styles.back} href="/?view=library">서재로</Link><h1>{title}</h1></div>
   {onlineEnabled?<Gate roles={roles} guest={guest}>{children}</Gate>:<p className={styles.card} role="status">온라인 기능이 꺼져 있어요. 이 기기의 작품은 그대로 쓸 수 있어요.</p>}
  </div></main>;
 }
