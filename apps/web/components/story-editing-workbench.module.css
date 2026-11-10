@@ -286,6 +286,8 @@
 
 /* Short phone landscape prioritizes the two useful editing panes even before typing. */
 @media (max-height:440px) {
+ /* Detail screens scroll inside the body so their rows never slide under the bottom dock. */
+ .workbench:not([data-screen=basic]) .body { overflow:auto; overscroll-behavior:contain; }
  .workbench[data-phone-editor=true][data-screen=basic] :is(.previousSide,.nextSide,.stackedContext,.additional,.hint) { display:none; }
  .workbench[data-phone-editor=true][data-screen=basic] .body[data-basic=true] { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:minmax(0,1fr); gap:8px; }
  .workbench[data-phone-editor=true][data-screen=basic] .previewSlot { grid-column:1; grid-row:1; position:relative; }
