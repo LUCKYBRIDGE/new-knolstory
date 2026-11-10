@@ -195,6 +195,7 @@
   z-index:50;
   width:44px;
   height:44px;
+  max-width:none!important;
   padding:0!important;
   background:var(--white)!important;
   border:2px solid var(--mint-strong)!important;
