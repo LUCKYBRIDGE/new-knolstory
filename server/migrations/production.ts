@@ -21,7 +21,7 @@ async function main(){
    await client.query('REVOKE ALL ON DATABASE knolstory_next_production FROM PUBLIC');
    await client.query('GRANT CONNECT ON DATABASE knolstory_next_production TO knolstory_next_app');
    await client.query('REVOKE CREATE ON SCHEMA public FROM PUBLIC');
-   for(const schema of ['knolstory_storage','knolstory_auth']){
+   for(const schema of ['knolstory_storage','knolstory_auth','knolstory_class']){
     await client.query(`GRANT USAGE ON SCHEMA ${schema} TO knolstory_next_app`);
     await client.query(`GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA ${schema} TO knolstory_next_app`);
     await client.query(`GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA ${schema} TO knolstory_next_app`);

@@ -2,7 +2,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import type {SqlPool} from '../storage/postgres-save-port';
 
-export const STORAGE_MIGRATIONS=['001-storage.sql','002-immutable-blobs.sql','003-identity-links.sql','004-auth-state.sql','005-session-rotation.sql','006-private-documents.sql','007-document-trash.sql'] as const;
+export const STORAGE_MIGRATIONS=['001-storage.sql','002-immutable-blobs.sql','003-identity-links.sql','004-auth-state.sql','005-session-rotation.sql','006-private-documents.sql','007-document-trash.sql','008-classroom.sql'] as const;
 
 /** Only dedicated Next databases and the fixed isolated schema are supported. */
 export async function runStorageMigrations(pool:SqlPool):Promise<void> {

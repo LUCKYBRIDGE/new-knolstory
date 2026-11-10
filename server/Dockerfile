@@ -9,6 +9,7 @@ COPY server/http ./http
 COPY server/storage ./storage
 COPY server/migrations ./migrations
 COPY server/documents ./documents
+COPY server/classroom ./classroom
 COPY packages/story-domain/src /workspace/packages/story-domain/src
 COPY packages/compatibility/src /workspace/packages/compatibility/src
 COPY packages/asset-registry/src /workspace/packages/asset-registry/src
