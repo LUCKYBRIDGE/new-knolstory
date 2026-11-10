@@ -15,6 +15,7 @@ async function saved(page: Page) {
 async function exportStory(page: Page) {
   await saved(page);
   const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
+  const exchange=page.locator('[data-file-exchange]');if(!await exchange.evaluate(node=>(node as HTMLDetailsElement).open))await exchange.locator(':scope>summary').click();
   const pending = page.waitForEvent('download');
   await page.getByRole('button', { name: '작품 파일 내보내기', exact: true }).click();
   const path = (await (await pending).path())!;
