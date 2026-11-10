@@ -1,6 +1,8 @@
 import {test,expect,type Page} from '@playwright/test';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
+test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
 import {readFileSync} from 'node:fs';
 const base=createBlankStoryProject({id:'manuscript-choice',chapterId:'ch',lineId:'a'}),first=base.lines[0],project={...base,chapters:base.chapters.map(ch=>({...ch,audio:{music:{action:'play' as const,assetId:'audio:music:night',loop:true}}})),lines:[{...first,text:'앞 문장. 뒤 문장.',flow:{type:'choice' as const,options:[{id:'yes',label:'첫 번째 선택',targetLineId:'b'},{id:'no',label:'두 번째 선택',targetLineId:'b'}]}},{...first,id:'b',order:2,text:'같은 컷, 서로 다른 선택 조건',audio:{music:{action:'play' as const,assetId:'audio:music:forest',loop:true,sourceStartMs:200,sourceEndMs:1800,branchCondition:{sourceLineId:'a',choiceId:'yes'}}},presentation:{effects:[{id:'flash',type:'flash' as const,branchCondition:{sourceLineId:'a',choiceId:'yes'}}]}}]};
 const stored=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
@@ -12,7 +14,12 @@ async function load(page:Page,file?:string){
 }
 async function exportFile(page:Page,file:string){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await(await download).saveAs(file);return parseAuthoringFile(readFileSync(file,'utf8')).project;}
 for(const viewport of [{width:1440,height:900},{width:1024,height:768},{width:768,height:1024},{width:390,height:844},{width:844,height:390},{width:320,height:568},{width:700,height:440},{width:701,height:440},{width:390,height:480}])test(`expanded editor tools never cover active editing at ${viewport.width}x${viewport.height}`,async({page},info)=>{
- await page.setViewportSize(viewport);await load(page);await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();
+ await page.setViewportSize(viewport);await load(page);
+ if(viewport.width<=700&&viewport.height<=440){
+  // A short landscape phone is review-only: no editing dock can open, so nothing can cover active editing.
+  await expect(page.getByText('글을 수정하려면 휴대폰을 세로로 돌려 주세요.',{exact:true})).toBeVisible();await expect(page.getByText('현재 컷 상세·메모·정리',{exact:true})).toBeHidden();await expect(page.locator('[data-additional-dock]>details[open]')).toHaveCount(0);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);return;
+ }
+ await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();
  const dock=page.locator('[data-additional-dock]>details[open]'),body=page.locator('[data-editing-body]');
  const d=await dock.boundingBox(),b=await body.boundingBox();expect(d).toBeTruthy();expect(b).toBeTruthy();expect(d!.y).toBeGreaterThanOrEqual(b!.y+b!.height-1);
  await expect(page.locator('#story-line-text')).toBeVisible();await page.locator('#story-line-text').fill('겹침 없이 작성한 글');await dock.getByRole('button',{name:'현재 컷 복제',exact:true}).click();await expect.poll(async()=>(await stored(page)).lines.length).toBe(3);
