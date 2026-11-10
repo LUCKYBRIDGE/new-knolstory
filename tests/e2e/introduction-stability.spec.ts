@@ -56,7 +56,7 @@ test('a corrupt workspace stays intact while introduction waits for explicit nav
  });
  await page.goto('/');
  const intro=page.getByRole('main',{name:'책 소개',exact:true});await expect(intro).toBeVisible();
- await expect(intro.getByRole('status')).toContainText('원본을 유지');
+ await expect(page.getByRole('region',{name:'기기 보관함 복구',exact:true})).toContainText('원본은 그대로 두고');
  await page.waitForTimeout(300);await expect(intro).toBeVisible();
  expect(await page.evaluate(()=>({workspace:localStorage.getItem('knolstory-next-workspace-v1'),preference:localStorage.getItem('knolstory-landing-visit-v1'),legacy:localStorage.getItem('storygame-legacy')}))).toEqual({workspace:'{invalid workspace',preference:'{invalid preference',legacy:'preserved'});
 });
