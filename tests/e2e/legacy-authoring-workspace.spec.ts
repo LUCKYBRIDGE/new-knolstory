@@ -4,13 +4,14 @@ import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 const hero='heungbu.character.heungbu-swallow-care';
 const variant='heungbu.character.heungbu-young';
-const bg='rabbit-turtle.background.rabbit-palace-reveal';
+// The picker lists primary backgrounds first; the former scene illustration is now a secondary candidate.
+const bg='rabbit-turtle.background.rabbit-turtle-bg-palace';
 async function management(page:Page) {
  const summary=page.locator('[data-work-menu]>summary');
  if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open)) await summary.click();
 }
 async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
-async function exportProject(page:Page){await saved(page);await management(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,project:parseAuthoringFile(readFileSync(path,'utf8')).project};}
+async function exportProject(page:Page){await saved(page);await management(page);const exchange=page.locator('[data-file-exchange]');if(!await exchange.evaluate(node=>(node as HTMLDetailsElement).open))await exchange.locator(':scope>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,project:parseAuthoringFile(readFileSync(path,'utf8')).project};}
 async function tool(page:Page,name:string){if(['컷 목록','선택지 편집','연출 편집','소리 편집'].includes(name)){const details=page.locator('[data-additional-tools]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}await page.getByRole('button',{name,exact:true}).click();if(name==='배경·인물 편집'){const details=page.locator('[data-placement-details]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}}
 async function writer(page:Page){const details=page.locator('[data-writing-tools]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();await page.getByRole('button',{name:'장 전체 글 고치기',exact:true}).click();return page.getByRole('region',{name:'장 전체 글 고치기',exact:true});}
 async function cutView(page:Page){const details=page.locator('[data-writing-tools]');if(!await details.evaluate(node=>(node as HTMLDetailsElement).open))await details.locator(':scope>summary').click();await page.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();}
@@ -74,11 +75,11 @@ test('new manuscript story survives files and reaches both endings in native Ren
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).focus();await page.screenshot({path:info.outputPath('native-authored-ending.png')});await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();expectIndependentImportedProject((await exportProject(page)).project,file.project);await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(ids.endB);await writer(page);await rendered();await page.screenshot({path:info.outputPath('native-manuscript.png')});
 });
 for(const width of [1280,390])test(`thumbnail facets, target comparison and cancel preserve authored work at ${width}px`,async({page},info)=>{
- test.skip(info.project.name!=='host');page.setDefaultTimeout(10000);await page.setViewportSize({width,height:width===390?844:900});await page.goto('/?view=editor');await saved(page);await tool(page,'배경·인물 편집');const before=await exportProject(page);
- await page.getByRole('button',{name:/^배경 이미지 찾기 ·/,exact:false}).click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 배경'});await expect(dialog).toContainText('현재 이미지');await expect(dialog).toContainText('선택 미리보기');await expect(dialog).toContainText('적용 대상: 배경');
+ test.skip(info.project.name!=='host');page.setDefaultTimeout(10000);await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});await page.setViewportSize({width,height:width===390?844:900});await page.goto('/?view=editor');await saved(page);await management(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('background');const before=await exportProject(page);
+ await page.getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false}).click();const dialog=page.getByRole('dialog',{name:'이미지 선택 · 1컷 배경'});await expect(dialog).toContainText('현재 이미지');await expect(dialog).toContainText('선택 미리보기');await expect(dialog).toContainText('적용 대상: 1컷 배경');
  await dialog.getByText('상세 조건으로 찾기',{exact:true}).click();
  for(const label of ['작품','장소','시간','분위기']){
   const summary=dialog.getByText(label,{exact:true});await expect(summary).toHaveCount(1);await summary.click();const group=dialog.getByRole('group',{name:`${label} 조건`});await group.getByRole('button').first().click();await expect(dialog.getByLabel('현재 찾는 조건')).toBeVisible();await dialog.getByRole('button',{name:'모두 지우기',exact:true}).click();
  }
- await dialog.getByLabel('이미지 검색').fill('용궁');const candidate=dialog.locator(`[data-asset-id="${bg}"]`);await expect(candidate).toBeVisible();await candidate.click();await page.screenshot({path:info.outputPath(`asset-browser-${width}.png`)});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(page.getByRole('button',{name:/^배경 이미지 찾기 ·/,exact:false})).toBeFocused();expect((await exportProject(page)).project).toEqual(before.project);
+ await dialog.getByLabel('이미지 검색').fill('용궁');const candidate=dialog.locator(`[data-asset-id="${bg}"]`);await expect(candidate).toBeVisible();await candidate.click();await page.screenshot({path:info.outputPath(`asset-browser-${width}.png`)});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(page.getByRole('button',{name:/^1컷 배경 이미지 찾기 ·/,exact:false})).toBeFocused();expect((await exportProject(page)).project).toEqual(before.project);
 });
