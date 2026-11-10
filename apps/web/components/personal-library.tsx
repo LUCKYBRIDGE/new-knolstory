@@ -1,5 +1,6 @@
 'use client';
 import {useMemo,useRef,useState,useEffect} from 'react';
+import {useClassroomMe} from './use-classroom-me';
 import {onlineEnabled} from '../lib/online-mode';
 import type {OnlineDocumentMetadata} from '../lib/document-api';
 import {readOnlineShelfBindings} from '../lib/online-work-bindings';
@@ -15,10 +16,13 @@ import styles from './personal-library.module.css';
 type Props=Omit<LocalBookshelfProps,'accountMenu'|'online'>&{beforeAccountNavigation:()=>boolean;onlineDisabled?:boolean;onSaveOnline:OnlineWorksProps['onSaveNew'];onOpenOnline:OnlineWorksProps['onOpen']};
 export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigation,onlineDisabled=false,...shelf}:Props){
  const personal=useMemo(()=>shelf.works.filter(work=>isPersonalLibraryKind(work.kind)),[shelf.works]);
- const online=useOnlineWorks({works:personal.map(work=>({key:work.key,title:work.project.title})),disabled:onlineDisabled||shelf.disabled,onSaveNew:onSaveOnline,onOpen:onOpenOnline});
+ // Online works belong to teachers and admins (classroom-design §1); members and students keep works on the device.
+ const classroom=useClassroomMe();
+ const onlineAllowed=classroom.role==='teacher'||classroom.role==='admin';
+ const online=useOnlineWorks({works:personal.map(work=>({key:work.key,title:work.project.title})),disabled:onlineDisabled||shelf.disabled||!onlineAllowed,onSaveNew:onSaveOnline,onOpen:onOpenOnline});
  const [trashOpen,setTrashOpen]=useState(false),[target,setTarget]=useState<{key:string;title:string}|null>(null);
  const trashTrigger=useRef<HTMLButtonElement>(null);
- const owner=online.account.session?.accountId;
+ const owner=onlineAllowed?online.account.session?.accountId:undefined;
  const projection=(()=>{
   let bindings:ReturnType<typeof readOnlineShelfBindings>={};
   if(owner&&typeof window!=='undefined'){
@@ -32,7 +36,7 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  const stateAction=(record:OnlineDocumentMetadata,action:'trash'|'restore',key=`remote:${record.recordId}`)=>{setTarget({key,title:record.title});void online.changeState(record,action);};
  const header=<div className={styles.statusBar} aria-label="작품 보관 안내">
   {owner&&<div className={styles.legend}><StorageIcon online/><span>구름 표시가 있는 책은 온라인에도 있어요.</span></div>}
-  {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<div className={styles.controls}><button disabled={unavailable} onClick={()=>void online.list(false,'active')}>온라인 목록 다시 확인</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}}>온라인 휴지통</button></div>:<span>{online.account.error||'로그인하면 온라인 작품도 함께 보여요.'}</span>}
+  {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<div className={styles.controls}><button disabled={unavailable} onClick={()=>void online.list(false,'active')}>온라인 목록 다시 확인</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}}>온라인 휴지통</button></div>:online.account.session?<span>{classroom.role==='student'?'작품은 이 기기에 저장돼요. 과제 제출은 계정 메뉴의 ‘내 학급·과제’에서 해요.':'내 작품은 이 기기에 3개까지 둘 수 있어요.'}</span>:<span>{online.account.error||'로그인하면 온라인 작품도 함께 보여요.'}</span>}
   {online.busy&&<p role="status">온라인 작품을 확인하고 있어요.</p>}
   {online.notice&&<p role="status">{target?`‘${target.title}’ · `:''}{online.notice}</p>}{online.error&&<p role="alert">{online.error}</p>}
  </div>;

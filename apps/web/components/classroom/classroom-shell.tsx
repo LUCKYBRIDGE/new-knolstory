@@ -1,5 +1,5 @@
 'use client';
-import type {ReactNode} from 'react';
+import {useState,type ReactNode} from 'react';
 import Link from 'next/link';
 import {onlineEnabled} from '../../lib/online-mode';
 import {useClassroomMe,type ClassroomMeState,type ClassroomRoleState} from '../use-classroom-me';
@@ -14,7 +14,10 @@ export function ClassroomShell({title,roles,guest,children}:Props){
 }
 function Gate({roles,guest,children}:Omit<Props,'title'>){
  const state=useClassroomMe();
- if(state.loading)return <p className={styles.card} role="status">확인 중이에요.</p>;
+ // Account rechecks (window focus, login changes) keep the open dashboard; only the first check shows a wait.
+ const [settled,setSettled]=useState(false);
+ if(!state.loading&&!settled)setSettled(true);
+ if(state.loading&&!settled)return <p className={styles.card} role="status">확인 중이에요.</p>;
  if(state.error)return <p className={styles.card} role="alert">{state.error} 잠시 뒤 다시 열어 주세요.</p>;
  if(state.role==='guest'&&guest)return <>{guest}</>;
  if(state.role==='guest')return <p className={styles.card}>먼저 서재에서 로그인해 주세요.</p>;
