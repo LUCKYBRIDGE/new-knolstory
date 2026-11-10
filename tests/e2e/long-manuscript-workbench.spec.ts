@@ -1,3 +1,4 @@
+import {openWorkFileExchange} from './work-file-exchange';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {readFile} from 'node:fs/promises';
@@ -6,7 +7,7 @@ const source=JSON.parse(readFileSync('tests/fixtures/stories/presentation-polish
 const project={...source,id:'long-manuscript-workbench',chapters:[source.chapters[0]],lines:Array.from({length:120},(_,index)=>({...source.lines[0],id:`long-cut-${index}`,chapterId:source.chapters[0].id,order:index+1,text:`${index+1}컷의 긴 원고.\n`+'앞뒤 맥락과 줄바꿈을 살피며 오래 쓰는 한국어 문장입니다. '.repeat(80),flow:{type:'goto',targetLineId:index===119?null:`long-cut-${index+1}`}}))};
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(n=>(n as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
 async function screen(page:Page,name:string){await menu(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption(name);}
-async function exported(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(await readFile((await (await pending).path())!,'utf8')).project;}
+async function exported(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(await readFile((await (await pending).path())!,'utf8')).project;}
 
 test('long manuscript keeps last-cut editing, cursor, file and internal scrolling across screen changes',async({page},info)=>{
  await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/api/**',route=>route.abort());await page.setViewportSize({width:390,height:844});await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
@@ -23,7 +24,7 @@ test('long manuscript keeps last-cut editing, cursor, file and internal scrollin
 });
 
 test('repeated resize and editor changes keep a single actual engine and intact manuscript',async({page},info)=>{
- await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const frame=page.getByTestId('story-runtime-frame');await frame.evaluate(node=>node.setAttribute('data-stability-engine','same'));
  const status=page.getByTestId('story-runtime-status');
  async function rendered(){await expect.poll(async()=>{const revision=await status.getAttribute('data-scene-revision'),actual=await status.getAttribute('data-rendered-revision');return actual!==null&&Number(actual)>=0&&actual===revision;},{timeout:90000}).toBe(true);}
