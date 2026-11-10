@@ -1,11 +1,12 @@
 import {parseAuthoringFile} from './authoring-file';
-import type {Page} from '@playwright/test';
-async function exportMenu(page:Page){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(n=>(n as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();}
+import {openWorkFileExchange} from './work-file-exchange';
+const exportMenu=openWorkFileExchange;
 import {builtinShelfCard,openBuiltinEdition,builtinEditions} from './library-entry';
 import {importShelfFile} from './library-entry';
 import {openShelfAction} from './library-entry';
 import {test,expect} from '@playwright/test';
 test.use({channel:process.env.KNOL_BROWSER_CHANNEL || undefined});
+test.beforeEach(async({page})=>{await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));});
 test('fresh browser entry introduces existing books and explicit navigation enters library',async({page})=>{
  await page.goto('/');
  const intro=page.getByRole('main',{name:'책 소개',exact:true});await expect(intro).toBeVisible();
@@ -36,7 +37,7 @@ for(const [id,title] of [['seonnyeo-classic','선녀와 나무꾼'],['heungbu','
  const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
  await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();let dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});
  const author=await dialog.getByLabel('지은이',{exact:true}).inputValue();
- await dialog.getByLabel('지은이',{exact:true}).fill('취소할 내용');await dialog.getByRole('button',{name:'취소',exact:true}).click();
+ await dialog.getByLabel('지은이',{exact:true}).fill('취소할 내용');await dialog.getByRole('button',{name:'취소',exact:true}).click();await page.getByRole('dialog',{name:'표지 변경을 적용하지 않고 닫을까요?',exact:true}).getByRole('button',{name:'변경 버리고 닫기',exact:true}).click();
  await expect(page.getByLabel('지은이',{exact:true})).toHaveValue(author);
  await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});
  await dialog.getByLabel('작품 제목',{exact:true}).fill(`${title} · 표지 적용 검토`);await dialog.getByLabel('지은이',{exact:true}).fill('표지 검토');await dialog.getByLabel('표지 소개 문장',{exact:true}).fill('기존 이야기에서 만나는 선택과 마음');
@@ -71,7 +72,7 @@ test('all eight existing editions enter actual RenPy through their stored book c
 });
 
 for(const [width,height,label] of [[390,844,'portrait'],[844,390,'landscape']] as const)test(`existing book cover touch and keyboard editing at ${label}`,async({browser})=>{
- mkdirSync(evidence,{recursive:true});const context=await browser.newContext({viewport:{width,height},hasTouch:true});const page=await context.newPage();page.setDefaultTimeout(15000);await page.goto('/');await expect(page.getByRole('main',{name:'책 소개',exact:true})).toBeVisible();await page.screenshot({path:`${evidence}/introduction-${label}.png`,fullPage:true});await page.getByRole('button',{name:'서재로 가기',exact:true}).tap();
+ mkdirSync(evidence,{recursive:true});const context=await browser.newContext({viewport:{width,height},hasTouch:true});await context.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));const page=await context.newPage();page.setDefaultTimeout(15000);await page.goto('/');await expect(page.getByRole('main',{name:'책 소개',exact:true})).toBeVisible();await page.screenshot({path:`${evidence}/introduction-${label}.png`,fullPage:true});await page.getByRole('button',{name:'서재로 가기',exact:true}).tap();
  const work=builtinShelfCard(page,'seonnyeo');await openShelfAction(page,work,'작품 준비');await page.getByRole('button',{name:'책 표지 편집',exact:true}).tap();const dialog=page.getByRole('dialog',{name:'내 책 표지 꾸미기'});await dialog.getByLabel('작품 제목',{exact:true}).fill('선녀와 나무꾼 · 표지 검토');await dialog.getByLabel('지은이',{exact:true}).fill('반영하지 않을 이름');await dialog.getByRole('button',{name:'편집 전 표지로 되돌리기',exact:true}).tap();await expect(dialog.getByLabel('지은이',{exact:true})).toHaveValue('전래 이야기');await expect(dialog.getByLabel('작품 제목',{exact:true})).toHaveValue('선녀와 나무꾼 · 내 사본');
  await dialog.getByRole('button',{name:'아치 창',exact:false}).tap();await dialog.getByText('내 마음대로 배치',{exact:true}).tap();await dialog.getByRole('button',{name:'자유 배치 시작',exact:true}).tap();await dialog.getByLabel('제목 세로 위치 숫자',{exact:true}).fill('25');await dialog.getByRole('button',{name:'현재 디자인의 기본 배치로 되돌리기',exact:true}).tap();
  await dialog.getByLabel('지은이',{exact:true}).focus();await page.keyboard.press('Tab');expect(await dialog.getByLabel('표지 소개 문장',{exact:true}).evaluate(n=>n===document.activeElement)).toBe(true);
