@@ -135,5 +135,17 @@
     "assets/source/characters/emotions-v3": 278198581,
     "apps/web/public/assets/characters/expressions-v2": 12287260,
     "apps/web/public/assets/characters/emotions-v3": 64046094
-  }
+  },
+  "github": {
+    "commit": "d4342642778fb8a93702215eeaf5871907e5f429",
+    "branch": "main",
+    "push": "confirmed",
+    "ci": {
+      "url": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/43027709073",
+      "status": "completed",
+      "conclusion": "success",
+      "verifiedDate": "2026-11-11"
+    }
+  },
+  "handoff": "STATUS.md and product-completion-plan.md resume entry link to review.md#후속-개발자가-기존-작업에-반영할-사항; preserve ongoing product queue and apply current646row catalogue/mood slots/build/API deployment dependencies."
 }

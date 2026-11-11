@@ -1,5 +1,7 @@
 # STATUS — current development state
 
+2026-11-11 개발 인계: 이미지 작업은 `f89f086`/`70110aa`(투명 배경 교정), `fd7e548`(표현16종), `d434264`(조연32종+전 인물 감정165종)에 반영됐고 각 최종 커밋의 GitHub CI가 통과했다. 후속 개발은 아래 작업을 새로 시작하지 말고 [기존 작업에 반영할 인계 사항](docs/architecture/evidence/all-character-emotions-2026-11-11/review.md#후속-개발자가-기존-작업에-반영할-사항)을 먼저 확인한다. 실제 실행/CI 근거는 [체크포인트](docs/architecture/evidence/all-character-emotions-2026-11-11/checkpoint.json), 기존 제품 큐와 배포 의존성은 [실행 계획 재개 지점](docs/architecture/product-completion-plan.md#재개-지점)을 따른다.
+
 2026-11-11 인물별 최소5종·희노애락 기준: 최신 사용자 결정에 따라 조연 추가 수량만으로 완료하지 않고 개별 정체성47개의 기본/희/노/애/락235카드를 보장한다. 군집별칭5개는 개별 인물로 중복 계산하지 않으며 선녀의 두 아이는 단독 기본 그림도 생성한다. 기존481개 카탈로그를 유지하고 부족한 감정165종·감정 필터/검색 등록표·정확한 실행 경로·원본/실행 검사·개발 재개를 연결한다. 최종 생성/시각 검토/실제 편집·재생과 실패 보완은 [인물별 감정 기록](docs/architecture/evidence/all-character-emotions-2026-11-11/review.md)과 [체크포인트](docs/architecture/evidence/all-character-emotions-2026-11-11/checkpoint.json)를 따른다. 운영 배포·인증API 갱신은 별도다.
 
 2026-11-11 조연 중심 표현 추가: 사용자 후속 요청으로 아이·이웃·제비·포졸·일꾼·하인·사또·선녀 자매·사냥꾼·어머니·궁중 인물16정체성에 각2종, 작품당8종씩32개를 보강한다. 이전16종과 기존449개 카탈로그·원고는 보존한다. 인물별 부족/추가 목록·편집 연결·생성 원본/실행본·복원/개발 재개는 [조연 확장 기록](docs/architecture/evidence/supporting-character-expansion-2026-11-11/review.md), 최종 생성/검사/보완과 운영 미배포 경계는 [체크포인트](docs/architecture/evidence/supporting-character-expansion-2026-11-11/checkpoint.json)를 따른다.
