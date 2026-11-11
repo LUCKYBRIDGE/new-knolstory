@@ -28377,5 +28377,1243 @@
         "reason": "기존 초가집 구도·조선 시대 건축·소품을 유지한 비 오는 저녁; 인물 없는 배경"
       }
     }
+  },
+  {
+    "id": "heungbu.character.expression-wife-heungbu-welcome-v1",
+    "displayName": "흥부 아내 · 반갑게 맞이하기",
+    "label": "흥부 아내 · 반갑게 맞이하기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "흥부 아내",
+    "tags": [
+      "흥부와 놀부",
+      "흥부 아내",
+      "반갑게 맞이하기",
+      "반기기",
+      "말하기",
+      "기쁨",
+      "안도",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/heungbu-wife-heungbu-welcome.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-heungbu-welcome-v1",
+    "copyright": "놀퀴즈",
+    "revision": "3380cf6a44a62ec686cc7eb07c53f2425d4f319c58abeb668b8d61e48cb6d3ca",
+    "geometry": {
+      "left": 0.17875,
+      "right": 0.75125,
+      "top": 0.16916666666666666,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "heungbu.wife-heungbu"
+      ],
+      "primaryCharacterId": "heungbu.wife-heungbu",
+      "framing": "full",
+      "expressions": [
+        "기쁨",
+        "안도"
+      ],
+      "actions": [
+        "반기기",
+        "말하기"
+      ],
+      "variantId": "반갑게 맞이하기",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.wife-heungbu.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "흥부 아내",
+        "반갑게 맞이하기",
+        "반기기",
+        "말하기",
+        "기쁨",
+        "안도",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "3380cf6a44a62ec686cc7eb07c53f2425d4f319c58abeb668b8d61e48cb6d3ca",
+        "referenceAssetId": "heungbu.character.wife-heungbu",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.expression-wife-heungbu-firm-v1",
+    "displayName": "흥부 아내 · 단호하게 말하기",
+    "label": "흥부 아내 · 단호하게 말하기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "흥부 아내",
+    "tags": [
+      "흥부와 놀부",
+      "흥부 아내",
+      "단호하게 말하기",
+      "말하기",
+      "설득하기",
+      "결심",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/heungbu-wife-heungbu-firm.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-heungbu-firm-v1",
+    "copyright": "놀퀴즈",
+    "revision": "98af75c15f911e98a53eb0c0ec870ae5d7c6cddbd605bed736c9aae5dcb9c1b3",
+    "geometry": {
+      "left": 0.15625,
+      "right": 0.74875,
+      "top": 0.16666666666666666,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "heungbu.wife-heungbu"
+      ],
+      "primaryCharacterId": "heungbu.wife-heungbu",
+      "framing": "full",
+      "expressions": [
+        "결심"
+      ],
+      "actions": [
+        "말하기",
+        "설득하기"
+      ],
+      "variantId": "단호하게 말하기",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.wife-heungbu.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "흥부 아내",
+        "단호하게 말하기",
+        "말하기",
+        "설득하기",
+        "결심",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "98af75c15f911e98a53eb0c0ec870ae5d7c6cddbd605bed736c9aae5dcb9c1b3",
+        "referenceAssetId": "heungbu.character.wife-heungbu",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.expression-wife-nolbu-apology-v1",
+    "displayName": "놀부 아내 · 고개 숙여 사과하기",
+    "label": "놀부 아내 · 고개 숙여 사과하기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "놀부 아내",
+    "tags": [
+      "흥부와 놀부",
+      "놀부 아내",
+      "고개 숙여 사과하기",
+      "사과하기",
+      "인사하기",
+      "미안함",
+      "후회",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/heungbu-wife-nolbu-apology.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-nolbu-apology-v1",
+    "copyright": "놀퀴즈",
+    "revision": "d0c71a118b96d5c18f38a1cbaa27ba7934f07a2a1226a9659d8375ecc845ece2",
+    "geometry": {
+      "left": 0.28125,
+      "right": 0.7525,
+      "top": 0.20333333333333334,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "heungbu.wife-nolbu"
+      ],
+      "primaryCharacterId": "heungbu.wife-nolbu",
+      "framing": "full",
+      "expressions": [
+        "미안함",
+        "후회"
+      ],
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "variantId": "고개 숙여 사과하기",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.wife-nolbu.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "놀부 아내",
+        "고개 숙여 사과하기",
+        "사과하기",
+        "인사하기",
+        "미안함",
+        "후회",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "d0c71a118b96d5c18f38a1cbaa27ba7934f07a2a1226a9659d8375ecc845ece2",
+        "referenceAssetId": "heungbu.character.wife-nolbu",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "heungbu.character.expression-wife-nolbu-offer-v1",
+    "displayName": "놀부 아내 · 밥그릇 건네기",
+    "label": "놀부 아내 · 밥그릇 건네기",
+    "story": "흥부와 놀부",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "놀부 아내",
+    "tags": [
+      "흥부와 놀부",
+      "놀부 아내",
+      "밥그릇 건네기",
+      "건네기",
+      "나누기",
+      "온화",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/heungbu-wife-nolbu-offer.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-nolbu-offer-v1",
+    "copyright": "놀퀴즈",
+    "revision": "dea9e91655f62386041c06c28a780a0a34cdb266ddece95b903aa0b68d98fd64",
+    "geometry": {
+      "left": 0.245,
+      "right": 0.7475,
+      "top": 0.16083333333333333,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "heungbu-nolbu"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "heungbu.wife-nolbu"
+      ],
+      "primaryCharacterId": "heungbu.wife-nolbu",
+      "framing": "full",
+      "expressions": [
+        "온화"
+      ],
+      "actions": [
+        "건네기",
+        "나누기"
+      ],
+      "variantId": "밥그릇 건네기",
+      "designVersionId": "original",
+      "poseSetId": "heungbu.wife-nolbu.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "놀부 아내",
+        "밥그릇 건네기",
+        "건네기",
+        "나누기",
+        "온화",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "dea9e91655f62386041c06c28a780a0a34cdb266ddece95b903aa0b68d98fd64",
+        "referenceAssetId": "heungbu.character.wife-nolbu",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.expression-fairy-explain-v1",
+    "displayName": "선녀 · 마음을 설명하기",
+    "label": "선녀 · 마음을 설명하기",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "선녀",
+    "tags": [
+      "선녀와 나무꾼",
+      "선녀",
+      "마음을 설명하기",
+      "말하기",
+      "설득하기",
+      "진지함",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/seonnyeo-fairy-explain.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-fairy-explain-v1",
+    "copyright": "놀퀴즈",
+    "revision": "e6f124638cebf04b9bce3c2b530897b2d9d69f326c8c4d1ae41d39099fe78062",
+    "geometry": {
+      "left": 0.245,
+      "right": 0.7875,
+      "top": 0.12083333333333333,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "seonnyeo.fairy"
+      ],
+      "primaryCharacterId": "seonnyeo.fairy",
+      "framing": "full",
+      "expressions": [
+        "진지함"
+      ],
+      "actions": [
+        "말하기",
+        "설득하기"
+      ],
+      "variantId": "마음을 설명하기",
+      "designVersionId": "story",
+      "poseSetId": "seonnyeo.fairy.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "선녀",
+        "마음을 설명하기",
+        "말하기",
+        "설득하기",
+        "진지함",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "e6f124638cebf04b9bce3c2b530897b2d9d69f326c8c4d1ae41d39099fe78062",
+        "referenceAssetId": "seonnyeo.character.M01-earth-neutral",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.expression-fairy-comfort-v1",
+    "displayName": "선녀 · 다정하게 위로하기",
+    "label": "선녀 · 다정하게 위로하기",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "선녀",
+    "tags": [
+      "선녀와 나무꾼",
+      "선녀",
+      "다정하게 위로하기",
+      "위로하기",
+      "손 내밀기",
+      "온화",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/seonnyeo-fairy-comfort.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-fairy-comfort-v1",
+    "copyright": "놀퀴즈",
+    "revision": "923eeacbb0753db32f8be89fb824fb03d78c7672a66cf7d774d8a6e44e630d57",
+    "geometry": {
+      "left": 0.0875,
+      "right": 0.825,
+      "top": 0.1225,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "seonnyeo.fairy"
+      ],
+      "primaryCharacterId": "seonnyeo.fairy",
+      "framing": "full",
+      "expressions": [
+        "온화"
+      ],
+      "actions": [
+        "위로하기",
+        "손 내밀기"
+      ],
+      "variantId": "다정하게 위로하기",
+      "designVersionId": "story",
+      "poseSetId": "seonnyeo.fairy.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "선녀",
+        "다정하게 위로하기",
+        "위로하기",
+        "손 내밀기",
+        "온화",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "923eeacbb0753db32f8be89fb824fb03d78c7672a66cf7d774d8a6e44e630d57",
+        "referenceAssetId": "seonnyeo.character.M01-earth-neutral",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.expression-woodcutter-apology-v1",
+    "displayName": "나무꾼 · 고개 숙여 사과하기",
+    "label": "나무꾼 · 고개 숙여 사과하기",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "나무꾼",
+    "tags": [
+      "선녀와 나무꾼",
+      "나무꾼",
+      "고개 숙여 사과하기",
+      "사과하기",
+      "인사하기",
+      "미안함",
+      "후회",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/seonnyeo-woodcutter-apology.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-woodcutter-apology-v1",
+    "copyright": "놀퀴즈",
+    "revision": "3f2cdef1832c7651d318b2b51d419553f12cf8c746efa687b188562a94956645",
+    "geometry": {
+      "left": 0.31,
+      "right": 0.69625,
+      "top": 0.17833333333333334,
+      "bottom": 0.9591666666666666,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "seonnyeo.woodcutter"
+      ],
+      "primaryCharacterId": "seonnyeo.woodcutter",
+      "framing": "full",
+      "expressions": [
+        "미안함",
+        "후회"
+      ],
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "variantId": "고개 숙여 사과하기",
+      "designVersionId": "story",
+      "poseSetId": "seonnyeo.woodcutter.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "나무꾼",
+        "고개 숙여 사과하기",
+        "사과하기",
+        "인사하기",
+        "미안함",
+        "후회",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "3f2cdef1832c7651d318b2b51d419553f12cf8c746efa687b188562a94956645",
+        "referenceAssetId": "seonnyeo.character.M02-neutral",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "seonnyeo.character.expression-woodcutter-chop-v1",
+    "displayName": "나무꾼 · 장작 패기",
+    "label": "나무꾼 · 장작 패기",
+    "story": "선녀와 나무꾼",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "나무꾼",
+    "tags": [
+      "선녀와 나무꾼",
+      "나무꾼",
+      "장작 패기",
+      "도끼질",
+      "장작 패기",
+      "집중",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/seonnyeo-woodcutter-chop.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-woodcutter-chop-v1",
+    "copyright": "놀퀴즈",
+    "revision": "9877aa67cba6b6563d6a2947ad76d3ee323932bed9d6fb35e237a2d07fb2add9",
+    "geometry": {
+      "left": 0.08875,
+      "right": 0.87875,
+      "top": 0.13083333333333333,
+      "bottom": 0.9591666666666666,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "seonnyeo"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "seonnyeo.woodcutter"
+      ],
+      "primaryCharacterId": "seonnyeo.woodcutter",
+      "framing": "full",
+      "expressions": [
+        "집중"
+      ],
+      "actions": [
+        "도끼질",
+        "장작 패기"
+      ],
+      "variantId": "장작 패기",
+      "designVersionId": "story",
+      "poseSetId": "seonnyeo.woodcutter.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "나무꾼",
+        "장작 패기",
+        "도끼질",
+        "장작 패기",
+        "집중",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "9877aa67cba6b6563d6a2947ad76d3ee323932bed9d6fb35e237a2d07fb2add9",
+        "referenceAssetId": "seonnyeo.character.M02-neutral",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.expression-rabbit-apology-v1",
+    "displayName": "토끼 · 머쓱하게 사과하기",
+    "label": "토끼 · 머쓱하게 사과하기",
+    "story": "별주부전",
+    "type": "character",
+    "category": "character",
+    "group": "토끼",
+    "framing": "전신",
+    "tags": [
+      "별주부전",
+      "토끼",
+      "머쓱하게 사과하기",
+      "사과하기",
+      "인사하기",
+      "미안함",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/rabbit-turtle-rabbit-apology.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-rabbit-apology-v1",
+    "copyright": "놀퀴즈",
+    "revision": "7bf500974f6b3f5cabe4dc13e4efd900e1d9dc10ed724121eac2b6b382c694f3",
+    "geometry": {
+      "left": 0.245,
+      "right": 0.7825,
+      "top": 0.2966666666666667,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "rabbit-turtle.rabbit"
+      ],
+      "primaryCharacterId": "rabbit-turtle.rabbit",
+      "framing": "full",
+      "expressions": [
+        "미안함"
+      ],
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "variantId": "머쓱하게 사과하기",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.rabbit.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "토끼",
+        "머쓱하게 사과하기",
+        "사과하기",
+        "인사하기",
+        "미안함",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "7bf500974f6b3f5cabe4dc13e4efd900e1d9dc10ed724121eac2b6b382c694f3",
+        "referenceAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.expression-rabbit-comfort-v1",
+    "displayName": "토끼 · 손 내밀어 위로하기",
+    "label": "토끼 · 손 내밀어 위로하기",
+    "story": "별주부전",
+    "type": "character",
+    "category": "character",
+    "group": "토끼",
+    "framing": "전신",
+    "tags": [
+      "별주부전",
+      "토끼",
+      "손 내밀어 위로하기",
+      "위로하기",
+      "손 내밀기",
+      "온화",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/rabbit-turtle-rabbit-comfort.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-rabbit-comfort-v1",
+    "copyright": "놀퀴즈",
+    "revision": "50afcbfb20d0cf2237a8a65dc89e9a797fb8d0783e6b94b1795846e876c69e44",
+    "geometry": {
+      "left": 0.22625,
+      "right": 0.9,
+      "top": 0.105,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "rabbit-turtle.rabbit"
+      ],
+      "primaryCharacterId": "rabbit-turtle.rabbit",
+      "framing": "full",
+      "expressions": [
+        "온화"
+      ],
+      "actions": [
+        "위로하기",
+        "손 내밀기"
+      ],
+      "variantId": "손 내밀어 위로하기",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.rabbit.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "토끼",
+        "손 내밀어 위로하기",
+        "위로하기",
+        "손 내밀기",
+        "온화",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "50afcbfb20d0cf2237a8a65dc89e9a797fb8d0783e6b94b1795846e876c69e44",
+        "referenceAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.expression-turtle-grateful-v1",
+    "displayName": "자라 · 감사 인사하기",
+    "label": "자라 · 감사 인사하기",
+    "story": "별주부전",
+    "type": "character",
+    "category": "character",
+    "group": "자라",
+    "framing": "전신",
+    "tags": [
+      "별주부전",
+      "자라",
+      "감사 인사하기",
+      "인사하기",
+      "감사하기",
+      "기쁨",
+      "감사",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/rabbit-turtle-turtle-grateful.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-turtle-grateful-v1",
+    "copyright": "놀퀴즈",
+    "revision": "1aa9abbdb8c8c88594550dafe0964a4f3f2a90445411d3fee02a3249f6a71c4d",
+    "geometry": {
+      "left": 0.26,
+      "right": 0.74875,
+      "top": 0.14,
+      "bottom": 0.9566666666666667,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "rabbit-turtle.turtle"
+      ],
+      "primaryCharacterId": "rabbit-turtle.turtle",
+      "framing": "full",
+      "expressions": [
+        "기쁨",
+        "감사"
+      ],
+      "actions": [
+        "인사하기",
+        "감사하기"
+      ],
+      "variantId": "감사 인사하기",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.turtle.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "자라",
+        "감사 인사하기",
+        "인사하기",
+        "감사하기",
+        "기쁨",
+        "감사",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "1aa9abbdb8c8c88594550dafe0964a4f3f2a90445411d3fee02a3249f6a71c4d",
+        "referenceAssetId": "rabbit-turtle.character.turtle-unified-720x900",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "rabbit-turtle.character.expression-physician-examine-v1",
+    "displayName": "어의 · 약재 살펴보기",
+    "label": "어의 · 약재 살펴보기",
+    "story": "별주부전",
+    "type": "character",
+    "category": "character",
+    "group": "어의",
+    "framing": "전신",
+    "tags": [
+      "별주부전",
+      "어의",
+      "약재 살펴보기",
+      "살펴보기",
+      "진찰하기",
+      "집중",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/rabbit-turtle-physician-examine.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-physician-examine-v1",
+    "copyright": "놀퀴즈",
+    "revision": "0157a5d407c8cfe71d58271e65042e9e30eff39d8f5d2cc1233c4a72d7a588e5",
+    "geometry": {
+      "left": 0.215,
+      "right": 0.75375,
+      "top": 0.08333333333333333,
+      "bottom": 0.9566666666666667,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "rabbit-turtle"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "rabbit-turtle.physician"
+      ],
+      "primaryCharacterId": "rabbit-turtle.physician",
+      "framing": "full",
+      "expressions": [
+        "집중"
+      ],
+      "actions": [
+        "살펴보기",
+        "진찰하기"
+      ],
+      "variantId": "약재 살펴보기",
+      "designVersionId": "original",
+      "poseSetId": "rabbit-turtle.physician.expressions-v1",
+      "generatedExpressionAsset": true,
+      "bodyFraming": "full",
+      "composition": "single",
+      "searchTerms": [
+        "어의",
+        "약재 살펴보기",
+        "살펴보기",
+        "진찰하기",
+        "집중",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "0157a5d407c8cfe71d58271e65042e9e30eff39d8f5d2cc1233c4a72d7a588e5",
+        "referenceAssetId": "rabbit-turtle.character.physician-unified-720x900",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "onggojib.character.expression-wife-relieved-v1",
+    "displayName": "옹고집 아내 · 안도하며 웃기",
+    "label": "옹고집 아내 · 안도하며 웃기",
+    "story": "옹고집전",
+    "type": "character",
+    "category": "character",
+    "group": "옹고집 아내",
+    "framing": "전신",
+    "tags": [
+      "옹고집전",
+      "옹고집 아내",
+      "안도하며 웃기",
+      "안도하기",
+      "말하기",
+      "기쁨",
+      "안도",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/onggojib-wife-relieved.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-wife-relieved-v1",
+    "copyright": "놀퀴즈",
+    "revision": "5586242ec06a88e98b61bf3fba8cee88e0c407f6eeaea06ea96cda03e9270559",
+    "geometry": {
+      "left": 0.23625,
+      "right": 0.76375,
+      "top": 0.13,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.wife"
+      ],
+      "primaryCharacterId": "onggojib.wife",
+      "framing": "full",
+      "expressions": [
+        "기쁨",
+        "안도"
+      ],
+      "actions": [
+        "안도하기",
+        "말하기"
+      ],
+      "variantId": "안도하며 웃기",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.wife.expressions-v1",
+      "artFamily": "onggojib-watercolor-v2",
+      "composition": "single",
+      "bodyFraming": "full",
+      "generatedExpressionAsset": true,
+      "searchTerms": [
+        "옹고집 아내",
+        "안도하며 웃기",
+        "안도하기",
+        "말하기",
+        "기쁨",
+        "안도",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "5586242ec06a88e98b61bf3fba8cee88e0c407f6eeaea06ea96cda03e9270559",
+        "referenceAssetId": "onggojib.character.wife-pixel",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "onggojib.character.expression-wife-stop-v1",
+    "displayName": "옹고집 아내 · 손을 들어 말리기",
+    "label": "옹고집 아내 · 손을 들어 말리기",
+    "story": "옹고집전",
+    "type": "character",
+    "category": "character",
+    "group": "옹고집 아내",
+    "framing": "전신",
+    "tags": [
+      "옹고집전",
+      "옹고집 아내",
+      "손을 들어 말리기",
+      "말리기",
+      "설득하기",
+      "걱정",
+      "결심",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/onggojib-wife-stop.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-wife-stop-v1",
+    "copyright": "놀퀴즈",
+    "revision": "5d285db4f42d46410c1fc8a40539274460ae931a6c1a5788da28680506541e91",
+    "geometry": {
+      "left": 0.20875,
+      "right": 0.77125,
+      "top": 0.135,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.wife"
+      ],
+      "primaryCharacterId": "onggojib.wife",
+      "framing": "full",
+      "expressions": [
+        "걱정",
+        "결심"
+      ],
+      "actions": [
+        "말리기",
+        "설득하기"
+      ],
+      "variantId": "손을 들어 말리기",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.wife.expressions-v1",
+      "artFamily": "onggojib-watercolor-v2",
+      "composition": "single",
+      "bodyFraming": "full",
+      "generatedExpressionAsset": true,
+      "searchTerms": [
+        "옹고집 아내",
+        "손을 들어 말리기",
+        "말리기",
+        "설득하기",
+        "걱정",
+        "결심",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "5d285db4f42d46410c1fc8a40539274460ae931a6c1a5788da28680506541e91",
+        "referenceAssetId": "onggojib.character.wife-pixel",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "onggojib.character.expression-mother-admonish-v1",
+    "displayName": "옹고집 어머니 · 타이르며 말하기",
+    "label": "옹고집 어머니 · 타이르며 말하기",
+    "story": "옹고집전",
+    "type": "character",
+    "category": "character",
+    "framing": "전신",
+    "group": "옹고집 어머니",
+    "tags": [
+      "옹고집전",
+      "옹고집 어머니",
+      "타이르며 말하기",
+      "타이르기",
+      "말하기",
+      "걱정",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/onggojib-mother-admonish.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-mother-admonish-v1",
+    "copyright": "놀퀴즈",
+    "revision": "bf76bcc1b9a6145d3e29381fdb4d85a50734fcc64124075b298fc8ac1a437981",
+    "geometry": {
+      "left": 0.15625,
+      "right": 0.8,
+      "top": 0.13083333333333333,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.mother"
+      ],
+      "primaryCharacterId": "onggojib.mother",
+      "framing": "full",
+      "expressions": [
+        "걱정"
+      ],
+      "actions": [
+        "타이르기",
+        "말하기"
+      ],
+      "variantId": "타이르며 말하기",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.mother.expressions-v1",
+      "artFamily": "onggojib-watercolor-v2",
+      "composition": "single",
+      "bodyFraming": "full",
+      "generatedExpressionAsset": true,
+      "searchTerms": [
+        "옹고집 어머니",
+        "타이르며 말하기",
+        "타이르기",
+        "말하기",
+        "걱정",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "bf76bcc1b9a6145d3e29381fdb4d85a50734fcc64124075b298fc8ac1a437981",
+        "referenceAssetId": "onggojib.character.classic-mother",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
+  },
+  {
+    "id": "onggojib.character.expression-youngest-child-cry-v1",
+    "displayName": "옹고집 막내 · 눈물 닦기",
+    "label": "옹고집 막내 · 눈물 닦기",
+    "story": "옹고집전",
+    "type": "character",
+    "category": "character",
+    "group": "옹고집 막내",
+    "framing": "전신",
+    "tags": [
+      "옹고집전",
+      "옹고집 막내",
+      "눈물 닦기",
+      "울기",
+      "눈물 닦기",
+      "슬픔",
+      "전신",
+      "투명 배경"
+    ],
+    "src": "/assets/characters/expressions-v1/onggojib-youngest-child-cry.webp",
+    "sourcePath": "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-youngest-child-cry-v1",
+    "copyright": "놀퀴즈",
+    "revision": "a133c4f6a0ca6b61918cded02188bb4dfab94e7245a3fc379a0e42c62bbf1fa1",
+    "geometry": {
+      "left": 0.26625,
+      "right": 0.73125,
+      "top": 0.27416666666666667,
+      "bottom": 0.9583333333333334,
+      "width": 800,
+      "height": 1200
+    },
+    "metadata": {
+      "kind": "character",
+      "placementRole": "character-slot",
+      "storyPackIds": [
+        "onggojib"
+      ],
+      "qualityStatus": "approved",
+      "pickerVisibility": "primary",
+      "characterIds": [
+        "onggojib.youngest-child"
+      ],
+      "primaryCharacterId": "onggojib.youngest-child",
+      "framing": "full",
+      "expressions": [
+        "슬픔"
+      ],
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "variantId": "눈물 닦기",
+      "designVersionId": "onggojib-watercolor-v2",
+      "poseSetId": "onggojib.youngest-child.expressions-v1",
+      "artFamily": "onggojib-watercolor-v2",
+      "composition": "single",
+      "bodyFraming": "full",
+      "generatedExpressionAsset": true,
+      "searchTerms": [
+        "옹고집 막내",
+        "눈물 닦기",
+        "울기",
+        "눈물 닦기",
+        "슬픔",
+        "표정",
+        "동작",
+        "전신"
+      ],
+      "qualityReview": {
+        "decision": "KEEP",
+        "sha256": "a133c4f6a0ca6b61918cded02188bb4dfab94e7245a3fc379a0e42c62bbf1fa1",
+        "referenceAssetId": "onggojib.character.youngest-child-pixel",
+        "evidence": "docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md",
+        "reason": "동일 얼굴·나이·머리·복장·신발과 몸통/팔다리 비율, 투명 배경 및 팔다리/소품 사이 빈 공간을 색 배경에서 검토. 800×1200 캔버스·참조 발 기준선 유지; 숙임·귀 처짐은 자연스러운 높이 차이를 보존."
+      }
+    }
   }
 ]

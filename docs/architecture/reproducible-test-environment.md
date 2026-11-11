@@ -257,6 +257,8 @@ pnpm delivery:preview --candidate .cache/pages-candidate --port 3000
 
 ## 인물 상대 크기 파생 이미지 복원 — 2026-10-30
 
+2026-11-11 추가한 네 작품 동작·표정16종은 `python3 scripts/prepare-expression-assets.py`로 검사한다. 실행WebP가 없을 때만 `--restore`를 사용하며 원본PNG와 현재 카탈로그/receipt에서 정확한 해시·geometry를 복원한다. 기존 수정 파일은 덮어쓰지 않는다. [선정·생성·실제 편집/재생·다른 컴퓨터 준비](evidence/character-expression-expansion-2026-11-11/review.md).
+
 2026-11-11 흥부·놀부의 흰 배경 잔여 교정본은 레거시 복원 대상이 아닌 현행 Git 자산이다. 생성 원본 PNG와 실행 WebP를 함께 가져와 `python3 scripts/prepare-transparency-assets.py`로 해시·ID·geometry·alpha를 확인한다. 실행 WebP가 없을 때만 같은 명령에 `--restore`를 붙인다. 수정된 기존 파일은 보존한 채 중단한다. 같은 ID가 새 경로를 해석하도록 `pnpm runtime:build → pnpm build`를 실행한다. [결함·교체·다른 컴퓨터 재개와 검증 범위](evidence/transparency-repair-2026-11-11/review.md).
 
 고정 원본을 보유한 개발 환경에서 `python3 -m pip install Pillow==11.3.0`을 준비한다. 원본 그림의 권리가 새로 승인되는 것은 아니다. `restore-legacy-media.py`는 기록된 원본 해시를 확인한 뒤 어린 인물 파생본을 재생성하고 현재 카탈로그 해시·geometry를 대조한다. 원본이 이미 있는 환경에서는 다음 명령으로 파생본만 복원할 수 있다.

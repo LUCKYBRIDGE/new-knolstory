@@ -1,5 +1,7 @@
 # Asset Pipeline Skill
 
+For the four-story expression additions follow the [selection/generation review](../../../docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md). `generatedExpressionAsset` is a current-checkout generated asset, never restored from legacy. Keep source PNGs and exact WebP derivatives separate, validate with `python3 scripts/prepare-expression-assets.py`, keep previous catalogue rows/manuscripts intact, and update exact Runtime Contract paths plus API catalogue checks when publishing new IDs.
+
 For white-matte character repairs follow the [reviewed replacement receipt](../../../docs/architecture/evidence/transparency-repair-2026-11-11/review.md). Keep stable IDs and tracked generated PNG/WebP pairs; verify with `python3 scripts/prepare-transparency-assets.py`. `generatedTransparencyRepair` assets come from the current checkout, never the fixed legacy baseline. Update the exact Runtime Contract path allowlist, provenance, source hashes and restore tests together, then rebuild runtime before Web.
 
 Use for Asset IDs, metadata, source media, geometry, derivatives or audio delivery.

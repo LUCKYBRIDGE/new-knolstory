@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { ASSET_CATALOG, resolveAsset } from '../src/index';
 describe('baseline asset registry', () => {
   it('resolves every stable ID with byte-verified revision and character geometry', () => {
-    expect(ASSET_CATALOG.filter(a=>!a.metadata.layeredStoryAsset&&!a.metadata.generatedWeatherAsset)).toHaveLength(421);
+    expect(ASSET_CATALOG.filter(a=>!a.metadata.layeredStoryAsset&&!a.metadata.generatedWeatherAsset&&!a.metadata.generatedExpressionAsset)).toHaveLength(421);
     expect(ASSET_CATALOG.filter(a=>a.metadata.layeredStoryAsset)).toHaveLength(11);
     expect(ASSET_CATALOG.filter(a=>a.metadata.generatedWeatherAsset)).toHaveLength(1);
     for (const asset of ASSET_CATALOG) {

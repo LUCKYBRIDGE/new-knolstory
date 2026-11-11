@@ -26,7 +26,8 @@
     "apps/web/public/brand/README.md",
     "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
     "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json",
-    "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json"
+    "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json",
+    "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json"
   ],
   "assets": [
     {
@@ -6819,6 +6820,198 @@
         "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu.character.nolbu-working"
       ],
       "creationMethodEvidence": "built-in image_gen; owner requested transparent replacement, service integration and GitHub upload 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-heungbu-welcome.webp",
+      "sha256": "3380cf6a44a62ec686cc7eb07c53f2425d4f319c58abeb668b8d61e48cb6d3ca",
+      "assetIds": [
+        "heungbu.character.expression-wife-heungbu-welcome-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-heungbu-welcome-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-heungbu-firm.webp",
+      "sha256": "98af75c15f911e98a53eb0c0ec870ae5d7c6cddbd605bed736c9aae5dcb9c1b3",
+      "assetIds": [
+        "heungbu.character.expression-wife-heungbu-firm-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-heungbu-firm-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-nolbu-apology.webp",
+      "sha256": "d0c71a118b96d5c18f38a1cbaa27ba7934f07a2a1226a9659d8375ecc845ece2",
+      "assetIds": [
+        "heungbu.character.expression-wife-nolbu-apology-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-nolbu-apology-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-nolbu-offer.webp",
+      "sha256": "dea9e91655f62386041c06c28a780a0a34cdb266ddece95b903aa0b68d98fd64",
+      "assetIds": [
+        "heungbu.character.expression-wife-nolbu-offer-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-nolbu-offer-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-fairy-explain.webp",
+      "sha256": "e6f124638cebf04b9bce3c2b530897b2d9d69f326c8c4d1ae41d39099fe78062",
+      "assetIds": [
+        "seonnyeo.character.expression-fairy-explain-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-fairy-explain-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-fairy-comfort.webp",
+      "sha256": "923eeacbb0753db32f8be89fb824fb03d78c7672a66cf7d774d8a6e44e630d57",
+      "assetIds": [
+        "seonnyeo.character.expression-fairy-comfort-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-fairy-comfort-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-woodcutter-apology.webp",
+      "sha256": "3f2cdef1832c7651d318b2b51d419553f12cf8c746efa687b188562a94956645",
+      "assetIds": [
+        "seonnyeo.character.expression-woodcutter-apology-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-woodcutter-apology-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-woodcutter-chop.webp",
+      "sha256": "9877aa67cba6b6563d6a2947ad76d3ee323932bed9d6fb35e237a2d07fb2add9",
+      "assetIds": [
+        "seonnyeo.character.expression-woodcutter-chop-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-woodcutter-chop-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-rabbit-apology.webp",
+      "sha256": "7bf500974f6b3f5cabe4dc13e4efd900e1d9dc10ed724121eac2b6b382c694f3",
+      "assetIds": [
+        "rabbit-turtle.character.expression-rabbit-apology-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-rabbit-apology-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-rabbit-comfort.webp",
+      "sha256": "50afcbfb20d0cf2237a8a65dc89e9a797fb8d0783e6b94b1795846e876c69e44",
+      "assetIds": [
+        "rabbit-turtle.character.expression-rabbit-comfort-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-rabbit-comfort-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-turtle-grateful.webp",
+      "sha256": "1aa9abbdb8c8c88594550dafe0964a4f3f2a90445411d3fee02a3249f6a71c4d",
+      "assetIds": [
+        "rabbit-turtle.character.expression-turtle-grateful-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-turtle-grateful-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-physician-examine.webp",
+      "sha256": "0157a5d407c8cfe71d58271e65042e9e30eff39d8f5d2cc1233c4a72d7a588e5",
+      "assetIds": [
+        "rabbit-turtle.character.expression-physician-examine-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-physician-examine-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-wife-relieved.webp",
+      "sha256": "5586242ec06a88e98b61bf3fba8cee88e0c407f6eeaea06ea96cda03e9270559",
+      "assetIds": [
+        "onggojib.character.expression-wife-relieved-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-wife-relieved-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-wife-stop.webp",
+      "sha256": "5d285db4f42d46410c1fc8a40539274460ae931a6c1a5788da28680506541e91",
+      "assetIds": [
+        "onggojib.character.expression-wife-stop-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-wife-stop-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-mother-admonish.webp",
+      "sha256": "bf76bcc1b9a6145d3e29381fdb4d85a50734fcc64124075b298fc8ac1a437981",
+      "assetIds": [
+        "onggojib.character.expression-mother-admonish-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-mother-admonish-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-youngest-child-cry.webp",
+      "sha256": "a133c4f6a0ca6b61918cded02188bb4dfab94e7245a3fc379a0e42c62bbf1fa1",
+      "assetIds": [
+        "onggojib.character.expression-youngest-child-cry-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-youngest-child-cry-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
     }
   ]
 }

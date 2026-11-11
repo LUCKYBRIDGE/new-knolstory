@@ -1,5 +1,7 @@
 # STATUS — current development state
 
+2026-11-11 네 작품 인물 표현 확장: 인물별 동작·표정 부족을 대조해 흥부·놀부 두 아내, 선녀·나무꾼, 토끼·자라·어의, 옹고집 아내·어머니·막내의10정체성에 작품당4종씩16개 편집용 이미지를 추가한다. 기존433개 카탈로그·원고·개인 저장소는 보존하고 새 ID·전신/표정/동작 검색·정확한 Ren’Py 경로와 생성 원본/실행본 검사·복원을 연결한다. 선정/생성/검토와 재개 절차는 [표현 확장 기록](docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md), 현재 검증/미완료와 운영 미배포 경계는 [체크포인트](docs/architecture/evidence/character-expression-expansion-2026-11-11/checkpoint.json)를 따른다.
+
 2026-11-11 투명 배경 교체: 흥부의 부탁 자세와 놀부의 밭일 자세에서 남은 흰 배경을 확인해 생성 교정본으로 연결했다. 기존 Asset ID·원고·배치와 원본은 유지하고 버전 경로·revision·geometry를 갱신한다. 생성 PNG·실행 WebP와 해시/alpha 검사·복원 절차를 Git에 함께 보관하며 복원 도구가 구 레거시 그림으로 되돌리지 않게 했다. 다른 세 작품 인물172개를 포함한212개와 밝은 영역107곳에서 추가 동일 결함은 확정하지 못했다. 현재 실행 결과·초기 실패 보완·다른 컴퓨터 재개와 운영 미배포 경계는 [교체 기록](docs/architecture/evidence/transparency-repair-2026-11-11/review.md)과 [체크포인트](docs/architecture/evidence/transparency-repair-2026-11-11/checkpoint.json)를 따른다.
 
 2026-11-03 운영 백업 격리 복원 후속: 봉인된 비공개 백업을 포트·외부망 없는 새 임시 PostgreSQL에 복원해 현재 운영11테이블·16인덱스와 행 내용/스키마 해시가 일치함을 확인했다. 복원된 놀스토리1건은 현행 공용 검증과 형식/작품ID/revision 검사를 통과했고 migration7개 checksum도 같았다. 이어 새 비활성 사본에서 과거 미취소세션3·로그인상태8을 무효화하고 재실행0/0·나머지9테이블/스키마 보존을 확인했다. 최신 정적 후보1564파일도 비공개 백업/복원 manifest가 같고 복원 주소의 실제 선택·점수·조건부 음향/연출·이미지 준비1검사를 통과했다. 운영에는 읽기만 수행했고 검사 전후 인벤토리가 같다. 임시 복원·실행 컨테이너는 정리했으며 백업·비공개 검증 원문과 최초 정리 실패/보완 기록은 보존했다. 실제 인증API·권한·외부 보관/암호화·전체 장애 복구 완료는 별도다. [현재 근거와 한계](docs/architecture/evidence/isolated-restore-2026-11-03/checkpoint.json).

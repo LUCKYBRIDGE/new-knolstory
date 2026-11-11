@@ -45,6 +45,12 @@ class DerivedImageEvidenceTests(unittest.TestCase):
    with self.assertRaisesRegex(ValueError,'transformation'):
     module.asset_provenance(asset)
 class GeneratedWeatherEvidenceTests(unittest.TestCase):
+ def test_expression_assets_have_generated_receipts_without_license_inference(self):
+  asset={'id':'expression','sourcePath':'docs/generation.json#expression','copyright':'project owner','metadata':{'generatedExpressionAsset':True}}
+  fields=module.asset_provenance(asset)
+  self.assertEqual(fields['provider'],'project-generated-image')
+  self.assertIn('prepare-expression-assets.py',fields['generationPlan'])
+  self.assertNotIn('license',fields)
  def test_transparency_repair_has_generated_lineage_without_legacy_or_cc0_inference(self):
   asset={'id':'heungbu','sourcePath':'docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu','copyright':'project owner','metadata':{'generatedTransparencyRepair':True}}
   fields=module.asset_provenance(asset)

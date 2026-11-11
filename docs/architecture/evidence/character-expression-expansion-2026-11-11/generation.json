@@ -1,0 +1,686 @@
+{
+  "date": "2026-11-11",
+  "toolchain": {
+    "pillow": "11.3.0",
+    "webpCodec": "1.5.0"
+  },
+  "authorization": "Project owner requested additional character actions/expressions for editing; same KnolStory service/editor usage scope. No CC0 dedication.",
+  "assets": [
+    {
+      "id": "heungbu.character.expression-wife-heungbu-welcome-v1",
+      "slug": "heungbu-wife-heungbu-welcome",
+      "referenceAssetId": "heungbu.character.wife-heungbu",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.wife-heungbu.webp",
+      "referenceSha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca",
+      "story": "흥부와 놀부",
+      "name": "흥부 아내",
+      "label": "반갑게 맞이하기",
+      "actions": [
+        "반기기",
+        "말하기"
+      ],
+      "expressions": [
+        "기쁨",
+        "안도"
+      ],
+      "pose": "Warm relieved smile, one open hand extended in welcome, other hand near chest. Standing full body; no props.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/heungbu-wife-heungbu-welcome.png",
+      "sourceSha256": "4e24e3d0f8ff3edc85b9f847072ac103b0bb5397634d91df65566d3e799f270a",
+      "output": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-heungbu-welcome.webp",
+      "outputSha256": "3380cf6a44a62ec686cc7eb07c53f2425d4f319c58abeb668b8d61e48cb6d3ca",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.expression-wife-heungbu-firm-v1",
+      "slug": "heungbu-wife-heungbu-firm",
+      "referenceAssetId": "heungbu.character.wife-heungbu",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.wife-heungbu.webp",
+      "referenceSha256": "1097786698059c96f71bea9a97bf13da36a0da5d5ea0f781f8c71c32aaa1bdca",
+      "story": "흥부와 놀부",
+      "name": "흥부 아내",
+      "label": "단호하게 말하기",
+      "actions": [
+        "말하기",
+        "설득하기"
+      ],
+      "expressions": [
+        "결심"
+      ],
+      "pose": "Compassionate but firm serious expression, one palm open at waist making a clear reasoned argument, other hand held near waist. Standing.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/heungbu-wife-heungbu-firm.png",
+      "sourceSha256": "e31b28c756f2d1e748ab56ee80228bf70820377e82fc8b365740bf4033705439",
+      "output": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-heungbu-firm.webp",
+      "outputSha256": "98af75c15f911e98a53eb0c0ec870ae5d7c6cddbd605bed736c9aae5dcb9c1b3",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.expression-wife-nolbu-apology-v1",
+      "slug": "heungbu-wife-nolbu-apology",
+      "referenceAssetId": "heungbu.character.wife-nolbu",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.wife-nolbu.webp",
+      "referenceSha256": "e26982ae42fba1d8b652a27b452170b6bf40198b7cf64be5e9611e9feef6528d",
+      "story": "흥부와 놀부",
+      "name": "놀부 아내",
+      "label": "고개 숙여 사과하기",
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "expressions": [
+        "미안함",
+        "후회"
+      ],
+      "pose": "Eyes lowered in remorse, gentle apologetic bow from the waist, hands respectfully together at waist. Standing with natural modest bend, not kneeling.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/heungbu-wife-nolbu-apology.png",
+      "sourceSha256": "e62e0f98a0445f176380df08d53ed8be14425b44e3a032c220648deb8c7da4ac",
+      "output": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-nolbu-apology.webp",
+      "outputSha256": "d0c71a118b96d5c18f38a1cbaa27ba7934f07a2a1226a9659d8375ecc845ece2",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          6
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.expression-wife-nolbu-offer-v1",
+      "slug": "heungbu-wife-nolbu-offer",
+      "referenceAssetId": "heungbu.character.wife-nolbu",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.wife-nolbu.webp",
+      "referenceSha256": "e26982ae42fba1d8b652a27b452170b6bf40198b7cf64be5e9611e9feef6528d",
+      "story": "흥부와 놀부",
+      "name": "놀부 아내",
+      "label": "밥그릇 건네기",
+      "actions": [
+        "건네기",
+        "나누기"
+      ],
+      "expressions": [
+        "온화"
+      ],
+      "pose": "Kind tentative smile, both hands offering a small plain earthenware bowl of cooked white rice forward. Standing; preserve bowl as opaque white rice, gaps around arms transparent.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/heungbu-wife-nolbu-offer.png",
+      "sourceSha256": "2e9c8a07b530b2fb4dc2bc4f027b89d4f8415a2e2142a0c464becdd9d8c2b4ca",
+      "output": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-nolbu-offer.webp",
+      "outputSha256": "dea9e91655f62386041c06c28a780a0a34cdb266ddece95b903aa0b68d98fd64",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.expression-fairy-explain-v1",
+      "slug": "seonnyeo-fairy-explain",
+      "referenceAssetId": "seonnyeo.character.M01-earth-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M01-earth-neutral.webp",
+      "referenceSha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+      "story": "선녀와 나무꾼",
+      "name": "선녀",
+      "label": "마음을 설명하기",
+      "actions": [
+        "말하기",
+        "설득하기"
+      ],
+      "expressions": [
+        "진지함"
+      ],
+      "pose": "Earnest determined expression, one hand on chest and other extended palm-up explaining personal feelings, full body standing, no props.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/seonnyeo-fairy-explain.png",
+      "sourceSha256": "c95fd673eb5c72cd9627682a009d5ce6bd2e8e2d58841d391ab5b1c71c5d8149",
+      "output": "apps/web/public/assets/characters/expressions-v1/seonnyeo-fairy-explain.webp",
+      "outputSha256": "e6f124638cebf04b9bce3c2b530897b2d9d69f326c8c4d1ae41d39099fe78062",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.expression-fairy-comfort-v1",
+      "slug": "seonnyeo-fairy-comfort",
+      "referenceAssetId": "seonnyeo.character.M01-earth-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M01-earth-neutral.webp",
+      "referenceSha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6",
+      "story": "선녀와 나무꾼",
+      "name": "선녀",
+      "label": "다정하게 위로하기",
+      "actions": [
+        "위로하기",
+        "손 내밀기"
+      ],
+      "expressions": [
+        "온화"
+      ],
+      "pose": "Warm empathetic smile with concerned soft brows; leaning slightly forward, one open hand extended at shoulder height to comfort someone outside image; other hand near chest. Only this one character.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/seonnyeo-fairy-comfort.png",
+      "sourceSha256": "153e0f3e515cd3ccdf8a2cee326000875bd6fc6c19ce24a43b52a00a44b00d7f",
+      "output": "apps/web/public/assets/characters/expressions-v1/seonnyeo-fairy-comfort.webp",
+      "outputSha256": "923eeacbb0753db32f8be89fb824fb03d78c7672a66cf7d774d8a6e44e630d57",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -4
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.expression-woodcutter-apology-v1",
+      "slug": "seonnyeo-woodcutter-apology",
+      "referenceAssetId": "seonnyeo.character.M02-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M02-neutral.webp",
+      "referenceSha256": "77d553709e9bb678a14beb92f7f4c3630245dceb24cf4cebcfc421fe4aaee46b",
+      "story": "선녀와 나무꾼",
+      "name": "나무꾼",
+      "label": "고개 숙여 사과하기",
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "expressions": [
+        "미안함",
+        "후회"
+      ],
+      "pose": "Sincere remorseful expression, eyes lowered, respectful bow from waist with hands together in front. Full body, natural adult proportions. No axe.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/seonnyeo-woodcutter-apology.png",
+      "sourceSha256": "ee74b067cce5fb2b5732c8d00f8da0f51eb7e5d4b8afa21ea0de683d1bc27700",
+      "output": "apps/web/public/assets/characters/expressions-v1/seonnyeo-woodcutter-apology.webp",
+      "outputSha256": "3f2cdef1832c7651d318b2b51d419553f12cf8c746efa687b188562a94956645",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          28
+        ],
+        "referenceFloor": 1151,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.expression-woodcutter-chop-v1",
+      "slug": "seonnyeo-woodcutter-chop",
+      "referenceAssetId": "seonnyeo.character.M02-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M02-neutral.webp",
+      "referenceSha256": "77d553709e9bb678a14beb92f7f4c3630245dceb24cf4cebcfc421fe4aaee46b",
+      "story": "선녀와 나무꾼",
+      "name": "나무꾼",
+      "label": "장작 패기",
+      "actions": [
+        "도끼질",
+        "장작 패기"
+      ],
+      "expressions": [
+        "집중"
+      ],
+      "pose": "Working action: standing feet apart, both hands on a wooden-handled iron axe angled down toward a small log on a chopping stump. Controlled safe preparation pose, no swinging motion lines. Full single character and axe and stump; no scene or soil platform.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/seonnyeo-woodcutter-chop.png",
+      "sourceSha256": "549302d2c1bd9e664fd294b652508aacca52cf127bba3cfeed9ff1af1edc272b",
+      "output": "apps/web/public/assets/characters/expressions-v1/seonnyeo-woodcutter-chop.webp",
+      "outputSha256": "9877aa67cba6b6563d6a2947ad76d3ee323932bed9d6fb35e237a2d07fb2add9",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          7
+        ],
+        "referenceFloor": 1151,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": [
+        [
+          490,
+          1000
+        ],
+        [
+          260,
+          850
+        ]
+      ]
+    },
+    {
+      "id": "rabbit-turtle.character.expression-rabbit-apology-v1",
+      "slug": "rabbit-turtle-rabbit-apology",
+      "referenceAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp",
+      "referenceSha256": "7024e5ba06597ad3d04d1ff4df51d413c0d6a725983ec28df959a5dd76cf29cf",
+      "story": "별주부전",
+      "name": "토끼",
+      "label": "머쓱하게 사과하기",
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "expressions": [
+        "미안함"
+      ],
+      "pose": "Same unclothed anthropomorphic rabbit, ears slightly lowered, sheepish apologetic expression, small respectful bow, both paws together at chest. Full body and ears.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/rabbit-turtle-rabbit-apology.png",
+      "sourceSha256": "82f1f758fedf537250120bad946a5b15e891e30d5bf76adf0191d14533e7048f",
+      "output": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-rabbit-apology.webp",
+      "outputSha256": "7bf500974f6b3f5cabe4dc13e4efd900e1d9dc10ed724121eac2b6b382c694f3",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          46
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.expression-rabbit-comfort-v1",
+      "slug": "rabbit-turtle-rabbit-comfort",
+      "referenceAssetId": "rabbit-turtle.character.rabbit-white-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.rabbit-white-unified-720x900.webp",
+      "referenceSha256": "7024e5ba06597ad3d04d1ff4df51d413c0d6a725983ec28df959a5dd76cf29cf",
+      "story": "별주부전",
+      "name": "토끼",
+      "label": "손 내밀어 위로하기",
+      "actions": [
+        "위로하기",
+        "손 내밀기"
+      ],
+      "expressions": [
+        "온화"
+      ],
+      "pose": "Same unclothed rabbit, soft empathetic expression and gentle smile, one paw extended open toward someone outside image, other paw near chest. Full body, only rabbit.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/rabbit-turtle-rabbit-comfort.png",
+      "sourceSha256": "07710197dcdee6e7b87d0b0bd86f15300c1f03941fb13b863467a58154d0a5c3",
+      "output": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-rabbit-comfort.webp",
+      "outputSha256": "50afcbfb20d0cf2237a8a65dc89e9a797fb8d0783e6b94b1795846e876c69e44",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.expression-turtle-grateful-v1",
+      "slug": "rabbit-turtle-turtle-grateful",
+      "referenceAssetId": "rabbit-turtle.character.turtle-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.turtle-unified-720x900.webp",
+      "referenceSha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a",
+      "story": "별주부전",
+      "name": "자라",
+      "label": "감사 인사하기",
+      "actions": [
+        "인사하기",
+        "감사하기"
+      ],
+      "expressions": [
+        "기쁨",
+        "감사"
+      ],
+      "pose": "Relieved grateful warm smile, gentle respectful bow, both hands together in front of blue robe. Keep exact hat, robe, shell and pouch; full body, no extra objects.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/rabbit-turtle-turtle-grateful.png",
+      "sourceSha256": "2f0d58f38a9a729aa56fa0c3d53e7af4fbd9b02df1fb18c7782f1fb7f0db42d0",
+      "output": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-turtle-grateful.webp",
+      "outputSha256": "1aa9abbdb8c8c88594550dafe0964a4f3f2a90445411d3fee02a3249f6a71c4d",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          22
+        ],
+        "referenceFloor": 1148,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.expression-physician-examine-v1",
+      "slug": "rabbit-turtle-physician-examine",
+      "referenceAssetId": "rabbit-turtle.character.physician-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.physician-unified-720x900.webp",
+      "referenceSha256": "528826dc98286efa9f52680a3d00e8dbef7e7522e6a8b82d907c4f1545bd4765",
+      "story": "별주부전",
+      "name": "어의",
+      "label": "약재 살펴보기",
+      "actions": [
+        "살펴보기",
+        "진찰하기"
+      ],
+      "expressions": [
+        "집중"
+      ],
+      "pose": "Thoughtful focused physician, head tilted slightly down inspecting one small medicinal leaf held gently in a clawed hand, other hand holding closed brown medical book. Preserve exact elderly dragon anatomy and outfit. No medicine bowl; full body.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/rabbit-turtle-physician-examine.png",
+      "sourceSha256": "ba1349019efed109a7e8b399dac4c935396ab75f8193381b758900a35971c96e",
+      "output": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-physician-examine.webp",
+      "outputSha256": "0157a5d407c8cfe71d58271e65042e9e30eff39d8f5d2cc1233c4a72d7a588e5",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -11
+        ],
+        "referenceFloor": 1148,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": [
+        [
+          490,
+          410
+        ]
+      ]
+    },
+    {
+      "id": "onggojib.character.expression-wife-relieved-v1",
+      "slug": "onggojib-wife-relieved",
+      "referenceAssetId": "onggojib.character.wife-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.wife-pixel.webp",
+      "referenceSha256": "c55f05bd9cf9488196f4d1aeb8fa51340c3607a9880f0c21e3cb90ad2c449e7a",
+      "story": "옹고집전",
+      "name": "옹고집 아내",
+      "label": "안도하며 웃기",
+      "actions": [
+        "안도하기",
+        "말하기"
+      ],
+      "expressions": [
+        "기쁨",
+        "안도"
+      ],
+      "pose": "Warm clearly relieved smile, one hand over heart and other relaxed at waist, shoulders relaxed. Full body standing; no tears or props.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/onggojib-wife-relieved.png",
+      "sourceSha256": "94fa3ad9fac99f0e042eb09076d5165ef0db4361939883cdb91f2559fa017fba",
+      "output": "apps/web/public/assets/characters/expressions-v1/onggojib-wife-relieved.webp",
+      "outputSha256": "5586242ec06a88e98b61bf3fba8cee88e0c407f6eeaea06ea96cda03e9270559",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.expression-wife-stop-v1",
+      "slug": "onggojib-wife-stop",
+      "referenceAssetId": "onggojib.character.wife-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.wife-pixel.webp",
+      "referenceSha256": "c55f05bd9cf9488196f4d1aeb8fa51340c3607a9880f0c21e3cb90ad2c449e7a",
+      "story": "옹고집전",
+      "name": "옹고집 아내",
+      "label": "손을 들어 말리기",
+      "actions": [
+        "말리기",
+        "설득하기"
+      ],
+      "expressions": [
+        "걱정",
+        "결심"
+      ],
+      "pose": "Concerned firm expression, one arm extended with open palm in a calm stop gesture, other hand near waist; urging restraint, not angry shouting. Full body standing.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/onggojib-wife-stop.png",
+      "sourceSha256": "dad4f74444cd7b26a91d11c19d509f33229eab2043a5721f03766ae95536f1d5",
+      "output": "apps/web/public/assets/characters/expressions-v1/onggojib-wife-stop.webp",
+      "outputSha256": "5d285db4f42d46410c1fc8a40539274460ae931a6c1a5788da28680506541e91",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.expression-mother-admonish-v1",
+      "slug": "onggojib-mother-admonish",
+      "referenceAssetId": "onggojib.character.classic-mother",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.classic-mother.webp",
+      "referenceSha256": "ac3b5c7721d5a2aef6a3ac2aa5cf99c629bb36e51f808e1ae511e815e9a24b36",
+      "story": "옹고집전",
+      "name": "옹고집 어머니",
+      "label": "타이르며 말하기",
+      "actions": [
+        "타이르기",
+        "말하기"
+      ],
+      "expressions": [
+        "걱정"
+      ],
+      "pose": "Same elderly mother, kind but serious admonishing expression, slightly hunched elderly posture, one hand raised with open palm at chest explaining gently; other hand holding own sleeve at waist. Full body standing.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/onggojib-mother-admonish.png",
+      "sourceSha256": "7e78d7a634b94039b73cd621c8be2f479c06eaae8472bb0adfd5f6aaf890604e",
+      "output": "apps/web/public/assets/characters/expressions-v1/onggojib-mother-admonish.webp",
+      "outputSha256": "bf76bcc1b9a6145d3e29381fdb4d85a50734fcc64124075b298fc8ac1a437981",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.expression-youngest-child-cry-v1",
+      "slug": "onggojib-youngest-child-cry",
+      "referenceAssetId": "onggojib.character.youngest-child-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.youngest-child-pixel.webp",
+      "referenceSha256": "3b325480389cc0baad6d04e032976224846e598b240fe93c6f33612aac270e2d",
+      "story": "옹고집전",
+      "name": "옹고집 막내",
+      "label": "눈물 닦기",
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "expressions": [
+        "슬픔"
+      ],
+      "pose": "Same young daughter at her exact child age and proportions, visibly sad but gentle child-friendly expression, a small tear on cheek, one hand wiping eye with sleeve, other hand near chest. Full body standing, no other characters.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v1/onggojib-youngest-child-cry.png",
+      "sourceSha256": "f88fbe6d68360780739a37a6f50984c185df3e8c74b3967a98e61013516d4818",
+      "output": "apps/web/public/assets/characters/expressions-v1/onggojib-youngest-child-cry.webp",
+      "outputSha256": "a133c4f6a0ca6b61918cded02188bb4dfab94e7245a3fc379a0e42c62bbf1fa1",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    }
+  ]
+}

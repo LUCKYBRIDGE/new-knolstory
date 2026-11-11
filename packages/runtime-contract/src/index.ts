@@ -90,6 +90,22 @@ function optionalChoice(value: unknown, values: readonly unknown[]): boolean {
 // Reviewed canvas-padding derivatives keep stable asset IDs without replacing
 // fixed-baseline source files. This is an allowlist, not an arbitrary URL root.
 const REVIEWED_IMAGE_PATHS: ReadonlySet<string> = new Set([
+  "assets/characters/expressions-v1/heungbu-wife-heungbu-welcome.webp",
+  "assets/characters/expressions-v1/heungbu-wife-heungbu-firm.webp",
+  "assets/characters/expressions-v1/heungbu-wife-nolbu-apology.webp",
+  "assets/characters/expressions-v1/heungbu-wife-nolbu-offer.webp",
+  "assets/characters/expressions-v1/seonnyeo-fairy-explain.webp",
+  "assets/characters/expressions-v1/seonnyeo-fairy-comfort.webp",
+  "assets/characters/expressions-v1/seonnyeo-woodcutter-apology.webp",
+  "assets/characters/expressions-v1/seonnyeo-woodcutter-chop.webp",
+  "assets/characters/expressions-v1/rabbit-turtle-rabbit-apology.webp",
+  "assets/characters/expressions-v1/rabbit-turtle-rabbit-comfort.webp",
+  "assets/characters/expressions-v1/rabbit-turtle-turtle-grateful.webp",
+  "assets/characters/expressions-v1/rabbit-turtle-physician-examine.webp",
+  "assets/characters/expressions-v1/onggojib-wife-relieved.webp",
+  "assets/characters/expressions-v1/onggojib-wife-stop.webp",
+  "assets/characters/expressions-v1/onggojib-mother-admonish.webp",
+  "assets/characters/expressions-v1/onggojib-youngest-child-cry.webp",
   "assets/characters/transparency-v2/heungbu-pleading.webp",
   "assets/characters/transparency-v2/nolbu-working.webp",
   "assets/backgrounds/weather-v1/seonnyeo-cottage-rain-evening.webp",
