@@ -1,5 +1,7 @@
 # Asset Pipeline Skill
 
+For white-matte character repairs follow the [reviewed replacement receipt](../../../docs/architecture/evidence/transparency-repair-2026-11-11/review.md). Keep stable IDs and tracked generated PNG/WebP pairs; verify with `python3 scripts/prepare-transparency-assets.py`. `generatedTransparencyRepair` assets come from the current checkout, never the fixed legacy baseline. Update the exact Runtime Contract path allowlist, provenance, source hashes and restore tests together, then rebuild runtime before Web.
+
 Use for Asset IDs, metadata, source media, geometry, derivatives or audio delivery.
 
 1. Read the [layout ownership ADR](../../../docs/decisions/0004-stage-layout-owned-by-runtime-core.md) and [authoring storage contract](../../../docs/architecture/authoring-storage-contract.md); inspect the resolver and provenance implementation before editing.

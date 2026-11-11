@@ -25,7 +25,8 @@
     "apps/web/public/assets/loading/README.md",
     "apps/web/public/brand/README.md",
     "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
-    "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json"
+    "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json",
+    "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json"
   ],
   "assets": [
     {
@@ -6794,6 +6795,30 @@
         "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json#seonnyeo.background.cottage-rain-evening-v1"
       ],
       "creationMethodEvidence": "built-in image_gen; project owner requested regeneration and service/editor use 2026-11-02"
+    },
+    {
+      "file": "apps/web/public/assets/characters/transparency-v2/heungbu-pleading.webp",
+      "sha256": "c0f5e00554e8db462aa509041363fe3656e5785b9f68509be2774e320c2180f1",
+      "assetIds": [
+        "heungbu.character.heungbu-pleading"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu.character.heungbu-pleading"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested transparent replacement, service integration and GitHub upload 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/transparency-v2/nolbu-working.webp",
+      "sha256": "a1aca08f2ad32d5ff9cfa81147b205d1213a80ad8eb37cc4aac7905e88810c10",
+      "assetIds": [
+        "heungbu.character.nolbu-working"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu.character.nolbu-working"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested transparent replacement, service integration and GitHub upload 2026-11-11"
     }
   ]
 }

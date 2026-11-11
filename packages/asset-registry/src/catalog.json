@@ -12855,13 +12855,13 @@
       "흥부",
       "간절함"
     ],
-    "src": "/assets/legacy-18da4fc/heungbu.character.heungbu-pleading.webp",
-    "sourcePath": "public/story-assets/heungbu.character.heungbu-pleading.webp",
+    "src": "/assets/characters/transparency-v2/heungbu-pleading.webp",
+    "sourcePath": "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu.character.heungbu-pleading",
     "copyright": "놀퀴즈",
-    "revision": "4871731d647743b08b87c71d79788180b231b774dc83170839e008e79419e3ea",
+    "revision": "c0f5e00554e8db462aa509041363fe3656e5785b9f68509be2774e320c2180f1",
     "geometry": {
-      "left": 0.175,
-      "right": 0.82625,
+      "left": 0.29125,
+      "right": 0.72625,
       "top": 0.125,
       "bottom": 0.9583333333333334,
       "width": 800,
@@ -12890,12 +12890,14 @@
       "pairingStatus": "missing-upper",
       "qualityReview": {
         "decision": "KEEP",
-        "sha256": "4871731d647743b08b87c71d79788180b231b774dc83170839e008e79419e3ea",
-        "referenceAssetId": "heungbu.character.heungbu-default",
+        "sha256": "c0f5e00554e8db462aa509041363fe3656e5785b9f68509be2774e320c2180f1",
+        "referenceAssetId": "heungbu.character.heungbu-pleading",
+        "supersedesRevision": "4871731d647743b08b87c71d79788180b231b774dc83170839e008e79419e3ea",
         "poseClass": "action",
-        "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
-        "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
-      }
+        "evidence": "docs/architecture/evidence/transparency-repair-2026-11-11/review.md",
+        "reason": "기존 얼굴·복장·자세·동일800×1200캔버스와 발 기준선을 대조하고 다리/팔/도구 사이 흰 배경 제거를 색 배경에서 확인."
+      },
+      "generatedTransparencyRepair": true
     }
   },
   {
@@ -14071,15 +14073,15 @@
       "밭일",
       "재기"
     ],
-    "src": "/assets/legacy-18da4fc/heungbu.character.nolbu-working.webp",
-    "sourcePath": "public/story-assets/heungbu.character.nolbu-working.webp",
+    "src": "/assets/characters/transparency-v2/nolbu-working.webp",
+    "sourcePath": "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu.character.nolbu-working",
     "copyright": "놀퀴즈",
-    "revision": "a055d931c9c7679f22884b29f42beddd520edbb4f489efe4861e89fc3236de9c",
+    "revision": "a1aca08f2ad32d5ff9cfa81147b205d1213a80ad8eb37cc4aac7905e88810c10",
     "geometry": {
-      "left": 0.0475,
-      "right": 0.9525,
-      "top": 0.1,
-      "bottom": 0.9583333333333334,
+      "left": 0.0525,
+      "right": 0.9425,
+      "top": 0.10083333333333333,
+      "bottom": 0.9566666666666667,
       "width": 800,
       "height": 1200
     },
@@ -14106,12 +14108,14 @@
       "pairingStatus": "missing-upper",
       "qualityReview": {
         "decision": "KEEP",
-        "sha256": "a055d931c9c7679f22884b29f42beddd520edbb4f489efe4861e89fc3236de9c",
-        "referenceAssetId": "heungbu.character.nolbu-default",
+        "sha256": "a1aca08f2ad32d5ff9cfa81147b205d1213a80ad8eb37cc4aac7905e88810c10",
+        "referenceAssetId": "heungbu.character.nolbu-working",
+        "supersedesRevision": "a055d931c9c7679f22884b29f42beddd520edbb4f489efe4861e89fc3236de9c",
         "poseClass": "action",
-        "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
-        "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
-      }
+        "evidence": "docs/architecture/evidence/transparency-repair-2026-11-11/review.md",
+        "reason": "기존 얼굴·복장·자세·동일800×1200캔버스와 발 기준선을 대조하고 다리/팔/도구 사이 흰 배경 제거를 색 배경에서 확인."
+      },
+      "generatedTransparencyRepair": true
     }
   },
   {
