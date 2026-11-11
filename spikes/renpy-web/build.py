@@ -17,6 +17,8 @@ from transport import embed_transfer_info, transfer_info, write_brotli_copies
 STAGE_FONT_SHA256 = 'f934737fbbde38eebe52d002c8fd898e830bfba1778676e38c3b0c4283fa94c9'
 
 ROOT = Path(__file__).resolve().parents[2]
+subprocess.run(['python3', str(ROOT / 'scripts/prepare-transparency-assets.py')], check=True)
+subprocess.run(['python3', str(ROOT / 'scripts/prepare-expression-assets.py')], check=True)
 subprocess.run(['python3', str(ROOT / 'scripts/check-service-audio.py'), '--source-only'], check=True)
 version = (ROOT / 'renpy/RENPY_VERSION').read_text().strip()
 sdk = Path(os.environ.get('KNOL_RENPY_SDK', ROOT / '.cache/renpy' / f'renpy-{version}-sdk'))

@@ -25,7 +25,11 @@
     "apps/web/public/assets/loading/README.md",
     "apps/web/public/brand/README.md",
     "docs/architecture/evidence/layered-stories-2026-11-02/generation.json",
-    "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json"
+    "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json",
+    "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json",
+    "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json",
+    "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json",
+    "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json"
   ],
   "assets": [
     {
@@ -6794,6 +6798,2586 @@
         "docs/architecture/evidence/rainy-courtyard-2026-11-02/generation.json#seonnyeo.background.cottage-rain-evening-v1"
       ],
       "creationMethodEvidence": "built-in image_gen; project owner requested regeneration and service/editor use 2026-11-02"
+    },
+    {
+      "file": "apps/web/public/assets/characters/transparency-v2/heungbu-pleading.webp",
+      "sha256": "c0f5e00554e8db462aa509041363fe3656e5785b9f68509be2774e320c2180f1",
+      "assetIds": [
+        "heungbu.character.heungbu-pleading"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu.character.heungbu-pleading"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested transparent replacement, service integration and GitHub upload 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/transparency-v2/nolbu-working.webp",
+      "sha256": "a1aca08f2ad32d5ff9cfa81147b205d1213a80ad8eb37cc4aac7905e88810c10",
+      "assetIds": [
+        "heungbu.character.nolbu-working"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/transparency-repair-2026-11-11/generation.json#heungbu.character.nolbu-working"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested transparent replacement, service integration and GitHub upload 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-heungbu-welcome.webp",
+      "sha256": "3380cf6a44a62ec686cc7eb07c53f2425d4f319c58abeb668b8d61e48cb6d3ca",
+      "assetIds": [
+        "heungbu.character.expression-wife-heungbu-welcome-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-heungbu-welcome-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-heungbu-firm.webp",
+      "sha256": "98af75c15f911e98a53eb0c0ec870ae5d7c6cddbd605bed736c9aae5dcb9c1b3",
+      "assetIds": [
+        "heungbu.character.expression-wife-heungbu-firm-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-heungbu-firm-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-nolbu-apology.webp",
+      "sha256": "d0c71a118b96d5c18f38a1cbaa27ba7934f07a2a1226a9659d8375ecc845ece2",
+      "assetIds": [
+        "heungbu.character.expression-wife-nolbu-apology-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-nolbu-apology-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/heungbu-wife-nolbu-offer.webp",
+      "sha256": "dea9e91655f62386041c06c28a780a0a34cdb266ddece95b903aa0b68d98fd64",
+      "assetIds": [
+        "heungbu.character.expression-wife-nolbu-offer-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#heungbu.character.expression-wife-nolbu-offer-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-fairy-explain.webp",
+      "sha256": "e6f124638cebf04b9bce3c2b530897b2d9d69f326c8c4d1ae41d39099fe78062",
+      "assetIds": [
+        "seonnyeo.character.expression-fairy-explain-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-fairy-explain-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-fairy-comfort.webp",
+      "sha256": "923eeacbb0753db32f8be89fb824fb03d78c7672a66cf7d774d8a6e44e630d57",
+      "assetIds": [
+        "seonnyeo.character.expression-fairy-comfort-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-fairy-comfort-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-woodcutter-apology.webp",
+      "sha256": "3f2cdef1832c7651d318b2b51d419553f12cf8c746efa687b188562a94956645",
+      "assetIds": [
+        "seonnyeo.character.expression-woodcutter-apology-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-woodcutter-apology-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/seonnyeo-woodcutter-chop.webp",
+      "sha256": "9877aa67cba6b6563d6a2947ad76d3ee323932bed9d6fb35e237a2d07fb2add9",
+      "assetIds": [
+        "seonnyeo.character.expression-woodcutter-chop-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#seonnyeo.character.expression-woodcutter-chop-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-rabbit-apology.webp",
+      "sha256": "7bf500974f6b3f5cabe4dc13e4efd900e1d9dc10ed724121eac2b6b382c694f3",
+      "assetIds": [
+        "rabbit-turtle.character.expression-rabbit-apology-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-rabbit-apology-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-rabbit-comfort.webp",
+      "sha256": "50afcbfb20d0cf2237a8a65dc89e9a797fb8d0783e6b94b1795846e876c69e44",
+      "assetIds": [
+        "rabbit-turtle.character.expression-rabbit-comfort-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-rabbit-comfort-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-turtle-grateful.webp",
+      "sha256": "1aa9abbdb8c8c88594550dafe0964a4f3f2a90445411d3fee02a3249f6a71c4d",
+      "assetIds": [
+        "rabbit-turtle.character.expression-turtle-grateful-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-turtle-grateful-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/rabbit-turtle-physician-examine.webp",
+      "sha256": "0157a5d407c8cfe71d58271e65042e9e30eff39d8f5d2cc1233c4a72d7a588e5",
+      "assetIds": [
+        "rabbit-turtle.character.expression-physician-examine-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#rabbit-turtle.character.expression-physician-examine-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-wife-relieved.webp",
+      "sha256": "5586242ec06a88e98b61bf3fba8cee88e0c407f6eeaea06ea96cda03e9270559",
+      "assetIds": [
+        "onggojib.character.expression-wife-relieved-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-wife-relieved-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-wife-stop.webp",
+      "sha256": "5d285db4f42d46410c1fc8a40539274460ae931a6c1a5788da28680506541e91",
+      "assetIds": [
+        "onggojib.character.expression-wife-stop-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-wife-stop-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-mother-admonish.webp",
+      "sha256": "bf76bcc1b9a6145d3e29381fdb4d85a50734fcc64124075b298fc8ac1a437981",
+      "assetIds": [
+        "onggojib.character.expression-mother-admonish-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-mother-admonish-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v1/onggojib-youngest-child-cry.webp",
+      "sha256": "a133c4f6a0ca6b61918cded02188bb4dfab94e7245a3fc379a0e42c62bbf1fa1",
+      "assetIds": [
+        "onggojib.character.expression-youngest-child-cry-v1"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json#onggojib.character.expression-youngest-child-cry-v1"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested character action/expression expansion for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-child-first-cheer.webp",
+      "sha256": "da63a377417b2c614e63e5a6149cbb4c559e4b424a734bbad39c78a07c5831eb",
+      "assetIds": [
+        "heungbu.character.supporting-child-first-cheer-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-child-first-cheer-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-child-first-worried.webp",
+      "sha256": "eda51a6845ee818e8b04676bbd9b46b75c93dd9fa38822a768c823e2fd4ca7dd",
+      "assetIds": [
+        "heungbu.character.supporting-child-first-worried-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-child-first-worried-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-child-second-cry.webp",
+      "sha256": "7b9f4d3ae9321b399dce5b04a1bca23407d34805f7b6cbe5a994203d19aa3328",
+      "assetIds": [
+        "heungbu.character.supporting-child-second-cry-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-child-second-cry-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-child-second-offer.webp",
+      "sha256": "8a062724de2c58e0941eb1fc8f454db381622c2212cd0f5dc883b59b098799e1",
+      "assetIds": [
+        "heungbu.character.supporting-child-second-offer-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-child-second-offer-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-neighbor-comfort.webp",
+      "sha256": "596fe24b8350dab59505a64f7fe8b10df58a5615676c80365437149a12a6778f",
+      "assetIds": [
+        "heungbu.character.supporting-neighbor-comfort-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-neighbor-comfort-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-neighbor-surprised.webp",
+      "sha256": "e66a7407c07b8c2cb816d641f97434e1bbf15ca0c9fee11de9e2153188b946c7",
+      "assetIds": [
+        "heungbu.character.supporting-neighbor-surprised-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-neighbor-surprised-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-swallow-fly.webp",
+      "sha256": "4f64998cb301d6200cbd663bba4e0157f4eadcd4a5ffe232a5c1505bc1d80aab",
+      "assetIds": [
+        "heungbu.character.supporting-swallow-fly-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-swallow-fly-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/heungbu-swallow-injured.webp",
+      "sha256": "bd675cd0a998b128aaa932148dd0f3eb55c9db66b414a8f0eb5c68eb8c39dddb",
+      "assetIds": [
+        "heungbu.character.supporting-swallow-injured-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#heungbu.character.supporting-swallow-injured-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-guard-stop.webp",
+      "sha256": "c5bc2adf2e36fbb1fdfa287ff6f5c9a12766ecc1c71c50f3befef15dbd6ae422",
+      "assetIds": [
+        "onggojib.character.supporting-guard-stop-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-guard-stop-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-guard-confused.webp",
+      "sha256": "3c670371c6c13e6a3ad2448897dcfc9fe490c7db9fb8f3eb0bbcba817626d4f6",
+      "assetIds": [
+        "onggojib.character.supporting-guard-confused-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-guard-confused-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-worker-protest.webp",
+      "sha256": "927e657207972e79c86102e1faed95607ac4649831bd12fd76dde66ef8625366",
+      "assetIds": [
+        "onggojib.character.supporting-worker-protest-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-worker-protest-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-worker-rest.webp",
+      "sha256": "ea24e714e7d1db372522baa8c1ddeb89841a2c52b2659a66ccef0d709086a554",
+      "assetIds": [
+        "onggojib.character.supporting-worker-rest-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-worker-rest-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-servant-apology.webp",
+      "sha256": "09671d1874b0491628a1c383031f8a39734ee2071800f71260f09e8369c5ba46",
+      "assetIds": [
+        "onggojib.character.supporting-servant-apology-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-servant-apology-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-servant-relieved.webp",
+      "sha256": "e0de621dbc41e680f0ae7be9a618993f0b2fcdf4dd07d645ab701b9974efa0a9",
+      "assetIds": [
+        "onggojib.character.supporting-servant-relieved-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-servant-relieved-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-magistrate-ponder.webp",
+      "sha256": "12073cfd47b5bfdd3dd00a59d0b5925f25281a927c856e91c1f9cc49114ddd86",
+      "assetIds": [
+        "onggojib.character.supporting-magistrate-ponder-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-magistrate-ponder-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/onggojib-magistrate-astonished.webp",
+      "sha256": "7ce901b3846a87c45de2d093a4f10a32382c39f790a6de4bc431c7170fec6416",
+      "assetIds": [
+        "onggojib.character.supporting-magistrate-astonished-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#onggojib.character.supporting-magistrate-astonished-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-eldest-fairy-explain.webp",
+      "sha256": "e99d6d26c5494aba2427b19981eb9629f69867e1295efb25f1d9a64d8f140271",
+      "assetIds": [
+        "seonnyeo.character.supporting-eldest-fairy-explain-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-eldest-fairy-explain-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-eldest-fairy-stop.webp",
+      "sha256": "327fca2df719dab99813348fa32b3d0fc1b3b41621a69c56f1521628e6e6e386",
+      "assetIds": [
+        "seonnyeo.character.supporting-eldest-fairy-stop-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-eldest-fairy-stop-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-second-fairy-laugh.webp",
+      "sha256": "3b289d21f67f5bd6f2ba699e2cd8805642a4fe0011f1c589c939a2185abc1959",
+      "assetIds": [
+        "seonnyeo.character.supporting-second-fairy-laugh-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-second-fairy-laugh-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-second-fairy-worry.webp",
+      "sha256": "a3c9ba513792f399ea620b5a771b94a53421a439469715e3e2d8ecf24de1a6c4",
+      "assetIds": [
+        "seonnyeo.character.supporting-second-fairy-worry-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-second-fairy-worry-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-hunter-listen.webp",
+      "sha256": "b4345994fa48ca2825606bc1465e1415b7473a267716f37026150096537c5889",
+      "assetIds": [
+        "seonnyeo.character.supporting-hunter-listen-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-hunter-listen-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-hunter-confused.webp",
+      "sha256": "6fbb7c4ee627ede9c7a984b3a0edc9f0984820859f36b286828b2b852c260147",
+      "assetIds": [
+        "seonnyeo.character.supporting-hunter-confused-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-hunter-confused-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-mother-worry.webp",
+      "sha256": "b50222bf1ba5b6cbc8c7aa30974d44bc0ad4cecda7b5388ed9a9f9ff3322a429",
+      "assetIds": [
+        "seonnyeo.character.supporting-mother-worry-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-mother-worry-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/seonnyeo-mother-comfort.webp",
+      "sha256": "cbe8988f7ea3131d834b5456bf7384db8a8645b045f0694137e1c8eb21a3f337",
+      "assetIds": [
+        "seonnyeo.character.supporting-mother-comfort-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#seonnyeo.character.supporting-mother-comfort-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-dragonking-laugh.webp",
+      "sha256": "918d3edfb3f957091d82427fe8b7e077b8a72eb4aec7dd43a80c34d0bac04b2f",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-dragonking-laugh-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-dragonking-laugh-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-dragonking-doubt.webp",
+      "sha256": "266d48c88bb1c4aa415ca91041949fbbb3cb043cba797c59a77a2ba1af80708c",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-dragonking-doubt-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-dragonking-doubt-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-physician-relieved.webp",
+      "sha256": "c31d4165ee31d6f6a72ede367d503802a4e925e1f383a4f0ee96dd8b2ecb5076",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-physician-relieved-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-physician-relieved-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-physician-refuse.webp",
+      "sha256": "7f97ea24019245e6ab85d992950bcbb709dd19719f38a4847d460345bb11cc8a",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-physician-refuse-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-physician-refuse-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-fish-courtier-report.webp",
+      "sha256": "b0529490a0ca64544accfac0a04a79cc0aa56bad795c022b9e949a73ac5b0856",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-fish-courtier-report-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-fish-courtier-report-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-fish-courtier-shock.webp",
+      "sha256": "380279af87c50ad0f2bcf3fcd32875adb344bb34243579b06dac254398aa9da0",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-fish-courtier-shock-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-fish-courtier-shock-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-crab-courtier-argue.webp",
+      "sha256": "773bd24f278bda17d09184d35c68183f023aee38551c009d3f07826f6fa0c365",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-crab-courtier-argue-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-crab-courtier-argue-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-crab-courtier-apology.webp",
+      "sha256": "ce172de34706c40b8081db34f0be0048914711d688def29ba3ed557026f558a3",
+      "assetIds": [
+        "rabbit-turtle.character.supporting-crab-courtier-apology-v2"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json#rabbit-turtle.character.supporting-crab-courtier-apology-v2"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner requested supporting-character expansion for editor use 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-dragonking-joy.webp",
+      "sha256": "b4d4138e1115f8c22c0a094d7128d89b37aa695f3a0d32d001c96f6d79e54377",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-dragonking-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-dragonking-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-dragonking-sorrow.webp",
+      "sha256": "084f85f2e2042569e1e9585ef45ec21258635a10011bd49b2a9a8be85da3ace8",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-dragonking-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-dragonking-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-physician-anger.webp",
+      "sha256": "85892bdecff78ff45493ba7fef75d124f9f4d44fd6be06667379a8d674f75e43",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-physician-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-physician-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-physician-sorrow.webp",
+      "sha256": "3fe9efd61b7554b705474600517622655c62eaa167033ff3048187febc9c2c85",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-physician-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-physician-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-physician-mirth.webp",
+      "sha256": "f0c3759fc94513ec957070561536b93326141ac59f59a6a949f7b7bff5d54d05",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-physician-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-physician-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-rabbit-joy.webp",
+      "sha256": "9f1f178434fb0f7aaa850bf6d1379e873122aa0331acb7ac8148dfeb94faaf9c",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-rabbit-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-rabbit-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-rabbit-anger.webp",
+      "sha256": "ce3fe130032e8c666e7cbac471b33a088bf6fc89eee01fb73c4320737306cac3",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-rabbit-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-rabbit-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-rabbit-sorrow.webp",
+      "sha256": "02d287316e7cbcf95255e4fe9b90c22502bb9f8a4cc19ca03fbf3cc72327c40f",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-rabbit-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-rabbit-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-turtle-anger.webp",
+      "sha256": "01102172e8fd18bd10ca7f8d4ec430cb16cb8422b6ecd92df6e012ef47ed95f0",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-turtle-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-turtle-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-turtle-sorrow.webp",
+      "sha256": "5e102436091a062679668552a8079072f288005ae9ffa9fe749298b9d6da99af",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-turtle-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-turtle-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-turtle-mirth.webp",
+      "sha256": "45617781ab3041122b516e661f5e088782f40debb2ce4914f0100939cf91c146",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-turtle-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-turtle-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-child-joy.webp",
+      "sha256": "d91f5e5514892934d6652c47fdf09613bea0859014825b6934f6fe6ef6f768b1",
+      "assetIds": [
+        "onggojib.character.emotion-child-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-child-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-child-anger.webp",
+      "sha256": "bbd5cabda867ada151a4fd03b6e8dcd6783320fd562e31c0997c084d034e1f38",
+      "assetIds": [
+        "onggojib.character.emotion-child-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-child-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-child-sorrow.webp",
+      "sha256": "4a9c29d5849778334c9f7f2c807064bc5efc40696fd0aadd3e9c407b527d26bf",
+      "assetIds": [
+        "onggojib.character.emotion-child-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-child-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-double-joy.webp",
+      "sha256": "99b69f14c30369b6f7e4f48df616176c526292896322196b9a54d9d89926e1b3",
+      "assetIds": [
+        "onggojib.character.emotion-double-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-double-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-double-anger.webp",
+      "sha256": "6652ed743eb9d5643a1c9b4fe07eb31d37415b389abf632605f770ae3135bce0",
+      "assetIds": [
+        "onggojib.character.emotion-double-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-double-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-double-sorrow.webp",
+      "sha256": "4534b58113cc4b5ff283260d4e164b47694b2ceb85a48bafec3844b1c74e8e2a",
+      "assetIds": [
+        "onggojib.character.emotion-double-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-double-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-double-mirth.webp",
+      "sha256": "035f6bcc9eab1ab713f869b17516203e9e20997c318cd46196faf78df3f134fd",
+      "assetIds": [
+        "onggojib.character.emotion-double-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-double-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-servant-anger.webp",
+      "sha256": "b92f0163f354850e384bd3b0a95102b1e2bd17a60bc55c23349137ba485d524c",
+      "assetIds": [
+        "onggojib.character.emotion-servant-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-servant-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-servant-sorrow.webp",
+      "sha256": "62611b120ea74b073a964627a693a92db32d60dbdd90bd837ae9033164a37799",
+      "assetIds": [
+        "onggojib.character.emotion-servant-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-servant-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-servant-mirth.webp",
+      "sha256": "50018a5795e66220fbdac2ab68ce07d0c288f4b0cddbf199be4348f14d7fa43b",
+      "assetIds": [
+        "onggojib.character.emotion-servant-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-servant-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-worker-joy.webp",
+      "sha256": "905c8fd1d8479a55abca69943b5700cef7076f8d15b23b9615439557bd112b81",
+      "assetIds": [
+        "onggojib.character.emotion-worker-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-worker-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-worker-sorrow.webp",
+      "sha256": "4ba192099fc421f4354db1431e1f6f4b708a49815e2b217c9a5d71d350f13d6f",
+      "assetIds": [
+        "onggojib.character.emotion-worker-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-worker-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-worker-mirth.webp",
+      "sha256": "feabd3649497ab9c0b183e7eb2fc7978f8d6d65db99a87116cf43f51b245e94f",
+      "assetIds": [
+        "onggojib.character.emotion-worker-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-worker-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-wife-anger.webp",
+      "sha256": "7754006f7809c126ac28a689e3039665d9bae841d1fd1ed1784f0ed44d85aa1c",
+      "assetIds": [
+        "onggojib.character.emotion-wife-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-wife-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-wife-sorrow.webp",
+      "sha256": "96f23f9c536206614ebcc96cc0e1f4ce2e246a268470c7b94765d7e4ade5ece5",
+      "assetIds": [
+        "onggojib.character.emotion-wife-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-wife-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-wife-mirth.webp",
+      "sha256": "ad66a8bf1440ac9601b118a2560e3a70e413693c6346a2591230f494a5a1c31e",
+      "assetIds": [
+        "onggojib.character.emotion-wife-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-wife-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-real-joy.webp",
+      "sha256": "ce33fc4de6896d25acaefc6af1baa1601345340f3778aa4584662f51e901b34b",
+      "assetIds": [
+        "onggojib.character.emotion-real-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-real-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-real-mirth.webp",
+      "sha256": "5a4816972dcd76ffbd8069ae248724b6cd4b34421e8cf616423cfb4c976a6a44",
+      "assetIds": [
+        "onggojib.character.emotion-real-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-real-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-magistrate-joy.webp",
+      "sha256": "e1815082c093770cc83bacbf3f706fa319e16be52340baef461add7add31e831",
+      "assetIds": [
+        "onggojib.character.emotion-magistrate-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-magistrate-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-magistrate-anger.webp",
+      "sha256": "518c3e3ee9884e6b60423f1178bc6050f21f7627378032f185fef48a1d2da352",
+      "assetIds": [
+        "onggojib.character.emotion-magistrate-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-magistrate-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-magistrate-sorrow.webp",
+      "sha256": "9e03f44769e1bbb8ebfda8fb767b9530de55e959507aac41f54bd3d12890a7e0",
+      "assetIds": [
+        "onggojib.character.emotion-magistrate-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-magistrate-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-magistrate-mirth.webp",
+      "sha256": "43b78894062e059710c5acd6df0878a1570f618a0b0f4eba518ee2bec25984c8",
+      "assetIds": [
+        "onggojib.character.emotion-magistrate-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-magistrate-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-guard-joy.webp",
+      "sha256": "3bf8bfe378abdf65716a0ac99053836a956e30f7429a892fb218e3b66c0658fd",
+      "assetIds": [
+        "onggojib.character.emotion-guard-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-guard-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-guard-anger.webp",
+      "sha256": "8d61250e8c358bdd3e3a452aca118ac49a445b4bb30dce49e94d3fdc0dfa1630",
+      "assetIds": [
+        "onggojib.character.emotion-guard-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-guard-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-guard-sorrow.webp",
+      "sha256": "40cef1d62086fbdbc5b0fc3945050bb3472412fbc91d7a43eb27cd75475ce42b",
+      "assetIds": [
+        "onggojib.character.emotion-guard-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-guard-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-guard-mirth.webp",
+      "sha256": "243b9c3a3c702cd78adf8bf2bf35dbc36b09386e3e2949bb0b4d6356fb3b524d",
+      "assetIds": [
+        "onggojib.character.emotion-guard-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-guard-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-second-child-anger.webp",
+      "sha256": "2faee4eb6086304fadd270b545ba05d67acc8aacaef0873ad9992c085b1c4857",
+      "assetIds": [
+        "onggojib.character.emotion-second-child-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-second-child-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-second-child-sorrow.webp",
+      "sha256": "c4b309d7d0f3f21dde695b725f15bfd83d786de89eb47fa0163866451b11efc4",
+      "assetIds": [
+        "onggojib.character.emotion-second-child-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-second-child-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-second-child-mirth.webp",
+      "sha256": "5693fde7d0f26c326585fa2f75bacf8718d7db1be6e2f6b024264c1565bb00d1",
+      "assetIds": [
+        "onggojib.character.emotion-second-child-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-second-child-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-stranger-joy.webp",
+      "sha256": "7816dfdcf0caabd22b56f1ad49ebf32b060ea3fb09b93e41f80b5b22554e399d",
+      "assetIds": [
+        "onggojib.character.emotion-stranger-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-stranger-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-stranger-anger.webp",
+      "sha256": "e998834d4c4ce3e8fc5054bcdf6bac9842e0c946d2fe8fadbf8a7d1bb9eff49c",
+      "assetIds": [
+        "onggojib.character.emotion-stranger-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-stranger-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-stranger-sorrow.webp",
+      "sha256": "ea3072bde0bbcebbb2a1a9a7e8acf10c459ad190e51ac760f63115e7506efc0f",
+      "assetIds": [
+        "onggojib.character.emotion-stranger-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-stranger-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-stranger-mirth.webp",
+      "sha256": "d13caaa304becd7e86b885e3bbe5b17786e5f31accbe26d15c8111c9c0dd9090",
+      "assetIds": [
+        "onggojib.character.emotion-stranger-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-stranger-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-youngest-child-joy.webp",
+      "sha256": "564dfb2894c9fe52c593b1a034e001869e618d279f281bbf8ea55ae831f81a71",
+      "assetIds": [
+        "onggojib.character.emotion-youngest-child-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-youngest-child-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-youngest-child-anger.webp",
+      "sha256": "67ed4d303e43aa7bd0171f09b6b0d88bbfb53d2ebbfe3bca37978ccff2e63fd0",
+      "assetIds": [
+        "onggojib.character.emotion-youngest-child-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-youngest-child-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-youngest-child-mirth.webp",
+      "sha256": "57fff0397f883ded9606140b614be15f9232e3f8221bd8ebb3dca4b229d592c6",
+      "assetIds": [
+        "onggojib.character.emotion-youngest-child-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-youngest-child-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-fairy-anger.webp",
+      "sha256": "7175c3d33a462f055895e5e13772758f6faef0e8ef8b838c2661f083ef1e2cf2",
+      "assetIds": [
+        "seonnyeo.character.emotion-fairy-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-fairy-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-woodcutter-anger.webp",
+      "sha256": "d3fe1bd60d1c0a4fa33bfda2b0649b16a0c730ecee87f18a6f3c028bb7b35a80",
+      "assetIds": [
+        "seonnyeo.character.emotion-woodcutter-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-woodcutter-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-woodcutter-mirth.webp",
+      "sha256": "a665fbbec27a6b0f21977a27ccf93eca9e43435e74888dc59a5c282d3bfcc1c1",
+      "assetIds": [
+        "seonnyeo.character.emotion-woodcutter-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-woodcutter-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-eldest-fairy-joy.webp",
+      "sha256": "ba3c1d77f75221e8031f432f88cd6978b3d5179a4c0809c7fdf0363581c19ded",
+      "assetIds": [
+        "seonnyeo.character.emotion-eldest-fairy-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-eldest-fairy-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-eldest-fairy-anger.webp",
+      "sha256": "2c6e3b8c1538816b0e9616f3d9eabd1600f9d3cd515d7f468f5830f90602d27c",
+      "assetIds": [
+        "seonnyeo.character.emotion-eldest-fairy-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-eldest-fairy-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-eldest-fairy-sorrow.webp",
+      "sha256": "201d55e9c6c4fac97e66ec776605699575147614294bb3d372788d04c6e3f880",
+      "assetIds": [
+        "seonnyeo.character.emotion-eldest-fairy-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-eldest-fairy-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-eldest-fairy-mirth.webp",
+      "sha256": "6f6e7e26261b2d5e5fc1df33829372220d8338609a9ecb04650d163d2ded0073",
+      "assetIds": [
+        "seonnyeo.character.emotion-eldest-fairy-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-eldest-fairy-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-fairy-joy.webp",
+      "sha256": "6921f3eaf9b4dc71e23eca4010033f890bf1f1c1d5bb9f5a682cd32eadce69ba",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-fairy-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-fairy-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-fairy-anger.webp",
+      "sha256": "381a57bf07156879c748d45c77065387bf7b426f61107c461d764e3ab4d33f05",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-fairy-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-fairy-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-fairy-sorrow.webp",
+      "sha256": "d5908286ab2e70ba37a060f9ce0f5859026ea50ada7dec00e5d96b2e16fef3e9",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-fairy-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-fairy-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-mother-joy.webp",
+      "sha256": "9eae8635063eb7c6c6ff055d34712b6dee87f22d05741415591370fdde96f687",
+      "assetIds": [
+        "onggojib.character.emotion-mother-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-mother-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-mother-anger.webp",
+      "sha256": "5210ba555a133797c26caa4be37438fc715d90df1dbcb5b30d8486d5dcee43f5",
+      "assetIds": [
+        "onggojib.character.emotion-mother-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-mother-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-mother-sorrow.webp",
+      "sha256": "6facf625530921110984a6f2f34da5c2380d47e0e8300d49f6211b4909145fdb",
+      "assetIds": [
+        "onggojib.character.emotion-mother-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-mother-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-mother-mirth.webp",
+      "sha256": "829828f2680d8edd9ab11acb65dbc5041f14dafdb1746fde3fd6b7383f97b7ef",
+      "assetIds": [
+        "onggojib.character.emotion-mother-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-mother-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-monk-joy.webp",
+      "sha256": "ea6aaed40957c460d4eaafd7979aab0e59714cf0f5e95d32824f676290655153",
+      "assetIds": [
+        "onggojib.character.emotion-monk-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-monk-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-monk-anger.webp",
+      "sha256": "0cb11aa2be7d2df8e69c6d0a0293934d70b63c887c8b1a67221384557ca52653",
+      "assetIds": [
+        "onggojib.character.emotion-monk-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-monk-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-monk-sorrow.webp",
+      "sha256": "62ad582858fb1327fa30b502b3d76debf1c8a63205818cd2391bccfdf3607486",
+      "assetIds": [
+        "onggojib.character.emotion-monk-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-monk-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-monk-mirth.webp",
+      "sha256": "5b81d0610f453274b0f53537d96140678e2d8aefcc48387f1dde3954e0a5bb40",
+      "assetIds": [
+        "onggojib.character.emotion-monk-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-monk-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-master-joy.webp",
+      "sha256": "8560a496724f1ef23c4ea3a7453fd51eabd87ba0fc7c4e95d65ca18fd143257d",
+      "assetIds": [
+        "onggojib.character.emotion-master-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-master-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-master-anger.webp",
+      "sha256": "fd48a124643050be919f7a981a617af7d029331f41b24cee66c763b2c542a694",
+      "assetIds": [
+        "onggojib.character.emotion-master-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-master-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-master-sorrow.webp",
+      "sha256": "8573d203259664857dec29d78747d7bf17d649041e915f51f6c367c9d1c3fe2f",
+      "assetIds": [
+        "onggojib.character.emotion-master-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-master-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-master-mirth.webp",
+      "sha256": "4535341093a7b2900b15b5f105cedebb0d1ad90fcfd41fe2a9ea9e51eea101a9",
+      "assetIds": [
+        "onggojib.character.emotion-master-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-master-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-straw-joy.webp",
+      "sha256": "22a6b862538427f29ffaa8269339740764c2f0820b96ebc2d1e961311dfccb5a",
+      "assetIds": [
+        "onggojib.character.emotion-straw-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-straw-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-straw-anger.webp",
+      "sha256": "163052d5cccb2aea902b675700142f8ce1c0c15abc43e209d481fc66ab76a0c7",
+      "assetIds": [
+        "onggojib.character.emotion-straw-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-straw-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-straw-sorrow.webp",
+      "sha256": "665ab9ca8fa94c857a7e5d04cb6733bf30b06c7ca719a8e9cc35396009134f3a",
+      "assetIds": [
+        "onggojib.character.emotion-straw-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-straw-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-straw-mirth.webp",
+      "sha256": "dfb08646eadd857e92029935c283c0ef0af49c3ca0ee635726f7e3780847723d",
+      "assetIds": [
+        "onggojib.character.emotion-straw-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-straw-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-deer-joy.webp",
+      "sha256": "82c17c8df54411480388aab4c1a9e6265d01a5ecacad10f7c1deeb31a1adc2c5",
+      "assetIds": [
+        "seonnyeo.character.emotion-deer-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-deer-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-deer-anger.webp",
+      "sha256": "d5860d6ffb019924e576826a9c2f3eafea53d4cf486cba697555da004cedd68c",
+      "assetIds": [
+        "seonnyeo.character.emotion-deer-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-deer-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-deer-sorrow.webp",
+      "sha256": "be0cb2aaf3e528977204be4076ef760a12acedbe596a689d59fdefc25497a332",
+      "assetIds": [
+        "seonnyeo.character.emotion-deer-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-deer-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-deer-mirth.webp",
+      "sha256": "e9a010146d58467715db19c8c40845e3b22df60e37fe71d75b8dabc3076d4cf3",
+      "assetIds": [
+        "seonnyeo.character.emotion-deer-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-deer-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-hunter-joy.webp",
+      "sha256": "bea47b0646d36b275874f2a2d0e5f1b9fbfce0f8446e2aec79f4bcd43f87f692",
+      "assetIds": [
+        "seonnyeo.character.emotion-hunter-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-hunter-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-hunter-anger.webp",
+      "sha256": "291d3e547795c044cdea41898b7f30b262402d04b1436ac6b17c9825376afbf0",
+      "assetIds": [
+        "seonnyeo.character.emotion-hunter-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-hunter-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-hunter-sorrow.webp",
+      "sha256": "af484ada97da2292d217632efb189ffb72115ad79a14f04217d314671d2bb7ca",
+      "assetIds": [
+        "seonnyeo.character.emotion-hunter-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-hunter-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-hunter-mirth.webp",
+      "sha256": "d84147d01dfb4e870ce5f1be30b66dd749af432cd8952576bf5e85933eed7f69",
+      "assetIds": [
+        "seonnyeo.character.emotion-hunter-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-hunter-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-mother-anger.webp",
+      "sha256": "397dffd94daafc080a540f81140fb6df984b08e921a11df2c78b5e7df8a05b4a",
+      "assetIds": [
+        "seonnyeo.character.emotion-mother-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-mother-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-mother-sorrow.webp",
+      "sha256": "a9402cdcecacc1107db9199b0976e434b0d7b5ee6c75b3f2101c2f00a2f1a457",
+      "assetIds": [
+        "seonnyeo.character.emotion-mother-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-mother-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-mother-mirth.webp",
+      "sha256": "0de1a861f74c439e16de6da94d4b58ed9f856d2457c2bd146fbb08e740dc6814",
+      "assetIds": [
+        "seonnyeo.character.emotion-mother-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-mother-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-first-child-neutral.webp",
+      "sha256": "fbb9c653b699b1079a0ccfa56a71427e6ada72486d0df4fa65fd23aa5e45b406",
+      "assetIds": [
+        "seonnyeo.character.emotion-first-child-neutral-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-first-child-neutral-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-first-child-joy.webp",
+      "sha256": "247f940e02e1559304a9ad3d48764ea20c468a52583cb588f3fcd4cd6c2b3e80",
+      "assetIds": [
+        "seonnyeo.character.emotion-first-child-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-first-child-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-first-child-anger.webp",
+      "sha256": "bc45522a072cefcf49b13cf86f72b66471a457e176a4a3c8bdcc407d4529315e",
+      "assetIds": [
+        "seonnyeo.character.emotion-first-child-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-first-child-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-first-child-sorrow.webp",
+      "sha256": "1c8fd8d9559da4c165cd368ff0772d931c58c4787d5d9150dafad08481aa5ef4",
+      "assetIds": [
+        "seonnyeo.character.emotion-first-child-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-first-child-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-first-child-mirth.webp",
+      "sha256": "76cb8bae2bb595f68acf5f59b237473696aa5a01c430d3bf17f437d11fef7ede",
+      "assetIds": [
+        "seonnyeo.character.emotion-first-child-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-first-child-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-child-neutral.webp",
+      "sha256": "d10e584d310da557f756224a49f945bd1df54064d258b9942a5450f07136c1e6",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-child-neutral-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-child-neutral-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-child-joy.webp",
+      "sha256": "783706c6127de5e282bb8e57d0c3529cd65da54653675396a00d2e44de5e2069",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-child-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-child-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-child-anger.webp",
+      "sha256": "72a69217e45d7fc00e8d7f7365f2b02d39873325bcc909c7b763f26842bfb39c",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-child-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-child-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-child-sorrow.webp",
+      "sha256": "0695fd6445f3aafec7f1ddf5ead162f52c52f7b3f9a5aa7082d8978a35d54727",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-child-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-child-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-second-child-mirth.webp",
+      "sha256": "bed693db6e24a322aec6d6c9adba45df470586c4bc7275834de36f7ef7665b05",
+      "assetIds": [
+        "seonnyeo.character.emotion-second-child-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-second-child-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-horse-joy.webp",
+      "sha256": "a5933f3c6afba338ddf6b1ed548548b4e9e30dc04c71a7e8152c8ddbf690ef6e",
+      "assetIds": [
+        "seonnyeo.character.emotion-horse-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-horse-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-horse-anger.webp",
+      "sha256": "5cdb10f73edf6eab2495bced42ddcd29f0b63c1b165e15fba5f524d08dbef0dd",
+      "assetIds": [
+        "seonnyeo.character.emotion-horse-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-horse-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-horse-sorrow.webp",
+      "sha256": "060918340beabdcb21375cdef1f69d928a9822f416af02db8f4fd718c6f348e1",
+      "assetIds": [
+        "seonnyeo.character.emotion-horse-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-horse-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-horse-mirth.webp",
+      "sha256": "138d6f90a8c52432f611f20444c12f75816f663feb3dc11c8c0a5e2b61a3e0a2",
+      "assetIds": [
+        "seonnyeo.character.emotion-horse-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-horse-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-rooster-joy.webp",
+      "sha256": "5c3e5e51c628c310ec56eb9f5d2b38f161b05bc1d82ed99b119d8906895d99ce",
+      "assetIds": [
+        "seonnyeo.character.emotion-rooster-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-rooster-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-rooster-anger.webp",
+      "sha256": "d38e493c6c32b55013c3577a4e091d9b20ee8b8cab6801dde6d09378a8ff4b7f",
+      "assetIds": [
+        "seonnyeo.character.emotion-rooster-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-rooster-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-rooster-sorrow.webp",
+      "sha256": "8c52dff59c1c3fec78b00754506907c33cc578119b8024dc2481b52cb1ad31b0",
+      "assetIds": [
+        "seonnyeo.character.emotion-rooster-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-rooster-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-rooster-mirth.webp",
+      "sha256": "edc3e84f323fe685313e408aebdbdae2bfbf260600c14505a332d131aafd2521",
+      "assetIds": [
+        "seonnyeo.character.emotion-rooster-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-rooster-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-heungbu-joy.webp",
+      "sha256": "b18ac1fdcf38e266271a247a094236132d0f9f91408109687f05b798b420ba37",
+      "assetIds": [
+        "heungbu.character.emotion-heungbu-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-heungbu-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-heungbu-anger.webp",
+      "sha256": "3a42b62946f3764c317e44cb7b9c49d682ff528d845db4bd4acbb2b4ef554353",
+      "assetIds": [
+        "heungbu.character.emotion-heungbu-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-heungbu-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-heungbu-sorrow.webp",
+      "sha256": "f8ccf77a8996ffb8c1858b4a8703083378f166066496b78ff2ecde2e44e89fd1",
+      "assetIds": [
+        "heungbu.character.emotion-heungbu-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-heungbu-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-nolbu-joy.webp",
+      "sha256": "ba7e8476f4b2228ac7cf855e319ba9b9e079ce20f66ce4293c360034f87f1bf8",
+      "assetIds": [
+        "heungbu.character.emotion-nolbu-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-nolbu-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-nolbu-sorrow.webp",
+      "sha256": "9ff6edc6e2c551c477acb97ab7b9acaf3e8df61d8a2b9f825d8e44ec8973764a",
+      "assetIds": [
+        "heungbu.character.emotion-nolbu-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-nolbu-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-nolbu-mirth.webp",
+      "sha256": "78249214f2da2611cc3103a3ec8f8069649db5165c8d8850a91f989821b5dccb",
+      "assetIds": [
+        "heungbu.character.emotion-nolbu-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-nolbu-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-wife-heungbu-joy.webp",
+      "sha256": "05623ebe4a50a50189aaf50e2c6db263a6135ff466381b29e2f8b74e9fc9c4c4",
+      "assetIds": [
+        "heungbu.character.emotion-wife-heungbu-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-wife-heungbu-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-wife-heungbu-anger.webp",
+      "sha256": "e43a2d229b5339ebd51ffc4ec88d4c6afa33a1208521c2d7962148d34f7a17e1",
+      "assetIds": [
+        "heungbu.character.emotion-wife-heungbu-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-wife-heungbu-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-wife-heungbu-sorrow.webp",
+      "sha256": "9184e9c8718345050ff0e97a9ca7b70df4d278802072429f990b15f2fbdabf8f",
+      "assetIds": [
+        "heungbu.character.emotion-wife-heungbu-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-wife-heungbu-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-wife-nolbu-anger.webp",
+      "sha256": "4546dac89d7f03f4a3b618236d5f4131d8704637aa12237bc39ce21a9303c7b3",
+      "assetIds": [
+        "heungbu.character.emotion-wife-nolbu-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-wife-nolbu-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-wife-nolbu-sorrow.webp",
+      "sha256": "5bfbd9ee5c16c901407de1ff29dc365094524908d4a39a9b9b95c361c6c8f893",
+      "assetIds": [
+        "heungbu.character.emotion-wife-nolbu-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-wife-nolbu-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-wife-nolbu-mirth.webp",
+      "sha256": "1e24274331a9c2fb7fbc29df65d0c7bbecc0ad6479aedf7c11cdb96411ae4bc9",
+      "assetIds": [
+        "heungbu.character.emotion-wife-nolbu-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-wife-nolbu-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-swallow-joy.webp",
+      "sha256": "4093844defbbb6ebbeb937ce0b117cf9468557b5b5e1e2e7ae989f4d0c50be4f",
+      "assetIds": [
+        "heungbu.character.emotion-swallow-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-swallow-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-swallow-anger.webp",
+      "sha256": "5c862b7f33f113174539f19024c4f8cd3563f431361a09a53b0d8976ceb9d97f",
+      "assetIds": [
+        "heungbu.character.emotion-swallow-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-swallow-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-swallow-sorrow.webp",
+      "sha256": "e1d039d338dd0b2af149f28176df88c72f4c4b0933b3acab060a6e34c6f2c2d3",
+      "assetIds": [
+        "heungbu.character.emotion-swallow-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-swallow-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-swallow-mirth.webp",
+      "sha256": "61e451af0c3d0249fb4413e4b85298173c688d06aaaea23560950c9bc8d4e26f",
+      "assetIds": [
+        "heungbu.character.emotion-swallow-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-swallow-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-neighbor-anger.webp",
+      "sha256": "cb4fff1294922ff31bdea6372422ae09676eb7ce6141efe38605f2f63f83b50b",
+      "assetIds": [
+        "heungbu.character.emotion-neighbor-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-neighbor-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-neighbor-sorrow.webp",
+      "sha256": "dd54c0a114d2c0afba2b356c9d221f1ae33803fbe8493517130321e2b4c49db5",
+      "assetIds": [
+        "heungbu.character.emotion-neighbor-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-neighbor-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-neighbor-mirth.webp",
+      "sha256": "fa8541ab43efdd525c32e8b0033a05c4111b1ce6ccd3db9e1291fc99149fecf9",
+      "assetIds": [
+        "heungbu.character.emotion-neighbor-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-neighbor-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-boy-joy.webp",
+      "sha256": "0aae1777aaa21f0bac1c9cefdd1bad08a8838e8bc2d3d2a58d53682705ccac26",
+      "assetIds": [
+        "heungbu.character.emotion-street-boy-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-boy-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-boy-anger.webp",
+      "sha256": "35f134ce134e04170f99e8732928acb6d8c739122a3f87e053aff0e5dd78f0bd",
+      "assetIds": [
+        "heungbu.character.emotion-street-boy-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-boy-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-boy-sorrow.webp",
+      "sha256": "5f6b2764abc1c1a4fa6a272e3e00aa6d82c6afee60e4103a6341d7da77ef06a1",
+      "assetIds": [
+        "heungbu.character.emotion-street-boy-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-boy-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-boy-mirth.webp",
+      "sha256": "70347cdb591b81755b4a1b094d56e35bf10c97f5563e8e2d29e68885f1af50e7",
+      "assetIds": [
+        "heungbu.character.emotion-street-boy-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-boy-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-girl-joy.webp",
+      "sha256": "e89e345c409ad8a953098691f00915104194f6e15449aa19548148a5dcc4e6e4",
+      "assetIds": [
+        "heungbu.character.emotion-street-girl-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-girl-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-girl-anger.webp",
+      "sha256": "daac36cfb3d2f2f977b1b1d5986915e053b18192149b5db6ebf88369586b3d80",
+      "assetIds": [
+        "heungbu.character.emotion-street-girl-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-girl-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-girl-sorrow.webp",
+      "sha256": "afddb2cb4395562f4466c0ea50082da8e363c53407a66cfc24a56ec6e202c64a",
+      "assetIds": [
+        "heungbu.character.emotion-street-girl-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-girl-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-street-girl-mirth.webp",
+      "sha256": "8fbafa4092f4e8b3093683aee60c58a71138437b8653924edf08be60fa5960bf",
+      "assetIds": [
+        "heungbu.character.emotion-street-girl-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-street-girl-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-01-joy.webp",
+      "sha256": "676186d18fa50b90203e62434fdce7d21af9a9db64040a1e299bee639956064f",
+      "assetIds": [
+        "heungbu.character.emotion-child-01-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-01-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-01-anger.webp",
+      "sha256": "dba6d69f9a9b2a8fea5bc7e5ca8e009b56442813b5f585e519393801ad4a543a",
+      "assetIds": [
+        "heungbu.character.emotion-child-01-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-01-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-01-sorrow.webp",
+      "sha256": "2898691a3a86cbfe5bcd17a0124bab8e392ab0feb4d22ebe695a4140f87cfcdd",
+      "assetIds": [
+        "heungbu.character.emotion-child-01-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-01-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-02-joy.webp",
+      "sha256": "d9c287ba327696cd2cd645e0f88984367dbf5110b084a45452aa89e3b263c603",
+      "assetIds": [
+        "heungbu.character.emotion-child-02-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-02-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-02-anger.webp",
+      "sha256": "3831b5cd6f670cb809f208e715842774c7b22a243311a06f01a6d96f971d2c76",
+      "assetIds": [
+        "heungbu.character.emotion-child-02-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-02-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-02-mirth.webp",
+      "sha256": "3656966aba57872b5fbc9554e3469465a1c463ea3c260bee67fa0018d604dd92",
+      "assetIds": [
+        "heungbu.character.emotion-child-02-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-02-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-03-joy.webp",
+      "sha256": "4aff02e2c543232375a4006e59a58761c305007f2479635123b0c2834aca1ed1",
+      "assetIds": [
+        "heungbu.character.emotion-child-03-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-03-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-03-anger.webp",
+      "sha256": "ef35df226695df41857b55c597326e9dc674e1b88dda204e4cb7091cfdbefaba",
+      "assetIds": [
+        "heungbu.character.emotion-child-03-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-03-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-03-sorrow.webp",
+      "sha256": "45a879e7e164c92a36b9cee74472daa32c4722f74c1afb16bc46d0934696cc0b",
+      "assetIds": [
+        "heungbu.character.emotion-child-03-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-03-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-03-mirth.webp",
+      "sha256": "07607f4d7f8d41a2b8f4c4b1acea90f2b3fdeacb81d27d266cddf26422185822",
+      "assetIds": [
+        "heungbu.character.emotion-child-03-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-03-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-04-joy.webp",
+      "sha256": "ee4bcbc160867c90ae13fc8eb9b9ffb9bd13486e764ab6222a180eddab6c8b6d",
+      "assetIds": [
+        "heungbu.character.emotion-child-04-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-04-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-04-anger.webp",
+      "sha256": "8ef4169cd34f09864280839241edf20cc9bf8c260bb3167daf6602844cf24ec5",
+      "assetIds": [
+        "heungbu.character.emotion-child-04-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-04-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-04-sorrow.webp",
+      "sha256": "134a824c993b7eb7ecbe5d3f1d4cbb4c0edf8302eb6afb13951eaec481094534",
+      "assetIds": [
+        "heungbu.character.emotion-child-04-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-04-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-child-04-mirth.webp",
+      "sha256": "000511445da110c3ca108a606ce783516aefcab53462fd3b7813ad6bfbcb1062",
+      "assetIds": [
+        "heungbu.character.emotion-child-04-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-child-04-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-village-girl-joy.webp",
+      "sha256": "2f8706e70f42ff9002563f74b3c67d5fe5070d8d0620ff77268fc4892fa7c089",
+      "assetIds": [
+        "creative.character.emotion-village-girl-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-village-girl-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-village-girl-anger.webp",
+      "sha256": "7114dda98b6fd835aae3af9b4dd419a81785915cb27295cc23e5da6b93cd2f78",
+      "assetIds": [
+        "creative.character.emotion-village-girl-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-village-girl-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-village-girl-sorrow.webp",
+      "sha256": "a731bbd23f030495177676a2302ffc6e2c5d2710118dc26d33308355e8470bde",
+      "assetIds": [
+        "creative.character.emotion-village-girl-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-village-girl-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-village-girl-mirth.webp",
+      "sha256": "6a5cffa9aac564ca16d3c900108ad06627b712a1b1bc173032f196bf0b537b57",
+      "assetIds": [
+        "creative.character.emotion-village-girl-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-village-girl-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-young-traveler-joy.webp",
+      "sha256": "de46086edb04845f16a22eb621b32fc96133cab8f071e4883939e435c60cc7a5",
+      "assetIds": [
+        "creative.character.emotion-young-traveler-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-young-traveler-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-young-traveler-anger.webp",
+      "sha256": "fc595441c015a395dfb504ede666c246da230be8f6cb6d779e46ae8cb8f2d33e",
+      "assetIds": [
+        "creative.character.emotion-young-traveler-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-young-traveler-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-young-traveler-sorrow.webp",
+      "sha256": "a40b56f30438d30556591667980fa8380a2d21d152b8a636a91446e7f2984cac",
+      "assetIds": [
+        "creative.character.emotion-young-traveler-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-young-traveler-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/creative-young-traveler-mirth.webp",
+      "sha256": "35faa351c5e63482f8af6d03b268a2c85ef684ef7f0689db4ea7b08c9da76973",
+      "assetIds": [
+        "creative.character.emotion-young-traveler-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#creative.character.emotion-young-traveler-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-fish-courtier-joy.webp",
+      "sha256": "f88199a826085412ebc1c1dc23aecaf34a950802c3df18c19f8292f703490279",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-fish-courtier-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-fish-courtier-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-fish-courtier-anger.webp",
+      "sha256": "2b433f75ba79686a152580cdad8badc8b9a65367acc6c270dd4ee9aaaa7bebd8",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-fish-courtier-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-fish-courtier-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-fish-courtier-sorrow.webp",
+      "sha256": "ac77b03587e548681fd71242c10f148dce483849e06795fce1d8039110aadd95",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-fish-courtier-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-fish-courtier-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-fish-courtier-mirth.webp",
+      "sha256": "27ec445df21c493c9b7c9ecc3f825f8a9d1fb2d71ddb41efc71efe79a1819b18",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-fish-courtier-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-fish-courtier-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-crab-courtier-joy.webp",
+      "sha256": "ff7d6aaa2cabc477e61ec5812ab70226ef22c5f6fc6be29411893eccd49c69af",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-crab-courtier-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-crab-courtier-anger.webp",
+      "sha256": "d5b5bb48b90d6caf3990994507e5976e9aacefe4db1a26a3f03de7606bff6389",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-crab-courtier-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-crab-courtier-sorrow.webp",
+      "sha256": "52b3acfae19a77751d3aa818cb590f6cfdd5546d3aaa9483cd6b196a3af44940",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-crab-courtier-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/rabbit-turtle-crab-courtier-mirth.webp",
+      "sha256": "2ce9511cf509f92ba178c906550913a51a9c8eecde768dacc3f40e4af5f81604",
+      "assetIds": [
+        "rabbit-turtle.character.emotion-turtle-crab-courtier-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#rabbit-turtle.character.emotion-turtle-crab-courtier-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-dokkaebi-joy.webp",
+      "sha256": "6f2097703e91b94447ba37b28dfdeb683fdcd3fa4b8819a90127c62f74bb3a88",
+      "assetIds": [
+        "heungbu.character.emotion-dokkaebi-joy-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-dokkaebi-joy-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-dokkaebi-anger.webp",
+      "sha256": "34287d378a6be9cee45579d5d7c23d60b27bdb2cd4e38f168159c5d18035d15f",
+      "assetIds": [
+        "heungbu.character.emotion-dokkaebi-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-dokkaebi-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-dokkaebi-sorrow.webp",
+      "sha256": "152be7f2b15134eb82543ab8bd4dc4c7d1126454932c15c9384464e220f487a7",
+      "assetIds": [
+        "heungbu.character.emotion-dokkaebi-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-dokkaebi-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/heungbu-dokkaebi-mirth.webp",
+      "sha256": "fb739df5a4920af640a0eef3c6eae09c65e521c56989c81ca3f6745376c3e781",
+      "assetIds": [
+        "heungbu.character.emotion-dokkaebi-mirth-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#heungbu.character.emotion-dokkaebi-mirth-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/onggojib-worker-anger.webp",
+      "sha256": "938fed3619bbf6c0731ebe64b8b197e173448b53544fbe1f0e0f2107e4a24a4c",
+      "assetIds": [
+        "onggojib.character.emotion-worker-anger-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#onggojib.character.emotion-worker-anger-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
+    },
+    {
+      "file": "apps/web/public/assets/characters/emotions-v3/seonnyeo-fairy-sorrow.webp",
+      "sha256": "6a27cf7e1ebdf3f7b16bf2d89bd670cffdea231552eceb401d6f80003ee928d1",
+      "assetIds": [
+        "seonnyeo.character.emotion-fairy-sorrow-v3"
+      ],
+      "sourceKind": "generated-project",
+      "lineageEvidence": [
+        "docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json#seonnyeo.character.emotion-fairy-sorrow-v3"
+      ],
+      "creationMethodEvidence": "built-in image_gen; owner required every character to have at least5images including 희노애락 for editing 2026-11-11"
     }
   ]
 }

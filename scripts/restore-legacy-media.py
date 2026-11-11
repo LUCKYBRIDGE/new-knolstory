@@ -16,7 +16,7 @@ def restore(legacy):
  public_root=ROOT/'apps/web/public'
  for asset in catalog:
   metadata=asset.get('metadata',{})
-  if metadata.get('layeredStoryAsset') or metadata.get('generatedWeatherAsset') or metadata.get('shortStoryCollection') in ('creative','story'):
+  if any(metadata.get(flag) for flag in ('layeredStoryAsset','generatedWeatherAsset','generatedTransparencyRepair','generatedExpressionAsset')) or metadata.get('shortStoryCollection') in ('creative','story'):
    path=public_root/asset['src'].lstrip('/')
    if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest()!=asset['revision']:
     raise SystemExit('Missing or changed generated project asset; restore the current Git checkout: '+asset['id'])

@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-11",
+  "adjustments": [
+    {
+      "characterId": "seonnyeo.first-child",
+      "roles": [
+        "joy",
+        "anger",
+        "sorrow",
+        "mirth"
+      ],
+      "uniformFactor": 0.84,
+      "basis": "Head/torso size compared against the extracted everyday child and the original two-child reference; do not equate adult silhouette heights."
+    },
+    {
+      "characterId": "seonnyeo.second-child",
+      "roles": [
+        "joy",
+        "anger",
+        "sorrow",
+        "mirth"
+      ],
+      "uniformFactor": 0.76,
+      "basis": "Preserve the smaller younger child head/body scale against everyday reference."
+    },
+    {
+      "characterId": "heungbu.dokkaebi",
+      "roles": [
+        "joy"
+      ],
+      "uniformFactor": 1.4,
+      "basis": "Correct undersized retry: compare head/torso size to the original small goblin and other mood cards; retain small goblin scale relative to adults."
+    },
+    {
+      "characterId": "creative.village-girl",
+      "roles": [
+        "joy",
+        "anger",
+        "sorrow",
+        "mirth"
+      ],
+      "uniformFactor": 0.965,
+      "basis": "Tightly filled reference canvas: preserve hair/top silhouette with safe transparent headroom at the same floor; uniform3.5percent reduction, no crop or anatomical stretch."
+    },
+    {
+      "characterId": "creative.young-traveler",
+      "roles": [
+        "joy",
+        "anger",
+        "sorrow",
+        "mirth"
+      ],
+      "uniformFactor": 0.965,
+      "basis": "Tightly filled reference canvas: preserve hair/top silhouette with safe transparent headroom at the same floor; uniform3.5percent reduction, no crop or anatomical stretch."
+    }
+  ]
+}

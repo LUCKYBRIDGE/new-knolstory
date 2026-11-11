@@ -1,5 +1,17 @@
 # STATUS — current development state
 
+2026-11-11 PR #3 통합 검증: 최신 main의 투명 배경 교정 2종과 인물 표현 213종을 숏스토리·통합 서재·학급 작업에 연결했다. main의 자산 등록 646개와 PR의 숏스토리 등록 56개가 중복 없이 합쳐졌다. 기존 ID와 각 제작 단계의 원본 카탈로그 해시를 보존한다. 운영 후보에는 같은 702개 등록 목록을 Web·Ren’Py·API에서 사용해야 한다.
+
+2026-11-11 개발 인계: 이미지 작업은 `f89f086`/`70110aa`(투명 배경 교정), `fd7e548`(표현16종), `d434264`(조연32종+전 인물 감정165종)에 반영됐고 각 최종 커밋의 GitHub CI가 통과했다. 후속 개발은 아래 작업을 새로 시작하지 말고 [기존 작업에 반영할 인계 사항](docs/architecture/evidence/all-character-emotions-2026-11-11/review.md#후속-개발자가-기존-작업에-반영할-사항)을 먼저 확인한다. 실제 실행/CI 근거는 [체크포인트](docs/architecture/evidence/all-character-emotions-2026-11-11/checkpoint.json), 기존 제품 큐와 배포 의존성은 [실행 계획 재개 지점](docs/architecture/product-completion-plan.md#재개-지점)을 따른다.
+
+2026-11-11 인물별 최소5종·희노애락 기준: 최신 사용자 결정에 따라 조연 추가 수량만으로 완료하지 않고 개별 정체성47개의 기본/희/노/애/락235카드를 보장한다. 군집별칭5개는 개별 인물로 중복 계산하지 않으며 선녀의 두 아이는 단독 기본 그림도 생성한다. 기존481개 카탈로그를 유지하고 부족한 감정165종·감정 필터/검색 등록표·정확한 실행 경로·원본/실행 검사·개발 재개를 연결한다. 최종 생성/시각 검토/실제 편집·재생과 실패 보완은 [인물별 감정 기록](docs/architecture/evidence/all-character-emotions-2026-11-11/review.md)과 [체크포인트](docs/architecture/evidence/all-character-emotions-2026-11-11/checkpoint.json)를 따른다. 운영 배포·인증API 갱신은 별도다.
+
+2026-11-11 조연 중심 표현 추가: 사용자 후속 요청으로 아이·이웃·제비·포졸·일꾼·하인·사또·선녀 자매·사냥꾼·어머니·궁중 인물16정체성에 각2종, 작품당8종씩32개를 보강한다. 이전16종과 기존449개 카탈로그·원고는 보존한다. 인물별 부족/추가 목록·편집 연결·생성 원본/실행본·복원/개발 재개는 [조연 확장 기록](docs/architecture/evidence/supporting-character-expansion-2026-11-11/review.md), 최종 생성/검사/보완과 운영 미배포 경계는 [체크포인트](docs/architecture/evidence/supporting-character-expansion-2026-11-11/checkpoint.json)를 따른다.
+
+2026-11-11 네 작품 인물 표현 확장: 인물별 동작·표정 부족을 대조해 흥부·놀부 두 아내, 선녀·나무꾼, 토끼·자라·어의, 옹고집 아내·어머니·막내의10정체성에 작품당4종씩16개 편집용 이미지를 추가한다. 기존433개 카탈로그·원고·개인 저장소는 보존하고 새 ID·전신/표정/동작 검색·정확한 Ren’Py 경로와 생성 원본/실행본 검사·복원을 연결한다. 선정/생성/검토와 재개 절차는 [표현 확장 기록](docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md), 현재 검증/미완료와 운영 미배포 경계는 [체크포인트](docs/architecture/evidence/character-expression-expansion-2026-11-11/checkpoint.json)를 따른다.
+
+2026-11-11 투명 배경 교체: 흥부의 부탁 자세와 놀부의 밭일 자세에서 남은 흰 배경을 확인해 생성 교정본으로 연결했다. 기존 Asset ID·원고·배치와 원본은 유지하고 버전 경로·revision·geometry를 갱신한다. 생성 PNG·실행 WebP와 해시/alpha 검사·복원 절차를 Git에 함께 보관하며 복원 도구가 구 레거시 그림으로 되돌리지 않게 했다. 다른 세 작품 인물172개를 포함한212개와 밝은 영역107곳에서 추가 동일 결함은 확정하지 못했다. 현재 실행 결과·초기 실패 보완·다른 컴퓨터 재개와 운영 미배포 경계는 [교체 기록](docs/architecture/evidence/transparency-repair-2026-11-11/review.md)과 [체크포인트](docs/architecture/evidence/transparency-repair-2026-11-11/checkpoint.json)를 따른다.
+
 2026-11-11 학급 기능: [학급 설계](docs/architecture/classroom-design.md)대로 역할(일반·교사·학생·관리자), 관리자가 바꾸는 교사 등록 코드, 교사 1학급·학생 30계정(학급 코드+번호+비밀번호, QR 즉시 접속, 교사의 비밀번호 보기·변경), 과제와 제출란, 학생별·일괄·학급 기본 편집 허용 범위를 서버(migration 008·`/api/v1/class`)와 웹(`/teacher`·`/student`·`/admin`, 편집기 제한, 일반 계정 작품3개)에 구현했다. 온라인 작품 저장은 교사·관리자만, 학생은 열린 과제 제출란에만 저장한다. 서버 단위520·웹 단위655와 모의 API E2E, 임시 PostgreSQL 수동 흐름을 확인했다. 운영 반영 전 migration 008 적용, `KNOL_CLASSROOM_SECRET`·`KNOL_ADMIN_ACCOUNT_IDS` 설정, `NEXT_PUBLIC_KNOL_ONLINE=1` 빌드가 필요하다.
 
 2026-11-10 기본 로컬 모드: 사용자 결정에 따라 작품은 기본으로 이 기기(브라우저 임시 보관·작품 파일)에만 저장한다. 계정·온라인 작품은 `NEXT_PUBLIC_KNOL_ONLINE=1`로 빌드했을 때만 보이며, 기본 빌드는 온라인 API를 호출하지 않아 서버·DB 부담이 없다. 운영에서 로그인을 계속 쓰려면 이 값을 켜고 빌드한다. E2E 테스트 서버는 온라인 기능 검사를 위해 이 값을 켠다. 첫 로딩 화면의 인물 그림을 가운데로 맞췄다.

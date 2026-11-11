@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-11",
+  "baseCommit": "85666db07554c40a464e97370c06af98d1915274",
+  "scope": "2 transparent Heungbu/Nolbu replacements with tracked PNG originals, runtime WebP, stable IDs, current restoration rules, CI and cross-machine handoff",
+  "catalogueReview": {
+    "count": 433,
+    "idsAndOrderPreserved": true,
+    "changedRows": [
+      "heungbu.character.heungbu-pleading",
+      "heungbu.character.nolbu-working"
+    ],
+    "otherRowsUnchanged": 431
+  },
+  "checks": [
+    {
+      "command": "python3 scripts/prepare-transparency-assets.py",
+      "exitCode": 0,
+      "result": "2 tracked source/derivative pairs, stable IDs, geometry, transparent gap samples and opaque clothing verified"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts/tests",
+      "exitCode": 0,
+      "result": "199 tests, 3 skipped"
+    },
+    {
+      "command": "pnpm exec vitest run --config .cache/sync-vitest.config.mjs packages/runtime-contract/src/transparency-path.test.ts packages/asset-registry/tests/catalog.test.ts packages/compatibility/tests/catalog-layered-scenes.test.ts",
+      "exitCode": 0,
+      "result": "3 files, 9 tests passed; local temporary workspace aliases used for copied node_modules under Node24"
+    },
+    {
+      "command": "PYTHONPATH=.cache/transparency-python-deps pnpm runtime:build",
+      "exitCode": 0,
+      "result": "RenPy8.5.3; fontTools4.60.2; Pillow11.3.0; 446 placeholders; current contract includes exactly 2 new repair paths"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "result": "production static Web build passed"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "result": "6 workspace tasks and server typecheck passed"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "result": "passed"
+    },
+    {
+      "command": "python3 scripts/media-provenance.py --check",
+      "exitCode": 0,
+      "result": "1994 files; 6 new source/runtime copies; no old records removed or existing license classification changed; declaration hash refreshed"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "result": "0 link/product-language errors"
+    },
+    {
+      "command": "pnpm test:docs",
+      "exitCode": 0,
+      "result": "10 passed"
+    },
+    {
+      "command": "pnpm exec vitest run --config .cache/sync-vitest.config.mjs packages/asset-registry/tests/generated-weather-asset.test.ts packages/runtime-contract/src/transparency-path.test.ts packages/asset-registry/tests/catalog.test.ts packages/compatibility/tests/catalog-layered-scenes.test.ts",
+      "exitCode": 0,
+      "result": "4 files, 12 tests passed including unchanged historical digest and repair-only field boundary"
+    }
+  ],
+  "nativeVerification": {
+    "command": "pnpm exec playwright test --config tests/transparency-repair.playwright.config.ts",
+    "exitCode": 0,
+    "tests": 2,
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 1280,
+        "height": 800
+      }
+    ],
+    "cuts": [
+      "scene-2-4",
+      "scene-12a-27"
+    ],
+    "result": "Both sprites prepared by actual RenPy using new paths; served runtime WebP SHA matches receipt; whole imported project export/reload preserved at both viewports. Browser emulation, not physical phone."
+  },
+  "initialFailures": [
+    {
+      "scope": "TDD generated restore/provenance and runtime path",
+      "cause": "Old code treated repaired sprites as fixed legacy and rejected the versioned runtime paths",
+      "resolution": "Generated flag routing and exact two-path allowlist; regression tests pass"
+    },
+    {
+      "scope": "runtime build",
+      "cause": "Pinned fontTools4.60.2 was missing",
+      "resolution": "Installed reviewed version in project cache and rebuilt successfully"
+    },
+    {
+      "scope": "native test preparation",
+      "cause": "Initial test server working directory and Playwright browser binary were not prepared",
+      "resolution": "Explicit repository working directory and pinned Chromium installation"
+    },
+    {
+      "scope": "native mobile comparison",
+      "cause": "Test captured the previous workspace immediately after import, before asynchronous persistence completed",
+      "resolution": "Wait for imported title and saved status before taking preservation baseline; final 2 tests pass."
+    },
+    {
+      "scope": "GitHub CI full coverage at f89f086",
+      "run": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/42981333617",
+      "result": "277 files passed/1 failed; 2310 passed/1 failed/2 skipped",
+      "cause": "Historical weather-registration test froze all 432 prior catalogue rows and did not account for the 2 later user-authorized transparent replacements",
+      "resolution": "Retain the historical digest; reconstruct exactly the two recorded old rows from previousCatalogEntry and verify all other rows/byte revisions unchanged. Add a check preserving all identity and selection metadata outside reviewed image fields."
+    }
+  ],
+  "provenanceNotes": "Glob order is now sorted so usage references are deterministic across filesystems. 1346 service authorization references change because their exact shared declaration hash changed; no existing license category changed.",
+  "notClaimed": [
+    "production deployment",
+    "physical other-computer or phone execution",
+    "full application E2E suite",
+    "new runtime approved by the historical production source review"
+  ],
+  "crossMachineProof": "Python tests copy only committed source PNGs, receipt, catalogue and derivatives into a fresh temporary directory, then verify/restore without legacy checkout or task caches.",
+  "defaultPythonFontTool": {
+    "version": "4.60.2",
+    "installation": "User Python site-packages; python3 imports the pinned version without task-specific PYTHONPATH",
+    "verification": "Default Python reproduces the reviewed stage font SHA256 f934737fbbde38eebe52d002c8fd898e830bfba1778676e38c3b0c4283fa94c9"
+  }
+}

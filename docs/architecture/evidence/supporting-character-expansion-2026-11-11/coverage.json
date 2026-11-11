@@ -1,0 +1,224 @@
+{
+  "date": "2026-11-11",
+  "characters": [
+    {
+      "characterId": "heungbu.child-01",
+      "name": "흥부 첫째 아이",
+      "previousAssetIds": [
+        "heungbu.character.child-01"
+      ],
+      "previousCount": 1,
+      "newAssetIds": [
+        "heungbu.character.supporting-child-first-cheer-v2",
+        "heungbu.character.supporting-child-first-worried-v2"
+      ]
+    },
+    {
+      "characterId": "heungbu.child-02",
+      "name": "흥부 둘째 아이",
+      "previousAssetIds": [
+        "heungbu.character.child-02"
+      ],
+      "previousCount": 1,
+      "newAssetIds": [
+        "heungbu.character.supporting-child-second-cry-v2",
+        "heungbu.character.supporting-child-second-offer-v2"
+      ]
+    },
+    {
+      "characterId": "heungbu.neighbor",
+      "name": "이웃",
+      "previousAssetIds": [
+        "heungbu.character.neighbor",
+        "creative.character.heungbu-neighbor-greet"
+      ],
+      "previousCount": 2,
+      "newAssetIds": [
+        "heungbu.character.supporting-neighbor-comfort-v2",
+        "heungbu.character.supporting-neighbor-surprised-v2"
+      ]
+    },
+    {
+      "characterId": "heungbu.swallow",
+      "name": "제비",
+      "previousAssetIds": [
+        "heungbu.character.swallow"
+      ],
+      "previousCount": 1,
+      "newAssetIds": [
+        "heungbu.character.supporting-swallow-fly-v2",
+        "heungbu.character.supporting-swallow-injured-v2"
+      ]
+    },
+    {
+      "characterId": "onggojib.guard",
+      "name": "포졸",
+      "previousAssetIds": [
+        "onggojib.character.posol-pixel",
+        "creative.character.onggojib-guard-guide"
+      ],
+      "previousCount": 2,
+      "newAssetIds": [
+        "onggojib.character.supporting-guard-stop-v2",
+        "onggojib.character.supporting-guard-confused-v2"
+      ]
+    },
+    {
+      "characterId": "onggojib.worker",
+      "name": "일꾼",
+      "previousAssetIds": [
+        "onggojib.character.worker-asking-v2-pixel",
+        "onggojib.character.worker-woodcutter-pixel",
+        "onggojib.character.worker-woodcutter-v2-pixel"
+      ],
+      "previousCount": 3,
+      "newAssetIds": [
+        "onggojib.character.supporting-worker-protest-v2",
+        "onggojib.character.supporting-worker-rest-v2"
+      ]
+    },
+    {
+      "characterId": "onggojib.servant",
+      "name": "하인",
+      "previousAssetIds": [
+        "onggojib.character.servant-household-pixel",
+        "onggojib.character.servant-injured-pixel",
+        "onggojib.character.servant-pixel",
+        "onggojib.character.classic-servant-door",
+        "onggojib.character.classic-servant-usher",
+        "creative.character.onggojib-servant-sweeping"
+      ],
+      "previousCount": 6,
+      "newAssetIds": [
+        "onggojib.character.supporting-servant-apology-v2",
+        "onggojib.character.supporting-servant-relieved-v2"
+      ]
+    },
+    {
+      "characterId": "onggojib.magistrate",
+      "name": "사또",
+      "previousAssetIds": [
+        "onggojib.character.magistrate-command-pixel",
+        "onggojib.character.magistrate-pixel"
+      ],
+      "previousCount": 2,
+      "newAssetIds": [
+        "onggojib.character.supporting-magistrate-ponder-v2",
+        "onggojib.character.supporting-magistrate-astonished-v2"
+      ]
+    },
+    {
+      "characterId": "seonnyeo.eldest-fairy",
+      "name": "큰선녀",
+      "previousAssetIds": [
+        "seonnyeo.character.M03-neutral",
+        "seonnyeo.character.M03-alarmed",
+        "seonnyeo.character.M03-celestial"
+      ],
+      "previousCount": 3,
+      "newAssetIds": [
+        "seonnyeo.character.supporting-eldest-fairy-explain-v2",
+        "seonnyeo.character.supporting-eldest-fairy-stop-v2"
+      ]
+    },
+    {
+      "characterId": "seonnyeo.second-fairy",
+      "name": "둘째선녀",
+      "previousAssetIds": [
+        "seonnyeo.character.M04-neutral",
+        "seonnyeo.character.M04-alarmed",
+        "seonnyeo.character.M04-celestial"
+      ],
+      "previousCount": 3,
+      "newAssetIds": [
+        "seonnyeo.character.supporting-second-fairy-laugh-v2",
+        "seonnyeo.character.supporting-second-fairy-worry-v2"
+      ]
+    },
+    {
+      "characterId": "seonnyeo.hunter",
+      "name": "사냥꾼",
+      "previousAssetIds": [
+        "seonnyeo.character.classic-hunter",
+        "creative.character.seonnyeo-hunter-look"
+      ],
+      "previousCount": 2,
+      "newAssetIds": [
+        "seonnyeo.character.supporting-hunter-listen-v2",
+        "seonnyeo.character.supporting-hunter-confused-v2"
+      ]
+    },
+    {
+      "characterId": "seonnyeo.mother",
+      "name": "나무꾼 어머니",
+      "previousAssetIds": [
+        "seonnyeo.character.classic-mother",
+        "seonnyeo.character.classic-mother-offering-porridge"
+      ],
+      "previousCount": 2,
+      "newAssetIds": [
+        "seonnyeo.character.supporting-mother-worry-v2",
+        "seonnyeo.character.supporting-mother-comfort-v2"
+      ]
+    },
+    {
+      "characterId": "rabbit-turtle.dragonking",
+      "name": "용왕",
+      "previousAssetIds": [
+        "rabbit-turtle.character.dragonking-command",
+        "rabbit-turtle.character.dragonking-command-attached",
+        "rabbit-turtle.character.dragonking-critical-attached",
+        "rabbit-turtle.character.dragonking-critical-worse-attached",
+        "rabbit-turtle.character.dragonking-sick-elder-attached",
+        "rabbit-turtle.character.dragonking-young-attached",
+        "rabbit-turtle.character.dragonking-recovered-unified-720x900",
+        "rabbit-turtle.character.dragonking-unified-720x900",
+        "rabbit-turtle.character.dragonking-young-unified-720x900"
+      ],
+      "previousCount": 9,
+      "newAssetIds": [
+        "rabbit-turtle.character.supporting-dragonking-laugh-v2",
+        "rabbit-turtle.character.supporting-dragonking-doubt-v2"
+      ]
+    },
+    {
+      "characterId": "rabbit-turtle.physician",
+      "name": "어의",
+      "previousAssetIds": [
+        "rabbit-turtle.character.palace-physician-worried",
+        "rabbit-turtle.character.physician-unified-720x900",
+        "creative.character.physician-explain",
+        "rabbit-turtle.character.expression-physician-examine-v1"
+      ],
+      "previousCount": 4,
+      "newAssetIds": [
+        "rabbit-turtle.character.supporting-physician-relieved-v2",
+        "rabbit-turtle.character.supporting-physician-refuse-v2"
+      ]
+    },
+    {
+      "characterId": "rabbit-turtle.fish-courtier",
+      "name": "물고기 신하",
+      "previousAssetIds": [
+        "rabbit-turtle.character.layered-fish-courtier-v1"
+      ],
+      "previousCount": 1,
+      "newAssetIds": [
+        "rabbit-turtle.character.supporting-fish-courtier-report-v2",
+        "rabbit-turtle.character.supporting-fish-courtier-shock-v2"
+      ]
+    },
+    {
+      "characterId": "rabbit-turtle.crab-courtier",
+      "name": "게 신하",
+      "previousAssetIds": [
+        "rabbit-turtle.character.layered-crab-courtier-v1"
+      ],
+      "previousCount": 1,
+      "newAssetIds": [
+        "rabbit-turtle.character.supporting-crab-courtier-argue-v2",
+        "rabbit-turtle.character.supporting-crab-courtier-apology-v2"
+      ]
+    }
+  ]
+}

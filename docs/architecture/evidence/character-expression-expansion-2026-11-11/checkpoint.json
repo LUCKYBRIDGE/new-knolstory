@@ -1,0 +1,90 @@
+{
+  "date": "2026-11-11",
+  "status": "local-implementation-and-verification-passed",
+  "addedAssets": 16,
+  "identities": 10,
+  "catalogueCount": 449,
+  "previous433RowsUnchanged": true,
+  "checks": [
+    {
+      "command": "python3 scripts/prepare-expression-assets.py",
+      "exitCode": 0,
+      "result": "16 original/derivative SHA256, geometry and no clipping verified"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts/tests",
+      "exitCode": 0,
+      "result": "202 tests passed, including recovering all16from isolated tracked files and preserving changed output/source"
+    },
+    {
+      "command": "pnpm exec vitest run --config .cache/sync-vitest.config.mjs --maxWorkers=2 --testTimeout=30000 --exclude packages/asset-registry/tests/approved-audio-bytes.test.ts",
+      "exitCode": 0,
+      "result": "280 files,2316 passed,2 skipped; temporary local workspace aliases used for copy-based dependencies; local-only approved-audio-bytes test excluded"
+    },
+    {
+      "command": "pnpm runtime:build",
+      "exitCode": 0,
+      "result": "RenPy8.5.3;462 progressive placeholders; exact16new paths compiled into runtime contract"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "result": "static Web production build passed"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "result": "6 workspace tasks plus server passed"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "result": "0 errors;2 pre-existing warnings in cover editing and workspace runtime effect cleanup"
+    },
+    {
+      "command": "python3 scripts/media-provenance.py --check",
+      "exitCode": 0,
+      "result": "2042 distributed media hashes verified;48new source/native copies; original/authored source identities preserved"
+    },
+    {
+      "command": "pnpm docs:check",
+      "exitCode": 0,
+      "result": "0 link errors and0retired-term occurrences"
+    },
+    {
+      "command": "pnpm test:docs",
+      "exitCode": 0,
+      "result": "10 passed"
+    },
+    {
+      "command": "pnpm exec playwright test --config tests/character-expressions.playwright.config.ts",
+      "exitCode": 0,
+      "result": "3 tests passed: all16actual RenPy scenes at390x844and1280x800;exact prepared paths/runtime source SHA;whole work export/reload preserved;4story picker search/preview/cancel/apply/reload verified"
+    }
+  ],
+  "notClaimed": [
+    "all-character/action/expression completeness",
+    "physical-device validation",
+    "deployment/API catalogue update",
+    "historical sealed runtime approval for rebuilt bytes"
+  ],
+  "initialFailures": [
+    {
+      "stage": "TDD",
+      "result": "No added expressions before implementation; expected failing coverage test",
+      "resolution": "Registered16individual variants with runtime paths and searchable attributes"
+    },
+    {
+      "stage": "first broad unit run",
+      "result": "278files passed;2failed due to5000ms timeout;2314passed/2failed/2skipped",
+      "cause": "Excel roundtrip tests exceeded default5second limit during concurrent runtime/script work",
+      "resolution": "No tests removed or changed;reran with2workers and explicit30second per-test limit;280files passed/2316passed/2skipped"
+    }
+  ],
+  "mediaSize": {
+    "generatedOriginalPNGBytes": 25477364,
+    "runtimeWebPBytes": 5752474,
+    "note": "One shared corpus;16new IDs;API deployment must receive the same449row catalogue before authenticated uploads using new IDs."
+  },
+  "visualReview": "16generated sprites reviewed in story contact sheets on teal;axe/leaf/bowl details enlarged;representative actual desktop/mobile screens inspected. Original433catalogue rows remain byte-equivalent JSON values."
+}

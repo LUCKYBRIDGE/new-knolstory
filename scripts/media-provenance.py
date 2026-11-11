@@ -26,6 +26,10 @@ def release_allowed(record,target,usage_scope='standalone-assets'):
 def asset_provenance(asset):
  """Describe byte lineage, never infer a license from a local image transform."""
  base={'assetIds':[asset['id']],'authorOrRightsHolder':asset.get('copyright','unknown')}
+ if asset.get('metadata',{}).get('generatedExpressionAsset'):
+  return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; identity/pose/alpha review and uniform canvas conversion in scripts/prepare-expression-assets.py'}
+ if asset.get('metadata',{}).get('generatedTransparencyRepair'):
+  return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; reviewed transparency repair and deterministic canvas conversion in scripts/prepare-transparency-assets.py'}
  if asset.get('metadata',{}).get('generationMethod')=='imagegen':
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],
           'referenceAssets':asset['metadata']['referenceAssets'],
@@ -70,8 +74,8 @@ def inventory():
    for i,item in enumerate(value):scan(item,work,f'{location}[{i}]')
   elif isinstance(value,dict):
    for key,item in value.items():scan(item,work,f'{location}.{key}')
- for work in (ROOT/'docs/architecture/evidence/existing-story-enhancement').glob('*.knolstory'):scan(json.loads(work.read_text()).get('project',{}),work.stem)
- for work in (ROOT/'tests/fixtures/stories').glob('*.json'):scan(json.loads(work.read_text()),'baseline:'+work.stem)
+ for work in sorted((ROOT/'docs/architecture/evidence/existing-story-enhancement').glob('*.knolstory')):scan(json.loads(work.read_text()).get('project',{}),work.stem)
+ for work in sorted((ROOT/'tests/fixtures/stories').glob('*.json')):scan(json.loads(work.read_text()),'baseline:'+work.stem)
  layered=ROOT/'docs/architecture/evidence/layered-stories-2026-11-02/audit.json'
  if layered.is_file():
   for index,row in enumerate(json.loads(layered.read_text()).get('changedVisualCuts',[])):

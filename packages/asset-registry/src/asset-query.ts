@@ -1,8 +1,19 @@
 import { ASSET_CATALOG, STORY_CHARACTERS, resolveAsset, type Asset } from './index';
+import characterEmotions from './character-emotions.json';
+// Reviewed emotional roles supplement legacy descriptions without rewriting
+// authored IDs, catalogue byte revisions or historical source metadata.
+const reviewedEmotions = new Map<string,string[]>();
+for(const character of characterEmotions.characters){
+  for(const [role,id] of Object.entries(character.slots)){
+    const label=characterEmotions.labels[role as keyof typeof characterEmotions.labels];
+    reviewedEmotions.set(id,[...new Set([...(reviewedEmotions.get(id)??[]),label])]);
+  }
+}
 /** Adapted from story-maker 18da4fc5bd4bf2a9080b32903d31f1aacdd24a0b:
  * app/assets/asset-query.ts (facets, labels, Korean aliases, AND/OR matching, quality gate),
  * app/assets/asset-ranking.ts (rankAssets), app/story-asset-picker-utils.ts (normalization).
- * The original normalized fields are read from Asset.metadata; no second registry is created.
+ * Media fields remain in Asset.metadata; the reviewed mood map supplies only
+ * user-facing emotional roles, never another media catalogue.
  */
 export type FacetKey = 'storyPackIds'|'characterIds'|'artFamilies'|'kinds'|'expressions'|'storyUses'|'actions'|'variants'|'companionCharacterIds'|'compositions'|'bodyFramings'|'framings'|'locations'|'spaces'|'times'|'seasons'|'weather'|'moods'|'states'|'tags';
 const strings = (value: unknown): string[] => Array.isArray(value) ? value.filter((entry): entry is string => typeof entry === 'string') : typeof value === 'string' ? [value] : [];
@@ -21,6 +32,7 @@ export function facetValues(asset: Asset, key: FacetKey): string[] {
   const m = asset.metadata;
   const background = record(m.background);
   if (key === 'characterIds' || key === 'companionCharacterIds') return assetCharacterIds(asset);
+  if (key === 'expressions') return [...new Set([...strings(m.expressions),...(reviewedEmotions.get(asset.id)??[])])];
   const fields: Partial<Record<FacetKey, unknown>> = {
     kinds: m.kind ?? asset.type, artFamilies: m.artFamily ?? 'unreviewed', storyPackIds: m.storyPackIds,
     storyUses: m.storyUses, expressions: m.expressions, actions: m.actions, variants: m.variantId,
@@ -71,8 +83,9 @@ export function facetLabel(key: FacetKey, value: string) {
   return value;
 }
 const SEARCH_ALIASES: Record<string, string[]> = {
-  화남: ["화난", "성난", "화를 내는"], 슬픔: ["슬픈", "우는"], 생각: ["고민하는", "생각하는"],
-  기쁨: ["기쁜", "웃는", "행복한"], 걱정: ["걱정하는", "불안한"], 일하기: ["일하는", "노동"],
+  기본: ['일상'], 분노: ['노', '화남', '화난', '성난'], 즐거움: ['락', '즐거운', '웃음', '웃기'],
+  화남: ["화난", "성난", "화를 내는"], 슬픔: ["애", "슬픈", "우는", "눈물"], 생각: ["고민하는", "생각하는"],
+  기쁨: ["희", "기쁜", "웃는", "행복한"], 걱정: ["걱정하는", "불안한"], 일하기: ["일하는", "노동"],
   치료하기: ["치료", "제비 치료", "돌보는"], 나누기: ["나누는", "나눔"], 안기: ["안은", "안음", "안고"],
   걷기: ["걷는", "걸어가는", "걸음"], 달리기: ["달리는", "뛰는", "뛰어가는"],
   인사하기: ["인사", "고개 숙이기", "절하는"], 듣기: ["듣는", "경청"], 가리키기: ["가리키는", "손가락으로"],

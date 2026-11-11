@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-11",
+  "status": "local-generation-editor-native-verification-passed",
+  "plannedAdditions": 32,
+  "supportingIdentities": 16,
+  "checks": [
+    {
+      "command": "python3 -B -m unittest discover -s scripts/tests",
+      "exitCode": 0,
+      "result": "207tests passed; includes32sprite recovery from tracked originals and preservation of modified files"
+    },
+    {
+      "command": "pnpm runtime:build; pnpm build",
+      "exitCode": 0,
+      "result": "Local native and Web builds passed, along with the later165emotional additions"
+    },
+    {
+      "command": "KNOL_EXPRESSION_RECEIPT=docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json pnpm exec playwright test --config tests/character-expressions.playwright.config.ts",
+      "exitCode": 0,
+      "result": "3passed:all32native scenes at390x844and1280x800, exact runtime paths/SHA, whole-work export/reload preserved;16identity picker preview/cancel/apply/save passed."
+    }
+  ],
+  "notClaimed": [
+    "physical-device checks",
+    "production deployment/API catalogue update",
+    "all possible character expression combinations"
+  ],
+  "addedAssets": 32,
+  "identities": 16,
+  "catalogueAtThisStage": 481,
+  "previous449RowsUnchanged": true,
+  "visualCorrections": "visual-corrections.json"
+}

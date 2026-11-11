@@ -1,0 +1,1359 @@
+{
+  "date": "2026-11-11",
+  "assetVersion": "expressions-v2",
+  "toolchain": {
+    "pillow": "11.3.0",
+    "webpCodec": "1.5.0"
+  },
+  "authorization": "User requested broad supporting-character expressions and editor use; existing KnolStory service scope, not a CC0 dedication.",
+  "assets": [
+    {
+      "id": "heungbu.character.supporting-child-first-cheer-v2",
+      "slug": "heungbu-child-first-cheer",
+      "referenceAssetId": "heungbu.character.child-01",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.child-01.webp",
+      "referenceSha256": "8c9547a8589acfc7650061b0ed338f6f151ecda417ef28b8ea3701007eea73c2",
+      "primaryCharacterId": "heungbu.child-01",
+      "story": "흥부와 놀부",
+      "name": "흥부 첫째 아이",
+      "label": "활짝 웃으며 손들기",
+      "actions": [
+        "손들기",
+        "반기기"
+      ],
+      "expressions": [
+        "기쁨"
+      ],
+      "pose": "Happy cheerful smile, raise one hand in an enthusiastic greeting; other hand relaxed near waist. Exact older-boy age and original short child stature, purple-grey jacket and brown pants.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-child-first-cheer.png",
+      "sourceSha256": "5197c62c3acf851914583da970046381e9f986e2d5b72c581e524b4d8df6a3ad",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-child-first-cheer.webp",
+      "outputSha256": "da63a377417b2c614e63e5a6149cbb4c559e4b424a734bbad39c78a07c5831eb",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.supporting-child-first-worried-v2",
+      "slug": "heungbu-child-first-worried",
+      "referenceAssetId": "heungbu.character.child-01",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.child-01.webp",
+      "referenceSha256": "8c9547a8589acfc7650061b0ed338f6f151ecda417ef28b8ea3701007eea73c2",
+      "primaryCharacterId": "heungbu.child-01",
+      "story": "흥부와 놀부",
+      "name": "흥부 첫째 아이",
+      "label": "걱정하며 묻기",
+      "actions": [
+        "묻기",
+        "말하기"
+      ],
+      "expressions": [
+        "걱정"
+      ],
+      "pose": "Worried soft brows, one open palm near chest asking a question, other hand holding own sleeve; exact older boy child age/stature, not adult.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-child-first-worried.png",
+      "sourceSha256": "8e55c8dbd4d8b3545ac3ed0f1ce5593daa4d50a21d28dd00f06e5ac6ddd516f8",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-child-first-worried.webp",
+      "outputSha256": "eda51a6845ee818e8b04676bbd9b46b75c93dd9fa38822a768c823e2fd4ca7dd",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.supporting-child-second-cry-v2",
+      "slug": "heungbu-child-second-cry",
+      "referenceAssetId": "heungbu.character.child-02",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.child-02.webp",
+      "referenceSha256": "b11fb084b6b81bfd599730e1e0c1d8622bd06959d4be40d1da3072f208a3faca",
+      "primaryCharacterId": "heungbu.child-02",
+      "story": "흥부와 놀부",
+      "name": "흥부 둘째 아이",
+      "label": "소매로 눈물 닦기",
+      "actions": [
+        "울기",
+        "눈물 닦기"
+      ],
+      "expressions": [
+        "슬픔"
+      ],
+      "pose": "Same very small younger boy, crying softly and wiping one cheek with sleeve, small tear; other hand near chest. Retain very short little-child body and red-orange jacket, green pants.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-child-second-cry.png",
+      "sourceSha256": "6866bffffdce78e142e64b466591339b57d1137646396f45f152bf5579f76212",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-child-second-cry.webp",
+      "outputSha256": "7b9f4d3ae9321b399dce5b04a1bca23407d34805f7b6cbe5a994203d19aa3328",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.supporting-child-second-offer-v2",
+      "slug": "heungbu-child-second-offer",
+      "referenceAssetId": "heungbu.character.child-02",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.child-02.webp",
+      "referenceSha256": "b11fb084b6b81bfd599730e1e0c1d8622bd06959d4be40d1da3072f208a3faca",
+      "primaryCharacterId": "heungbu.child-02",
+      "story": "흥부와 놀부",
+      "name": "흥부 둘째 아이",
+      "label": "떡을 내밀기",
+      "actions": [
+        "건네기",
+        "나누기"
+      ],
+      "expressions": [
+        "기쁨"
+      ],
+      "pose": "Very small younger boy smiling shyly, both hands offering a single small white rice cake at chest height. Child-sized figure, full shoes; opaque rice cake, transparent gaps.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-child-second-offer.png",
+      "sourceSha256": "74b44be202a30b07a48fddb825c86a3197fb1a57ad8c08eb1832856961216c4d",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-child-second-offer.webp",
+      "outputSha256": "8a062724de2c58e0941eb1fc8f454db381622c2212cd0f5dc883b59b098799e1",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.supporting-neighbor-comfort-v2",
+      "slug": "heungbu-neighbor-comfort",
+      "referenceAssetId": "heungbu.character.neighbor",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.neighbor.webp",
+      "referenceSha256": "2fbc3ec5922c0bb54e045288d4fd20f7215f26570cd50b257104492dff3a6d90",
+      "primaryCharacterId": "heungbu.neighbor",
+      "story": "흥부와 놀부",
+      "name": "이웃",
+      "label": "다정하게 위로하기",
+      "actions": [
+        "위로하기",
+        "손 내밀기"
+      ],
+      "expressions": [
+        "온화"
+      ],
+      "pose": "Kind reassuring middle-aged male neighbor extends one open hand to comfort someone outside image. Other hand near chest. Remove rice sack, empty hands. Same cream clothes and headband.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-neighbor-comfort.png",
+      "sourceSha256": "5c3688976860a2fff0d075fca24cabb98840f53cc22130c5243e110beb7fa3cf",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-neighbor-comfort.webp",
+      "outputSha256": "596fe24b8350dab59505a64f7fe8b10df58a5615676c80365437149a12a6778f",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.supporting-neighbor-surprised-v2",
+      "slug": "heungbu-neighbor-surprised",
+      "referenceAssetId": "heungbu.character.neighbor",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.neighbor.webp",
+      "referenceSha256": "2fbc3ec5922c0bb54e045288d4fd20f7215f26570cd50b257104492dff3a6d90",
+      "primaryCharacterId": "heungbu.neighbor",
+      "story": "흥부와 놀부",
+      "name": "이웃",
+      "label": "놀라 두 손 들기",
+      "actions": [
+        "놀라기",
+        "손들기"
+      ],
+      "expressions": [
+        "놀람"
+      ],
+      "pose": "Surprised but gentle neighbor with raised eyebrows and mouth slightly open, both hands raised open near chest. No rice sack. Preserve exact face/clothes/age.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-neighbor-surprised.png",
+      "sourceSha256": "b87b7145853d2df527151bd369c7fd423ce214d38fb31b5c0114a6b373d5eec0",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-neighbor-surprised.webp",
+      "outputSha256": "e66a7407c07b8c2cb816d641f97434e1bbf15ca0c9fee11de9e2153188b946c7",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.supporting-swallow-fly-v2",
+      "slug": "heungbu-swallow-fly",
+      "referenceAssetId": "heungbu.character.swallow",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.swallow.webp",
+      "referenceSha256": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8",
+      "primaryCharacterId": "heungbu.swallow",
+      "story": "흥부와 놀부",
+      "name": "제비",
+      "label": "날개 펴고 날기",
+      "actions": [
+        "날기",
+        "날개 펴기"
+      ],
+      "expressions": [
+        "활기"
+      ],
+      "pose": "The exact same natural swallow bird, wings spread in a graceful flying pose, black-blue feathers and cream belly and red-brown throat. Remove log/perch and remove seed/nut from beak. Bird alone, full wing tips and tail, no motion lines.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-swallow-fly.png",
+      "sourceSha256": "66037fcbfc7ec630e03bbb6188e02b7a93b8273b5e1ddea8e5ae81bf7161c2ea",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-swallow-fly.webp",
+      "outputSha256": "4f64998cb301d6200cbd663bba4e0157f4eadcd4a5ffe232a5c1505bc1d80aab",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          47
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "heungbu.character.supporting-swallow-injured-v2",
+      "slug": "heungbu-swallow-injured",
+      "referenceAssetId": "heungbu.character.swallow",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/heungbu.character.swallow.webp",
+      "referenceSha256": "9b477297399ea3889ef5588ec551dd1dad2db1a839946cd862d19ffd84fadda8",
+      "primaryCharacterId": "heungbu.swallow",
+      "story": "흥부와 놀부",
+      "name": "제비",
+      "label": "다친 날개를 감싸기",
+      "actions": [
+        "쉬기",
+        "날개 접기"
+      ],
+      "expressions": [
+        "아픔"
+      ],
+      "pose": "Same natural swallow sitting gently with wings folded; one wing held low with small clean cream cloth bandage around upper wing, no wound/blood. Concerned tired eyes. No log, branch, seed or ground. Bird alone with claws/tail intact.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/heungbu-swallow-injured.png",
+      "sourceSha256": "fb7139f56d8c17ebe16037c0753e993906d131f240480493bfbb2a6acc1fcea3",
+      "output": "apps/web/public/assets/characters/expressions-v2/heungbu-swallow-injured.webp",
+      "outputSha256": "bd675cd0a998b128aaa932148dd0f3eb55c9db66b414a8f0eb5c68eb8c39dddb",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-guard-stop-v2",
+      "slug": "onggojib-guard-stop",
+      "referenceAssetId": "onggojib.character.posol-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.posol-pixel.webp",
+      "referenceSha256": "7a0f92b0296996e0f704cdec5d550ad3a18a85ec5a4452eaae2c3606b822ef53",
+      "primaryCharacterId": "onggojib.guard",
+      "story": "옹고집전",
+      "name": "포졸",
+      "label": "손바닥으로 제지하기",
+      "actions": [
+        "제지하기",
+        "말리기"
+      ],
+      "expressions": [
+        "단호함"
+      ],
+      "pose": "Same guard and dark uniform/red sash/hat, wooden staff held vertically in one hand, other arm extended palm open to calmly stop someone. Firm serious face. Full body.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-guard-stop.png",
+      "sourceSha256": "af7219253b0eb967458b11d66a5ff4cf1ddc7db99812f0c52b033b3aa6f32d52",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-guard-stop.webp",
+      "outputSha256": "c5bc2adf2e36fbb1fdfa287ff6f5c9a12766ecc1c71c50f3befef15dbd6ae422",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-guard-confused-v2",
+      "slug": "onggojib-guard-confused",
+      "referenceAssetId": "onggojib.character.posol-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.posol-pixel.webp",
+      "referenceSha256": "7a0f92b0296996e0f704cdec5d550ad3a18a85ec5a4452eaae2c3606b822ef53",
+      "primaryCharacterId": "onggojib.guard",
+      "story": "옹고집전",
+      "name": "포졸",
+      "label": "고개 갸웃하며 묻기",
+      "actions": [
+        "묻기",
+        "고개 갸웃하기"
+      ],
+      "expressions": [
+        "당황"
+      ],
+      "pose": "Same guard holding wooden staff in one hand, other palm open near waist, head tilted and brows puzzled, mouth slightly open asking clarification. Do not duplicate staff.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-guard-confused.png",
+      "sourceSha256": "b439a0bdd563e1c3ae01e2e2969abc67af8e255877d665ce732177adb47fe310",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-guard-confused.webp",
+      "outputSha256": "3c670371c6c13e6a3ad2448897dcfc9fe490c7db9fb8f3eb0bbcba817626d4f6",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-worker-protest-v2",
+      "slug": "onggojib-worker-protest",
+      "referenceAssetId": "onggojib.character.worker-woodcutter-v2-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.worker-woodcutter-v2-pixel.webp",
+      "referenceSha256": "de843d78051bc11f0c1e090e626447275c731d3e54e297664a729823e8a20b53",
+      "primaryCharacterId": "onggojib.worker",
+      "story": "옹고집전",
+      "name": "일꾼",
+      "label": "품삯을 요구하기",
+      "actions": [
+        "항의하기",
+        "말하기"
+      ],
+      "expressions": [
+        "억울함",
+        "결심"
+      ],
+      "pose": "Exact same bearded laborer with patched tan jacket, brown pants and headband, no firewood or axe. One hand palm up asking for owed pay, other hand against chest. Earnest upset expression, not violent.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-worker-protest.png",
+      "sourceSha256": "cd3550d815f7a8ba9231235431d0124fb674cde947e9e495d5edead82510d74c",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-worker-protest.webp",
+      "outputSha256": "927e657207972e79c86102e1faed95607ac4649831bd12fd76dde66ef8625366",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-worker-rest-v2",
+      "slug": "onggojib-worker-rest",
+      "referenceAssetId": "onggojib.character.worker-woodcutter-v2-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.worker-woodcutter-v2-pixel.webp",
+      "referenceSha256": "de843d78051bc11f0c1e090e626447275c731d3e54e297664a729823e8a20b53",
+      "primaryCharacterId": "onggojib.worker",
+      "story": "옹고집전",
+      "name": "일꾼",
+      "label": "땀 닦으며 쉬기",
+      "actions": [
+        "쉬기",
+        "땀 닦기"
+      ],
+      "expressions": [
+        "피곤"
+      ],
+      "pose": "Same laborer standing tired with slight slouch, wipes forehead with one sleeve; other hand resting on waist. A tiny sweat drop, no firewood and no axe. Same patches, shoes, face.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-worker-rest.png",
+      "sourceSha256": "19af998739169223edc376acad13ce1c8fc2e38c6c29dda8b76cdd173260a141",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-worker-rest.webp",
+      "outputSha256": "ea24e714e7d1db372522baa8c1ddeb89841a2c52b2659a66ccef0d709086a554",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-servant-apology-v2",
+      "slug": "onggojib-servant-apology",
+      "referenceAssetId": "onggojib.character.servant-household-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.servant-household-pixel.webp",
+      "referenceSha256": "ccc6cd03d8ca9356584a90685c188b645a97b9c8a47c978e055024fbeb304a15",
+      "primaryCharacterId": "onggojib.servant",
+      "story": "옹고집전",
+      "name": "하인",
+      "label": "고개 숙여 사과하기",
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "expressions": [
+        "미안함"
+      ],
+      "pose": "Same young male servant, brown-grey jacket/cream trousers/headband, modest respectful bow with hands together at waist and apologetic expression, full body. No props.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-servant-apology.png",
+      "sourceSha256": "4f904a921534d7c1b8e84c64568118fa0265dd2c6f721d7d404d08d69cca7964",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-servant-apology.webp",
+      "outputSha256": "09671d1874b0491628a1c383031f8a39734ee2071800f71260f09e8369c5ba46",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          23
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-servant-relieved-v2",
+      "slug": "onggojib-servant-relieved",
+      "referenceAssetId": "onggojib.character.servant-household-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.servant-household-pixel.webp",
+      "referenceSha256": "ccc6cd03d8ca9356584a90685c188b645a97b9c8a47c978e055024fbeb304a15",
+      "primaryCharacterId": "onggojib.servant",
+      "story": "옹고집전",
+      "name": "하인",
+      "label": "안도하며 인사하기",
+      "actions": [
+        "인사하기",
+        "말하기"
+      ],
+      "expressions": [
+        "안도",
+        "기쁨"
+      ],
+      "pose": "Same young servant warmly relieved smile, one hand near chest and other open greeting, relaxed shoulders, full body. Preserve waist pouch.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-servant-relieved.png",
+      "sourceSha256": "d81f04aa35db7e5ef84ba1065e8d7bcbaa067e863e274cd5c04c9560cad436b3",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-servant-relieved.webp",
+      "outputSha256": "e0de621dbc41e680f0ae7be9a618993f0b2fcdf4dd07d645ab701b9974efa0a9",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-magistrate-ponder-v2",
+      "slug": "onggojib-magistrate-ponder",
+      "referenceAssetId": "onggojib.character.magistrate-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.magistrate-pixel.webp",
+      "referenceSha256": "12d66e3fbf3018cd95b0483914c8d3999c32e997689a9a95e2357436ecc7cfa9",
+      "primaryCharacterId": "onggojib.magistrate",
+      "story": "옹고집전",
+      "name": "사또",
+      "label": "수염 만지며 생각하기",
+      "actions": [
+        "생각하기",
+        "수염 만지기"
+      ],
+      "expressions": [
+        "의심"
+      ],
+      "pose": "Same magistrate in red/black/gold official robe and red-tasseled hat, one hand gently touching beard thinking, other near sash. Skeptical brows. No baton unless already held? Remove baton entirely for this pose.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-magistrate-ponder.png",
+      "sourceSha256": "6a3e4e0c4b02dc4ffeef077cf85b3dee84e06d856910e4929bb90bff7d734b08",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-magistrate-ponder.webp",
+      "outputSha256": "12073cfd47b5bfdd3dd00a59d0b5925f25281a927c856e91c1f9cc49114ddd86",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "onggojib.character.supporting-magistrate-astonished-v2",
+      "slug": "onggojib-magistrate-astonished",
+      "referenceAssetId": "onggojib.character.magistrate-pixel",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/onggojib.character.magistrate-pixel.webp",
+      "referenceSha256": "12d66e3fbf3018cd95b0483914c8d3999c32e997689a9a95e2357436ecc7cfa9",
+      "primaryCharacterId": "onggojib.magistrate",
+      "story": "옹고집전",
+      "name": "사또",
+      "label": "두 사람을 보고 놀라기",
+      "actions": [
+        "놀라기",
+        "손들기"
+      ],
+      "expressions": [
+        "놀람"
+      ],
+      "pose": "Same magistrate face/official costume/hat, startled wide eyes, one palm raised at chest in surprise, other hand near sash. No baton, no other people, no duplicated figure.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/onggojib-magistrate-astonished.png",
+      "sourceSha256": "df80a4c1d40eb03df874e3f40468109c181ec9f3b12c7da2d43a11d408ea185c",
+      "output": "apps/web/public/assets/characters/expressions-v2/onggojib-magistrate-astonished.webp",
+      "outputSha256": "7ce901b3846a87c45de2d093a4f10a32382c39f790a6de4bc431c7170fec6416",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-eldest-fairy-explain-v2",
+      "slug": "seonnyeo-eldest-fairy-explain",
+      "referenceAssetId": "seonnyeo.character.M03-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M03-neutral.webp",
+      "referenceSha256": "f72c6d49427ad9d4775410e8996420146a931963fbafdb3845002025e55e947d",
+      "primaryCharacterId": "seonnyeo.eldest-fairy",
+      "story": "선녀와 나무꾼",
+      "name": "큰선녀",
+      "label": "손을 펴 설명하기",
+      "actions": [
+        "설명하기",
+        "말하기"
+      ],
+      "expressions": [
+        "진지함"
+      ],
+      "pose": "Same eldest fairy in purple hanbok with cream jacket and purple hair flower/ribbon, earnest calm face, one hand open explaining and other near chest. Full standing figure.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-eldest-fairy-explain.png",
+      "sourceSha256": "5edde46299e7d71b4cd1c38a571985cde589ab360bfda6e546ca9d05a4b94de3",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-eldest-fairy-explain.webp",
+      "outputSha256": "e99d6d26c5494aba2427b19981eb9629f69867e1295efb25f1d9a64d8f140271",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-eldest-fairy-stop-v2",
+      "slug": "seonnyeo-eldest-fairy-stop",
+      "referenceAssetId": "seonnyeo.character.M03-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M03-neutral.webp",
+      "referenceSha256": "f72c6d49427ad9d4775410e8996420146a931963fbafdb3845002025e55e947d",
+      "primaryCharacterId": "seonnyeo.eldest-fairy",
+      "story": "선녀와 나무꾼",
+      "name": "큰선녀",
+      "label": "손 내밀어 말리기",
+      "actions": [
+        "말리기",
+        "손 내밀기"
+      ],
+      "expressions": [
+        "걱정",
+        "결심"
+      ],
+      "pose": "Same eldest fairy, worried determined face, one open palm extended in calm stop gesture, other hand near chest, slight forward lean. Same purple costume and hair ornaments.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-eldest-fairy-stop.png",
+      "sourceSha256": "c93c8b260d80fb7e918e3d039700c3945bbb84e70d1b0219927829d3df467bbf",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-eldest-fairy-stop.webp",
+      "outputSha256": "327fca2df719dab99813348fa32b3d0fc1b3b41621a69c56f1521628e6e6e386",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          10
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-second-fairy-laugh-v2",
+      "slug": "seonnyeo-second-fairy-laugh",
+      "referenceAssetId": "seonnyeo.character.M04-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M04-neutral.webp",
+      "referenceSha256": "294ef406f1fde589edb8cd5d3ed09f4e0fbb33cbba329f91dba5d9e69dd38385",
+      "primaryCharacterId": "seonnyeo.second-fairy",
+      "story": "선녀와 나무꾼",
+      "name": "둘째선녀",
+      "label": "입가 가리고 웃기",
+      "actions": [
+        "웃기",
+        "말하기"
+      ],
+      "expressions": [
+        "기쁨"
+      ],
+      "pose": "Same second fairy in coral-pink hanbok/cream jacket with pink bow in hair, delighted smiling eyes, one hand modestly covering smile and other near waist, full standing figure.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-second-fairy-laugh.png",
+      "sourceSha256": "cb240a692214d80574a23542d4ab01f9ed01c171230a3ed5d50933c96f6f018a",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-second-fairy-laugh.webp",
+      "outputSha256": "3b289d21f67f5bd6f2ba699e2cd8805642a4fe0011f1c589c939a2185abc1959",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-second-fairy-worry-v2",
+      "slug": "seonnyeo-second-fairy-worry",
+      "referenceAssetId": "seonnyeo.character.M04-neutral",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/M04-neutral.webp",
+      "referenceSha256": "294ef406f1fde589edb8cd5d3ed09f4e0fbb33cbba329f91dba5d9e69dd38385",
+      "primaryCharacterId": "seonnyeo.second-fairy",
+      "story": "선녀와 나무꾼",
+      "name": "둘째선녀",
+      "label": "걱정하며 묻기",
+      "actions": [
+        "묻기",
+        "말하기"
+      ],
+      "expressions": [
+        "걱정"
+      ],
+      "pose": "Same second fairy and exact coral/pink clothing, eyebrows concerned, one palm open near waist asking a question, other hand at chest. Full figure and shoes.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-second-fairy-worry.png",
+      "sourceSha256": "bdc40862ab0a1ab4f23f67a4bba4da42e43aa1c76df9beb2f86875c04d4b4e4d",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-second-fairy-worry.webp",
+      "outputSha256": "a3c9ba513792f399ea620b5a771b94a53421a439469715e3e2d8ecf24de1a6c4",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-hunter-listen-v2",
+      "slug": "seonnyeo-hunter-listen",
+      "referenceAssetId": "seonnyeo.character.classic-hunter",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/seonnyeo.character.classic-hunter.webp",
+      "referenceSha256": "9a5c8d4407f5902d4b8a223c606346b8efae2230b7ea233ecdd058bdaa47da34",
+      "primaryCharacterId": "seonnyeo.hunter",
+      "story": "선녀와 나무꾼",
+      "name": "사냥꾼",
+      "label": "멈춰 서서 귀 기울이기",
+      "actions": [
+        "듣기",
+        "살피기"
+      ],
+      "expressions": [
+        "집중"
+      ],
+      "pose": "Same hunter in charcoal traditional clothes/headband and quiver on back. Hold bow lowered in one hand, other hand slightly cupped near ear, alert listening expression. No drawn arrow and no violence.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-hunter-listen.png",
+      "sourceSha256": "5d5eabf27b954ba2a2b63fc3ab44e41d5437e98acb6aae54f950baf707f3713b",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-hunter-listen.webp",
+      "outputSha256": "b4345994fa48ca2825606bc1465e1415b7473a267716f37026150096537c5889",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-hunter-confused-v2",
+      "slug": "seonnyeo-hunter-confused",
+      "referenceAssetId": "seonnyeo.character.classic-hunter",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/seonnyeo.character.classic-hunter.webp",
+      "referenceSha256": "9a5c8d4407f5902d4b8a223c606346b8efae2230b7ea233ecdd058bdaa47da34",
+      "primaryCharacterId": "seonnyeo.hunter",
+      "story": "선녀와 나무꾼",
+      "name": "사냥꾼",
+      "label": "발자국 찾으며 당황하기",
+      "actions": [
+        "살피기",
+        "고개 갸웃하기"
+      ],
+      "expressions": [
+        "당황"
+      ],
+      "pose": "Same hunter holding bow lowered in one hand; other palm open, head slightly tilted down as if uncertain where to go. Puzzled face, no footprints or ground included. Keep quiver.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-hunter-confused.png",
+      "sourceSha256": "5d86c07638d673990c13b44a6419b39e8e46b45e0c14fee08da4a861dd294b38",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-hunter-confused.webp",
+      "outputSha256": "6fbb7c4ee627ede9c7a984b3a0edc9f0984820859f36b286828b2b852c260147",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-mother-worry-v2",
+      "slug": "seonnyeo-mother-worry",
+      "referenceAssetId": "seonnyeo.character.classic-mother",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/seonnyeo.character.classic-mother.webp",
+      "referenceSha256": "a511b63e435907d1296523364d30b6837948fc9d17c461354c39900a45a03926",
+      "primaryCharacterId": "seonnyeo.mother",
+      "story": "선녀와 나무꾼",
+      "name": "나무꾼 어머니",
+      "label": "두 손 모아 걱정하기",
+      "actions": [
+        "걱정하기",
+        "기다리기"
+      ],
+      "expressions": [
+        "걱정"
+      ],
+      "pose": "Same grey-haired elderly mother, cream jacket and blue-grey skirt with purple ribbon. Both hands clasped at chest, worried gentle face, elderly posture, full standing figure. No bowl.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-mother-worry.png",
+      "sourceSha256": "f450426daf26f988422ab49c82ee9cbd0c868ad4b0ac3e0d2fbe3d145f88654d",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-mother-worry.webp",
+      "outputSha256": "b50222bf1ba5b6cbc8c7aa30974d44bc0ad4cecda7b5388ed9a9f9ff3322a429",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "seonnyeo.character.supporting-mother-comfort-v2",
+      "slug": "seonnyeo-mother-comfort",
+      "referenceAssetId": "seonnyeo.character.classic-mother",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/seonnyeo.character.classic-mother.webp",
+      "referenceSha256": "a511b63e435907d1296523364d30b6837948fc9d17c461354c39900a45a03926",
+      "primaryCharacterId": "seonnyeo.mother",
+      "story": "선녀와 나무꾼",
+      "name": "나무꾼 어머니",
+      "label": "손 내밀어 다독이기",
+      "actions": [
+        "위로하기",
+        "손 내밀기"
+      ],
+      "expressions": [
+        "온화"
+      ],
+      "pose": "Same elderly mother with kind reassuring smile, one hand open out to comfort someone outside image, other hand near chest. Same clothing and elderly build. No bowl or extra people.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/seonnyeo-mother-comfort.png",
+      "sourceSha256": "fed229e234ee885ccadb14d0f4a69a81f83a0083796a020a9cfd0c6faa874e6f",
+      "output": "apps/web/public/assets/characters/expressions-v2/seonnyeo-mother-comfort.webp",
+      "outputSha256": "cbe8988f7ea3131d834b5456bf7384db8a8645b045f0694137e1c8eb21a3f337",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-dragonking-laugh-v2",
+      "slug": "rabbit-turtle-dragonking-laugh",
+      "referenceAssetId": "rabbit-turtle.character.dragonking-recovered-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-recovered-unified-720x900.webp",
+      "referenceSha256": "22d1dfa2f8d83bda78ddef404ee6034a9a90f7f163df2797f37601252d3e8640",
+      "primaryCharacterId": "rabbit-turtle.dragonking",
+      "story": "별주부전",
+      "name": "용왕",
+      "label": "회복하고 기뻐하기",
+      "actions": [
+        "웃기",
+        "말하기"
+      ],
+      "expressions": [
+        "기쁨"
+      ],
+      "pose": "Same healthy elderly dragon king with antlers/crown and ornate blue/gold robe. Joyful grateful smile, both hands open near chest celebrating recovery. Preserve exact dragon anatomy and royal footwear. No aura.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-dragonking-laugh.png",
+      "sourceSha256": "ec653e75b63289de3a42dc2353c3b6089e6121417fafd075d53ed73785e655fe",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-dragonking-laugh.webp",
+      "outputSha256": "918d3edfb3f957091d82427fe8b7e077b8a72eb4aec7dd43a80c34d0bac04b2f",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -7
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-dragonking-doubt-v2",
+      "slug": "rabbit-turtle-dragonking-doubt",
+      "referenceAssetId": "rabbit-turtle.character.dragonking-recovered-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.dragonking-recovered-unified-720x900.webp",
+      "referenceSha256": "22d1dfa2f8d83bda78ddef404ee6034a9a90f7f163df2797f37601252d3e8640",
+      "primaryCharacterId": "rabbit-turtle.dragonking",
+      "story": "별주부전",
+      "name": "용왕",
+      "label": "눈썹 찌푸리며 묻기",
+      "actions": [
+        "묻기",
+        "생각하기"
+      ],
+      "expressions": [
+        "의심"
+      ],
+      "pose": "Same recovered dragon king, skeptical raised brow, one hand on chin and other near waist. Exact crown, robe, dragon face and shoes. No sick effects or breath cloud.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-dragonking-doubt.png",
+      "sourceSha256": "e7c835478b99d241ba9d54bfa6ef4838e39d25520e76046b5234b7b5f80e7e5c",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-dragonking-doubt.webp",
+      "outputSha256": "266d48c88bb1c4aa415ca91041949fbbb3cb043cba797c59a77a2ba1af80708c",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          8
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-physician-relieved-v2",
+      "slug": "rabbit-turtle-physician-relieved",
+      "referenceAssetId": "rabbit-turtle.character.physician-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.physician-unified-720x900.webp",
+      "referenceSha256": "528826dc98286efa9f52680a3d00e8dbef7e7522e6a8b82d907c4f1545bd4765",
+      "primaryCharacterId": "rabbit-turtle.physician",
+      "story": "별주부전",
+      "name": "어의",
+      "label": "안도하며 웃기",
+      "actions": [
+        "안도하기",
+        "말하기"
+      ],
+      "expressions": [
+        "안도"
+      ],
+      "pose": "Same elderly dragon physician, turquoise robe, black cap/antlers and white beard. Relieved warm smile, one hand on chest and other holding closed brown medical book. Remove medicine bowl. Full body.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-physician-relieved.png",
+      "sourceSha256": "41ea96c92ffd8c752558be34f9cafa6173d832a9a3ee955e383d4bfdd99d72e9",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-physician-relieved.webp",
+      "outputSha256": "c31d4165ee31d6f6a72ede367d503802a4e925e1f383a4f0ee96dd8b2ecb5076",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          1
+        ],
+        "referenceFloor": 1148,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-physician-refuse-v2",
+      "slug": "rabbit-turtle-physician-refuse",
+      "referenceAssetId": "rabbit-turtle.character.physician-unified-720x900",
+      "referenceFile": "apps/web/public/assets/legacy-18da4fc/rabbit-turtle.character.physician-unified-720x900.webp",
+      "referenceSha256": "528826dc98286efa9f52680a3d00e8dbef7e7522e6a8b82d907c4f1545bd4765",
+      "primaryCharacterId": "rabbit-turtle.physician",
+      "story": "별주부전",
+      "name": "어의",
+      "label": "손 들어 만류하기",
+      "actions": [
+        "말리기",
+        "설득하기"
+      ],
+      "expressions": [
+        "걱정",
+        "진지함"
+      ],
+      "pose": "Same elderly dragon physician, concerned serious face, one open clawed hand raised politely urging restraint, other holding closed medical book. Preserve exact cap/antlers/robe, remove bowl.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-physician-refuse.png",
+      "sourceSha256": "8d663ed2f112f988060d9774a322f6ba8ccd6f948bcd2d24f663c98edb0286bc",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-physician-refuse.webp",
+      "outputSha256": "7f97ea24019245e6ab85d992950bcbb709dd19719f38a4847d460345bb11cc8a",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1148,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-fish-courtier-report-v2",
+      "slug": "rabbit-turtle-fish-courtier-report",
+      "referenceAssetId": "rabbit-turtle.character.layered-fish-courtier-v1",
+      "referenceFile": "apps/web/public/assets/characters/layered-v1/rabbit-fish-courtier.webp",
+      "referenceSha256": "b1feed6ae63efb43572356fab8ff885e169f3a033de3d5d6343ddae083edfde5",
+      "primaryCharacterId": "rabbit-turtle.fish-courtier",
+      "story": "별주부전",
+      "name": "물고기 신하",
+      "label": "지느러미 손으로 보고하기",
+      "actions": [
+        "보고하기",
+        "말하기"
+      ],
+      "expressions": [
+        "진지함"
+      ],
+      "pose": "Same anthropomorphic blue fish courtier with fish face/fins and navy robe/gold sash. One fin-like hand open explaining/reporting, other near waist. Preserve fish anatomy, no human face/hands, full body at original supporting-character stature.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-fish-courtier-report.png",
+      "sourceSha256": "d5aab651e7d01a59c43c4613466e33499b3867123e91e4e411991ecf09c0aae1",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-fish-courtier-report.webp",
+      "outputSha256": "b0529490a0ca64544accfac0a04a79cc0aa56bad795c022b9e949a73ac5b0856",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          1
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-fish-courtier-shock-v2",
+      "slug": "rabbit-turtle-fish-courtier-shock",
+      "referenceAssetId": "rabbit-turtle.character.layered-fish-courtier-v1",
+      "referenceFile": "apps/web/public/assets/characters/layered-v1/rabbit-fish-courtier.webp",
+      "referenceSha256": "b1feed6ae63efb43572356fab8ff885e169f3a033de3d5d6343ddae083edfde5",
+      "primaryCharacterId": "rabbit-turtle.fish-courtier",
+      "story": "별주부전",
+      "name": "물고기 신하",
+      "label": "소식 듣고 놀라기",
+      "actions": [
+        "놀라기",
+        "손들기"
+      ],
+      "expressions": [
+        "놀람"
+      ],
+      "pose": "Same blue fish courtier, wide fish eyes and mouth slightly open in surprise, both fin-like hands raised near chest. Navy traditional robe, exact fish face/fins, no human skin, supporting stature.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-fish-courtier-shock.png",
+      "sourceSha256": "f0e8d776ae3cb713248463dd07a9cdf671f0ef1b90260c5b70c151364bd9364b",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-fish-courtier-shock.webp",
+      "outputSha256": "380279af87c50ad0f2bcf3fcd32875adb344bb34243579b06dac254398aa9da0",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          -2
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-crab-courtier-argue-v2",
+      "slug": "rabbit-turtle-crab-courtier-argue",
+      "referenceAssetId": "rabbit-turtle.character.layered-crab-courtier-v1",
+      "referenceFile": "apps/web/public/assets/characters/layered-v1/rabbit-crab-courtier.webp",
+      "referenceSha256": "d2982c3531c45ff8de9ccdedd561c1e28699cd65649a131c8f202df4841de41a",
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "story": "별주부전",
+      "name": "게 신하",
+      "label": "집게 들어 의견 내기",
+      "actions": [
+        "말하기",
+        "집게 들기"
+      ],
+      "expressions": [
+        "결심"
+      ],
+      "pose": "Same red crab courtier in brown/maroon robe and gold trim. One claw raised open explaining determined opinion, other folded near sash. Same stalk eyes and crab anatomy; no humanoid face or human hands. Small supporting-character stature.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-crab-courtier-argue.png",
+      "sourceSha256": "e8ddc35c20d71a830d501f5ee01adda01331f354435742203f8f79577861c9b5",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-crab-courtier-argue.webp",
+      "outputSha256": "773bd24f278bda17d09184d35c68183f023aee38551c009d3f07826f6fa0c365",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          0
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    },
+    {
+      "id": "rabbit-turtle.character.supporting-crab-courtier-apology-v2",
+      "slug": "rabbit-turtle-crab-courtier-apology",
+      "referenceAssetId": "rabbit-turtle.character.layered-crab-courtier-v1",
+      "referenceFile": "apps/web/public/assets/characters/layered-v1/rabbit-crab-courtier.webp",
+      "referenceSha256": "d2982c3531c45ff8de9ccdedd561c1e28699cd65649a131c8f202df4841de41a",
+      "primaryCharacterId": "rabbit-turtle.crab-courtier",
+      "story": "별주부전",
+      "name": "게 신하",
+      "label": "집게 모아 사과하기",
+      "actions": [
+        "사과하기",
+        "인사하기"
+      ],
+      "expressions": [
+        "미안함"
+      ],
+      "pose": "Same red crab courtier, eyes slightly lowered on stalks, modest apologetic bow, both claws respectfully together near chest. Brown/maroon traditional robe with gold trim. Preserve crab body and short original stature.",
+      "tool": "built-in image_gen",
+      "sourceFile": "assets/source/characters/expressions-v2/rabbit-turtle-crab-courtier-apology.png",
+      "sourceSha256": "2e394cd99a8c56d903e37cb74cc66030c32ba4cdfa1f3f6a29a3141208dcff64",
+      "output": "apps/web/public/assets/characters/expressions-v2/rabbit-turtle-crab-courtier-apology.webp",
+      "outputSha256": "ce172de34706c40b8081db34f0be0048914711d688def29ba3ed557026f558a3",
+      "normalization": {
+        "method": "uniform-resize-align-reference-floor",
+        "scale": 0.78125,
+        "size": [
+          800,
+          1200
+        ],
+        "offset": [
+          0,
+          8
+        ],
+        "referenceFloor": 1150,
+        "canvas": [
+          800,
+          1200
+        ]
+      },
+      "transparentGapSamples": []
+    }
+  ]
+}

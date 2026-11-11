@@ -139,6 +139,33 @@ class DerivedCharacterRestoreTests(unittest.TestCase):
 
 
 class GeneratedWeatherRestoreTests(unittest.TestCase):
+    def test_transparency_repair_is_never_restored_from_legacy(self):
+        for flag, state in [(flag, state) for flag in ['generatedTransparencyRepair', 'generatedExpressionAsset'] for state in ['valid', 'missing', 'changed']]:
+            with self.subTest(flag=flag, state=state), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                LegacyRoomRestoreTests().setup_root(root)
+                registry = root / 'packages/asset-registry/src'
+                (registry / 'legacy-ui-media.json').write_text('{"entries":[]}')
+                target = root / 'apps/web/public/assets/characters/transparency-v2/heungbu.webp'
+                target.parent.mkdir(parents=True)
+                expected = b'reviewed transparent sprite'
+                if state != 'missing':
+                    target.write_bytes(expected if state == 'valid' else b'unreviewed change')
+                row = {'id': 'heungbu', 'src': '/assets/characters/transparency-v2/heungbu.webp',
+                       'revision': hashlib.sha256(expected).hexdigest(),
+                       'sourcePath': 'docs/generation.json#heungbu',
+                       'metadata': {flag: True}}
+                (registry / 'catalog.json').write_text(json.dumps([row]))
+                with patch.object(RESTORE, 'ROOT', root), patch.object(RESTORE.subprocess, 'run', return_value=subprocess.CompletedProcess([], 0, b'', b'')) as git:
+                    if state == 'valid':
+                        RESTORE.restore(Path('authorized checkout'))
+                    else:
+                        with self.assertRaisesRegex(SystemExit, 'current Git checkout'):
+                            RESTORE.restore(Path('authorized checkout'))
+                self.assertEqual(git.call_count, 1, 'Only verify the baseline commit; never fetch old sprite bytes.')
+                if state != 'missing':
+                    self.assertEqual(target.read_bytes(), expected if state == 'valid' else b'unreviewed change')
+
     def test_generated_weather_is_verified_from_checkout_without_fetching_legacy(self):
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);LegacyRoomRestoreTests().setup_root(root)
