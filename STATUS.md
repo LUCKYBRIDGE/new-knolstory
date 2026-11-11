@@ -1,5 +1,9 @@
 # STATUS — current development state
 
+2026-11-11 인물별 최소5종·희노애락 기준: 최신 사용자 결정에 따라 조연 추가 수량만으로 완료하지 않고 개별 정체성47개의 기본/희/노/애/락235카드를 보장한다. 군집별칭5개는 개별 인물로 중복 계산하지 않으며 선녀의 두 아이는 단독 기본 그림도 생성한다. 기존481개 카탈로그를 유지하고 부족한 감정165종·감정 필터/검색 등록표·정확한 실행 경로·원본/실행 검사·개발 재개를 연결한다. 최종 생성/시각 검토/실제 편집·재생과 실패 보완은 [인물별 감정 기록](docs/architecture/evidence/all-character-emotions-2026-11-11/review.md)과 [체크포인트](docs/architecture/evidence/all-character-emotions-2026-11-11/checkpoint.json)를 따른다. 운영 배포·인증API 갱신은 별도다.
+
+2026-11-11 조연 중심 표현 추가: 사용자 후속 요청으로 아이·이웃·제비·포졸·일꾼·하인·사또·선녀 자매·사냥꾼·어머니·궁중 인물16정체성에 각2종, 작품당8종씩32개를 보강한다. 이전16종과 기존449개 카탈로그·원고는 보존한다. 인물별 부족/추가 목록·편집 연결·생성 원본/실행본·복원/개발 재개는 [조연 확장 기록](docs/architecture/evidence/supporting-character-expansion-2026-11-11/review.md), 최종 생성/검사/보완과 운영 미배포 경계는 [체크포인트](docs/architecture/evidence/supporting-character-expansion-2026-11-11/checkpoint.json)를 따른다.
+
 2026-11-11 네 작품 인물 표현 확장: 인물별 동작·표정 부족을 대조해 흥부·놀부 두 아내, 선녀·나무꾼, 토끼·자라·어의, 옹고집 아내·어머니·막내의10정체성에 작품당4종씩16개 편집용 이미지를 추가한다. 기존433개 카탈로그·원고·개인 저장소는 보존하고 새 ID·전신/표정/동작 검색·정확한 Ren’Py 경로와 생성 원본/실행본 검사·복원을 연결한다. 선정/생성/검토와 재개 절차는 [표현 확장 기록](docs/architecture/evidence/character-expression-expansion-2026-11-11/review.md), 현재 검증/미완료와 운영 미배포 경계는 [체크포인트](docs/architecture/evidence/character-expression-expansion-2026-11-11/checkpoint.json)를 따른다.
 
 2026-11-11 투명 배경 교체: 흥부의 부탁 자세와 놀부의 밭일 자세에서 남은 흰 배경을 확인해 생성 교정본으로 연결했다. 기존 Asset ID·원고·배치와 원본은 유지하고 버전 경로·revision·geometry를 갱신한다. 생성 PNG·실행 WebP와 해시/alpha 검사·복원 절차를 Git에 함께 보관하며 복원 도구가 구 레거시 그림으로 되돌리지 않게 했다. 다른 세 작품 인물172개를 포함한212개와 밝은 영역107곳에서 추가 동일 결함은 확정하지 못했다. 현재 실행 결과·초기 실패 보완·다른 컴퓨터 재개와 운영 미배포 경계는 [교체 기록](docs/architecture/evidence/transparency-repair-2026-11-11/review.md)과 [체크포인트](docs/architecture/evidence/transparency-repair-2026-11-11/checkpoint.json)를 따른다.

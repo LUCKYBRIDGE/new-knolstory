@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-11",
+  "status": "local-implementation-and-verification-passed",
+  "latestUserRequirement": "Each character at least5images, including distinguishable 희노애락, including minor roles. Do not stop after32supporting images.",
+  "targets": 47,
+  "groupAliases": 5,
+  "plannedAdditionalEmotionImages": 165,
+  "reusedEmotionalSlots": 25,
+  "generatedSourceDirectory": "assets/source/characters/emotions-v3",
+  "localQueueReceipts": ".cache/emotion-coverage/receipts",
+  "generationCell": "completed",
+  "generationConcurrency": 24,
+  "previousStage": "32supporting images generated;2visual edits completed;registration running. Source and execution pairs stay separate.",
+  "remaining": [],
+  "generationComplete": true,
+  "catalogueRows": 646,
+  "selectedCards": 235,
+  "individualTargets": 47,
+  "generationRecovery": {
+    "initialBatch": {
+      "requested": 163,
+      "completed": 159,
+      "rejected": 4
+    },
+    "recovered": 4,
+    "additionalReviewReplacements": 2,
+    "acceptedFinalSources": 165,
+    "note": "Five generator requests were rejected across initial/retry calls. All missing cards were recovered with narrow clothed identity-preserving requests; no rejected output is used."
+  },
+  "visualReview": {
+    "targets": 47,
+    "cards": 235,
+    "comparisonSheets": 16,
+    "reviewedInConversation": true,
+    "corrections": [
+      "Supporting injured swallow seed removed",
+      "Supporting skeptical king shoes matched",
+      "Labor protest not reused as anger;165th scope includes dedicated anger image",
+      "Quiet celestial resolve not reused as sorrow;new ordinary-costume tearful fairy",
+      "Uniform head/torso scale review for two independent children and joyful goblin",
+      "Margin failure on village girl fixed with uniform0.965factor for village/traveler emotion pairs"
+    ],
+    "normalizationAttempts": [
+      {
+        "result": "failed",
+        "reason": "Village girl sorrow reached top0after floor alignment",
+        "resolution": "Uniform3.5percent margin reduction preserving source and anatomy;all165registration passed"
+      }
+    ],
+    "nativeCaptureLimit": "Representative native captures inspected. Keyboard-forwarding opens the accessibility text panel in some captures; full-figure/negative-space review uses the235card source comparison sheets, not a claim of manual inspection of every native pixel."
+  },
+  "checks": [
+    {
+      "command": "pnpm exec vitest run --config .cache/sync-vitest.config.mjs --maxWorkers=2 --testTimeout=30000 --exclude packages/asset-registry/tests/approved-audio-bytes.test.ts",
+      "exitCode": 0,
+      "result": "282 files;2320passed,2skipped. Local workspace-copy aliases used. Follow-up negative search assertion is tested separately after removal of umbrella tag."
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "result": "Workspace and server passed"
+    },
+    {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "result": "0errors;2pre-existing warnings"
+    },
+    {
+      "command": "pnpm docs:check; pnpm test:docs",
+      "exitCode": 0,
+      "result": "Documentation/link/language checks and10tests passed"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s scripts/tests",
+      "exitCode": 0,
+      "result": "207 tests passed; tracked-source-only restoration of16/32/165sprites; reject modified existing outputs/sources and unsafe receipt paths."
+    },
+    {
+      "command": "pnpm runtime:build",
+      "exitCode": 0,
+      "result": "Pinned RenPy8.5.3; all213expression/action sprites verified before build;659progressive placeholders; generated exact path contract matches source."
+    },
+    {
+      "command": "pnpm exec vitest run --config .cache/sync-vitest.config.mjs packages/asset-registry/tests/all-character-emotions.test.ts packages/asset-registry/tests/supporting-expression-expansion.test.ts",
+      "exitCode": 0,
+      "result": "4tests passed after umbrella-tag cleanup, including distinct5slots, full previous481row preservation, searchable165newcards and non-anger exclusion."
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "result": "Production Web build passed in12.706s"
+    },
+    {
+      "command": "python3 scripts/media-provenance.py --check",
+      "exitCode": 0,
+      "result": "2633distributed media records/byte hashes verified"
+    },
+    {
+      "command": "pnpm exec playwright test --config tests/all-character-emotions.playwright.config.ts",
+      "exitCode": 0,
+      "result": "3tests passed:235native cards at390x844and1280x800(470cut-level source-path/hash checks);whole-work export/reload preserved;47individuals each expose5cards in real editor;preview/cancel/apply/save passed."
+    },
+    {
+      "command": "KNOL_EXPRESSION_RECEIPT=docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json pnpm exec playwright test --config tests/character-expressions.playwright.config.ts",
+      "exitCode": 0,
+      "result": "3tests passed for all32supporting poses, native in both widths,16identity picker interactions and whole-work preservation."
+    }
+  ],
+  "sourceScope": {
+    "baseCommit": "fd7e54890d02a0a19de0cb3ff29663758542b02f",
+    "previous449CatalogueRowsUnchanged": true,
+    "newCatalogueRows": 197,
+    "totalCatalogueRows": 646,
+    "individualCounts": {
+      "별주부전": 6,
+      "옹고집전": 15,
+      "선녀와 나무꾼": 11,
+      "흥부와 놀부": 15
+    },
+    "previousCharacterIdsPreserved": true,
+    "representativeImageChanges": [
+      "seonnyeo.first-child",
+      "seonnyeo.second-child"
+    ],
+    "authoredFilesAndStorageChanged": false
+  },
+  "notClaimed": [
+    "production deployment/API catalogue update/authenticated upload",
+    "physical phone or second physical computer execution",
+    "all possible costume/action combinations",
+    "historical sealed-runtime approval for the rebuilt bytes"
+  ],
+  "mediaBytes": {
+    "assets/source/characters/expressions-v2": 52912237,
+    "assets/source/characters/emotions-v3": 278198581,
+    "apps/web/public/assets/characters/expressions-v2": 12287260,
+    "apps/web/public/assets/characters/emotions-v3": 64046094
+  }
+}

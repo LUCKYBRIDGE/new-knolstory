@@ -8,22 +8,30 @@ from PIL import Image, __version__ as PILLOW_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = 'docs/architecture/evidence/character-expression-expansion-2026-11-11/generation.json'
+SUPPORTING_RECEIPT = 'docs/architecture/evidence/supporting-character-expansion-2026-11-11/generation.json'
+EMOTION_RECEIPT = 'docs/architecture/evidence/all-character-emotions-2026-11-11/generation.json'
+RECEIPT_VERSIONS = {RECEIPT: 'expressions-v1', SUPPORTING_RECEIPT: 'expressions-v2', EMOTION_RECEIPT: 'emotions-v3'}
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def verify(root=ROOT, restore=False):
+def verify(root=ROOT, restore=False, receipt=RECEIPT):
     root = Path(root).resolve()
-    data = json.loads((root / RECEIPT).read_text())
+    if receipt not in RECEIPT_VERSIONS:
+        raise ValueError('Unreviewed expression receipt.')
+    data = json.loads((root / receipt).read_text())
+    version = data.get('assetVersion', 'expressions-v1')
+    if version != RECEIPT_VERSIONS[receipt]:
+        raise ValueError('Expression version does not match its receipt.')
     if PILLOW_VERSION != data['toolchain']['pillow']:
         raise ValueError('Use reviewed Pillow ' + data['toolchain']['pillow'])
     catalog = {a['id']: a for a in json.loads((root / 'packages/asset-registry/src/catalog.json').read_text())}
     for row in data['assets']:
         paths = []
-        for key, prefix in [('sourceFile', 'assets/source/characters/expressions-v1/'),
-                            ('output', 'apps/web/public/assets/characters/expressions-v1/')]:
+        for key, prefix in [('sourceFile', 'assets/source/characters/' + version + '/'),
+                            ('output', 'apps/web/public/assets/characters/' + version + '/')]:
             name = row[key]
             path = root / name
             if (not name.startswith(prefix) or '..' in Path(name).parts or '\\' in name
@@ -50,7 +58,7 @@ def verify(root=ROOT, restore=False):
             raise ValueError('Missing/changed expression; restore current checkout: ' + row['id'])
         asset = catalog[row['id']]
         if (asset['revision'] != row['outputSha256'] or asset['src'] != '/' + row['output'].removeprefix('apps/web/public/')
-                or asset['sourcePath'] != RECEIPT + '#' + row['id'] or not asset['metadata'].get('generatedExpressionAsset')):
+                or asset['sourcePath'] != receipt + '#' + row['id'] or not asset['metadata'].get('generatedExpressionAsset')):
             raise ValueError('Catalogue does not resolve reviewed expression: ' + row['id'])
         alpha = image.getchannel('A')
         box = alpha.point(lambda value: 255 if value >= 16 else 0).getbbox()
@@ -69,4 +77,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--restore', action='store_true', help='Restore missing derivatives only; preserve changed existing files.')
     args = parser.parse_args()
-    print(json.dumps(verify(restore=args.restore)))
+    results = [verify(restore=args.restore, receipt=receipt) for receipt in RECEIPT_VERSIONS]
+    print(json.dumps({'verifiedExpressions': sum(row['verifiedExpressions'] for row in results), 'batches': len(results)}))

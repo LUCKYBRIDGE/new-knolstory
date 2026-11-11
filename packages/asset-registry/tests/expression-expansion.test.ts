@@ -6,7 +6,7 @@ import {isRuntimeImagePath} from '../../runtime-contract/src';
 
 const plan=JSON.parse(readFileSync('docs/architecture/evidence/character-expression-expansion-2026-11-11/plan.json','utf8'));
 it('fills four story packs with sixteen searchable individually selectable poses across ten identities',()=>{
- const added=ASSET_CATALOG.filter(asset=>asset.metadata.generatedExpressionAsset);
+ const added=ASSET_CATALOG.filter(asset=>asset.metadata.generatedExpressionAsset&&asset.src.startsWith('/assets/characters/expressions-v1/'));
  expect(added).toHaveLength(16);
  expect(new Set(added.map(asset=>asset.metadata.primaryCharacterId)).size).toBe(10);
  for(const story of ['흥부와 놀부','선녀와 나무꾼','별주부전','옹고집전'])expect(added.filter(asset=>asset.story===story)).toHaveLength(4);

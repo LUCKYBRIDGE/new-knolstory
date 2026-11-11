@@ -257,6 +257,10 @@ pnpm delivery:preview --candidate .cache/pages-candidate --port 3000
 
 ## 인물 상대 크기 파생 이미지 복원 — 2026-10-30
 
+2026-11-11 최신 인물별 최소5종/희노애락은 [47개별 정체성·235카드 준비와 검사](evidence/all-character-emotions-2026-11-11/review.md)를 따른다. 공통 `prepare-expression-assets.py`가 감정165종을 포함한 세 묶음을 모두 검사·복원한다. 실제 편집/재생은 `pnpm exec playwright test --config tests/all-character-emotions.playwright.config.ts`로 검사하며, 단계별 실제 결과는 연결된 체크포인트에 남긴다.
+
+2026-11-11 조연 중심32종도 같은 `prepare-expression-assets.py`가 이전16종과 함께 검사·복원한다. 서로 다른 receipt/버전 경로를 유지하며 임의 경로는 허용하지 않는다. 별도묶음 실제 편집/재생은 `KNOL_EXPRESSION_RECEIPT`로 지정한다. [인물별 추가 목록·검증·다른 컴퓨터 안내](evidence/supporting-character-expansion-2026-11-11/review.md).
+
 2026-11-11 추가한 네 작품 동작·표정16종은 `python3 scripts/prepare-expression-assets.py`로 검사한다. 실행WebP가 없을 때만 `--restore`를 사용하며 원본PNG와 현재 카탈로그/receipt에서 정확한 해시·geometry를 복원한다. 기존 수정 파일은 덮어쓰지 않는다. [선정·생성·실제 편집/재생·다른 컴퓨터 준비](evidence/character-expression-expansion-2026-11-11/review.md).
 
 2026-11-11 흥부·놀부의 흰 배경 잔여 교정본은 레거시 복원 대상이 아닌 현행 Git 자산이다. 생성 원본 PNG와 실행 WebP를 함께 가져와 `python3 scripts/prepare-transparency-assets.py`로 해시·ID·geometry·alpha를 확인한다. 실행 WebP가 없을 때만 같은 명령에 `--restore`를 붙인다. 수정된 기존 파일은 보존한 채 중단한다. 같은 ID가 새 경로를 해석하도록 `pnpm runtime:build → pnpm build`를 실행한다. [결함·교체·다른 컴퓨터 재개와 검증 범위](evidence/transparency-repair-2026-11-11/review.md).

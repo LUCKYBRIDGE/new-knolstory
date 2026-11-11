@@ -1,0 +1,529 @@
+{
+  "version": 1,
+  "labels": {
+    "neutral": "기본",
+    "joy": "기쁨",
+    "anger": "분노",
+    "sorrow": "슬픔",
+    "mirth": "즐거움"
+  },
+  "characters": [
+    {
+      "characterId": "rabbit-turtle.dragonking",
+      "name": "용왕",
+      "slots": {
+        "neutral": "rabbit-turtle.character.dragonking-recovered-unified-720x900",
+        "joy": "rabbit-turtle.character.emotion-turtle-dragonking-joy-v3",
+        "anger": "rabbit-turtle.character.dragonking-command-attached",
+        "sorrow": "rabbit-turtle.character.emotion-turtle-dragonking-sorrow-v3",
+        "mirth": "rabbit-turtle.character.supporting-dragonking-laugh-v2"
+      }
+    },
+    {
+      "characterId": "rabbit-turtle.physician",
+      "name": "의관",
+      "slots": {
+        "neutral": "rabbit-turtle.character.physician-unified-720x900",
+        "joy": "rabbit-turtle.character.supporting-physician-relieved-v2",
+        "anger": "rabbit-turtle.character.emotion-turtle-physician-anger-v3",
+        "sorrow": "rabbit-turtle.character.emotion-turtle-physician-sorrow-v3",
+        "mirth": "rabbit-turtle.character.emotion-turtle-physician-mirth-v3"
+      }
+    },
+    {
+      "characterId": "rabbit-turtle.rabbit",
+      "name": "토끼",
+      "slots": {
+        "neutral": "rabbit-turtle.character.rabbit-white-unified-720x900",
+        "joy": "rabbit-turtle.character.emotion-turtle-rabbit-joy-v3",
+        "anger": "rabbit-turtle.character.emotion-turtle-rabbit-anger-v3",
+        "sorrow": "rabbit-turtle.character.emotion-turtle-rabbit-sorrow-v3",
+        "mirth": "rabbit-turtle.character.classic-rabbit-laugh"
+      }
+    },
+    {
+      "characterId": "rabbit-turtle.turtle",
+      "name": "자라",
+      "slots": {
+        "neutral": "rabbit-turtle.character.turtle-unified-720x900",
+        "joy": "rabbit-turtle.character.expression-turtle-grateful-v1",
+        "anger": "rabbit-turtle.character.emotion-turtle-turtle-anger-v3",
+        "sorrow": "rabbit-turtle.character.emotion-turtle-turtle-sorrow-v3",
+        "mirth": "rabbit-turtle.character.emotion-turtle-turtle-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.child",
+      "name": "아이",
+      "slots": {
+        "neutral": "onggojib.character.child-pixel",
+        "joy": "onggojib.character.emotion-child-joy-v3",
+        "anger": "onggojib.character.emotion-child-anger-v3",
+        "sorrow": "onggojib.character.emotion-child-sorrow-v3",
+        "mirth": "creative.character.onggojib-child-wave"
+      }
+    },
+    {
+      "characterId": "onggojib.double",
+      "name": "가짜 옹고집",
+      "slots": {
+        "neutral": "onggojib.character.double-blue-gentle-consistent-pixel",
+        "joy": "onggojib.character.emotion-double-joy-v3",
+        "anger": "onggojib.character.emotion-double-anger-v3",
+        "sorrow": "onggojib.character.emotion-double-sorrow-v3",
+        "mirth": "onggojib.character.emotion-double-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.servant",
+      "name": "옹고집의 하인",
+      "slots": {
+        "neutral": "onggojib.character.servant-household-pixel",
+        "joy": "onggojib.character.supporting-servant-relieved-v2",
+        "anger": "onggojib.character.emotion-servant-anger-v3",
+        "sorrow": "onggojib.character.emotion-servant-sorrow-v3",
+        "mirth": "onggojib.character.emotion-servant-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.worker",
+      "name": "일꾼",
+      "slots": {
+        "neutral": "onggojib.character.worker-woodcutter-v2-pixel",
+        "joy": "onggojib.character.emotion-worker-joy-v3",
+        "anger": "onggojib.character.emotion-worker-anger-v3",
+        "sorrow": "onggojib.character.emotion-worker-sorrow-v3",
+        "mirth": "onggojib.character.emotion-worker-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.wife",
+      "name": "옹고집의 아내",
+      "slots": {
+        "neutral": "onggojib.character.wife-pixel",
+        "joy": "onggojib.character.expression-wife-relieved-v1",
+        "anger": "onggojib.character.emotion-wife-anger-v3",
+        "sorrow": "onggojib.character.emotion-wife-sorrow-v3",
+        "mirth": "onggojib.character.emotion-wife-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.real",
+      "name": "진짜 옹고집",
+      "slots": {
+        "neutral": "onggojib.character.real-consistent-pixel",
+        "joy": "onggojib.character.emotion-real-joy-v3",
+        "anger": "onggojib.character.real-angry-pixel",
+        "sorrow": "onggojib.character.real-exiled-consistent-pixel",
+        "mirth": "onggojib.character.emotion-real-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.magistrate",
+      "name": "사또",
+      "slots": {
+        "neutral": "onggojib.character.magistrate-command-pixel",
+        "joy": "onggojib.character.emotion-magistrate-joy-v3",
+        "anger": "onggojib.character.emotion-magistrate-anger-v3",
+        "sorrow": "onggojib.character.emotion-magistrate-sorrow-v3",
+        "mirth": "onggojib.character.emotion-magistrate-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.guard",
+      "name": "포졸",
+      "slots": {
+        "neutral": "onggojib.character.posol-pixel",
+        "joy": "onggojib.character.emotion-guard-joy-v3",
+        "anger": "onggojib.character.emotion-guard-anger-v3",
+        "sorrow": "onggojib.character.emotion-guard-sorrow-v3",
+        "mirth": "onggojib.character.emotion-guard-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.second-child",
+      "name": "둘째 아이",
+      "slots": {
+        "neutral": "onggojib.character.second-child-hesitant-pixel",
+        "joy": "creative.character.onggojib-child-listening",
+        "anger": "onggojib.character.emotion-second-child-anger-v3",
+        "sorrow": "onggojib.character.emotion-second-child-sorrow-v3",
+        "mirth": "onggojib.character.emotion-second-child-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.stranger",
+      "name": "낯선 사람",
+      "slots": {
+        "neutral": "onggojib.character.stranger-hidden-pixel",
+        "joy": "onggojib.character.emotion-stranger-joy-v3",
+        "anger": "onggojib.character.emotion-stranger-anger-v3",
+        "sorrow": "onggojib.character.emotion-stranger-sorrow-v3",
+        "mirth": "onggojib.character.emotion-stranger-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.youngest-child",
+      "name": "막내 아이",
+      "slots": {
+        "neutral": "onggojib.character.youngest-child-cautious-pixel",
+        "joy": "onggojib.character.emotion-youngest-child-joy-v3",
+        "anger": "onggojib.character.emotion-youngest-child-anger-v3",
+        "sorrow": "onggojib.character.expression-youngest-child-cry-v1",
+        "mirth": "onggojib.character.emotion-youngest-child-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.fairy",
+      "name": "막내 선녀",
+      "slots": {
+        "neutral": "seonnyeo.character.M01-earth-neutral",
+        "joy": "seonnyeo.character.M01-soft-smile",
+        "anger": "seonnyeo.character.emotion-fairy-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-fairy-sorrow-v3",
+        "mirth": "seonnyeo.character.M01-bright"
+      }
+    },
+    {
+      "characterId": "seonnyeo.woodcutter",
+      "name": "나무꾼",
+      "slots": {
+        "neutral": "seonnyeo.character.M02-neutral",
+        "joy": "seonnyeo.character.M02-dry-smile",
+        "anger": "seonnyeo.character.emotion-woodcutter-anger-v3",
+        "sorrow": "seonnyeo.character.M02-sad",
+        "mirth": "seonnyeo.character.emotion-woodcutter-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.eldest-fairy",
+      "name": "큰언니 선녀",
+      "slots": {
+        "neutral": "seonnyeo.character.M03-neutral",
+        "joy": "seonnyeo.character.emotion-eldest-fairy-joy-v3",
+        "anger": "seonnyeo.character.emotion-eldest-fairy-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-eldest-fairy-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-eldest-fairy-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.second-fairy",
+      "name": "둘째 언니 선녀",
+      "slots": {
+        "neutral": "seonnyeo.character.M04-neutral",
+        "joy": "seonnyeo.character.emotion-second-fairy-joy-v3",
+        "anger": "seonnyeo.character.emotion-second-fairy-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-second-fairy-sorrow-v3",
+        "mirth": "seonnyeo.character.supporting-second-fairy-laugh-v2"
+      }
+    },
+    {
+      "characterId": "onggojib.mother",
+      "name": "어머니",
+      "slots": {
+        "neutral": "onggojib.character.classic-mother",
+        "joy": "onggojib.character.emotion-mother-joy-v3",
+        "anger": "onggojib.character.emotion-mother-anger-v3",
+        "sorrow": "onggojib.character.emotion-mother-sorrow-v3",
+        "mirth": "onggojib.character.emotion-mother-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.monk",
+      "name": "승려",
+      "slots": {
+        "neutral": "onggojib.character.classic-monk",
+        "joy": "onggojib.character.emotion-monk-joy-v3",
+        "anger": "onggojib.character.emotion-monk-anger-v3",
+        "sorrow": "onggojib.character.emotion-monk-sorrow-v3",
+        "mirth": "onggojib.character.emotion-monk-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.master",
+      "name": "도승",
+      "slots": {
+        "neutral": "onggojib.character.classic-master",
+        "joy": "onggojib.character.emotion-master-joy-v3",
+        "anger": "onggojib.character.emotion-master-anger-v3",
+        "sorrow": "onggojib.character.emotion-master-sorrow-v3",
+        "mirth": "onggojib.character.emotion-master-mirth-v3"
+      }
+    },
+    {
+      "characterId": "onggojib.straw",
+      "name": "짚 인형",
+      "slots": {
+        "neutral": "onggojib.character.classic-straw-bare",
+        "joy": "onggojib.character.emotion-straw-joy-v3",
+        "anger": "onggojib.character.emotion-straw-anger-v3",
+        "sorrow": "onggojib.character.emotion-straw-sorrow-v3",
+        "mirth": "onggojib.character.emotion-straw-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.deer",
+      "name": "사슴",
+      "slots": {
+        "neutral": "seonnyeo.character.classic-deer",
+        "joy": "seonnyeo.character.emotion-deer-joy-v3",
+        "anger": "seonnyeo.character.emotion-deer-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-deer-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-deer-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.hunter",
+      "name": "사냥꾼",
+      "slots": {
+        "neutral": "seonnyeo.character.classic-hunter",
+        "joy": "seonnyeo.character.emotion-hunter-joy-v3",
+        "anger": "seonnyeo.character.emotion-hunter-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-hunter-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-hunter-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.mother",
+      "name": "어머니",
+      "slots": {
+        "neutral": "seonnyeo.character.classic-mother",
+        "joy": "seonnyeo.character.supporting-mother-comfort-v2",
+        "anger": "seonnyeo.character.emotion-mother-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-mother-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-mother-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.first-child",
+      "name": "선녀의 첫째",
+      "slots": {
+        "neutral": "seonnyeo.character.emotion-first-child-neutral-v3",
+        "joy": "seonnyeo.character.emotion-first-child-joy-v3",
+        "anger": "seonnyeo.character.emotion-first-child-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-first-child-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-first-child-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.second-child",
+      "name": "선녀의 둘째",
+      "slots": {
+        "neutral": "seonnyeo.character.emotion-second-child-neutral-v3",
+        "joy": "seonnyeo.character.emotion-second-child-joy-v3",
+        "anger": "seonnyeo.character.emotion-second-child-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-second-child-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-second-child-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.horse",
+      "name": "용마",
+      "slots": {
+        "neutral": "seonnyeo.character.classic-celestial-horse",
+        "joy": "seonnyeo.character.emotion-horse-joy-v3",
+        "anger": "seonnyeo.character.emotion-horse-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-horse-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-horse-mirth-v3"
+      }
+    },
+    {
+      "characterId": "seonnyeo.rooster",
+      "name": "수탉",
+      "slots": {
+        "neutral": "seonnyeo.character.classic-rooster-calling-sky",
+        "joy": "seonnyeo.character.emotion-rooster-joy-v3",
+        "anger": "seonnyeo.character.emotion-rooster-anger-v3",
+        "sorrow": "seonnyeo.character.emotion-rooster-sorrow-v3",
+        "mirth": "seonnyeo.character.emotion-rooster-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.heungbu",
+      "name": "흥부",
+      "slots": {
+        "neutral": "heungbu.character.heungbu-default",
+        "joy": "heungbu.character.emotion-heungbu-joy-v3",
+        "anger": "heungbu.character.emotion-heungbu-anger-v3",
+        "sorrow": "heungbu.character.emotion-heungbu-sorrow-v3",
+        "mirth": "heungbu.character.heungbu-happy"
+      }
+    },
+    {
+      "characterId": "heungbu.nolbu",
+      "name": "놀부",
+      "slots": {
+        "neutral": "heungbu.character.nolbu-default",
+        "joy": "heungbu.character.emotion-nolbu-joy-v3",
+        "anger": "heungbu.character.nolbu-angry",
+        "sorrow": "heungbu.character.emotion-nolbu-sorrow-v3",
+        "mirth": "heungbu.character.emotion-nolbu-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.wife-heungbu",
+      "name": "흥부 아내",
+      "slots": {
+        "neutral": "heungbu.character.wife-heungbu",
+        "joy": "heungbu.character.emotion-wife-heungbu-joy-v3",
+        "anger": "heungbu.character.emotion-wife-heungbu-anger-v3",
+        "sorrow": "heungbu.character.emotion-wife-heungbu-sorrow-v3",
+        "mirth": "heungbu.character.expression-wife-heungbu-welcome-v1"
+      }
+    },
+    {
+      "characterId": "heungbu.wife-nolbu",
+      "name": "놀부 아내",
+      "slots": {
+        "neutral": "heungbu.character.wife-nolbu",
+        "joy": "heungbu.character.expression-wife-nolbu-offer-v1",
+        "anger": "heungbu.character.emotion-wife-nolbu-anger-v3",
+        "sorrow": "heungbu.character.emotion-wife-nolbu-sorrow-v3",
+        "mirth": "heungbu.character.emotion-wife-nolbu-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.swallow",
+      "name": "제비",
+      "slots": {
+        "neutral": "heungbu.character.swallow",
+        "joy": "heungbu.character.emotion-swallow-joy-v3",
+        "anger": "heungbu.character.emotion-swallow-anger-v3",
+        "sorrow": "heungbu.character.emotion-swallow-sorrow-v3",
+        "mirth": "heungbu.character.emotion-swallow-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.neighbor",
+      "name": "이웃 농부",
+      "slots": {
+        "neutral": "heungbu.character.neighbor",
+        "joy": "heungbu.character.supporting-neighbor-comfort-v2",
+        "anger": "heungbu.character.emotion-neighbor-anger-v3",
+        "sorrow": "heungbu.character.emotion-neighbor-sorrow-v3",
+        "mirth": "heungbu.character.emotion-neighbor-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.street-boy",
+      "name": "아이 5 · 길거리 남자아이",
+      "slots": {
+        "neutral": "heungbu.character.child-05",
+        "joy": "heungbu.character.emotion-street-boy-joy-v3",
+        "anger": "heungbu.character.emotion-street-boy-anger-v3",
+        "sorrow": "heungbu.character.emotion-street-boy-sorrow-v3",
+        "mirth": "heungbu.character.emotion-street-boy-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.street-girl",
+      "name": "아이 6 · 길거리 여자아이",
+      "slots": {
+        "neutral": "heungbu.character.child-06",
+        "joy": "heungbu.character.emotion-street-girl-joy-v3",
+        "anger": "heungbu.character.emotion-street-girl-anger-v3",
+        "sorrow": "heungbu.character.emotion-street-girl-sorrow-v3",
+        "mirth": "heungbu.character.emotion-street-girl-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.child-01",
+      "name": "아이 1 · 흥부네 첫째",
+      "slots": {
+        "neutral": "heungbu.character.child-01",
+        "joy": "heungbu.character.emotion-child-01-joy-v3",
+        "anger": "heungbu.character.emotion-child-01-anger-v3",
+        "sorrow": "heungbu.character.emotion-child-01-sorrow-v3",
+        "mirth": "heungbu.character.supporting-child-first-cheer-v2"
+      }
+    },
+    {
+      "characterId": "heungbu.child-02",
+      "name": "아이 2 · 흥부네 둘째",
+      "slots": {
+        "neutral": "heungbu.character.child-02",
+        "joy": "heungbu.character.emotion-child-02-joy-v3",
+        "anger": "heungbu.character.emotion-child-02-anger-v3",
+        "sorrow": "heungbu.character.supporting-child-second-cry-v2",
+        "mirth": "heungbu.character.emotion-child-02-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.child-03",
+      "name": "아이 3 · 놀부네 첫째",
+      "slots": {
+        "neutral": "heungbu.character.child-03",
+        "joy": "heungbu.character.emotion-child-03-joy-v3",
+        "anger": "heungbu.character.emotion-child-03-anger-v3",
+        "sorrow": "heungbu.character.emotion-child-03-sorrow-v3",
+        "mirth": "heungbu.character.emotion-child-03-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.child-04",
+      "name": "아이 4 · 놀부네 둘째",
+      "slots": {
+        "neutral": "heungbu.character.child-04",
+        "joy": "heungbu.character.emotion-child-04-joy-v3",
+        "anger": "heungbu.character.emotion-child-04-anger-v3",
+        "sorrow": "heungbu.character.emotion-child-04-sorrow-v3",
+        "mirth": "heungbu.character.emotion-child-04-mirth-v3"
+      }
+    },
+    {
+      "characterId": "creative.village-girl",
+      "name": "마을 소녀",
+      "slots": {
+        "neutral": "creative.character.village-girl",
+        "joy": "creative.character.emotion-village-girl-joy-v3",
+        "anger": "creative.character.emotion-village-girl-anger-v3",
+        "sorrow": "creative.character.emotion-village-girl-sorrow-v3",
+        "mirth": "creative.character.emotion-village-girl-mirth-v3"
+      }
+    },
+    {
+      "characterId": "creative.young-traveler",
+      "name": "젊은 여행자",
+      "slots": {
+        "neutral": "creative.character.young-traveler",
+        "joy": "creative.character.emotion-young-traveler-joy-v3",
+        "anger": "creative.character.emotion-young-traveler-anger-v3",
+        "sorrow": "creative.character.emotion-young-traveler-sorrow-v3",
+        "mirth": "creative.character.emotion-young-traveler-mirth-v3"
+      }
+    },
+    {
+      "characterId": "rabbit-turtle.fish-courtier",
+      "name": "물고기 신하",
+      "slots": {
+        "neutral": "rabbit-turtle.character.layered-fish-courtier-v1",
+        "joy": "rabbit-turtle.character.emotion-turtle-fish-courtier-joy-v3",
+        "anger": "rabbit-turtle.character.emotion-turtle-fish-courtier-anger-v3",
+        "sorrow": "rabbit-turtle.character.emotion-turtle-fish-courtier-sorrow-v3",
+        "mirth": "rabbit-turtle.character.emotion-turtle-fish-courtier-mirth-v3"
+      }
+    },
+    {
+      "characterId": "rabbit-turtle.crab-courtier",
+      "name": "게 신하",
+      "slots": {
+        "neutral": "rabbit-turtle.character.layered-crab-courtier-v1",
+        "joy": "rabbit-turtle.character.emotion-turtle-crab-courtier-joy-v3",
+        "anger": "rabbit-turtle.character.emotion-turtle-crab-courtier-anger-v3",
+        "sorrow": "rabbit-turtle.character.emotion-turtle-crab-courtier-sorrow-v3",
+        "mirth": "rabbit-turtle.character.emotion-turtle-crab-courtier-mirth-v3"
+      }
+    },
+    {
+      "characterId": "heungbu.dokkaebi",
+      "name": "도깨비",
+      "slots": {
+        "neutral": "heungbu.character.layered-dokkaebi-hat-v1",
+        "joy": "heungbu.character.emotion-dokkaebi-joy-v3",
+        "anger": "heungbu.character.emotion-dokkaebi-anger-v3",
+        "sorrow": "heungbu.character.emotion-dokkaebi-sorrow-v3",
+        "mirth": "heungbu.character.emotion-dokkaebi-mirth-v3"
+      }
+    }
+  ]
+}
