@@ -59,7 +59,68 @@
           790
         ]
       ],
-      "promptSummary": "Background extraction from exact original character; preserve face, clasped hands or hoe-working pose, costume, props and watercolor style. Remove trapped white matte between legs and arms/tools; true alpha transparency; retain light-colored clothing."
+      "promptSummary": "Background extraction from exact original character; preserve face, clasped hands or hoe-working pose, costume, props and watercolor style. Remove trapped white matte between legs and arms/tools; true alpha transparency; retain light-colored clothing.",
+      "previousCatalogEntry": {
+        "id": "heungbu.character.heungbu-pleading",
+        "displayName": "흥부 · 간절함",
+        "label": "흥부 · 간절함",
+        "story": "흥부와 놀부",
+        "type": "character",
+        "category": "character",
+        "framing": "전신",
+        "group": "흥부",
+        "pose": "간절함",
+        "usage": "원작 사용",
+        "selectionTier": "추가 자료",
+        "tags": [
+          "흥부와 놀부",
+          "원작 읽기",
+          "흥부",
+          "간절함"
+        ],
+        "src": "/assets/legacy-18da4fc/heungbu.character.heungbu-pleading.webp",
+        "sourcePath": "public/story-assets/heungbu.character.heungbu-pleading.webp",
+        "copyright": "놀퀴즈",
+        "revision": "4871731d647743b08b87c71d79788180b231b774dc83170839e008e79419e3ea",
+        "geometry": {
+          "left": 0.175,
+          "right": 0.82625,
+          "top": 0.125,
+          "bottom": 0.9583333333333334,
+          "width": 800,
+          "height": 1200
+        },
+        "metadata": {
+          "kind": "character",
+          "placementRole": "character-slot",
+          "storyPackIds": [
+            "heungbu-nolbu"
+          ],
+          "qualityStatus": "secondary",
+          "pickerVisibility": "secondary",
+          "characterIds": [
+            "heungbu.heungbu"
+          ],
+          "primaryCharacterId": "heungbu.heungbu",
+          "framing": "full",
+          "expressions": [],
+          "actions": [
+            "부탁"
+          ],
+          "variantId": "기본 모습",
+          "designVersionId": "original",
+          "poseSetId": "heungbu.character.heungbu-pleading",
+          "pairingStatus": "missing-upper",
+          "qualityReview": {
+            "decision": "KEEP",
+            "sha256": "4871731d647743b08b87c71d79788180b231b774dc83170839e008e79419e3ea",
+            "referenceAssetId": "heungbu.character.heungbu-default",
+            "poseClass": "action",
+            "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
+            "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
+          }
+        }
+      }
     },
     {
       "id": "heungbu.character.nolbu-working",
@@ -113,7 +174,71 @@
           740
         ]
       ],
-      "promptSummary": "Background extraction from exact original character; preserve face, clasped hands or hoe-working pose, costume, props and watercolor style. Remove trapped white matte between legs and arms/tools; true alpha transparency; retain light-colored clothing."
+      "promptSummary": "Background extraction from exact original character; preserve face, clasped hands or hoe-working pose, costume, props and watercolor style. Remove trapped white matte between legs and arms/tools; true alpha transparency; retain light-colored clothing.",
+      "previousCatalogEntry": {
+        "id": "heungbu.character.nolbu-working",
+        "displayName": "놀부 · 밭일과 재기",
+        "label": "놀부 · 밭일과 재기",
+        "story": "흥부와 놀부",
+        "type": "character",
+        "category": "character",
+        "framing": "전신",
+        "group": "놀부",
+        "pose": "일하기",
+        "usage": "원작 사용",
+        "selectionTier": "기본 추천",
+        "tags": [
+          "흥부와 놀부",
+          "원작 읽기",
+          "놀부",
+          "일하기",
+          "농사",
+          "밭일",
+          "재기"
+        ],
+        "src": "/assets/legacy-18da4fc/heungbu.character.nolbu-working.webp",
+        "sourcePath": "public/story-assets/heungbu.character.nolbu-working.webp",
+        "copyright": "놀퀴즈",
+        "revision": "a055d931c9c7679f22884b29f42beddd520edbb4f489efe4861e89fc3236de9c",
+        "geometry": {
+          "left": 0.0475,
+          "right": 0.9525,
+          "top": 0.1,
+          "bottom": 0.9583333333333334,
+          "width": 800,
+          "height": 1200
+        },
+        "metadata": {
+          "kind": "character",
+          "placementRole": "character-slot",
+          "storyPackIds": [
+            "heungbu-nolbu"
+          ],
+          "qualityStatus": "approved",
+          "pickerVisibility": "primary",
+          "characterIds": [
+            "heungbu.nolbu"
+          ],
+          "primaryCharacterId": "heungbu.nolbu",
+          "framing": "full",
+          "expressions": [],
+          "actions": [
+            "일하기"
+          ],
+          "variantId": "기본 모습",
+          "designVersionId": "original",
+          "poseSetId": "heungbu.character.nolbu-working",
+          "pairingStatus": "missing-upper",
+          "qualityReview": {
+            "decision": "KEEP",
+            "sha256": "a055d931c9c7679f22884b29f42beddd520edbb4f489efe4861e89fc3236de9c",
+            "referenceAssetId": "heungbu.character.nolbu-default",
+            "poseClass": "action",
+            "reason": "캐릭터 비교판에서 얼굴·의상과 얼굴/어깨·손, 몸통·팔다리의 상대 비율을 시각 확인. bbox 높이로 체형을 판정하지 않음.",
+            "evidence": "IQ-01: work/story-assets/remediation/audit/contact-sheets; docs/qa/character-asset-audit.json"
+          }
+        }
+      }
     }
   ]
 }

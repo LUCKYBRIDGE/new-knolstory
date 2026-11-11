@@ -61,6 +61,11 @@
       "command": "pnpm test:docs",
       "exitCode": 0,
       "result": "10 passed"
+    },
+    {
+      "command": "pnpm exec vitest run --config .cache/sync-vitest.config.mjs packages/asset-registry/tests/generated-weather-asset.test.ts packages/runtime-contract/src/transparency-path.test.ts packages/asset-registry/tests/catalog.test.ts packages/compatibility/tests/catalog-layered-scenes.test.ts",
+      "exitCode": 0,
+      "result": "4 files, 12 tests passed including unchanged historical digest and repair-only field boundary"
     }
   ],
   "nativeVerification": {
@@ -103,6 +108,13 @@
       "scope": "native mobile comparison",
       "cause": "Test captured the previous workspace immediately after import, before asynchronous persistence completed",
       "resolution": "Wait for imported title and saved status before taking preservation baseline; final 2 tests pass."
+    },
+    {
+      "scope": "GitHub CI full coverage at f89f086",
+      "run": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/42981333617",
+      "result": "277 files passed/1 failed; 2310 passed/1 failed/2 skipped",
+      "cause": "Historical weather-registration test froze all 432 prior catalogue rows and did not account for the 2 later user-authorized transparent replacements",
+      "resolution": "Retain the historical digest; reconstruct exactly the two recorded old rows from previousCatalogEntry and verify all other rows/byte revisions unchanged. Add a check preserving all identity and selection metadata outside reviewed image fields."
     }
   ],
   "provenanceNotes": "Glob order is now sorted so usage references are deterministic across filesystems. 1346 service authorization references change because their exact shared declaration hash changed; no existing license category changed.",
@@ -112,5 +124,10 @@
     "full application E2E suite",
     "new runtime approved by the historical production source review"
   ],
-  "crossMachineProof": "Python tests copy only committed source PNGs, receipt, catalogue and derivatives into a fresh temporary directory, then verify/restore without legacy checkout or task caches."
+  "crossMachineProof": "Python tests copy only committed source PNGs, receipt, catalogue and derivatives into a fresh temporary directory, then verify/restore without legacy checkout or task caches.",
+  "defaultPythonFontTool": {
+    "version": "4.60.2",
+    "installation": "User Python site-packages; python3 imports the pinned version without task-specific PYTHONPATH",
+    "verification": "Default Python reproduces the reviewed stage font SHA256 f934737fbbde38eebe52d002c8fd898e830bfba1778676e38c3b0c4283fa94c9"
+  }
 }
