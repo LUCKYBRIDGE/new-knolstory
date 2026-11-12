@@ -9,6 +9,7 @@ import {ALLOW_ALL_PERMISSIONS} from '../classroom/permissions';
 const origin='http://localhost:3000',sessionCookie='knolstory-next-session';
 const teacherId='11111111-1111-4111-8111-111111111111',studentId='22222222-2222-4222-8222-222222222222',memberId='33333333-3333-4333-8333-333333333333',adminId='44444444-4444-4444-8444-444444444444';
 const assignmentId='55555555-5555-4555-8555-555555555555';
+const missionId='66666666-6666-4666-8666-666666666666';
 const servers:Server[]=[];
 afterEach(async()=>{await Promise.all(servers.splice(0).map(s=>new Promise<void>(r=>{s.closeAllConnections();s.close(()=>r());})));});
 
@@ -30,12 +31,15 @@ async function harness(overrides:Partial<ClassroomRouterOptions>={}){
   setTeacherCode:vi.fn(async()=>456),
   createClassroom:vi.fn(async()=>({id:'c'})),getClassroom:vi.fn(async()=>({id:'c'})),patchClassroom:vi.fn(async()=>({id:'c'})),
   addStudents:vi.fn(async()=>({id:'c'})),patchStudent:vi.fn(async()=>({number:3})),setPermissions:vi.fn(async()=>({id:'c'})),deleteStudent:vi.fn(async()=>({id:'c'})),
-  issueQr:vi.fn(async()=>({url:'http://localhost:3000/?class-login=t'})),
+  prepareQrPrint:vi.fn(async()=>({className:'3반',classCode:'ABC234',cards:[]})),
+  issueQr:vi.fn(async()=>({url:'http://localhost:3000/?q=t'})),
   verifyStudentLogin:vi.fn(async(_code:string,_number:number,password:string)=>password==='1234'?studentId:null),
-  verifyQrToken:vi.fn(async(token:string)=>token==='q'.repeat(43)?studentId:null),
+  verifyQrToken:vi.fn(async(token:string)=>token==='q'.repeat(27)||token==='q'.repeat(43)?studentId:null),
   listAssignments:vi.fn(async()=>[]),createAssignment:vi.fn(async()=>({id:assignmentId})),patchAssignment:vi.fn(async()=>({id:assignmentId})),
   listSubmissions:vi.fn(async()=>[]),readSubmissionFor:vi.fn(async()=>({document:{},submittedAt:1})),readOwnSubmission:vi.fn(async()=>({document:{},submittedAt:1})),
   submit:vi.fn(async()=>({submittedAt:9})),
+  listMissions:vi.fn(async()=>[]),createMission:vi.fn(async()=>({id:missionId})),setMissionOpen:vi.fn(async()=>({id:missionId,open:false})),
+  submitMission:vi.fn(async()=>({submittedAt:11})),listMissionProgress:vi.fn(async()=>[]),reviewMission:vi.fn(async()=>({number:3,reviewStatus:'passed'})),
  };
  const router=createClassroomRouter({origin,authState,classroom:service as unknown as ClassroomService,clock:()=>now,...overrides});
  const server=createServer((req,res)=>{void router(req,res);});servers.push(server);
@@ -128,7 +132,7 @@ describe('classroom routes: teacher endpoints',()=>{
   expect(h.service.setPermissions).toHaveBeenCalledWith(teacherId,[1,2],{...ALLOW_ALL_PERMISSIONS,images:false});
   await t('/classroom/students/permissions','POST',{numbers:[4],permissions:null});expect(h.service.setPermissions).toHaveBeenLastCalledWith(teacherId,[4],null);
   await t('/classroom/students/7','DELETE');expect(h.service.deleteStudent).toHaveBeenCalledWith(teacherId,7);
-  expect(await json(await t('/classroom/students/30/qr','POST'))).toEqual({success:true,data:{url:'http://localhost:3000/?class-login=t'}});
+  expect(await json(await t('/classroom/students/30/qr','POST'))).toEqual({success:true,data:{url:'http://localhost:3000/?q=t'}});
   expect(h.service.issueQr).toHaveBeenCalledWith(teacherId,30);
  });
  it.each([
@@ -166,8 +170,11 @@ describe('classroom routes: teacher endpoints',()=>{
  it('creates, patches and reads assignments and submissions',async()=>{
   const h=await harness(),t=h.as(await h.login(teacherId));
   expect((await t('/classroom/assignments','POST',{title:' 이야기 ',description:'설명',storyKey:'story-a'})).status).toBe(201);
-  expect(h.service.createAssignment).toHaveBeenCalledWith(teacherId,{title:'이야기',description:'설명',storyKey:'story-a'});
-  await t('/classroom/assignments','POST',{title:'t'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'t',description:'',storyKey:null});
+  expect(h.service.createAssignment).toHaveBeenCalledWith(teacherId,{title:'이야기',description:'설명',storyKey:'story-a',format:'knolstory'});
+  await t('/classroom/assignments','POST',{title:'t'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'t',description:'',storyKey:null,format:'knolstory'});
+  expect((await t('/classroom/assignments','POST',{title:'그림 이야기',format:'shortstory'})).status).toBe(201);
+  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'그림 이야기',description:'',storyKey:null,format:'shortstory'});
+  for(const format of ['other',null,1])expect((await t('/classroom/assignments','POST',{title:'잘못된 종류',format})).status).toBe(400);
   await t('/classroom/assignments/'+assignmentId,'PATCH',{open:false,title:'x'});expect(h.service.patchAssignment).toHaveBeenCalledWith(teacherId,assignmentId,{title:'x',open:false});
   await t('/classroom/assignments');expect(h.service.listAssignments).toHaveBeenCalledWith(teacherId,'teacher');
   await t(`/classroom/assignments/${assignmentId}/submissions`);expect(h.service.listSubmissions).toHaveBeenCalledWith(teacherId,assignmentId);
@@ -281,5 +288,90 @@ describe('classroom routes: student and QR login',()=>{
   vi.spyOn(h.sessions,'set').mockImplementation(()=>{throw Error('x');});
   expect((await h.guest('/student-login','POST',body)).status).toBe(503);
   h.sessions.set=original;
+ });
+});
+
+describe('QR print preparation',()=>{
+ it('requires teacher access and CSRF before preparing reusable QR cards',async()=>{
+  const h=await harness(),teacher=h.as(await h.login(teacherId));
+  expect((await h.guest('/classroom/qr-print','POST',{numbers:[1]})).status).toBe(401);
+  expect((await h.as(await h.login(studentId))('/classroom/qr-print','POST',{numbers:[1]})).status).toBe(403);
+  expect(await code(await teacher('/classroom/qr-print','POST',{numbers:[1]},{'x-csrf-token':'bad'}))).toBe('INVALID_CSRF');
+  expect(await json(await teacher('/classroom/qr-print','POST',{numbers:[2,1],replaceExisting:true}))).toEqual({success:true,data:{className:'3반',classCode:'ABC234',cards:[]}});
+  expect(h.service.prepareQrPrint).toHaveBeenCalledWith(teacherId,[2,1],true);
+ });
+ it.each([{}, {numbers:[]},{numbers:[0]},{numbers:[31]},{numbers:[1,1]},{numbers:['1']},{numbers:[1],replaceExisting:false},{numbers:[1],extra:true},{numbers:Array.from({length:31},(_,i)=>i+1)}])('rejects malformed print input %j',async body=>{
+  const h=await harness();expect((await h.as(await h.login(teacherId))('/classroom/qr-print','POST',body)).status).toBe(400);
+  expect(h.service.prepareQrPrint).not.toHaveBeenCalled();
+ });
+ it('defaults to retaining existing tokens and forwards the explicit legacy-reissue gate',async()=>{
+  const h=await harness(),call=h.as(await h.login(teacherId));
+  await call('/classroom/qr-print','POST',{numbers:[1]});
+  expect(h.service.prepareQrPrint).toHaveBeenCalledWith(teacherId,[1],false);
+  h.service.prepareQrPrint.mockRejectedValueOnce(new ClassroomError(409,'QR_REISSUE_REQUIRED'));
+  const response=await call('/classroom/qr-print','POST',{numbers:[1]});
+  expect(response.status).toBe(409);expect(await code(response)).toBe('QR_REISSUE_REQUIRED');
+ });
+});
+
+describe('compact QR login compatibility',()=>{
+ it.each([27,43])('accepts stored QR tokens of length %i',async length=>{
+  const h=await harness(),token='q'.repeat(length),response=await h.guest('/qr-login','POST',{token});
+  expect(response.status).toBe(200);expect(h.service.verifyQrToken).toHaveBeenCalledWith(token);
+ });
+ it.each(['q'.repeat(26),'q'.repeat(28),'q'.repeat(26)+'+','q'.repeat(42)+'+'])('rejects malformed compact and legacy QR tokens',async token=>{
+  const h=await harness(),response=await h.guest('/qr-login','POST',{token});
+  expect(response.status).toBe(401);expect(await code(response)).toBe('INVALID_LOGIN');expect(h.service.verifyQrToken).not.toHaveBeenCalled();
+ });
+});
+
+describe('classroom routes: missions',()=>{
+ const mission={title:'별주부전 읽기',description:'',criteria:'',kind:'reading',storyKey:'rabbit',readingFormat:'original',questions:[]};
+ it('lets teachers create, close and review, and students list and submit, each within their role',async()=>{
+  const h=await harness(),teacher=h.as(await h.login(teacherId)),student=h.as(await h.login(studentId)),member=h.as(await h.login(memberId));
+  expect((await teacher('/classroom/missions')).status).toBe(200);expect(h.service.listMissions).toHaveBeenLastCalledWith(teacherId,'teacher');
+  expect((await student('/classroom/missions')).status).toBe(200);expect(h.service.listMissions).toHaveBeenLastCalledWith(studentId,'student');
+  expect(await code(await member('/classroom/missions'))).toBe('ROLE_NOT_ALLOWED');
+  const created=await teacher('/classroom/missions','POST',mission);expect(created.status).toBe(201);expect(h.service.createMission).toHaveBeenCalledWith(teacherId,mission);
+  expect(await code(await student('/classroom/missions','POST',mission))).toBe('ROLE_NOT_ALLOWED');
+  expect((await teacher(`/classroom/missions/${missionId}`,'PATCH',{open:false})).status).toBe(200);expect(h.service.setMissionOpen).toHaveBeenCalledWith(teacherId,missionId,{open:false});
+  const answer={answers:{},note:'다 읽었어요'};
+  expect(await json(await student(`/classroom/missions/${missionId}/submission`,'PUT',answer))).toEqual({success:true,data:{submittedAt:11}});expect(h.service.submitMission).toHaveBeenCalledWith(studentId,missionId,answer);
+  expect(await code(await teacher(`/classroom/missions/${missionId}/submission`,'PUT',answer))).toBe('ROLE_NOT_ALLOWED');
+  expect((await teacher(`/classroom/missions/${missionId}/progress`)).status).toBe(200);
+  expect(await code(await student(`/classroom/missions/${missionId}/progress`))).toBe('ROLE_NOT_ALLOWED');
+  const review={reviewStatus:'passed',feedback:'',expectedSubmittedAt:11};
+  expect((await teacher(`/classroom/missions/${missionId}/progress/3`,'PUT',review)).status).toBe(200);expect(h.service.reviewMission).toHaveBeenCalledWith(teacherId,missionId,3,review);
+  expect(await code(await student(`/classroom/missions/${missionId}/progress/3`,'PUT',review))).toBe('ROLE_NOT_ALLOWED');
+  expect(await code(await teacher(`/classroom/missions/${missionId}/progress/31`,'PUT',review))).toBe('INVALID_REQUEST');
+  expect((await teacher('/classroom/missions/not-a-uuid/progress')).status).toBe(404);
+ });
+ it('requires a session and CSRF for mission writes',async()=>{
+  const h=await harness(),who=await h.login(studentId);
+  expect(await code(await h.guest('/classroom/missions'))).toBe('SESSION_REQUIRED');
+  expect(await code(await h.as({cookie:who.cookie,csrf:'wrong'})(`/classroom/missions/${missionId}/submission`,'PUT',{answers:{},note:''}))).toBe('INVALID_CSRF');
+  expect(h.service.submitMission).not.toHaveBeenCalled();
+ });
+ it('accepts a full Korean worksheet and a full mission, and rejects bodies over 64 KiB',async()=>{
+  const h=await harness(),teacher=h.as(await h.login(teacherId)),student=h.as(await h.login(studentId));
+  const full={answers:Object.fromEntries(Array.from({length:8},(_,i)=>[`q${i+1}`,'가'.repeat(2000)])),note:'나'.repeat(2000)};
+  expect(Buffer.byteLength(JSON.stringify(full))).toBeGreaterThan(16*1024);
+  expect((await student(`/classroom/missions/${missionId}/submission`,'PUT',full)).status).toBe(200);
+  const large={...mission,kind:'worksheet',description:'다'.repeat(2000),criteria:'라'.repeat(2000),questions:Array.from({length:8},(_,i)=>({id:`q${i+1}`,prompt:'마'.repeat(400)}))};
+  expect(Buffer.byteLength(JSON.stringify(large))).toBeGreaterThan(16*1024);
+  expect((await teacher('/classroom/missions','POST',large)).status).toBe(201);
+  const over=await student(`/classroom/missions/${missionId}/submission`,'PUT',{answers:{q1:'가'.repeat(22000)},note:''});
+  expect(over.status).toBe(413);expect(await code(over)).toBe('REQUEST_TOO_LARGE');
+  // Reviews and open/close stay on the ordinary 16 KiB limit.
+  expect((await teacher(`/classroom/missions/${missionId}/progress/3`,'PUT',{reviewStatus:'revise',feedback:'바'.repeat(6000),expectedSubmittedAt:1})).status).toBe(413);
+  expect(h.service.submitMission).toHaveBeenCalledTimes(1);expect(h.service.reviewMission).not.toHaveBeenCalled();
+ });
+ it('passes service errors through with their codes',async()=>{
+  const h=await harness(),teacher=h.as(await h.login(teacherId)),student=h.as(await h.login(studentId));
+  h.service.reviewMission.mockRejectedValueOnce(new ClassroomError(409,'MISSION_SUBMISSION_CHANGED'));
+  const changed=await teacher(`/classroom/missions/${missionId}/progress/3`,'PUT',{reviewStatus:'passed',feedback:'',expectedSubmittedAt:1});
+  expect(changed.status).toBe(409);expect(await code(changed)).toBe('MISSION_SUBMISSION_CHANGED');
+  h.service.submitMission.mockRejectedValueOnce(new ClassroomError(409,'MISSION_CLOSED'));
+  expect(await code(await student(`/classroom/missions/${missionId}/submission`,'PUT',{answers:{},note:''}))).toBe('MISSION_CLOSED');
  });
 });

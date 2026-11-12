@@ -2,7 +2,7 @@ import {createCipheriv,createDecipheriv,createHash,randomBytes,randomInt,scrypt,
 /** Pure classroom secret handling. No database or HTTP access. */
 export const CLASS_CODE_ALPHABET='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 export const CLASS_CODE_PATTERN=/^[A-HJ-NP-Z2-9]{6}$/;
-const SCRYPT={N:16384,r:8,p:1,maxmem:64*1024*1024},KEY_LENGTH=32,TOKEN_PATTERN=/^[A-Za-z0-9_-]{43}$/;
+const SCRYPT={N:16384,r:8,p:1,maxmem:64*1024*1024},KEY_LENGTH=32,TOKEN_PATTERN=/^(?:[A-Za-z0-9_-]{27}|[A-Za-z0-9_-]{43})$/;
 function derive(secret:string,salt:Buffer):Promise<Buffer>{
  return new Promise((resolve,reject)=>scrypt(secret.normalize('NFKC'),salt,KEY_LENGTH,SCRYPT,(error,key)=>error?reject(error):resolve(key)));
 }
@@ -34,7 +34,8 @@ export function generateStudentPassword(pick:(max:number)=>number=max=>randomInt
  return String(pick(10000)).padStart(4,'0');
 }
 export function generateQrToken():{token:string;hash:string}{
- const token=randomBytes(32).toString('base64url');return {token,hash:hashQrToken(token)};
+ // 160 bits of CSPRNG entropy keeps printed QR data compact. Old 256-bit tokens remain accepted.
+ const token=randomBytes(20).toString('base64url');return {token,hash:hashQrToken(token)};
 }
 export function validQrToken(value:unknown):value is string{return typeof value==='string'&&TOKEN_PATTERN.test(value);}
 export function hashQrToken(token:string):string{return createHash('sha256').update(token).digest('hex');}

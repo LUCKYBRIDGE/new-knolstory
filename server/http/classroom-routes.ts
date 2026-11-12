@@ -24,6 +24,8 @@ export type ClassroomRouterOptions=Readonly<{
 class HttpError extends Error{constructor(readonly status:number,readonly code:string){super(code);}}
 const BASE='/api/v1/class';
 const SMALL_BODY=16*1024,LOGIN_BODY=2*1024;
+/** Mission text is plain prose: 8 answers and a note of 2,000 Korean characters are about 54 KiB of UTF-8, a new mission about 22 KiB. */
+const MISSION_BODY=64*1024;
 const UUID='[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}';
 
 function header(req:IncomingMessage,name:string):string{
@@ -97,7 +99,7 @@ function number(value:unknown):number{
 const studentNumber=(value:string)=>{const result=Number(value);if(!/^[1-9]\d?$/.test(value)||result>30)throw bad();return result;};
 
 type Access='public'|'any'|'upgrade'|'teacher'|'student'|'admin'|'assignments';
-type Body='none'|'json'|'upload';
+type Body='none'|'json'|'mission'|'upload';
 type Call=Readonly<{accountId:string;role:Role;params:readonly string[];body:unknown;req:IncomingMessage;res:ServerResponse}>;
 type Route=Readonly<{method:string;pattern:RegExp;access:Access;body:Body;run:(call:Call)=>Promise<unknown>|unknown;status?:number}>;
 const ROLES:Record<Exclude<Access,'public'>,readonly Role[]>={
@@ -179,6 +181,13 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
    });
   }},
   {method:'DELETE',pattern:/^\/classroom\/students\/(\d+)$/,access:'teacher',body:'none',run:({accountId,params})=>classroom.deleteStudent(accountId,studentNumber(params[0]!))},
+  {method:'POST',pattern:/^\/classroom\/qr-print$/,access:'teacher',body:'json',run({accountId,body}){
+   const input=object(body,['numbers','replaceExisting'],['numbers']);
+   if(!Array.isArray(input.numbers)||input.numbers.length<1||input.numbers.length>30||input.replaceExisting!==undefined&&input.replaceExisting!==true)throw bad();
+   const numbers=input.numbers.map(number);
+   if(numbers.some(value=>value<1||value>30)||new Set(numbers).size!==numbers.length)throw bad();
+   return classroom.prepareQrPrint(accountId,numbers,input.replaceExisting===true);
+  }},
   {method:'POST',pattern:/^\/classroom\/students\/(\d+)\/qr$/,access:'teacher',body:'none',run:({accountId,params})=>classroom.issueQr(accountId,studentNumber(params[0]!))},
   {method:'POST',pattern:/^\/student-login$/,access:'public',body:'json',async run({req,res,body}){
    requireOrigin(req);
@@ -206,8 +215,10 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   }},
   {method:'GET',pattern:/^\/classroom\/assignments$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listAssignments(accountId,role)},
   {method:'POST',pattern:/^\/classroom\/assignments$/,access:'teacher',body:'json',status:201,run({accountId,body}){
-   const input=object(body,['title','description','storyKey'],['title']);
+   const input=object(body,['title','description','storyKey','format'],['title']);
+   if(input.format!==undefined&&input.format!=='knolstory'&&input.format!=='shortstory')throw bad();
    return classroom.createAssignment(accountId,{
+    format:input.format??'knolstory',
     title:string(input.title,1,100),
     description:input.description===undefined?'':string(input.description,0,2000,false),
     storyKey:input.storyKey===undefined||input.storyKey===null?null:string(input.storyKey,1,128),
@@ -227,6 +238,13 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submission$`),access:'student',body:'upload',run:({accountId,params,body})=>
    classroom.submit(accountId,params[0]!,object(body,['document'],['document']).document)},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submission$`),access:'student',body:'none',run:({accountId,params})=>classroom.readOwnSubmission(accountId,params[0]!)},
+  // Missions: the service validates every field (server/classroom/mission-contract.ts) and scopes each call to the caller's class.
+  {method:'GET',pattern:/^\/classroom\/missions$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listMissions(accountId,role)},
+  {method:'POST',pattern:/^\/classroom\/missions$/,access:'teacher',body:'mission',status:201,run:({accountId,body})=>classroom.createMission(accountId,body)},
+  {method:'PATCH',pattern:new RegExp(`^/classroom/missions/(${UUID})$`),access:'teacher',body:'json',run:({accountId,params,body})=>classroom.setMissionOpen(accountId,params[0]!,body)},
+  {method:'PUT',pattern:new RegExp(`^/classroom/missions/(${UUID})/submission$`),access:'student',body:'mission',run:({accountId,params,body})=>classroom.submitMission(accountId,params[0]!,body)},
+  {method:'GET',pattern:new RegExp(`^/classroom/missions/(${UUID})/progress$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.listMissionProgress(accountId,params[0]!)},
+  {method:'PUT',pattern:new RegExp(`^/classroom/missions/(${UUID})/progress/(\\d+)$`),access:'teacher',body:'json',run:({accountId,params,body})=>classroom.reviewMission(accountId,params[0]!,studentNumber(params[1]!),body)},
  ];
 
  function match(req:IncomingMessage){
@@ -267,7 +285,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     role=found;
     if(!ROLES[route.access].includes(role))throw new HttpError(403,'ROLE_NOT_ALLOWED');
    }
-   const limit=route.body==='upload'?bodyLimit:route.access==='public'?LOGIN_BODY:SMALL_BODY;
+   const limit=route.body==='upload'?bodyLimit:route.body==='mission'?MISSION_BODY:route.access==='public'?LOGIN_BODY:SMALL_BODY;
    framing(req,limit,route.body!=='none');
    let body:unknown;
    if(route.body!=='none'){

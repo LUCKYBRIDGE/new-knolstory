@@ -23,12 +23,13 @@ describe('classroom secrets',()=>{
   for(let i=0;i<200;i++)expect(generateStudentPassword()).toMatch(/^\d{4}$/);
   expect(generateStudentPassword(()=>7)).toBe('0007');expect(generateStudentPassword(()=>9999)).toBe('9999');
  });
- it('creates 32 byte QR tokens and stores only the sha256 hash',()=>{
+ it('creates 20 byte QR tokens and accepts legacy 32 byte tokens and stores only the sha256 hash',()=>{
   const first=generateQrToken(),second=generateQrToken();
-  expect(validQrToken(first.token)).toBe(true);expect(Buffer.from(first.token,'base64url')).toHaveLength(32);
+  expect(validQrToken(first.token)).toBe(true);expect(Buffer.from(first.token,'base64url')).toHaveLength(20);expect(first.token).toMatch(/^[A-Za-z0-9_-]{27}$/);
+  expect(validQrToken(randomBytes(32).toString('base64url'))).toBe(true);
   expect(first.hash).toMatch(/^[a-f0-9]{64}$/);expect(first.hash).toBe(hashQrToken(first.token));
   expect(first.token).not.toBe(second.token);expect(first.hash).not.toContain(first.token);
-  for(const value of ['',' ','a'.repeat(42),'a'.repeat(44),'a'.repeat(42)+'+',1,null])expect(validQrToken(value)).toBe(false);
+  for(const value of ['',' ','a'.repeat(26),'a'.repeat(28),'a'.repeat(42),'a'.repeat(44),'a'.repeat(42)+'+',1,null])expect(validQrToken(value)).toBe(false);
  });
  it('round trips AES-256-GCM and binds ciphertext to its context',()=>{
   const cipher=encryptText(key,'0427','account-1');

@@ -2,12 +2,12 @@ import {randomUUID} from 'node:crypto';
 import type {SqlClient,SqlPool} from '../storage/postgres-save-port';
 import {checkedSnapshot,DocumentServiceError} from '../documents/validation';
 import {ALLOW_ALL_PERMISSIONS,effectivePermissions,normalizePermissions,type EditingPermissions} from './permissions';
-import {decoyHash,decryptText,encryptText,generateClassCode,generateQrToken,generateStudentPassword,hashQrToken,hashSecret,verifySecret} from './secrets';
+import {decoyHash,decryptText,encryptText,generateClassCode,generateQrToken,generateStudentPassword,hashQrToken,hashSecret,verifySecret,validQrToken} from './secrets';
 
-/** Classroom domain errors; the HTTP layer maps status and code one-to-one. */
-export class ClassroomError extends Error{
- constructor(readonly status:number,readonly code:string){super(code);this.name='ClassroomError';}
-}
+import {ClassroomError} from './errors';
+export {ClassroomError} from './errors';
+import {createMissionService} from './mission-service';
+
 export type Role='member'|'teacher'|'student'|'admin';
 export type ClassroomServiceOptions=Readonly<{
  /** 32-byte AES-256-GCM key (KNOL_CLASSROOM_SECRET). */
@@ -21,7 +21,9 @@ export type ClassroomServiceOptions=Readonly<{
 export type ClassroomSummary={id:string;name:string;classCode:string;studentCount:number};
 export type StudentView={number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean};
 export type ClassroomView=ClassroomSummary&{defaultPermissions:EditingPermissions;students:StudentView[]};
-export type AssignmentView={id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
+export type QrPrintView={className:string;classCode:string;cards:{number:number;name:string;url:string}[]};
+export type AssignmentFormat='knolstory'|'shortstory';
+export type AssignmentView={format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
 export type MeView={role:Role;account:{id:string};classroom?:ClassroomSummary;student?:{number:number;name:string;classId:string;className:string;permissions:EditingPermissions}};
 
 const MAX_STUDENTS=30;
@@ -92,12 +94,16 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   if(!result.rows[0])throw new ClassroomError(404,'STUDENT_NOT_FOUND');
   return result.rows[0];
  }
+ const assignmentFormat=(value:unknown):AssignmentFormat=>{
+  if(value!=='knolstory'&&value!=='shortstory')throw new ClassroomError(503,'CLASSROOM_UNAVAILABLE');
+  return value;
+ };
  const assignment=(row:Record<string,unknown>,withSubmission:boolean):AssignmentView=>({
-  id:text(row.id),title:text(row.title),description:text(row.description),storyKey:row.story_key===null?null:text(row.story_key),open:row.open===true,createdAt:num(row.created_at),
+  format:assignmentFormat(row.format),id:text(row.id),title:text(row.title),description:text(row.description),storyKey:row.story_key===null?null:text(row.story_key),open:row.open===true,createdAt:num(row.created_at),
   ...(withSubmission?{submittedAt:row.submitted_at===null||row.submitted_at===undefined?null:num(row.submitted_at)}:{}),
  });
  async function teacherAssignment(client:SqlClient,classroomId:unknown,id:string,lock=false){
-  const result=await client.query(`SELECT id,title,description,story_key,open,created_at FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2${lock?' FOR UPDATE':''}`,[id,classroomId]);
+  const result=await client.query(`SELECT id,title,description,story_key,format,open,created_at FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2${lock?' FOR UPDATE':''}`,[id,classroomId]);
   if(!result.rows[0])throw new ClassroomError(404,'ASSIGNMENT_NOT_FOUND');
   return result.rows[0];
  }
@@ -122,6 +128,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
  }
 
  return {
+  ...createMissionService(pool,clock),
   roleOf:roles.roleOf,
   async me(accountId:string,role:Role):Promise<MeView>{
    return read(async client=>{
@@ -235,9 +242,32 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    const issued=generateQrToken();
    await transaction(async client=>{
     const room=await teacherRoom(client,teacherId,true),row=await studentRow(client,room.id,number);
-    await client.query('UPDATE knolstory_class.students SET qr_token_hash=$2 WHERE account_id=$1',[row.account_id,issued.hash]);
+    await client.query('UPDATE knolstory_class.students SET qr_token_hash=$2,qr_token_cipher=$3 WHERE account_id=$1',[row.account_id,issued.hash,encryptText(key,issued.token,`qr:${text(row.account_id)}`)]);
    });
-   return {url:`${options.origin}/?class-login=${issued.token}`};
+   return {url:`${options.origin}/?q=${issued.token}`};
+  },
+  /** Reprinting keeps recoverable tokens stable. Legacy hash-only cards require an explicit reissue. */
+  async prepareQrPrint(teacherId:string,numbers:number[],replaceExisting=false):Promise<QrPrintView>{
+   if(!Array.isArray(numbers)||numbers.length<1||numbers.length>MAX_STUDENTS||new Set(numbers).size!==numbers.length||numbers.some(value=>!Number.isInteger(value)||value<1||value>MAX_STUDENTS)||typeof replaceExisting!=='boolean')throw new ClassroomError(400,'INVALID_REQUEST');
+   return transaction(async client=>{
+    const room=await teacherRoom(client,teacherId,true);
+    const result=await client.query('SELECT account_id,number,name,qr_token_hash,qr_token_cipher FROM knolstory_class.students WHERE classroom_id=$1 AND number=ANY($2::int[]) ORDER BY number FOR UPDATE',[room.id,numbers]);
+    if(result.rows.length!==numbers.length)throw new ClassroomError(404,'STUDENT_NOT_FOUND');
+    if(!replaceExisting&&result.rows.some(row=>row.qr_token_hash!==null&&row.qr_token_cipher===null))throw new ClassroomError(409,'QR_REISSUE_REQUIRED');
+    const prepared=result.rows.map(row=>{
+     const accountId=text(row.account_id);
+     if(row.qr_token_hash===null&&row.qr_token_cipher!==null)throw new ClassroomError(503,'CLASSROOM_UNAVAILABLE');
+     if(row.qr_token_cipher!==null){
+      let token:string;
+      try{token=decryptText(key,text(row.qr_token_cipher),`qr:${accountId}`);}catch{throw new ClassroomError(503,'CLASSROOM_UNAVAILABLE');}
+      if(!validQrToken(token)||hashQrToken(token)!==row.qr_token_hash)throw new ClassroomError(503,'CLASSROOM_UNAVAILABLE');
+      return {row,accountId,token,issued:null};
+     }
+     const issued=generateQrToken();return {row,accountId,token:issued.token,issued};
+    });
+    for(const card of prepared){if(card.issued)await client.query('UPDATE knolstory_class.students SET qr_token_hash=$2,qr_token_cipher=$3 WHERE account_id=$1',[card.accountId,card.issued.hash,encryptText(key,card.token,`qr:${card.accountId}`)]);}
+    return {className:text(room.name),classCode:text(room.class_code),cards:prepared.map(card=>({number:num(card.row.number),name:text(card.row.name),url:`${options.origin}/?q=${card.token}`}))};
+   });
   },
   /** Returns the student account id, or null for any mismatch (unknown class, number, password or inactive account). */
   async verifyStudentLogin(classCode:string,number:number,secret:string):Promise<string|null>{
@@ -253,27 +283,27 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    return read(async client=>{
     if(role==='student'){
      const context=await studentContext(client,accountId);
-     const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.open,a.created_at,s.submitted_at FROM knolstory_class.assignments a
+     const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,s.submitted_at FROM knolstory_class.assignments a
       LEFT JOIN knolstory_class.submissions s ON s.assignment_id=a.id AND s.student_account_id=$2 WHERE a.classroom_id=$1 ORDER BY a.created_at DESC,a.id`,[context.classroom_id,accountId]);
      return result.rows.map(row=>assignment(row,true));
     }
     const room=await teacherRoom(client,accountId);
-    const result=await client.query('SELECT id,title,description,story_key,open,created_at FROM knolstory_class.assignments WHERE classroom_id=$1 ORDER BY created_at DESC,id',[room.id]);
+    const result=await client.query('SELECT id,title,description,story_key,format,open,created_at FROM knolstory_class.assignments WHERE classroom_id=$1 ORDER BY created_at DESC,id',[room.id]);
     return result.rows.map(row=>assignment(row,false));
    });
   },
-  async createAssignment(teacherId:string,input:Readonly<{title:string;description:string;storyKey:string|null}>):Promise<AssignmentView>{
+  async createAssignment(teacherId:string,input:Readonly<{title:string;description:string;storyKey:string|null;format?:AssignmentFormat}>):Promise<AssignmentView>{
    return transaction(async client=>{
     const room=await teacherRoom(client,teacherId);
-    const result=await client.query('INSERT INTO knolstory_class.assignments(id,classroom_id,title,description,story_key,open,created_at) VALUES($1,$2,$3,$4,$5,true,$6) RETURNING id,title,description,story_key,open,created_at',
-     [randomUUID(),room.id,input.title,input.description,input.storyKey,now()]);
+    const result=await client.query('INSERT INTO knolstory_class.assignments(id,classroom_id,title,description,story_key,format,open,created_at) VALUES($1,$2,$3,$4,$5,$7,true,$6) RETURNING id,title,description,story_key,format,open,created_at',
+     [randomUUID(),room.id,input.title,input.description,input.storyKey,now(),assignmentFormat(input.format===undefined?'knolstory':input.format)]);
     return assignment(result.rows[0]!,false);
    });
   },
   async patchAssignment(teacherId:string,id:string,patch:Readonly<{title?:string;description?:string;open?:boolean}>):Promise<AssignmentView>{
    return transaction(async client=>{
     const room=await teacherRoom(client,teacherId),current=await teacherAssignment(client,room.id,id,true);
-    const result=await client.query('UPDATE knolstory_class.assignments SET title=$2,description=$3,open=$4 WHERE id=$1 RETURNING id,title,description,story_key,open,created_at',
+    const result=await client.query('UPDATE knolstory_class.assignments SET title=$2,description=$3,open=$4 WHERE id=$1 RETURNING id,title,description,story_key,format,open,created_at',
      [id,patch.title??current.title,patch.description??current.description,patch.open??current.open]);
     return assignment(result.rows[0]!,false);
    });
@@ -314,9 +344,10 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    }
    return transaction(async client=>{
     const context=await studentContext(client,accountId);
-    const target=await client.query('SELECT open FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2 FOR SHARE',[id,context.classroom_id]);
+    const target=await client.query('SELECT open,format FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2 FOR SHARE',[id,context.classroom_id]);
     if(!target.rows[0])throw new ClassroomError(404,'ASSIGNMENT_NOT_FOUND');
     if(target.rows[0].open!==true)throw new ClassroomError(409,'ASSIGNMENT_CLOSED');
+    if(snapshot.content.format!==assignmentFormat(target.rows[0].format))throw new ClassroomError(422,'ASSIGNMENT_FORMAT_MISMATCH');
     const submittedAt=now();
     await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at) VALUES($1,$2,$3::jsonb,$4)
      ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at`,[id,accountId,JSON.stringify(snapshot),submittedAt]);

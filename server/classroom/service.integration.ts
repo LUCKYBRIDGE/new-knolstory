@@ -1,3 +1,5 @@
+import {readFileSync} from 'node:fs';
+import {createStoryDocument,type StoryProject} from '../../packages/story-domain/src/index';
 import {randomBytes,randomUUID} from 'node:crypto';
 import {Pool} from 'pg';
 import {afterAll,beforeAll,describe,expect,it} from 'vitest';
@@ -88,13 +90,13 @@ describe('real PostgreSQL classroom service',()=>{
   expect(changed).toMatchObject({number:1,name:'민수',password:'abcd1234'});
   expect(await service.verifyStudentLogin(room.classCode,1,first.password)).toBeNull();
   expect(await service.verifyStudentLogin(room.classCode,1,'abcd1234')).toBe(id);
-  const one=await service.issueQr(teacher,1),token=new URL(one.url).searchParams.get('class-login')!;
-  expect(one.url).toBe(`https://story.example/?class-login=${token}`);expect(token).toMatch(/^[A-Za-z0-9_-]{43}$/);
+  const one=await service.issueQr(teacher,1),token=new URL(one.url).searchParams.get('q')!;
+  expect(one.url).toBe(`https://story.example/?q=${token}`);expect(token).toMatch(/^[A-Za-z0-9_-]{27}$/);expect(Buffer.from(token,'base64url')).toHaveLength(20);
   expect(await service.verifyQrToken(token)).toBe(id);
   expect((await pool.query('SELECT qr_token_hash FROM knolstory_class.students WHERE account_id=$1',[id])).rows[0].qr_token_hash).not.toContain(token);
   expect((await service.getClassroom(teacher)).students[0]!.hasQr).toBe(true);
   const again=await service.issueQr(teacher,1);expect(await service.verifyQrToken(token)).toBeNull();
-  expect(await service.verifyQrToken(new URL(again.url).searchParams.get('class-login')!)).toBe(id);
+  expect(await service.verifyQrToken(new URL(again.url).searchParams.get('q')!)).toBe(id);
   expect(await failure(service.issueQr(teacher,9))).toBe('404 STUDENT_NOT_FOUND');
   // A new class code invalidates the old one for logins.
   const regenerated=await service.patchClassroom(teacher,{regenerateCode:true,name:'새 이름'});
@@ -133,6 +135,13 @@ describe('real PostgreSQL classroom service',()=>{
   expect((await service.addStudents(teacher,1)).students.map(s=>s.number)).toEqual([1]);
  });
 
+ it('defaults assignments from older writers to KnolStory and enforces supported kinds in storage',async()=>{
+  const teacher=await account('teacher'),room=await service.createClassroom(teacher,'기존 과제 반'),id=randomUUID();
+  await pool.query('INSERT INTO knolstory_class.assignments(id,classroom_id,title,description,story_key,open,created_at) VALUES($1,$2,$3,$4,NULL,true,$5)',[id,room.id,'기존 과제','',now]);
+  expect(await service.listAssignments(teacher,'teacher')).toEqual([expect.objectContaining({id,format:'knolstory'})]);
+  await expect(pool.query("UPDATE knolstory_class.assignments SET format='other' WHERE id=$1",[id])).rejects.toThrow();
+ });
+
  it('manages assignments, submissions and open or closed states with classroom isolation',async()=>{
   const teacher=await account('teacher'),outsider=await account('teacher');
   const room=await service.createClassroom(teacher,'과제 반');await service.createClassroom(outsider,'다른 반');
@@ -141,9 +150,10 @@ describe('real PostgreSQL classroom service',()=>{
   const view=await service.getClassroom(teacher),one=await login(room.classCode,1,view.students[0]!.password),two=await login(room.classCode,2,view.students[1]!.password);
   await service.patchStudent(teacher,1,{name:'하나'});
   const outsiderView=await service.getClassroom(outsider),stranger=await login(outsiderView.classCode,1,outsiderView.students[0]!.password);
-  const created=await service.createAssignment(teacher,{title:'첫 이야기',description:'설명',storyKey:'story-a'});
-  expect(created).toMatchObject({title:'첫 이야기',description:'설명',storyKey:'story-a',open:true});
+  const created=await service.createAssignment(teacher,{title:'첫 이야기',description:'설명',storyKey:'story-a',format:'shortstory'});
+  expect(created).toMatchObject({title:'첫 이야기',description:'설명',storyKey:'story-a',format:'shortstory',open:true});
   now+=1000;const second=await service.createAssignment(teacher,{title:'둘째',description:'',storyKey:null});
+  expect(second.format).toBe('knolstory');
   expect((await service.listAssignments(teacher,'teacher')).map(a=>a.id)).toEqual([second.id,created.id]);
   expect(await service.listAssignments(stranger,'student')).toEqual([]);
   expect(await failure(service.listAssignments(teacher,'student'))).toBe('403 ROLE_NOT_ALLOWED');
@@ -152,7 +162,15 @@ describe('real PostgreSQL classroom service',()=>{
   expect(await failure(service.readOwnSubmission(one,created.id))).toBe('404 SUBMISSION_NOT_FOUND');
   expect(await failure(service.submit(one,created.id,{payloadVersion:1,content:{}}))).toBe('400 INVALID_DOCUMENT');
   const document=await snapshot();
+  expect(await failure(service.submit(one,second.id,document))).toBe('422 ASSIGNMENT_FORMAT_MISMATCH');
+  const project=JSON.parse(readFileSync(new URL('../../tests/fixtures/stories/rabbit-classic.json',import.meta.url),'utf8')) as StoryProject;
+  const knolstory=await prepareJsonbSnapshot(await createAuthoringArchive({format:'knolstory',document:createStoryDocument({project,savedAt:new Date(now).toISOString(),appVersion:'classroom-test'})}));
+  expect(await failure(service.submit(one,created.id,knolstory))).toBe('422 ASSIGNMENT_FORMAT_MISMATCH');
+  await service.submit(one,second.id,knolstory);
+  expect((await service.readOwnSubmission(one,second.id)).document).toMatchObject({content:{format:'knolstory'}});
   now+=1000;const first=await service.submit(one,created.id,document);expect(first.submittedAt).toBe(now);
+  expect(await failure(service.submit(one,created.id,knolstory))).toBe('422 ASSIGNMENT_FORMAT_MISMATCH');
+  expect((await service.readOwnSubmission(one,created.id)).document).toMatchObject({content:{format:'shortstory'}});
   now+=1000;const resubmitted=await service.submit(one,created.id,document);expect(resubmitted.submittedAt).toBe(now);
   expect((await pool.query('SELECT count(*)::int AS n FROM knolstory_class.submissions WHERE assignment_id=$1',[created.id])).rows[0].n).toBe(1);
   expect(await service.readOwnSubmission(one,created.id)).toEqual({document:JSON.parse(JSON.stringify(document)),submittedAt:now});
