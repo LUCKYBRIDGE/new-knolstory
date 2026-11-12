@@ -10,7 +10,7 @@ describe('online document client',()=>{
   for(const [code,status,message] of [
    ['DOCUMENT_TRASHED',409,'온라인 휴지통에서 이 작품을 복구한 뒤 다시 업로드해 주세요. 기기의 원고는 유지됩니다.'],
    ['CATALOG_MEDIA_REQUIRED',422,'온라인 업로드에는 서비스에 등록된 그림과 소리만 사용할 수 있어요. 기기의 원고는 유지됩니다.'],
-   ['RATE_LIMITED',429,'요청이 많아 잠시 처리할 수 없어요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 유지됩니다.'],
+   ['RATE_LIMITED',429,'지금 요청이 많아요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 그대로 있어요.'],
    ['INVALID_SNAPSHOT',400,'작품 내용을 확인하지 못해 업로드하지 않았어요. 기기의 원고는 유지됩니다.'],
   ] as const){
    await expect(documentList(reply({code,message:'database private path /private/original'},status))).rejects.toMatchObject({code,status,message});

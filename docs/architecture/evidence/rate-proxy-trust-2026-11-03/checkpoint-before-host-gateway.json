@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-03",
+  "status": "Local optional trusted-client rate candidate implemented and verified; uncommitted and not deployed.",
+  "baseline": {
+    "functionalCommit": "22793422a8a734f93791fbed478681b2c2a59c1b",
+    "mainRecordCommit": "85666db07554c40a464e97370c06af98d1915274",
+    "recordCi": "https://github.com/LUCKYBRIDGE/new-knolstory/actions/runs/41543516983",
+    "recordCiConclusion": "success",
+    "sourceBoundaries": "Image-preload release remains live. Source changes below belong to a separate local candidate."
+  },
+  "finding": {
+    "result": "result.json",
+    "deployedMarker": "deployed-marker.json",
+    "networkBoundary": "network-boundary.json",
+    "scope": "Real local ingress and auth/document routers, synthetic sessions and document list port. Distinct clients collapse into one socket bucket by default; forwarding-header changes cannot bypass it. Not live stress or real OAuth.",
+    "historicalNetworkMetadata": "network-boundary.json records the previous ingress digest before the approved image-preload replacement; API remained unchanged."
+  },
+  "implementation": [
+    "Default TCP/API configuration remains socket-based and ignores supplied client identity claims. No compose default changed.",
+    "Opt-in ingress uses a protected Unix socket and a key file. It signs only when actually bound to the configured socket; a TCP-bound trusted factory returns503 and never signs.",
+    "Only one valid CF client IP claim is accepted on the protected path. Inherited proof is removed and replaced; proof is removed from upstream responses.",
+    "Root/current UID directory ownership is checked through all ancestors; unsafe nonsticky writable ancestors, symlinks, existing files/sockets and incorrect parent permissions are refused. No existing object is deleted or repaired. Socket permissions0600, private parent0700.",
+    "Opaque stable HMAC bucket ID is separated from the proof domain. Proof binds version, HTTPS origin, timestamp, bucket, method and exact raw URL; age30s/future5s limits and timing-safe MAC check.",
+    "Explicit API opt-in rejects missing/duplicate/invalid proof with403 instead of socket fallback. Proof selects a bucket only; session, ownership, CSRF and document validation remain mandatory. Replaying proof consumes the same bucket.",
+    "Local Worker candidate rebuilds XRealIP from its first validated CF client value and removes inherited proof/forwarding claims on both normal origin requests and broken-config origin fallback. Worker limit fail-open configuration stays unchanged."
+  ],
+  "verification": {
+    "allUnit": "282files,2402passed,2skipped; rate-trust-unit-coverage.log",
+    "overallCoverage": {
+      "statements": 92.02,
+      "branches": 90.83,
+      "functions": 95.16,
+      "lines": 95.3,
+      "scope": "Existing repository coverage include patterns cover TS server/application code. New MJS primitive and ingress modules have separate focused coverage below."
+    },
+    "primitive": "74tests; focused statements/branches/functions/lines100%; client-bucket-proof-coverage.log",
+    "ingress": "Final actual node --test exit0,18/18passed; helper line100/branch84.62/functions85.71%; ancestor-final and root ingress-final logs.",
+    "integration": "Actual protected Unix socket plus both HTTP routers: each client gets[200,200,429] independently; proof replay[200,200,429]; forged/missing/duplicate403; valid proof with missing session401. rate-trust-integration-final.log",
+    "dockerSocket": "docker-socket-boundary.json: actual shared Linux named volume, UID1000allowed/signaturesverified, UID1001EACCES; networknone/nohostports; all4ownedcontainers+1volume removed. Not cloudflared provenance.",
+    "dockerImage": "docker-image-fixture.json: changed Dockerfile builds and default TCP response passes in UID1000/read-only/networknone minimal fixture. No full-product or live claim.",
+    "types": "pnpm typecheck:server passed",
+    "lint": "Scoped ESLint0errors; React auto-detection environment warning only.",
+    "apiBuild": "pnpm --dir server run build:api passed; no runtime/Web rebuild required for server-only candidate.",
+    "docs": "Final docs:58active docs0linkerrors;241language surfaces0retiredterms;10checks passed. See rate-trust-docs-final.log and rate-trust-doc-tests-final.log.",
+    "measurementLint": "Final ingress/helper/measurement MJS ESLint0errors; environment React detection warning only."
+  },
+  "review": {
+    "finding": "HIGH: private immediate parent could be renamed through an unsafe writable ancestor.",
+    "fix": "Validate root/current UID ownership and writable/sticky rules through the full chain. Reviewer confirmed the corrected algorithm under that trust model.",
+    "testCorrection": "Initial ancestor test used too long a Mac temp path and rejected for the wrong reason; an early worker18-pass report inferred from coverage tail was incorrect. Short names, <=100-byte precondition and the specific helper error now pass; original failure logs preserved.",
+    "otherFindings": "No further CRITICAL/HIGH found in reviewed local boundary; this is not proof of live Cloudflare or production configuration safety."
+  },
+  "preservation": "No live API/Worker/compose/Tunnel/key/provider/migration/DB change. No production credential read or generation for this candidate. Authored content and private/original evidence untouched. All new source and evidence left uncommitted.",
+  "next": [
+    "Verify actual Cloudflare Tunnel endpoint/header provenance and same-zone Worker controls read-only; actual worker-bypass fail-open must remain supported.",
+    "Prepare explicit key-file permissions, production shared-volume/UID and coordinated API/ingress/Worker activation/rollback as a reviewable candidate; require separate scoped approval before activation.",
+    "Preserve overall product priorities: real authenticated upload, physical devices/long offline, unresolved class/share/retention decisions and remaining release audit."
+  ],
+  "limits": [
+    "Same UID and root are trusted principals; Unix permissions do not authenticate the cloudflared program.",
+    "Memory rate limiting remains per-process, reset on restart; clients sharing one external address may share a bucket.",
+    "Proof is not authorization, body integrity or human identity.",
+    "Production key/UID/volume, real Cloudflare headers and live OAuth remain unverified."
+  ],
+  "sourceSha256": {
+    "server/config.ts": "e0a801011f5d150231eb4ce36a1005bffe6748d8ee4ab4001d792b298845aa07",
+    "server/config.test.ts": "9a037e13c4b7d38e546a92fd3b269c5c9e57b923b6b055dd3d4080fdb15316e4",
+    "server/http/auth-routes.ts": "5a1cf93cca8db0c9da54023ac4848603bef4632755bcc4290333082be89f6477",
+    "server/http/auth-service.ts": "45d6e7f281c940e8217397025365f5530d1ceed24e267bb8a15b5ce60026d2ea",
+    "server/http/document-routes.ts": "ec6ed6f59932bc645ef93d22ad9012559a8991aab95cc9a877a7da5b9b4fcfa1",
+    "server/http/document-service.ts": "3ff4491bc2741727663166abe38ef488d752c64f2a83c665558d9a41a39952eb",
+    "server/http/rate-client.ts": "608585c6f375f043693f57c873b6f8cc449e14972878c09064a45ab3f9bbb2ff",
+    "server/http/rate-client.test.ts": "81122c0c91e74737deb29e469cf43f9e9df8028537f31155f1e6b2a70b770fa7",
+    "server/http/trusted-client-rate.test.ts": "f26545ff889e14c871f556a1a3c078ac03d2071168c02eb0ae002f6cd98bfa1b",
+    "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4",
+    "server/http/client-bucket-proof.d.mts": "161cf1ba6fabac9be94f9d0882b0e37067c5a33a8250c1892e90e22ec6257963",
+    "server/http/client-bucket-proof.test.ts": "15d02c27d91cf076cd7fa5c530594e3901b6a8622453c39fee026faab1675c88",
+    "server/operations/production-ingress.mjs": "3f695730957778fb29ab7c99c53c579f92a5250cc01171593b6549ef60df5e11",
+    "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+    "server/operations/trusted-ingress-socket.test.mjs": "a839f04ff0414021e19b6842750de844710a7ed9c31a97fdadc4e246a6ae09fe",
+    "server/operations/story-edge-worker.mjs": "3868a082ba251c255770a3d10caa2d5016335dc36c5e1c1193a3e680729a80aa",
+    "server/operations/story-edge-worker.test.ts": "d044ee67391604f86a691ef68d4941f556194d3f5f107564d958795d63056dfd",
+    "server/Dockerfile.ingress": "acd48c419ccd6c64d2495c8ef5ac6efcda81804c3c2459043a33579c5a762eed"
+  },
+  "documentation": [
+    "https://developers.cloudflare.com/fundamentals/reference/http-headers/",
+    "https://developers.cloudflare.com/workers/runtime-apis/request/"
+  ]
+}

@@ -1,3 +1,4 @@
+import {openWorkFileExchange} from './work-file-exchange';
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -34,7 +35,7 @@ for(const width of [390,1280])test(`all ${recipes.length} expressions render thr
   if(index===recipes.length-1||index%4===0)await page.getByTestId('story-runtime-frame').screenshot({path:info.outputPath(`${row.slug}-${width}.png`)});
   await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
  }
- await page.locator('[data-work-menu]>summary').click();const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,path=info.outputPath('expressions.knolstory');await file.saveAs(path);
+ await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=await pending,path=info.outputPath('expressions.knolstory');await file.saveAs(path);
  expect(parseAuthoringFile(readFileSync(path,'utf8')).project).toEqual(imported);
  await page.keyboard.press('Escape');await page.reload();await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue(`cut-${recipes.length}`);
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project)).toEqual(imported);

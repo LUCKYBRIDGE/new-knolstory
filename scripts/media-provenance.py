@@ -30,6 +30,14 @@ def asset_provenance(asset):
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; identity/pose/alpha review and uniform canvas conversion in scripts/prepare-expression-assets.py'}
  if asset.get('metadata',{}).get('generatedTransparencyRepair'):
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; reviewed transparency repair and deterministic canvas conversion in scripts/prepare-transparency-assets.py'}
+ if asset.get('metadata',{}).get('generationMethod')=='imagegen':
+  return {**base,'provider':'project-generated-image','source':asset['sourcePath'],
+          'referenceAssets':asset['metadata']['referenceAssets'],
+          'generationPlan':'built-in image_gen; character identity reference and sequential scene review'}
+ if asset.get('metadata',{}).get('shortStoryCollection')=='creative':
+  return {**base,'provider':'local-composite-image','source':asset['sourcePath'],
+          'sourceLayers':asset['metadata']['sourceLayers'],
+          'generationPlan':'local layered composition; source revisions verified; rights review required for output'}
  if asset.get('metadata',{}).get('generatedWeatherAsset'):
   return {**base,'provider':'project-generated-image','source':asset['sourcePath'],'generationPlan':'built-in image_gen; reviewed weather edit and format conversion in scripts/prepare-rainy-courtyard-asset.py'}
  if asset.get('metadata',{}).get('layeredStoryAsset'):

@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: key-only CLI config enables relay, socket plus key enables signer, both modes cannot coexist
+not ok 1 - key-only CLI config enables relay, socket plus key enables signer, both modes cannot coexist
+  ---
+  duration_ms: 0.927
+  type: 'test'
+  location: '/Users/wan/ai_dev/apps/new-knolstory/server/operations/ingress-proof-relay.test.mjs:22:1'
+  failureType: 'testCodeFailure'
+  error: 'Invalid production ingress configuration.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    loadProductionIngressConfig (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/production-ingress.mjs:44:15)
+    TestContext.<anonymous> (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/ingress-proof-relay.test.mjs:24:14)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: valid relay proof reaches API byte-for-byte and is independently verifiable while body streams
+not ok 2 - valid relay proof reaches API byte-for-byte and is independently verifiable while body streams
+  ---
+  duration_ms: 15.682542
+  type: 'test'
+  location: '/Users/wan/ai_dev/apps/new-knolstory/server/operations/ingress-proof-relay.test.mjs:30:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+
+    + undefined
+    - 'v1.1793662485058.968ab8c06e87f656d7cebceb280b49e79afec9751c079f18e1c8c22240c2f75b.b5d1875ce57bf95e132a6df5d58338243cf9104b4598b66f5bae8ee0b04c8e51'
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'v1.1793662485058.968ab8c06e87f656d7cebceb280b49e79afec9751c079f18e1c8c22240c2f75b.b5d1875ce57bf95e132a6df5d58338243cf9104b4598b66f5bae8ee0b04c8e51'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/ingress-proof-relay.test.mjs:33:119)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: relay rejects missing, malformed, duplicate, stale, wrong-key and changed-target proofs
+not ok 3 - relay rejects missing, malformed, duplicate, stale, wrong-key and changed-target proofs
+  ---
+  duration_ms: 3.65925
+  type: 'test'
+  location: '/Users/wan/ai_dev/apps/new-knolstory/server/operations/ingress-proof-relay.test.mjs:35:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    200 !== 403
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 403
+  actual: 200
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/ingress-proof-relay.test.mjs:37:380)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: Host, path, static and alias boundaries run before proof relay
+ok 4 - Host, path, static and alias boundaries run before proof relay
+  ---
+  duration_ms: 4.258292
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 1
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 113.844333

@@ -1,6 +1,6 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
-import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+import {confirmAuthoringImport,parseAuthoringFile,openFileExchange} from './authoring-file';
 
 async function menu(page:Page){
  const node=page.locator('[data-work-menu]');
@@ -15,7 +15,7 @@ async function settings(page:Page){
 async function screen(page:Page,value:string){await menu(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption(value);}
 async function ready(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
 async function exported(page:Page){
- await ready(page);await menu(page);const pending=page.waitForEvent('download');
+ await ready(page);await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');
  await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
  return parseAuthoringFile(await readFile((await (await pending).path())!,'utf8')).project;
 }

@@ -33,3 +33,5 @@
 .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}.loading.loading[data-story-loading=stage] .actions button{min-height:44px;padding:10px 18px;border:1px solid #bba17b;border-radius:7px;background:#28413d;color:#fff2d8;font:inherit;font-size:14px;cursor:pointer;word-break:keep-all}.loading.loading[data-story-loading=stage] .actions button:first-child{background:#e2d0aa;color:#172a26}.loading.loading[data-story-loading=stage] .actions button:focus-visible{outline:3px solid #a9d9cd;outline-offset:3px}.actions p{flex-basis:100%;font-size:12px;line-height:1.6;color:#c1c9ba;margin:0;word-break:keep-all}.tip[hidden]{display:none}
 
 .loading[data-recovery=true] .hint{display:block}.loading[data-recovery=true] .art{max-height:120px}.loading[data-recovery=true] .rule{display:none}
+/* Center the character inside its reserved box (a block image otherwise sits at the left edge). */
+.art picture{display:grid;place-items:center}.art img{margin:0 auto}

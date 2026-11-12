@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-11-03T21:38:21.233Z",
+  "scope": "Actual read-only service/path snapshot; separate disposable fixture tests preparation only.",
+  "serviceQueries": [
+    {
+      "domainKind": "gui",
+      "found": false
+    },
+    {
+      "domainKind": "user",
+      "found": false
+    },
+    {
+      "domainKind": "system",
+      "found": false
+    }
+  ],
+  "installedPlistExists": false,
+  "proposedPathsReady": false,
+  "selectedArtifactsAbsent": true,
+  "selectedArtifactsPreserved": true,
+  "fixtureSummary": {
+    "ready": true,
+    "bundleId": "79fa37cb5f5c6bfbf04dbf6add976cd5e0070edc4aa442a9029cbbb212a04cb5",
+    "nodeVersion": "22.23.3",
+    "uid": 501,
+    "keyContentRead": false,
+    "keyMetadataValidated": true,
+    "socketAbsent": true,
+    "stdout": "absent",
+    "stderr": "absent",
+    "serviceLabelAbsent": true,
+    "serviceInventorySource": "caller-observed snapshot",
+    "filesOrServicesChanged": false,
+    "limits": [
+      "Point-in-time filesystem and caller-supplied service inventory only; recheck immediately before activation.",
+      "Metadata validates key length and permissions, not key content or equality with container keys.",
+      "Same UID and root remain trusted; later filesystem/service changes are not locked.",
+      "Existing sockets are always refused; explicit listener and stale-socket recovery is required."
+    ]
+  },
+  "fixtureRemoved": true,
+  "productionKeyCreated": false,
+  "productionKeyRead": false,
+  "serviceInstalled": false,
+  "limits": [
+    "Selected candidate key is intentionally absent; deployment is not ready or authorized.",
+    "Service/path checks are a snapshot; recheck immediately before separately approved installation.",
+    "No launchd bootstrap, crash recovery, Tunnel UDS or real edge header behavior proven."
+  ],
+  "preflightSourceSha256": "26baa848e9eb8a990a135483ef7ab6a0688dd06ac113951851830a480e61de07"
+}

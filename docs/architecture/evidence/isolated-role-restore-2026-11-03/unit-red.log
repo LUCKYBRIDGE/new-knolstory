@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<repo>/docs/architecture/evidence/isolated-role-restore-2026-11-03/measurement/verify_test.py", line 5, in <module>
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 982, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1039, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '<repo>/docs/architecture/evidence/isolated-role-restore-2026-11-03/measurement/verify.py'

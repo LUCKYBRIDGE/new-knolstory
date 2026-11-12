@@ -1,10 +1,11 @@
 import {parseAuthoringFile} from './authoring-file';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
+import { openWorkFileExchange } from './work-file-exchange';
 import { enterLibrary, startShelfCreation, importShelfFile, openShelfAction } from './library-entry';
 
 const title='같은 이름의 항목도 원고를 지키는 창작 메모';
-async function management(page:Page){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(n=>(n as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();}
+async function management(page:Page){await openWorkFileExchange(page);}
 async function saved(page:Page) {await expect(page.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');}
 async function prepare(page:Page) {
  const pane=page.getByRole('region',{name:'작품 설정',exact:true});
@@ -14,7 +15,7 @@ async function prepare(page:Page) {
 
 test('memo fields survive reorder, delete undo, filters, device save and fresh-context file import on five viewport sizes',async({page,context,browser},info)=>{
  test.setTimeout(180000);page.setDefaultTimeout(15000);
- await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
  await page.getByLabel('새 작품 제목',{exact:true}).fill(title);
  await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
  let pane=await prepare(page);
@@ -67,7 +68,7 @@ test('memo fields survive reorder, delete undo, filters, device save and fresh-c
  expect(memos[0].fields.map((f:{label:string})=>f.label)).toEqual(['메모 내용','변경한 이름','같은 이름']);
  expect(memos[0].fields.map((f:{source:string})=>f.source)).toEqual(['default','custom','custom']);
  expect(memos[0].linkedLineId).toBeTruthy();
- const fresh=await browser.newContext({viewport:{width:390,height:844}});
+ const fresh=await browser.newContext({viewport:{width:390,height:844}});await fresh.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
  try {
   const imported=await fresh.newPage();await imported.goto('/');await enterLibrary(imported);await importShelfFile(imported,path);
   if(!await imported.getByRole('region',{name:'작품 설정',exact:true}).isVisible()) {

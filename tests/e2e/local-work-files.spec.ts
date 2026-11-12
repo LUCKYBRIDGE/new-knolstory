@@ -1,3 +1,4 @@
+import {openShortStoryDetails} from './shortstory-navigation';
 import {test,expect} from '@playwright/test';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport} from './authoring-file';
@@ -12,8 +13,8 @@ for(const format of ['knolstory','shortstory'] as const)test(`${format}: real do
  const pending=page.waitForEvent('download');await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();const download=await pending;
  const path=(await download.path())!,raw=await readFile(path,'utf8'),archive=JSON.parse(raw);
  expect(download.suggestedFilename()).toMatch(new RegExp(`\\.${format}$`));expect(await page.evaluate(()=>(window as unknown as {workDownloadBlobType:string}).workDownloadBlobType)).toBe('application/octet-stream');expect(archive.format).toBe(format);expect(archive.formatVersion).toBe(2);
- await expect(group.getByRole('status')).toContainText('다운로드를 요청');
- const exportedPending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const exported=await exportedPending;const exportedArchive=JSON.parse(await readFile((await exported.path())!,'utf8'));expect(exported.suggestedFilename()).toMatch(new RegExp(`\\.${format}$`));expect(await page.evaluate(()=>(window as unknown as {workDownloadBlobType:string}).workDownloadBlobType)).toBe('application/octet-stream');expect(format==='knolstory'?exportedArchive.document.project:exportedArchive.project).toEqual(format==='knolstory'?archive.document.project:archive.project);
+ await expect(group.getByRole('status')).toContainText('다운로드를 시작했어요');
+ const exportedPending=page.waitForEvent('download');await openShortStoryDetails(page, '파일 교환·보관');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const exported=await exportedPending;const exportedArchive=JSON.parse(await readFile((await exported.path())!,'utf8'));expect(exported.suggestedFilename()).toMatch(new RegExp(`\\.${format}$`));expect(await page.evaluate(()=>(window as unknown as {workDownloadBlobType:string}).workDownloadBlobType)).toBe('application/octet-stream');expect(format==='knolstory'?exportedArchive.document.project:exportedArchive.project).toEqual(format==='knolstory'?archive.document.project:archive.project);
  for(const suffix of ['', '.json']){
  const context=await browser.newContext(),reopened=await context.newPage();await reopened.route('**/api/**',route=>route.abort());
  await reopened.goto(format==='knolstory'?'/?view=editor':'/shortstory');
@@ -38,11 +39,11 @@ test('explicit file handle save verifies write, reuses selected file, protects e
   };
  });
  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');const field=page.locator('[data-current-cut] textarea').first();await field.fill('첫 실제파일 원고');await page.locator('[data-work-menu]>summary').click();const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true});
- await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고 내용을 확인');
- await field.fill('같은 파일에 이어 쓴 원고');await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고 내용을 확인');
+ await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고 내용까지 확인');
+ await field.fill('같은 파일에 이어 쓴 원고');await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고 내용까지 확인');
  const saved=await page.evaluate(()=>{const t=(window as unknown as {fileTest:{files:Map<string,string>;stats:{picks:number;writes:number}}}).fileTest;return {raw:t.files.get('selected-1.knolstory')!,stats:t.stats};});expect(saved.stats).toEqual({picks:1,writes:2});expect(JSON.parse(saved.raw).document.project.lines[0].text).toBe('같은 파일에 이어 쓴 원고');
  await page.evaluate(()=>(window as unknown as {fileTest:{files:Map<string,string>}}).fileTest.files.set('selected-1.knolstory','외부에서 편집한 파일'));
- await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('alert')).toContainText('외부에서 변경');await expect(field).toHaveValue('같은 파일에 이어 쓴 원고');
+ await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('alert')).toContainText('다른 곳에서 파일이 바뀌었어요');await expect(field).toHaveValue('같은 파일에 이어 쓴 원고');
  await group.getByRole('button',{name:'다른 파일로 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('selected-2.knolstory');
  await info.attach('file-handle-model-result',{body:JSON.stringify({scope:'Modeled browser file picker/stream; verifies product integration, not native OS picker',saved},null,2),contentType:'application/json'});
 });
@@ -56,7 +57,7 @@ test('file association survives work settings and delayed picker stops after lea
  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true});await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고');
  await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();await expect(page.getByTestId('preparation-save-status')).toBeVisible();await page.locator('[data-work-menu]>summary').click();await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();await expect(group.getByRole('status')).toContainText('파일에 저장하고');
  expect(await page.evaluate(()=>(window as unknown as {saveModel:{picks:number;writes:number}}).saveModel)).toEqual({picks:1,writes:2});
- await group.getByRole('button',{name:'다른 파일로 저장',exact:true}).click();await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ await group.getByRole('button',{name:'다른 파일로 저장',exact:true}).click();await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await page.evaluate(()=>(window as unknown as {saveModel:{release:()=>void}}).saveModel.release());
  await expect.poll(()=>page.evaluate(()=>(window as unknown as {saveModel:{writes:number}}).saveModel.writes)).toBe(2);
 });
@@ -69,7 +70,7 @@ test('leaving the work while a writable file stream opens aborts before any new 
  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await page.locator('[data-work-menu]>summary').click();await page.locator('[data-local-file-actions]').getByRole('button',{name:'작품 파일 저장',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>(window as unknown as {streamGate:{opening:boolean}}).streamGate.opening)).toBe(true);
- await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await page.evaluate(()=>(window as unknown as {streamGate:{release:()=>void}}).streamGate.release());
  await expect.poll(()=>page.evaluate(()=>{const {writes,closes,aborts}=(window as unknown as {streamGate:{writes:number;closes:number;aborts:number}}).streamGate;return {writes,closes,aborts};})).toEqual({writes:0,closes:0,aborts:1});
 });
@@ -92,7 +93,7 @@ test('file permission and disk failures keep the draft, hide native details and 
  const field=page.locator('[data-current-cut] textarea').first(),draft='권한 오류가 나도 보존할 원고입니다.\n다시 저장해도 문장은 그대로입니다.';
  await field.fill(draft);await page.locator('[data-work-menu]>summary').click();
  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true}),save=group.getByRole('button',{name:'작품 파일 저장',exact:true});
- await save.click();await expect(group.getByRole('alert')).toContainText('파일을 사용할 권한');await expect(group.getByRole('alert')).not.toContainText(/Permission|private|author-name/);await expect(field).toHaveValue(draft);
+ await save.click();await expect(group.getByRole('alert')).toContainText('파일을 쓸 권한이 없어요');await expect(group.getByRole('alert')).not.toContainText(/Permission|private|author-name/);await expect(field).toHaveValue(draft);
  await save.click();await expect(group.getByRole('status')).toContainText('retry-2.knolstory');
  const revised=`${draft}\n저장 후 덧붙인 한글도 보존합니다.`;await field.fill(revised);
  await page.evaluate(()=>(window as unknown as {fileFailure:{failWrite:boolean}}).fileFailure.failWrite=true);
@@ -134,11 +135,11 @@ test('same-document browser back asks before leaving the edited ShortStory',asyn
 });
 
 test('editor save and return action verifies a file before opening the library',async({page})=>{
- await page.addInitScript(()=>{sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');let text='';Object.assign(window,{showSaveFilePicker:async()=>({name:'finished.knolstory',getFile:async()=>({text:async()=>text}),createWritable:async()=>({write:async(value:string)=>{text=value;},close:async()=>{},abort:async()=>{}})})});});await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await page.locator('[data-current-cut] textarea').first().fill('작업을 마치고 파일에 남길 원고');await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'작품 파일 저장하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();expect(await page.evaluate(()=>{const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);return event.defaultPrevented;})).toBe(false);
+ await page.addInitScript(()=>{sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');let text='';Object.assign(window,{showSaveFilePicker:async()=>({name:'finished.knolstory',getFile:async()=>({text:async()=>text}),createWritable:async()=>({write:async(value:string)=>{text=value;},close:async()=>{},abort:async()=>{}})})});});await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await page.locator('[data-current-cut] textarea').first().fill('작업을 마치고 파일에 남길 원고');await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'작품 파일 저장하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();expect(await page.evaluate(()=>{const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);return event.defaultPrevented;})).toBe(false);
 });
 
 test('reading existing ShortStory originals does not create a false unsaved-work warning',async({page})=>{
- await page.goto('/shortstory');await expect(page.getByRole('heading',{name:'숏스토리 그림책'})).toBeVisible();for(const title of ['선녀와 나무꾼','흥부전']){const button=page.getByRole('button',{name:new RegExp(`${title}.*원본 읽기`)});if(await button.count())await button.click();}
+ await page.goto('/shortstory');await expect(page.getByRole('heading',{name:'나의 짧은 이야기',exact:true})).toBeVisible();await openShortStoryDetails(page, /그림책 보관함 · 내 그림책/);for(const title of ['선녀와 나무꾼','흥부와 놀부']){await page.getByRole('button',{name:`${title} · 원본 읽기`,exact:true}).click();}
  expect(await page.evaluate(()=>{const event=new Event('beforeunload',{cancelable:true});window.dispatchEvent(event);return event.defaultPrevented;})).toBe(false);
 });
 
@@ -150,5 +151,5 @@ test('combined effect range can be verified and saved before returning to the li
  await page.route('**/api/**',r=>r.abort());await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const menu=page.locator('[data-work-menu]');await menu.locator(':scope>summary').click();await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'range.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-29T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
  if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByText('편집 설정',{exact:true}).click();for(const name of ['음향','연출'])await page.getByRole('checkbox',{name:`${name} 편집 사용`,exact:true}).check();await page.getByLabel('편집화면 선택',{exact:true}).selectOption('audio-direction');
  const timeline=page.locator('[data-combined-timeline]'),details=page.locator('[data-combined-details]');await timeline.getByRole('button').filter({hasText:'화면 흔들림'}).click();await details.getByText('사용할 컷 구간 조정',{exact:true}).click();await details.getByLabel('통합 구간 종료 컷',{exact:true}).selectOption('range-cut-2');await details.getByRole('button',{name:'구간 적용',exact:true}).click();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
- if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByRole('button',{name:'작품 파일 저장하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();const saved=await page.evaluate(()=>JSON.parse((window as unknown as {verifiedRangeFile:()=>string}).verifiedRangeFile()).document.project);expect(saved).toEqual(before);expect(saved.lines[0].presentation.effects[0].endLineId).toBe('range-cut-2');
+ if(!await menu.evaluate(el=>(el as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();await page.getByRole('button',{name:'작품 파일 저장하고 서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();const saved=await page.evaluate(()=>JSON.parse((window as unknown as {verifiedRangeFile:()=>string}).verifiedRangeFile()).document.project);expect(saved).toEqual(before);expect(saved.lines[0].presentation.effects[0].endLineId).toBe('range-cut-2');
 });

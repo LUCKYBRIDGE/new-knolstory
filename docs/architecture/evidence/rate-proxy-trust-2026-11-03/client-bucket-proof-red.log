@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/http/client-bucket-proof.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/http/client-bucket-proof.test.ts [ server/http/client-bucket-proof.test.ts ]
+Error: Cannot find module './client-bucket-proof.mjs' imported from /Users/wan/ai_dev/apps/new-knolstory/server/http/client-bucket-proof.test.ts
+ ❯ server/http/client-bucket-proof.test.ts:3:1
+      1| import {createHmac} from 'node:crypto';
+      2| import {describe,it,expect} from 'vitest';
+      3| import {CLIENT_BUCKET_HEADER,createClientBucketSigner,createClientBuck…
+       | ^
+      4|
+      5| const key='12'.repeat(32),origin='https://story.knolquiz.com',now=1_79…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  08:18:49
+   Duration  129ms (transform 13ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-11-02T23:33:18.274352+00:00",
+  "scope": "GET-only remote tunnel configuration and bounded read-only process metadata/log summaries.",
+  "externalWrites": false,
+  "productionProcessesOrConfigurationChanged": false,
+  "credentialValuesOrPathsPublished": false,
+  "processes": [
+    {
+      "pid": 842,
+      "uid": 0,
+      "tokenOnCommandLine": true,
+      "tokenFileConfigured": false,
+      "configFileConfigured": false,
+      "remote": {
+        "httpStatus": 401,
+        "success": false,
+        "errorCodes": [
+          1001
+        ]
+      },
+      "boundedProcessLogs": {
+        "available": false,
+        "boundedLogFilesInspected": 0
+      }
+    },
+    {
+      "pid": 1102,
+      "uid": 501,
+      "tokenOnCommandLine": false,
+      "tokenFileConfigured": true,
+      "configFileConfigured": false,
+      "remote": {
+        "httpStatus": 401,
+        "success": false,
+        "errorCodes": [
+          1001
+        ]
+      },
+      "boundedProcessLogs": {
+        "available": true,
+        "boundedLogFilesInspected": 2,
+        "historicalOnly": true,
+        "totalRules": 5,
+        "otherNamedHostRuleCount": 2,
+        "storyRoutes": [
+          {
+            "hostname": "story-next.knolquiz.com",
+            "pathRulePresent": false,
+            "originRequestKeys": [],
+            "kind": "loopback-http",
+            "service": "http://127.0.0.1:15501",
+            "servicePathOrQueryPresent": false,
+            "expectedProductionPort": true
+          },
+          {
+            "hostname": "story.knolquiz.com",
+            "pathRulePresent": false,
+            "originRequestKeys": [],
+            "kind": "loopback-http",
+            "service": "http://127.0.0.1:15501",
+            "servicePathOrQueryPresent": false,
+            "expectedProductionPort": true
+          }
+        ],
+        "globalOriginRequestKeys": []
+      }
+    }
+  ],
+  "hostPlatform": "Darwin",
+  "containers": {
+    "api": {
+      "configuredUser": "501:20",
+      "hostPortBindingCount": 0,
+      "hasPublishedHostPorts": false
+    },
+    "ingress": {
+      "configuredUser": "node",
+      "hostPortBindingCount": 1,
+      "hasPublishedHostPorts": true
+    }
+  },
+  "limits": [
+    "No Tunnel/header provenance, UID bridge or cloudflared process authentication is proven by route metadata.",
+    "The native Mac cloudflared process is outside the Docker VM. A shared Docker named-volume Unix socket test does not prove host-to-VM socket reachability.",
+    "Log-derived route summaries are historical observations, not proof of the active remote revision.",
+    "Other hostnames are counted only; unrelated routes, account/tunnel IDs and credential material are omitted."
+  ],
+  "existingOAuthScopeMetadata": {
+    "reportedScopes": [
+      "account:read",
+      "pages:write",
+      "user:read",
+      "workers_routes:write",
+      "workers_scripts:write",
+      "zone:read"
+    ],
+    "tunnelNamedScopeReported": false,
+    "boundary": "Scope names only from existing authenticated whoami output; no email/account ID/raw auth output published. This does not explain the endpoint401 by itself."
+  }
+}

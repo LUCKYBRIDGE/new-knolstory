@@ -1,0 +1,83 @@
+{
+  "contract": "DESIGN.md common library and role-specific navigation, 2026-11-12. Teacher: library/tasks/students plus separate settings; student: library/tasks; member: library. Fresh shelf starts all, explicit browsing selection survives returns. Reading/editing has no common tabs.",
+  "targetViewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Shared navigation uses labelled nav, ordinary links and aria-current=page; teacher/student fixture scans at both viewports pass axe WCAG2 A/AA and2.1AA. Keyboard focus and reduced motion retain coverage. Admin screen does not mark tasks current."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Browser tests cover long class/task names, all teacher panels, library and student tasks at390px without document overflow. Ego screenshots show common tabs on desktop library and phone library/settings/students/tasks."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "pass",
+      "evidence": "Role and teacher URL panel hydrate before private dashboard contents. Existing delayed submission cancellation test remains green."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "Teacher empty class/student/task creation and empty shelf filters are exercised; new members can create a work from the shelf."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "Task list retry retained. Main/ShortStory corrupted storage can navigate to tasks without altering raw original bytes. Direct-editor corrupt-storage download/restart test passes separately."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "Teacher assignment failure leaves class context and navigation available; retry remains explicit."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "Teacher navigates tabs and renames class; regular member creates/writes and sees own work beside provided books; student starts task and returns to library."
+    },
+    "permission": {
+      "status": "pass",
+      "evidence": "Role helper covers guest/member/teacher/admin/student. Student has no teacher management links; actual route gates remain. Existing student creation/image restrictions and account-switch coverage retained."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x1000",
+      "artifact": "library-teacher-desktop.png",
+      "observation": "Common teacher tabs attached to the wood library; all works filter selected."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "library-teacher-phone.png",
+      "observation": "All three teacher links and separate settings fit one phone row; library collection selector shows all works."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "teacher-students-phone.png",
+      "observation": "Student management is its own panel with student tab selected."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "teacher-settings-phone.png",
+      "observation": "Code, class name and default permissions are grouped in separate settings."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "student-tasks-phone.png",
+      "observation": "Student has library and my tasks only; writing actions remain in assignment cards."
+    }
+  ],
+  "checks": {
+    "classroom_browser": 22,
+    "direct_editor_storage_recovery": 1,
+    "navigation_and_library_unit": 11,
+    "docs_unit": 10,
+    "online_build": "pass",
+    "focused_lint": "0 errors; two existing navigation warnings on the wider scope"
+  },
+  "test_harness_note": "Initial concurrent browser commands shared Playwright artifact directories and failed during trace cleanup. Rerun used unique output directories; all final checks above passed.",
+  "limits": [
+    "Local mocked accounts and toy manuscripts, no real student information.",
+    "No production deployment, actual authenticated sessions or physical-device verification.",
+    "Main personal shelf currently holds KnolStory own/imported/online works; authored ShortStory books remain in the linked picture-book library.",
+    "Fresh all-works default does not overwrite an explicitly chosen session filter/query/page."
+  ]
+}

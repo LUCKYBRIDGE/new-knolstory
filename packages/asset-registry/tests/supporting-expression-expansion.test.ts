@@ -21,7 +21,7 @@ it('adds two distinct searchable poses for each of sixteen supporting identities
 });
 it('preserves all previous449catalogue rows and permits only reviewed new runtime paths',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
- const previous=rows.filter((row:{src:string;metadata:{generatedExpressionAsset?:boolean}})=>!row.metadata.generatedExpressionAsset||row.src.startsWith('/assets/characters/expressions-v1/'));
+ const previous=rows.filter((row:{src:string;metadata:{generatedExpressionAsset?:boolean;shortStoryCollection?:string}})=>!row.metadata.shortStoryCollection&&(!row.metadata.generatedExpressionAsset||row.src.startsWith('/assets/characters/expressions-v1/')));
  expect(previous).toHaveLength(plan.before.catalogueRows);
  expect(createHash('sha256').update(JSON.stringify(previous)).digest('hex')).toBe(plan.before.catalogueSha256);
  for(const path of ['assets/characters/expressions-v2/unknown.webp','assets/characters/expressions-v2/../guard.webp','assets/characters/expressions-v2/onggojib-guard-stop.webp?x=1','https://example.com/guard.webp'])expect(isRuntimeImagePath(path)).toBe(false);

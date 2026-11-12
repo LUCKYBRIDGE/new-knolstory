@@ -1,17 +1,19 @@
 import {advanceReading,editReadCut,restartReading} from './native-reader';
 import {previousReadCut} from './reader-actions';
-import {confirmAuthoringImport,expectIndependentImportedProject} from './authoring-file';
+import {confirmAuthoringImport,expectIndependentImportedProject,openFileExchange} from './authoring-file';
+import {openChoiceEditing} from './editor-screens';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import type {StoryProject} from '@knolstory/story-domain';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 async function ready(page:Page){const status=page.getByTestId('story-runtime-status');await expect(status).toContainText('연결됨',{timeout:90000});await expect.poll(()=>status.evaluate(node=>node.getAttribute('data-scene-revision')===node.getAttribute('data-rendered-revision')),{timeout:30000}).toBe(true);}
 async function menu(page:Page){const work=page.locator('[data-work-menu]');if(!await work.evaluate(node=>(node as HTMLDetailsElement).open))await work.locator(':scope>summary').click();}
 async function load(page:Page,file='score-story.knolstory'){await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(`docs/architecture/evidence/score-narrative/${file}`);await confirmAuthoringImport(page);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
-async function flow(page:Page){const extras=page.locator('[data-additional-tools]');if(!await extras.evaluate(node=>(node as HTMLDetailsElement).open))await extras.locator(':scope>summary').click();await page.getByRole('button',{name:'선택지 편집',exact:true}).click();}
+async function flow(page:Page){await openChoiceEditing(page,'점수','분기조건');}
 async function choose(page:Page,name:string){const semantic=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})}),button=semantic.getByRole('button',{name,exact:true});await expect(button).toBeEnabled();await button.focus();await page.keyboard.press('Enter');await ready(page);}
 async function next(page:Page){const button=page.getByRole('button',{name:'다음으로',exact:true});await expect(button).toBeEnabled();await button.focus();await page.keyboard.press('Enter');await ready(page);}
 async function restart(page:Page){await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'처음부터 읽기',exact:true}).click();await page.getByRole('dialog',{name:'처음부터 읽을까요?',exact:true}).getByRole('button',{name:'처음부터 읽기',exact:true}).click();await ready(page);}
-async function exported(page:Page,path:string){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await(await pending).saveAs(path);return JSON.parse(readFileSync(path,'utf8'));}
+async function exported(page:Page,path:string){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();await(await pending).saveAs(path);return JSON.parse(readFileSync(path,'utf8'));}
 
 test('score definitions, choice effects and conditional routes are editable and survive official workbook and file reopening',async({page},info)=>{
  test.skip(info.project.name!=='host');await load(page);
@@ -30,7 +32,7 @@ test('score definitions, choice effects and conditional routes are editable and 
  expect(originalFlow?.type).toBe('goto');
  const originalRoutes=originalFlow?.type==='goto'?originalFlow.routes:undefined;expect(originalRoutes).toHaveLength(2);
  expect(moved.document.project.lines.find((line:StoryProject['lines'][number])=>line.id==='score-join').flow).toEqual({...originalFlow,routes:[originalRoutes![1],originalRoutes![0]]});
- await page.getByRole('button',{name:'조건 2 위로',exact:true}).click();
+ await flow(page);await page.getByRole('button',{name:'조건 2 위로',exact:true}).click();
  await page.getByLabel('진행 1 조건 1 값',{exact:true}).fill('5');await page.getByLabel('진행 1 조건 1 값',{exact:true}).blur();
  for(const viewport of [{width:1280,height:900},{width:820,height:1180},{width:390,height:844},{width:844,height:390}]){await page.setViewportSize(viewport);await expect(page.getByLabel('진행 1 조건 1 값',{exact:true})).toHaveValue('5');expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:info.outputPath(`score-routes-${viewport.width}.png`),fullPage:true});}
  const path=info.outputPath('score-edited.knolstory'),archive=await exported(page,path);expect(archive.document.schemaVersion).toBe(8);
@@ -57,7 +59,7 @@ test('score route destinations distinguish repeated cut text in different chapte
  await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'target-labels.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({...archive,document:{...archive.document,project}}))});await confirmAuthoringImport(page);
  await page.setViewportSize({width:390,height:844});await flow(page);await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption('score-join');await page.getByText('점수 조건에 따른 진행',{exact:true}).click();
  const target=page.getByLabel('진행 1 도착 컷',{exact:true});await expect(target.locator('option[value="score-first"]')).toContainText('1장');await expect(target.locator('option[value="score-first"]')).toContainText('1컷');
- await expect(target.locator('option[value="score-later-cut"]')).toContainText('2장갈래 · 같은 말이 나오는 다른 장 · 1컷');
+ await expect(target.locator('option[value="score-later-cut"]')).toContainText('2장 · 갈래 · 같은 말이 나오는 다른 장 · 1컷');
  await target.selectOption('score-later-cut');await expect(target).toHaveValue('score-later-cut');
  const result=(await exported(page,info.outputPath('target-labels-after.knolstory'))).document.project as StoryProject;
  expect(result.chapters).toEqual(project.chapters);expect(result.lines.find(line=>line.id==='score-join')?.flow).toEqual({...project.lines.find(line=>line.id==='score-join')!.flow,type:'goto',routes:(project.lines.find(line=>line.id==='score-join')!.flow as Extract<StoryProject['lines'][number]['flow'],{type:'goto'}>).routes!.map((route,index)=>index?route:{...route,targetLineId:'score-later-cut'})});

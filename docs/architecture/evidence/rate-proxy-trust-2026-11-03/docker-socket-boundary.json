@@ -1,0 +1,67 @@
+{
+  "runId": "8ca8be12e1fe42f1945a1a8b66874897",
+  "checkedAt": "2026-11-02T23:23:36.747069+00:00",
+  "scope": "Actual local Docker VM shared named volume and Linux UID permissions; not cloudflared process authentication or production activation.",
+  "productionChanges": false,
+  "hostPorts": [],
+  "containerNetwork": "none",
+  "sourceSha256": {
+    "server/operations/production-ingress.mjs": "3f695730957778fb29ab7c99c53c579f92a5250cc01171593b6549ef60df5e11",
+    "server/operations/trusted-ingress-socket.mjs": "88ddefdbf0692d8b5023a0a2ba9d76cdc6a5b926b146aab165b824b08064aadf",
+    "server/http/client-bucket-proof.mjs": "c46d95802a9925bef84e2e1e932b104a141615ebec3c5ef44fb053bc9714d6d4"
+  },
+  "runtimeImageDigest": "sha256:3d374ab92ce7dc323e206d69be9cae7e08a0354d51f76bdb8f0480e98b050f29",
+  "server": {
+    "stage": "ready",
+    "uid": 1000,
+    "node": "v22.23.3",
+    "parent": {
+      "uid": 1000,
+      "mode": 448
+    },
+    "socket": {
+      "uid": 1000,
+      "mode": 384,
+      "isSocket": true
+    },
+    "network": "none",
+    "sourceMountedReadOnly": true,
+    "fixtureKeyOnly": true
+  },
+  "allowedClient": {
+    "uid": 1000,
+    "allowed": true,
+    "allProofsVerified": true,
+    "sameClientStable": true,
+    "differentClientsDistinct": true,
+    "inheritedProofReplaced": true,
+    "requestCounts": [
+      1,
+      2,
+      3
+    ]
+  },
+  "deniedClient": {
+    "uid": 1001,
+    "socketDenied": true,
+    "errorCode": "EACCES",
+    "forgedHeaderNeverReachedIngress": true
+  },
+  "success": true,
+  "limits": [
+    "Two containers sharing UID1000 are both trusted principals; this does not identify the cloudflared binary.",
+    "Only source-mounted runtime was used; the modified ingress Dockerfile was not built.",
+    "No Cloudflare/Tunnel header provenance or real production UID/volume configuration was activated."
+  ],
+  "cleanup": {
+    "containersRemoved": 4,
+    "volumeRemoved": true,
+    "names": [
+      "knolstory-rate-socket-8ca8be12e1fe42f1945a1a8b66874897-denied",
+      "knolstory-rate-socket-8ca8be12e1fe42f1945a1a8b66874897-allowed",
+      "knolstory-rate-socket-8ca8be12e1fe42f1945a1a8b66874897-server",
+      "knolstory-rate-socket-8ca8be12e1fe42f1945a1a8b66874897-init"
+    ],
+    "preexistingResourcesChanged": false
+  }
+}

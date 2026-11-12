@@ -8,7 +8,7 @@ for(const width of [390,1440])test(`original large front cover contrast on actua
  const reports=[];
  const authored=()=>page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return {project:value.document.project,works:Object.fromEntries(Object.entries({...value.works,[value.storyId]:value.document}).map(([key,entry])=>[key,(entry as {project:unknown}).project]))};});
  async function measure(surface:string,root:Locator){
-  await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>{image.addEventListener('load',()=>resolve(),{once:true});image.addEventListener('error',()=>resolve(),{once:true});})));});
+  await root.evaluate(async node=>{await document.fonts.ready;await Promise.all([...node.querySelectorAll('img')].filter(image=>image.loading!=='lazy'||image.getBoundingClientRect().top<innerHeight).map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>{image.addEventListener('load',()=>resolve(),{once:true});image.addEventListener('error',()=>resolve(),{once:true});})));});
   const authoredBefore=await authored();
   const targets=root.locator('[data-cover-face="front"] h2,[data-cover-face="front"] p,[data-cover-face="front"] span[class*="edition"]');
   expect(await targets.count()).toBeGreaterThan(0);
@@ -21,7 +21,7 @@ for(const width of [390,1440])test(`original large front cover contrast on actua
   expect(await authored()).toEqual(authoredBefore);
  }
  for(const work of ['seonnyeo','heungbu','onggojib','rabbit']){
-  await builtinShelfCard(page,work).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await focus.getByLabel('바탕 판본',{exact:true}).selectOption('original');await measure(`${work}-focus`,focus);
+  await builtinShelfCard(page,work).getByRole('button',{name:/ 책 표지와 소개 보기(?: ·|$)/}).click();const focus=page.getByRole('dialog');await expect(focus).toBeVisible();await focus.getByLabel('편집할 이야기',{exact:true}).selectOption('original');await measure(`${work}-focus`,focus);
   await focus.getByRole('button',{name:'원작 읽기',exact:true}).click();const start=page.getByRole('main',{name:'책 표지와 소개',exact:true});await expect(start).toBeVisible();
   const selectedId=BUILTIN_WORKS.find(item=>item.id===work)!.originalDocumentId;
   // BookStart renders before the debounced workspace writer commits selection.

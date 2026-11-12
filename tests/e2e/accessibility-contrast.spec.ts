@@ -3,7 +3,7 @@ import {writeFile} from 'node:fs/promises';
 import {renderedTextContrast} from './rendered-contrast';
 for(const width of [1440,390])test(`compact default cover and shelf status contrast on actual backgrounds ${width}`,async({page},info)=>{
  await page.setViewportSize({width,height:900});await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
- await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>{image.addEventListener('load',()=>resolve(),{once:true});image.addEventListener('error',()=>resolve(),{once:true});})));});
+ await page.evaluate(async()=>{await document.fonts.ready;await Promise.all([...document.images].filter(image=>image.loading!=="lazy").map(image=>image.complete?Promise.resolve():new Promise<void>(resolve=>{image.addEventListener('load',()=>resolve(),{once:true});image.addEventListener('error',()=>resolve(),{once:true});})));});
  const texts=page.locator('[data-shelf-cover] [data-role="title"] h2, [data-shelf-cover] [data-role="title"] p'),reports=[];
  await expect(texts).toHaveCount(8);
  for(let index=0;index<await texts.count();index++)reports.push({kind:'default compact title or subtitle',...await renderedTextContrast(texts.nth(index),info.outputPath(`cover-${index}`))});

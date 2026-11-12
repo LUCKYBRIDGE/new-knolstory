@@ -45,6 +45,7 @@ Ren'Py Web Runtime
 
 ## Before coding
 Read: `AGENTS.md` → `STATUS.md` → `docs/architecture/development-blueprint.md` → `DESIGN.md` when relevant → relevant ADR → relevant `.agents/skills/*/SKILL.md`.
+숏스토리 읽기·쪽 편집·보관·A4 작업은 [숏스토리 작업 스킬](.agents/skills/shortstory-workflow/SKILL.md)에서 해당 설계·저장 계약·검증 경로를 확인한다.
 Open questions listed in `STATUS.md` are not decided; do not implement around them silently.
 Read `docs/architecture/documentation-governance.md` when updating plans, instructions, contracts, skills or completion claims. Plans are revisable: preserve evidence, identify changed scope/dependencies and update the canonical owner in the same change. A newer explicit user decision governs its scope; do not silently turn a historical plan into a present requirement.
 Current authoring format and composition quality take priority over old-format compatibility. Do not freeze new fields, structure or UX to match earlier files; preserve existing Next authored content through explicit validation/migration where meaning changes.
@@ -60,3 +61,14 @@ Inheritance is one-way: `story-maker → new-knolstory`. Do not maintain bidirec
 ## 제품 용어의 공통 기준
 
 현재 문서·UI·도움말·접근성 이름·프로젝트 스킬은 [제품 용어 사용 기준](docs/architecture/editor-terminology-and-time.md#제품-용어-사용-기준--2026-10-19)을 따른다. 같은 작품 파일의 이름을 새로 나누지 않고, 임시 보관·독자 진행 저장·지난기록·이전 원고의 대상을 구분한다. 변경할 때 관련 이름과 설명·검사를 함께 맞추고 `pnpm docs:check`와 `pnpm test:docs`를 통과시킨다. 과거 검증·원고·파일키·고정 양식 값과 프레임워크 관리 지침은 용어 통일을 이유로 덮어쓰지 않는다.
+
+<!-- BEGIN:turborepo-agent-rules -->
+
+# This is NOT the Turborepo you know
+
+Turborepo configuration, task behavior, and CLI commands can vary between installed versions and may differ from your training data. Resolve the `turbo` package from this file's directory or relevant workspace; in monorepos, it may not be visible from the repository root. For example, run `node -p "require.resolve('turbo/package.json')"` from a workspace that depends on `turbo`.
+
+Read `docs/README.md` inside that installed package first, then read the relevant pages from its `docs/` directory before changing Turborepo configuration or commands. Heed deprecation notices. These bundled docs match the installed package version and are available without network access.
+
+This block is written and re-added by `turbo` before repository-scoped commands when an AI agent is detected. In the Turborepo source repository, its template is defined in `crates/turborepo-cli/src/cli/agent_guidance.rs`. Removing the managed block while updates are enabled means a later qualifying invocation will add it again. Set `"agentGuidance": false` in the root `turbo.json` or `turbo.jsonc` to opt out; this does not remove an existing block. Keep the block committed with your work to avoid an uncommitted change on the next agent invocation.
+<!-- END:turborepo-agent-rules -->

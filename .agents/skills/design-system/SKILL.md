@@ -6,7 +6,7 @@ Before UI work:
 2. Keep the library a book-selection space with intentional room gaps, minimum two shelf rows and selection-only actions. Keep the editing workspace compact without redundant controls or excessive empty panels.
 3. Introduction waits for explicit library entry. Preserve user wording and freely authored cover composition; wrap long Korean titles/body/buttons without overlap or clipping.
 4. For authoring sheets follow [current workbook](../../../docs/architecture/authoring-workbook-v2.md): Korean titles/notes/choices, units and connections, stable hidden field keys and readable guide/reference tabs.
-5. Verify real click/edit/save/recovery/return paths at PC/tablet/phone portrait/landscape with keyboard/touch. Screenshots alone do not prove function; viewport emulation does not prove physical-device accessibility/performance.
+5. Run affected E2E through a registered Playwright project (`--project=host` etc.); a new spec must be added to a project or `scripts/check-e2e-registration.mjs` manual list (`pnpm test:e2e:registry`). Verify real click/edit/save/recovery/return paths at PC/tablet/phone portrait/landscape with keyboard/touch. Screenshots alone do not prove function; viewport emulation does not prove physical-device accessibility/performance.
 6. Significant visual changes update affected regressions and design rules. Record changed assumptions through [documentation governance](../../../docs/architecture/documentation-governance.md).
 
 Do not invent arbitrary per-screen colors, radii or button sizes.
@@ -24,6 +24,8 @@ For editor terminology/time changes read [current contract](../../../docs/archit
 - 통합 음향·연출 화면은 두 편집 기능의 개방을 모두 요구한다. [실제 통합 화면 기준](../../../DESIGN.md#통합-음향연출-편집의-실제-연결--2026-10-21)을 따르고 이전 독립 시안을 실제 구현으로 간주하지 않는다. 항목의 작성 컷·장 기본값을 구분해 원래 설정을 수정하고, 조건부 원고의 막대를 선택 갈래의 실제 적용 결과로 표시하지 않는다. 배율·스크롤만 바꿔 원고를 수정하지 않으며 작품 파일 재열기와 단일 native 재생/복귀를 검증한다.
 
 - 편집 viewport 작업은 [화면 안 맞춤](../../../DESIGN.md#화면-안-맞춤--사용자-확정-141)을 따른다. 세로 휴대폰 기본편집1:4:1(앞 글/가로 native 장면+현재 글/뒤 글), 태블릿·웹의 같은 작업 구조, 페이지 대신 필요한 목록 내부 스크롤을 확인한다. 가용 visualViewport와 키보드 축소·짧은 가로 화면도 대조한다. 고정 비율은 설계 기준이며 전체 UI를 여백 상자에 넣지 않는다.
+
+- 상단을 늘리지 않고 글을 쓰는 자리에서 다음 행동을 제공한다([이어 쓰기 기준](../../../DESIGN.md#기본편집의-이어-쓰기--2026-11-10)). 빈 다음 컷 자리, 비어 있는 인물 영역처럼 작성자가 막히는 곳에 같은 동작의 버튼을 두고, 고급 기능은 그 버튼을 누를 때만 개방한다. 새 버튼 이름은 기존 회귀 검사의 접근 이름과 겹치지 않게 정하고, 장식용 표지·미리보기가 제목 heading을 중복시키지 않는지 확인한다.
 
 - 편집 상단의 보조 기능은 [상단 최소화](../../../DESIGN.md#편집-상단-최소화--2026-10-19-최신-보정)에 따라 단일 가로줄 세 개 ‘설정’ 메뉴로 묶는다. 별도 줄임표·작품·보기·기능 개방 입구를 상시 나열하지 않는다. 기능을 없애지 말고 목적별 그룹으로 옮기며 Escape/초점 복귀와 기존 파일/기능 개방을 확인한다.
 

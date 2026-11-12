@@ -30,7 +30,7 @@ test('a second tab reads a story and returns to the library without any storage 
  await expect(second.getByTestId('story-runtime-frame')).toBeVisible();await noTabWarning(second);
  await second.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await second.getByRole('button',{name:'서재로 돌아가기',exact:true}).click();
  await second.getByRole('dialog',{name:'서재로 돌아갈까요?',exact:true}).getByRole('button',{name:'보관하고 서재로',exact:true}).click();
- await expect(second.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();await noTabWarning(second);
+ await expect(second.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();await noTabWarning(second);
  // The first tab takes the writer back as soon as it is used again, also without a warning.
  await use(page);await noTabWarning(page);await expect(writer(second)).toHaveAttribute('data-local-writer','standby');
 });
@@ -114,7 +114,7 @@ test('a work deleted in another tab is not resurrected and this tab’s remainin
  await setTextQuietly(page,'현재 탭에만 남아 있는 초안');
  await shelfCoverButton(second,'두 탭의 작품').click();
  const focus=second.getByRole('dialog');await focus.locator('summary').filter({hasText:'책 꾸미기·작품 도구'}).click();
- await focus.getByRole('button',{name:'내 작품 삭제',exact:true}).click();
+ await focus.getByRole('button',{name:'이 기기에서 삭제',exact:true}).click();
  await second.getByRole('dialog',{name:'내 작품 삭제 확인',exact:true}).getByRole('button',{name:'삭제 확인',exact:true}).click();
  await expect.poll(()=>second.evaluate(key=>{const value=JSON.parse(localStorage.getItem(key)!);return Object.hasOwn({...value.works,[value.storyId]:value.document},'new:tab-handover');},workspace)).toBe(false);
  // Release the deleting tab after flushing its pending snapshot; its savedAt may otherwise
@@ -161,7 +161,7 @@ test('a picture-book draft reports a quota failure after taking over instead of 
  const stored=await second.evaluate(key=>localStorage.getItem(key),shortstory);
  await page.evaluate(key=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(name,value){if(name===key)throw new DOMException('full','QuotaExceededError');return original.call(this,name,value);};},shortstory);
  await page.getByLabel('이 쪽의 이야기').evaluate(el=>{const field=el as HTMLTextAreaElement;Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value')!.set!.call(field,'공간 부족에도 남아야 하는 그림책');field.dispatchEvent(new Event('input',{bubbles:true}));});
- await expect(page.getByRole('alert').filter({hasText:'자동으로 보관하지 못했어요'})).toBeVisible();
+ await expect(page.getByRole('alert').filter({hasText:'자동으로 임시 보관하지 못했어요'})).toBeVisible();
  await expect(page.getByLabel('이 쪽의 이야기')).toHaveValue('공간 부족에도 남아야 하는 그림책');
  expect(await page.evaluate(key=>localStorage.getItem(key),shortstory)).toBe(stored);
 });

@@ -17,11 +17,13 @@ describe('story edge worker', () => {
       expect(() => edgeConfig(broken)).toThrow();
   });
 
-  it('keeps the API, writes and other hosts on the Mac mini origin untouched', async () => {
+  it('keeps API routes, methods and request payloads on the Mac mini origin', async () => {
     for (const request of [at('/api/v1/me'), at('/api'), at('/api/v1/auth/kakao/callback?code=a&state=b'), at('/', { method: 'POST', body: 'x' }), at('/assets/a.png', { method: 'OPTIONS' }), new Request('https://story-next.knolquiz.com/')]) {
       const { seen, upstream } = recorder();
       await handleEdgeRequest(request, env, upstream);
-      expect(seen).toEqual([request]);
+      expect(seen).toHaveLength(1);
+      expect(seen[0].url).toBe(request.url);expect(seen[0].method).toBe(request.method);
+      expect(Object.fromEntries(seen[0].headers)).toEqual(Object.fromEntries(request.headers));
     }
   });
 
@@ -74,7 +76,9 @@ describe('story edge worker', () => {
     const { seen, upstream } = recorder();
     const request = at('/');
     await handleEdgeRequest(request, { PUBLIC_ORIGIN: env.PUBLIC_ORIGIN }, upstream);
-    expect(seen).toEqual([request]);
+    expect(seen).toHaveLength(1);
+      expect(seen[0].url).toBe(request.url);expect(seen[0].method).toBe(request.method);
+      expect(Object.fromEntries(seen[0].headers)).toEqual(Object.fromEntries(request.headers));
     const failing = await handleEdgeRequest(at('/'), env, async () => { throw new TypeError('network'); });
     expect(failing.status).toBe(502);
     expect(failing.headers.get('cache-control')).toBe('no-store');
@@ -136,4 +140,25 @@ describe('brotli copies of large runtime files', () => {
     expect(calls).toBe(2);
     expect(await unreachable.text()).toBe('PLAIN');
   });
+});
+
+describe('origin forwarding client identity',()=>{
+ it.each([env,{PUBLIC_ORIGIN:env.PUBLIC_ORIGIN}])('replaces inherited claims on API and broken-config origin forwarding',async config=>{
+  const request=at('/api/v1/documents',{method:'POST',body:'manuscript',headers:{'cf-connecting-ip':'192.0.2.10','x-real-ip':'203.0.113.99','x-forwarded-for':'203.0.113.99',forwarded:'for=203.0.113.99','x-knolstory-client-proof':'forged',cookie:'sid=existing','x-csrf-token':'existing'}});
+  const {seen,upstream}=recorder();await handleEdgeRequest(request,config,upstream);
+  expect(seen[0].url).toBe(request.url);expect(seen[0].method).toBe('POST');
+  expect(await seen[0].text()).toBe('manuscript');
+  expect(seen[0].headers.get('x-real-ip')).toBe('192.0.2.10');
+  expect(seen[0].headers.get('cookie')).toBe('sid=existing');
+  expect(seen[0].headers.get('x-csrf-token')).toBe('existing');
+  for(const name of ['forwarded','x-forwarded-for','x-knolstory-client-proof'])expect(seen[0].headers.has(name)).toBe(false);
+ });
+ it.each(['','192.0.2.1, 198.51.100.1','127.1','1.2.3.999','::1%lo','[::1]','garbage'])('never uses inherited XRealIP for invalid CF claim %s',async ip=>{
+  const {seen,upstream}=recorder();await handleEdgeRequest(at('/api/v1/me',{headers:{'cf-connecting-ip':ip,'x-real-ip':'203.0.113.99'}}),env,upstream);
+  expect(seen[0].headers.has('x-real-ip')).toBe(false);
+ });
+ it('canonicalizes IPv6 before same-zone origin forwarding',async()=>{
+  const {seen,upstream}=recorder();await handleEdgeRequest(at('/api/v1/me',{headers:{'cf-connecting-ip':'2001:0db8:0:0::1'}}),env,upstream);
+  expect(seen[0].headers.get('x-real-ip')).toBe('2001:db8::1');
+ });
 });

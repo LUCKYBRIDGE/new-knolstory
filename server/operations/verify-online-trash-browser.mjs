@@ -14,7 +14,7 @@ const config=await(await fetch(origin+'/api/v1/auth/config')).json();
 if(config.data?.providers?.kakao!==false||config.data?.providers?.google!==false)throw Error('Expected isolated API with live providers disabled.');
 const account=randomUUID(),token=randomBytes(32).toString('base64url'),hash=createHash('sha256').update(token).digest('hex');
 // Only generated UUID/hash/integer values reach SQL. No credentials or author data read.
-sql(`BEGIN; INSERT INTO knolstory_auth.accounts(id,status) VALUES('${account}','active'); INSERT INTO knolstory_auth.sessions(token_hash,account_id,expires_at) VALUES('${hash}','${account}',${Date.now()+600000}); COMMIT;`);
+sql(`BEGIN; INSERT INTO knolstory_auth.accounts(id,status,role) VALUES('${account}','active','teacher'); INSERT INTO knolstory_auth.sessions(token_hash,account_id,expires_at) VALUES('${hash}','${account}',${Date.now()+600000}); COMMIT;`);
 let browser;const results=[];
 try{
  browser=await chromium.launch();

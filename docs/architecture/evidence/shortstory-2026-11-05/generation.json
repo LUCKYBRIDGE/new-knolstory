@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-05",
+  "images": [
+    {
+      "id": "shortstory.background.creative-swallow-care-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/generated-swallow-care-v1.webp",
+      "sha256": "98040e88a4455e8b1633357bbe437b8176218f02bbcb816c903c0e2090779b08",
+      "size": [
+        1672,
+        941
+      ],
+      "tool": "image_gen.imagegen",
+      "promptSummary": "비 오는 봄날 초가 처마 아래에서 흥부와 아이가 다친 제비에게 천 둥지를 내미는 장면. 기준 인물의 얼굴과 복식, 한 장면의 자연스러운 상호작용을 유지한다.",
+      "references": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ],
+      "review": {
+        "characterIdentity": "faces, hair tie, headband, patched costume compared with referenced KnolStory images",
+        "scene": "coherent action, visible interaction, no labels or watermark",
+        "remaining": "service distribution authorization for new output bytes requires review"
+      },
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true,
+        "convertedOn": "2026-11-10",
+        "originalPngSha256": "34ea0e85401c125ad6596f2fb9ff514aabb6ca43d9f6fd4aa511fc8bb276945b",
+        "originalBytes": 3574601,
+        "deliveredBytes": 608174
+      }
+    },
+    {
+      "id": "shortstory.background.creative-swallow-farewell-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/generated-swallow-farewell-v1.webp",
+      "sha256": "71eca331691f02b5995d67a13f9a84826d463d52ca653438e568f191773f3b4c",
+      "size": [
+        1672,
+        941
+      ],
+      "tool": "image_gen.imagegen",
+      "promptSummary": "같은 인물과 초가집에서 며칠 뒤 맑은 봄날 회복한 제비를 날려 보내는 장면. 두 인물의 얼굴과 복식 및 수채화 그림책 화풍을 이어간다.",
+      "references": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        },
+        {
+          "id": "shortstory.background.creative-swallow-care-v1",
+          "sha256": "98040e88a4455e8b1633357bbe437b8176218f02bbcb816c903c0e2090779b08"
+        }
+      ],
+      "review": {
+        "characterIdentity": "faces, hair tie, headband, patched costume compared with referenced KnolStory images",
+        "scene": "coherent action, visible interaction, no labels or watermark",
+        "remaining": "service distribution authorization for new output bytes requires review"
+      },
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true,
+        "convertedOn": "2026-11-10",
+        "originalPngSha256": "11c3db11040bbc98f083b0311e030a423d18360909fa1515efd85bc4bde6d2db",
+        "originalBytes": 3667143,
+        "deliveredBytes": 666616
+      }
+    },
+    {
+      "id": "shortstory.background.creative-forest-comet-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/generated-forest-comet-v1.webp",
+      "sha256": "be5987d4470710ce64900a4a7aa38c5a69ee2a9d5c554a1b02d8d0ece2c60c2c",
+      "size": [
+        1672,
+        941
+      ],
+      "tool": "image_gen.imagegen",
+      "promptSummary": "원작 사건과 무관하게 토끼와 자라가 숲의 언덕에서 나무 망원경과 별자리 지도를 준비해 혜성을 발견하는 밤. 두 인물의 기준 얼굴·귀·등껍질·복식을 유지하고 자연스러운 새 행동을 그린다.",
+      "references": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, rabbit ears, shell and scholar costume compared",
+        "scene": "independent astronomy discovery, visible telescope and comet; no plot copied from original",
+        "remaining": "new output service authorization review"
+      },
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true,
+        "convertedOn": "2026-11-10",
+        "originalPngSha256": "fbcc745768f52e7721578becc8094311c2ce942b0632e556fdad88def6fb97c3",
+        "originalBytes": 3224768,
+        "deliveredBytes": 509182
+      }
+    },
+    {
+      "id": "shortstory.background.creative-kite-rescue-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/generated-kite-rescue-v1.webp",
+      "sha256": "2946528578ffa690a3f3e05956ae82093cf812491fca4980db96ae4e590b42eb",
+      "size": [
+        1672,
+        941
+      ],
+      "tool": "image_gen.imagegen",
+      "promptSummary": "원작 사건과 무관하게 바람에 날아간 연이 나뭇가지에 걸려 흥부가 대나무 장대로 꺼내고 아이가 실타래를 잡는 새로운 사건. 다른 아이 한 명이 옆에서 지켜보며, 기준 인물의 얼굴과 복식을 유지한다.",
+      "references": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        },
+        {
+          "id": "shortstory.background.creative-swallow-care-v1",
+          "sha256": "98040e88a4455e8b1633357bbe437b8176218f02bbcb816c903c0e2090779b08"
+        }
+      ],
+      "review": {
+        "characterIdentity": "reference faces, headband, hair tie and patched costumes compared",
+        "scene": "independent kite retrieval problem, shared action, supporting new child",
+        "remaining": "new output service authorization review"
+      },
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true,
+        "convertedOn": "2026-11-10",
+        "originalPngSha256": "c0ae84746abb6cc911a9a9042f1124082db4e0d13a4c80d84a569d46f2ca9626",
+        "originalBytes": 4075753,
+        "deliveredBytes": 745002
+      }
+    }
+  ]
+}

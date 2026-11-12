@@ -22,8 +22,8 @@ export function parseLibraryView(raw:string|null):{filter:string;query:string;pa
   const data=JSON.parse(raw??'null');
   if(data?.version!==1||!['all','builtin','original','example','own','imported'].includes(data.filter)||typeof data.query!=='string'||data.query.length>200)return empty;
   const pages:Record<string,number>=Object.fromEntries(Object.entries(data.pages??{}).filter(([key,page])=>['all','builtin','original','example','own','imported'].includes(key)&&typeof page==='number'&&Number.isSafeInteger(page)&&page>=0).map(([key,page])=>[key,Number(page)]));
-  const migrated=data.filter==='original'||data.filter==='example';
-  return {filter:migrated?'builtin':data.filter,query:data.query,pages:migrated?{...pages,builtin:pages.builtin??pages[data.filter]??0}:pages};
+  const migrated=data.filter==='original'||data.filter==='example',filter=migrated?'builtin':data.filter==='imported'?'own':data.filter;
+  return {filter,query:data.query,pages:filter!==data.filter?{...pages,[filter]:pages[filter]??pages[data.filter]??0}:pages};
  }catch{return empty;}
 }
 
@@ -33,3 +33,6 @@ export function shelfLayoutForWidth(width:number){
  const rows=columns>=4?2:3;
  return {columns,rows,capacity:columns*rows};
 }
+
+/** File/online imports remain independent local works and belong in the personal shelf. */
+export function isPersonalLibraryKind(kind:string){return kind==='own'||kind==='imported';}

@@ -4,7 +4,7 @@ import type {IncomingMessage,ServerResponse} from 'node:http';
 
 export type RequestObservation=Readonly<{
  event:'http_request';requestId:string;method:string;
- route:'auth'|'documents'|'health'|'unmatched';status:number;
+ route:'auth'|'documents'|'classroom'|'health'|'unmatched';status:number;
  outcome:'completed'|'aborted';durationMs:number;
 }>;
 type Options=Readonly<{clock?:()=>number;onSinkFailure?:(message:string)=>void}>;
@@ -13,6 +13,7 @@ function family(raw:string|undefined):RequestObservation['route']{
  const path=raw.split('?',1)[0]!;
  if(path==='/api/v1/auth'||path.startsWith('/api/v1/auth/'))return 'auth';
  if(path==='/api/v1/documents'||path.startsWith('/api/v1/documents/'))return 'documents';
+ if(path==='/api/v1/class'||path.startsWith('/api/v1/class/'))return 'classroom';
  return path==='/health/live'||path==='/health/ready'?'health':'unmatched';
 }
 /** Synchronous, fixed-schema lifecycle observation; never consumes request bodies. */

@@ -1,0 +1,4 @@
+import type {OnlineShelfStatus} from '../lib/unified-library';
+import styles from './library-storage.module.css';
+export function StorageIcon({online=false}:{online?:boolean}){return <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">{online?<path d="M7 18H6a4 4 0 0 1-.5-8A6.5 6.5 0 0 1 18 8.5 4.8 4.8 0 0 1 18 18h-2M12 12v9m-3-3 3 3 3-3"/>:<><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></>}</svg>;}
+export function LibraryStorageBadge({status,compact=false}:{status:OnlineShelfStatus;compact?:boolean}){return <span className={`${styles.badge} ${compact?styles.compact:''}`} data-storage-kind={status.kind} title={status.label}><StorageIcon online={status.kind==='linked'||status.kind==='remote'}/><span className={compact?styles.srOnly:undefined}>{status.label}</span></span>;}

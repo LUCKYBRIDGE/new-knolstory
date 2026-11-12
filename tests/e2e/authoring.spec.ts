@@ -1,3 +1,4 @@
+import {openWorkFileExchange} from './work-file-exchange';
 import {previousReadCut} from './reader-actions';
 import {openEditorDetails} from './native-reader';
 import {resolveStageComposition,type StoryProject} from '../../packages/story-domain/src';
@@ -16,9 +17,10 @@ async function save(page: Page) {
 }
 
 async function menu(page:Page){const root=page.locator('[data-work-menu]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope>summary').click();}
+async function closeMenu(page:Page){const root=page.locator('[data-work-menu]');if(await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope>summary').click();}
 async function tool(page:Page,name:string){const pane=page.getByRole('region',{name:'작품 설정',exact:true});if(await pane.isVisible())await pane.getByRole('button',{name:'현재 컷 쓰기',exact:true}).click();const root=page.locator('[data-additional-tools]');if(!await root.evaluate(node=>(node as HTMLDetailsElement).open))await root.locator(':scope>summary').click();await page.getByRole('button',{name,exact:true}).click();}
 async function chooseCut(page:Page,id:string){await page.getByLabel('현재 장과 컷 이동',{exact:true}).selectOption(id);}
-async function shelf(page:Page){await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'로컬 서재',exact:true})).toBeVisible();}
+async function shelf(page:Page){await page.getByRole('button',{name:'서재로',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();}
 async function createBranchingStory(page: Page) {
   await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
   await page.getByLabel('새 작품 제목', { exact: true }).fill(title);
@@ -82,7 +84,7 @@ test('blank authoring saves a real-asset branching work and preserves it through
   const { ids, backgroundId, characterId } = await createCurrentBranchingStory(page);
   await page.reload();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await expect(page.getByLabel('현재 장과 컷 이동').locator('option')).toHaveCount(3);await currentFlow(page);
   await expect(page.getByLabel('선택지 1 문구',{exact:true})).toHaveValue('집으로 돌아가기');await expect(page.getByLabel('선택지 2 도착 컷',{exact:true})).toHaveValue(ids[2]!);
-  await menu(page);const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await downloadPromise;expect(download.suggestedFilename()).toMatch(/\.knolstory$/);const path=(await download.path())!,document=parseAuthoringFile(readFileSync(path,'utf8')),project=document.project as StoryProject;
+  await openWorkFileExchange(page);const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const download=await downloadPromise;expect(download.suggestedFilename()).toMatch(/\.knolstory$/);const path=(await download.path())!,document=parseAuthoringFile(readFileSync(path,'utf8')),project=document.project as StoryProject;
   expect(project.title).toBe(title);expect(project.chapters[0].title).toBe('달빛 숲');expect(project.lines.map(line=>line.text)).toEqual(texts);expect(project.lines).toHaveLength(3);
   for(const line of project.lines){expect(line.backgroundId).toBe(backgroundId);expect(resolveStageComposition(project.chapters.find(ch=>ch.id===line.chapterId),line,project).leftActors.map(actor=>actor.assetId)).toContain(characterId);}
   expect(project.lines[0].flow?.type).toBe('choice');const choice=project.lines[0].flow;if(choice?.type!=='choice')throw Error('Expected choice');expect(choice.options.map(option=>option.targetLineId)).toEqual(ids.slice(1));expect(project.lines.slice(1).map(line=>line.flow?.type==='goto'?line.flow.targetLineId:undefined)).toEqual([null,null]);
@@ -105,10 +107,12 @@ test('newly authored branching work renders real assets and both native Ren’Py
 });
 
 async function exportedProject(page: Page) {
-  await menu(page);
+  await openWorkFileExchange(page);
   const pending = page.waitForEvent('download');
   await page.getByRole('button', { name: '작품 파일 내보내기' }).click();
-  return parseAuthoringFile(readFileSync((await (await pending).path())!, 'utf8')).project;
+  const exported=parseAuthoringFile(readFileSync((await (await pending).path())!, 'utf8')).project;
+  await closeMenu(page);
+  return exported;
 }
 
 test('blank creation preserves existing work and structural editing retains choice identities', async ({ page }, testInfo) => {
@@ -138,7 +142,7 @@ test('blank creation preserves existing work and structural editing retains choi
   await menu(page);await openEditorDetails(page,'현재 컷의 장 설정');await page.locator('[data-chapter-settings]').getByRole('textbox',{name:/ 장 제목$/}).fill('새로운 갈래');
   await currentScreen(page,'basic');await page.locator('[data-current-cut] textarea').fill('새 장에서 이어지는 이야기');
   await menu(page);await page.getByRole('button', { name: '현재 컷 뒤에 추가', exact: true }).click();
-  await page.locator('[data-work-menu]>summary').click();
+  await closeMenu(page);
   const movedId = await page.getByLabel('현재 장과 컷 이동').inputValue();
   await openEditorDetails(page,'현재 컷 상세·메모·정리');await page.getByRole('button', { name: '현재 컷 위로', exact: true }).click();
   const moved = await exportedProject(page);
@@ -149,11 +153,11 @@ test('blank creation preserves existing work and structural editing retains choi
   expect(branch.flow.options[0].targetLineId).toBe(ids[1]);
   expect(branch.flow.options[1].targetLineId).toBe(chapterStart);
   await menu(page);await page.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true}).click();const disposable=await page.getByLabel('현재 장과 컷 이동').inputValue();
-  await page.locator('[data-work-menu]>summary').click();
+  await closeMenu(page);
   await openEditorDetails(page,'현재 컷 상세·메모·정리');await page.getByRole('button',{name:'현재 컷 삭제',exact:true}).click();
   await page.getByRole('dialog',{name:'컷 삭제 확인',exact:true}).getByRole('button',{name:'삭제 실행',exact:true}).click();
   const deleted=await exportedProject(page);expect(deleted.lines.map((line:{id:string})=>line.id)).not.toContain(disposable);expect(Date.parse(deleted.updatedAt)).toBeGreaterThanOrEqual(Date.parse(moved.updatedAt));expect(deleted).toEqual({...moved,updatedAt:deleted.updatedAt});
-  await menu(page);await page.getByRole('button', { name: '임시 보관', exact: true }).click();
+  await openWorkFileExchange(page);await page.getByRole('button', { name: '임시 보관 다시 시도', exact: true }).click();
   await save(page);
   await menu(page);await shelf(page);await openShelfAction(page,page.getByRole('article',{name:`내 작품 · ${preserved.title}`,exact:true}),'편집하기');
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue('기존 선녀 작품에 남겨 둔 문장');expect(await exportedProject(page)).toEqual(preserved);
@@ -183,7 +187,7 @@ test('explicit save retries a failed device write while preserving the draft', a
   await expect(page.getByTestId('save-status')).toContainText('임시 보관 실패');
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue('저장이 실패해도 다시 저장할 수 있는 문장');
   await page.evaluate(() => (window as unknown as { __restoreAuthoringStorage: () => void }).__restoreAuthoringStorage());
-  await menu(page);await page.getByRole('button', { name: '임시 보관', exact: true }).click();
+  await openWorkFileExchange(page);await page.getByRole('button', { name: '임시 보관 다시 시도', exact: true }).click();
   await save(page);
   await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
   await page.reload();
@@ -195,8 +199,8 @@ test('corrupt stored workspace preserves raw bytes and blocks applying a pending
   const originalRaw = '{broken workspace content that must remain recoverable';
   await page.addInitScript(raw => localStorage.setItem('knolstory-next-workspace-v1', raw), originalRaw);
   await page.goto('/?view=editor');
-  await expect(page.getByTestId('save-status')).toHaveText('임시 보관 중지');await menu(page);
-  await expect(page.getByRole('button', { name: '임시 보관', exact: true })).toBeDisabled();
+  await expect(page.getByTestId('save-status')).toHaveText('임시 보관 중지');await openWorkFileExchange(page);
+  await expect(page.getByRole('button', { name: '임시 보관 다시 시도', exact: true })).toBeDisabled();
   const cutId=await page.getByLabel('현재 장과 컷 이동').inputValue();
   const draft='손상된 저장 내용 대신 파일로 보관할 새 문장';await page.locator('[data-current-cut] textarea').fill(draft);
   await expect(page.getByTestId('save-status')).toHaveText('임시 보관 중지');await expect(page.getByRole('region',{name:'기기 보관함 복구',exact:true})).toContainText('작품 파일로 저장');
@@ -210,8 +214,8 @@ test('corrupt stored workspace preserves raw bytes and blocks applying a pending
   await preview.getByRole('button',{name:'가져오기 취소',exact:true}).click();await expect(preview).toHaveCount(0);
   expect(await exportedProject(page)).toEqual(before);
   await menu(page);await page.getByRole('button',{name:'서재로',exact:true}).click();
-  await expect(page.getByTestId('workspace-error')).toContainText('현재 편집을 유지합니다');
-  await expect(page.getByTestId('workspace-error')).not.toContainText('Error:');
+  const leaving=page.getByRole('dialog',{name:'서재로 이동할까요?',exact:true});await expect(leaving).toContainText('지금 원고는 이 탭에 그대로 있어요');await expect(leaving).not.toContainText('Error:');
+  await leaving.getByRole('button',{name:'계속 편집하기',exact:true}).click();await expect(leaving).toHaveCount(0);
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue(draft);
   expect(await page.evaluate(() => localStorage.getItem('knolstory-next-workspace-v1'))).toBe(originalRaw);
 });

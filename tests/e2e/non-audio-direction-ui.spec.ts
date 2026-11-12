@@ -1,3 +1,4 @@
+import {openWorkFileExchange} from './work-file-exchange';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
@@ -9,16 +10,19 @@ async function management(page:Page){
  const summary=page.locator('[data-work-menu]>summary');
  if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await summary.click();
 }
+const current=(page:Page)=>page.locator('[data-writer-scroll] [aria-current="step"]');
 async function direction(page:Page,kind:'effects'|'actors'='effects'){
- const tools=page.locator('[data-additional-tools]');
- if(!await tools.evaluate(node=>(node as HTMLDetailsElement).open))await tools.locator('summary').click();
- await page.getByRole('button',{name:'연출 편집',exact:true}).click();
- await page.getByLabel('조정할 연출',{exact:true}).selectOption(kind);
+ await management(page);
+ const settings=page.getByText('편집 설정',{exact:true}).locator('..');if(!await settings.evaluate(node=>(node as HTMLDetailsElement).open))await settings.locator(':scope>summary').click();
+ await page.getByRole('checkbox',{name:'연출 편집 사용',exact:true}).check();
+ await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption('direction');
+ const summary=current(page).locator('summary').filter({hasText:/컷 연출 수정$/});if(!await summary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await summary.click();
+ await current(page).getByLabel('조정할 연출',{exact:true}).selectOption(kind);
 }
 async function readAndReturn(page:Page){
  const frame=page.getByTestId('story-runtime-frame');
  await frame.evaluate(node=>node.setAttribute('data-direction-instance','original'));
- await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
+ await current(page).getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
  const status=page.getByTestId('story-runtime-status');
  await expect(status).toContainText('연결됨',{timeout:120000});
  await expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&(await status.getAttribute('data-rendered-revision'))===(await status.getAttribute('data-scene-revision')),{timeout:120000}).toBe(true);
@@ -28,7 +32,7 @@ async function readAndReturn(page:Page){
  await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('shake');
 }
 async function exportWork(page:Page){
- await management(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
+ await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
  const download=await pending;return {path:(await download.path())!,project:parseAuthoringFile(readFileSync((await download.path())!,'utf8')).project};
 }
 async function controls(page:Page){
@@ -36,10 +40,10 @@ async function controls(page:Page){
  return page.getByTestId('story-effect-controls');
 }
 for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`effect editing, timing, undo and file reopen preserve manuscript and free placement at ${size.width}`,async({page},testInfo)=>{
- page.setDefaultTimeout(15000);await page.setViewportSize(size);await page.goto('/?view=editor');
+ page.setDefaultTimeout(15000);await page.setViewportSize(size);await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.goto('/?view=editor');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await management(page);
  await page.getByLabel('작품 파일 가져오기').setInputFiles(file);await confirmAuthoringImport(page);
- await expect(page.getByLabel('작품 제목',{exact:true})).toHaveValue(source.title);
+ await expect(page.getByRole('heading',{level:1})).toHaveText(source.title);
  const panel=await controls(page);await expect(panel).toBeVisible();
  const appearance=page.getByTestId('story-actor-appearance-controls');
  await page.getByLabel('조정할 연출',{exact:true}).selectOption('actors');
@@ -67,18 +71,19 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await panel.getByLabel('효과 적용 범위',{exact:true}).selectOption('following');
  await panel.getByLabel('효과 지속 시간 (초)',{exact:true}).fill('1.2');await panel.getByLabel('효과 강도',{exact:true}).focus();
  await panel.getByRole('button',{name:'효과 추가',exact:true}).click();
- const second=panel.locator('details').nth(1);await second.locator('summary').click();
- await panel.getByLabel('2번째 효과',{exact:true}).selectOption('flash');
+ // 효과 추가 selects the new second effect card; only the selected card is shown.
+ await panel.getByLabel('2번째 효과',{exact:true}).selectOption('flash');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();
  await panel.getByLabel('2번째 효과 대상',{exact:true}).selectOption('background');
  await panel.getByRole('button',{name:'2번째 효과 위로',exact:true}).click();
  await expect(panel.getByLabel('효과',{exact:true})).toHaveValue('flash');
  await panel.getByRole('button',{name:'마지막 효과 변경 취소',exact:true}).click();
  await expect(panel.getByLabel('효과',{exact:true})).toHaveValue('shake');
- await panel.getByRole('button',{name:'순서대로 시작',exact:true}).click();
+ await panel.getByRole('button',{name:'순서대로 시작',exact:true}).click();await panel.getByRole('button',{name:'2번째 효과 선택',exact:true}).click();
  await expect(panel.getByLabel('2번째 효과 대기 시간 (초)',{exact:true})).toHaveValue('1.2');
  await panel.getByLabel('2번째 효과 반복',{exact:true}).selectOption('loop');
  await panel.getByLabel('2번째 효과 반복 간격 (초)',{exact:true}).fill('2.6');await panel.getByLabel('2번째 효과 강도',{exact:true}).focus();
  // Invalid input must not replace the valid duration.
+ await panel.getByRole('button',{name:'1번째 효과 선택',exact:true}).click();
  await panel.getByLabel('효과 지속 시간 (초)',{exact:true}).fill('-1');await panel.getByLabel('효과 강도',{exact:true}).focus();
  await expect(panel.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('1.2');await expect(panel.getByRole('alert')).toContainText('기존 값은 유지됩니다');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
@@ -102,9 +107,9 @@ test('effect cancellation restores absence and cannot copy undo into another wor
  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await management(page);
  const clean={...source,id:'undo-work-a',lines:source.lines.map((line:typeof source.lines[number])=>{const {presentation:_old,...rest}=line;return rest;})};
  const upload=async(project:typeof source)=>{await page.getByLabel('작품 파일 가져오기').setInputFiles({name:'undo.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:6,savedAt:'2026-10-10T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);};
- await upload(clean);await controls(page);await page.getByLabel('효과',{exact:true}).selectOption('flash');await page.getByRole('button',{name:'마지막 효과 변경 취소',exact:true}).click();
+ await upload(clean);await controls(page);await page.getByLabel('효과',{exact:true}).selectOption('flash');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();await page.getByRole('button',{name:'마지막 효과 변경 취소',exact:true}).click();
  expect((await exportWork(page)).project.lines.find((line:{id:string})=>line.id==='shake').presentation).toBeUndefined();
- await direction(page);await page.getByLabel('효과',{exact:true}).selectOption('shake');
+ await direction(page);await page.getByLabel('효과',{exact:true}).selectOption('shake');await page.getByRole('dialog').getByRole('button',{name:'사용',exact:true}).click();
  await management(page);await upload({...clean,id:'undo-work-b'});await controls(page);await expect(page.getByRole('button',{name:'마지막 효과 변경 취소',exact:true})).toHaveCount(0);
  expect((await exportWork(page)).project.lines.find((line:{id:string})=>line.id==='shake').presentation).toBeUndefined();
 });

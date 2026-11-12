@@ -1,6 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
 import {confirmAuthoringImport} from './authoring-file';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 const base=createBlankStoryProject({id:'flow-change-protection',chapterId:'a',lineId:'first',title:'진행 방식 보호'}),cut=base.lines[0]!;
 const choice={type:'choice' as const,options:[{id:'preserved-a',label:'친구를 믿는다',targetLineId:'next',effects:[{scoreId:'trust',operation:'add' as const,value:2}],condition:{mode:'all' as const,terms:[{scoreId:'trust',operator:'gte' as const,value:1}]}},{id:'preserved-b',label:'조금 기다린다',targetLineId:'bonus'}]};
 const routed={type:'goto' as const,targetLineId:'next',routes:[{id:'preserved-route',condition:{mode:'all' as const,terms:[{scoreId:'trust',operator:'gte' as const,value:3}]},targetLineId:'bonus'}]};
@@ -16,7 +17,19 @@ async function prepare(page:Page,kind:'choices'|'routes'|'ending'){
  await page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true}).click();return work(page);
 }
 for(const viewport of [{width:390,height:844},{width:844,height:390},{width:390,height:320}])for(const kind of ['choices','routes','ending'] as const)test(`flow mode protects ${kind} until explicit confirmation at ${viewport.width}x${viewport.height}`,async({page},info)=>{
- page.setDefaultTimeout(12000);await page.setViewportSize(viewport);const before=await prepare(page,kind),field=page.getByLabel('진행 방식',{exact:true});
+ page.setDefaultTimeout(12000);const phoneLandscape=viewport.width<=700&&viewport.width>viewport.height&&viewport.height<=440;
+await page.setViewportSize(phoneLandscape?{width:390,height:844}:viewport);const before=await prepare(page,kind),field=page.getByLabel('진행 방식',{exact:true});
+ if(phoneLandscape){
+  // DESIGN.md "휴대폰 가로·높이440px 이하": the short phone landscape is review-only, so the flow panel is intentionally unreachable and the work is untouched until the phone is rotated back.
+  await page.setViewportSize(viewport);
+  await expect(page.locator('[data-phone-editor=true]')).toBeVisible();
+  await expect(page.getByText('글을 수정하려면 휴대폰을 세로로 돌려 주세요.',{exact:true})).toBeVisible();
+  await expect(field).toBeHidden();expect(await work(page)).toEqual(before);
+  await page.setViewportSize({width:390,height:844});
+  if(!await field.isVisible())await page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true}).click();
+  await expect(field).toHaveValue(kind==='choices'?'choice':kind==='routes'?'goto':'ending');expect(await work(page)).toEqual(before);
+  return;
+ }
  const next=kind==='ending'?'goto':'linear';await field.selectOption(next);let dialog=page.getByRole('dialog',{name:'진행 방식 변경 확인',exact:true});await expect(dialog).toBeVisible();await expect(dialog).toContainText(kind==='choices'?'선택지 2개':kind==='routes'?'점수 조건 1개':'끝맺음');expect(await work(page)).toEqual(before);if(kind==='choices')await expect(dialog).toContainText('선택지 2개, 선택 시 점수 변화 1개, 선택지 표시 조건 1개가 없어집니다.');for(const name of ['취소','진행 방식 변경']){const button=dialog.getByRole('button',{name,exact:true});await button.scrollIntoViewIfNeeded();await button.click({trial:true});expect(await button.evaluate(node=>{const r=node.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight&&!!hit&&(hit===node||node.contains(hit));})).toBe(true);}
  await dialog.getByRole('button',{name:'취소',exact:true}).click();await expect(dialog).not.toBeVisible();await expect(field).toBeFocused();expect(await work(page)).toEqual(before);
  await field.selectOption(next);dialog=page.getByRole('dialog',{name:'진행 방식 변경 확인',exact:true});await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await expect(field).toBeFocused();expect(await work(page)).toEqual(before);

@@ -1,0 +1,312 @@
+
+> knolstory-next@ test:client-proof <repo>
+> node server/operations/test-client-proof.mjs
+
+TAP version 13
+# Subtest: writes only reviewed module bytes, relative receipt and a sealed independent module tree
+ok 1 - writes only reviewed module bytes, relative receipt and a sealed independent module tree
+  ---
+  duration_ms: 162.546875
+  type: 'test'
+  ...
+# Subtest: stale, missing or extra review hashes refuse before creating a destination
+ok 2 - stale, missing or extra review hashes refuse before creating a destination
+  ---
+  duration_ms: 9.056333
+  type: 'test'
+  ...
+# Subtest: existing destination, symlink destination and unsafe parent are preserved
+ok 3 - existing destination, symlink destination and unsafe parent are preserved
+  ---
+  duration_ms: 19.617041
+  type: 'test'
+  ...
+# Subtest: source links, nonfiles, unsafe paths and malformed review input refuse
+ok 4 - source links, nonfiles, unsafe paths and malformed review input refuse
+  ---
+  duration_ms: 1.208
+  type: 'test'
+  ...
+# Subtest: concurrent writers leave exactly one completed destination and do not replace it
+ok 5 - concurrent writers leave exactly one completed destination and do not replace it
+  ---
+  duration_ms: 30.145291
+  type: 'test'
+  ...
+# Subtest: verification rejects changed bytes, wrong identity, added files and a manifest link
+ok 6 - verification rejects changed bytes, wrong identity, added files and a manifest link
+  ---
+  duration_ms: 46.5295
+  type: 'test'
+  ...
+# Subtest: individual source symlinks and directories cannot enter a reviewed bundle
+ok 7 - individual source symlinks and directories cannot enter a reviewed bundle
+  ---
+  duration_ms: 2.837833
+  type: 'test'
+  ...
+# Subtest: gateway config requires explicit private key/socket and loopback destination
+ok 8 - gateway config requires explicit private key/socket and loopback destination
+  ---
+  duration_ms: 1.411792
+  type: 'test'
+  ...
+# Subtest: canonical API signs the CF claim and streams method, target, body and cookies
+ok 9 - canonical API signs the CF claim and streams method, target, body and cookies
+  ---
+  duration_ms: 25.511417
+  type: 'test'
+  ...
+# Subtest: static and alias requests keep their Host and cannot inherit a proof
+ok 10 - static and alias requests keep their Host and cannot inherit a proof
+  ---
+  duration_ms: 16.570916
+  type: 'test'
+  ...
+# Subtest: invalid Host, targets and missing, duplicate or invalid client claims do not reach ingress
+ok 11 - invalid Host, targets and missing, duplicate or invalid client claims do not reach ingress
+  ---
+  duration_ms: 10.403083
+  type: 'test'
+  ...
+# Subtest: gateway factory cannot become a TCP signer; upstream failure stays explicit
+ok 12 - gateway factory cannot become a TCP signer; upstream failure stays explicit
+  ---
+  duration_ms: 4.626291
+  type: 'test'
+  ...
+# Subtest: gateway upstream timeout does not bypass the proof path
+ok 13 - gateway upstream timeout does not bypass the proof path
+  ---
+  duration_ms: 35.202791
+  type: 'test'
+  ...
+# Subtest: gateway CLI masks invalid config and shuts down its actual private socket cleanly
+ok 14 - gateway CLI masks invalid config and shuts down its actual private socket cleanly
+  ---
+  duration_ms: 168.549083
+  type: 'test'
+  ...
+# Subtest: draft uses only verified absolute bundle entry, fixed label and file paths; plutil accepts it without installation
+ok 15 - draft uses only verified absolute bundle entry, fixed label and file paths; plutil accepts it without installation
+  ---
+  duration_ms: 87.608833
+  type: 'test'
+  ...
+# Subtest: unsafe path collisions, wrong bundle identity and arbitrary executable are rejected
+ok 16 - unsafe path collisions, wrong bundle identity and arbitrary executable are rejected
+  ---
+  duration_ms: 64.795792
+  type: 'test'
+  ...
+# Subtest: paths with XML metacharacters are escaped and contain no raw markup injection
+ok 17 - paths with XML metacharacters are escaped and contain no raw markup injection
+  ---
+  duration_ms: 42.019333
+  type: 'test'
+  ...
+# Subtest: unsafe current Node ancestry refuses; full positive suite runs using private fixture executable
+not ok 18 - unsafe current Node ancestry refuses; full positive suite runs using private fixture executable
+  ---
+  duration_ms: 869.139625
+  type: 'test'
+  location: '<repo>/server/operations/client-proof-preflight.test.mjs:31:2'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /# tests 8\b/. Input:
+    
+    ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: ''
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/server/operations/client-proof-preflight.test.mjs:41:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: plan changes only the two owned services and preserves caller snapshot, all other rules and order
+ok 19 - plan changes only the two owned services and preserves caller snapshot, all other rules and order
+  ---
+  duration_ms: 1.943125
+  type: 'test'
+  ...
+# Subtest: drift in version or any unrelated config prevents applying an old plan
+ok 20 - drift in version or any unrelated config prevents applying an old plan
+  ---
+  duration_ms: 0.360167
+  type: 'test'
+  ...
+# Subtest: invalid topology and unsafe path do not produce an executable configuration
+ok 21 - invalid topology and unsafe path do not produce an executable configuration
+  ---
+  duration_ms: 0.37675
+  type: 'test'
+  ...
+# Subtest: version zero and private dot directories remain valid while mutated drafts are rejected
+ok 22 - version zero and private dot directories remain valid while mutated drafts are rejected
+  ---
+  duration_ms: 0.137667
+  type: 'test'
+  ...
+# Subtest: key-only CLI config enables relay, socket plus key enables signer, both modes cannot coexist
+ok 23 - key-only CLI config enables relay, socket plus key enables signer, both modes cannot coexist
+  ---
+  duration_ms: 21.458417
+  type: 'test'
+  ...
+# Subtest: valid relay proof reaches API byte-for-byte and is independently verifiable while body streams
+ok 24 - valid relay proof reaches API byte-for-byte and is independently verifiable while body streams
+  ---
+  duration_ms: 19.798417
+  type: 'test'
+  ...
+# Subtest: relay rejects missing, malformed, duplicate, stale, wrong-key and changed-target proofs
+ok 25 - relay rejects missing, malformed, duplicate, stale, wrong-key and changed-target proofs
+  ---
+  duration_ms: 8.29175
+  type: 'test'
+  ...
+# Subtest: Host, path, static and alias boundaries run before proof relay
+ok 26 - Host, path, static and alias boundaries run before proof relay
+  ---
+  duration_ms: 4.319167
+  type: 'test'
+  ...
+# Subtest: configuration rejects unsafe origins, paths, ports and timeouts
+ok 27 - configuration rejects unsafe origins, paths, ports and timeouts
+  ---
+  duration_ms: 3.3455
+  type: 'test'
+  ...
+# Subtest: static routes, HEAD, MIME, ranges and missing paths
+ok 28 - static routes, HEAD, MIME, ranges and missing paths
+  ---
+  duration_ms: 57.628042
+  type: 'test'
+  ...
+# Subtest: alternate origin accepts only a distinct approved HTTPS origin
+ok 29 - alternate origin accepts only a distinct approved HTTPS origin
+  ---
+  duration_ms: 0.270792
+  type: 'test'
+  ...
+# Subtest: alternate host redirects safe GET and HEAD to canonical origin without forwarding writes
+ok 30 - alternate host redirects safe GET and HEAD to canonical origin without forwarding writes
+  ---
+  duration_ms: 6.374333
+  type: 'test'
+  ...
+# Subtest: host, traversal, encoded separators, hidden files and symlinks fail closed
+ok 31 - host, traversal, encoded separators, hidden files and symlinks fail closed
+  ---
+  duration_ms: 30.171334
+  type: 'test'
+  ...
+# Subtest: API preserves streaming status, cookies and security headers while stripping proxy headers
+ok 32 - API preserves streaming status, cookies and security headers while stripping proxy headers
+  ---
+  duration_ms: 27.153166
+  type: 'test'
+  ...
+# Subtest: API unavailable and timeout fail closed without fabricated observation
+ok 33 - API unavailable and timeout fail closed without fabricated observation
+  ---
+  duration_ms: 42.925375
+  type: 'test'
+  ...
+# Subtest: partial upstream response is terminated and cannot become success
+ok 34 - partial upstream response is terminated and cannot become success
+  ---
+  duration_ms: 18.731041
+  type: 'test'
+  ...
+# Subtest: CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+ok 35 - CLI starts on explicit loopback, rejects upgrades, and shuts down on signal
+  ---
+  duration_ms: 162.919083
+  type: 'test'
+  ...
+# Subtest: trusted signing config requires strict key file; key-only relay and default TCP remain distinct
+ok 36 - trusted signing config requires strict key file; key-only relay and default TCP remain distinct
+  ---
+  duration_ms: 2.218542
+  type: 'test'
+  ...
+# Subtest: actual protected Unix listener signs one CF client, replaces spoofed proof, never leaks proof
+ok 37 - actual protected Unix listener signs one CF client, replaces spoofed proof, never leaks proof
+  ---
+  duration_ms: 33.917292
+  type: 'test'
+  ...
+# Subtest: Unix rejects missing, multiple or invalid CF claim and never calls API
+ok 38 - Unix rejects missing, multiple or invalid CF claim and never calls API
+  ---
+  duration_ms: 16.123708
+  type: 'test'
+  ...
+# Subtest: trusted factory accidentally bound to TCP cannot act as signer
+ok 39 - trusted factory accidentally bound to TCP cannot act as signer
+  ---
+  duration_ms: 2.609958
+  type: 'test'
+  ...
+# Subtest: existing file, existing socket, symlink and insecure parent are never replaced
+ok 40 - existing file, existing socket, symlink and insecure parent are never replaced
+  ---
+  duration_ms: 4.38075
+  type: 'test'
+  ...
+# Subtest: default TCP strips inherited and response proof without enabling signing
+ok 41 - default TCP strips inherited and response proof without enabling signing
+  ---
+  duration_ms: 3.354542
+  type: 'test'
+  ...
+# Subtest: a file appearing at bind time causes refusal without deleting that file
+ok 42 - a file appearing at bind time causes refusal without deleting that file
+  ---
+  duration_ms: 3.600041
+  type: 'test'
+  ...
+# Subtest: nonsticky writable ancestors are refused even when immediate parent is private
+ok 43 - nonsticky writable ancestors are refused even when immediate parent is private
+  ---
+  duration_ms: 25.736458
+  type: 'test'
+  ...
+# Subtest: sticky writable ancestors preserve the trusted-owner private child boundary
+ok 44 - sticky writable ancestors preserve the trusted-owner private child boundary
+  ---
+  duration_ms: 14.446209
+  type: 'test'
+  ...
+1..44
+# tests 44
+# suites 0
+# pass 43
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 949.591416
+# start of coverage report
+# --------------------------------------------------------------------------------------
+# file                          | line % | branch % | funcs % | uncovered lines
+# --------------------------------------------------------------------------------------
+# server                        |        |          |         | 
+#  operations                   |        |          |         | 
+#   client-proof-bundle.mjs     | 100.00 |    89.66 |  100.00 | 
+#   client-proof-gateway.mjs    | 100.00 |    84.13 |   82.35 | 
+#   client-proof-launch.mjs     | 100.00 |    97.78 |  100.00 | 
+#   client-proof-preflight.mjs  |  57.75 |    63.64 |   53.85 | 19-23 25-27 29-41 61-69
+#   client-proof-route-plan.mjs | 100.00 |    97.92 |  100.00 | 
+#   production-ingress.mjs      |  98.31 |    95.33 |   83.33 | 103-105
+#   trusted-ingress-socket.mjs  | 100.00 |    84.62 |   85.71 | 
+# --------------------------------------------------------------------------------------
+# all files                     |  93.80 |    91.49 |   85.84 | 
+# --------------------------------------------------------------------------------------
+# end of coverage report
+ ELIFECYCLE  Command failed with exit code 1.

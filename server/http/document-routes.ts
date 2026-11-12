@@ -1,3 +1,4 @@
+import {createRateClientResolver} from './rate-client';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { authCookieNames, validateAuthOrigin, type createAuthStateService } from '../auth/auth-state';
 import { DocumentServiceError, type DocumentService } from '../documents/service';
@@ -5,7 +6,10 @@ export type DocumentRouterOptions = Readonly<{
   origin: string;
   authState: ReturnType<typeof createAuthStateService>;
   documents: DocumentService;
+  /** Personal online works are for teachers and administrators only. */
+  roles: Readonly<{ roleOf(accountId: string): Promise<'member' | 'teacher' | 'student' | 'admin' | null> }>;
   rateLimit?: Readonly<{ windowMs: number; maxRequests: number; maxEntries: number }>;
+  clientProofKey?: string;
   bodyLimitBytes?: number;
   bodyTimeoutMs?: number;
 }>;
@@ -34,12 +38,14 @@ function respond(res: ServerResponse, status: number, value: unknown) {
   res.statusCode = status; res.setHeader('Content-Type', 'application/json; charset=utf-8'); res.end(JSON.stringify(value));
 }
 function positive(value: number) { if (!Number.isSafeInteger(value) || value <= 0) throw Error('INVALID_CONFIG'); return value; }
-function rateLimiter(input: DocumentRouterOptions['rateLimit']) {
+function rateLimiter(input: DocumentRouterOptions['rateLimit'],client:ReturnType<typeof createRateClientResolver>) {
   const config = { windowMs: 60000, maxRequests: 120, maxEntries: 10000, ...input };
   Object.values(config).forEach(positive);
   const buckets = new Map<string, Readonly<{ count: number; expiresAt: number }>>();
   return (req: IncomingMessage) => {
-    const now = Date.now(), key = req.socket.remoteAddress ?? 'unknown', prior = buckets.get(key);
+    const now = Date.now(), key=client(req);
+    if(key===null)throw new HttpError(403,'INVALID_CLIENT_PROOF');
+    const prior=buckets.get(key);
     if (prior && prior.expiresAt > now) {
       if (prior.count >= config.maxRequests) throw new HttpError(429, 'RATE_LIMITED');
       buckets.set(key, { ...prior, count: prior.count + 1 }); return;
@@ -112,7 +118,7 @@ function envelope(value: unknown, saving: boolean, idempotencyKey: string) {
 export function createDocumentRouter(options: DocumentRouterOptions) {
   const origin = validateAuthOrigin(options.origin), name = authCookieNames(origin).session;
   const limit = positive(options.bodyLimitBytes ?? 26 * 1024 * 1024), timeout = positive(options.bodyTimeoutMs ?? 10000);
-  const rateLimit = rateLimiter(options.rateLimit);
+  const rateLimit = rateLimiter(options.rateLimit,createRateClientResolver({origin,key:options.clientProofKey}));
   return async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Content-Type-Options', 'nosniff'); res.setHeader('Referrer-Policy', 'no-referrer');
     try {
@@ -126,6 +132,9 @@ export function createDocumentRouter(options: DocumentRouterOptions) {
       // This optional expectation prevents stale browser state using another
       // account's cookie. Authorization still comes exclusively from the session.
       if (expected !== undefined && expected !== authenticated.accountId.toLowerCase()) throw new HttpError(409, 'ACCOUNT_SESSION_CHANGED');
+      const role = await options.roles.roleOf(authenticated.accountId);
+      if (role === null) throw new HttpError(401, 'SESSION_REQUIRED');
+      if (role !== 'teacher' && role !== 'admin') throw new HttpError(403, 'ROLE_NOT_ALLOWED');
       const context = { token, accountId: authenticated.accountId }, writing = req.method !== 'GET';
       if (writing) {
         try { await options.authState.verifyCsrf(token, header(req, 'x-csrf-token'), header(req, 'origin')); }

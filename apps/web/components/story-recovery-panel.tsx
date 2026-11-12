@@ -35,7 +35,7 @@ export function StoryRecoveryPanel({project,disabled=false,restoreDisabled=false
  return <details className={styles.panel} onToggle={event=>setOpen(event.currentTarget.open)}>
   <summary>이전 원고</summary>
   {open&&<div className={styles.body}>
-   <p>고쳐 쓰기 전 현재 원고를 기록해 두세요. 복구는 원본을 보호한 새 사본으로 열립니다. 이 기기에서 최근 10개·총 2MB까지 보관하며, 오래된 기록부터 정리합니다. 작품 파일도 따로 보관해 주세요.</p>
+   <p>고쳐 쓰기 전에 지금 원고를 보관해 두세요. 되찾을 때는 원본은 그대로 두고 새 사본으로 열려요. 이 기기에 최근 10개·총 2MB까지 보관하고, 넘으면 오래된 것부터 지워요. 작품 파일도 따로 저장해 두세요.</p>
    <div className={styles.toolbar}>
     <button type="button" disabled={disabled||busy} onClick={()=>void action(onCreate)}>현재 원고 보관</button>
     <label className={styles.checkbox}><input type="checkbox" checked={all} onChange={event=>setAll(event.target.checked)}/>모든 작품의 이전 원고 보기</label>

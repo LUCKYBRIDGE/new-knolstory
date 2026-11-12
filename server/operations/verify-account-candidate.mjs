@@ -11,7 +11,7 @@ const sql=value=>execFileSync('docker',['exec','-i','knolstory-next-storage-test
 function session(accountId){const token=randomBytes(32).toString('base64url'),hash=createHash('sha256').update(token).digest('hex');sql(`INSERT INTO knolstory_auth.sessions(token_hash,account_id,expires_at) VALUES('${hash}','${accountId}',${Date.now()+600000});`);const value={token,hash};sessions.push(value);return value;}
 let browser,primaryFailure;
 try{
- for(const id of accounts){sql(`INSERT INTO knolstory_auth.accounts(id,status) VALUES('${id}','active');`);createdAccounts.push(id);}
+ for(const id of accounts){sql(`INSERT INTO knolstory_auth.accounts(id,status,role) VALUES('${id}','active','teacher');`);createdAccounts.push(id);}
  const first=session(accounts[0]),second=session(accounts[1]);
  browser=await chromium.launch();
  const context=await browser.newContext({viewport:{width:1280,height:900}}),page=await context.newPage(),pageErrors=[];

@@ -1,6 +1,6 @@
 import {expect,test,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {parseAuthoringFile,confirmAuthoringImport,openFileExchange} from './authoring-file';
 const source=parseAuthoringFile(readFileSync('tests/fixtures/stories/presentation-polish.json','utf8'));
 async function management(page:Page){
  const menu=page.locator('[data-work-menu]');
@@ -56,7 +56,7 @@ test('author controls confirm transition and look intensity without changing man
  await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
  await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('flashback');
  await expect(frame).toHaveAttribute('data-transition-instance','original');
- await management(page);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=info.outputPath('confirm.knolstory');await(await download).saveAs(path);
+ await management(page);await openFileExchange(page);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=info.outputPath('confirm.knolstory');await(await download).saveAs(path);
  const project=parseAuthoringFile(readFileSync(path,'utf8')).project;
  const authored=project.lines.find((l:{id:string})=>l.id==='flashback');expect(authored.presentation).toMatchObject({look:{type:'flashback',intensity:'strong'},transition:{type:'perspective-blackout',mode:'confirm',actionLabel:'선녀의 시점으로 이어서 읽기'}});
  expect(project.lines.map((l:{text:string;stageComposition:unknown})=>[l.text,l.stageComposition])).toEqual(source.lines.map((l:{text:string;stageComposition:unknown})=>[l.text,l.stageComposition]));

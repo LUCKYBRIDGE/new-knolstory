@@ -1,3 +1,4 @@
+import {openWorkFileExchange} from './work-file-exchange';
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -40,7 +41,7 @@ for(const width of [390,1280])test(`existing Heungbu work resolves transparent r
   await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
  }
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
- await page.locator('[data-work-menu]>summary').click();
+ await openWorkFileExchange(page);
  const pending=page.waitForEvent('download');
  await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
  const file=await pending,path=info.outputPath('preserved.knolstory');await file.saveAs(path);

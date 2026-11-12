@@ -1,0 +1,9 @@
+file:///app/[eval1]:1
+import {createProductionIngress,listenProductionIngress} from "./operations/production-ingress.mjs"; const config={port:0,host:"127.0.0.1",staticRoot:"/site",publicOrigin:"https://story.knolquiz.com",apiOrigin:"http://127.0.0.1:1"}; const server=await createProductionIngress(config); await listenProductionIngress(server,config); try {const response=await fetch("http://127.0.0.1:"+server.address().port,{headers:{host:"story.knolquiz.com"}});const body=await response.text();if(response.status!==200||body!=="Local rate-trust packaging fixture")throw Error("Fixture differs");console.log(JSON.stringify({uid:process.getuid(),node:process.version,mode:"defaultTCP",status:response.status,bodyMatches:true,scope:"Minimal fixture image package check only; no production activation."}));}finally{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+
+Error: Fixture differs
+    at file:///app/[eval1]:1:554
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Node.js v22.23.3

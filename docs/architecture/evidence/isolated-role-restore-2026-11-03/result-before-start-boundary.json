@@ -1,0 +1,129 @@
+{
+  "runId": "aaefc97e202d4637a69dfe9c1bb2cf14",
+  "checkedAt": "2026-11-03T09:25:46.085998+00:00",
+  "backupSha256": "ec203315f44ed5393021a5ebd2deeba77b125a19c2968bda216bc6c6941ca1f0",
+  "backupBytes": 46131,
+  "migrationImage": "sha256:ea762d05a7a1e86f5caa65f6c09d241f45c4702f202992c6beee15f79a827103",
+  "postgresImage": "sha256:efedf3595f1d6f415c08568ba171029bf54052e754cc9f030e3f2412b21f3d67",
+  "migrationFilesSha256": {
+    "migrate.mjs": "092eacc578a7a72d74af3f86b2e8140af7d73f9a82ed8081c6990d2d6c63f15c",
+    "001-storage.sql": "a94e974c7bc248b7c34ab7fd531fa8fd982f0488d509fc9cf3307136f90096d0",
+    "002-immutable-blobs.sql": "8a594f998bb332b151dc77ea0fec424b2b32a8be862ad7624e7274e39e66adc7",
+    "003-identity-links.sql": "244e28dce32e0d26551d1de814a60fd8a162d34f5464f16acafb8ec18d762045",
+    "004-auth-state.sql": "a1e042a327c43cda93bfb67f069ec6d0c7477cea441a8a13a292f67d86d94633",
+    "005-session-rotation.sql": "2aaf9ae2a62d8eeb0cfeb7f4e6f323187ec2c787193e48ac9bd134dbb547dcd4",
+    "006-private-documents.sql": "60eb613e270c9cddc80e3e4921ee01ea6937cbe2c81c9914c203ef717b2c1537",
+    "007-document-trash.sql": "779593992ded36350113a739e82003011c02a06fd378758cb08b459244a957f8"
+  },
+  "scope": "Canonical migration and role rebuild only on fresh network-none inactive copy; fixture passwords; no production data SQL, key changes or HTTP API startup.",
+  "stage": "app-privilege-probe",
+  "success": true,
+  "roleInitiallyAbsent": true,
+  "canonicalRuns": 2,
+  "privilegesMatchCurrentCatalog": true,
+  "reapplyPrivilegeMetadataEqual": true,
+  "restoredContentAndSchemaPreserved": true,
+  "tables": 11,
+  "restoredInventory": {
+    "tables": [
+      {
+        "rows": 1,
+        "table": "knolstory_auth.accounts",
+        "sha256": "b72be435462c1e83684ca58d7c8559809b91acd51052548bc02c18ebd6aef45b"
+      },
+      {
+        "rows": 8,
+        "table": "knolstory_auth.flows",
+        "sha256": "d33781e55aaf006e5e414abfe0820042c6c31415e16e99ddca15b6dc16d9bbc0"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_auth.identities",
+        "sha256": "e0166c661375a364ba04b3f91deff26998deca97621694eef1a5e2f9284dacc7"
+      },
+      {
+        "rows": 5,
+        "table": "knolstory_auth.sessions",
+        "sha256": "97e765175e5278805353896f4de214aae6f9167e192912fcfd2807dd69c2e8fb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.blobs",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.document_creations",
+        "sha256": "acbe70d2fa64e9914f7a178d3b92b1cad6bb493ae4a4f53b59d0562b002dbb4d"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.document_state_commands",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 7,
+        "table": "knolstory_storage.migrations",
+        "sha256": "4f139b0706f51a0a2d13d905ca3b4045ba008d29572d479f25b49584fa785e90"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.private_documents",
+        "sha256": "f8dcbcb1cd58a7abe8724e845ebe0a729af082676a17be793ac5254c10aeaefb"
+      },
+      {
+        "rows": 0,
+        "table": "knolstory_storage.receipts",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "rows": 1,
+        "table": "knolstory_storage.records",
+        "sha256": "812b25acbd3ca2500ec7b9e417e1439f8642c4c915e90c75db5cdb1b0638aa46"
+      }
+    ],
+    "schemaSha256": "cf2d5820bfb6584e352b26d69074f55cc04dfe49e06852585caf8a2fba450fde",
+    "objectCounts": {
+      "tables": 11,
+      "indexes": 16,
+      "sequences": 0
+    }
+  },
+  "privilegeProbe": {
+    "isolatedRunMarkerChecked": true,
+    "loopbackAliasChecked": true,
+    "authenticatedApp": true,
+    "expectedDatabase": true,
+    "journalRows": 7,
+    "denied": {
+      "journalInsert": "42501",
+      "journalColumnUpdate": "42501",
+      "journalDelete": "42501",
+      "schemaCreate": "42501",
+      "tableCreate": "42501"
+    },
+    "wrongPasswordCode": "28P01",
+    "dataNoopUpdateAllowed": true,
+    "poolFault": false
+  },
+  "productionContainerIdsAndImagesUnchanged": true,
+  "networkNoneTarget": true,
+  "noHostPorts": true,
+  "noApiStartup": true,
+  "fixturePasswordsOnly": true,
+  "cleanup": {
+    "ownedContainersRemoved": 3,
+    "remainingOwnedContainers": false,
+    "fixtureSecretFilesRemoved": true,
+    "sourceContainersNotRemoved": true
+  },
+  "limits": [
+    "No production role/grant/credential update; only fresh inactive copy targeted.",
+    "Role privileges rebuilt via unchanged canonical command, not an exact pg_dumpall/global-role/password restoration.",
+    "Application probe authenticates fixture pg password and zero-row/denied SQL, not OAuth, HTTP owner authorization or real provider login.",
+    "Restored old session rows stayed inactive by network/port/API isolation; no new session-fence execution claimed.",
+    "Privilege comparison reuses the captured read-only production catalog; no new production role/data SQL was needed during this restore."
+  ],
+  "comparedProductionCatalogCheckedAt": "2026-11-03T09:04:11.222134+00:00",
+  "comparedProductionReportSha256": "3b1b3b139872c4d1d7d4842568eb156c703c855a806b70b1018268f1ad005c3c"
+}

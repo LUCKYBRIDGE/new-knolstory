@@ -1,9 +1,10 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {registeredWorkbookCopy} from './registered-workbook-copy';
-import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {parseAuthoringFile,confirmAuthoringImport,openFileExchange} from './authoring-file';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(n=>(n as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
-async function exported(page:Page){await menu(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,archive:parseAuthoringFile(readFileSync(path,'utf8'))};}
+async function exported(page:Page){await menu(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,archive:parseAuthoringFile(readFileSync(path,'utf8'))};}
 for(const source of ['google','excel'])test(`previous actual ${source} Korean content uses a current registered copy and preserves the full work`,async({page})=>{
  const originalPath=`docs/architecture/evidence/authoring-format/story-korean-${source}-edited.xlsx`,copy=await registeredWorkbookCopy(originalPath,'docs/architecture/evidence/remaining-current-2026-10-14/registered-copies');
  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=(await exported(page)).archive;

@@ -1,0 +1,84 @@
+
+ RUN  v4.1.11 /Users/wan/ai_dev/apps/new-knolstory
+
+ ❯ server/operations/story-edge-worker.test.ts (21 tests | 10 failed) 30ms
+     × replaces inherited claims on API and broken-config origin forwarding 3ms
+     × replaces inherited claims on API and broken-config origin forwarding 0ms
+     × never uses inherited XRealIP for invalid CF claim  1ms
+     × never uses inherited XRealIP for invalid CF claim 192.0.2.1, 198.51.100.1 0ms
+     × never uses inherited XRealIP for invalid CF claim 127.1 0ms
+     × never uses inherited XRealIP for invalid CF claim 1.2.3.999 0ms
+     × never uses inherited XRealIP for invalid CF claim ::1%lo 0ms
+     × never uses inherited XRealIP for invalid CF claim [::1] 0ms
+     × never uses inherited XRealIP for invalid CF claim garbage 0ms
+     × canonicalizes IPv6 before same-zone origin forwarding 0ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > replaces inherited claims on API and broken-config origin forwarding
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > replaces inherited claims on API and broken-config origin forwarding
+AssertionError: expected '203.0.113.99' to be '192.0.2.10' // Object.is equality
+
+Expected: "192.0.2.10"
+Received: "203.0.113.99"
+
+ ❯ server/operations/story-edge-worker.test.ts:147:44
+    145|   expect(seen[0].url).toBe(request.url);expect(seen[0].method).toBe('P…
+    146|   expect(await seen[0].text()).toBe('manuscript');
+    147|   expect(seen[0].headers.get('x-real-ip')).toBe('192.0.2.10');
+       |                                            ^
+    148|   expect(seen[0].headers.get('cookie')).toBe('sid=existing');
+    149|   expect(seen[0].headers.get('x-csrf-token')).toBe('existing');
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > never uses inherited XRealIP for invalid CF claim
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > never uses inherited XRealIP for invalid CF claim 192.0.2.1, 198.51.100.1
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > never uses inherited XRealIP for invalid CF claim 127.1
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > never uses inherited XRealIP for invalid CF claim 1.2.3.999
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > never uses inherited XRealIP for invalid CF claim ::1%lo
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > never uses inherited XRealIP for invalid CF claim [::1]
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > never uses inherited XRealIP for invalid CF claim garbage
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ server/operations/story-edge-worker.test.ts:154:44
+    152|  it.each(['','192.0.2.1, 198.51.100.1','127.1','1.2.3.999','::1%lo','[…
+    153|   const {seen,upstream}=recorder();await handleEdgeRequest(at('/api/v1…
+    154|   expect(seen[0].headers.has('x-real-ip')).toBe(false);
+       |                                            ^
+    155|  });
+    156|  it('canonicalizes IPv6 before same-zone origin forwarding',async()=>{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  server/operations/story-edge-worker.test.ts > origin forwarding client identity > canonicalizes IPv6 before same-zone origin forwarding
+AssertionError: expected null to be '2001:db8::1' // Object.is equality
+
+- Expected:
+"2001:db8::1"
+
++ Received:
+null
+
+ ❯ server/operations/story-edge-worker.test.ts:158:44
+    156|  it('canonicalizes IPv6 before same-zone origin forwarding',async()=>{
+    157|   const {seen,upstream}=recorder();await handleEdgeRequest(at('/api/v1…
+    158|   expect(seen[0].headers.get('x-real-ip')).toBe('2001:db8::1');
+       |                                            ^
+    159|  });
+    160| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  10 failed | 11 passed (21)
+   Start at  08:19:58
+   Duration  146ms (transform 18ms, setup 0ms, import 25ms, tests 30ms, environment 0ms)
+

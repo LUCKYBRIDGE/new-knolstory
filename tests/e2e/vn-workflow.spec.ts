@@ -1,4 +1,4 @@
-import {expectIndependentImportedProject,parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {expectIndependentImportedProject,openFileExchange,parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
 import {saveReadSlot,loadReadSlot} from './native-reader';
 import {existingPrivateWorkspace} from './existing-private-audio';
 import {createStoryDocument,type StoryProject} from '../../packages/story-domain/src';
@@ -8,7 +8,7 @@ import {readFileSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 const demo='docs/architecture/evidence/responsive-audio/branching-demo.knolstory';
 async function management(page:Page){const s=page.locator('[data-work-menu]>summary');if(!await s.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await s.click();}
-async function details(page:Page,text:string){const n=page.getByText(text,{exact:true});if(!await n.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await n.click();}
+async function details(page:Page,text:string){if(/^(Excel|간단 표)/.test(text))await openFileExchange(page);const n=page.getByText(text,{exact:true});if(!await n.locator('..').evaluate(n=>(n as HTMLDetailsElement).open))await n.click();}
 async function load(page:Page,path=demo){page.setDefaultTimeout(15000);const source=parseAuthoringFile(readFileSync(path,'utf8'));const prior=await existingPrivateWorkspace(page,source.project,source.audioResources);await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await expect(page.getByRole('heading',{name:source.project.title,exact:true})).toBeVisible();return {source,prior};}
 async function rendered(page:Page){const s=page.getByTestId('story-runtime-status');await expect(s).toContainText('연결됨',{timeout:120000});await expect.poll(async()=>Number(await s.getAttribute('data-rendered-revision'))>=0&&(await s.getAttribute('data-scene-revision'))===(await s.getAttribute('data-rendered-revision')),{timeout:30000}).toBe(true);}
 async function tool(page:Page,name:string){
@@ -26,7 +26,7 @@ async function next(page:Page){const state=()=>page.evaluate(()=>JSON.stringify(
 async function choose(page:Page,index:number,target:string){await rendered(page);const frame=page.getByTestId('story-runtime-frame');await frame.scrollIntoViewIfNeeded();await frame.contentFrame().locator('#canvas').focus();const b=(await frame.boundingBox())!,status=page.getByTestId('story-runtime-status'),r=JSON.parse((await status.getAttribute('data-choices-rect'))!) as {x:number;y:number;width:number;height:number};expect(r).not.toBeNull();const w=Number(await status.getAttribute('data-scene-width')),h=Number(await status.getAttribute('data-scene-height')),scale=Math.min(b.width/w,b.height/h);await page.mouse.click(b.x+(b.width-w*scale)/2+(r.x+r.width/2)*scale,b.y+(b.height-h*scale)/2+(r.y+24+92+48+index*108)*scale);await line(page,target);}
 async function saveSlot(page:Page,id:number){await saveReadSlot(page,id);await page.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();}
 async function loadSlot(page:Page,id:number){await loadReadSlot(page,id);}
-async function exported(page:Page,label:string){await management(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:label,exact:true}).click();const download=await pending;const path=join(dirname((await download.path())!),download.suggestedFilename());await download.saveAs(path);return path;}
+async function exported(page:Page,label:string){await management(page);await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:label,exact:true}).click();const download=await pending;const path=join(dirname((await download.path())!),download.suggestedFilename());await download.saveAs(path);return path;}
 test('prior private export stays intact while registered current Excel and mocked public sheet copies roundtrip complete content',async({page},info)=>{
  test.skip(info.project.name!=='host');const hash=createHash('sha256').update(readFileSync(demo)).digest('hex');const {source,prior}=await load(page);
  const original=parseAuthoringFile(readFileSync(await exported(page,'작품 파일 내보내기'),'utf8'));expect(original.project).toEqual(prior.project);expect(original.audioResources).toEqual(source.audioResources);
@@ -62,7 +62,7 @@ test('changed-work slots show saved excerpt and require explicit compatible rest
  await page.keyboard.press('Escape');await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();await rendered(page);
  await page.getByRole('button',{name:'불러오기',exact:true}).click();const slot=page.getByRole('button',{name:'2번 불러오기',exact:true});
  await expect(slot).toContainText('아이와 어른은 숲의 두 길 앞에 섰다.');await expect(slot).not.toContainText('저장 뒤 바뀐 새 대사');await slot.click();await page.getByRole('dialog',{name:'이 기록을 불러올까요?',exact:true}).getByRole('button',{name:'확인',exact:true}).click();
- await expect(page.getByRole('dialog',{name:'이 기록을 불러올까요?'})).toContainText('저장 이후 작품이 변경');await page.getByRole('button',{name:'변경된 작품에서 이어읽기',exact:true}).click();await rendered(page);
+ await expect(page.getByRole('dialog',{name:'이 기록을 불러올까요?'})).toContainText('저장한 뒤 작품이 바뀌었어요');await page.getByRole('button',{name:'변경된 작품에서 이어읽기',exact:true}).click();await rendered(page);
  const semantic=page.locator('details').filter({has:page.getByText('대사·해설 텍스트 보기',{exact:true})});await expect(semantic.getByText('저장 뒤 바뀐 새 대사',{exact:true})).toHaveCount(1);await edit(page);await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('저장 뒤 바뀐 새 대사');const after=parseAuthoringFile(readFileSync(await exported(page,'작품 파일 내보내기'),'utf8'));expect(after.project).toEqual({...baseline.project,updatedAt:after.project.updatedAt,lines:baseline.project.lines.map((cut:{id:string})=>cut.id==='opening'?{...cut,text:'저장 뒤 바뀐 새 대사'}:cut)});expect(after.audioResources).toEqual(baseline.audioResources);
 });
 

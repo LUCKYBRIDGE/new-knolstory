@@ -17,6 +17,8 @@
 !server/operations/build-api.mjs
 !server/documents
 !server/documents/*.ts
+!server/classroom
+!server/classroom/*.ts
 !packages
 !packages/story-domain
 !packages/story-domain/src

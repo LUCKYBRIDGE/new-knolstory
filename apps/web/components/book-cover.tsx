@@ -5,6 +5,7 @@ import { resolveAsset } from '@knolstory/asset-registry';
 import type { CoverBox, CoverTextElement, CoverImageElement, StoryProject } from '@knolstory/story-domain';
 import { COVER_BAND, COVER_FONTS, coverElementBox, coverElementText, coverImageGeometry, resolveBookCover, type CoverFaceId } from '../lib/book-cover';
 import styles from './book-cover.module.css';
+import {hasDefaultPersonalCover,personalCoverTitle} from '../lib/personal-library';
 import {BOOK_EDITION_LABELS,type BookEdition} from '../lib/shelf-cover-label';
 export {BOOK_EDITION_LABELS,type BookEdition} from '../lib/shelf-cover-label';
 function BookFinish() {
@@ -65,6 +66,21 @@ export function BookCover({project,compact=false,className='',face='front',editi
   const design=cover.design;
   const common={className:`${styles.book} ${className}`,role:'group', 'aria-label':`${face==='front'?'앞표지':face==='back'?'뒤표지':'책등'} · ${model.title}`,
     'data-cover-face':face,'data-preset':model.preset,'data-edition':edition,'data-compact':compact||undefined};
+  if((edition==='own'||edition==='imported')&&hasDefaultPersonalCover(project)){
+    const title=personalCoverTitle(project.title);
+    return <div {...common} className={`${common.className} ${styles.personalDefault}`} data-personal-cover="default">
+      {face==='front'?<>
+        <span className={styles.personalBadge}>[내작품]</span>
+        <FittedCopy style={{left:'13%',top:'30%',width:'77%',height:'57%',textAlign:'center'}} signature={JSON.stringify([title,cover.subtitle,cover.author])} role="title">
+          <div data-cover-copy-size="13cqw" className={styles.personalTitle}>
+            {cover.subtitle&&<p className={styles.tagline}>{cover.subtitle}</p>}
+            <h2 className={styles.title}>{title}</h2>
+            {cover.author&&<p className={styles.author}>{cover.author} 지음</p>}
+          </div>
+        </FittedCopy>
+      </>:face==='spine'?<FittedCopy style={{left:'10%',top:'6%',width:'80%',height:'88%'}} writing="vertical" signature={title}><span className={styles.spineCopy}>{title}</span></FittedCopy>:<FittedCopy style={{left:'13%',top:'12%',width:'77%',height:'76%'}} signature={JSON.stringify([title,project.description,cover.authorNote])}><div><h2>{title}</h2><p>{project.description}</p>{cover.authorNote&&<p>{cover.authorNote}</p>}</div></FittedCopy>}
+    </div>;
+  }
   if(design) return <div {...common} className={`${common.className} ${styles.layered}`} data-layered-cover="1" data-stock={design.finish.stock} data-texture={design.finish.texture}
     style={{'--cover-paper':design.finish.color,'--cover-ink':design.finish.ink,'--cover-accent':design.finish.accent} as CSSProperties}>
     {model.elements.filter(item=>item.type!=='text'||item.region!=='band').map(item=>item.type==='image'?<ImageLayer key={`${item.id}:${item.assetId}`} item={item}/>:<TextLayer key={item.id} item={item} model={model}/>)}

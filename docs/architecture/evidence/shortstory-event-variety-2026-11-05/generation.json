@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-05",
+  "scope": "Plot and event variety in independent ShortStory illustrations",
+  "existingCatalogEntriesPreserved": 453,
+  "images": [
+    {
+      "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "title": "공연 전에 무너진 인형극 무대",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-puppet-stage-v1.webp",
+      "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 624290,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-ab93691f-0991-4ce8-857b-d47247af7ed6.png",
+      "sourceSha256": "89906dbb3f21e330b33844e2725fbc07a883347febbcfaa447737a384769bfb0",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "마을 인형극을 준비하던 토끼와 자라 앞에서 무대가 무너진다. 토끼가 기둥을 붙들고 자라가 부러진 연결부를 살핀다. 기존 인물의 얼굴·복식을 유지하고 원작과 다른 활동과 문제 상황을 한 장면으로 그린다. 인물들의 이후 선택과 결과는 사용자가 이어 쓸 수 있다.",
+      "references": [
+        {
+          "id": "creative.character.rabbit-listen",
+          "sha256": "a5d2cff5bb173dd8e8c3dd5c1d6310c1bb86179dbe27d03030688b3127661179"
+        },
+        {
+          "id": "rabbit-turtle.character.turtle-unified-720x900",
+          "sha256": "01dbf90a8871252211a7a60d51dba4852b328b1c6036ea0e2e2532714531bd5a"
+        }
+      ],
+      "review": {
+        "characterIdentity": "faces, silhouettes, hair and costumes compared with canonical references",
+        "event": "everyday independent activity and visible problem with action/reaction",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "title": "떡 만들기 대회에서 쏟아진 콩가루",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-ricecake-contest-v1.webp",
+      "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 664378,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-88e49dcb-fa0d-4d45-9834-6835bf41c027.png",
+      "sourceSha256": "b57c9fc2664a38c1c36f5d879b730b3a9927605b76b8f136a51b5342466d53f1",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "떡 만들기 대회에 나간 흥부와 아이의 탁자 위에 콩가루가 쏟아지고 두 사람이 당황한다. 옆 참가자는 가지런히 떡을 준비하고 있다. 기존 인물의 얼굴·복식을 유지하고 원작과 다른 활동과 문제 상황을 한 장면으로 그린다. 인물들의 이후 선택과 결과는 사용자가 이어 쓸 수 있다.",
+      "references": [
+        {
+          "id": "creative.character.heungbu-girl-standing",
+          "sha256": "a830a224a713a3a7648ff8bbc472ebb2f794f3f9ecbdd1858684200741bc62cc"
+        },
+        {
+          "id": "creative.character.heungbu-encourage",
+          "sha256": "320e7405bf65e8c0e0cd3e4bfd2b60ebc45be2a11caa7551ee05d7b6fd864653"
+        }
+      ],
+      "review": {
+        "characterIdentity": "faces, silhouettes, hair and costumes compared with canonical references",
+        "event": "everyday independent activity and visible problem with action/reaction",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "title": "나루터에서 떠내려가는 짐 뗏목",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-drifting-raft-v1.webp",
+      "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 603232,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-f43efea6-c367-4148-8510-aff3b119e666.png",
+      "sourceSha256": "c51c2877d0e9740c894ce321c3969259215bfd53519f4cc79bec0a976fa6f77b",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "나루터에 매어 둔 짐 뗏목의 줄이 끊어진다. 나무꾼이 갈고리 장대로 줄을 잡으려 하고 선녀가 여분 밧줄을 들고 돕는다. 기존 인물의 얼굴·복식을 유지하고 원작과 다른 활동과 문제 상황을 한 장면으로 그린다. 인물들의 이후 선택과 결과는 사용자가 이어 쓸 수 있다.",
+      "references": [
+        {
+          "id": "seonnyeo.character.M01-earth-neutral",
+          "sha256": "e975fa21c30e7d985bacc01817c906a488417eb6d80c8ee5a546cd1c2799f2c6"
+        },
+        {
+          "id": "creative.character.woodcutter-thanks",
+          "sha256": "45f8d127784ff976f89d829773f04f3898e844461031a52ce49ac9dec05df13d"
+        }
+      ],
+      "review": {
+        "characterIdentity": "faces, silhouettes, hair and costumes compared with canonical references",
+        "event": "everyday independent activity and visible problem with action/reaction",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "title": "잔치 연습 중 찢어진 북",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-torn-drum-v1.webp",
+      "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 658086,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-e019f7b2-8a56-4869-a743-6cc7934617d9.png",
+      "sourceSha256": "0f511edcdac7105d901940573b4991bd0681b5f847001f6ada5a4183f4d08a44",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "마을 잔치 연습 중 북 가죽이 찢어진다. 나그네는 북채를 든 채 멈추고 포졸은 찢어진 곳을 살핀다. 피리를 든 아이들이 기다린다. 기존 인물의 얼굴·복식을 유지하고 원작과 다른 활동과 문제 상황을 한 장면으로 그린다. 인물들의 이후 선택과 결과는 사용자가 이어 쓸 수 있다.",
+      "references": [
+        {
+          "id": "creative.character.onggojib-stranger-ask",
+          "sha256": "dcb416d0b8c1f74f319e9636aa37374399dcc1d1874cebf5b20cf06d4c4bcbf9"
+        },
+        {
+          "id": "creative.character.onggojib-guard-guide",
+          "sha256": "382880edb0c4294b98341bfd2f3d5304da1f7045208a8dac2190a1e83be329c1"
+        }
+      ],
+      "review": {
+        "characterIdentity": "faces, silhouettes, hair and costumes compared with canonical references",
+        "event": "everyday independent activity and visible problem with action/reaction",
+        "remaining": "new output service-use authorization review"
+      }
+    }
+  ]
+}

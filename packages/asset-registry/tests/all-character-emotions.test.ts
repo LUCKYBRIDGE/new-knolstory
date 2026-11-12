@@ -35,7 +35,7 @@ it('provides distinct everyday/joy/anger/sorrow/mirth images for every individua
 });
 it('preserves all481previous catalogue rows and makes each new mood searchable by its character and emotional label',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
- const before=rows.filter((row:{metadata:{emotionBatch?:string}})=>row.metadata.emotionBatch!=='all-character-v3');
+ const before=rows.filter((row:{metadata:{emotionBatch?:string;shortStoryCollection?:string}})=>!row.metadata.shortStoryCollection&&row.metadata.emotionBatch!=='all-character-v3');
  expect(before).toHaveLength(plan.before.catalogueRows);
  expect(createHash('sha256').update(JSON.stringify(before)).digest('hex')).toBe(plan.before.catalogueSha256);
  for(const recipe of plan.recipes){

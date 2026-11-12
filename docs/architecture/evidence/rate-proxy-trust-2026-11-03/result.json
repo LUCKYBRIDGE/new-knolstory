@@ -1,0 +1,30 @@
+{
+  "proxyRateBoundary": {
+    "results": {
+      "/api/v1/me": [
+        200,
+        200,
+        429,
+        429
+      ],
+      "/api/v1/documents": [
+        200,
+        200,
+        429,
+        429
+      ]
+    },
+    "apiSocketPeerCount": 1,
+    "syntheticSessions": 2,
+    "thirdRequestFromOtherSessionBlocked": true,
+    "changedForwardingHeadersCannotBypass": true,
+    "cfHeaderPresentButIgnored": true
+  },
+  "limits": {
+    "windowMs": 60000,
+    "maxRequests": 2,
+    "maxEntries": 10,
+    "productionDefaultsUnchanged": true
+  },
+  "scope": "Actual local ingress and actual auth/document HTTP routers; synthetic in-memory sessions/list port,not realKakao,not distinctphysicalIP,not live-service stress."
+}

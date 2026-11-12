@@ -1,9 +1,11 @@
 import {createStoryDocument} from '../../packages/story-domain/src';
 import {previousReadCut} from './reader-actions';
-import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
+import {parseAuthoringFile,confirmAuthoringImport,openFileExchange} from './authoring-file';
+import {openEditingTool} from './editor-screens';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { PNG } from 'pngjs';
+test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 
 const fixturePath = 'tests/fixtures/stories/presentation-polish.json';
 const source = createStoryDocument({project:parseAuthoringFile(readFileSync(fixturePath,'utf8')),savedAt:'2026-10-14T00:00:00.000Z',appVersion:'current-polish-test'}).project;
@@ -30,6 +32,7 @@ async function rendered(page: Page) {
 }
 
 async function tool(page:Page,name:string){
+ if(['연출 편집','글 편집','소리 편집','선택지 편집'].includes(name)){await openEditingTool(page,name);return;}
  if(['컷 목록','선택지 편집','연출 편집'].includes(name)){const details=page.locator('[data-additional-tools]');if(!await details.evaluate(n=>(n as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}
  await page.getByRole('button',{name,exact:true}).click();
  if(name==='배경·인물 편집'){const details=page.locator('[data-placement-details]');if(!await details.evaluate(n=>(n as HTMLDetailsElement).open))await details.locator(':scope>summary').click();}
@@ -41,6 +44,7 @@ async function advance(page:Page){const button=page.getByRole('button',{name:'�
 
 async function exported(page: Page) {
   await management(page);
+  await openFileExchange(page);
   const pending = page.waitForEvent('download');
   await page.getByRole('button', { name: '작품 파일 내보내기', exact: true }).click();
   const download = await pending;
@@ -90,13 +94,13 @@ test('presentation controls provide an explicit current-cut preview action witho
   await expect(page.getByRole('button',{name:'읽기 메뉴',exact:true})).toBeVisible();await exitReading(page);await expect(page.getByLabel('현재 장과 컷 이동',{exact:true})).toHaveValue('flashback');
   expect(content(await exported(page))).toEqual(content(source));
   await cut(page,'shake');await direction(page,'effects');
-  await page.getByLabel('효과 강도').selectOption('strong');
-  await page.getByLabel('효과 시작').selectOption('after-delay');
+  await page.getByLabel('효과 강도',{exact:true}).selectOption('strong');
+  await page.getByLabel('효과 시작',{exact:true}).selectOption('after-delay');
   await page.getByLabel('효과 대기 시간 (초)').fill('0.8');
   const authored = await exported(page);
   expect(authored.lines.find((line: { id: string }) => line.id === 'shake').presentation.effects[0]).toMatchObject({ intensity: 'strong', trigger: 'after-delay', delayMs: 800 });
   expect(authored.lines.map((line: { stageComposition: unknown }) => line.stageComposition)).toEqual(source.lines.map(line => line.stageComposition));
-  await page.getByText('보기 설정',{exact:true}).click();await page.getByRole('button', { name: '동작 줄이기', exact: true }).click();
+  await page.locator('[data-work-menu]>summary').click();await page.getByText('보기 설정',{exact:true}).click();await page.getByRole('button', { name: '동작 줄이기', exact: true }).click();
   await expect(page.getByRole('button', { name: '동작 줄이기', exact: true })).toHaveAttribute('aria-pressed', 'true');
 });
 

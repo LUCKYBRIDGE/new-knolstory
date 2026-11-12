@@ -1,0 +1,30 @@
+{
+  "knolstory-next-production-api-1": {
+    "imageDigest": "sha256:ea762d05a7a1e86f5caa65f6c09d241f45c4702f202992c6beee15f79a827103",
+    "hostPortBindings": {},
+    "networks": [
+      "knolstory-next-production_database",
+      "knolstory-next-production_outbound",
+      "knolstory-next-production_service"
+    ],
+    "healthy": "healthy",
+    "scope": "Onlynetworkbindingmetadata;noenvironment/credentials/processargumentspublished"
+  },
+  "knolstory-next-production-ingress-1": {
+    "imageDigest": "sha256:d61dd11511be1e4b07c05c74aac19eb3e619f8eb41a09f89282faa371670163c",
+    "hostPortBindings": {
+      "8080/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "15501"
+        }
+      ]
+    },
+    "networks": [
+      "knolstory-next-production_edge",
+      "knolstory-next-production_service"
+    ],
+    "healthy": null,
+    "scope": "Onlynetworkbindingmetadata;noenvironment/credentials/processargumentspublished"
+  }
+}

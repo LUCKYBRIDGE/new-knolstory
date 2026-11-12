@@ -286,6 +286,8 @@
 
 /* Short phone landscape prioritizes the two useful editing panes even before typing. */
 @media (max-height:440px) {
+ /* Detail screens scroll inside the body so their rows never slide under the bottom dock. */
+ .workbench:not([data-screen=basic]) .body { overflow:auto; overscroll-behavior:contain; }
  .workbench[data-phone-editor=true][data-screen=basic] :is(.previousSide,.nextSide,.stackedContext,.additional,.hint) { display:none; }
  .workbench[data-phone-editor=true][data-screen=basic] .body[data-basic=true] { grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-rows:minmax(0,1fr); gap:8px; }
  .workbench[data-phone-editor=true][data-screen=basic] .previewSlot { grid-column:1; grid-row:1; position:relative; }
@@ -317,3 +319,19 @@
 [data-keyboard-occluded=true] .workbench .row:focus-within>:is(header,.companions) { display:none; }
 [data-keyboard-occluded=true] .workbench:has(.additional :is(input,textarea):focus) :is(.body,.stackedContext,.hint) { display:none; }
 [data-keyboard-occluded=true] .workbench .additional:has(:is(input,textarea):focus) { display:block; flex:1; min-height:0; overflow:auto; }
+
+/* 2026-11-10: continue writing from the next-cut slot. */
+.addNextCut { border:2px dashed var(--mint-strong,#2f7d6b); background:var(--white,#fffdf8); cursor:pointer; text-align:left; }
+.addNextCut strong { color:var(--mint-strong,#2f7d6b); font-size:17px; }
+.addNextCut:hover:not(:disabled) { background:var(--mint,#d8ece4); }
+.insertCut { width:100%; margin-top:8px; min-height:44px; border-style:dashed; font-size:14px; }
+.emptyHint { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:6px 0 0; color:var(--ink-soft); }
+.emptyHint button { min-height:44px; }
+.backToBasic { min-height:44px; align-self:end; }
+.insertCut,.emptyHint button,.backToBasic{min-height:44px!important}
+/* Stacked (phone/tablet portrait): keep the continuation actions beside the next cut instead of clipped below it. */
+.shortLabel{display:none}
+.body[data-cut-arrangement=stacked] .nextSide{flex-direction:row;align-items:stretch}
+.body[data-cut-arrangement=stacked] .nextSide>.adjacent{flex:1 1 auto;min-width:0;max-height:none}
+.body[data-cut-arrangement=stacked] .nextSide>.insertCut{flex:0 0 auto;width:auto;margin:0;padding:0 10px;white-space:nowrap}
+@media(max-width:600px){.body[data-cut-arrangement=stacked] .nextSide .longLabel{display:none}.body[data-cut-arrangement=stacked] .nextSide .shortLabel{display:inline}}

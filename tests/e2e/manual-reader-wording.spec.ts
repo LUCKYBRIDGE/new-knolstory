@@ -5,7 +5,7 @@ test('reader save and load labels describe the action actually performed',async(
  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
  await expect(page.getByRole('button',{name:'빠른 저장',exact:true})).toBeEnabled();
  await page.getByRole('button',{name:'저장',exact:true}).click();
- const dialog=page.getByRole('dialog');await expect(dialog).toContainText('작품 파일을 저장하는 기능은 아니며');
+ const dialog=page.getByRole('dialog');await expect(dialog).toContainText('작품 파일 저장과는 달라요');
  await dialog.getByRole('button',{name:'빠른 저장',exact:true}).click();
  const quick=dialog.locator('[data-player-slot="quick"]');await expect(quick).toHaveAttribute('aria-label','빠른 저장');
  await quick.click();await expect(dialog.getByRole('status').filter({hasText:'빠른 저장 완료'})).toBeVisible();

@@ -1,7 +1,7 @@
 import {createStoryDocument} from '../../packages/story-domain/src';
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
+import {confirmAuthoringImport,parseAuthoringFile,openCutEditor,openFileExchange} from './authoring-file';
 
 const source=parseAuthoringFile(readFileSync('tests/fixtures/responsive-audio.json','utf8'));
 const AUDIO_CATALOG=JSON.parse(readFileSync('packages/asset-registry/src/pixabay-audio.json','utf8')) as {id:string;metadata:{tags:string[];originalName:string};origin:{url:string;termsUrl:string;contentIdRegistered?:boolean}}[];
@@ -12,7 +12,7 @@ const cues=[
 ] as const;
 
 async function openEditorTools(page:Page,label='컷 배경음'){
- const tools=page.locator('[data-additional-tools]');if(!await tools.evaluate(n=>(n as HTMLDetailsElement).open))await tools.locator(':scope>summary').click();await page.getByRole('button',{name:'소리 편집',exact:true}).click();await page.getByLabel('조정할 소리',{exact:true}).selectOption(label==='컷 배경음'?'music':label==='컷 주변 소리'?'ambience':'sounds');
+ await (await openCutEditor(page,'audio')).getByLabel('조정할 소리',{exact:true}).selectOption(label==='컷 배경음'?'music':label==='컷 주변 소리'?'ambience':'sounds');
 }
 async function management(page:Page){const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(n=>(n as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();}
 async function runtimeReady(page:Page){
@@ -84,7 +84,7 @@ test('Pixabay audio is selected with source terms, exported as scene references 
 
  const menuSummary=page.locator('[data-work-menu]>summary');
  if(!await menuSummary.locator('..').evaluate(node=>(node as HTMLDetailsElement).open))await menuSummary.click();
- const pending=page.waitForEvent('download');
+ await openFileExchange(page);const pending=page.waitForEvent('download');
  await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
  const path=info.outputPath('pixabay-scene-reference.knolstory');
  await(await pending).saveAs(path);

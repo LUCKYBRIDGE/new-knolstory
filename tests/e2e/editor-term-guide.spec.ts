@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {confirmAuthoringImport} from './authoring-file';
+import {openWorkFileExchange} from './work-file-exchange';
 import {enterLibrary,startShelfCreation} from './library-entry';
 
 test.beforeEach(async({page})=>{page.setDefaultTimeout(10_000);});
@@ -32,7 +33,7 @@ async function checkGuide(page:import('@playwright/test').Page){
 }
 
 test('guide preserves author drafts and restores focus in four viewport layouts',async({page})=>{
- await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
+ await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
  await page.getByLabel('새 작품 제목',{exact:true}).fill('용어 안내를 쓰는 작품');
  await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
  if(!await page.getByRole('region',{name:'작품 설정',exact:true}).isVisible()){await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();}
@@ -83,7 +84,7 @@ test('authoring labels distinguish file save, temporary retention and earlier ma
  const menu=page.locator('[data-work-menu]');if(!await menu.evaluate(node=>(node as HTMLDetailsElement).open))await menu.locator(':scope>summary').click();
  await expect(page.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:'다른 파일로 저장',exact:true})).toBeVisible();
- await expect(page.getByRole('button',{name:'임시 보관',exact:true})).toBeVisible();
+ await openWorkFileExchange(page);await expect(page.getByRole('button',{name:'임시 보관 다시 시도',exact:true})).toBeVisible();
  await page.locator('summary').filter({hasText:/^이전 원고$/}).click();
  await expect(page.getByRole('button',{name:'현재 원고 보관',exact:true})).toBeVisible();
  await page.getByRole('button',{name:'현재 원고 보관',exact:true}).click();

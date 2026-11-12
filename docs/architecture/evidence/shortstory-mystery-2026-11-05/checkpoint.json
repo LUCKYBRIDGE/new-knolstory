@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-05",
+  "status": "local-registration-and-static-verification-passed",
+  "scope": "Eight new mysterious or wondrous independent-event illustrations",
+  "generationEvidence": "generation.json",
+  "previousSystemEvidence": "../shortstory-2026-11-05/checkpoint.json",
+  "added": {
+    "images": 8,
+    "deliveryBytes": 4817222,
+    "format": "WebP; original generated PNG artifacts retained",
+    "characterIdentity": "two original reference images per scene; faces and costumes visually reviewed"
+  },
+  "currentInventory": {
+    "registeredSceneIllustrations": 168,
+    "selectableSceneIllustrations": 165,
+    "creative": 18,
+    "independentEvents": 10,
+    "byWorld": {
+      "별주부전": {
+        "storyScenes": 34,
+        "creative": 5,
+        "independentEvents": 3,
+        "selectable": 39
+      },
+      "옹고집전": {
+        "storyScenes": 33,
+        "creative": 4,
+        "independentEvents": 2,
+        "selectable": 37
+      },
+      "흥부와 놀부": {
+        "storyScenes": 40,
+        "creative": 5,
+        "independentEvents": 3,
+        "selectable": 45
+      },
+      "선녀와 나무꾼": {
+        "storyScenes": 40,
+        "creative": 4,
+        "independentEvents": 2,
+        "selectable": 44
+      }
+    }
+  },
+  "verification": {
+    "catalogTests": {
+      "passed": 5,
+      "checks": "exact count, stable character IDs/reference revisions, selection policy, Korean mood search"
+    },
+    "staticBrowser": {
+      "passed": 2,
+      "unexpected": 0,
+      "widths": [
+        390,
+        1440
+      ],
+      "checks": [
+        "all eight IDs shown in independent-event filter",
+        "queries 수상/기이/신기 and 그림자",
+        "select, author text, save and reload",
+        "whole-book export and fresh-context import/read"
+      ]
+    },
+    "staticImages": {
+      "passed": 8,
+      "checks": "WebP decode, actual dimensions, served content type and SHA256",
+      "evidence": "static-images.json"
+    },
+    "build": "pnpm build passed",
+    "mediaProvenance": {
+      "files": 2024,
+      "result": "passed"
+    },
+    "docs": {
+      "tests": 10,
+      "result": "passed"
+    },
+    "diffCheck": "passed"
+  },
+  "remaining": [
+    "new output service-use rights review",
+    "production API catalog alignment before publishing",
+    "physical-device verification remains outside these viewport tests"
+  ],
+  "sourceSha256": {
+    "packages/asset-registry/src/catalog.json": "d6ccd3ab48019fc71fcb17f20974097888408b5392bcc86aeac6f8b32406f2dc",
+    "packages/asset-registry/src/background-sizes.json": "d799ce9d70c3a6f5e05d4442294d019b4f6aa2873e445c30d3341713d0365e58",
+    "packages/asset-registry/src/media-provenance.json": "11ea09d304accfadc407455ecda50df4829324f72b1f9d890b89f0f8305043d6",
+    "packages/asset-registry/tests/catalog.test.ts": "e345deaa633933c87e8345672721bd1b3ac6f5bb240160a992014b4226195edb",
+    "tests/e2e/shortstory-mystery.spec.ts": "e69b79786f925f580309ddcac683edebd9bd820f0fa8d174376a36c296a1f0d6"
+  }
+}

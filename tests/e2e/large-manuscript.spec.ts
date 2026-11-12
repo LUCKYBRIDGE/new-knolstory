@@ -1,6 +1,8 @@
 import {test,expect,type Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring';
+import {openWorkFileExchange} from './work-file-exchange';
+import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 const base=createBlankStoryProject({id:'large-manuscript',chapterId:'ch0',lineId:'cut0',title:'세 장의 긴 작품'});
 const project={...base,chapters:Array.from({length:3},(_,i)=>({...base.chapters[0],id:`ch${i}`,order:i+1,chapterNumber:i+1,title:`긴 원고 ${i+1}장`})),lines:Array.from({length:300},(_,i)=>({...base.lines[0],id:`cut${i}`,chapterId:`ch${Math.floor(i/100)}`,order:i%100+1,text:`${i+1}번째 원고.\n`+'앞뒤 문맥과 등장인물의 이야기를 차분히 이어 씁니다. '.repeat(20),flow:{type:'goto' as const,targetLineId:i===299?null:`cut${i+1}`}}))};
@@ -8,7 +10,7 @@ const stored=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('kno
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(el=>(el as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
 async function screen(page:Page,value:string){await menu(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption(value);}
 async function setup(page:Page,file?:string,native=false){
- await page.route('**/api/**',r=>r.abort());if(!native)await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);
+ await suppressFullscreenOffer(page);await page.route('**/api/**',r=>r.abort());if(!native)await page.route('**/runtime/**',r=>r.abort());await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await menu(page);
  await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles(file??{name:'large.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:8,savedAt:'2026-10-23T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
  await expect.poll(async()=>(await stored(page)).id).toBe(project.id);await screen(page,'text');
 }
@@ -31,7 +33,7 @@ test('three hundred cuts retain late edits, chapter navigation and full file reo
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const after=await stored(page);
  expect(after.chapters).toEqual(project.chapters);expect(after.lines).toHaveLength(300);
  for(let i=0;i<300;i++){expect(after.lines[i]).toEqual({...project.lines[i],text:i===99?project.lines[i].text+'\n첫 장 교정 820':i===299?project.lines[i].text+'\n마지막 장 교정 820':project.lines[i].text});}
- await menu(page);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('large.knolstory');await(await download).saveAs(file);expect(parseAuthoringFile(readFileSync(file,'utf8')).project).toEqual(after);
+ await openWorkFileExchange(page);const download=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const file=info.outputPath('large.knolstory');await(await download).saveAs(file);expect(parseAuthoringFile(readFileSync(file,'utf8')).project).toEqual(after);
  const context=await browser.newContext();try{const reopened=await context.newPage();await setup(reopened,file);expect(await stored(reopened)).toEqual(after);}finally{await context.close();}
 });
 
@@ -67,7 +69,7 @@ for(const target of ['background','characters','audio','direction'])test(`advanc
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
  const current=page.getByTestId('editing-cut-cut100');await expect(current).toHaveAttribute('aria-current','step');await expect(page.getByLabel('편집할 장',{exact:true})).toHaveValue('ch1');
  const visible=await current.locator('header').evaluate(el=>{const row=el.getBoundingClientRect(),area=el.closest('[data-writer-scroll]')!.getBoundingClientRect();return {top:row.top,bottom:row.bottom,areaTop:area.top,areaBottom:area.bottom};});expect(visible.top).toBeGreaterThanOrEqual(visible.areaTop-1);expect(visible.top).toBeLessThan(visible.areaBottom);
- await expect(current.getByRole('button',{name:'이 컷 선택',exact:true})).toBeFocused();expect(await stored(page)).toEqual(before);await page.screenshot({path:info.outputPath(`advanced-return-${target}-390.png`)});
+ await expect(current.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeFocused();expect(await stored(page)).toEqual(before);await page.screenshot({path:info.outputPath(`advanced-return-${target}-390.png`)});
 });
 
 test('same-cut closed detail preview preserves an already visible row position',async({page})=>{
@@ -75,5 +77,5 @@ test('same-cut closed detail preview preserves an already visible row position',
  const summary=row.getByText('51컷 음향 수정',{exact:true});await summary.click();const field=row.getByLabel('조정할 소리',{exact:true});await field.focus();await summary.click();
  const list=page.locator('[data-writer-scroll]').last();await list.evaluate(el=>{const header=el.querySelector('[aria-current="step"] header')!.getBoundingClientRect(),bounds=el.getBoundingClientRect();el.scrollTop+=header.top-bounds.top-90;});const before=await list.evaluate(el=>el.scrollTop),projectBefore=await stored(page);
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>Number(await status.getAttribute('data-rendered-revision'))>=0&&await status.getAttribute('data-rendered-revision')===await status.getAttribute('data-scene-revision'),{timeout:120000}).toBe(true);
- await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(row.getByRole('button',{name:'이 컷 선택',exact:true})).toBeFocused();await expect(field).toBeHidden();await expect.poll(()=>list.evaluate(el=>el.scrollTop)).toBeCloseTo(before,0);expect(await stored(page)).toEqual(projectBefore);
+ await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();await expect(row.getByRole('button',{name:'이 컷부터 재생',exact:true})).toBeFocused();await expect(field).toBeHidden();await expect.poll(()=>list.evaluate(el=>el.scrollTop)).toBeCloseTo(before,0);expect(await stored(page)).toEqual(projectBefore);
 });

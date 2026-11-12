@@ -1,13 +1,14 @@
 'use client';
 import {useCallback,useEffect,useRef,useState} from 'react';
+import {onlineEnabled} from '../lib/online-mode';
 import {accountConfig,accountSession,accountLogout,type AccountSession,type AccountConfig} from '../lib/account-api';
 export function useAccountSession(){
  const [session,setSession]=useState<AccountSession|null>(null),[config,setConfig]=useState<AccountConfig|null>(null);
- const [loading,setLoading]=useState(true),[error,setError]=useState('');
+ const [loading,setLoading]=useState(onlineEnabled),[error,setError]=useState('');
  const generation=useRef(0),mutating=useRef(false);
  const lifecycle=useRef({active:true});
  const refreshLocal=useCallback(async()=>{
-  if(mutating.current)return;
+  if(mutating.current||!onlineEnabled)return;
   const request=++generation.current;setLoading(true);setError('');
   try{const [nextConfig,nextSession]=await Promise.all([accountConfig(),accountSession()]);if(request!==generation.current||!lifecycle.current.active)return;setConfig(nextConfig);setSession(nextSession);}
   catch{if(request===generation.current&&lifecycle.current.active){setConfig(null);setSession(null);setError('계정 서비스를 확인하지 못했어요. 기기의 작품은 계속 사용할 수 있어요.');}}

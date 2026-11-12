@@ -6,13 +6,13 @@ describe('runtime status recovery', () => {
     const status = runtimeStatusReducer(initialRuntimeStatus, { protocol: 1, type: 'error', message: 'Traceback /private/assets/secret.ogg' });
     expect(status.message).not.toMatch(/Traceback|private|secret/);
     expect(status.message).toContain('편집');
-    expect(status.message).toContain('다시 읽기');
+    expect(status.message).toContain('다시 읽어 주세요');
     expect(runtimeStatusReducer(status, { type: 'waiting' })).toBe(status);
   });
 
   it('does not claim recovery merely because the renderer is connected', () => {
     const failed = runtimeStatusReducer(initialRuntimeStatus, { type: 'audioFailed' });
-    expect(failed.message).toContain('음원');
+    expect(failed.message).toContain('소리를 불러오지 못했어요');
     expect(failed.message).toContain('편집');
     const connected = runtimeStatusReducer(failed, { protocol: 1, type: 'ready', contractVersion: 1, runtimeVersion: '8.5.3' });
     expect(connected).toBe(failed);

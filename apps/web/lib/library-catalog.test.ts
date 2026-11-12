@@ -48,3 +48,9 @@ it('finds the grouped book by either edition title and author without changing s
  const book={...original,builtin:{title:'흥부와 놀부',original,knolstory}};const before=JSON.stringify(book);
  expect(findLibraryBooks([book],'서로의 몫')).toEqual([book]);expect(findLibraryBooks([book],'우리 반')).toEqual([book]);expect(JSON.stringify(book)).toBe(before);
 });
+
+import {isPersonalLibraryKind} from './library-catalog';
+it('finds local originals and online/file imports together in My Works without rewriting their kind',()=>{
+ expect(['own','imported','original','example'].filter(isPersonalLibraryKind)).toEqual(['own','imported']);
+ expect(parseLibraryView('{"version":1,"filter":"imported","query":"내 책","pages":{"imported":2}}')).toEqual({filter:'own',query:'내 책',pages:{imported:2,own:2}});
+});

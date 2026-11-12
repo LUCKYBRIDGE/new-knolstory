@@ -22,6 +22,8 @@ jobs:
       - run: python3 scripts/prepare-transparency-assets.py
       - run: python3 scripts/prepare-expression-assets.py
       - run: pnpm test:scripts
+      - run: pnpm test:client-proof
+      - run: pnpm test:e2e:registry
       - run: pnpm audit --prod --audit-level=moderate
       - run: pnpm typecheck
       - run: pnpm lint

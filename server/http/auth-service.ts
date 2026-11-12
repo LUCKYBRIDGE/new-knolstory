@@ -9,6 +9,7 @@ type Provider='kakao'|'google';
 export type AuthServiceConfig=AuthStateConfig & Readonly<{
  providers:Readonly<Partial<Record<Provider,Omit<OidcProviderConfig,'provider'>>>>;
  rateLimit?:AuthRouterOptions['rateLimit'];
+ clientProofKey?:string;
 }>;
 /** Compose real HTTP, verifier and DB ports; transport injection is trusted test wiring only. */
 export function createAuthService(config:AuthServiceConfig,pool:SqlPool,transport:OidcTransport={}){
@@ -22,5 +23,5 @@ export function createAuthService(config:AuthServiceConfig,pool:SqlPool,transpor
  }
  return createAuthRouter({origin:config.origin,authState:state,
   completionPort:createPostgresAuthCompletion(pool,{sessionTtlMs:config.sessionTtlMs}),
-  providers,rateLimit:config.rateLimit});
+  providers,rateLimit:config.rateLimit,clientProofKey:config.clientProofKey});
 }

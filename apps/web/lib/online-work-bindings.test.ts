@@ -1,6 +1,6 @@
 import {describe,it,expect,vi} from 'vitest';
 import {createAuthoringArchive,prepareJsonbSnapshot,newShortStory} from '@knolstory/compatibility';
-import {createOnlineWorkStore,saveOnlineWork} from './online-work-bindings';
+import {createOnlineWorkStore,saveOnlineWork,readOnlineShelfBindings} from './online-work-bindings';
 const account='11111111-1111-4111-8111-111111111111',record='22222222-2222-4222-8222-222222222222';
 function storage(){const map=new Map<string,string>();return {getItem:(key:string)=>map.get(key)??null,setItem:(key:string,value:string)=>{map.set(key,value);},map};}
 async function snapshot(){return prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:newShortStory()}));}
@@ -65,4 +65,37 @@ describe('durable online work linkage',()=>{
   const next=await store.prepare(account,'local',await snapshot());expect(next.key).not.toBe(rejected.key);
  });
 
+});
+
+describe('read-only shelf linkage projection',()=>{
+ const linked={recordId:record,remoteProjectId:'server-project',format:'knolstory',revision:2,contentSha256:'a'.repeat(64)};
+ const diskKey=(owner:string,local:string)=>`knolstory-online-work-v1:${owner}:${encodeURIComponent(local)}`;
+ it('reads only supplied local keys in the current account without writes or account enumeration',()=>{
+  const disk=storage(),other='33333333-3333-4333-8333-333333333333';
+  disk.setItem(diskKey(account,'import:one'),JSON.stringify({version:1,binding:linked,pending:null}));
+  disk.setItem(diskKey(other,'import:one'),'{other-owner-corrupt');
+  const read=vi.fn(disk.getItem),before=[...disk.map];
+  expect(readOnlineShelfBindings({getItem:read},account,['import:one','missing'])).toEqual({'import:one':{binding:linked,error:false},missing:{binding:null,error:false}});
+  expect(read.mock.calls.map(([key])=>key)).toEqual([diskKey(account,'import:one'),diskKey(account,'missing')]);
+  expect([...disk.map]).toEqual(before);
+  expect(readOnlineShelfBindings(disk,other,['import:one'])).toEqual({'import:one':{binding:null,error:true}});
+ });
+ it('isolates corrupt records and blocked storage without clearing data',()=>{
+  const disk=storage();disk.setItem(diskKey(account,'bad'),'{corrupt');disk.setItem(diskKey(account,'good'),JSON.stringify({version:1,binding:linked,pending:null}));
+  expect(readOnlineShelfBindings(disk,account,['bad','good'])).toEqual({bad:{binding:null,error:true},good:{binding:linked,error:false}});
+  expect(disk.getItem(diskKey(account,'bad'))).toBe('{corrupt');
+  expect(readOnlineShelfBindings({getItem:()=>{throw Error('blocked');}},account,['one'])).toEqual({one:{binding:null,error:true}});
+ });
+ it('does not expose a journal or mutable binding reference to shelf consumers',()=>{
+  const disk=storage();disk.setItem(diskKey(account,'local'),JSON.stringify({version:1,binding:linked,pending:null}));
+  const result=readOnlineShelfBindings(disk,account,['local']);
+  expect(Object.keys(result.local!)).toEqual(['binding','error']);
+  expect(result.local!.binding).not.toBe(linked);
+  expect(createOnlineWorkStore(disk).get(account,'local')).toEqual(linked);
+ });
+ it('contains invalid keys and account identities at each requested entry',()=>{
+  expect(readOnlineShelfBindings({getItem:()=>{throw Error('must not read');}},'not-an-account',['local'])).toEqual({local:{binding:null,error:true}});
+  expect(readOnlineShelfBindings(storage(),account,[''])).toEqual({'':{binding:null,error:true}});
+  expect(readOnlineShelfBindings(storage(),account,[])).toEqual({});
+ });
 });

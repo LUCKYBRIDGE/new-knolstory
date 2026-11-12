@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-11-03T22:54:36.484Z",
+  "scope": "Verified official runtime, freshly regenerated uninstalled launch draft, real fixture gateway only.",
+  "nodeVersion": "v22.23.4",
+  "nodeSha256": "2cc28a1880d0774616959f2210ee739bffa6ac695c887e8988a496a21271f6c0",
+  "bundleId": "79fa37cb5f5c6bfbf04dbf6add976cd5e0070edc4aa442a9029cbbb212a04cb5",
+  "serviceQueries": [
+    {
+      "domainKind": "gui",
+      "found": false
+    },
+    {
+      "domainKind": "user",
+      "found": false
+    },
+    {
+      "domainKind": "system",
+      "found": false
+    }
+  ],
+  "preflight": {
+    "ready": true,
+    "bundleId": "79fa37cb5f5c6bfbf04dbf6add976cd5e0070edc4aa442a9029cbbb212a04cb5",
+    "nodeVersion": "22.23.4",
+    "uid": 501,
+    "keyContentRead": false,
+    "keyMetadataValidated": true,
+    "socketAbsent": true,
+    "stdout": "absent",
+    "stderr": "absent",
+    "serviceLabelAbsent": true,
+    "serviceInventorySource": "caller-observed snapshot",
+    "filesOrServicesChanged": false,
+    "limits": [
+      "Point-in-time filesystem and caller-supplied service inventory only; recheck immediately before activation.",
+      "Metadata validates key length and permissions, not key content or equality with container keys.",
+      "Node executable ancestry is checked; dynamic libraries and operating-system loader configuration are not inspected.",
+      "Same UID and root remain trusted; later filesystem/service changes are not locked.",
+      "Existing sockets are always refused; explicit listener and stale-socket recovery is required."
+    ]
+  },
+  "launchDraft": {
+    "label": "com.knolstory.client-proof-gateway",
+    "bundleId": "79fa37cb5f5c6bfbf04dbf6add976cd5e0070edc4aa442a9029cbbb212a04cb5",
+    "configurationSha256": "d06f0929068e804a2078563cf25a1fa32f7d4ae99c4a7718b1060e62a37e9875",
+    "nodeVersion": "22.23.4",
+    "uid": 501,
+    "installed": false,
+    "productionKeyRead": false,
+    "recovery": "manual-after-stale-socket-check",
+    "automaticRestart": false,
+    "limits": [
+      "Draft does not verify future log/key/socket directory permissions or install a job.",
+      "After a crash, verify listener absence and owned stale socket before manual recovery; this draft does not delete sockets or provide automatic crash recovery."
+    ]
+  },
+  "plistSyntaxPassed": true,
+  "plistRoundTripEqual": true,
+  "onlyExecutableChanged": true,
+  "fixture": {
+    "requestStatus": 200,
+    "signatureVerified": true,
+    "shutdown": {
+      "code": 0,
+      "signal": null
+    },
+    "removed": true,
+    "environmentExplicitAndMinimal": true
+  },
+  "preservation": {
+    "serviceInstalled": false,
+    "productionKeyCreated": false,
+    "productionKeyRead": false,
+    "selectedKeyAndSocketStillAbsent": true,
+    "productionConfigChanged": false,
+    "existingHomebrewPermissionsChanged": false
+  },
+  "limits": [
+    "Actual production key/mount equality, service installation and recovery remain separately gated.",
+    "Direct dependency review trusts macOS system libraries/loader; no complete runtime memory attestation.",
+    "Fresh service absence does not lock the label or prove future launchd environment.",
+    "Fixture IP/session are synthetic; no actual Cloudflare/Tunnel UDS or provider upload proof."
+  ]
+}

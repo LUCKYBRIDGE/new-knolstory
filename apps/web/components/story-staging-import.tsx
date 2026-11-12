@@ -7,10 +7,13 @@ import {importStoryStaging,undoStoryStagingImport,canUndoStoryStagingImport,type
 import {resolveAsset,assetDisplayName} from '@knolstory/asset-registry';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './story-staging-import.module.css';
+const undoByCut=new Map<string,StagingImportUndo>();
 type Props={project:StoryProject;line:StoryLine;ordered:readonly StoryLine[];onChange:(project:StoryProject)=>void};
 export function StoryStagingImport(p:Props){
- const [open,setOpen]=useState(false),[undo,setUndo]=useState<StagingImportUndo|null>(null),[notice,setNotice]=useState<{scope:string;text:string}|null>(null);
  const scope=`${p.project.id}/${p.line.id}`;
+ const [open,setOpen]=useState(false),[undo,setUndoState]=useState<StagingImportUndo|null>(()=>undoByCut.get(scope)??null),[notice,setNotice]=useState<{scope:string;text:string}|null>(null);
+ // A phone shows one cut at a time and remounts this panel per cut, so the undo record outlives the panel.
+ const setUndo=(value:StagingImportUndo|null)=>{if(value)undoByCut.set(`${value.projectId}/${value.lineId}`,value);else undoByCut.delete(scope);setUndoState(value);};
  const setMessage=(text:string)=>setNotice({scope,text});
  const message=notice?.scope===scope?notice.text:'';
  const availableUndo=undo?.lineId===p.line.id&&canUndoStoryStagingImport(p.project,undo);

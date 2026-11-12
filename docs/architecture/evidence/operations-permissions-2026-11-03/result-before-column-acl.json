@@ -1,0 +1,302 @@
+{
+  "checkedAt": "2026-11-03T08:54:49.055418+00:00",
+  "scope": "Two READ ONLY transactions selecting only PostgreSQL catalog/ACL metadata; Docker configuration and lstat metadata only. No table records, secret bytes, migrations, role grants or external requests.",
+  "catalog": {
+    "roles": [
+      {
+        "role": "knolstory_next_app",
+        "login": true,
+        "bypassRls": false,
+        "superuser": false,
+        "createRole": false,
+        "replication": false,
+        "createDatabase": false
+      },
+      {
+        "role": "knolstory_next_owner",
+        "login": true,
+        "bypassRls": true,
+        "superuser": true,
+        "createRole": true,
+        "replication": true,
+        "createDatabase": true
+      }
+    ],
+    "tables": [
+      {
+        "table": "accounts",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_auth",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "flows",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_auth",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "identities",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_auth",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "sessions",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_auth",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "blobs",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_storage",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "document_creations",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_storage",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "document_state_commands",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_storage",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "migrations",
+        "delete": false,
+        "insert": false,
+        "schema": "knolstory_storage",
+        "select": true,
+        "update": false,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "private_documents",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_storage",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "receipts",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_storage",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      },
+      {
+        "table": "records",
+        "delete": true,
+        "insert": true,
+        "schema": "knolstory_storage",
+        "select": true,
+        "update": true,
+        "trigger": false,
+        "truncate": false,
+        "references": false,
+        "rowSecurity": false,
+        "ownerExpected": true
+      }
+    ],
+    "schemas": [
+      {
+        "schema": "knolstory_auth",
+        "appUsage": true,
+        "appCreate": false,
+        "ownedByApp": false
+      },
+      {
+        "schema": "knolstory_storage",
+        "appUsage": true,
+        "appCreate": false,
+        "ownedByApp": false
+      },
+      {
+        "schema": "public",
+        "appUsage": true,
+        "appCreate": false,
+        "ownedByApp": false
+      }
+    ],
+    "database": {
+      "appCreate": false,
+      "appConnect": true,
+      "appTemporary": false,
+      "ownerExpected": true
+    },
+    "sequences": [],
+    "databaseExpected": true,
+    "appMembershipCount": 0,
+    "transactionReadOnly": "on",
+    "applicationSecurityDefinerCount": 0,
+    "appOwnedApplicationFunctionCount": 0
+  },
+  "catalogStable": true,
+  "containerIdsAndImagesStable": true,
+  "api": {
+    "user": "501:20",
+    "environment": {
+      "applicationRoleExpected": true,
+      "databaseExpected": true,
+      "rawSecretEnvironmentPresent": false,
+      "dbPasswordFileConfigured": true,
+      "csrfFileConfigured": true
+    },
+    "noOwnerCredentialMount": true,
+    "readOnlyRoot": true,
+    "hostPortBindings": 0,
+    "secrets": {
+      "present": true,
+      "readOnly": true,
+      "directory": {
+        "isDirectory": true,
+        "isFile": false,
+        "isSymlink": false,
+        "uid": 501,
+        "gid": 20,
+        "mode": 448,
+        "privateModeExpected": true
+      },
+      "files": {
+        "database": {
+          "isDirectory": false,
+          "isFile": true,
+          "isSymlink": false,
+          "uid": 501,
+          "gid": 20,
+          "mode": 384,
+          "privateModeExpected": true
+        },
+        "csrf": {
+          "isDirectory": false,
+          "isFile": true,
+          "isSymlink": false,
+          "uid": 501,
+          "gid": 20,
+          "mode": 384,
+          "privateModeExpected": true
+        },
+        "kakaoId": {
+          "isDirectory": false,
+          "isFile": true,
+          "isSymlink": false,
+          "uid": 501,
+          "gid": 20,
+          "mode": 384,
+          "privateModeExpected": true
+        },
+        "kakaoSecret": {
+          "isDirectory": false,
+          "isFile": true,
+          "isSymlink": false,
+          "uid": 501,
+          "gid": 20,
+          "mode": 384,
+          "privateModeExpected": true
+        }
+      },
+      "unexpectedEntryCount": 0
+    }
+  },
+  "dbOwnerSecrets": {
+    "present": true,
+    "readOnly": true,
+    "directory": {
+      "isDirectory": true,
+      "isFile": false,
+      "isSymlink": false,
+      "uid": 501,
+      "gid": 20,
+      "mode": 448,
+      "privateModeExpected": true
+    },
+    "files": {
+      "ownerDatabase": {
+        "isDirectory": false,
+        "isFile": true,
+        "isSymlink": false,
+        "uid": 501,
+        "gid": 20,
+        "mode": 384,
+        "privateModeExpected": true
+      }
+    },
+    "unexpectedEntryCount": 0
+  },
+  "secretValuesRead": false,
+  "credentialPathsPublished": false,
+  "limits": [
+    "Catalog privilege checks are not attempted DDL/data mutation or a real app-password login.",
+    "Application row ownership is enforced by API; this audit does not prove database RLS or live OAuth.",
+    "POSIX owner/mode metadata only; not a full ACL, at-rest encryption or off-host retention audit."
+  ]
+}

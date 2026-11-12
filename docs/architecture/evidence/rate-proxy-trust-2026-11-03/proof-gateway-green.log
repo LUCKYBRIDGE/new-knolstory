@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: gateway config requires explicit private key/socket and loopback destination
+ok 1 - gateway config requires explicit private key/socket and loopback destination
+  ---
+  duration_ms: 0.983792
+  type: 'test'
+  ...
+# Subtest: canonical API signs the CF claim and streams method, target, body and cookies
+ok 2 - canonical API signs the CF claim and streams method, target, body and cookies
+  ---
+  duration_ms: 15.205
+  type: 'test'
+  ...
+# Subtest: static and alias requests keep their Host and cannot inherit a proof
+ok 3 - static and alias requests keep their Host and cannot inherit a proof
+  ---
+  duration_ms: 4.367583
+  type: 'test'
+  ...
+# Subtest: invalid Host, targets and missing, duplicate or invalid client claims do not reach ingress
+ok 4 - invalid Host, targets and missing, duplicate or invalid client claims do not reach ingress
+  ---
+  duration_ms: 3.539667
+  type: 'test'
+  ...
+# Subtest: gateway factory cannot become a TCP signer; upstream failure stays explicit
+ok 5 - gateway factory cannot become a TCP signer; upstream failure stays explicit
+  ---
+  duration_ms: 3.336
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 116.800333

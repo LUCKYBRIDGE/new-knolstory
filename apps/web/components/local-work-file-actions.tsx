@@ -29,7 +29,7 @@ export function LocalWorkFileActions({fileSession,workKey,name,extension,seriali
    const result=await saver.save({workKey:key,name,extension,serialize:async()=>{savedText=await snapshot();return savedText;},saveAs,isCurrent:()=>current.current===key&&lifetime.current===generation});
    if(current.current!==key||lifetime.current!==generation)return 'cancelled';
    if(result.kind==='saved'&&savedText!==undefined)onVerifiedSave?.(savedText);
-   setNotice(result.kind==='saved'?`${result.name} 파일에 저장하고 내용을 확인했어요. 저장을 시작한 시점의 원고입니다.`:result.kind==='download-requested'?'작품 파일 다운로드를 요청했어요. 브라우저 다운로드 목록에서 완료와 저장 위치를 확인해 주세요.':'파일 저장을 취소했어요. 원고는 유지됩니다.');
+   setNotice(result.kind==='saved'?`${result.name} 파일에 저장하고 내용까지 확인했어요. 저장을 시작할 때의 원고예요.`:result.kind==='download-requested'?'작품 파일 다운로드를 시작했어요. 브라우저 다운로드 목록에서 끝났는지, 어디에 저장됐는지 확인해 주세요.':'파일 저장을 취소했어요. 원고는 유지됩니다.');
      return result.kind;
   }catch(issue){if(current.current===key&&lifetime.current===generation)setError(`작품 파일을 저장하지 못했어요. 현재 원고는 유지됩니다. ${localWorkFileErrorMessage(issue)}`);return 'failed';}
   finally{saving.current=false;onSavingChange?.(false);setBusy(false);}
@@ -54,5 +54,5 @@ export function LocalWorkFileActions({fileSession,workKey,name,extension,seriali
   };
   document.addEventListener('keydown',shortcut);return()=>document.removeEventListener('keydown',shortcut);
  });
- return <div ref={group} data-local-file-actions role="group" aria-label="로컬 작품 파일"><button aria-keyshortcuts="Control+s Meta+s" disabled={disabled||busy} onClick={()=>void save()}>작품 파일 저장</button><button aria-keyshortcuts="Control+Shift+s Meta+Shift+s" disabled={disabled||busy} onClick={()=>void save(true)}>다른 파일로 저장</button><small>작품 파일을 기기에 저장해 이어 쓰세요. 온라인 업로드는 별도입니다.</small><details data-file-save-help><summary>파일 저장 안내</summary><p>선택한 파일에 직접 저장해요. 지원하지 않는 브라우저에서는 새 파일을 다운로드해요. 임시 보관은 이 브라우저에서 원고를 되찾는 보조 수단이며 작품 파일 저장을 대신하지 않아요.</p><p>저장: Ctrl+S / ⌘S<br/>다른 파일로 저장: Ctrl+Shift+S / ⌘Shift+S</p></details>{busy&&<p role="status">작품 파일 저장 중이에요.</p>}{notice&&messageWork===workKey&&<p role="status">{notice}</p>}{error&&messageWork===workKey&&<p role="alert">{error}</p>}</div>;
+ return <div ref={group} data-local-file-actions role="group" aria-label="로컬 작품 파일"><button aria-keyshortcuts="Control+s Meta+s" disabled={disabled||busy} onClick={()=>void save()}>작품 파일 저장</button><button aria-keyshortcuts="Control+Shift+s Meta+Shift+s" disabled={disabled||busy} onClick={()=>void save(true)}>다른 파일로 저장</button><small>작품 파일을 기기에 저장해 이어 쓰세요.</small><details data-file-save-help><summary>파일 저장 안내</summary><p>파일에 직접 저장하거나 브라우저에서 다운로드해요. 임시 보관한 원고는 이 브라우저에서 이어 쓸 수 있어요.</p><p>저장: Ctrl+S / ⌘S<br/>다른 파일로 저장: Ctrl+Shift+S / ⌘Shift+S</p></details>{busy&&<p role="status">작품 파일 저장 중이에요.</p>}{notice&&messageWork===workKey&&<p role="status">{notice}</p>}{error&&messageWork===workKey&&<p role="alert">{error}</p>}</div>;
 }

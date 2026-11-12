@@ -1,0 +1,57 @@
+TAP version 13
+# Subtest: writes only reviewed module bytes, relative receipt and a sealed independent module tree
+ok 1 - writes only reviewed module bytes, relative receipt and a sealed independent module tree
+  ---
+  duration_ms: 120.615084
+  type: 'test'
+  ...
+# Subtest: stale, missing or extra review hashes refuse before creating a destination
+ok 2 - stale, missing or extra review hashes refuse before creating a destination
+  ---
+  duration_ms: 1.645625
+  type: 'test'
+  ...
+# Subtest: existing destination, symlink destination and unsafe parent are preserved
+ok 3 - existing destination, symlink destination and unsafe parent are preserved
+  ---
+  duration_ms: 3.561125
+  type: 'test'
+  ...
+# Subtest: source links, nonfiles, unsafe paths and malformed review input refuse
+ok 4 - source links, nonfiles, unsafe paths and malformed review input refuse
+  ---
+  duration_ms: 2.027292
+  type: 'test'
+  ...
+# Subtest: concurrent writers leave exactly one completed destination and do not replace it
+ok 5 - concurrent writers leave exactly one completed destination and do not replace it
+  ---
+  duration_ms: 27.026375
+  type: 'test'
+  ...
+# Subtest: verification rejects changed bytes, wrong identity, added files and a manifest link
+ok 6 - verification rejects changed bytes, wrong identity, added files and a manifest link
+  ---
+  duration_ms: 28.920625
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 266.534833
+# start of coverage report
+# --------------------------------------------------------------------------
+# file                      | line % | branch % | funcs % | uncovered lines
+# --------------------------------------------------------------------------
+# server                    |        |          |         |
+#  operations               |        |          |         |
+#   client-proof-bundle.mjs | 100.00 |    86.42 |  100.00 |
+# --------------------------------------------------------------------------
+# all files                 | 100.00 |    86.42 |  100.00 |
+# --------------------------------------------------------------------------
+# end of coverage report

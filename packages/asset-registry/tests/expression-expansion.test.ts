@@ -21,7 +21,7 @@ it('fills four story packs with sixteen searchable individually selectable poses
 });
 it('preserves every previous catalogue row and rejects unreviewed new runtime paths',()=>{
  const rows=JSON.parse(readFileSync('packages/asset-registry/src/catalog.json','utf8'));
- const previous=rows.filter((row:{metadata:{generatedExpressionAsset?:boolean}})=>!row.metadata.generatedExpressionAsset);
+ const previous=rows.filter((row:{metadata:{generatedExpressionAsset?:boolean;shortStoryCollection?:string}})=>!row.metadata.shortStoryCollection&&!row.metadata.generatedExpressionAsset);
  expect(previous).toHaveLength(plan.before.catalogueRows);
  expect(createHash('sha256').update(JSON.stringify(previous)).digest('hex')).toBe(plan.before.catalogueSha256);
  for(const path of ['assets/characters/expressions-v1/unknown.webp','assets/characters/expressions-v1/../heungbu.webp','https://example.com/actor.webp'])expect(isRuntimeImagePath(path)).toBe(false);

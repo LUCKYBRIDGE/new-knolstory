@@ -1,0 +1,86 @@
+/* Teacher missions. Warm amber marks missions apart from the mint (놀스토리) and blue (숏스토리) of assignments. */
+.panel{min-width:0}
+.starters{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 18px}
+.empty{margin:0;padding:18px;border:1px dashed #d9d2bd;border-radius:12px;background:#fbf8ee;color:#536763;font-size:.875rem}
+.kind{display:inline-block;margin-bottom:4px;padding:2px 8px;border-radius:5px;font-size:.75rem;font-weight:600;color:#7a5a1c;background:#f8edcf}
+.kind[data-kind="reading"]{color:#2b5b4b;background:#e3efe4}
+.kind[data-kind="custom"]{color:#5d5876;background:#ecebf4}
+.picker{margin:0 0 20px;padding:18px;border:1px solid #e6dcc0;border-radius:14px;background:#fcf8ec}
+.pickerHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.works{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.provided{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
+.provided>li{display:flex;flex-direction:column;align-items:flex-start;min-width:0;padding:16px;border:1px solid #e3dcc6;border-radius:12px;background:#fffefa}
+.provided h3{margin:2px 0 6px;font-size:1rem;letter-spacing:-.02em;line-height:1.45}
+.provided p{margin:0 0 10px;font-size:.8125rem;color:#415951}
+.provided ol{margin:0 0 12px;padding-left:1.2em;font-size:.8125rem;color:#415951;display:grid;gap:4px}
+.provided .kind+h3{margin-top:0}
+.provided>li>button{margin-top:auto}
+.picker>p{margin:14px 0 0}
+.editor{margin:0 0 20px;padding:20px;border:1px solid #e6dcc0;border-radius:14px;background:#fcf8ec}
+.editor fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:16px}
+.editor legend{padding:0;margin-bottom:12px;font-size:1.0625rem;font-weight:700;letter-spacing:-.025em}
+.editor fieldset>p{margin:-8px 0 0}
+.kinds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.kindChoice{display:grid;gap:2px;min-height:60px;padding:10px 12px;border:1px solid #d5cfba;border-radius:12px;background:#fffefa;color:inherit;font:inherit;text-align:left;cursor:pointer;transition:border-color .15s,background .15s}
+.kindChoice strong{font-size:.9375rem}
+.kindChoice small{font-size:.75rem;color:#536763}
+.kindChoice:hover{border-color:#b89a56}
+.kindChoice[aria-pressed="true"]{border-color:#a8782a;background:#fbf1d8;box-shadow:inset 0 0 0 1px #a8782a}
+.kindChoice:focus-visible,.student>summary:focus-visible,.questionRow textarea:focus-visible{outline:3px solid #2f7d68;outline-offset:3px}
+.editor textarea{min-height:76px}
+.questions{display:grid;gap:10px;padding-top:14px;border-top:1px solid #e9e1c9}
+.questionsHead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.875rem}
+.questionsHead small{font-weight:400;color:#536763;margin-left:6px}
+.questionsHead>span{font-size:.75rem;color:#536763}
+.questionRow{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:8px;align-items:start}
+.questionRow>span{display:grid;place-items:center;width:28px;height:28px;margin-top:9px;border-radius:50%;background:#f3e6c2;color:#7a5a1c;font-size:.8125rem;font-weight:700}
+.questionRow textarea{box-sizing:border-box;width:100%;min-height:46px;padding:10px 12px;border:1px solid #c7cbbc;border-radius:10px;background:#fffefa;color:inherit;font:inherit;line-height:1.55;resize:vertical}
+.questions>button{justify-self:start}
+.editorActions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.editorActions>span{margin:0;flex:1 1 220px}
+.missions{margin-top:6px}
+.mission{padding:20px;border:1px solid #e3dcc6;border-left:4px solid #d6a653;border-radius:4px 12px 12px 4px;background:#fffefa;min-width:0}
+.mission[data-kind="reading"]{border-left-color:#7a9c83}
+.mission[data-kind="custom"]{border-left-color:#a09bbd}
+.meta{margin:0;font-size:.8125rem;color:#536763}
+.roster{margin-top:16px;padding-top:14px;border-top:1px solid #e9e4d2}
+.summary{display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center;margin-bottom:10px;font-size:.8125rem;color:#536763}
+.summary b{font-size:1rem;color:#183331;margin-left:2px}
+.summary [data-status="pending"] b{color:#8a5f10}
+.summary [data-status="passed"] b{color:#245c46}
+.summary [data-status="revise"] b{color:#944e31}
+.summary>button{margin-left:auto}
+.students{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.student{border:1px solid #e3e4d9;border-radius:10px;background:#fffefa;min-width:0}
+.student[data-status="pending"]{border-color:#e6d49f;background:#fffbee}
+.student>summary{display:flex;align-items:center;gap:10px;min-height:48px;padding:4px 14px;cursor:pointer;list-style:none;font-size:.875rem}
+.student>summary::-webkit-details-marker{display:none}
+.student>summary::before{content:'›';font-size:20px;color:#7a8a80;transition:transform .15s}
+.student[open]>summary::before{transform:rotate(90deg)}
+.who{font-weight:600;min-width:0;overflow-wrap:anywhere}
+.state{flex:none;padding:3px 9px;border-radius:6px;font-size:.75rem;font-weight:600;background:#eeebe4;color:#696457}
+.state[data-status="passed"]{color:#245c46;background:#e0efe4}
+.state[data-status="pending"]{color:#755419;background:#f7edce}
+.state[data-status="revise"]{color:#944e31;background:#f9e7da}
+.when{margin-left:auto;flex:none;font-size:.75rem;color:#6b7a73}
+.review{display:grid;gap:12px;padding:6px 14px 16px;border-top:1px solid #ecebe0}
+.review>p{margin:0}
+.answer{padding:10px 12px;border-radius:9px;background:#f6f5ec}
+.prompt{margin:0 0 4px;font-size:.75rem;font-weight:600;color:#536763}
+.reply{margin:0;font-size:.9375rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.review textarea{min-height:64px}
+.decide{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:860px){.provided{grid-template-columns:1fr}}
+@media(max-width:720px){
+ .picker,.editor{padding:16px 14px}
+ .kinds{grid-template-columns:1fr}
+ .kindChoice{min-height:52px;grid-template-columns:auto 1fr;align-items:baseline;column-gap:10px}
+ .mission{padding:18px 16px}
+ .questionRow{grid-template-columns:28px minmax(0,1fr)}
+ .questionRow>button{grid-column:2;justify-self:end}
+ .questionRow textarea,.review textarea{font-size:16px}
+ .when{display:none}
+ .summary>button{margin-left:0}
+ .starters>button{flex:1 1 100%}
+}
+@media(prefers-reduced-motion:reduce){.student>summary::before,.kindChoice{transition:none}}

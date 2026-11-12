@@ -29,7 +29,16 @@ export function addShortStoryBook(library:ShortStoryLibrary,project:ShortStoryPr
  return {...library,books:[...library.books,next],activeId:next.id,positions:{...library.positions,[next.id]:0}};
 }
 export function copyShortStoryBook(library:ShortStoryLibrary,project:ShortStoryProject):ShortStoryLibrary {
- return addShortStoryBook(library,{...project,id:crypto.randomUUID(),title:`${project.title} · 내 사본`,pages:project.pages.map(page=>({...page,id:crypto.randomUUID()})),updatedAt:new Date().toISOString()});
+ const provided=project.id.startsWith('shortstory-original-');
+ let title=`${project.title} · 내 사본`;
+ if(provided){
+  const base=`[내작품] ${project.title}`;
+  const occupied=new Set([...library.books,...library.deleted].map(book=>book.title.normalize('NFC')));
+  title=base;
+  for(let suffix=2;occupied.has(title.normalize('NFC'));suffix++)title=`${base} ${suffix}`;
+ }
+ const cover=provided?{backgroundId:'',characterId:'',authorNote:project.cover.authorNote}:project.cover;
+ return addShortStoryBook(library,{...project,id:crypto.randomUUID(),title,cover,pages:project.pages.map(page=>({...page,id:crypto.randomUUID()})),updatedAt:new Date().toISOString()});
 }
 /** Three-way merge of every book, including unsaved imports and edits made before switching books.
  * A conflicting stored revision stays as a separate book; deletion never discards a concurrent edit. */

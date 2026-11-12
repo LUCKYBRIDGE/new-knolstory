@@ -50,3 +50,13 @@ KNOL_CATALOG_BASE_URL=http://127.0.0.1:15407 pnpm exec playwright test --config 
 선녀의 우선14창작+원작1경로도 교정 전 고정 입력으로 통과했다(5,030컷별 검사). 다른 세 작품과 합계44완주/9,880컷별 검사다. `seonnyeo-route-receipts/`와 두 로그가 실제 실행 근거다. 남은50전체native 조합은 계속 미실행이다.
 
 배경233컷 교정 뒤 미래 회귀의 기본 예상값은 `manifest-seonnyeo-weather-all.json`/`manifest-seonnyeo-weather-selected.json`이다. 이전 두 선녀 명세는 완료한native입력으로 봉인해 보존한다. 생성기는 기본 새weather이름에 기록하며 기존 파일이 다르면 덮어쓰지 않는다. 추가 의미 변경 시 `KNOL_SEONNYEO_MANIFEST_PREFIX=manifest-seonnyeo-새버전`(영문소문자/숫자/하이픈만)으로 새 근거를 만든다. 새expected파일 자체가 새native완주 증거는 아니다.
+
+## 선녀와 나무꾼 남은 50경로 범위 스위치와 실행 결과 — 2026-11-10
+
+`KNOL_CATALOG_SEONNYEO_SCOPE=remaining`을 주면 `manifest-seonnyeo-rainy-courtyard-all.json`에서 `-selected`에 이미 있는 경로를 뺀 50창작 경로만 읽는다(기본 15경로 범위는 변하지 않는다).
+
+```sh
+KNOL_CATALOG_BASE_URL=http://127.0.0.1:15410 KNOL_CATALOG_SEONNYEO_SCOPE=remaining pnpm exec playwright test --config docs/architecture/evidence/catalog-native-paths-2026-11-02/playwright.config.ts --grep 'seonnyeo ' --workers 1
+```
+
+실행 결과: 배포본(`pages-candidate-image-preload-20261103`, 원천 커밋 c2c49b18)을 정적 제공해 knolstory-1은 단독 4.1분, 나머지 49경로는 3.2시간에 모두 통과했다(실패·건너뜀 0). 합계 50경로·18,485컷별 검사다. 서재 화면 문구 도우미(`tests/e2e/library-entry.ts`)가 배포본 이후 바뀌었으므로 이 실행에서는 임시로 c2c49b18 시점의 도우미를 썼고 저장소에는 반영하지 않았다. 스펙 본문과 원고는 그 시점 이후 같다.

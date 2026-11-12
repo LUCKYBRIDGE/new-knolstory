@@ -46,6 +46,8 @@ docs/architecture/evidence/library-native-current/**/*trace*.zip
 
 # Versioned shared audio is restored from the verified acquisition Release.
 apps/web/public/assets/audio/cc0/*/
+apps/web/public/assets/audio/cc0/kenney-*
+apps/web/public/assets/audio/cc0/oga-*
 
 # Current native context traces include the same private runtime/art corpus.
 docs/architecture/evidence/native-resume-2026-10-15/**/*.zip
@@ -81,3 +83,10 @@ docs/architecture/evidence/phone-soak-2026-10-26/original.json
 # Uniformly padded child sprites inherit the protected legacy art rights boundary.
 # Regenerate from authorized originals; do not publish derived bytes by tracking them.
 apps/web/public/assets/characters/stature-v2/
+
+# Same generated folders when a worktree links them (a trailing slash does not match a symlink).
+apps/web/public/runtime
+apps/web/public/assets/legacy-18da4fc
+apps/web/public/assets/legacy-ui
+apps/web/public/assets/characters/stature-v2
+/.tools

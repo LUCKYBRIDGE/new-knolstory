@@ -1,5 +1,27 @@
-import {createStoryDocument,parseStoryDocument,type StoryProject} from '@knolstory/story-domain';
+import {DEFAULT_COVER,createStoryDocument,parseStoryDocument,type StoryProject} from '@knolstory/story-domain';
 import {preflight,readWorkspace,type WorkContext} from './workspace-storage';
+import {BUILTIN_WORKS} from './builtin-works';
+
+const PERSONAL_LABEL='[내작품]';
+export const personalCoverTitle=(title:string)=>title.startsWith(PERSONAL_LABEL+' ')?title.slice(PERSONAL_LABEL.length+1):title;
+
+export function hasDefaultPersonalCover(project:StoryProject):boolean{
+ const cover=project.cover;
+ if(!cover)return true;
+ const {author:_author,subtitle:_subtitle,authorNote:_note,...style}=cover;
+ const {author:_defaultAuthor,subtitle:_defaultSubtitle,authorNote:_defaultNote,...defaultStyle}=DEFAULT_COVER;
+ return Object.keys(style).every(key=>Object.hasOwn(defaultStyle,key))&&Object.entries(defaultStyle).every(([key,value])=>style[key as keyof typeof style]===value);
+}
+
+export function createCatalogEditCopy(project:StoryProject,id:string,updatedAt:string,works:Readonly<Record<string,StoryProject>>):StoryProject{
+ const catalog=BUILTIN_WORKS.find(work=>work.originalDocumentId===project.id||work.knolstoryDocumentId===project.id);
+ const base=PERSONAL_LABEL+' '+(catalog?.title??project.title);
+ const occupied=new Set(Object.entries(works).filter(([key])=>isPersonalWork(key)).map(([,work])=>work.title.normalize('NFC')));
+ let title=base;
+ for(let suffix=2;occupied.has(title.normalize('NFC'));suffix++)title=base+' '+suffix;
+ return {...structuredClone(project),id,title,updatedAt,cover:{...DEFAULT_COVER}};
+}
+
 export const DELETED_WORK_KEY='knolstory-deleted-work-v1';
 export type DeletedWork=Readonly<{key:string;project:StoryProject;context?:WorkContext}>;
 export const isPersonalWork=(key:string)=>key.startsWith('new:')||key.startsWith('import:');

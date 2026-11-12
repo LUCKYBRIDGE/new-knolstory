@@ -1,0 +1,21 @@
+{
+  "scope": "Local fixture prepared from existing provided work only; no UI import or server write.",
+  "source": "tests/fixtures/stories/seonnyeo.json",
+  "sourceSha256": "c52606c1ae760c19c745352805441a8c4a3f8bf0ebc1368070375bb4bd3283d5",
+  "fileSha256": "7d904d5928e3ae34f0971b2b1c68a8c14631d9600c081a9fdd02c4889e77cc8d",
+  "bytes": 2129490,
+  "formatVersion": 2,
+  "documentSchemaVersion": 8,
+  "requiredAsset": "seonnyeo.background.cottage-rain-evening-v1",
+  "fullArchiveRoundTripEqual": true,
+  "sourceUnchanged": true,
+  "identityRule": "Future visible UI import must create an independent projectID; existing online/local works must not be replaced.",
+  "title": "온라인 업로드 검사 · 선녀와 나무꾼 · 2026-11-04",
+  "limits": [
+    "Not actual authentication/upload/reopen/restore evidence.",
+    "No native replay rerun or manuscript/image correction performed.",
+    "Local current server validator only; deployed authenticated request and UI-generated independent ID remain untested."
+  ],
+  "currentServerSnapshotValidationPassed": true,
+  "compactSnapshotBytes": 1271142
+}

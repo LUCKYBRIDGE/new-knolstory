@@ -1,0 +1,48 @@
+TAP version 13
+# Subtest: plan changes only the two owned services and preserves caller snapshot, all other rules and order
+ok 1 - plan changes only the two owned services and preserves caller snapshot, all other rules and order
+  ---
+  duration_ms: 1.893041
+  type: 'test'
+  ...
+# Subtest: drift in version or any unrelated config prevents applying an old plan
+ok 2 - drift in version or any unrelated config prevents applying an old plan
+  ---
+  duration_ms: 0.342291
+  type: 'test'
+  ...
+# Subtest: invalid topology and unsafe path do not produce an executable configuration
+not ok 3 - invalid topology and unsafe path do not produce an executable configuration
+  ---
+  duration_ms: 0.65875
+  type: 'test'
+  location: '/Users/wan/ai_dev/apps/new-knolstory/server/operations/client-proof-route-plan.test.mjs:21:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected exception.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  operator: 'throws'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/wan/ai_dev/apps/new-knolstory/server/operations/client-proof-route-plan.test.mjs:26:49)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: version zero and private dot directories remain valid while mutated drafts are rejected
+ok 4 - version zero and private dot directories remain valid while mutated drafts are rejected
+  ---
+  duration_ms: 0.108958
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 3
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 70.675834

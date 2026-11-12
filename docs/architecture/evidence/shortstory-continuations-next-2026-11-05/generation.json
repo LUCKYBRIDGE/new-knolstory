@@ -1,0 +1,650 @@
+{
+  "date": "2026-11-05",
+  "scope": "Three more follow-ups per each of four ongoing events",
+  "interpretation": "four event flows receive three further images each, sequence5–7, twelve new images total",
+  "existingCatalogEntriesPreserved": 469,
+  "images": [
+    {
+      "id": "shortstory.background.creative-rabbit-puppet-invite-v1",
+      "title": "인형극을 해 보고 싶은 아이들",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 5,
+      "previousSceneId": "shortstory.background.creative-rabbit-puppet-show-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-puppet-invite-v1.webp",
+      "sha256": "58741346a15f60602048faf356a54fe9043fcd6cbf3ed8f18221932d35ae5337",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 638126,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-db8d4ee0-c087-42ef-99fc-4771b7258039.png",
+      "sourceSha256": "ca7f4c8789779d2ddc074f2edd04b35d8678e28c110d03c114f46b28f49fff5d",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "공연을 본 아이들이 인형극을 해 보고 싶어 하고 토끼와 자라가 인형을 건넨다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-show-v1",
+          "sha256": "2d43ffa5efde6b308841db70a1489cf7643887c2edbbd48dc8d42422a6989cbe"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-rabbit-puppet-show-v1",
+          "sha256": "2d43ffa5efde6b308841db70a1489cf7643887c2edbbd48dc8d42422a6989cbe"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-rabbit-puppet-lesson-v1",
+      "title": "아이들과 익히는 인형극 손놀림",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 6,
+      "previousSceneId": "shortstory.background.creative-rabbit-puppet-invite-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-puppet-lesson-v1.webp",
+      "sha256": "d64a02774f4fd33b964148953cad207a4e6a8a5e9a3f4988ca0a682e0758eee1",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 653778,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-25167bd0-b42f-4d8b-8f1f-bd9b229d9ece.png",
+      "sourceSha256": "9b4e82b3f5df1253354376810f6e0f5b9239e680bb3620a6b438dd2e515c7eb1",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "두 아이가 토끼와 자라에게 인형의 막대와 움직임을 배우며 연습한다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-invite-v1",
+          "sha256": "58741346a15f60602048faf356a54fe9043fcd6cbf3ed8f18221932d35ae5337"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-db8d4ee0-c087-42ef-99fc-4771b7258039.png",
+          "sha256": "ca7f4c8789779d2ddc074f2edd04b35d8678e28c110d03c114f46b28f49fff5d"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-rabbit-puppet-children-v1",
+      "title": "아이들이 올린 새로운 인형극",
+      "parentEventId": "shortstory.background.creative-rabbit-puppet-stage-v1",
+      "sequenceOrder": 7,
+      "previousSceneId": "shortstory.background.creative-rabbit-puppet-lesson-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/rabbit-puppet-children-v1.webp",
+      "sha256": "979bf3f892e08815a28aa052244ea8ded878d428e38fe89a8d70b14a80de1830",
+      "size": [
+        1671,
+        941
+      ],
+      "bytes": 578668,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-f4f79f30-0c1f-4c59-8185-4fc6b86b755a.png",
+      "sourceSha256": "a0c2408a532638ba8a5b40d9c96999908d71b3dfbe1666d46bd003094b076aa3",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "아이들이 같은 작은 무대에서 인형극을 하고 토끼와 자라가 곁에서 응원한다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-stage-v1",
+          "sha256": "f1c23398e57ea991dbae3dd143eaecdb5f39a2824323452d7f4e1a53162e066b"
+        },
+        {
+          "id": "shortstory.background.creative-rabbit-puppet-lesson-v1",
+          "sha256": "d64a02774f4fd33b964148953cad207a4e6a8a5e9a3f4988ca0a682e0758eee1"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "generation",
+          "artifact": "exec-45c78c55-7301-4f26-a1ab-140146c33515.png",
+          "sha256": "0892160d2c5de8dc42b14d4ddc52a7f3857dd5b1b9c3998611c50d1f264259be"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-25167bd0-b42f-4d8b-8f1f-bd9b229d9ece.png",
+          "sha256": "9b4e82b3f5df1253354376810f6e0f5b9239e680bb3620a6b438dd2e515c7eb1"
+        }
+      ],
+      "rejectedGenerationAttempts": [
+        {
+          "artifact": "exec-45c78c55-7301-4f26-a1ab-140146c33515.png",
+          "sha256": "0892160d2c5de8dc42b14d4ddc52a7f3857dd5b1b9c3998611c50d1f264259be",
+          "reason": "Duplicated king and girl puppets; replaced with reviewed three-puppet correction."
+        }
+      ],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-ricecake-shortage-v1",
+      "title": "떡을 기다리는 사람들과 빈 그릇",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 5,
+      "previousSceneId": "shortstory.background.creative-heungbu-ricecake-sharing-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-ricecake-shortage-v1.webp",
+      "sha256": "4bf3dadb1be88404e97f28b192a26a19ac42f638c6e7a889a3d508a2b089c3ec",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 633226,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-05560a53-fb6e-4535-8c40-eee01f1c2f46.png",
+      "sourceSha256": "5e1ba407885944b838593cd288a87ea0ce5d8a636754e75336a516871c4518fc",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "사람들이 더 찾아왔지만 떡과 재료가 부족해져 세 사람이 남은 것을 살핀다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-sharing-v1",
+          "sha256": "8a21b6788e4eae69d595de7bcbf1d431b56cdf6b9f3a444bb9e908189d0a867f"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-heungbu-ricecake-sharing-v1",
+          "sha256": "8a21b6788e4eae69d595de7bcbf1d431b56cdf6b9f3a444bb9e908189d0a867f"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-ricecake-combine-v1",
+      "title": "남은 재료로 함께 빚는 새 떡",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 6,
+      "previousSceneId": "shortstory.background.creative-heungbu-ricecake-shortage-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-ricecake-combine-v1.webp",
+      "sha256": "6caa04b4384a5fe22f524275815baef2107f802006122d9267eb0d30edf66284",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 683812,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-003cb592-5d1b-4ef5-809d-9766f513ebce.png",
+      "sourceSha256": "85a5298e28c38931a80eb6da7665e6bfd6680aad143f385eced355666d8d1e59",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "흥부와 아이, 이웃 참가자가 남은 재료를 모아 역할을 나누어 새 떡을 만든다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-shortage-v1",
+          "sha256": "4bf3dadb1be88404e97f28b192a26a19ac42f638c6e7a889a3d508a2b089c3ec"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-05560a53-fb6e-4535-8c40-eee01f1c2f46.png",
+          "sha256": "5e1ba407885944b838593cd288a87ea0ce5d8a636754e75336a516871c4518fc"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-heungbu-ricecake-joint-stall-v1",
+      "title": "함께 차린 떡 장터",
+      "parentEventId": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+      "sequenceOrder": 7,
+      "previousSceneId": "shortstory.background.creative-heungbu-ricecake-combine-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/heungbu-ricecake-joint-stall-v1.webp",
+      "sha256": "dc317dd1431e63df7f00de0839c60d8b33520fa6be1fcbcf814dc4c1ef59cd33",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 654172,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-94a1703e-44fc-4015-b610-d0c8e1362651.png",
+      "sourceSha256": "b2dd877addece651efb1119fa37b05dd7ee2693df2334c641c933a57af6eeb2f",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "세 사람이 함께 차린 가판에서 서로 일을 나누고 기다리던 사람들에게 떡을 건넨다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "id": "shortstory.background.creative-heungbu-ricecake-combine-v1",
+          "sha256": "6caa04b4384a5fe22f524275815baef2107f802006122d9267eb0d30edf66284"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-heungbu-ricecake-contest-v1",
+          "sha256": "d25fa5c504c79fa9c7c66078e0c7210f64f712c96ca1227f0250b90f3e7a6836"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-003cb592-5d1b-4ef5-809d-9766f513ebce.png",
+          "sha256": "85a5298e28c38931a80eb6da7665e6bfd6680aad143f385eced355666d8d1e59"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-raft-route-v1",
+      "title": "끊어진 다리 앞에서 찾는 새 길",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 5,
+      "previousSceneId": "shortstory.background.creative-seonnyeo-raft-unload-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-raft-route-v1.webp",
+      "sha256": "54f6dcb87745726a870d0eb4820c22150fdd166a1d663f2b64454731d7415497",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 628258,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-c88956d5-84c3-4699-8129-a53ce6aca145.png",
+      "sourceSha256": "06ad0172e2e072246f7b98844f4398d02b838593430effbc36200705c1b1bd26",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "짐을 마을로 옮겨야 하지만 작은 다리가 끊겨 세 사람이 지도로 돌아갈 길을 찾는다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-unload-v1",
+          "sha256": "29a8270a78f750da82a258c028d8e6b34229912123b9aa900c107018e2dfd863"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-seonnyeo-raft-unload-v1",
+          "sha256": "29a8270a78f750da82a258c028d8e6b34229912123b9aa900c107018e2dfd863"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-raft-cart-v1",
+      "title": "숲길로 옮기는 뗏목의 짐",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 6,
+      "previousSceneId": "shortstory.background.creative-seonnyeo-raft-route-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-raft-cart-v1.webp",
+      "sha256": "6200f7c5fd37d750f56539fcb01a9026cab958805771a287b5866bde9324d0c8",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 755620,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-bfac9e75-424a-439d-996f-2e2d6b485822.png",
+      "sourceSha256": "61ca4e60988796679548e81d300ae823ef81bb0993fec52ba4e7ba58d74ff4c0",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "같은 짐을 손수레에 싣고 세 사람이 숲길을 따라 나누어 끌고 민다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-route-v1",
+          "sha256": "54f6dcb87745726a870d0eb4820c22150fdd166a1d663f2b64454731d7415497"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-c88956d5-84c3-4699-8129-a53ce6aca145.png",
+          "sha256": "06ad0172e2e072246f7b98844f4398d02b838593430effbc36200705c1b1bd26"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-seonnyeo-raft-delivery-v1",
+      "title": "물레방앗간에 도착한 짐",
+      "parentEventId": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+      "sequenceOrder": 7,
+      "previousSceneId": "shortstory.background.creative-seonnyeo-raft-cart-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/seonnyeo-raft-delivery-v1.webp",
+      "sha256": "471f3f5ab4bcb82b69a14f747fc3c1702a18ea2141007edae6a999530a103470",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 724646,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-afdab544-9684-46ea-8035-decff12184b7.png",
+      "sourceSha256": "c9748cea6bfab1bca8ca8e26df188d7768550bd81490db4eb5d4144fb983c272",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "돌아가는 길을 지나 물레방앗간에 도착해 같은 짐을 수레에서 내려 건넨다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "id": "shortstory.background.creative-seonnyeo-raft-cart-v1",
+          "sha256": "6200f7c5fd37d750f56539fcb01a9026cab958805771a287b5866bde9324d0c8"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-seonnyeo-drifting-raft-v1",
+          "sha256": "768441bcf6c0108127db8383fbc435c961c03cca650678d0dc67d2cbf42310ba"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-bfac9e75-424a-439d-996f-2e2d6b485822.png",
+          "sha256": "61ca4e60988796679548e81d300ae823ef81bb0993fec52ba4e7ba58d74ff4c0"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-drum-newcomer-v1",
+      "title": "잔치 합주에 들어온 새 친구",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 5,
+      "previousSceneId": "shortstory.background.creative-onggojib-drum-festival-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-drum-newcomer-v1.webp",
+      "sha256": "e14285173b4e44da3e8b167447acb99fbf23744d590272286fdd7d451cc355dc",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 666586,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-6beac7b3-4cdc-4457-b30e-fef572d625d6.png",
+      "sourceSha256": "ae2eb70a5c0ce5ce5d57e1fd015f717e0d66481b4ef01467d5a925a995f0cd1d",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "새로 합주에 들어온 아이가 박자를 놓치자 나그네와 포졸이 연주를 잠시 멈추고 살핀다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-festival-v1",
+          "sha256": "8f85cf1fb3f70997fa078baed822471f1388887e616a4cc21ff2f664010d6f6e"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-onggojib-drum-festival-v1",
+          "sha256": "8f85cf1fb3f70997fa078baed822471f1388887e616a4cc21ff2f664010d6f6e"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-drum-coach-v1",
+      "title": "천천히 함께 맞추는 첫 박자",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 6,
+      "previousSceneId": "shortstory.background.creative-onggojib-drum-newcomer-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-drum-coach-v1.webp",
+      "sha256": "8a1b8d35dd1c6b1420446f630b763b61c5c0ff79b813397faa727048f192cd09",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 660846,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-abb4c7d5-3496-4cd1-8525-4dd8eabb83ea.png",
+      "sourceSha256": "d39f94acdb8768a926ee253f97969c4419359bb6fc5065cb352a3dabd7d4344a",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "작은 아이가 포졸과 나그네의 느린 박자를 따라 연습하고 두 피리 연주자가 격려한다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-newcomer-v1",
+          "sha256": "e14285173b4e44da3e8b167447acb99fbf23744d590272286fdd7d451cc355dc"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-6beac7b3-4cdc-4457-b30e-fef572d625d6.png",
+          "sha256": "ae2eb70a5c0ce5ce5d57e1fd015f717e0d66481b4ef01467d5a925a995f0cd1d"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    },
+    {
+      "id": "shortstory.background.creative-onggojib-drum-parade-v1",
+      "title": "마을 길을 함께 걷는 잔치 행렬",
+      "parentEventId": "shortstory.background.creative-onggojib-torn-drum-v1",
+      "sequenceOrder": 7,
+      "previousSceneId": "shortstory.background.creative-onggojib-drum-coach-v1",
+      "file": "apps/web/public/assets/illustrations/shortstory-v1/onggojib-drum-parade-v1.webp",
+      "sha256": "ad3c9d51cc03f42888a98412ed28e21adb3d6aaa2d13205ab34d04f352f35b85",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 678438,
+      "tool": "image_gen.imagegen",
+      "sourceGenerationArtifact": "exec-f9abc8c3-ef5c-43cc-91ac-42976b398f2d.png",
+      "sourceSha256": "d29cbb14d19d77cd23535a6215677af48c7dcdec935e8caca3bd86e46b217694",
+      "sourceRetained": true,
+      "deliveryTransformation": {
+        "method": "WebP format conversion",
+        "quality": 90,
+        "dimensionsUnchanged": true
+      },
+      "promptSummary": "새 아이를 포함한 연주자들이 같은 악기를 들고 마을 길을 따라 행진하며 연주한다. 원래 사건과 직전 장면의 인물·복식·장소·주요 소품을 참조해 새로운 행동과 관계의 전개를 그린다.",
+      "catalogReferences": [
+        {
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "id": "shortstory.background.creative-onggojib-drum-coach-v1",
+          "sha256": "8a1b8d35dd1c6b1420446f630b763b61c5c0ff79b813397faa727048f192cd09"
+        }
+      ],
+      "toolReferenceInputs": [
+        {
+          "kind": "catalog",
+          "id": "shortstory.background.creative-onggojib-torn-drum-v1",
+          "sha256": "9b8c1e834ecb6610ca870f1f138027574d8ee50756931e35e5e3730ca2992b6f"
+        },
+        {
+          "kind": "generation",
+          "artifact": "exec-abb4c7d5-3496-4cd1-8525-4dd8eabb83ea.png",
+          "sha256": "d39f94acdb8768a926ee253f97969c4419359bb6fc5065cb352a3dabd7d4344a"
+        }
+      ],
+      "rejectedGenerationAttempts": [],
+      "review": {
+        "characterIdentity": "lead identities and recurring supporting identities compared",
+        "continuity": "costume, location changes, cargo/puppets/instruments/ingredients checked",
+        "action": "distinct further development after prior ending",
+        "remaining": "new output service-use authorization review"
+      }
+    }
+  ]
+}

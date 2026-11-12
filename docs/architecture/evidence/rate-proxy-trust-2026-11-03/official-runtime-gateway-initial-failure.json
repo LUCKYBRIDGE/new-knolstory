@@ -1,0 +1,8 @@
+{
+  "failure": "Private fixture socket path exceeded100bytes; preflight refused before gateway spawn.",
+  "fixtureDirectoriesRemoved": 1,
+  "serviceInstalled": false,
+  "productionChanged": false,
+  "rawLocal": ".cache/official-runtime-gateway-20261104.log",
+  "correction": "Use shorter task-owned fixture path and wrap key/preflight in cleanup try/finally. Existing uninstalled draft preserved privately."
+}

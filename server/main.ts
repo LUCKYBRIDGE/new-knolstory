@@ -7,11 +7,12 @@ import {loadApiConfig} from './config';
 import {STORAGE_MIGRATIONS} from './migrations/runner';
 import {createDocumentHttpService} from './http/document-service';
 import {createAuthService} from './http/auth-service';
+import {createClassroomHttpService} from './http/classroom-service';
 import {observeRequest} from './http/request-observation';
 import {createApiShutdown} from './http/api-shutdown';
 
 async function main(){
- const config=loadApiConfig(),pool=new pg.Pool(config.database),auth=createAuthService(config.auth,pool),documents=createDocumentHttpService(config.auth,pool);
+ const config=loadApiConfig(),pool=new pg.Pool(config.database),auth=createAuthService(config.auth,pool),documents=createDocumentHttpService(config.auth,pool,config.classroom.adminAccountIds),classroom=createClassroomHttpService(config.auth,config.classroom,pool);
  handlePoolErrors(pool,message=>console.error(message));
  const migrationNames=STORAGE_MIGRATIONS;
  const checksums=await Promise.all(migrationNames.map(async name=>createHash('sha256').update(await readFile(new URL(name,import.meta.url))).digest('hex')));
@@ -29,7 +30,9 @@ async function main(){
     if(!config.auth.providers.kakao){json(res,503,{success:false,error:{code:'AUTH_PROVIDER_NOT_CONFIGURED'}});return;}
     json(res,200,{success:true,data:{ready:true}});return;
    }
-   if(req.url?.split('?')[0]?.startsWith('/api/v1/documents'))await documents(req,res);
+   const path=req.url?.split('?')[0]??'';
+   if(path.startsWith('/api/v1/documents'))await documents(req,res);
+   else if(path==='/api/v1/class'||path.startsWith('/api/v1/class/'))await classroom(req,res);
    else await auth(req,res);
   }catch{if(!res.headersSent)json(res,503,{success:false,error:{code:'SERVICE_UNAVAILABLE'}});else res.end();}
  });

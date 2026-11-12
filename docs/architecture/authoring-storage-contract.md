@@ -245,6 +245,32 @@ StoryDocument7/archive2/workbook7/JSONB payload1/RuntimeScene에 필드를 추�
 2026-10-14 현재 왕복 회귀: 기존 기기 private 내보내기 보존과 새 private 첨부 반입 거부는 서로 다른 조건이다. 필요한 옛 원고의 등록 사본은 명시적으로 현재 문서 생성기를 사용하며 원본/기존 작품에 자동 적용하지 않는다. 제한 TSV의 전체 보존 행과 정식 다중 탭 워크북 편집을 구분한다. [파일/읽기 검증](reader-file-current-regression-validation.md).
 
 
+## 운영 권한·비밀 파일 검증의 범위 — 2026-11-03
+
+[현재 운영 감사](evidence/operations-permissions-2026-11-03/checkpoint.json)는 실제 카탈로그의 API 역할·멤버십·DB/스키마/객체 권한과 Docker 마운트·POSIX 소유자/모드를 읽기 전용으로 관찰한다. 원고 행이나 비밀 파일 내용은 읽지 않는다. 앱 역할의 서비스 데이터 CRUD와 migration journal의 읽기 권한을 구분하고 열 단위 우회 권한도 함께 확인한다. owner 역할은 명시적 migration용이며 API에는 owner 비밀 디렉터리를 마운트하지 않는다. 같은 UID의 native 호스트 프로세스까지 이 마운트 경계로 격리됐다고 주장하지 않는다.
+
+[격리 복원 역할 검증](evidence/isolated-role-restore-2026-11-03/checkpoint.json)은 새 비활성 사본에서만 현행 canonical migration으로 역할·권한을 재구성하고 fixture 비밀번호로 허용·거부를 확인한다. 운영 비밀값이나 전체 cluster role/password 복원과 구분하며 기존 세션 무효화·실제 활성화 gate를 생략하지 않는다.
+
+현재 역할/권한 상태는 비활성 복원에서 역할·GRANT·비밀 파일을 재구성한 근거가 아니다. 이전 `--no-owner --no-privileges` 복원은 논리 자료·스키마 보존의 범위로 유지하고, 실제 복원 권한과 접속 통제는 별도 격리 검사로 확인한다. POSIX 모드 검사도 ACL·암호화·외부 보관·실제 계정 로그인 검증을 대신하지 않는다.
+
+## 운영 요청 제한의 선택적 신뢰 경계 — 2026-11-03
+
+현재 운영 API의 기본 요청 제한은 여전히 socket 주소를 기준으로 한다. ingress를 지난 서로 다른 클라이언트가 한 기준을 공유하는 문제를 로컬 HTTP에서 재현했고, [선택적 신뢰 경계 후보](evidence/rate-proxy-trust-2026-11-03/checkpoint.json)를 개발한다. 이 후보는 운영 활성화·새 비밀값·API/Worker 배포 승인이나 전체 출시 판정이 아니다.
+
+- 기본 구성은 전달 헤더를 신뢰하지 않는다. API에서 `KNOLSTORY_CLIENT_PROOF_KEY_FILE`을 명시한 경우에만 서명 검증을 사용한다. 서명 서버는 같은 키 파일과 `KNOLSTORY_INGRESS_SOCKET`을 함께 요구하고, Docker ingress의 키 파일만 지정한 모드는 서명을 검증해 원문 그대로 중계한다. 두 ingress 모드는 함께 지정할 수 없다. 운영 compose의 기본값은 바꾸지 않는다.
+- 보호된 Unix 소켓에 실제 바인딩된 서버만 단일·유효한 `CF-Connecting-IP`로 증명을 만든다. TCP 요청이나 외부에서 넣은 증명은 새 서명의 근거가 아니다. 소켓 경로의 실제 디렉터리·소유자·권한·상위 경로의 교체 권한을 검사하고, 기존 파일/소켓을 자동 삭제하거나 권한을 고치지 않는다. 소켓 접근 가능한 UID와 root가 신뢰 주체이며 프로그램 이름만으로 cloudflared를 인증하지 않는다.
+- API가 서명 모드인 경우 증명 누락·중복·변조·만료를 거부하고 socket 기준으로 조용히 돌아가지 않는다. 증명은 HTTPS origin·버전·발급 시각·안정된 불투명 식별자·HTTP method·정확한 URL에 묶인다. 30초 만료와 5초 미래 허용을 적용한다. 같은 증명을 재사용하거나 시각이 바뀌어도 같은 주소의 제한 기준은 유지된다.
+- 식별자는 요청 제한에만 사용한다. 세션·계정 소유권·CSRF·문서 검증을 대신하지 않으며 요청 본문의 무결성이나 사용자 본인 인증을 보증하지 않는다. 요청 관찰 로그에 키·증명·주소를 추가하지 않는다. 동일 외부 주소를 공유하는 사용자가 제한을 함께 사용할 수 있고, 재시작으로 초기화되는 단일 API 프로세스의 메모리 제한이라는 경계도 유지한다.
+- 같은 zone의 Worker 전달은 최초 수신한 Cloudflare 값으로 `X-Real-IP`를 다시 만들고 상속된 증명/전달 헤더를 지우는 로컬 후보를 함께 검증한다. Worker 정상 실행·잘못된 설정의 origin 전달·실행 자체를 건너뛰는 한도 초과 fail-open을 구분한다. [Cloudflare 헤더 계약](https://developers.cloudflare.com/fundamentals/reference/http-headers/)에 따라 Tunnel/zone/Worker 설정은 별도의 신뢰 주체다.
+
+실제 Mac cloudflared는 UID501의 native 프로세스다. 따라서 현재 후보는 native 보호 UDS gateway → 기존 Docker loopback ingress의 증명 검증 → API 재검증으로 연결한다. 정적 요청도 같은 Docker 빌드로 스트리밍하고 별칭 Host를 유지한다. Docker 내부 소켓만의 UID 검사를 native Mac 경로의 증거로 확대하지 않는다. host→Docker 시험은 시험용 키·정적 자료·API fixture이고 실제 Cloudflare 헤더 출처는 증명하지 않는다.
+
+native 배포 후보는 검토한 네 모듈과 외부에서 지정한 정확한 SHA 집합만 받아 별도 패키지로 만든다. 기존 대상·심볼릭 링크·소스 해시 차이는 거부하고, 새 대상을 배타적으로 만든 뒤 파일0400·디렉터리0500과 마지막 manifest로 완성을 구분한다. 원자적 설치나 소유자에 대한 변경 불가를 주장하지 않는다. 재검증은 선택한 bundle ID·정확한 구성원·내용·소유자·권한을 함께 확인한다. 패키지 manifest에는 절대 로컬 경로나 자격증명을 넣지 않는다.
+
+launchd 초안은 검증한 패키지 entry와 현재 확인한 Node 절대 경로를 직접 실행하며 shell·작업 체크아웃·PATH에 의존하지 않는다. 키는 값이 아닌 파일 경로만 지정한다. 현재 초안은 `RunAtLoad=true`, `KeepAlive=false`로, 남은 소켓 확인 뒤 명시적으로 복구하는 방식이며 자동 장애 복구를 구현했다고 기록하지 않는다. 키·로그·소켓 부모의 실제 운영 권한과 Node 갱신 때의 경로 유효성, 실제 서비스 등록·재시작은 별도 활성화 검사다. [고정 패키지 검사](evidence/rate-proxy-trust-2026-11-03/sealed-bundle.json)는 체크아웃 밖의 독립 실행과 plist 문법/왕복 일치를 확인했지만 서비스를 등록하거나 운영 키를 만들지 않았다.
+
+활성화 전에는 최신 원격 구성을 읽고 Cloudflare 헤더·Worker 우회 경로, 관리형 gateway 실행, 새 키 파일 권한과 API/ingress/Worker의 순서·되돌리기를 준비해야 한다. [전환 초안](evidence/rate-proxy-trust-2026-11-03/activation-plan.md)은 소유한 두 hostname의 service만 바꾸고 공유 Tunnel과 다른 규칙을 보존한다. 사전 version/해시 비교는 관찰된 차이를 거부하는 검사이며 원격 원자적 갱신의 증거가 아니다. 비정상 종료 뒤 기존 소켓이 남으면 소유권과 현재 listener 부재를 확인하는 명시적 복구가 필요하다. 실운영 활성화는 별도 사용자 승인 범위다.
+
 ## Mac mini Docker의 실제 저장 어댑터 (2026-10-16)
 
 사용자가 [ADR0023](../decisions/0023-mac-mini-docker-and-linked-login.md)에서 현재 Mac mini Docker 호스팅을 확정했다. `server/compose.storage-test.yml`은 기존 서비스와 분리된 Next 전용 PostgreSQL16·내부 네트워크·볼륨을 사용하고 호스트 DB 포트를 열지 않는다. 기존 서비스/비밀값을 재사용하지 않고 서버 의존성은 Docker 내부에서 별도 pnpm lock으로 설치한다.
@@ -511,3 +537,7 @@ StoryDocument8에서 `StoryMusicCue.action:sequence`와 묶음 `id`, `clips`, �
 ## Android 작품 파일의 확장자 -- 2026-10-27
 
 작품 파일의 직접 저장 선택기와 다운로드·내보내기는 지정 확장자 `.knolstory`/`.shortstory`를 보존하도록 작품 전용 MIME을 사용한다. 내부 내용은 기존 검증된 JSON archive 그대로이며 이전에 Android가 덧붙인 `.knolstory.json`/`.shortstory.json`도 계속 연다. JSON 복구 원본과 Excel·TSV는 기존 형식을 유지한다. [S25 실제 저장·내보내기·선택기 재열기와 범위](evidence/android-file-extension-2026-10-27/checkpoint.json).
+
+2026-11-04 사전 검사 후보: `inspectClientProofPaths`는 고정 패키지 재검증, 현재 Node 실행 파일·상위 경로, 명시적으로 관찰한 서비스 이름 목록, 개인 키·소켓·로그 부모/파일의 소유자·모드·심볼릭 링크와 충돌을 읽기 전용으로 확인한다. 키 내용은 읽지 않고 기존 소켓은 항상 거부한다. 시점별 메타데이터 검사이며 ACL·동적 라이브러리 신뢰·컨테이너 키 일치·서비스 등록/복구를 증명하지 않는다. 최초 Homebrew 실행 경로는 그룹 쓰기 가능한 상위 경로가 있어 보류했다. 이후 [공식 Node22.23.4후보](evidence/rate-proxy-trust-2026-11-03/official-runtime-checkpoint-2026-11-04.json)를 개인 검토 경로에서 서명·해시·직접 시스템 의존성·gateway fixture와 대조하고 미설치 초안을 새로 생성했다. 이는 실제 서비스 등록/복구나 전체 동적 로딩·OS 무결성의 증거가 아니다. 시험용 개인 실행 파일 사본은 운영 설치물이 아니다. [현재 호스트와 별도 fixture 검사](evidence/rate-proxy-trust-2026-11-03/preflight-host-2026-11-04.json)를 따른다.
+
+2026-11-04 고정 운영 입력 후보: `planClientProofCompose`는 해석된 전체compose의 DB/migration·기존환경·포트/네트워크를 보존하고 API/ingress만 고정 imageID·pullnever·빌드 제거·현재API UID/GID·같은 증명 파일의 읽기 전용 단일 마운트로 바꾼다. `create_host_path=false`이며 실제 키를 만들거나 읽지 않는다. 파일 유형/키 일치와 설치 직전 권한 검사를 대체하지 않는다. 공개 정적 파일은 새 이미지 내부에서만 읽기 권한을 정리하고 원본 bytes/권한을 보존한다. [실제 후보와 검증 경계](evidence/rate-proxy-trust-2026-11-03/candidate-activation-checkpoint-2026-11-04.json)를 따른다.

@@ -1,0 +1,28 @@
+{
+  "scope": "Local candidates only; production tags/containers unchanged. Explicit copied input whitelist excludes caches, credentials and unrelated worktrees.",
+  "images": {
+    "api": {
+      "id": "sha256:f286fa11e3ecf42df2c0708923b68d4f3509410b2ffa3e8e1e47af6034281d96",
+      "tag": "knolstory-next-api:proof-review-74dm3_pi",
+      "architecture": "arm64",
+      "user": "node"
+    },
+    "ingress": {
+      "id": "sha256:8f8bdf5b9731843f2d7e4257b9b2bb59d6f57d628ee5c72518b654e65360106e",
+      "tag": "knolstory-next-ingress:proof-review-74dm3_pi",
+      "architecture": "arm64",
+      "user": "node"
+    }
+  },
+  "staticFiles": 1564,
+  "staticBytes": 598187818,
+  "staticManifestSha256": "8af14573ca2b6c4cc70ef8ec840f99c34c882072057094bade6a28eb4c5e7c03",
+  "buildInputsSha256": "46505b63b86f1f1aa6cbd7f6ee3db6ffd464757d3de05bb0f4dd7c874e9d855b",
+  "buildInputFiles": 1728,
+  "productionContainersUnchanged": true,
+  "inputsUnchanged": true,
+  "limits": [
+    "Build success alone does not prove secret permissions, real auth, host routing, container-start behavior or deployment.",
+    "Context and raw build logs remain private and task-owned; candidate tags do not replace production tags."
+  ]
+}

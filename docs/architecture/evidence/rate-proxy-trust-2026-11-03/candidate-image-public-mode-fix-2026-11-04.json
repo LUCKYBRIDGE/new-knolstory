@@ -1,0 +1,7 @@
+{
+  "failure": "Read-only UID501 image probe found EACCES on public character asset copied with restricted source mode.",
+  "publicPath": "assets/characters/stature-v2/rabbit-turtle.character.turtle-child-flashback.webp",
+  "correction": "Image-only chmod -R a+rX /site before USER. No source file permission/content changes. Rebuild ingress only; API candidate preserved.",
+  "initialBuildReport": "candidate-images-build-before-public-mode-2026-11-04.json",
+  "productionChanged": false
+}

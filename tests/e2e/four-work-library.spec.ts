@@ -12,10 +12,10 @@ test('the default library groups eight manuscripts into four independent work ch
   await expect(focus.getByRole('button',{name:'원작 읽기',exact:true})).toBeEnabled();
   await expect(focus.getByRole('button',{name:'놀스토리 읽기',exact:true})).toBeEnabled();
   await expect(focus.getByRole('link',{name:'숏스토리 읽기',exact:true})).toHaveAttribute('href',`/shortstory/?work=${id}&mode=read`);
-  await focus.getByLabel('바탕 판본',{exact:true}).selectOption('original');
+  await focus.getByLabel('편집할 이야기',{exact:true}).selectOption('original');
   await expect(focus).toHaveAttribute('data-selected-edition','original');
-  await expect(focus.getByRole('button',{name:'편집하기',exact:true})).toContainText('원작을 바탕으로');
-  await focus.getByLabel('바탕 판본',{exact:true}).focus();await page.keyboard.press('ArrowLeft');await expect(focus).toHaveAttribute('data-work-id',id);
+  await expect(focus.getByRole('button',{name:'편집하기',exact:true})).toContainText('내 사본을 만들어서 고쳐요');
+  await focus.getByLabel('편집할 이야기',{exact:true}).focus();await page.keyboard.press('ArrowLeft');await expect(focus).toHaveAttribute('data-work-id',id);
   await focus.getByRole('button',{name:'닫기 · 서재로 돌아가기',exact:true}).click();
  }
  await fillShelfSearch(page,'서로의 몫');await expect(page.locator('article[data-work-id]')).toHaveCount(1);await expect(page.locator('article[data-work-id="heungbu"]')).toBeVisible();

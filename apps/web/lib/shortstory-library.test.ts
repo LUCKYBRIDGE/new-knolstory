@@ -1,12 +1,26 @@
 import { describe,it,expect } from 'vitest';
 import { newShortStory, encodeShortStory } from '@knolstory/compatibility';
-import { SHORTSTORY_LIBRARY_KEY, SHORTSTORY_LEGACY_KEY, loadShortStoryLibrary, addShortStoryBook, deleteShortStoryBook, restoreShortStoryBook, saveShortStoryLibrary, parseShortStoryLibrary, emptyShortStoryLibrary, mergeShortStoryLibraries } from './shortstory-library';
+import { SHORTSTORY_LIBRARY_KEY, SHORTSTORY_LEGACY_KEY, loadShortStoryLibrary, copyShortStoryBook, addShortStoryBook, deleteShortStoryBook, restoreShortStoryBook, saveShortStoryLibrary, parseShortStoryLibrary, emptyShortStoryLibrary, mergeShortStoryLibraries } from './shortstory-library';
 const storage=()=>{const values=new Map<string,string>();return {getItem:(key:string)=>values.get(key)??null,setItem:(key:string,value:string)=>{values.set(key,value);},values};};
 describe('safe multiple personal picture books',()=>{
  it('backs up and preserves old workspace before migrating',()=>{const s=storage(),p=newShortStory();const raw=encodeShortStory(p);s.setItem(SHORTSTORY_LEGACY_KEY,raw);const library=loadShortStoryLibrary(s);expect(library.books[0].id).toBe(p.id);expect(s.getItem(SHORTSTORY_LEGACY_KEY)).toBe(raw);expect(s.getItem(`${SHORTSTORY_LEGACY_KEY}-backup`)).toBe(raw);expect(s.getItem(SHORTSTORY_LIBRARY_KEY)).toBeTruthy();});
  it('adds and imports duplicates as independent books without replacing IDs or content',()=>{const p=newShortStory();p.pages[0].text='saved';const initial={version:1 as const,books:[p],positions:{},deleted:[],activeId:p.id};const added=addShortStoryBook(initial,p);expect(added.books).toHaveLength(2);expect(added.books[1].id).not.toBe(p.id);expect(initial.books).toHaveLength(1);expect(added.books[0].pages[0].text).toBe('saved');});
  it('soft deletes and restores complete content and positions',()=>{const p=newShortStory();const initial={version:1 as const,books:[p],positions:{[p.id]:0},deleted:[],activeId:p.id};const removed=deleteShortStoryBook(initial,p.id);expect(removed.books).toHaveLength(0);expect(removed.deleted[0]).toEqual(p);const restored=restoreShortStoryBook(removed,p.id);expect(restored.books[0]).toEqual(p);expect(restored.positions[p.id]).toBe(0);});
  it('refuses corrupted, future and builtin IDs before overwriting storage',()=>{const s=storage();s.setItem(SHORTSTORY_LIBRARY_KEY,'broken');expect(()=>loadShortStoryLibrary(s)).toThrow();expect(s.getItem(SHORTSTORY_LIBRARY_KEY)).toBe('broken');expect(()=>parseShortStoryLibrary('{"version":2}')).toThrow();const p={...newShortStory(),id:'shortstory-original-rabbit'};expect(()=>saveShortStoryLibrary(s,{version:1,books:[p],positions:{},deleted:[],activeId:p.id})).toThrow();});
+});
+
+describe('provided picture-book copy naming',()=>{
+ it('numbers new original copies and preserves explicitly authored copies',()=>{
+  const original={...newShortStory(),id:'shortstory-original-rabbit',title:'별주부전',cover:{backgroundId:'',characterId:'',authorNote:'인사'}};
+  const first=copyShortStoryBook(emptyShortStoryLibrary(),original);
+  expect(first.books[0].title).toBe('[내작품] 별주부전');
+  expect(copyShortStoryBook(first,original).books[1].title).toBe('[내작품] 별주부전 2');
+  expect(first.books[0].pages[0].id).not.toBe(original.pages[0].id);
+  expect(first.books[0].cover).toEqual({backgroundId:'',characterId:'',authorNote:'인사'});
+  const renamed={...first.books[0],title:'토끼의 여행'};
+  expect(copyShortStoryBook(first,renamed).books[1].title).toBe('토끼의 여행 · 내 사본');
+  expect(renamed.title).toBe('토끼의 여행');
+ });
 });
 
 describe('two tabs saving the same picture-book library',()=>{

@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-03",
+  "status": "Read-only live PostgreSQL role/ACL and private file POSIX metadata audit complete for this scope; no operational permission changes.",
+  "result": "result.json",
+  "checks": {
+    "readOnlyCatalog": true,
+    "appRoleNotPrivileged": true,
+    "noAppMembership": true,
+    "connectOnlyDatabase": true,
+    "noUserSchemaCreate": true,
+    "noAppOwnershipOrExecutableUserDefiner": true,
+    "journalReadOnlyIncludingColumns": true,
+    "appDataTableCrudOnly": true,
+    "apiOnlyAppSecretsMount": true,
+    "noRawSecretEnv": true,
+    "metadataStable": true,
+    "apiPrivateModes": true,
+    "dbOwnerSecretsPrivateModes": true
+  },
+  "allObservedChecksPassed": true,
+  "scope": [
+    "Two repeatable-read READ ONLY catalog snapshots per final run; search_path pg_catalog; statement5s/lock1s deadlines. No authored records or token/password values selected.",
+    "Actual current app role flags/membership, database/public privileges, all user-schema creation, current/shared object ownership, user security-definer execution and table/column privileges inspected.",
+    "Current Docker API secret mount-only boundary, host POSIX ownership/modes and root read-only/no-hostport configuration inspected without reading secret bytes."
+  ],
+  "observations": {
+    "tables": 11,
+    "serviceTablesWithCrud": 10,
+    "migrationJournal": "SELECT only; no table or column insert/update/delete/truncate/trigger/reference privileges.",
+    "applicationRole": "LOGIN but no superuser/createDB/createRole/replication/bypassRLS; memberships0, user-schema CREATE0, owned-current/shared objects0, executable user security-definers0.",
+    "ownerRole": "Bootstrap owner is privileged as designed for explicit migrations; API has only the app-secret directory mounted, not the owner-secret directory. This is not per-process isolation for same-UID native host processes.",
+    "secrets": "API secret directory0700 and4files0600; owner directory0700/1file0600; UID501, non-symlink, read-only mounts. OptionalGooglepair absent.",
+    "rls": "Table RLS false; application ownership is enforced by API. No new RLS policy or user/class/share decision was implemented."
+  },
+  "failuresAndCorrections": {
+    "hostPathAlias": "Initial lstat used a Docker Desktop VM /host_mnt-prefixed source as a host path. Bounded Darwin mapping is now permitted only to the existing private production root; unknown/unavailable paths fail closed.",
+    "diagnosticPrivacy": "Initial raw lstat traceback contained a private mount path. That original cache log remains0600 and was not copied to public evidence. Top-level failures are now generic, and metadata summaries filter unknown fields. No credential value was exposed.",
+    "redactionTest": "RED tests caught unknown metadata-field passthrough and missing-required-file completeness. Explicit metadata allowlist and required-role presence now covered;4unit tests pass."
+  },
+  "preservation": "No role grants/revokes, migrations, config/credential/API/DB/container changes. Catalog snapshots and container IDs/images remained equal. No user content read by this audit.",
+  "limits": [
+    "Metadata/catalog only; no active DDL/write denial tests and no real app-password/OAuth login.",
+    "POSIX owner/mode only; not ACL/xattr/encryption/off-host durability/retention proof.",
+    "Current source privileges do not prove restored role/grant/secret recreation; prior isolated restores used no-owner/no-privileges.",
+    "Owner/root and same-UID native host principals remain trusted; only the actual API Docker mount scope was checked.",
+    "Not a full product completion or security certification."
+  ],
+  "next": [
+    "Keep Cloudflare browser handed off until user login confirmation; no credential/profile substitution.",
+    "Continue isolated role/grant restoration and remaining operational/real-device/authenticated-upload gates without changing production."
+  ],
+  "sourceSha256": {
+    "docs/architecture/evidence/operations-permissions-2026-11-03/measurement/audit.py": "ce5e3e8a760f2d2253121ead7d3d8497e2ade97601722a44682d90cde03018c1",
+    "docs/architecture/evidence/operations-permissions-2026-11-03/measurement/audit_test.py": "e0691e2c627f2248a96b07a5f6bf8e904fc535719bd8e1c88414a2da683e16dc",
+    "docs/architecture/evidence/operations-permissions-2026-11-03/measurement/privileges.sql": "d9b2b9e46bea578f6a94203ebcaf9d7fac5ce997f4751e3b4c13ca7e8e4b74ef"
+  },
+  "references": [
+    "https://www.postgresql.org/docs/16/ddl-priv.html",
+    "https://www.postgresql.org/docs/16/role-membership.html",
+    "https://www.postgresql.org/docs/16/catalog-pg-shdepend.html"
+  ],
+  "initialRawDiagnosticSha256": "d52afa443ac39f6c709f8f7684e0a3f414be9dbe1d1ef47a945b4f49005ba848",
+  "initialRawDiagnostic": "Private cache only; not copied to public evidence.",
+  "verification": {
+    "unit": "4/4 passed; redaction allowlist, required-file absence and configuration-role summaries.",
+    "live": "Final READ ONLY catalog/search_path/ownership/ACL snapshots and file metadata completed;13 observed checks passed. No production write/role modification attempted.",
+    "docs": "58active documents0links;241current language surfaces0retiredterms;10checker tests passed.",
+    "diff": "git diff --check passed."
+  }
+}

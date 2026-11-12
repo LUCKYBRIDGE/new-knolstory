@@ -48,14 +48,14 @@ export function WorkLeaveGuard({tracker,work,ready}:{tracker:WorkLeaveTracker;wo
   if(destination.historyKey&&navigation){
    allowed.current={kind:'traverse',key:destination.historyKey};
    try{await navigation.traverseTo(destination.historyKey).finished;setDestination(null);}
-   catch{setNotice('이동을 완료하지 못했어요. 현재 작업은 유지됩니다. 다시 시도해 주세요.');}
+   catch{setNotice('이동하지 못했어요. 작업은 그대로 있어요. 다시 시도해 주세요.');}
    finally{allowed.current=null;setDeparting(false);}
    return;
   }
   allowed.current={kind:'document'};location.assign(destination.url);
  }
  return destination?<dialog ref={dialog} className={styles.dialog} aria-label="작업을 마치고 이동할까요?" onKeyDown={event=>trapDialogTab(event,dialog.current)} onCancel={event=>{event.preventDefault();if(!busy)setDestination(null);}}>
-  <h2>작업을 마치고 이동할까요?</h2><p>작품 파일에 저장하지 않은 변경이나 아직 적용하지 않은 입력이 있어요. 이동하면 현재 작업을 잃을 수 있어요.</p><p>필요한 내용은 편집을 계속해 작품 파일로 저장해 주세요. 임시 보관과 온라인 업로드는 작품 파일 저장을 대신하지 않아요.</p>
+  <h2>작업을 마치고 이동할까요?</h2><p>작품 파일에 저장하지 않은 내용이나 아직 적용하지 않은 입력이 있어요. 지금 이동하면 작업이 사라질 수 있어요.</p><p>남기고 싶다면 계속 편집해서 작품 파일로 저장하세요. 임시 보관과 온라인 업로드는 작품 파일 저장을 대신하지 않아요.</p>
   {notice&&<p role="status">{notice}</p>}<div className={styles.actions}><button type="button" disabled={busy} onClick={async()=>{setSaving(true);setNotice('');try{const result=await tracker.saveCurrent();if(result==='saved'&&!tracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]')){await depart();}else setNotice(result==='download-requested'?'파일 다운로드를 요청했어요. 다운로드 완료와 내용을 확인한 뒤 이동해 주세요.':result==='saved'?'파일은 저장했지만 다른 변경이나 아직 적용하지 않은 입력이 남아 있어요. 계속 편집해 확인해 주세요.':'저장을 완료하지 못해 이동하지 않았어요. 계속 편집해 작품 파일을 저장해 주세요.');}finally{setSaving(false);}}}>{saving?'저장 중…':'저장하고 이동'}</button><button type="button" disabled={busy} autoFocus onClick={()=>setDestination(null)}>계속 편집하기</button><button type="button" className={styles.danger} disabled={busy} onClick={()=>void depart()}>저장하지 않고 이동</button></div>
  </dialog>:null;
 }
