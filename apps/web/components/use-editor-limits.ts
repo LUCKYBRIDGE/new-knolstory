@@ -7,7 +7,7 @@ export type EditorRole=ClassroomRoleState;
 export const MEMBER_WORK_LIMIT=3;
 
 /** Role and teacher limits that apply to the editor; everything is allowed without the online build or a login. */
-export function useEditorLimits():{role:EditorRole;permissions:EditingPermissions}{
-  const {role,permissions}=useClassroomMe();
-  return {role,permissions};
+export function useEditorLimits():{role:EditorRole;permissions:EditingPermissions;accountId:string|null;loading:boolean}{
+  const {role,permissions,session,loading}=useClassroomMe();
+  return {role,permissions,accountId:session?.accountId??null,loading};
 }

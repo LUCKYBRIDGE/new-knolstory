@@ -6,7 +6,7 @@ import styles from './classroom.module.css';
 export function QrCode({value,label}:{value:string;label:string}){
  const geometry=useMemo(()=>{
   const qr=qrcode(0,'M');qr.addData(value);qr.make();
-  const count=qr.getModuleCount(),margin=2;let path='';
+  const count=qr.getModuleCount(),margin=4;let path='';
   for(let row=0;row<count;row++)for(let col=0;col<count;col++)if(qr.isDark(row,col))path+=`M${col+margin} ${row+margin}h1v1h-1z`;
   return {size:count+margin*2,path};
  },[value]);

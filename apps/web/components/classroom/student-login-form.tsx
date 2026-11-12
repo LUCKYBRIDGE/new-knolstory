@@ -13,7 +13,7 @@ export function StudentLoginForm(){
   try{await studentLogin({classCode:code.trim().toUpperCase(),number:n,password});window.dispatchEvent(new Event('knolstory-account-session-changed'));location.assign('/student');}
   catch(issue){setError(issue instanceof ClassroomError?issue.message:'로그인하지 못했어요.');setBusy(false);}
  }
- return <form className={styles.card} onSubmit={event=>void submit(event)} aria-label="학생 로그인">
+ return <form className={`${styles.card} ${styles.loginCard}`} onSubmit={event=>void submit(event)} aria-label="학생 로그인">
   <h2>학생 로그인</h2><p className={styles.hint}>선생님이 알려 준 학급 코드, 내 번호, 비밀번호를 써 주세요.</p>
   <div className={styles.row}>
    <label className={styles.field}>학급 코드<input value={code} onChange={event=>setCode(event.target.value)} autoCapitalize="characters" autoComplete="off" maxLength={6} size={8}/></label>

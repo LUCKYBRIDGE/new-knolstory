@@ -59,3 +59,6 @@
 .paging>span{background:#482d1b;box-shadow:0 0 0 4px #482d1b;border-radius:2px}
 /* Metadata-only online books never invent manuscript or cover data. */
 .remoteCover{box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:10px;width:100%;aspect-ratio:1/1.45;padding:14% 10%;border:1px solid #d1b679;border-left:8px solid #193e33;border-radius:3px 5px 5px 3px;background:linear-gradient(115deg,#fffaeb,#e4d1a6);color:#24493c;box-shadow:3px 2px 0 #947b4c,6px 4px 8px #25190c50;line-height:1.45}.remoteCover>strong{font:600 clamp(11px,1.5vw,19px)/1.5 "Knol Story Serif",serif;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow-wrap:anywhere;word-break:keep-all}.remoteCover>small{font-size:10px}.remoteCover>svg{width:24px;height:24px}.loadMore{max-width:1200px;margin:16px auto;text-align:center}.loadMore button{min-height:44px;background:#fff6e0;color:#274839;border-color:#9b8054}.loadMore+.foreground{pointer-events:none}
+
+.serviceNavigation{max-width:1200px;margin:0 auto 20px;padding:0 12px;background:#fff8e9e8;border:1px solid #bca47d;border-radius:12px;position:relative;z-index:6}
+.serviceNavigation>div{border-bottom:0}

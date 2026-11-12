@@ -6,7 +6,8 @@ export {ALL_EDITING_ALLOWED,EDITING_PRESETS,resolveEditingPermissions,describeEd
 export type ClassroomSummary=Readonly<{id:string;name:string;classCode:string;studentCount:number}>;
 export type ClassroomStudent=Readonly<{number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean}>;
 export type Classroom=ClassroomSummary&Readonly<{defaultPermissions:EditingPermissions;students:readonly ClassroomStudent[]}>;
-export type Assignment=Readonly<{id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null}>;
+export type AssignmentFormat='knolstory'|'shortstory';
+export type Assignment=Readonly<{format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null}>;
 export type SubmissionRow=Readonly<{number:number;name:string;submittedAt:number}>;
 export type SubmissionDocument=Readonly<{document:AuthoringJsonbSnapshot;submittedAt:number}>;
 export type StudentSelf=Readonly<{number:number;name:string;classId:string;className:string;permissions:EditingPermissions}>;
@@ -33,8 +34,9 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['CLASSROOM_EXISTS','이미 학급이 있어요.'],['CLASSROOM_NOT_FOUND','학급을 찾지 못했어요.'],
  ['STUDENT_LIMIT','학생은 30명까지 만들 수 있어요.'],['STUDENT_NOT_FOUND','학생을 찾지 못했어요.'],
  ['INVALID_LOGIN','학급 코드, 번호 또는 비밀번호를 다시 확인해 주세요.'],['INVALID_TEACHER_CODE','교사 등록 코드가 맞지 않아요.'],
- ['ASSIGNMENT_CLOSED','이미 닫힌 과제예요.'],['ASSIGNMENT_NOT_FOUND','과제를 찾지 못했어요.'],
+ ['ASSIGNMENT_FORMAT_MISMATCH','과제 유형과 같은 작품을 선택해 주세요. 놀스토리·숏스토리를 확인해 주세요.'],['ASSIGNMENT_CLOSED','이미 닫힌 과제예요.'],['ASSIGNMENT_NOT_FOUND','과제를 찾지 못했어요.'],
  ['INVALID_DOCUMENT','이 작품은 제출할 수 없어요. 서비스에 등록된 그림과 소리만 쓸 수 있어요.'],['INVALID_REQUEST','입력한 내용을 다시 확인해 주세요.'],
+ ['QR_REISSUE_REQUIRED','이전에 만든 QR을 인쇄하려면 한 번 다시 만들어야 해요. 이전 QR은 더 이상 쓸 수 없어요.'],['CLASSROOM_UNAVAILABLE','학급 정보를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.'],
  ['RATE_LIMITED','지금 요청이 많아요. 잠시 뒤 다시 시도해 주세요.'],
 ]);
 export function classroomErrorMessage(code:string){return messages.get(code)??'학급 서비스를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.';}
@@ -63,7 +65,7 @@ async function obj(path:string,fetcher:Fetcher,options?:Parameters<typeof call>[
 }
 const csrfOf=(csrf:string)=>{if(typeof csrf!=='string'||!csrf)throw new ClassroomError('SESSION_REQUIRED',401);return csrf;};
 const asClassroom=(data:Record<string,unknown>)=>{if(typeof data.id!=='string'||!Array.isArray(data.students)||!object(data.defaultPermissions))throw new ClassroomError('INVALID_RESPONSE',502);return data as unknown as Classroom;};
-const asAssignment=(data:Record<string,unknown>)=>{if(typeof data.id!=='string'||typeof data.title!=='string')throw new ClassroomError('INVALID_RESPONSE',502);return data as unknown as Assignment;};
+const asAssignment=(data:Record<string,unknown>)=>{if(typeof data.id!=='string'||typeof data.title!=='string')throw new ClassroomError('INVALID_RESPONSE',502);if(data.format!==undefined&&data.format!=='knolstory'&&data.format!=='shortstory')throw new ClassroomError('INVALID_RESPONSE',502);return {...data,format:data.format??'knolstory'} as Assignment;};
 const seg=(value:string|number)=>encodeURIComponent(String(value));
 
 /** Returns null when nobody is signed in. */
@@ -88,7 +90,7 @@ export async function studentQr(number:number,csrf:string,fetcher:Fetcher=fetch)
 export const studentLogin=(input:Readonly<{classCode:string;number:number;password:string}>,fetcher:Fetcher=fetch)=>obj('/student-login',fetcher,{method:'POST',body:input});
 export const qrLogin=(token:string,fetcher:Fetcher=fetch)=>obj('/qr-login',fetcher,{method:'POST',body:{token}});
 export async function assignmentList(fetcher:Fetcher=fetch):Promise<Assignment[]>{const data=await call('/classroom/assignments',fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data.map(item=>asAssignment(item as Record<string,unknown>)).map(item=>item);}
-export const assignmentCreate=async(input:Readonly<{title:string;description?:string;storyKey?:string}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj('/classroom/assignments',fetcher,{method:'POST',csrf:csrfOf(csrf),body:input}));
+export const assignmentCreate=async(input:Readonly<{title:string;description?:string;storyKey?:string;format?:AssignmentFormat}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj('/classroom/assignments',fetcher,{method:'POST',csrf:csrfOf(csrf),body:input}));
 export const assignmentUpdate=async(id:string,patch:Readonly<{title?:string;description?:string;open?:boolean}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj(`/classroom/assignments/${seg(id)}`,fetcher,{method:'PATCH',csrf:csrfOf(csrf),body:patch}));
 export async function submissionList(id:string,fetcher:Fetcher=fetch):Promise<SubmissionRow[]>{const data=await call(`/classroom/assignments/${seg(id)}/submissions`,fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data as SubmissionRow[];}
 export const submissionOpen=(id:string,number:number,fetcher:Fetcher=fetch)=>obj(`/classroom/assignments/${seg(id)}/submissions/${seg(number)}`,fetcher) as Promise<unknown> as Promise<SubmissionDocument>;
@@ -97,4 +99,20 @@ export async function submissionPut(id:string,document:AuthoringJsonbSnapshot,cs
 export async function submissionMine(id:string,fetcher:Fetcher=fetch):Promise<SubmissionDocument|null>{
  try{return await obj(`/classroom/assignments/${seg(id)}/submission`,fetcher) as unknown as SubmissionDocument;}
  catch(issue){if(issue instanceof ClassroomError&&issue.status===404)return null;throw issue;}
+}
+
+
+export type StudentQrCard=Readonly<{number:number;name:string;url:string}>;
+export type StudentQrPrint=Readonly<{className:string;classCode:string;cards:readonly StudentQrCard[]}>;
+export async function prepareStudentQrPrint(numbers:readonly number[],csrf:string,replaceExisting=false,fetcher:Fetcher=fetch):Promise<StudentQrPrint>{
+ const data=await obj('/classroom/qr-print',fetcher,{method:'POST',csrf:csrfOf(csrf),body:{numbers,...(replaceExisting?{replaceExisting:true}:{})}});
+ if(typeof data.className!=='string'||typeof data.classCode!=='string'||!Array.isArray(data.cards)||data.cards.length!==numbers.length)throw new ClassroomError('INVALID_RESPONSE',502);
+ const cards=data.cards.map((card:unknown)=>{
+  if(!object(card)||!Number.isInteger(card.number)||!numbers.includes(card.number as number)||typeof card.name!=='string'||typeof card.url!=='string')throw new ClassroomError('INVALID_RESPONSE',502);
+  let url:URL;try{url=new URL(card.url);}catch{throw new ClassroomError('INVALID_RESPONSE',502);}
+  if(!['http:','https:'].includes(url.protocol)||!(url.searchParams.get('q')??url.searchParams.get('class-login')))throw new ClassroomError('INVALID_RESPONSE',502);
+  return {number:card.number as number,name:card.name,url:card.url};
+ });
+ if(new Set(cards.map(card=>card.number)).size!==cards.length)throw new ClassroomError('INVALID_RESPONSE',502);
+ return {className:data.className,classCode:data.classCode,cards};
 }

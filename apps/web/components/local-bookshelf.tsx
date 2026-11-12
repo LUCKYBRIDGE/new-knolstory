@@ -17,9 +17,9 @@ export type BookshelfOnline={records:readonly OnlineDocumentMetadata[];byLocalKe
 export type BookshelfWork={key:string;project:StoryProject;kind:'own'|'imported'|'example'|'original';canResume:boolean};
 export type BookshelfBook=GroupedBuiltinWork<BookshelfWork>;
 export type BookshelfIntent='edit'|'start'|'resume'|'prepare'|'cover';
-export type LocalBookshelfProps={online?:BookshelfOnline;accountMenu?:ReactNode;works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onExport?:(key:string)=>void;onDelete?:(key:string)=>void;onDuplicate?:(key:string)=>void;onIntroduction?:()=>void};
+export type LocalBookshelfProps={online?:BookshelfOnline;accountMenu?:ReactNode;navigation?:ReactNode;works:readonly BookshelfWork[];onOpen:(key:string,intent:BookshelfIntent)=>void;onCreate:(title:string)=>boolean|void;onImport:(file:File)=>void;disabled?:boolean;notice?:string;onExport?:(key:string)=>void;onDelete?:(key:string)=>void;onDuplicate?:(key:string)=>void;onIntroduction?:()=>void};
 const sections=[{kind:'builtin',title:'기본 작품'},{kind:'own',title:'내 작품'}] as const;
-export function LocalBookshelf({online,accountMenu,works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction,onExport,onDelete,onDuplicate}:LocalBookshelfProps){
+export function LocalBookshelf({online,accountMenu,navigation,works,onOpen,onCreate,onImport,disabled=false,notice,onIntroduction,onExport,onDelete,onDuplicate}:LocalBookshelfProps){
  const room=useRef<HTMLElement>(null),cases=useRef<HTMLDivElement>(null),tools=useRef<HTMLDetailsElement>(null),composing=useRef(false);
  useEffect(()=>{const dismiss=(event:PointerEvent)=>{if(tools.current?.open&&event.target instanceof Node&&!tools.current.contains(event.target))tools.current.open=false;};const escape=(event:KeyboardEvent)=>{if(event.key==='Escape'&&!event.isComposing&&event.keyCode!==229&&!composing.current&&tools.current?.open){tools.current.open=false;tools.current.querySelector<HTMLElement>('summary')?.focus();}};document.addEventListener('pointerdown',dismiss);document.addEventListener('keydown',escape);return()=>{document.removeEventListener('pointerdown',dismiss);document.removeEventListener('keydown',escape);};},[]);
  const [layout,setLayout]=useState(()=>shelfLayoutForWidth(1000));
@@ -45,12 +45,13 @@ export function LocalBookshelf({online,accountMenu,works,onOpen,onCreate,onImpor
  if(selectedRemote!==null&&!selectedOnline)setSelectedRemote(null);
  function moveSelection(delta:number){const index=visible.findIndex(entry=>entry.kind==='local'?entry.key===selected:entry.key===selectedRemote);const next=visible[(index+delta+visible.length)%visible.length];if(next?.kind==='local'){setSelected(next.key);setSelectedRemote(null);}else if(next){setSelected(null);setSelectedRemote(next.key);}}
  return <main ref={room} className={styles.library} aria-label="놀스토리 서재">
+  {navigation&&<div className={styles.serviceNavigation}>{navigation}</div>}
   <header className={styles.header}>
    <h1>놀스토리 서재</h1>
    <div className={styles.headerTools}>
     {accountMenu}
     {onIntroduction&&<button className={styles.introLink} onClick={onIntroduction}>책 소개</button>}
-    <label className={styles.classification}><span className={styles.semantic}>책 분류</span><select aria-label="책 분류" value={filter} onChange={event=>{setFilter(event.target.value);if(tools.current)tools.current.open=false;}}><option value="all">모든 책</option>{sections.map(section=><option key={section.kind} value={section.kind}>{section.title}</option>)}</select></label>
+    <label className={styles.classification}><span className={styles.semantic}>책 분류</span><select aria-label="책 분류" value={filter} onChange={event=>{setFilter(event.target.value);if(tools.current)tools.current.open=false;}}><option value="all">모든 작품</option>{sections.map(section=><option key={section.kind} value={section.kind}>{section.title}</option>)}</select></label>
     <details ref={tools} onBlurCapture={()=>{composing.current=false;}} onCompositionStart={()=>{composing.current=true;}} onCompositionEnd={()=>{composing.current=false;}} onToggle={event=>{if(!event.currentTarget.open)composing.current=false;}} className={styles.tools} data-testid="library-tools"><summary>책 찾기·추가</summary><div className={styles.toolsPanel}>
      <label className={styles.search}>책 찾기<input type="search" maxLength={200} placeholder="제목이나 지은이" value={query} onKeyDown={event=>{if(event.key==='Enter'&&!event.nativeEvent.isComposing&&event.nativeEvent.keyCode!==229){event.preventDefault();if(tools.current)tools.current.open=false;tools.current?.querySelector<HTMLElement>('summary')?.focus();}}} onChange={event=>setQuery(event.target.value)}/></label>
      <NewStoryForm disabled={disabled} onCreate={title=>onCreate(title)!==false}/>

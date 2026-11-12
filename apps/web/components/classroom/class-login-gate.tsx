@@ -4,14 +4,14 @@ import {onlineEnabled} from '../../lib/online-mode';
 import {qrLogin,ClassroomError} from '../../lib/classroom-api';
 import styles from './classroom.module.css';
 let pendingToken:string|null=null;
-/** Opened with ?class-login=<token>: remove the token from the address, log in, then go to /student. */
+/** Opened with ?q=<token> or the existing ?class-login=<token>: remove the token from the address, log in, then go to /student. */
 export function ClassLoginGate(){
  const [state,setState]=useState<'idle'|'busy'|'failed'>('idle'),[message,setMessage]=useState('');
  useEffect(()=>{
   if(!onlineEnabled)return;
-  const url=new URL(location.href),fromUrl=url.searchParams.get('class-login');
+  const url=new URL(location.href),fromUrl=url.searchParams.get('q')??url.searchParams.get('class-login');
   // Strict-mode effects run twice; the first run already removed the token from the address.
-  if(fromUrl){pendingToken=fromUrl;url.searchParams.delete('class-login');history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);}
+  if(fromUrl){pendingToken=fromUrl;url.searchParams.delete('class-login');url.searchParams.delete('q');history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);}
   const token=pendingToken;
   if(!token)return;
   let live=true;

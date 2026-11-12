@@ -1,5 +1,5 @@
 import {describe,it,expect,vi} from 'vitest';
-import {classMe,classroomRead,classroomCreate,studentsPermissions,studentLogin,submissionMine,effectivePermissions,presetLabel,PERMISSION_PRESETS,ALL_EDITING_ALLOWED,ClassroomError,studentUpdate,submissionPut} from './classroom-api';
+import {classMe,classroomRead,classroomCreate,studentsPermissions,studentLogin,submissionMine,effectivePermissions,presetLabel,PERMISSION_PRESETS,ALL_EDITING_ALLOWED,ClassroomError,studentUpdate,submissionPut,assignmentList,assignmentCreate,prepareStudentQrPrint} from './classroom-api';
 const res=(status:number,value:unknown)=>new Response(JSON.stringify(value),{status});
 const ok=(data:unknown)=>res(200,{success:true,data});
 describe('classroom permissions helpers',()=>{
@@ -36,4 +36,36 @@ describe('classroom client',()=>{
   await expect(submissionPut('x',{} as never,'csrf',vi.fn().mockResolvedValue(ok({})))).rejects.toThrow();
  });
  it('maps network failure to a service error',async()=>{await expect(studentUpdate(1,{name:'a'},'c',vi.fn().mockRejectedValue(Error('x')))).rejects.toMatchObject({code:'SERVICE_UNAVAILABLE'});});
+});
+
+describe('assignment formats',()=>{
+ const task={id:'a',title:'이야기',description:'',storyKey:null,open:true,createdAt:1};
+ it('defaults an older response to KnolStory and retains ShortStory',async()=>{
+  const fetcher=vi.fn().mockResolvedValue(ok([task,{...task,id:'b',format:'shortstory'}]));
+  expect((await assignmentList(fetcher)).map(item=>item.format)).toEqual(['knolstory','shortstory']);
+ });
+ it('rejects an unsupported format and sends the selected type on creation',async()=>{
+  await expect(assignmentList(vi.fn().mockResolvedValue(ok([{...task,format:'unknown'}])))).rejects.toThrow();
+  const fetcher=vi.fn().mockResolvedValue(ok({...task,format:'shortstory'}));
+  await assignmentCreate({title:'이야기',format:'shortstory'},'csrf',fetcher);
+  expect(JSON.parse(fetcher.mock.calls[0][1].body)).toEqual({title:'이야기',format:'shortstory'});
+ });
+ it('explains mismatched submission types',()=>{
+  expect(new ClassroomError('ASSIGNMENT_FORMAT_MISMATCH',422).message).toContain('놀스토리·숏스토리');
+ });
+});
+
+describe('QR print preparation',()=>{
+ const result={className:'우리 반',classCode:'ABC234',cards:[{number:2,name:'하늘',url:'https://example.invalid/?class-login=fixture'}]};
+ it('sends selected numbers and explicit legacy replacement only when requested',async()=>{
+  const fetcher=vi.fn().mockImplementation(async()=>ok(result));
+  expect(await prepareStudentQrPrint([2],'csrf',false,fetcher)).toEqual(result);
+  expect(JSON.parse(fetcher.mock.calls[0][1].body)).toEqual({numbers:[2]});
+  await prepareStudentQrPrint([2],'csrf',true,fetcher);
+  expect(JSON.parse(fetcher.mock.calls[1][1].body)).toEqual({numbers:[2],replaceExisting:true});
+ });
+ it('rejects mismatched, duplicate and unsafe QR cards',async()=>{
+  for(const cards of [[{...result.cards[0],number:3}],[{...result.cards[0],url:'javascript:alert(1)'}],[]])await expect(prepareStudentQrPrint([2],'csrf',false,vi.fn().mockResolvedValue(ok({...result,cards})))).rejects.toThrow();
+  await expect(prepareStudentQrPrint([2,3],'csrf',false,vi.fn().mockResolvedValue(ok({...result,cards:[result.cards[0],result.cards[0]]})))).rejects.toThrow();
+ });
 });
