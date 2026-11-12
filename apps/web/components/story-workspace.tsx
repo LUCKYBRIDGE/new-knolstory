@@ -87,6 +87,8 @@ import {previewAuthoringFile} from '../lib/story-file-preview';
 import {EditorTermGuide} from './editor-term-guide';
 import {AuthoringImportDialog} from './authoring-import-dialog';
 import {StorageReloadDialog} from './storage-reload-dialog';
+import {submissionOpen,assignmentList} from '../lib/classroom-api';
+import {onlineEnabled} from '../lib/online-mode';
 import {createAuthoringArchive,encodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot,type AuthoringArchive} from '@knolstory/compatibility';
 import {importAudioResources,copyAudioWorkMetadata} from '../lib/audio-resources';
 import {PersonalLibraryTools} from './personal-library-tools';
@@ -100,6 +102,7 @@ import {BookIntroduction} from './book-introduction';
 import {BookStart} from './book-start';
 import {EditorRelatedMemos} from './editor-related-memos';
 import {useEditorLimits,MEMBER_WORK_LIMIT} from './use-editor-limits';
+import {BUILTIN_WORKS} from '../lib/builtin-works';
 import {restrictEditorPreferences} from '../lib/editing-permissions';
 import {BookCoverEditor} from './book-cover-editor';
 import {loadLandingVisit,markLandingVisited,resolveEntryView} from '../lib/landing-visit';
@@ -149,6 +152,7 @@ export function StoryWorkspace() {
   const [view,setView]=useState<WorkspaceView>('home');
   const [runtimeMounted,setRuntimeMounted]=useState(false);
   const directEditor = useRef(false);
+  const submissionAccount=useRef<string|null>(null);
   const shell = useRef<HTMLElement>(null);
   const [localFileSession]=useState(createLocalWorkFileSession);
   const [leaveTracker]=useState(createWorkLeaveTracker);
@@ -184,6 +188,8 @@ export function StoryWorkspace() {
   const [readingFromEditor,setReadingFromEditor]=useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [loadComplete, setLoadComplete] = useState(false);
+  /** Set when a class mission opened this book, so the title page offers the way back to the mission. */
+  const [missionReturn,setMissionReturn]=useState(false);
   const [saveStatus, setSaveStatus] = useState("임시 보관 준비 중");
   const displayedSaveStatus=writer.status==='unavailable'?'임시 보관 중지':writer.status==='standby'&&saveStatus!=='임시 보관됨'?'임시 보관 대기 중':saveStatus;
   const [error, setError] = useState("");
@@ -276,11 +282,12 @@ export function StoryWorkspace() {
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
+      let requestedLibrary=false;
       try {
         const requestedView=new URLSearchParams(location.search).get('view');
         directEditor.current=requestedView==='editor';
         let accountReturn=false;try{const destination=consumeAccountReturnDestination(sessionStorage,location.search);if(destination==='shortstory'){const query=new URLSearchParams(location.search),forward=new URLSearchParams();forward.set('auth',query.get('auth')!);const reason=query.get('reason');if(reason)forward.set('reason',reason);location.replace(`/shortstory?${forward}`);return;}accountReturn=destination==='library';}catch{/* Optional account return cannot alter authored storage. */}
-        const directLibrary=requestedView==='library'||accountReturn;
+        const directLibrary=requestedView==='library'||accountReturn;requestedLibrary=directLibrary;
         const raw = localStorage.getItem(WORKSPACE_KEY);
         const visited=loadLandingVisit(localStorage);
         const reload=(performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming|undefined)?.type==='reload';
@@ -302,7 +309,7 @@ export function StoryWorkspace() {
         try{setDeletedWork(raw?storedDeletedWork??readDeletedWork(localStorage):readDeletedWork(localStorage));}catch(issue){setError(String(issue));}
         setHydrated(true);
       } catch {
-        if(directEditor.current){setView('editor');setRuntimeMounted(true);}
+        if(directEditor.current){setView('editor');setRuntimeMounted(true);}else if(requestedLibrary)setView('library');
         // The recovery panel explains the failure without exposing parser text
         // (which can contain manuscript excerpts) or duplicating the notice.
         setError('');
@@ -418,6 +425,12 @@ export function StoryWorkspace() {
     if(!hydrated)throw Error('이전에 보관한 내용을 지키려고 브라우저 보관을 멈췄어요. 지금 작품을 작품 파일로 저장하거나 브라우저 보관함을 복구한 뒤 다시 시도해 주세요.');
     const next=writeWorkspaceSnapshot(writer.guard.current!,project,savedProjects.current,contexts.current,{...snapshot(),...overrides});
     savedProjects.current=next.works;contexts.current=next.contexts;
+  }
+  function beforeServiceNavigation(){
+    // Tabs are only on the shelf. WorkLeaveGuard already owns pending manuscript departures;
+    // browsing must not require taking another tab's storage writer just to leave the shelf.
+    if(composing){setError('한글 입력을 마친 뒤 다른 화면으로 이동해 주세요.');return false;}
+    return true;
   }
   function beforeAccountNavigation(){
     if(composing){setError('한글 입력을 마친 뒤 로그인해 주세요.');return false;}
@@ -787,10 +800,119 @@ export function StoryWorkspace() {
     if(bindingFailed)setError('기기에 독립 사본은 보관했지만 온라인 연결 정보를 저장하지 못했어요. 이 사본을 새 온라인 작품으로 다시 올리기 전에 저장 상태를 확인해 주세요.');
   }
 
+  useEffect(()=>{
+    if(!onlineEnabled||!loadComplete||editorLimits.loading||!editorLimits.accountId)return;
+    const url=new URL(location.href);
+    const assignment=url.searchParams.get('classAssignment');
+    const number=Number(url.searchParams.get('classStudent'));
+    if(!assignment||!Number.isInteger(number)||number<1||number>30)return;
+    const controller=new AbortController();
+    const generation=onlineWorkspaceGeneration.current;
+    const sequence=++importReadSequence.current;
+    const current=()=>!controller.signal.aborted&&sequence===importReadSequence.current&&generation===onlineWorkspaceGeneration.current;
+    const timer=window.setTimeout(async()=>{
+      setImportBusy(true);
+      try{
+        const result=await submissionOpen(assignment,number,(input,init)=>fetch(input,{...init,signal:controller.signal}));
+        const archive=await restoreJsonbSnapshot(result.document);
+        if(!current())return;
+        if(archive.format!=='knolstory')throw Error('숏스토리 제출본은 학급에서 파일을 받아 그림책 보관함에서 열어 주세요.');
+        const copy={...archive.document.project,id:crypto.randomUUID()};
+        submissionAccount.current=editorLimits.accountId;
+        setPendingArchive({...archive,document:{...archive.document,project:copy}});
+      }catch(issue){
+        if(current())setError(issueText(issue));
+      }finally{
+        if(!controller.signal.aborted){
+          setImportBusy(false);
+          if(location.href===url.href){
+            url.searchParams.delete('classAssignment');
+            url.searchParams.delete('classStudent');
+            history.replaceState(history.state,'',url);
+          }
+        }
+      }
+    },0);
+    return ()=>{window.clearTimeout(timer);controller.abort();};
+  },[loadComplete,editorLimits.accountId,editorLimits.loading]);
+
+  // A mission's reading link (lib/mission-api.ts missionReadingHref): open the provided edition's title page exactly as the shelf does.
+  useEffect(()=>{
+    if(!loadComplete)return;
+    const url=new URL(location.href),workId=url.searchParams.get('readWork');
+    if(!workId)return;
+    const timer=window.setTimeout(()=>{
+      const definition=BUILTIN_WORKS.find(item=>item.id===workId);
+      const documentId=definition&&(url.searchParams.get('readEdition')==='knolstory'?definition.knolstoryDocumentId:definition.originalDocumentId);
+      const fixture=documentId?builtInStories.find(item=>item.project.id===documentId):undefined;
+      if(fixture){setMissionReturn(true);void openLibraryWork(fixture.id,'start');}
+      else setError('미션의 작품을 찾지 못했어요. 서재에서 작품을 골라 읽어 주세요.');
+      url.searchParams.delete('readWork');url.searchParams.delete('readEdition');
+      history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);
+    },0);
+    return ()=>window.clearTimeout(timer);
+  // Runs once when the stored workspace has settled; the shelf's own open keeps manuscripts protected.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[loadComplete]);
+
+  useEffect(()=>{
+    if(!onlineEnabled||!loadComplete||editorLimits.loading||editorLimits.role!=='student'||!editorLimits.accountId)return;
+    const url=new URL(location.href),taskId=url.searchParams.get('classTask');
+    if(!taskId)return;
+    const controller=new AbortController();
+    const generation=onlineWorkspaceGeneration.current;
+    const sequence=++importReadSequence.current;
+    const timer=window.setTimeout(async()=>{
+      setImportBusy(true);
+      try{
+        const tasks=await assignmentList((input,init)=>fetch(input,{...init,signal:controller.signal}));
+        if(controller.signal.aborted||sequence!==importReadSequence.current||generation!==onlineWorkspaceGeneration.current)return;
+        const task=tasks.find(item=>item.id===taskId);
+        if(task?.format==='shortstory')throw Error('숏스토리 과제는 그림책 화면에서 시작해 주세요.');
+        if(!task?.open)throw Error('열린 과제에서 쓰기를 시작해 주세요.');
+        const forced=editorLimits.permissions.forcedStoryKey;
+        if(forced&&task.storyKey&&forced!==task.storyKey)throw Error('과제의 바탕 작품과 현재 편집 허용 작품이 달라요. 선생님께 확인해 주세요.');
+        const bindingKey=`knolstory-class-task:${editorLimits.accountId}:${taskId}`;
+        const draftKey=localStorage.getItem(bindingKey);
+        const existing=draftKey?savedProjects.current[draftKey]:undefined;
+        if(existing){
+          await openLibraryWork(draftKey!,'edit');
+          return;
+        }
+        const storyKey=forced??task.storyKey;
+        if(!storyKey&&!editorLimits.permissions.newWorks)throw Error('새 작품을 만들 수 없어요. 선생님께 바탕 작품을 확인해 주세요.');
+        const fixture=storyKey?builtInStories.find(item=>item.id===storyKey):undefined;
+        if(storyKey&&!fixture)throw Error('과제의 바탕 작품을 찾지 못했어요.');
+        saveBeforeImport();
+        const next=fixture?createCatalogEditCopy(structuredClone(fixture.project),crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
+          :createBlankStoryProject({id:crypto.randomUUID(),chapterId:crypto.randomUUID(),lineId:crypto.randomUUID(),title:task.title});
+        if(fixture&&!await preserveCopyAudio(fixture.project,next))return;
+        if(controller.signal.aborted||sequence!==importReadSequence.current)return;
+        saveBeforeImport();
+        const key=`new:${next.id}`,first=orderedLines(next)[0]!;
+        const stored=writeWorkspaceSnapshot(writer.guard.current!,next,{...savedProjects.current,[storyId]:project,[key]:next},contexts.current,
+          {...snapshot(),storyId:key,lineId:first.id,editingPath:[first.id],playback:createPlayback(next),mode:'edit',view:'editor'});
+        savedProjects.current=stored.works;contexts.current=stored.contexts;
+        localStorage.setItem(bindingKey,key);
+        await openLibraryWork(key,'edit');
+      }catch(issue){if(!controller.signal.aborted)setError(issueText(issue));}
+      finally{
+        if(!controller.signal.aborted){
+          setImportBusy(false);
+          if(location.href===url.href){url.searchParams.delete('classTask');history.replaceState(history.state,'',url);}
+        }
+      }
+    },0);
+    return ()=>{window.clearTimeout(timer);controller.abort();};
+  // This entry runs once per settled account. Workspace edits invalidate the captured generation.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[loadComplete,editorLimits.accountId,editorLimits.loading,editorLimits.role]);
+
   async function importFile(file?: File) {
     if (!file) return;
     if(stopForUnappliedInput())return;
     {const blocked=newWorkBlocked();if(blocked){setError(blocked);return;}}
+    submissionAccount.current=null;
     const sequence=++importReadSequence.current;setImportBusy(true);setPendingArchive(null);setError('');
     try {
       const next=await previewAuthoringFile(file);
@@ -812,6 +934,7 @@ export function StoryWorkspace() {
   }
   async function applyPendingArchive(){
     if(!pendingArchive||pendingArchive.format!=='knolstory')return;
+    if(submissionAccount.current&&submissionAccount.current!==editorLimits.accountId){setPendingArchive(null);submissionAccount.current=null;setError('계정이 바뀌었어요. 학급에서 제출 작품을 다시 열어 주세요.');return;}
     if(hasUnappliedAuthoringInput()){setPendingArchive(null);stopForUnappliedInput();return;}
     setError('');
     try{saveBeforeImport();}catch(issue){setError(String(issue));return;}
@@ -1064,17 +1187,17 @@ export function StoryWorkspace() {
     <MobileFullscreenOffer enabled={['editor','prepare'].includes(view)&&!composing} onEnter={()=>void toggleFullscreen()}/>
     {['editor','prepare','book','cover'].includes(view)&&excludedAudio.length>0&&<p role="alert" className={styles.error}>이 작품에 서비스에서 제외한 기본 소리가 있습니다: {excludedAudio.map(asset=>asset.name).join(', ')}. 해당 소리는 재생하지 않으며 원고의 소리 지정은 보존합니다. 음향 편집에서 사용할 소리로 교체해 주세요.</p>}
     {importBusy&&!pendingArchive&&<p role='status' className={styles.status}>작품 파일을 살펴보고 있어요. 긴 작품은 조금 걸릴 수 있어요.</p>}
-    {pendingArchive&&pendingArchive.format==='knolstory'&&<AuthoringImportDialog title={pendingArchive.document.project.title} kind='knolstory' chapterCount={pendingArchive.document.project.chapters.length} cutCount={pendingArchive.document.project.lines.length} resourceCount={pendingArchive.audioResources.length} busy={importBusy} error={error} onCancel={()=>setPendingArchive(null)} onApply={applyPendingArchive}/>}
+    {pendingArchive&&(!submissionAccount.current||submissionAccount.current===editorLimits.accountId)&&pendingArchive.format==='knolstory'&&<AuthoringImportDialog title={pendingArchive.document.project.title} kind='knolstory' chapterCount={pendingArchive.document.project.chapters.length} cutCount={pendingArchive.document.project.lines.length} resourceCount={pendingArchive.audioResources.length} busy={importBusy} error={error} onCancel={()=>setPendingArchive(null)} onApply={applyPendingArchive}/>}
     {view!=='editor'&&storageWarning}
     {confirmStorageRestart&&<StorageReloadDialog restart composing={composing} onCancel={()=>setConfirmStorageRestart(false)} onConfirm={()=>{setConfirmStorageRestart(false);restartProtectedStorage();}}/>}
     {confirmStorageReload&&<StorageReloadDialog composing={composing} onCancel={()=>setConfirmStorageReload(false)} onConfirm={()=>{if(!composing)location.reload();}}/>}
     {view!=='editor'&&storageRecovery}
     {(!!storageError&&view!=='prepare'&&view!=='editor')&&<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>}
     {view==='home'&&<BookIntroduction works={libraryWorks} onMyWorks={()=>{try{sessionStorage.setItem('knolstory-library-view-v1',JSON.stringify({version:1,filter:'own',query:'',pages:{}}));}catch{/* Library remains usable without tab preferences. */}returnToLibrary();}} onLibrary={returnToLibrary} onBook={key=>openLibraryWork(key,'start')} disabled={!loadComplete} notice={error}/>}
-    {view==='book'&&<BookStart edition={storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory"} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>beginBook(false)} onResume={()=>beginBook(true)} onLibrary={returnToLibrary} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
+    {view==='book'&&<BookStart edition={storyId.startsWith("new:")?"own":storyId.startsWith("import:")?"imported":storyId.endsWith("-classic")?"original":"knolstory"} project={project} canResume={!!resumeFor(storyId,project)} onStart={()=>beginBook(false)} onResume={()=>beginBook(true)} onLibrary={returnToLibrary} onMission={missionReturn&&onlineEnabled?()=>{if(beforeServiceNavigation())location.assign('/student');}:undefined} onPrepare={()=>openLibraryWork(storyId,'prepare')} onEdit={()=>openLibraryWork(storyId,'edit')}/>}
     {view==='cover'&&<BookCoverEditor project={project} onApply={(cover,title)=>{preparationChange(renameStoryProject({...project,cover},title));setView('prepare');}} onCancel={()=>setView('prepare')}/>}
     {pendingBranch&&<StoryChoiceWritingDialog label={pendingBranch.label} sourceLabel={pendingBranch.sourceLabel} closesLinearTail={!!pendingBranch.closedLinearTailId} error={branchError} onCancel={()=>{setPendingBranch(null);setBranchError('');}} onCreate={startChoiceWriting}/>}
-    {view==='library'&&<><PersonalLibrary onlineDisabled={composing} beforeAccountNavigation={beforeAccountNavigation} onSaveOnline={saveOnlinePersonalWork} onOpenOnline={openOnlinePersonalWork} onDuplicate={duplicatePersonalWork} onDelete={key=>{if(isPersonalWork(key))setPendingWorkDelete(key);}} onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');if(new URLSearchParams(location.search).get('view')==='library')history.replaceState(null,'',location.pathname);}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={error}/><PersonalLibraryTools deleted={deletedWork} pendingTitle={pendingWorkDelete?libraryWorks.find(work=>work.key===pendingWorkDelete)?.project.title:undefined} onRestore={restorePersonalWork} onCancel={()=>setPendingWorkDelete(null)} onConfirm={deletePersonalWork}/><p data-testid="library-save-status" role="status">{displayedSaveStatus}</p></>}
+    {view==='library'&&<><PersonalLibrary onlineDisabled={composing} beforeAccountNavigation={beforeAccountNavigation} beforeServiceNavigation={beforeServiceNavigation} onSaveOnline={saveOnlinePersonalWork} onOpenOnline={openOnlinePersonalWork} onDuplicate={duplicatePersonalWork} onDelete={key=>{if(isPersonalWork(key))setPendingWorkDelete(key);}} onIntroduction={()=>{rememberCurrent();setMode('edit');setView('home');if(new URLSearchParams(location.search).get('view')==='library')history.replaceState(null,'',location.pathname);}} works={libraryWorks} onExport={key=>{const work=libraryWorks.find(item=>item.key===key);if(work)void exportFile(work.project);}} onOpen={openLibraryWork} onCreate={newStory} onImport={file=>void importFile(file)} disabled={!loadComplete} notice={error}/><PersonalLibraryTools deleted={deletedWork} pendingTitle={pendingWorkDelete?libraryWorks.find(work=>work.key===pendingWorkDelete)?.project.title:undefined} onRestore={restorePersonalWork} onCancel={()=>setPendingWorkDelete(null)} onConfirm={deletePersonalWork}/><p data-testid="library-save-status" role="status">{displayedSaveStatus}</p></>}
     {view==='prepare'&&<main className={`${styles.shell} ${styles.compact} ${styles.preparationShell}`}>{workHeader(<><strong>{project.title}</strong><EditorTermGuide/><p data-testid="preparation-save-status" role="status">{displayedSaveStatus}</p></>)}{error&&<p role="alert">{error}</p>}<StoryPreparation scoresEnabled={logic.scores} onComposing={setComposing} onSectionChange={changeWorkSection} initialSection={memoRequest?.projectId===project.id?memoRequest.section??'memos':'info'} focusMemoId={memoRequest?.projectId===project.id?memoRequest.memoId:undefined} onReturnToCut={memoRequest?.projectId===project.id&&memoRequest.returnToEditor?returnFromSettings:undefined} onEditCover={()=>setView('cover')} project={project} currentLineId={lineId} onProjectChange={preparationChange} onOpenCut={id=>editFromFlow(id)} onContinueWriting={continueWriting}/></main>}
     <main style={readerDisplay?{position:'fixed',left:readerDisplay.left,top:readerDisplay.top,width:readerDisplay.width,height:readerDisplay.height,minHeight:0}:undefined} data-parked={view!=='editor'} aria-hidden={view!=='editor'} inert={view!=='editor'} ref={shell} data-keyboard-occluded={mode==='edit'&&keyboard.occluded} className={`${styles.shell} ${styles.editorShell} ${compact ? styles.compact : ""} ${mode === "play" ? styles.playMode : ""} ${editorView==='writer'?styles.writing:''}`}>
       {view==='editor'&&storageWarning}

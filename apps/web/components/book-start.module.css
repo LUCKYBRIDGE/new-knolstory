@@ -66,3 +66,7 @@
 .startActions small { font-size:13px; }
 .readingHint { font-size:13px; }
 .editActions>span { font-size:12px; }
+/* Opened from a class mission: the way back sits beside ‘서재로’. */
+.headerActions { display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end; }
+.startHeader .missionReturn { color:#263b32;background:#f0ca80;border-color:#f0ca80;font-weight:600; }
+.missionHint { margin:0 0 10px;padding:10px 14px;border-radius:10px;background:#f0ca8022;border:1px solid #f0ca8055;color:#f6e7c4;font-size:13px;line-height:1.7; }
