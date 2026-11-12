@@ -1,0 +1,74 @@
+{
+  "contract": "DESIGN.md: 학급 과제의 유형과 관리 동선. Paper/ink library palette; teacher tasks primary, management secondary; student writing first; type names plus book marks; long titles wrap, code stays one line; 44px buttons and matching keyboard order.",
+  "targetViewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "Classroom visual E2E runs axe WCAG 2 A/AA and 2.1 AA on teacher/student at both widths, checks visible keyboard focus, and tests reduced-motion transitions. Tested fixture states only; not a full assistive-technology audit."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Teacher/student long-title fixtures fit 1440px and 390px without document overflow. Class code height stays under60px. Desktop task/management columns and phone roster cards inspected using Ego Browser and local screenshot viewer."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "pass",
+      "evidence": "Delayed ShortStory submission fetch disables file tools; logout cancellation releases the loading state (classroom browser test)."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "Teacher without a class/students/tasks can create them; student without device works receives a writing action and submission guidance. Empty type stays a short message."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "Assignment list failure shows retry and removes endless loading; retry returns empty list. Student invalid login shows retryable feedback."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "Assignment request failure keeps the successfully loaded class context and management visible while offering assignment retry."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "Browser tests cover class/student creation, assignment creation/toggle, submit/resubmit and teacher independent import; saved/submitted feedback remains visible."
+    },
+    "permission": {
+      "status": "pass",
+      "evidence": "Student new-work/image restrictions, text-only editing and account role gates retain their browser coverage; existing task draft can resume after creation permission changes."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x1000",
+      "artifact": "teacher-desktop.png",
+      "observation": "Teacher context banner, primary assignments on left, quiet management on right, roster below. Mock fixture data."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "teacher-mobile.png",
+      "observation": "Long class title wraps independently; ABC234 code stays on one line; task types and primary action fit phone width."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "student-desktop.png",
+      "observation": "Student identity and restrained permissions; two formats side by side; readable titles and writing actions."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "student-mobile.png",
+      "observation": "Single-column student reading/writing flow, distinct book markers, visible heading/status, short action guidance."
+    }
+  ],
+  "validation": {
+    "browser_tests": 17,
+    "axe_scans": 4,
+    "online_build": "passed",
+    "lint": "0 errors; 2 pre-existing location.assign warnings"
+  },
+  "limits": [
+    "API sessions and pictured accounts/passwords are invented local fixtures. No real student data.",
+    "Browser viewport emulation is not physical-device or screen-reader proof.",
+    "No production deploy or real authenticated classroom verification in this task."
+  ]
+}

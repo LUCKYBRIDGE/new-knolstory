@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-12",
+  "scope": "Assignment formats and classroom usability, local candidate",
+  "checks": {
+    "classroom_browser_mock_api": 16,
+    "web_unit": 17,
+    "server_route": 61,
+    "isolated_postgresql_service": 9,
+    "isolated_postgresql_migration": 3,
+    "docs_tests": 10
+  },
+  "verified_flows": [
+    "teacher creates ShortStory assignment; student starts, edits, resumes and submits; teacher imports independent copy",
+    "KnolStory task resumes stored device draft",
+    "390px teacher student management without horizontal scrolling",
+    "list request failure and retry",
+    "existing draft resumes after newWorks becomes false",
+    "format mismatch preserves existing submission",
+    "pre009 same-format data retained; mixed or unknown formats stop migration without changing submissions",
+    "cancelling delayed submission open on logout releases file tools"
+  ],
+  "images": [
+    "teacher-phone.png",
+    "student-phone.png",
+    "teacher-shortstory.png"
+  ],
+  "limits": [
+    "Screenshots contain test fixture accounts and invented passwords, not real student data.",
+    "Authenticated UI uses mocked API; PostgreSQL tests use disposable local fixtures.",
+    "Production migration, deploy and actual teacher/student sessions remain unverified."
+  ]
+}

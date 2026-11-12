@@ -1,0 +1,128 @@
+{
+  "contract": "DESIGN.md and classroom-design.md student QR printing. Teacher full/selected cards; A4 portrait10mm margins; independent1-5 columns/rows default3x4; stable token reprint; compact160-bit27char credential andq URL with old43/class-login compatibility; actual module-size guard.",
+  "targetViewports": [
+    "1440x1000",
+    "390x844"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "QR print dialog axe WCAG2A/AA and2.1AA scan passed; legacy consent focus, Escape close/restored opener, prepared action focus and background inert handling tested. Physical assistive technology not tested."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Ego Browser reviewed1440x1000 and390x844 controls; paper preview scrolls locally on phone. Actual A4 PDFs validate3x4,3x3,2x2,5x5 page/card counts and40-character names without overflow."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "pass",
+      "evidence": "Prepare disables duplicate submissions. Delayed print request survives a prior student-permission request finishing and parent rerender."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "Before preparation no cards print; helper handles empty input and rejects unsupported sizes; existing no-student table hides printing action."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "Legacy hash-only cards return409 with no partial issue; checkbox explicitly enables replacement. Dense layouts disable print and print CSS also hides QR pages until enlarged."
+    },
+    "partial": {
+      "status": "not-applicable",
+      "reason": "Preparation is atomic. Client validates the complete requested card set before preview; backend rolls back missing/corrupt/cross-class data rather than publishing a partial batch."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "All30 cards paginate; layout/reprint does not reissue; selected1-card print succeeds; PDFs omit controls and passwords."
+    },
+    "permission": {
+      "status": "pass",
+      "evidence": "Teacher-scoped route, CSRF andrate gates checked; cross-teacher/student failures covered; switching accounts unmounts prepared credentials. No tokens in browser storage."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "1440x1000",
+      "artifact": "preview-desktop.png",
+      "observation": "A4 portrait print workspace with independent3columns/4rows and total3pages for30 fictional students."
+    },
+    {
+      "viewport": "390x844",
+      "artifact": "preview-phone.png",
+      "observation": "Phone print controls remain usable; A4 paper scrolls inside preview rather than widening page."
+    },
+    {
+      "viewport": "A4 portrait",
+      "artifact": "a4-3x4-preview.png",
+      "observation": "Rendered200dpi first page:12cards, long-name boundary fixture, QR outside names, footer and cut guides."
+    },
+    {
+      "viewport": "A4 portrait",
+      "artifact": "a4-5x5-preview.png",
+      "observation": "Dense25-card page still keeps name/QR within cell and quiet zone."
+    }
+  ],
+  "checks": {
+    "browser_regression": 27,
+    "final_print_css_density_case": "pass",
+    "account_switch_case": "pass",
+    "focused_unit_route_secrets": 103,
+    "isolated_postgresql": 16,
+    "online_build": "pass",
+    "focused_lint": "0errors; pre-existing class-login navigation warning"
+  },
+  "pdf_validation": {
+    "student-qr-3x4.pdf": {
+      "pages": 3,
+      "cards": [
+        12,
+        12,
+        6
+      ]
+    },
+    "student-qr-3x3.pdf": {
+      "pages": 4,
+      "cards": [
+        9,
+        9,
+        9,
+        3
+      ]
+    },
+    "student-qr-2x2.pdf": {
+      "pages": 8,
+      "cards": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2
+      ]
+    },
+    "student-qr-5x5.pdf": {
+      "pages": 2,
+      "cards": [
+        25,
+        5
+      ]
+    }
+  },
+  "qr_decode": {
+    "source": "200dpi raster of PDFs; Apple Vision per-card decode",
+    "portrait3x4": 30,
+    "dense5x5": 30,
+    "all_payloads_matched_fixture_student": true,
+    "summary": "qr-decode-summary.txt"
+  },
+  "references": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+    "https://www.qrcode.com/en/howto/code.html/index.html"
+  ],
+  "limits": [
+    "All accounts,names and QR credentials in artifacts are invented local fixtures. Example URLs are deliberately non-production.",
+    "No printer jobs or physical-phone camera scans were performed; image decoding is not physical-device proof.",
+    "Operational migration010, API/static deployment and real teacher/student sessions remain outside this local task.",
+    "The0.5mm/module threshold is a conservative project rule, not a printer/camera certification."
+  ]
+}
