@@ -30,6 +30,10 @@ async function harness(overrides:Partial<ClassroomRouterOptions>={}){
   teacherCodeUpdatedAt:vi.fn(async()=>123),
   adminOverview:vi.fn(async()=>({teacherCodeUpdatedAt:123,accounts:{member:1,teacher:1,student:3},classrooms:[]})),
   setTeacherCode:vi.fn(async()=>456),
+  teacherCode:vi.fn(async()=>({code:'KNOL-CODE-1',paused:false,updatedAt:123})),
+  setTeacherCodePaused:vi.fn(async(paused:boolean)=>({code:'KNOL-CODE-1',paused,updatedAt:123})),
+  recordLogin:vi.fn(async()=>undefined),
+  adminAccess:vi.fn(async()=>[{id:'a',role:'student',provider:null,className:'3반',studentNumber:2,lastLoginAt:100,lastLoginMethod:'qr'}]),
   createClassroom:vi.fn(async()=>({id:'c'})),getClassroom:vi.fn(async()=>({id:'c'})),patchClassroom:vi.fn(async()=>({id:'c'})),
   addStudents:vi.fn(async()=>({id:'c'})),patchStudent:vi.fn(async()=>({number:3})),setPermissions:vi.fn(async()=>({id:'c'})),deleteStudent:vi.fn(async()=>({id:'c'})),
   prepareQrPrint:vi.fn(async()=>({className:'3반',classCode:'ABC234',cards:[]})),
@@ -84,7 +88,7 @@ describe('classroom routes: gating',()=>{
  });
  it.each([
   ['member','/classroom','GET'],['student','/classroom','GET'],['member','/classroom/assignments','GET'],['teacher','/classroom/assignments/'+assignmentId+'/submission','GET'],
-  ['teacher','/admin/teacher-code','GET'],['student','/teacher-upgrade','POST'],['teacher','/classroom/assignments/'+assignmentId+'/submission','PUT'],
+  ['teacher','/admin/teacher-code','GET'],['teacher','/admin/teacher-code','PATCH'],['teacher','/admin/access','GET'],['student','/admin/access','GET'],['student','/teacher-upgrade','POST'],['teacher','/classroom/assignments/'+assignmentId+'/submission','PUT'],
  ])('forbids role %s on %s %s',async(role,path,method)=>{
   const h=await harness(),who=await h.login({member:memberId,student:studentId,teacher:teacherId}[role as 'member']),body=method==='GET'?undefined:{code:'123456',document:{}};
   const response=await h.as(who)(path,method,body);
@@ -93,9 +97,12 @@ describe('classroom routes: gating',()=>{
  it('lets administrators use teacher and admin routes and reports the admin role',async()=>{
   const h=await harness(),admin=h.as(await h.login(adminId));
   expect((await admin('/classroom')).status).toBe(200);
-  expect(await json(await admin('/admin/teacher-code'))).toEqual({success:true,data:{updatedAt:123}});
-  expect(await json(await admin('/admin/teacher-code','PUT',{code:'new-code-1'}))).toEqual({success:true,data:{updatedAt:456}});
+  expect(await json(await admin('/admin/teacher-code'))).toEqual({success:true,data:{code:'KNOL-CODE-1',paused:false,updatedAt:123}});
+  expect(await json(await admin('/admin/teacher-code','PUT',{code:'new-code-1'}))).toEqual({success:true,data:{code:'KNOL-CODE-1',paused:false,updatedAt:123}});
   expect(h.service.setTeacherCode).toHaveBeenCalledWith('new-code-1');
+  expect(await json(await admin('/admin/teacher-code','PATCH',{paused:true}))).toEqual({success:true,data:{code:'KNOL-CODE-1',paused:true,updatedAt:123}});
+  expect((await admin('/admin/teacher-code','PATCH',{paused:'yes'})).status).toBe(400);
+  expect((await json(await admin('/admin/access'))).data.accounts).toHaveLength(1);
   await admin('/me');expect(h.service.me).toHaveBeenCalledWith(adminId,'admin');
  });
  it('rejects unknown paths, methods, queries and encoded paths',async()=>{
@@ -223,6 +230,7 @@ describe('classroom routes: student and QR login',()=>{
   const result=await json(response) as {data:{role:string;csrf:string}};
   expect(result.data.role).toBe('student');expect(result.data.csrf).toMatch(/^[A-Za-z0-9_-]{43}$/);
   expect(h.service.verifyStudentLogin).toHaveBeenCalledWith('ABC2DE',4,'1234');
+  expect(h.service.recordLogin).toHaveBeenCalledWith(studentId,'password');
   const cookie=response.headers.get('set-cookie')!;
   expect(cookie).toMatch(/^knolstory-next-session=[A-Za-z0-9_-]{43}; Path=\/; HttpOnly; SameSite=Lax; Max-Age=60$/);
   const me=await h.as({cookie:cookie.split(';')[0]!,csrf:result.data.csrf})('/me');

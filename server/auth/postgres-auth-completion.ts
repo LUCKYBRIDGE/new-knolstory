@@ -74,6 +74,8 @@ export function createPostgresAuthCompletion(pool:SqlPool,options:Readonly<{sess
     if(revoked.rowCount!==1)throw new AuthStateError('SESSION_REQUIRED');
    }
    eligible();
+   // Admin access view keeps only the latest sign-in (one overwritten value), inside the session transaction.
+   await client.query('UPDATE knolstory_auth.accounts SET last_login_at=$2,last_login_method=$3 WHERE id=$1',[login.accountId,time(),input.identity.provider]);
    return {accountId:login.accountId,session:{token:raw,expiresAt}};
   });
  }};
