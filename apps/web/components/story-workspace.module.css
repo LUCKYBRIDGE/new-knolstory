@@ -832,3 +832,6 @@
 .libraryUtility>[role=status]{margin:0;display:inline-flex;align-items:center;min-height:44px;gap:6px;color:#5d6b5f;font-size:12px}
 .libraryUtility>[role=status]::before{content:"";width:8px;height:8px;border-radius:50%;background:#4f8a6f}
 .libraryUtility>[role=status][data-save-attention=true]::before{background:#c98b2d}
+/* Normal saving is silent: the status stays for assistive tech, and only a problem becomes visible. */
+.libraryUtility:not(:has(details)):not(:has([data-save-attention=true])){padding:0;margin:0;height:0}
+.libraryUtility>[role=status][data-save-attention=false]{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}

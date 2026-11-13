@@ -36,8 +36,8 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  const feedback=(key:string)=>target?.key===key?{notice:online.notice,error:online.error}:{};
  const stateAction=(record:OnlineDocumentMetadata,action:'trash'|'restore',key=`remote:${record.recordId}`)=>{setTarget({key,title:record.title});void online.changeState(record,action);};
  const header=<div className={styles.statusBar} aria-label="작품 보관 안내">
-  {owner&&<div className={styles.legend}><StorageIcon online/><span>구름 표시가 있는 책은 온라인에도 있어요.</span></div>}
-  {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<div className={styles.controls}><button disabled={unavailable} onClick={()=>void online.list(false,'active')}>온라인 목록 다시 확인</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}}>온라인 휴지통</button></div>:online.account.session?<span>{classroom.role==='student'?'작품은 이 기기에 저장돼요. 과제 제출은 위의 ‘내 과제’에서 해요.':'내 작품은 이 기기에 3개까지 둘 수 있어요.'}</span>:<span>{online.account.error||'로그인하면 온라인 작품도 함께 보여요.'}</span>}
+  {owner&&<div className={styles.legend}><StorageIcon online/><span>구름 표시 책은 온라인에도 있어요.</span></div>}
+  {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<div className={styles.controls}><button aria-label="온라인 목록 다시 확인" disabled={unavailable} onClick={()=>void online.list(false,'active')}>새로 고침</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}} aria-label="온라인 휴지통">휴지통</button></div>:online.account.session?<span>{classroom.role==='student'?'작품은 이 기기에 저장돼요. 과제 제출은 위의 ‘내 과제’에서 해요.':'내 작품은 이 기기에 3개까지 둘 수 있어요.'}</span>:<span>{online.account.error||'작품은 이 기기에 저장돼요. 선생님은 로그인하면 온라인에도 보관할 수 있어요.'}</span>}
   {online.busy&&<p role="status">온라인 작품을 확인하고 있어요.</p>}
   {online.notice&&<p role="status">{target?`‘${target.title}’ · `:''}{online.notice}</p>}{online.error&&<p role="alert">{online.error}</p>}
  </div>;

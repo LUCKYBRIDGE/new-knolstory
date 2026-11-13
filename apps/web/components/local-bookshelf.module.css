@@ -73,3 +73,8 @@
 .remoteCover{overflow:hidden;min-height:0;gap:4px;padding:12% 8%}
 .remoteCover>strong{-webkit-line-clamp:3}
 @media(max-width:600px){.remoteCover{border-left-width:5px}.remoteCover>strong{font-size:10px;line-height:1.35}.remoteCover>small{display:none}.remoteCover>svg{width:16px;height:16px}}
+.emptyMessage small{color:#f3dfbd;font-size:12px;line-height:1.6;text-align:center}
+/* The message is a small card centred on the shelves, so it never sits on a board at any height. */
+.emptyMessage{top:50%;left:50%;right:auto;height:auto;width:min(340px,calc(100% - 28px));transform:translate(-50%,-50%);padding:18px 18px 16px;gap:10px;border-radius:14px;border:1px solid #e9cf9f66;background:#2b1a10e6;box-shadow:0 10px 24px #1a0e0880}
+.emptyMessage button{width:100%;max-width:240px}
+@media(max-width:480px){.emptyMessage{padding:14px 12px;gap:8px}}
