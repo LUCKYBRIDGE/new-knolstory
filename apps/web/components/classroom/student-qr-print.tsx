@@ -23,6 +23,9 @@ export function StudentQrPrintWorkspace({numbers,csrf,onClose}:Props){
   heading.current?.focus();const previous=document.body.style.overflow;document.body.style.overflow='hidden';
   return()=>{window.removeEventListener('keydown',escape);request.current?.abort();siblings.forEach(({node,inert})=>{node.inert=inert;});document.body.style.overflow=previous;if(opener instanceof HTMLElement&&opener.isConnected)opener.focus();};
  },[]);
+ const preview=useRef<HTMLDivElement>(null),[previewScale,setPreviewScale]=useState(1);
+ // Screen-only fit: a 190mm A4 sheet is shown whole on a phone; printing always uses true size.
+ useEffect(()=>{const node=preview.current;if(!node)return;const fit=()=>{const width=node.clientWidth-16;setPreviewScale(width>0?Math.min(1,width/718):1);};const observer=new ResizeObserver(fit);observer.observe(node);fit();return()=>observer.disconnect();});
  useEffect(()=>{if(prepared){if(printAction.current?.disabled)heading.current?.focus();else printAction.current?.focus();}else if(legacy)confirmInput.current?.focus();},[prepared,legacy]);
  async function prepare(){
   if(lock.current)return;
@@ -51,7 +54,7 @@ export function StudentQrPrintWorkspace({numbers,csrf,onClose}:Props){
   {prepared&&!density.printable&&<div className={styles.error} role="alert">QR이 너무 작고 촘촘해요. 칸 수를 줄여 크게 인쇄해 주세요. <button onClick={()=>{setColumns(2);setRows(3);}}>2열 × 3행으로 크게</button></div>}
   {prepared?<>
    <p className={styles.note} role="status">QR을 준비했어요. 배치를 바꾸거나 다시 인쇄해도 이 QR은 그대로예요. 학생 본인에게만 나눠 주세요.</p>
-   <div className={styles.preview} aria-label="A4 인쇄 미리보기">{pages.map((cards,index)=><article className={styles.sheet} data-qr-print-page data-qr-grid={`${columns}x${rows}`} key={index} style={{'--qr-columns':columns,'--qr-rows':rows,'--qr-size':`${layout.qrMm}mm`,'--qr-name-font':`${layout.fontPt}pt`,'--qr-name-height':layout.lineHeight,'--qr-card-gap':`${layout.gapMm}mm`,'--qr-card-padding':`${layout.paddingMm}mm`,'--qr-code-font':`${layout.codeFontPt}pt`,'--qr-code-height':layout.codeLineHeight} as CSSProperties}>
+   <div ref={preview} className={styles.preview} aria-label="A4 인쇄 미리보기" style={{'--qr-preview-scale':previewScale} as CSSProperties}>{pages.map((cards,index)=><article className={styles.sheet} data-qr-print-page data-qr-grid={`${columns}x${rows}`} key={index} style={{'--qr-columns':columns,'--qr-rows':rows,'--qr-size':`${layout.qrMm}mm`,'--qr-name-font':`${layout.fontPt}pt`,'--qr-name-height':layout.lineHeight,'--qr-card-gap':`${layout.gapMm}mm`,'--qr-card-padding':`${layout.paddingMm}mm`,'--qr-code-font':`${layout.codeFontPt}pt`,'--qr-code-height':layout.codeLineHeight} as CSSProperties}>
     <header className={styles.pageHeader}><strong>{prepared.className}</strong><span>놀스토리 · 학생 로그인 카드</span></header>
     <div className={styles.cardGrid}>{cards.map(card=><section className={styles.card} key={card.number} data-qr-student={card.number}>
      <span className={styles.classCode}>학급 코드 {prepared.classCode}</span><h2>{card.number}번{card.name&&<> · {card.name}</>}</h2>

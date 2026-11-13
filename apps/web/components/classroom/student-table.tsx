@@ -10,18 +10,18 @@ type Run=<T>(action:()=>Promise<T>)=>Promise<T|undefined>;
 type Props={classroom:Classroom;csrf:string;run:Run;onChanged:(next?:Classroom)=>void};
 type Dialog={kind:'password'|'qr'|'permissions'|'delete';student:ClassroomStudent}|null;
 export function StudentTable({classroom,csrf,run,onChanged}:Props){
- const [selected,setSelected]=useState<ReadonlySet<number>>(new Set()),[dialog,setDialog]=useState<Dialog>(null),[printNumbers,setPrintNumbers]=useState<readonly number[]|null>(null);
+ const [selected,setSelected]=useState<ReadonlySet<number>>(new Set()),[dialog,setDialog]=useState<Dialog>(null),[namesOpen,setNamesOpen]=useState(false),[printNumbers,setPrintNumbers]=useState<readonly number[]|null>(null);
  const numbers=classroom.students.map(student=>student.number),all=numbers.length>0&&numbers.every(number=>selected.has(number));
  const toggle=(number:number)=>setSelected(current=>{const next=new Set(current);if(next.has(number))next.delete(number);else next.add(number);return next;});
  const chosen=[...selected].filter(number=>numbers.includes(number));
  async function bulk(permissions:EditingPermissions|null){const next=await run(()=>studentsPermissions(chosen,permissions,csrf));if(next){onChanged(next);setSelected(new Set());}}
  if(!classroom.students.length)return <p className={styles.hint}>아직 학생이 없어요. 위에서 학생을 만들어 주세요.</p>;
  return <>
-  <div className={styles.row}><button className={styles.btn} onClick={()=>setPrintNumbers(numbers)}>전체 학생 QR 인쇄</button></div>
+  <div className={styles.row}><button className={styles.btn} onClick={()=>setNamesOpen(true)}>이름 한꺼번에 넣기</button><button className={styles.btn} onClick={()=>setPrintNumbers(numbers)}>전체 학생 QR 인쇄</button></div>
   <div className={styles.tableWrap}><table className={styles.table}>
    <caption className={styles.hint} style={{textAlign:'left'}}>학생 {classroom.students.length}명</caption>
    <thead><tr><th><input type="checkbox" className={styles.check} checked={all} aria-label="학생 모두 선택" onChange={()=>setSelected(all?new Set():new Set(numbers))}/></th><th>번호</th><th>이름</th><th>비밀번호</th><th>QR</th><th>편집 허용</th><th>관리</th></tr></thead>
-   <tbody>{classroom.students.map(student=><StudentRow key={student.number} student={student} classroom={classroom} checked={selected.has(student.number)} onToggle={()=>toggle(student.number)} csrf={csrf} run={run} onChanged={onChanged} open={kind=>setDialog({kind,student})}/>)}</tbody>
+   <tbody>{classroom.students.map(student=><StudentRow key={`${student.number}:${student.name}`} student={student} classroom={classroom} checked={selected.has(student.number)} onToggle={()=>toggle(student.number)} csrf={csrf} run={run} onChanged={onChanged} open={kind=>setDialog({kind,student})}/>)}</tbody>
   </table></div>
   {chosen.length>0&&<div className={styles.bulk} role="region" aria-label="선택한 학생에게 적용">
    <strong>{chosen.length}명 선택</strong><button className={styles.btn} onClick={()=>setPrintNumbers(chosen)}>선택한 학생 QR 인쇄</button>
@@ -29,6 +29,7 @@ export function StudentTable({classroom,csrf,run,onChanged}:Props){
    <button className={styles.btn} onClick={()=>void bulk(null)}>기본값 사용</button>
    <button className={styles.btn} onClick={()=>setSelected(new Set())}>선택 해제</button>
   </div>}
+  {namesOpen&&<BulkNamesDialog students={classroom.students} csrf={csrf} onClose={changed=>{setNamesOpen(false);if(changed)onChanged();}}/>}
   {printNumbers&&<StudentQrPrintWorkspace numbers={printNumbers} csrf={csrf} onClose={()=>{setPrintNumbers(null);onChanged();}}/>}
   {dialog?.kind==='password'&&<PasswordDialog student={dialog.student} onClose={()=>setDialog(null)} onSave={async password=>{const done=await run(()=>studentUpdate(dialog.student.number,{password},csrf));if(done){onChanged();setDialog(null);}}}/>}
   {dialog?.kind==='qr'&&<QrDialog student={dialog.student} csrf={csrf} onClose={()=>{setDialog(null);onChanged();}}/>}
@@ -83,5 +84,29 @@ function PermissionDialog({student,classDefault,onClose,onSave}:{student:Classro
   <p>이 학생에게만 다르게 정해요.</p>
   <PermissionEditor value={draft} onChange={setDraft}/>
   <div className={styles.dialogActions}><button className={styles.btn} onClick={onClose}>닫기</button><button className={styles.btn} onClick={()=>void onSave(null)}>기본값 사용</button><button className={`${styles.btn} ${styles.primary}`} onClick={()=>void onSave(draft)}>저장</button></div>
+ </ClassroomDialog>;
+}
+/** Paste a class list (one name per line, in number order); only changed names are saved, one student at a time. */
+function BulkNamesDialog({students,csrf,onClose}:{students:readonly ClassroomStudent[];csrf:string;onClose:(changed:boolean)=>void}){
+ const ordered=[...students].sort((a,b)=>a.number-b.number);
+ const [text,setText]=useState(()=>ordered.map(student=>student.name).join('\n')),[busy,setBusy]=useState(false),[error,setError]=useState(''),[done,setDone]=useState(0);
+ const names=text.split(/\r?\n/).map(line=>line.replace(/^\s*\d+\s*[.)번:\-]?\s*/,'').trim());
+ // Students past the last pasted line keep their names; an empty line clears that one name.
+ const changes=ordered.slice(0,names.length).map((student,index)=>({student,name:names[index]!.slice(0,20)})).filter(({student,name})=>name!==student.name);
+ const extra=Math.max(0,names.filter(Boolean).length-ordered.length);
+ async function save(){
+  setBusy(true);setError('');let saved=0;
+  for(const {student,name} of changes){
+   try{await studentUpdate(student.number,{name},csrf);saved+=1;setDone(saved);}
+   catch(issue){setError(`${student.number}번에서 멈췄어요. ${issue instanceof ClassroomError?issue.message:'다시 시도해 주세요.'}`);setBusy(false);if(saved)onClose(true);return;}
+  }
+  onClose(saved>0);
+ }
+ return <ClassroomDialog title="이름 한꺼번에 넣기" onClose={()=>onClose(done>0)}>
+  <p className={styles.hint}>한 줄에 한 명씩, 1번부터 차례로 써요. 표에서 이름 칸을 복사해 붙여 넣어도 돼요. 앞의 번호는 지워져요.</p>
+  <label className={styles.field}>학생 이름 ({ordered.length}명)<textarea value={text} onChange={event=>setText(event.target.value)} rows={Math.min(12,Math.max(6,ordered.length))} disabled={busy} placeholder={'김하늘\n이바다\n박구름'}/></label>
+  <p className={styles.hint} role="status">{busy?`${done} / ${changes.length}명 저장 중…`:changes.length?`${changes.length}명의 이름이 바뀌어요.`:'바뀌는 이름이 없어요.'}{extra>0&&` 학생보다 ${extra}줄 많아요. 남는 줄은 넣지 않아요.`}</p>
+  {error&&<p className={styles.error} role="alert">{error}</p>}
+  <div className={styles.dialogActions}><button className={styles.btn} disabled={busy} onClick={()=>onClose(done>0)}>닫기</button><button className={`${styles.btn} ${styles.primary}`} disabled={busy||!changes.length} onClick={()=>void save()}>이름 저장</button></div>
  </ClassroomDialog>;
 }

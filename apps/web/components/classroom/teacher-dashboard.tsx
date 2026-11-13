@@ -23,9 +23,9 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  const reload=useCallback(async(next?:Classroom)=>{if(next){setClassroom(next);return;}const value=await run(()=>classroomRead());if(value!==undefined||alive.current)setClassroom(value===undefined?classroom:value);},[run,classroom]);
  useEffect(()=>{const timer=window.setTimeout(()=>{classroomRead().then(value=>{if(alive.current)setClassroom(value);}).catch(issue=>{if(alive.current){setLoadFailed(true);setClassroom(undefined);setError(issue instanceof ClassroomError?issue.message:'학급을 불러오지 못했어요.');}});},0);return()=>window.clearTimeout(timer);},[]);
  async function mutate(action:()=>Promise<Classroom>,message=''){
-  if(mutation.current)return;
+  if(mutation.current)return false;
   mutation.current=true;setBusy(true);setNotice('');
-  try{const next=await run(action);if(next){setClassroom(next);if(message)setNotice(message);}}
+  try{const next=await run(action);if(next){setClassroom(next);if(message)setNotice(message);}return !!next;}
   finally{mutation.current=false;setBusy(false);}
  }
  if(loadFailed)return <section className={styles.card} role="alert"><p>{error}</p><button className={styles.btn} onClick={()=>{setLoadFailed(false);void classroomRead().then(value=>setClassroom(value)).catch(()=>setLoadFailed(true));}}>다시 불러오기</button></section>;
@@ -48,9 +48,9 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
   {panel==='assignments'&&<><AssignmentsPanel csrf={csrf} run={run}/><MissionsPanel csrf={csrf}/></>}
   {panel==='students'&&<>
    <section className={styles.card} aria-label="학생 만들기"><h2>학생 만들기</h2>
-    <p className={styles.hint}>빈 번호부터 차례로 만들어요. 지금 {classroom.students.length}명, {remaining}명 더 만들 수 있어요.</p>
-    <form className={styles.row} onSubmit={event=>{event.preventDefault();const n=Number(count);if(Number.isInteger(n)&&n>=1&&n<=remaining)void mutate(()=>studentsCreate(n,csrf),`학생 ${n}명을 만들었어요.`);else setError(`1명에서 ${remaining}명 사이로 써 주세요.`);}}>
-     <label className={styles.field}>만들 학생 수<input value={count} onChange={event=>setCount(event.target.value)} inputMode="numeric" size={4}/></label>
+    <p className={styles.hint} id="student-create-hint">{remaining>0?<>빈 번호부터 차례로 만들어요. 지금 {classroom.students.length}명, {remaining}명 더 만들 수 있어요.</>:'학급 인원 30명을 모두 만들었어요.'}</p>
+    <form className={styles.row} onSubmit={event=>{event.preventDefault();const n=Number(count);if(Number.isInteger(n)&&n>=1&&n<=remaining)void mutate(()=>studentsCreate(n,csrf),`학생 ${n}명을 만들었어요.`).then(done=>{if(done)setCount('1');});else setError(`1명에서 ${remaining}명 사이로 써 주세요.`);}}>
+     <label className={styles.field}>만들 학생 수<input value={count} onChange={event=>setCount(event.target.value.replace(/[^0-9]/g,''))} inputMode="numeric" size={4} disabled={remaining<1} aria-describedby="student-create-hint"/></label>
      <button className={`${styles.btn} ${styles.primary}`} disabled={busy||remaining<1}>학생 만들기</button>
     </form>
    </section>
