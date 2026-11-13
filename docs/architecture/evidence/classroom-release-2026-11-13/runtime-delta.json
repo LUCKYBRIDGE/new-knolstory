@@ -1,0 +1,37 @@
+{
+  "prior": "docs/architecture/evidence/image-preload-2026-11-03/runtime-review.json",
+  "archiveMembers": 1313,
+  "newMembers": {
+    "directories": [
+      "game/assets/characters/emotions-v3/",
+      "game/assets/characters/expressions-v1/",
+      "game/assets/characters/expressions-v2/",
+      "game/assets/characters/transparency-v2/"
+    ],
+    "placeholders": 215
+  },
+  "changedMembers": [
+    "game/audio.rpyc",
+    "game/cache/build_info.json",
+    "game/cache/bytecode-312.rpyb",
+    "game/cache/py3analysis.rpyb",
+    "game/cache/screens.rpyb",
+    "game/image_preload.rpyc",
+    "game/presentation.rpyc",
+    "game/renpyweb_remote_files.txt",
+    "game/script.rpy",
+    "game/script.rpyc",
+    "game/tokens.rpyc"
+  ],
+  "categories": {
+    "directory": 53,
+    "project-exact": 64,
+    "sdk-build-metadata-exact": 2,
+    "sdk-root-launcher-exact": 2,
+    "sdk-exact": 366,
+    "sdk-bytecode-exact": 166,
+    "generated-placeholder": 659,
+    "generated-progressive-index": 1
+  },
+  "boundary": "Exact source/member/SDK/engine/transport/license comparison. New placeholders are tied to owner-authorized source images by SHA-256; their pixels were not independently regenerated. No hosting action or deployment."
+}
