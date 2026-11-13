@@ -118,12 +118,14 @@ function AccessCard(){
  const [rows,setRows]=useState<AdminAccessRow[]|null>(null),[error,setError]=useState(''),[filter,setFilter]=useState<'all'|AdminAccessRow['role']>('all'),[now,setNow]=useState(0);
  const load=useCallback(async()=>{setError('');try{setRows(await adminAccess());setNow(Date.now());}catch(issue){setError(message(issue,'접속 기록을 불러오지 못했어요.'));}},[]);
  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(timer);},[load]);
- const shown=(rows??[]).filter(row=>filter==='all'||row.role===filter||(filter==='teacher'&&row.role==='admin'&&!!row.className));
+ // An admin who runs a class is listed and counted with the teachers too.
+ const matches=(row:AdminAccessRow,value:typeof filter)=>value==='all'||row.role===value||(value==='teacher'&&row.role==='admin'&&!!row.className);
+ const shown=(rows??[]).filter(row=>matches(row,filter));
  const week=(rows??[]).filter(row=>row.lastLoginAt!==null&&now-row.lastLoginAt<7*24*60*60*1000).length;
  return <section className={`${shared.card} ${styles.access}`} aria-label="접속 기록">
   <div className={styles.cardHead}><h2>접속 기록</h2>{rows&&<button className={shared.btn} onClick={()=>void load()}>새로 고침</button>}</div>
   <p className={shared.hint}>계정마다 <b>마지막 로그인</b>만 남겨요. 학생은 이름 없이 학급과 번호로만 보여요.{rows&&<> 최근 7일 동안 {week}개 계정이 들어왔어요.</>}</p>
-  <div className={styles.accessFilter} role="group" aria-label="계정 구분">{(['all','teacher','student','member'] as const).map(value=><button key={value} className={shared.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}>{value==='all'?'전체':ROLE_LABEL[value]}{rows&&<small> {value==='all'?rows.length:rows.filter(row=>row.role===value).length}</small>}</button>)}</div>
+  <div className={styles.accessFilter} role="group" aria-label="계정 구분">{(['all','teacher','student','member'] as const).map(value=><button key={value} className={shared.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}>{value==='all'?'전체':ROLE_LABEL[value]}{rows&&<small> {rows.filter(row=>matches(row,value)).length}</small>}</button>)}</div>
   {error&&<p className={shared.error} role="alert">{error} <button className={shared.btn} onClick={()=>void load()}>다시 불러오기</button></p>}
   {!rows&&!error?<p className={shared.hint} role="status">불러오는 중이에요.</p>:rows&&shown.length===0?<p className={styles.empty}>이 구분의 계정이 없어요.</p>
    :<ul className={styles.accessList}>{shown.map(row=><li key={row.id}>
