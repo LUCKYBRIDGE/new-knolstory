@@ -162,7 +162,9 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   async adminOverview():Promise<AdminOverview>{
    return read(async client=>{
     const code=(await client.query('SELECT updated_at FROM knolstory_class.teacher_codes WHERE id=1')).rows[0];
-    const roles=(await client.query("SELECT role,count(*)::int AS n FROM knolstory_auth.accounts WHERE status='active' GROUP BY role")).rows;
+    // An account that runs a classroom counts as a teacher even when its role is member (an admin may run a class).
+    const roles=(await client.query(`SELECT CASE WHEN a.role='member' AND EXISTS(SELECT 1 FROM knolstory_class.classrooms c WHERE c.teacher_account_id=a.id) THEN 'teacher' ELSE a.role END AS role,count(*)::int AS n
+      FROM knolstory_auth.accounts a WHERE a.status='active' GROUP BY 1`)).rows;
     const count=(role:string)=>num(roles.find(row=>row.role===role)?.n??0);
     const rooms=(await client.query(`SELECT c.name,c.created_at,
       (SELECT count(*)::int FROM knolstory_class.students s WHERE s.classroom_id=c.id) AS students,

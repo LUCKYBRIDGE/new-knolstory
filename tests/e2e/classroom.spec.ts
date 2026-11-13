@@ -101,6 +101,7 @@ test('teacher builds a class, edits students, bulk-applies 글만 and runs an as
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await page.getByRole('navigation',{name:'주 메뉴',exact:true}).getByRole('link',{name:'학생',exact:true}).click();
  await page.getByLabel('만들 학생 수').fill('3');await page.getByRole('button',{name:'학생 만들기',exact:true}).click();
+ await expect(page.getByRole('dialog',{name:'학생 로그인 QR',exact:true}).getByRole('img')).toHaveCount(3);await page.getByRole('button',{name:'학생 목록으로',exact:true}).click();
  await expect(page.locator('tr[data-student]')).toHaveCount(3);
  // Password is hidden until 보기 is pressed; 바꾸기 saves a new one.
  await expect(page.getByLabel('1번 비밀번호',{exact:true})).toHaveText('••••');
@@ -528,10 +529,11 @@ test('teacher prints a complete class in portrait and square A4 grids',async({pa
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'상상 가득 이야기 교실의 친구들',classCode:'ABC234',defaultPermissions:all,students:Array.from({length:30},(_,i)=>({number:i+1,name:(i===0||i===29)?'가나다라마바사아자차'.repeat(4):`이야기친구${i+1}`,password:'1234',permissions:null,hasQr:false}))};
  await page.goto('/teacher?tab=students');
- await page.getByRole('button',{name:'전체 학생 QR 인쇄',exact:true}).click();
- const dialog=page.getByRole('dialog',{name:'학생 로그인 QR 인쇄',exact:true});
- await expect(dialog).toContainText('학생 30명 · 한 쪽에 12명 · 총 3쪽');
- await dialog.getByRole('button',{name:'QR 준비',exact:true}).click();
+ await page.getByRole('button',{name:'전체 학생 QR 보기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'학생 로그인 QR',exact:true});
+ await expect(dialog.getByRole('img')).toHaveCount(30);
+ await dialog.getByRole('button',{name:'A4 인쇄',exact:true}).click();
+ await expect(dialog).toContainText('한 쪽에 12명 · 총 3쪽');
  await expect(dialog.locator('[data-qr-print-page]')).toHaveCount(3);
  await expect(dialog.getByRole('img')).toHaveCount(30);
  expect(await dialog.locator('[data-qr-print-page]').evaluateAll(pages=>pages.map(p=>p.querySelectorAll('[data-qr-student]').length))).toEqual([12,12,6]);
@@ -568,10 +570,33 @@ test('teacher prints a complete class in portrait and square A4 grids',async({pa
  await page.screenshot({path:info.outputPath('qr-print-preview.png'),fullPage:true});
  await dialog.getByRole('button',{name:'학생 목록으로',exact:true}).click();
  await expect(dialog).toHaveCount(0);
- await page.getByRole('button',{name:'전체 학생 QR 인쇄',exact:true}).click();
- await page.getByRole('button',{name:'QR 준비',exact:true}).click();
+ await page.getByRole('button',{name:'전체 학생 QR 보기',exact:true}).click();
  await expect(page.getByRole('img')).toHaveCount(30);
  expect(Object.keys(await page.evaluate(()=>({...localStorage}))).some(key=>key.includes('qr'))).toBe(false);
+});
+
+test('creating students opens their QR cards at once, with a zoomed view to show one student',async({page})=>{
+ const state=await mockClassroom(page,'teacher');
+ state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[{number:1,name:'하늘',password:'1234',permissions:null,hasQr:false}]};
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/teacher?tab=students');
+ await page.getByLabel('만들 학생 수',{exact:true}).fill('3');
+ await page.getByRole('button',{name:'학생 만들기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'학생 로그인 QR',exact:true});
+ await expect(dialog.getByRole('img')).toHaveCount(3);
+ expect(state.bodies).toContainEqual({numbers:[2,3,4]});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await dialog.getByRole('button',{name:'2번 QR 크게 보기',exact:true}).click();
+ const zoom=page.getByRole('dialog',{name:'2번 QR 크게 보기',exact:true});
+ await expect(zoom).toBeVisible();
+ await zoom.getByRole('button',{name:'다음 학생',exact:true}).click();
+ await expect(page.getByRole('dialog',{name:'3번 QR 크게 보기',exact:true})).toBeVisible();
+ await page.keyboard.press('Escape');
+ await expect(page.getByRole('dialog',{name:'3번 QR 크게 보기',exact:true})).toHaveCount(0);
+ await expect(dialog).toBeVisible();
+ await dialog.getByRole('button',{name:'학생 목록으로',exact:true}).click();
+ await expect(dialog).toHaveCount(0);
+ await expect(page.getByLabel('만들 학생 수',{exact:true})).toHaveValue('1');
 });
 
 test('selected QR printing requires explicit consent before replacing legacy cards',async({page})=>{
@@ -581,9 +606,8 @@ test('selected QR printing requires explicit consent before replacing legacy car
  await page.setViewportSize({width:390,height:844});
  await page.goto('/teacher?tab=students');
  await page.getByLabel('1번 선택',{exact:true}).check();
- await page.getByRole('button',{name:'선택한 학생 QR 인쇄',exact:true}).click();
- await page.getByRole('button',{name:'QR 준비',exact:true}).click();
- const dialog=page.getByRole('dialog',{name:'학생 로그인 QR 인쇄',exact:true});
+ await page.getByRole('button',{name:'선택한 학생 QR 보기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'학생 로그인 QR',exact:true});
  await expect(dialog.getByRole('alert')).toContainText('이전 QR은 더 이상 쓸 수 없어요');
  await expect(dialog.getByRole('button',{name:'이전 QR 바꾸고 준비',exact:true})).toBeDisabled();
  await expect(dialog.locator('[data-qr-print-page]')).toHaveCount(0);
@@ -594,7 +618,7 @@ test('selected QR printing requires explicit consent before replacing legacy car
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.keyboard.press('Escape');
  await expect(dialog).toHaveCount(0);
- await expect(page.getByRole('button',{name:'선택한 학생 QR 인쇄',exact:true})).toBeFocused();
+ await expect(page.getByRole('button',{name:'선택한 학생 QR 보기',exact:true})).toBeFocused();
 });
 
 test('QR preparation survives an earlier student setting request finishing',async({page})=>{
@@ -608,12 +632,12 @@ test('QR preparation survives an earlier student setting request finishing',asyn
  await page.getByLabel('1번 선택',{exact:true}).check();
  await page.getByRole('button',{name:'글만으로 적용',exact:true}).click();
  await expect.poll(()=>permissionStarted).toBe(true);
- await page.getByRole('button',{name:'전체 학생 QR 인쇄',exact:true}).click();
- await page.getByRole('button',{name:'QR 준비',exact:true}).click();
+ await page.getByRole('button',{name:'전체 학생 QR 보기',exact:true}).click();
  await expect.poll(()=>qrStarted).toBe(true);
  releasePermission();
  await expect(page.locator('tr[data-student="1"]')).toContainText('글만');
  releaseQr();
+ await page.getByRole('button',{name:'A4 인쇄',exact:true}).click();
  await expect(page.getByRole('button',{name:'인쇄하기',exact:true})).toBeEnabled();
  await expect(page.getByRole('img')).toHaveCount(1);
 });
@@ -624,9 +648,9 @@ test('overly dense QR print blocks tiny modules and offers a larger layout',asyn
  const url='https://'+'long-host.'.repeat(18)+'example.invalid/?q='+'A'.repeat(27);
  await page.route('**/api/v1/class/classroom/qr-print',route=>route.fulfill(ok({className:'우리 반',classCode:'ABC234',cards:[{number:1,name:'하늘',url}]})));
  await page.goto('/teacher?tab=students');
- await page.getByRole('button',{name:'전체 학생 QR 인쇄',exact:true}).click();
- await page.getByRole('button',{name:'QR 준비',exact:true}).click();
- const dialog=page.getByRole('dialog',{name:'학생 로그인 QR 인쇄',exact:true});
+ await page.getByRole('button',{name:'전체 학생 QR 보기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'학생 로그인 QR',exact:true});
+ await dialog.getByRole('button',{name:'A4 인쇄',exact:true}).click();
  await dialog.getByLabel('가로 열 수',{exact:true}).selectOption('5');
  await dialog.getByLabel('세로 행 수',{exact:true}).selectOption('5');
  await expect(dialog.getByRole('alert')).toContainText('촘촘해요');
@@ -643,13 +667,12 @@ test('switching teacher accounts closes the prepared QR workspace',async({page})
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'old',name:'이전 반',classCode:'ABC234',defaultPermissions:all,students:[{number:1,name:'하늘',password:'1234',permissions:null,hasQr:true}]};
  await page.goto('/teacher?tab=students');
- await page.getByRole('button',{name:'전체 학생 QR 인쇄',exact:true}).click();
- await page.getByRole('button',{name:'QR 준비',exact:true}).click();
+ await page.getByRole('button',{name:'전체 학생 QR 보기',exact:true}).click();
  await expect(page.getByRole('img')).toHaveCount(1);
  state.accountId='22222222-2222-4222-8222-222222222222';
  state.classroom={id:'new',name:'새 반',classCode:'XYZ234',defaultPermissions:all,students:[]};
  await page.evaluate(()=>window.dispatchEvent(new Event('knolstory-account-session-changed')));
- await expect(page.getByRole('dialog',{name:'학생 로그인 QR 인쇄',exact:true})).toHaveCount(0);
+ await expect(page.getByRole('dialog',{name:'학생 로그인 QR',exact:true})).toHaveCount(0);
  await expect(page.getByRole('heading',{name:'새 반',exact:true})).toBeVisible();
 });
 

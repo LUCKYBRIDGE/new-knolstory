@@ -30,3 +30,4 @@
 .roomStats small{font-weight:400;font-size:.75rem;color:#536763}
 @media(max-width:960px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
 @media(max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat{padding:12px 14px}.statValue{font-size:1.4rem}.codeActions>.btn,.codeActions>button{flex:1 1 100%}}
+@media(max-width:520px){.stats>div:last-child{grid-column:1/-1}}

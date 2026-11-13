@@ -72,7 +72,7 @@ test('failed deletion preserves the previous deleted book and the current draft 
  await remove('삭제 실패 원고');
  expect(await page.evaluate(key=>localStorage.getItem(key),workspace)).toBe(before);
  await page.getByRole('dialog',{name:'내 작품 삭제 확인'}).getByRole('button',{name:'취소',exact:true}).click();await expect(page.getByRole('dialog',{name:'내 작품 삭제 확인'})).toHaveCount(0);if(await page.getByRole('dialog').count())await page.getByRole('dialog').getByRole('button',{name:'닫기 · 서재로 돌아가기',exact:true}).click();
- await page.evaluate(()=>{(window as any).__rejectWorkspace=false;});await page.getByText('삭제한 작품 복구',{exact:true}).click();await page.getByRole('button',{name:'이전 삭제 원고 복구',exact:true}).click();
+ await page.evaluate(()=>{(window as any).__rejectWorkspace=false;});await page.getByLabel('책 분류',{exact:true}).selectOption('deleted');await page.getByRole('button',{name:'이전 삭제 원고 복구',exact:true}).click();
  await expect(page.getByRole('article',{name:'내 작품 · 이전 삭제 원고',exact:true})).toBeVisible();await expect(page.getByRole('article',{name:'내 작품 · 삭제 실패 원고',exact:true})).toBeVisible();
 });
 
