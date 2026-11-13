@@ -35,11 +35,36 @@
  .preview .sheet{zoom:1}
  .workspace{display:block;height:auto;position:static;inset:auto;overflow:visible;background:#fff;color:#000;padding:0;width:190mm;z-index:auto}
  .workspace[data-qr-printable="false"] .preview{display:none!important}
- .workspace[data-qr-printable="false"]::after{content:"QR을 준비하고, 칸 수를 줄여 읽기 좋은 배치를 선택한 후 인쇄해 주세요.";display:block;padding:12mm;font-size:14pt}
- .toolbar,.controls,.note,.error,.confirm,.empty{display:none!important}
+ .workspace[data-qr-printable="false"]::after{content:"‘A4 인쇄’에서 읽기 좋은 배치를 고른 뒤 인쇄해 주세요.";display:block;padding:12mm;font-size:14pt}
+ .toolbar,.controls,.note,.error,.confirm,.empty,.modeTabs,.cardWall,.zoom{display:none!important}
  .preview{overflow:visible;padding:0;max-width:none}
  .sheet{margin:0;padding:0;box-shadow:none;outline:none;break-after:page;break-inside:avoid;page-break-after:always}
  .sheet:last-child{break-after:auto;page-break-after:auto}
  .card{color:#000;border-color:#888}
  .classCode,.card p,.pageFooter{color:#222}
 }
+
+/* View modes: an on-screen card wall for showing QR codes, and the A4 sheets for printing. */
+.modeTabs{display:flex;gap:4px;max-width:960px;margin:0 auto 14px;padding:4px;border-radius:12px;background:#ebe7da}
+.workspace .modeTabs button{flex:1;border-color:transparent;background:transparent;font-weight:600;color:#536763}
+.workspace .modeTabs button[aria-pressed="true"]{background:#fffdf8;border-color:#2f6962;color:#1f4f44;box-shadow:0 2px 5px #18333112}
+.confirm{flex-wrap:wrap}.confirm label{display:flex;gap:12px;align-items:flex-start;flex:1 1 280px}
+.cardWall{list-style:none;padding:0;margin:0 auto 32px;max-width:1200px;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.workspace .wallCard{width:100%;display:grid;gap:8px;justify-items:center;padding:14px 12px 16px;border:1px solid #ded8c9;border-radius:16px;background:#fff;cursor:zoom-in;transition:transform .12s,box-shadow .12s}
+.workspace .wallCard:hover{transform:translateY(-2px);box-shadow:0 8px 18px #18333118}
+.wallCard svg{width:100%;max-width:200px;height:auto;aspect-ratio:1}
+.wallName{display:flex;gap:8px;align-items:baseline;justify-content:center;max-width:100%;font-size:15px}.wallName b{font-size:18px}.wallName span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:600px){.cardWall{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.workspace .wallCard{padding:10px 8px 12px}.wallName{font-size:13px}.wallName b{font-size:15px}}
+.zoom{position:fixed;inset:0;z-index:5;display:grid;grid-template-rows:auto 1fr;background:#f7f3e9;padding:16px}
+.zoomTop{display:flex;justify-content:space-between;align-items:center;max-width:900px;width:100%;margin:0 auto;font-weight:600;color:#536763}
+.zoomBody{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;max-width:900px;width:100%;margin:0 auto;min-height:0}
+.zoomBody figure{margin:0;display:grid;gap:12px;justify-items:center;min-height:0}
+.zoomBody figcaption{display:flex;gap:12px;align-items:baseline;font-size:clamp(22px,4vw,36px)}.zoomBody figcaption b{font-size:clamp(28px,5vw,48px)}
+.zoomBody svg{width:min(78vw,62vh,560px);height:auto;aspect-ratio:1;border:1px solid #ded8c9;border-radius:12px;padding:8px;background:#fff}
+.zoomBody small{color:#536763;font-size:14px}
+.workspace .zoomNav{width:56px;height:56px;border-radius:50%;font-size:30px;padding:0;line-height:1}
+@media(max-width:600px){.zoom{padding:12px}.zoomBody{grid-template-columns:1fr 1fr;grid-template-rows:1fr auto}.zoomBody figure{grid-column:1/-1;grid-row:1}.zoomBody .zoomNav{grid-row:2;justify-self:center}.zoomBody svg{width:min(88vw,60vh)}}
+@media(prefers-reduced-motion:reduce){.workspace .wallCard{transition:none}.workspace .wallCard:hover{transform:none}}
+.workspace .wallCard svg{width:100%;max-width:220px;height:auto;margin:0;padding:0;border:0}
+.workspace .zoomBody svg{width:min(78vw,62vh,560px);height:auto;max-width:none;margin:0}
+@media(max-width:600px){.workspace .zoomBody svg{width:min(88vw,60vh)}}

@@ -17,14 +17,14 @@ export function StudentTable({classroom,csrf,run,onChanged}:Props){
  async function bulk(permissions:EditingPermissions|null){const next=await run(()=>studentsPermissions(chosen,permissions,csrf));if(next){onChanged(next);setSelected(new Set());}}
  if(!classroom.students.length)return <p className={styles.hint}>아직 학생이 없어요. 위에서 학생을 만들어 주세요.</p>;
  return <>
-  <div className={styles.row}><button className={styles.btn} onClick={()=>setNamesOpen(true)}>이름 한꺼번에 넣기</button><button className={styles.btn} onClick={()=>setPrintNumbers(numbers)}>전체 학생 QR 인쇄</button></div>
+  <div className={styles.row}><button className={styles.btn} onClick={()=>setNamesOpen(true)}>이름 한꺼번에 넣기</button><button className={styles.btn} onClick={()=>setPrintNumbers(numbers)}>전체 학생 QR 보기</button></div>
   <div className={styles.tableWrap}><table className={styles.table}>
    <caption className={styles.hint} style={{textAlign:'left'}}>학생 {classroom.students.length}명</caption>
    <thead><tr><th><input type="checkbox" className={styles.check} checked={all} aria-label="학생 모두 선택" onChange={()=>setSelected(all?new Set():new Set(numbers))}/></th><th>번호</th><th>이름</th><th>비밀번호</th><th>QR</th><th>편집 허용</th><th>관리</th></tr></thead>
    <tbody>{classroom.students.map(student=><StudentRow key={`${student.number}:${student.name}`} student={student} classroom={classroom} checked={selected.has(student.number)} onToggle={()=>toggle(student.number)} csrf={csrf} run={run} onChanged={onChanged} open={kind=>setDialog({kind,student})}/>)}</tbody>
   </table></div>
   {chosen.length>0&&<div className={styles.bulk} role="region" aria-label="선택한 학생에게 적용">
-   <strong>{chosen.length}명 선택</strong><button className={styles.btn} onClick={()=>setPrintNumbers(chosen)}>선택한 학생 QR 인쇄</button>
+   <strong>{chosen.length}명 선택</strong><button className={styles.btn} onClick={()=>setPrintNumbers(chosen)}>선택한 학생 QR 보기</button>
    {PERMISSION_PRESETS.map(preset=><button key={preset.id} className={styles.btn} onClick={()=>void bulk(preset.permissions)}>{preset.label}으로 적용</button>)}
    <button className={styles.btn} onClick={()=>void bulk(null)}>기본값 사용</button>
    <button className={styles.btn} onClick={()=>setSelected(new Set())}>선택 해제</button>
