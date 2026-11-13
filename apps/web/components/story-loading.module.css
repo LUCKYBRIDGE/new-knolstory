@@ -35,3 +35,5 @@
 .loading[data-recovery=true] .hint{display:block}.loading[data-recovery=true] .art{max-height:120px}.loading[data-recovery=true] .rule{display:none}
 /* Center the character inside its reserved box (a block image otherwise sits at the left edge). */
 .art picture{display:grid;place-items:center}.art img{margin:0 auto}
+/* The full-page loader fills the viewport itself; compact container layouts apply to the stage only. */
+.loading:not([data-story-loading=stage]){container-type:normal;width:100%}

@@ -4,7 +4,7 @@ import type {DeletedWork} from '../lib/personal-library';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import styles from './authoring-import-dialog.module.css';
 export function PersonalLibraryTools({deleted,pendingTitle,onRestore,onCancel,onConfirm}:{deleted?:DeletedWork;pendingTitle?:string;onRestore:()=>void;onCancel:()=>void;onConfirm:()=>void}){
- return <><details><summary style={{minHeight:44,display:"flex",alignItems:"center",padding:"0 16px",cursor:"pointer"}}>삭제한 작품 복구</summary><p>가장 최근에 삭제한 내 작품 한 권은 복구할 수 있어요. 다른 작품을 삭제하면 그 작품으로 바뀌어요.</p>{deleted?<button onClick={onRestore}>{deleted.project.title} 복구</button>:<p>삭제한 작품이 없습니다.</p>}</details>{pendingTitle&&<DeleteConfirmation title={pendingTitle} onCancel={onCancel} onConfirm={onConfirm}/>}</>;
+ return <><details data-library-restore><summary>삭제한 작품 복구</summary><p>가장 최근에 삭제한 내 작품 한 권은 복구할 수 있어요. 다른 작품을 삭제하면 그 작품으로 바뀌어요.</p>{deleted?<button onClick={onRestore}>{deleted.project.title} 복구</button>:<p>삭제한 작품이 없어요.</p>}</details>{pendingTitle&&<DeleteConfirmation title={pendingTitle} onCancel={onCancel} onConfirm={onConfirm}/>}</>;
 }
 function DeleteConfirmation({title,onCancel,onConfirm}:{title:string;onCancel:()=>void;onConfirm:()=>void}){
  const ref=useRef<HTMLDialogElement>(null);

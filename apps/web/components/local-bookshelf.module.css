@@ -62,3 +62,14 @@
 
 .serviceNavigation{max-width:1200px;margin:0 auto 20px;padding:0 12px;background:#fff8e9e8;border:1px solid #bca47d;border-radius:12px;position:relative;z-index:6}
 .serviceNavigation>div{border-bottom:0}
+
+/* Empty shelf: the message sits inside the first shelf row, never on a rail, with one next step. */
+.emptyMessage{top:0;left:0;right:0;height:calc(var(--shelf-row) - var(--fascia));z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 16px;box-sizing:border-box}
+.emptyMessage p{margin:0;font:500 15px/1.6 "Knol Story Serif",serif;text-shadow:0 1px 2px #2a170c;word-break:keep-all}
+.emptyMessage button{min-height:40px;padding:8px 16px;border-radius:20px;border:1px solid #e9cf9f;background:#fff6e2;color:#3a2a1c;font-size:13px;font-weight:600;cursor:pointer}
+.emptyMessage button+button{background:transparent;color:#fff0d3;border-color:#e9cf9f99}
+@media(max-width:480px){.emptyMessage p{font-size:13px}.emptyMessage{gap:6px}.emptyMessage button{min-height:36px;padding:6px 12px;font-size:12px}}
+/* Online-only covers keep the book proportion on narrow shelves: text is clipped, never stretched upward. */
+.remoteCover{overflow:hidden;min-height:0;gap:4px;padding:12% 8%}
+.remoteCover>strong{-webkit-line-clamp:3}
+@media(max-width:600px){.remoteCover{border-left-width:5px}.remoteCover>strong{font-size:10px;line-height:1.35}.remoteCover>small{display:none}.remoteCover>svg{width:16px;height:16px}}

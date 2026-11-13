@@ -78,7 +78,13 @@ export function LocalBookshelf({online,accountMenu,navigation,works,onOpen,onCre
     </section>)}
     {Array.from({length:displaySlots-pagination.items.length},(_,index)=><div key={`empty-${index}`} className={styles.emptySlot} aria-hidden="true"><span className={styles.plank}/></div>)}
     {Array.from({length:occupiedRows},(_,index)=><span key={`rail-${index}`} className={styles.rail} style={{'--shelf-index':index+1} as CSSProperties} data-cabinet-rail aria-hidden="true"/>)}
-    {!visible.length&&<p className={styles.emptyMessage}>이 자리는 새로운 이야기를 기다리고 있어요.</p>}
+    {!visible.length&&<div className={styles.emptyMessage} data-empty-shelf>
+     <p>{query.trim()?'찾는 제목의 책이 없어요.':filter==='own'?'아직 내 작품이 없어요.':'이 자리는 새로운 이야기를 기다리고 있어요.'}</p>
+     {query.trim()?<button type="button" onClick={()=>setQuery('')}>검색 지우기</button>
+      :filter==='own'?<button type="button" disabled={disabled} onClick={()=>{if(tools.current){tools.current.open=true;tools.current.querySelector<HTMLButtonElement>('button[aria-expanded]')?.focus();}}}>새 이야기 만들기</button>
+      :null}
+     {filter!=='all'&&!query.trim()&&<button type="button" onClick={()=>setFilter('all')}>모든 작품 보기</button>}
+    </div>}
    </div>
    <div className={styles.drawer} role="group" aria-label="책장 서랍" data-drawer-face><span className={styles.drawerHandle} aria-hidden="true"/><nav className={styles.paging} aria-label={`${filter==='all'?'서재':sections.find(section=>section.kind===filter)?.title} 선반 페이지`}><button aria-label="이전 선반" disabled={pagination.page===0} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page-1}))}>‹</button><span role="status">{pagination.page+1} / {pagination.pages} 선반 · {visible.length}권</span><button aria-label="다음 선반" disabled={pagination.page===pagination.pages-1} onClick={()=>setPages(current=>({...current,[pageKey]:pagination.page+1}))}>›</button></nav></div><span className={styles.base} data-cabinet-base aria-hidden="true"/>
   </div>
