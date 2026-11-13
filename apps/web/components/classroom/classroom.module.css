@@ -244,3 +244,11 @@
 .taskMeta li{padding:2px 10px;border-radius:12px;background:#f1f3ea}
 .seasonNote{display:flex;gap:10px;align-items:flex-start;margin:0 0 16px;padding:12px 14px;border-radius:12px;border:1px solid #e3d6b3;background:#fdf7e6;color:#5b4a26;font-size:.875rem;line-height:1.6;word-break:keep-all}
 .seasonNote[data-soon=true]{border-color:#e7b98f;background:#fdeee0;color:#7a3f12}
+/* Teacher hand-in link: one quiet line on the card, a small form when editing. */
+.shareLine{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:8px 0 0;font-size:.8125rem;color:var(--class-muted)}
+.shareLine a{color:#1f4f44;font-weight:600;text-underline-offset:3px;overflow-wrap:anywhere}
+.linkBtn{border:0;background:none;padding:6px 2px;min-height:32px;color:#2f6962;font:inherit;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.shareEdit{display:grid;gap:8px;margin:10px 0 0;padding:12px;border:1px dashed #c7cbbc;border-radius:12px;background:#fbfbf6}
+.shareBox{display:grid;gap:8px;margin:12px 0;padding:14px;border:1px solid #cfe0d5;border-radius:12px;background:#f2f8f3}
+.shareBox ol{margin:0;padding-left:20px;font-size:.875rem;line-height:1.7}
+.shareBox small{color:var(--class-muted);font-size:.75rem}

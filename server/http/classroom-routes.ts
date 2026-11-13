@@ -133,6 +133,14 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   await classroom.recordLogin(accountId,method).catch(()=>undefined);
   return {role:'student' as const,csrf:issued.csrf};
  }
+ /** A teacher's hand-in link: https only, no embedded credentials; null or '' clears it. */
+ function shareUrl(value:unknown):string|null{
+  if(value===null||value==='')return null;
+  const raw=string(value,9,2048);let url:URL;
+  try{url=new URL(raw);}catch{throw bad();}
+  if(url.protocol!=='https:'||url.username||url.password)throw bad();
+  return url.href;
+ }
  function requireOrigin(req:IncomingMessage){if(header(req,'origin')!==origin)throw new HttpError(403,'INVALID_CSRF');}
 
  const routes:Route[]=[
@@ -225,22 +233,24 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   }},
   {method:'GET',pattern:/^\/classroom\/assignments$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listAssignments(accountId,role)},
   {method:'POST',pattern:/^\/classroom\/assignments$/,access:'teacher',body:'json',status:201,run({accountId,body}){
-   const input=object(body,['title','description','storyKey','format'],['title']);
+   const input=object(body,['title','description','storyKey','format','shareUrl'],['title']);
    if(input.format!==undefined&&input.format!=='knolstory'&&input.format!=='shortstory')throw bad();
    return classroom.createAssignment(accountId,{
     format:input.format??'knolstory',
     title:string(input.title,1,100),
     description:input.description===undefined?'':string(input.description,0,2000,false),
     storyKey:input.storyKey===undefined||input.storyKey===null?null:string(input.storyKey,1,128),
+    shareUrl:input.shareUrl===undefined?null:shareUrl(input.shareUrl),
    });
   }},
   {method:'PATCH',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'json',run({accountId,params,body}){
-   const input=object(body,['title','description','open']);
+   const input=object(body,['title','description','open','shareUrl']);
    if(!Object.keys(input).length||(input.open!==undefined&&typeof input.open!=='boolean'))throw bad();
    return classroom.patchAssignment(accountId,params[0]!,{
     ...(input.title!==undefined?{title:string(input.title,1,100)}:{}),
     ...(input.description!==undefined?{description:string(input.description,0,2000,false)}:{}),
     ...(input.open!==undefined?{open:input.open as boolean}:{}),
+    ...(input.shareUrl!==undefined?{shareUrl:shareUrl(input.shareUrl)}:{}),
    });
   }},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.listSubmissions(accountId,params[0]!)},

@@ -178,10 +178,14 @@ describe('classroom routes: teacher endpoints',()=>{
  it('creates, patches and reads assignments and submissions',async()=>{
   const h=await harness(),t=h.as(await h.login(teacherId));
   expect((await t('/classroom/assignments','POST',{title:' 이야기 ',description:'설명',storyKey:'story-a'})).status).toBe(201);
-  expect(h.service.createAssignment).toHaveBeenCalledWith(teacherId,{title:'이야기',description:'설명',storyKey:'story-a',format:'knolstory'});
-  await t('/classroom/assignments','POST',{title:'t'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'t',description:'',storyKey:null,format:'knolstory'});
+  expect(h.service.createAssignment).toHaveBeenCalledWith(teacherId,{title:'이야기',description:'설명',storyKey:'story-a',format:'knolstory',shareUrl:null});
+  await t('/classroom/assignments','POST',{title:'t'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'t',description:'',storyKey:null,format:'knolstory',shareUrl:null});
   expect((await t('/classroom/assignments','POST',{title:'그림 이야기',format:'shortstory'})).status).toBe(201);
-  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'그림 이야기',description:'',storyKey:null,format:'shortstory'});
+  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'그림 이야기',description:'',storyKey:null,format:'shortstory',shareUrl:null});
+  await t('/classroom/assignments','POST',{title:'링크',shareUrl:'https://drive.google.com/drive/folders/abc'});
+  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'링크',description:'',storyKey:null,format:'knolstory',shareUrl:'https://drive.google.com/drive/folders/abc'});
+  for(const bad of ['http://drive.google.com/x','javascript:alert(1)','https://u:p@example.com/x','nope'])expect((await t('/classroom/assignments','POST',{title:'x',shareUrl:bad})).status).toBe(400);
+  await t(`/classroom/assignments/${assignmentId}`,'PATCH',{shareUrl:null});expect(h.service.patchAssignment).toHaveBeenLastCalledWith(teacherId,assignmentId,{shareUrl:null});
   for(const format of ['other',null,1])expect((await t('/classroom/assignments','POST',{title:'잘못된 종류',format})).status).toBe(400);
   await t('/classroom/assignments/'+assignmentId,'PATCH',{open:false,title:'x'});expect(h.service.patchAssignment).toHaveBeenCalledWith(teacherId,assignmentId,{title:'x',open:false});
   await t('/classroom/assignments');expect(h.service.listAssignments).toHaveBeenCalledWith(teacherId,'teacher');

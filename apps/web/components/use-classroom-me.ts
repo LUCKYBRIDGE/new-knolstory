@@ -1,5 +1,6 @@
 'use client';
 import {useCallback,useEffect,useRef,useState} from 'react';
+import {rememberStudentNumber} from '../lib/student-file-prefix';
 import {onlineEnabled} from '../lib/online-mode';
 import {classMe,type ClassroomMe} from '../lib/classroom-api';
 import {ALL_EDITING_ALLOWED,type EditingPermissions} from '../lib/editing-permissions';
@@ -22,6 +23,9 @@ export function useClassroomMeFor(session:AccountSession|null,sessionLoading:boo
  const me=state.accountId===accountId&&accountId?state.me:null;
  const role:ClassroomRoleState=!me?'guest':me.role;
  const permissions=me?.role==='student'?me.student?.permissions??ALL_EDITING_ALLOWED:ALL_EDITING_ALLOWED;
+ const studentNumber=me?.role==='student'?me.student?.number??null:null,settled=!sessionLoading&&!state.loading;
+ // Keep the class number on this device so student saves are named "07_…" even offline; forget it on sign-out or another role.
+ useEffect(()=>{if(settled&&onlineEnabled)rememberStudentNumber(studentNumber);},[settled,studentNumber]);
  return {loading:sessionLoading||state.loading||!!accountId&&state.accountId!==accountId,role,permissions,me,session,error:state.accountId===accountId?state.error:'',refresh:load};
 }
 /** For the editor: `{loading, role, permissions}`. Permissions are ALL_EDITING_ALLOWED unless the signed-in account is a student. */

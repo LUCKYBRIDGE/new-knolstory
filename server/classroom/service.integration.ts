@@ -179,6 +179,10 @@ describe('real PostgreSQL classroom service',()=>{
   expect(created).toMatchObject({title:'첫 이야기',description:'설명',storyKey:'story-a',format:'shortstory',open:true});
   now+=1000;const second=await service.createAssignment(teacher,{title:'둘째',description:'',storyKey:null});
   expect(second.format).toBe('knolstory');
+  expect(second.shareUrl).toBeNull();
+  const linked=await service.patchAssignment(teacher,second.id,{shareUrl:'https://drive.google.com/drive/folders/abc'});expect(linked.shareUrl).toBe('https://drive.google.com/drive/folders/abc');
+  expect((await service.patchAssignment(teacher,second.id,{title:'둘째 고침'})).shareUrl).toBe('https://drive.google.com/drive/folders/abc');
+  expect((await service.patchAssignment(teacher,second.id,{shareUrl:null})).shareUrl).toBeNull();
   expect((await service.listAssignments(teacher,'teacher')).map(a=>a.id)).toEqual([second.id,created.id]);
   expect(await service.listAssignments(stranger,'student')).toEqual([]);
   expect(await failure(service.listAssignments(teacher,'student'))).toBe('403 ROLE_NOT_ALLOWED');
