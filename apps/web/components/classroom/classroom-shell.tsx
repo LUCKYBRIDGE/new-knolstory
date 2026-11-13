@@ -37,7 +37,7 @@ function NextStep({state,roles}:{state:ClassroomMeState;roles:readonly Classroom
  if(state.role==='guest'){
   title='로그인이 필요해요';
   body=forAdmins?'관리자 계정으로 로그인해 주세요.':'선생님은 카카오 계정으로 로그인해요. 학생은 선생님이 알려 준 학급 코드로 들어와요.';
-  action=<><a className={`${styles.btn} ${styles.primary}`} href="/api/v1/auth/kakao/start">카카오로 로그인</a>{!forAdmins&&<a className={styles.btn} href="/student">학생 로그인</a>}</>;
+  action=<><a className={`${styles.btn} ${styles.primary}`} href="/api/v1/auth/kakao/start">카카오로 로그인</a>{!forAdmins&&<Link className={styles.btn} href="/student">학생 로그인</Link>}</>;
  }else if(state.role==='member'&&forTeachers){
   title=upgraded?'교사로 등록했어요':'교사 등록을 하면 학급을 열 수 있어요';
   body=upgraded?'잠시 뒤 교사 대시보드가 열려요.':'운영자에게 받은 교사 등록 코드를 넣으면 학급 만들기, 학생 계정, 과제와 미션을 쓸 수 있어요.';
@@ -45,15 +45,15 @@ function NextStep({state,roles}:{state:ClassroomMeState;roles:readonly Classroom
  }else if(state.role==='student'){
   title='학생 계정으로 로그인되어 있어요';
   body='내 과제와 미션은 ‘내 과제’에서 볼 수 있어요.';
-  action=<a className={`${styles.btn} ${styles.primary}`} href="/student">내 과제로 가기</a>;
+  action=<Link className={`${styles.btn} ${styles.primary}`} href="/student">내 과제로 가기</Link>;
  }else if((state.role==='teacher'||state.role==='admin')&&!forTeachers&&!forAdmins){
   title='교사 계정으로 로그인되어 있어요';
   body='학생 화면은 학생 계정으로 들어가요. 학생 계정과 접속 QR은 학생 탭에서 만들 수 있어요.';
-  action=<a className={`${styles.btn} ${styles.primary}`} href="/teacher?tab=students">학생 탭으로 가기</a>;
+  action=<Link className={`${styles.btn} ${styles.primary}`} href="/teacher?tab=students">학생 탭으로 가기</Link>;
  }else{
   title='관리자만 열 수 있는 화면이에요';
   body=state.role==='teacher'?'교사 대시보드에서 학급을 관리할 수 있어요.':'이 계정으로는 열 수 없어요. 서재로 돌아가 주세요.';
-  action=state.role==='teacher'?<a className={`${styles.btn} ${styles.primary}`} href="/teacher">교사 대시보드로 가기</a>:<a className={styles.btn} href="/?view=library">서재로 가기</a>;
+  action=state.role==='teacher'?<Link className={`${styles.btn} ${styles.primary}`} href="/teacher">교사 대시보드로 가기</Link>:<Link className={styles.btn} href="/?view=library">서재로 가기</Link>;
  }
  return <section className={`${styles.card} ${styles.nextStep}`} aria-label={title}>
   <h2>{title}</h2><p className={styles.hint}>{body}</p>{action&&<div className={styles.nextActions}>{action}</div>}
