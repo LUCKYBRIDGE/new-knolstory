@@ -2,6 +2,7 @@ import type {IncomingMessage,ServerResponse} from 'node:http';
 import {AuthStateError,authCookieNames,serializeAuthCookie,validateAuthOrigin,type createAuthStateService} from '../auth/auth-state';
 import {ClassroomError,type ClassroomService,type Role} from '../classroom/service';
 import {PermissionsError,normalizePermissions} from '../classroom/permissions';
+import {dueAt} from '../classroom/mission-contract';
 import {normalizeClassCode,validQrToken} from '../classroom/secrets';
 import {createRateClientResolver} from './rate-client';
 
@@ -233,7 +234,8 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   }},
   {method:'GET',pattern:/^\/classroom\/assignments$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listAssignments(accountId,role)},
   {method:'POST',pattern:/^\/classroom\/assignments$/,access:'teacher',body:'json',status:201,run({accountId,body}){
-   const input=object(body,['title','description','storyKey','format','shareUrl'],['title']);
+   const input=object(body,['title','description','storyKey','format','shareUrl','dueAt','edition'],['title']);
+   if(input.edition!==undefined&&input.edition!==null&&input.edition!=='original'&&input.edition!=='knolstory')throw bad();
    if(input.format!==undefined&&input.format!=='knolstory'&&input.format!=='shortstory')throw bad();
    return classroom.createAssignment(accountId,{
     format:input.format??'knolstory',
@@ -241,16 +243,19 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     description:input.description===undefined?'':string(input.description,0,2000,false),
     storyKey:input.storyKey===undefined||input.storyKey===null?null:string(input.storyKey,1,128),
     shareUrl:input.shareUrl===undefined?null:shareUrl(input.shareUrl),
+    dueAt:input.dueAt===undefined?null:dueAt(input.dueAt),
+    edition:(input.edition??null) as 'original'|'knolstory'|null,
    });
   }},
   {method:'PATCH',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'json',run({accountId,params,body}){
-   const input=object(body,['title','description','open','shareUrl']);
+   const input=object(body,['title','description','open','shareUrl','dueAt']);
    if(!Object.keys(input).length||(input.open!==undefined&&typeof input.open!=='boolean'))throw bad();
    return classroom.patchAssignment(accountId,params[0]!,{
     ...(input.title!==undefined?{title:string(input.title,1,100)}:{}),
     ...(input.description!==undefined?{description:string(input.description,0,2000,false)}:{}),
     ...(input.open!==undefined?{open:input.open as boolean}:{}),
     ...(input.shareUrl!==undefined?{shareUrl:shareUrl(input.shareUrl)}:{}),
+    ...(input.dueAt!==undefined?{dueAt:dueAt(input.dueAt)}:{}),
    });
   }},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.listSubmissions(accountId,params[0]!)},

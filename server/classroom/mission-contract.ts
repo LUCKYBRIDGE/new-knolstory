@@ -39,6 +39,17 @@ export function missionReview(value:unknown):MissionReview{
  if(input.expectedSubmittedAt!==null&&(typeof input.expectedSubmittedAt!=='number'||!Number.isSafeInteger(input.expectedSubmittedAt)||input.expectedSubmittedAt<0))throw invalid();
  return {reviewStatus:input.reviewStatus as MissionReview['reviewStatus'],feedback:text(input.feedback,2000,input.reviewStatus==='revise'),expectedSubmittedAt:input.expectedSubmittedAt as number|null};
 }
+/** Optional due date: epoch milliseconds or null to clear. */
+export function dueAt(value:unknown):number|null{
+ if(value===null)return null;
+ if(typeof value!=='number'||!Number.isSafeInteger(value)||value<0)throw invalid();return value;
+}
+export function missionPatch(value:unknown):{open?:boolean;dueAt?:number|null}{
+ const input=object(value,['open','dueAt'],[]);
+ if(input.open===undefined&&input.dueAt===undefined)throw invalid();
+ if(input.open!==undefined&&typeof input.open!=='boolean')throw invalid();
+ return {...(input.open!==undefined?{open:input.open as boolean}:{}),...(input.dueAt!==undefined?{dueAt:dueAt(input.dueAt)}:{})};
+}
 export function missionOpen(value:unknown):boolean{
  const input=object(value,['open']);if(typeof input.open!=='boolean')throw invalid();return input.open;
 }

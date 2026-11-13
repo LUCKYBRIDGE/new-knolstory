@@ -846,7 +846,7 @@ export function StoryWorkspace() {
       const documentId=definition&&(url.searchParams.get('readEdition')==='knolstory'?definition.knolstoryDocumentId:definition.originalDocumentId);
       const fixture=documentId?builtInStories.find(item=>item.project.id===documentId):undefined;
       if(fixture){setMissionReturn(true);void openLibraryWork(fixture.id,'start');}
-      else setError('미션의 작품을 찾지 못했어요. 서재에서 작품을 골라 읽어 주세요.');
+      else setError('과제의 작품을 찾지 못했어요. 서재에서 작품을 골라 읽어 주세요.');
       url.searchParams.delete('readWork');url.searchParams.delete('readEdition');
       history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);
     },0);
@@ -881,7 +881,9 @@ export function StoryWorkspace() {
         }
         const storyKey=forced??task.storyKey;
         if(!storyKey&&!editorLimits.permissions.newWorks)throw Error('새 작품을 만들 수 없어요. 선생님께 바탕 작품을 확인해 주세요.');
-        const fixture=storyKey?builtInStories.find(item=>item.id===storyKey):undefined;
+        // Original edition: the classic manuscript; otherwise (or for older tasks) the KnolStory adaptation.
+        const definition=storyKey?BUILTIN_WORKS.find(item=>item.id===storyKey):undefined;
+        const fixture=storyKey?(task.edition==='original'&&definition?builtInStories.find(item=>item.project.id===definition.originalDocumentId):builtInStories.find(item=>item.id===storyKey)):undefined;
         if(storyKey&&!fixture)throw Error('과제의 바탕 작품을 찾지 못했어요.');
         saveBeforeImport();
         const next=fixture?createCatalogEditCopy(structuredClone(fixture.project),crypto.randomUUID(),new Date().toISOString(),savedProjects.current)

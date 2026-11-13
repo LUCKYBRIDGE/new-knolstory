@@ -59,6 +59,13 @@ describe('real PostgreSQL classroom service',()=>{
   expect(JSON.stringify(rows)).not.toContain('password');
  });
 
+ it('keeps the chosen edition only for tasks with a built-in base work',async()=>{
+  const teacher=await account('teacher');await service.createClassroom(teacher,'판본반');
+  const original=await service.createAssignment(teacher,{title:'원작 다시 쓰기',description:'',storyKey:'rabbit',edition:'original'});
+  expect(original.edition).toBe('original');
+  expect((await service.createAssignment(teacher,{title:'자유',description:'',storyKey:null,edition:'original'})).edition).toBeNull();
+ });
+
  it('upgrades members only with the current teacher code and stores just a hash',async()=>{
   const member=await account();
   expect(await failure(service.teacherUpgrade(member,'anything'))).toBe('403 INVALID_TEACHER_CODE');
@@ -180,6 +187,7 @@ describe('real PostgreSQL classroom service',()=>{
   now+=1000;const second=await service.createAssignment(teacher,{title:'둘째',description:'',storyKey:null});
   expect(second.format).toBe('knolstory');
   expect(second.shareUrl).toBeNull();
+  expect(created.edition).toBeNull();
   const linked=await service.patchAssignment(teacher,second.id,{shareUrl:'https://drive.google.com/drive/folders/abc'});expect(linked.shareUrl).toBe('https://drive.google.com/drive/folders/abc');
   expect((await service.patchAssignment(teacher,second.id,{title:'둘째 고침'})).shareUrl).toBe('https://drive.google.com/drive/folders/abc');
   expect((await service.patchAssignment(teacher,second.id,{shareUrl:null})).shareUrl).toBeNull();

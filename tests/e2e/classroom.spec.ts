@@ -153,7 +153,7 @@ test('student submits and teacher opens a device copy after the assignment close
  expect(submitted.content.format).toBe('knolstory');expect(submitted.content.document.project.title).toContain('하늘의 이야기');
  state.assignments[0].open=false;
  await page.reload();
- await page.locator('summary').filter({hasText:'마감된 과제'}).click();
+ await expect(page.getByRole('heading',{name:/^끝났어요/})).toBeVisible();
  await expect(page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'내 이야기 쓰기',exact:true})})).toContainText('닫힘');
  await expect(page.getByRole('button',{name:'다시 제출'})).toHaveCount(0);
  const downloading=page.waitForEvent('download');
@@ -320,7 +320,7 @@ test('teacher chooses the assignment type and students start a picture book task
   student.assignments=teacher.assignments;
   student.permissions={...textOnly,newWorks:false,forcedStoryKey:'rabbit'};
   await studentPage.goto('/student');
-  await expect(studentPage.getByRole('heading',{name:'숏스토리',exact:true})).toBeVisible();
+  await expect(studentPage.getByText('작품 쓰기 · 숏스토리').first()).toBeVisible();
   await studentPage.getByRole('link',{name:'과제 쓰기',exact:true}).click();
   const text=studentPage.getByLabel('이 쪽의 이야기',{exact:true});
   await expect(text).toBeVisible();
@@ -412,7 +412,7 @@ test('classroom design keeps long titles and management usable across screen siz
   await page.screenshot({path:info.outputPath(`teacher-${viewport.width}.png`),fullPage:true});
   await page.getByRole('button',{name:'숏스토리 · 2',exact:true}).click();
   await expect(page.getByRole('heading',{name:'삽화를 섞어 만드는 나만의 그림책',exact:true})).toBeVisible();
-  await page.getByText('새 과제 만들기',{exact:true}).click();
+  await page.getByText('작품 쓰기 과제 만들기',{exact:true}).click();
   await expect(page.getByLabel('과제 유형',{exact:true})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole('link',{name:'학급 설정',exact:true}).click();
@@ -429,8 +429,8 @@ test('classroom design keeps long titles and management usable across screen siz
   student.signedIn=true;student.permissions=all;student.assignments=teacher.assignments;
   for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
    await studentPage.setViewportSize(viewport);await studentPage.goto('/student');
-   await expect(studentPage.getByRole('heading',{name:'숏스토리',exact:true})).toBeVisible();
-   expect(await studentPage.getByRole('link',{name:'과제 쓰기',exact:true}).count()).toBe(2);
+   await expect(studentPage.getByRole('region',{name:'할 일'})).toBeVisible();
+   await expect(studentPage.getByRole('link',{name:'과제 쓰기',exact:true})).toHaveCount(2);
    expect(await studentPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    await studentPage.addScriptTag({content:axe.source});
    const scan=await studentPage.locator('main').evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']},iframes:false}));
@@ -459,7 +459,7 @@ test('teacher navigation separates tasks, students and settings and shares the a
  await expect(page.getByRole('region',{name:'학생 만들기',exact:true})).toHaveCount(0);
  await nav.getByRole('link',{name:'학생',exact:true}).click();
  await expect(page.getByRole('region',{name:'학생 만들기',exact:true})).toBeVisible();
- await expect(page.getByRole('region',{name:'과제',exact:true})).toHaveCount(0);
+ await expect(page.getByRole('region',{name:'읽기·활동 과제',exact:true})).toHaveCount(0);
  await page.getByRole('link',{name:'학급 설정',exact:true}).click();
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await page.getByLabel('학급 이름',{exact:true}).fill('함께 쓰는 반');
@@ -521,7 +521,7 @@ for(const [path,key] of [['/?view=library','knolstory-next-workspace-v1'],['/sho
  await expect(nav.getByRole('link',{name:'과제',exact:true})).toBeVisible();
  await nav.getByRole('link',{name:'과제',exact:true}).click();
  await expect(page).toHaveURL(/\/teacher$/);
- await expect(page.getByRole('heading',{name:'과제',exact:true})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'작품 쓰기 과제',exact:true})).toBeVisible();
  expect(await page.evaluate(key=>localStorage.getItem(key),key)).toBe('corrupted-original-preserved');
 });
 
@@ -677,17 +677,30 @@ test('switching teacher accounts closes the prepared QR workspace',async({page})
 });
 
 const worksheetMission:Mission={id:'m1',title:'별주부전 독후 활동지',description:'읽고 생각을 써요.',criteria:'까닭을 함께 써요.',kind:'worksheet',storyKey:'rabbit',readingFormat:'original',questions:[{id:'q1',prompt:'기억에 남는 장면은?'},{id:'q2',prompt:'토끼의 선택을 어떻게 생각하나요?'}],open:true,createdAt:1};
+test('one composer opens the right form for every kind of task',async({page})=>{
+ const state=await mockClassroom(page,'teacher');
+ state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
+ await page.goto('/teacher');
+ const composer=page.getByRole('region',{name:'새 과제 내기'});
+ await composer.getByRole('button',{name:/^작품 쓰기 · 숏스토리/}).click();
+ await expect(page.getByLabel('과제 유형',{exact:true})).toHaveValue('shortstory');
+ await expect(page.locator('input[name="task-title"]')).toBeFocused();
+ await composer.getByRole('button',{name:/^독후 활동지/}).click();
+ await expect(page.locator('form[aria-label="과제 직접 만들기"]')).toBeVisible();
+ await composer.getByRole('button',{name:/^제공 과제 가져오기/}).click();
+ await expect(page.getByText('어떤 작품의 과제를 가져올까요?')).toBeVisible();
+});
 test('teacher imports a provided mission, edits it and assigns it',async({page})=>{
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
  await page.goto('/teacher');
- const panel=page.getByRole('region',{name:'미션',exact:true});
- await expect(panel.getByText('아직 배정한 미션이 없어요.',{exact:false})).toBeVisible();
- await panel.getByRole('button',{name:'놀스토리 제공 미션 가져오기'}).click();
+ const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
+ await expect(panel.getByText('아직 낸 과제가 없어요.',{exact:false})).toBeVisible();
+ await panel.getByRole('button',{name:'놀스토리 제공 과제 가져오기'}).click();
  await panel.getByRole('button',{name:'별주부전 독후 활동지 가져와서 고치기'}).click();
- const title=panel.getByLabel('미션 제목');await expect(title).toHaveValue('별주부전 독후 활동지');await title.fill('별주부전 독후 활동지 · 우리 반');
- await panel.getByRole('button',{name:'미션 배정하기'}).click();
- await expect(panel.getByRole('status')).toContainText('미션을 배정했어요');
+ const title=panel.getByLabel('과제 제목');await expect(title).toHaveValue('별주부전 독후 활동지');await title.fill('별주부전 독후 활동지 · 우리 반');
+ await panel.getByRole('button',{name:'과제 내기'}).click();
+ await expect(panel.getByRole('status')).toContainText('과제를 냈어요');
  await expect(panel.getByRole('heading',{name:'별주부전 독후 활동지 · 우리 반'})).toBeVisible();
  const body=state.bodies.at(-1) as Mission;
  expect(body).toMatchObject({title:'별주부전 독후 활동지 · 우리 반',kind:'worksheet',storyKey:'rabbit',readingFormat:'original'});
@@ -697,16 +710,16 @@ test('teacher writes a reading mission and must choose a work',async({page})=>{
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
  await page.goto('/teacher');
- const panel=page.getByRole('region',{name:'미션',exact:true});
+ const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
  await panel.getByRole('button',{name:'직접 만들기'}).click();
  await panel.getByRole('button',{name:/^읽기/}).click();
- await panel.getByLabel('미션 제목').fill('흥부와 놀부 읽기');
- await panel.getByRole('button',{name:'미션 배정하기'}).click();
+ await panel.getByLabel('과제 제목').fill('흥부와 놀부 읽기');
+ await panel.getByRole('button',{name:'과제 내기'}).click();
  await expect(panel.getByRole('alert')).toHaveText('읽을 작품을 골라 주세요.');
  expect(state.calls).not.toContain('POST class/classroom/missions');
  await panel.getByLabel('읽을 작품',{exact:true}).selectOption('heungbu');
  await panel.getByLabel('읽을 판본',{exact:true}).selectOption('knolstory');
- await panel.getByRole('button',{name:'미션 배정하기'}).click();
+ await panel.getByRole('button',{name:'과제 내기'}).click();
  await expect(panel.getByRole('heading',{name:'흥부와 놀부 읽기'})).toBeVisible();
  expect(state.bodies.at(-1)).toMatchObject({title:'흥부와 놀부 읽기',kind:'reading',storyKey:'heungbu',readingFormat:'knolstory',questions:[]});
 });
@@ -731,8 +744,9 @@ test('student submits a worksheet, rewrites after feedback and sees mission succ
  expect(state.missionRows.m1![2]!.answers.q2).toBe('살려면 어쩔 수 없었어요.');
  Object.assign(state.missionRows.m1![2]!,{reviewStatus:'passed',feedback:'잘 썼어요!'});
  await page.reload();
- await expect(card).toHaveAttribute('data-status','passed');await expect(card.getByText('미션 성공')).toBeVisible();
- await expect(page.getByLabel('미션 1개 가운데 1개 성공')).toContainText('1 / 1 성공');
+ await expect(card).toHaveAttribute('data-status','passed');await expect(card.getByText('과제 통과')).toBeVisible();
+ await expect(page.getByLabel(/^할 일 \d+개 가운데 1개 끝냄$/)).toContainText('1 /');
+ await expect(page.getByRole('heading',{name:/^끝났어요/})).toBeVisible();
 });
 test('teacher reviews answers, handles a changed submission, and passes paper work directly',async({page})=>{
  const state=await mockClassroom(page,'teacher');
@@ -740,7 +754,7 @@ test('teacher reviews answers, handles a changed submission, and passes paper wo
  state.missions=[structuredClone(worksheetMission)];state.missionRoster=[{number:2,name:'하늘'},{number:3,name:'바다'}];
  state.missionRows.m1={2:{answers:{q1:'용궁 장면',q2:'잘했어요'},note:'',submittedAt:100,reviewStatus:null,feedback:'',reviewedAt:null}};
  await page.goto('/teacher');
- const panel=page.getByRole('region',{name:'미션',exact:true});
+ const panel=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
  await panel.getByRole('button',{name:'별주부전 독후 활동지 학생 확인'}).click();
  await expect(panel.getByText('확인 대기 1')).toBeVisible();
  const first=panel.locator('details',{hasText:'2번 하늘'}),second=panel.locator('details',{hasText:'3번 바다'});
@@ -768,9 +782,9 @@ test('mission reading link opens the provided book and returns to the mission',a
  await page.getByRole('link',{name:'별주부전 읽으러 가기'}).click();
  const book=page.getByRole('main',{name:'책 표지와 소개'});
  await expect(book.getByRole('heading',{name:'별주부전',level:1})).toBeVisible({timeout:30000});
- await expect(book.getByText('미션으로 읽는 책이에요.',{exact:false})).toBeVisible();
+ await expect(book.getByText('과제로 읽는 책이에요.',{exact:false})).toBeVisible();
  expect(new URL(page.url()).search).toBe('');
- await book.getByRole('button',{name:'미션으로 돌아가기'}).click();
+ await book.getByRole('button',{name:'과제로 돌아가기'}).click();
  await expect(page).toHaveURL(/\/student$/);
  await expect(page.locator('article[data-mission="m1"]')).toBeVisible();
 });
@@ -800,7 +814,7 @@ test('admin sees the service overview and sets a readable teacher code',async({p
  const state=await mockRole(page,'admin');
  await page.goto('/admin');
  const stats=page.getByRole('region',{name:'서비스 현황'});
- await expect(stats.getByText('27',{exact:true})).toBeVisible();await expect(stats.getByText('배정된 미션 4개')).toBeVisible();
+ await expect(stats.getByText('27',{exact:true})).toBeVisible();await expect(stats.getByText('낸 과제 4개')).toBeVisible();
  await expect(page.getByRole('navigation',{name:'주 메뉴'}).getByRole('link',{name:'관리'})).toHaveAttribute('aria-current','page');
  const rooms=page.getByRole('region',{name:'학급 목록'});await expect(rooms.getByText('5학년 3반')).toBeVisible();await expect(rooms.getByText('4학년 1반')).toBeVisible();
  const card=page.getByRole('region',{name:'교사 등록 코드'});

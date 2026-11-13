@@ -40,11 +40,11 @@ function NextStep({state,roles}:{state:ClassroomMeState;roles:readonly Classroom
   action=<><a className={`${styles.btn} ${styles.primary}`} href="/api/v1/auth/kakao/start">카카오로 로그인</a>{!forAdmins&&<Link className={styles.btn} href="/student">학생 로그인</Link>}</>;
  }else if(state.role==='member'&&forTeachers){
   title=upgraded?'교사로 등록했어요':'교사 등록을 하면 학급을 열 수 있어요';
-  body=upgraded?'잠시 뒤 교사 대시보드가 열려요.':'운영자에게 받은 교사 등록 코드를 넣으면 학급 만들기, 학생 계정, 과제와 미션을 쓸 수 있어요.';
+  body=upgraded?'잠시 뒤 교사 대시보드가 열려요.':'운영자에게 받은 교사 등록 코드를 넣으면 학급 만들기, 학생 계정, 과제를 쓸 수 있어요.';
   action=upgraded?null:<button className={`${styles.btn} ${styles.primary}`} onClick={()=>setUpgrading(true)}>교사 등록 코드 넣기</button>;
  }else if(state.role==='student'){
   title='학생 계정으로 로그인되어 있어요';
-  body='내 과제와 미션은 ‘내 과제’에서 볼 수 있어요.';
+  body='과제는 ‘내 과제’ 화면에서 볼 수 있어요.';
   action=<Link className={`${styles.btn} ${styles.primary}`} href="/student">내 과제로 가기</Link>;
  }else if((state.role==='teacher'||state.role==='admin')&&!forTeachers&&!forAdmins){
   title='교사 계정으로 로그인되어 있어요';

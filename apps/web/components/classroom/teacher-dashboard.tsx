@@ -8,6 +8,7 @@ import {MissionsPanel} from './missions-panel';
 import {PermissionEditor} from './permission-editor';
 import {StudentTable} from './student-table';
 import {SeasonNote} from './season-note';
+import {TaskComposer,type TaskRequest} from './task-composer';
 import {StudentQrPrintWorkspace} from './student-qr-print';
 import styles from './classroom.module.css';
 export type TeacherPanel=Exclude<ServiceSection,'library'|'admin'>;
@@ -15,7 +16,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  const csrf=session.csrf;
  const [classroom,setClassroom]=useState<Classroom|null|undefined>(undefined),[error,setError]=useState(''),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false);
  const [loadFailed,setLoadFailed]=useState(false);
- const [name,setName]=useState(''),[count,setCount]=useState('1'),[confirmCode,setConfirmCode]=useState(false),[newQr,setNewQr]=useState<readonly number[]|null>(null);
+ const [name,setName]=useState(''),[count,setCount]=useState('1'),[confirmCode,setConfirmCode]=useState(false),[newQr,setNewQr]=useState<readonly number[]|null>(null),[taskRequest,setTaskRequest]=useState<TaskRequest|null>(null);
  const alive=useRef(true),mutation=useRef(false);
  useEffect(()=>{alive.current=true;return()=>{alive.current=false;};},[]);
  const run=useCallback(async<T,>(action:()=>Promise<T>):Promise<T|undefined>=>{
@@ -34,7 +35,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  if(classroom===undefined)return <p className={styles.card} role="status">불러오는 중이에요.</p>;
  if(classroom===null)return <form className={styles.card} aria-label="학급 만들기" onSubmit={(event:FormEvent)=>{event.preventDefault();if(name.trim())void mutate(()=>classroomCreate(name.trim(),csrf));}}>
   <h2>학급 만들기</h2><p className={styles.hint}>학급을 열면 학생이 들어올 학급 코드가 만들어져요. 교사 한 명이 학급 하나를 열 수 있어요.</p>
-  <ol className={styles.setupSteps}><li><b>학급 만들기</b><span>이름만 정하면 돼요</span></li><li><b>학생 계정 만들기</b><span>30명까지, 번호와 비밀번호가 함께 생겨요</span></li><li><b>과제와 미션 배정</b><span>제공 미션을 가져오면 바로 시작해요</span></li></ol>
+  <ol className={styles.setupSteps}><li><b>학급 만들기</b><span>이름만 정하면 돼요</span></li><li><b>학생 계정 만들기</b><span>30명까지, 번호와 비밀번호가 함께 생겨요</span></li><li><b>과제 내기</b><span>제공 과제를 가져오면 바로 시작해요</span></li></ol>
   <div className={styles.row}><label className={styles.field}>학급 이름<input value={name} onChange={event=>setName(event.target.value)} maxLength={30} placeholder="예: 5학년 3반"/></label><button className={`${styles.btn} ${styles.primary}`} disabled={busy||!name.trim()}>학급 만들기</button></div>
   {error&&<p className={styles.error} role="alert">{error}</p>}
  </form>;
@@ -48,7 +49,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
     :<button className={styles.btn} disabled={busy} onClick={()=>setConfirmCode(true)}>학급 코드 새로 만들기</button>}</details></div>}
   </section>
   <SeasonNote createdAt={classroom.createdAt} audience="teacher"/>
-  {panel==='assignments'&&<><AssignmentsPanel csrf={csrf} run={run}/><MissionsPanel csrf={csrf}/></>}
+  {panel==='assignments'&&<><TaskComposer onPick={kind=>setTaskRequest({kind,nonce:Date.now()})}/><AssignmentsPanel csrf={csrf} run={run} studentCount={classroom.students.length} request={taskRequest}/><MissionsPanel csrf={csrf} request={taskRequest}/></>}
   {panel==='students'&&<>
    <section className={styles.card} aria-label="학생 만들기"><h2>학생 만들기</h2>
     <p className={styles.hint} id="student-create-hint">{remaining>0?<>빈 번호부터 차례로 만들어요. 지금 {classroom.students.length}명, {remaining}명 더 만들 수 있어요.</>:'학급 인원 30명을 모두 만들었어요.'}</p>
