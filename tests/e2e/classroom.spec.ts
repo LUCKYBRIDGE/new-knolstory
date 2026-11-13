@@ -137,8 +137,8 @@ test('student submits and teacher opens a device copy after the assignment close
  await page.getByLabel('1컷 글',{exact:true}).fill('첫 컷이에요.');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  await page.goto('/student');
  await page.getByLabel('학급 코드').fill('abc234');await page.getByLabel('번호',{exact:true}).fill('2');await page.getByLabel('비밀번호',{exact:true}).fill('0000');
- await page.getByRole('button',{name:'로그인',exact:true}).click();await expect(page.locator('main [role=alert]')).toContainText('다시 확인');
- await page.getByLabel('비밀번호',{exact:true}).fill('4821');await page.getByRole('button',{name:'로그인',exact:true}).click();
+ await page.getByRole('button',{name:'들어가기',exact:true}).click();await expect(page.locator('main [role=alert]')).toContainText('다시 확인');
+ await page.getByLabel('비밀번호',{exact:true}).fill('4821');await page.getByRole('button',{name:'들어가기',exact:true}).click();
  await expect(page.getByRole('heading',{name:/3반 2번 하늘/})).toBeVisible();
  expect(state.bodies).toContainEqual({classCode:'ABC234',number:2,password:'4821'});
  await page.locator('summary').filter({hasText:'내가 고칠 수 있는 것'}).click();
@@ -750,4 +750,59 @@ test('mission reading link opens the provided book and returns to the mission',a
  await book.getByRole('button',{name:'미션으로 돌아가기'}).click();
  await expect(page).toHaveURL(/\/student$/);
  await expect(page.locator('article[data-mission="m1"]')).toBeVisible();
+});
+
+/** Account role screens without the classroom mock: admin overview and teacher code, plus the next steps for other roles. */
+async function mockRole(page:Page,initial:'guest'|'member'|'teacher'|'student'|'admin'){
+ const state={role:initial,codeSetAt:null as number|null,codes:[] as string[],upgradeCode:''};
+ await page.route('**/api/v1/**',async route=>{
+  const request=route.request(),path=new URL(request.url()).pathname.replace('/api/v1/',''),body=request.postData()?JSON.parse(request.postData()!):undefined;
+  if(path==='auth/config')return route.fulfill(ok({signupProvider:'kakao',providers:{kakao:true,google:false}}));
+  if(path==='me')return route.fulfill(state.role==='guest'?fail(401,'SESSION_REQUIRED'):ok({accountId:'a1',csrf:'csrf-1'}));
+  if(path==='class/me')return route.fulfill(state.role==='guest'?fail(401,'SESSION_REQUIRED'):ok(state.role==='student'?{role:'student',account:{id:'a1'},student:{number:1,name:'',classId:'c',className:'3반',permissions:all}}:{role:state.role,account:{id:'a1'}}));
+  if(path==='class/admin/overview')return route.fulfill(ok({teacherCodeUpdatedAt:state.codeSetAt,accounts:{member:4,teacher:2,student:27},classrooms:[{name:'5학년 3반',studentCount:25,assignmentCount:3,openAssignmentCount:1,missionCount:4,passedMissionCount:18,createdAt:1_770_000_000_000},{name:'4학년 1반',studentCount:2,assignmentCount:0,openAssignmentCount:0,missionCount:0,passedMissionCount:0,createdAt:1_769_000_000_000}]}));
+  if(path==='class/admin/teacher-code'&&request.method()==='PUT'){state.codes.push(body.code);state.codeSetAt=1_770_100_000_000;return route.fulfill(ok({updatedAt:state.codeSetAt}));}
+  if(path==='class/teacher-upgrade'){if(body.code!==state.upgradeCode)return route.fulfill(fail(403,'INVALID_TEACHER_CODE'));state.role='teacher';return route.fulfill(ok({role:'teacher'}));}
+  if(path==='class/classroom')return route.fulfill(fail(404,'CLASSROOM_NOT_FOUND'));
+  if(path==='class/classroom/missions'||path==='class/classroom/assignments')return route.fulfill(ok([]));
+  return route.fulfill(fail(404,'NOT_FOUND'));
+ });
+ return state;
+}
+test('admin sees the service overview and sets a readable teacher code',async({page})=>{
+ const state=await mockRole(page,'admin');
+ await page.goto('/admin');
+ const stats=page.getByRole('region',{name:'서비스 현황'});
+ await expect(stats.getByText('27',{exact:true})).toBeVisible();await expect(stats.getByText('배정된 미션 4개')).toBeVisible();
+ await expect(page.getByRole('navigation',{name:'주 메뉴'}).getByRole('link',{name:'관리'})).toHaveAttribute('aria-current','page');
+ const rooms=page.getByRole('region',{name:'학급 목록'});await expect(rooms.getByText('5학년 3반')).toBeVisible();await expect(rooms.getByText('4학년 1반')).toBeVisible();
+ const card=page.getByRole('region',{name:'교사 등록 코드'});
+ await expect(card.getByText('아직 코드를 정하지 않았어요.',{exact:false})).toBeVisible();
+ await card.getByRole('button',{name:'읽기 쉬운 코드 만들기'}).click();
+ const value=await card.getByLabel('새 코드 (6~32자)').inputValue();expect(value).toMatch(/^[A-HJKMNP-Z2-9]{4}(-[A-HJKMNP-Z2-9]{4}){2}$/);
+ await card.getByRole('button',{name:'코드 정하기'}).click();
+ await expect(card.getByLabel('새 교사 등록 코드')).toHaveText(value);expect(state.codes).toEqual([value]);
+ await expect(card.getByText('마지막으로 바꾼 때',{exact:false})).toBeVisible();
+ await card.getByRole('button',{name:'다 전했어요'}).click();await expect(card.getByLabel('새 교사 등록 코드')).toHaveCount(0);
+});
+test('a member becomes a teacher from the teacher page and others get a way forward',async({page})=>{
+ const state=await mockRole(page,'member');state.upgradeCode='KNOL-2026';
+ await page.goto('/teacher');
+ await expect(page.getByRole('heading',{name:'교사 등록을 하면 학급을 열 수 있어요'})).toBeVisible();
+ await page.getByRole('button',{name:'교사 등록 코드 넣기'}).click();
+ const dialog=page.getByRole('dialog',{name:'교사 등록'});
+ await dialog.getByLabel('교사 등록 코드').fill('WRONG-0000');await dialog.getByRole('button',{name:'등록하기'}).click();
+ await expect(dialog.getByRole('alert')).toHaveText('교사 등록 코드가 맞지 않아요.');
+ await dialog.getByLabel('교사 등록 코드').fill('KNOL-2026');await dialog.getByRole('button',{name:'등록하기'}).click();
+ await expect(page.getByRole('form',{name:'학급 만들기'})).toBeVisible();
+ await expect(page.getByRole('form',{name:'학급 만들기'}).getByText('학생 계정 만들기')).toBeVisible();
+ state.role='teacher';await page.goto('/admin');
+ await expect(page.getByRole('heading',{name:'관리자만 열 수 있는 화면이에요'})).toBeVisible();
+ await expect(page.getByRole('link',{name:'교사 대시보드로 가기'})).toHaveAttribute('href','/teacher');
+ await page.goto('/student');await expect(page.getByRole('link',{name:'학생 탭으로 가기'})).toBeVisible();
+ state.role='student';await page.goto('/teacher');await expect(page.getByRole('link',{name:'내 과제로 가기'})).toHaveAttribute('href','/student');
+ state.role='guest';await page.goto('/teacher');
+ await expect(page.getByRole('heading',{name:'로그인이 필요해요'})).toBeVisible();
+ await expect(page.getByRole('link',{name:'카카오로 로그인'})).toHaveAttribute('href','/api/v1/auth/kakao/start');
+ await expect(page.getByRole('link',{name:'학생 로그인'})).toHaveAttribute('href','/student');
 });

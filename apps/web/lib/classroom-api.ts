@@ -76,6 +76,20 @@ export async function classMe(fetcher:Fetcher=fetch):Promise<ClassroomMe|null>{
  return data as unknown as ClassroomMe;
 }
 export const teacherUpgrade=(code:string,csrf:string,fetcher:Fetcher=fetch)=>obj('/teacher-upgrade',fetcher,{method:'POST',csrf:csrfOf(csrf),body:{code}});
+export type AdminClassroomRow=Readonly<{name:string;studentCount:number;assignmentCount:number;openAssignmentCount:number;missionCount:number;passedMissionCount:number;createdAt:number}>;
+export type AdminOverview=Readonly<{teacherCodeUpdatedAt:number|null;accounts:Readonly<{member:number;teacher:number;student:number}>;classrooms:readonly AdminClassroomRow[]}>;
+/** Admin: service-wide counts. Carries no names of people, codes or passwords. */
+export async function adminOverview(fetcher:Fetcher=fetch):Promise<AdminOverview>{
+ const data=await obj('/admin/overview',fetcher);
+ if(!object(data.accounts)||!Array.isArray(data.classrooms)||!(data.teacherCodeUpdatedAt===null||typeof data.teacherCodeUpdatedAt==='number'))throw new ClassroomError('INVALID_RESPONSE',502);
+ return data as unknown as AdminOverview;
+}
+/** A teacher code that is easy to read aloud: no 0/O/1/I/L, grouped by four. */
+export function generateTeacherCode(random:(size:number)=>Uint8Array=size=>crypto.getRandomValues(new Uint8Array(size))):string{
+ const alphabet='ABCDEFGHJKMNPQRSTUVWXYZ23456789',bytes=random(12);
+ const chars=[...bytes].map(byte=>alphabet[byte%alphabet.length]);
+ return [chars.slice(0,4),chars.slice(4,8),chars.slice(8,12)].map(group=>group.join('')).join('-');
+}
 export async function adminTeacherCodeUpdatedAt(fetcher:Fetcher=fetch):Promise<number|null>{const data=await obj('/admin/teacher-code',fetcher);return typeof data.updatedAt==='number'?data.updatedAt:null;}
 export async function adminSetTeacherCode(code:string,csrf:string,fetcher:Fetcher=fetch):Promise<number|null>{const data=await obj('/admin/teacher-code',fetcher,{method:'PUT',csrf:csrfOf(csrf),body:{code}});return typeof data.updatedAt==='number'?data.updatedAt:null;}
 export const classroomCreate=async(name:string,csrf:string,fetcher:Fetcher=fetch)=>asClassroom(await obj('/classroom',fetcher,{method:'POST',csrf:csrfOf(csrf),body:{name}}));

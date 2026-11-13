@@ -144,6 +144,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
    try{return {role:await classroom.teacherUpgrade(accountId,code)};}
    catch(error){if(error instanceof ClassroomError&&error.code==='INVALID_TEACHER_CODE')upgradeFailures.hit(key);throw error;}
   }},
+  {method:'GET',pattern:/^\/admin\/overview$/,access:'admin',body:'none',run:()=>classroom.adminOverview()},
   {method:'GET',pattern:/^\/admin\/teacher-code$/,access:'admin',body:'none',async run(){return {updatedAt:await classroom.teacherCodeUpdatedAt()};}},
   {method:'PUT',pattern:/^\/admin\/teacher-code$/,access:'admin',body:'json',async run({body}){
    const code=string(object(body,['code'],['code']).code,6,32,false);

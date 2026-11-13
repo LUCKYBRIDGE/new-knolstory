@@ -28,6 +28,7 @@ async function harness(overrides:Partial<ClassroomRouterOptions>={}){
   me:vi.fn(async(id:string,role:Role)=>({role,account:{id}})),
   teacherUpgrade:vi.fn(async()=>'teacher' as const),
   teacherCodeUpdatedAt:vi.fn(async()=>123),
+  adminOverview:vi.fn(async()=>({teacherCodeUpdatedAt:123,accounts:{member:1,teacher:1,student:3},classrooms:[]})),
   setTeacherCode:vi.fn(async()=>456),
   createClassroom:vi.fn(async()=>({id:'c'})),getClassroom:vi.fn(async()=>({id:'c'})),patchClassroom:vi.fn(async()=>({id:'c'})),
   addStudents:vi.fn(async()=>({id:'c'})),patchStudent:vi.fn(async()=>({number:3})),setPermissions:vi.fn(async()=>({id:'c'})),deleteStudent:vi.fn(async()=>({id:'c'})),
@@ -373,5 +374,15 @@ describe('classroom routes: missions',()=>{
   expect(changed.status).toBe(409);expect(await code(changed)).toBe('MISSION_SUBMISSION_CHANGED');
   h.service.submitMission.mockRejectedValueOnce(new ClassroomError(409,'MISSION_CLOSED'));
   expect(await code(await student(`/classroom/missions/${missionId}/submission`,'PUT',{answers:{},note:''}))).toBe('MISSION_CLOSED');
+ });
+});
+
+describe('classroom routes: admin overview',()=>{
+ it('is for admins only and carries counts, never codes or passwords',async()=>{
+  const h=await harness(),admin=h.as(await h.login(adminId));
+  const response=await admin('/admin/overview');expect(response.status).toBe(200);
+  expect((await json(response)).data).toEqual({teacherCodeUpdatedAt:123,accounts:{member:1,teacher:1,student:3},classrooms:[]});
+  for(const who of [teacherId,studentId,memberId])expect(await code(await h.as(await h.login(who))('/admin/overview'))).toBe('ROLE_NOT_ALLOWED');
+  expect(await code(await h.guest('/admin/overview'))).toBe('SESSION_REQUIRED');
  });
 });

@@ -15,11 +15,12 @@ export function StudentLoginForm(){
  }
  return <form className={`${styles.card} ${styles.loginCard}`} onSubmit={event=>void submit(event)} aria-label="학생 로그인">
   <h2>학생 로그인</h2><p className={styles.hint}>선생님이 알려 준 학급 코드, 내 번호, 비밀번호를 써 주세요.</p>
+  <p className={styles.qrTip}><span aria-hidden="true">▣</span> 선생님이 나눠 준 접속 카드가 있다면 휴대폰 카메라로 QR을 찍어 바로 들어올 수 있어요.</p>
   <div className={styles.row}>
-   <label className={styles.field}>학급 코드<input value={code} onChange={event=>setCode(event.target.value)} autoCapitalize="characters" autoComplete="off" maxLength={6} size={8}/></label>
-   <label className={styles.field}>번호<input value={number} onChange={event=>setNumber(event.target.value)} inputMode="numeric" autoComplete="off" size={4}/></label>
-   <label className={styles.field}>비밀번호<input type="password" value={password} onChange={event=>setPassword(event.target.value)} autoComplete="off" size={10}/></label>
-   <button className={`${styles.btn} ${styles.primary}`} disabled={busy}>로그인</button>
+   <label className={styles.field}>학급 코드<input value={code} onChange={event=>setCode(event.target.value)} autoCapitalize="characters" autoComplete="off" spellCheck={false} maxLength={6} size={8} placeholder="예: K7M2QX"/></label>
+   <label className={styles.field}>번호<input value={number} onChange={event=>setNumber(event.target.value)} inputMode="numeric" autoComplete="off" size={4} placeholder="1–30"/></label>
+   <label className={styles.field}>비밀번호<input type="password" value={password} onChange={event=>setPassword(event.target.value)} autoComplete="off" size={10} placeholder="숫자 4자리"/></label>
+   <button className={`${styles.btn} ${styles.primary}`} disabled={busy}>{busy?'들어가는 중…':'들어가기'}</button>
   </div>
   {error&&<p className={styles.error} role="alert">{error}</p>}
  </form>;

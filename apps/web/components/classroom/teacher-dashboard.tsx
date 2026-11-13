@@ -8,7 +8,7 @@ import {MissionsPanel} from './missions-panel';
 import {PermissionEditor} from './permission-editor';
 import {StudentTable} from './student-table';
 import styles from './classroom.module.css';
-export type TeacherPanel=Exclude<ServiceSection,'library'>;
+export type TeacherPanel=Exclude<ServiceSection,'library'|'admin'>;
 export function TeacherDashboard({session,panel='assignments'}:{session:AccountSession;panel?:TeacherPanel}){
  const csrf=session.csrf;
  const [classroom,setClassroom]=useState<Classroom|null|undefined>(undefined),[error,setError]=useState(''),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false);
@@ -31,8 +31,9 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  if(loadFailed)return <section className={styles.card} role="alert"><p>{error}</p><button className={styles.btn} onClick={()=>{setLoadFailed(false);void classroomRead().then(value=>setClassroom(value)).catch(()=>setLoadFailed(true));}}>다시 불러오기</button></section>;
  if(classroom===undefined)return <p className={styles.card} role="status">불러오는 중이에요.</p>;
  if(classroom===null)return <form className={styles.card} aria-label="학급 만들기" onSubmit={(event:FormEvent)=>{event.preventDefault();if(name.trim())void mutate(()=>classroomCreate(name.trim(),csrf));}}>
-  <h2>학급 만들기</h2><p className={styles.hint}>학급을 열면 학급 코드가 만들어져요. 학급은 하나만 열 수 있어요.</p>
-  <div className={styles.row}><label className={styles.field}>학급 이름<input value={name} onChange={event=>setName(event.target.value)} maxLength={30}/></label><button className={`${styles.btn} ${styles.primary}`} disabled={busy||!name.trim()}>학급 만들기</button></div>
+  <h2>학급 만들기</h2><p className={styles.hint}>학급을 열면 학생이 들어올 학급 코드가 만들어져요. 교사 한 명이 학급 하나를 열 수 있어요.</p>
+  <ol className={styles.setupSteps}><li><b>학급 만들기</b><span>이름만 정하면 돼요</span></li><li><b>학생 계정 만들기</b><span>30명까지, 번호와 비밀번호가 함께 생겨요</span></li><li><b>과제와 미션 배정</b><span>제공 미션을 가져오면 바로 시작해요</span></li></ol>
+  <div className={styles.row}><label className={styles.field}>학급 이름<input value={name} onChange={event=>setName(event.target.value)} maxLength={30} placeholder="예: 5학년 3반"/></label><button className={`${styles.btn} ${styles.primary}`} disabled={busy||!name.trim()}>학급 만들기</button></div>
   {error&&<p className={styles.error} role="alert">{error}</p>}
  </form>;
  const remaining=30-classroom.students.length;

@@ -24,6 +24,8 @@ export type ClassroomView=ClassroomSummary&{defaultPermissions:EditingPermission
 export type QrPrintView={className:string;classCode:string;cards:{number:number;name:string;url:string}[]};
 export type AssignmentFormat='knolstory'|'shortstory';
 export type AssignmentView={format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
+/** Service-wide numbers for the admin page. No names, passwords, codes or manuscripts. */
+export type AdminOverview={teacherCodeUpdatedAt:number|null;accounts:{member:number;teacher:number;student:number};classrooms:{name:string;studentCount:number;assignmentCount:number;openAssignmentCount:number;missionCount:number;passedMissionCount:number;createdAt:number}[]};
 export type MeView={role:Role;account:{id:string};classroom?:ClassroomSummary;student?:{number:number;name:string;classId:string;className:string;permissions:EditingPermissions}};
 
 const MAX_STUDENTS=30;
@@ -155,6 +157,22 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(role!=='member')throw new ClassroomError(403,'ROLE_NOT_ALLOWED');
     await client.query("UPDATE knolstory_auth.accounts SET role='teacher' WHERE id=$1",[accountId]);
     return 'teacher' as const;
+   });
+  },
+  async adminOverview():Promise<AdminOverview>{
+   return read(async client=>{
+    const code=(await client.query('SELECT updated_at FROM knolstory_class.teacher_codes WHERE id=1')).rows[0];
+    const roles=(await client.query("SELECT role,count(*)::int AS n FROM knolstory_auth.accounts WHERE status='active' GROUP BY role")).rows;
+    const count=(role:string)=>num(roles.find(row=>row.role===role)?.n??0);
+    const rooms=(await client.query(`SELECT c.name,c.created_at,
+      (SELECT count(*)::int FROM knolstory_class.students s WHERE s.classroom_id=c.id) AS students,
+      (SELECT count(*)::int FROM knolstory_class.assignments a WHERE a.classroom_id=c.id) AS assignments,
+      (SELECT count(*)::int FROM knolstory_class.assignments a WHERE a.classroom_id=c.id AND a.open) AS open_assignments,
+      (SELECT count(*)::int FROM knolstory_class.missions m WHERE m.classroom_id=c.id) AS missions,
+      (SELECT count(*)::int FROM knolstory_class.mission_progress p JOIN knolstory_class.missions m ON m.id=p.mission_id WHERE m.classroom_id=c.id AND p.review_status='passed') AS passed
+      FROM knolstory_class.classrooms c ORDER BY c.created_at DESC LIMIT 200`)).rows;
+    return {teacherCodeUpdatedAt:code?num(code.updated_at):null,accounts:{member:count('member'),teacher:count('teacher'),student:count('student')},
+     classrooms:rooms.map(row=>({name:text(row.name),studentCount:num(row.students),assignmentCount:num(row.assignments),openAssignmentCount:num(row.open_assignments),missionCount:num(row.missions),passedMissionCount:num(row.passed),createdAt:num(row.created_at)}))};
    });
   },
   async teacherCodeUpdatedAt():Promise<number|null>{
