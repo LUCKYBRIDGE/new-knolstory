@@ -1,4 +1,5 @@
 import {assertCatalogOnlyMedia} from './catalog-only-authoring';
+import {withStudentNumber} from './student-file-prefix';
 import {previewAuthoringFile} from './story-file-preview';
 import {createStoryDocument,parseStoryDocument,serializeStoryDocument,type StoryProject} from '@knolstory/story-domain';
 import {compileStoryScene} from '@knolstory/runtime-core';
@@ -36,5 +37,5 @@ export async function readStoryFile(file:File):Promise<StoryProject>{
 }
 export function downloadArtifact(data:BlobPart,name:string,mime:string){
  const blob=new Blob([data],{type:mime});if(blob.size>25_000_000)throw new Error('파일 자료가 너무 큽니다.');
- const url=URL.createObjectURL(blob),anchor=document.createElement('a');anchor.href=url;anchor.download=name;anchor.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);
+ const url=URL.createObjectURL(blob),anchor=document.createElement('a');anchor.href=url;anchor.download=withStudentNumber(name);anchor.click();window.setTimeout(()=>URL.revokeObjectURL(url),1000);
 }

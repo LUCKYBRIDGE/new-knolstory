@@ -7,6 +7,8 @@ import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
 import {StudentMissions} from './student-missions';
 import {SeasonNote} from './season-note';
+import {currentStudentNumber,studentNumberLabel} from '../../lib/student-file-prefix';
+import {shareLinkHost} from '../../lib/share-link';
 import styles from './classroom.module.css';
 export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSession}){
  const student=me.student!;
@@ -59,6 +61,12 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
   finally{setBusy(false);}
  }
 
+ async function saveFile(){
+  if(!key||busy)return;setBusy(true);setError('');setNotice('');
+  try{const snapshot=await localWorkSnapshot(key);await downloadSubmissionFile(snapshot,works.find(work=>work.key===key)?.title||assignment.title);setNotice('작품 파일을 이 기기에 저장했어요. 제출 링크로 들어가 올려 주세요.');}
+  catch(issue){setError(issue instanceof Error?issue.message:'작품 파일을 저장하지 못했어요.');}
+  finally{setBusy(false);}
+ }
  async function submit(){
   if(!assignment.open||!key||busy)return;setBusy(true);setNotice('');setError('');
   try{const snapshot=await localWorkSnapshot(key);await submissionPut(assignment.id,snapshot,csrf);setNotice('제출했어요.');await onDone();}
@@ -69,6 +77,12 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
   <div className={styles.taskHeading}><h4>{assignment.title}</h4><span className={assignment.open?styles.badge:`${styles.badge} ${styles.off}`}>{assignment.open?'열림':'닫힘'}</span></div>
   {assignment.description&&<p className={styles.hint}>{assignment.description}</p>}
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}</p>}
+  {assignment.shareUrl&&<div className={styles.shareBox}>
+   <strong>선생님 제출 링크로 내요</strong>
+   <ol><li>아래에서 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
+   <div className={styles.row}><button className={styles.btn} disabled={!key||busy} onClick={()=>void saveFile()}>작품 파일로 저장</button><a className={`${styles.btn} ${styles.primary}`} href={assignment.shareUrl} target="_blank" rel="noopener noreferrer">제출 링크 열기 ↗</a></div>
+   <small>{shareLinkHost(assignment.shareUrl)}로 이동해요.</small>
+  </div>}
   <p className={styles.submissionStatus}><span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{submitted?`제출함 · ${formatSubmittedAt(submitted)}`:'아직 안 냈어요'}</span></p>
   {submitted&&<button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button>}
   {assignment.open&&(draftKey||canCreate||assignment.storyKey||forcedStoryKey)&&<p><a className={`${styles.btn} ${styles.primary}`} href={`${assignment.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(assignment.format==='shortstory'?{mode:'library'}:{view:'editor'}),classTask:assignment.id})}`}>{draftKey?'이어서 쓰기':'과제 쓰기'}</a></p>}

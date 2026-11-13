@@ -1,5 +1,6 @@
 'use client';
 import {WorkLeaveGuard} from '../../components/work-leave-guard';
+import {withStudentNumber} from '../../lib/student-file-prefix';
 import {createWorkLeaveTracker} from '../../lib/work-leave-tracker';
 import dialogSurface from '../../components/story-dialog-surface.module.css';
 /* eslint-disable @next/next/no-img-element -- static ShortStory pages and print illustration */
@@ -49,7 +50,7 @@ function Art({page,label}:{page:Pick<Page,'backgroundId'|'leftAssetId'|'rightAss
  </div>;
 }
 function download(content:BlobPart,name:string,type:string) {
- const url=URL.createObjectURL(new Blob([content],{type}));const link=document.createElement('a');link.href=url;link.download=name.replace(/[\\/:*?"<>|\u0000-\u001f]/g,'_');link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ const url=URL.createObjectURL(new Blob([content],{type}));const link=document.createElement('a');link.href=url;link.download=withStudentNumber(name.replace(/[\\/:*?"<>|\u0000-\u001f]/g,'_'));link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function DeleteConfirmation({description,onDelete,onCancel,title='삭제 확인',action='삭제 확인'}:{description:string;onDelete:()=>void;onCancel:()=>void;title?:string;action?:string}) {
  const ref=useRef<HTMLDialogElement>(null);

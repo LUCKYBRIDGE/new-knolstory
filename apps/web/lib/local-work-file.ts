@@ -1,3 +1,4 @@
+import {withStudentNumber} from './student-file-prefix';
 /** A confirmed save requires closing the stream and reading the same bytes back. */
 export type LocalWorkFileHandle = {
   name: string;
@@ -53,7 +54,7 @@ export function localWorkFileErrorMessage(issue: unknown): string {
 function fileName(name: string, extension: LocalWorkFileSaveInput['extension']) {
   const base = name.replace(/[\\/:*?"<>|\u0000-\u001f]/g, '_').trim()
     .replace(/\.(knolstory|shortstory)$/i, '').replace(/[. ]+$/, '');
-  return `${base || '작품'}${extension}`;
+  return withStudentNumber(`${base || '작품'}${extension}`);
 }
 
 async function writeVerified(handle: LocalWorkFileHandle, text: string, isCurrent?: () => boolean) {
