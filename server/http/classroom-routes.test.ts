@@ -102,7 +102,7 @@ describe('classroom routes: gating',()=>{
   expect(h.service.setTeacherCode).toHaveBeenCalledWith('new-code-1');
   expect(await json(await admin('/admin/teacher-code','PATCH',{paused:true}))).toEqual({success:true,data:{code:'KNOL-CODE-1',paused:true,updatedAt:123}});
   expect((await admin('/admin/teacher-code','PATCH',{paused:'yes'})).status).toBe(400);
-  expect((await json(await admin('/admin/access'))).data.accounts).toHaveLength(1);
+  expect(((await json(await admin('/admin/access'))) as {data:{accounts:unknown[]}}).data.accounts).toHaveLength(1);
   await admin('/me');expect(h.service.me).toHaveBeenCalledWith(adminId,'admin');
  });
  it('rejects unknown paths, methods, queries and encoded paths',async()=>{
