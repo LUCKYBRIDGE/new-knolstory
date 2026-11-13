@@ -1,5 +1,5 @@
 import {describe,it,expect,vi} from 'vitest';
-import {classMe,classroomRead,classroomCreate,studentsPermissions,studentLogin,submissionMine,effectivePermissions,presetLabel,PERMISSION_PRESETS,ALL_EDITING_ALLOWED,ClassroomError,studentUpdate,submissionPut,assignmentList,assignmentCreate,prepareStudentQrPrint} from './classroom-api';
+import {classMe,classroomRead,classroomCreate,studentsPermissions,studentLogin,submissionMine,effectivePermissions,presetLabel,PERMISSION_PRESETS,ALL_EDITING_ALLOWED,ClassroomError,studentUpdate,submissionPut,assignmentList,assignmentCreate,prepareStudentQrPrint,adminOverview,generateTeacherCode} from './classroom-api';
 const res=(status:number,value:unknown)=>new Response(JSON.stringify(value),{status});
 const ok=(data:unknown)=>res(200,{success:true,data});
 describe('classroom permissions helpers',()=>{
@@ -67,5 +67,21 @@ describe('QR print preparation',()=>{
  it('rejects mismatched, duplicate and unsafe QR cards',async()=>{
   for(const cards of [[{...result.cards[0],number:3}],[{...result.cards[0],url:'javascript:alert(1)'}],[]])await expect(prepareStudentQrPrint([2],'csrf',false,vi.fn().mockResolvedValue(ok({...result,cards})))).rejects.toThrow();
   await expect(prepareStudentQrPrint([2,3],'csrf',false,vi.fn().mockResolvedValue(ok({...result,cards:[result.cards[0],result.cards[0]]})))).rejects.toThrow();
+ });
+});
+
+describe('admin helpers',()=>{
+ it('makes a 14-character teacher code without look-alike characters',()=>{
+  const code=generateTeacherCode();
+  expect(code).toMatch(/^[A-HJKMNP-Z2-9]{4}-[A-HJKMNP-Z2-9]{4}-[A-HJKMNP-Z2-9]{4}$/);
+  expect(code.length).toBeGreaterThanOrEqual(6);expect(code.length).toBeLessThanOrEqual(32);
+  expect(generateTeacherCode(size=>new Uint8Array(size))).toBe('AAAA-AAAA-AAAA');
+ });
+ it('reads the admin overview and rejects a malformed one',async()=>{
+  const body={teacherCodeUpdatedAt:null,accounts:{member:2,teacher:1,student:3},classrooms:[]};
+  const fetcher=(async()=>new Response(JSON.stringify({success:true,data:body}),{status:200})) as unknown as typeof fetch;
+  expect(await adminOverview(fetcher)).toEqual(body);
+  const bad=(async()=>new Response(JSON.stringify({success:true,data:{accounts:{}}}),{status:200})) as unknown as typeof fetch;
+  await expect(adminOverview(bad)).rejects.toMatchObject({code:'INVALID_RESPONSE'});
  });
 });
