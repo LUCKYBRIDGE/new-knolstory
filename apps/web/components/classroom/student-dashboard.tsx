@@ -6,6 +6,7 @@ import type {AccountSession} from '../../lib/account-api';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
 import {StudentMissions} from './student-missions';
+import {SeasonNote} from './season-note';
 import styles from './classroom.module.css';
 export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSession}){
  const student=me.student!;
@@ -19,6 +20,7 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
  return <>
   <section className={styles.studentBanner} aria-label="내 정보"><div className={styles.studentNumber} aria-hidden="true">{student.number}<small>번</small></div><div><span className={styles.eyebrow}>나의 이야기 자리</span><h2>{student.className} {student.number}번 {student.name}</h2>
    <p className={styles.hint}>내 작품은 이 기기에 있어요. 과제를 낼 때 선생님께 보내져요.</p></div></section>
+  <SeasonNote createdAt={student.classCreatedAt} audience="student"/>
   <details className={`${styles.card} ${styles.permissionNote}`}><summary>내가 고칠 수 있는 것</summary>
    {limits.length?<ul className={styles.rowsList}>{limits.map(line=><li key={line}>{line}</li>)}</ul>:<p className={styles.hint}>모두 고칠 수 있어요.</p>}</details>
   <StudentMissions accountId={session.accountId} csrf={session.csrf}/>
