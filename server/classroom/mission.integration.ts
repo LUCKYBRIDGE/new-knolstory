@@ -90,6 +90,9 @@ describe('real PostgreSQL classroom missions',()=>{
   const read=await service.submitMission(one,mission.id,{answers:{},note:'끝까지 읽었어요.'});
   expect(await failure(service.submitMission(one,mission.id,{answers:{q1:'x'},note:''}))).toBe('400 INVALID_REQUEST');
   expect((await service.setMissionOpen(teacher,mission.id,{open:false})).open).toBe(false);
+  expect((await service.setMissionOpen(teacher,mission.id,{dueAt:1_800_000_000_000})).dueAt).toBe(1_800_000_000_000);
+  expect((await service.setMissionOpen(teacher,mission.id,{dueAt:null})).dueAt).toBeNull();
+  expect(await failure(service.setMissionOpen(teacher,mission.id,{}))).toBe('400 INVALID_REQUEST');
   expect(await failure(service.submitMission(one,mission.id,{answers:{},note:''}))).toBe('409 MISSION_CLOSED');
   // Closed missions stay readable and reviewable.
   expect((await service.listMissions(one,'student'))[0]).toMatchObject({open:false,progress:{note:'끝까지 읽었어요.',submittedAt:read.submittedAt}});
@@ -103,7 +106,7 @@ describe('real PostgreSQL classroom missions',()=>{
   await service.createAssignment(teacher,{format:'knolstory',title:'이야기 쓰기',description:'',storyKey:null});
   const overview=await service.adminOverview();
   expect(overview.accounts.student).toBeGreaterThanOrEqual(2);expect(overview.accounts.teacher).toBeGreaterThanOrEqual(1);
-  const room=overview.classrooms.find(row=>row.name==='미션반'&&row.missionCount===1&&row.passedMissionCount===1);
+  const room=overview.classrooms.find(row=>row.name==='미션반'&&row.studentCount===2&&row.missionCount===1&&row.passedMissionCount===1&&row.assignmentCount===1);
   expect(room).toMatchObject({studentCount:2,assignmentCount:1,openAssignmentCount:1});
   expect(JSON.stringify(overview)).not.toContain(students[1]!);
  });

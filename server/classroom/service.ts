@@ -23,7 +23,7 @@ export type StudentView={number:number;name:string;password:string;permissions:E
 export type ClassroomView=ClassroomSummary&{defaultPermissions:EditingPermissions;students:StudentView[]};
 export type QrPrintView={className:string;classCode:string;cards:{number:number;name:string;url:string}[]};
 export type AssignmentFormat='knolstory'|'shortstory';
-export type AssignmentView={format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
+export type AssignmentView={format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl:string|null;dueAt:number|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number};
 /** Service-wide numbers for the admin page. No names, passwords, codes or manuscripts. */
 export type TeacherCodeView={code:string|null;paused:boolean;updatedAt:number|null};
 export type LoginMethod='kakao'|'google'|'password'|'qr';
@@ -114,11 +114,11 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   return value;
  };
  const assignment=(row:Record<string,unknown>,withSubmission:boolean):AssignmentView=>({
-  format:assignmentFormat(row.format),id:text(row.id),title:text(row.title),description:text(row.description),storyKey:row.story_key===null?null:text(row.story_key),shareUrl:row.share_url===null||row.share_url===undefined?null:text(row.share_url),open:row.open===true,createdAt:num(row.created_at),
+  format:assignmentFormat(row.format),id:text(row.id),title:text(row.title),description:text(row.description),storyKey:row.story_key===null?null:text(row.story_key),shareUrl:row.share_url===null||row.share_url===undefined?null:text(row.share_url),dueAt:row.due_at===null||row.due_at===undefined?null:num(row.due_at),open:row.open===true,createdAt:num(row.created_at),
   ...(withSubmission?{submittedAt:row.submitted_at===null||row.submitted_at===undefined?null:num(row.submitted_at)}:{}),
  });
  async function teacherAssignment(client:SqlClient,classroomId:unknown,id:string,lock=false){
-  const result=await client.query(`SELECT id,title,description,story_key,format,open,created_at,share_url FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2${lock?' FOR UPDATE':''}`,[id,classroomId]);
+  const result=await client.query(`SELECT id,title,description,story_key,format,open,created_at,share_url,due_at FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2${lock?' FOR UPDATE':''}`,[id,classroomId]);
   if(!result.rows[0])throw new ClassroomError(404,'ASSIGNMENT_NOT_FOUND');
   return result.rows[0];
  }
@@ -350,28 +350,30 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    return read(async client=>{
     if(role==='student'){
      const context=await studentContext(client,accountId);
-     const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,s.submitted_at FROM knolstory_class.assignments a
+     const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,s.submitted_at FROM knolstory_class.assignments a
       LEFT JOIN knolstory_class.submissions s ON s.assignment_id=a.id AND s.student_account_id=$2 WHERE a.classroom_id=$1 ORDER BY a.created_at DESC,a.id`,[context.classroom_id,accountId]);
      return result.rows.map(row=>assignment(row,true));
     }
     const room=await teacherRoom(client,accountId);
-    const result=await client.query('SELECT id,title,description,story_key,format,open,created_at,share_url FROM knolstory_class.assignments WHERE classroom_id=$1 ORDER BY created_at DESC,id',[room.id]);
-    return result.rows.map(row=>assignment(row,false));
+    const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,
+      (SELECT count(*)::int FROM knolstory_class.submissions s WHERE s.assignment_id=a.id) AS submitted_count
+     FROM knolstory_class.assignments a WHERE a.classroom_id=$1 ORDER BY a.created_at DESC,a.id`,[room.id]);
+    return result.rows.map(row=>({...assignment(row,false),submittedCount:num(row.submitted_count)}));
    });
   },
-  async createAssignment(teacherId:string,input:Readonly<{title:string;description:string;storyKey:string|null;format?:AssignmentFormat;shareUrl?:string|null}>):Promise<AssignmentView>{
+  async createAssignment(teacherId:string,input:Readonly<{title:string;description:string;storyKey:string|null;format?:AssignmentFormat;shareUrl?:string|null;dueAt?:number|null}>):Promise<AssignmentView>{
    return transaction(async client=>{
     const room=await teacherRoom(client,teacherId);
-    const result=await client.query('INSERT INTO knolstory_class.assignments(id,classroom_id,title,description,story_key,format,open,created_at,share_url) VALUES($1,$2,$3,$4,$5,$7,true,$6,$8) RETURNING id,title,description,story_key,format,open,created_at,share_url',
-     [randomUUID(),room.id,input.title,input.description,input.storyKey,now(),assignmentFormat(input.format===undefined?'knolstory':input.format),input.shareUrl??null]);
+    const result=await client.query('INSERT INTO knolstory_class.assignments(id,classroom_id,title,description,story_key,format,open,created_at,share_url,due_at) VALUES($1,$2,$3,$4,$5,$7,true,$6,$8,$9) RETURNING id,title,description,story_key,format,open,created_at,share_url,due_at',
+     [randomUUID(),room.id,input.title,input.description,input.storyKey,now(),assignmentFormat(input.format===undefined?'knolstory':input.format),input.shareUrl??null,input.dueAt??null]);
     return assignment(result.rows[0]!,false);
    });
   },
-  async patchAssignment(teacherId:string,id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null}>):Promise<AssignmentView>{
+  async patchAssignment(teacherId:string,id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null}>):Promise<AssignmentView>{
    return transaction(async client=>{
     const room=await teacherRoom(client,teacherId),current=await teacherAssignment(client,room.id,id,true);
-    const result=await client.query('UPDATE knolstory_class.assignments SET title=$2,description=$3,open=$4,share_url=$5 WHERE id=$1 RETURNING id,title,description,story_key,format,open,created_at,share_url',
-     [id,patch.title??current.title,patch.description??current.description,patch.open??current.open,patch.shareUrl===undefined?current.share_url??null:patch.shareUrl]);
+    const result=await client.query('UPDATE knolstory_class.assignments SET title=$2,description=$3,open=$4,share_url=$5,due_at=$6 WHERE id=$1 RETURNING id,title,description,story_key,format,open,created_at,share_url,due_at',
+     [id,patch.title??current.title,patch.description??current.description,patch.open??current.open,patch.shareUrl===undefined?current.share_url??null:patch.shareUrl,patch.dueAt===undefined?current.due_at??null:patch.dueAt]);
     return assignment(result.rows[0]!,false);
    });
   },
