@@ -7,7 +7,7 @@ export type ClassroomSummary=Readonly<{id:string;name:string;classCode:string;st
 export type ClassroomStudent=Readonly<{number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean}>;
 export type Classroom=ClassroomSummary&Readonly<{defaultPermissions:EditingPermissions;students:readonly ClassroomStudent[]}>;
 export type AssignmentFormat='knolstory'|'shortstory';
-export type Assignment=Readonly<{format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number}>;
+export type Assignment=Readonly<{format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number}>;
 export type SubmissionRow=Readonly<{number:number;name:string;submittedAt:number}>;
 export type SubmissionDocument=Readonly<{document:AuthoringJsonbSnapshot;submittedAt:number}>;
 export type StudentSelf=Readonly<{number:number;name:string;classId:string;className:string;classCreatedAt?:number;permissions:EditingPermissions}>;
@@ -111,7 +111,7 @@ export async function studentQr(number:number,csrf:string,fetcher:Fetcher=fetch)
 export const studentLogin=(input:Readonly<{classCode:string;number:number;password:string}>,fetcher:Fetcher=fetch)=>obj('/student-login',fetcher,{method:'POST',body:input});
 export const qrLogin=(token:string,fetcher:Fetcher=fetch)=>obj('/qr-login',fetcher,{method:'POST',body:{token}});
 export async function assignmentList(fetcher:Fetcher=fetch):Promise<Assignment[]>{const data=await call('/classroom/assignments',fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data.map(item=>asAssignment(item as Record<string,unknown>)).map(item=>item);}
-export const assignmentCreate=async(input:Readonly<{title:string;description?:string;storyKey?:string;format?:AssignmentFormat;shareUrl?:string;dueAt?:number}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj('/classroom/assignments',fetcher,{method:'POST',csrf:csrfOf(csrf),body:input}));
+export const assignmentCreate=async(input:Readonly<{title:string;description?:string;storyKey?:string;format?:AssignmentFormat;shareUrl?:string;dueAt?:number;edition?:'original'|'knolstory'}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj('/classroom/assignments',fetcher,{method:'POST',csrf:csrfOf(csrf),body:input}));
 export const assignmentUpdate=async(id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj(`/classroom/assignments/${seg(id)}`,fetcher,{method:'PATCH',csrf:csrfOf(csrf),body:patch}));
 export async function submissionList(id:string,fetcher:Fetcher=fetch):Promise<SubmissionRow[]>{const data=await call(`/classroom/assignments/${seg(id)}/submissions`,fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data as SubmissionRow[];}
 export const submissionOpen=(id:string,number:number,fetcher:Fetcher=fetch)=>obj(`/classroom/assignments/${seg(id)}/submissions/${seg(number)}`,fetcher) as Promise<unknown> as Promise<SubmissionDocument>;

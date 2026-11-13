@@ -8,7 +8,7 @@ import {ClassroomBook} from './classroom-art';
 import {MissionCard,useStudentMissions} from './student-missions';
 import {MissionSeal} from './classroom-art';
 import {groupTodos,type TodoEntry,type TodoGroup} from '../../lib/student-todo';
-import {missionKindLabel} from '../../lib/mission-api';
+import {editionLabel,missionKindLabel} from '../../lib/mission-api';
 import {dueDateLabel,dueState} from '../../lib/due-date';
 import {SeasonNote} from './season-note';
 import {currentStudentNumber,studentNumberLabel} from '../../lib/student-file-prefix';
@@ -72,7 +72,7 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
  return <>
   <div className={styles.taskHeading}><h4>{assignment.title}</h4><span className={assignment.open?styles.badge:`${styles.badge} ${styles.off}`}>{assignment.open?'열림':'닫힘'}</span></div>
   {assignment.description&&<p className={styles.hint}>{assignment.description}</p>}
-  {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}</p>}
+  {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}</p>}
   {assignment.shareUrl&&<div className={styles.shareBox}>
    <strong>선생님 제출 링크로 내요</strong>
    <ol><li>아래에서 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
@@ -110,7 +110,7 @@ function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:
   <div className={styles.todoHead}><div><span className={styles.eyebrow}>오늘의 이야기 숙제</span><h2 className={styles.studentTasksTitle}>할 일</h2></div>
    {total>0&&<span className={styles.todoCount} aria-label={`할 일 ${total}개 가운데 ${finished}개 끝냄`}><MissionSeal small earned={finished>0&&finished===total}/><span><b>{finished}</b> / {total} 끝</span></span>}</div>
   {assignmentError&&<div role="alert"><p className={styles.error}>{assignmentError}</p><button className={styles.btn} onClick={()=>void onReload()}>다시 불러오기</button></div>}
-  {missions.error&&<div role="alert"><p className={styles.error}>{missions.error}</p><button className={styles.btn} disabled={missions.loading} onClick={()=>void missions.load()}>미션 다시 불러오기</button></div>}
+  {missions.error&&<div role="alert"><p className={styles.error}>{missions.error}</p><button className={styles.btn} disabled={missions.loading} onClick={()=>void missions.load()}>과제 다시 불러오기</button></div>}
   {loading?<p className={styles.hint} role="status">할 일을 불러오고 있어요.</p>:total===0?<p className={styles.card}>아직 선생님이 낸 할 일이 없어요.</p>
    /* One list for all groups: a card that moves (submitted, passed) keeps its state and its message. */
    :<ul className={styles.todoList}>{GROUPS.flatMap(({group,title,empty})=>{const list=groups[group];if(!list.length&&!empty)return [];

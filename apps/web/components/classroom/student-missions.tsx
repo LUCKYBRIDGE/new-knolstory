@@ -12,7 +12,7 @@ const initialDraft=(mission:Mission):Draft=>({answers:{...mission.progress?.answ
 const message=(issue:unknown,fallback:string)=>issue instanceof Error?issue.message:fallback;
 const kindLabel=missionKindLabel;
 function statusLabel(progress:MissionProgress|undefined){
- if(progress?.reviewStatus==='passed')return '미션 성공';
+ if(progress?.reviewStatus==='passed')return '과제 통과';
  if(progress?.reviewStatus==='revise')return '다시 쓰기';
  return progress?.submittedAt?'확인 대기':'아직 안 했어요';
 }
@@ -25,7 +25,7 @@ export function useStudentMissions(){
   request.current?.abort();const controller=new AbortController();request.current=controller;const current=++generation.current;
   setLoading(true);setError('');
   try{const result=await missionList((input,init)=>fetch(input,{...init,signal:controller.signal}));if(!controller.signal.aborted&&current===generation.current)setMissions(result);}
-  catch(issue){if(!controller.signal.aborted&&current===generation.current)setError(message(issue,'미션을 불러오지 못했어요.'));}
+  catch(issue){if(!controller.signal.aborted&&current===generation.current)setError(message(issue,'과제를 불러오지 못했어요.'));}
   finally{if(!controller.signal.aborted&&current===generation.current)setLoading(false);}
  },[]);
  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>{window.clearTimeout(timer);generation.current++;request.current?.abort();};},[load]);
@@ -75,7 +75,7 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
    if(controller.signal.aborted)return;
    baseSubmittedAt.current=result.submittedAt;currentSubmittedAt.current=result.submittedAt;volatile.current=false;
    if(!blockedStorage.current){try{localStorage.removeItem(key);setStorageError('');}catch{setStorageError('확인은 요청했지만 기기의 작성본 정리를 마치지 못했어요. 제출한 내용은 선생님께 전달됐어요.');}}
-   onProgress({...draft,submittedAt:result.submittedAt,reviewStatus:null,feedback:mission.progress?.feedback??'',reviewedAt:mission.progress?.reviewedAt??null});setNotice('선생님께 확인을 요청했어요. 선생님이 통과시키면 미션 성공이에요.');
+   onProgress({...draft,submittedAt:result.submittedAt,reviewStatus:null,feedback:mission.progress?.feedback??'',reviewedAt:mission.progress?.reviewedAt??null});setNotice('선생님께 확인을 요청했어요. 선생님이 통과시키면 과제 통과이에요.');
   }catch(issue){if(!controller.signal.aborted)setError(message(issue,'확인을 요청하지 못했어요. 작성한 글은 그대로 있어요.'));}
   finally{lock.current=false;if(!controller.signal.aborted)setBusy(false);}
  }
@@ -84,13 +84,13 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
  const state=passed?'passed':revise?'revise':progress?.submittedAt?'pending':'none';
  return <article className={styles.card} data-mission={mission.id} data-status={state} data-kind={mission.kind}>
   <div className={styles.titleRow}><div><span className={styles.kind}>{kindLabel(mission.kind)}</span><h3>{mission.title}</h3></div>
-   {passed?<span className={styles.success}><MissionSeal earned small/><strong>미션 성공</strong></span>:<span className={`${styles.status} ${revise?styles.revise:progress?.submittedAt?styles.pending:''}`}>{statusLabel(progress)}</span>}</div>
+   {passed?<span className={styles.success}><MissionSeal earned small/><strong>과제 통과</strong></span>:<span className={`${styles.status} ${revise?styles.revise:progress?.submittedAt?styles.pending:''}`}>{statusLabel(progress)}</span>}</div>
   {mission.description&&<p className={styles.copy}>{mission.description}</p>}
   {mission.criteria&&<details className={styles.criteria}><summary>통과 기준</summary><p className={styles.copy}>{mission.criteria}</p></details>}
   {progress?.feedback&&<div className={styles.feedback}><strong>{progress.reviewStatus===null?'지난 피드백':'선생님 피드백'}</strong><p>{progress.feedback}</p></div>}
   {href&&work&&<p className={styles.read}><a className={`${shared.btn} ${again||passed?'':shared.primary}`} href={href}>{work.title} 읽으러 가기</a><span>{readingFormatLabel(mission.readingFormat)}</span></p>}
   {state==='pending'&&<p className={styles.waiting}>선생님 확인을 기다리고 있어요.</p>}
-  {!mission.open&&<p className={shared.hint}>마감된 미션이에요. 작성한 내용과 선생님 확인을 볼 수 있어요.</p>}
+  {!mission.open&&<p className={shared.hint}>마감된 과제가에요. 작성한 내용과 선생님 확인을 볼 수 있어요.</p>}
   <details className={styles.activity} open={mission.open&&(revise||state==='none')||undefined}><summary>{passed||!mission.open?'내가 낸 내용 보기':mission.questions.length?(again?'활동지 고쳐 쓰기':'활동지 작성'):mission.kind==='reading'?'읽고 확인 요청하기':'수행 내용 남기기'}</summary>
    <form onSubmit={event=>void submit(event)}><fieldset disabled={busy||!ready||!mission.open}>
     {mission.questions.map((question,index)=><label className={styles.question} key={question.id}><span>{index+1}. {question.prompt}</span><textarea aria-label={question.prompt} value={draft.answers[question.id]??''} maxLength={2000} rows={4} required onChange={event=>change({...draft,answers:{...draft.answers,[question.id]:event.target.value}})}/></label>)}

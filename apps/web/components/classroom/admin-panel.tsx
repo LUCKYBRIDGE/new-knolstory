@@ -24,7 +24,7 @@ export function AdminPanel({csrf}:{csrf:string}){
      <Stat label="학급" value={totals.classes} note="교사마다 하나"/>
      <Stat label="학생" value={overview.accounts.student} note="교사가 만든 계정"/>
      <Stat label="일반 회원" value={overview.accounts.member} note="카카오로 가입"/>
-     <Stat label="미션 성공" value={totals.passed} note={`배정된 미션 ${totals.missions}개`}/>
+     <Stat label="과제 통과" value={totals.passed} note={`낸 과제 ${totals.missions}개`}/>
     </>}
   </section>
   <div className={styles.grid}>
@@ -37,8 +37,8 @@ export function AdminPanel({csrf}:{csrf:string}){
       <div className={styles.roomHead}><strong>{room.name}</strong><span>{date(room.createdAt)} 개설 · {classroomSeason(room.createdAt).clearsOn} 정리</span></div>
       <dl className={styles.roomStats}>
        <div><dt>학생</dt><dd>{room.studentCount}<small>/30</small></dd></div>
-       <div><dt>과제</dt><dd>{room.assignmentCount}{room.openAssignmentCount>0&&<small> · 열림 {room.openAssignmentCount}</small>}</dd></div>
-       <div><dt>미션</dt><dd>{room.missionCount}{room.passedMissionCount>0&&<small> · 성공 {room.passedMissionCount}</small>}</dd></div>
+       <div><dt>작품 쓰기</dt><dd>{room.assignmentCount}{room.openAssignmentCount>0&&<small> · 열림 {room.openAssignmentCount}</small>}</dd></div>
+       <div><dt>읽기·활동</dt><dd>{room.missionCount}{room.passedMissionCount>0&&<small> · 통과 {room.passedMissionCount}</small>}</dd></div>
       </dl>
      </li>)}</ul>}
     <p className={shared.hint}>학급 자료는 학년도 단위로 운영해요. 3월 1일부터 이듬해 2월 말까지 연 학급은 이듬해 3월 31일에 정리돼요.</p>

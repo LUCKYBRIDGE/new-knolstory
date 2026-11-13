@@ -35,7 +35,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  if(classroom===undefined)return <p className={styles.card} role="status">불러오는 중이에요.</p>;
  if(classroom===null)return <form className={styles.card} aria-label="학급 만들기" onSubmit={(event:FormEvent)=>{event.preventDefault();if(name.trim())void mutate(()=>classroomCreate(name.trim(),csrf));}}>
   <h2>학급 만들기</h2><p className={styles.hint}>학급을 열면 학생이 들어올 학급 코드가 만들어져요. 교사 한 명이 학급 하나를 열 수 있어요.</p>
-  <ol className={styles.setupSteps}><li><b>학급 만들기</b><span>이름만 정하면 돼요</span></li><li><b>학생 계정 만들기</b><span>30명까지, 번호와 비밀번호가 함께 생겨요</span></li><li><b>과제와 미션 배정</b><span>제공 미션을 가져오면 바로 시작해요</span></li></ol>
+  <ol className={styles.setupSteps}><li><b>학급 만들기</b><span>이름만 정하면 돼요</span></li><li><b>학생 계정 만들기</b><span>30명까지, 번호와 비밀번호가 함께 생겨요</span></li><li><b>과제 내기</b><span>제공 과제를 가져오면 바로 시작해요</span></li></ol>
   <div className={styles.row}><label className={styles.field}>학급 이름<input value={name} onChange={event=>setName(event.target.value)} maxLength={30} placeholder="예: 5학년 3반"/></label><button className={`${styles.btn} ${styles.primary}`} disabled={busy||!name.trim()}>학급 만들기</button></div>
   {error&&<p className={styles.error} role="alert">{error}</p>}
  </form>;

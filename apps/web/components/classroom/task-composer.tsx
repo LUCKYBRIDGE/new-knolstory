@@ -2,7 +2,7 @@
 import styles from './classroom.module.css';
 export type TaskRequest=Readonly<{kind:'knolstory'|'shortstory'|'provided'|'reading'|'worksheet'|'custom';nonce:number}>;
 const CHOICES:readonly {kind:TaskRequest['kind'];title:string;hint:string}[]=[
- {kind:'provided',title:'제공 미션 가져오기',hint:'기본 작품 읽기·활동지를 골라 고쳐 내요'},
+ {kind:'provided',title:'제공 과제 가져오기',hint:'기본 작품 읽기·활동지를 골라 고쳐 내요'},
  {kind:'knolstory',title:'작품 쓰기 · 놀스토리',hint:'장면과 대사로 이야기를 써서 내요'},
  {kind:'shortstory',title:'작품 쓰기 · 숏스토리',hint:'그림과 글로 짧은 그림책을 만들어 내요'},
  {kind:'worksheet',title:'독후 활동지',hint:'질문에 답을 쓰면 선생님이 확인해요'},
