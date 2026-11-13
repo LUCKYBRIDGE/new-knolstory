@@ -97,6 +97,17 @@ describe('real PostgreSQL classroom missions',()=>{
   expect((await service.setMissionOpen(teacher,mission.id,{open:true})).open).toBe(true);
  });
 
+ it('counts accounts, classes, assignments and passed missions for the admin overview',async()=>{
+  const {teacher,students}=await classroom(2),mission=await service.createMission(teacher,reading);
+  await service.reviewMission(teacher,mission.id,1,{reviewStatus:'passed',feedback:'',expectedSubmittedAt:null});
+  await service.createAssignment(teacher,{format:'knolstory',title:'이야기 쓰기',description:'',storyKey:null});
+  const overview=await service.adminOverview();
+  expect(overview.accounts.student).toBeGreaterThanOrEqual(2);expect(overview.accounts.teacher).toBeGreaterThanOrEqual(1);
+  const room=overview.classrooms.find(row=>row.name==='미션반'&&row.missionCount===1&&row.passedMissionCount===1);
+  expect(room).toMatchObject({studentCount:2,assignmentCount:1,openAssignmentCount:1});
+  expect(JSON.stringify(overview)).not.toContain(students[1]!);
+ });
+
  it('removes mission records with the student and never touches authored documents',async()=>{
   const {teacher,students}=await classroom(1),mission=await service.createMission(teacher,reading);
   await service.submitMission(students[1]!,mission.id,{answers:{},note:''});
