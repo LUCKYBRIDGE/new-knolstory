@@ -18,15 +18,18 @@ export type ClassroomServiceOptions=Readonly<{
  origin:string;
  clock?:()=>number;
 }>;
-export type ClassroomSummary={id:string;name:string;classCode:string;studentCount:number};
+export type ClassroomSummary={id:string;name:string;classCode:string;studentCount:number;createdAt:number};
 export type StudentView={number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean};
 export type ClassroomView=ClassroomSummary&{defaultPermissions:EditingPermissions;students:StudentView[]};
 export type QrPrintView={className:string;classCode:string;cards:{number:number;name:string;url:string}[]};
 export type AssignmentFormat='knolstory'|'shortstory';
 export type AssignmentView={format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
 /** Service-wide numbers for the admin page. No names, passwords, codes or manuscripts. */
+export type TeacherCodeView={code:string|null;paused:boolean;updatedAt:number|null};
+export type LoginMethod='kakao'|'google'|'password'|'qr';
+export type AdminAccessRow={id:string;role:'admin'|'teacher'|'student'|'member';provider:string|null;className:string|null;studentNumber:number|null;lastLoginAt:number|null;lastLoginMethod:LoginMethod|null};
 export type AdminOverview={teacherCodeUpdatedAt:number|null;accounts:{member:number;teacher:number;student:number};classrooms:{name:string;studentCount:number;assignmentCount:number;openAssignmentCount:number;missionCount:number;passedMissionCount:number;createdAt:number}[]};
-export type MeView={role:Role;account:{id:string};classroom?:ClassroomSummary;student?:{number:number;name:string;classId:string;className:string;permissions:EditingPermissions}};
+export type MeView={role:Role;account:{id:string};classroom?:ClassroomSummary;student?:{number:number;name:string;classId:string;className:string;classCreatedAt:number;permissions:EditingPermissions}};
 
 const MAX_STUDENTS=30;
 const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
@@ -69,6 +72,16 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   const client=await pool.connect();
   try{return await operation(client);}finally{client.release();}
  }
+ async function readTeacherCode():Promise<TeacherCodeView>{
+  return read(async client=>{
+   const row=(await client.query('SELECT code_cipher,paused,updated_at FROM knolstory_class.teacher_codes WHERE id=1')).rows[0];
+   if(!row)return {code:null,paused:false,updatedAt:null};
+   let code:string|null=null;
+   if(row.code_cipher!==null&&row.code_cipher!==undefined){try{code=decryptText(key,text(row.code_cipher),'teacher-code');}catch{code=null;}}
+   return {code,paused:row.paused===true,updatedAt:num(row.updated_at)};
+  });
+ }
+ const adminIds=new Set(options.adminAccountIds.map(id=>id.toLowerCase()));
  const password=(accountId:string,cipher:string)=>{try{return decryptText(key,cipher,accountId);}catch{return '';}};
  const storedPermissions=(value:unknown):EditingPermissions|null=>{
   if(value===null||value===undefined)return null;
@@ -77,14 +90,14 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
  const defaults=(value:unknown):EditingPermissions=>effectivePermissions(null,value);
 
  async function teacherRoom(client:SqlClient,teacherId:string,lock=false){
-  const result=await client.query(`SELECT id,name,class_code,default_permissions FROM knolstory_class.classrooms WHERE teacher_account_id=$1${lock?' FOR UPDATE':''}`,[teacherId]);
+  const result=await client.query(`SELECT id,name,class_code,default_permissions,created_at FROM knolstory_class.classrooms WHERE teacher_account_id=$1${lock?' FOR UPDATE':''}`,[teacherId]);
   const row=result.rows[0];
   if(!row)throw new ClassroomError(404,'CLASSROOM_NOT_FOUND');
   return row;
  }
  async function classroomView(client:SqlClient,row:Record<string,unknown>):Promise<ClassroomView>{
   const students=await client.query('SELECT account_id,number,name,password_cipher,permissions,qr_token_hash IS NOT NULL AS has_qr FROM knolstory_class.students WHERE classroom_id=$1 ORDER BY number',[row.id]);
-  return {id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:students.rows.length,defaultPermissions:defaults(row.default_permissions),
+  return {id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:students.rows.length,createdAt:num(row.created_at),defaultPermissions:defaults(row.default_permissions),
    students:students.rows.map(student=>studentView(student))};
  }
  function studentView(row:Record<string,unknown>):StudentView{
@@ -110,7 +123,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   return result.rows[0];
  }
  async function studentContext(client:SqlClient,accountId:string){
-  const result=await client.query('SELECT s.number,s.name,s.permissions,c.id AS classroom_id,c.name AS classroom_name,c.default_permissions FROM knolstory_class.students s JOIN knolstory_class.classrooms c ON c.id=s.classroom_id WHERE s.account_id=$1',[accountId]);
+  const result=await client.query('SELECT s.number,s.name,s.permissions,c.id AS classroom_id,c.name AS classroom_name,c.created_at AS classroom_created_at,c.default_permissions FROM knolstory_class.students s JOIN knolstory_class.classrooms c ON c.id=s.classroom_id WHERE s.account_id=$1',[accountId]);
   if(!result.rows[0])throw new ClassroomError(403,'ROLE_NOT_ALLOWED');
   return result.rows[0];
  }
@@ -136,20 +149,21 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    return read(async client=>{
     if(role==='student'){
      const row=await studentContext(client,accountId);
-     return {role,account:{id:accountId},student:{number:num(row.number),name:text(row.name),classId:text(row.classroom_id),className:text(row.classroom_name),permissions:effectivePermissions(row.permissions,row.default_permissions)}};
+     return {role,account:{id:accountId},student:{number:num(row.number),name:text(row.name),classId:text(row.classroom_id),className:text(row.classroom_name),classCreatedAt:num(row.classroom_created_at),permissions:effectivePermissions(row.permissions,row.default_permissions)}};
     }
     if(role==='teacher'||role==='admin'){
-     const result=await client.query('SELECT c.id,c.name,c.class_code,(SELECT count(*) FROM knolstory_class.students s WHERE s.classroom_id=c.id) AS student_count FROM knolstory_class.classrooms c WHERE c.teacher_account_id=$1',[accountId]);
+     const result=await client.query('SELECT c.id,c.name,c.class_code,c.created_at,(SELECT count(*) FROM knolstory_class.students s WHERE s.classroom_id=c.id) AS student_count FROM knolstory_class.classrooms c WHERE c.teacher_account_id=$1',[accountId]);
      const row=result.rows[0];
-     return {role,account:{id:accountId},...(row?{classroom:{id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:num(row.student_count)}}:{})};
+     return {role,account:{id:accountId},...(row?{classroom:{id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:num(row.student_count),createdAt:num(row.created_at)}}:{})};
     }
     return {role,account:{id:accountId}};
    });
   },
   async teacherUpgrade(accountId:string,code:string):Promise<'teacher'>{
-   const row=await read(async client=>(await client.query('SELECT code_hash FROM knolstory_class.teacher_codes WHERE id=1')).rows[0]);
+   const row=await read(async client=>(await client.query('SELECT code_hash,paused FROM knolstory_class.teacher_codes WHERE id=1')).rows[0]);
    const valid=await verifySecret(code,row?text(row.code_hash):await decoyHash())&&row!==undefined;
    if(!valid)throw new ClassroomError(403,'INVALID_TEACHER_CODE');
+   if(row.paused===true)throw new ClassroomError(403,'TEACHER_CODE_PAUSED');
    return transaction(async client=>{
     const account=await client.query("SELECT role FROM knolstory_auth.accounts WHERE id=$1 AND status='active' FOR UPDATE",[accountId]);
     const role=account.rows[0]?.role;
@@ -180,12 +194,45 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   async teacherCodeUpdatedAt():Promise<number|null>{
    return read(async client=>{const row=(await client.query('SELECT updated_at FROM knolstory_class.teacher_codes WHERE id=1')).rows[0];return row?num(row.updated_at):null;});
   },
+  teacherCode:readTeacherCode,
+
+  /** One shared code: every member who knows it can become a teacher until the admin pauses or changes it. */
   async setTeacherCode(code:string):Promise<number>{
    const hash=await hashSecret(code),updatedAt=now();
-   await transaction(client=>client.query(`INSERT INTO knolstory_class.teacher_codes(id,code_hash,updated_at) VALUES(1,$1,$2)
-    ON CONFLICT(id) DO UPDATE SET code_hash=EXCLUDED.code_hash,updated_at=EXCLUDED.updated_at`,[hash,updatedAt]));
+   await transaction(client=>client.query(`INSERT INTO knolstory_class.teacher_codes(id,code_hash,code_cipher,updated_at) VALUES(1,$1,$2,$3)
+    ON CONFLICT(id) DO UPDATE SET code_hash=EXCLUDED.code_hash,code_cipher=EXCLUDED.code_cipher,updated_at=EXCLUDED.updated_at`,[hash,encryptText(key,code,'teacher-code'),updatedAt]));
    return updatedAt;
   },
+  async setTeacherCodePaused(paused:boolean):Promise<TeacherCodeView>{
+   const result=await transaction(client=>client.query('UPDATE knolstory_class.teacher_codes SET paused=$1 WHERE id=1',[paused]));
+   if(result.rowCount!==1)throw new ClassroomError(404,'TEACHER_CODE_NOT_SET');
+   return readTeacherCode();
+  },
+  /** Overwrites the account's latest sign-in; nothing accumulates. */
+  async recordLogin(accountId:string,method:LoginMethod):Promise<void>{
+   await transaction(client=>client.query('UPDATE knolstory_auth.accounts SET last_login_at=$2,last_login_method=$3 WHERE id=$1',[accountId,now(),method]));
+  },
+  async adminAccess():Promise<AdminAccessRow[]>{
+   return read(async client=>{
+    const rows=(await client.query(`SELECT a.id,a.role,a.last_login_at,a.last_login_method,
+      (SELECT i.provider FROM knolstory_auth.identities i WHERE i.account_id=a.id LIMIT 1) AS provider,
+      coalesce(tc.name,sc.name) AS class_name,s.number AS student_number,(tc.id IS NOT NULL) AS owns_class
+     FROM knolstory_auth.accounts a
+     LEFT JOIN knolstory_class.classrooms tc ON tc.teacher_account_id=a.id
+     LEFT JOIN knolstory_class.students s ON s.account_id=a.id
+     LEFT JOIN knolstory_class.classrooms sc ON sc.id=s.classroom_id
+     WHERE a.status='active'
+     ORDER BY a.last_login_at DESC NULLS LAST,class_name NULLS LAST,student_number NULLS FIRST LIMIT 500`)).rows;
+    const optional=<T,>(value:unknown,map:(value:unknown)=>T):T|null=>value===null||value===undefined?null:map(value);
+    return rows.map(row=>{
+     const id=text(row.id),admin=adminIds.has(id.toLowerCase());
+     const role:AdminAccessRow['role']=admin?'admin':row.role==='student'?'student':row.role==='teacher'||row.owns_class===true?'teacher':'member';
+     return {id,role,provider:optional(row.provider,text),className:optional(row.class_name,text),studentNumber:optional(row.student_number,num),
+      lastLoginAt:optional(row.last_login_at,num),lastLoginMethod:optional(row.last_login_method,value=>text(value) as LoginMethod)};
+    });
+   });
+  },
+
   async createClassroom(teacherId:string,name:string):Promise<ClassroomView>{
    return transaction(async client=>{
     // Serialise concurrent creation by the same teacher on the account row.
@@ -194,7 +241,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(existing.rows[0])throw new ClassroomError(409,'CLASSROOM_EXISTS');
     for(let attempt=0;attempt<12;attempt++){
      const id=randomUUID();
-     const inserted=await client.query('INSERT INTO knolstory_class.classrooms(id,teacher_account_id,name,class_code,default_permissions,created_at) VALUES($1,$2,$3,$4,$5::jsonb,$6) ON CONFLICT DO NOTHING RETURNING id,name,class_code,default_permissions',
+     const inserted=await client.query('INSERT INTO knolstory_class.classrooms(id,teacher_account_id,name,class_code,default_permissions,created_at) VALUES($1,$2,$3,$4,$5::jsonb,$6) ON CONFLICT DO NOTHING RETURNING id,name,class_code,default_permissions,created_at',
       [id,teacherId,name,generateClassCode(),JSON.stringify(ALLOW_ALL_PERMISSIONS),now()]);
      if(inserted.rows[0])return classroomView(client,inserted.rows[0]);
     }

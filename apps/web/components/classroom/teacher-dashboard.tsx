@@ -7,6 +7,7 @@ import {AssignmentsPanel} from './assignments-panel';
 import {MissionsPanel} from './missions-panel';
 import {PermissionEditor} from './permission-editor';
 import {StudentTable} from './student-table';
+import {SeasonNote} from './season-note';
 import {StudentQrPrintWorkspace} from './student-qr-print';
 import styles from './classroom.module.css';
 export type TeacherPanel=Exclude<ServiceSection,'library'|'admin'>;
@@ -46,6 +47,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
    <details><summary>학급 코드 바꾸기</summary>{confirmCode?<div className={styles.row}><span>새 코드를 만들면 학생은 새 코드로 로그인해야 해요.</span><button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>{setConfirmCode(false);void mutate(()=>classroomUpdate({regenerateCode:true},csrf),'학급 코드를 새로 만들었어요.');}}>새로 만들기</button><button className={styles.btn} onClick={()=>setConfirmCode(false)}>취소</button></div>
     :<button className={styles.btn} disabled={busy} onClick={()=>setConfirmCode(true)}>학급 코드 새로 만들기</button>}</details></div>}
   </section>
+  <SeasonNote createdAt={classroom.createdAt} audience="teacher"/>
   {panel==='assignments'&&<><AssignmentsPanel csrf={csrf} run={run}/><MissionsPanel csrf={csrf}/></>}
   {panel==='students'&&<>
    <section className={styles.card} aria-label="학생 만들기"><h2>학생 만들기</h2>

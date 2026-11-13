@@ -121,7 +121,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
  const upgradeFailures=counter(login.windowMs,login.perStudent,login.maxEntries,clock);
  const age=(expiresAt:number)=>Math.max(0,Math.ceil((expiresAt-clock())/1000));
 
- async function startStudentSession(req:IncomingMessage,res:ServerResponse,accountId:string){
+ async function startStudentSession(req:IncomingMessage,res:ServerResponse,accountId:string,method:'password'|'qr'){
   let issued;
   try{issued=await authState.issueSession(accountId);}
   catch(error){if(error instanceof AuthStateError)throw new HttpError(401,'INVALID_LOGIN');throw error;}
@@ -129,6 +129,8 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   const previous=sessionToken(req,names.session);
   if(previous)await authState.revokeSession(previous);
   res.setHeader('Set-Cookie',serializeAuthCookie(origin,'session',issued.token,age(issued.expiresAt)));
+  // The access record is best-effort: a failed write never blocks a student from signing in.
+  await classroom.recordLogin(accountId,method).catch(()=>undefined);
   return {role:'student' as const,csrf:issued.csrf};
  }
  function requireOrigin(req:IncomingMessage){if(header(req,'origin')!==origin)throw new HttpError(403,'INVALID_CSRF');}
@@ -145,10 +147,17 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
    catch(error){if(error instanceof ClassroomError&&error.code==='INVALID_TEACHER_CODE')upgradeFailures.hit(key);throw error;}
   }},
   {method:'GET',pattern:/^\/admin\/overview$/,access:'admin',body:'none',run:()=>classroom.adminOverview()},
-  {method:'GET',pattern:/^\/admin\/teacher-code$/,access:'admin',body:'none',async run(){return {updatedAt:await classroom.teacherCodeUpdatedAt()};}},
+  {method:'GET',pattern:/^\/admin\/teacher-code$/,access:'admin',body:'none',run:()=>classroom.teacherCode()},
+  {method:'PATCH',pattern:/^\/admin\/teacher-code$/,access:'admin',body:'json',run({body}){
+   const paused=object(body,['paused'],['paused']).paused;
+   if(typeof paused!=='boolean')throw bad();
+   return classroom.setTeacherCodePaused(paused);
+  }},
+  {method:'GET',pattern:/^\/admin\/access$/,access:'admin',body:'none',async run(){return {accounts:await classroom.adminAccess()};}},
   {method:'PUT',pattern:/^\/admin\/teacher-code$/,access:'admin',body:'json',async run({body}){
    const code=string(object(body,['code'],['code']).code,6,32,false);
-   return {updatedAt:await classroom.setTeacherCode(code)};
+   await classroom.setTeacherCode(code);
+   return classroom.teacherCode();
   }},
   {method:'POST',pattern:/^\/classroom$/,access:'teacher',body:'json',status:201,run:({accountId,body})=>
    classroom.createClassroom(accountId,string(object(body,['name'],['name']).name,1,60))},
@@ -201,7 +210,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
    const accountId=code===null?null:await classroom.verifyStudentLogin(code,number_,password);
    if(accountId===null){studentFailures.hit(studentKey);clientFailures.hit(clientKey);throw new HttpError(401,'INVALID_LOGIN');}
    studentFailures.reset(studentKey);
-   return startStudentSession(req,res,accountId);
+   return startStudentSession(req,res,accountId,'password');
   }},
   {method:'POST',pattern:/^\/qr-login$/,access:'public',body:'json',async run({req,res,body}){
    requireOrigin(req);
@@ -212,7 +221,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
    if(clientFailures.blocked(clientKey))throw new HttpError(429,'RATE_LIMITED');
    const accountId=validQrToken(token)?await classroom.verifyQrToken(token):null;
    if(accountId===null){clientFailures.hit(clientKey);throw new HttpError(401,'INVALID_LOGIN');}
-   return startStudentSession(req,res,accountId);
+   return startStudentSession(req,res,accountId,'qr');
   }},
   {method:'GET',pattern:/^\/classroom\/assignments$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listAssignments(accountId,role)},
   {method:'POST',pattern:/^\/classroom\/assignments$/,access:'teacher',body:'json',status:201,run({accountId,body}){

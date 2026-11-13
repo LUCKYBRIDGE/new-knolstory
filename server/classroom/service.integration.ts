@@ -34,6 +34,31 @@ describe('real PostgreSQL classroom service',()=>{
   await expect(pool.query("INSERT INTO knolstory_auth.accounts(id,status,role) VALUES($1,'active','owner')",[randomUUID()])).rejects.toThrow();
  });
 
+ it('shows the admin the shared code, lets many members use it, and pauses new registrations',async()=>{
+  await service.setTeacherCode('shared-code-1');
+  const row=(await pool.query('SELECT code_hash,code_cipher FROM knolstory_class.teacher_codes WHERE id=1')).rows[0];
+  expect(row.code_cipher).not.toContain('shared-code-1');expect(row.code_hash).not.toContain('shared-code-1');
+  expect(await service.teacherCode()).toMatchObject({code:'shared-code-1',paused:false});
+  const one=await account(),two=await account();
+  expect(await service.teacherUpgrade(one,'shared-code-1')).toBe('teacher');
+  expect((await service.setTeacherCodePaused(true)).paused).toBe(true);
+  expect(await failure(service.teacherUpgrade(two,'shared-code-1'))).toBe('403 TEACHER_CODE_PAUSED');
+  expect(await service.roleOf(one)).toBe('teacher');
+  await service.setTeacherCodePaused(false);
+  expect(await service.teacherUpgrade(two,'shared-code-1')).toBe('teacher');
+  await pool.query('UPDATE knolstory_class.teacher_codes SET code_cipher=NULL WHERE id=1');
+  expect((await service.teacherCode()).code).toBeNull();
+ });
+
+ it('keeps only the latest sign-in per account and lists it for the admin without student names',async()=>{
+  const member=await account();
+  now+=1000;await service.recordLogin(member,'kakao');
+  now+=5000;await service.recordLogin(member,'google');
+  const rows=await service.adminAccess(),mine=rows.find(row=>row.id===member)!;
+  expect(mine).toMatchObject({role:'member',lastLoginAt:now,lastLoginMethod:'google'});
+  expect(JSON.stringify(rows)).not.toContain('password');
+ });
+
  it('upgrades members only with the current teacher code and stores just a hash',async()=>{
   const member=await account();
   expect(await failure(service.teacherUpgrade(member,'anything'))).toBe('403 INVALID_TEACHER_CODE');

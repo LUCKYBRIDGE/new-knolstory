@@ -242,3 +242,5 @@
 .typeTabs>.btn[aria-pressed="false"]{color:var(--class-muted)}
 .taskMeta{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none;font-size:.8125rem;color:var(--class-muted)}
 .taskMeta li{padding:2px 10px;border-radius:12px;background:#f1f3ea}
+.seasonNote{display:flex;gap:10px;align-items:flex-start;margin:0 0 16px;padding:12px 14px;border-radius:12px;border:1px solid #e3d6b3;background:#fdf7e6;color:#5b4a26;font-size:.875rem;line-height:1.6;word-break:keep-all}
+.seasonNote[data-soon=true]{border-color:#e7b98f;background:#fdeee0;color:#7a3f12}

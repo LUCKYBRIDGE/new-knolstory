@@ -3,14 +3,14 @@ import type {AuthoringJsonbSnapshot} from '@knolstory/compatibility';
 export type ClassroomRole='member'|'teacher'|'student'|'admin';
 import {ALL_EDITING_ALLOWED,EDITING_PRESETS,resolveEditingPermissions,type EditingPermissions} from './editing-permissions';
 export {ALL_EDITING_ALLOWED,EDITING_PRESETS,resolveEditingPermissions,describeEditingPermissions,type EditingPermissions} from './editing-permissions';
-export type ClassroomSummary=Readonly<{id:string;name:string;classCode:string;studentCount:number}>;
+export type ClassroomSummary=Readonly<{id:string;name:string;classCode:string;studentCount:number;createdAt?:number}>;
 export type ClassroomStudent=Readonly<{number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean}>;
 export type Classroom=ClassroomSummary&Readonly<{defaultPermissions:EditingPermissions;students:readonly ClassroomStudent[]}>;
 export type AssignmentFormat='knolstory'|'shortstory';
 export type Assignment=Readonly<{format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null}>;
 export type SubmissionRow=Readonly<{number:number;name:string;submittedAt:number}>;
 export type SubmissionDocument=Readonly<{document:AuthoringJsonbSnapshot;submittedAt:number}>;
-export type StudentSelf=Readonly<{number:number;name:string;classId:string;className:string;permissions:EditingPermissions}>;
+export type StudentSelf=Readonly<{number:number;name:string;classId:string;className:string;classCreatedAt?:number;permissions:EditingPermissions}>;
 export type ClassroomMe=Readonly<{role:ClassroomRole;account:Readonly<{id:string}>;classroom?:ClassroomSummary;student?:StudentSelf}>;
 
 /** Buttons for the teacher dashboard, in display order. */
@@ -33,7 +33,7 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['SESSION_REQUIRED','다시 로그인해 주세요.'],['ROLE_NOT_ALLOWED','이 계정으로는 할 수 없는 일이에요.'],
  ['CLASSROOM_EXISTS','이미 학급이 있어요.'],['CLASSROOM_NOT_FOUND','학급을 찾지 못했어요.'],
  ['STUDENT_LIMIT','학생은 30명까지 만들 수 있어요.'],['STUDENT_NOT_FOUND','학생을 찾지 못했어요.'],
- ['INVALID_LOGIN','학급 코드, 번호 또는 비밀번호를 다시 확인해 주세요.'],['INVALID_TEACHER_CODE','교사 등록 코드가 맞지 않아요.'],
+ ['INVALID_LOGIN','학급 코드, 번호 또는 비밀번호를 다시 확인해 주세요.'],['INVALID_TEACHER_CODE','교사 등록 코드가 맞지 않아요.'],['TEACHER_CODE_PAUSED','지금은 교사 등록을 잠시 멈췄어요. 관리자에게 문의해 주세요.'],['TEACHER_CODE_NOT_SET','먼저 교사 등록 코드를 정해 주세요.'],
  ['ASSIGNMENT_FORMAT_MISMATCH','과제 유형과 같은 작품을 선택해 주세요. 놀스토리·숏스토리를 확인해 주세요.'],['ASSIGNMENT_CLOSED','이미 닫힌 과제예요.'],['ASSIGNMENT_NOT_FOUND','과제를 찾지 못했어요.'],
  ['INVALID_DOCUMENT','이 작품은 제출할 수 없어요. 서비스에 등록된 그림과 소리만 쓸 수 있어요.'],['INVALID_REQUEST','입력한 내용을 다시 확인해 주세요.'],
  ['QR_REISSUE_REQUIRED','이전에 만든 QR을 인쇄하려면 한 번 다시 만들어야 해요. 이전 QR은 더 이상 쓸 수 없어요.'],['CLASSROOM_UNAVAILABLE','학급 정보를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.'],
@@ -90,8 +90,15 @@ export function generateTeacherCode(random:(size:number)=>Uint8Array=size=>crypt
  const chars=[...bytes].map(byte=>alphabet[byte%alphabet.length]);
  return [chars.slice(0,4),chars.slice(4,8),chars.slice(8,12)].map(group=>group.join('')).join('-');
 }
-export async function adminTeacherCodeUpdatedAt(fetcher:Fetcher=fetch):Promise<number|null>{const data=await obj('/admin/teacher-code',fetcher);return typeof data.updatedAt==='number'?data.updatedAt:null;}
-export async function adminSetTeacherCode(code:string,csrf:string,fetcher:Fetcher=fetch):Promise<number|null>{const data=await obj('/admin/teacher-code',fetcher,{method:'PUT',csrf:csrfOf(csrf),body:{code}});return typeof data.updatedAt==='number'?data.updatedAt:null;}
+export type TeacherCode=Readonly<{code:string|null;paused:boolean;updatedAt:number|null}>;
+function asTeacherCode(data:Record<string,unknown>):TeacherCode{return {code:typeof data.code==='string'?data.code:null,paused:data.paused===true,updatedAt:typeof data.updatedAt==='number'?data.updatedAt:null};}
+/** The admin can always read the shared teacher code; many members may use it until it is paused or changed. */
+export async function adminTeacherCode(fetcher:Fetcher=fetch):Promise<TeacherCode>{return asTeacherCode(await obj('/admin/teacher-code',fetcher));}
+export async function adminSetTeacherCode(code:string,csrf:string,fetcher:Fetcher=fetch):Promise<TeacherCode>{return asTeacherCode(await obj('/admin/teacher-code',fetcher,{method:'PUT',csrf:csrfOf(csrf),body:{code}}));}
+export async function adminPauseTeacherCode(paused:boolean,csrf:string,fetcher:Fetcher=fetch):Promise<TeacherCode>{return asTeacherCode(await obj('/admin/teacher-code',fetcher,{method:'PATCH',csrf:csrfOf(csrf),body:{paused}}));}
+export type LoginMethod='kakao'|'google'|'password'|'qr';
+export type AdminAccessRow=Readonly<{id:string;role:'admin'|'teacher'|'student'|'member';provider:string|null;className:string|null;studentNumber:number|null;lastLoginAt:number|null;lastLoginMethod:LoginMethod|null}>;
+export async function adminAccess(fetcher:Fetcher=fetch):Promise<AdminAccessRow[]>{const data=await obj('/admin/access',fetcher);if(!Array.isArray(data.accounts))throw new ClassroomError('INVALID_RESPONSE',502);return data.accounts as AdminAccessRow[];}
 export const classroomCreate=async(name:string,csrf:string,fetcher:Fetcher=fetch)=>asClassroom(await obj('/classroom',fetcher,{method:'POST',csrf:csrfOf(csrf),body:{name}}));
 /** Returns null when the teacher has not opened a class yet. */
 export async function classroomRead(fetcher:Fetcher=fetch):Promise<Classroom|null>{const data=await call('/classroom',fetcher,{allow404:true});return data===null?null:asClassroom(Array.isArray(data)?{}:data);}

@@ -31,3 +31,19 @@
 @media(max-width:960px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
 @media(max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat{padding:12px 14px}.statValue{font-size:1.4rem}.codeActions>.btn,.codeActions>button{flex:1 1 100%}}
 @media(max-width:520px){.stats>div:last-child{grid-column:1/-1}}
+/* Teacher code: the current code is always visible to the admin, with a clear on/off state. */
+.currentCode{display:flex;align-items:center;gap:10px;margin:12px 0 4px;padding:12px 14px;border:1px dashed #b9cdbd;border-radius:12px;background:#fffefa}
+.currentCode code{flex:1;min-width:0;font:700 1.25rem/1.4 ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#1f4f44;overflow-wrap:anywhere}
+.liveChip,.pausedChip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:700}
+.liveChip{background:#e3efe6;color:#245b46}.pausedChip{background:#fbe9dc;color:#8a4316}
+/* Access: one row per account, latest sign-in only. */
+.access{margin-top:20px}
+.accessFilter{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.accessFilter small{color:var(--class-muted,#5d6b65);font-weight:400}
+.accessList{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.accessList li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e3e0d4;border-radius:10px;background:#fffefa}
+.accessList strong{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.roleChip{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#eef0e8;color:#41524b}
+.roleChip[data-role=teacher]{background:#e3efe6;color:#245b46}.roleChip[data-role=student]{background:#e6eef7;color:#2c4f73}.roleChip[data-role=admin]{background:#fbefd5;color:#7a5414}
+.lastSeen{font-size:.8125rem;color:var(--class-muted,#5d6b65);white-space:nowrap}
+@media(max-width:520px){.accessList li{grid-template-columns:auto minmax(0,1fr);row-gap:2px}.lastSeen{grid-column:2}.currentCode code{font-size:1.05rem}}
