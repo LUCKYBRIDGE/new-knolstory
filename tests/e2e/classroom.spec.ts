@@ -788,7 +788,7 @@ async function mockRole(page:Page,initial:'guest'|'member'|'teacher'|'student'|'
   if(path==='class/admin/teacher-code'&&request.method()==='GET')return route.fulfill(ok(codeView()));
   if(path==='class/admin/teacher-code'&&request.method()==='PUT'){state.codes.push(body.code);state.code=body.code;state.codeSetAt=1_770_100_000_000;return route.fulfill(ok(codeView()));}
   if(path==='class/admin/teacher-code'&&request.method()==='PATCH'){state.paused=body.paused;return route.fulfill(ok(codeView()));}
-  if(path==='class/admin/access')return route.fulfill(ok({accounts:[{id:'11111111-aaaa',role:'student',provider:null,className:'5학년 3반',studentNumber:7,lastLoginAt:Date.now()-3*60*60*1000,lastLoginMethod:'qr'},{id:'22222222-bbbb',role:'teacher',provider:'kakao',className:'5학년 3반',studentNumber:null,lastLoginAt:Date.now()-2*24*60*60*1000,lastLoginMethod:'kakao'},{id:'33333333-cccc',role:'member',provider:'kakao',className:null,studentNumber:null,lastLoginAt:null,lastLoginMethod:null}]}));
+  if(path==='class/admin/access')return route.fulfill(ok({accounts:[{id:'44444444-dddd',role:'admin',provider:'kakao',className:'6학년 1반',studentNumber:null,lastLoginAt:Date.now()-60*1000,lastLoginMethod:'kakao'},{id:'11111111-aaaa',role:'student',provider:null,className:'5학년 3반',studentNumber:7,lastLoginAt:Date.now()-3*60*60*1000,lastLoginMethod:'qr'},{id:'22222222-bbbb',role:'teacher',provider:'kakao',className:'5학년 3반',studentNumber:null,lastLoginAt:Date.now()-2*24*60*60*1000,lastLoginMethod:'kakao'},{id:'33333333-cccc',role:'member',provider:'kakao',className:null,studentNumber:null,lastLoginAt:null,lastLoginMethod:null}]}));
   if(path==='class/teacher-upgrade'){if(body.code!==state.upgradeCode)return route.fulfill(fail(403,'INVALID_TEACHER_CODE'));state.role='teacher';return route.fulfill(ok({role:'teacher'}));}
   if(path==='class/classroom')return route.fulfill(fail(404,'CLASSROOM_NOT_FOUND'));
   if(path==='class/classroom/missions'||path==='class/classroom/assignments')return route.fulfill(ok([]));
@@ -819,6 +819,8 @@ test('admin sees the service overview and sets a readable teacher code',async({p
  await page.reload();await expect(page.getByRole('region',{name:'교사 등록 코드'}).getByLabel('현재 교사 등록 코드')).toHaveText('KNOL-2027-SPRING');
  const access=page.getByRole('region',{name:'접속 기록'});
  await expect(access.getByText('5학년 3반 7번')).toBeVisible();await expect(access.getByText('3시간 전')).toBeVisible();await expect(access.getByText('기록 없음')).toBeVisible();
+ await expect(access.getByRole('button',{name:/^교사/})).toHaveText('교사 2');
+ await access.getByRole('button',{name:/^교사/}).click();await expect(access.getByRole('listitem')).toHaveCount(2);
  await access.getByRole('button',{name:/^학생/}).click();await expect(access.getByRole('listitem')).toHaveCount(1);
  await expect(rooms.getByText(/정리/).first()).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
