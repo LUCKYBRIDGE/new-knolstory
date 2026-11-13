@@ -5,7 +5,11 @@ import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWorkSnapsho
 import type {AccountSession} from '../../lib/account-api';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
-import {StudentMissions} from './student-missions';
+import {MissionCard,useStudentMissions} from './student-missions';
+import {MissionSeal} from './classroom-art';
+import {groupTodos,type TodoEntry,type TodoGroup} from '../../lib/student-todo';
+import {missionKindLabel} from '../../lib/mission-api';
+import {dueDateLabel,dueState} from '../../lib/due-date';
 import {SeasonNote} from './season-note';
 import {currentStudentNumber,studentNumberLabel} from '../../lib/student-file-prefix';
 import {shareLinkHost} from '../../lib/share-link';
@@ -25,16 +29,8 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
   <SeasonNote createdAt={student.classCreatedAt} audience="student"/>
   <details className={`${styles.card} ${styles.permissionNote}`}><summary>내가 고칠 수 있는 것</summary>
    {limits.length?<ul className={styles.rowsList}>{limits.map(line=><li key={line}>{line}</li>)}</ul>:<p className={styles.hint}>모두 고칠 수 있어요.</p>}</details>
-  <StudentMissions accountId={session.accountId} csrf={session.csrf}/>
-  <section aria-label="과제"><h2 className={styles.studentTasksTitle}>나의 과제</h2>
-   {error&&<div role="alert"><p className={styles.error}>{error}</p><button className={styles.btn} onClick={()=>void load()}>다시 불러오기</button></div>}
-   {assignments===null&&!error?<p className={styles.hint} role="status">불러오는 중이에요.</p>:assignments===null?null:assignments.length===0?<p className={styles.card}>아직 과제가 없어요.</p>
-    :<div className={styles.studentTaskGrid}>{(['knolstory','shortstory'] as const).map(format=>{
-     const tasks=assignments.filter(item=>item.format===format),opened=tasks.filter(item=>item.open),closed=tasks.filter(item=>!item.open);
-     const cards=(items:Assignment[])=><ul className={styles.list}>{items.map(item=><li key={item.id} className={styles.assignmentCard} data-format={format}><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(format==='shortstory'))} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} forcedStoryKey={student.permissions.forcedStoryKey}/></li>)}</ul>;
-     return <section className={styles.typeSection} key={format} data-format={format} aria-label={format==='knolstory'?'놀스토리 과제':'숏스토리 과제'}><div className={styles.typeHeading}><ClassroomBook format={format}/><div><h3>{format==='knolstory'?'놀스토리':'숏스토리'}</h3><p>{format==='knolstory'?'장면과 대사로 펼치는 이야기':'삽화와 글로 엮는 그림책'}</p></div><span className={styles.taskCount}>{opened.length}<small>개</small></span></div>{opened.length?cards(opened):<p className={styles.hint}>열린 과제가 없어요.</p>}{closed.length>0&&<details><summary>마감된 과제 {closed.length}개</summary>{cards(closed)}</details>}</section>;
-    })}</div>}
-  </section>
+  <StudentTodo key={session.accountId} accountId={session.accountId} csrf={session.csrf} assignments={assignments} assignmentError={error} onReload={load}
+   card={item=><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(item.format==='shortstory'))} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} forcedStoryKey={student.permissions.forcedStoryKey}/>}/>
  </>;
 }
 function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,accountId}:{assignment:Assignment;works:LocalWorkChoice[];csrf:string;onDone:()=>Promise<void>;canCreate:boolean;forcedStoryKey:string|null;accountId:string}){
@@ -91,4 +87,33 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
     <button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void submit()}>{submitted?'다시 제출':'제출'}</button></div>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}{error&&<p className={styles.error} role="alert">{error}</p>}
  </>;
+}
+
+const GROUPS:readonly {group:TodoGroup;title:string;empty:string}[]=[
+ {group:'todo',title:'해야 해요',empty:'지금 할 일을 모두 끝냈어요.'},
+ {group:'waiting',title:'냈어요 · 선생님 확인을 기다려요',empty:''},
+ {group:'done',title:'끝났어요',empty:''},
+];
+/** One list for writing tasks and missions: what to do now first, nearest due date first. */
+function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:{accountId:string;csrf:string;assignments:Assignment[]|null;assignmentError:string;onReload:()=>Promise<void>;card:(item:Assignment)=>React.ReactNode}){
+ const missions=useStudentMissions();
+ const [now]=useState(()=>Date.now());
+ const loading=(assignments===null&&!assignmentError)||(missions.missions===null&&!missions.error);
+ const groups=groupTodos(assignments??[],missions.missions??[]);
+ const total=groups.todo.length+groups.waiting.length+groups.done.length,finished=groups.done.length;
+ const label=(entry:TodoEntry)=>entry.type==='assignment'?`작품 쓰기 · ${entry.item.format==='shortstory'?'숏스토리':'놀스토리'}`:missionKindLabel(entry.item.kind);
+ const render=(entry:TodoEntry)=>{const due=dueState(entry.item.dueAt,now);return <li key={`${entry.type}:${entry.item.id}`} className={styles.todoItem} data-todo={entry.type} data-format={entry.type==='assignment'?entry.item.format:undefined}>
+  <div className={styles.todoMeta}><span className={styles.todoType} data-type={entry.type}>{label(entry)}</span>{due&&entry.item.dueAt!=null&&<span className={styles.dueChip} data-tone={due.tone} title={dueDateLabel(entry.item.dueAt)}>{due.label} · {dueDateLabel(entry.item.dueAt)}</span>}</div>
+  {entry.type==='assignment'?<div className={styles.assignmentCard}>{card(entry.item)}</div>:<MissionCard accountId={accountId} csrf={csrf} mission={entry.item} onProgress={progress=>missions.setProgress(entry.item.id,progress)}/>}
+ </li>;};
+ return <section className={styles.todo} aria-label="할 일">
+  <div className={styles.todoHead}><div><span className={styles.eyebrow}>오늘의 이야기 숙제</span><h2 className={styles.studentTasksTitle}>할 일</h2></div>
+   {total>0&&<span className={styles.todoCount} aria-label={`할 일 ${total}개 가운데 ${finished}개 끝냄`}><MissionSeal small earned={finished>0&&finished===total}/><span><b>{finished}</b> / {total} 끝</span></span>}</div>
+  {assignmentError&&<div role="alert"><p className={styles.error}>{assignmentError}</p><button className={styles.btn} onClick={()=>void onReload()}>다시 불러오기</button></div>}
+  {missions.error&&<div role="alert"><p className={styles.error}>{missions.error}</p><button className={styles.btn} disabled={missions.loading} onClick={()=>void missions.load()}>미션 다시 불러오기</button></div>}
+  {loading?<p className={styles.hint} role="status">할 일을 불러오고 있어요.</p>:total===0?<p className={styles.card}>아직 선생님이 낸 할 일이 없어요.</p>
+   /* One list for all groups: a card that moves (submitted, passed) keeps its state and its message. */
+   :<ul className={styles.todoList}>{GROUPS.flatMap(({group,title,empty})=>{const list=groups[group];if(!list.length&&!empty)return [];
+    return [<li key={`group:${group}`} className={styles.todoGroupHead} data-group={group}><h3>{title} <small>{list.length}</small></h3>{!list.length&&<p className={styles.hint}>{empty}</p>}</li>,...list.map(render)];})}</ul>}
+ </section>;
 }

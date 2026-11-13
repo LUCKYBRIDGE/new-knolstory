@@ -252,3 +252,31 @@
 .shareBox{display:grid;gap:8px;margin:12px 0;padding:14px;border:1px solid #cfe0d5;border-radius:12px;background:#f2f8f3}
 .shareBox ol{margin:0;padding-left:20px;font-size:.875rem;line-height:1.7}
 .shareBox small{color:var(--class-muted);font-size:.75rem}
+/* Student "할 일": one list, grouped by what to do next. */
+.todo{display:grid;gap:14px;margin-top:8px}
+.todoHead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.todoCount{display:inline-flex;align-items:center;gap:8px;font-size:.875rem;color:var(--class-muted)}.todoCount b{font-size:1.25rem;color:var(--ink)}
+.todoGroup{display:grid;gap:10px}
+.todoGroup>h3{margin:4px 0 0;font-size:1rem;display:flex;gap:8px;align-items:baseline}.todoGroup>h3 small{color:var(--class-muted);font-weight:600}
+.todoGroup>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--class-muted)}
+.todoGroup[data-group=waiting]>h3{color:#7a5a14}
+.todoList{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.todoItem{display:grid;gap:6px}
+.todoMeta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.todoType{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:12px;background:#e3efe6;color:#245b46}
+.todoType[data-type=mission]{background:#fbefd5;color:#7a5414}
+.dueChip{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:12px;background:#eef0e8;color:#41524b}
+.dueChip[data-tone=soon]{background:#fdf0dc;color:#8a5a12}.dueChip[data-tone=today]{background:#fde3d3;color:#9a3b10}.dueChip[data-tone=late]{background:#f6dcdc;color:#8f2525}
+.todoItem>.assignmentCard{margin:0}
+/* Teacher composer: one place to start any task. */
+.composer{display:grid;gap:10px}
+.composerChoices{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.composerChoice{width:100%;height:100%;display:grid;gap:4px;text-align:left;padding:14px 16px;border:1px solid #d9dccf;border-radius:14px;background:#fffefa;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.composerChoice:hover{border-color:#386f60;box-shadow:0 4px 12px #18333112}
+.composerChoice strong{font-size:.9375rem}.composerChoice small{color:var(--class-muted);font-size:.8125rem;line-height:1.5}
+.composerChoice[data-kind=provided]{border-color:#c9dccf;background:#f2f8f3}
+.taskFacts{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:8px 0 0}
+.factChip{font-size:.75rem;padding:3px 10px;border-radius:12px;background:#eef0e8;color:#41524b}.factChip b{color:var(--ink)}
+@media(max-width:600px){.composerChoices{grid-template-columns:1fr 1fr}.composerChoice{padding:12px}}
+.todoGroupHead{margin-top:6px}.todoGroupHead h3{margin:0;font-size:1rem;display:flex;gap:8px;align-items:baseline}.todoGroupHead h3 small{color:var(--class-muted);font-weight:600}
+.todoGroupHead[data-group=waiting] h3{color:#7a5a14}.todoGroupHead[data-group=done] h3{color:var(--class-muted)}

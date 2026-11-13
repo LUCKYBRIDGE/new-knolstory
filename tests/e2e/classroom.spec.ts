@@ -153,7 +153,7 @@ test('student submits and teacher opens a device copy after the assignment close
  expect(submitted.content.format).toBe('knolstory');expect(submitted.content.document.project.title).toContain('하늘의 이야기');
  state.assignments[0].open=false;
  await page.reload();
- await page.locator('summary').filter({hasText:'마감된 과제'}).click();
+ await expect(page.getByRole('heading',{name:/^끝났어요/})).toBeVisible();
  await expect(page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'내 이야기 쓰기',exact:true})})).toContainText('닫힘');
  await expect(page.getByRole('button',{name:'다시 제출'})).toHaveCount(0);
  const downloading=page.waitForEvent('download');
@@ -320,7 +320,7 @@ test('teacher chooses the assignment type and students start a picture book task
   student.assignments=teacher.assignments;
   student.permissions={...textOnly,newWorks:false,forcedStoryKey:'rabbit'};
   await studentPage.goto('/student');
-  await expect(studentPage.getByRole('heading',{name:'숏스토리',exact:true})).toBeVisible();
+  await expect(studentPage.getByText('작품 쓰기 · 숏스토리').first()).toBeVisible();
   await studentPage.getByRole('link',{name:'과제 쓰기',exact:true}).click();
   const text=studentPage.getByLabel('이 쪽의 이야기',{exact:true});
   await expect(text).toBeVisible();
@@ -412,7 +412,7 @@ test('classroom design keeps long titles and management usable across screen siz
   await page.screenshot({path:info.outputPath(`teacher-${viewport.width}.png`),fullPage:true});
   await page.getByRole('button',{name:'숏스토리 · 2',exact:true}).click();
   await expect(page.getByRole('heading',{name:'삽화를 섞어 만드는 나만의 그림책',exact:true})).toBeVisible();
-  await page.getByText('새 과제 만들기',{exact:true}).click();
+  await page.getByText('작품 쓰기 과제 만들기',{exact:true}).click();
   await expect(page.getByLabel('과제 유형',{exact:true})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.getByRole('link',{name:'학급 설정',exact:true}).click();
@@ -429,8 +429,8 @@ test('classroom design keeps long titles and management usable across screen siz
   student.signedIn=true;student.permissions=all;student.assignments=teacher.assignments;
   for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
    await studentPage.setViewportSize(viewport);await studentPage.goto('/student');
-   await expect(studentPage.getByRole('heading',{name:'숏스토리',exact:true})).toBeVisible();
-   expect(await studentPage.getByRole('link',{name:'과제 쓰기',exact:true}).count()).toBe(2);
+   await expect(studentPage.getByRole('region',{name:'할 일'})).toBeVisible();
+   await expect(studentPage.getByRole('link',{name:'과제 쓰기',exact:true})).toHaveCount(2);
    expect(await studentPage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    await studentPage.addScriptTag({content:axe.source});
    const scan=await studentPage.locator('main').evaluate(node=>(window as typeof window&{axe:typeof axe}).axe.run(node,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']},iframes:false}));
@@ -677,6 +677,19 @@ test('switching teacher accounts closes the prepared QR workspace',async({page})
 });
 
 const worksheetMission:Mission={id:'m1',title:'별주부전 독후 활동지',description:'읽고 생각을 써요.',criteria:'까닭을 함께 써요.',kind:'worksheet',storyKey:'rabbit',readingFormat:'original',questions:[{id:'q1',prompt:'기억에 남는 장면은?'},{id:'q2',prompt:'토끼의 선택을 어떻게 생각하나요?'}],open:true,createdAt:1};
+test('one composer opens the right form for every kind of task',async({page})=>{
+ const state=await mockClassroom(page,'teacher');
+ state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
+ await page.goto('/teacher');
+ const composer=page.getByRole('region',{name:'새 과제 내기'});
+ await composer.getByRole('button',{name:/^작품 쓰기 · 숏스토리/}).click();
+ await expect(page.getByLabel('과제 유형',{exact:true})).toHaveValue('shortstory');
+ await expect(page.locator('input[name="task-title"]')).toBeFocused();
+ await composer.getByRole('button',{name:/^독후 활동지/}).click();
+ await expect(page.locator('form[aria-label="미션 직접 만들기"]')).toBeVisible();
+ await composer.getByRole('button',{name:/^제공 미션 가져오기/}).click();
+ await expect(page.getByText('어떤 작품의 미션을 가져올까요?')).toBeVisible();
+});
 test('teacher imports a provided mission, edits it and assigns it',async({page})=>{
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
@@ -732,7 +745,8 @@ test('student submits a worksheet, rewrites after feedback and sees mission succ
  Object.assign(state.missionRows.m1![2]!,{reviewStatus:'passed',feedback:'잘 썼어요!'});
  await page.reload();
  await expect(card).toHaveAttribute('data-status','passed');await expect(card.getByText('미션 성공')).toBeVisible();
- await expect(page.getByLabel('미션 1개 가운데 1개 성공')).toContainText('1 / 1 성공');
+ await expect(page.getByLabel(/^할 일 \d+개 가운데 1개 끝냄$/)).toContainText('1 /');
+ await expect(page.getByRole('heading',{name:/^끝났어요/})).toBeVisible();
 });
 test('teacher reviews answers, handles a changed submission, and passes paper work directly',async({page})=>{
  const state=await mockClassroom(page,'teacher');

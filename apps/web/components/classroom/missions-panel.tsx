@@ -1,10 +1,12 @@
 'use client';
 import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
-import {missionCreate,missionList,missionProgress,missionReview,missionSetOpen,missionKindLabel,readingFormatLabel,MissionError,MISSION_LIMITS,
+import {missionCreate,missionList,missionProgress,missionReview,missionSetDue,missionSetOpen,missionKindLabel,readingFormatLabel,MissionError,MISSION_LIMITS,
  type Mission,type MissionDraft,type MissionKind,type MissionStudentProgress,type ReadingFormat} from '../../lib/mission-api';
 import {PROVIDED_MISSIONS,copyProvidedMission} from '../../lib/provided-missions';
 import {BUILTIN_WORKS,type BuiltinWorkId} from '../../lib/builtin-works';
 import {formatSubmittedAt} from '../../lib/classroom-local';
+import type {TaskRequest} from './task-composer';
+import {dateFromDueAt,dueAtFromDate,dueDateLabel,dueState} from '../../lib/due-date';
 import {MissionSeal} from './classroom-art';
 import shared from './classroom.module.css';
 import styles from './missions-panel.module.css';
@@ -22,11 +24,11 @@ const statusOf=(row:Pick<MissionStudentProgress,'reviewStatus'|'submittedAt'>):S
 const STATUS_LABEL:Record<Status,string>={passed:'통과',pending:'확인 대기',revise:'다시 쓰기',none:'아직 안 냄'};
 
 /** Teacher's missions: bring in a provided mission or write one, assign it, then read answers and decide. */
-export function MissionsPanel({csrf}:{csrf:string}){
+export function MissionsPanel({csrf,request=null}:{csrf:string;request?:TaskRequest|null}){
  const [missions,setMissions]=useState<Mission[]|null>(null),[loadError,setLoadError]=useState('');
  const [picker,setPicker]=useState(false),[draft,setDraft]=useState<MissionDraft|null>(null),[origin,setOrigin]=useState<'provided'|'own'>('own');
  const [notice,setNotice]=useState('');
- const editor=useRef<HTMLDivElement>(null);
+ const editor=useRef<HTMLDivElement>(null),panel=useRef<HTMLElement>(null);
  const load=useCallback(async()=>{
   setLoadError('');
   try{setMissions(await missionList());}catch(issue){setLoadError(text(issue,'미션을 불러오지 못했어요.'));}
@@ -35,8 +37,18 @@ export function MissionsPanel({csrf}:{csrf:string}){
  function begin(next:MissionDraft,from:'provided'|'own'){
   setDraft(next);setOrigin(from);setPicker(false);setNotice('');
   requestAnimationFrame(()=>{editor.current?.scrollIntoView({block:'nearest',behavior:'smooth'});editor.current?.querySelector<HTMLInputElement>('input[name="mission-title"]')?.focus({preventScroll:true});});
- }
- return <section className={`${shared.card} ${styles.panel}`} aria-label="미션">
+ } // The composer opens the provided picker or a blank mission of the chosen kind.
+ useEffect(()=>{
+  const kind=request?.kind;
+  if(!kind||kind==='knolstory'||kind==='shortstory')return;
+  const timer=window.setTimeout(()=>{
+   if(kind==='provided'){setDraft(null);setPicker(true);requestAnimationFrame(()=>panel.current?.scrollIntoView({block:'start',behavior:'smooth'}));}
+   else begin({...BLANK,kind,questions:kind==='worksheet'?[{id:'q1',prompt:''}]:[]},'own');
+  },0);
+  return()=>window.clearTimeout(timer);
+ },[request]);
+
+ return <section ref={panel} className={`${shared.card} ${styles.panel}`} aria-label="미션">
   <div className={shared.sectionHeading}><div><span className={shared.eyebrow}>읽고, 생각하고, 확인받는</span><h2>미션</h2></div><MissionSeal small/></div>
   <p className={shared.hint}>학생이 읽거나 활동지를 내면 선생님이 확인해요. 통과시키면 학생 화면에 ‘미션 성공’이 표시돼요.</p>
   {!draft&&<div className={styles.starters}>
@@ -75,7 +87,7 @@ function MissionEditor({initial,origin,csrf,onCreated,onCancel}:{initial:Mission
  const [kind,setKind]=useState<MissionKind>(initial.kind),[title,setTitle]=useState(initial.title),[description,setDescription]=useState(initial.description),[criteria,setCriteria]=useState(initial.criteria);
  const [storyKey,setStoryKey]=useState<string>(initial.storyKey??''),[format,setFormat]=useState<ReadingFormat>(initial.readingFormat);
  const [questions,setQuestions]=useState<string[]>(initial.questions.map(question=>question.prompt));
- const [busy,setBusy]=useState(false),[error,setError]=useState('');
+ const [busy,setBusy]=useState(false),[error,setError]=useState(''),[due,setDue]=useState('');
  const lock=useRef(false);
  const filled=questions.map(prompt=>prompt.trim()).filter(Boolean);
  const problem=!title.trim()?'미션 제목을 써 주세요.':kind==='reading'&&!storyKey?'읽을 작품을 골라 주세요.':kind==='worksheet'&&!filled.length?'활동지 질문을 하나 넘게 써 주세요.':'';
@@ -85,7 +97,7 @@ function MissionEditor({initial,origin,csrf,onCreated,onCancel}:{initial:Mission
   lock.current=true;setBusy(true);setError('');
   try{
    onCreated(await missionCreate({title:title.trim(),description:description.trim(),criteria:criteria.trim(),kind,storyKey:(storyKey||null) as BuiltinWorkId|null,readingFormat:format,
-    questions:filled.map((prompt,index)=>({id:`q${index+1}`,prompt}))},csrf));
+    questions:filled.map((prompt,index)=>({id:`q${index+1}`,prompt})),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)}:{})},csrf));
   }catch(issue){setError(text(issue,'미션을 배정하지 못했어요. 쓴 내용은 그대로 있어요.'));}
   finally{lock.current=false;setBusy(false);}
  }
@@ -99,6 +111,7 @@ function MissionEditor({initial,origin,csrf,onCreated,onCancel}:{initial:Mission
    {storyKey&&<label className={shared.field}>읽을 판본<select aria-label="읽을 판본" value={format} onChange={event=>setFormat(event.target.value as ReadingFormat)}>{(['original','knolstory','shortstory'] as const).map(value=><option key={value} value={value}>{readingFormatLabel(value)}{value==='original'?' · 옛이야기 그대로':value==='knolstory'?' · 선택지가 있는 이야기':' · 짧은 그림책'}</option>)}</select></label>}
   </div>
   <label className={shared.field}>학생에게 보일 안내<textarea value={description} maxLength={MISSION_LIMITS.text} onChange={event=>setDescription(event.target.value)} placeholder="무엇을 하면 되는지 알려 주세요."/></label>
+  <label className={shared.field}>마감일 (선택)<input type="date" value={due} onChange={event=>setDue(event.target.value)}/></label>
   <label className={shared.field}>통과 기준<textarea value={criteria} maxLength={MISSION_LIMITS.text} onChange={event=>setCriteria(event.target.value)} placeholder="어떻게 하면 통과인지 알려 주세요."/></label>
   <div className={styles.questions} role="group" aria-label="활동지 질문">
    <div className={styles.questionsHead}><strong>활동지 질문 <small>{kind==='worksheet'?'하나 넘게 필요해요':'없어도 돼요'}</small></strong><span>{questions.length} / {MISSION_LIMITS.questions}</span></div>
@@ -134,6 +147,7 @@ function MissionRow({mission,csrf,onChanged}:{mission:Mission;csrf:string;onChan
  return <>
   <div className={shared.taskHeading}><div><span className={styles.kind} data-kind={mission.kind}>{missionKindLabel(mission.kind)}</span><h3>{mission.title}</h3></div><span className={mission.open?shared.badge:`${shared.badge} ${shared.off}`}>{mission.open?'열림':'마감'}</span></div>
   <p className={styles.meta}>{[work&&`${work} · ${readingFormatLabel(mission.readingFormat)}`,mission.questions.length?`질문 ${mission.questions.length}개`:mission.kind==='custom'?'온라인 답변 없이 확인':'읽고 확인 요청'].filter(Boolean).join('  ·  ')}</p>
+  <MissionDue mission={mission} csrf={csrf} onChanged={onChanged}/>
   <div className={shared.taskActions}>
    <button className={`${shared.btn} ${shared.primary}`} aria-expanded={open} aria-label={`${mission.title} 학생 확인`} onClick={()=>void toggleRoster()}>{open?'학생 목록 접기':'학생 확인하기'}</button>
    <button className={shared.btn} disabled={toggling} aria-label={`${mission.title} ${mission.open?'마감':'다시 열기'}`} onClick={()=>void toggleOpen()}>{mission.open?'미션 마감':'다시 열기'}</button>
@@ -186,4 +200,15 @@ function StudentReview({mission,row,csrf,onSaved,onStale}:{mission:Mission;row:M
    {error&&<p className={shared.error} role="alert">{error}</p>}{notice&&<p className={shared.notice} role="status">{notice}</p>}
   </div>
  </details>;
+}
+
+function MissionDue({mission,csrf,onChanged}:{mission:Mission;csrf:string;onChanged:(next:Mission)=>void}){
+ const [editing,setEditing]=useState(false),[value,setValue]=useState(dateFromDueAt(mission.dueAt)),[busy,setBusy]=useState(false),[error,setError]=useState(''),[now]=useState(()=>Date.now());
+ const due=dueState(mission.dueAt,now);
+ async function save(next:number|null){setBusy(true);setError('');try{onChanged(await missionSetDue(mission.id,next,csrf));setEditing(false);}catch(issue){setError(text(issue,'마감일을 바꾸지 못했어요.'));}finally{setBusy(false);}}
+ return <div className={shared.taskFacts}>
+  {editing?<form className={shared.row} onSubmit={event=>{event.preventDefault();void save(dueAtFromDate(value));}}><label className={shared.field}>마감일<input type="date" value={value} onChange={event=>setValue(event.target.value)} disabled={busy}/></label><button className={`${shared.btn} ${shared.primary}`} disabled={busy}>저장</button><button type="button" className={shared.btn} disabled={busy} onClick={()=>setEditing(false)}>취소</button>{mission.dueAt!=null&&<button type="button" className={shared.btn} disabled={busy} onClick={()=>void save(null)}>마감일 빼기</button>}</form>
+   :<>{due&&mission.dueAt!=null?<span className={shared.dueChip} data-tone={due.tone}>{due.label} · {dueDateLabel(mission.dueAt)}</span>:null}<button className={shared.linkBtn} aria-label={`${mission.title} 마감일 ${mission.dueAt!=null?'바꾸기':'정하기'}`} onClick={()=>{setValue(dateFromDueAt(mission.dueAt));setEditing(true);}}>{mission.dueAt!=null?'마감일 바꾸기':'+ 마감일 정하기'}</button></>}
+  {error&&<p className={shared.error} role="alert">{error}</p>}
+ </div>;
 }

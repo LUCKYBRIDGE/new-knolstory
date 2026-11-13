@@ -8,6 +8,7 @@ import {MissionsPanel} from './missions-panel';
 import {PermissionEditor} from './permission-editor';
 import {StudentTable} from './student-table';
 import {SeasonNote} from './season-note';
+import {TaskComposer,type TaskRequest} from './task-composer';
 import {StudentQrPrintWorkspace} from './student-qr-print';
 import styles from './classroom.module.css';
 export type TeacherPanel=Exclude<ServiceSection,'library'|'admin'>;
@@ -15,7 +16,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  const csrf=session.csrf;
  const [classroom,setClassroom]=useState<Classroom|null|undefined>(undefined),[error,setError]=useState(''),[notice,setNotice]=useState(''),[busy,setBusy]=useState(false);
  const [loadFailed,setLoadFailed]=useState(false);
- const [name,setName]=useState(''),[count,setCount]=useState('1'),[confirmCode,setConfirmCode]=useState(false),[newQr,setNewQr]=useState<readonly number[]|null>(null);
+ const [name,setName]=useState(''),[count,setCount]=useState('1'),[confirmCode,setConfirmCode]=useState(false),[newQr,setNewQr]=useState<readonly number[]|null>(null),[taskRequest,setTaskRequest]=useState<TaskRequest|null>(null);
  const alive=useRef(true),mutation=useRef(false);
  useEffect(()=>{alive.current=true;return()=>{alive.current=false;};},[]);
  const run=useCallback(async<T,>(action:()=>Promise<T>):Promise<T|undefined>=>{
@@ -48,7 +49,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
     :<button className={styles.btn} disabled={busy} onClick={()=>setConfirmCode(true)}>학급 코드 새로 만들기</button>}</details></div>}
   </section>
   <SeasonNote createdAt={classroom.createdAt} audience="teacher"/>
-  {panel==='assignments'&&<><AssignmentsPanel csrf={csrf} run={run}/><MissionsPanel csrf={csrf}/></>}
+  {panel==='assignments'&&<><TaskComposer onPick={kind=>setTaskRequest({kind,nonce:Date.now()})}/><AssignmentsPanel csrf={csrf} run={run} studentCount={classroom.students.length} request={taskRequest}/><MissionsPanel csrf={csrf} request={taskRequest}/></>}
   {panel==='students'&&<>
    <section className={styles.card} aria-label="학생 만들기"><h2>학생 만들기</h2>
     <p className={styles.hint} id="student-create-hint">{remaining>0?<>빈 번호부터 차례로 만들어요. 지금 {classroom.students.length}명, {remaining}명 더 만들 수 있어요.</>:'학급 인원 30명을 모두 만들었어요.'}</p>

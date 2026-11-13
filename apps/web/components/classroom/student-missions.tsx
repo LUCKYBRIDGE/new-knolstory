@@ -17,9 +17,8 @@ function statusLabel(progress:MissionProgress|undefined){
  return progress?.submittedAt?'확인 대기':'아직 안 했어요';
 }
 
-/** Account-keyed scope prevents one account's missions/drafts appearing during another session. */
-export function StudentMissions(props:Props){return <MissionScope key={props.accountId} {...props}/>;}
-function MissionScope({accountId,csrf}:Props){
+/** Loads this student's missions; the caller keys it by account so one account never sees another's. */
+export function useStudentMissions(){
  const [missions,setMissions]=useState<Mission[]|null>(null),[error,setError]=useState(''),[loading,setLoading]=useState(false);
  const request=useRef<AbortController|null>(null),generation=useRef(0);
  const load=useCallback(async()=>{
@@ -30,17 +29,10 @@ function MissionScope({accountId,csrf}:Props){
   finally{if(!controller.signal.aborted&&current===generation.current)setLoading(false);}
  },[]);
  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>{window.clearTimeout(timer);generation.current++;request.current?.abort();};},[load]);
- if(missions?.length===0&&!error)return null;
- const opened=missions?.filter(mission=>mission.open)??[],closed=missions?.filter(mission=>!mission.open)??[],passedCount=missions?.filter(mission=>mission.progress?.reviewStatus==='passed').length??0;
- const cards=(items:Mission[])=><ul className={styles.list}>{items.map(mission=><li key={mission.id}><MissionCard accountId={accountId} csrf={csrf} mission={mission} onProgress={progress=>setMissions(current=>current?.map(item=>item.id===mission.id?{...item,progress}:item)??null)}/></li>)}</ul>;
- return <section className={styles.section} aria-label="내 미션"><div className={styles.heading}><div><span className={shared.eyebrow}>읽고 생각하며 한 걸음씩</span><h2>나의 미션</h2></div>{missions&&<span className={styles.count} aria-label={`미션 ${missions.length}개 가운데 ${passedCount}개 성공`}><span><b>{passedCount}</b> / {missions.length} 성공</span><span className={styles.meter} aria-hidden="true"><i style={{width:`${missions.length?Math.round(passedCount/missions.length*100):0}%`}}/></span></span>}</div>
-  {error&&<div className={shared.error} role="alert">{error} <button className={shared.btn} disabled={loading} onClick={()=>void load()}>미션 다시 불러오기</button></div>}
-  {missions===null&&!error&&<p className={shared.hint} role="status">미션을 불러오고 있어요.</p>}
-  {opened.length>0&&cards(opened)}
-  {closed.length>0&&<details className={styles.closed}><summary>마감된 미션 {closed.length}개</summary>{cards(closed)}</details>}
- </section>;
+ const setProgress=useCallback((id:string,progress:MissionProgress)=>setMissions(current=>current?.map(item=>item.id===id?{...item,progress}:item)??null),[]);
+ return {missions,error,loading,load,setProgress};
 }
-function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission;accountId:string;csrf:string;onProgress:(value:MissionProgress)=>void}){
+export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission;accountId:string;csrf:string;onProgress:(value:MissionProgress)=>void}){
  const key=`knolstory-mission-draft:${accountId}:${mission.id}`;
  const [draft,setDraft]=useState<Draft>(()=>initialDraft(mission)),[ready,setReady]=useState(false),[busy,setBusy]=useState(false);
  const [error,setError]=useState(''),[notice,setNotice]=useState(''),[storageError,setStorageError]=useState('');
