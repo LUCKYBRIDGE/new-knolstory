@@ -79,7 +79,9 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
    <div className={styles.row}><button className={styles.btn} disabled={!key||busy} onClick={()=>void saveFile()}>작품 파일로 저장</button><a className={`${styles.btn} ${styles.primary}`} href={assignment.shareUrl} target="_blank" rel="noopener noreferrer">제출 링크 열기 ↗</a></div>
    <small>{shareLinkHost(assignment.shareUrl)}로 이동해요.</small>
   </div>}
-  <p className={styles.submissionStatus}><span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{submitted?`제출함 · ${formatSubmittedAt(submitted)}`:'아직 안 냈어요'}</span></p>
+  <p className={styles.submissionStatus}><span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{submitted?`제출함 · ${formatSubmittedAt(submitted)}`:'아직 안 냈어요'}</span>
+   {assignment.reviewStatus==='passed'&&<span className={styles.reviewChip} data-review="passed">과제 통과</span>}{assignment.reviewStatus==='revise'&&<span className={styles.reviewChip} data-review="revise">다시 써 주세요</span>}{submitted&&!assignment.reviewStatus&&<span className={styles.reviewChip}>선생님 확인 기다려요</span>}</p>
+  {assignment.feedback&&<p className={styles.reviewFeedback}><b>{assignment.reviewStatus===null||assignment.reviewStatus===undefined?'지난 피드백':'선생님 피드백'}</b> {assignment.feedback}</p>}
   {submitted&&<button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button>}
   {assignment.open&&(draftKey||canCreate||assignment.storyKey||forcedStoryKey)&&<p><a className={`${styles.btn} ${styles.primary}`} href={`${assignment.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(assignment.format==='shortstory'?{mode:'library'}:{view:'editor'}),classTask:assignment.id})}`}>{draftKey?'이어서 쓰기':'과제 쓰기'}</a></p>}
   {!assignment.open?<p className={styles.hint}>제출이 마감됐어요.</p>:works.length===0?<p className={styles.hint}>{canCreate||assignment.storyKey||forcedStoryKey?'이야기를 쓴 뒤 이곳에서 제출해 주세요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>

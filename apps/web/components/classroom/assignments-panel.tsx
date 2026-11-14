@@ -1,6 +1,6 @@
 'use client';
 import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
-import {assignmentCreate,assignmentList,assignmentUpdate,submissionList,submissionOpen,type Assignment,type AssignmentFormat,type SubmissionRow} from '../../lib/classroom-api';
+import {assignmentCreate,assignmentList,assignmentUpdate,submissionList,submissionOpen,submissionReview,ClassroomError,type Assignment,type AssignmentFormat,type SubmissionRow} from '../../lib/classroom-api';
 import {downloadSubmissionFile,formatSubmittedAt} from '../../lib/classroom-local';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
@@ -71,7 +71,7 @@ function AssignmentRow({item,csrf,run,onChanged,studentCount}:{item:Assignment;c
    <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 제출 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':rows?`제출 목록 새로고침 · ${rows.length}명`:'제출 보기'}</button>
    <button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'제출 마감':'제출 다시 열기'}</button>
   </div>
-  {rows&&(rows.length===0?<p className={styles.hint}>아직 낸 학생이 없어요.</p>:<ul className={styles.rowsList}>{rows.map(row=><li key={row.number}>{row.number}번 {row.name} · {formatSubmittedAt(row.submittedAt)} <a className={styles.btn} aria-label={`${row.number}번 제출 작품 열기`} href={`${item.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(item.format==='shortstory'?{mode:'library'}:{view:'library'}),classAssignment:item.id,classStudent:String(row.number)})}`}>작품 열기</a> <button className={styles.btn} aria-label={`${row.number}번 제출 작품 파일 받기`} onClick={()=>void openCopy(row)}>파일 받기</button></li>)}</ul>)}
+  {rows&&(rows.length===0?<p className={styles.hint}>아직 낸 학생이 없어요.</p>:<ul className={styles.reviewList}>{rows.map(row=><li key={row.number}><SubmissionReview item={item} row={row} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/></li>)}</ul>)}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
  </>;
 }
@@ -99,8 +99,41 @@ function TaskFacts({item,studentCount,csrf,run,onChanged}:{item:Assignment;stude
  const due=dueState(item.dueAt,now);
  async function save(next:number|null){setBusy(true);try{const done=await run(()=>assignmentUpdate(item.id,{dueAt:next},csrf));if(done){setEditing(false);await onChanged();}}finally{setBusy(false);}}
  return <div className={styles.taskFacts}>
-  {typeof item.submittedCount==='number'&&<span className={styles.factChip}>제출 <b>{item.submittedCount}</b>{studentCount?` / ${studentCount}명`:'명'}</span>}
+  {typeof item.submittedCount==='number'&&<span className={styles.factChip}>제출 <b>{item.submittedCount}</b>{studentCount?` / ${studentCount}명`:'명'}{typeof item.passedCount==='number'&&<> · 통과 <b>{item.passedCount}</b></>}</span>}
   {editing?<form className={styles.row} onSubmit={event=>{event.preventDefault();void save(dueAtFromDate(value));}}><label className={styles.field}>마감일<input type="date" value={value} onChange={event=>setValue(event.target.value)} disabled={busy}/></label><button className={`${styles.btn} ${styles.primary}`} disabled={busy}>저장</button><button type="button" className={styles.btn} disabled={busy} onClick={()=>setEditing(false)}>취소</button>{item.dueAt!=null&&<button type="button" className={styles.btn} disabled={busy} onClick={()=>void save(null)}>마감일 빼기</button>}</form>
    :<>{due&&item.dueAt!=null?<span className={styles.dueChip} data-tone={due.tone}>{due.label} · {dueDateLabel(item.dueAt)}</span>:null}<button className={styles.linkBtn} aria-label={`${item.title} 마감일 ${item.dueAt!=null?'바꾸기':'정하기'}`} onClick={()=>{setValue(dateFromDueAt(item.dueAt));setEditing(true);}}>{item.dueAt!=null?'마감일 바꾸기':'+ 마감일 정하기'}</button></>}
+ </div>;
+}
+
+const REVIEW_LABEL={passed:'통과',revise:'다시 쓰기'} as const;
+/** One submitted work: open it, then pass it or ask for a rewrite with feedback. */
+function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale}:{item:Assignment;row:SubmissionRow;csrf:string;onOpenFile:()=>void;onSaved:(next:SubmissionRow)=>void;onStale:()=>Promise<void>}){
+ const [writing,setWriting]=useState(false),[feedback,setFeedback]=useState(row.reviewStatus?row.feedback??'':''),[busy,setBusy]=useState(false),[error,setError]=useState('');
+ const status=row.reviewStatus??null;
+ async function decide(reviewStatus:SubmissionRow['reviewStatus']){
+  if(busy)return;
+  if(reviewStatus==='revise'&&!feedback.trim()){setError('다시 쓸 점을 적어 주세요.');setWriting(true);return;}
+  setBusy(true);setError('');
+  try{onSaved(await submissionReview(item.id,row.number,{reviewStatus:reviewStatus??null,feedback:reviewStatus===null?'':feedback.trim(),expectedSubmittedAt:row.submittedAt},csrf));setWriting(false);}
+  catch(issue){if(issue instanceof ClassroomError&&issue.code==='SUBMISSION_CHANGED'){setError(issue.message);setFeedback('');await onStale();}else setError(issue instanceof ClassroomError?issue.message:'저장하지 못했어요.');}
+  finally{setBusy(false);}
+ }
+ const href=`${item.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(item.format==='shortstory'?{mode:'library'}:{view:'library'}),classAssignment:item.id,classStudent:String(row.number)})}`;
+ return <div className={styles.review} data-review={status??'pending'}>
+  <div className={styles.reviewHead}><strong>{row.number}번 {row.name}</strong><span className={styles.hint}>{formatSubmittedAt(row.submittedAt)} 제출</span>
+   <span className={styles.reviewChip} data-review={status??'pending'}>{status?REVIEW_LABEL[status]:'확인 전'}</span></div>
+  {row.feedback&&!writing&&<p className={styles.reviewFeedback}><b>{status===null?'지난 피드백':'피드백'}</b> {row.feedback}</p>}
+  <div className={styles.row}>
+   <a className={styles.btn} aria-label={`${row.number}번 제출 작품 열기`} href={href}>작품 열기</a>
+   <button className={styles.btn} aria-label={`${row.number}번 제출 작품 파일 받기`} onClick={onOpenFile}>파일 받기</button>
+   <button className={`${styles.btn} ${styles.primary}`} disabled={busy||status==='passed'} aria-label={`${row.number}번 통과`} onClick={()=>void decide('passed')}>통과</button>
+   <button className={styles.btn} disabled={busy} aria-label={`${row.number}번 다시 쓰기 요청`} aria-expanded={writing} onClick={()=>{setWriting(value=>!value);setError('');}}>다시 쓰기</button>
+   {status&&<button className={styles.linkBtn} disabled={busy} aria-label={`${row.number}번 확인 지우기`} onClick={()=>void decide(null)}>확인 지우기</button>}
+  </div>
+  {writing&&<form className={styles.reviewForm} onSubmit={event=>{event.preventDefault();void decide('revise');}}>
+   <label className={styles.field}>{row.number}번에게 피드백<textarea value={feedback} maxLength={2000} rows={3} onChange={event=>setFeedback(event.target.value)} placeholder="무엇을 고치면 좋을지 써 주세요."/></label>
+   <div className={styles.row}><button className={`${styles.btn} ${styles.primary}`} disabled={busy}>다시 쓰기 요청</button><button type="button" className={styles.btn} onClick={()=>setWriting(false)}>취소</button></div>
+  </form>}
+  {error&&<p className={styles.error} role="alert">{error}</p>}
  </div>;
 }

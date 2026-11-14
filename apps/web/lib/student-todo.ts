@@ -4,7 +4,7 @@ import type {Mission} from './mission-api';
 export type TodoEntry={type:'assignment';item:Assignment}|{type:'mission';item:Mission};
 export type TodoGroup='todo'|'waiting'|'done';
 export function todoGroup(entry:TodoEntry):TodoGroup{
- if(entry.type==='assignment'){const item=entry.item;if(!item.open)return 'done';return item.submittedAt?'waiting':'todo';}
+ if(entry.type==='assignment'){const item=entry.item;if(!item.open||item.reviewStatus==='passed')return 'done';if(item.reviewStatus==='revise')return 'todo';return item.submittedAt?'waiting':'todo';}
  const item=entry.item,progress=item.progress;
  if(progress?.reviewStatus==='passed'||!item.open)return 'done';
  if(progress?.submittedAt&&progress.reviewStatus===null)return 'waiting';
