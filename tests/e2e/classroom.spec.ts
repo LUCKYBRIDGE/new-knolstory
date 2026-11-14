@@ -12,7 +12,7 @@ type Student={number:number;name:string;password:string;permissions:typeof all|n
 type Mission={id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:string|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number};
 type MissionRow={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:'passed'|'revise'|null;feedback:string;reviewedAt:number|null};
 const blankRow=():MissionRow=>({answers:{},note:'',submittedAt:null,reviewStatus:null,feedback:'',reviewedAt:null});
-type Assignment={format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
+type Assignment={edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
 const ok=(data:unknown)=>({json:{success:true,data}});
 const fail=(status:number,code:string)=>({status,json:{success:false,error:{code}}});
 
@@ -54,7 +54,7 @@ async function mockClassroom(page:Page,role:'teacher'|'student'){
   const student=path.match(/^class\/classroom\/students\/(\d+)$/);
   if(student&&method==='PATCH'){const target=state.classroom!.students.find(item=>item.number===Number(student[1]))!;Object.assign(target,body);return route.fulfill(ok(target));}
   if(path==='class/classroom/assignments'){
-   if(method==='POST'){const item:Assignment={format:body.format??'knolstory',id:`a${state.assignments.length+1}`,title:body.title,description:body.description??'',storyKey:body.storyKey??null,open:true,createdAt:Date.now()};state.assignments.push(item);return route.fulfill(ok(item));}
+   if(method==='POST'){const item:Assignment={format:body.format??'knolstory',id:`a${state.assignments.length+1}`,title:body.title,description:body.description??'',storyKey:body.storyKey??null,edition:body.edition??null,startPoint:body.startPoint??null,startLabel:body.startLabel??null,open:true,createdAt:Date.now()} as Assignment;state.assignments.push(item);return route.fulfill(ok(item));}
    return route.fulfill(ok(state.assignments));
   }
   const review=path.match(/^class\/classroom\/assignments\/(\w+)\/submissions\/2\/review$/);
@@ -303,6 +303,35 @@ test('teacher manages students on a phone without horizontal scrolling',async({p
  await page.getByRole('button',{name:'글만으로 적용',exact:true}).click();
  await expect(page.locator('tr[data-student="1"]')).toContainText('글만');
  await page.screenshot({path:info.outputPath('teacher-phone.png'),fullPage:true});
+});
+
+test('a task on the original edition starts from the chapter the teacher chose',async({page,browser})=>{
+ const teacher=await mockClassroom(page,'teacher');
+ teacher.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
+ await page.goto('/teacher');
+ await page.getByLabel('과제 제목',{exact:true}).fill('토끼의 꾀 다시 쓰기');
+ await page.getByLabel('바탕 작품 (선택)',{exact:true}).selectOption('rabbit');
+ await page.getByLabel('바탕 판본',{exact:true}).selectOption('original');
+ const start=page.getByLabel('시작 지점',{exact:true});
+ await expect(start.locator('option')).toHaveCount(5);
+ await start.selectOption({index:3});
+ await page.getByRole('button',{name:'과제 만들기',exact:true}).click();
+ await expect(page.getByText(/^시작 · 4장/)).toBeVisible();
+ expect(teacher.assignments[0]).toMatchObject({edition:'original',startPoint:expect.stringMatching(/^chapter:/),startLabel:expect.stringMatching(/^4장 · /)});
+ const context=await browser.newContext();
+ try{
+  const studentPage=await context.newPage();
+  const student=await mockClassroom(studentPage,'student');student.signedIn=true;student.permissions=all;
+  student.assignments=teacher.assignments;
+  await studentPage.goto('/student');
+  await expect(studentPage.getByRole('link',{name:'작품 전체 읽기'})).toBeVisible();
+  await studentPage.getByRole('link',{name:'과제 쓰기',exact:true}).click();
+  await expect(studentPage).not.toHaveURL(/classTask/);
+  await expect(studentPage.getByTestId('save-status')).toHaveText('임시 보관됨');
+  const project=await studentPage.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+  expect(project.chapters.length).toBe(4);
+  expect(project.lines.filter((line:{text:string})=>line.text==='').length).toBe(1);
+ }finally{await context.close();}
 });
 
 test('teacher chooses the assignment type and students start a picture book task',async({page,browser},info)=>{

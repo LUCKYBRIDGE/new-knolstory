@@ -8,10 +8,12 @@ import {normalizeShareLink,shareLinkHost} from '../../lib/share-link';
 import {dateFromDueAt,dueAtFromDate,dueDateLabel,dueState} from '../../lib/due-date';
 import type {TaskRequest} from './task-composer';
 import {editionLabel} from '../../lib/mission-api';
+import {StartPointPicker} from './start-point-picker';
+import type {BuiltinWorkId} from '../../lib/builtin-works';
 import styles from './classroom.module.css';
 type Run=<T>(action:()=>Promise<T>)=>Promise<T|undefined>;
 export function AssignmentsPanel({csrf,run,studentCount=0,request=null}:{csrf:string;run:Run;studentCount?:number;request?:TaskRequest|null}){
- const [items,setItems]=useState<Assignment[]|null>(null),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[storyKey,setStoryKey]=useState(''),[link,setLink]=useState(''),[linkError,setLinkError]=useState(''),[due,setDue]=useState(''),[formOpen,setFormOpen]=useState(false),[edition,setEdition]=useState<'original'|'knolstory'>('knolstory');
+ const [items,setItems]=useState<Assignment[]|null>(null),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[storyKey,setStoryKey]=useState(''),[link,setLink]=useState(''),[linkError,setLinkError]=useState(''),[due,setDue]=useState(''),[formOpen,setFormOpen]=useState(false),[edition,setEdition]=useState<'original'|'knolstory'>('knolstory'),[start,setStart]=useState<{value:string;label:string}>({value:'',label:''});
  const formRef=useRef<HTMLDetailsElement>(null);
  const [format,setFormat]=useState<AssignmentFormat>('knolstory'),[filter,setFilter]=useState<AssignmentFormat>('knolstory');
  const [creating,setCreating]=useState(false),[loadFailed,setLoadFailed]=useState(false);
@@ -25,8 +27,8 @@ export function AssignmentsPanel({csrf,run,studentCount=0,request=null}:{csrf:st
   const shareUrl=normalizeShareLink(link);if(link.trim()&&!shareUrl){setLinkError('https://로 시작하는 공유 링크를 넣어 주세요.');return;}setLinkError('');
   createLock.current=true;setCreating(true);
   try{
-  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(storyKey?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&format==='knolstory'?{edition}:{})},csrf));
-  if(made){setFilter(format);setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setFormOpen(false);await load();}
+  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(storyKey?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&format==='knolstory'?{edition}:{}),...(storyKey&&format==='knolstory'&&start.value?{startPoint:start.value,startLabel:start.label.slice(0,120)}:{})},csrf));
+  if(made){setFilter(format);setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setStart({value:'',label:''});setFormOpen(false);await load();}
   }finally{createLock.current=false;setCreating(false);}
  }
  return <section className={styles.card} aria-label="작품 쓰기 과제">
@@ -35,9 +37,10 @@ export function AssignmentsPanel({csrf,run,studentCount=0,request=null}:{csrf:st
    <label className={styles.field}>과제 유형<select aria-label="과제 유형" value={format} onChange={event=>setFormat(event.target.value as AssignmentFormat)}><option value="knolstory">놀스토리</option><option value="shortstory">숏스토리</option></select></label>
    <div className={styles.row}>
     <label className={styles.field}>과제 제목<input name="task-title" value={title} onChange={event=>setTitle(event.target.value)} maxLength={60}/></label>
-    <label className={styles.field}>바탕 작품 (선택)<select aria-label="바탕 작품 (선택)" value={storyKey} onChange={event=>setStoryKey(event.target.value)}><option value="">정하지 않아요</option>{BUILTIN_WORKS.map(work=><option key={work.id} value={work.id}>{work.title}</option>)}</select></label>
-    {storyKey&&format==='knolstory'&&<label className={styles.field}>바탕 판본<select aria-label="바탕 판본" value={edition} onChange={event=>setEdition(event.target.value as 'original'|'knolstory')}><option value="knolstory">각색 · 선택지가 있는 놀스토리</option><option value="original">원작 · 옛이야기 그대로</option></select></label>}
+    <label className={styles.field}>바탕 작품 (선택)<select aria-label="바탕 작품 (선택)" value={storyKey} onChange={event=>{setStoryKey(event.target.value);setStart({value:'',label:''});}}><option value="">정하지 않아요</option>{BUILTIN_WORKS.map(work=><option key={work.id} value={work.id}>{work.title}</option>)}</select></label>
+    {storyKey&&format==='knolstory'&&<label className={styles.field}>바탕 판본<select aria-label="바탕 판본" value={edition} onChange={event=>{setEdition(event.target.value as 'original'|'knolstory');setStart({value:'',label:''});}}><option value="knolstory">각색 · 선택지가 있는 놀스토리</option><option value="original">원작 · 옛이야기 그대로</option></select></label>}
    </div>
+   {storyKey&&format==='knolstory'&&<StartPointPicker key={`${storyKey}:${edition}`} storyKey={storyKey as BuiltinWorkId} edition={edition} value={start.value} onChange={(value,label)=>setStart({value,label})}/>}
    <label className={styles.field} style={{marginTop:8}}>설명 (선택)<textarea value={description} onChange={event=>setDescription(event.target.value)} maxLength={500}/></label>
    <label className={styles.field} style={{marginTop:8}}>마감일 (선택)<input type="date" value={due} onChange={event=>setDue(event.target.value)}/></label>
    <label className={styles.field} style={{marginTop:8}}>제출 링크 (선택)<input type="url" inputMode="url" value={link} onChange={event=>{setLink(event.target.value);setLinkError('');}} placeholder="예: 구글 드라이브 폴더 공유 링크" autoComplete="off"/></label>
@@ -63,7 +66,7 @@ function AssignmentRow({item,csrf,run,onChanged,studentCount}:{item:Assignment;c
  }
  return <>
   <div className={styles.taskHeading}><h3>{item.title}</h3><span className={item.open?styles.badge:`${styles.badge} ${styles.off}`}>{item.open?'열림':'닫힘'}</span></div>
-  <ul className={styles.taskMeta} aria-label="과제 정보"><li>{item.format==='shortstory'?'숏스토리':'놀스토리'}</li>{item.storyKey&&<li>바탕 작품 · {BUILTIN_WORKS.find(work=>work.id===item.storyKey)?.title??'기본 작품'}{item.format!=='shortstory'&&` (${editionLabel(item.edition)})`}</li>}<li>{new Date(item.createdAt).toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 만듦</li></ul>
+  <ul className={styles.taskMeta} aria-label="과제 정보"><li>{item.format==='shortstory'?'숏스토리':'놀스토리'}</li>{item.storyKey&&<li>바탕 작품 · {BUILTIN_WORKS.find(work=>work.id===item.storyKey)?.title??'기본 작품'}{item.format!=='shortstory'&&` (${editionLabel(item.edition)})`}</li>}{item.startLabel&&<li>시작 · {item.startLabel}</li>}<li>{new Date(item.createdAt).toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 만듦</li></ul>
   {item.description&&<p className={styles.hint}>{item.description}</p>}
   <TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
   <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
