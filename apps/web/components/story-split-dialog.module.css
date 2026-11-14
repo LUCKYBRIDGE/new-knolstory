@@ -1,0 +1,21 @@
+.dialog fieldset { margin: 0 0 16px; padding: 0; border: 0; min-width: 0; }
+.dialog legend { margin-bottom: 8px; font-weight: 600; }
+.choices { display: grid; gap: 8px; }
+.choice { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+.choice > span { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--story-menu-surface); color: var(--story-menu-accent); font-weight: 700; }
+.choice input { width: 100%; box-sizing: border-box; padding: 8px 10px; font: inherit; }
+.choice button, .add { padding: 8px 12px; font: inherit; border: 1px solid var(--story-menu-line); }
+.add { justify-self: start; }
+.modes { display: grid; gap: 8px; }
+.modes label { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; padding: 10px 12px; border: 1px solid var(--story-menu-line); border-radius: 5px; cursor: pointer; }
+.modes label:has(input:checked) { border-color: var(--story-menu-accent); background: var(--story-menu-surface); }
+.modes label:has(input:disabled) { opacity: .55; cursor: default; }
+.modes input { margin-top: 5px; accent-color: var(--story-menu-accent); }
+.modes span { display: grid; gap: 2px; }
+.modes small { color: var(--story-menu-muted); }
+.preview { padding: 12px; border: 1px dashed var(--story-menu-line); border-radius: 5px; }
+.preview ol { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 6px; }
+.preview li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: 2px 8px; margin: 0; }
+.preview li + li { margin: 0; }
+.preview li b { color: var(--story-menu-accent); grid-row: span 2; }
+.preview li small, .preview > small { color: var(--story-menu-muted); }

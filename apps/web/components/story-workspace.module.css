@@ -835,3 +835,7 @@
 /* Normal saving is silent: the status stays for assistive tech, and only a problem becomes visible. */
 .libraryUtility:not(:has(details)):not(:has([data-save-attention=true])){padding:0;margin:0;height:0}
 .libraryUtility>[role=status][data-save-attention=false]{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* One-step undo after a structure edit; it disappears with the next change. */
+.structureUndo{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 32px);margin:0;padding:8px 8px 8px 14px;border-radius:999px;background:#183334;color:#fff;box-shadow:0 6px 20px #0004;font-size:14px;word-break:keep-all}
+.structureUndo button{min-height:36px;padding:4px 12px;border-radius:999px;border:1px solid #ffffff55;background:transparent;color:#fff;font:inherit;cursor:pointer}

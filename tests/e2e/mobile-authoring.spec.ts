@@ -106,7 +106,7 @@ test('phone authoring keeps drafts and runtime while tools, orientation, files a
   for (const [name, locator] of [
     ['설정', page.locator('[data-work-menu]>summary')],
     ['+ 이 컷 뒤에 새 컷 넣기', page.getByRole('button', { name: '+ 이 컷 뒤에 새 컷 넣기', exact: true })],
-    ['+ 선택지로 갈래 나누기', page.getByRole('button', { name: '+ 선택지로 갈래 나누기', exact: true })],
+    ['갈래 나누기·선택지 고치기', page.getByRole('button', { name: /^(\+ 여기서 이야기 나누기|선택지 고치기)$/ })],
     ['현재 컷 상세·메모·정리', page.locator('details>summary').filter({ hasText: /^현재 컷 상세·메모·정리$/ })],
     ['이 컷부터 재생', page.getByRole('button', { name: '이 컷부터 재생', exact: true })],
   ] as const) {

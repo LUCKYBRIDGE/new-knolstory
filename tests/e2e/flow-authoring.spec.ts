@@ -213,3 +213,52 @@ test('large inherited work can find and edit a cut beyond the initial chapter pa
   const reopened=await openMap(page);await reopened.getByLabel('흐름 검색').fill(editedText.slice(0,25));await reopened.locator(`[data-flow-list-line-id="${target.id}"]`).click();
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue(editedText);
 });
+
+test('split the story here, write one path on its own and arrange chapters by reading order', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'host', 'Host branch authoring');
+  await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));
+  test.setTimeout(120000);page.setDefaultTimeout(12000);await page.route('**/api/**',route=>route.abort());await page.route('**/runtime/**',route=>route.abort());
+  await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
+  await page.getByLabel('새 작품 제목', { exact: true }).fill('갈래 한 번에 나누기');await page.getByRole('button', { name: '새 작품 생성', exact: true }).click();
+  const ids:string[]=[];
+  for(const [index,text] of ['숲 앞에 섰어요.','어느 쪽으로 갈까요?','모두 다리에서 만났어요.'].entries()){if(index){await menu(page);await page.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true}).click();}ids.push(await page.getByLabel('현재 장과 컷 이동').inputValue());await page.locator('[data-current-cut] textarea').fill(text);}
+  await menu(page);await openEditorDetails(page,'보기 설정');await page.getByRole('button',{name:'장 추가',exact:true}).click();
+  const homeCut=await page.getByLabel('현재 장과 컷 이동').inputValue();await page.locator('[data-current-cut] textarea').fill('집으로 돌아왔어요.');await saved(page);
+  await page.getByLabel('현재 장과 컷 이동').selectOption(ids[1]!);
+  await page.getByRole('button',{name:'+ 여기서 이야기 나누기',exact:true}).click();
+  const split=page.getByRole('dialog',{name:'여기서 이야기 나누기',exact:true});await expect(split).toBeVisible();
+  await expect(split.getByRole('button',{name:'선택지 문구를 모두 적어 주세요',exact:true})).toBeDisabled();
+  await split.getByLabel('선택지 A 문구',{exact:true}).fill('숲으로 간다');await split.getByLabel('선택지 B 문구',{exact:true}).fill('강으로 간다');
+  await expect(split.getByRole('radio',{name:/다시 만나요/})).toBeChecked();
+  await expect(split.getByLabel('만들어질 갈래 미리보기')).toContainText('새 장 2장A');
+  await split.getByRole('button',{name:'나누고 첫 갈래 쓰기',exact:true}).click();await expect(split).toHaveCount(0);
+  await expect(page.getByRole('status').filter({hasText:'이야기를 나눴어요'})).toBeVisible();
+  const forestCut=await page.getByLabel('현재 장과 컷 이동').inputValue();expect(ids).not.toContain(forestCut);
+  await page.locator('[data-current-cut] textarea').fill('숲은 조용했어요.');await saved(page);
+  // The new path leads back to the story that followed the fork.
+  await expect(page.getByRole('button',{name:/^다음 장으로/})).toContainText('모두 다리에서 만났어요.');
+  await page.getByRole('button',{name:/^다음 장으로/}).click();
+  const shared=page.locator('[data-path-fork="previous"]');await expect(shared).toContainText('여러 길에서 이어지는 컷이에요');
+  await shared.getByRole('button',{name:/숲으로 간다 · 숲은 조용했어요\. 길만 따로 쓰기$/}).click();
+  await expect(page.getByRole('status').filter({hasText:'이 길만 따로 쓰도록 컷을 나눴어요'})).toBeVisible();
+  const copy=await page.getByLabel('현재 장과 컷 이동').inputValue();expect(copy).not.toBe(ids[2]);
+  await expect(page.locator('[data-current-cut] textarea')).toHaveValue('모두 다리에서 만났어요.');
+  await page.locator('[data-current-cut] textarea').fill('숲 끝에서 다리를 건넜어요.');await saved(page);
+  await page.getByRole('button',{name:'이야기 지도 보기',exact:true}).click();
+  const map=page.getByRole('dialog',{name:'이야기 흐름 지도',exact:true});await map.getByRole('button',{name:'장 지도',exact:true}).click();
+  // The chapter that used to be 2장 now reads after the fork, the paths and the meeting chapter.
+  await expect(map.locator('[data-chapter-arrange]')).toContainText('읽는 단계와 번호가 다른 장 1개');
+  await map.getByRole('button',{name:'읽는 순서로 장 정리',exact:true}).click();
+  await expect(map.locator('[data-chapter-arrange="done"]')).toBeVisible();
+  await page.keyboard.press('Escape');await saved(page);
+  const {project}=await exportStory(page);
+  const fork=project.lines.find(cut=>cut.id===ids[1])!;expect(fork.flow?.type).toBe('choice');
+  expect(fork.flow?.options?.map(option=>option.label)).toEqual(['숲으로 간다','강으로 간다']);
+  const forest=project.lines.find(cut=>cut.id===forestCut)!;expect(forest.flow).toEqual({type:'goto',targetLineId:copy});
+  const river=project.lines.find(cut=>cut.id===fork.flow!.options![1]!.targetLineId)!;expect(river.flow).toEqual({type:'goto',targetLineId:ids[2]});
+  expect(project.lines.find(cut=>cut.id===copy)!.text).toBe('숲 끝에서 다리를 건넜어요.');
+  expect(project.lines.find(cut=>cut.id===ids[2])!.text).toBe('모두 다리에서 만났어요.');
+  const home=project.chapters.find(chapter=>chapter.id===project.lines.find(cut=>cut.id===homeCut)!.chapterId) as {chapterNumber?:number};expect(home.chapterNumber).toBe(4);
+  // Both the shared cut and its copy still lead on to the home chapter after arranging.
+  for(const id of [copy,ids[2]!])expect(project.lines.find(cut=>cut.id===id)!.flow).toEqual({type:'goto',targetLineId:homeCut});
+});

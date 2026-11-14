@@ -6,7 +6,9 @@ import {LibraryReturnDialog} from './library-return-dialog';
 import {workspaceSaveFailure} from '../lib/workspace-save-error';
 import {createWorkLeaveTracker} from '../lib/work-leave-tracker';
 import type {ReaderTapMode} from '../lib/reader-preferences';
-import {planStoryImagePreload,type ImagePreloadOptions} from '@knolstory/runtime-core';
+import {planStoryImagePreload,type ImagePreloadOptions,checkStorySplit,splitStoryHere,separatePathCut,reorderStoryChapters,type StorySplitMode} from '@knolstory/runtime-core';
+import {StorySplitDialog} from './story-split-dialog';
+import {chapterArrangement} from '../lib/chapter-arrange';
 import {StoryImagePreparation} from './story-image-preparation';
 import {MobileFullscreenOffer} from './mobile-fullscreen-offer';
 import {StoryLoading} from './story-loading';
@@ -128,6 +130,9 @@ function MoveCutToChapter({chapters,onMove}:{chapters:readonly {id:string;label:
 export function StoryWorkspace() {
   const [pendingBranch,setPendingBranch]=useState<(ReturnType<typeof createChoiceWritingDraft>&{before:StoryProject;workId:string;label:string;sourceLabel:string})|null>(null);
   const [branchError,setBranchError]=useState('');
+  const [splitRequest,setSplitRequest]=useState<{lineId:string;before:StoryProject;workId:string;continuationLineId:string|null}|null>(null);
+  const [splitError,setSplitError]=useState('');
+  const [undoStructure,setUndoStructure]=useState<{before:StoryProject;after:StoryProject;lineId:string;done:string}|null>(null);
   const [pendingArchive,setPendingArchive]=useState<AuthoringArchive|null>(null);
   const [importBusy,setImportBusy]=useState(false);
   const [confirmStorageReload,setConfirmStorageReload]=useState(false);
@@ -654,6 +659,37 @@ export function StoryWorkspace() {
     const chapterId = crypto.randomUUID();
     const id = crypto.randomUUID();
     return editStructure(() => addStoryChapter(project, { chapterId, lineId: id }), id) ? id : undefined;
+  }
+  /** Whole-structure branch edits: each keeps a one-step undo while the result is still the current manuscript. */
+  function structureEdit(done:string,change:()=>{project:StoryProject;lineId?:string}){
+    if(stopForUnappliedInput())return false;
+    if(composing){setError('한글 입력을 마친 뒤 이야기 구조를 바꿔 주세요.');return false;}
+    try{const result=change();preflight(result.project);setUndoStructure({before:project,after:result.project,lineId:line.id,done});applyProject(result.project,result.lineId??line.id);return true;}
+    catch(issue){setError(issueText(issue));return false;}
+  }
+  function openSplit(){
+    if(stopForUnappliedInput())return;
+    if(composing){setError('한글 입력을 마친 뒤 이야기를 나눠 주세요.');return;}
+    const check=checkStorySplit(project,line.id);
+    if(!check.ok){setError(check.reason);return;}
+    setSplitRequest({lineId:line.id,before:project,workId:storyId,continuationLineId:check.continuationLineId});setSplitError('');
+  }
+  function confirmSplit(input:{labels:string[];mode:StorySplitMode}){
+    if(!splitRequest)return;
+    if(splitRequest.before!==project||splitRequest.workId!==storyId){setSplitError('원고가 바뀌어 아직 나누지 않았어요. 취소한 뒤 다시 열어 주세요.');return;}
+    try{
+      const result=splitStoryHere(project,splitRequest.lineId,input,()=>crypto.randomUUID());preflight(result.project);
+      setUndoStructure({before:project,after:result.project,lineId:line.id,done:'이야기를 나눴어요'});
+      applyProject(result.project,result.newLineIds[0]??splitRequest.lineId);setSplitRequest(null);setSplitError('');setActiveTool('text');setEditorView('cut');
+      requestAnimationFrame(()=>document.querySelector<HTMLTextAreaElement>('[data-current-cut] textarea')?.focus({preventScroll:true}));
+    }catch(issue){setSplitError(issueText(issue));}
+  }
+  function separatePath(fromLineId:string){
+    const id=crypto.randomUUID();
+    structureEdit('이 길만 따로 쓰도록 컷을 나눴어요',()=>({project:separatePathCut(project,line.id,fromLineId,id),lineId:id}));
+  }
+  function arrangeChapters(renumber:boolean){
+    structureEdit(renumber?'장을 읽는 순서로 정리하고 번호를 다시 매겼어요':'장을 읽는 순서로 정리했어요',()=>{const plan=chapterArrangement(project,flowGraph);return {project:reorderStoryChapters(project,plan.ids,renumber?plan.labels:undefined)};});
   }
   function startChoiceWriting(){
     if(!pendingBranch)return;
@@ -1223,7 +1259,9 @@ export function StoryWorkspace() {
       </section>)}
       {mode==='play'&&<StoryPlayerMenu imagePreloadMode={imagePreload.mode} imagePreloadCount={imagePreload.cutCount} onImagePreloadChange={value=>setImagePreload(previous=>previous.mode===value.mode&&previous.cutCount===value.cutCount?previous:value)} toolsHidden={!!scene.transitionOnly||runtime.transitionPending} tapMode={readerTapMode} onTapModeChange={value=>{setReaderTapMode(value);setRevision(v=>v+1);}} format={readerFormat} onFormatChange={format=>{setReaderFormat(format);setRevision(v=>v+1);}} toolFontSizePx={11} stageBounds={{x:runtime.fit.offsetX,y:runtime.fit.offsetY,width:scene.width*runtime.fit.scale,height:scene.height*runtime.fit.scale}} thumbnailReady={runtime.rendered===scene.revision} captureThumbnail={runtime.captureThumbnail} project={project} playback={playback} visibleDialogue={runtime.renderEvidence?.revision===scene.revision&&runtime.renderEvidence.sceneId===scene.sceneId&&runtime.renderEvidence.dialoguePage?.endOffset!==undefined?{lineId:line.id,endOffset:runtime.renderEvidence.dialoguePage.endOffset}:undefined} dialoguePosition={runtime.renderEvidence?.revision===scene.revision?{lineId:line.id,offset:runtime.renderEvidence.dialoguePage?.offset??0}:undefined} onRestore={(state,position)=>{try{compileStoryScene(project,state.lineId??state.path.at(-1)!,revision+1,{mode:'play',playbackPath:state.path,playbackState:state});setReaderResume(position??null);setPlayback(state);setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setRevision(v=>v+1);}catch(e){setError(String(e));throw e;}}} stageContainer={runtime.container.current} textboxBounds={(()=>{const box=runtime.renderEvidence?.revision===scene.revision?runtime.renderEvidence.textboxRect:scene.textboxRect;if(!box)return undefined;return {x:runtime.fit.offsetX+box.x*runtime.fit.scale,y:runtime.fit.offsetY+box.y*runtime.fit.scale,width:box.width*runtime.fit.scale,height:box.height*runtime.fit.scale};})()} onInteractionChange={setReaderBusy} presentationReady={runtime.presentationReady} manualEffectPending={!!scene.effectSteps&&scene.effectSteps.current<scene.effectSteps.total} presentationKey={`${project.id}/${playbackRun}/${presentationEntry}/${line.id}/${scene.effectSteps?.current??0}/${runtime.renderEvidence?.revision===scene.revision?runtime.renderEvidence.dialoguePage?.index??0:0}`} textScale={readerTextScale} onTextScaleChange={scale=>{setReaderTextScale(scale);setRevision(v=>v+1);}} onRestart={()=>{setReaderResume(null);setPlayback(createPlayback(project));setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setRevision(v=>v+1);}} onExit={readingFromEditor?()=>switchMode('edit'):undefined} onLibrary={returnToLibrary} onFullscreen={()=>void toggleFullscreen()} fullscreen={fullscreen} onAdvance={()=>advance()} onReducedMotion={()=>{setMotionOverride(v=>!v);setRevision(v=>v+1);}} reducedMotion={reducedMotion||motionOverride} motionDisabled={reducedMotion} hasMoreText={!!runtime.renderEvidence?.dialoguePage&&runtime.renderEvidence.revision===scene.revision&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1} advanceDisabled={(playback.status!=='reading'&&!(scene.effectSteps&&scene.effectSteps.current<scene.effectSteps.total)&&!(runtime.renderEvidence?.revision===scene.revision&&runtime.renderEvidence.dialoguePage&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1))||runtime.presentationPending} disabled={!runtime.ready}/>}
       {mode === "edit" && logic.branches && activeTool === "flow" && flowNodes.get(line.id) && <StoryFlowContext node={flowNodes.get(line.id)!} graph={flowGraph} onSelectCut={editFromFlow} />}
-      {(logic.branches||hasBranches(project)) && flowMapOpen && <StoryFlowMap project={project} currentLineId={line.id} onSelectCut={editFromFlow} onClose={() => setFlowMapOpen(false)} />}
+      {(logic.branches||hasBranches(project)) && flowMapOpen && <StoryFlowMap project={project} currentLineId={line.id} onSelectCut={editFromFlow} onClose={() => setFlowMapOpen(false)} onArrange={mode==='edit'&&loadComplete&&storageWritable?arrangeChapters:undefined} />}
+      {splitRequest&&<StorySplitDialog sourceLabel={(()=>{const cut=project.lines.find(item=>item.id===splitRequest.lineId);const owner=project.chapters.find(item=>item.id===cut?.chapterId);return cut&&owner?cutLabel(owner,cut):'이 컷';})()} nextChapterNumber={(()=>{const owner=project.chapters.find(item=>item.id===project.lines.find(cut=>cut.id===splitRequest.lineId)?.chapterId);return (owner?.chapterNumber??owner?.order??0)+1;})()} continuationLabel={(()=>{const cut=splitRequest.continuationLineId?project.lines.find(item=>item.id===splitRequest.continuationLineId):undefined;const owner=project.chapters.find(item=>item.id===cut?.chapterId);return cut&&owner?cutLabel(owner,cut):null;})()} error={splitError} onCancel={()=>{setSplitRequest(null);setSplitError('');}} onSplit={confirmSplit}/>}
+      {undoStructure?.after===project&&<p role="status" className={styles.structureUndo}><span>{undoStructure.done}</span><button type="button" disabled={composing} onClick={()=>{applyProject(undoStructure.before,undoStructure.lineId);setUndoStructure(null);}}>되돌리기</button><button type="button" aria-label="알림 닫기" onClick={()=>setUndoStructure(null)}>×</button></p>}
       {deleteId && <CutDeleteDialog connections={incomingStoryConnections(project,deleteId)} text={project.lines.find(cut=>cut.id===deleteId)?.text??''} incomingLinks={getStoryCutDeletionImpact(project,deleteId).incomingLinks} rangeEnds={getStoryCutDeletionImpact(project,deleteId).rangeEnds} branchConditions={getStoryCutDeletionImpact(project,deleteId).branchConditions} onCancel={()=>setDeleteId(null)} onDelete={confirmDelete}/>}
       {undoDelete?.after===project && <button onClick={()=>{applyProject(undoDelete.before,undoDelete.lineId);setUndoDelete(null);}}>삭제 되돌리기</button>}
       {error && (
@@ -1238,7 +1276,7 @@ export function StoryWorkspace() {
       <div className={`${styles.grid} ${mode==='edit'?styles.workbenchGrid:''}`} data-editing-screen={mode==='edit'?editingScreen:undefined}>
 
         <div ref={previewEditor.panel} onBlurCapture={previewEditor.onBlurCapture} className={styles.workbenchPanel} data-editor-inputs data-writer-scroll>
-          <StoryEditingWorkbench onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editorLimits.permissions} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
+          <StoryEditingWorkbench onOpenMap={logic.branches||hasBranches(project)?()=>setFlowMapOpen(true):undefined} onSplitHere={mode==='edit'?openSplit:undefined} onSeparatePath={mode==='edit'?separatePath:undefined} editingActive={view==='editor'&&mode==='edit'} permissions={editorLimits.permissions} relatedMemos={<EditorRelatedMemos project={project} line={line} disabled={composing||!loadComplete} onOpen={memoId=>prepareWork(memoId,'memos')}/>} onAddCutAfter={mode==='edit'?()=>returnToInsertedCut(addCut()):undefined} chapterSettings={<details data-chapter-settings><summary>현재 컷의 장 설정</summary><StoryChapterSettings key={`${project.id}/${chapter.id}`} project={project} chapterId={chapter.id} onProjectChange={applyProject} charactersEnabled={editorPreferences.enabled.characters} audioEnabled={editorPreferences.enabled.audio} disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing} onComposing={setComposing} onPreviewFromBranch={id=>switchMode('play',false,id)}/></details>} adjacentThumbnails={adjacentThumbnails} preferences={editorPreferences} onPreferencesChange={setEditorPreferences} settingsTarget={settingsHost} preview={nativeStage} playing={mode==='play'} project={project} lineId={line.id} screen={editingScreen}
             onScreenChange={screen=>{if(composing||stopForUnappliedInput())return false;try{persistWorkspace();}catch(issue){setError(`편집 화면을 바꾸기 전 원고 보관에 실패했어요. ${issueText(issue)}`);return false;}setEditorPreferences(current=>({...current,screen}));setActiveTool('text');setSoundTool(false);setEditorView('cut');return true;}}
             onProjectChange={applyProject} onSelectCut={selectCut} onComposing={setComposing}
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}
