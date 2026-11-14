@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {readFile} from 'node:fs/promises';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 const source=JSON.parse(readFileSync('tests/fixtures/stories/presentation-polish.json','utf8'));
-const project={...source,id:'long-manuscript-workbench',chapters:[source.chapters[0]],lines:Array.from({length:120},(_,index)=>({...source.lines[0],id:`long-cut-${index}`,chapterId:source.chapters[0].id,order:index+1,text:`${index+1}컷의 긴 원고.\n`+'앞뒤 맥락과 줄바꿈을 살피며 오래 쓰는 한국어 문장입니다. '.repeat(80),flow:{type:'goto',targetLineId:index===119?null:`long-cut-${index+1}`}}))};
+const project={...source,id:'long-manuscript-workbench',chapters:[source.chapters[0]],lines:Array.from({length:120},(_,index)=>({...source.lines[0],id:`long-cut-${index}`,chapterId:source.chapters[0].id,order:index+1,text:`${index+1}컷의 긴 원고.\n`+'앞뒤 맥락과 줄바꿈을 살피며 오래 쓰는 한국어 문장이에요. '.repeat(80),flow:{type:'goto',targetLineId:index===119?null:`long-cut-${index+1}`}}))};
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(n=>(n as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
 async function screen(page:Page,name:string){await menu(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption(name);}
 async function exported(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();return parseAuthoringFile(await readFile((await (await pending).path())!,'utf8')).project;}
@@ -14,7 +14,7 @@ test('long manuscript keeps last-cut editing, cursor, file and internal scrollin
  await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'long.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:7,savedAt:'2026-10-20T00:00:00.000Z',appVersion:'test',project}))});await confirmAuthoringImport(page);
  const before=await exported(page);await screen(page,'text');await page.getByRole('checkbox',{name:'배경 함께 보기',exact:true}).check();
  const field=page.getByTestId('editing-cut-long-cut-119').getByRole('textbox',{name:'120컷 글',exact:true});await field.scrollIntoViewIfNeeded();
- const next=before.lines[119].text+'\n끝부분에서 계속 고친 문장입니다.';await field.fill(next);await field.evaluate(node=>(node as HTMLTextAreaElement).setSelectionRange(7,12));
+ const next=before.lines[119].text+'\n끝부분에서 계속 고친 문장이에요.';await field.fill(next);await field.evaluate(node=>(node as HTMLTextAreaElement).setSelectionRange(7,12));
  await screen(page,'background');await screen(page,'text');await expect(field).toHaveValue(next);
  await expect.poll(()=>field.evaluate(node=>{const input=node as HTMLTextAreaElement;return [input.selectionStart,input.selectionEnd,document.activeElement===input];})).toEqual([7,12,true]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1&&document.documentElement.scrollHeight<=innerHeight+2)).toBe(true);

@@ -201,7 +201,7 @@ test('large inherited work can find and edit a cut beyond the initial chapter pa
   await expect(page.locator('[data-current-cut] textarea')).toHaveValue(target.text);
   await expect(page.getByLabel('현재 장과 컷 이동')).toHaveValue(target.id);
   expect((await exportStory(page)).project).toEqual(original);
-  const editedText=`${target.text}\n긴 원고의 마지막 부분에서 덧붙인 문장입니다.`;
+  const editedText=`${target.text}\n긴 원고의 마지막 부분에서 덧붙인 문장이에요.`;
   await page.locator('[data-current-cut] textarea').fill(editedText);await saved(page);
   const edited=await exportStory(page);
   const originalFull=original as StoryProject,editedFull=edited.project as StoryProject;

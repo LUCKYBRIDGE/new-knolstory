@@ -11,7 +11,7 @@ async function memoArchive(){
   linkedChapterId:'removed-chapter',linkedLineId:'removed-cut',
   linkedChapterIds:['removed-chapter',''],linkedLineIds:['removed-cut','future-cut'],
   linkedCharacterNames:['새로 떠올린 인물 🌱','001 이름','=인물 이름',''],
-  fields:[{id:'question',label:'관계',value:'내용을 보존합니다.',order:1,source:'custom'}],
+  fields:[{id:'question',label:'관계',value:'내용을 보존해요.',order:1,source:'custom'}],
   order:1,createdAt:'2026-10-09T00:00:00Z',updatedAt:'2026-10-09T00:00:00Z',
  }]}}});
 }

@@ -8,7 +8,7 @@ export function readAssetPreferences(storage: Pick<Storage, 'getItem'>): AssetPr
   const raw = storage.getItem(ASSET_PREFERENCES_KEY);
   if (!raw) return EMPTY;
   const parsed: unknown = JSON.parse(raw);
-  if (!parsed || typeof parsed !== 'object') throw new Error('이미지 자료실 설정을 읽지 못했습니다.');
+  if (!parsed || typeof parsed !== 'object') throw new Error('이미지 자료실 설정을 읽지 못했어요.');
   const data = parsed as Record<string, unknown>;
   return { favoriteIds: ids(data.favoriteIds), recentIds: ids(data.recentIds) };
 }

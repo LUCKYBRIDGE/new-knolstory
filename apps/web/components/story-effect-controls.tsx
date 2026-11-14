@@ -64,7 +64,7 @@ export function StoryEffectControls({initialSelectedEffect=0,project,lineId,valu
  }
  function cancel(){
   if(!undo)return;
-  if(stableJson(value?.effects)!==stableJson(undo.effects)||value?.clearFollowingEffects!==undo.clearFollowingEffects){setMessage('이후 효과가 바뀌어 이전 변경을 취소하지 않았어요. 현재 내용을 유지합니다.');return;}
+  if(stableJson(value?.effects)!==stableJson(undo.effects)||value?.clearFollowingEffects!==undo.clearFollowingEffects){setMessage('이후 효과가 바뀌어 이전 변경을 취소하지 않았어요. 현재 내용을 유지해요.');return;}
   // Preserve changes to looks, transitions or actors made since this effect edit.
   const restored={...value,effects:undo.value?.effects,clearFollowingEffects:undo.value?.clearFollowingEffects};
   onChange(undo.value===undefined&&Object.values(restored).every(item=>item===undefined)?undefined:restored);
@@ -86,7 +86,7 @@ export function StoryEffectControls({initialSelectedEffect=0,project,lineId,valu
     <div className={styles.actions}><button type="button" onClick={()=>alignGuide('start')}>시작을 보조선에 맞추기</button><button type="button" disabled={effects[selectedIndex]!.repeat==='loop'||manualGuide<effectDurationMs(effects[selectedIndex]!)} onClick={()=>alignGuide('end')}>끝을 보조선에 맞추기</button></div>
     <small>실선은 옮길 수 있는 보조선이에요. 반복 효과는 끝을 맞출 수 없어요. Shift를 누른 채 끌면 자동 맞춤을 잠시 꺼요. 시작 시간은 방향키로 0.1초, Shift+방향키로 0.01초씩 옮겨요.</small></>}
    </div></details>
-   <span className={styles.guideStatus} role="status">{guide!==null?`${seconds(guide)} 보조선에 맞췄어요.`:''}</span><small>시작 맞추기는 현재 설정된 시간을 기준으로 적용해요. 시작 기준이 같은 효과끼리 맞춰요. 클릭 효과의 시간은 해당 클릭부터 셉니다.</small>
+   <span className={styles.guideStatus} role="status">{guide!==null?`${seconds(guide)} 보조선에 맞췄어요.`:''}</span><small>시작 맞추기는 현재 설정된 시간을 기준으로 적용해요. 시작 기준이 같은 효과끼리 맞춰요. 클릭 효과의 시간은 해당 클릭부터 세요.</small>
   </div>}
   {(effects.length?effects:[undefined]).map((effect,index)=><section key={index} className={styles.card} hidden={index!==selectedIndex} aria-label={`${index+1}번째 효과 설정`}>
    <header className={styles.effectHeading}><strong>{index+1}번째 효과{effect?` · ${PRESENTATION_EFFECTS.find(item=>item.type===effect.type)?.label}`:' 선택'}</strong>{effect&&<span>{targetLabel(effect)} · {effect.scope==='following'?effect.endLineId?'종료 컷까지 유지':'다음 컷에도 유지':'현재 컷만'} · {clockLabel(effect,index)} {seconds(effect.delayMs??(effect.trigger==='after-delay'?1000:0))} 뒤 · {seconds(effectDurationMs(effect))} 동안 · {effect.repeat==='loop'?'반복':'한 번'}</span>}</header>
@@ -119,6 +119,6 @@ export function StoryEffectControls({initialSelectedEffect=0,project,lineId,valu
   </div>
   {project&&lineId&&onProjectChange&&<EffectStartControls key={`${project.id}/${lineId}`} project={project} lineId={lineId} onChange={onProjectChange} onMoved={()=>setUndo(null)}/>}
   {message&&<p className={styles.hint} role="status">{message}</p>}
-  {(effects.length>1||effects.some(effect=>effect.repeat==='loop'))&&<p className={styles.hint}>최대 3개. 위로·아래로는 목록 순서만 바꿉니다. 순서대로 시작은 각 효과의 대기 시간을 조정해 앞 효과가 끝나면 다음 효과를 시작하게 합니다. 반복 효과는 계속 이어질 수 있어요. 지속 시간이 0초면 효과를 표시하지 않습니다. 없는 인물의 효과는 표시되지 않으며 움직임 줄이기를 따릅니다.</p>}
+  {(effects.length>1||effects.some(effect=>effect.repeat==='loop'))&&<p className={styles.hint}>최대 3개. 위로·아래로는 목록 순서만 바꿔요. 순서대로 시작은 각 효과의 대기 시간을 조정해 앞 효과가 끝나면 다음 효과를 시작하게 해요. 반복 효과는 계속 이어질 수 있어요. 지속 시간이 0초면 효과를 표시하지 않아요. 없는 인물의 효과는 표시되지 않으며 움직임 줄이기를 따라요.</p>}
  </div>;
 }

@@ -3,7 +3,7 @@ export type UpstreamBranch=Readonly<{node:FlowNode;routes:readonly {edge:FlowEdg
 /** Reverse reachability, not an inferred reader path. Each node is visited at most once. */
 export function findUpstreamBranches(graph:StoryFlowGraph,currentId:string):UpstreamBranch[]{
  const nodes=new Map(graph.nodes.map(node=>[node.lineId,node]));
- if(!nodes.has(currentId))throw Error('현재 편집 컷을 찾을 수 없습니다.');
+ if(!nodes.has(currentId))throw Error('현재 편집 컷을 찾을 수 없어요.');
  const distance=new Map<string,number>([[currentId,0]]),queue=[currentId];
  for(let index=0;index<queue.length;index++){
   const id=queue[index];for(const edge of nodes.get(id)!.incoming){if(edge.status!=='connected'||!nodes.has(edge.sourceLineId)||distance.has(edge.sourceLineId))continue;distance.set(edge.sourceLineId,distance.get(id)!+1);queue.push(edge.sourceLineId);}

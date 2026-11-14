@@ -9,11 +9,11 @@ export function rewindReader(project:StoryProject,current:PlaybackState,revision
   // Only Core classifies presentation-only cues; keep its path/choice rollback semantics.
   for (;;) {
    const lineId=playback.lineId??playback.path.at(-1);
-   if(!lineId)throw Error('읽을 컷을 확인할 수 없습니다.');
+   if(!lineId)throw Error('읽을 컷을 확인할 수 없어요.');
    const scene=compileStoryScene(project,lineId,revision+1,{mode:'play',playbackPath:playback.path,playbackState:playback});
    if(!scene.transitionOnly)return {ok:true,playback};
    if(playback.path.length<=1)return {ok:true,playback:current};
    playback=backPlayback(project,playback);
   }
- }catch(cause){return {ok:false,cause,message:'이전 읽기 위치를 열지 못했어요. 현재 컷은 유지됩니다. 지난기록에서 이전 장을 고르거나 처음부터 읽어 주세요.'};}
+ }catch(cause){return {ok:false,cause,message:'이전 읽기 위치를 열지 못했어요. 현재 컷은 유지돼요. 지난기록에서 이전 장을 고르거나 처음부터 읽어 주세요.'};}
 }

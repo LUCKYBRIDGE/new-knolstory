@@ -547,9 +547,9 @@ export function normalizeAndValidateStoryProject(value: unknown) {
   }
   for(const [index,line] of project.lines.entries()){
     const cues=[...(line.presentation?.effects??[]),line.audio?.music,line.audio?.ambience];
-    for(const cue of cues)if(cue&&'endLineId' in cue&&cue.endLineId!==undefined&&!linesById.has(cue.endLineId))addIssue(issues,'broken-reference',`$.project.lines[${index}]`,'연출·소리 범위의 종료 컷이 없습니다. 종료 컷을 다시 선택해 주세요.');
+    for(const cue of cues)if(cue&&'endLineId' in cue&&cue.endLineId!==undefined&&!linesById.has(cue.endLineId))addIssue(issues,'broken-reference',`$.project.lines[${index}]`,'연출·소리 범위의 종료 컷이 없어요. 종료 컷을 다시 선택해 주세요.');
   }
-  for(const chapter of project.chapters)for(const cue of [chapter.audio?.music,chapter.audio?.ambience])if(cue&&'endLineId' in cue&&cue.endLineId!==undefined&&!linesById.has(cue.endLineId))addIssue(issues,'broken-reference','$.project.chapters','소리 범위의 종료 컷이 없습니다.');
+  for(const chapter of project.chapters)for(const cue of [chapter.audio?.music,chapter.audio?.ambience])if(cue&&'endLineId' in cue&&cue.endLineId!==undefined&&!linesById.has(cue.endLineId))addIssue(issues,'broken-reference','$.project.chapters','소리 범위의 종료 컷이 없어요.');
   const validateBranchCue = (cue: unknown, path: string) => {
     if (!cue || typeof cue !== 'object' || !('branchCondition' in cue)) return;
     const branch = (cue as {branchCondition?: import('./story-branch-condition').StoryBranchCondition}).branchCondition;
@@ -558,7 +558,7 @@ export function normalizeAndValidateStoryProject(value: unknown) {
       const source = linesById.get(term.sourceLineId);
       return source?.flow?.type !== 'choice' || !source.flow.options.some(option => option.id === term.choiceId);
     })) {
-      addIssue(issues, 'broken-reference', `${path}.branchCondition`, '갈래 실행 조건의 선택지 컷이나 선택 항목이 없습니다. 실행 조건을 다시 선택해 주세요.');
+      addIssue(issues, 'broken-reference', `${path}.branchCondition`, '갈래 실행 조건의 선택지 컷이나 선택 항목이 없어요. 실행 조건을 다시 선택해 주세요.');
     }
   };
   project.lines.forEach((line, index) => {

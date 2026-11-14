@@ -5,7 +5,7 @@ import {openWorkFileExchange} from './work-file-exchange';
 import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 const base=createBlankStoryProject({id:'large-manuscript',chapterId:'ch0',lineId:'cut0',title:'세 장의 긴 작품'});
-const project={...base,chapters:Array.from({length:3},(_,i)=>({...base.chapters[0],id:`ch${i}`,order:i+1,chapterNumber:i+1,title:`긴 원고 ${i+1}장`})),lines:Array.from({length:300},(_,i)=>({...base.lines[0],id:`cut${i}`,chapterId:`ch${Math.floor(i/100)}`,order:i%100+1,text:`${i+1}번째 원고.\n`+'앞뒤 문맥과 등장인물의 이야기를 차분히 이어 씁니다. '.repeat(20),flow:{type:'goto' as const,targetLineId:i===299?null:`cut${i+1}`}}))};
+const project={...base,chapters:Array.from({length:3},(_,i)=>({...base.chapters[0],id:`ch${i}`,order:i+1,chapterNumber:i+1,title:`긴 원고 ${i+1}장`})),lines:Array.from({length:300},(_,i)=>({...base.lines[0],id:`cut${i}`,chapterId:`ch${Math.floor(i/100)}`,order:i%100+1,text:`${i+1}번째 원고.\n`+'앞뒤 문맥과 등장인물의 이야기를 차분히 이어 써요. '.repeat(20),flow:{type:'goto' as const,targetLineId:i===299?null:`cut${i+1}`}}))};
 const stored=(page:Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(el=>(el as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
 async function screen(page:Page,value:string){await menu(page);await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption(value);}
@@ -42,7 +42,7 @@ test('large manuscript native playback crosses chapter and returns to its curren
  await setup(page,undefined,true);
  await page.setViewportSize({width:390,height:844});
  const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();
- const text=row.locator('textarea[data-cut-id]');await text.fill('첫 장 마지막 컷에서 다음 장으로 이어집니다.');await text.blur();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await stored(page);
+ const text=row.locator('textarea[data-cut-id]');await text.fill('첫 장 마지막 컷에서 다음 장으로 이어져요.');await text.blur();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await stored(page);
  const frame=await page.getByTestId('story-runtime-frame').elementHandle();
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();
  const status=page.getByTestId('story-runtime-status');
@@ -60,7 +60,7 @@ test('large manuscript native playback crosses chapter and returns to its curren
 
 for(const target of ['background','characters','audio','direction'])test(`advanced ${target} native return reveals current cut without a text field`,async({page},info)=>{
  await setup(page,undefined,true);await page.setViewportSize({width:390,height:844});
- const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();await row.locator('textarea[data-cut-id]').fill('이 장을 마치고 다음 장으로 이어집니다.');
+ const row=page.getByTestId('editing-cut-cut99');await row.getByRole('button',{name:'이 컷 선택',exact:true}).click();await row.locator('textarea[data-cut-id]').fill('이 장을 마치고 다음 장으로 이어져요.');
  await menu(page);await page.getByText('편집 설정',{exact:true}).click();for(const name of ['인물','음향','연출'])await page.getByRole('checkbox',{name:`${name} 편집 사용`,exact:true}).check();await page.getByRole('combobox',{name:'편집화면 선택',exact:true}).selectOption(target);
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');const before=await stored(page);
  await row.getByRole('button',{name:'이 컷부터 재생',exact:true}).click();const status=page.getByTestId('story-runtime-status');

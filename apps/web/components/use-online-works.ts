@@ -33,7 +33,7 @@ export function useOnlineWorks({works,disabled=false,onSaveNew,onOpen,captureOpe
   const current=()=>mounted.current.active&&request===sequence.current&&latest.current.account.session?.accountId===session.accountId;
   busyRef.current=true;setBusy(true);setError('');setNotice('');
   try{await run(current,session.accountId,session.csrf);}
-  catch(issue){if(current())setError(issue instanceof Error?issue.message:'온라인 작업을 마치지 못했어요. 기기의 원고는 유지됩니다.');}
+  catch(issue){if(current())setError(issue instanceof Error?issue.message:'온라인 작업을 마치지 못했어요. 기기의 원고는 유지돼요.');}
   finally{if(current()){busyRef.current=false;setBusy(false);}}
  },[]);
  const load=useCallback(async(current:Current,accountId:string,more:boolean,nextRange:Range,display=true)=>{
@@ -60,7 +60,7 @@ export function useOnlineWorks({works,disabled=false,onSaveNew,onOpen,captureOpe
   if(!latest.current.works.some(work=>work.key===key))throw Error('업로드할 기기 작품을 골라 주세요.');
   const result=await latest.current.onSaveNew(key,accountId,csrf,current);
   if(!current()||!result)return;
-  setNotice(result.includesLatest?'온라인에 업로드했어요. 로컬 작품 파일 저장은 별도로 해 주세요. 기기의 원고도 그대로 유지됩니다.':'이전에 보낸 요청의 업로드를 확인했어요. 이후 바꾼 내용도 올리려면 다시 업로드해 주세요.');
+  setNotice(result.includesLatest?'온라인에 업로드했어요. 로컬 작품 파일 저장은 별도로 해 주세요. 기기의 원고도 그대로 유지돼요.':'이전에 보낸 요청의 업로드를 확인했어요. 이후 바꾼 내용도 올리려면 다시 업로드해 주세요.');
   try{await load(current,accountId,false,'active',latest.current.range==='active');}
   catch{if(current())setError('업로드는 마쳤지만 온라인 목록을 다시 확인하지 못했어요. 목록을 새로고침해 주세요.');}
  }),[operation,load]);
@@ -78,7 +78,7 @@ export function useOnlineWorks({works,disabled=false,onSaveNew,onOpen,captureOpe
   if(!current())return;
   pending.current.delete(requestId);setConfirmTrash(null);setDocuments(previous=>previous.filter(item=>item.recordId!==receipt.recordId));
   if(action==='trash')setActiveDocuments(previous=>previous.filter(item=>item.recordId!==receipt.recordId));
-  setNotice(receipt.replayed?'이전에 보낸 요청의 처리를 확인했어요. 현재 상태는 새로고침한 목록을 확인해 주세요. 기기의 원고는 그대로 유지됩니다.':action==='trash'?'온라인 휴지통으로 옮겼어요. 기기의 원고는 그대로 유지됩니다.':'같은 온라인 작품과 이력으로 복구했어요. 기기의 원고는 그대로 유지됩니다.');
+  setNotice(receipt.replayed?'이전에 보낸 요청의 처리를 확인했어요. 현재 상태는 새로고침한 목록을 확인해 주세요. 기기의 원고는 그대로 유지돼요.':action==='trash'?'온라인 휴지통으로 옮겼어요. 기기의 원고는 그대로 유지돼요.':'같은 온라인 작품과 이력으로 복구했어요. 기기의 원고는 그대로 유지돼요.');
   const nextRange=latest.current.range;
   await load(current,accountId,false,nextRange);
   if(nextRange==='trash')await load(current,accountId,false,'active',false);

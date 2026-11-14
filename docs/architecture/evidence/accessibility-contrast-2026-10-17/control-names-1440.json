@@ -4,23 +4,16 @@
   "controls": [
     {
       "role": "button",
-      "visibleText": "글",
-      "expectedName": "글 편집",
-      "computedAriaSnapshot": "- button \"글 편집\" [pressed]: 글",
-      "enabled": true
-    },
-    {
-      "role": "button",
       "visibleText": "‹",
-      "expectedName": "미리보기 이전 컷",
-      "computedAriaSnapshot": "- button \"미리보기 이전 컷\" [disabled]: ‹",
+      "expectedName": "이전 컷",
+      "computedAriaSnapshot": "- button \"이전 컷\" [disabled]: ‹",
       "enabled": false
     },
     {
       "role": "button",
       "visibleText": "›",
-      "expectedName": "미리보기 다음 컷",
-      "computedAriaSnapshot": "- button \"미리보기 다음 컷\": ›",
+      "expectedName": "다음 컷",
+      "computedAriaSnapshot": "- button \"다음 컷\": ›",
       "enabled": true
     },
     {

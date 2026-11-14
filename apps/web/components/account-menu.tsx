@@ -43,7 +43,7 @@ function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='librar
  function navigate(destination:string){
   if(!lifecycle.current.active||!guard.current())return false;
   try{rememberAccountReturn(sessionStorage,Date.now(),returnTo);location.assign(destination);return true;}
-  catch{setNotice('로그인 화면을 열지 못했어요. 현재 작품은 유지됩니다.');return false;}
+  catch{setNotice('로그인 화면을 열지 못했어요. 현재 작품은 유지돼요.');return false;}
  }
  /** Class pages leave the library, so the same work-protection check as login applies. */
  function go(path:string){if(!lifecycle.current.active||!guard.current())return;location.assign(path);}

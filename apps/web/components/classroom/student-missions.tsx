@@ -1,6 +1,6 @@
 'use client';
 import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
-import {missionList,missionSubmit,missionReadingHref,missionKindLabel,readingFormatLabel,type Mission,type MissionProgress} from '../../lib/mission-api';
+import {missionList,missionSubmit,missionReadingHref,readingFormatLabel,type Mission,type MissionProgress} from '../../lib/mission-api';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {MissionSeal} from './classroom-art';
 import shared from './classroom.module.css';
@@ -10,7 +10,6 @@ type Props={accountId:string;csrf:string};
 type Draft={answers:Record<string,string>;note:string};
 const initialDraft=(mission:Mission):Draft=>({answers:{...mission.progress?.answers},note:mission.progress?.note??''});
 const message=(issue:unknown,fallback:string)=>issue instanceof Error?issue.message:fallback;
-const kindLabel=missionKindLabel;
 function statusLabel(progress:MissionProgress|undefined){
  if(progress?.reviewStatus==='passed')return '과제 통과';
  if(progress?.reviewStatus==='revise')return '다시 쓰기';
@@ -83,7 +82,7 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
  const href=missionReadingHref(mission),again=!!progress?.submittedAt,work=BUILTIN_WORKS.find(item=>item.id===mission.storyKey);
  const state=passed?'passed':revise?'revise':progress?.submittedAt?'pending':'none';
  return <article className={styles.card} data-mission={mission.id} data-status={state} data-kind={mission.kind}>
-  <div className={styles.titleRow}><div><span className={styles.kind}>{kindLabel(mission.kind)}</span><h3>{mission.title}</h3></div>
+  <div className={styles.titleRow}><div><h3>{mission.title}</h3></div>
    {passed?<span className={styles.success}><MissionSeal earned small/><strong>과제 통과</strong></span>:<span className={`${styles.status} ${revise?styles.revise:progress?.submittedAt?styles.pending:''}`}>{statusLabel(progress)}</span>}</div>
   {mission.description&&<p className={styles.copy}>{mission.description}</p>}
   {mission.criteria&&<details className={styles.criteria}><summary>통과 기준</summary><p className={styles.copy}>{mission.criteria}</p></details>}

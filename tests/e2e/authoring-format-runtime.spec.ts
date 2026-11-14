@@ -33,8 +33,8 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   test.setTimeout(120000);
   await page.setViewportSize(viewport);
   const archive=JSON.parse(readFileSync('docs/architecture/evidence/authoring-format/all-fields-story.knolstory','utf8'));
-  archive.document.project.lines[0].presentation.transition.actionLabel='긴 한국어 버튼 문구도 그대로 보존하며 이어 읽습니다. '.repeat(30);
-  archive.document.project.lines[0].presentation.transition.description='긴 한국어 전환 설명을 스크롤해서 읽을 수 있습니다.\n'.repeat(45);
+  archive.document.project.lines[0].presentation.transition.actionLabel='긴 한국어 버튼 문구도 그대로 보존하며 이어 읽어요. '.repeat(30);
+  archive.document.project.lines[0].presentation.transition.description='긴 한국어 전환 설명을 스크롤해서 읽을 수 있어요.\n'.repeat(45);
   const prior=parseAuthoringFile(JSON.stringify(archive));
   await existingPrivateWorkspace(page,prior.project,prior.audioResources);
   await page.goto('/?view=editor');

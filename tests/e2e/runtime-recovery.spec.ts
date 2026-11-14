@@ -5,7 +5,7 @@ test('a blocked stage offers retry, preserves authored work and reconnects the r
  await page.route('**/api/**',route=>route.abort());
  let requests=0;await page.route('**/runtime/index.html*',route=>{requests++;return requests===1?route.abort('connectionfailed'):route.continue();});
  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
- const textarea=page.locator('textarea[aria-label$="컷 글"]').first();await textarea.fill('연결이 끊겨도 내가 쓴 글은 남아 있어야 합니다.');await textarea.blur();
+ const textarea=page.locator('textarea[aria-label$="컷 글"]').first();await textarea.fill('연결이 끊겨도 내가 쓴 글은 남아 있어야 해요.');await textarea.blur();
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const stored=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
  const before=await stored(),frame=page.getByTestId('story-runtime-frame');await frame.evaluate(n=>n.setAttribute('data-recovery-identity','same-frame'));
@@ -22,7 +22,7 @@ test('a blocked stage offers retry, preserves authored work and reconnects the r
  await frame.evaluate(node=>{const win=(node as HTMLIFrameElement).contentWindow!;win.eval("window.parent.postMessage({protocol:1,type:'error',message:'private diagnostic only'},location.origin)");});
  await expect(retry).toBeVisible();await expect(page.getByText('private diagnostic only')).toHaveCount(0);
  await page.getByRole('button',{name:'편집으로 돌아가기',exact:true}).filter({visible:true}).first().click();
- await expect(textarea).toBeVisible();await expect(textarea).toHaveValue('연결이 끊겨도 내가 쓴 글은 남아 있어야 합니다.');expect(await stored()).toEqual(before);
+ await expect(textarea).toBeVisible();await expect(textarea).toHaveValue('연결이 끊겨도 내가 쓴 글은 남아 있어야 해요.');expect(await stored()).toEqual(before);
 });
 
 test('an unavailable registered music file can be fetched again without losing the manuscript',async({page})=>{

@@ -38,7 +38,7 @@ export async function readerFullscreen(page:Page,exit=false){
 export async function saveReadSlot(page:Page,id:number){
  await readerTools(page);const settings=page.getByRole('button',{name:'설정',exact:true});if(await settings.isVisible())await settings.click();await page.getByRole('button',{name:'저장',exact:true}).click();
  await page.getByRole('button',{name:`${id}번 저장`,exact:true}).click();
- await expect(page.getByRole('dialog',{name:'저장',exact:true})).toContainText(`${id}번에 저장했습니다.`);
+ await expect(page.getByRole('dialog',{name:'저장',exact:true})).toContainText(`${id}번에 저장했어요.`);
 }
 export async function loadReadSlot(page:Page,id:number){
  await readerTools(page);const settings=page.getByRole('button',{name:'설정',exact:true});if(await settings.isVisible())await settings.click();await page.getByRole('button',{name:'불러오기',exact:true}).click();

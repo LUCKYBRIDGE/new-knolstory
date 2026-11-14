@@ -2,39 +2,39 @@
 .stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:24px 0 20px}
 .stats>p{grid-column:1/-1;margin:0}
 .stat{display:grid;gap:2px;padding:16px 18px;border:1px solid #ded8c9;border-radius:14px;background:#fffdf8;min-width:0}
-.statLabel{font-size:.8125rem;font-weight:600;color:#536763}
-.statValue{font-size:1.75rem;line-height:1.3;letter-spacing:-.03em;color:#183331}
-.statNote{font-size:.75rem;color:#6b7a73}
+.statLabel{font-size:var(--text-small);font-weight:600;color:#536763}
+.statValue{font-size:var(--text-display);line-height:1.3;letter-spacing:-.03em;color:#183331}
+.statNote{font-size:var(--text-caption);color:#6b7a73}
 .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:20px;align-items:start}
 .cardHead{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cardHead h2{margin:0}
 .codeCard{border-color:#e6d6a8;background:#fffbef}
-.updated{margin:0 0 14px;font-size:.8125rem;color:#755419}
+.updated{margin:0 0 14px;font-size:var(--text-small);color:#755419}
 .codeCard form{display:grid;gap:12px}
 .codeCard input{font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em}
 .codeActions,.savedActions{display:flex;gap:8px;flex-wrap:wrap}
-.saved{display:grid;gap:10px;padding:14px;border:1px solid #bed5c4;border-radius:12px;background:#e8f3eb;color:#24594c;font-size:.875rem}
+.saved{display:grid;gap:10px;padding:14px;border:1px solid #bed5c4;border-radius:12px;background:#e8f3eb;color:#24594c;font-size:var(--text-small)}
 .saved code{display:block;padding:10px 12px;border:1px dashed #91aa96;border-radius:8px;background:#fffdf8;color:#183331;font:700 1.25rem ui-monospace,Menlo,monospace;letter-spacing:.08em;user-select:all;overflow-wrap:anywhere}
-.howto{margin-top:16px;border-top:1px solid #eee2c2;padding-top:4px;font-size:.8125rem}
+.howto{margin-top:16px;border-top:1px solid #eee2c2;padding-top:4px;font-size:var(--text-small)}
 .howto ol{margin:4px 0 0;padding-left:1.3em;display:grid;gap:4px;color:#415951}
-.empty{margin:0;padding:18px;border:1px dashed #d9d2bd;border-radius:12px;background:#fbf8ee;color:#536763;font-size:.875rem}
+.empty{margin:0;padding:18px;border:1px dashed #d9d2bd;border-radius:12px;background:#fbf8ee;color:#536763;font-size:var(--text-small)}
 .rooms{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .rooms>li{padding:14px 16px;border:1px solid #e3e4d9;border-left:4px solid #7a9c83;border-radius:4px 12px 12px 4px;background:#fffefa;min-width:0}
 .roomHead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.roomHead strong{font-size:1rem;overflow-wrap:anywhere}
-.roomHead span{font-size:.75rem;color:#6b7a73}
+.roomHead strong{font-size:var(--text-body);overflow-wrap:anywhere}
+.roomHead span{font-size:var(--text-caption);color:#6b7a73}
 .roomStats{display:flex;gap:6px 20px;flex-wrap:wrap;margin:8px 0 0}
 .roomStats div{display:flex;gap:6px;align-items:baseline}
-.roomStats dt{font-size:.75rem;color:#536763}
+.roomStats dt{font-size:var(--text-caption);color:#536763}
 .roomStats dd{margin:0;font-weight:700}
-.roomStats small{font-weight:400;font-size:.75rem;color:#536763}
+.roomStats small{font-weight:400;font-size:var(--text-caption);color:#536763}
 @media(max-width:960px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
-@media(max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat{padding:12px 14px}.statValue{font-size:1.4rem}.codeActions>.btn,.codeActions>button{flex:1 1 100%}}
+@media(max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stat{padding:12px 14px}.statValue{font-size:var(--text-heading)}.codeActions>.btn,.codeActions>button{flex:1 1 100%}}
 @media(max-width:520px){.stats>div:last-child{grid-column:1/-1}}
 /* Teacher code: the current code is always visible to the admin, with a clear on/off state. */
 .currentCode{display:flex;align-items:center;gap:10px;margin:12px 0 4px;padding:12px 14px;border:1px dashed #b9cdbd;border-radius:12px;background:#fffefa}
 .currentCode code{flex:1;min-width:0;font:700 1.25rem/1.4 ui-monospace,Menlo,monospace;letter-spacing:.08em;color:#1f4f44;overflow-wrap:anywhere}
-.liveChip,.pausedChip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:700}
+.liveChip,.pausedChip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;font-size:var(--text-caption);font-weight:700}
 .liveChip{background:#e3efe6;color:#245b46}.pausedChip{background:#fbe9dc;color:#8a4316}
 /* Access: one row per account, latest sign-in only. */
 .access{margin-top:20px}
@@ -43,7 +43,7 @@
 .accessList{list-style:none;padding:0;margin:0;display:grid;gap:6px}
 .accessList li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid #e3e0d4;border-radius:10px;background:#fffefa}
 .accessList strong{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.roleChip{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:10px;background:#eef0e8;color:#41524b}
+.roleChip{font-size:var(--text-caption);font-weight:700;padding:2px 8px;border-radius:10px;background:#eef0e8;color:#41524b}
 .roleChip[data-role=teacher]{background:#e3efe6;color:#245b46}.roleChip[data-role=student]{background:#e6eef7;color:#2c4f73}.roleChip[data-role=admin]{background:#fbefd5;color:#7a5414}
-.lastSeen{font-size:.8125rem;color:var(--class-muted,#5d6b65);white-space:nowrap}
-@media(max-width:520px){.accessList li{grid-template-columns:auto minmax(0,1fr);row-gap:2px}.lastSeen{grid-column:2}.currentCode code{font-size:1.05rem}}
+.lastSeen{font-size:var(--text-small);color:var(--class-muted,#5d6b65);white-space:nowrap}
+@media(max-width:520px){.accessList li{grid-template-columns:auto minmax(0,1fr);row-gap:2px}.lastSeen{grid-column:2}.currentCode code{font-size:var(--text-body)}}

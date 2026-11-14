@@ -44,7 +44,7 @@ async function author(page:Page){
  const first=await currentId(page);
  // Chapter title, outline and default background live in 설정 > 현재 컷의 장 설정. (The old chapter-wide speaker registry no longer exists; speakers are set per cut below.)
  await management(page);const chapter=page.locator('details[data-chapter-settings]');if(!await chapter.evaluate(node=>(node as HTMLDetailsElement).open))await chapter.locator(':scope>summary').click();
- await chapter.getByLabel('장 제목').fill('첫 만남');await chapter.getByLabel('장 개요').fill('두 선택지로 서로 다른 이야기를 씁니다.');
+ await chapter.getByLabel('장 제목').fill('첫 만남');await chapter.getByLabel('장 개요').fill('두 선택지로 서로 다른 이야기를 써요.');
  await pickTo(page,'장 기본 배경',bg,'용궁');
  await enableEditing(page,'인물','선택지');
  // Cut 1: dialogue by the speaker 나, written in the basic view.
@@ -70,8 +70,8 @@ async function author(page:Page){
  await row.getByRole('button',{name:/^1컷 인물 1 이미지 찾기 ·/}).click();dialog=page.getByRole('dialog');await dialog.getByRole('button',{name:'즐겨찾기',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'최근 사용',exact:true}).click();await expect(dialog.locator(`[data-asset-id="${variant}"]`)).toBeVisible();await dialog.getByRole('button',{name:'취소',exact:true}).click();
  // Two ending cuts, appended with the next-cut card and written in the basic view.
  await openEditingScreen(page,'기본편집');
- await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endA=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('dialogue');await page.getByLabel('현재 컷 화자',{exact:true}).fill('흥부');await (await currentCutText(page)).fill('첫 갈래의 끝입니다.');
- await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endB=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('narration');await (await currentCutText(page)).fill('두 번째 갈래의 끝입니다.');
+ await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endA=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('dialogue');await page.getByLabel('현재 컷 화자',{exact:true}).fill('흥부');await (await currentCutText(page)).fill('첫 갈래의 끝이에요.');
+ await page.getByRole('button',{name:/^\+ 다음 컷 만들기/}).click();const endB=await currentId(page);await page.getByLabel('현재 컷 글 종류',{exact:true}).selectOption('narration');await (await currentCutText(page)).fill('두 번째 갈래의 끝이에요.');
  for(const id of [endA,endB]){await chooseCut(page,id);await openChoiceEditing(page);await setFlow(page,'ending');}
  await chooseCut(page,first);await openChoiceEditing(page);await setFlow(page,'choice');await page.getByLabel('선택지 1 도착 컷').selectOption(endA);await page.getByLabel('선택지 2 도착 컷').selectOption(endB);await saved(page);
  return {first,endA,endB,key};

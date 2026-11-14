@@ -17,9 +17,9 @@ export function AuthoringImportDialog({title,kind,chapterCount=0,cutCount=0,page
   <dl><dt>작품 종류</dt><dd>{kind==='knolstory'?'놀스토리':'숏스토리'}</dd>
    {kind==='knolstory'?<><dt>장 · 컷</dt><dd>{chapterCount}장 · {cutCount}컷</dd><dt>첨부 오디오</dt><dd>{resourceCount}개</dd></>:<><dt>쪽</dt><dd>{pageCount}쪽</dd></>}
   </dl>
-  <p>형식과 연결을 확인했습니다. 가져오면 독립된 내 사본으로 열립니다. 현재 작품과 기본 제공 원작은 덮어쓰지 않습니다.</p>
+  <p>형식과 연결을 확인했어요. 가져오면 독립된 내 사본으로 열려요. 현재 작품과 기본 제공 원작은 덮어쓰지 않아요.</p>
   {error&&<p role="alert">{error}</p>}
   <div className={styles.actions}><button autoFocus disabled={busy} onClick={onCancel}>가져오기 취소</button><button className={styles.primary} disabled={busy} onClick={()=>void onApply()}>내 사본으로 가져오기</button></div>
-  {busy&&<p role="status">작품과 첨부 자료를 보관하고 있습니다.</p>}
+  {busy&&<p role="status">작품과 첨부 자료를 보관하고 있어요.</p>}
  </dialog>;
 }

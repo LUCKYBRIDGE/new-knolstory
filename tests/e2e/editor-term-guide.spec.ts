@@ -38,10 +38,10 @@ test('guide preserves author drafts and restores focus in four viewport layouts'
  await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
  if(!await page.getByRole('region',{name:'작품 설정',exact:true}).isVisible()){await page.locator('[data-work-menu]>summary').click();await page.getByRole('button',{name:'작품 정보·표지',exact:true}).click();}
  const title=page.getByRole('region',{name:'작품 설정',exact:true}).getByLabel('작품 제목',{exact:true});
- await title.fill('내가 쓴 긴 한국어 작품 제목을 유지합니다');
+ await title.fill('내가 쓴 긴 한국어 작품 제목을 유지해요');
  for(const viewport of [{width:1280,height:800},{width:820,height:1180},{width:390,height:844},{width:844,height:390}]){
   await page.setViewportSize(viewport);await checkGuide(page);
-  await expect(title).toHaveValue('내가 쓴 긴 한국어 작품 제목을 유지합니다');
+  await expect(title).toHaveValue('내가 쓴 긴 한국어 작품 제목을 유지해요');
  }
  await page.getByRole('button',{name:'책 표지 편집',exact:true}).click();
  await checkGuide(page);
@@ -51,15 +51,15 @@ test('guide preserves author drafts and restores focus in four viewport layouts'
 test('ShortStory guide leaves edited page text untouched',async({page})=>{
  await page.goto('/shortstory');
  const body=page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true});
- await body.fill('숏스토리의 문구와 자유 배치는 그대로 둡니다.');
+ await body.fill('숏스토리의 문구와 자유 배치는 그대로 둬요.');
  await checkGuide(page);
- await expect(body).toHaveValue('숏스토리의 문구와 자유 배치는 그대로 둡니다.');
+ await expect(body).toHaveValue('숏스토리의 문구와 자유 배치는 그대로 둬요.');
 });
 
 test('current vocabulary distinguishes work files, browser recovery and optional companion views',async({page})=>{
  await page.goto('/shortstory');
  const body=page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true});
- await body.fill('용어를 찾아보는 동안 이 원고를 보존합니다.');
+ await body.fill('용어를 찾아보는 동안 이 원고를 보존해요.');
  await page.getByRole('button',{name:'편집 용어 안내',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'편집 용어 안내',exact:true});
  const search=dialog.getByRole('searchbox',{name:'용어 검색',exact:true});
@@ -70,7 +70,7 @@ test('current vocabulary distinguishes work files, browser recovery and optional
  await expect(dialog.locator('dt')).toContainText('이야기 진행');
  const aliases=dialog.locator('details').filter({has:page.locator('summary',{hasText:'이전 이름·검색어'})}).first();
  await expect(aliases).not.toHaveAttribute('open','');await aliases.locator('summary').click();await expect(aliases).toContainText('Flow');
- await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(body).toHaveValue('용어를 찾아보는 동안 이 원고를 보존합니다.');
+ await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(body).toHaveValue('용어를 찾아보는 동안 이 원고를 보존해요.');
 });
 
 test('authoring labels distinguish file save, temporary retention and earlier manuscripts',async({page})=>{

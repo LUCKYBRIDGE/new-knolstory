@@ -79,7 +79,7 @@ for(const edition of editions)for(const route of edition.routes)test(`${edition.
    }
   });
  });
- let apiRequests=0;await page.route('**/api/**',async request=>{apiRequests++;await request.fulfill({status:503,contentType:'application/json',body:JSON.stringify({success:false,error:'검사 중 온라인 기능을 사용할 수 없습니다.'})});});
+ let apiRequests=0;await page.route('**/api/**',async request=>{apiRequests++;await request.fulfill({status:503,contentType:'application/json',body:JSON.stringify({success:false,error:'검사 중 온라인 기능을 사용할 수 없어요.'})});});
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
  await page.goto('/');await enterLibrary(page);await openBuiltinEdition(page,edition.workId,edition.edition,'start');await beginSelectedBook(page);
  await ready(page,`${edition.projectId}/${route.steps[0].lineId}`);

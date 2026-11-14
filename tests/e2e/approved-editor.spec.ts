@@ -96,9 +96,9 @@ await text.focus();await page.evaluate(()=>{Object.assign(window.visualViewport!
  await expect(page.getByRole('complementary',{name:'이전 컷과 장 탐색'})).toBeHidden();await expect(page.locator('[data-stacked-context]')).toBeHidden();await expect(page.getByTestId('story-stage-viewport')).toBeVisible();await expect(text).toBeFocused();
  expect([await status.getAttribute('data-scene-width'),await status.getAttribute('data-scene-height')]).toEqual(logical);
  expect(await frame!.evaluate(node=>node===document.querySelector('[data-testid="story-runtime-frame"]'))).toBe(true);
- await text.fill('삼성 키보드 가림 환경에서도 현재 글을 수정합니다.');
+ await text.fill('삼성 키보드 가림 환경에서도 현재 글을 수정해요.');
  await page.evaluate(()=>{Object.assign(window.visualViewport!,{height:844});window.visualViewport!.dispatchEvent(new Event('resize'));});
- await expect(page.locator('main[data-keyboard-occluded="false"]')).toBeVisible();await expect(text).toHaveValue('삼성 키보드 가림 환경에서도 현재 글을 수정합니다.');
+ await expect(page.locator('main[data-keyboard-occluded="false"]')).toBeVisible();await expect(text).toHaveValue('삼성 키보드 가림 환경에서도 현재 글을 수정해요.');
 });
 
 test('adding a score makes optional choice controls available and persists authored effects',async({page})=>{

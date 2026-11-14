@@ -7,7 +7,7 @@ import {previousReadCut} from './reader-actions';
 const original=JSON.parse(readFileSync('tests/fixtures/stories/presentation-polish.json','utf8'));
 const choiceA='따뜻한 갈래를 골라 같은 컷으로 간다',choiceB='조용한 갈래를 골라 같은 컷으로 간다';
 const source={...original,id:'branch-scope',lines:original.lines.slice(0,3).map((line:typeof original.lines[number],index:number)=>({...line,
- text:index===0?'같은 장면에 합쳐지는 두 갈래를 실제 선택 기록으로 구분합니다.':index===1?'같은 컷이지만 고른 갈래에 따라 연출과 소리가 달라집니다.':'다시 갈림길로 돌아갑니다.',
+ text:index===0?'같은 장면에 합쳐지는 두 갈래를 실제 선택 기록으로 구분해요.':index===1?'같은 컷이지만 고른 갈래에 따라 연출과 소리가 달라져요.':'다시 갈림길로 돌아갑니다.',
  presentation:index===1?{effects:[{id:'branch-effect',type:'spotlight',scope:'following',intensity:'strong',repeat:'loop',durationMs:1200,periodMs:1200}]}:undefined,
  audio:index===1?{music:{action:'play',assetId:'audio:music:forest',volume:.7,loop:true},ambience:{action:'play',assetId:'audio:music:ambience-forest',volume:.35,loop:true},sounds:[{id:'branch-sound',assetId:'audio:sound:chime',volume:1,delayMs:0}]}:undefined,
  flow:index===0?{type:'choice',options:[{id:'warm',label:choiceA,targetLineId:'shake'},{id:'quiet',label:choiceB,targetLineId:'shake'}]}:{type:'goto',targetLineId:index===1?'flash-red':'neutral'}}))};

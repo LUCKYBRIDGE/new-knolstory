@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 import {readFile} from 'node:fs/promises';
 const source=JSON.parse(readFileSync('tests/fixtures/stories/presentation-polish.json','utf8'));
-const prose=Array.from({length:100},(_,i)=>`${i+1}. 긴 원고의 앞뒤 맥락과 편집하던 위치를 유지합니다.`).join('\n');
+const prose=Array.from({length:100},(_,i)=>`${i+1}. 긴 원고의 앞뒤 맥락과 편집하던 위치를 유지해요.`).join('\n');
 const project={...source,id:'long-text-context',lines:source.lines.map((line:typeof source.lines[number],i:number)=>({...line,text:i===0?prose:line.text}))};
 // The phone fullscreen offer has its own coverage; keep it from covering these long-text flows.
 test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});

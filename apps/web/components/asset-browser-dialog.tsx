@@ -67,7 +67,7 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
     <div className={styles.shell}>
       <header className={styles.header}><div><small>이야기 그림 자료실</small><h2 id={titleId}>이미지 선택 · {label}</h2><p>적용 대상: {label}. 그림을 미리 본 뒤 적용하세요.</p></div><button type="button" aria-label="이미지 선택 닫기" onClick={onClose}>닫기</button></header>
       <div className={styles.comparison}>
-        <div>{current && <Thumbnail asset={current} />}<span><small>현재 이미지</small><strong>{(current?assetDisplayName(current):undefined) ?? emptyOptions.find(option=>option.value===value)?.label ?? (value?'그림 자료 확인 필요':'선택한 이미지 없음')}</strong>{current && !isSelectableAsset(current,allowSceneIllustrations) && <small>이전 이미지 · 기존 사용은 보존됩니다</small>}</span></div>
+        <div>{current && <Thumbnail asset={current} />}<span><small>현재 이미지</small><strong>{(current?assetDisplayName(current):undefined) ?? emptyOptions.find(option=>option.value===value)?.label ?? (value?'그림 자료 확인 필요':'선택한 이미지 없음')}</strong>{current && !isSelectableAsset(current,allowSceneIllustrations) && <small>이전 이미지 · 기존 사용은 보존돼요</small>}</span></div>
         <div>{preview && <Thumbnail asset={preview} />}<span><small>선택 미리보기</small><strong>{(preview?assetDisplayName(preview):undefined) ?? empty?.label ?? '그림을 선택하세요'}</strong></span></div>
       </div>
       <div className={styles.findbar}><input ref={searchInput} type="search" aria-label="이미지 검색" placeholder="흥부 일하기, 겨울 집처럼 찾아보세요" value={search} onChange={event => setSearch(event.target.value)} />{type === 'character' && current && assetCharacterIds(current).length > 0 && <button type="button" aria-pressed={sameCharacter} onClick={() => setSameCharacter(v => !v)}>같은 인물의 다른 모습</button>}</div>
@@ -88,7 +88,7 @@ export function AssetBrowserDialog({ allowSceneIllustrations=false, label, type,
         </article>)}</div>
         {!found.length && <div className={styles.empty}><strong>찾은 이미지가 없어요.</strong><p>조건을 해제하거나 다른 보기에서 찾아보세요.</p><button type="button" onClick={clear}>모두 지우기</button></div>}
       </div>
-      <footer className={styles.footer}>{storageError && <p role="status">{storageError}</p>}<p>적용 전에는 현재 컷이나 장 자료를 바꾸지 않습니다.</p><div><button type="button" onClick={onClose}>취소</button><button type="button" className={styles.apply} disabled={!canApply} onClick={() => { if (canApply) { if(!empty)persist(recordRecentAsset(preferences, pending)); onSelect(pending); onClose(); } }}>선택한 이미지 적용</button></div></footer>
+      <footer className={styles.footer}>{storageError && <p role="status">{storageError}</p>}<p>적용 전에는 현재 컷이나 장 자료를 바꾸지 않아요.</p><div><button type="button" onClick={onClose}>취소</button><button type="button" className={styles.apply} disabled={!canApply} onClick={() => { if (canApply) { if(!empty)persist(recordRecentAsset(preferences, pending)); onSelect(pending); onClose(); } }}>선택한 이미지 적용</button></div></footer>
     </div>
   </dialog>;
 }

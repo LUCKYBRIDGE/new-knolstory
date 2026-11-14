@@ -34,7 +34,7 @@ export function StoryAudioControls({initialSelectedClipId,clipSelectionRevision,
     <label>조정할 소리<select aria-label="조정할 소리" value={kind} onChange={event=>setKind(event.target.value as AudioPart)}><option value="music">배경음 · {actionLabel(audio.music)}</option><option value="ambience">주변 소리 · {actionLabel(audio.ambience)}</option><option value="sounds">효과음 · {audio.sounds?.length??0}개</option></select></label>
     <div hidden={kind==='sounds'}>
     {scope==='cut'&&project&&lineId&&onProjectChange&&<AudioStartControls key={`${project.id}/${lineId}`} project={project} lineId={lineId} selectedChannel={kind==='ambience'?'ambience':'music'} onChange={onProjectChange} onMoved={()=>setUndo(current=>({...current,[kind]:undefined}))}/>}
-    </div><section hidden={kind!=='music'} aria-label="배경음 편집"><p className={styles.hint}>{scope==='chapter'?'이 장에 들어올 때 배경음을 적용합니다.':'배경음은 컷 사이에 이어집니다. 이어받기는 장·앞 컷의 소리를 사용하고, 유지는 지금 재생 중인 소리를 바꾸지 않습니다.'}</p>
+    </div><section hidden={kind!=='music'} aria-label="배경음 편집"><p className={styles.hint}>{scope==='chapter'?'이 장에 들어올 때 배경음을 적용해요.':'배경음은 컷 사이에 이어져요. 이어받기는 장·앞 컷의 소리를 사용하고, 유지는 지금 재생 중인 소리를 바꾸지 않아요.'}</p>
     <label>배경음 동작<select aria-label={`${prefix} 배경음 동작`} value={cue?.action??'default'} onChange={event=>{if(event.target.value==='sequence')return;setMusic(event.target.value==='default'?undefined:event.target.value==='play'?{action:'play',assetId:'audio:music:forest',volume:.7,loop:true}:event.target.value==='stop'?{action:'stop',fadeOutMs:300}:{action:'maintain'});}}><option value="default">{scope==='chapter'?'장 진입 시 변경하지 않음':'앞 컷 / 장 배경음 이어받기'}</option><option value="maintain">현재 배경음 유지</option><option value="play">배경음 재생 / 변경</option>{cue?.action==='sequence'&&<option value="sequence">여러 배경음 순서 재생</option>}<option value="stop">배경음 정지</option></select></label>
     {cue?.action==='play'&&<>
       <StoryBranchConditionField project={project} value={cue.branchCondition} label={`${prefix} 배경음 갈래 조건`} onChange={branchCondition=>changeMusic({branchCondition})} onPreviewFromBranch={onPreviewFromBranch}/>
@@ -60,7 +60,7 @@ function ContinuousAmbience({initialSelectedClipId,clipSelectionRevision,value,o
  const prefix=scope==='chapter'?'장':'컷';
  const change=(patch:Partial<Extract<StoryMusicCue,{action:'play'}>>)=>{if(value?.action==='play')onChange({...value,...patch});};
  return <fieldset><legend>주변 소리(환경음)</legend>
-  <p className={styles.hint}>물·비·바람처럼 이어지는 공간의 소리입니다. 배경음과 함께 재생되며 컷 사이에 이어집니다.</p>
+  <p className={styles.hint}>물·비·바람처럼 이어지는 공간의 소리예요. 배경음과 함께 재생되며 컷 사이에 이어져요.</p>
   <label>주변 소리 동작<select aria-label={`${prefix} 주변 소리 동작`} value={value?.action??'default'} onChange={event=>{if(event.target.value==='sequence')return;onChange(event.target.value==='default'?undefined:event.target.value==='play'?{action:'play',assetId:'audio:music:ambience-forest',volume:.35,loop:true}:event.target.value==='stop'?{action:'stop',fadeOutMs:500}:{action:'maintain'});}}>
    <option value="default">{scope==='chapter'?'장 진입 시 변경하지 않음':'앞 컷 / 장 주변 소리 이어받기'}</option><option value="maintain">현재 주변 소리 유지</option><option value="play">주변 소리 재생 / 변경</option>{value?.action==='sequence'&&<option value="sequence">여러 주변 소리 순서 재생</option>}<option value="stop">주변 소리 정지</option>
   </select></label>

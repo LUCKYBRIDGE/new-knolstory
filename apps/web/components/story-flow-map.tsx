@@ -21,7 +21,7 @@ type FlowNode = FlowGraph["nodes"][number];
 type FlowEdge = FlowGraph["edges"][number];
 function issueDescription(issue: FlowGraph["issues"][number]) {
   if (issue.kind === "pending") return "도착 컷을 정해 주세요. 이야기를 마칠 곳이라면 이야기 끝을 선택해 주세요.";
-  if (issue.kind === "unreachable") return "시작부터 이 컷까지 이어지는 길이 없습니다. 앞의 컷이나 선택지에서 이 컷으로 오는 길을 정해 주세요.";
+  if (issue.kind === "unreachable") return "시작부터 이 컷까지 이어지는 길이 없어요. 앞의 컷이나 선택지에서 이 컷으로 오는 길을 정해 주세요.";
   return issue.message;
 }
 type Scope = "all" | "issues" | "unreachable";
@@ -115,18 +115,18 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose, onA
       <div className={styles.viewTabs} role="group" aria-label="보는 방식"><button type="button" aria-pressed={view === "chapters"} onClick={() => setView("chapters")}>장 지도</button><button type="button" aria-pressed={view === "cuts"} onClick={() => setView("cuts")}>컷 지도</button></div>
       {view === "chapters" && <ChapterStoryMap project={project} graph={graph} currentChapterId={current?.chapterId} onOpenChapter={openCut} onArrange={onArrange} />}
       <p className={styles.context}>현재 위치: <strong>{current ? location(current) : "선택한 컷 없음"}</strong> · 전체 {graph.nodes.length}컷 · 여러 갈래에서 함께 쓰는 컷 {graph.nodes.filter(node => node.shared).length}개 · 확인할 항목 {graph.issues.length}개</p>
-      {graph.nodes.some(node=>node.shared)&&<details><summary>여러 길이 다시 만나는 지점 · {graph.nodes.filter(node=>node.shared).length}곳</summary><p>둘 이상의 선택이나 이동이 같은 컷으로 이어지는 곳입니다. 같은 갈림길의 서로 다른 선택도 포함해요.</p><ul>{graph.nodes.filter(node=>node.shared).map(node=><li key={node.lineId}><button type="button" onClick={()=>openCut(node.lineId)}>{location(node)} · {node.text.slice(0,40)||'아직 글이 없는 컷'}</button><ul>{node.incoming.map(edge=><li key={edge.id}>{describeStoryEdge(project,edge)}</li>)}</ul></li>)}</ul></details>}
-      <p id={legendId} className={styles.legend}>화살표는 이야기 진행 방향입니다. 선택지나 점수 조건에 따라 길이 나뉠 수 있습니다. 여러 갈래에서 함께 쓰는 컷을 수정하면 그 컷을 지나는 모든 길에 반영됩니다.</p>
+      {graph.nodes.some(node=>node.shared)&&<details><summary>여러 길이 다시 만나는 지점 · {graph.nodes.filter(node=>node.shared).length}곳</summary><p>둘 이상의 선택이나 이동이 같은 컷으로 이어지는 곳이에요. 같은 갈림길의 서로 다른 선택도 포함해요.</p><ul>{graph.nodes.filter(node=>node.shared).map(node=><li key={node.lineId}><button type="button" onClick={()=>openCut(node.lineId)}>{location(node)} · {node.text.slice(0,40)||'아직 글이 없는 컷'}</button><ul>{node.incoming.map(edge=><li key={edge.id}>{describeStoryEdge(project,edge)}</li>)}</ul></li>)}</ul></details>}
+      <p id={legendId} className={styles.legend}>화살표는 이야기 진행 방향이에요. 선택지나 점수 조건에 따라 길이 나뉠 수 있어요. 여러 갈래에서 함께 쓰는 컷을 수정하면 그 컷을 지나는 모든 길에 반영돼요.</p>
       <div className={styles.filters}>
         <label>흐름 검색<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="장 제목, 컷 내용, 선택지" /></label>
         <label>표시 범위<select value={scope} onChange={event => setScope(event.target.value as Scope)}><option value="all">전체 컷</option><option value="issues">확인할 연결</option><option value="unreachable">시작부터 이어지는 길이 없는 컷</option></select></label>
       </div>
-      <p role="status" className={styles.result}>{visible.length}컷 표시 · 컷을 선택하면 편집 화면으로 이동합니다.</p>
+      <p role="status" className={styles.result}>{visible.length}컷 표시 · 컷을 선택하면 편집 화면으로 이동해요.</p>
       {view === "cuts" && graph.nodes.length <= 80 && scope === "all" && !search && <FlowDiagram project={project} graph={graph} currentLineId={currentLineId} onSelectCut={openCut} />}
-      {view === "cuts" && graph.nodes.length > 80 && <p className={styles.legend}>긴 작품은 위의 ‘장 지도’로 전체를 보고, 아래에서 장별로 펼쳐 살펴보세요. 검색하거나 표시 범위를 바꾸면 해당 컷을 모아 볼 수 있습니다.</p>}
+      {view === "cuts" && graph.nodes.length > 80 && <p className={styles.legend}>긴 작품은 위의 ‘장 지도’로 전체를 보고, 아래에서 장별로 펼쳐 살펴보세요. 검색하거나 표시 범위를 바꾸면 해당 컷을 모아 볼 수 있어요.</p>}
       <section className={styles.issues} aria-label="흐름 확인 항목">
         <h3>확인할 연결과 컷</h3>
-        {visibleIssues.length === 0 ? <p>{graph.issues.length === 0 ? "도착 컷이 비어 있거나 시작부터 이어지는 길이 없는 컷이 없습니다." : "현재 검색·표시 범위에 확인할 항목이 없습니다."}</p> : <>
+        {visibleIssues.length === 0 ? <p>{graph.issues.length === 0 ? "도착 컷이 비어 있거나 시작부터 이어지는 길이 없는 컷이 없어요." : "현재 검색·표시 범위에 확인할 항목이 없어요."}</p> : <>
           <ul>{visibleIssues.slice(0, issueLimit).map((issue, index) => <li key={`${issue.lineId}:${issue.choiceId ?? issue.kind}:${index}`}>
             <button data-flow-issue-line-id={issue.lineId} onClick={() => onSelectCut(issue.lineId, { choiceId: issue.choiceId, kind: issue.kind })}>
               <strong>{location(nodeById.get(issue.lineId)!)}</strong><span>{issueDescription(issue)}</span><span className={styles.editHint}>이 컷에서 수정 →</span>
@@ -136,7 +136,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose, onA
         </>}
       </section>
       <section aria-label="장별 이야기 흐름" className={styles.chapters}>
-        {chapters.length === 0 && <p>조건에 맞는 컷이 없습니다. 검색어나 표시 범위를 바꿔 보세요.</p>}
+        {chapters.length === 0 && <p>조건에 맞는 컷이 없어요. 검색어나 표시 범위를 바꿔 보세요.</p>}
         {chapters.map(chapter => {
           const open = Boolean(search) || scope !== "all" || expanded.includes(chapter.id);
           const limit = chapterLimits[chapter.id] ?? 100;
@@ -239,6 +239,6 @@ function FlowDiagram({ project, graph, currentLineId, onSelectCut }: { project: 
         })}
       </div>
     </div>
-    <p className={styles.legend}>위에서 아래로 이야기의 길을 따라가세요. 선택지 문구와 도착지는 각 컷에 표시됩니다. 자세한 글은 아래 장별 연결에서 확인할 수 있습니다.</p>
+    <p className={styles.legend}>위에서 아래로 이야기의 길을 따라가세요. 선택지 문구와 도착지는 각 컷에 표시돼요. 자세한 글은 아래 장별 연결에서 확인할 수 있어요.</p>
   </section>;
 }

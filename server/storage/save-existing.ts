@@ -47,7 +47,7 @@ function assertEnvelope(value:unknown):asserts value is SaveRequest {
  if(!value || typeof value!=='object' || Array.isArray(value)) throw Error('저장 요청을 확인해 주세요.');
  const request = value as Record<string,unknown>;
  const keys = ['scopeId','recordId','idempotencyKey','expectedRevision','snapshot'];
- if(Object.keys(request).length!==keys.length || Object.keys(request).some(key=>!keys.includes(key))) throw Error('지원하지 않는 저장 요청 항목입니다.');
+ if(Object.keys(request).length!==keys.length || Object.keys(request).some(key=>!keys.includes(key))) throw Error('지원하지 않는 저장 요청 항목이에요.');
  for(const key of ['scopeId','recordId','idempotencyKey']) {
   if(typeof request[key]!=='string' || !request[key].trim()) throw Error('저장 요청 식별자를 확인해 주세요.');
  }
@@ -99,7 +99,7 @@ export async function saveExisting(value:unknown, policies:SavePolicies, port:Sa
  const content = await restoreJsonbSnapshot(captured.snapshot);
  const request:SaveRequest = {...captured,snapshot:await prepareJsonbSnapshot(content)};
  const requestSha256 = await requestHash(request);
- if(typeof policies?.authorize!=='function' || typeof policies?.assertCatalogAllowed!=='function') throw Error('서비스 권한 및 등록 자료 정책 검사가 필요합니다.');
+ if(typeof policies?.authorize!=='function' || typeof policies?.assertCatalogAllowed!=='function') throw Error('서비스 권한 및 등록 자료 정책 검사가 필요해요.');
  if(await policies.authorize(structuredClone(request))!==true) throw Error('저장 권한을 확인해 주세요.');
  if(await policies.assertCatalogAllowed(structuredClone(request))!==true) throw Error('서비스 등록 자료 정책을 확인해 주세요.');
  return port.transaction(tx=>applySave(request,requestSha256,tx));

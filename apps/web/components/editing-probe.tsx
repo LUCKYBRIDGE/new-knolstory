@@ -81,7 +81,7 @@ export function EditingProbe() {
   }, []);
   useEffect(() => {
     if (ready) return;
-    const timer = window.setTimeout(() => setStatus("런타임 준비가 지연되고 있습니다. 빌드 상태와 연결을 확인해 주세요."), 90000);
+    const timer = window.setTimeout(() => setStatus("런타임 준비가 지연되고 있어요. 빌드 상태와 연결을 확인해 주세요."), 90000);
     return () => window.clearTimeout(timer);
   }, [ready]);
   useEffect(() => () => dragCleanup.current?.(), []);
@@ -114,19 +114,19 @@ export function EditingProbe() {
       <aside className="cut-list" aria-label="컷 목록"><h2>첫 번째 장</h2><button className="cut selected" aria-current="true"><span>01</span>무대 연결 실험</button><p>한 컷의 배치와 대사를 바꾸며 화면 크기를 조절해 보세요.</p></aside>
       <section className="stage-panel" aria-label="이야기 무대"><div className="stage-toolbar"><strong>Ren’Py 무대</strong><span>16:9 · 1280 × 720 실험 기준</span></div>
         <div className="stage-viewport" ref={stage} data-testid="stage-viewport">
-          <iframe style={{ position: "absolute", left: fit.offsetX, top: fit.offsetY, width: scene.width, height: scene.height, transform: `scale(${fit.scale})`, transformOrigin: "0 0" }} ref={frame} src="/runtime/index.html" title="Ren’Py 이야기 무대" onError={() => { setReady(false); setStatus("런타임을 불러오지 못했습니다. 입력한 내용은 편집기에 유지됩니다."); }} allow="autoplay; fullscreen" data-testid="runtime-frame" />
+          <iframe style={{ position: "absolute", left: fit.offsetX, top: fit.offsetY, width: scene.width, height: scene.height, transform: `scale(${fit.scale})`, transformOrigin: "0 0" }} ref={frame} src="/runtime/index.html" title="Ren’Py 이야기 무대" onError={() => { setReady(false); setStatus("런타임을 불러오지 못했어요. 입력한 내용은 편집기에 유지돼요."); }} allow="autoplay; fullscreen" data-testid="runtime-frame" />
           {ready && scene.actors.map(actor => <button key={actor.id} className={`actor-handle ${active?.id === actor.id ? 'active' : ''}`} style={{ left: viewport.offsetX + (actor.rect.x + actor.rect.width / 2) * viewport.scale, top: viewport.offsetY + actor.rect.y * viewport.scale }} aria-label={`${actor.name} 위치 편집`} onPointerDown={event => drag(event, actor)} onClick={() => setSelected(actor.id)}><span aria-hidden="true">✥</span></button>)}
         </div>
         <div className="runtime-status" role="status"><span className={`status-dot ${ready ? 'ready' : ''}`} /><span>{status}</span><span className="render-info">편집 r{revision} · 표시 r{rendered < 0 ? '—' : rendered}{latency !== null ? ` · 반영 ${latency}ms` : ''}{renderMs !== null ? ` · 렌더 ${Math.round(renderMs)}ms` : ''}</span></div>
-        {!ready && <p className="runtime-help">첫 로드는 엔진과 한국어 글꼴을 준비합니다. 런타임 빌드가 없으면 실제 무대를 표시할 수 없습니다.</p>}
+        {!ready && <p className="runtime-help">첫 로드는 엔진과 한국어 글꼴을 준비해요. 런타임 빌드가 없으면 실제 무대를 표시할 수 없어요.</p>}
         <details className="story-text"><summary>대사·해설 텍스트 보기</summary><p>장면에 표시된 글을 읽거나 복사할 수 있어요.</p><p><strong>{draft.speaker}</strong></p><p>{draft.text}</p></details>
       </section>
       <aside id="inspector" className="inspector" hidden={!inspector}><h2>현재 컷 편집</h2><label htmlFor="speaker">말하는 인물</label><input onCompositionStart={() => setComposing(true)} onCompositionEnd={() => setComposing(false)} id="speaker" value={draft.speaker} maxLength={80} onChange={event => { setDraft(current => ({ ...current, speaker: event.target.value })); setRevision(current => current + 1); }} />
-        <label htmlFor="dialogue">대사</label><textarea onCompositionStart={() => setComposing(true)} onCompositionEnd={() => setComposing(false)} id="dialogue" value={draft.text} maxLength={8000} rows={7} onChange={event => changeText(event.target.value)} /><p className="field-hint">입력한 내용은 같은 Ren’Py 무대에 반영됩니다.</p>
+        <label htmlFor="dialogue">대사</label><textarea onCompositionStart={() => setComposing(true)} onCompositionEnd={() => setComposing(false)} id="dialogue" value={draft.text} maxLength={8000} rows={7} onChange={event => changeText(event.target.value)} /><p className="field-hint">입력한 내용은 같은 Ren’Py 무대에 반영돼요.</p>
         <fieldset><legend>인물 위치 · 논리 좌표</legend><label htmlFor="actor">선택한 인물</label><select id="actor" value={active?.id ?? ''} onChange={event => setSelected(event.target.value)}>{scene.actors.map(actor => <option key={actor.id} value={actor.id}>{actor.name}</option>)}</select>
           {active && <div className="coordinates">{(['x', 'y'] as const).map(axis => <label key={axis}>{axis.toUpperCase()}<input aria-label={`인물 ${axis.toUpperCase()} 좌표`} type="number" min={0} max={axis === 'x' ? scene.width - active.rect.width : scene.height - active.rect.height} value={Math.round(active.rect[axis])} onChange={event => { const value = event.target.valueAsNumber; if (Number.isFinite(value)) reposition(active.id, axis === 'x' ? value : active.rect.x, axis === 'y' ? value : active.rect.y); }} /></label>)}</div>}
-        </fieldset><p className="field-hint">무대의 ✥ 손잡이를 드래그하거나 좌표를 입력하세요. 화면 크기를 바꿔도 작품 좌표는 유지됩니다.</p>
+        </fieldset><p className="field-hint">무대의 ✥ 손잡이를 드래그하거나 좌표를 입력하세요. 화면 크기를 바꿔도 작품 좌표는 유지돼요.</p>
       </aside>
-    </div><footer>이 화면은 편집 연결 검증용입니다. 작품 저장·분기·작품 자료 선택은 다음 개발 단계에서 연결합니다.</footer>
+    </div><footer>이 화면은 편집 연결 검증용이에요. 작품 저장·분기·작품 자료 선택은 다음 개발 단계에서 연결해요.</footer>
   </main>;
 }

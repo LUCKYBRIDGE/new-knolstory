@@ -43,7 +43,7 @@ export function createStoryCheckpoint(storage:CheckpointStorage,project:StoryPro
  const id=options.id??crypto.randomUUID(),createdAt=options.now??new Date().toISOString();
  if(!id.trim()||existing.some(c=>c.id===id)||!validDate(createdAt)||!validReason(reason))throw new Error('복구 기록의 이름 또는 시각을 확인해 주세요.');
  const document=createStoryDocument({project:structuredClone(project),savedAt:createdAt,appVersion:'knolstory-next'});
- const parsed=parseStoryDocument(document);if(!parsed.ok)throw new Error('작품 형식을 확인해 주세요. 복구 기록 원본은 보존합니다.');
+ const parsed=parseStoryDocument(document);if(!parsed.ok)throw new Error('작품 형식을 확인해 주세요. 복구 기록 원본은 보존해요.');
  preflight(parsed.document.project);
  const checkpoint:StoryCheckpoint={id,projectId:project.id,createdAt,reason,project:parsed.document.project};
  const records=[record(checkpoint),...existing.map(record)].slice(0,MAX_CHECKPOINTS);
@@ -51,12 +51,12 @@ export function createStoryCheckpoint(storage:CheckpointStorage,project:StoryPro
  let retained=records;
  while(JSON.stringify(retained).length*2>MAX_BYTES)retained=retained.slice(0,-1);
  try{storage.setItem(CHECKPOINT_KEY,JSON.stringify(retained));}
- catch{throw new Error('복구 기록을 저장하지 못했어요. 저장 공간을 확인하고 .knolstory 파일로 보관해 주세요. 기존 기록은 보존합니다.');}
+ catch{throw new Error('복구 기록을 저장하지 못했어요. 저장 공간을 확인하고 .knolstory 파일로 보관해 주세요. 기존 기록은 보존해요.');}
  return [checkpoint,...existing].slice(0,retained.length);
 }
 
 /** Oversized stories keep their existing single-cut undo; corrupt or unavailable history still blocks. */
 export function recordBeforeCutDeletion(storage:CheckpointStorage,project:StoryProject):string|undefined{
  try{createStoryCheckpoint(storage,project,'before-delete');return undefined;}
- catch(error){if(error instanceof CheckpointCapacityError)return '복구 기록 용량(2MB)을 넘는 긴 원고입니다. 컷 삭제 되돌리기는 이 화면에서 사용할 수 있어요. 재열기 전에 현재 원고와 되돌린 원고를 작품 파일로 보관해 주세요.';throw error;}
+ catch(error){if(error instanceof CheckpointCapacityError)return '복구 기록 용량(2MB)을 넘는 긴 원고예요. 컷 삭제 되돌리기는 이 화면에서 사용할 수 있어요. 재열기 전에 현재 원고와 되돌린 원고를 작품 파일로 보관해 주세요.';throw error;}
 }

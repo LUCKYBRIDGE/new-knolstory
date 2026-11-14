@@ -20,10 +20,10 @@ export function checkExcelArchive(bytes:Uint8Array):void {
   for(let i=bytes.length-22;i>=Math.max(0,bytes.length-65557);i--) { if(view.getUint32(i,true)===0x06054b50){footer=i;break;} }
   if(footer<0)throw new Error('Excel ZIP 자료를 확인해 주세요.');
   const count=view.getUint16(footer+10,true), offset=view.getUint32(footer+16,true);
-  if(count>2000||offset>footer)throw new Error('Excel 자료가 너무 복잡하거나 손상되었습니다.');
+  if(count>2000||offset>footer)throw new Error('Excel 자료가 너무 복잡하거나 손상됐어요.');
   let cursor=offset,total=0;
   for(let i=0;i<count;i++){
-    if(cursor+46>footer||view.getUint32(cursor,true)!==0x02014b50)throw new Error('Excel ZIP 목록이 손상되었습니다.');
+    if(cursor+46>footer||view.getUint32(cursor,true)!==0x02014b50)throw new Error('Excel ZIP 목록이 손상됐어요.');
     total+=view.getUint32(cursor+24,true);
     if(total>100*1024*1024)throw new Error('압축을 푼 Excel 자료는 100MB 이하로 선택하세요.');
     cursor+=46+view.getUint16(cursor+28,true)+view.getUint16(cursor+30,true)+view.getUint16(cursor+32,true);
@@ -33,7 +33,7 @@ export async function importTableExcel(bytes:Uint8Array):Promise<string[][]> {
   if(!bytes.length||bytes.length>TABLE_MAX_BYTES)throw new Error('Excel 파일은 25MB 이하로 선택하세요.');
   checkExcelArchive(bytes);
   const book=await createExcelWorkbook();
-  try{await book.xlsx.load(bytes as never);}catch{throw new Error('Excel 파일을 읽지 못했습니다. .xlsx 파일을 선택하세요.');}
+  try{await book.xlsx.load(bytes as never);}catch{throw new Error('Excel 파일을 읽지 못했어요. .xlsx 파일을 선택하세요.');}
   const sheet=book.getWorksheet('KnolStory Next');
   if(!sheet||book.worksheets.length!==1)throw new Error('Next 표 형식의 KnolStory Next 시트 하나가 필요해요.');
   const rows:string[][]=[];let total=0;
@@ -43,9 +43,9 @@ export async function importTableExcel(bytes:Uint8Array):Promise<string[][]> {
       const value=cell.value;
       if(value&&typeof value==='object'&&'formula'in value)throw new Error('수식 대신 값으로 붙여넣은 표를 사용하세요.');
       const text=value===null||value===undefined?'':typeof value==='string'||typeof value==='number'||typeof value==='boolean'?String(value):cell.text;
-      if(text.length>TABLE_CELL_LIMIT)throw new Error('Excel 셀이 너무 큽니다.');
+      if(text.length>TABLE_CELL_LIMIT)throw new Error('Excel 셀이 너무 커요.');
       cells[column-1]=text;total+=text.length;
-      if(total>TABLE_MAX_BYTES)throw new Error('Excel 표 자료가 너무 큽니다.');
+      if(total>TABLE_MAX_BYTES)throw new Error('Excel 표 자료가 너무 커요.');
     });rows.push(cells);
   });
   return rows;

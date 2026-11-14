@@ -1,5 +1,5 @@
 import {test,expect,type Page} from '@playwright/test';
-const unreadSentence='아직 읽지 않은 마지막 문장입니다_숨김확인';
+const unreadSentence='아직 읽지 않은 마지막 문장이에요_숨김확인';
 const manuscript=Array.from({length:26},(_,i)=>`${i+1}번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.\n`).join('')+unreadSentence;
 async function rendered(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-scene-revision');return revision!==null&&revision===await status.getAttribute('data-rendered-revision');},{timeout:120000}).toBe(true);return status;}
 async function history(page:Page){await page.getByRole('button',{name:'지난기록',exact:true}).click();return page.getByRole('dialog');}

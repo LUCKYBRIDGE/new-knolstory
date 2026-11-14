@@ -15,7 +15,7 @@ test('author creates custom plot score and preserves it through file export and 
   const preparation=page.getByRole('region',{name:'작품 설정',exact:true});
   await expect(page.getByLabel('작품 설정 항목')).toHaveValue('scores');const scores=preparation.getByRole('region',{name:'이야기 점수 설정',exact:true});
   await scores.getByLabel('새 점수 이름',{exact:true}).fill('이웃에게 나눈 횟수');
-  await scores.getByLabel('새 점수 설명',{exact:true}).fill('음식과 도움을 나눈 선택을 셉니다.');
+  await scores.getByLabel('새 점수 설명',{exact:true}).fill('음식과 도움을 나눈 선택을 세요.');
   await scores.getByRole('button',{name:'점수 만들기',exact:true}).click();
   const initial=scores.getByLabel('점수 1 시작 값',{exact:true});
   await initial.fill('2');await initial.blur();
@@ -33,7 +33,7 @@ test('author creates custom plot score and preserves it through file export and 
   await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();
   const path=info.outputPath('score.knolstory');await(await downloaded).saveAs(path);
   const document=parseAuthoringFile(readFileSync(path,'utf8'));
-  expect(document.project.scores).toEqual([{id:expect.any(String),name:'이웃에게 나눈 횟수',description:'음식과 도움을 나눈 선택을 셉니다.',initial:2}]);
+  expect(document.project.scores).toEqual([{id:expect.any(String),name:'이웃에게 나눈 횟수',description:'음식과 도움을 나눈 선택을 세요.',initial:2}]);
   await page.reload();
   const restored=page.getByRole('region',{name:'작품 설정',exact:true});
   if(!await restored.isVisible()){await openScores(page);}else await page.getByLabel('작품 설정 항목').selectOption('scores');

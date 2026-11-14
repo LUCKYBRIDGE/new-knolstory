@@ -56,8 +56,8 @@ export function getStoryCutDeletionImpact(project:StoryProject,id:string):Readon
 }
 export function deleteStoryCut(project:StoryProject,id:string):StoryProject {
  const selected=cut(project,id); if(project.lines.length===1) throw new Error('작품의 마지막 컷은 삭제할 수 없어요.');
- if(cutRangeEndReferences(project,id).length)throw new Error('이 컷을 연출·소리의 종료 컷으로 사용 중입니다. 종료 컷을 다른 컷으로 바꾼 뒤 삭제해 주세요.');
- if(storyBranchConditionReferences(project,id).length)throw new Error('이 컷의 선택을 연출·소리 조건으로 사용 중입니다. 선택 조건을 바꾼 뒤 삭제해 주세요.');
+ if(cutRangeEndReferences(project,id).length)throw new Error('이 컷을 연출·소리의 종료 컷으로 사용 중이에요. 종료 컷을 다른 컷으로 바꾼 뒤 삭제해 주세요.');
+ if(storyBranchConditionReferences(project,id).length)throw new Error('이 컷의 선택을 연출·소리 조건으로 사용 중이에요. 선택 조건을 바꾼 뒤 삭제해 주세요.');
  const lines=renumber(disconnectStoryFlowTargets(project.lines.filter(l=>l.id!==id),new Set([id])),selected.chapterId);
  return validate({...project,lines,...(project.continuation?.lineId===id?{continuation:undefined}:{})});
 }

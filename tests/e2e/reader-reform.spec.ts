@@ -44,7 +44,7 @@ test('fixed story formats, overlay, text preferences and saved page position wor
  for(const button of await bar.getByRole('button').all())expect(await button.evaluate(n=>getComputedStyle(n).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
  await bar.getByRole('button',{name:'빠른 불러오기',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'확인',exact:true}).click();await rendered(page);
  await expect.poll(async()=>JSON.parse((await status.getAttribute('data-dialogue-page'))!).offset).toBe(savedOffset);
- await expect(page.getByRole('status').filter({hasText:/^읽기 위치와 선택 기록을 불러왔습니다[.]$/})).toBeHidden();
+ await expect(page.getByRole('status').filter({hasText:/^읽기 위치와 선택 기록을 불러왔어요[.]$/})).toBeHidden();
  await page.screenshot({path:info.outputPath('landscape-three-lines.png')});
  await page.setViewportSize({width:1440,height:900});await rendered(page);const wide=(await frame.boundingBox())!;expect(wide.width/wide.height).toBeCloseTo(16/9,2);expect(wide.y).toBeGreaterThan(20);await page.screenshot({path:info.outputPath('desktop-16-10-letterbox.png')});
  await menu.click();await page.getByRole('button',{name:'읽기 설정',exact:true}).click();await scale.selectOption('1.15');await dialog.getByRole('button',{name:'읽기 메뉴 닫기',exact:true}).click();await rendered(page);

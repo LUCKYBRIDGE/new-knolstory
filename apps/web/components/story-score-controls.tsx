@@ -37,7 +37,7 @@ export function ProjectScoreEditor({project,onProjectChange}:{project:StoryProje
     return [...conditions,...(line.visibility?.scores?[line.visibility.scores]:[]),...(line.textVariants??[]).map(variant=>variant.condition)].some(c=>c.terms.some(t=>t.scoreId===id))||effects.some(e=>e.scoreId===id)?[line.id]:[];
   });
   const add=(scoreName:string,meaning:string)=>{update([...scores,{id:crypto.randomUUID(),name:scoreName.trim(),description:meaning,initial:0}]);setName('');setDescription('');};
-  return <section className={styles.editor} aria-label="이야기 점수 설정"><h3>이야기 점수</h3><p>무엇을 기억하고 쌓을지 작가가 정해요. 선택 결과와 조건에 연결하면 나중의 줄거리도 달라집니다. 점수는 독자마다 시작 값에서 출발해요.</p>
+  return <section className={styles.editor} aria-label="이야기 점수 설정"><h3>이야기 점수</h3><p>무엇을 기억하고 쌓을지 작가가 정해요. 선택 결과와 조건에 연결하면 나중의 줄거리도 달라져요. 점수는 독자마다 시작 값에서 출발해요.</p>
     {scores.map((score,index)=>{const refs=used(score.id);return <fieldset key={score.id}><legend>점수 {index+1}</legend><ScoreName name={score.name} label={`점수 ${index+1} 이름`} onChange={name=>update(scores.map(s=>s.id===score.id?{...s,name}:s))}/><label>무엇을 나타내나요?<input aria-label={`점수 ${index+1} 설명`} maxLength={2000} value={score.description} onChange={e=>update(scores.map(s=>s.id===score.id?{...s,description:e.target.value}:s))}/></label><NumberValue label={`점수 ${index+1} 시작 값`} value={score.initial} onChange={initial=>update(scores.map(s=>s.id===score.id?{...s,initial}:s))}/><button type="button" disabled={refs.length>0} onClick={()=>update(scores.filter(s=>s.id!==score.id))}>점수 {index+1} 삭제</button>{refs.length>0&&<small>선택 결과·조건에 연결된 컷 {refs.length}개에서 먼저 이 점수를 해제하면 삭제할 수 있어요. {refs.slice(0,3).map(id=>{const line=project.lines.find(l=>l.id===id);const chapter=project.chapters.find(chapter=>chapter.id===line?.chapterId);return `${line&&chapter?cutLabel(chapter,line):'위치를 확인할 수 없는 컷'}: ${line?.text.slice(0,30)||'빈 컷'}`;}).join(' / ')}</small>}</fieldset>;})}
     <div className={styles.row}><label>새 점수 이름<input aria-label="새 점수 이름" maxLength={80} placeholder="예: 나눔 횟수" value={name} onChange={e=>setName(e.target.value)}/></label><label>새 점수 설명<input aria-label="새 점수 설명" maxLength={2000} placeholder="어떤 선택을 세나요?" value={description} onChange={e=>setDescription(e.target.value)}/></label><button type="button" disabled={!name.trim()||scores.length>=STORY_SCORE_MAX_DEFINITIONS} onClick={()=>add(name,description)}>점수 만들기</button></div>
     <details><summary>예시 점수로 시작하기</summary><p>필요한 예시만 추가하고 이름과 뜻을 바꿀 수 있어요.</p><div className={styles.row}>{presets.map(p=><button key={p.name} type="button" disabled={scores.length>=STORY_SCORE_MAX_DEFINITIONS} onClick={()=>add(p.name,p.description)}>{p.name} 점수 추가</button>)}</div></details>
@@ -65,7 +65,7 @@ export function ScoreRouteEditor({project,routes,onChange}:{project:StoryProject
   const move=(from:number,to:number)=>onChange(routes!.map((route,index)=>index===from?routes![to]:index===to?routes![from]:route));
   return <details className={styles.editor}>
     <summary>점수 조건에 따른 진행</summary>
-    <p>위에서부터 처음 만족한 조건으로 이동해요. 맞는 조건이 없으면 기본 도착 컷으로 진행합니다.</p>
+    <p>위에서부터 처음 만족한 조건으로 이동해요. 맞는 조건이 없으면 기본 도착 컷으로 진행해요.</p>
     {(routes??[]).map((route,index)=><fieldset key={route.id}>
       <legend>진행 조건 {index+1}</legend>
       <ScoreConditionEditor scores={scores} condition={route.condition} label={`진행 ${index+1}`} onChange={condition=>condition?patch(route.id,{condition}):onChange(routes!.filter(r=>r.id!==route.id))}/>

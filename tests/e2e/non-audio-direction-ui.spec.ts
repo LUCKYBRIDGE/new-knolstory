@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {parseAuthoringFile,confirmAuthoringImport} from './authoring-file';
 
 const original=parseAuthoringFile(readFileSync('tests/fixtures/stories/presentation-polish.json','utf8'));
-const source={...original,title:'긴 한국어 문구를 읽으며 자유롭게 배치한 인물에게 연출을 만드는 작품',lines:original.lines.map((line:{id:string;stageComposition: {leftActors:unknown[]}})=>line.id==='shake'?{...line,presentation:{effects:[{type:'shake',intensity:'strong'}],actors:{left:{xAnchor:37,scaleMultiplier:1.1,facing:'left'},right:{opacity:.9}}},text:'소중한 인물의 표정과 자유 배치를 지키면서 화면의 연출 순서를 바꾸어 봅니다. '.repeat(4),stageComposition:{...line.stageComposition,leftActors:line.stageComposition.leftActors.map(actor=>({...actor as object,xAnchor:37,scaleMultiplier:1.17,facing:'left'}))}}:line)};
+const source={...original,title:'긴 한국어 문구를 읽으며 자유롭게 배치한 인물에게 연출을 만드는 작품',lines:original.lines.map((line:{id:string;stageComposition: {leftActors:unknown[]}})=>line.id==='shake'?{...line,presentation:{effects:[{type:'shake',intensity:'strong'}],actors:{left:{xAnchor:37,scaleMultiplier:1.1,facing:'left'},right:{opacity:.9}}},text:'소중한 인물의 표정과 자유 배치를 지키면서 화면의 연출 순서를 바꾸어 봐요. '.repeat(4),stageComposition:{...line.stageComposition,leftActors:line.stageComposition.leftActors.map(actor=>({...actor as object,xAnchor:37,scaleMultiplier:1.17,facing:'left'}))}}:line)};
 const file={name:'non-audio-directions.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({documentType:'story-maker-project',schemaVersion:5,savedAt:'2026-10-10T00:00:00.000Z',appVersion:'knolstory-next-test',project:source}))};
 async function management(page:Page){
  const summary=page.locator('[data-work-menu]>summary');
@@ -65,7 +65,7 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  await appearance.getByLabel('왼쪽 인물 전체 반투명 표현',{exact:true}).check();
  await appearance.getByLabel('오른쪽 인물 전체 보이는 정도 (%)',{exact:true}).fill('101');await appearance.getByLabel('오른쪽 인물 전체 강조',{exact:true}).focus();
  await expect(appearance.getByLabel('오른쪽 인물 전체 보이는 정도 (%)',{exact:true})).toHaveValue('90');
- await expect(appearance.getByRole('alert')).toContainText('기존 값은 유지됩니다');
+ await expect(appearance.getByRole('alert')).toContainText('기존 값은 유지돼요');
  await page.getByLabel('조정할 연출',{exact:true}).selectOption('effects');
  await panel.getByLabel('효과 대상',{exact:true}).selectOption('actor:M01');
  await panel.getByLabel('효과 적용 범위',{exact:true}).selectOption('following');
@@ -85,7 +85,7 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  // Invalid input must not replace the valid duration.
  await panel.getByRole('button',{name:'1번째 효과 선택',exact:true}).click();
  await panel.getByLabel('효과 지속 시간 (초)',{exact:true}).fill('-1');await panel.getByLabel('효과 강도',{exact:true}).focus();
- await expect(panel.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('1.2');await expect(panel.getByRole('alert')).toContainText('기존 값은 유지됩니다');
+ await expect(panel.getByLabel('효과 지속 시간 (초)',{exact:true})).toHaveValue('1.2');await expect(panel.getByRole('alert')).toContainText('기존 값은 유지돼요');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await panel.locator('details').evaluateAll(nodes=>nodes.forEach(node=>(node as HTMLDetailsElement).open=false));

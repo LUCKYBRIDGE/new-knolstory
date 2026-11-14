@@ -2,25 +2,25 @@
 .dialog::backdrop { background: rgb(24 51 49 / 48%); }
 .shell { display: flex; flex-direction: column; max-height: calc(100dvh - 26px); min-height: 0; }
 .header { display: flex; justify-content: space-between; align-items: start; gap: 12px; padding: 16px 18px 8px; }
-.header h2 { margin: 0 0 6px; font-size: 1.2rem; }
-.header p { margin: 0; font-size: .85rem; }
+.header h2 { margin: 0 0 6px; font-size: var(--text-title); }
+.header p { margin: 0; font-size: var(--text-small); }
 .dialog button, .dialog input, .dialog select { font: inherit; color: inherit; min-height: 44px; border: 1px solid var(--line); border-radius: var(--radius-control); padding: 7px 10px; background: var(--white); }
 .dialog button { cursor: pointer; flex-shrink: 0; }
 .dialog button:disabled { opacity: .5; cursor: default; }
 .dialog :focus-visible { outline: 3px solid var(--mint-strong); outline-offset: 2px; }
 .findbar { display: flex; align-items: end; gap: 8px; padding: 8px 18px; }
-.findbar label { display: grid; gap: 4px; min-width: 0; font-size: .85rem; }
+.findbar label { display: grid; gap: 4px; min-width: 0; font-size: var(--text-small); }
 .search { flex: 1; }
 .search input { width: 100%; min-width: 0; }
-.count { margin: 0; padding: 2px 18px 8px; font-size: .85rem; color: var(--ink-soft); }
+.count { margin: 0; padding: 2px 18px 8px; font-size: var(--text-small); color: var(--ink-soft); }
 .body { overflow: auto; min-height: 0; padding: 0 18px 16px; }
 .list { margin: 0; }
 .list > div { padding: 12px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
 .list dt { font-weight: 700; }
-.list dt small { font-weight: 400; color: var(--ink-soft); margin-left: 10px; font-size: .75rem; }
-.list dd { margin: 6px 0 0; font-size: .9rem; }
+.list dt small { font-weight: 400; color: var(--ink-soft); margin-left: 10px; font-size: var(--text-caption); }
+.list dd { margin: 6px 0 0; font-size: var(--text-small); }
 .list dd p { margin: 4px 0; }
-.aliases { color: var(--ink-soft); font-size: .8rem; }
+.aliases { color: var(--ink-soft); font-size: var(--text-caption); }
 .example { background: var(--paper); padding: 8px 10px; border-radius: 8px; }
 @media (max-width: 560px) { .findbar { flex-wrap: wrap; } .search { flex-basis: 100%; } .header,.findbar,.body { padding-left: 12px; padding-right: 12px; } }
 @media (max-height: 520px) { .header { padding-top: 8px; } .header p { display: none; } .findbar { flex-wrap: nowrap; padding-top: 4px; padding-bottom: 4px; } .search { flex-basis: auto; } }
@@ -30,7 +30,7 @@
 .dialog[data-keyboard-occluded=true] { position:fixed; top:calc(var(--keyboard-visible-top,0px) + 4px); left:2vw; margin:0; width:96vw; height:calc(var(--keyboard-visible-height) - 8px); max-height:calc(var(--keyboard-visible-height) - 8px); overflow:hidden; }
 .dialog[data-keyboard-occluded=true] .shell { height:100%; max-height:100%; }
 .dialog[data-keyboard-occluded=true] .header { flex:none; padding:4px 10px; }
-.dialog[data-keyboard-occluded=true] .header h2 { margin:0; font-size:1rem; }
+.dialog[data-keyboard-occluded=true] .header h2 { margin:0; font-size:var(--text-body); }
 .dialog[data-keyboard-occluded=true] .header p { display:none; }
 .dialog[data-keyboard-occluded=true] .findbar { flex:none; padding:4px 10px; gap:4px 8px; }
 .dialog[data-keyboard-occluded=true] .count { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); padding:0; }

@@ -4,7 +4,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {openCurrentCutDetail} from './editor-screens';
 import {suppressFullscreenOffer} from './mobile-fullscreen-offer';
 import {readFileSync} from 'node:fs';
-const original=' 앞 문장입니다.\n\n다음 한국어👩‍🏫 문장입니다. ';
+const original=' 앞 문장이에요.\n\n다음 한국어👩‍🏫 문장이에요. ';
 async function saved(page:Page){await expect(page.locator('[data-testid="save-status"],[data-testid="preparation-save-status"]')).toHaveText('임시 보관됨');}
 async function exported(page:Page){
  await saved(page);const tools=page.locator('[data-work-menu]>summary');

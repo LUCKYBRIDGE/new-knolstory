@@ -147,16 +147,16 @@
     }
     if (c.type !== 'loadScene' || !Number.isSafeInteger(c.seq) || !Number.isSafeInteger(c.revision)) return;
     if (!window.KnolRuntimeContract.isRuntimeScene(c.payload) || c.payload.width > 4096 || c.payload.height > 4096 || c.payload.revision !== c.revision) {
-      window.knolBridge.emit({ protocol: 1, type: 'error', code: 'INVALID_SCENE', message: 'RuntimeScene 형식이 올바르지 않습니다.' }); return;
+      window.knolBridge.emit({ protocol: 1, type: 'error', code: 'INVALID_SCENE', message: 'RuntimeScene 형식이 올바르지 않아요.' }); return;
     }
     if (c.seq <= lastSeq || c.revision <= lastRevision) return;
     if(c.audioResources !== undefined && (!Array.isArray(c.audioResources) || c.audioResources.length>50 ||
       c.audioResources.reduce((n,r)=>n+(typeof r?.data==='string'?r.data.length:20000001),0)>20000000 ||
       !c.audioResources.every(r=>r && /^audio:custom:[a-f0-9]{64}:(wav|ogg|mp3)$/.test(r.id) &&
         typeof r.data==='string' && r.data.length>0 && r.data.length<=7000000 && /^[A-Za-z0-9+/]*={0,2}$/.test(r.data)))) {
-      window.knolBridge.emit({protocol:1,type:'error',message:'오디오 자료 형식이 올바르지 않습니다.'});return;
+      window.knolBridge.emit({protocol:1,type:'error',message:'오디오 자료 형식이 올바르지 않아요.'});return;
     }
-    if(!window.KnolRuntimeContract.isRuntimeServiceAudioResources(c.serviceAudioResources,window.KnolRuntimeContract.runtimeServiceAudioPaths(c.payload.audio))){window.knolBridge.emit({protocol:1,type:'error',message:'등록 음원 자료 형식이 올바르지 않습니다.'});return;}
+    if(!window.KnolRuntimeContract.isRuntimeServiceAudioResources(c.serviceAudioResources,window.KnolRuntimeContract.runtimeServiceAudioPaths(c.payload.audio))){window.knolBridge.emit({protocol:1,type:'error',message:'등록 음원 자료 형식이 올바르지 않아요.'});return;}
     audioEntry(false);
     // A scene change invalidates in-flight neighbor work, without touching playback revisions.
     queuedThumbnails = [];

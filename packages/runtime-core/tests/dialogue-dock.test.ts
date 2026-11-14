@@ -36,7 +36,7 @@ describe('view-only dialogue dock',()=>{
  });
  it('preserves complete actor and background geometry when a fixed stage is letterboxed',()=>{
   const project=patchStoryLine(createBlankStoryProject({id:'fixed',chapterId:'c',lineId:'l'}),'l',{
-   text:'첫 문장입니다.\n다음 문장도 보존합니다.',backgroundId:'rabbit-turtle.background.rabbit-turtle-bg-grassland',
+   text:'첫 문장이에요.\n다음 문장도 보존해요.',backgroundId:'rabbit-turtle.background.rabbit-turtle-bg-grassland',
    stageComposition:{leftActors:[{key:'a',assetId:'onggojib.character.classic-master',xAnchor:38,scaleMultiplier:.8}],rightActors:[]},
   });
   const before=JSON.stringify(project);
@@ -58,7 +58,7 @@ describe('view-only dialogue dock',()=>{
 
 it('maps retired classic input to the same landscape canvas without reframing content',()=>{
  const project=patchStoryLine(createBlankStoryProject({id:'classic',chapterId:'c',lineId:'l'}),'l',{
-  text:'같은 대사입니다.',backgroundId:'rabbit-turtle.background.rabbit-turtle-bg-grassland',
+  text:'같은 대사예요.',backgroundId:'rabbit-turtle.background.rabbit-turtle-bg-grassland',
   presentation:{backgroundFocal:{x:.8,y:.3}},
   stageComposition:{leftActors:[{key:'a',assetId:'onggojib.character.classic-master',xAnchor:38,scaleMultiplier:.8}],rightActors:[]},
  });

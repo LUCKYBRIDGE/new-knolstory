@@ -6,7 +6,7 @@ const scene = {
   actors: [{ id: 'L1', name: '선녀', imagePath: 'assets/legacy-18da4fc/fairy.webp',
     rect: { x: -20, y: 30, width: 280, height: 500 }, opacity: 0.8, depth: 2, flipX: true }],
   background: { imagePath: 'assets/legacy-18da4fc/forest.webp' },
-  dialogue: { speaker: '선녀', text: '{이것도 원문입니다}' }, mode: 'play', reducedMotion: true,
+  dialogue: { speaker: '선녀', text: '{이것도 원문이에요}' }, mode: 'play', reducedMotion: true,
   choices: [{ id: 'choice-a', text: '도움을 청한다' }, { id: 'choice-b', text: '돌아간다' }],
   presentation: { effects: [{ type: 'shake', intensity: 'normal', trigger: 'after-delay', delayMs: 100 }],
     look: { type: 'flashback', intensity: 'soft' }, transition: { type: 'dissolve', mode: 'auto', durationMs: 700 } },

@@ -7,7 +7,7 @@ for(const format of ['knolstory','shortstory'] as const)test(`${format}: real do
  await page.route('**/api/**',route=>route.abort());
  await page.goto(format==='knolstory'?'/?view=editor':'/shortstory');
  const field=format==='knolstory'?page.locator('[data-current-cut] textarea').first():page.getByRole('textbox',{name:'이 쪽의 이야기',exact:true});
- await field.fill('서버 없이 실제 파일로 이어 쓰는 원고.\n파일 안에 남아야 하는 문장입니다.');
+ await field.fill('서버 없이 실제 파일로 이어 쓰는 원고.\n파일 안에 남아야 하는 문장이에요.');
  if(format==='knolstory')await page.locator('[data-work-menu]>summary').click();
  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true});
  const pending=page.waitForEvent('download');await group.getByRole('button',{name:'작품 파일 저장',exact:true}).click();const download=await pending;
@@ -20,7 +20,7 @@ for(const format of ['knolstory','shortstory'] as const)test(`${format}: real do
  await reopened.goto(format==='knolstory'?'/?view=editor':'/shortstory');
  if(format==='knolstory')await reopened.locator('[data-work-menu]>summary').click();
  await reopened.getByLabel(format==='knolstory'?'작품 파일 가져오기':'숏스토리 파일 가져오기',{exact:true}).setInputFiles({name:`saved.${format}${suffix}`,mimeType:'application/json',buffer:Buffer.from(raw)});
- await confirmAuthoringImport(reopened);await expect(format==='knolstory'?reopened.locator('[data-current-cut] textarea').first():reopened.getByRole('textbox',{name:'이 쪽의 이야기',exact:true})).toHaveValue('서버 없이 실제 파일로 이어 쓰는 원고.\n파일 안에 남아야 하는 문장입니다.');
+ await confirmAuthoringImport(reopened);await expect(format==='knolstory'?reopened.locator('[data-current-cut] textarea').first():reopened.getByRole('textbox',{name:'이 쪽의 이야기',exact:true})).toHaveValue('서버 없이 실제 파일로 이어 쓰는 원고.\n파일 안에 남아야 하는 문장이에요.');
  if(format==='knolstory')await expect(reopened.getByTestId('save-status')).toHaveText('임시 보관됨');
  const restored=await reopened.evaluate(format=>{const data=JSON.parse(localStorage.getItem(format==='knolstory'?'knolstory-next-workspace-v1':'knolstory-shortstory-library-v1')!);return format==='knolstory'?data.document.project:data.books.find((b:{id:string})=>b.id===data.activeId);},format);
  const original=format==='knolstory'?archive.document.project:archive.project;
@@ -90,12 +90,12 @@ test('file permission and disk failures keep the draft, hide native details and 
   };
  });
  await page.route('**/api/**',route=>route.abort());await page.goto('/?view=editor');
- const field=page.locator('[data-current-cut] textarea').first(),draft='권한 오류가 나도 보존할 원고입니다.\n다시 저장해도 문장은 그대로입니다.';
+ const field=page.locator('[data-current-cut] textarea').first(),draft='권한 오류가 나도 보존할 원고예요.\n다시 저장해도 문장은 그대로예요.';
  await field.fill(draft);await page.locator('[data-work-menu]>summary').click();
  const group=page.getByRole('group',{name:'로컬 작품 파일',exact:true}),save=group.getByRole('button',{name:'작품 파일 저장',exact:true});
  await save.click();await expect(group.getByRole('alert')).toContainText('파일을 쓸 권한이 없어요');await expect(group.getByRole('alert')).not.toContainText(/Permission|private|author-name/);await expect(field).toHaveValue(draft);
  await save.click();await expect(group.getByRole('status')).toContainText('retry-2.knolstory');
- const revised=`${draft}\n저장 후 덧붙인 한글도 보존합니다.`;await field.fill(revised);
+ const revised=`${draft}\n저장 후 덧붙인 한글도 보존해요.`;await field.fill(revised);
  await page.evaluate(()=>(window as unknown as {fileFailure:{failWrite:boolean}}).fileFailure.failWrite=true);
  await save.click();await expect(group.getByRole('alert')).toContainText('다시 시도');await expect(group.getByRole('alert')).not.toContainText(/EIO|disk full|private|author-name/);await expect(field).toHaveValue(revised);
  await save.click();await expect(group.getByRole('status')).toContainText('retry-2.knolstory');

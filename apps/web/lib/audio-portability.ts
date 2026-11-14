@@ -24,6 +24,6 @@ export function portableAudioResources(value:unknown):PortableAudioResource[] {
       ||item.data.length>7_000_000||!item.data.length||!/^[A-Za-z0-9+/]*={0,2}$/.test(item.data)||ids.has(item.id))throw new Error('오디오 자료 형식을 확인해 주세요.');
     ids.add(item.id);total+=item.data.length;
   }
-  if(total>20_000_000)throw new Error('작품 오디오 자료의 전체 크기가 너무 큽니다.');
+  if(total>20_000_000)throw new Error('작품 오디오 자료의 전체 크기가 너무 커요.');
   return resources.map(item=>({...item,...(item.provenance===undefined?{}:{provenance:validateMediaProvenance(item.provenance,item.id)})}));
 }

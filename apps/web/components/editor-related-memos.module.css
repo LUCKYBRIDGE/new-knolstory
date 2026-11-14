@@ -1,4 +1,4 @@
-.memos{min-width:0;margin:4px 0 6px;font-size:12px;line-height:1.5}
+.memos{min-width:0;margin:4px 0 6px;font-size:var(--text-caption);line-height:1.5}
 .memos summary{cursor:pointer;display:inline-flex;align-items:center;max-width:100%}
 .memos ul{list-style:none;padding:0;margin:6px 0;display:grid;gap:6px;max-height:32dvh;overflow:auto}
 .memos li{padding:7px;border:1px solid var(--line);border-radius:8px;min-width:0}

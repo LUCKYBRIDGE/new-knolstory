@@ -18,7 +18,7 @@ export function StoryStagingImport(p:Props){
  const message=notice?.scope===scope?notice.text:'';
  const availableUndo=undo?.lineId===p.line.id&&canUndoStoryStagingImport(p.project,undo);
  return <div className={styles.entry}><button type="button" disabled={p.ordered.length<2} aria-haspopup="dialog" onClick={()=>setOpen(true)}>다른 컷 배치 가져오기</button>
-  {undo?.projectId===p.project.id&&undo.lineId===p.line.id&&<button type="button" disabled={!availableUndo} onClick={()=>{try{p.onChange(undoStoryStagingImport(p.project,undo));setUndo(null);setMessage('가져온 배치를 되돌렸어요. 이후 수정한 글은 유지됩니다.');}catch(issue){setMessage(String(issue));}}}>가져온 배치 되돌리기</button>}
+  {undo?.projectId===p.project.id&&undo.lineId===p.line.id&&<button type="button" disabled={!availableUndo} onClick={()=>{try{p.onChange(undoStoryStagingImport(p.project,undo));setUndo(null);setMessage('가져온 배치를 되돌렸어요. 이후 수정한 글은 유지돼요.');}catch(issue){setMessage(String(issue));}}}>가져온 배치 되돌리기</button>}
   {message&&<p role="status">{message}</p>}
   {open&&<ImportDialog key={`${p.project.id}/${p.line.id}`} {...p} onClose={()=>setOpen(false)} onApply={(project,undo)=>{p.onChange(project);setUndo(undo);setMessage('선택한 배치를 가져왔어요. 이 컷부터 재생에서 확인할 수 있어요.');setOpen(false);}}/>}
  </div>;
@@ -38,8 +38,8 @@ function ImportDialog({project,line,ordered,onClose,onApply}:Props&{onClose:()=>
    <p className={styles.sourceText}>{source.speakerName||'해설'} · {source.text||'빈 글'}</p>
    <div className={styles.assets}>{artIds.map((id,index)=>{const asset=resolveAsset(id);return <figure key={`${id}/${index}`}>{asset&&<img src={asset.src} alt=""/>}<figcaption>{asset?assetDisplayName(asset):'자료 확인 필요'}</figcaption></figure>;})}</div>
    <p>배경: {backgroundId?(resolveAsset(backgroundId)?assetDisplayName(resolveAsset(backgroundId)!):'자료 확인 필요'):'그림 없음'} · 인물 {stage.leftActors.length+stage.rightActors.length}명</p>
-   <fieldset><legend>가져올 항목</legend><label className={styles.check}><input type="checkbox" checked={background} onChange={event=>setBackground(event.target.checked)}/>배경 이미지 · 원본에 없으면 현재 배경도 없앱니다</label><label className={styles.check}><input type="checkbox" checked={actors} onChange={event=>setActors(event.target.checked)}/>인물과 위치·크기·방향 · 현재 인물 배치를 교체합니다</label><label className={styles.check}><input type="checkbox" checked={motion} disabled={!actors} onChange={event=>setMotion(event.target.checked)}/>인물의 등장·퇴장·이동 동작도 함께 가져오기</label></fieldset>
-   <p>현재 글·말하는 이름·선택지·소리·화면 효과·배경 구도는 유지됩니다. 인물 대상 효과와 화자 연결은 바뀐 인물에서 확인하세요. 자료 그림은 원본 참고이며 실제 결과는 적용 후 같은 미리보기에서 확인합니다.</p>{error&&<p role="alert">{error}</p>}
+   <fieldset><legend>가져올 항목</legend><label className={styles.check}><input type="checkbox" checked={background} onChange={event=>setBackground(event.target.checked)}/>배경 이미지 · 원본에 없으면 현재 배경도 없애요</label><label className={styles.check}><input type="checkbox" checked={actors} onChange={event=>setActors(event.target.checked)}/>인물과 위치·크기·방향 · 현재 인물 배치를 교체해요</label><label className={styles.check}><input type="checkbox" checked={motion} disabled={!actors} onChange={event=>setMotion(event.target.checked)}/>인물의 등장·퇴장·이동 동작도 함께 가져오기</label></fieldset>
+   <p>현재 글·말하는 이름·선택지·소리·화면 효과·배경 구도는 유지돼요. 인물 대상 효과와 화자 연결은 바뀐 인물에서 확인하세요. 자료 그림은 원본 참고이며 실제 결과는 적용 후 같은 미리보기에서 확인해요.</p>{error&&<p role="alert">{error}</p>}
   </div><footer><button type="button" onClick={onClose}>취소</button><button type="button" disabled={!background&&!actors} onClick={()=>{try{const result=importStoryStaging(project,sourceId,line.id,{background,actors,motion});onApply(result.project,result.undo);}catch(issue){setError(String(issue));}}}>선택한 배치 적용</button></footer>
  </div></dialog>;
 }

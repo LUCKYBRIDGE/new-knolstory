@@ -50,7 +50,7 @@ function replayStoryPresentationPath(project:StoryProject,path:readonly string[]
  return result;
 }
 export function compileStoryPresentation(project:StoryProject,lineId:string,path:readonly string[]=[lineId],choiceHistory:BranchChoiceHistory=[],effectStep=0):RuntimePresentation|undefined {
- if(path.at(-1)!==lineId)throw new Error('연출 경로와 현재 컷이 다릅니다.');
+ if(path.at(-1)!==lineId)throw new Error('연출 경로와 현재 컷이 달라요.');
  if(!project.lines.some(line=>line.id===lineId))throw new Error('연출 컷을 찾을 수 없어요.');
  const presentation=replayStoryPresentationPath(project,path,choiceHistory,false,effectStep).at(-1)?.presentation;
  if((presentation?.effects?.length??0)>12)throw new Error('이어지는 연출은 12개까지 사용할 수 있어요. 이전 연출을 끝내 주세요.');

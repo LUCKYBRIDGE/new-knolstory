@@ -150,8 +150,8 @@ function MissionRow({mission,csrf,students,onChanged}:{mission:Mission;csrf:stri
  return <>
   <div className={shared.taskHeading}><div><span className={styles.kind} data-kind={mission.kind}>{missionKindLabel(mission.kind)}</span><h3>{mission.title}</h3></div><span className={mission.open?shared.badge:`${shared.badge} ${shared.off}`}>{mission.open?'열림':'마감'}</span></div>
   <p className={styles.meta}>{[work&&`${work} · ${readingFormatLabel(mission.readingFormat)}`,mission.questions.length?`질문 ${mission.questions.length}개`:mission.kind==='custom'?'온라인 답변 없이 확인':'읽고 확인 요청'].filter(Boolean).join('  ·  ')}</p>
-  <MissionDue mission={mission} csrf={csrf} onChanged={onChanged}/>
-  <RecipientFacts title={mission.title} value={mission.recipients} students={students} onSave={async next=>{setError('');try{onChanged(await missionSetRecipients(mission.id,next,csrf));if(open)await load();return true;}catch(issue){setError(text(issue,'받는 학생을 바꾸지 못했어요.'));return false;}}}/>
+  <div className={shared.factsRow}><MissionDue mission={mission} csrf={csrf} onChanged={onChanged}/>
+  <RecipientFacts title={mission.title} value={mission.recipients} students={students} onSave={async next=>{setError('');try{onChanged(await missionSetRecipients(mission.id,next,csrf));if(open)await load();return true;}catch(issue){setError(text(issue,'받는 학생을 바꾸지 못했어요.'));return false;}}}/></div>
   <div className={shared.taskActions}>
    <button className={`${shared.btn} ${shared.primary}`} aria-expanded={open} aria-label={`${mission.title} 학생 확인`} onClick={()=>void toggleRoster()}>{open?'학생 목록 접기':'학생 확인하기'}</button>
    <button className={shared.btn} disabled={toggling} aria-label={`${mission.title} ${mission.open?'마감':'다시 열기'}`} onClick={()=>void toggleOpen()}>{mission.open?'과제 마감':'다시 열기'}</button>

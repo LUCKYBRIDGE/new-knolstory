@@ -125,7 +125,7 @@ test('Pixabay audio is selected with source terms, exported as scene references 
  await expect(status).toHaveAttribute('data-music-start-count','1');
  await expect(status).toHaveAttribute('data-ambience-start-count','1');
  await expect(status).toHaveAttribute('data-sound-play-count','1');
- await expect(status).not.toContainText('찾을 수 없습니다');
+ await expect(status).not.toContainText('찾을 수 없어요');
  await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();await page.getByRole('button',{name:'이 컷 편집하기',exact:true}).click();
  await openEditorTools(page);
  for(const cue of cues){await openEditorTools(page,cue.label);await expect(page.getByLabel(cue.label,{exact:true})).toHaveValue(cue.id);}

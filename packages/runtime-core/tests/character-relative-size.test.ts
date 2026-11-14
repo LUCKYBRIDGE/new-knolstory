@@ -9,7 +9,7 @@ const seatedGirl='heungbu.character.child-06',standingGirl='creative.character.h
 const viewports=[{width:1280,height:720},{width:720,height:1280}];
 function fraction(id:string){const geometry=resolveAsset(id)!.geometry!;return geometry.bottom-geometry.top;}
 function sceneFor(id:string,viewport:typeof viewports[number],mode:'edit'|'play',scaleMultiplier=1,xAnchor?:number){
- const project=patchStoryLine(createBlankStoryProject({id:'stature',chapterId:'ch',lineId:'cut'}),'cut',{type:'dialogue',speaker:'left',speakerName:'인물',text:'인물의 키와 자세는 원본 그림에 표현된 차이를 유지합니다.',stageComposition:{leftActors:[{key:'actor',assetId:id,scaleMultiplier,facing:'original',...(xAnchor===undefined?{}:{xAnchor})}],rightActors:[]}});
+ const project=patchStoryLine(createBlankStoryProject({id:'stature',chapterId:'ch',lineId:'cut'}),'cut',{type:'dialogue',speaker:'left',speakerName:'인물',text:'인물의 키와 자세는 원본 그림에 표현된 차이를 유지해요.',stageComposition:{leftActors:[{key:'actor',assetId:id,scaleMultiplier,facing:'original',...(xAnchor===undefined?{}:{xAnchor})}],rightActors:[]}});
  const before=JSON.stringify(project),scene=compileStoryScene(project,'cut',1,{mode,viewport});
  expect(JSON.stringify(project)).toBe(before);expect(scene.actors).toHaveLength(1);
  return scene;

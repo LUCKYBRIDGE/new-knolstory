@@ -18,7 +18,7 @@
  line-height: 1.65;
 }
 .dialog::backdrop { background: #071617a8; }
-.dialog h2 { margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--story-menu-line); font-size: 1.2rem; font-weight: 600; line-height: 1.45; }
+.dialog h2 { margin: 0 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--story-menu-line); font-size: var(--text-title); font-weight: 600; line-height: 1.45; }
 .dialog p { margin: 12px 0; }
 .title { padding: 12px; border: 1px solid #a58d6655; background: var(--story-menu-surface); font-weight: 600; white-space: pre-wrap; max-height: min(10rem, 25dvh); overflow: auto; }
 .dialog dl { display: grid; grid-template-columns: minmax(5rem, auto) minmax(0, 1fr); gap: 8px 16px; margin: 16px 0; }

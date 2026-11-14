@@ -10,8 +10,8 @@ export function validateMediaProvenance(value:unknown,id:string):MediaProvenance
  return {...p} as MediaProvenance;
 }
 export function mediaReleaseDecision(provenance:MediaProvenance,target:'free'|'commercial',attributionIncluded:boolean){
- if(provenance.redistribution!=='permitted'||provenance.license==='unknown')return {allowed:false,replacementRequired:true,reason:'무료 배포 권리부터 확인하거나 자료를 교체해야 합니다.'};
- if(provenance.attribution==='unknown'||provenance.attribution!=='not-required'&&!attributionIncluded)return {allowed:false,replacementRequired:false,reason:'필요한 출처 표기를 함께 제공해야 합니다.'};
- if(target==='commercial'&&provenance.commercialUse!=='permitted')return {allowed:false,replacementRequired:true,reason:'상업적 이용 조건을 확인하거나 출시 전 교체해야 합니다.'};
- return {allowed:true,replacementRequired:false,reason:'기록된 배포 조건과 출처 표시를 충족했습니다.'};
+ if(provenance.redistribution!=='permitted'||provenance.license==='unknown')return {allowed:false,replacementRequired:true,reason:'무료 배포 권리부터 확인하거나 자료를 교체해야 해요.'};
+ if(provenance.attribution==='unknown'||provenance.attribution!=='not-required'&&!attributionIncluded)return {allowed:false,replacementRequired:false,reason:'필요한 출처 표기를 함께 제공해야 해요.'};
+ if(target==='commercial'&&provenance.commercialUse!=='permitted')return {allowed:false,replacementRequired:true,reason:'상업적 이용 조건을 확인하거나 출시 전 교체해야 해요.'};
+ return {allowed:true,replacementRequired:false,reason:'기록된 배포 조건과 출처 표시를 충족했어요.'};
 }

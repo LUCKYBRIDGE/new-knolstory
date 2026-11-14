@@ -188,7 +188,7 @@ export function StoryWorkspaceInspector({
       >
         <legend>배경과 인물</legend>
         <AssetPickerField label="배경" type="background" value={line.backgroundMode==='none'?'__none':line.backgroundId} chapterAssetIds={chapterAssets} allowDefault allowNone defaultLabel="장 기본 배경" onChange={id=>patch(id==='__none'?{backgroundMode:'none',backgroundId:''}:{backgroundMode:undefined,backgroundId:id})}/>
-        <details><summary>배경 표시 조정</summary><fieldset><legend>배경의 중요한 부분</legend><label>배경 표시<select aria-label="배경 표시" value={line.presentation?.backgroundFit??'cover'} onChange={event=>patch({presentation:{...line.presentation,backgroundFit:event.target.value as 'cover'|'contain'}})}><option value="cover">화면 채우기 · 일부 잘림</option><option value="contain">전체 이미지 보기 · 여백 허용</option></select></label><p className={styles.hint}>화면을 채우면서 잘릴 때 남길 부분을 정합니다. 가운데가 기본입니다.</p>
+        <details><summary>배경 표시 조정</summary><fieldset><legend>배경의 중요한 부분</legend><label>배경 표시<select aria-label="배경 표시" value={line.presentation?.backgroundFit??'cover'} onChange={event=>patch({presentation:{...line.presentation,backgroundFit:event.target.value as 'cover'|'contain'}})}><option value="cover">화면 채우기 · 일부 잘림</option><option value="contain">전체 이미지 보기 · 여백 허용</option></select></label><p className={styles.hint}>화면을 채우면서 잘릴 때 남길 부분을 정해요. 가운데가 기본이에요.</p>
           {(['x','y'] as const).map(axis=><label key={axis}>{axis==='x'?'가로 중심':'세로 중심'}<input type="number" min={0} max={1} step={.05} aria-label={`배경 중심 ${axis==='x'?'가로':'세로'}`} value={line.presentation?.backgroundFocal?.[axis]??.5} onChange={event=>{const value=event.target.valueAsNumber;if(Number.isFinite(value)&&value>=0&&value<=1)patch({presentation:{...line.presentation,backgroundFocal:{x:line.presentation?.backgroundFocal?.x??.5,y:line.presentation?.backgroundFocal?.y??.5,[axis]:value}}});}}/></label>)}
           <button onClick={()=>patch({presentation:{...line.presentation,backgroundFocal:undefined}})}>배경 중심 초기화</button>
         </fieldset></details>
@@ -214,7 +214,7 @@ export function StoryWorkspaceInspector({
             <label>인물 동작<select aria-label={`${actorLabel} 인물 동작`} value={actor.motion?.type??''} onChange={event=>updateActor(actor.key,{motion:event.target.value?{type:event.target.value as NonNullable<StageActorEntry['motion']>['type'],durationMs:600,delayMs:0}:undefined})}>
               <option value="">바로 표시</option><option value="fade-in">서서히 등장</option><option value="fade-out">서서히 퇴장</option><option value="move">지정 위치에서 이동</option>
             </select></label>
-            {actor.motion&&<><p className={styles.hint}>이 인물만 움직입니다. 컷 진입 시 시작하고, 설정 변경은 동작을 다시 시작하지 않습니다. 퇴장은 마지막에 인물을 숨깁니다.</p>
+            {actor.motion&&<><p className={styles.hint}>이 인물만 움직여요. 컷 진입 시 시작하고, 설정 변경은 동작을 다시 시작하지 않아요. 퇴장은 마지막에 인물을 숨겨요.</p>
               <SecondsInput label={`${actorLabel} 동작 시간`} valueMs={actor.motion.durationMs??600} onChange={durationMs=>updateActor(actor.key,{motion:{...actor.motion!,durationMs}})}/>
               <SecondsInput label={`${actorLabel} 동작 대기`} valueMs={actor.motion.delayMs??0} onChange={delayMs=>updateActor(actor.key,{motion:{...actor.motion!,delayMs}})}/>
               {actor.motion.type==='move'&&<label>출발 가로 위치 (%)<input aria-label={`${actorLabel} 출발 위치`} type="number" min={5} max={95} value={actor.motion.fromXAnchor??50} onChange={event=>updateActor(actor.key,{motion:{...actor.motion!,fromXAnchor:event.target.valueAsNumber}})}/></label>}
@@ -291,9 +291,9 @@ export function StoryWorkspaceInspector({
             (targetLineId) => patch({ flow: { ...line.flow!, type: "goto", targetLineId } }),
             "도착 컷",
           )}
-        {scoresEnabled&&onOpenScores&&(line.flow?.type==='choice'||line.flow?.type==='goto'||!!project.scores?.length)&&<div className={styles.inlineSettingAction}><p className={styles.hint}>점수 이름과 시작 값은 작품 설정에서 한 번만 관리합니다.</p><button type="button" disabled={disabled||composing} onClick={onOpenScores}>이야기 점수 설정 열기</button></div>}
+        {scoresEnabled&&onOpenScores&&(line.flow?.type==='choice'||line.flow?.type==='goto'||!!project.scores?.length)&&<div className={styles.inlineSettingAction}><p className={styles.hint}>점수 이름과 시작 값은 작품 설정에서 한 번만 관리해요.</p><button type="button" disabled={disabled||composing} onClick={onOpenScores}>이야기 점수 설정 열기</button></div>}
         {scoresEnabled && branchesEnabled && line.flow?.type === "goto" && <fieldset disabled={composing} className={styles.inputBoundary}><ScoreRouteEditor project={project} routes={line.flow.routes} onChange={routes=>{if(line.flow?.type==='goto')patch({flow:{...line.flow,routes}});}}/></fieldset>}
-        {line.flow?.type === "choice" && !choicesEnabled && <p className={styles.hint}>이 컷의 선택지 {line.flow.options.length}개는 유지됩니다. 수정하려면 편집 설정에서 선택지를 켜 주세요.</p>}
+        {line.flow?.type === "choice" && !choicesEnabled && <p className={styles.hint}>이 컷의 선택지 {line.flow.options.length}개는 유지돼요. 수정하려면 편집 설정에서 선택지를 켜 주세요.</p>}
         {choicesEnabled && line.flow?.type === "choice" &&
           line.flow.options.map((option, index) => (
             <div key={option.id} className={styles.choiceCard}>
@@ -390,8 +390,8 @@ export function StoryWorkspaceInspector({
         )}
         {choicesEnabled&&line.flow?.type==='choice'&&<p className={styles.hint}>선택지는 2~4개로 구성할 수 있어요.</p>}
         <p className={styles.hint}>
-          ‘연결 대기’는 미완성 연결이며, ‘이야기 끝’과 다릅니다.
-          연결을 바꾸거나 선택지를 삭제해도 기존 장과 컷 내용은 남아 있습니다.
+          ‘연결 대기’는 미완성 연결이며, ‘이야기 끝’과 달라요.
+          연결을 바꾸거나 선택지를 삭제해도 기존 장과 컷 내용은 남아 있어요.
         </p>
       </fieldset>}
       </fieldset>

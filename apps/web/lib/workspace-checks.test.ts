@@ -51,7 +51,7 @@ describe('remembered startup checks', () => {
     const verified = new Set([workFingerprint(doc(bad))!]);
     expect(readWorkspace(stored, { verified }).works[`new:${bad.id}`]).toEqual(bad);
     const broken = raw(work(), { 'new:broken': { documentType: 'story-maker-project', schemaVersion: 8, project: { id: 'broken' } } });
-    expect(() => readWorkspace(broken, { verified: new Set([workFingerprint(JSON.parse(broken).works['new:broken'])!]) })).toThrow('저장된 작품 목록에 읽을 수 없는 작품이 있습니다');
+    expect(() => readWorkspace(broken, { verified: new Set([workFingerprint(JSON.parse(broken).works['new:broken'])!]) })).toThrow('저장된 작품 목록에 읽을 수 없는 작품이 있어요');
   });
 
   it('reports each checked work once, so the current work and its library copy share a check', () => {

@@ -25,7 +25,7 @@ for(const sample of [{width:1440,side:'none'},{width:768,side:'left'},{width:390
  await openCutEditor(page,'direction');await page.getByLabel('조정할 연출',{exact:true}).selectOption('actors');
  const controls=page.getByTestId('story-actor-appearance-controls');
  if(sample.side==='none'){await expect(controls.getByRole('combobox')).toHaveCount(0);await expect(controls.getByRole('button',{name:'인물 배치하기',exact:true})).toBeVisible();}
- else{const side=sample.side==='right'?'오른쪽':'왼쪽',other=side==='왼쪽'?'오른쪽':'왼쪽';await expect(controls.getByLabel(`${side} 인물 전체 강조`,{exact:true})).toBeVisible();await expect(controls.getByLabel(`${other} 인물 전체 강조`,{exact:true})).toHaveCount(0);if(sample.side==='saved')await expect(controls.getByText('현재 컷에는 왼쪽 인물이 없습니다. 저장된 설정은 유지되며 인물을 배치하면 적용됩니다.',{exact:true})).toBeVisible();}
+ else{const side=sample.side==='right'?'오른쪽':'왼쪽',other=side==='왼쪽'?'오른쪽':'왼쪽';await expect(controls.getByLabel(`${side} 인물 전체 강조`,{exact:true})).toBeVisible();await expect(controls.getByLabel(`${other} 인물 전체 강조`,{exact:true})).toHaveCount(0);if(sample.side==='saved')await expect(controls.getByText('현재 컷에는 왼쪽 인물이 없어요. 저장된 설정은 유지되며 인물을 배치하면 적용돼요.',{exact:true})).toBeVisible();}
  const untouched=(await exported()).document.project;expect(untouched).toEqual({...project,id:untouched.id});
  if(sample.side==='none'){
   await controls.getByRole('button',{name:'인물 배치하기',exact:true}).click();await expect(page.locator('select[aria-label="편집화면 선택"]')).toHaveValue('characters');

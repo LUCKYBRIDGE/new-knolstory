@@ -17,7 +17,7 @@ export function connectCatalogChapterIdentity(project:StoryProject):StoryProject
  for(const targets of outgoing.values())for(const id of targets)incoming.set(id,incoming.get(id)!+1);
  const ready=project.chapters.filter(chapter=>incoming.get(chapter.id)===0).map(chapter=>chapter.id);
  for(let index=0;index<ready.length;index++)for(const id of outgoing.get(ready[index])!){rank.set(id,Math.max(rank.get(id)!,rank.get(ready[index])!+1));incoming.set(id,incoming.get(id)!-1);if(incoming.get(id)===0)ready.push(id);}
- if(ready.length!==project.chapters.length)throw Error('제공 작품의 장 연결에 순환이 있어 장 번호를 확인해야 합니다.');
+ if(ready.length!==project.chapters.length)throw Error('제공 작품의 장 연결에 순환이 있어 장 번호를 확인해야 해요.');
  // The preserved, disconnected Onggojib verdict manuscripts correspond to later reachable copies.
  for(const chapter of project.chapters.filter(chapter=>!active.has(chapter.id))){const peers=project.chapters.filter(peer=>active.has(peer.id)&&baseId(peer.id)===baseId(chapter.id));if(peers.length)rank.set(chapter.id,Math.max(...peers.map(peer=>rank.get(peer.id)!)));}
  const groups=new Map<number,string[]>();
