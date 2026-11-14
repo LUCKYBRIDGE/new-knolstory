@@ -75,7 +75,7 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
    if(controller.signal.aborted)return;
    baseSubmittedAt.current=result.submittedAt;currentSubmittedAt.current=result.submittedAt;volatile.current=false;
    if(!blockedStorage.current){try{localStorage.removeItem(key);setStorageError('');}catch{setStorageError('확인은 요청했지만 기기의 작성본 정리를 마치지 못했어요. 제출한 내용은 선생님께 전달됐어요.');}}
-   onProgress({...draft,submittedAt:result.submittedAt,reviewStatus:null,feedback:mission.progress?.feedback??'',reviewedAt:mission.progress?.reviewedAt??null});setNotice('선생님께 확인을 요청했어요. 선생님이 통과시키면 과제 통과이에요.');
+   onProgress({...draft,submittedAt:result.submittedAt,reviewStatus:null,feedback:mission.progress?.feedback??'',reviewedAt:mission.progress?.reviewedAt??null});setNotice('선생님께 확인을 요청했어요. 선생님이 통과시키면 과제 통과예요.');
   }catch(issue){if(!controller.signal.aborted)setError(message(issue,'확인을 요청하지 못했어요. 작성한 글은 그대로 있어요.'));}
   finally{lock.current=false;if(!controller.signal.aborted)setBusy(false);}
  }
