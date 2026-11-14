@@ -234,7 +234,8 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   }},
   {method:'GET',pattern:/^\/classroom\/assignments$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listAssignments(accountId,role)},
   {method:'POST',pattern:/^\/classroom\/assignments$/,access:'teacher',body:'json',status:201,run({accountId,body}){
-   const input=object(body,['title','description','storyKey','format','shareUrl','dueAt','edition'],['title']);
+   const input=object(body,['title','description','storyKey','format','shareUrl','dueAt','edition','startPoint','startLabel'],['title']);
+   if(input.startPoint!==undefined&&input.startPoint!==null&&(typeof input.startPoint!=='string'||!/^(chapter|choice):[A-Za-z0-9_.:-]{1,200}$/.test(input.startPoint)))throw bad();
    if(input.edition!==undefined&&input.edition!==null&&input.edition!=='original'&&input.edition!=='knolstory')throw bad();
    if(input.format!==undefined&&input.format!=='knolstory'&&input.format!=='shortstory')throw bad();
    return classroom.createAssignment(accountId,{
@@ -245,6 +246,8 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     shareUrl:input.shareUrl===undefined?null:shareUrl(input.shareUrl),
     dueAt:input.dueAt===undefined?null:dueAt(input.dueAt),
     edition:(input.edition??null) as 'original'|'knolstory'|null,
+    startPoint:(input.startPoint??null) as string|null,
+    startLabel:input.startLabel===undefined||input.startLabel===null?null:string(input.startLabel,1,120),
    });
   }},
   {method:'PATCH',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'json',run({accountId,params,body}){
