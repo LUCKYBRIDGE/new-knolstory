@@ -660,6 +660,7 @@ export function StoryWorkspace() {
     const id = crypto.randomUUID();
     return editStructure(() => addStoryChapter(project, { chapterId, lineId: id }), id) ? id : undefined;
   }
+  const ruleToggle=(key:'choices'|'scores'|'branches',label:string)=><label key={key}><input type="checkbox" checked={logic[key]} disabled={!editorLimits.permissions.choices} onChange={event=>setEditorPreferences(current=>({...current,logic:{...current.logic,[key]:event.target.checked}}))}/>{label} 편집 사용</label>;
   /** Whole-structure branch edits: each keeps a one-step undo while the result is still the current manuscript. */
   function structureEdit(done:string,change:()=>{project:StoryProject;lineId?:string}){
     if(stopForUnappliedInput())return false;
@@ -925,13 +926,14 @@ export function StoryWorkspace() {
         if(storyKey&&!fixture)throw Error('과제의 바탕 작품을 찾지 못했어요.');
         saveBeforeImport();
         // A start point keeps the story up to it and leaves the rest blank for the student.
-        const base=fixture?trimToStartPoint(structuredClone(fixture.project),task.startPoint,()=>crypto.randomUUID()):undefined;
+        const start=fixture?trimToStartPoint(structuredClone(fixture.project),task.startPoint,()=>crypto.randomUUID()):undefined,base=start?.project;
         const next=fixture&&base?createCatalogEditCopy(base,crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
           :createBlankStoryProject({id:crypto.randomUUID(),chapterId:crypto.randomUUID(),lineId:crypto.randomUUID(),title:task.title});
         if(fixture&&!await preserveCopyAudio(fixture.project,next))return;
         if(controller.signal.aborted||sequence!==importReadSequence.current)return;
         saveBeforeImport();
-        const key=`new:${next.id}`,first=orderedLines(next)[0]!;
+        // Open where the student's writing begins; the copy keeps cut ids, so the blank cut is still there.
+        const key=`new:${next.id}`,first=next.lines.find(cut=>cut.id===start?.startLineId)??orderedLines(next)[0]!;
         const stored=writeWorkspaceSnapshot(writer.guard.current!,next,{...savedProjects.current,[storyId]:project,[key]:next},contexts.current,
           {...snapshot(),storyId:key,lineId:first.id,editingPath:[first.id],playback:createPlayback(next),mode:'edit',view:'editor'});
         savedProjects.current=stored.works;contexts.current=stored.contexts;
@@ -1282,7 +1284,7 @@ export function StoryWorkspace() {
             basicTextDisabled={!loadComplete||mode!=='edit'} onBasicTextChange={draftBasicText}
             disabled={!loadComplete||!storageWritable||mode!=='edit'} composing={composing}
             onPreview={id=>switchMode('play',false,id)}
-            additionalSettings={<fieldset disabled={composing||!loadComplete}><legend>이야기 규칙 편집</legend>{([['choices','선택지'],['scores','점수'],['branches','분기조건']] as const).map(([key,label])=><label key={key}><input type="checkbox" checked={logic[key]} disabled={!editorLimits.permissions.choices} onChange={event=>setEditorPreferences(current=>({...current,logic:{...current.logic,[key]:event.target.checked}}))}/>{label} 편집 사용</label>)}{logic.scores&&<button onClick={()=>prepareWork('','scores')}>이야기 점수 설정 열기</button>}{logic.branches&&<button onClick={()=>{setManageOpen(false);setFlowMapOpen(true);}}>전체 흐름 보기</button>}</fieldset>}
+            additionalSettings={<fieldset disabled={composing||!loadComplete}><legend>이야기 규칙 편집</legend>{ruleToggle('choices','선택지')}<p className={styles.hint}>갈래는 기본편집의 ‘+ 여기서 이야기 나누기’로 만들 수 있어요.</p><fieldset className={styles.advancedRules} data-advanced-rules><legend>고급 · 점수와 조건</legend><p className={styles.hint}>선택에 따라 점수를 쌓거나, 조건이 맞을 때만 다른 길로 가게 해요. 대부분의 이야기는 선택지만으로 충분해요.</p>{ruleToggle('scores','점수')}{ruleToggle('branches','분기조건')}{logic.scores&&<button onClick={()=>prepareWork('','scores')}>이야기 점수 설정 열기</button>}{logic.branches&&<button onClick={()=>{setManageOpen(false);setFlowMapOpen(true);}}>전체 흐름 보기</button>}</fieldset></fieldset>}
             additionalEditor={<><details><summary>현재 컷 상세·메모·정리</summary><StoryWorkspaceInspector project={project} line={line} stage={stage} ordered={ordered} patch={patch} updateActor={updateActor} setComposing={setComposing} composing={composing} onProjectChange={applyProject} disabled={!loadComplete||mode!=='edit'} activeSection="text" speakerDetailsEnabled={editorPreferences.enabled.characters}/><fieldset disabled={composing||!loadComplete}><legend>현재 컷 정리</legend><button onClick={()=>editStructure(()=>duplicateStoryCut(project,line.id,crypto.randomUUID()))}>현재 컷 복제</button><button onClick={()=>setDeleteId(line.id)}>현재 컷 삭제</button><button onClick={()=>editStructure(()=>moveStoryCut(project,line.id,'up'))}>현재 컷 위로</button><button onClick={()=>editStructure(()=>moveStoryCut(project,line.id,'down'))}>현재 컷 아래로</button><button onClick={()=>editStructure(()=>splitStoryCut(project,line.id,crypto.randomUUID(),shell.current?.querySelector<HTMLTextAreaElement>('#story-line-text')?.selectionStart??line.text.length))}>상세 글의 커서에서 컷 나누기</button><button disabled={!ordered[ordered.findIndex(c=>c.id===line.id)+1]} onClick={()=>{const next=ordered[ordered.findIndex(c=>c.id===line.id)+1];if(next)editStructure(()=>mergeStoryCuts(project,line.id,next.id));}}>다음 컷과 합치기</button>{project.chapters.length>1&&<MoveCutToChapter key={line.id} chapters={project.chapters.filter(item=>item.id!==line.chapterId).map(item=>({id:item.id,label:chapterLabel(item)}))} onMove={chapterId=>editStructure(()=>moveStoryCutToChapter(project,line.id,chapterId))}/>}</fieldset></details>{(logic.choices||logic.branches)&&<details data-choice-dock><summary>현재 컷의 선택지·분기조건 편집</summary><StoryWorkspaceInspector project={project} line={line} stage={stage} ordered={ordered} patch={patch} updateActor={updateActor} setComposing={setComposing} composing={composing} onProjectChange={applyProject} disabled={!loadComplete||mode!=='edit'} activeSection="flow" choicesEnabled={logic.choices} scoresEnabled={logic.scores} branchesEnabled={logic.branches} onOpenScores={logic.scores?()=>prepareWork('','scores'):undefined} onCreateChoiceChapter={logic.branches?addChapter:undefined}/>{logic.branches&&flowNodes.get(line.id)&&<EditorFlowContext project={project} node={flowNodes.get(line.id)!} graph={flowGraph} disabled={composing} editingPath={editingPath} onReturnVisit={returnEditingVisit} onSelect={selectCut} onRepair={editFromFlow}/>}</details>}</>}/>
 
         </div>

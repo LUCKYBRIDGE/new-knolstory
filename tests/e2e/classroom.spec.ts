@@ -334,6 +334,44 @@ test('a task on the original edition starts from the chapter the teacher chose',
  }finally{await context.close();}
 });
 
+test('a task on the adaptation can give students one path to rewrite while the others stay',async({page,browser})=>{
+ const teacher=await mockClassroom(page,'teacher');
+ teacher.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
+ await page.goto('/teacher');
+ await page.getByLabel('과제 제목',{exact:true}).fill('토끼의 다른 선택');
+ await page.getByLabel('바탕 작품 (선택)',{exact:true}).selectOption('rabbit');
+ await page.getByLabel('바탕 판본',{exact:true}).selectOption('knolstory');
+ const start=page.getByLabel('시작 지점',{exact:true});
+ await expect(start.locator('option').nth(1)).toBeAttached();
+ await expect(page.getByLabel('쓸 갈래',{exact:true})).toHaveCount(0);
+ await start.selectOption({index:1});
+ const scope=page.getByLabel('쓸 갈래',{exact:true});
+ await expect(scope.locator('option').first()).toHaveText('모든 갈래 · 선택지 뒤를 모두 새로 써요');
+ await scope.selectOption({index:2});
+ await page.getByRole('button',{name:'과제 만들기',exact:true}).click();
+ await expect(page.getByText(/^시작 · .* B 갈래만$/)).toBeVisible();
+ expect(teacher.assignments[0]).toMatchObject({edition:'knolstory',startPoint:expect.stringMatching(/^choice:.+:option:.+$/),startLabel:expect.stringMatching(/B 갈래만$/)});
+ const context=await browser.newContext();
+ try{
+  const studentPage=await context.newPage();
+  const student=await mockClassroom(studentPage,'student');student.signedIn=true;student.permissions=all;
+  student.assignments=teacher.assignments;
+  await studentPage.goto('/student');
+  await studentPage.getByRole('link',{name:'과제 쓰기',exact:true}).click();
+  await expect(studentPage.getByTestId('save-status')).toHaveText('임시 보관됨');
+  await expect.poll(()=>studentPage.evaluate(()=>String(JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')??'{}').storyId))).toMatch(/^new:/);
+  const saved=await studentPage.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));
+  const project=saved.document.project as {lines:{id:string;text:string;flow?:{type:string;options?:{id:string;targetLineId:string|null}[]}}[]};
+  const point=String(teacher.assignments[0]!.startPoint),lineId=point.slice(7,point.indexOf(':option:')),optionId=point.slice(point.indexOf(':option:')+8);
+  const choice=project.lines.find(line=>line.id===lineId)!;
+  const written=choice.flow!.options!.find(option=>option.id===optionId)!,others=choice.flow!.options!.filter(option=>option.id!==optionId);
+  // The student opens on the blank cut of their path; the other paths still lead to written story.
+  expect(project.lines.find(line=>line.id===written.targetLineId)!.text).toBe('');
+  expect(JSON.stringify(saved)).toContain(`"lineId":"${written.targetLineId}"`);
+  for(const option of others)if(option.targetLineId)expect(project.lines.find(line=>line.id===option.targetLineId)!.text).not.toBe('');
+ }finally{await context.close();}
+});
+
 test('teacher chooses the assignment type and students start a picture book task',async({page,browser},info)=>{
  const teacher=await mockClassroom(page,'teacher');
  teacher.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};
