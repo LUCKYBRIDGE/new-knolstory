@@ -6,10 +6,10 @@ import {enterLibrary,openBuiltinEdition,beginSelectedBook} from './library-entry
 const base=createBlankStoryProject({id:'perspective-cue',chapterId:'a',lineId:'intro',title:'시점 안내 확인'}),cut=base.lines[0]!;
 const transition={type:'perspective-blackout' as const,mode:'confirm' as const,durationMs:300,title:'친구의 시점',actionLabel:'친구의 이야기 읽기'};
 const project={...base,lines:[
- {...cut,text:'앞에서 읽은 글입니다.'},
+ {...cut,text:'앞에서 읽은 글이에요.'},
  {...cut,id:'cue',order:2,speakerName:'시점 전환',text:'친구의 시점',presentation:{transition}},
  {...cut,id:'body',order:3,text:'창문으로 아침 햇살이 들어왔어요.',presentation:{transition:{...transition,mode:'auto' as const,durationMs:300,title:'아침의 시점'}}},
- {...cut,id:'last',order:4,text:'마지막 글입니다.'}
+ {...cut,id:'last',order:4,text:'마지막 글이에요.'}
 ]};
 async function state(page:Page){return page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!));}
 async function rendered(page:Page){const status=page.getByTestId('story-runtime-status');await expect.poll(async()=>{const revision=await status.getAttribute('data-scene-revision');return revision!==null&&revision===await status.getAttribute('data-rendered-revision');},{timeout:120000}).toBe(true);return status;}

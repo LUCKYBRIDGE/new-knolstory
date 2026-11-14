@@ -21,13 +21,13 @@ test('real Ren’Py acknowledges editing and keeps canvas aligned through respon
   await page.goto('/probe');
   await expect(page.getByRole('status')).toContainText('연결됨', { timeout: 90000 });
   await expect(page.getByRole('status')).toContainText('표시 r0', { timeout: 30000 });
-  await page.getByLabel('대사', { exact: true }).fill('실제 렌파이에 한국어 편집 결과가 반영됩니다.');
+  await page.getByLabel('대사', { exact: true }).fill('실제 렌파이에 한국어 편집 결과가 반영돼요.');
   await expect(page.getByRole('status')).toContainText('표시 r1', { timeout: 30000 });
   const frame = page.getByTestId('runtime-frame');
   await frame.evaluate(element => element.setAttribute('data-real-runtime', 'same-frame'));
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(frame).toHaveAttribute('data-real-runtime', 'same-frame');
-  await expect(page.getByLabel('대사', { exact: true })).toHaveValue('실제 렌파이에 한국어 편집 결과가 반영됩니다.');
+  await expect(page.getByLabel('대사', { exact: true })).toHaveValue('실제 렌파이에 한국어 편집 결과가 반영돼요.');
   await expect(page.getByRole('button', { name: '흥부 위치 편집' })).toBeVisible();
   await page.getByRole('spinbutton', { name: '인물 X 좌표' }).fill('240');
   await expect(page.getByRole('status')).toContainText('표시 r2', { timeout: 30000 });

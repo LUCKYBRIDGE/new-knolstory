@@ -79,6 +79,6 @@ it('accepts both prior duplicated-v2 and sparse-v2 storage while validating ever
  const common={workspaceVersion:2,...s,document:doc(a),contexts:{[s.storyId]:context}};
  const prior=JSON.stringify({...common,works:{[s.storyId]:doc(a),'import:other':doc(b)}}),compact=JSON.stringify({...common,works:{'import:other':doc(b)}});
  expect(readWorkspace(prior)).toEqual(readWorkspace(compact));
- expect(()=>readWorkspace(JSON.stringify({...common,works:{'import:other':{broken:true}}}))).toThrow('저장된 작품 목록에 읽을 수 없는 작품이 있습니다');
+ expect(()=>readWorkspace(JSON.stringify({...common,works:{'import:other':{broken:true}}}))).toThrow('저장된 작품 목록에 읽을 수 없는 작품이 있어요');
  expect(()=>readWorkspace(JSON.stringify({...common,document:{broken:true},works:{'import:other':doc(b)}}))).toThrow('저장된 작품 형식을 확인해 주세요');
 });

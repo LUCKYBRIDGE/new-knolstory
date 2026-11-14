@@ -7,12 +7,12 @@ test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window
 for(const viewport of [{width:1440,height:900},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`nearby writing views keep cut text and cursor ${viewport.width}`,async({page},info)=>{
  await page.setViewportSize(viewport);await page.goto('/?view=editor');
  const position=page.getByLabel('현재 장과 컷 이동'),id=await position.inputValue();
- const text=page.locator(`textarea[data-cut-id="${id}"]`);await text.fill('앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.');
+ const text=page.locator(`textarea[data-cut-id="${id}"]`);await text.fill('앞 이야기와 다음 이야기를 오가며 이 문장을 수정해요.');
  await text.evaluate(node=>{(node as HTMLTextAreaElement).setSelectionRange(7,11);});
  await selectEditingScreen(page,'text');
- const manuscript=text;await expect(manuscript).toHaveValue('앞 이야기와 다음 이야기를 오가며 이 문장을 수정합니다.');await expect(position).toHaveValue(id);
- await manuscript.fill('글 편집에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');
- await page.getByRole('button',{name:'← 기본편집으로',exact:true}).click();await expect(text).toHaveValue('글 편집에서 고친 한국어와 줄바꿈\n그대로 유지합니다.');await expect(position).toHaveValue(id);
+ const manuscript=text;await expect(manuscript).toHaveValue('앞 이야기와 다음 이야기를 오가며 이 문장을 수정해요.');await expect(position).toHaveValue(id);
+ await manuscript.fill('글 편집에서 고친 한국어와 줄바꿈\n그대로 유지해요.');
+ await page.getByRole('button',{name:'← 기본편집으로',exact:true}).click();await expect(text).toHaveValue('글 편집에서 고친 한국어와 줄바꿈\n그대로 유지해요.');await expect(position).toHaveValue(id);
  await text.dispatchEvent('compositionstart');await expect(page.locator('select[aria-label="편집화면 선택"]')).toBeDisabled();await text.dispatchEvent('compositionend');
  await openNotes(page);await page.getByLabel('컷 작업 제목',{exact:true}).fill('긴 한국어 작업 제목을 읽고 편집하는 장면 '.repeat(5));
  const layout=await page.locator('[data-cut-notes]').evaluate(node=>{const fields=[...node.querySelectorAll('input,textarea')].map(el=>el.getBoundingClientRect());const rect=node.getBoundingClientRect();return fields.every((field,index)=>field.x>=rect.x&&field.right<=rect.right+1&&(index===0||field.top>=fields[index-1].bottom));});expect(layout).toBe(true);
@@ -41,8 +41,8 @@ test('failed storage keeps the author in the current editing screen',async({page
  await page.goto('/?view=editor');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const original=await page.evaluateHandle(()=>Storage.prototype.setItem);
  await page.evaluate(()=>{Storage.prototype.setItem=function(){throw new DOMException('test quota','QuotaExceededError');};});
- const text=page.locator(`textarea[data-cut-id="${await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue()}"]`),screen=page.locator('select[aria-label="편집화면 선택"]');await text.fill('저장 실패 때도 현재 글을 유지합니다.');
- await selectEditingScreen(page,'text');await expect(page.getByTestId('save-status')).toContainText('임시 보관 실패');await expect(screen).toHaveValue('basic');await expect(text).toHaveValue('저장 실패 때도 현재 글을 유지합니다.');
+ const text=page.locator(`textarea[data-cut-id="${await page.getByLabel('현재 장과 컷 이동',{exact:true}).inputValue()}"]`),screen=page.locator('select[aria-label="편집화면 선택"]');await text.fill('저장 실패 때도 현재 글을 유지해요.');
+ await selectEditingScreen(page,'text');await expect(page.getByTestId('save-status')).toContainText('임시 보관 실패');await expect(screen).toHaveValue('basic');await expect(text).toHaveValue('저장 실패 때도 현재 글을 유지해요.');
  await page.evaluate(fn=>{Storage.prototype.setItem=fn;},original);await text.focus();await text.evaluate(node=>{(node as HTMLTextAreaElement).setSelectionRange(1,4);});await selectEditingScreen(page,'text');await expect(screen).toHaveValue('text');
- await page.getByRole('button',{name:'← 기본편집으로',exact:true}).click();await expect(text).toHaveValue('저장 실패 때도 현재 글을 유지합니다.');
+ await page.getByRole('button',{name:'← 기본편집으로',exact:true}).click();await expect(text).toHaveValue('저장 실패 때도 현재 글을 유지해요.');
 });

@@ -6,7 +6,7 @@ import {exportAuthoringWorkbook,importAuthoringWorkbook,UNSET} from '../src/auth
 import {exportAuthoringExcel,importAuthoringExcel} from '../src/authoring-workbook/excel';
 async function fixture(){
  const original=getRepresentativeStory('rabbit');
- const document={...original,project:{...original.project,lines:original.project.lines.map((line,index)=>index?line:{...line,text:`${line.text}\n기다리던 순간, 인물의 마음과 배경의 분위기가 천천히 바뀌는 장면을 긴 한국어 문장으로 확인합니다.`,presentation:{...line.presentation,effects:[{id:'duration-evidence',type:'flash' as const,target:{kind:'screen' as const},trigger:'after-delay' as const,delayMs:230,durationMs:1230,scope:'cut' as const,repeat:'once' as const}]}})}};
+ const document={...original,project:{...original.project,lines:original.project.lines.map((line,index)=>index?line:{...line,text:`${line.text}\n기다리던 순간, 인물의 마음과 배경의 분위기가 천천히 바뀌는 장면을 긴 한국어 문장으로 확인해요.`,presentation:{...line.presentation,effects:[{id:'duration-evidence',type:'flash' as const,target:{kind:'screen' as const},trigger:'after-delay' as const,delayMs:230,durationMs:1230,scope:'cut' as const,repeat:'once' as const}]}})}};
  return {original,archive:await createAuthoringArchive({format:'knolstory',document})};
 }
 it('preserves authored effect duration and the whole real work through archive, tables, XLSX and JSONB',async()=>{

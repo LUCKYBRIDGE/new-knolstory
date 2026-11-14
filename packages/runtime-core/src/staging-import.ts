@@ -33,7 +33,7 @@ export function canUndoStoryStagingImport(project:StoryProject,undo:StagingImpor
  return project.id===undo.projectId&&!!line&&same(take(line,undo.fields),undo.after);
 }
 export function undoStoryStagingImport(project:StoryProject,undo:StagingImportUndo):StoryProject{
- if(!canUndoStoryStagingImport(project,undo))throw Error('적용한 배치가 이후 변경되어 되돌릴 수 없어요. 현재 편집을 유지합니다.');
+ if(!canUndoStoryStagingImport(project,undo))throw Error('적용한 배치가 이후 변경되어 되돌릴 수 없어요. 현재 편집을 유지해요.');
  const line=project.lines.find(item=>item.id===undo.lineId)!;
  const restored=Object.fromEntries(Object.entries(line).filter(([key])=>!undo.fields.includes(key as Field)));
  return {...project,updatedAt:new Date().toISOString(),lines:project.lines.map(item=>item.id===undo.lineId?{...restored,...structuredClone(undo.before)} as StoryLine:item)};

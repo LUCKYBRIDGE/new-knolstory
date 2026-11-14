@@ -9,7 +9,7 @@ export async function previewAuthoringFile(file:File):Promise<AuthoringArchive>{
  if(extension==='xlsx'){
   const bytes=new Uint8Array(await file.arrayBuffer());
   // Existing Next v1 remains readable; malformed v2 must never fall back to an older interpretation.
-  checkExcelArchive(bytes);const book=await createExcelWorkbook();try{await book.xlsx.load(bytes as never);}catch{throw Error('Excel 파일을 읽지 못했습니다.');}
+  checkExcelArchive(bytes);const book=await createExcelWorkbook();try{await book.xlsx.load(bytes as never);}catch{throw Error('Excel 파일을 읽지 못했어요.');}
   if(book.getWorksheet('형식 정보'))archive=await importLoadedAuthoringExcel(book);
   else{const kind=book.getWorksheet('KnolStory Next')?.getCell(1,3).text;if(kind==='shortstory')archive=await createAuthoringArchive({format:'shortstory',project:await importShortStoryExcel(bytes)});else{const old=await importStoryExcel(bytes);archive=await createAuthoringArchive({format:'knolstory',document:old.document,audioResources:old.audioResources as never});}}
  }else if(extension==='csv'||extension==='tsv'){
@@ -17,7 +17,7 @@ export async function previewAuthoringFile(file:File):Promise<AuthoringArchive>{
  }else archive=await decodeAuthoringArchive(await file.text());
  assertCatalogOnlyMedia(archive);
  if(archive.format==='knolstory'){
-  if(!archive.document.project.lines.length)throw Error('편집할 컷이 없는 작품입니다.');
+  if(!archive.document.project.lines.length)throw Error('편집할 컷이 없는 작품이에요.');
   for(const line of archive.document.project.lines)compileStoryScene(archive.document.project,line.id,0,{mode:'edit'});
  }
  return archive;

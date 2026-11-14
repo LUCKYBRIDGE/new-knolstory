@@ -27,7 +27,7 @@ const MAX_AUDIO_BYTES=5*1024*1024;
 const record=(v:unknown):v is Record<string,unknown>=>Boolean(v&&typeof v==='object'&&!Array.isArray(v));
 function exactKeys(value:Record<string,unknown>,keys:readonly string[],path:string){
  const unknown=Object.keys(value).filter(key=>!keys.includes(key));
- if(unknown.length)throw Error(`${path}: 지원하지 않는 항목 ${unknown.join(', ')}. 원본을 보존하고 가져오기를 중단했습니다.`);
+ if(unknown.length)throw Error(`${path}: 지원하지 않는 항목 ${unknown.join(', ')}. 원본을 보존하고 가져오기를 중단했어요.`);
 }
 function jsonSize(value:unknown){
  const serialized=JSON.stringify(value);
@@ -39,7 +39,7 @@ function assertJson(value:unknown,path='$'):void{
  if(typeof value==='number'&&Number.isFinite(value))return;
  if(Array.isArray(value)){Array.from(value).forEach((item,index)=>assertJson(item,`${path}[${index}]`));return;}
  if(record(value)&&Object.getPrototypeOf(value)===Object.prototype){for(const [key,item]of Object.entries(value))assertJson(item,`${path}.${key}`);return;}
- throw Error(`${path}: JSON으로 보관할 수 없는 값입니다.`);
+ throw Error(`${path}: JSON으로 보관할 수 없는 값이에요.`);
 }
 async function sha256(bytes:Uint8Array){
  const buffer=new ArrayBuffer(bytes.byteLength);new Uint8Array(buffer).set(bytes);
@@ -73,11 +73,11 @@ export async function validateAuthoringAudioResources(value:unknown):Promise<Aut
   if(!match||typeof item.name!=='string'||!item.name.trim()||item.name.length>200||typeof item.kind!=='string'||!['music','sound'].includes(item.kind)
    ||typeof item.data!=='string'||item.data.length>Math.ceil(MAX_AUDIO_BYTES/3)*4||!item.data.length||!/^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(item.data)
    ||item.mime!==({wav:'audio/wav',ogg:'audio/ogg',mp3:'audio/mpeg'}[match[2] as 'wav'|'ogg'|'mp3'])||ids.has(String(item.id)))throw Error(`${path}: 오디오 ID·종류·이름·MIME·크기·중복을 확인해 주세요.`);
-  ids.add(String(item.id));total+=item.data.length;if(total>20_000_000)throw Error('오디오 첨부 base64의 합계는 20MB까지 지원합니다.');
+  ids.add(String(item.id));total+=item.data.length;if(total>20_000_000)throw Error('오디오 첨부 base64의 합계는 20MB까지 지원해요.');
   const bytes=audioBytes(item as AuthoringAudioResource);
   const text=(offset:number,length:number)=>String.fromCharCode(...bytes.slice(offset,offset+length));
   const signature=match[2]==='wav'?text(0,4)==='RIFF'&&text(8,4)==='WAVE':match[2]==='ogg'?text(0,4)==='OggS':text(0,3)==='ID3'||bytes[0]===255&&(bytes[1]&224)===224;
-  if(!bytes.length||bytes.length>MAX_AUDIO_BYTES||!signature||await sha256(bytes)!==match[1])throw Error(`${path}: 오디오 내용·원본 해시·파일 형식이 일치하지 않습니다.`);
+  if(!bytes.length||bytes.length>MAX_AUDIO_BYTES||!signature||await sha256(bytes)!==match[1])throw Error(`${path}: 오디오 내용·원본 해시·파일 형식이 일치하지 않아요.`);
   assertProvenance(item.provenance,String(item.id));
   validateAudioMetadata(item.metadata);
  }
@@ -94,18 +94,18 @@ export function authoringReferencedAudioIds(project:StoryProject):string[]{
 /** A recognized supplied value must not be silently normalized away in the current schema. */
 function assertPreservedValues(original:unknown,parsed:unknown,path:string):void{
  if(Array.isArray(original)){
-  if(!Array.isArray(parsed)||original.length!==parsed.length)throw Error(`${path}: 항목이 손실되거나 변경되어 가져오기를 중단했습니다.`);
+  if(!Array.isArray(parsed)||original.length!==parsed.length)throw Error(`${path}: 항목이 손실되거나 변경되어 가져오기를 중단했어요.`);
   original.forEach((item,index)=>assertPreservedValues(item,parsed[index],`${path}[${index}]`));return;
  }
  if(record(original)){
-  if(!record(parsed))throw Error(`${path}: 작성한 구조를 보존할 수 없습니다.`);
+  if(!record(parsed))throw Error(`${path}: 작성한 구조를 보존할 수 없어요.`);
   for(const [key,item]of Object.entries(original)){
-   if(!(key in parsed))throw Error(`${path}.${key}: 지원하지 않거나 보존할 수 없는 항목입니다.`);
+   if(!(key in parsed))throw Error(`${path}.${key}: 지원하지 않거나 보존할 수 없는 항목이에요.`);
    assertPreservedValues(item,parsed[key],`${path}.${key}`);
   }
   return;
  }
- if(original!==parsed)throw Error(`${path}: 작성한 값을 그대로 보존할 수 없습니다. 형식과 허용 값을 확인해 주세요.`);
+ if(original!==parsed)throw Error(`${path}: 작성한 값을 그대로 보존할 수 없어요. 형식과 허용 값을 확인해 주세요.`);
 }
 function validatedDocument(input:unknown):StoryDocumentEnvelope{
  if(!record(input))throw Error('document: 작품 문서를 확인해 주세요.');
@@ -125,7 +125,7 @@ function validatedDocument(input:unknown):StoryDocumentEnvelope{
 /** Object optional `undefined` means absent; arrays and actual authored values never disappear. */
 function constructorJson(value:unknown,path='$'):unknown{
  if(Array.isArray(value))return Array.from(value,(item,index)=>{
-  if(item===undefined)throw Error(`${path}[${index}]: 목록 항목이 비어 있습니다.`);
+  if(item===undefined)throw Error(`${path}[${index}]: 목록 항목이 비어 있어요.`);
   return constructorJson(item,`${path}[${index}]`);
  });
  if(record(value)&&Object.getPrototypeOf(value)===Object.prototype){
@@ -149,17 +149,17 @@ export async function createAuthoringArchive(input:AuthoringArchiveInput):Promis
 }
 export async function validateAuthoringArchive(value:unknown):Promise<AuthoringArchive>{
  assertJson(value);jsonSize(value);
- if(!record(value)||value.formatVersion!==2)throw Error('지원하지 않는 작품 파일 버전입니다.');
+ if(!record(value)||value.formatVersion!==2)throw Error('지원하지 않는 작품 파일 버전이에요.');
  if(value.format==='shortstory'){
   exactKeys(value,['format','formatVersion','project'],'archive');
   assertAuthoringFields('shortstory',value.project);
   return {format:'shortstory',formatVersion:2,project:parseShortStory(value.project)};
  }
- if(value.format!=='knolstory')throw Error('지원하지 않는 작품 파일 종류입니다.');
+ if(value.format!=='knolstory')throw Error('지원하지 않는 작품 파일 종류예요.');
  exactKeys(value,['format','formatVersion','document','audioResources'],'archive');
  const document=validatedDocument(value.document),audioResources=await validateAuthoringAudioResources(value.audioResources);
  const missing=authoringReferencedAudioIds(document.project).filter(id=>id.startsWith('audio:custom:')&&!audioResources.some(resource=>resource.id===id));
- if(missing.length)throw Error(`audioResources: 연결된 오디오 자료가 없습니다: ${missing.join(', ')}`);
+ if(missing.length)throw Error(`audioResources: 연결된 오디오 자료가 없어요: ${missing.join(', ')}`);
  return {format:'knolstory',formatVersion:2,document,audioResources};
 }
 export async function encodeAuthoringArchive(value:AuthoringArchive):Promise<string>{
@@ -188,7 +188,7 @@ export async function decodeAuthoringArchive(text:string):Promise<AuthoringArchi
  }
  if(record(value)&&record(value.manifest)&&value.manifest.format==='shortstory'&&value.manifest.version===1){
   exactKeys(value,['manifest','project'],'ShortStory v1');exactKeys(value.manifest,['format','version','kind'],'ShortStory v1 manifest');
-  if(value.manifest.kind!=='project')throw Error('지원하지 않는 숏스토리 파일 종류입니다.');
+  if(value.manifest.kind!=='project')throw Error('지원하지 않는 숏스토리 파일 종류예요.');
   return validateAuthoringArchive({format:'shortstory',formatVersion:2,project:value.project});
  }
  return validateAuthoringArchive(value);
@@ -208,12 +208,12 @@ export async function restoreJsonbSnapshot(value:unknown):Promise<AuthoringArchi
  assertJson(value);jsonSize(value);
  if(!record(value))throw Error('서버 작품 snapshot을 확인해 주세요.');
  exactKeys(value,['payloadVersion','content','contentSha256','assetReferences'],'snapshot');
- if(value.payloadVersion!==1)throw Error('지원하지 않는 서버 payload 버전입니다.');
+ if(value.payloadVersion!==1)throw Error('지원하지 않는 서버 payload 버전이에요.');
  const content=await validateAuthoringArchive(value.content);
  assertJsonbText(value.content);
  // A valid previous snapshot was fingerprinted before schema migration.
  const originalHash=await sha256(new TextEncoder().encode(canonicalJson(fingerprintContent(value.content as AuthoringArchive))));
  const checked=await prepareJsonbSnapshot(content);
- if(value.contentSha256!==originalHash||canonicalJson(value.assetReferences)!==canonicalJson(checked.assetReferences))throw Error('서버 작품 snapshot의 내용·해시·자산 참조가 일치하지 않습니다.');
+ if(value.contentSha256!==originalHash||canonicalJson(value.assetReferences)!==canonicalJson(checked.assetReferences))throw Error('서버 작품 snapshot의 내용·해시·자산 참조가 일치하지 않아요.');
  return checked.content;
 }

@@ -53,7 +53,7 @@ describe('editing probe state', () => {
   });
 
   it('does not silently lose text or re-run layout after viewport resizing', () => {
-    const draft = { ...createInitialDraft(), text: '선녀가 말했습니다.\n우리 이야기를 시작해 볼까요?' };
+    const draft = { ...createInitialDraft(), text: '선녀가 말했어요.\n우리 이야기를 시작해 볼까요?' };
     fitStage({ width: 360, height: 400 });
     fitStage({ width: 1000, height: 600 });
     const scene = compileScene(draft, 12);

@@ -11,9 +11,9 @@ function same(a:Row,b:Row){return ownerKeys.every(k=>a[k]===b[k]);}
 export function branchRow(condition:StoryBranchCondition|undefined):Row{return {branchConditionPresent:condition!==undefined,branchSourceLineId:condition&&'sourceLineId' in condition?condition.sourceLineId:undefined,branchChoiceId:condition&&'choiceId' in condition?condition.choiceId:undefined,branchConditionMode:condition&&'terms' in condition?condition.mode:undefined};}
 export function readBranch(row:Row,spec:TableSpec,tables:AuthoringTables):{branchCondition?:StoryBranchCondition}{
  const children=(tables[termsSpec.key]?readTable(tables,termsSpec):[]).filter(term=>same(term,owner(row,spec.key)));
- if(!row.branchConditionPresent){if(row.branchSourceLineId!==undefined||row.branchChoiceId!==undefined||row.branchConditionMode!==undefined||children.length)issue(spec,'선택 갈래 조건 없음과 조건 값이 충돌합니다.',workbookRow(row),'선택 갈래 조건');return {};}
+ if(!row.branchConditionPresent){if(row.branchSourceLineId!==undefined||row.branchChoiceId!==undefined||row.branchConditionMode!==undefined||children.length)issue(spec,'선택 갈래 조건 없음과 조건 값이 충돌해요.',workbookRow(row),'선택 갈래 조건');return {};}
  if(row.branchConditionMode!==undefined){if(!['all','any'].includes(String(row.branchConditionMode))||row.branchSourceLineId!==undefined||row.branchChoiceId!==undefined)issue(spec,'조건 묶음과 단일 선택 ID를 함께 쓰지 마세요.');const ordered=[...children].sort((a,b)=>Number(a.position)-Number(b.position));if(ordered.length<1||ordered.length>8||ordered.some((term,index)=>term.position!==index)||new Set(ordered.map(t=>JSON.stringify([t.sourceLineId,t.choiceId]))).size!==ordered.length)issue(termsSpec,'조건은 1~8개, 순서는 0부터 연속으로 중복 없이 써 주세요.');return {branchCondition:{mode:row.branchConditionMode,terms:ordered.map(term=>({sourceLineId:term.sourceLineId,choiceId:term.choiceId}))} as StoryBranchCondition};}
- if(children.length)issue(spec,'단일 선택 조건에 묶음 조건 행이 있습니다.');
+ if(children.length)issue(spec,'단일 선택 조건에 묶음 조건 행이 있어요.');
  if(typeof row.branchSourceLineId!=='string'||!row.branchSourceLineId.trim()||typeof row.branchChoiceId!=='string'||!row.branchChoiceId.trim())issue(spec,'조건 선택 컷 ID와 선택지 ID를 함께 입력해 주세요.',workbookRow(row),'선택 갈래 조건');
  return {branchCondition:{sourceLineId:row.branchSourceLineId,choiceId:row.branchChoiceId}};
 }
@@ -38,8 +38,8 @@ export function validateBranchGroupOwners(tables:AuthoringTables,project:StoryPr
   return [key,readTable({[key]:{headers,rows:table.rows.map(row=>headers.map(header=>row[table.headers.indexOf(header)]))}},spec)];
  }));
  for(const term of readTable(tables,termsSpec)){
-  if(!ownerTables.includes(term.ownerTable as typeof ownerTables[number]))issue(termsSpec,'조건을 쓸 곳이 올바르지 않습니다.');
-  const key=String(term.ownerTable),table=tables[key];if(!table)issue(termsSpec,'연결된 설정 탭이 없습니다.');
+  if(!ownerTables.includes(term.ownerTable as typeof ownerTables[number]))issue(termsSpec,'조건을 쓸 곳이 올바르지 않아요.');
+  const key=String(term.ownerTable),table=tables[key];if(!table)issue(termsSpec,'연결된 설정 탭이 없어요.');
   const matches=identities[key].filter(row=>same(term,owner(row,key)));
   if(matches.length!==1)issue(termsSpec,'장·컷·효과 순서·효과 ID·소리 종류가 정확히 같은 설정 행에 연결해 주세요.');
  }

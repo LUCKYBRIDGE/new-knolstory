@@ -9,7 +9,7 @@ const workspaceKey='knolstory-next-workspace-v1';
 const base=createBlankStoryProject({id:'reader-touch',chapterId:'chapter',lineId:'first',title:'화면 터치 확인'});
 const cut=base.lines[0]!;
 const project={...base,lines:[
- {...cut,text:'처음 컷의 짧은 글입니다.',flow:{type:'goto' as const,targetLineId:'long'}},
+ {...cut,text:'처음 컷의 짧은 글이에요.',flow:{type:'goto' as const,targetLineId:'long'}},
  {...cut,id:'long',order:2,text:Array.from({length:24},(_,i)=>`${i+1}번째 글. 토끼와 친구가 책을 함께 읽어요. 다음 글을 읽고 이전 글도 확인해요.\n`).join(''),flow:{type:'goto' as const,targetLineId:'choice'}},
  {...cut,id:'choice',order:3,text:'어떤 책을 읽을까요?',flow:{type:'choice' as const,options:[{id:'a',label:'첫 번째 책',targetLineId:'end'},{id:'b',label:'두 번째 책',targetLineId:'end'}]}},
  {...cut,id:'end',order:4,text:'함께 책을 읽었어요.',flow:{type:'goto' as const,targetLineId:null}},

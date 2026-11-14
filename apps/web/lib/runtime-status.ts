@@ -15,7 +15,7 @@ export function runtimeStatusReducer(status: RuntimeStatus, signal: RuntimeStatu
     case 'retry':
       return initialRuntimeStatus;
     case 'waiting':
-      return status.failed ? status : { failed: false, recoverable:true, message: '이야기 무대 연결에 시간이 걸립니다. 잠시 기다리거나 편집으로 돌아가 작품을 저장한 뒤 다시 읽기를 시작해 주세요.' };
+      return status.failed ? status : { failed: false, recoverable:true, message: '이야기 무대 연결에 시간이 걸려요. 잠시 기다리거나 편집으로 돌아가 작품을 저장한 뒤 다시 읽기를 시작해 주세요.' };
     case 'ready':
       return status.failed ? status : { failed: false, recoverable:false, message: '이야기 무대 연결됨' };
     case 'rendered':

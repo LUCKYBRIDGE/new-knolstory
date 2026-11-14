@@ -81,11 +81,11 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
           onBegin={()=>{gestureStart.current=history;}}
           onChange={(next,gesture)=>{if(gesture)setHistory(current=>({...current,present:{...current.present,cover:next}}));else commit(next);}}
           onEnd={cancelled=>{const start=gestureStart.current;gestureStart.current=null;if(!start)return;setHistory(current=>cancelled?start:commitCoverDraft(start,current.present));}} /></div>
-        <p>긴 글은 상자에 맞춰 작아져요. 표지의 제목은 작품 제목을 따라갑니다.</p>
+        <p>긴 글은 상자에 맞춰 작아져요. 표지의 제목은 작품 제목을 따라가요.</p>
         <div className={styles.actions}><button type="button" disabled={!history.past.length||applying} onClick={undo}>되돌리기</button><button type="button" disabled={!history.future.length||applying} onClick={redo}>다시 하기</button></div>
       </section>
       <section className={styles.fields} aria-label="표지 편집 설정">
-        <label>작품 제목<input aria-label="작품 제목" value={title} onChange={event=>setTitle(event.target.value)}/><small>표지 적용을 누르면 작품 제목에도 함께 적용됩니다.</small></label>
+        <label>작품 제목<input aria-label="작품 제목" value={title} onChange={event=>setTitle(event.target.value)}/><small>표지 적용을 누르면 작품 제목에도 함께 적용돼요.</small></label>
         <label>지은이<input value={cover.author} onChange={event=>patch({author:event.target.value})}/></label>
         <label>표지 소개 문장<input value={cover.subtitle} onChange={event=>patch({subtitle:event.target.value})}/></label>
         <label>작가의 말<textarea value={cover.authorNote} onChange={event=>patch({authorNote:event.target.value})}/></label>
@@ -104,7 +104,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
           <details><summary>내 마음대로 배치</summary><button type="button" aria-pressed={Boolean(cover.composition)} onClick={()=>{if(cover.composition){const next={...cover};delete next.composition;commit(next);}else patch({composition:defaultCoverComposition(cover)});}}>{cover.composition?'자유 배치 끄기':'자유 배치 시작'}</button>
             {cover.composition&&<CompositionControls composition={cover.composition} patch={changes=>commit(updateCoverComposition(cover,changes))} reset={()=>patch({composition:defaultCoverComposition(cover)})}/>}</details>
           <button type="button" onClick={()=>patch({design:createCoverDesign(cover)})}>세 면과 글·그림 상자 편집 시작</button>
-          <p>상자 편집을 시작하면 지금 색감과 그림으로 세 면을 만들어요. 현재 기본 표지 설정도 함께 보관합니다.</p>
+          <p>상자 편집을 시작하면 지금 색감과 그림으로 세 면을 만들어요. 현재 기본 표지 설정도 함께 보관해요.</p>
         </>:<>
           <fieldset><legend>{faceLabels[face]} 디자인 비교</legend><div className={styles.presets}>{COVER_DESIGN_OPTIONS.map(option=><button type="button" key={option.id} aria-label={`${option.label} 디자인 적용`} aria-pressed={design.faces[face].preset===option.id} onClick={()=>commitDesign(selectCoverFacePreset(design,face,option.id,cover))}><span className={styles.presetThumbnail} aria-hidden="true"><BookCover project={{...previewProject,cover:{...cover,design:selectCoverFacePreset(design,face,option.id,cover)}}} face={face} compact/></span><strong>{option.label}</strong></button>)}</div></fieldset>
           <Select label={`${faceLabels[face]} 디자인`} value={design.faces[face].preset} options={COVER_DESIGN_OPTIONS.map(option=>[option.id,option.label])} onChange={value=>commitDesign(selectCoverFacePreset(design,face,value as CoverDesign['faces']['front']['preset'],cover))}/>

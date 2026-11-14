@@ -80,7 +80,7 @@ test('invalid score references are rejected without replacing the current work a
  const archive=JSON.parse(readFileSync('docs/architecture/evidence/score-narrative/score-story.knolstory','utf8'));
  const broken={...archive,document:{...archive.document,project:{...archive.document.project,lines:archive.document.project.lines.map((line:StoryProject['lines'][number],index:number)=>index||line.flow?.type!=='choice'?line:{...line,flow:{...line.flow,options:line.flow.options.map((option,i)=>i?option:{...option,effects:option.effects!.map((effect,j)=>j?effect:{...effect,scoreId:'missing-score'})})}})}}};
  await menu(page);await page.getByLabel('작품 파일 가져오기',{exact:true}).setInputFiles({name:'broken-score.knolstory',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(broken))});
- await expect(page.getByRole('alert').filter({hasText:'현재 작품은 유지됩니다'})).toBeVisible();await expect(page.getByRole('dialog',{name:'작품 가져오기 확인'})).toHaveCount(0);
+ await expect(page.getByRole('alert').filter({hasText:'현재 작품은 유지돼요'})).toBeVisible();await expect(page.getByRole('dialog',{name:'작품 가져오기 확인'})).toHaveCount(0);
  expect((await exported(page,info.outputPath('protected.knolstory'))).document.project).toEqual(original.document.project);
  await page.reload();expect((await exported(page,info.outputPath('protected-reopened.knolstory'))).document.project).toEqual(original.document.project);
  await load(page);await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');

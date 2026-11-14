@@ -22,7 +22,7 @@ for(const state of ['unavailable'] as const)test(`basic current-cut Korean draft
  const field=draftPage.locator('[data-current-cut] textarea'),id=await field.getAttribute('data-cut-id');
  await expect(field).toBeEnabled({timeout:2000});
  await field.dispatchEvent('compositionstart');await expect(field).toBeEnabled();
- const draft='저장소를 덮어쓰지 않는 한글 초안입니다.\n이 글은 작품 파일에 그대로 남습니다.';await field.fill(draft);
+ const draft='저장소를 덮어쓰지 않는 한글 초안이에요.\n이 글은 작품 파일에 그대로 남아요.';await field.fill(draft);
  await expect(draftPage.getByRole('button',{name:/컷 배경 이미지 찾기/})).toBeDisabled();
  await expect(draftPage.getByRole('button',{name:/^다음 컷/})).toBeDisabled();
  await draftPage.locator('[data-work-menu]>summary').click();

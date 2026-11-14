@@ -18,20 +18,20 @@ for(const viewport of [{width:1280,height:900},{width:820,height:1180},{width:39
   const projectKeys=project.getRow(2).values as string[],cutKeys=cuts.getRow(2).values as string[];
   const title=`표에서 작성한 긴 한국어 제목과 이모지 🌳 ${viewport.width}`;
   project.getCell(3,projectKeys.indexOf('title')).value=title;
-  cuts.getCell(3,cutKeys.indexOf('text')).value='001 앞자리와 =문구를 보존합니다.\n한국어 두 번째 줄 🌳';
+  cuts.getCell(3,cutKeys.indexOf('text')).value='001 앞자리와 =문구를 보존해요.\n한국어 두 번째 줄 🌳';
   const edited=info.outputPath('edited.xlsx');writeFileSync(edited,new Uint8Array(await book.xlsx.writeBuffer()));
   const dialog=await imported(page,edited);await expect(dialog).toBeVisible({timeout:20000});await expect(dialog).toContainText(title);
   const bounds=(await dialog.boundingBox())!;expect(bounds.x).toBeGreaterThanOrEqual(0);expect(bounds.x+bounds.width).toBeLessThanOrEqual(viewport.width);expect(bounds.height).toBeLessThanOrEqual(viewport.height);
   await dialog.getByRole('button',{name:'가져오기 취소',exact:true}).click();await expect(page.getByRole('heading',{name:title,exact:true})).toHaveCount(0);
   const preview=await imported(page,edited);await preview.getByRole('button',{name:'내 사본으로 가져오기',exact:true}).click();
   await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
-  await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('001 앞자리와 =문구를 보존합니다.\n한국어 두 번째 줄 🌳');
+  await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('001 앞자리와 =문구를 보존해요.\n한국어 두 번째 줄 🌳');
   await page.reload();await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();
   const brokenBook=await createExcelWorkbook();await brokenBook.xlsx.load(readFileSync(edited));brokenBook.getWorksheet('컷')!.getCell(2,1).value='unsupportedColumn';
   const broken=info.outputPath('broken.xlsx');writeFileSync(broken,new Uint8Array(await brokenBook.xlsx.writeBuffer()));
   await imported(page,broken);await expect(page.getByRole('dialog',{name:'작품 가져오기 확인'})).toHaveCount(0);
   await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();await expect(page.getByText(/헤더|열 이름/)).toBeVisible();
-  await page.reload();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('001 앞자리와 =문구를 보존합니다.\n한국어 두 번째 줄 🌳');
+  await page.reload();await expect(page.getByLabel('대사 / 해설',{exact:true})).toHaveValue('001 앞자리와 =문구를 보존해요.\n한국어 두 번째 줄 🌳');
  });
 }
 

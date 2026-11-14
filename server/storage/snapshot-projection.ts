@@ -38,7 +38,7 @@ export async function projectSnapshot(value:unknown):Promise<{projection:Snapsho
 
 function captureProjection(value:unknown):Record<string,unknown> {
  if(!record(value)||Object.keys(value).length!==2||!Object.hasOwn(value,'projectionVersion')
-  ||!Object.hasOwn(value,'snapshot')||value.projectionVersion!==1)throw Error('지원하지 않는 내부 snapshot projection입니다.');
+  ||!Object.hasOwn(value,'snapshot')||value.projectionVersion!==1)throw Error('지원하지 않는 내부 snapshot projection예요.');
  const captured=structuredClone(value);
  if(!record(captured.snapshot)||!record(captured.snapshot.content))throw Error('내부 snapshot 내용을 확인해 주세요.');
  return captured.snapshot;
@@ -49,7 +49,7 @@ async function restoreAudio(value:unknown,readBlob:(id:string)=>Promise<Uint8Arr
  for(const item of value){
   if(!record(item)||typeof item.id!=='string'||Object.hasOwn(item,'data'))throw Error('내부 오디오 자료 형식을 확인해 주세요.');
   const read=await readBlob(item.id);
-  if(!(read instanceof Uint8Array))throw Error('보관된 오디오 원본이 없습니다.');
+  if(!(read instanceof Uint8Array))throw Error('보관된 오디오 원본이 없어요.');
   // Detach immediately: another callback invocation must not change earlier bytes.
   const bytes=new Uint8Array(read);
   let binary='';for(const byte of bytes)binary+=String.fromCharCode(byte);

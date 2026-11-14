@@ -73,7 +73,7 @@ export function StoryPlayerMenu({project,playback,dialoguePosition,visibleDialog
    saveInFlight.current=true;setSaving(true);
    const thumbnail=await captureThumbnail?.();
    if(saveContext.current!==context)throw Error('저장하는 사이 장면이 바뀌었어요. 지금 컷에서 다시 저장해 주세요.');
-   const next=savePlayerSlot(readPlayerSaves(localStorage),clickedProject,clickedPlayback,id,undefined,thumbnail,dialoguePosition);writePlayerSaves(localStorage,next);setSaves(next);if(!keepConfirmation)setConfirm(null);setError('');setNotice(id==='quick'?'빠른 저장 완료':id==='auto'?'읽기 위치를 보관했습니다.':`${id}번에 저장했습니다.`);return true;
+   const next=savePlayerSlot(readPlayerSaves(localStorage),clickedProject,clickedPlayback,id,undefined,thumbnail,dialoguePosition);writePlayerSaves(localStorage,next);setSaves(next);if(!keepConfirmation)setConfirm(null);setError('');setNotice(id==='quick'?'빠른 저장 완료':id==='auto'?'읽기 위치를 보관했어요.':`${id}번에 저장했어요.`);return true;
   }catch(error){setError(reason(error));return false;}finally{saveInFlight.current=false;setSaving(false);}
  }
  function load(id:PlayerSlotId,allowChanged=false){try{const slot=readPlayerSaves(localStorage).works[project.id]?.[String(id)];if(!slot)throw Error(id==='quick'?'빠른 저장한 기록이 아직 없어요.':'고른 저장을 찾지 못했어요. 다른 저장을 골라 주세요.');if(isPlayerSlotChanged(project,slot)&&!allowChanged){setConfirm({kind:'load',id,changed:true});return;}const restored=loadPlayerSlot(project,slot,allowChanged);onRestore(restored.state,restored.dialoguePosition);setAuto(false);close();setNotice('읽던 위치와 선택을 불러왔어요.');}catch(error){setError(reason(error));}}

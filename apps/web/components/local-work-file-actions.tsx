@@ -29,9 +29,9 @@ export function LocalWorkFileActions({fileSession,workKey,name,extension,seriali
    const result=await saver.save({workKey:key,name,extension,serialize:async()=>{savedText=await snapshot();return savedText;},saveAs,isCurrent:()=>current.current===key&&lifetime.current===generation});
    if(current.current!==key||lifetime.current!==generation)return 'cancelled';
    if(result.kind==='saved'&&savedText!==undefined)onVerifiedSave?.(savedText);
-   setNotice(result.kind==='saved'?`${result.name} 파일에 저장하고 내용까지 확인했어요. 저장을 시작할 때의 원고예요.`:result.kind==='download-requested'?'작품 파일 다운로드를 시작했어요. 브라우저 다운로드 목록에서 끝났는지, 어디에 저장됐는지 확인해 주세요.':'파일 저장을 취소했어요. 원고는 유지됩니다.');
+   setNotice(result.kind==='saved'?`${result.name} 파일에 저장하고 내용까지 확인했어요. 저장을 시작할 때의 원고예요.`:result.kind==='download-requested'?'작품 파일 다운로드를 시작했어요. 브라우저 다운로드 목록에서 끝났는지, 어디에 저장됐는지 확인해 주세요.':'파일 저장을 취소했어요. 원고는 유지돼요.');
      return result.kind;
-  }catch(issue){if(current.current===key&&lifetime.current===generation)setError(`작품 파일을 저장하지 못했어요. 현재 원고는 유지됩니다. ${localWorkFileErrorMessage(issue)}`);return 'failed';}
+  }catch(issue){if(current.current===key&&lifetime.current===generation)setError(`작품 파일을 저장하지 못했어요. 현재 원고는 유지돼요. ${localWorkFileErrorMessage(issue)}`);return 'failed';}
   finally{saving.current=false;onSavingChange?.(false);setBusy(false);}
  }
  const latestSave=useRef(()=>save());

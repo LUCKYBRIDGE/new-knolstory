@@ -7,7 +7,7 @@ export function StoryCutPosition(p:Props){return <label className={styles.cutPos
 export function StoryAdjacentCut(p:Props&{direction:'previous'|'next'}){
  const cut=adjacentManuscriptCuts(p.ordered,p.line.id)[p.direction];
  const label=p.direction==='previous'?'이전 컷':'다음 컷';
- if(!cut)return <div className={styles.adjacentCut}><strong>{p.direction==='previous'?'이전 컷':'다음 컷'}</strong><span>{p.direction==='previous'?'첫 원고 컷입니다':'마지막 원고 컷입니다'}</span></div>;
+ if(!cut)return <div className={styles.adjacentCut}><strong>{p.direction==='previous'?'이전 컷':'다음 컷'}</strong><span>{p.direction==='previous'?'첫 원고 컷이에요':'마지막 원고 컷이에요'}</span></div>;
  const chapter=p.project.chapters.find(item=>item.id===cut.chapterId)!;
  return <div className={styles.adjacentCut} data-adjacent-cut={p.direction}><button type="button" disabled={p.disabled} onClick={()=>p.onSelect(cut.id)}>{label} · {cutLabel(chapter,cut)}</button><span>{cut.speakerName||'해설'} · {cut.text||'아직 글이 없는 컷'}</span></div>;
 }

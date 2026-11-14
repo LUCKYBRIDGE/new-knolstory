@@ -420,13 +420,13 @@ export function StoryWorkspace() {
     const copy=copyPersonalWork(checkpoint.project,crypto.randomUUID(),new Date().toISOString());
     if(!await preserveCopyAudio(checkpoint.project,copy))return;
     rememberCurrent();const key=`new:${copy.id}`;savedProjects.current={...savedProjects.current,[key]:copy};
-    setImportedWorks(current=>({...current,[key]:copy.title}));setProject(copy);setStoryId(key);setLineId(orderedLines(copy)[0]!.id);setPlayback(createPlayback(copy));setMode('edit');setView('prepare');setRevision(v=>v+1);setError('이전 원고를 별도 사본으로 열었어요. 현재 원고와 다른 작품은 보존됩니다.');
+    setImportedWorks(current=>({...current,[key]:copy.title}));setProject(copy);setStoryId(key);setLineId(orderedLines(copy)[0]!.id);setPlayback(createPlayback(copy));setMode('edit');setView('prepare');setRevision(v=>v+1);setError('이전 원고를 별도 사본으로 열었어요. 현재 원고와 다른 작품은 보존돼요.');
   }
   function restartProtectedStorage(){
     try{ensureWritable();const raw=localStorage.getItem(WORKSPACE_KEY);if(raw!==null)localStorage.setItem(`knolstory-workspace-recovery-${crypto.randomUUID()}`,raw);
       const saved=writeWorkspaceSnapshot(writer.guard.current!,project,{[storyId]:project},{},snapshot());savedProjects.current=saved.works;contexts.current=saved.contexts;
       setImportedWorks(isPersonalWork(storyId)?{[storyId]:project.title}:{});setHydrated(true);setStorageError('');setError('열리지 않던 원본은 따로 남기고, 지금 작품으로 새 보관함을 시작했어요.');setSaveStatus('임시 보관됨');
-    }catch(issue){setError(`복구하지 못했어요. 원본과 현재 작품은 유지됩니다. ${issueText(issue)}`);}
+    }catch(issue){setError(`복구하지 못했어요. 원본과 현재 작품은 유지돼요. ${issueText(issue)}`);}
   }
   function persistWorkspace(overrides:Partial<ReturnType<typeof snapshot>>={}){
     if(!hydrated)throw Error('이전에 보관한 내용을 지키려고 브라우저 보관을 멈췄어요. 지금 작품을 작품 파일로 저장하거나 브라우저 보관함을 복구한 뒤 다시 시도해 주세요.');
@@ -490,7 +490,7 @@ export function StoryWorkspace() {
   function prepareWork(memoId?:string,section?:WorkSection){if(stopForUnappliedInput())return;if(composing){setError('한글 입력을 마친 뒤 작품 설정을 열어 주세요.');return;}const id=typeof memoId==='string'?memoId:undefined;const origin=document.activeElement;settingsReturnFocus.current=section==='scores'&&view==='editor'&&origin instanceof HTMLElement&&shell.current?.contains(origin)?{projectId:project.id,lineId:line.id,field:origin}:null;if(id!==undefined){try{persistWorkspace();}catch(issue){setError(`지금 원고를 임시 보관하지 못해 작품 설정을 열지 않았어요. ${issueText(issue)}`);return;}}setMemoRequest(id!==undefined?{projectId:project.id,memoId:id,lineId:line.id,section,returnToEditor:true,editorContext:view==='editor'&&mode==='edit'?{editorView,activeTool,writerChapterId,soundTool}:undefined}:null);if(protectAuthoring('prepare'))return;rememberCurrent();setMode('edit');setView('prepare');setManageOpen(false);}
   async function preserveCopyAudio(source:StoryProject,target:StoryProject){
     try{await copyAudioWorkMetadata(source.id,target.id);return true;}
-    catch(issue){setError(`사본의 음원 정보를 보존하지 못했어요. 기존 작품은 유지됩니다. ${issueText(issue)}`);return false;}
+    catch(issue){setError(`사본의 음원 정보를 보존하지 못했어요. 기존 작품은 유지돼요. ${issueText(issue)}`);return false;}
   }
   function protectAuthoring(target:'editor'|'prepare',requestedLine?:string){
     if(directEditor.current||!builtInStories.some(item=>item.id===storyId))return false;
@@ -710,7 +710,7 @@ export function StoryWorkspace() {
   function selectCut(id: string,visitIndex?:number) {
     if(stopForUnappliedInput())return false;
     if(composing){setError("한글 입력을 마친 뒤 컷을 이동해 주세요.");return false;}
-    if(!project.lines.some(cut=>cut.id===id)){setError('이동할 컷을 찾지 못했어요. 현재 원고는 유지됩니다.');return false;}
+    if(!project.lines.some(cut=>cut.id===id)){setError('이동할 컷을 찾지 못했어요. 현재 원고는 유지돼요.');return false;}
     const nextPath=visitIndex===undefined?visitEditingCut(editingPath,id,project.lines.map(cut=>cut.id),lineId):returnToEditingVisit(editingPath,visitIndex,project.lines.map(cut=>cut.id),lineId);
     if(visitIndex!==undefined&&(!Number.isInteger(visitIndex)||visitIndex<0||visitIndex>=editingPath.length||nextPath.at(-1)!==id))return false;
     const nextPlayback=createPlayback(project,id);
@@ -966,7 +966,7 @@ export function StoryWorkspace() {
     } catch (issue) {
       if(sequence!==importReadSequence.current)return;
       setError(
-        `작품을 가져오지 못했어요. 현재 작품은 유지됩니다.\n${issueText(issue)}`,
+        `작품을 가져오지 못했어요. 현재 작품은 유지돼요.\n${issueText(issue)}`,
       );
     }finally{if(sequence===importReadSequence.current)setImportBusy(false);}
   }
@@ -984,7 +984,7 @@ export function StoryWorkspace() {
     try{saveBeforeImport();}catch(issue){setError(String(issue));return;}
     setImportBusy(true);
     try{const next=independentImportedWork(pendingArchive.document.project,{...savedProjects.current,[storyId]:project},builtInStories.map(item=>item.project.id),crypto.randomUUID());await importAudioResources(pendingArchive.audioResources,next.id);acceptImported(next,true);setPendingArchive(null);}
-    catch(issue){setError(`가져오기를 적용하지 못했어요. 현재 작품은 유지됩니다. ${issueText(issue)}`);}
+    catch(issue){setError(`가져오기를 적용하지 못했어요. 현재 작품은 유지돼요. ${issueText(issue)}`);}
     finally{setImportBusy(false);}
   }
   async function serializeLocalWork(work:StoryProject=project){
@@ -1027,7 +1027,7 @@ export function StoryWorkspace() {
       const saved=writeWorkspaceSnapshot(writer.guard.current!,fallback,remaining,remainingContexts,state);savedProjects.current=saved.works;contexts.current=saved.contexts;
       setEditingPaths(current=>({...Object.fromEntries(Object.entries(current).filter(([id])=>id!==key)),[active]:state.editingPath}));
       setDeletedWork(checkpoint);setProject(fallback);setStoryId(active);setLineId(state.lineId);setPlayback(state.playback);setMode('edit');setView('library');setImportedWorks(current=>Object.fromEntries(Object.entries(current).filter(([id])=>id!==key)));setPendingWorkDelete(null);setSaveStatus('임시 보관됨');setError('');
-    }catch(issue){setError(`작품을 삭제하지 못했어요. 현재 작품과 복구 자료는 보존됩니다. ${issueText(issue)}`);}
+    }catch(issue){setError(`작품을 삭제하지 못했어요. 현재 작품과 복구 자료는 보존돼요. ${issueText(issue)}`);}
   }
   function restorePersonalWork(){
     if(!deletedWork||!hydrated)return;
@@ -1038,7 +1038,7 @@ export function StoryWorkspace() {
       const works={...existing,[deletedWork.key]:deletedWork.project};const nextContexts={...contexts.current,...(deletedWork.context?{[deletedWork.key]:deletedWork.context}:{})};
       const saved=writeWorkspaceSnapshot(writer.guard.current!,project,works,nextContexts,{...snapshot(),deletedWork:undefined});savedProjects.current=saved.works;contexts.current=saved.contexts;
       setImportedWorks(current=>({...current,[deletedWork.key]:deletedWork.project.title}));localStorage.removeItem(DELETED_WORK_KEY);setDeletedWork(undefined);setSaveStatus('임시 보관됨');setError('');
-    }catch(issue){setError(`복구하지 못했어요. 복구 자료는 보존됩니다. ${issueText(issue)}`);}
+    }catch(issue){setError(`복구하지 못했어요. 복구 자료는 보존돼요. ${issueText(issue)}`);}
   }
   function confirmDelete() {
     if (!deleteId) return;
@@ -1217,7 +1217,7 @@ export function StoryWorkspace() {
           </div>
           {mode==='edit'&&activeTool==='cuts'&&(line.ending?.endsStory||line.flow?.type==='goto')&&<p className={styles.hint}>이 컷 뒤에 추가하면 지금의 엔딩·이동 설정이 새 컷으로 넘어가요. 다른 갈래는 선택지에서 새 장으로 연결하세요.</p>}
           <StoryStageNavigation mode={mode} activeTool={activeTool} line={line} chapterCuts={chapterCuts} chapterCutIndex={chapterCutIndex} playback={playback} onAdd={addCut} onMove={direction=>editStructure(()=>moveStoryCut(project,line.id,direction))} onSelect={selectCut} onRepair={()=>editFromFlow(line.id,{kind:'missing-target'})} onRestart={()=>{setPlaybackRun(v=>v+1);setPresentationEntry(v=>v+1);setPlayback(createPlayback(project));setRevision(v=>v+1);}}/>
-          {!!project.scores?.length&&(mode==='play'||activeTool==='flow')&&<details className={`${styles.semantic} ${styles.scoreSummary}`}><summary>이야기 점수 확인</summary><p>{mode==='play'?'이번 읽기에서 선택한 결과로 계산합니다.':'편집 중에는 시작 점수를 기준으로 보여줍니다.'}</p>{project.scores.map(score=><p key={score.id}>{score.name}: <output aria-label={`${score.name} 현재 점수`}>{mode==='play'?playbackScores(project,playback)[score.id]:score.initial}</output></p>)}</details>}
+          {!!project.scores?.length&&(mode==='play'||activeTool==='flow')&&<details className={`${styles.semantic} ${styles.scoreSummary}`}><summary>이야기 점수 확인</summary><p>{mode==='play'?'이번 읽기에서 선택한 결과로 계산해요.':'편집 중에는 시작 점수를 기준으로 보여줘요.'}</p>{project.scores.map(score=><p key={score.id}>{score.name}: <output aria-label={`${score.name} 현재 점수`}>{mode==='play'?playbackScores(project,playback)[score.id]:score.initial}</output></p>)}</details>}
           <StoryTextAccessibility sceneReady={runtime.rendered===scene.revision} nativeFrame={runtime.frame} onNativeBackTab={()=>runtime.container.current?.querySelector<HTMLButtonElement>('[data-reader-menu-trigger]')?.focus()} scene={scene} hasMoreText={!!runtime.renderEvidence?.dialoguePage&&runtime.renderEvidence.revision===scene.revision&&runtime.renderEvidence.dialoguePage.index<runtime.renderEvidence.dialoguePage.count-1} mode={mode} status={playback.status} presentationPending={runtime.presentationPending} readerBusy={readerBusy} onAdvance={advance} onBack={rewind} canGoBack={readerCanGoBack}/>
         </section>:null;
   if(!loadComplete)return <main aria-label="화면 불러오는 중"><StoryLoading/></main>;
@@ -1229,7 +1229,7 @@ export function StoryWorkspace() {
     <WorkLeaveGuard tracker={leaveTracker} work={project} ready={loadComplete}/>
     {libraryReturn&&<LibraryReturnDialog reason={libraryReturn.reason} notice={libraryReturnNotice} busy={libraryReturnBusy} onCancel={cancelLibraryReturn} onRetry={()=>void retryLibraryReturn()} onSave={()=>void saveFileAndReturn()} onContinue={()=>completeLibraryReturn('임시 보관이 안 된 원고가 이 탭에 있어요. 새로고침하거나 닫기 전에 작품 파일로 저장해 주세요.')}/>}
     <MobileFullscreenOffer enabled={['editor','prepare'].includes(view)&&!composing} onEnter={()=>void toggleFullscreen()}/>
-    {['editor','prepare','book','cover'].includes(view)&&excludedAudio.length>0&&<p role="alert" className={styles.error}>이 작품에 서비스에서 제외한 기본 소리가 있습니다: {excludedAudio.map(asset=>asset.name).join(', ')}. 해당 소리는 재생하지 않으며 원고의 소리 지정은 보존합니다. 음향 편집에서 사용할 소리로 교체해 주세요.</p>}
+    {['editor','prepare','book','cover'].includes(view)&&excludedAudio.length>0&&<p role="alert" className={styles.error}>이 작품에 서비스에서 제외한 기본 소리가 있어요: {excludedAudio.map(asset=>asset.name).join(', ')}. 해당 소리는 재생하지 않으며 원고의 소리 지정은 보존해요. 음향 편집에서 사용할 소리로 교체해 주세요.</p>}
     {importBusy&&!pendingArchive&&<p role='status' className={styles.status}>작품 파일을 살펴보고 있어요. 긴 작품은 조금 걸릴 수 있어요.</p>}
     {pendingArchive&&(!submissionAccount.current||submissionAccount.current===editorLimits.accountId)&&pendingArchive.format==='knolstory'&&<AuthoringImportDialog title={pendingArchive.document.project.title} kind='knolstory' chapterCount={pendingArchive.document.project.chapters.length} cutCount={pendingArchive.document.project.lines.length} resourceCount={pendingArchive.audioResources.length} busy={importBusy} error={error} onCancel={()=>setPendingArchive(null)} onApply={applyPendingArchive}/>}
     {view!=='editor'&&storageWarning}
@@ -1251,7 +1251,7 @@ export function StoryWorkspace() {
         <div data-editor-document-info>
           <h1>{project.title}</h1>
           {mode==='play'&&<p>{chapterLabel(chapter)}</p>}
-          {mode==='play' && compact && <p className={styles.readingHint}>세로는 말하는 인물에 집중하고, 가로는 장면을 함께 봅니다.</p>}
+          {mode==='play' && compact && <p className={styles.readingHint}>세로는 말하는 인물에 집중하고, 가로는 장면을 함께 봐요.</p>}
           <p data-testid="save-status" data-save-attention={displayedSaveStatus!=='임시 보관됨'} role="status">{displayedSaveStatus}</p>
         </div>
         <div className={styles.controls}>

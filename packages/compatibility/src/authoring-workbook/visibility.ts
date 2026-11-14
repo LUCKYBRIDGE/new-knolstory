@@ -37,7 +37,7 @@ export function readVisibilityTables(tables:AuthoringTables,project:StoryProject
  const markerRows=readTable({cuts:{headers:['lineId','present'],rows:tables.cuts.rows.map(row=>[row[tables.cuts.headers.indexOf('id')],row[markerIndex]])}},{key:'cuts',title:'컷',columns:[c('lineId','컷 ID'),c('present','컷 표시 조건 있음','boolean')]});
  const present=new Set(markerRows.filter(row=>row.present).map(row=>row.lineId));
  if(rows.some(row=>!present.has(row.lineId)||!project.lines.some(line=>line.id===row.lineId))||present.size!==rows.length)throw new WorkbookIssue(owners.title,0,'컷 ID','표시 조건이 있는 컷마다 조건 행을 하나씩 연결해 주세요.');
- for(const [terms,spec] of [[scoreRows,scores],[choiceRows,choices]] as const)if(terms.some(term=>!rows.some(row=>row.lineId===term.lineId)))throw new WorkbookIssue(spec.title,0,'컷 ID','표시 조건이 없는 컷의 조건입니다.');
+ for(const [terms,spec] of [[scoreRows,scores],[choiceRows,choices]] as const)if(terms.some(term=>!rows.some(row=>row.lineId===term.lineId)))throw new WorkbookIssue(spec.title,0,'컷 ID','표시 조건이 없는 컷의 조건이에요.');
  return {...project,lines:project.lines.map(line=>{
   const row=rows.find(row=>row.lineId===line.id);if(!row)return line;
   const ss=ordered(scoreRows.filter(term=>term.lineId===line.id),scores),cs=ordered(choiceRows.filter(term=>term.lineId===line.id),choices);

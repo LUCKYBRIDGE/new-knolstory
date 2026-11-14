@@ -5,7 +5,7 @@ import {createBlankStoryProject} from '../../packages/runtime-core/src/authoring
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 const base=createBlankStoryProject({id:'split',chapterId:'ch',lineId:'a',title:'효과음 나누기'});
 const sound={id:'original',assetId:'audio:sound:chime',sourceStartMs:200,sourceEndMs:1100,delayMs:200,volume:.5};
-const project={...base,lines:base.lines.map(line=>({...line,text:'원본 소리와 작성한 글을 보존합니다.',audio:{sounds:[sound]}}))};
+const project={...base,lines:base.lines.map(line=>({...line,text:'원본 소리와 작성한 글을 보존해요.',audio:{sounds:[sound]}}))};
 test('split a sound, undo, edit two pieces, reopen actual file and play scheduled native segments',async({page,browser},info)=>{
  test.setTimeout(150000);await page.route('**/api/**',route=>route.abort());await page.addInitScript(()=>sessionStorage.setItem('knolstory-fullscreen-offered-v1','1'));await page.goto('/?view=editor');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');

@@ -30,18 +30,18 @@ function exportResources(values:readonly AuthoringAudioResource[]):AuthoringTabl
 }
 function readResources(tables:AuthoringTables):AuthoringAudioResource[]{
  const records=readTable(tables,resources),parts=readTable(tables,bytes),tagRows=readTable(tables,tags);requireUnique(records,'id',resources.title);
- if(tagRows.some(tag=>!records.some(r=>r.id===tag.id)))throw new WorkbookIssue(tags.title,0,'음원 ID','정보가 없는 태그입니다.');
- if(parts.some(part=>!records.some(r=>r.id===part.id)))throw new WorkbookIssue(bytes.title,0,'음원 ID','정보가 없는 첨부 자료입니다.');
+ if(tagRows.some(tag=>!records.some(r=>r.id===tag.id)))throw new WorkbookIssue(tags.title,0,'음원 ID','정보가 없는 태그예요.');
+ if(parts.some(part=>!records.some(r=>r.id===part.id)))throw new WorkbookIssue(bytes.title,0,'음원 ID','정보가 없는 첨부 자료예요.');
  const positions=records.map(record=>record.position);if(positions.some(value=>!Number.isSafeInteger(value)||Number(value)<0)||new Set(positions).size!==positions.length)throw new WorkbookIssue(resources.title,0,'순서','자료 순서를 확인해 주세요.');
  return [...records].sort((a,b)=>Number(a.position)-Number(b.position)).map(record=>{
   const chunks=parts.filter(part=>part.id===record.id).sort((a,b)=>Number(a.part)-Number(b.part));
-  if(!chunks.length||chunks.some((part,index)=>part.part!==index))throw new WorkbookIssue(bytes.title,0,'조각','첨부 조각이 누락되거나 중복되었습니다.');
+  if(!chunks.length||chunks.some((part,index)=>part.part!==index))throw new WorkbookIssue(bytes.title,0,'조각','첨부 조각이 누락되거나 중복됐어요.');
   const attributes=tagRows.filter(tag=>tag.id===record.id).sort((a,b)=>Number(a.position)-Number(b.position));
   if(attributes.some((tag,index)=>tag.position!==index))throw new WorkbookIssue(tags.title,0,'태그 순서','태그 순서를 확인해 주세요.');
-  if(!record.metadataPresent&&(attributes.length||['category','originalName','metadataSource'].some(key=>record[key]!==undefined)))throw new WorkbookIssue(resources.title,0,'검색 속성','속성 없음과 작성 내용이 충돌합니다.');
+  if(!record.metadataPresent&&(attributes.length||['category','originalName','metadataSource'].some(key=>record[key]!==undefined)))throw new WorkbookIssue(resources.title,0,'검색 속성','속성 없음과 작성 내용이 충돌해요.');
   const metadata={category:record.category,tags:attributes.map(tag=>tag.tag),...(record.originalName===undefined?{}:{originalName:record.originalName}),...(record.metadataSource===undefined?{}:{source:record.metadataSource})};
   const provenance=Object.fromEntries(provenanceKeys.filter(key=>record[key]!==undefined).map(key=>[key,record[key]]));
-  if(!record.provenancePresent&&Object.keys(provenance).length)throw new WorkbookIssue(resources.title,0,'출처','출처 없음과 작성 내용이 충돌합니다.');
+  if(!record.provenancePresent&&Object.keys(provenance).length)throw new WorkbookIssue(resources.title,0,'출처','출처 없음과 작성 내용이 충돌해요.');
   return {id:record.id,name:record.name,mime:record.mime,kind:record.kind,data:chunks.map(part=>part.data).join(''),...(record.provenancePresent?{provenance}:{}),...(record.metadataPresent?{metadata}:{})} as AuthoringAudioResource;
  });
 }
@@ -68,7 +68,7 @@ function upgradePreviousWorkbook(input:AuthoringWorkbook):AuthoringWorkbook {
   for(const spec of SCORE_SPECS)tables[spec.key]=makeTable(spec,[]);
  }
  const metadata=tables.metadata;
- if(metadata){const versionIndex=metadata.headers.indexOf('version'),schemaIndex=metadata.headers.indexOf('schemaVersion');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[versionIndex]!=='2'||input.workKind==='knolstory'&&row[schemaIndex]!=='5')throw new WorkbookIssue('형식 정보',3,'버전','이전 양식의 버전 정보가 일치하지 않습니다.');return row.map((value,index)=>index===versionIndex?'3':index===schemaIndex&&input.workKind==='knolstory'?String(CURRENT_SCHEMA_VERSION):value);})};}
+ if(metadata){const versionIndex=metadata.headers.indexOf('version'),schemaIndex=metadata.headers.indexOf('schemaVersion');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[versionIndex]!=='2'||input.workKind==='knolstory'&&row[schemaIndex]!=='5')throw new WorkbookIssue('형식 정보',3,'버전','이전 양식의 버전 정보가 일치하지 않아요.');return row.map((value,index)=>index===versionIndex?'3':index===schemaIndex&&input.workKind==='knolstory'?String(CURRENT_SCHEMA_VERSION):value);})};}
  return {...input,formatVersion:3,tables};
 }
 /** Versions 2/3 stored milliseconds. Convert only declared numeric time columns. */
@@ -79,9 +79,9 @@ function upgradeMillisecondsWorkbook(input:AuthoringWorkbook):AuthoringWorkbook 
   const timeKeys=specs.find(spec=>spec.key===key)?.columns.filter(column=>column.type==='number'&&column.key.endsWith('Ms')).map(column=>column.key)??[];
   return [key,{...table,rows:table.rows.map((row,rowIndex)=>row.map((value,index)=>{
    const column=table.headers[index];
-   if(key==='metadata'&&column==='version'){if(value!=='3')throw new WorkbookIssue('형식 정보',rowIndex+3,'표 버전','이전 양식의 버전 정보가 일치하지 않습니다.');return '4';}
+   if(key==='metadata'&&column==='version'){if(value!=='3')throw new WorkbookIssue('형식 정보',rowIndex+3,'표 버전','이전 양식의 버전 정보가 일치하지 않아요.');return '4';}
    if(!timeKeys.includes(column)||value==='⟪미설정⟫')return value;
-   if(!value.trim()||!Number.isFinite(Number(value)))throw new WorkbookIssue(specs.find(spec=>spec.key===key)!.title,rowIndex+3,column,'이전 양식의 밀리초 값이 올바르지 않습니다.');
+   if(!value.trim()||!Number.isFinite(Number(value)))throw new WorkbookIssue(specs.find(spec=>spec.key===key)!.title,rowIndex+3,column,'이전 양식의 밀리초 값이 올바르지 않아요.');
    return shiftDecimal(String(Number(value)),-3);
   }))}];
  }));
@@ -98,7 +98,7 @@ function upgradeAudioAttributes(input:AuthoringWorkbook):AuthoringWorkbook {
   tables.resourceTags=makeTable(tags,[]);
  }
  const metadata=tables.metadata;
- if(metadata){const index=metadata.headers.indexOf('version');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[index]!=='4')throw new WorkbookIssue('형식 정보',3,'표 버전','이전 버전 정보가 일치하지 않습니다.');return row.map((value,i)=>i===index?'5':value);})};}
+ if(metadata){const index=metadata.headers.indexOf('version');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[index]!=='4')throw new WorkbookIssue('형식 정보',3,'표 버전','이전 버전 정보가 일치하지 않아요.');return row.map((value,i)=>i===index?'5':value);})};}
  return {...input,formatVersion:5,tables};
 }
 /** v5 had no authored effect duration. Preserve unset defaults; never infer a duration. */
@@ -111,7 +111,7 @@ function upgradeEffectDuration(input:AuthoringWorkbook):AuthoringWorkbook {
   if(table)tables.presentationEffects={headers:[...table.headers,'durationMs'],rows:table.rows.map(row=>[...row,'⟪미설정⟫'])};
  }
  const metadata=tables.metadata;
- if(metadata){const index=metadata.headers.indexOf('version');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[index]!=='5')throw new WorkbookIssue('형식 정보',3,'표 버전','이전 버전 정보가 일치하지 않습니다.');return row.map((value,i)=>i===index?'6':value);})};}
+ if(metadata){const index=metadata.headers.indexOf('version');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[index]!=='5')throw new WorkbookIssue('형식 정보',3,'표 버전','이전 버전 정보가 일치하지 않아요.');return row.map((value,i)=>i===index?'6':value);})};}
  return {...input,formatVersion:6,tables};
 }
 /** v6 had no cut-end ranges. Add absent columns without authoring default endpoints. */
@@ -130,7 +130,7 @@ function upgradeBranchConditions(input:AuthoringWorkbook):AuthoringWorkbook{
   const table=tables[key];if(!table)continue;
   if(!table.headers.some(column=>keys.includes(column)))tables[key]={headers:[...table.headers,...keys],rows:table.rows.map(row=>[...row,'없음','⟪미설정⟫','⟪미설정⟫'])};
  }
- const metadata=tables.metadata;if(metadata){const vi=metadata.headers.indexOf('version'),si=metadata.headers.indexOf('schemaVersion');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[vi]!=='7'||input.workKind==='knolstory'&&row[si]!=='7')throw new WorkbookIssue('형식 정보',3,'버전','이전 버전 정보가 일치하지 않습니다.');return row.map((v,i)=>i===vi?'8':input.workKind==='knolstory'&&i===si?'8':v);})};}
+ const metadata=tables.metadata;if(metadata){const vi=metadata.headers.indexOf('version'),si=metadata.headers.indexOf('schemaVersion');tables.metadata={...metadata,rows:metadata.rows.map(row=>{if(row[vi]!=='7'||input.workKind==='knolstory'&&row[si]!=='7')throw new WorkbookIssue('형식 정보',3,'버전','이전 버전 정보가 일치하지 않아요.');return row.map((v,i)=>i===vi?'8':input.workKind==='knolstory'&&i===si?'8':v);})};}
  return {...input,formatVersion:8,tables};
 }
 export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<AuthoringArchive>{
@@ -138,9 +138,9 @@ export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<A
  if(input.formatVersion===CURRENT_WORKBOOK_VERSION){
   for(const spec of authoringWorkbookSpecs(input.workKind)){
    const table=input.tables[spec.key];
-   if(!table)throw new WorkbookIssue(spec.title,1,'탭','현재 양식의 필수 탭이 없습니다. 새 양식을 사용하거나 원본 파일을 확인해 주세요.');
+   if(!table)throw new WorkbookIssue(spec.title,1,'탭','현재 양식의 필수 탭이 없어요. 새 양식을 사용하거나 원본 파일을 확인해 주세요.');
    const keys=spec.columns.map(column=>column.key);
-   if(table.headers.length!==keys.length||new Set(table.headers).size!==keys.length||table.headers.some(key=>!keys.includes(key)))throw new WorkbookIssue(spec.title,2,'헤더','현재 양식의 열 이름·중복·누락을 확인해 주세요. 내용을 추측해 가져오지 않습니다.');
+   if(table.headers.length!==keys.length||new Set(table.headers).size!==keys.length||table.headers.some(key=>!keys.includes(key)))throw new WorkbookIssue(spec.title,2,'헤더','현재 양식의 열 이름·중복·누락을 확인해 주세요. 내용을 추측해 가져오지 않아요.');
   }
  }
 
@@ -158,18 +158,18 @@ export async function importAuthoringWorkbook(input:AuthoringWorkbook):Promise<A
  }
  const upgraded=upgradeBranchConditions(upgradeCutEnds(upgradeEffectDuration(upgradeAudioAttributes(upgradeMillisecondsWorkbook(upgradePreviousWorkbook(input))))));
  const workbook=upgraded.workKind==='knolstory'?{...upgraded,tables:upgradeVisibilityTables(upgradeBranchGroupTables(upgradeTextVariantTables(upgraded.tables)))}:upgraded;
- if(workbook.format!=='knolstory-authoring-workbook'||![8,CURRENT_WORKBOOK_VERSION].includes(workbook.formatVersion)||!['knolstory','shortstory'].includes(workbook.workKind))throw new WorkbookIssue(meta.title,0,'버전','지원하지 않는 편집 양식입니다.');
+ if(workbook.format!=='knolstory-authoring-workbook'||![8,CURRENT_WORKBOOK_VERSION].includes(workbook.formatVersion)||!['knolstory','shortstory'].includes(workbook.workKind))throw new WorkbookIssue(meta.title,0,'버전','지원하지 않는 편집 양식이에요.');
  const specs=authoringWorkbookSpecs(workbook.workKind),unknown=Object.keys(workbook.tables).filter(key=>!specs.some(spec=>spec.key===key));
- if(unknown.length)throw new WorkbookIssue('편집 양식',0,'탭',`지원하지 않는 탭 ${unknown.join(', ')}가 있습니다.`);
- const ms=readTable(workbook.tables,meta);if(ms.length!==1)throw new WorkbookIssue(meta.title,3,'행','정보 행은 한 개여야 합니다.');const m=ms[0];
- if(m.format!==workbook.format||m.version!==workbook.formatVersion||m.kind!==workbook.workKind||m.schemaVersion!==(workbook.workKind==='knolstory'?CURRENT_SCHEMA_VERSION:1))throw new WorkbookIssue(meta.title,3,'버전','형식 정보가 일치하지 않습니다.');
+ if(unknown.length)throw new WorkbookIssue('편집 양식',0,'탭',`지원하지 않는 탭 ${unknown.join(', ')}가 있어요.`);
+ const ms=readTable(workbook.tables,meta);if(ms.length!==1)throw new WorkbookIssue(meta.title,3,'행','정보 행은 한 개여야 해요.');const m=ms[0];
+ if(m.format!==workbook.format||m.version!==workbook.formatVersion||m.kind!==workbook.workKind||m.schemaVersion!==(workbook.workKind==='knolstory'?CURRENT_SCHEMA_VERSION:1))throw new WorkbookIssue(meta.title,3,'버전','형식 정보가 일치하지 않아요.');
  if(workbook.workKind==='knolstory'){
   let p:StoryProject=readProjectTables(workbook.tables);
   for(const apply of [validateBranchGroupOwners,readFlowTables,readScoreTables,readTextVariantTables,readVisibilityTables,readStageTables,readAudioTables,readPresentationTables,readCoverTables,readPreparationTables])p=apply(workbook.tables,p);
   return createAuthoringArchive({format:'knolstory',document:createStoryDocument({project:p,savedAt:String(m.savedAt),appVersion:String(m.appVersion),...(m.assetCatalogVersion===undefined?{}:{assetCatalogVersion:String(m.assetCatalogVersion)})}),audioResources:readResources(workbook.tables)});
  }
- const rows=readTable(workbook.tables,shortProject);if(rows.length!==1)throw new WorkbookIssue(shortProject.title,3,'행','작품 행은 한 개여야 합니다.');const row=rows[0];
- if(!row.sourcePresent&&(row.sourceKind!==undefined||row.presetId!==undefined))throw new WorkbookIssue(shortProject.title,3,'출처','출처 없음과 작성 내용이 충돌합니다.');
+ const rows=readTable(workbook.tables,shortProject);if(rows.length!==1)throw new WorkbookIssue(shortProject.title,3,'행','작품 행은 한 개여야 해요.');const row=rows[0];
+ if(!row.sourcePresent&&(row.sourceKind!==undefined||row.presetId!==undefined))throw new WorkbookIssue(shortProject.title,3,'출처','출처 없음과 작성 내용이 충돌해요.');
  const project={id:row.id,title:row.title,description:row.description,authorDisplayName:row.authorDisplayName,updatedAt:row.updatedAt,cover:{backgroundId:row.backgroundId,characterId:row.characterId,authorNote:row.authorNote,...(readCoverDesignTables(workbook.tables)?{design:readCoverDesignTables(workbook.tables)}:{})},pages:readTable(workbook.tables,pages).sort((a,b)=>Number(a.order)-Number(b.order)),...(row.sourcePresent?{source:{kind:row.sourceKind,...(row.presetId===undefined?{}:{presetId:row.presetId})}}:{})};
  return createAuthoringArchive({format:'shortstory',project:parseShortStory(project) as ShortStoryProject});
 }

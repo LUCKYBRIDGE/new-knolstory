@@ -6,7 +6,7 @@ type Store=Pick<Storage,'getItem'|'setItem'>;
 export const emptyShortStoryLibrary=():ShortStoryLibrary=>({version:1,books:[],positions:{},deleted:[],activeId:''});
 export function parseShortStoryLibrary(raw:string):ShortStoryLibrary {
  const value=JSON.parse(raw);
- if(!value||value.version!==1||Object.keys(value).some(key=>!['version','books','positions','deleted','activeId'].includes(key))||!Array.isArray(value.books)||!Array.isArray(value.deleted)||typeof value.activeId!=='string'||!value.positions||typeof value.positions!=='object'||Array.isArray(value.positions))throw Error('그림책 보관함 형식을 확인해 주세요. 원본 저장은 그대로 보존합니다.');
+ if(!value||value.version!==1||Object.keys(value).some(key=>!['version','books','positions','deleted','activeId'].includes(key))||!Array.isArray(value.books)||!Array.isArray(value.deleted)||typeof value.activeId!=='string'||!value.positions||typeof value.positions!=='object'||Array.isArray(value.positions))throw Error('그림책 보관함 형식을 확인해 주세요. 원본 저장은 그대로 보존해요.');
  const books=value.books.map(parseShortStory),deleted=value.deleted.map(parseShortStory),all=[...books,...deleted];
  const ids=all.map(book=>book.id);
  if(new Set(ids).size!==ids.length||ids.some(id=>id.startsWith('shortstory-original-'))||all.length>1000)throw Error('그림책 ID와 보관함 크기를 확인해 주세요.');

@@ -55,8 +55,8 @@ test('late online read never replaces a newly edited local work',async({page})=>
  const remote=await onlineHarness(page);let release:()=>void=()=>{},started=false;const gate=new Promise<void>(resolve=>{release=resolve;});
  await page.route(`**/api/v1/documents/${recordId}`,async route=>{started=true;await gate;await route.fulfill({json:{success:true,data:{recordId,revision:1,format:'knolstory',clientProjectId:remote.project.id,title:remote.project.title,contentSha256:remote.snapshot.contentSha256,createdAt:1,updatedAt:1,snapshot:remote.snapshot}}});});
  await page.goto('/?view=library');await onlineReady(page);await openRemote(page);await expect.poll(()=>started).toBe(true);await page.keyboard.press('Escape');
- await createLocal(page,'늦은 응답과 별개인 원고','지금 쓰는 원고를 유지합니다.');const before=await local(page),response=page.waitForResponse(`**/api/v1/documents/${recordId}`);release();await(await response).finished();await afterFrame(page);
- expect((await local(page)).document.project).toEqual(before.document.project);await expect(page.getByLabel('1컷 글',{exact:true})).toHaveValue('지금 쓰는 원고를 유지합니다.');
+ await createLocal(page,'늦은 응답과 별개인 원고','지금 쓰는 원고를 유지해요.');const before=await local(page),response=page.waitForResponse(`**/api/v1/documents/${recordId}`);release();await(await response).finished();await afterFrame(page);
+ expect((await local(page)).document.project).toEqual(before.document.project);await expect(page.getByLabel('1컷 글',{exact:true})).toHaveValue('지금 쓰는 원고를 유지해요.');
 });
 test('local save failure prevents an online POST and preserves the original work',async({page})=>{
  await onlineHarness(page);let posted=false;await page.route('**/api/v1/documents',route=>{if(route.request().method()==='POST')posted=true;return route.fulfill({status:503,json:{success:false,error:{code:'SERVICE_UNAVAILABLE'}}});});

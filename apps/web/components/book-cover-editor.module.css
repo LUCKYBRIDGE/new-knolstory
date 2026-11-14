@@ -211,7 +211,7 @@
   margin:20px 0 8px
 }
 .canvasHint {
-  font-size:12px;
+  font-size:var(--text-caption);
   line-height:1.7;
   color:var(--ink-soft)
 }
@@ -238,7 +238,7 @@
   pointer-events:none
 }
 .presets small {
-  font-size:10px;
+  font-size:var(--text-caption);
   line-height:1.5
 }
 .fields {
@@ -299,7 +299,7 @@
   max-height:calc(var(--keyboard-visible-height) - 8px); display:flex; flex-direction:column; overflow:hidden;
 }
 .dialog[data-keyboard-occluded=true] .header,.dialog[data-keyboard-occluded=true] .footer { flex:none; padding:6px 10px; gap:8px; }
-.dialog[data-keyboard-occluded=true] .header h2 { font-size:18px; margin:0; }
+.dialog[data-keyboard-occluded=true] .header h2 { font-size:var(--text-lead); margin:0; }
 .dialog[data-keyboard-occluded=true] .header small,.dialog[data-keyboard-occluded=true] .footer>span,.dialog[data-keyboard-occluded=true] .preview { display:none; }
 .dialog[data-keyboard-occluded=true] .body { display:block; flex:1; min-height:0; max-height:none; overflow:auto; padding:8px 12px; }
 .dialog[data-keyboard-occluded=true] .fields { padding:0; }

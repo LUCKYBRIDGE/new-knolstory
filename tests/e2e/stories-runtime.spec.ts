@@ -99,7 +99,7 @@ test("all four full manuscripts render actual image assets and edited text in on
     const original = await page.getByLabel("대사 / 해설").inputValue();
     await page
       .getByLabel("대사 / 해설")
-      .fill(`${original}\n실제 렌파이에 반영한 문장입니다.`);
+      .fill(`${original}\n실제 렌파이에 반영한 문장이에요.`);
     await rendered(page);
     // The upper stage has no Web story renderer; varied pixels here come from Ren’Py imagery.
     await expect

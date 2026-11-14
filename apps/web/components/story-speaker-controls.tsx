@@ -117,7 +117,7 @@ export function StorySpeakerControls({ project, line, stage, onProjectChange, pa
       <option value="left">왼쪽 첫 인물</option><option value="right">오른쪽 첫 인물</option>
     </select></label>
     <button type="button" disabled={!character?.defaultImageId} onClick={() => change(placeDefaultImage)}>기본 이미지를 무대에 배치</button>
-    <p className={styles.hint}>선택한 쪽의 첫 인물 이미지를 교체합니다. 기존 위치·크기·방향과 다른 인물은 유지해요.</p>
+    <p className={styles.hint}>선택한 쪽의 첫 인물 이미지를 교체해요. 기존 위치·크기·방향과 다른 인물은 유지해요.</p>
     </fieldset>
     </details>
     {error && <p role="alert">{error}</p>}

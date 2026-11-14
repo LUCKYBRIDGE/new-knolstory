@@ -18,7 +18,7 @@ export function createStorageGuard(storage:Pick<Storage,'getItem'|'setItem'>,key
   assertWritable,
   getItem:(name:string)=>storage.getItem(name),
   setItem(name:string,value:string){
-   if(name!==key)throw Error('허용되지 않은 저장 키입니다.');
+   if(name!==key)throw Error('허용되지 않은 저장 키예요.');
    assertWritable();storage.setItem(name,value);expected=value;
   },
  };

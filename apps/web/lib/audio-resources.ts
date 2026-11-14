@@ -13,7 +13,7 @@ function openStore(): Promise<IDBDatabase> {
       if(!db.objectStoreNames.contains('work-metadata'))db.createObjectStore('work-metadata', { keyPath: ['workId','id'] });
     };
     request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(new Error('오디오 보관함을 열지 못했습니다.'));
+    request.onerror = () => reject(new Error('오디오 보관함을 열지 못했어요.'));
   });
 }
 function isAudioBytes(bytes: Uint8Array, ext: string): boolean {
@@ -21,13 +21,13 @@ function isAudioBytes(bytes: Uint8Array, ext: string): boolean {
   return ext === 'wav' ? text(0,4)==='RIFF' && text(8,4)==='WAVE' : ext === 'ogg' ? text(0,4)==='OggS' : text(0,3)==='ID3' || bytes[0]===255 && (bytes[1]&224)===224;
 }
 export function validateAudioResource(value: unknown): AudioResource {
-  if (!value || typeof value !== 'object') throw new Error('오디오 자료가 올바르지 않습니다.');
+  if (!value || typeof value !== 'object') throw new Error('오디오 자료가 올바르지 않아요.');
   const item = value as Record<string,unknown>;
   const ext = typeof item.id === 'string' ? item.id.split(':').at(-1) : '';
-  if (!customAudioRuntimePath(String(item.id)) || typeof item.name!=='string' || !item.name.trim() || item.name.length>200 || (item.kind!=='music' && item.kind!=='sound') || typeof item.data!=='string' || item.data.length>Math.ceil(MAX_BYTES/3)*4 || !/^[A-Za-z0-9+/]*={0,2}$/.test(item.data) || item.mime!==mimeFor[ext as keyof typeof mimeFor]) throw new Error('오디오 자료 형식이나 크기가 올바르지 않습니다.');
+  if (!customAudioRuntimePath(String(item.id)) || typeof item.name!=='string' || !item.name.trim() || item.name.length>200 || (item.kind!=='music' && item.kind!=='sound') || typeof item.data!=='string' || item.data.length>Math.ceil(MAX_BYTES/3)*4 || !/^[A-Za-z0-9+/]*={0,2}$/.test(item.data) || item.mime!==mimeFor[ext as keyof typeof mimeFor]) throw new Error('오디오 자료 형식이나 크기가 올바르지 않아요.');
   let bytes: Uint8Array;
-  try { bytes = Uint8Array.from(atob(item.data),char=>char.charCodeAt(0)); } catch { throw new Error('오디오 자료를 읽지 못했습니다.'); }
-  if (!bytes.length || bytes.length > MAX_BYTES || !isAudioBytes(bytes,String(ext))) throw new Error('지원하는 WAV, MP3, OGG 오디오 파일이 아닙니다.');
+  try { bytes = Uint8Array.from(atob(item.data),char=>char.charCodeAt(0)); } catch { throw new Error('오디오 자료를 읽지 못했어요.'); }
+  if (!bytes.length || bytes.length > MAX_BYTES || !isAudioBytes(bytes,String(ext))) throw new Error('지원하는 WAV, MP3, OGG 오디오 파일이 아니에요.');
   return { id: String(item.id), name: item.name, mime: String(item.mime), data: item.data, kind: item.kind,...(item.metadata===undefined?{}:{metadata:validateAudioMetadata(item.metadata)}),...(item.provenance===undefined?{}:{provenance:validateMediaProvenance(item.provenance,String(item.id))}) };
 }
 type WorkAudioMetadata=Readonly<Omit<AudioResource,'data'> & {workId:string;position?:number}>;
@@ -49,7 +49,7 @@ async function readAudioResources(ids:readonly string[]|undefined,workId:string|
         try {
           const own=new Map((metadata.result as WorkAudioMetadata[]).filter(item=>item.workId===workId).map(item=>[item.id,item]));
           const stored=bytes.result as AudioResource[];
-          if(ownOnly&&[...own.keys()].some(id=>!stored.some(item=>item.id===id)))throw new Error('작품에 첨부된 오디오 자료가 보관함에 없습니다.');
+          if(ownOnly&&[...own.keys()].some(id=>!stored.some(item=>item.id===id)))throw new Error('작품에 첨부된 오디오 자료가 보관함에 없어요.');
           const selected=stored.filter(item=>(!ids||ids.includes(item.id))&&(!ownOnly||own.has(item.id)));
           if(ownOnly)selected.sort((a,b)=>(own.get(a.id)?.position??0)-(own.get(b.id)?.position??0));
           resolve(selected.map(item=>{
@@ -60,20 +60,20 @@ async function readAudioResources(ids:readonly string[]|undefined,workId:string|
           }));
         } catch(error) {reject(error);}
       };
-      tx.onerror=()=>reject(new Error('오디오 자료를 불러오지 못했습니다.'));
-      tx.onabort=()=>reject(new Error('오디오 자료 불러오기가 취소되었습니다.'));
+      tx.onerror=()=>reject(new Error('오디오 자료를 불러오지 못했어요.'));
+      tx.onabort=()=>reject(new Error('오디오 자료 불러오기가 취소됐어요.'));
     });
   } finally { db.close(); }
 }
 export async function importAudioResources(resources: readonly AudioResource[],workId?:string): Promise<void> {
   const checked = resources.map(validateAudioResource);
   if (!checked.length) return;
-  if (checked.reduce((sum,item)=>sum+item.data.length,0)>20*1024*1024) throw new Error('오디오 자료의 파일 첨부 크기(base64)는 전체 20MB까지 보관할 수 있습니다.');
+  if (checked.reduce((sum,item)=>sum+item.data.length,0)>20*1024*1024) throw new Error('오디오 자료의 파일 첨부 크기(base64)는 전체 20MB까지 보관할 수 있어요.');
   for (const item of checked) {
     const bytes = Uint8Array.from(atob(item.data),char=>char.charCodeAt(0));
     const digest=await crypto.subtle.digest('SHA-256',bytes);
     const hash=Array.from(new Uint8Array(digest),value=>value.toString(16).padStart(2,'0')).join('');
-    if (!item.id.includes(`:${hash}:`)) throw new Error('오디오 자료의 내용과 자산 ID가 다릅니다.');
+    if (!item.id.includes(`:${hash}:`)) throw new Error('오디오 자료의 내용과 자산 ID가 달라요.');
   }
   const db=await openStore();
   try { await new Promise<void>((resolve,reject)=>{
@@ -98,7 +98,7 @@ export async function importAudioResources(resources: readonly AudioResource[],w
         write(new Map(own.map((item,index)=>[item.id,item.position??index])));
       };
     }else write(new Map());
-    tx.oncomplete=()=>resolve();tx.onerror=()=>reject(new Error('오디오 자료를 저장하지 못했습니다.'));tx.onabort=()=>reject(new Error('오디오 저장이 취소되었습니다.'));
+    tx.oncomplete=()=>resolve();tx.onerror=()=>reject(new Error('오디오 자료를 저장하지 못했어요.'));tx.onabort=()=>reject(new Error('오디오 저장이 취소됐어요.'));
   }); } finally { db.close(); }
 }
 /** Clone only per-work labels/rights; content bytes remain in the shared resource store. */
@@ -112,8 +112,8 @@ export async function copyAudioWorkMetadata(sourceId:string,targetId:string):Pro
       for(const item of request.result as WorkAudioMetadata[])if(item.workId===sourceId)store.put({...item,workId:targetId});
     };
     tx.oncomplete=()=>resolve();
-    tx.onerror=()=>reject(new Error('사본의 오디오 출처 기록을 보관하지 못했습니다.'));
-    tx.onabort=()=>reject(new Error('사본의 오디오 출처 기록 저장이 취소되었습니다.'));
+    tx.onerror=()=>reject(new Error('사본의 오디오 출처 기록을 보관하지 못했어요.'));
+    tx.onabort=()=>reject(new Error('사본의 오디오 출처 기록 저장이 취소됐어요.'));
   });}finally{db.close();}
 }
 export function audioResourceAsset(item: AudioResource): AudioAsset {
@@ -124,7 +124,7 @@ export async function registerAudioFile(file: File, kind: AudioAsset['kind'],wor
   const ext=file.name.toLowerCase().split('.').at(-1) as keyof typeof mimeFor;
   if (!(ext in mimeFor) || file.size>MAX_BYTES || !file.size) throw new Error('WAV, MP3, OGG 파일을 5MB 이하로 선택하세요.');
   const buffer=await file.arrayBuffer();const bytes=new Uint8Array(buffer);
-  if (!isAudioBytes(bytes,ext)) throw new Error('파일 내용이 지원하는 오디오 형식이 아닙니다.');
+  if (!isAudioBytes(bytes,ext)) throw new Error('파일 내용이 지원하는 오디오 형식이 아니에요.');
   const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',buffer)),value=>value.toString(16).padStart(2,'0')).join('');
   let binary=''; for (const byte of bytes) binary+=String.fromCharCode(byte);
   const item: AudioResource={id:`audio:custom:${hash}:${ext}`,name:file.name.slice(0,200),mime:mimeFor[ext],data:btoa(binary),kind,...(metadata?{metadata:validateAudioMetadata(metadata)}:{})};

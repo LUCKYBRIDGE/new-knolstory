@@ -8,7 +8,7 @@ const chapter=base.chapters[0]!,cut=base.lines[0]!;
 const unseen='아직 읽지 않은 마지막 문장_숨김확인';
 const project={...base,chapters:[{...chapter,title:'지난 장'},{...chapter,id:'b',order:2,chapterNumber:2,title:'이번 장'},{...chapter,id:'c',order:3,chapterNumber:3,title:'읽지 않은 장'}],
  scores:[{id:'trust',name:'신뢰',description:'',initial:0}],lines:[
-  {...cut,text:'이전 장의 첫 글입니다.',flow:{type:'choice' as const,options:[{id:'chosen',label:'친구를 믿는다',targetLineId:'b0',effects:[{scoreId:'trust',operation:'add' as const,value:3}]},{id:'other',label:'기다린다',targetLineId:'b0'}]}},
+  {...cut,text:'이전 장의 첫 글이에요.',flow:{type:'choice' as const,options:[{id:'chosen',label:'친구를 믿는다',targetLineId:'b0',effects:[{scoreId:'trust',operation:'add' as const,value:3}]},{id:'other',label:'기다린다',targetLineId:'b0'}]}},
   ...Array.from({length:12},(_,index)=>({...cut,id:`b${index}`,chapterId:'b',order:index+1,text:index===11?Array.from({length:26},(_,i)=>`${i+1}번째 문장. 토끼🐇와 친구는 바닷가에서 이야기를 나누었어요.\n`).join('')+unseen:`이번 장 ${index+1}번째 글. 친구들은 이야기를 이어갔어요. `.repeat(3),flow:{type:'goto' as const,targetLineId:index===11?'c0':`b${index+1}`}})),
   {...cut,id:'c0',chapterId:'c',text:'읽지 않은 장의 글',flow:{type:'goto' as const,targetLineId:null}}
  ]};
@@ -36,7 +36,7 @@ test('chapter script opens at newest text and only previous chapter starts can r
  let dialog=await openHistory(page);const scroll=dialog.locator('[data-reader-history-scroll]');
  await expect(dialog.locator('[data-reader-current-script] li')).toHaveCount(12);
  await expect(dialog.locator('[data-player-history-index]')).toHaveCount(1);await expect(dialog.locator('[data-player-history-index]')).toHaveAttribute('data-player-history-index','0');
- await expect(dialog).not.toContainText('이전 장의 첫 글입니다.');await expect(dialog).not.toContainText(unseen);await expect(dialog).not.toContainText('읽지 않은 장');
+ await expect(dialog).not.toContainText('이전 장의 첫 글이에요.');await expect(dialog).not.toContainText(unseen);await expect(dialog).not.toContainText('읽지 않은 장');
  await expect(dialog.locator('[data-reader-current-script] li').last()).toContainText(Array.from(project.lines[12]!.text).slice(0,boundary.endOffset).join(''));
  const atBottom=async()=>scroll.evaluate(el=>el.scrollHeight-el.scrollTop-el.clientHeight<3);
  await expect.poll(atBottom).toBe(true);expect(await scroll.evaluate(el=>el.scrollHeight>el.clientHeight)).toBe(true);

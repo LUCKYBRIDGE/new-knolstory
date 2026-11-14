@@ -4,4 +4,4 @@
 .metadata input,.metadata select,.metadata button {min-height:44px; max-width:100%;}
 .metadata dd {margin:0 0 8px; overflow-wrap:anywhere;}
 .tags {display:flex; flex-wrap:wrap; gap:4px;}
-.tags button {padding:4px 8px; font-size:.8rem;}
+.tags button {padding:4px 8px; font-size:var(--text-caption);}

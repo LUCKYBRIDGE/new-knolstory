@@ -50,14 +50,14 @@ for(const width of [1280,390,844])test(`adding a cut from settings returns to wr
  await page.goto('/');await enterLibrary(page);await startShelfCreation(page);
  await page.getByLabel('새 작품 제목',{exact:true}).fill('첫 두 컷 이어 쓰기');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
  const current=page.locator('[data-current-cut] textarea'),position=page.getByLabel('현재 장과 컷 이동',{exact:true}),menu=page.locator('[data-work-menu]');
- const firstId=await position.inputValue();await current.fill('첫 컷에서 이야기가 시작됩니다.');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const firstId=await position.inputValue();await current.fill('첫 컷에서 이야기가 시작돼요.');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  if(width===844)await page.setViewportSize({width:844,height:390});
  await menu.locator(':scope>summary').click();const add=page.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true});await add.focus();await add.press('Enter');
  await expect(menu).not.toHaveAttribute('open','');
  if(width===844){await expect(current).toHaveAttribute('readonly','');await expect(menu.locator(':scope>summary')).toBeFocused();await page.setViewportSize({width:390,height:900});await expect(current).not.toHaveAttribute('readonly','');}
  else await expect(current).toBeFocused();
  await expect(current).toHaveValue('');
- const secondId=await position.inputValue();expect(secondId).not.toBe(firstId);await current.fill('다음 컷에서도 이야기를 이어 씁니다.');
+ const secondId=await position.inputValue();expect(secondId).not.toBe(firstId);await current.fill('다음 컷에서도 이야기를 이어 써요.');
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  let thirdId:string|undefined,fourthId:string|undefined;
  if(width===1280){
@@ -74,7 +74,7 @@ for(const width of [1280,390,844])test(`adding a cut from settings returns to wr
  await menu.locator(':scope>summary').click();
  await openFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 저장',exact:true}).click();const file=await pending;
  const project=parseAuthoringFile(readFileSync((await file.path())!,'utf8')).project;
- expect(project.lines.map(line=>({id:line.id,text:line.text}))).toEqual([{id:firstId,text:'첫 컷에서 이야기가 시작됩니다.'},{id:secondId,text:'다음 컷에서도 이야기를 이어 씁니다.'},...(thirdId?[{id:thirdId,text:''}]:[]),...(fourthId?[{id:fourthId,text:''}]:[])]);
+ expect(project.lines.map(line=>({id:line.id,text:line.text}))).toEqual([{id:firstId,text:'첫 컷에서 이야기가 시작돼요.'},{id:secondId,text:'다음 컷에서도 이야기를 이어 써요.'},...(thirdId?[{id:thirdId,text:''}]:[]),...(fourthId?[{id:fourthId,text:''}]:[])]);
  expect(project.chapters).toHaveLength(width===1280?2:1);
 });
 

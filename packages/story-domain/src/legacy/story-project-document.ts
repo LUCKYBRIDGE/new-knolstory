@@ -163,21 +163,21 @@ function parseVersionedDocument(value: Record<string, unknown>, version: 1 | 2 |
       if(!line||typeof line!=='object')return false;
       const flow=line.flow as {type?:string;routes?:unknown;options?:Record<string,unknown>[]} | undefined;
       return flow?.routes!==undefined||(Array.isArray(flow?.options)&&flow.options.some(option=>option&&typeof option==='object'&&(option.effects!==undefined||option.condition!==undefined)));
-    })))issues.push({code:'invalid-value',path:'$.project.scores',message:'점수와 조건은 작품 문서 버전6에서 지원합니다.'});
+    })))issues.push({code:'invalid-value',path:'$.project.scores',message:'점수와 조건은 작품 문서 버전6에서 지원해요.'});
   }
   if(version<7&&rawProject){
     const nodes=[...(Array.isArray(rawProject.lines)?rawProject.lines:[]),...((rawProject as {chapters?:unknown[]}).chapters??[])];
     const hasRange=nodes.some(node=>{if(!node||typeof node!=='object')return false;const n=node as {presentation?:{effects?:{endLineId?:unknown}[]};audio?:{music?:{endLineId?:unknown};ambience?:{endLineId?:unknown}}};return n.presentation?.effects?.some(cue=>cue.endLineId!==undefined)||n.audio?.music?.endLineId!==undefined||n.audio?.ambience?.endLineId!==undefined;});
-    if(hasRange)issues.push({code:'invalid-value',path:'$.project',message:'종료 컷 범위는 작품 문서 버전7에서 지원합니다.'});
+    if(hasRange)issues.push({code:'invalid-value',path:'$.project',message:'종료 컷 범위는 작품 문서 버전7에서 지원해요.'});
   }
   if(version<8&&rawProject){
-    if(Array.isArray(rawProject.lines)&&rawProject.lines.some(line=>line&&typeof line==='object'&&(Object.hasOwn(line,'textVariants')||Object.hasOwn(line,'visibility'))))issues.push({code:'invalid-value',path:'$.project.lines',message:'조건별 글은 작품 문서 버전8에서 지원합니다.'});
+    if(Array.isArray(rawProject.lines)&&rawProject.lines.some(line=>line&&typeof line==='object'&&(Object.hasOwn(line,'textVariants')||Object.hasOwn(line,'visibility'))))issues.push({code:'invalid-value',path:'$.project.lines',message:'조건별 글은 작품 문서 버전8에서 지원해요.'});
     const chapters=(rawProject as {chapters?:unknown}).chapters;
     const nodes=[...(Array.isArray(rawProject.lines)?rawProject.lines:[]),...(Array.isArray(chapters)?chapters:[])];
-    if(nodes.some(node=>{if(!node||typeof node!=='object')return false;const audio=(node as {audio?:{music?:{action?:unknown};ambience?:{action?:unknown}}}).audio;return audio?.music?.action==='sequence'||audio?.ambience?.action==='sequence';}))issues.push({code:'invalid-value',path:'$.project',message:'소리를 순서대로 재생하는 설정은 작품 문서 버전8에서 지원합니다.'});
+    if(nodes.some(node=>{if(!node||typeof node!=='object')return false;const audio=(node as {audio?:{music?:{action?:unknown};ambience?:{action?:unknown}}}).audio;return audio?.music?.action==='sequence'||audio?.ambience?.action==='sequence';}))issues.push({code:'invalid-value',path:'$.project',message:'소리를 순서대로 재생하는 설정은 작품 문서 버전8에서 지원해요.'});
   }
   if (version < 8 && hasBranchCondition(value.project)) {
-    issues.push({code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원합니다.'});
+    issues.push({code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원해요.'});
   }
   const normalized = normalizeAndValidateStoryProject(value.project);
   issues.push(...normalized.issues);
@@ -220,8 +220,8 @@ export function parseStoryDocument(
     }
   }
 
-  if(Array.isArray(value.lines)&&value.lines.some(line=>line&&typeof line==='object'&&(Object.hasOwn(line,'textVariants')||Object.hasOwn(line,'visibility'))))return failure([{code:'invalid-value',path:'$.project.lines',message:'조건별 글은 작품 문서 버전8에서 지원합니다.'}]);
-  if (hasBranchCondition(value)) return failure([{code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원합니다.'}]);
+  if(Array.isArray(value.lines)&&value.lines.some(line=>line&&typeof line==='object'&&(Object.hasOwn(line,'textVariants')||Object.hasOwn(line,'visibility'))))return failure([{code:'invalid-value',path:'$.project.lines',message:'조건별 글은 작품 문서 버전8에서 지원해요.'}]);
+  if (hasBranchCondition(value)) return failure([{code:'invalid-value',path:'$.project',message:'갈래 실행 조건은 작품 문서 버전8에서 지원해요.'}]);
 
   // Unversioned legacy projects cannot opt into a v5-only interpretation.
   if (Array.isArray(value.lines) && value.lines.some(line => line && typeof line === "object" && "backgroundMode" in line)) {

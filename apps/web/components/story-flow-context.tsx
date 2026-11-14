@@ -14,10 +14,10 @@ export function StoryFlowContext({ node, graph, onSelectCut }: Props) {
     <section className={styles.flowContext} aria-label="현재 컷 연결" data-testid="flow-context">
       <p><strong>현재 편집 위치 · {node.chapterLabel} · {node.order}번째 컷</strong></p>
       {node.shared && <p className={styles.sharedNotice}>여러 연결이 들어오는 컷이에요. 이 컷을 수정하면 이곳으로 이어지는 모든 갈래에 반영돼요.</p>}
-      {!node.reachable && <p>시작 컷에서 도달할 수 없는 컷입니다. 전체 흐름에서 이 컷으로 오는 연결을 확인해 주세요.</p>}
+      {!node.reachable && <p>시작 컷에서 도달할 수 없는 컷이에요. 전체 흐름에서 이 컷으로 오는 연결을 확인해 주세요.</p>}
       <details>
         <summary>이 컷으로 오는 연결 {node.incoming.length}개</summary>
-        {node.incoming.length === 0 && <p>{graph.startLineId === node.lineId ? "이 작품의 시작 컷입니다." : "이 컷을 가리키는 연결이 없습니다."}</p>}
+        {node.incoming.length === 0 && <p>{graph.startLineId === node.lineId ? "이 작품의 시작 컷이에요." : "이 컷을 가리키는 연결이 없어요."}</p>}
         <div className={styles.controls}>
           {node.incoming.map(edge => {
             const source = sources.get(edge.sourceLineId)!;

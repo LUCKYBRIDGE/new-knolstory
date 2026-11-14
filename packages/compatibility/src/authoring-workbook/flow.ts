@@ -10,22 +10,22 @@ export function exportFlowTables(project:StoryProject):AuthoringTables {
  return {[flow.key]:makeTable(flow,project.lines.flatMap(line=>line.flow?[{lineId:line.id,type:line.flow.type,routesPresent:line.flow.type==='goto'&&line.flow.routes!==undefined,...(line.flow.type==='goto'?targetFields(line.flow.targetLineId):{})}]:[])),[choices.key]:makeTable(choices,project.lines.flatMap(line=>line.flow?.type==='choice'?line.flow.options.map((option,position)=>({lineId:line.id,id:option.id,label:option.label,position,conditionPresent:option.condition!==undefined,effectsPresent:option.effects!==undefined,...targetFields(option.targetLineId)})):[])),[endings.key]:makeTable(endings,project.lines.flatMap(line=>line.ending?[{lineId:line.id,...line.ending}]:[]))};
 }
 function readTarget(row:Record<string,WorkbookScalar>,ids:Set<string>,sheet:string):string|null {
- if(row.targetKind==='end'||row.targetKind==='pending'){if(row.targetLineId!==undefined&&row.targetLineId!=='')throw new WorkbookIssue(sheet,0,'도착 컷 ID','끝 또는 연결 대기에는 도착 컷을 쓰지 않습니다.');return row.targetKind==='end'?null:'';}
- if(row.targetKind!=='cut'||typeof row.targetLineId!=='string'||!ids.has(row.targetLineId))throw new WorkbookIssue(sheet,0,'도착 컷 ID','존재하는 컷 ID 또는 end/pending 도착 종류가 필요합니다.');
+ if(row.targetKind==='end'||row.targetKind==='pending'){if(row.targetLineId!==undefined&&row.targetLineId!=='')throw new WorkbookIssue(sheet,0,'도착 컷 ID','끝 또는 연결 대기에는 도착 컷을 쓰지 않아요.');return row.targetKind==='end'?null:'';}
+ if(row.targetKind!=='cut'||typeof row.targetLineId!=='string'||!ids.has(row.targetLineId))throw new WorkbookIssue(sheet,0,'도착 컷 ID','존재하는 컷 ID 또는 end/pending 도착 종류가 필요해요.');
  return row.targetLineId;
 }
 export function readFlowTables(tables:AuthoringTables,project:StoryProject):StoryProject {
  const fs=readTable(tables,flow),options=readTable(tables,choices),es=readTable(tables,endings),ids=new Set(project.lines.map(l=>l.id));
  requireUnique(fs,'lineId',flow.title);requireUnique(es,'lineId',endings.title);
- for(const row of [...fs,...es,...options])if(!ids.has(String(row.lineId)))throw new WorkbookIssue(flow.title,0,'컷 ID','없는 컷입니다.');
- for(const row of options)if(!fs.some(f=>f.lineId===row.lineId&&f.type==='choice'))throw new WorkbookIssue(choices.title,0,'컷 ID','선택 흐름이 없는 컷입니다.');
+ for(const row of [...fs,...es,...options])if(!ids.has(String(row.lineId)))throw new WorkbookIssue(flow.title,0,'컷 ID','없는 컷이에요.');
+ for(const row of options)if(!fs.some(f=>f.lineId===row.lineId&&f.type==='choice'))throw new WorkbookIssue(choices.title,0,'컷 ID','선택 흐름이 없는 컷이에요.');
  const mapped=new Map<string,StoryFlow>();
  for(const f of fs){let value:StoryFlow;if(f.type==='goto')value={type:'goto',targetLineId:readTarget(f,ids,flow.title)};
  else if(f.type==='choice'){
-  if(f.routesPresent)throw new WorkbookIssue(flow.title,0,'조건 경로','선택 흐름에는 조건 경로를 추가하지 않습니다.');
-  if(f.targetKind!==undefined||f.targetLineId!==undefined)throw new WorkbookIssue(flow.title,0,'도착','선택 흐름의 도착은 선택지 탭에서 작성합니다.');
+  if(f.routesPresent)throw new WorkbookIssue(flow.title,0,'조건 경로','선택 흐름에는 조건 경로를 추가하지 않아요.');
+  if(f.targetKind!==undefined||f.targetLineId!==undefined)throw new WorkbookIssue(flow.title,0,'도착','선택 흐름의 도착은 선택지 탭에서 작성해요.');
   const owned=options.filter(o=>o.lineId===f.lineId);requireUnique(owned,'id',choices.title);
-  const positions=owned.map(o=>o.position);if(positions.some(p=>typeof p!=='number'||!Number.isInteger(p)||p<0)||new Set(positions).size!==positions.length)throw new WorkbookIssue(choices.title,0,'배열 순서','중복 없는 0 이상의 정수여야 합니다.');
+  const positions=owned.map(o=>o.position);if(positions.some(p=>typeof p!=='number'||!Number.isInteger(p)||p<0)||new Set(positions).size!==positions.length)throw new WorkbookIssue(choices.title,0,'배열 순서','중복 없는 0 이상의 정수여야 해요.');
   value={type:'choice',options:[...owned].sort((a,b)=>Number(a.position)-Number(b.position)).map(o=>({id:String(o.id),label:String(o.label),targetLineId:readTarget(o,ids,choices.title)}))};
  }else throw new WorkbookIssue(flow.title,0,'흐름 종류','goto 또는 choice를 입력해 주세요.');
  if(!isStoryFlow(value))throw new WorkbookIssue(flow.title,0,'선택지','선택지는 중복 없는 ID로 2~4개 작성해 주세요.');if(value.type==='goto'&&f.routesPresent)value={...value,routes:[]};

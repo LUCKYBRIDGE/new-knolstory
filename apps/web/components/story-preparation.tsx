@@ -58,8 +58,8 @@ export function StoryPreparation({scoresEnabled=true,project,onProjectChange,onO
         <label>지은이<input aria-label="지은이" value={cover.author} onChange={e=>updateCover({author:e.target.value})}/></label>
         <label>부제<input aria-label="부제" value={cover.subtitle} onChange={e=>updateCover({subtitle:e.target.value})}/></label>
         <label>작가의 말<textarea aria-label="작가의 말" rows={3} value={cover.authorNote} onChange={e=>updateCover({authorNote:e.target.value})}/></label>
-        {onEditCover&&<button disabled={composing} onClick={onEditCover}>책 표지 편집</button>}<details><summary>기본 표지 고르기</summary><p className={styles.hint}>서재에서 작품을 구분하는 표지입니다. 이야기 속 배경이나 인물은 바뀌지 않아요.</p>
-          {cover.design && <p className={styles.hint}>이 작품에는 고급 표지 디자인이 저장되어 있어요. 기본 표지 설정을 바꿔도 기존 디자인은 보존됩니다.</p>}
+        {onEditCover&&<button disabled={composing} onClick={onEditCover}>책 표지 편집</button>}<details><summary>기본 표지 고르기</summary><p className={styles.hint}>서재에서 작품을 구분하는 표지예요. 이야기 속 배경이나 인물은 바뀌지 않아요.</p>
+          {cover.design && <p className={styles.hint}>이 작품에는 고급 표지 디자인이 저장되어 있어요. 기본 표지 설정을 바꿔도 기존 디자인은 보존돼요.</p>}
           <label>표지 색감<select aria-label="표지 색감" value={cover.theme} onChange={e=>updateCover({theme:e.target.value as typeof cover.theme})}>{Object.entries(COVER_THEMES).map(([key,theme])=><option key={key} value={key}>{theme.label}</option>)}</select></label>
           <label>표지 배치<select aria-label="표지 배치" value={cover.layout} onChange={e=>updateCover({layout:e.target.value as typeof cover.layout})}><option value="classic">기본 책</option><option value="picture">장면형</option><option value="bold">인물형</option></select></label>
           <AssetPickerField allowSceneIllustrations label="표지 배경" type="background" value={cover.backgroundId} allowNone onChange={id=>updateCover({backgroundId:id})}/>
@@ -124,7 +124,7 @@ function MemoEditor({memo,index,project,cuts,onChange,onDelete,onOpenCut}:{memo:
       {chaptersForDisplay(project.chapters).map(c=><option key={c.id} value={`chapter:${c.id}`}>{chapterLabel(c)}</option>)}
       {cuts.map(c=><option key={c.id} value={`cut:${c.id}`}>{c.label}</option>)}
     </select></label>
-    {links.length>1 && <p className={styles.hint}>여러 장·컷의 연결이 보존되어 있어요. 위에서 위치를 새로 고르면 선택한 한 곳으로 연결됩니다.</p>}
+    {links.length>1 && <p className={styles.hint}>여러 장·컷의 연결이 보존되어 있어요. 위에서 위치를 새로 고르면 선택한 한 곳으로 연결돼요.</p>}
     <div className={styles.actions}>{links.map(link=>link.missing?<span key={link.key} className={styles.hint}>{link.label} · 위에서 연결 위치를 고쳐 주세요.</span>:<button type="button" key={link.key} onClick={()=>link.lineId&&onOpenCut(link.lineId)}>{link.label} 열기</button>)}</div>
     {memo.linkedCharacterNames?.length? <p className={styles.hint}>연결된 인물: {memo.linkedCharacterNames.join(', ')}</p>:null}
     {deleting?<div className={styles.confirm}><p>“{memo.title||'제목 없는 메모'}”를 삭제할까요?</p><button type="button" onClick={onDelete}>메모 삭제 확인</button><button type="button" onClick={()=>setDeleting(false)}>취소</button></div>:<button type="button" onClick={()=>setDeleting(true)}>메모 삭제</button>}

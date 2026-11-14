@@ -91,9 +91,9 @@ export function createLocalWorkFileSaver(options: {
   let activeSave = false;
   return {
     async save(input: LocalWorkFileSaveInput): Promise<LocalWorkFileSaveResult> {
-      if (activeSave) throw new LocalWorkFileError('파일을 저장 중입니다. 잠시 후 다시 시도해 주세요.');
+      if (activeSave) throw new LocalWorkFileError('파일을 저장 중이에요. 잠시 후 다시 시도해 주세요.');
       if (!input.workKey.trim()) throw new LocalWorkFileError('저장할 작품을 확인해 주세요.');
-      if (!['.knolstory', '.shortstory'].includes(input.extension)) throw new LocalWorkFileError('지원하지 않는 작품 파일 형식입니다.');
+      if (!['.knolstory', '.shortstory'].includes(input.extension)) throw new LocalWorkFileError('지원하지 않는 작품 파일 형식이에요.');
       const name = fileName(input.name, input.extension);
       const identity = JSON.stringify([input.extension, input.workKey]);
       activeSave = true;
@@ -113,7 +113,7 @@ export function createLocalWorkFileSaver(options: {
         }
         const baseline = handle ? previous?.verifiedText ?? await (await handle.getFile()).text() : undefined;
         const text = await input.serialize();
-        if (new Blob([text]).size > 25_000_000) throw new LocalWorkFileError('작품 파일은 25 MB까지 저장할 수 있습니다.');
+        if (new Blob([text]).size > 25_000_000) throw new LocalWorkFileError('작품 파일은 25 MB까지 저장할 수 있어요.');
         if (input.isCurrent && !input.isCurrent()) return {kind: 'cancelled', name};
         if (!handle) {
           options.download(text, name);

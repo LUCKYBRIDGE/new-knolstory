@@ -1,4 +1,6 @@
 :root { --paper:#f7f3e9; --ink:#183331; --mint:#d6eadf; --mint-strong:#2f7d68; --gold:#e7aa42; --coral:#d8644d; --navy:#163943; --white:#fffdf8; --line:#d8d0c2; --ink-soft:#4c625f; --radius-control:12px; --radius-panel:16px; }
+/* One type scale for every screen. Story stage text, print sheets and fitted titles keep their own sizing. */
+:root { --text-caption:12px; --text-small:14px; --text-body:16px; --text-lead:18px; --text-title:20px; --text-heading:24px; --text-display:30px; }
 * { box-sizing:border-box; }
 body { margin:0; color:var(--ink); background:var(--paper); font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif; line-height:1.55; }
 button,input,textarea,select { font:inherit; }
@@ -6,42 +8,42 @@ button { min-height:44px; border:1px solid var(--line); border-radius:var(--radi
 button:hover { border-color:var(--mint-strong); }
 :focus-visible { outline:3px solid var(--mint-strong); outline-offset:3px; }
 .global-header { display:flex; align-items:center; justify-content:space-between; padding:18px 28px; border-bottom:1px solid var(--line); background:var(--white); }
-.brand { color:var(--ink); text-decoration:none; font-size:25px; font-weight:800; letter-spacing:-1px; }
-.brand span { margin-left:18px; font-size:13px; letter-spacing:0; font-weight:400; color:var(--ink-soft); }
-.lab-badge { background:var(--gold); border-radius:100px; font-size:12px; padding:5px 12px; }
+.brand { color:var(--ink); text-decoration:none; font-size:var(--text-heading); font-weight:800; letter-spacing:-1px; }
+.brand span { margin-left:18px; font-size:var(--text-small); letter-spacing:0; font-weight:400; color:var(--ink-soft); }
+.lab-badge { background:var(--gold); border-radius:100px; font-size:var(--text-caption); padding:5px 12px; }
 .context-bar { display:flex; gap:18px; align-items:center; justify-content:space-between; padding:22px 28px; }
-.eyebrow { font-size:12px; color:var(--mint-strong); margin:0 0 4px; font-weight:700; }
+.eyebrow { font-size:var(--text-caption); color:var(--mint-strong); margin:0 0 4px; font-weight:700; }
 h1 { font-size:clamp(19px,2.1vw,27px); letter-spacing:-.7px; margin:0; }
-h2 { font-size:16px; margin:0 0 18px; }
+h2 { font-size:var(--text-body); margin:0 0 18px; }
 .workspace { display:grid; grid-template-columns:180px minmax(0,1fr) 300px; gap:16px; padding:0 24px 24px; align-items:start; }
 .workspace.inspector-closed { grid-template-columns:180px minmax(0,1fr); }
 .cut-list,.inspector { padding:20px; background:var(--white); border:1px solid var(--line); border-radius:var(--radius-panel); }
-.cut-list p,.field-hint { color:var(--ink-soft); font-size:12px; overflow-wrap:anywhere; }
-.cut { display:flex; gap:12px; text-align:left; width:100%; background:var(--mint); padding:12px; font-size:13px; }
+.cut-list p,.field-hint { color:var(--ink-soft); font-size:var(--text-caption); overflow-wrap:anywhere; }
+.cut { display:flex; gap:12px; text-align:left; width:100%; background:var(--mint); padding:12px; font-size:var(--text-small); }
 .cut span { color:var(--mint-strong); font-weight:700; }
 .stage-panel { min-width:0; background:var(--white); border:1px solid var(--line); border-radius:var(--radius-panel); overflow:hidden; }
-.stage-toolbar { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:14px 18px; font-size:13px; flex-wrap:wrap; }
-.stage-toolbar span { color:var(--ink-soft); font-size:12px; }
+.stage-toolbar { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:14px 18px; font-size:var(--text-small); flex-wrap:wrap; }
+.stage-toolbar span { color:var(--ink-soft); font-size:var(--text-caption); }
 .stage-viewport { width:100%; height:clamp(240px,53vh,640px); position:relative; background:var(--paper); overflow:hidden; }
 .stage-viewport iframe { display:block; border:0; width:100%; height:100%; }
-.actor-handle { position:absolute; width:44px; height:44px; padding:0; border-radius:50%; transform:translate(-50%,-50%); touch-action:none; background:var(--white); box-shadow:0 2px 10px #18333133; border:2px solid var(--line); font-size:25px; user-select:none; }
+.actor-handle { position:absolute; width:44px; height:44px; padding:0; border-radius:50%; transform:translate(-50%,-50%); touch-action:none; background:var(--white); box-shadow:0 2px 10px #18333133; border:2px solid var(--line); font-size:var(--text-heading); user-select:none; }
 .actor-handle.active { border-color:var(--mint-strong); color:var(--mint-strong); }
-.runtime-status { padding:12px 18px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:12px; }
+.runtime-status { padding:12px 18px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:var(--text-caption); }
 .status-dot { width:8px; height:8px; border-radius:50%; background:var(--gold); }
 .status-dot.ready { background:var(--mint-strong); }
 .render-info { color:var(--ink-soft); margin-left:auto; }
-.runtime-help { margin:0; padding:0 18px 16px; font-size:12px; color:var(--ink-soft); }
-.story-text { border-top:1px solid var(--line); padding:12px 18px; font-size:13px; }
+.runtime-help { margin:0; padding:0 18px 16px; font-size:var(--text-caption); color:var(--ink-soft); }
+.story-text { border-top:1px solid var(--line); padding:12px 18px; font-size:var(--text-small); }
 .story-text summary { cursor:pointer; min-height:32px; }
 .story-text p { white-space:pre-wrap; overflow-wrap:anywhere; }
-.inspector label { display:block; font-size:13px; font-weight:600; margin:12px 0 6px; }
+.inspector label { display:block; font-size:var(--text-small); font-weight:600; margin:12px 0 6px; }
 input,textarea,select { width:100%; border:1px solid var(--line); border-radius:var(--radius-control); padding:10px 12px; background:var(--white); color:var(--ink); min-height:44px; }
 textarea { resize:vertical; line-height:1.7; }
 fieldset { margin:24px 0 0; padding:0; border:0; }
-legend { font-size:14px; font-weight:700; }
+legend { font-size:var(--text-small); font-weight:700; }
 .coordinates { display:flex; gap:12px; }
 .coordinates label { flex:1; min-width:0; }
-footer { padding:0 28px 24px; color:var(--ink-soft); font-size:12px; }
+footer { padding:0 28px 24px; color:var(--ink-soft); font-size:var(--text-caption); }
 @media(max-width:1100px) { .workspace,.workspace.inspector-closed { grid-template-columns:minmax(0,1fr) 280px; } .cut-list { display:none; } .workspace.inspector-closed { grid-template-columns:minmax(0,1fr); } }
 @media(max-width:720px) { .global-header { padding:12px 16px; } .brand span { display:none; } .context-bar { padding:18px 16px; flex-wrap:wrap; } .context-bar button { width:100%; } .workspace,.workspace.inspector-closed { display:flex; flex-direction:column; padding:0 12px 18px; gap:12px; } .stage-panel,.inspector { width:100%; } .stage-viewport { height:clamp(210px,42vh,380px); } .stage-toolbar { padding:12px; } .runtime-status { padding:12px; } .render-info { width:100%; margin-left:16px; } footer { padding:0 16px 20px; } }
 @media(max-height:500px) and (min-width:721px) { .global-header { padding:8px 18px; } .context-bar { padding:10px 18px; } .stage-viewport { height:calc(100dvh - 180px); min-height:180px; } }
@@ -49,3 +51,13 @@ footer { padding:0 28px 24px; color:var(--ink-soft); font-size:12px; }
 
 /* Shared story-game system menu palette; applied only to popup surfaces. */
 :root { --story-menu-bg:#112223; --story-menu-surface:#213b3b; --story-menu-ink:#f5ead4; --story-menu-muted:#c1c9ba; --story-menu-line:#a58d66; --story-menu-accent:#c6e3cf; --story-menu-danger:#ffb5a6; }
+
+/* File pickers look like the rest of the buttons instead of the browser default. */
+input[type=file] { min-height:44px; padding:5px; border:1px dashed var(--line); border-radius:var(--radius-control); background:var(--white); color:var(--ink-soft); font-size:var(--text-small); cursor:pointer; }
+input[type=file]::file-selector-button { min-height:34px; margin-right:10px; padding:4px 14px; border:1px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink); font:inherit; font-weight:600; cursor:pointer; }
+input[type=file]:hover::file-selector-button { border-color:var(--mint-strong); }
+input[type=file]:disabled { cursor:not-allowed; opacity:.6; }
+
+/* Work file save actions: spaced buttons, explanation on its own line (the editor menu lays them out as a grid). */
+[data-local-file-actions] { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+[data-local-file-actions] > :is(small,details,p) { flex-basis:100%; }

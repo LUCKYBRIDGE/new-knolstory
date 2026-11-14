@@ -3,7 +3,7 @@
 .header { display: flex; justify-content: space-between; align-items: start; gap: 12px; flex-wrap: wrap; }
 .preparation h2, .preparation h3 { margin: 0 0 8px; }
 .preparation p { margin: 0 0 12px; line-height: 1.6; overflow-wrap: anywhere; }
-.hint { color: var(--ink-soft, #4c625f); font-size: .9rem; }
+.hint { color: var(--ink-soft, #4c625f); font-size: var(--text-small); }
 .columns { display: grid; align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .panel { min-width: 0; padding: 12px; border: 1px solid var(--line, #d8d0c2); border-radius: 16px; background: var(--white, #fffdf8); }
 .preparation label { display: grid; gap: 4px; margin: 0 0 10px; font-weight: 600; min-width: 0; }
@@ -36,11 +36,11 @@
 }
 .preparation [hidden]{display:none}
 .columns{grid-template-columns:minmax(0,1fr);max-width:840px;width:100%}
-.preparation{font-size:13px;gap:8px;padding:10px}
-.preparation h2{font-size:17px;margin:0}.preparation h3{font-size:14px}
-.preparation label{font-size:13px;margin-bottom:6px}
-.preparation :is(input,select){min-height:32px;padding:5px 8px;font-size:13px}
-.preparation button{min-height:32px;padding:5px 9px;font-size:13px;border-radius:8px}
-.preparation textarea{font-size:16px;padding:8px}
+.preparation{font-size:var(--text-small);gap:8px;padding:10px}
+.preparation h2{font-size:var(--text-body);margin:0}.preparation h3{font-size:var(--text-small)}
+.preparation label{font-size:var(--text-small);margin-bottom:6px}
+.preparation :is(input,select){min-height:32px;padding:5px 8px;font-size:var(--text-small)}
+.preparation button{min-height:32px;padding:5px 9px;font-size:var(--text-small);border-radius:8px}
+.preparation textarea{font-size:var(--text-body);padding:8px}
 .preparation .panel{padding:10px;border-radius:10px}
-@media(pointer:coarse),(max-width:720px){.preparation :is(button,input,select){min-height:44px}.preparation :is(input,select){font-size:16px}}
+@media(pointer:coarse),(max-width:720px){.preparation :is(button,input,select){min-height:44px}.preparation :is(input,select){font-size:var(--text-body)}}

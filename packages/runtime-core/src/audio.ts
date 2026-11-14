@@ -77,7 +77,7 @@ function replayStoryAudioPath(project:StoryProject,path:readonly string[],choice
 export function compileStoryAudio(project:StoryProject,lineId:string,resolve:AudioAssetResolver,path?:readonly string[],choiceHistory:BranchChoiceHistory=[]):RuntimeAudio {
  const line=project.lines.find(item=>item.id===lineId);if(!line)throw new Error('오디오 컷을 찾을 수 없어요.');
  const ids=path?.length?path:[lineId];
- if(ids.at(-1)!==lineId)throw new Error('오디오 재생 경로와 현재 컷이 다릅니다.');
+ if(ids.at(-1)!==lineId)throw new Error('오디오 재생 경로와 현재 컷이 달라요.');
  const state=replayStoryAudioPath(project,ids,choiceHistory,false).at(-1);
  if(!state)return {version:1,music:{action:'stop',fadeOutMs:0},ambience:{action:'stop',fadeOutMs:0},sounds:[]};
  const musicState=state.music,ambienceState=state.ambience;

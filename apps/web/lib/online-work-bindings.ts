@@ -8,7 +8,7 @@ const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 const hash=/^[a-f0-9]{64}$/;
 const positive=(value:unknown):value is number=>typeof value==='number'&&Number.isSafeInteger(value)&&value>0;
 const object=(value:unknown):value is Record<string,unknown>=>!!value&&typeof value==='object'&&!Array.isArray(value);
-function invalid():never{throw Error('온라인 연결 기록을 확인하지 못했어요. 원고와 기록은 그대로 유지됩니다.');}
+function invalid():never{throw Error('온라인 연결 기록을 확인하지 못했어요. 원고와 기록은 그대로 유지돼요.');}
 function binding(value:unknown):value is OnlineWorkBinding{
  return object(value)&&typeof value.recordId==='string'&&uuid.test(value.recordId)&&typeof value.remoteProjectId==='string'&&!!value.remoteProjectId&&['knolstory','shortstory'].includes(value.format as string)&&positive(value.revision)&&typeof value.contentSha256==='string'&&hash.test(value.contentSha256);
 }
@@ -83,7 +83,7 @@ export async function saveOnlineWork(store:OnlineWorkStore,accountId:string,loca
  const remoteId=remote.format==='knolstory'?remote.document.project.id:remote.project.id;
  if(archive.format==='knolstory')archive.document.project={...archive.document.project,id:remoteId};else archive.project={...archive.project,id:remoteId};
  const includesLatest=(await prepareJsonbSnapshot(archive)).contentSha256===pending.snapshot.contentSha256;
- if(options.isCurrent&&!options.isCurrent())throw Error('작업 상태가 바뀌어 온라인 전송을 멈췄어요. 기기의 원고와 재시도 기록은 유지됩니다.');
+ if(options.isCurrent&&!options.isCurrent())throw Error('작업 상태가 바뀌어 온라인 전송을 멈췄어요. 기기의 원고와 재시도 기록은 유지돼요.');
  let receipt:OnlineDocumentReceipt;
  try{receipt=pending.recordId===undefined?await documentCreate(pending.snapshot,pending.key,csrf,fetcher,accountId):await documentSave(pending.recordId,pending.snapshot,pending.expectedRevision!,pending.key,csrf,fetcher,accountId);}
  catch(error){

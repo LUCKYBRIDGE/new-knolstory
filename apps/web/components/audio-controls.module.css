@@ -3,13 +3,13 @@
 .controls input,.controls select,.controls button,.picker input,.picker select { min-height:44px; max-width:100%; }
 .picker { display:grid; gap:8px; padding:10px 0; }
 .picker audio { width:100%; min-width:0; }
-.picker small,.hint { color:var(--ink-soft); font-size:.8rem; line-height:1.5; }
+.picker small,.hint { color:var(--ink-soft); font-size:var(--text-caption); line-height:1.5; }
 .sound { display:grid; gap:8px; padding:12px; border:1px solid var(--line); border-radius:12px; }
 .row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-.upload { font-size:.85rem; }
+.upload { font-size:var(--text-small); }
 .controls [hidden]{display:none}.controls{gap:6px;min-width:0}.controls>section{min-width:0}.controls :is(input,select,button){min-height:var(--chrome-control-height,44px);font-size:var(--chrome-font-size,13px)}
-.filters>summary{cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:5px 8px;width:fit-content;font-size:13px;line-height:1.4}.filters[open]>.row{margin-top:6px}
-.controls .checkbox{display:flex;align-items:center;gap:6px;min-height:32px;margin:4px 0;font-size:13px}
+.filters>summary{cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:5px 8px;width:fit-content;font-size:var(--text-small);line-height:1.4}.filters[open]>.row{margin-top:6px}
+.controls .checkbox{display:flex;align-items:center;gap:6px;min-height:32px;margin:4px 0;font-size:var(--text-small)}
 .controls .checkbox input{width:18px;min-width:18px;max-width:18px;height:18px;min-height:18px;margin:0}
 @media(pointer:coarse),(max-width:720px){.controls .checkbox{min-height:44px}}
 .controls .checkbox input{accent-color:var(--mint-strong)}
@@ -17,10 +17,10 @@
 .soundChoices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
 .soundChoices>button{display:grid;gap:2px;text-align:left;padding:5px 7px;border:1px solid var(--line);border-radius:var(--radius-control);background:var(--white);min-width:0;overflow-wrap:anywhere;line-height:1.4}
 .soundChoices>button[aria-pressed="true"]{border-color:var(--mint-strong);background:var(--mint)}
-.soundChoices strong{font-size:var(--chrome-font-size,13px);font-weight:600}.soundChoices small{font-size:12px;color:var(--ink-soft)}
+.soundChoices strong{font-size:var(--chrome-font-size,13px);font-weight:600}.soundChoices small{font-size:var(--text-caption);color:var(--ink-soft)}
 .soundList>.sound{padding:6px 8px;gap:6px;border-radius:var(--radius-control)}
 @media(max-width:420px){.soundChoices,.controls .row{grid-template-columns:minmax(0,1fr)}.controls label{min-width:0;word-break:keep-all;overflow-wrap:break-word}}
 
-.controls [data-audio-source-range]>summary{min-height:44px;padding:10px 0;cursor:pointer;font-size:13px}.controls [data-audio-source-range]>div>label{display:grid;gap:4px;min-width:0;margin-bottom:8px}.controls [data-audio-source-range] input{width:100%;min-width:0;min-height:44px}.controls [data-audio-source-range]>div>small{display:block;font-size:12px;line-height:1.5;margin-bottom:8px}
+.controls [data-audio-source-range]>summary{min-height:44px;padding:10px 0;cursor:pointer;font-size:var(--text-small)}.controls [data-audio-source-range]>div>label{display:grid;gap:4px;min-width:0;margin-bottom:8px}.controls [data-audio-source-range] input{width:100%;min-width:0;min-height:44px}.controls [data-audio-source-range]>div>small{display:block;font-size:var(--text-caption);line-height:1.5;margin-bottom:8px}
 
-.controls [data-sound-split]>summary{min-height:44px;padding:10px 0;cursor:pointer;font-size:13px}.controls [data-sound-split]>div{display:grid;gap:8px;min-width:0}.controls [data-sound-split] small{font-size:12px;line-height:1.5}.controls [data-sound-split] p{font-size:13px;line-height:1.5;word-break:keep-all}
+.controls [data-sound-split]>summary{min-height:44px;padding:10px 0;cursor:pointer;font-size:var(--text-small)}.controls [data-sound-split]>div{display:grid;gap:8px;min-width:0}.controls [data-sound-split] small{font-size:var(--text-caption);line-height:1.5}.controls [data-sound-split] p{font-size:var(--text-small);line-height:1.5;word-break:keep-all}

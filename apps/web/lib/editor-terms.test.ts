@@ -66,6 +66,6 @@ it('keeps distinct meanings for reader autosave, temporary authoring retention a
  const term=(name:string)=>editorTerms.find(item=>item.name===name)!;
  expect(term('자동 저장').description).toContain('읽기 화면');
  expect(term('자동 저장').description).toContain('임시 보관');
- expect(term('말하는 인물의 역할').description).toContain('배치 위치와는 다릅니다');
+ expect(term('말하는 인물의 역할').description).toContain('배치 위치와는 달라요');
  expect(term('사본으로 열기').description).toContain('덮어쓰지');
 });
