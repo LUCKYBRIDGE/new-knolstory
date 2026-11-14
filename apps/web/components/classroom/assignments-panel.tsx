@@ -9,10 +9,13 @@ import {dateFromDueAt,dueAtFromDate,dueDateLabel,dueState} from '../../lib/due-d
 import type {TaskRequest} from './task-composer';
 import {editionLabel} from '../../lib/mission-api';
 import {StartPointPicker} from './start-point-picker';
+import {RecipientFacts,RecipientPicker,recipientProblem,type RecipientStudent,type Recipients} from './recipient-picker';
 import type {BuiltinWorkId} from '../../lib/builtin-works';
 import styles from './classroom.module.css';
 type Run=<T>(action:()=>Promise<T>)=>Promise<T|undefined>;
-export function AssignmentsPanel({csrf,run,studentCount=0,request=null}:{csrf:string;run:Run;studentCount?:number;request?:TaskRequest|null}){
+export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:string;run:Run;students?:readonly RecipientStudent[];request?:TaskRequest|null}){
+ const studentCount=students.length;
+ const [recipients,setRecipients]=useState<Recipients>(null),[recipientError,setRecipientError]=useState('');
  const [items,setItems]=useState<Assignment[]|null>(null),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[storyKey,setStoryKey]=useState(''),[link,setLink]=useState(''),[linkError,setLinkError]=useState(''),[due,setDue]=useState(''),[formOpen,setFormOpen]=useState(false),[edition,setEdition]=useState<'original'|'knolstory'>('knolstory'),[start,setStart]=useState<{value:string;label:string}>({value:'',label:''});
  const formRef=useRef<HTMLDetailsElement>(null);
  const [format,setFormat]=useState<AssignmentFormat>('knolstory'),[filter,setFilter]=useState<AssignmentFormat>('knolstory');
@@ -25,10 +28,11 @@ export function AssignmentsPanel({csrf,run,studentCount=0,request=null}:{csrf:st
  async function create(event:FormEvent){
   event.preventDefault();if(!title.trim()||createLock.current)return;
   const shareUrl=normalizeShareLink(link);if(link.trim()&&!shareUrl){setLinkError('https://로 시작하는 공유 링크를 넣어 주세요.');return;}setLinkError('');
+  const problem=recipientProblem(recipients);if(problem){setRecipientError(problem);return;}setRecipientError('');
   createLock.current=true;setCreating(true);
   try{
-  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(storyKey?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&format==='knolstory'?{edition}:{}),...(storyKey&&format==='knolstory'&&start.value?{startPoint:start.value,startLabel:start.label.slice(0,120)}:{})},csrf));
-  if(made){setFilter(format);setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setStart({value:'',label:''});setFormOpen(false);await load();}
+  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(storyKey?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&format==='knolstory'?{edition}:{}),...(storyKey&&format==='knolstory'&&start.value?{startPoint:start.value,startLabel:start.label.slice(0,120)}:{}),...(recipients!==null?{recipients}:{})},csrf));
+  if(made){setFilter(format);setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setStart({value:'',label:''});setRecipients(null);setFormOpen(false);await load();}
   }finally{createLock.current=false;setCreating(false);}
  }
  return <section className={styles.card} aria-label="작품 쓰기 과제">
@@ -43,6 +47,8 @@ export function AssignmentsPanel({csrf,run,studentCount=0,request=null}:{csrf:st
    {storyKey&&format==='knolstory'&&<StartPointPicker key={`${storyKey}:${edition}`} storyKey={storyKey as BuiltinWorkId} edition={edition} value={start.value} onChange={(value,label)=>setStart({value,label})}/>}
    <label className={styles.field} style={{marginTop:8}}>설명 (선택)<textarea value={description} onChange={event=>setDescription(event.target.value)} maxLength={500}/></label>
    <label className={styles.field} style={{marginTop:8}}>마감일 (선택)<input type="date" value={due} onChange={event=>setDue(event.target.value)}/></label>
+   <RecipientPicker students={students} value={recipients} onChange={next=>{setRecipients(next);setRecipientError('');}}/>
+   {recipientError&&<p className={styles.error} role="alert">{recipientError}</p>}
    <label className={styles.field} style={{marginTop:8}}>제출 링크 (선택)<input type="url" inputMode="url" value={link} onChange={event=>{setLink(event.target.value);setLinkError('');}} placeholder="예: 구글 드라이브 폴더 공유 링크" autoComplete="off"/></label>
    <p className={styles.hint}>학생 과제 화면에 ‘제출 링크 열기’로 보여요. 학생 파일 이름 앞에는 번호(01~30)가 붙어서 모아 보기 쉬워요.</p>
    {linkError&&<p className={styles.error} role="alert">{linkError}</p>}
@@ -50,10 +56,11 @@ export function AssignmentsPanel({csrf,run,studentCount=0,request=null}:{csrf:st
   </fieldset></form></details>
   <div className={styles.typeTabs} role="group" aria-label="과제 유형별 보기">{(['knolstory','shortstory'] as const).map(value=><button key={value} className={styles.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}><ClassroomBook format={value} small/>{value==='knolstory'?'놀스토리':'숏스토리'}{items&&<span className={styles.tabCount}> · {items.filter(item=>item.format===value).length}</span>}</button>)}</div>
   {loadFailed?<p className={styles.error} role="alert">과제를 불러오지 못했어요. <button className={styles.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>:items===null?<p className={styles.hint} role="status">과제를 불러오고 있어요.</p>:items.filter(item=>item.format===filter).length===0?<p className={styles.hint}>이 유형의 과제가 없어요.</p>
-   :<ul className={styles.list}>{items.filter(item=>item.format===filter).map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} studentCount={studentCount}/></li>)}</ul>}
+   :<ul className={styles.list}>{items.filter(item=>item.format===filter).map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} students={students}/></li>)}</ul>}
  </section>;
 }
-function AssignmentRow({item,csrf,run,onChanged,studentCount}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>;studentCount:number}){
+function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>;students:readonly RecipientStudent[]}){
+ const studentCount=item.recipients?item.recipients.length:students.length;
  const [rows,setRows]=useState<SubmissionRow[]|null>(null),[notice,setNotice]=useState(''),[loading,setLoading]=useState(false);
  async function toggleOpen(){const done=await run(()=>assignmentUpdate(item.id,{open:!item.open},csrf));if(done)await onChanged();}
  async function showSubmissions(){if(loading)return;setLoading(true);try{const list=await run(()=>submissionList(item.id));if(list)setRows(list);}finally{setLoading(false);}}
@@ -69,6 +76,7 @@ function AssignmentRow({item,csrf,run,onChanged,studentCount}:{item:Assignment;c
   <ul className={styles.taskMeta} aria-label="과제 정보"><li>{item.format==='shortstory'?'숏스토리':'놀스토리'}</li>{item.storyKey&&<li>바탕 작품 · {BUILTIN_WORKS.find(work=>work.id===item.storyKey)?.title??'기본 작품'}{item.format!=='shortstory'&&` (${editionLabel(item.edition)})`}</li>}{item.startLabel&&<li>시작 · {item.startLabel}</li>}<li>{new Date(item.createdAt).toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 만듦</li></ul>
   {item.description&&<p className={styles.hint}>{item.description}</p>}
   <TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
+  <RecipientFacts title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/>
   <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
   <div className={styles.taskActions}>
    <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 제출 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':rows?`제출 목록 새로고침 · ${rows.length}명`:'제출 보기'}</button>

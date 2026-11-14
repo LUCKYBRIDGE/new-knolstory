@@ -2,7 +2,7 @@ import {ClassroomError} from './classroom-api';
 import type {BuiltinWorkId} from './builtin-works';
 
 export type MissionProgress={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:'passed'|'revise'|null;feedback:string;reviewedAt:number|null};
-export type Mission={id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:BuiltinWorkId|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number;dueAt?:number|null;progress?:MissionProgress};
+export type Mission={id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:BuiltinWorkId|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number;dueAt?:number|null;recipients?:readonly number[]|null;progress?:MissionProgress};
 export type MissionKind=Mission['kind'];
 export type ReadingFormat=Mission['readingFormat'];
 /** What a teacher sends to assign a mission; also the shape of a provided mission before it is copied. */
@@ -36,7 +36,7 @@ export async function missionSubmit(id:string,body:{answers:Record<string,string
 const isMission=(value:unknown):value is Mission=>!!value&&typeof value==='object'&&typeof (value as Mission).id==='string'&&typeof (value as Mission).title==='string'&&Array.isArray((value as Mission).questions)&&typeof (value as Mission).open==='boolean';
 const isProgress=(value:unknown):value is MissionStudentProgress=>!!value&&typeof value==='object'&&Number.isInteger((value as MissionStudentProgress).number)&&typeof (value as MissionStudentProgress).name==='string'&&!!(value as MissionStudentProgress).answers&&typeof (value as MissionStudentProgress).answers==='object';
 /** Teacher: assigns a new mission to the class. */
-export async function missionCreate(draft:MissionDraft&{dueAt?:number|null},csrf:string,fetcher:typeof fetch=fetch):Promise<Mission>{
+export async function missionCreate(draft:MissionDraft&{dueAt?:number|null;recipients?:readonly number[]|null},csrf:string,fetcher:typeof fetch=fetch):Promise<Mission>{
  const data=await request('',fetcher,csrf,draft,'POST');if(!isMission(data))throw new MissionError('INVALID_RESPONSE',502);return data;
 }
 /** Teacher: closes a mission to new answers or opens it again. */
@@ -46,6 +46,10 @@ export async function missionSetOpen(id:string,open:boolean,csrf:string,fetcher:
 /** Teacher: sets or clears the due date (end of the chosen day). */
 export async function missionSetDue(id:string,dueAt:number|null,csrf:string,fetcher:typeof fetch=fetch):Promise<Mission>{
  const data=await request(`/${encodeURIComponent(id)}`,fetcher,csrf,{dueAt},'PATCH');if(!isMission(data))throw new MissionError('INVALID_RESPONSE',502);return data;
+}
+/** Teacher: gives the mission to the whole class (null) or only the listed student numbers. */
+export async function missionSetRecipients(id:string,recipients:readonly number[]|null,csrf:string,fetcher:typeof fetch=fetch):Promise<Mission>{
+ const data=await request(`/${encodeURIComponent(id)}`,fetcher,csrf,{recipients},'PATCH');if(!isMission(data))throw new MissionError('INVALID_RESPONSE',502);return data;
 }
 /** Teacher: every student in the class with what they sent and the current decision. */
 export async function missionProgress(id:string,fetcher:typeof fetch=fetch):Promise<MissionStudentProgress[]>{
