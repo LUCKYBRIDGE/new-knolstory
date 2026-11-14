@@ -16,6 +16,8 @@ export type AuthRouterOptions = Readonly<{
   providers: Readonly<Partial<Record<Provider, OidcProvider>>>;
   clock?: () => number;
   clientProofKey?: string;
+  /** Which sign-in providers the account has linked; shown to the account owner only. */
+  linkedProviders?: (accountId: string) => Promise<readonly Provider[]>;
   rateLimit?: Readonly<{ windowMs: number; maxRequests: number; maxEntries: number }>;
 }>;
 class HttpError extends Error {
@@ -162,7 +164,8 @@ export function createAuthRouter(options: AuthRouterOptions) {
         else await start(req, res, provider, action === 'link/start');
       } else if (url.pathname === '/api/v1/me') {
         const authenticated = await session(req);
-        json(res, 200, { accountId: authenticated.accountId, csrf: authenticated.csrf });
+        const linked = options.linkedProviders ? await options.linkedProviders(authenticated.accountId) : undefined;
+        json(res, 200, { accountId: authenticated.accountId, csrf: authenticated.csrf, ...(linked ? { linkedProviders: [...linked] } : {}) });
       } else {
         const authenticated = await csrf(req); await state.revokeSession(authenticated.token);
         res.setHeader('Set-Cookie', [serializeAuthCookie(origin, 'session', '', 0), clearFlow()]);
