@@ -7,8 +7,9 @@ export type ClassroomSummary=Readonly<{id:string;name:string;classCode:string;st
 export type ClassroomStudent=Readonly<{number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean}>;
 export type Classroom=ClassroomSummary&Readonly<{defaultPermissions:EditingPermissions;students:readonly ClassroomStudent[]}>;
 export type AssignmentFormat='knolstory'|'shortstory';
-export type Assignment=Readonly<{format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number}>;
-export type SubmissionRow=Readonly<{number:number;name:string;submittedAt:number}>;
+export type Assignment=Readonly<{format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;reviewStatus?:ReviewStatus;feedback?:string}>;
+export type ReviewStatus='passed'|'revise'|null;
+export type SubmissionRow=Readonly<{number:number;name:string;submittedAt:number;reviewStatus?:ReviewStatus;feedback?:string;reviewedAt?:number|null}>;
 export type SubmissionDocument=Readonly<{document:AuthoringJsonbSnapshot;submittedAt:number}>;
 export type StudentSelf=Readonly<{number:number;name:string;classId:string;className:string;classCreatedAt?:number;permissions:EditingPermissions}>;
 export type ClassroomMe=Readonly<{role:ClassroomRole;account:Readonly<{id:string}>;classroom?:ClassroomSummary;student?:StudentSelf}>;
@@ -33,7 +34,7 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['SESSION_REQUIRED','다시 로그인해 주세요.'],['ROLE_NOT_ALLOWED','이 계정으로는 할 수 없는 일이에요.'],
  ['CLASSROOM_EXISTS','이미 학급이 있어요.'],['CLASSROOM_NOT_FOUND','학급을 찾지 못했어요.'],
  ['STUDENT_LIMIT','학생은 30명까지 만들 수 있어요.'],['STUDENT_NOT_FOUND','학생을 찾지 못했어요.'],
- ['INVALID_LOGIN','학급 코드, 번호 또는 비밀번호를 다시 확인해 주세요.'],['INVALID_TEACHER_CODE','교사 등록 코드가 맞지 않아요.'],['TEACHER_CODE_PAUSED','지금은 교사 등록을 잠시 멈췄어요. 관리자에게 문의해 주세요.'],['TEACHER_CODE_NOT_SET','먼저 교사 등록 코드를 정해 주세요.'],
+ ['INVALID_LOGIN','학급 코드, 번호 또는 비밀번호를 다시 확인해 주세요.'],['INVALID_TEACHER_CODE','교사 등록 코드가 맞지 않아요.'],['SUBMISSION_CHANGED','학생이 그사이 다시 냈어요. 새 작품을 확인한 뒤 정해 주세요.'],['TEACHER_CODE_PAUSED','지금은 교사 등록을 잠시 멈췄어요. 관리자에게 문의해 주세요.'],['TEACHER_CODE_NOT_SET','먼저 교사 등록 코드를 정해 주세요.'],
  ['ASSIGNMENT_FORMAT_MISMATCH','과제 유형과 같은 작품을 선택해 주세요. 놀스토리·숏스토리를 확인해 주세요.'],['ASSIGNMENT_CLOSED','이미 닫힌 과제예요.'],['ASSIGNMENT_NOT_FOUND','과제를 찾지 못했어요.'],
  ['INVALID_DOCUMENT','이 작품은 제출할 수 없어요. 서비스에 등록된 그림과 소리만 쓸 수 있어요.'],['INVALID_REQUEST','입력한 내용을 다시 확인해 주세요.'],
  ['QR_REISSUE_REQUIRED','이전에 만든 QR을 인쇄하려면 한 번 다시 만들어야 해요. 이전 QR은 더 이상 쓸 수 없어요.'],['CLASSROOM_UNAVAILABLE','학급 정보를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.'],
@@ -113,6 +114,8 @@ export const qrLogin=(token:string,fetcher:Fetcher=fetch)=>obj('/qr-login',fetch
 export async function assignmentList(fetcher:Fetcher=fetch):Promise<Assignment[]>{const data=await call('/classroom/assignments',fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data.map(item=>asAssignment(item as Record<string,unknown>)).map(item=>item);}
 export const assignmentCreate=async(input:Readonly<{title:string;description?:string;storyKey?:string;format?:AssignmentFormat;shareUrl?:string;dueAt?:number;edition?:'original'|'knolstory'}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj('/classroom/assignments',fetcher,{method:'POST',csrf:csrfOf(csrf),body:input}));
 export const assignmentUpdate=async(id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null}>,csrf:string,fetcher:Fetcher=fetch)=>asAssignment(await obj(`/classroom/assignments/${seg(id)}`,fetcher,{method:'PATCH',csrf:csrfOf(csrf),body:patch}));
+/** Teacher: pass, ask for a rewrite (feedback required) or clear; `expectedSubmittedAt` is the version the teacher looked at. */
+export async function submissionReview(id:string,number:number,review:Readonly<{reviewStatus:ReviewStatus;feedback:string;expectedSubmittedAt:number}>,csrf:string,fetcher:Fetcher=fetch):Promise<SubmissionRow>{const data=await obj(`/classroom/assignments/${seg(id)}/submissions/${seg(number)}/review`,fetcher,{method:'PUT',csrf:csrfOf(csrf),body:review});return data as unknown as SubmissionRow;}
 export async function submissionList(id:string,fetcher:Fetcher=fetch):Promise<SubmissionRow[]>{const data=await call(`/classroom/assignments/${seg(id)}/submissions`,fetcher);if(!Array.isArray(data))throw new ClassroomError('INVALID_RESPONSE',502);return data as SubmissionRow[];}
 export const submissionOpen=(id:string,number:number,fetcher:Fetcher=fetch)=>obj(`/classroom/assignments/${seg(id)}/submissions/${seg(number)}`,fetcher) as Promise<unknown> as Promise<SubmissionDocument>;
 export async function submissionPut(id:string,document:AuthoringJsonbSnapshot,csrf:string,fetcher:Fetcher=fetch):Promise<number>{const data=await obj(`/classroom/assignments/${seg(id)}/submission`,fetcher,{method:'PUT',csrf:csrfOf(csrf),body:{document}});if(typeof data.submittedAt!=='number')throw new ClassroomError('INVALID_RESPONSE',502);return data.submittedAt;}

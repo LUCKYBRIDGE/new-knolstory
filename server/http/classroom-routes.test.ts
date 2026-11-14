@@ -41,7 +41,7 @@ async function harness(overrides:Partial<ClassroomRouterOptions>={}){
   verifyStudentLogin:vi.fn(async(_code:string,_number:number,password:string)=>password==='1234'?studentId:null),
   verifyQrToken:vi.fn(async(token:string)=>token==='q'.repeat(27)||token==='q'.repeat(43)?studentId:null),
   listAssignments:vi.fn(async()=>[]),createAssignment:vi.fn(async()=>({id:assignmentId})),patchAssignment:vi.fn(async()=>({id:assignmentId})),
-  listSubmissions:vi.fn(async()=>[]),readSubmissionFor:vi.fn(async()=>({document:{},submittedAt:1})),readOwnSubmission:vi.fn(async()=>({document:{},submittedAt:1})),
+  listSubmissions:vi.fn(async()=>[]),reviewSubmission:vi.fn(async()=>({number:12,name:'',submittedAt:1,reviewStatus:'passed',feedback:'',reviewedAt:2})),readSubmissionFor:vi.fn(async()=>({document:{},submittedAt:1})),readOwnSubmission:vi.fn(async()=>({document:{},submittedAt:1})),
   submit:vi.fn(async()=>({submittedAt:9})),
   listMissions:vi.fn(async()=>[]),createMission:vi.fn(async()=>({id:missionId})),setMissionOpen:vi.fn(async()=>({id:missionId,open:false})),
   submitMission:vi.fn(async()=>({submittedAt:11})),listMissionProgress:vi.fn(async()=>[]),reviewMission:vi.fn(async()=>({number:3,reviewStatus:'passed'})),
@@ -196,6 +196,8 @@ describe('classroom routes: teacher endpoints',()=>{
   await t('/classroom/assignments');expect(h.service.listAssignments).toHaveBeenCalledWith(teacherId,'teacher');
   await t(`/classroom/assignments/${assignmentId}/submissions`);expect(h.service.listSubmissions).toHaveBeenCalledWith(teacherId,assignmentId);
   await t(`/classroom/assignments/${assignmentId}/submissions/12`);expect(h.service.readSubmissionFor).toHaveBeenCalledWith(teacherId,assignmentId,12);
+  const review={reviewStatus:'passed',feedback:'',expectedSubmittedAt:1};
+  expect((await t(`/classroom/assignments/${assignmentId}/submissions/12/review`,'PUT',review)).status).toBe(200);expect(h.service.reviewSubmission).toHaveBeenCalledWith(teacherId,assignmentId,12,review);
  });
 });
 

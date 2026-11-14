@@ -280,3 +280,12 @@
 @media(max-width:600px){.composerChoices{grid-template-columns:1fr 1fr}.composerChoice{padding:12px}}
 .todoGroupHead{margin-top:6px}.todoGroupHead h3{margin:0;font-size:1rem;display:flex;gap:8px;align-items:baseline}.todoGroupHead h3 small{color:var(--class-muted);font-weight:600}
 .todoGroupHead[data-group=waiting] h3{color:#7a5a14}.todoGroupHead[data-group=done] h3{color:var(--class-muted)}
+/* Teacher review of a submitted work. */
+.reviewList{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.review{display:grid;gap:8px;padding:12px;border:1px solid #e3e0d4;border-radius:12px;background:#fffefa}
+.review[data-review=passed]{border-color:#cfe0d5;background:#f4f9f5}.review[data-review=revise]{border-color:#efd8c4;background:#fdf6ef}
+.reviewHead{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.reviewChip{margin-left:auto;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:12px;background:#eef0e8;color:#41524b}
+.reviewChip[data-review=passed]{background:#e3efe6;color:#245b46}.reviewChip[data-review=revise]{background:#fbe9dc;color:#8a4316}
+.reviewFeedback{margin:0;font-size:.875rem;line-height:1.6;color:#4b3a2a;white-space:pre-wrap}
+.reviewForm{display:grid;gap:8px}

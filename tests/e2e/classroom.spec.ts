@@ -18,7 +18,7 @@ const fail=(status:number,code:string)=>({status,json:{success:false,error:{code
 
 /** In-memory stand-in for /api/v1/class. `role` and `signedIn` are mutable so one test can walk through a login. */
 async function mockClassroom(page:Page,role:'teacher'|'student'){
- const state={accountId:'11111111-1111-4111-8111-111111111111',permissions:textOnly,signedIn:role==='teacher',classroom:null as null|{id:string;name:string;classCode:string;defaultPermissions:typeof all;students:Student[]},assignments:[] as Assignment[],submissions:{} as Record<string,unknown>,missions:[] as Mission[],missionRows:{} as Record<string,Record<number,MissionRow>>,missionRoster:[{number:2,name:'하늘'}],missionClock:1_770_000_000_000,calls:[] as string[],bodies:[] as unknown[],qrReady:{} as Record<number,string>,legacyQr:[] as number[]};
+ const state={accountId:'11111111-1111-4111-8111-111111111111',permissions:textOnly,signedIn:role==='teacher',classroom:null as null|{id:string;name:string;classCode:string;defaultPermissions:typeof all;students:Student[]},assignments:[] as Assignment[],submissions:{} as Record<string,unknown>,review:null as null|{reviewStatus:'passed'|'revise'|null;feedback:string},missions:[] as Mission[],missionRows:{} as Record<string,Record<number,MissionRow>>,missionRoster:[{number:2,name:'하늘'}],missionClock:1_770_000_000_000,calls:[] as string[],bodies:[] as unknown[],qrReady:{} as Record<number,string>,legacyQr:[] as number[]};
  if(role==='student')state.classroom={id:'c1',name:'3반',classCode:'ABC234',defaultPermissions:textOnly,students:[]};
  if(role==='student')state.assignments=[{id:'a1',title:'내 이야기 쓰기',description:'세 컷을 써 보세요.',storyKey:null,open:true,createdAt:1,submittedAt:null}];
  await page.route('**/api/v1/**',async route=>{
@@ -57,13 +57,15 @@ async function mockClassroom(page:Page,role:'teacher'|'student'){
    if(method==='POST'){const item:Assignment={format:body.format??'knolstory',id:`a${state.assignments.length+1}`,title:body.title,description:body.description??'',storyKey:body.storyKey??null,open:true,createdAt:Date.now()};state.assignments.push(item);return route.fulfill(ok(item));}
    return route.fulfill(ok(state.assignments));
   }
+  const review=path.match(/^class\/classroom\/assignments\/(\w+)\/submissions\/2\/review$/);
+  if(review&&role==='teacher'){if(body.expectedSubmittedAt!==1_760_000_000_000)return route.fulfill(fail(409,'SUBMISSION_CHANGED'));state.review={reviewStatus:body.reviewStatus,feedback:body.feedback};return route.fulfill(ok({number:2,name:'하늘',submittedAt:1_760_000_000_000,reviewStatus:body.reviewStatus,feedback:body.feedback,reviewedAt:1}));}
   const teacherSubmission=path.match(/^class\/classroom\/assignments\/(\w+)\/submissions\/2$/);
   if(teacherSubmission&&role==='teacher'&&state.submissions[teacherSubmission[1]])return route.fulfill(ok({document:state.submissions[teacherSubmission[1]],submittedAt:1_760_000_000_000}));
   const assignment=path.match(/^class\/classroom\/assignments\/(\w+)(?:\/(submissions|submission))?$/);
   if(assignment){
    const item=state.assignments.find(entry=>entry.id===assignment[1])!;
    if(!assignment[2]&&method==='PATCH'){Object.assign(item,body);return route.fulfill(ok(item));}
-   if(assignment[2]==='submissions')return route.fulfill(ok([{number:2,name:'하늘',submittedAt:Date.now()}]));
+   if(assignment[2]==='submissions')return route.fulfill(ok([{number:2,name:'하늘',submittedAt:1_760_000_000_000,reviewStatus:state.review?.reviewStatus??null,feedback:state.review?.feedback??'',reviewedAt:null}]));
    if(assignment[2]==='submission'&&method==='GET')return route.fulfill(ok({document:state.submissions[item.id],submittedAt:item.submittedAt}));
    if(assignment[2]==='submission'&&method==='PUT'){state.submissions[item.id]=body.document;item.submittedAt=1_760_000_000_000;return route.fulfill(ok({submittedAt:item.submittedAt}));}
   }
@@ -677,6 +679,26 @@ test('switching teacher accounts closes the prepared QR workspace',async({page})
 });
 
 const worksheetMission:Mission={id:'m1',title:'별주부전 독후 활동지',description:'읽고 생각을 써요.',criteria:'까닭을 함께 써요.',kind:'worksheet',storyKey:'rabbit',readingFormat:'original',questions:[{id:'q1',prompt:'기억에 남는 장면은?'},{id:'q2',prompt:'토끼의 선택을 어떻게 생각하나요?'}],open:true,createdAt:1};
+test('teacher asks for a rewrite with feedback, then passes the work',async({page})=>{
+ const state=await mockClassroom(page,'teacher');
+ state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[{number:2,name:'하늘',password:'1234',permissions:null,hasQr:false}]};
+ state.assignments=[{id:'a1',format:'knolstory',title:'내 이야기 쓰기',description:'',storyKey:null,open:true,createdAt:1,submittedAt:null}];
+ await page.goto('/teacher');
+ await page.getByRole('button',{name:'내 이야기 쓰기 제출 보기'}).click();
+ const review=page.locator('[data-review]').filter({hasText:'2번 하늘'}).first();
+ await expect(review.getByText('확인 전')).toBeVisible();
+ await review.getByRole('button',{name:'2번 다시 쓰기 요청'}).click();
+ await review.getByRole('button',{name:'다시 쓰기 요청',exact:true}).click();
+ await expect(review.getByRole('alert')).toContainText('다시 쓸 점을 적어 주세요');
+ await review.getByLabel('2번에게 피드백').fill('결말을 조금 더 써 주세요.');
+ await review.getByRole('button',{name:'다시 쓰기 요청',exact:true}).click();
+ await expect(page.locator('[data-review="revise"]').getByText('결말을 조금 더 써 주세요.')).toBeVisible();
+ expect(state.review).toEqual({reviewStatus:'revise',feedback:'결말을 조금 더 써 주세요.'});
+ await page.getByRole('button',{name:'2번 통과'}).click();
+ await expect(page.locator('div[data-review="passed"]')).toBeVisible();
+ expect(state.review?.reviewStatus).toBe('passed');
+});
+
 test('one composer opens the right form for every kind of task',async({page})=>{
  const state=await mockClassroom(page,'teacher');
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[]};

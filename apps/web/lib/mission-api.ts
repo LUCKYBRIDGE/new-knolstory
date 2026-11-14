@@ -10,7 +10,7 @@ export type MissionDraft=Pick<Mission,'title'|'description'|'criteria'|'kind'|'s
 export type MissionStudentProgress=MissionProgress&{number:number;name:string};
 export type MissionReviewInput={reviewStatus:'passed'|'revise'|null;feedback:string;expectedSubmittedAt:number|null};
 export const MISSION_LIMITS={title:80,text:2000,prompt:400,questions:8} as const;
-const message:Record<string,string>={MISSION_CLOSED:'마감된 과제가에요.',MISSION_NOT_FOUND:'과제를 찾지 못했어요.',MISSION_SUBMISSION_CHANGED:'학생이 활동지를 다시 제출했어요. 새 답변을 확인해 주세요.',MISSION_UNAVAILABLE:'과제를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.',REQUEST_TOO_LARGE:'글이 너무 길어요. 조금 줄여서 다시 보내 주세요.'};
+const message:Record<string,string>={MISSION_CLOSED:'마감된 과제예요.',MISSION_NOT_FOUND:'과제를 찾지 못했어요.',MISSION_SUBMISSION_CHANGED:'학생이 활동지를 다시 제출했어요. 새 답변을 확인해 주세요.',MISSION_UNAVAILABLE:'과제를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.',REQUEST_TOO_LARGE:'글이 너무 길어요. 조금 줄여서 다시 보내 주세요.'};
 export class MissionError extends ClassroomError{
  constructor(code:string,status:number){super(code,status);this.message=message[code]??this.message;}
 }
