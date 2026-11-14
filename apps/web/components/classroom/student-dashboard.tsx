@@ -72,7 +72,7 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
  return <>
   <div className={styles.taskHeading}><h4>{assignment.title}</h4><span className={assignment.open?styles.badge:`${styles.badge} ${styles.off}`}>{assignment.open?'열림':'닫힘'}</span></div>
   {assignment.description&&<p className={styles.hint}>{assignment.description}</p>}
-  {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}</p>}
+  {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
   {assignment.shareUrl&&<div className={styles.shareBox}>
    <strong>선생님 제출 링크로 내요</strong>
    <ol><li>아래에서 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>

@@ -64,6 +64,9 @@ describe('real PostgreSQL classroom service',()=>{
   const original=await service.createAssignment(teacher,{title:'원작 다시 쓰기',description:'',storyKey:'rabbit',edition:'original'});
   expect(original.edition).toBe('original');
   expect((await service.createAssignment(teacher,{title:'자유',description:'',storyKey:null,edition:'original'})).edition).toBeNull();
+  const fromChapter=await service.createAssignment(teacher,{title:'4장부터',description:'',storyKey:'rabbit',edition:'original',startPoint:'chapter:c-4',startLabel:'4장 · 토끼가 낸 꾀부터'});
+  expect(fromChapter).toMatchObject({startPoint:'chapter:c-4',startLabel:'4장 · 토끼가 낸 꾀부터'});
+  expect((await service.createAssignment(teacher,{title:'자유2',description:'',storyKey:null,startPoint:'chapter:c-4',startLabel:'x'})).startPoint).toBeNull();
  });
 
  it('upgrades members only with the current teacher code and stores just a hash',async()=>{

@@ -68,6 +68,7 @@ import {
 } from "@knolstory/runtime-core";
 import { useStoryRuntime } from "./story-workspace-runtime";
 import styles from "./story-workspace.module.css";
+import {trimToStartPoint} from "../lib/story-start-point";
 import {WorkspaceManagement} from "./workspace-management";
 import type {BookshelfIntent} from "./local-bookshelf";
 import {PersonalLibrary} from "./personal-library";
@@ -886,7 +887,9 @@ export function StoryWorkspace() {
         const fixture=storyKey?(task.edition==='original'&&definition?builtInStories.find(item=>item.project.id===definition.originalDocumentId):builtInStories.find(item=>item.id===storyKey)):undefined;
         if(storyKey&&!fixture)throw Error('과제의 바탕 작품을 찾지 못했어요.');
         saveBeforeImport();
-        const next=fixture?createCatalogEditCopy(structuredClone(fixture.project),crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
+        // A start point keeps the story up to it and leaves the rest blank for the student.
+        const base=fixture?trimToStartPoint(structuredClone(fixture.project),task.startPoint,()=>crypto.randomUUID()):undefined;
+        const next=fixture&&base?createCatalogEditCopy(base,crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
           :createBlankStoryProject({id:crypto.randomUUID(),chapterId:crypto.randomUUID(),lineId:crypto.randomUUID(),title:task.title});
         if(fixture&&!await preserveCopyAudio(fixture.project,next))return;
         if(controller.signal.aborted||sequence!==importReadSequence.current)return;
