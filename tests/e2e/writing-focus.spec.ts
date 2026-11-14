@@ -14,7 +14,7 @@ for(const size of [{width:1440,height:900},{width:768,height:1024},{width:390,he
  // Only the always-on screens are offered; sound, direction, character and choice tools stay closed until switched on in the settings menu.
  await page.locator('[data-work-menu]>summary').click();await expect(page.getByRole('combobox',{name:'편집화면 선택',exact:true}).locator('option')).toHaveText(['기본편집','글 편집','배경 편집']);await page.locator('[data-work-menu]>summary').click();
  await expect(page.locator('[data-screen]')).toHaveAttribute('data-screen','basic');
- await expect(page.getByRole('button',{name:'+ 선택지로 갈래 나누기',exact:true})).toBeVisible();await expect(page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true})).toHaveCount(0);
+ await expect(page.getByRole('button',{name:'+ 여기서 이야기 나누기',exact:true})).toBeVisible();await expect(page.getByText('현재 컷의 선택지·분기조건 편집',{exact:true})).toHaveCount(0);
  await expect(page.locator('summary').filter({hasText:/컷 (음향|연출) 수정$/})).toHaveCount(0);
  // The short landscape arrangement only offers the cut's own memo with "메모 수정"; the full list is beside or below the cut elsewhere.
  const related=await relatedMemos(page);if(await related.locator(':scope>summary').isVisible())await expect(related.locator(':scope>summary')).toBeVisible();else await expect(page.getByRole('region',{name:'현재 컷 메모·연결 정보',exact:true}).getByRole('button',{name:'메모 수정',exact:true})).toBeVisible();

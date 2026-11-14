@@ -342,3 +342,5 @@
 .pathChoice b{font-size:13px}.pathChoice span{font-size:12px;color:var(--ink-soft)}
 .pathPending,.pathEnd{margin:0;font-size:12px;color:var(--ink-soft)}
 .mapButton{width:100%;margin:8px 0;font-weight:700}
+.pathFrom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:stretch}
+.pathSeparate{padding:6px 10px;border-radius:10px;font-size:12px;white-space:normal;word-break:keep-all;max-width:7.5rem}

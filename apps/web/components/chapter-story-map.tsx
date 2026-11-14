@@ -1,16 +1,19 @@
 "use client";
-import { useEffect, useId, useMemo, useRef } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { StoryProject } from "@knolstory/story-domain";
 import type { StoryFlowGraph } from "@knolstory/runtime-core";
 import { chapterFlow } from "../lib/chapter-flow";
+import { chapterArrangement } from "../lib/chapter-arrange";
 import styles from "./chapter-story-map.module.css";
 
 const W = 184, H = 84, GX = 104, GY = 22, M = 20;
 const clip = (text: string, size: number) => text.length > size ? `${text.slice(0, size - 1)}…` : text;
 
 /** The whole story by chapter: forks (◆), rejoins (●) and endings (■) in reading order. Choosing a chapter opens it. */
-export function ChapterStoryMap({ project, graph, currentChapterId, onOpenChapter }: { project: StoryProject; graph: StoryFlowGraph; currentChapterId: string | undefined; onOpenChapter: (lineId: string) => void }) {
+export function ChapterStoryMap({ project, graph, currentChapterId, onOpenChapter, onArrange }: { project: StoryProject; graph: StoryFlowGraph; currentChapterId: string | undefined; onOpenChapter: (lineId: string) => void; onArrange?: (renumber: boolean) => void }) {
   const flow = useMemo(() => chapterFlow(project, graph), [project, graph]);
+  const arrangement = useMemo(() => onArrange ? chapterArrangement(project, graph) : null, [onArrange, project, graph]);
+  const [renumber, setRenumber] = useState(true);
   const arrow = useId().replace(/:/g, "");
   const scroller = useRef<HTMLDivElement>(null);
   const position = (depth: number, row: number) => ({ x: M + depth * (W + GX), y: M + 28 + row * (H + GY) });
@@ -28,6 +31,12 @@ export function ChapterStoryMap({ project, graph, currentChapterId, onOpenChapte
   return <section className={styles.section} aria-label="장 이야기 지도">
     <p className={styles.summary}>{flow.nodes.length}장 · <span className={styles.key} data-kind="fork">◆ 갈림 {forks}</span> · <span className={styles.key} data-kind="merge">● 다시 만남 {merges}</span> · <span className={styles.key} data-kind="ending">■ 끝 {endings}</span>{loose > 0 && <> · <span className={styles.key} data-kind="loose">이어지지 않은 장 {loose}</span></>}</p>
     <p className={styles.hint}>왼쪽에서 오른쪽으로 읽는 순서예요. 같은 세로줄은 같은 단계의 다른 갈래예요. 장을 누르면 그 장을 편집해요.</p>
+    {arrangement && (arrangement.moved || arrangement.renamed ? <div className={styles.arrange} data-chapter-arrange>
+      <p>{arrangement.moved > 0 && <>저장 순서가 읽는 순서와 다른 장 {arrangement.moved}개</>}{arrangement.moved > 0 && arrangement.renamed > 0 && " · "}{arrangement.renamed > 0 && <>읽는 단계와 번호가 다른 장 {arrangement.renamed}개</>}</p>
+      {arrangement.renamed > 0 && <label><input type="checkbox" checked={renumber} onChange={event => setRenumber(event.target.checked)} /> 장 번호와 갈래 글자도 다시 매기기</label>}
+      <button type="button" onClick={() => onArrange!(renumber && arrangement.renamed > 0)}>읽는 순서로 장 정리</button>
+      <small>연결과 글은 그대로예요. 장 목록과 번호만 지도 순서에 맞춰요.</small>
+    </div> : <p className={styles.hint} data-chapter-arrange="done">장이 읽는 순서대로 정리돼 있어요.</p>)}
     <div ref={scroller} className={styles.scroll} tabIndex={0} aria-label="장 이야기 지도 스크롤 영역" data-testid="chapter-map-scroll">
       <div className={styles.canvas} style={{ width, height }}>
         {Array.from({ length: flow.columns }, (_, column) => <span key={column} className={styles.step} style={{ left: position(column, 0).x, top: M - 4, width: W }}>{column + 1}단계</span>)}

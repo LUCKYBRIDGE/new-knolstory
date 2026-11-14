@@ -14,6 +14,7 @@ type Props = {
   currentLineId: string;
   onSelectCut: (lineId: string, repair?: { choiceId?: string; kind?: string }) => void;
   onClose: () => void;
+  onArrange?: (renumber: boolean) => void;
 };
 type FlowGraph = ReturnType<typeof analyzeStoryFlow>;
 type FlowNode = FlowGraph["nodes"][number];
@@ -46,7 +47,7 @@ function NodeBadges({ node, current, start }: { node: FlowNode; current: boolean
 }
 
 /** Structural navigation only; story presentation remains in Ren'Py. */
-export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: Props) {
+export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose, onArrange }: Props) {
   const graph = useMemo(() => analyzeStoryFlow(project), [project]);
   const nodeById = useMemo(() => new Map(graph.nodes.map(node => [node.lineId, node])), [graph]);
   const outgoing = useMemo(() => {
@@ -112,7 +113,7 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
     </header>
     <div className={styles.body}>
       <div className={styles.viewTabs} role="group" aria-label="보는 방식"><button type="button" aria-pressed={view === "chapters"} onClick={() => setView("chapters")}>장 지도</button><button type="button" aria-pressed={view === "cuts"} onClick={() => setView("cuts")}>컷 지도</button></div>
-      {view === "chapters" && <ChapterStoryMap project={project} graph={graph} currentChapterId={current?.chapterId} onOpenChapter={openCut} />}
+      {view === "chapters" && <ChapterStoryMap project={project} graph={graph} currentChapterId={current?.chapterId} onOpenChapter={openCut} onArrange={onArrange} />}
       <p className={styles.context}>현재 위치: <strong>{current ? location(current) : "선택한 컷 없음"}</strong> · 전체 {graph.nodes.length}컷 · 여러 갈래에서 함께 쓰는 컷 {graph.nodes.filter(node => node.shared).length}개 · 확인할 항목 {graph.issues.length}개</p>
       {graph.nodes.some(node=>node.shared)&&<details><summary>여러 길이 다시 만나는 지점 · {graph.nodes.filter(node=>node.shared).length}곳</summary><p>둘 이상의 선택이나 이동이 같은 컷으로 이어지는 곳입니다. 같은 갈림길의 서로 다른 선택도 포함해요.</p><ul>{graph.nodes.filter(node=>node.shared).map(node=><li key={node.lineId}><button type="button" onClick={()=>openCut(node.lineId)}>{location(node)} · {node.text.slice(0,40)||'아직 글이 없는 컷'}</button><ul>{node.incoming.map(edge=><li key={edge.id}>{describeStoryEdge(project,edge)}</li>)}</ul></li>)}</ul></details>}
       <p id={legendId} className={styles.legend}>화살표는 이야기 진행 방향입니다. 선택지나 점수 조건에 따라 길이 나뉠 수 있습니다. 여러 갈래에서 함께 쓰는 컷을 수정하면 그 컷을 지나는 모든 길에 반영됩니다.</p>

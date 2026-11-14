@@ -19,3 +19,8 @@
 .marks{display:flex;gap:4px;font-size:11px;min-height:15px}
 .marks b{font-weight:800}.marks b[data-kind=fork]{color:#9a5a12}.marks b[data-kind=merge]{color:var(--mint-strong)}.marks b[data-kind=ending]{color:#7a3a3a}
 .marks b[data-kind=start],.marks b[data-kind=current]{padding:0 6px;border-radius:8px;background:var(--mint-strong);color:var(--white);font-weight:700}
+.arrange { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 10px; padding: 10px 12px; border: 1px dashed var(--story-menu-line, #a58d6688); border-radius: 5px; }
+.arrange p { margin: 0; flex: 1 1 100%; }
+.arrange label { display: inline-flex; align-items: center; gap: 6px; }
+.arrange button { min-height: 40px; padding: 6px 14px; font: inherit; }
+.arrange small { flex: 1 1 100%; opacity: .8; }
