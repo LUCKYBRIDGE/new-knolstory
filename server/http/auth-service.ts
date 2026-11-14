@@ -23,5 +23,7 @@ export function createAuthService(config:AuthServiceConfig,pool:SqlPool,transpor
  }
  return createAuthRouter({origin:config.origin,authState:state,
   completionPort:createPostgresAuthCompletion(pool,{sessionTtlMs:config.sessionTtlMs}),
-  providers,rateLimit:config.rateLimit,clientProofKey:config.clientProofKey});
+  providers,rateLimit:config.rateLimit,clientProofKey:config.clientProofKey,
+  // One indexed read of the provider names only; subjects never leave the database.
+  linkedProviders:async accountId=>{const client=await pool.connect();try{return (await client.query("SELECT provider FROM knolstory_auth.identities WHERE account_id=$1 AND provider IN ('kakao','google') ORDER BY provider",[accountId])).rows.map(row=>row.provider as Provider);}finally{client.release();}}});
 }

@@ -20,3 +20,8 @@
 .menu .panel :focus-visible{outline:2px solid var(--story-menu-accent);outline-offset:2px}
 .menu .panel [role=alert]{color:var(--story-menu-danger)}
 .menu .panel [role=status]{color:var(--story-menu-accent)}
+.linked{display:grid;gap:4px;padding:8px 10px;border:1px solid var(--line,#d7e0de);border-radius:8px;font-size:13px}
+.linked>span{font-weight:600}
+.linked ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 12px}
+.linked li[data-linked="true"]{color:var(--mint-strong,#1f7a63);font-weight:600}
+.linked li[data-linked="false"]{color:var(--ink-soft,#5d6b69)}

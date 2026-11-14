@@ -1,5 +1,7 @@
 /** Session credentials stay in memory; authored works never enter these requests. */
-export type AccountSession=Readonly<{accountId:string;csrf:string}>;
+export type LinkedProvider='kakao'|'google';
+/** linkedProviders: which sign-ins this account has; only provider names, never provider IDs. */
+export type AccountSession=Readonly<{accountId:string;csrf:string;linkedProviders?:readonly LinkedProvider[]}>;
 export type AccountConfig=Readonly<{signupProvider:'kakao';providers:Readonly<{kakao:boolean;google:boolean}>}>;
 type Fetcher=typeof fetch;
 const unavailable=()=>new Error('계정 서비스를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.');
@@ -14,7 +16,8 @@ async function request(path:string,fetcher:Fetcher,options:RequestInit={}){
 export async function accountSession(fetcher:Fetcher=fetch):Promise<AccountSession|null>{
  const value=await request('/api/v1/me',fetcher);if(value===null)return null;
  if(typeof value.accountId!=='string'||!value.accountId||typeof value.csrf!=='string'||!value.csrf)throw unavailable();
- return {accountId:value.accountId,csrf:value.csrf};
+ const linked=Array.isArray(value.linkedProviders)?value.linkedProviders.filter((item):item is LinkedProvider=>item==='kakao'||item==='google'):undefined;
+ return {accountId:value.accountId,csrf:value.csrf,...(linked?{linkedProviders:[...new Set(linked)]}:{})};
 }
 export async function accountConfig(fetcher:Fetcher=fetch):Promise<AccountConfig>{
  const value=await request('/api/v1/auth/config',fetcher);

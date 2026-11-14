@@ -106,3 +106,15 @@ test('confirmed Kakao login uses a clear account state without unconfigured Goog
  await expect(menu.getByRole('status')).toHaveText('로그인했어요.');await expect(menu.getByRole('button',{name:'Google 계정 연결',exact:true})).toHaveCount(0);await expect(menu.getByRole('button',{name:'연결한 Google로 로그인',exact:true})).toHaveCount(0);
  await expect(menu).not.toContainText('일부 로그인 제공자');await expect(menu).not.toContainText('로그인 요청 뒤 돌아왔어요');await expect(menu.getByRole('button',{name:'로그아웃',exact:true})).toBeEnabled();
 });
+test('the account menu shows which sign-ins are linked and hides the link button once Google is linked',async({page})=>{
+ await mockedAccount(page);let linked=['kakao'];
+ await page.route('**/api/v1/me',route=>route.fulfill({json:{success:true,data:{accountId:firstAccount,csrf:'csrf',linkedProviders:linked}}}));
+ await page.goto('/?view=library');let menu=await openAccount(page);
+ const status=menu.getByLabel('연결된 로그인',{exact:true});
+ await expect(status).toContainText('✓ 카카오');await expect(status).toContainText('Google 연결 안 됨');
+ await expect(menu.getByRole('button',{name:'Google 계정 연결',exact:true})).toBeVisible();
+ linked=['google','kakao'];await page.goto('/?view=library&auth=linked');menu=await openAccount(page);
+ await expect(menu.getByRole('status')).toContainText('Google 계정을 연결했어요');
+ await expect(menu.getByLabel('연결된 로그인',{exact:true})).toContainText('✓ Google 연결됨');
+ await expect(menu.getByRole('button',{name:'Google 계정 연결',exact:true})).toHaveCount(0);
+});

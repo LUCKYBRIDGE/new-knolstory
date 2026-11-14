@@ -52,7 +52,8 @@ async function harness(overrides: Partial<AuthRouterOptions> = {}) {
     start(state: string, nonce: string) { return { authorizationUrl: `https://${name === 'kakao' ? 'kauth.kakao.com/oauth/authorize' : 'accounts.google.com/o/oauth2/v2/auth'}?state=${state}&nonce=${nonce}`, verifier: 'v'.repeat(43) }; },
     async complete(code: string, verifier: string, nonce: string) { exchanges.push({ code, verifier, nonce }); if (code === 'fail') throw new Error('private secret'); return { provider: name, subject: code }; },
   });
-  const options = { origin, authState: httpAuthState, completionPort, providers: { kakao: provider('kakao'), google: provider('google') }, clock: () => now, ...overrides };
+  const options = { origin, authState: httpAuthState, completionPort, providers: { kakao: provider('kakao'), google: provider('google') }, clock: () => now,
+    linkedProviders: async (accountId: string) => [...identities].filter(([, id]) => id === accountId).map(([key]) => key.startsWith('google') ? 'google' as const : 'kakao' as const).sort(), ...overrides };
   const router = createAuthRouter(options);
   const server = createServer((req, res) => { void router(req, res); }); servers.push(server);
   await new Promise<void>(r => server.listen(0, '127.0.0.1', r));
@@ -79,6 +80,8 @@ describe('actual Node auth HTTP boundary', () => {
     const link = await h.start('google', cookie, true, me.data.csrf); expect(link.response.status).toBe(200); expect(link.response.headers.get('location')).toBeNull(); expect(link.response.headers.get('content-type')).toContain('application/json');
     const linked = await h.callback('google', link.state, cookie + '; ' + link.cookie); expect(linked.headers.get('location')).toBe(origin + '/?auth=linked'); expect(linked.headers.getSetCookie().join()).not.toContain('knolstory-next-session=');
     const google = await h.start('google'); expect((await h.callback('google', google.state, google.cookie)).headers.get('location')).toBe(origin + '/?auth=success'); expect(h.accounts.size).toBe(1);
+    // The account owner sees which sign-ins are linked, never the provider subjects.
+    const after = await (await h.request('/api/v1/me', { headers: { cookie } })).json(); expect(after.data.linkedProviders).toEqual(['google', 'kakao']); expect(JSON.stringify(after)).not.toContain('subject');
   });
   it('rejects missing session, forged CSRF and cross-origin link and logout requests', async () => {
     const h = await harness(); expect((await h.start('google', '', true)).response.status).toBe(401);
