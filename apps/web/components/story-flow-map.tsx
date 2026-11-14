@@ -7,6 +7,7 @@ import type { StoryProject } from "@knolstory/story-domain";
 import { analyzeStoryFlow } from "@knolstory/runtime-core";
 import { describeStoryEdge } from "../lib/story-connection-labels";
 import styles from "./story-flow-map.module.css";
+import { ChapterStoryMap } from "./chapter-story-map";
 
 type Props = {
   project: StoryProject;
@@ -60,6 +61,8 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
   const legendId = useId();
   const [query, setQuery] = useState("");
   const [scope, setScope] = useState<Scope>("all");
+  // Long works open on the chapter map; short ones keep the cut-level diagram.
+  const [view, setView] = useState<"chapters" | "cuts">(() => graph.nodes.length > 80 ? "chapters" : "cuts");
   const [expanded, setExpanded] = useState<string[]>(() => graph.nodes.length <= 80
     ? [...new Set(graph.nodes.map(node => node.chapterId))]
     : [nodeById.get(currentLineId)?.chapterId ?? ""]);
@@ -104,10 +107,12 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
       if (event.target === event.currentTarget && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) onClose();
     }}>
     <header className={styles.header}>
-      <div><p className={styles.eyebrow}>이야기의 길을 살펴보세요</p><h2 id={titleId}>전체 이야기 흐름</h2></div>
+      <div><p className={styles.eyebrow}>이야기의 길을 살펴보세요</p><h2 id={titleId}>이야기 흐름 지도</h2></div>
       <button ref={closeRef} onClick={onClose} aria-label="전체 흐름 닫기">닫기</button>
     </header>
     <div className={styles.body}>
+      <div className={styles.viewTabs} role="group" aria-label="보는 방식"><button type="button" aria-pressed={view === "chapters"} onClick={() => setView("chapters")}>장 지도</button><button type="button" aria-pressed={view === "cuts"} onClick={() => setView("cuts")}>컷 지도</button></div>
+      {view === "chapters" && <ChapterStoryMap project={project} graph={graph} currentChapterId={current?.chapterId} onOpenChapter={openCut} />}
       <p className={styles.context}>현재 위치: <strong>{current ? location(current) : "선택한 컷 없음"}</strong> · 전체 {graph.nodes.length}컷 · 여러 갈래에서 함께 쓰는 컷 {graph.nodes.filter(node => node.shared).length}개 · 확인할 항목 {graph.issues.length}개</p>
       {graph.nodes.some(node=>node.shared)&&<details><summary>여러 길이 다시 만나는 지점 · {graph.nodes.filter(node=>node.shared).length}곳</summary><p>둘 이상의 선택이나 이동이 같은 컷으로 이어지는 곳입니다. 같은 갈림길의 서로 다른 선택도 포함해요.</p><ul>{graph.nodes.filter(node=>node.shared).map(node=><li key={node.lineId}><button type="button" onClick={()=>openCut(node.lineId)}>{location(node)} · {node.text.slice(0,40)||'아직 글이 없는 컷'}</button><ul>{node.incoming.map(edge=><li key={edge.id}>{describeStoryEdge(project,edge)}</li>)}</ul></li>)}</ul></details>}
       <p id={legendId} className={styles.legend}>화살표는 이야기 진행 방향입니다. 선택지나 점수 조건에 따라 길이 나뉠 수 있습니다. 여러 갈래에서 함께 쓰는 컷을 수정하면 그 컷을 지나는 모든 길에 반영됩니다.</p>
@@ -116,8 +121,8 @@ export function StoryFlowMap({ project, currentLineId, onSelectCut, onClose }: P
         <label>표시 범위<select value={scope} onChange={event => setScope(event.target.value as Scope)}><option value="all">전체 컷</option><option value="issues">확인할 연결</option><option value="unreachable">시작부터 이어지는 길이 없는 컷</option></select></label>
       </div>
       <p role="status" className={styles.result}>{visible.length}컷 표시 · 컷을 선택하면 편집 화면으로 이동합니다.</p>
-      {graph.nodes.length <= 80 && scope === "all" && !search && <FlowDiagram project={project} graph={graph} currentLineId={currentLineId} onSelectCut={openCut} />}
-      {graph.nodes.length > 80 && <p className={styles.legend}>긴 작품은 장별로 펼쳐 살펴보세요. 검색하거나 표시 범위를 바꾸면 해당 컷을 모아 볼 수 있습니다.</p>}
+      {view === "cuts" && graph.nodes.length <= 80 && scope === "all" && !search && <FlowDiagram project={project} graph={graph} currentLineId={currentLineId} onSelectCut={openCut} />}
+      {view === "cuts" && graph.nodes.length > 80 && <p className={styles.legend}>긴 작품은 위의 ‘장 지도’로 전체를 보고, 아래에서 장별로 펼쳐 살펴보세요. 검색하거나 표시 범위를 바꾸면 해당 컷을 모아 볼 수 있습니다.</p>}
       <section className={styles.issues} aria-label="흐름 확인 항목">
         <h3>확인할 연결과 컷</h3>
         {visibleIssues.length === 0 ? <p>{graph.issues.length === 0 ? "도착 컷이 비어 있거나 시작부터 이어지는 길이 없는 컷이 없습니다." : "현재 검색·표시 범위에 확인할 항목이 없습니다."}</p> : <>

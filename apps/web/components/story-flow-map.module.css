@@ -53,3 +53,6 @@
 .dialog :is(.context,.legend,.result,.chapter summary,.cutButton,.authoredText,.connectionLabel,.connections button,.mapConnection) { word-break:keep-all; overflow-wrap:anywhere; }
 .dialog .filters :is(input,select) { width:100%; min-width:0; }
 @media(max-width:460px) { .dialog .header { gap:8px; }.dialog .header h2 { font-size:18px; }.dialog .header>button { flex:none; } }
+.viewTabs{display:flex;gap:4px;padding:4px;border-radius:12px;background:var(--paper);width:fit-content;max-width:100%}
+.viewTabs button{border:1px solid transparent;background:transparent;font-weight:700}
+.viewTabs button[aria-pressed=true]{background:var(--white);border-color:var(--mint-strong)}
