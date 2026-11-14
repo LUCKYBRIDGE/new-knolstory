@@ -216,7 +216,19 @@ describe('real PostgreSQL classroom service',()=>{
   expect(await failure(service.submit(stranger,created.id,document))).toBe('404 ASSIGNMENT_NOT_FOUND');
   expect(await failure(service.readOwnSubmission(stranger,created.id))).toBe('404 ASSIGNMENT_NOT_FOUND');
 
-  expect(await service.listSubmissions(teacher,created.id)).toEqual([{number:1,name:'하나',submittedAt:now}]);
+  expect(await service.listSubmissions(teacher,created.id)).toEqual([{number:1,name:'하나',submittedAt:now,reviewStatus:null,feedback:'',reviewedAt:null}]);
+  // Review: rewrite with feedback, a stale read is refused, a new submission clears the decision but keeps the feedback, then pass.
+  expect(await failure(service.reviewSubmission(teacher,created.id,1,{reviewStatus:'revise',feedback:'',expectedSubmittedAt:now}))).toBe('400 INVALID_REQUEST');
+  expect(await failure(service.reviewSubmission(teacher,created.id,1,{reviewStatus:'passed',feedback:'',expectedSubmittedAt:now-1}))).toBe('409 SUBMISSION_CHANGED');
+  expect(await failure(service.reviewSubmission(teacher,created.id,2,{reviewStatus:'passed',feedback:'',expectedSubmittedAt:null}))).toBe('404 SUBMISSION_NOT_FOUND');
+  const asked=await service.reviewSubmission(teacher,created.id,1,{reviewStatus:'revise',feedback:'결말을 더 써 주세요.',expectedSubmittedAt:now});
+  expect(asked).toMatchObject({reviewStatus:'revise',feedback:'결말을 더 써 주세요.'});
+  expect((await service.listAssignments(one,'student')).find(a=>a.id===created.id)).toMatchObject({reviewStatus:'revise',feedback:'결말을 더 써 주세요.'});
+  now+=1000;await service.submit(one,created.id,document);
+  expect((await service.listAssignments(one,'student')).find(a=>a.id===created.id)).toMatchObject({reviewStatus:null,feedback:'결말을 더 써 주세요.'});
+  expect((await service.reviewSubmission(teacher,created.id,1,{reviewStatus:'passed',feedback:'잘했어요',expectedSubmittedAt:now})).reviewStatus).toBe('passed');
+  expect((await service.listAssignments(teacher,'teacher')).find(a=>a.id===created.id)).toMatchObject({submittedCount:1,passedCount:1});
+  expect(await service.readOwnSubmission(one,created.id)).toEqual({document:JSON.parse(JSON.stringify(document)),submittedAt:now});
   expect(await service.readSubmissionFor(teacher,created.id,1)).toMatchObject({submittedAt:now});
   expect(await failure(service.readSubmissionFor(teacher,created.id,2))).toBe('404 SUBMISSION_NOT_FOUND');
   expect(await failure(service.readSubmissionFor(teacher,created.id,20))).toBe('404 STUDENT_NOT_FOUND');
