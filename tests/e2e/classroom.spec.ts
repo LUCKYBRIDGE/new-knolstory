@@ -9,10 +9,10 @@ test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window
 const all={text:true,images:true,characters:true,audio:true,direction:true,choices:true,newWorks:true,forcedStoryKey:null};
 const textOnly={...all,images:false,characters:false,audio:false,direction:false,choices:false};
 type Student={number:number;name:string;password:string;permissions:typeof all|null;hasQr:boolean};
-type Mission={id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:string|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number};
+type Mission={recipients?:number[]|null;id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:string|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number};
 type MissionRow={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:'passed'|'revise'|null;feedback:string;reviewedAt:number|null};
 const blankRow=():MissionRow=>({answers:{},note:'',submittedAt:null,reviewStatus:null,feedback:'',reviewedAt:null});
-type Assignment={edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
+type Assignment={recipients?:number[]|null;submittedCount?:number;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
 const ok=(data:unknown)=>({json:{success:true,data}});
 const fail=(status:number,code:string)=>({status,json:{success:false,error:{code}}});
 
@@ -54,7 +54,7 @@ async function mockClassroom(page:Page,role:'teacher'|'student'){
   const student=path.match(/^class\/classroom\/students\/(\d+)$/);
   if(student&&method==='PATCH'){const target=state.classroom!.students.find(item=>item.number===Number(student[1]))!;Object.assign(target,body);return route.fulfill(ok(target));}
   if(path==='class/classroom/assignments'){
-   if(method==='POST'){const item:Assignment={format:body.format??'knolstory',id:`a${state.assignments.length+1}`,title:body.title,description:body.description??'',storyKey:body.storyKey??null,edition:body.edition??null,startPoint:body.startPoint??null,startLabel:body.startLabel??null,open:true,createdAt:Date.now()} as Assignment;state.assignments.push(item);return route.fulfill(ok(item));}
+   if(method==='POST'){const item:Assignment={format:body.format??'knolstory',id:`a${state.assignments.length+1}`,title:body.title,description:body.description??'',storyKey:body.storyKey??null,edition:body.edition??null,startPoint:body.startPoint??null,startLabel:body.startLabel??null,recipients:body.recipients??null,submittedCount:0,open:true,createdAt:Date.now()} as Assignment;state.assignments.push(item);return route.fulfill(ok(item));}
    return route.fulfill(ok(state.assignments));
   }
   const review=path.match(/^class\/classroom\/assignments\/(\w+)\/submissions\/2\/review$/);
@@ -73,9 +73,9 @@ async function mockClassroom(page:Page,role:'teacher'|'student'){
   if(missionPath){
    const [,id,sub,num]=missionPath,mission=id?state.missions.find(item=>item.id===id):undefined,rows=id?state.missionRows[id]??={}:{};
    if(!id&&method==='GET')return route.fulfill(ok(state.missions.map(item=>role==='student'?{...item,progress:state.missionRows[item.id]?.[2]??blankRow()}:item)));
-   if(!id&&method==='POST'){const item:Mission={...body,id:`m${state.missions.length+1}`,open:true,createdAt:Date.now()};state.missions.unshift(item);return route.fulfill({status:201,json:{success:true,data:item}});}
+   if(!id&&method==='POST'){const item:Mission={recipients:null,...body,id:`m${state.missions.length+1}`,open:true,createdAt:Date.now()};state.missions.unshift(item);return route.fulfill({status:201,json:{success:true,data:item}});}
    if(!mission)return route.fulfill(fail(404,'MISSION_NOT_FOUND'));
-   if(!sub&&method==='PATCH'){mission.open=body.open;return route.fulfill(ok(mission));}
+   if(!sub&&method==='PATCH'){Object.assign(mission,body);return route.fulfill(ok(mission));}
    if(sub==='submission'&&method==='PUT'){
     if(!mission.open)return route.fulfill(fail(409,'MISSION_CLOSED'));
     const row=rows[2]??=blankRow();Object.assign(row,{answers:body.answers,note:body.note,submittedAt:++state.missionClock,reviewStatus:null});
@@ -948,4 +948,50 @@ test('a member becomes a teacher from the teacher page and others get a way forw
  await expect(page.getByRole('heading',{name:'로그인이 필요해요'})).toBeVisible();
  await expect(page.getByRole('link',{name:'카카오로 로그인'})).toHaveAttribute('href','/api/v1/auth/kakao/start');
  await expect(page.getByRole('link',{name:'학생 로그인'})).toHaveAttribute('href','/student');
+});
+
+test('teacher gives a task to chosen students and changes who gets a mission',async({page})=>{
+ const state=await mockClassroom(page,'teacher');
+ const kid=(number:number,name:string):Student=>({number,name,password:'1234',permissions:null,hasQr:false});
+ state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[kid(1,'가람'),kid(2,'하늘'),kid(3,'누리')]};
+ await page.goto('/teacher');
+ const writing=page.getByRole('region',{name:'작품 쓰기 과제'});
+ await writing.locator('input[name="task-title"]').fill('모둠 이야기');
+ const picker=writing.getByRole('group',{name:'받는 학생'});
+ await expect(picker.getByRole('radio',{name:'우리 반 모두'})).toBeChecked();
+ await picker.getByRole('radio',{name:'골라서 주기'}).check();
+ await writing.getByRole('button',{name:'과제 만들기'}).click();
+ await expect(writing.getByRole('alert')).toContainText('한 명 넘게 골라 주세요');
+ expect(state.calls.filter(call=>call==='POST class/classroom/assignments')).toHaveLength(0);
+ await picker.getByRole('checkbox',{name:/3\s*누리/}).check();
+ await picker.getByRole('checkbox',{name:/1\s*가람/}).check();
+ await expect(picker.getByRole('status')).toContainText('2명에게만 보여요');
+ await writing.getByRole('button',{name:'과제 만들기'}).click();
+ const card=writing.locator('li').filter({has:page.getByRole('heading',{name:'모둠 이야기'})});
+ await expect(card.getByText('1·3번 (2명)')).toBeVisible();
+ await expect(card.getByText(/제출\s*0\s*\/\s*2명/)).toBeVisible();
+ expect(state.bodies.at(-1)).toMatchObject({title:'모둠 이야기',recipients:[1,3]});
+ // Back to the whole class from the card.
+ await card.getByRole('button',{name:'모둠 이야기 받는 학생 바꾸기'}).click();
+ await card.getByRole('radio',{name:'우리 반 모두'}).check();
+ await card.getByRole('button',{name:'저장'}).click();
+ await expect(card.getByText('우리 반 모두')).toBeVisible();
+ expect(state.bodies.at(-1)).toEqual({recipients:null});
+
+ // A mission for one student, then widened to two.
+ const missions=page.getByRole('region',{name:'읽기·활동 과제',exact:true});
+ await missions.getByRole('button',{name:'직접 만들기'}).click();
+ await missions.getByLabel('과제 제목').fill('보충 활동지');
+ await missions.getByRole('textbox',{name:'1번 질문',exact:true}).fill('기억에 남는 장면은?');
+ const missionPicker=missions.getByRole('group',{name:'받는 학생'});
+ await missionPicker.getByRole('radio',{name:'골라서 주기'}).check();
+ await missionPicker.getByRole('checkbox',{name:/2\s*하늘/}).check();
+ await missions.getByRole('button',{name:'과제 내기'}).click();
+ await expect(missions.getByText('1명에게 냈어요',{exact:false})).toBeVisible();
+ expect(state.bodies.at(-1)).toMatchObject({title:'보충 활동지',recipients:[2]});
+ await missions.getByRole('button',{name:'보충 활동지 받는 학생 바꾸기'}).click();
+ await missions.getByRole('checkbox',{name:/1\s*가람/}).check();
+ await missions.getByRole('button',{name:'저장'}).click();
+ await expect(missions.getByText('1·2번 (2명)')).toBeVisible();
+ expect(state.bodies.at(-1)).toEqual({recipients:[1,2]});
 });

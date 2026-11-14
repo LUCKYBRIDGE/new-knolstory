@@ -1,4 +1,5 @@
 import {ClassroomError} from './errors';
+import {recipientNumbers} from './recipients';
 export type MissionKind='reading'|'worksheet'|'custom';
 export type ReadingFormat='original'|'knolstory'|'shortstory';
 export type MissionQuestion=Readonly<{id:string;prompt:string}>;
@@ -44,11 +45,11 @@ export function dueAt(value:unknown):number|null{
  if(value===null)return null;
  if(typeof value!=='number'||!Number.isSafeInteger(value)||value<0)throw invalid();return value;
 }
-export function missionPatch(value:unknown):{open?:boolean;dueAt?:number|null}{
- const input=object(value,['open','dueAt'],[]);
- if(input.open===undefined&&input.dueAt===undefined)throw invalid();
+export function missionPatch(value:unknown):{open?:boolean;dueAt?:number|null;recipients?:number[]|null}{
+ const input=object(value,['open','dueAt','recipients'],[]);
+ if(input.open===undefined&&input.dueAt===undefined&&input.recipients===undefined)throw invalid();
  if(input.open!==undefined&&typeof input.open!=='boolean')throw invalid();
- return {...(input.open!==undefined?{open:input.open as boolean}:{}),...(input.dueAt!==undefined?{dueAt:dueAt(input.dueAt)}:{})};
+ return {...(input.open!==undefined?{open:input.open as boolean}:{}),...(input.dueAt!==undefined?{dueAt:dueAt(input.dueAt)}:{}),...(input.recipients!==undefined?{recipients:recipientNumbers(input.recipients)}:{})};
 }
 export function missionOpen(value:unknown):boolean{
  const input=object(value,['open']);if(typeof input.open!=='boolean')throw invalid();return input.open;

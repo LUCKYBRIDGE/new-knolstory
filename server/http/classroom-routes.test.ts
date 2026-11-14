@@ -178,16 +178,19 @@ describe('classroom routes: teacher endpoints',()=>{
  it('creates, patches and reads assignments and submissions',async()=>{
   const h=await harness(),t=h.as(await h.login(teacherId));
   expect((await t('/classroom/assignments','POST',{title:' 이야기 ',description:'설명',storyKey:'story-a'})).status).toBe(201);
-  expect(h.service.createAssignment).toHaveBeenCalledWith(teacherId,{title:'이야기',description:'설명',storyKey:'story-a',format:'knolstory',shareUrl:null,dueAt:null,edition:null,startPoint:null,startLabel:null});
-  await t('/classroom/assignments','POST',{title:'t'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'t',description:'',storyKey:null,format:'knolstory',shareUrl:null,dueAt:null,edition:null,startPoint:null,startLabel:null});
+  expect(h.service.createAssignment).toHaveBeenCalledWith(teacherId,{title:'이야기',description:'설명',storyKey:'story-a',format:'knolstory',shareUrl:null,dueAt:null,edition:null,startPoint:null,startLabel:null,recipients:null});
+  await t('/classroom/assignments','POST',{title:'t'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'t',description:'',storyKey:null,format:'knolstory',shareUrl:null,dueAt:null,edition:null,startPoint:null,startLabel:null,recipients:null});
   expect((await t('/classroom/assignments','POST',{title:'그림 이야기',format:'shortstory'})).status).toBe(201);
-  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'그림 이야기',description:'',storyKey:null,format:'shortstory',shareUrl:null,dueAt:null,edition:null,startPoint:null,startLabel:null});
+  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'그림 이야기',description:'',storyKey:null,format:'shortstory',shareUrl:null,dueAt:null,edition:null,startPoint:null,startLabel:null,recipients:null});
   await t('/classroom/assignments','POST',{title:'링크',shareUrl:'https://drive.google.com/drive/folders/abc'});
-  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'링크',description:'',storyKey:null,format:'knolstory',shareUrl:'https://drive.google.com/drive/folders/abc',dueAt:null,edition:null,startPoint:null,startLabel:null});
+  expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,{title:'링크',description:'',storyKey:null,format:'knolstory',shareUrl:'https://drive.google.com/drive/folders/abc',dueAt:null,edition:null,startPoint:null,startLabel:null,recipients:null});
   for(const bad of ['http://drive.google.com/x','javascript:alert(1)','https://u:p@example.com/x','nope'])expect((await t('/classroom/assignments','POST',{title:'x',shareUrl:bad})).status).toBe(400);
   await t('/classroom/assignments','POST',{title:'원작',storyKey:'rabbit',edition:'original'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,expect.objectContaining({storyKey:'rabbit',edition:'original'}));
   expect((await t('/classroom/assignments','POST',{title:'x',edition:'remix'})).status).toBe(400);
   await t('/classroom/assignments','POST',{title:'장부터',storyKey:'rabbit',edition:'original',startPoint:'chapter:c-4',startLabel:'4장 · 토끼가 낸 꾀부터'});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,expect.objectContaining({startPoint:'chapter:c-4',startLabel:'4장 · 토끼가 낸 꾀부터'}));
+  await t('/classroom/assignments','POST',{title:'일부',recipients:[3,1]});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,expect.objectContaining({recipients:[1,3]}));
+  for(const recipients of [[],[0],[31],[1,1],['1'],'1']){const before=h.service.createAssignment.mock.calls.length;expect((await t('/classroom/assignments','POST',{title:'x',recipients})).status).toBe(400);expect(h.service.createAssignment.mock.calls.length).toBe(before);}
+  await t('/classroom/assignments/'+assignmentId,'PATCH',{recipients:null});expect(h.service.patchAssignment).toHaveBeenLastCalledWith(teacherId,assignmentId,{recipients:null});
   expect((await t('/classroom/assignments','POST',{title:'x',startPoint:'drop table'})).status).toBe(400);
   await t('/classroom/assignments','POST',{title:'마감',dueAt:1_800_000_000_000});expect(h.service.createAssignment).toHaveBeenLastCalledWith(teacherId,expect.objectContaining({dueAt:1_800_000_000_000}));
   expect((await t('/classroom/assignments','POST',{title:'x',dueAt:-1})).status).toBe(400);

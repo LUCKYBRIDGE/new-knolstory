@@ -289,3 +289,17 @@
 .reviewChip[data-review=passed]{background:#e3efe6;color:#245b46}.reviewChip[data-review=revise]{background:#fbe9dc;color:#8a4316}
 .reviewFeedback{margin:0;font-size:.875rem;line-height:1.6;color:#4b3a2a;white-space:pre-wrap}
 .reviewForm{display:grid;gap:8px}
+/* Who gets a task: the whole class or ticked students. */
+.recipients{border:1px solid #e3e0d4;border-radius:12px;padding:10px 12px 4px;margin:10px 0 0;min-width:0}
+.recipients legend{font-size:.8125rem;font-weight:600;padding:0 4px}
+.recipientModes{display:flex;flex-wrap:wrap;gap:6px 18px}
+.recipientModes label{display:flex;align-items:center;gap:6px;min-height:40px;font-size:.875rem;cursor:pointer}
+.recipientModes input{width:18px;height:18px;accent-color:#2f6962}
+.recipientGrid{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px}
+.recipientChip{display:flex;align-items:center;gap:6px;min-height:40px;padding:4px 10px;border:1px solid #d6d2c4;border-radius:10px;background:#fffefa;font-size:.8125rem;cursor:pointer;min-width:0}
+.recipientChip input{width:16px;height:16px;margin:0;accent-color:#2f6962;flex:none}
+.recipientChip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--class-muted)}
+.recipientChip[data-on]{border-color:#2f6962;background:#e8f1ec}
+.recipientChip:focus-within{outline:2px solid #2f6962;outline-offset:2px}
+.recipientEdit{display:grid;gap:8px;margin:8px 0 0}
+.factChip[data-recipients=some]{background:#e8f1ec}
