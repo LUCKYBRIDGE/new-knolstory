@@ -335,3 +335,10 @@
 .body[data-cut-arrangement=stacked] .nextSide>.adjacent{flex:1 1 auto;min-width:0;max-height:none}
 .body[data-cut-arrangement=stacked] .nextSide>.insertCut{flex:0 0 auto;width:auto;margin:0;padding:0 10px;white-space:nowrap}
 @media(max-width:600px){.body[data-cut-arrangement=stacked] .nextSide .longLabel{display:none}.body[data-cut-arrangement=stacked] .nextSide .shortLabel{display:inline}}
+/* Following the reading path in branching works. */
+.pathFork{display:grid;gap:6px;padding:12px;border:1px solid #efd9b0;border-radius:var(--radius-panel,12px);background:#fffaf0}
+.pathFork>strong{font-size:14px;color:#7a5414}.pathFork>small{font-size:12px;color:var(--ink-soft)}
+.pathChoice{display:grid;gap:2px;text-align:left;padding:8px 10px;border-radius:10px;word-break:keep-all;overflow-wrap:anywhere}
+.pathChoice b{font-size:13px}.pathChoice span{font-size:12px;color:var(--ink-soft)}
+.pathPending,.pathEnd{margin:0;font-size:12px;color:var(--ink-soft)}
+.mapButton{width:100%;margin:8px 0;font-weight:700}

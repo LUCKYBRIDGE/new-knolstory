@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useMemo,useRef,useState,type RefObject} from 'react';
+import {hasBranches,storyPaths} from '../lib/story-path';
 import {compileStoryScene} from '@knolstory/runtime-core';
 import {isRuntimeEvent,type RuntimeSceneThumbnail,type RuntimeThumbnailRequest} from '@knolstory/runtime-contract';
 import type {StoryProject} from '@knolstory/story-domain';
@@ -16,7 +17,13 @@ export function useAdjacentSceneThumbnails(project:StoryProject,lineId:string,fr
   const current=project.lines.find(line=>line.id===lineId);
   const ordered=project.lines.filter(line=>line.chapterId===current?.chapterId).sort((a,b)=>a.order-b.order);
   const index=ordered.findIndex(line=>line.id===lineId);
-  return [ordered[index-1],ordered[index+1]].filter(line=>!!line).map(line=>{
+  // Branching works show the reading-path neighbours, so preview those (single predecessor and single next only).
+  const byId=new Map(project.lines.map(line=>[line.id,line]));
+  const paths=current&&hasBranches(project)?storyPaths(project):null;
+  const previous=paths&&current?(paths.previous(current.id).length===1?byId.get(paths.previous(current.id)[0]!):undefined):ordered[index-1];
+  const step=paths&&current?paths.next(current.id):undefined;
+  const next=paths?(step?.kind==='next'?byId.get(step.lineId):undefined):ordered[index+1];
+  return [previous,next].filter(line=>!!line).map(line=>{
    const compiled=compileStoryScene(project,line.id,0,{mode:'edit',reducedMotion:true,...storySceneLayout('edit','landscape',{width:1280,height:720}),dialogueDock:{bottomInsetPx:0,safeBottomPx:0}});
    const scene={...compiled,...(compiled.dialogueStyle?{dialogueStyle:{...compiled.dialogueStyle,fontSize:Math.min(96,Math.max(16,Math.round(compiled.dialogueStyle.fontSize*textScale)))}}:{})};
    return {lineId:line.id,scene,key:JSON.stringify([project.id,scene])};
