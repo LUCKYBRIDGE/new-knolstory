@@ -65,6 +65,8 @@
 .body[data-basic=true]>.editingContent,.basic { display:contents; }
 .previewSlot { grid-column:2; grid-row:1; min-width:0; min-height:0; overflow:hidden; }
 .current { grid-column:2; grid-row:2; min-height:0; overflow:auto; padding:8px; gap:8px; margin:0; align-content:start; }
+/* Scroll shadows: the panel scrolls on its own, so show a soft edge where more content (e.g. the cast preview) sits above or below. They only appear while there is something to scroll to. */
+.current { background:linear-gradient(var(--paper) 30%,#f7f3e900) center top/100% 32px no-repeat local,linear-gradient(#f7f3e900,var(--paper) 70%) center bottom/100% 32px no-repeat local,radial-gradient(farthest-side at 50% 0,#18333129,#18333100) center top/100% 12px no-repeat scroll,radial-gradient(farthest-side at 50% 100%,#18333129,#18333100) center bottom/100% 12px no-repeat scroll; }
 .current legend { font-size:var(--text-small); }
 .current .text textarea { min-height:72px; height:clamp(72px,14dvh,160px); resize:vertical; padding:8px; }
 .adjacent { min-width:0; min-height:0; overflow:auto; align-content:start; margin:0; grid-column:1; grid-row:1/3; }

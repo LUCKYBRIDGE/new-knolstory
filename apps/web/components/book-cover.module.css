@@ -139,7 +139,8 @@
 .titleBox {
   padding:3%;
 }
-.title {
+/* Scoped to .book so a host page's heading rules (e.g. a shelf's `h2`) cannot resize the cover title. */
+.book .title {
   margin:0;
   font-size:1em;
   line-height:1.5;
