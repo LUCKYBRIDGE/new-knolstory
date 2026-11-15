@@ -132,6 +132,28 @@ key scope isolation, full-request identity, shared snapshot integrity failures,
 policy rejection, rollback of either write, and detached content/receipt values.
 Future integration tests must exercise the chosen adapter against its actual DB.
 
+## Production host storage and watch (2026-11-16)
+
+Production stays on one Mac mini. Static pages and media come from Cloudflare Pages;
+the Mac runs only API, PostgreSQL and ingress.
+
+- **Docker disk:** Docker Desktop's disk image lives on the external SN850X volume
+  `WAN2` (APFS, Thunderbolt) at `/Volumes/WAN2/DockerDesktop/Docker.raw`, set by
+  `DataFolder` in Docker's `settings-store.json`. The production DB volume is inside it.
+- **Start order:** Docker's own auto-start is off. The login agent
+  `com.knolquiz.docker-after-sn850x` starts Docker only after the image file exists,
+  so Docker cannot boot without the drive.
+- **Unplugging:** never move the SN850X cable while Docker runs. Stop Docker first
+  (`docker desktop stop`). A hot unplug leaves the VM with I/O errors until restart.
+- **Watch:** `com.knolquiz.knolstory-health-watch` runs every 5 minutes. It checks
+  the drive and its SMART data (health, temperature, media errors, wear), free
+  space, Docker, the production containers, a DB query, the public API and backup
+  age. Problems raise a macOS notification at most hourly and are logged to
+  `~/Library/Logs/knolstory-next-production/health.log`.
+- **Backups:** the daily 04:00 `pg_dump` is copied to the Toshiba backup drive.
+- **Resources:** the API and DB containers each get 1 GB and 2 CPUs. The upload
+  limit stays at 26 MB, because the editor accepts work files up to 25 MB.
+
 ## Actual isolated PostgreSQL storage adapter
 
 The current Mac mini Docker host is the accepted target (ADR 0023). The dedicated

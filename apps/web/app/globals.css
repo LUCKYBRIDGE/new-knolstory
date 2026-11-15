@@ -5,6 +5,10 @@
 body { margin:0; color:var(--ink); background:var(--paper); font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif; line-height:1.55; }
 button,input,textarea,select { font:inherit; }
 button { min-height:44px; border:1px solid var(--line); border-radius:var(--radius-control); padding:8px 16px; color:var(--ink); background:var(--white); cursor:pointer; }
+/* Collapsible rows share one disclosure mark. Only summaries still shown as list items draw ::marker, so menus with their own icons are untouched. */
+:where(summary) { cursor:pointer; }
+:where(summary)::marker { content:'▸  '; font-size:.85em; }
+:where(details[open] > summary)::marker { content:'▾  '; }
 button:hover { border-color:var(--mint-strong); }
 :focus-visible { outline:3px solid var(--mint-strong); outline-offset:3px; }
 .global-header { display:flex; align-items:center; justify-content:space-between; padding:18px 28px; border-bottom:1px solid var(--line); background:var(--white); }
