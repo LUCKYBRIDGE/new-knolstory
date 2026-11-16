@@ -136,6 +136,9 @@
   line-height:1.5;
   transition:none;
 }
+/* Separator spaces between stacked copy blocks collapse; authored line breaks inside each block still show. */
+.copyBox > div[data-cover-copy-size] { white-space:normal; }
+.copyBox > div[data-cover-copy-size] > * { white-space:pre-wrap; }
 .titleBox {
   padding:3%;
 }

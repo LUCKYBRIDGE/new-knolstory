@@ -9,7 +9,7 @@ test('catalog edit copies receive numbered titles and identical blue covers',asy
   await openBuiltinEdition(page,'seonnyeo','knolstory','edit');
   await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();
   await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
-  await page.getByRole('button',{name:'홈 · 서재로 이동',exact:true}).click();
+  await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).click();
   await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  }
  await selectShelfCollection(page,'own');

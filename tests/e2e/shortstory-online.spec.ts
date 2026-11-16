@@ -10,7 +10,7 @@ async function harness(page:Page){
  const metadata={recordId,revision:1,format:'shortstory',clientProjectId:content.project.id,title:content.project.title,contentSha256:snapshot.contentSha256,createdAt:1,updatedAt:1};const posts:unknown[]=[],puts:unknown[]=[];
  await page.route('**/api/v1/**',route=>{const path=new URL(route.request().url()).pathname,method=route.request().method();
   if(path.endsWith('/auth/config'))return route.fulfill({json:{success:true,data:{signupProvider:'kakao',providers:{kakao:true,google:true}}}});
-  if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
+  if(path.endsWith('/class/me'))return route.fulfill({json:{success:true,data:{role:'teacher',account:{id:'11111111-1111-4111-8111-111111111111'}}}});if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
   if(path.endsWith('/documents')&&method==='POST'){const body=route.request().postDataJSON();posts.push(body);return route.fulfill({json:{success:true,data:{recordId,revision:1,contentSha256:body.snapshot.contentSha256,replayed:false}}});}
   if(path.endsWith('/'+recordId)&&method==='PUT'){const body=route.request().postDataJSON();puts.push(body);return route.fulfill({json:{success:true,data:{recordId,revision:2,contentSha256:body.snapshot.contentSha256,replayed:false}}});}
   return route.fulfill({json:{success:true,data:path.endsWith('/'+recordId)?{...metadata,snapshot}:{documents:[metadata],nextCursor:null}}});

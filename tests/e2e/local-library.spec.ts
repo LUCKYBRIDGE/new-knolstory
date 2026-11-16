@@ -33,7 +33,7 @@ async function library(page: Page) {
   await saved(page);
   const main = page.getByRole('main', { name: '놀스토리 서재', exact: true });
   if (!await main.isVisible()) {
-    const direct=page.getByRole('button', { name: /^(홈 · 서재로 이동|서재로)$/ }).filter({visible:true}).first();
+    const direct=page.getByRole('button', { name: /^(서재 · 홈으로 이동|서재로)$/ }).filter({visible:true}).first();
     if(await direct.isVisible())await direct.click();
     else {
       await page.getByRole('button',{name:'읽기 메뉴',exact:true}).click();

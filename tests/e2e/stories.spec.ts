@@ -11,7 +11,7 @@ test.beforeEach(async({page})=>{await suppressFullscreenOffer(page);});
 async function saved(page:Page){await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');}
 async function menu(page:Page){const node=page.locator('[data-work-menu]');if(!await node.evaluate(n=>(n as HTMLDetailsElement).open))await node.locator(':scope>summary').click();}
 async function exported(page:Page){await saved(page);await openWorkFileExchange(page);const pending=page.waitForEvent('download');await page.getByRole('button',{name:'작품 파일 내보내기',exact:true}).click();const path=(await(await pending).path())!;return {path,archive:parseAuthoringFile(readFileSync(path,'utf8'))};}
-async function library(page:Page){await saved(page);await page.getByRole('button',{name:'홈 · 서재로 이동',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();}
+async function library(page:Page){await saved(page);await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();}
 async function builtin(page:Page,id:string,initial=false){if(initial){await page.goto('/');await enterLibrary(page);}else await library(page);await openBuiltinEdition(page,id,'knolstory','edit');await saved(page);}
 /** Imported or copied works can share a title, so `id` picks the card that really holds that project. */
 async function own(page:Page,title:string,id?:string){await library(page);

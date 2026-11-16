@@ -564,7 +564,8 @@ test('a regular member manages a created work in the shared all-works library',a
  await page.route('**/api/v1/class/me',route=>route.fulfill(ok({role:'member',account:{id:'a'}})));
  await page.goto('/?view=library');
  const nav=page.getByRole('navigation',{name:'주 메뉴',exact:true});
- await expect(nav.getByRole('link')).toHaveText(['서재']);
+ // A member has only the library, so the one-tab menu is not shown.
+ await expect(nav).toHaveCount(0);
  await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('all');
  await startShelfCreation(page);
  await page.getByLabel('새 작품 제목',{exact:true}).fill('내가 만든 첫 이야기');

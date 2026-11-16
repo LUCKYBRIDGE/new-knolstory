@@ -6,6 +6,7 @@ for(const format of ['knolstory','shortstory'] as const)for(const width of [1440
  await page.route('**/api/v1/**',async route=>{
   const request=route.request(),url=new URL(request.url());
   if(url.pathname.endsWith('/auth/config'))return route.fulfill({json:{success:true,data:{signupProvider:'kakao',providers:{kakao:false,google:false}}}});
+  if(url.pathname.endsWith('/class/me'))return route.fulfill({json:{success:true,data:{role:'teacher',account:{id:account}}}});
   if(url.pathname.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:account,csrf:'csrf'}}});
   if(url.pathname==='/api/v1/documents')return route.fulfill({json:{success:true,data:{documents:(url.searchParams.get('state')==='trash')===(deletedAt!==null)?[meta()]:[],nextCursor:null}}});
   if(url.pathname.endsWith('/trash')){

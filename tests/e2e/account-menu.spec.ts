@@ -11,6 +11,8 @@ async function mockedAccount(page:Page,enabled=true){
  await page.route('**/api/v1/**',async route=>{
   const path=new URL(route.request().url()).pathname;calls.push(path);
   if(path.endsWith('/auth/config'))return route.fulfill({json:{success:true,data:{signupProvider:'kakao',providers:{kakao:enabled,google:enabled}}}});
+  // Online works are teacher-only, so the mocked account is a teacher.
+  if(path.endsWith('/class/me'))return route.fulfill(signedIn?{json:{success:true,data:{role:'teacher',account:{id:firstAccount}}}}:{status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});
   if(path.endsWith('/me'))return route.fulfill(signedIn?{json:{success:true,data:{accountId:firstAccount,csrf:'ephemeral-csrf'}}}:{status:401,json:{success:false,error:{code:'SESSION_REQUIRED'}}});
   if(path.endsWith('/auth/logout')){expect(route.request().headers()['x-csrf-token']).toBe('ephemeral-csrf');signedIn=false;return route.fulfill({json:{success:true,data:{loggedOut:true}}});}
   if(path.endsWith('/documents'))return route.fulfill({json:{success:true,data:{documents:[],nextCursor:null}}});
@@ -26,7 +28,7 @@ for(const width of [1440,768,390,844])test(`account login return and logout pres
  await page.setViewportSize({width,height:width===844?390:900});const calls=await mockedAccount(page);await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('계정과 독립된 원고');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
  const text=page.getByLabel('1컷 글',{exact:true});await text.fill('로그인 전에 쓰던 원고\n그대로 남아 있어요.');await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
- await expect(page.locator('[data-account-menu]')).toHaveCount(0);await page.getByRole('button',{name:'홈 · 서재로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true}).filter({visible:true})).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await authored(page);
+ await expect(page.locator('[data-account-menu]')).toHaveCount(0);await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true}).filter({visible:true})).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');const before=await authored(page);
  let menu=await openAccount(page);await menu.getByRole('button',{name:'카카오로 가입·로그인',exact:true}).click();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();menu=await openAccount(page);await expect(menu.getByText('로그인됨',{exact:true})).toBeVisible();expect(await authored(page)).toEqual(before);expect(await page.evaluate(()=>sessionStorage.getItem('knolstory-account-return-v1'))).toBeNull();
  await menu.getByRole('button',{name:'로그아웃',exact:true}).click();await expect(menu.getByText('로그인 전',{exact:true})).toBeVisible();expect(await authored(page)).toEqual(before);expect(calls).toContain('/api/v1/auth/logout');
  expect(await page.evaluate(()=>Object.keys(localStorage).some(key=>key.includes('csrf')))).toBe(false);await page.keyboard.press('Escape');await expect(menu.locator('summary')).toBeFocused();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -97,7 +99,7 @@ test('confirmed Kakao login uses a clear account state without unconfigured Goog
  await page.route('**/api/v1/**',route=>{
   const path=new URL(route.request().url()).pathname;
   if(path.endsWith('/auth/config'))return route.fulfill({json:{success:true,data:{signupProvider:'kakao',providers:{kakao:true,google:false}}}});
-  if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:firstAccount,csrf:'csrf'}}});
+  if(path.endsWith('/class/me'))return route.fulfill({json:{success:true,data:{role:'teacher',account:{id:firstAccount}}}});if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:firstAccount,csrf:'csrf'}}});
   if(path.endsWith('/documents'))return route.fulfill({json:{success:true,data:{documents:[],nextCursor:null}}});
   return route.fulfill({status:404,json:{success:false,error:{code:'NOT_FOUND'}}});
  });
