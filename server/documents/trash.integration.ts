@@ -7,6 +7,7 @@ import {createAuthStateService} from '../auth/auth-state';
 import {createPostgresAuthStatePort} from '../auth/postgres-auth-state';
 import {runStorageMigrations} from '../migrations/runner';
 import {createDocumentService,type DocumentContext} from './service';
+import {purgeExpiredTrash,TRASH_RETENTION_MS} from './trash-retention';
 const pool=new Pool({max:12});const now=Date.now();
 const service=()=>createDocumentService(pool,{clock:()=>now});
 async function owner():Promise<DocumentContext>{
@@ -99,5 +100,30 @@ describe('online trash preserves the same PostgreSQL document',()=>{
   await expect(expiring.trash(user,record.recordId,input)).rejects.toMatchObject({code:'SESSION_REQUIRED'});
   expect((await service().read(user,record.recordId)).stateVersion).toBe(1);
   expect((await pool.query('SELECT * FROM knolstory_storage.document_state_commands WHERE record_id=$1',[record.recordId])).rowCount).toBe(0);
+ });
+ it('permanently deletes only works left in the trash for the 10-day retention period',async()=>{
+  const expired=await setup(),fresh=await setup(),active=await setup();
+  await service().trash(expired.user,expired.record.recordId,command());
+  await service().trash(fresh.user,fresh.record.recordId,command());
+  const rows=async(id:string)=>(await pool.query('SELECT 1 FROM knolstory_storage.records WHERE record_id=$1',[id])).rowCount;
+  // One millisecond before the period ends nothing goes; at the boundary only the trashed work goes.
+  expect(await purgeExpiredTrash(pool,now+TRASH_RETENTION_MS-1)).toBe(0);
+  await pool.query('UPDATE knolstory_storage.private_documents SET deleted_at=deleted_at+1 WHERE record_id=$1',[fresh.record.recordId]);
+  expect(await purgeExpiredTrash(pool,now+TRASH_RETENTION_MS)).toBeGreaterThanOrEqual(1);
+  expect(await rows(expired.record.recordId)).toBe(0);
+  for(const table of ['private_documents','document_creations','document_state_commands','receipts'])
+   expect((await pool.query(`SELECT 1 FROM knolstory_storage.${table} WHERE record_id=$1`,[expired.record.recordId])).rowCount).toBe(0);
+  expect((await service().list(expired.user,{state:'trash'})).documents).toEqual([]);
+  await expect(service().restore(expired.user,expired.record.recordId,command(1,2))).rejects.toMatchObject({code:'NOT_FOUND',status:404});
+  expect(await rows(fresh.record.recordId)).toBe(1);
+  expect(await rows(active.record.recordId)).toBe(1);
+  expect((await service().read(active.user,active.record.recordId)).deletedAt).toBeNull();
+ });
+ it('a restore that wins the race keeps the work out of the purge',async()=>{
+  const {user,record}=await setup();
+  await service().trash(user,record.recordId,command());
+  await service().restore(user,record.recordId,command(1,2));
+  await purgeExpiredTrash(pool,now+TRASH_RETENTION_MS*2);
+  expect((await service().read(user,record.recordId)).deletedAt).toBeNull();
  });
 });

@@ -496,6 +496,8 @@ PC-04의 Q-04에서 사용자는 기기 원고 유지·온라인 휴지통·같�
 
 ### 휴지통 구현·집중 검증
 
+**보관 기간(Q-03, 2026-11-16 사용자 결정): 10일.** API는 시작할 때와 매시간 `deleted_at`이 10일을 넘긴 온라인 작품을 영구 삭제한다(`server/documents/trash-retention.ts`). 삭제는 휴지통·복구와 같은 작품 잠금 안에서 아직 휴지통에 있는지 다시 확인한 뒤 상태 명령·생성 영수증·작품 메타데이터·저장 영수증·원고 기록을 함께 지우므로, 먼저 끝난 복구가 있으면 그 작품은 지우지 않는다. 화면은 휴지통 안내와 작품마다 남은 날짜(‘n일 뒤 영구 삭제돼요’, 마지막 하루는 ‘곧 영구 삭제돼요’)를 보여 준다. 기기에 있는 원고는 영향을 받지 않는다. 운영 DB 백업(매일 덤프)은 별도 보관 정책을 따른다.
+
 [현재 증거](evidence/online-trash-2026-10-18/checkpoint.json). migration007은 서비스 메타데이터에 `deleted_at`, `state_version`(초기1)과 상태 명령 receipt를 추가한다. 원고 content revision과 상태 version은 별개다. `POST /api/v1/documents/:id/trash` 및 `/restore`는 `{payloadVersion:1,expectedRevision,expectedStateVersion}`과 멱등 키를 받아 소유자·세션·CSRF 확인 후 같은 대상 잠금 안에서 전이한다. 보통 목록은 활성 작품, `?state=trash`는 휴지통만 반환한다. 페이지 커서도 범위가 다르면 거부한다.
 
 휴지통에서는 일반 읽기·저장·과거 저장 응답 재생을 거부한다. 동일 상태 명령의 재생은 원래 영수증만 돌려주며 이후 반대 전이를 취소하지 않는다. Web은 재생 영수증을 현재 상태 변화로 단정하지 않고 과거 요청 확인과 새 목록 조회로 안내한다. 복구는 record/project ID·전체 snapshot·content revision을 유지한다. 기존 기기 연결도 같은 온라인 작품을 가리킨다.
