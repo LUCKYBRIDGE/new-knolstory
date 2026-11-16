@@ -343,6 +343,27 @@
   border: 1px solid #3e82af;
   border-inline-start: 0.45rem solid #3e82af;
 }
+/* Its copy is absolutely placed, so the face itself must hold the book's proportions. */
+.book.personalDefault { aspect-ratio:300/435; }
+/* A clothbound look for a reader's own book: soft light from the top, fine weave and a pressed inner frame. */
+.book.personalDefault[data-cover-face="front"] {
+  background-image:
+    linear-gradient(170deg,#ffffff38,transparent 38%,#0b2e4a1f),
+    repeating-linear-gradient(90deg,#ffffff0d 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(0deg,#0b2e4a0a 0 1px,transparent 1px 3px);
+  box-shadow:inset 0 0 0 1px #ffffff40;
+}
+.book.personalDefault[data-cover-face="front"]::before {
+  content:"";
+  position:absolute;
+  inset:5% 7% 5% 6%;
+  border:1px solid #ffffff8c;
+  outline:1px solid #ffffff38;
+  outline-offset:3px;
+  border-radius:2px;
+  pointer-events:none;
+}
+.book.personalDefault[data-cover-face="spine"] { aspect-ratio:30/435; }
 .book.personalDefault[data-cover-face="spine"] { background: #3e82af; color: #fff; }
 .personalBadge {
   position: absolute;

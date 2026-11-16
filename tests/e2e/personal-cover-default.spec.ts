@@ -17,6 +17,8 @@ test('catalog edit copies receive numbered titles and identical blue covers',asy
  await expect(covers).toHaveCount(3);
  for(let index=0;index<3;index++){
   await expect(covers.nth(index)).toHaveCSS('background-color','rgb(106, 174, 214)');
+  // The default cover is a whole book face, not a strip: it keeps the shelf's 300:435 proportions.
+  const box=await covers.nth(index).boundingBox();expect(box&&box.height/box.width).toBeGreaterThan(1.4);
   await expect(covers.nth(index).getByText('[내작품]',{exact:true})).toBeVisible();
   await expect(covers.nth(index).locator('h2')).toHaveText(index===0?'선녀와 나무꾼':`선녀와 나무꾼 ${index+1}`);
  }
