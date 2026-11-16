@@ -27,7 +27,7 @@ for(const viewport of [{width:1440,height:900},{width:1024,height:768},{width:76
  await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();await expect(dock).toHaveCount(0);
  const context=page.locator('[data-stacked-context]');if(await context.isVisible()){
   await context.getByText('이 장의 컷 목록',{exact:true}).click();const panel=context.locator('details[open]'),r=await panel.boundingBox(),bb=await body.boundingBox();expect(r!.y).toBeGreaterThanOrEqual(bb!.y+bb!.height-1);await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click({trial:true,timeout:5000});await page.keyboard.press('Escape');
-  const listSummary=context.getByText('이 장의 컷 목록',{exact:true}),notesSummary=context.getByText('현재 컷 메모·연결 정보',{exact:true}),dockSummary=page.getByText('현재 컷 상세·메모·정리',{exact:true});
+  const listSummary=context.getByText('이 장의 컷 목록',{exact:true}),notesSummary=context.getByText('메모·연결 요약',{exact:true}),dockSummary=page.getByText('현재 컷 상세·메모·정리',{exact:true});
   await listSummary.focus();await listSummary.press('Enter');await expect(context.locator('details[open]')).toHaveCount(1);
   await notesSummary.focus();await notesSummary.press('Enter');await expect(context.locator('details[open]')).toHaveCount(1);
   await dockSummary.focus();await dockSummary.press('Enter');await expect(context.locator('details[open]')).toHaveCount(0);await expect(dock).toHaveCount(1);
