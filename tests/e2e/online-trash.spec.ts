@@ -42,7 +42,7 @@ for(const format of ['knolstory','shortstory'] as const)for(const width of [1440
  await panel.getByRole('button',{name:'온라인 원고 · 온라인 휴지통으로 이동',exact:true}).click();await confirmation.getByRole('button',{name:'온라인 휴지통으로 옮기기',exact:true}).click();await expect(panel.getByRole('alert')).toBeVisible();
  await confirmation.getByRole('button',{name:'온라인 휴지통으로 옮기기',exact:true}).click();await expect(panel.getByRole('status').filter({hasText:'이전에 보낸 요청의 처리를 확인했어요'})).toBeVisible();
  expect(sent).toHaveLength(2);expect(sent[1]).toEqual(sent[0]);
- await panel.getByRole('button',{name:'온라인 휴지통',exact:true}).click();await panel.getByRole('button',{name:'온라인 원고 · 온라인 작품 복구',exact:true}).click();await expect(panel.getByRole('status').filter({hasText:'같은 온라인 작품과 이력'})).toBeVisible();
+ await panel.getByRole('button',{name:'온라인 휴지통',exact:true}).click();await expect(panel).toContainText('온라인 휴지통의 작품은 10일 뒤 영구 삭제돼요.');await expect(panel.getByText('곧 영구 삭제돼요',{exact:true})).toBeVisible();await panel.getByRole('button',{name:'온라인 원고 · 온라인 작품 복구',exact:true}).click();await expect(panel.getByRole('status').filter({hasText:'같은 온라인 작품과 이력'})).toBeVisible();
  await panel.getByRole('button',{name:'업로드한 작품',exact:true}).click();await expect(panel.getByRole('button',{name:'온라인 원고 · 기기에 사본으로 열기',exact:true})).toBeVisible();expect(await authored()).toEqual(before);expect(stateVersion).toBe(3);
  }
  await page.screenshot({path:info.outputPath('restored-local-preserved.png')});

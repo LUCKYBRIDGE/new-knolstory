@@ -10,6 +10,7 @@ import {createAuthService} from './http/auth-service';
 import {createClassroomHttpService} from './http/classroom-service';
 import {observeRequest} from './http/request-observation';
 import {createApiShutdown} from './http/api-shutdown';
+import {scheduleTrashPurge} from './documents/trash-retention';
 
 async function main(){
  const config=loadApiConfig(),pool=new pg.Pool(config.database),auth=createAuthService(config.auth,pool),documents=createDocumentHttpService(config.auth,pool,config.classroom.adminAccountIds),classroom=createClassroomHttpService(config.auth,config.classroom,pool);
@@ -40,6 +41,6 @@ async function main(){
  const stop=createApiShutdown(server,pool,{exit:code=>process.exit(code)});
  process.on('SIGTERM',()=>stop());process.on('SIGINT',()=>stop());
  server.on('error',()=>{console.error('API listener failed.');stop(1);});
- server.listen(config.port,config.host,()=>console.info('KnolStory API listening.'));
+ server.listen(config.port,config.host,()=>{console.info('KnolStory API listening.');scheduleTrashPurge(pool);});
 }
 void main().catch(()=>{console.error('API startup failed.');process.exitCode=1;});
