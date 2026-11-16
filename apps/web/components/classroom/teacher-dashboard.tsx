@@ -44,9 +44,10 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
  return <>
   {error&&<p className={styles.error} role="alert">{error}</p>}{notice&&<p className={styles.notice} role="status">{notice}</p>}
   <section className={styles.classBanner} aria-label="학급"><div className={styles.classIdentity}><span className={styles.eyebrow}>함께 쓰고, 함께 읽는</span><h2>{classroom.name}</h2><span className={styles.classCount}>학생 {classroom.students.length}명</span></div>
-   {panel==='settings'&&<div className={styles.classAccess}><span className={styles.hint}>학생 접속 코드</span><span className={styles.code} aria-label="학급 코드">{classroom.classCode}</span>
-   <details><summary>학급 코드 바꾸기</summary>{confirmCode?<div className={styles.row}><span>새 코드를 만들면 학생은 새 코드로 로그인해야 해요.</span><button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>{setConfirmCode(false);void mutate(()=>classroomUpdate({regenerateCode:true},csrf),'학급 코드를 새로 만들었어요.');}}>새로 만들기</button><button className={styles.btn} onClick={()=>setConfirmCode(false)}>취소</button></div>
-    :<button className={styles.btn} disabled={busy} onClick={()=>setConfirmCode(true)}>학급 코드 새로 만들기</button>}</details></div>}
+   {/* Students need this code to log in, so it stays in view on every tab; changing it lives in settings. */}
+   <div className={styles.classAccess}><span className={styles.hint}>학생 접속 코드</span><span className={styles.code} aria-label="학급 코드">{classroom.classCode}</span>
+   {panel==='settings'&&<details><summary>학급 코드 바꾸기</summary>{confirmCode?<div className={styles.row}><span>새 코드를 만들면 학생은 새 코드로 로그인해야 해요.</span><button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>{setConfirmCode(false);void mutate(()=>classroomUpdate({regenerateCode:true},csrf),'학급 코드를 새로 만들었어요.');}}>새로 만들기</button><button className={styles.btn} onClick={()=>setConfirmCode(false)}>취소</button></div>
+    :<button className={styles.btn} disabled={busy} onClick={()=>setConfirmCode(true)}>학급 코드 새로 만들기</button>}</details>}</div>
   </section>
   <SeasonNote createdAt={classroom.createdAt} audience="teacher"/>
   {panel==='assignments'&&<><TaskComposer onPick={kind=>setTaskRequest({kind,nonce:Date.now()})}/><AssignmentsPanel csrf={csrf} run={run} students={classroom.students} request={taskRequest}/><MissionsPanel csrf={csrf} students={classroom.students} request={taskRequest}/></>}

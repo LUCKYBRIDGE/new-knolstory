@@ -308,3 +308,6 @@
 .factChip[data-recipients=some]{background:#e8f1ec}
 /* Narrow phones: one task kind per row so titles such as '작품 쓰기 · 놀스토리' stay on one line. */
 @media(max-width:480px){.composerChoices{grid-template-columns:1fr;gap:8px}.composerChoice{padding:10px 14px;gap:2px}}
+
+/* Phones: when the tab bar already offers 서재, the header's second way back is just noise. */
+@media(max-width:720px){.wrap:has(nav[aria-label="주 메뉴"]) .back{display:none}}
