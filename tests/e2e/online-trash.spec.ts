@@ -31,6 +31,7 @@ for(const format of ['knolstory','shortstory'] as const)for(const width of [1440
   expect(sent).toHaveLength(2);expect(sent[1]).toEqual(sent[0]);
   await page.getByRole('button',{name:'온라인 휴지통',exact:true}).click();
   const bin=page.getByRole('dialog',{name:'온라인 휴지통',exact:true});
+  await expect(bin).toContainText('온라인 휴지통의 작품은 10일 뒤 영구 삭제돼요.');await expect(bin).toContainText('곧 영구 삭제돼요');
   await bin.getByRole('button',{name:'온라인 원고 · 온라인 작품 복구',exact:true}).click();
   await expect(bin.getByRole('status').filter({hasText:'같은 온라인 작품과 이력'})).toBeVisible();
   await bin.getByRole('button',{name:'닫기',exact:true}).click();

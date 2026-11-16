@@ -13,6 +13,13 @@ import type {OnlineDocumentMetadata} from '../lib/document-api';
 import type {OnlineShelfStatus} from '../lib/unified-library';
 import {LibraryStorageBadge,StorageIcon} from './library-storage';
 import {OnlineBookFocus} from './online-book-focus';
+
+/** Screen readers hear a date, not a raw ISO stamp; non-date labels such as the original edition stay as written. */
+function readableUpdatedAt(value:string|undefined):string{
+ if(!value)return '수정 시점 정보 없음';
+ const time=/^\d{4}-\d{2}-\d{2}T/.test(value)?Date.parse(value):Number.NaN;
+ return Number.isNaN(time)?value:new Date(time).toLocaleDateString('ko-KR');
+}
 export type BookshelfOnline={records:readonly OnlineDocumentMetadata[];byLocalKey:Record<string,OnlineShelfStatus>;header?:ReactNode;onOpen:(record:OnlineDocumentMetadata)=>void;renderLocalActions:(work:BookshelfWork)=>ReactNode;renderRemoteActions:(record:OnlineDocumentMetadata)=>ReactNode;busy:boolean;more?:boolean;onMore:()=>void};
 export type BookshelfWork={key:string;project:StoryProject;kind:'own'|'imported'|'example'|'original';canResume:boolean};
 export type BookshelfBook=GroupedBuiltinWork<BookshelfWork>;
@@ -72,7 +79,7 @@ export function LocalBookshelf({online,accountMenu,navigation,works,onOpen,onCre
       const work=entry.work,status=online?.byLocalKey[work.key];return <article key={work.key} className={styles.card} data-shelf-book="true" data-work-id={work.builtin?.id} aria-label={`${section.title} · ${work.builtin?.title??work.project.title}`}>
        <span className={styles.plank} aria-hidden="true"/>
        <button className={styles.cover} data-shelf-cover="true" aria-label={`${shelfCoverAccessibleLabel(work.builtin?.title??work.project.title,builtinShelfCoverProject(work,classicStories),work.kind==='example'?'knolstory':work.kind)}${status?` · ${status.label}`:''}`} disabled={disabled} onClick={()=>{setSelectedRemote(null);setSelected(work.key);}}><span aria-hidden="true"><BookCover project={builtinShelfCoverProject(work,classicStories)} compact edition={work.kind==='example'?'knolstory':work.kind}/></span>{status&&<LibraryStorageBadge compact status={status}/>}</button>
-       <div className={styles.semantic}><h3>{work.builtin?.title??work.project.title}</h3><p>{work.project.description}</p><p>지은이 · {work.project.cover?.author||'아직 정하지 않았어요'}</p><p>최근 수정 · {work.project.updatedAt||'수정 시점 정보 없음'}</p></div>
+       <div className={styles.semantic}><h3>{work.builtin?.title??work.project.title}</h3><p>{work.project.description}</p><p>지은이 · {work.project.cover?.author||'아직 정하지 않았어요'}</p><p>최근 수정 · {readableUpdatedAt(work.project.updatedAt)}</p></div>
       </article>;
      })}
     </section>)}

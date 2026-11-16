@@ -14,6 +14,7 @@ import {LocalBookshelf,type LocalBookshelfProps} from './local-bookshelf';
 import {LibraryStorageBadge,StorageIcon} from './library-storage';
 import {useOnlineWorks,type OnlineWorksProps} from './use-online-works';
 import styles from './personal-library.module.css';
+import {trashExpiryNotice} from '../lib/trash-retention';
 
 type Props=Omit<LocalBookshelfProps,'accountMenu'|'online'>&{beforeAccountNavigation:()=>boolean;beforeServiceNavigation:()=>boolean;onlineDisabled?:boolean;onSaveOnline:OnlineWorksProps['onSaveNew'];onOpenOnline:OnlineWorksProps['onOpen']};
 export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigation,beforeServiceNavigation,onlineDisabled=false,...shelf}:Props){
@@ -61,6 +62,8 @@ function OnlineLibraryActions({status,disabled,signedIn,onUpload,onOpenOnline,on
 }
 function OnlineTrashDialog({documents,busy,error,notice,cursor,onClose,onRestore,onMore}:{documents:readonly OnlineDocumentMetadata[];busy:boolean;error:string;notice:string;cursor:string|null;onClose:()=>void;onRestore:(record:OnlineDocumentMetadata)=>void;onMore:()=>void}){
  const dialog=useRef<HTMLDialogElement>(null);
+ // Day counts only need the time the trash opened; the server purges hourly.
+ const [openedAt]=useState(Date.now);
  useEffect(()=>{const opener=document.activeElement as HTMLElement|null,node=dialog.current;node?.showModal();return()=>{node?.close();opener?.focus();};},[]);
- return <dialog ref={dialog} className={styles.trash} aria-label="온라인 휴지통" onCancel={event=>{event.preventDefault();onClose();}} onKeyDown={event=>trapDialogTab(event,dialog.current)}><header><h2>온라인 휴지통</h2><button onClick={onClose}>닫기</button></header><p>복구하면 같은 온라인 작품과 업로드 이력을 이어가요. 기기에 있는 원고는 그대로예요.</p>{!busy&&!documents.length&&!error&&<p>온라인 휴지통에 작품이 없어요.</p>}<ul>{documents.map(record=><li key={record.recordId}><span>{record.title}<small>{record.format==='shortstory'?'숏스토리':'놀스토리'}</small></span><button disabled={busy||record.stateVersion===undefined} aria-label={`${record.title} · 온라인 작품 복구`} onClick={()=>onRestore(record)}>복구</button></li>)}</ul>{busy&&<p role="status">온라인 휴지통을 확인하고 있어요.</p>}{notice&&<p role="status">{notice}</p>}{error&&<p role="alert">{error}</p>}{cursor&&<button disabled={busy} onClick={onMore}>목록 더 보기</button>}</dialog>;
+ return <dialog ref={dialog} className={styles.trash} aria-label="온라인 휴지통" onCancel={event=>{event.preventDefault();onClose();}} onKeyDown={event=>trapDialogTab(event,dialog.current)}><header><h2>온라인 휴지통</h2><button onClick={onClose}>닫기</button></header><p>온라인 휴지통의 작품은 10일 뒤 영구 삭제돼요. 그 전에 복구하면 같은 온라인 작품과 업로드 이력을 이어가요. 기기에 있는 원고는 그대로예요.</p>{!busy&&!documents.length&&!error&&<p>온라인 휴지통에 작품이 없어요.</p>}<ul>{documents.map(record=><li key={record.recordId}><span>{record.title}<small>{record.format==='shortstory'?'숏스토리':'놀스토리'}{record.deletedAt!=null&&` · ${trashExpiryNotice(record.deletedAt,openedAt)}`}</small></span><button disabled={busy||record.stateVersion===undefined} aria-label={`${record.title} · 온라인 작품 복구`} onClick={()=>onRestore(record)}>복구</button></li>)}</ul>{busy&&<p role="status">온라인 휴지통을 확인하고 있어요.</p>}{notice&&<p role="status">{notice}</p>}{error&&<p role="alert">{error}</p>}{cursor&&<button disabled={busy} onClick={onMore}>목록 더 보기</button>}</dialog>;
 }
