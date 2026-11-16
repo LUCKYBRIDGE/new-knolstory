@@ -42,7 +42,7 @@ test('introduction waits for a choice and stays open across reloads and new navi
 test('my works leaves introduction only after an explicit choice',async({page})=>{
  await page.goto('/');
  const intro=page.getByRole('main',{name:'책 소개',exact:true});await expect(intro).toBeVisible();
- await intro.getByRole('button',{name:'내 작품 보기',exact:true}).click();
+ await intro.getByRole('button',{name:'나만의 이야기',exact:true}).click();
  await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();
  await expect(page.getByLabel('책 분류',{exact:true})).toHaveValue('own');
  await page.reload();await expect(page.getByRole('main',{name:'놀스토리 서재',exact:true})).toBeVisible();

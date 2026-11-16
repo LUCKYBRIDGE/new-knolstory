@@ -430,8 +430,8 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 @media (max-width:700px){:global([data-arrangement-control]){display:none!important}}
 /* Tidying tools in the detail panel: equal two-column buttons instead of a ragged row. */
 @media (max-width:700px){
- [data-additional-dock]>details:first-child>fieldset:has(>legend){display:grid;grid-template-columns:1fr 1fr;gap:6px}
- [data-additional-dock]>details:first-child>fieldset:has(>legend)>legend{grid-column:1/-1}
- [data-additional-dock]>details:first-child>fieldset:has(>legend)>button{width:100%;margin:0;min-height:44px}
- [data-additional-dock]>details:first-child>fieldset:has(>legend)>:not(legend,button){grid-column:1/-1}
+ .additional>details:first-child>fieldset:has(>legend){display:grid;grid-template-columns:1fr 1fr;gap:6px}
+ .additional>details:first-child>fieldset:has(>legend)>legend{grid-column:1/-1}
+ .additional>details:first-child>fieldset:has(>legend)>button{width:100%;margin:0;min-height:44px}
+ .additional>details:first-child>fieldset:has(>legend)>:not(legend,button){grid-column:1/-1}
 }
