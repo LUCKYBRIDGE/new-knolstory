@@ -14,7 +14,7 @@
 .passed{color:#245c46;background:#e0efe4}.pending{color:#755419;background:#f7edce}.revise{color:#944e31;background:#f9e7da}
 .copy{font-size:var(--text-small);white-space:pre-wrap;color:#415951;margin:8px 0 14px}
 .criteria{font-size:var(--text-small);border-block:1px solid #e5e6da;margin:12px 0}
-.criteria summary,.activity summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-weight:600;list-style:none}
+.criteria summary,.activity summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-weight:600;list-style:none}.criteria summary::marker,.activity summary::marker{content:none}
 .criteria summary::before,.activity summary::before{content:'›';font-size:var(--text-title);font-weight:400}
 .criteria[open]>summary::before,.activity[open]>summary::before{transform:rotate(90deg)}
 .criteria summary::-webkit-details-marker,.activity summary::-webkit-details-marker{display:none}

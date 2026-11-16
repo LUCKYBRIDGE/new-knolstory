@@ -75,7 +75,7 @@
 .rowsList{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:var(--text-small)}
 .rowsList li{padding:10px 0;border-top:1px solid #e3e4d9}
 .rowsList .btn{margin:6px 4px 0 0}
-.card summary,.assignmentCreate summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600;gap:8px;list-style:none}
+.card summary,.assignmentCreate summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600;gap:8px;list-style:none}.card summary::marker,.assignmentCreate summary::marker{content:none}
 .page summary::-webkit-details-marker{display:none}
 .card summary::before,.assignmentCreate summary::before{content:'›';font-size:var(--text-title);font-weight:400;transform:rotate(0deg);transition:transform .15s}
 .card[open]>summary::before,.assignmentCreate[open]>summary::before{transform:rotate(90deg)}

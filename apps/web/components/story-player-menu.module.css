@@ -117,7 +117,7 @@
 .menu .dialog .settingsActions{gap:8px}
 .menu .dialog .settingsActions button{text-align:center}
 .settingsHelp{min-width:0;border-top:1px solid #56645e;padding-top:4px}
-.settingsHelp summary{display:flex;align-items:center;gap:8px;list-style:none;min-height:44px;padding:8px 10px;box-sizing:border-box;border:1px solid #61736c;border-radius:6px;color:#c6e3cf;font-size:var(--text-small);background:#192f30;cursor:pointer}
+.settingsHelp summary{display:flex;align-items:center;gap:8px;list-style:none;min-height:44px;padding:8px 10px;box-sizing:border-box;border:1px solid #61736c;border-radius:6px;color:#c6e3cf;font-size:var(--text-small);background:#192f30;cursor:pointer}.settingsHelp summary::marker{content:none}
 .settingsHelp summary::before{content:'+';font-size:var(--text-lead);line-height:1}
 .settingsHelp[open] summary::before{content:'−'}
 .settingsHelp p{margin:10px 10px 0!important}
