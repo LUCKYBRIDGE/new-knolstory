@@ -99,6 +99,9 @@ test('teacher builds a class, edits students, bulk-applies 글만 and runs an as
  await page.goto('/teacher');
  await expect(page.getByRole('heading',{name:'학급 만들기'})).toBeVisible();
  await page.getByLabel('학급 이름').fill('3반');await page.getByRole('button',{name:'학급 만들기',exact:true}).click();
+ // The login code is visible right away on the first tab, not only in settings.
+ await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
+ await expect(page.getByText('학급 코드 바꾸기',{exact:true})).toHaveCount(0);
  await page.getByRole('link',{name:'학급 설정',exact:true}).click();
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await page.getByRole('navigation',{name:'주 메뉴',exact:true}).getByRole('link',{name:'학생',exact:true}).click();
