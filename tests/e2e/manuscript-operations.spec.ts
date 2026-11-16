@@ -17,7 +17,8 @@ async function exported(page:Page){
 for(const viewport of [{width:1440,height:1000},{width:1024,height:768},{width:768,height:1024},{width:390,height:844},{width:844,height:390}])test(`manuscript split, merge and files preserve Korean at ${viewport.width}x${viewport.height}`,async({page},info)=>{
  test.skip(info.project.name!=='host');await suppressFullscreenOffer(page);await page.setViewportSize(viewport);await page.goto('/');await enterLibrary(page);await startShelfCreation(page);await page.getByLabel('새 작품 제목').fill('컷 나누기와 합치기');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();await saved(page);
  const dock=async()=>openCurrentCutDetail(page);
- let detail=await dock();const text=()=>detail.getByLabel('대사 / 해설',{exact:true});
+ // A phone writes in the current cut's own box; the detail panel then holds only notes and tidying tools.
+ let detail=await dock();const text=()=>viewport.width<=700?page.locator('[data-current-cut] textarea'):detail.getByLabel('대사 / 해설',{exact:true});
  await text().fill(original);await text().focus();await text().press('ControlOrMeta+A');await text().press('ArrowLeft');
  for(let i=0;i<9;i++)await text().press('ArrowRight');
  const position=await text().evaluate(node=>(node as HTMLTextAreaElement).selectionStart);expect(position).toBe(9);

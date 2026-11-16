@@ -419,3 +419,19 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
  .additional:not(:has(>details[open]))>details{flex:1 1 100%}
  .additional>details>summary{justify-content:space-between;font-size:var(--text-small)}
 }
+
+/* Phones: the detail panel holds only what the current cut above does not already show (notes and tidying
+   tools), so the same words never appear in two editable boxes; the layout choice has nothing to choose. */
+@media (max-width:700px){
+ .workbench[data-screen=basic]:has([data-current-cut]) [data-additional-dock] [data-repeats-current-cut]{display:none}
+ .workbench[data-screen=basic]:has([data-current-cut]) [data-additional-dock] [data-inspector-section=text]{margin-top:0}
+ .workbench[data-screen=basic]:has([data-current-cut]) [data-additional-dock]>details:first-child h2{display:none}
+}
+@media (max-width:700px){:global([data-arrangement-control]){display:none!important}}
+/* Tidying tools in the detail panel: equal two-column buttons instead of a ragged row. */
+@media (max-width:700px){
+ [data-additional-dock]>details:first-child>fieldset:has(>legend){display:grid;grid-template-columns:1fr 1fr;gap:6px}
+ [data-additional-dock]>details:first-child>fieldset:has(>legend)>legend{grid-column:1/-1}
+ [data-additional-dock]>details:first-child>fieldset:has(>legend)>button{width:100%;margin:0;min-height:44px}
+ [data-additional-dock]>details:first-child>fieldset:has(>legend)>:not(legend,button){grid-column:1/-1}
+}

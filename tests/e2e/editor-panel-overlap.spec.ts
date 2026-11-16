@@ -22,7 +22,8 @@ for(const viewport of [{width:1440,height:900},{width:1024,height:768},{width:76
  await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();
  const dock=page.locator('[data-additional-dock]>details[open]'),body=page.locator('[data-editing-body]');
  const d=await dock.boundingBox(),b=await body.boundingBox();expect(d).toBeTruthy();expect(b).toBeTruthy();expect(d!.y).toBeGreaterThanOrEqual(b!.y+b!.height-1);
- await expect(page.locator('#story-line-text')).toBeVisible();await page.locator('#story-line-text').fill('겹침 없이 작성한 글');await dock.getByRole('button',{name:'현재 컷 복제',exact:true}).click();await expect.poll(async()=>(await stored(page)).lines.length).toBe(3);
+ // On a phone the panel does not repeat the text box; writing stays in the current cut above it.
+  const writing=viewport.width<=700?page.locator('[data-current-cut] textarea'):page.locator('#story-line-text');await expect(writing).toBeVisible();await writing.fill('겹침 없이 작성한 글');await dock.getByRole('button',{name:'현재 컷 복제',exact:true}).click();await expect.poll(async()=>(await stored(page)).lines.length).toBe(3);
  await page.getByRole('button',{name:'이 컷부터 재생',exact:true}).click({trial:true,timeout:5000});await page.screenshot({path:info.outputPath('expanded-tools.png')});
  await page.getByText('현재 컷 상세·메모·정리',{exact:true}).click();await expect(dock).toHaveCount(0);
  const context=page.locator('[data-stacked-context]');if(await context.isVisible()){
