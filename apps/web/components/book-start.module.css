@@ -70,3 +70,6 @@
 .headerActions { display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end; }
 .startHeader .missionReturn { color:#263b32;background:#f0ca80;border-color:#f0ca80;font-weight:600; }
 .missionHint { margin:0 0 10px;padding:10px 14px;border-radius:10px;background:#f0ca8022;border:1px solid #f0ca8055;color:#f6e7c4;font-size:var(--text-small);line-height:1.7; }
+
+/* Flex buttons drop the space after the arrow; a gap keeps "← 서재로" readable. */
+.headerActions button{display:inline-flex;align-items:center;gap:.35em}

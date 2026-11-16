@@ -33,3 +33,18 @@
 /* 2026-11-10 readability: action descriptions and helper lines at 13px, never 11px. */
 .actions small{font-size:var(--text-small)}.dialog header p,.showcase figcaption,.hint{font-size:var(--text-caption)}.editionPicker small{font-size:var(--text-caption);line-height:1.6}.meta .modified{font-size:var(--text-caption)}
 @media(max-height:500px) and (min-width:600px){.actions small{font-size:var(--text-caption)}}
+
+/* Built-in books: three ways to read side by side, then one row for making a copy. The primary
+   action follows the edition the cover shows (놀스토리), so the emphasis and the cover agree. */
+.builtinActions{grid-template-columns:repeat(3,minmax(0,1fr))}
+.builtinActions button:first-child{background:linear-gradient(120deg,#fff5df,#ecd0a7);border-color:#b48a55;color:#54341b}
+.builtinActions .primary{background:linear-gradient(120deg,#245544,#123b30);border-color:#e7c589;color:#fff0ce}
+.builtinActions .editionPicker{grid-column:1/3;max-width:none;margin:10px 0 0;padding-top:14px;border-top:1px solid #e1c28b40}
+.builtinActions .editionPicker+button{align-self:end;margin-top:10px}
+.builtinActions .editionPicker small{color:#e9d6b4}
+@media(max-width:560px){.builtinActions{grid-template-columns:repeat(2,minmax(0,1fr))}.builtinActions .shortstoryLink{grid-column:1/-1;min-height:54px}.builtinActions .editionPicker{grid-column:1/-1}.builtinActions .editionPicker+button{grid-column:1/-1;margin-top:0}}
+@media(max-height:500px) and (min-width:600px){.builtinActions .editionPicker{grid-column:1/3;margin:4px 0 0;padding-top:8px}}
+/* Arrow-key and Esc tips only help keyboards. */
+@media(hover:none) and (pointer:coarse){.hint{display:none}}
+/* Every action card starts its label at the top, whatever the neighbouring card's line count. */
+.actions button,.shortstoryLink{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start}

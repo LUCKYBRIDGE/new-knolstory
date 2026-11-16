@@ -23,9 +23,11 @@ function FittedCopy({children,style,className='',signature,layerId,role,writing=
       const copy=box.firstElementChild as HTMLElement;if(!copy)return;
       copy.style.fontSize=copy.getAttribute('data-cover-copy-size')??'';
       let size=parseFloat(getComputedStyle(copy).fontSize);
+      // Fit inside the content box: padding belongs to the frame, not to the copy.
+      const pad=getComputedStyle(box),width=box.clientWidth-parseFloat(pad.paddingLeft)-parseFloat(pad.paddingRight),height=box.clientHeight-parseFloat(pad.paddingTop)-parseFloat(pad.paddingBottom);
       for(let i=0;i<40;i++){
-        if(copy.scrollWidth<=box.clientWidth+1&&copy.scrollHeight<=box.clientHeight+1)break;
-        const ratio=Math.min(box.clientWidth/Math.max(1,copy.scrollWidth),box.clientHeight/Math.max(1,copy.scrollHeight));
+        if(copy.scrollWidth<=width+1&&copy.scrollHeight<=height+1)break;
+        const ratio=Math.min(width/Math.max(1,copy.scrollWidth),height/Math.max(1,copy.scrollHeight));
         size=Math.max(.1,size*Math.min(.92,ratio*.98));copy.style.fontSize=`${size}px`;
       }
     };
@@ -72,7 +74,7 @@ export function BookCover({project,compact=false,className='',face='front',editi
     return <div {...common} className={`${common.className} ${styles.personalDefault}`} data-personal-cover="default">
       {face==='front'?<>
         <span className={styles.personalBadge}>[내작품]</span>{' '}
-        <FittedCopy style={{left:'13%',top:'30%',width:'77%',height:'57%',textAlign:'center'}} signature={JSON.stringify([title,cover.subtitle,cover.author])} role="title">
+        <FittedCopy className={styles.personalLabel} style={{left:'17%',top:'27%',width:'71%',height:'36%',textAlign:'center'}} signature={JSON.stringify([title,cover.subtitle,cover.author])} role="title">
           <div data-cover-copy-size="13cqw" className={styles.personalTitle}>
             {cover.subtitle&&<p className={styles.tagline}>{cover.subtitle}</p>}{' '}
             <h2 className={styles.title}>{title}</h2>{' '}

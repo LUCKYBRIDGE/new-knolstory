@@ -304,3 +304,15 @@
 .dialog[data-keyboard-occluded=true] .body { display:block; flex:1; min-height:0; max-height:none; overflow:auto; padding:8px 12px; }
 .dialog[data-keyboard-occluded=true] .fields { padding:0; }
 .dialog[data-keyboard-occluded=true] .footer { position:static; justify-content:flex-end; }
+
+/* Title on the left, actions grouped on the right; the primary action never strands on its own row. */
+.header>div{margin-right:auto;min-width:0}
+.header small{display:block;line-height:1.4}
+.footer>span{margin-right:auto;font-size:var(--text-caption);line-height:1.5}
+.footer button{font-size:var(--text-small);min-width:88px}
+@media(max-width:720px){
+ .footer>span{flex-basis:100%}
+ .footer button{flex:1 1 0}
+}
+/* Arrow-key tips only help keyboards. */
+@media(hover:none) and (pointer:coarse){.keyHint{display:none}}

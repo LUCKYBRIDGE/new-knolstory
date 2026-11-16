@@ -2,7 +2,7 @@
 /* One type scale for every screen. Story stage text, print sheets and fitted titles keep their own sizing. */
 :root { --text-caption:12px; --text-small:14px; --text-body:16px; --text-lead:18px; --text-title:20px; --text-heading:24px; --text-display:30px; }
 * { box-sizing:border-box; }
-body { margin:0; color:var(--ink); background:var(--paper); font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif; line-height:1.55; }
+body { margin:0; color:var(--ink); background:var(--paper); font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif; line-height:1.55; word-break:keep-all; overflow-wrap:break-word; }
 button,input,textarea,select { font:inherit; }
 button { min-height:44px; border:1px solid var(--line); border-radius:var(--radius-control); padding:8px 16px; color:var(--ink); background:var(--white); cursor:pointer; }
 /* Collapsible rows share one disclosure mark. Only summaries still shown as list items draw ::marker, so menus with their own icons are untouched. */

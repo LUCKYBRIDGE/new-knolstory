@@ -354,3 +354,84 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .body[data-cut-arrangement=stacked] p.adjacent { display:flex; align-items:center; }
 .body[data-cut-arrangement=stacked] .addNextCut { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:2px; }
 .body[data-cut-arrangement=stacked] .addNextCut strong { font-size:var(--text-small); }
+
+/* Narrow cut cards: when the excerpt would shrink to a sliver beside the picture, the picture
+   takes that room instead; the full text is one tap away in the cut itself. */
+.body[data-cut-arrangement=stacked] .adjacent{container-type:inline-size}
+@container (max-width:250px){
+ .body[data-cut-arrangement=stacked] .adjacent .excerpt{display:none}
+ .body[data-cut-arrangement=stacked] .adjacent .sceneThumbnail{grid-column:2/4}
+ .body[data-cut-arrangement=stacked] .adjacent strong small{display:none}
+}
+/* At the very start there is no previous cut to show: one quiet line, and the stage gets the room. */
+.body[data-basic=true][data-cut-arrangement=stacked]:has(.previousSide>p.adjacent:first-child){grid-template-rows:auto minmax(0,2fr) minmax(0,2.4fr) minmax(44px,.65fr)}
+.body[data-cut-arrangement=stacked] .previousSide>p.adjacent:first-child{display:block;height:auto;padding:6px 10px;color:var(--ink-soft)}
+/* The story map, when there is one, sits beside that line instead of taking a row of its own. */
+.body[data-cut-arrangement=stacked] .previousSide:has(>p.adjacent:first-child){display:flex;flex-direction:row;align-items:stretch;gap:6px;min-height:0}
+.body[data-cut-arrangement=stacked] .previousSide>p.adjacent:first-child{flex:1 1 auto;min-width:0;display:flex;align-items:center;margin:0}
+.body[data-cut-arrangement=stacked] .previousSide>p.adjacent:first-child~.mapButton{flex:none;width:auto;min-height:40px;margin:0;padding:0 12px;font-size:var(--text-caption)}
+
+/* Speaker row reads as two labelled pairs: 화자 [이름]  종류 [대사/해설]. */
+.basicSpeaker{grid-template-columns:minmax(112px,180px) minmax(0,1fr) auto auto}
+.speakerKind{gap:6px;white-space:nowrap;font-size:var(--text-caption)}
+.speakerKind>span{position:static;width:auto;height:auto;overflow:visible;clip-path:none}
+.speakerKind select{width:72px}
+@media (max-width:700px){.basicSpeaker{grid-template-columns:minmax(0,1fr) auto auto}}
+/* The guide line gets a little air instead of touching the header and the cut cards. */
+.workbench>.hint{padding:2px 6px 0;line-height:1.45}
+/* Bottom toggles (컷 목록, 메모 요약, 상세·정리) share one look: same height, frame and no stray marker. */
+.additional>details>summary,.stackedContext>details>summary{list-style:none;min-height:44px;display:flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--white);font-size:var(--text-caption);font-weight:600}
+.additional>details>summary::-webkit-details-marker,.stackedContext>details>summary::-webkit-details-marker{display:none}
+.additional>details>summary::marker,.stackedContext>details>summary::marker{content:none}
+.additional>details>summary::after,.stackedContext>details>summary::after{content:'';width:7px;height:7px;margin-left:10px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);opacity:.55;flex:none}
+.additional>details[open]>summary::after,.stackedContext>details[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+.additional>details[open]>summary,.stackedContext>details[open]>summary{border:0;border-bottom:1px solid var(--line);border-radius:0;margin:-8px -8px 8px;padding:0 12px}
+/* Section names inside the current cut share one size: 글상자 글, 1컷 배경, 현재 인물 · 자료 미리보기. */
+.current>div>strong:first-child{display:block;font-size:var(--text-small);font-weight:600;margin-bottom:4px}
+/* Phones: only the essentials. The current cut's words and picture, and a clear way to the previous and
+   next cut. Everything secondary (new cut in the middle, branching, cut list, memo summary, story map,
+   linked-image note) lives in the menu or the 현재 컷 상세 panel instead of crowding the screen. */
+@media (max-width:700px){
+ .body[data-basic=true][data-cut-arrangement=stacked],
+ .body[data-basic=true][data-cut-arrangement=stacked]:has(.previousSide>p.adjacent:first-child){grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto minmax(120px,min(calc((100vw - 16px) * .5625 + 4px),42dvh)) minmax(0,1fr) auto}
+ .body[data-cut-arrangement=stacked] .previousSide{grid-column:1;grid-row:1;display:flex;flex-direction:row;gap:6px;min-height:0;overflow:hidden}
+ .body[data-cut-arrangement=stacked] .nextSide{grid-column:2;grid-row:1;flex-direction:row;overflow:hidden}
+ .body[data-cut-arrangement=stacked] .previewSlot,.body[data-cut-arrangement=stacked] .current{grid-column:1/-1}
+ /* A branching fork needs the full width: give it its own row. */
+ .body[data-cut-arrangement=stacked]:has(.previousSide>.pathFork) .previousSide{grid-column:1/-1}
+ .body[data-cut-arrangement=stacked]:has(.previousSide>.pathFork) .nextSide,.body[data-cut-arrangement=stacked]:has(.nextSide>.pathFork) .nextSide{grid-column:1/-1;grid-row:4;flex-direction:column;overflow:auto;overscroll-behavior:contain}
+ .body[data-cut-arrangement=stacked]:has(.previousSide>.pathFork) .previousSide{overflow:auto;overscroll-behavior:contain}
+ /* With a fork every row shares the height, so a long choice list scrolls in its own row instead of pushing over the current cut. */
+ .workbench .body.body[data-basic=true][data-cut-arrangement=stacked]:has(.nextSide>.pathFork){grid-template-rows:minmax(44px,auto) minmax(0,1.6fr) minmax(0,2fr) minmax(0,1fr)}
+ .workbench .body.body[data-basic=true][data-cut-arrangement=stacked]:has(.previousSide>.pathFork){grid-template-rows:minmax(0,1fr) minmax(0,1.6fr) minmax(0,2fr) minmax(44px,auto)}
+ .body[data-cut-arrangement=stacked] :is(.previousSide,.nextSide)>.adjacent{flex:1 1 auto;min-width:0;height:auto;min-height:44px;max-height:none;margin:0;padding:0 12px;display:flex;align-items:center;justify-content:center;gap:6px;overflow:hidden;font-size:var(--text-small);font-weight:600;text-align:center}
+ .body[data-cut-arrangement=stacked] .adjacent :is(.sceneThumbnail,.excerpt,strong small){display:none}
+ .body[data-cut-arrangement=stacked] .adjacent strong{font-size:var(--text-small);white-space:nowrap}
+ .body[data-cut-arrangement=stacked] .previousSide>button.adjacent strong::before{content:'‹ ' / ''}
+ .body[data-cut-arrangement=stacked] .nextSide>button.adjacent:not(.addNextCut) strong::after{content:' ›' / ''}
+ .body[data-cut-arrangement=stacked] :is(.previousSide,.nextSide)>p.adjacent{color:var(--ink-soft);font-weight:400;background:transparent;border-style:dashed}
+ .body[data-cut-arrangement=stacked] :is(.mapButton,.insertCut,.pathEnd),.speakerImage,.stackedContext{display:none!important}
+ .speakerName,.speakerKind{font-size:var(--text-small);font-weight:600}
+ /* The words are the main job: the text field takes whatever room is left in the current cut. */
+ .body[data-basic=true][data-cut-arrangement=stacked] .current{display:flex;flex-direction:column;gap:8px}
+ .body[data-basic=true][data-cut-arrangement=stacked] .current>.text{flex:1 0 auto;display:flex;flex-direction:column;gap:4px;min-height:min-content}
+ .body[data-basic=true][data-cut-arrangement=stacked] .current>.text textarea{flex:1 1 auto;min-height:84px;max-height:none}
+ .additional:not(:has(>details[open]))>details{flex:1 1 100%}
+ .additional>details>summary{justify-content:space-between;font-size:var(--text-small)}
+}
+
+/* Phones: the detail panel holds only what the current cut above does not already show (notes and tidying
+   tools), so the same words never appear in two editable boxes; the layout choice has nothing to choose. */
+@media (max-width:700px){
+ .workbench[data-screen=basic]:has([data-current-cut]) [data-additional-dock] [data-repeats-current-cut]{display:none}
+ .workbench[data-screen=basic]:has([data-current-cut]) [data-additional-dock] [data-inspector-section=text]{margin-top:0}
+ .workbench[data-screen=basic]:has([data-current-cut]) [data-additional-dock]>details:first-child h2{display:none}
+}
+@media (max-width:700px){:global([data-arrangement-control]){display:none!important}}
+/* Tidying tools in the detail panel: equal two-column buttons instead of a ragged row. */
+@media (max-width:700px){
+ [data-additional-dock]>details:first-child>fieldset:has(>legend){display:grid;grid-template-columns:1fr 1fr;gap:6px}
+ [data-additional-dock]>details:first-child>fieldset:has(>legend)>legend{grid-column:1/-1}
+ [data-additional-dock]>details:first-child>fieldset:has(>legend)>button{width:100%;margin:0;min-height:44px}
+ [data-additional-dock]>details:first-child>fieldset:has(>legend)>:not(legend,button){grid-column:1/-1}
+}

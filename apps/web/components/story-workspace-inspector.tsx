@@ -122,7 +122,7 @@ export function StoryWorkspaceInspector({
         data-inspector-section="text"
         hidden={activeSection !== "all" && activeSection !== "text"}
       >
-        <label>
+        <label data-repeats-current-cut>
           글 종류
           <select
             disabled={composing}
@@ -141,7 +141,7 @@ export function StoryWorkspaceInspector({
             <option value="narration">해설</option>
           </select>
         </label>
-        <label>
+        <label data-repeats-current-cut>
           말하는 인물 이름
           <input
             aria-label="말하는 인물 이름"
@@ -166,7 +166,7 @@ export function StoryWorkspaceInspector({
             <option value="right">오른쪽 인물</option>
           </select>
         </label>
-        </fieldset></details>}<label data-primary-text>
+        </fieldset></details>}<label data-primary-text data-repeats-current-cut>
           대사 / 해설
           <textarea
             id="story-line-text"
@@ -178,7 +178,7 @@ export function StoryWorkspaceInspector({
             onChange={(event) => patch({ text: event.target.value })}
           />
         </label>
-        <DialogueCapacityHint text={line.text}/>
+        <div data-repeats-current-cut><DialogueCapacityHint text={line.text}/></div>
         <StoryCutNotes line={line} patch={patch} onComposing={setComposing} disabled={disabled}/>
       </div>}
       {(activeSection === "all" || activeSection === "assets") && <fieldset

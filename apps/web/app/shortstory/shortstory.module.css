@@ -126,3 +126,13 @@
 .header > div > a { color:#1f4f44; font-size:var(--text-small); font-weight:600; text-underline-offset:3px; }
 .header .actions > * { margin:0; }
 .header .actions button { display:inline-flex; align-items:center; justify-content:center; }
+/* Phones: the page, not the header, gets the first screen. Targets stay 44px; only spacing tightens. */
+@media(max-width:600px){
+ .header{gap:6px;margin-bottom:4px}
+ .eyebrow{margin:0;font-size:var(--text-caption)}
+ .header h1,.bookTitle{margin:0 0 2px}
+ .header>div>p:not(.eyebrow){margin:0;font-size:var(--text-caption)}
+ .header .actions{margin-top:2px;gap:6px}
+ .header .actions button{padding:6px 12px}
+ .statusLine{min-height:1.4em;margin:0;font-size:var(--text-small)}
+}
