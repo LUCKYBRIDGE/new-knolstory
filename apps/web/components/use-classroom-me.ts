@@ -20,13 +20,19 @@ export function useClassroomMeFor(session:AccountSession|null,sessionLoading:boo
  },[accountId]);
  // Deferred like use-account-session so the effect itself never sets state synchronously.
  useEffect(()=>{const timer=window.setTimeout(load,0);return()=>{window.clearTimeout(timer);generation.current++;};},[load]);
- const me=state.accountId===accountId&&accountId?state.me:null;
+ const current=state.accountId===accountId&&accountId?state.me:null;
+ const loading=sessionLoading||state.loading||!!accountId&&state.accountId!==accountId;
+ // A session recheck briefly clears the account; keep the last settled role meanwhile so open
+ // teacher panels do not collapse and student limits never lapse. A different account drops it.
+ const [settled,setSettled]=useState<ClassroomMe|null>(null);
+ if(!loading&&settled!==current)setSettled(current);
+ const me=loading&&settled&&(!accountId||settled.account.id===accountId)?settled:current;
  const role:ClassroomRoleState=!me?'guest':me.role;
  const permissions=me?.role==='student'?me.student?.permissions??ALL_EDITING_ALLOWED:ALL_EDITING_ALLOWED;
- const studentNumber=me?.role==='student'?me.student?.number??null:null,settled=!sessionLoading&&!state.loading;
+ const studentNumber=me?.role==='student'?me.student?.number??null:null,ready=!sessionLoading&&!state.loading;
  // Keep the class number on this device so student saves are named "07_…" even offline; forget it on sign-out or another role.
- useEffect(()=>{if(settled&&onlineEnabled)rememberStudentNumber(studentNumber);},[settled,studentNumber]);
- return {loading:sessionLoading||state.loading||!!accountId&&state.accountId!==accountId,role,permissions,me,session,error:state.accountId===accountId?state.error:'',refresh:load};
+ useEffect(()=>{if(ready&&onlineEnabled)rememberStudentNumber(studentNumber);},[ready,studentNumber]);
+ return {loading,role,permissions,me,session,error:state.accountId===accountId?state.error:'',refresh:load};
 }
 /** For the editor: `{loading, role, permissions}`. Permissions are ALL_EDITING_ALLOWED unless the signed-in account is a student. */
 export function useClassroomMe():ClassroomMeState{

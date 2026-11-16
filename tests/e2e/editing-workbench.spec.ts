@@ -284,7 +284,7 @@ test('editing follows modeled visible viewport shrink and pan while keeping text
 
 test('one grouped settings menu replaces scattered editor controls',async({page},info)=>{
  await page.setViewportSize({width:390,height:844});const before=await prepare(page),header=page.locator('main[data-keyboard-occluded]>header');await page.keyboard.press('Escape');
- await expect(header.locator(':scope>button')).toHaveCount(2);await expect(header.getByRole('button',{name:'편집 화면 전체 화면',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'홈 · 서재로 이동',exact:true})).toBeVisible();await expect(header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeVisible();
+ await expect(header.locator(':scope>button')).toHaveCount(2);await expect(header.getByRole('button',{name:'편집 화면 전체 화면',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'서재 · 홈으로 이동',exact:true})).toBeVisible();await expect(header.getByRole('combobox',{name:'현재 장과 컷 이동',exact:true})).toBeVisible();
  await expect(header.locator('[data-work-menu]>summary')).toHaveAccessibleName('설정');await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).not.toBeVisible();await expect(page.getByText('···',{exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'기본편집',exact:true})).toHaveCount(0);await expect(workbench(page).getByRole('button',{name:'글 편집',exact:true})).toHaveCount(0);
  expect((await header.boundingBox())!.height).toBeLessThanOrEqual(52);
  await openWorkMenu(page);await expect(header.getByRole('button',{name:'서재로',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'작품 파일 저장',exact:true})).toBeVisible();await expect(header.getByRole('button',{name:'현재 컷 뒤에 추가',exact:true})).toBeVisible();

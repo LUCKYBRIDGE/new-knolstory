@@ -1,6 +1,7 @@
 'use client';
 import {useMemo,useRef,useState,useEffect} from 'react';
 import {ServiceNavigation} from './service-navigation';
+import {serviceLinks} from '../lib/service-navigation';
 import {useClassroomMe} from './use-classroom-me';
 import {onlineEnabled} from '../lib/online-mode';
 import type {OnlineDocumentMetadata} from '../lib/document-api';
@@ -42,7 +43,7 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
   {online.notice&&<p role="status">{target?`‘${target.title}’ · `:''}{online.notice}</p>}{online.error&&<p role="alert">{online.error}</p>}
  </div>;
  return <>
-  <LocalBookshelf {...shelf} navigation={<ServiceNavigation role={classroom.role} active="library" beforeNavigate={beforeServiceNavigation}/>} accountMenu={onlineEnabled&&<AccountMenu account={online.account} beforeNavigate={beforeAccountNavigation} disabled={onlineDisabled||shelf.disabled}/>} online={onlineEnabled?{records:projection.remoteOnly,byLocalKey:projection.byLocalKey,header,busy:online.busy,more:!!online.activeCursor,onMore:()=>void online.list(true,'active'),onOpen:record=>{setTarget({key:`remote:${record.recordId}`,title:record.title});void online.open(record);},renderLocalActions:work=>{
+  <LocalBookshelf {...shelf} navigation={serviceLinks(classroom.role).length>1&&<ServiceNavigation role={classroom.role} active="library" beforeNavigate={beforeServiceNavigation}/>} accountMenu={onlineEnabled&&<AccountMenu account={online.account} beforeNavigate={beforeAccountNavigation} disabled={onlineDisabled||shelf.disabled}/>} online={onlineEnabled?{records:projection.remoteOnly,byLocalKey:projection.byLocalKey,header,busy:online.busy,more:!!online.activeCursor,onMore:()=>void online.list(true,'active'),onOpen:record=>{setTarget({key:`remote:${record.recordId}`,title:record.title});void online.open(record);},renderLocalActions:work=>{
    if(!isPersonalLibraryKind(work.kind))return null;
    const key=`local:${work.key}`,status=projection.byLocalKey[work.key]??{kind:'local' as const,label:'이 기기에 있음'};
    return <OnlineLibraryActions key={key} status={status} disabled={unavailable} signedIn={!!owner} {...feedback(key)} onUpload={()=>{setTarget({key,title:work.project.title});void online.save(work.key);}} onOpenOnline={status.record?()=>{setTarget({key,title:work.project.title});void online.open(status.record!);}:undefined} onTrash={status.record?()=>stateAction(status.record!,'trash',key):undefined}/>;

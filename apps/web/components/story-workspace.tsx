@@ -120,6 +120,10 @@ const builtInStories=[...representativeStories,...classicStories];
 
 /** Error text for people: the message only, never a JavaScript `Error:` prefix. */
 const issueText=(issue:unknown)=>issue instanceof Error?issue.message:String(issue);
+/** Which work this tab is previewing from the editor, so a reload keeps the way back to editing. */
+const EDITOR_READING_KEY='knolstory-reading-from-editor-v1';
+const rememberEditorReading=(projectId:string|null)=>{try{if(projectId)sessionStorage.setItem(EDITOR_READING_KEY,projectId);else sessionStorage.removeItem(EDITOR_READING_KEY);}catch{/* Without tab storage a reload simply offers the library. */}};
+const editorReadingId=()=>{try{return sessionStorage.getItem(EDITOR_READING_KEY);}catch{return null;}};
 
 /** Moves the current cut to the end of another chapter; the move is chosen first and applied with an explicit button. */
 function MoveCutToChapter({chapters,onMove}:{chapters:readonly {id:string;label:string}[];onMove:(chapterId:string)=>void}){
@@ -307,7 +311,7 @@ export function StoryWorkspace() {
           const context=loaded.contexts[loaded.storyId]!;setLineId(context.lineId);setEditorView(context.editorView);setActiveTool(context.activeTool);setWriterChapterId(context.writerChapterId);setPreviewProfile(context.previewProfile);
           const entry=resolveEntryView({visited,hasWorkspace:true,reload,storedView:loaded.view,directEditor:directEditor.current,directLibrary});
           try{const slot=readPlayerSaves(localStorage).works[loaded.project.id]?.auto;if(slot){const saved=loadPlayerSlot(loaded.project,slot);if(JSON.stringify(saved.state)===JSON.stringify(loaded.playback))setReaderResume(saved.dialoguePosition??null);}}catch{/* Invalid reading slots remain untouched. */}
-          setReadingFromEditor(entry==='editor'&&loaded.mode==='play'&&directEditor.current);setPlayback(loaded.playback);setMode(entry==='editor'?loaded.mode:'edit');setView(entry);setRuntimeMounted(entry==='editor');
+          setReadingFromEditor(entry==='editor'&&loaded.mode==='play'&&(directEditor.current||editorReadingId()===loaded.project.id));setPlayback(loaded.playback);setMode(entry==='editor'?loaded.mode:'edit');setView(entry);setRuntimeMounted(entry==='editor');
           if(loaded.warning)setError(loaded.warning);setRevision(v=>v+1);
         }else{setView(resolveEntryView({visited,hasWorkspace:false,reload,directEditor:directEditor.current,directLibrary}));setRuntimeMounted(directEditor.current);}
 
@@ -521,7 +525,7 @@ export function StoryWorkspace() {
   }
   function continueWriting(){if(stopForUnappliedInput())return;try{persistWorkspace();}catch(issue){setError(`지금 글을 임시 보관하지 못해 돌아가기를 멈췄어요. ${issueText(issue)}`);return;}setView('editor');setRuntimeMounted(true);setMode('edit');setEditorView('cut');setWriterChapterId(null);setActiveTool('text');setRevision(v=>v+1);}
   function beginBook(resume:boolean,key=storyId,work=project){
-    setReadingFromEditor(false);setReaderResume(null);
+    setReadingFromEditor(false);rememberEditorReading(null);setReaderResume(null);
     const state=resume?resumeFor(key,work):createPlayback(work);
     if(!state){setError('읽던 위치를 찾지 못했어요. 처음부터 읽기를 골라 주세요.');return;}
     if(resume)try{const slot=readPlayerSaves(localStorage).works[work.id]?.auto;if(slot){const saved=loadPlayerSlot(work,slot);if(JSON.stringify(saved.state)===JSON.stringify(state))setReaderResume(saved.dialoguePosition??null);}}catch{/* Unreadable records are preserved; continue at the validated cut. */}
@@ -789,7 +793,7 @@ export function StoryWorkspace() {
     rememberCurrent();
     setPresentationEntry(value=>value+1);
     setManageOpen(false);
-    if(next==='play'){setReadingFromEditor(true);setReaderResume(null);}
+    if(next==='play'){setReadingFromEditor(true);rememberEditorReading(project.id);setReaderResume(null);}
     setMode(next);
     if(next==='edit'&&editorView==='writer')setWriterChapterId(line.chapterId);
     if(next==='play')setPlaybackRun(value=>value+1);

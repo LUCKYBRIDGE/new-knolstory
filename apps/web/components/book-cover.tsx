@@ -33,7 +33,8 @@ function FittedCopy({children,style,className='',signature,layerId,role,writing=
     void document.fonts.ready.then(fit);document.fonts.addEventListener('loadingdone',fit);
     return()=>{cancelled=true;observer.disconnect();document.fonts.removeEventListener('loadingdone',fit);};
   },[signature]);
-  return <div ref={root} className={`${styles.copyBox} ${className}`} style={style} data-cover-layer={layerId} data-role={role} data-writing={writing}>{children}</div>;
+  // The trailing space keeps adjacent cover copy as separate words for text extraction (e.g. axe name/content checks); it collapses visually.
+  return <><div ref={root} className={`${styles.copyBox} ${className}`} style={style} data-cover-layer={layerId} data-role={role} data-writing={writing}>{children}</div>{' '}</>;
 }
 function StaticImage({src,className='',style}:{src:string;className?:string;style?:CSSProperties}) {
   const [failed,setFailed]=useState(false);
@@ -70,11 +71,11 @@ export function BookCover({project,compact=false,className='',face='front',editi
     const title=personalCoverTitle(project.title);
     return <div {...common} className={`${common.className} ${styles.personalDefault}`} data-personal-cover="default">
       {face==='front'?<>
-        <span className={styles.personalBadge}>[내작품]</span>
+        <span className={styles.personalBadge}>[내작품]</span>{' '}
         <FittedCopy style={{left:'13%',top:'30%',width:'77%',height:'57%',textAlign:'center'}} signature={JSON.stringify([title,cover.subtitle,cover.author])} role="title">
           <div data-cover-copy-size="13cqw" className={styles.personalTitle}>
-            {cover.subtitle&&<p className={styles.tagline}>{cover.subtitle}</p>}
-            <h2 className={styles.title}>{title}</h2>
+            {cover.subtitle&&<p className={styles.tagline}>{cover.subtitle}</p>}{' '}
+            <h2 className={styles.title}>{title}</h2>{' '}
             {cover.author&&<p className={styles.author}>{cover.author} 지음</p>}
           </div>
         </FittedCopy>
@@ -100,12 +101,12 @@ export function BookCover({project,compact=false,className='',face='front',editi
           {model.character&&<StaticImage key={model.character.id} src={model.character.src} className={styles.actor} style={boxStyle(model.actorBox)}/>}
           {!model.background&&!model.character&&<span className={styles.ornament}>✧</span>}
         </div>
-        {(!composition||composition.showEdition)&&<span className={styles.edition}>{BOOK_EDITION_LABELS[edition]}</span>}
+        {(!composition||composition.showEdition)&&<span className={styles.edition}>{BOOK_EDITION_LABELS[edition]}</span>}{' '}
         <FittedCopy style={{...boxStyle(model.titleBox),background:'transparent',color:model.ink,textAlign:cover.align,fontFamily:COVER_FONTS[cover.font].family}}
           className={styles.titleBox} role="title" signature={JSON.stringify([model.title,cover])}>
           <div data-cover-copy-size={`${model.titleSize}cqw`} style={{fontSize:`${model.titleSize}cqw`,background:panel}}>
-            {cover.subtitle&&<p className={styles.tagline}>{cover.subtitle}</p>}
-            <h2 className={styles.title} data-font={cover.font}>{model.title}</h2>
+            {cover.subtitle&&<p className={styles.tagline}>{cover.subtitle}</p>}{' '}
+            <h2 className={styles.title} data-font={cover.font}>{model.title}</h2>{' '}
             {cover.author&&cover.authorPosition==='under-title'&&<p className={styles.author}>{cover.author} 지음</p>}
           </div>
         </FittedCopy>

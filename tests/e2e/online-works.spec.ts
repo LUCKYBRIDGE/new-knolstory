@@ -16,7 +16,7 @@ async function onlineHarness(page:Page){
  await page.route('**/api/v1/**',async route=>{
   const path=new URL(route.request().url()).pathname;
   if(path.endsWith('/auth/config'))return route.fulfill({json:{success:true,data:{signupProvider:'kakao',providers:{kakao:false,google:false}}}});
-  if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
+  if(path.endsWith('/class/me'))return route.fulfill({json:{success:true,data:{role:'teacher',account:{id:'11111111-1111-4111-8111-111111111111'}}}});if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
   if(path===`/api/v1/documents/${recordId}`&&route.request().method()==='GET')return route.fulfill({json:{success:true,data:{...metadata,snapshot}}});
   if(path===`/api/v1/documents/${recordId}`&&route.request().method()==='PUT'){const input=route.request().postDataJSON();expect(input.snapshot.content.document.project.id).toBe(project.id);return route.fulfill({json:{success:true,data:{recordId,revision:2,contentSha256:input.snapshot.contentSha256,replayed:false}}});}
   if(path==='/api/v1/documents'&&route.request().method()==='POST'){created=route.request().postDataJSON();expect(route.request().headers()['x-csrf-token']).toBe('csrf');expect(route.request().headers()['idempotency-key']).toBeTruthy();return route.fulfill({status:201,json:{success:true,data:{recordId,revision:1,contentSha256:(created as {snapshot:{contentSha256:string}}).snapshot.contentSha256,createdAt:1,updatedAt:1,replayed:false}}});}
@@ -31,7 +31,7 @@ async function focusWork(page:Page,title:string){
  await shelfCoverButton(page,title).click();return page.getByRole('dialog');
 }
 async function openRemote(page:Page){const focus=await focusWork(page,'온라인에 보관한 원고');await focus.getByRole('button',{name:/^이 기기에 열기/}).click();}
-async function returnToLibrary(page:Page){await page.getByRole('button',{name:'홈 · 서재로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true}).filter({visible:true})).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await onlineReady(page);}
+async function returnToLibrary(page:Page){await page.getByRole('button',{name:'서재 · 홈으로 이동',exact:true}).or(page.getByRole('button',{name:'서재로',exact:true}).filter({visible:true})).click();await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');await onlineReady(page);}
 async function createLocal(page:Page,title:string,text?:string){
  await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
  await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill(title);await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();

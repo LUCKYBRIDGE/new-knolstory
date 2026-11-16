@@ -23,7 +23,7 @@ test('signed-in account popover and online trash dialog coordinate and preserve 
  await page.setViewportSize({width:390,height:844});await page.route('**/api/v1/**',route=>{
   const url=new URL(route.request().url()),path=url.pathname;
   if(path.endsWith('/auth/config'))return route.fulfill({json:{success:true,data:{signupProvider:'kakao',providers:{kakao:true,google:false}}}});
-  if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
+  if(path.endsWith('/class/me'))return route.fulfill({json:{success:true,data:{role:'teacher',account:{id:'11111111-1111-4111-8111-111111111111'}}}});if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
   if(path.endsWith('/documents')){if(url.searchParams.get('state')==='trash')trashReads++;else activeReads++;return route.fulfill({json:{success:true,data:{documents:[],nextCursor:null}}});}
   return route.fulfill({status:404,json:{success:false,error:{code:'NOT_FOUND'}}});
  });
