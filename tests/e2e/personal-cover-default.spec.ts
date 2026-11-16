@@ -16,7 +16,7 @@ test('catalog edit copies receive numbered titles and identical blue covers',asy
  const covers=page.locator('[data-shelf-cover] [data-personal-cover="default"]');
  await expect(covers).toHaveCount(3);
  for(let index=0;index<3;index++){
-  await expect(covers.nth(index)).toHaveCSS('background-color','rgb(106, 174, 214)');
+  await expect(covers.nth(index)).toHaveCSS('background-color','rgb(63, 111, 152)');
   // The default cover is a whole book face, not a strip: it keeps the shelf's 300:435 proportions.
   const box=await covers.nth(index).boundingBox();expect(box&&box.height/box.width).toBeGreaterThan(1.4);
   await expect(covers.nth(index).getByText('[내작품]',{exact:true})).toBeVisible();
