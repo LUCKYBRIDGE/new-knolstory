@@ -8,7 +8,7 @@ import styles from './editor-term-guide.module.css';
 
 export function EditorTermGuide(){
  const [open,setOpen]=useState(false);
- return <><button type="button" aria-haspopup="dialog" onClick={()=>setOpen(true)}>편집 용어 안내</button>{open&&<TermDialog onClose={()=>setOpen(false)}/>}</>;
+ return <><button type="button" aria-haspopup="dialog" data-term-guide onClick={()=>setOpen(true)}>편집 용어 안내</button>{open&&<TermDialog onClose={()=>setOpen(false)}/>}</>;
 }
 function TermDialog({onClose}:{onClose:()=>void}){
  const keyboard=useEditorKeyboard('[data-keyboard-dialog=terms]');
