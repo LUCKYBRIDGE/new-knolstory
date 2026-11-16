@@ -80,7 +80,7 @@ function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:
   <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
   <div className={styles.taskActions}>
    <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 제출 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':rows?`제출 목록 새로고침 · ${rows.length}명`:'제출 보기'}</button>
-   <button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'제출 마감':'제출 다시 열기'}</button>
+   <button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'과제 마감':'다시 열기'}</button>
   </div>
   {rows&&(rows.length===0?<p className={styles.hint}>아직 낸 학생이 없어요.</p>:<ul className={styles.reviewList}>{rows.map(row=><li key={row.number}><SubmissionReview item={item} row={row} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/></li>)}</ul>)}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}

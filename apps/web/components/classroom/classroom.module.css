@@ -306,3 +306,5 @@
 .recipientChip:focus-within{outline:2px solid #2f6962;outline-offset:2px}
 .recipientEdit{display:grid;gap:8px;margin:8px 0 0}
 .factChip[data-recipients=some]{background:#e8f1ec}
+/* Narrow phones: one task kind per row so titles such as '작품 쓰기 · 놀스토리' stay on one line. */
+@media(max-width:480px){.composerChoices{grid-template-columns:1fr;gap:8px}.composerChoice{padding:10px 14px;gap:2px}}
