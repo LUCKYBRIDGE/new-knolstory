@@ -523,7 +523,7 @@
 .shell:not(.playMode) summary{min-height:32px;padding:6px 8px;font-size:var(--text-caption);line-height:1.5;cursor:pointer}
 .shell:not(.playMode) details[open]>summary{border-color:var(--mint-strong);background-color:var(--paper)}
 .shell:not(.playMode) .header button,.shell:not(.playMode) .header summary,.shell:not(.playMode) .header select{min-height:var(--chrome-control-height);font-size:var(--text-caption);padding:4px 8px;line-height:1.5}
-.shell:not(.playMode) .header .management>summary,.shell:not(.playMode) .header .viewTools>summary{display:flex;align-items:center;list-style:none;gap:4px}
+.shell:not(.playMode) .header .management>summary,.shell:not(.playMode) .header .viewTools>summary{display:flex;align-items:center;list-style:none;gap:4px}.shell:not(.playMode) .header .management>summary::marker,.shell:not(.playMode) .header .viewTools>summary::marker{content:none}
 .shell:not(.playMode) .header summary::after{content:'▾';font-size:var(--text-caption)}
 .shell:not(.playMode) .header details[open]>summary::after{content:'▴'}
 .shell:not(.playMode) .cutPosition{flex:0 1 auto}
@@ -746,7 +746,7 @@
  color:var(--story-menu-ink,#f5ead4);background:#1d3736;border:1px solid #688578;
  border-radius:6px;box-shadow:0 1px 0 #0003;cursor:pointer;
 }
-.shell.editorShell:not(.playMode) [data-system-menu=editor] summary{list-style:none}
+.shell.editorShell:not(.playMode) [data-system-menu=editor] summary{list-style:none}.shell.editorShell:not(.playMode) [data-system-menu=editor] summary::marker{content:none}
 .shell.editorShell:not(.playMode) [data-system-menu=editor] summary::-webkit-details-marker{display:none}
 .shell.editorShell:not(.playMode) [data-system-menu=editor] summary::after{content:'⌄';margin-left:auto;flex:none;color:var(--story-menu-accent,#c6e3cf);font-size:var(--text-body)}
 .shell.editorShell:not(.playMode) [data-system-menu=editor] details[open]>summary::after{transform:rotate(180deg)}
