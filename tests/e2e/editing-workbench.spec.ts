@@ -135,8 +135,9 @@ test('basic editing keeps previous and next cut context beside a clear current e
  for(const width of [1440,390]){
   await page.setViewportSize({width,height:width===390?844:900});
   await expect(current.getByRole('textbox',{name:'2컷 글',exact:true})).toHaveValue(fixture.lines[1].text);
-  await expect(previous).toContainText(fixture.lines[0].text);await expect(next).toContainText(fixture.lines[2].text);
-  await expect(previous.locator('img')).toHaveCount(1);await expect(next.locator('img')).toHaveCount(1);
+  // Desktop shows each neighbour's picture and words; a phone keeps only a plain ‹ 이전 컷 / 다음 컷 › pair.
+  if(width===390){await expect(previous).toBeVisible();await expect(next).toBeVisible();await expect(previous.locator('[data-adjacent-scene]')).toBeHidden();}
+  else{await expect(previous).toContainText(fixture.lines[0].text);await expect(next).toContainText(fixture.lines[2].text);await expect(previous.locator('img')).toHaveCount(1);await expect(next.locator('img')).toHaveCount(1);}
   const text=current.getByRole('textbox',{name:'2컷 글',exact:true});await text.scrollIntoViewIfNeeded();
   const fieldBounds=(await text.boundingBox())!,neighborBounds=(await previous.boundingBox())!;
   expect(fieldBounds.width).toBeGreaterThan(width===390?250:neighborBounds.width);
@@ -214,12 +215,14 @@ test('phone basic editor stacks compact context around the current landscape pre
  const scene=page.getByTestId('story-stage-viewport');await expect(scene).toBeVisible();
  const boxes=await Promise.all([previous,scene,current,next].map(locator=>locator.boundingBox()));const [p,s,c,n]=boxes as {x:number;y:number;width:number;height:number}[];
  const top=Math.min(s.y,c.y),bottom=Math.max(s.y+s.height,c.y+c.height),height=bottom-top;
- expect(p.y+p.height).toBeLessThanOrEqual(top+2);expect(n.y).toBeGreaterThanOrEqual(bottom-2);
+ // Previous and next sit side by side above the stage, so the stage and the current cut stay together.
+ expect(p.y+p.height).toBeLessThanOrEqual(top+2);expect(n.y+n.height).toBeLessThanOrEqual(top+2);expect(Math.abs(p.y-n.y)).toBeLessThanOrEqual(1);expect(p.x+p.width).toBeLessThanOrEqual(n.x+1);
  await expect(workbench(page).locator('[data-editing-body]')).toHaveAttribute('data-cut-arrangement','stacked');
  expect(height).toBeGreaterThan(p.height*3);expect(height).toBeGreaterThan(n.height*3);
  expect(p.height).toBeGreaterThanOrEqual(44);expect(n.height).toBeGreaterThanOrEqual(44);
  await expect(workbench(page).getByRole('textbox',{name:'현재 컷 화자',exact:true})).toBeVisible();
- await expect(workbench(page).locator('[data-stacked-context]')).toBeVisible();
+ // Cut list and memo summary are tablet tools; on a phone the header's cut picker and the detail panel cover them.
+ await expect(workbench(page).locator('[data-stacked-context]')).toBeHidden();
  await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-width','1280');await expect(page.getByTestId('story-runtime-status')).toHaveAttribute('data-scene-height','720');
  expect(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight+2&&document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
  await page.screenshot({path:info.outputPath('phone-basic-stacked.png'),fullPage:true});

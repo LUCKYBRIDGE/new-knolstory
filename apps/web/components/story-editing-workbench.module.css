@@ -388,3 +388,34 @@ p.adjacent { font-size:var(--text-small); color:var(--ink-soft); }
 .additional>details[open]>summary,.stackedContext>details[open]>summary{border:0;border-bottom:1px solid var(--line);border-radius:0;margin:-8px -8px 8px;padding:0 12px}
 /* Section names inside the current cut share one size: 글상자 글, 1컷 배경, 현재 인물 · 자료 미리보기. */
 .current>div>strong:first-child{display:block;font-size:var(--text-small);font-weight:600;margin-bottom:4px}
+/* Phones: only the essentials. The current cut's words and picture, and a clear way to the previous and
+   next cut. Everything secondary (new cut in the middle, branching, cut list, memo summary, story map,
+   linked-image note) lives in the menu or the 현재 컷 상세 panel instead of crowding the screen. */
+@media (max-width:700px){
+ .body[data-basic=true][data-cut-arrangement=stacked],
+ .body[data-basic=true][data-cut-arrangement=stacked]:has(.previousSide>p.adjacent:first-child){grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto minmax(120px,min(calc((100vw - 16px) * .5625 + 4px),42dvh)) minmax(0,1fr) auto}
+ .body[data-cut-arrangement=stacked] .previousSide{grid-column:1;grid-row:1;display:flex;flex-direction:row;gap:6px;min-height:0;overflow:hidden}
+ .body[data-cut-arrangement=stacked] .nextSide{grid-column:2;grid-row:1;flex-direction:row;overflow:hidden}
+ .body[data-cut-arrangement=stacked] .previewSlot,.body[data-cut-arrangement=stacked] .current{grid-column:1/-1}
+ /* A branching fork needs the full width: give it its own row. */
+ .body[data-cut-arrangement=stacked]:has(.previousSide>.pathFork) .previousSide{grid-column:1/-1}
+ .body[data-cut-arrangement=stacked]:has(.previousSide>.pathFork) .nextSide,.body[data-cut-arrangement=stacked]:has(.nextSide>.pathFork) .nextSide{grid-column:1/-1;grid-row:4;flex-direction:column;overflow:auto;overscroll-behavior:contain}
+ .body[data-cut-arrangement=stacked]:has(.previousSide>.pathFork) .previousSide{overflow:auto;overscroll-behavior:contain}
+ /* With a fork every row shares the height, so a long choice list scrolls in its own row instead of pushing over the current cut. */
+ .workbench .body.body[data-basic=true][data-cut-arrangement=stacked]:has(.nextSide>.pathFork){grid-template-rows:minmax(44px,auto) minmax(0,1.6fr) minmax(0,2fr) minmax(0,1fr)}
+ .workbench .body.body[data-basic=true][data-cut-arrangement=stacked]:has(.previousSide>.pathFork){grid-template-rows:minmax(0,1fr) minmax(0,1.6fr) minmax(0,2fr) minmax(44px,auto)}
+ .body[data-cut-arrangement=stacked] :is(.previousSide,.nextSide)>.adjacent{flex:1 1 auto;min-width:0;height:auto;min-height:44px;max-height:none;margin:0;padding:0 12px;display:flex;align-items:center;justify-content:center;gap:6px;overflow:hidden;font-size:var(--text-small);font-weight:600;text-align:center}
+ .body[data-cut-arrangement=stacked] .adjacent :is(.sceneThumbnail,.excerpt,strong small){display:none}
+ .body[data-cut-arrangement=stacked] .adjacent strong{font-size:var(--text-small);white-space:nowrap}
+ .body[data-cut-arrangement=stacked] .previousSide>button.adjacent strong::before{content:'‹ ' / ''}
+ .body[data-cut-arrangement=stacked] .nextSide>button.adjacent:not(.addNextCut) strong::after{content:' ›' / ''}
+ .body[data-cut-arrangement=stacked] :is(.previousSide,.nextSide)>p.adjacent{color:var(--ink-soft);font-weight:400;background:transparent;border-style:dashed}
+ .body[data-cut-arrangement=stacked] :is(.mapButton,.insertCut,.pathEnd),.speakerImage,.stackedContext{display:none!important}
+ .speakerName,.speakerKind{font-size:var(--text-small);font-weight:600}
+ /* The words are the main job: the text field takes whatever room is left in the current cut. */
+ .body[data-basic=true][data-cut-arrangement=stacked] .current{display:flex;flex-direction:column;gap:8px}
+ .body[data-basic=true][data-cut-arrangement=stacked] .current>.text{flex:1 0 auto;display:flex;flex-direction:column;gap:4px;min-height:min-content}
+ .body[data-basic=true][data-cut-arrangement=stacked] .current>.text textarea{flex:1 1 auto;min-height:84px;max-height:none}
+ .additional:not(:has(>details[open]))>details{flex:1 1 100%}
+ .additional>details>summary{justify-content:space-between;font-size:var(--text-small)}
+}

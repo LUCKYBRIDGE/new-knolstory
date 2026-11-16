@@ -102,11 +102,13 @@ test('phone authoring keeps drafts and runtime while tools, orientation, files a
   expect(stageBounds.y).toBeGreaterThanOrEqual(-1);
   expect(stageBounds.y + stageBounds.height).toBeLessThanOrEqual(844);
   expect(await input.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);
-  // Phone touch targets: the settings menu, cut creation, branching and the folded cut detail are all at least 44px.
+  // Phone basic editing keeps only the current cut and the way to the next one; inserting and branching wait for a larger screen or the menu.
+  await expect(page.getByRole('button', { name: '+ 이 컷 뒤에 새 컷 넣기', exact: true })).toBeHidden();
+  await expect(page.getByRole('button', { name: /^(\+ 여기서 이야기 나누기|선택지 고치기)$/ })).toBeHidden();
+  // Phone touch targets: the settings menu, previous/next cut, the folded cut detail and playback are all at least 44px.
   for (const [name, locator] of [
     ['설정', page.locator('[data-work-menu]>summary')],
-    ['+ 이 컷 뒤에 새 컷 넣기', page.getByRole('button', { name: '+ 이 컷 뒤에 새 컷 넣기', exact: true })],
-    ['갈래 나누기·선택지 고치기', page.getByRole('button', { name: /^(\+ 여기서 이야기 나누기|선택지 고치기)$/ })],
+    ['다음 컷', page.getByRole('complementary', { name: '다음 컷과 참고 정보', exact: true }).getByRole('button').first()],
     ['현재 컷 상세·메모·정리', page.locator('details>summary').filter({ hasText: /^현재 컷 상세·메모·정리$/ })],
     ['이 컷부터 재생', page.getByRole('button', { name: '이 컷부터 재생', exact: true })],
   ] as const) {
