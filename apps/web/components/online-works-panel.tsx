@@ -10,7 +10,7 @@ export function OnlineWorksPanel(props:OnlineWorksProps){
  return <OnlineWorksPanelView {...props} online={online}/>;
 }
 export function OnlineWorksPanelView({online,acceptedFormat='knolstory',works,disabled=false,usage}:OnlineWorksProps&{online:ReturnType<typeof useOnlineWorks>;usage?:StorageUsage}){
- const summary=usage?storageSummary(usage):null;
+ const summary=usage?storageSummary(usage,{compact:true}):null;
  const {account,documents,cursor,range,confirmTrash,setConfirmTrash,busy,error,notice,listVisible,list,refresh,open,changeState}=online;
  const [selected,setSelected]=useState(''),menu=useRef<HTMLDetailsElement>(null);
  // Day counts for trashed works only need the time the panel opened; the server purges hourly.

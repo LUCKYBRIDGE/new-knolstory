@@ -23,7 +23,7 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  // Every signed-in role can keep online works within its storage limits (server/documents/quota.ts).
  const classroom=useClassroomMe();
  const onlineAllowed=classroom.role!=='guest';
- const storage=classroom.me?.storage,summary=storage?storageSummary(storage):null;
+ const storage=classroom.me?.storage,summary=storage?storageSummary(storage,{compact:true}):null;
  // Sizes only for works that could matter; measured once per change of the shelf.
  const sizes=useMemo(()=>Object.fromEntries(personal.map(work=>[work.key,uploadSize(work.project)])),[personal]);
  const online=useOnlineWorks({works:personal.map(work=>({key:work.key,title:work.project.title})),disabled:onlineDisabled||shelf.disabled||!onlineAllowed,onSaveNew:onSaveOnline,onOpen:onOpenOnline});

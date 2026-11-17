@@ -2,7 +2,7 @@
 /* Local-first: the storage note is one quiet line; online tools stay small and only for teachers. */
 .statusBar{padding:6px 10px;gap:6px 12px;font-size:var(--text-caption);background:#fff8e7d9}
 .statusBar button{min-height:36px;padding:6px 12px}
-@media(max-width:480px){.statusBar{padding:6px 8px}.controls{width:auto;margin-left:auto}.controls button{flex:none}.legend{min-width:0}}
+@media(max-width:480px){.statusBar{padding:6px 8px}.controls{width:auto;margin-left:auto}.controls button{flex:none}.legend{min-width:0;flex:1 1 100%}}
 
 /* Online storage usage: quiet by default, amber when nearly full (online limits, 2026-11-18). */
 .storageUsage{margin:0;font-size:var(--text-caption);color:var(--ink-soft,#6b6257)}
