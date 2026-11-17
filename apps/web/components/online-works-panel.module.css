@@ -17,3 +17,7 @@
 .menu .panel small{display:block;color:var(--story-menu-muted)}
 .menu .panel [role=group]{display:grid;grid-template-columns:minmax(0,1fr);gap:4px}
 .menu .panel [role=group][aria-label="온라인 휴지통 이동 확인"]{padding:10px;border:1px solid var(--story-menu-line);border-radius:3px;background:var(--story-menu-surface)}
+
+/* Online storage usage in the panel (2026-11-18). */
+.usage{margin:0;font-size:var(--text-caption)}
+.usage[data-warn=true]{font-weight:600;color:var(--warn-ink,#8a4b00)}

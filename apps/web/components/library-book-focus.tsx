@@ -1,4 +1,5 @@
 'use client';
+import {NumberedTitle} from './numbered-title';
 import {useEffect,useId,useRef,useState,type ReactNode} from 'react';
 import {trapDialogTab} from '../lib/dialog-keyboard';
 import {BookCover} from './book-cover';
@@ -17,7 +18,7 @@ export function LibraryBookFocus({works,selected,onSelect,onClose,onOpen,disable
  return <dialog ref={dialog} className={styles.dialog} aria-labelledby={title} data-work-id={selected.builtin?.id} data-selected-edition={edition} onCancel={event=>{event.preventDefault();onClose();}} onKeyDown={event=>{trapDialogTab(event,dialog.current);if(event.target instanceof HTMLInputElement||event.target instanceof HTMLTextAreaElement||event.target instanceof HTMLSelectElement)return;if(event.key==='ArrowLeft'){event.preventDefault();move(-1);}if(event.key==='ArrowRight'){event.preventDefault();move(1);}}}>
   <header><p>어떻게 읽을까요?</p><button onClick={onClose} aria-label="닫기 · 서재로 돌아가기">닫기</button></header>
   <div className={styles.showcase}><button className={styles.arrow} disabled={(count??works.length)<2} onClick={()=>move(-1)} aria-label="이전 책">‹</button><figure><div className={styles.book} aria-hidden="true"><BookCover project={selected.builtin?{...source.project,title:selected.builtin.title}:source.project} edition={edition}/></div><div className={styles.pedestal} aria-hidden="true"/><figcaption>{edition==='knolstory'?'놀스토리 · 선택하며 읽기':edition==='original'?'원작':'내 작품'}</figcaption></figure><button className={styles.arrow} disabled={(count??works.length)<2} onClick={()=>move(1)} aria-label="다음 책">›</button></div>
-  <section className={styles.meta}><h2 id={title}>{selected.builtin?.title??selected.project.title}</h2><p>{source.project.description||'나의 생각을 한 권의 이야기로 채워 보세요.'}</p>{source.project.cover?.author&&<small>지은이 · {source.project.cover.author}</small>}{!Number.isNaN(Date.parse(source.project.updatedAt))&&<p className={styles.modified}>최근 수정 · {new Date(source.project.updatedAt).toLocaleDateString("ko-KR")}</p>}</section>
+  <section className={styles.meta}><h2 id={title}>{selected.builtin?.title??<NumberedTitle title={selected.project.title}/>}</h2><p>{source.project.description||'나의 생각을 한 권의 이야기로 채워 보세요.'}</p>{source.project.cover?.author&&<small>지은이 · {source.project.cover.author}</small>}{!Number.isNaN(Date.parse(source.project.updatedAt))&&<p className={styles.modified}>최근 수정 · {new Date(source.project.updatedAt).toLocaleDateString("ko-KR")}</p>}</section>
   <nav className={`${styles.actions} ${selected.builtin?styles.builtinActions:''}`} aria-label="선택한 책으로 할 일">
    {selected.builtin?<>
     <button disabled={disabled||!selected.builtin.original?.project.lines.length} aria-label="원작 읽기" {...actionAttributes('original-read')} onClick={()=>{if(selected.builtin?.original)onOpen(selected.builtin.original.key,'start');}}><strong>원작 읽기</strong><small id={descriptionId('original-read')}>원작 이야기를 그대로 읽어요</small></button>
