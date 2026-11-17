@@ -1,6 +1,7 @@
 import {randomUUID} from 'node:crypto';
 import type {SqlClient,SqlPool} from '../storage/postgres-save-port';
 import {checkedSnapshot,DocumentServiceError} from '../documents/validation';
+import {assertStudentTitle} from '../documents/student-title';
 import {assertCanSubmit,classroomBytes,storageUsage,studentBytes,uploadBytes,STORAGE_LIMITS,type StorageUsage} from '../documents/quota';
 import {ALLOW_ALL_PERMISSIONS,effectivePermissions,normalizePermissions,type EditingPermissions} from './permissions';
 import {decoyHash,decryptText,encryptText,generateClassCode,generateQrToken,generateStudentPassword,hashQrToken,hashSecret,verifySecret,validQrToken} from './secrets';
@@ -458,6 +459,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(!target.rows[0])throw new ClassroomError(404,'ASSIGNMENT_NOT_FOUND');
     if(target.rows[0].open!==true)throw new ClassroomError(409,'ASSIGNMENT_CLOSED');
     if(snapshot.content.format!==assignmentFormat(target.rows[0].format))throw new ClassroomError(422,'ASSIGNMENT_FORMAT_MISMATCH');
+    try{await assertStudentTitle(client,accountId,snapshot);}catch{throw new ClassroomError(422,'STUDENT_NUMBER_TITLE');}
     // Homework is refused only for one oversized work or a pool already far past its limit.
     const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,accountId]);
     const room=await assertCanSubmit(client,text(context.classroom_id),accountId,bytes-Number(previous.rows[0]?.byte_length??0),bytes);

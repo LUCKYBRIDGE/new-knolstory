@@ -1,4 +1,5 @@
 "use client";
+import {TitleInput} from './title-input';
 import { useEffect, useRef, useState } from 'react';
 import { chapterLabel,chaptersForDisplay, type StoryPlanning, type StoryProject } from '@knolstory/story-domain';
 import {COVER_THEMES} from '@knolstory/story-domain';
@@ -53,7 +54,7 @@ export function StoryPreparation({scoresEnabled=true,project,onProjectChange,onO
     <p className={styles.hint}>입력 내용은 브라우저에 임시 보관돼요. 작품 파일로 저장해 주세요. 기획과 메모는 읽기 화면의 대사에 포함되지 않아요.</p>
     <div className={styles.columns} hidden={section!=='info'&&section!=='planning'}>
       <section className={styles.panel} data-work-section="info" hidden={section!=='info'} aria-labelledby="preparation-info"><h3 id="preparation-info">작품 정보</h3>
-        <label>작품 제목<input aria-label="작품 제목" value={project.title} onChange={e=>onProjectChange(updatePreparationInfo(project,{title:e.target.value}))}/></label>
+        <label>작품 제목<TitleInput aria-label="작품 제목" value={project.title} onChange={title=>onProjectChange(updatePreparationInfo(project,{title}))}/></label>
         <label>작품 소개<textarea aria-label="작품 소개" rows={3} value={project.description} onChange={e=>onProjectChange(updatePreparationInfo(project,{description:e.target.value}))}/></label>
         <label>지은이<input aria-label="지은이" value={cover.author} onChange={e=>updateCover({author:e.target.value})}/></label>
         <label>부제<input aria-label="부제" value={cover.subtitle} onChange={e=>updateCover({subtitle:e.target.value})}/></label>

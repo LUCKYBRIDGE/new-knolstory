@@ -8,6 +8,7 @@ import {projectSnapshot} from '../storage/snapshot-projection';
 import {checkedSnapshot,clockTime,DocumentServiceError,identifier,idempotency,listInput,positive,requestHash,requestObject,timestamp} from './validation';
 export {DocumentServiceError} from './validation';
 import {assertCanStore,uploadBytes,type StorageRole} from './quota';
+import {assertStudentTitle} from './student-title';
 export type DocumentContext=Readonly<{token:string;accountId:string;role?:StorageRole}>;
 export type DocumentMetadata=Readonly<{recordId:string;revision:number;format:'knolstory'|'shortstory';clientProjectId:string;title:string;contentSha256:string;createdAt:number;updatedAt:number;stateVersion:number;deletedAt:number|null}>;
 type CreateInput=Readonly<{payloadVersion:1;snapshot:unknown;idempotencyKey:string}>;
@@ -102,6 +103,7 @@ export function createDocumentService(pool:SqlPool,options:Readonly<{clock?:()=>
     // Catalog-only creation cannot acquire private bytes, even if a future gate drifts.
     if(blobs.length)throw new DocumentServiceError('CATALOG_MEDIA_REQUIRED',422);
     const bytes=uploadBytes(snapshot);
+    if(user.role==='student')await assertStudentTitle(client,user.accountId,snapshot);
     await assertCanStore(client,user.accountId,user.role,{newWork:true,bytes,deltaBytes:bytes});
     const recordId=randomUUID(),createdAt=clockTime(clock),content=snapshot.content;
     const project=content.format==='knolstory'?content.document.project:content.project;
@@ -136,6 +138,7 @@ export function createDocumentService(pool:SqlPool,options:Readonly<{clock?:()=>
    return transaction(user,async client=>{
     const content=snapshot.content,project=content.format==='knolstory'?content.document.project:content.project,bytes=uploadBytes(snapshot);
     const previous=(await client.query('SELECT byte_length FROM knolstory_storage.private_documents WHERE scope_id=$1 AND record_id=$2 AND owner_account_id=$3',[scope(user),recordId,user.accountId])).rows[0];
+    if(user.role==='student')await assertStudentTitle(client,user.accountId,snapshot);
     if(previous)await assertCanStore(client,user.accountId,user.role,{newWork:false,bytes,deltaBytes:bytes-Number(previous.byte_length)});
     const result=await saveExisting({scopeId:scope(user),recordId,idempotencyKey:input.idempotencyKey,expectedRevision:input.expectedRevision,snapshot},
      {authorize:async()=>true,assertCatalogAllowed:async()=>true},

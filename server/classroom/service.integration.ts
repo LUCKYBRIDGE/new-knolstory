@@ -20,7 +20,8 @@ async function failure(action:Promise<unknown>){
  try{await action;}catch(error){if(error instanceof ClassroomError)return `${error.status} ${error.code}`;throw error;}
  throw Error('Expected a classroom error.');
 }
-async function snapshot(){return prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:newShortStory()}));}
+/** Student titles start with the class number (documents/student-title.ts); student 1 by default. */
+async function snapshot(title='01_작품'){return prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:{...newShortStory(),title}}));}
 
 describe('real PostgreSQL classroom service',()=>{
  beforeAll(async()=>{await runStorageMigrations(pool);});
@@ -204,6 +205,7 @@ describe('real PostgreSQL classroom service',()=>{
   const document=await snapshot();
   expect(await failure(service.submit(one,second.id,document))).toBe('422 ASSIGNMENT_FORMAT_MISMATCH');
   const project=JSON.parse(readFileSync(new URL('../../tests/fixtures/stories/rabbit-classic.json',import.meta.url),'utf8')) as StoryProject;
+  project.title=`01_${project.title}`;
   const knolstory=await prepareJsonbSnapshot(await createAuthoringArchive({format:'knolstory',document:createStoryDocument({project,savedAt:new Date(now).toISOString(),appVersion:'classroom-test'})}));
   expect(await failure(service.submit(one,created.id,knolstory))).toBe('422 ASSIGNMENT_FORMAT_MISMATCH');
   await service.submit(one,second.id,knolstory);
@@ -240,10 +242,10 @@ describe('real PostgreSQL classroom service',()=>{
 
   const closed=await service.patchAssignment(teacher,created.id,{open:false,title:'수정'});
   expect(closed).toMatchObject({open:false,title:'수정',description:'설명',storyKey:'story-a'});
-  expect(await failure(service.submit(two,created.id,document))).toBe('409 ASSIGNMENT_CLOSED');
+  expect(await failure(service.submit(two,created.id,await snapshot('02_작품')))).toBe('409 ASSIGNMENT_CLOSED');
   expect((await service.readOwnSubmission(one,created.id)).submittedAt).toBe(now);
   expect((await service.patchAssignment(teacher,created.id,{open:true})).open).toBe(true);
-  await service.submit(two,created.id,document);
+  await service.submit(two,created.id,await snapshot('02_작품'));
   expect((await service.listSubmissions(teacher,created.id)).map(s=>s.number)).toEqual([1,2]);
   expect(await failure(service.readOwnSubmission(one,randomUUID()))).toBe('404 ASSIGNMENT_NOT_FOUND');
  });

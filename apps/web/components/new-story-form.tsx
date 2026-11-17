@@ -1,6 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
 import styles from "./story-workspace.module.css";
+import { TitleInput } from "./title-input";
+import { titleBody } from "../lib/student-title";
 
 export function NewStoryForm({ disabled, onCreate }: {
   disabled: boolean;
@@ -13,14 +15,14 @@ export function NewStoryForm({ disabled, onCreate }: {
     <button disabled={disabled} aria-expanded={open} onClick={() => {composing.current=false;setOpen(!open);}}>새 작품 만들기</button>
     {open && <form className={styles.newStoryForm} onSubmit={event => {
       event.preventDefault();
-      if (!composing.current && !disabled && title.trim() && onCreate(title.trim())) {
+      if (!composing.current && !disabled && titleBody(title).trim() && onCreate(title.trim())) {
         setTitle("");
         setOpen(false);
       }
     }}>
-      <label>새 작품 제목<input autoFocus onBlur={() => {composing.current=false;}} onCompositionStart={() => {composing.current=true;}} onCompositionEnd={() => {composing.current=false;}} onKeyDown={event => {if(event.key==='Enter'&&(composing.current||event.nativeEvent.isComposing||event.nativeEvent.keyCode===229))event.preventDefault();}} aria-label="새 작품 제목" maxLength={200} required value={title} onChange={event => setTitle(event.target.value)} /></label>
+      <label>새 작품 제목<TitleInput autoFocus onBlur={() => {composing.current=false;}} onCompositionStart={() => {composing.current=true;}} onCompositionEnd={() => {composing.current=false;}} onKeyDown={event => {if(event.key==='Enter'&&(composing.current||event.nativeEvent.isComposing||event.nativeEvent.keyCode===229))event.preventDefault();}} aria-label="새 작품 제목" maxLength={200} required value={title} onChange={setTitle} /></label>
       <p>첫 컷의 대사나 해설부터 바로 써요. 표지와 기획은 나중에 설정에서 정해도 돼요.</p>
-      <button type="submit" disabled={!title.trim()}>새 작품 생성</button>
+      <button type="submit" disabled={!titleBody(title).trim()}>새 작품 생성</button>
       <button type="button" onClick={() => {composing.current=false;setOpen(false);}}>취소</button>
     </form>}
   </div>;
