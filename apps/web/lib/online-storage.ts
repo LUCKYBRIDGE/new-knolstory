@@ -29,11 +29,14 @@ export function assertUploadSize(value:unknown):void{
 }
 const ratio=(used:number,limit:number|null)=>limit?used/limit:0;
 /** One line for the library: works and size, with the classroom pool when there is one. */
-export function storageSummary(usage:StorageUsage):Readonly<{text:string;warn:boolean;full:boolean}>{
+/** `compact` (library, account menu): personal space only; the shared classroom pool appears once it is 80% full,
+ * and the student's submission space stays on the class dashboard. */
+export function storageSummary(usage:StorageUsage,options:Readonly<{compact?:boolean}>={}):Readonly<{text:string;warn:boolean;full:boolean}>{
+ const classRatio=usage.classroom?ratio(usage.classroom.bytes,usage.classroom.limit):0;
  const parts=[`온라인 ${usage.works}${usage.worksLimit!==null?`/${usage.worksLimit}`:''}개`];
  if(usage.bytesLimit!==null)parts.push(`${formatBytes(usage.bytes)} / ${formatBytes(usage.bytesLimit)}`);
- if(usage.submissions)parts.push(`제출 ${formatBytes(usage.submissions.bytes)} / ${formatBytes(usage.submissions.limit)}`);
- if(usage.classroom)parts.push(`학급 ${formatBytes(usage.classroom.bytes)} / ${formatBytes(usage.classroom.limit)}`);
+ if(usage.submissions&&!options.compact)parts.push(`제출 ${formatBytes(usage.submissions.bytes)} / ${formatBytes(usage.submissions.limit)}`);
+ if(usage.classroom&&(!options.compact||classRatio>=0.8))parts.push(`학급 ${formatBytes(usage.classroom.bytes)} / ${formatBytes(usage.classroom.limit)}`);
  // The submission space is reported but never blocks personal uploads, so it does not raise the warning here.
  const highest=Math.max(ratio(usage.bytes,usage.bytesLimit),usage.classroom?ratio(usage.classroom.bytes,usage.classroom.limit):0,usage.worksLimit?usage.works/usage.worksLimit:0);
  return {text:parts.join(' · '),warn:highest>=0.8,full:highest>=1};

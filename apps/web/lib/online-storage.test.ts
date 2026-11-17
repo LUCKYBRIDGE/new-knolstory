@@ -21,6 +21,10 @@ describe('online storage wording',()=>{
   const pooled=storageSummary({works:1,worksLimit:5,bytes:MB,bytesLimit:30*MB,workBytesLimit:16*MB,classroom:{bytes:500*MB,limit:500*MB}});
   expect(pooled).toMatchObject({text:'온라인 1/5개 · 1MB / 30MB · 학급 500MB / 500MB',full:true});
   expect(storageSummary({works:3,worksLimit:null,bytes:0,bytesLimit:null,workBytesLimit:16*MB}).text).toBe('온라인 3개');
+  // Compact: personal space only; the class pool shows once it is nearly full.
+  const student={works:1,worksLimit:5,bytes:MB,bytesLimit:10*MB,workBytesLimit:16*MB,submissions:{bytes:MB,limit:10*MB},classroom:{bytes:100*MB,limit:300*MB}};
+  expect(storageSummary(student,{compact:true}).text).toBe('온라인 1/5개 · 1MB / 10MB');
+  expect(storageSummary({...student,classroom:{bytes:250*MB,limit:300*MB}},{compact:true}).text).toBe('온라인 1/5개 · 1MB / 10MB · 학급 250MB / 300MB');
   // A student's submission space is shown apart and does not raise the personal warning.
   expect(storageSummary({works:1,worksLimit:5,bytes:MB,bytesLimit:10*MB,workBytesLimit:16*MB,submissions:{bytes:9.5*MB,limit:10*MB}})).toEqual({text:'온라인 1/5개 · 1MB / 10MB · 제출 9.5MB / 10MB',warn:false,full:false});
  });

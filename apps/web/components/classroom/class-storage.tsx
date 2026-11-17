@@ -21,7 +21,7 @@ export function ClassStorage({classroom,quiet=false}:{classroom:Classroom;quiet?
   <p className={styles.storageLine}><strong>학급 저장 공간</strong><span>{formatBytes(storage.bytes)} / {formatBytes(storage.limit)}</span></p>
   <meter min={0} max={storage.limit} low={storage.limit*0.8} high={storage.limit*0.95} optimum={0} value={Math.min(storage.bytes,storage.limit)} aria-label={`학급 저장 공간 ${Math.round(ratio*100)}% 사용`}/>
   {level!=='ok'&&<p className={styles.storageMessage} role="status">{messages[level]}</p>}
-  {level==='ok'&&<p className={styles.hint}>선생님과 학생의 온라인 작품, 과제 제출이 함께 쓰는 공간이에요. 학생 한 명은 {formatBytes(storage.studentLimit)}까지 써요.</p>}
+  {level==='ok'&&<p className={styles.hint}>선생님과 학생의 온라인 작품, 과제 제출이 함께 쓰는 공간이에요. 학생 한 명은 개인 작품 {formatBytes(storage.studentLimit/2)}, 과제 제출 {formatBytes(storage.studentLimit/2)}까지 써요.</p>}
   {users.length>0&&<details className={styles.storageUsers}><summary>많이 쓰는 학생</summary><ul>{users.map(student=><li key={student.number}><span>{student.number}번{student.name?` ${student.name}`:''}</span><span>{formatBytes(student.storageBytes??0)} / {formatBytes(storage.studentLimit)}</span></li>)}</ul></details>}
  </section>;
 }
