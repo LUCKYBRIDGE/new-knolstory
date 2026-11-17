@@ -18,7 +18,8 @@ import {ServiceNavigation} from '../../components/service-navigation';
 import {serviceLinks} from '../../lib/service-navigation';
 import {AccountMenu} from '../../components/account-menu';
 import {onlineEnabled} from '../../lib/online-mode';
-import {assignmentList,submissionOpen,templateGet} from '../../lib/classroom-api';
+import {assignmentList,submissionOpen} from '../../lib/classroom-api';
+import {taskStartArchive,taskStartSource} from '../../lib/task-continue';
 import {useClassroomMe} from '../../components/use-classroom-me';
 import {createOnlineWorkStore,saveOnlineWork} from '../../lib/online-work-bindings';
 import type {OnlineDocument} from '../../lib/document-api';
@@ -192,12 +193,14 @@ export function ShortStoryWorkspace() {
     const bindingKey=`knolstory-class-task:${classroom.session!.accountId}:${taskId}`;
     const savedKey=localStorage.getItem(bindingKey);
     const base=latest.current??library;
-    const existing=base.books.find(book=>`shortstory:${book.id}`===savedKey);
+    // A chosen source (another device's work) starts a fresh copy; otherwise the device draft continues.
+    const from=taskStartSource(url);
+    const existing=from?undefined:base.books.find(book=>`shortstory:${book.id}`===savedKey);
     if(existing){switchBook(existing.id);return;}
     // A teacher template wins over a base book: the student continues the teacher's own book.
-    const fromTemplate=task.template?await restoreJsonbSnapshot(await templateGet(task.id,(input,init)=>fetch(input,{...init,signal:controller.signal}))):null;
+    const fromTemplate=await taskStartArchive(task,from,(input,init)=>fetch(input,{...init,signal:controller.signal}));
     if(controller.signal.aborted||generation!==onlineGeneration.current)return;
-    if(fromTemplate&&fromTemplate.format!=='shortstory')throw Error('과제 양식이 숏스토리 작품이 아니에요. 선생님께 확인해 주세요.');
+    if(fromTemplate&&fromTemplate.format!=='shortstory')throw Error('고른 작품이 숏스토리가 아니에요. 과제와 같은 종류의 작품을 골라 주세요.');
     const storyKey=fromTemplate?null:forced??task.storyKey;
     if(!fromTemplate&&!storyKey&&!classroom.permissions.newWorks)throw Error('선생님께 과제의 바탕 작품을 확인해 주세요.');
     const source=isShortStoryWorkKey(storyKey)?getShortStoryOriginal(storyKey):undefined;
@@ -213,7 +216,7 @@ export function ShortStoryWorkspace() {
    finally{
     if(!controller.signal.aborted){
      finishLoading();
-     if(location.href===url.href){url.searchParams.delete('classTask');history.replaceState(history.state,'',url);}
+     if(location.href===url.href){url.searchParams.delete('classTask');url.searchParams.delete('from');history.replaceState(history.state,'',url);}
     }
    }
   },0);
@@ -294,7 +297,8 @@ export function ShortStoryWorkspace() {
  };
  const onlineWorks=library.books.map(book=>({key:`shortstory:${book.id}`,title:book.title}));
 
- const onlineAllowed=onlineEnabled&&(classroom.role==='teacher'||classroom.role==='admin');
+ // Every signed-in role keeps online works within its limits, as in the KnolStory library (server/documents/quota.ts).
+ const onlineAllowed=onlineEnabled&&classroom.role!=='guest';
  const online=useOnlineWorks({
   acceptedFormat:'shortstory',works:onlineWorks,disabled:!onlineAllowed||!loadedProject||!loadedLibrary||compositionActive||blocked||conflict||coverOpen,
   onSaveNew:saveOnline,onOpen:openOnline,
@@ -332,7 +336,7 @@ export function ShortStoryWorkspace() {
  return <main className={styles.shell} onCompositionStartCapture={()=>{composing.current=true;onlineGeneration.current++;setCompositionActive(true);}} onCompositionEndCapture={()=>{composing.current=false;onlineGeneration.current++;setCompositionActive(false);}}>
  <WorkLeaveGuard tracker={leaveTracker} work={project} ready={!!library}/>
   {libraryView&&serviceLinks(classroom.role).length>1&&<ServiceNavigation role={classroom.role} active="library" beforeNavigate={beforeServiceNavigation}/>}
-  <header className={styles.header}><div><Link href="/?view=library">놀스토리 서재로 돌아가기</Link>{fromMission&&onlineEnabled&&<> <Link href="/student" data-mission-return="true">과제로 돌아가기</Link></>}<p className={styles.eyebrow}>숏스토리 그림책</p><h1 className={styles.bookTitle}>{libraryView?'그림책 보관함':project.title||'제목 없는 그림책'}</h1><p>{libraryView?'그림책을 고르거나 새 이야기를 시작해요.':original?'원본 그림책을 읽고 내 사본으로 글을 써요.':'그림과 글을 구성하고 내 그림책으로 보관해요.'}</p></div><div className={styles.actions}>{editing&&!libraryView&&<EditorTermGuide/>}{!coverOpen&&<><AccountMenu account={online.account} returnTo="shortstory" disabled={compositionActive||blocked||conflict} beforeNavigate={beforeAccount}/>{onlineAllowed&&<OnlineWorksPanelView online={online} acceptedFormat="shortstory" works={library.books.map(book=>({key:`shortstory:${book.id}`,title:book.title}))} disabled={compositionActive||blocked||conflict} onSaveNew={saveOnline} onOpen={openOnline}/>}</>}{libraryView?<><button disabled={blocked||!canCreate} onClick={()=>accept(newShortStory())}>새 그림책</button><button disabled={busy||blocked||!canCreate} onClick={()=>file.current?.click()}>파일 가져오기</button></>:<>
+  <header className={styles.header}><div><Link href="/?view=library">놀스토리 서재로 돌아가기</Link>{fromMission&&onlineEnabled&&<> <Link href="/student" data-mission-return="true">과제로 돌아가기</Link></>}<p className={styles.eyebrow}>숏스토리 그림책</p><h1 className={styles.bookTitle}>{libraryView?'그림책 보관함':project.title||'제목 없는 그림책'}</h1><p>{libraryView?'그림책을 고르거나 새 이야기를 시작해요.':original?'원본 그림책을 읽고 내 사본으로 글을 써요.':'그림과 글을 구성하고 내 그림책으로 보관해요.'}</p></div><div className={styles.actions}>{editing&&!libraryView&&<EditorTermGuide/>}{!coverOpen&&<><AccountMenu account={online.account} returnTo="shortstory" disabled={compositionActive||blocked||conflict} beforeNavigate={beforeAccount}/>{onlineAllowed&&<OnlineWorksPanelView online={online} usage={classroom.me?.storage} acceptedFormat="shortstory" works={library.books.map(book=>({key:`shortstory:${book.id}`,title:book.title}))} disabled={compositionActive||blocked||conflict} onSaveNew={saveOnline} onOpen={openOnline}/>}</>}{libraryView?<><button disabled={blocked||!canCreate} onClick={()=>accept(newShortStory())}>새 그림책</button><button disabled={busy||blocked||!canCreate} onClick={()=>file.current?.click()}>파일 가져오기</button></>:<>
    <button disabled={blocked} onClick={()=>{if(original)accept(project,true);else if(!editing){focusWriting.current=true;setEditing(true);}}} aria-pressed={editing}>{original?'내 사본으로 쓰기':'쓰기'}</button><button onClick={()=>setEditing(false)} aria-pressed={!editing}>읽기</button><button disabled={compositionActive} onClick={()=>{if(dirty.current&&!commit(latest.current??library))return;onlineGeneration.current++;setPrintPreview(false);setLibraryView(true);window.history.replaceState(null,'','?mode=library');}} aria-label="그림책 보관함 열기"><span className={styles.longLabel}>그림책 보관함 열기</span><span className={styles.shortLabel} aria-hidden="true">보관함</span></button>
   </>}</div></header>
   {error&&<p role="alert" className={styles.error}>{error}</p>}{/* Reserved line: saving messages never push the page down while writing. */}<p role="status" className={styles.statusLine}>{notice}</p>

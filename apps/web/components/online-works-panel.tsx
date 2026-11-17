@@ -4,18 +4,20 @@ import {useOnlineWorks,type OnlineWorksProps} from './use-online-works';
 import {useBoundedAccountPanel} from './use-bounded-account-panel';
 import styles from './online-works-panel.module.css';
 import {trashExpiryNotice} from '../lib/trash-retention';
+import {storageSummary,type StorageUsage} from '../lib/online-storage';
 export function OnlineWorksPanel(props:OnlineWorksProps){
  const online=useOnlineWorks(props);
  return <OnlineWorksPanelView {...props} online={online}/>;
 }
-export function OnlineWorksPanelView({online,acceptedFormat='knolstory',works,disabled=false}:OnlineWorksProps&{online:ReturnType<typeof useOnlineWorks>}){
+export function OnlineWorksPanelView({online,acceptedFormat='knolstory',works,disabled=false,usage}:OnlineWorksProps&{online:ReturnType<typeof useOnlineWorks>;usage?:StorageUsage}){
+ const summary=usage?storageSummary(usage):null;
  const {account,documents,cursor,range,confirmTrash,setConfirmTrash,busy,error,notice,listVisible,list,refresh,open,changeState}=online;
  const [selected,setSelected]=useState(''),menu=useRef<HTMLDetailsElement>(null);
  // Day counts for trashed works only need the time the panel opened; the server purges hourly.
  const [openedAt]=useState(Date.now);
  useBoundedAccountPanel(menu);
  return <details ref={menu} className={styles.menu} data-online-works><summary>온라인 작품</summary><section aria-label="온라인 작품" className={styles.panel}>
-  <strong>내 온라인 작품</strong><p>작품은 먼저 기기에 작품 파일로 저장해 두세요. 업로드는 온라인에 올리는 것이고, 작품 파일 저장을 대신하지 않아요.</p>
+  <strong>내 온라인 작품</strong>{summary&&online.account.session&&<p className={styles.usage} data-warn={summary.warn}>{summary.text}{summary.full?' · 가득 찼어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요.':summary.warn?' · 거의 찼어요.':''}</p>}<p>작품은 먼저 기기에 작품 파일로 저장해 두세요. 업로드는 온라인에 올리는 것이고, 작품 파일 저장을 대신하지 않아요.</p>
   {account.loading?<p role="status">로그인 확인 중이에요.</p>:!account.session?<p>{account.error||'계정 메뉴에서 로그인한 뒤 이용할 수 있어요.'}</p>:<>
    <div role="group" aria-label="온라인 작품 범위"><button disabled={disabled||busy} aria-pressed={range==='active'} onClick={()=>void list(false,'active')}>업로드한 작품</button><button disabled={disabled||busy} aria-pressed={range==='trash'} onClick={()=>void list(false,'trash')}>온라인 휴지통</button></div>
    <button disabled={disabled||busy} onClick={refresh}>목록 새로고침</button>

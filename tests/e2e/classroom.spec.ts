@@ -1130,3 +1130,21 @@ test('a teacher attaches one of their works as a task template and can remove it
  await expect(page.getByText('양식 없음 · 학생은 빈 작품으로 시작해요')).toBeVisible();
  expect(puts[1]).toBeNull();
 });
+test('on another device a student continues a task from the work they handed in',async({page})=>{
+ const handed=await templateSnapshot('02_집에서 쓰던 과제','집에서 쓴 첫 문장이에요.');
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ state.assignments[0].submittedAt=1_760_000_000_000;state.submissions.a1=handed;
+ await page.goto('/student');
+ await page.getByText('다른 기기에서 쓰던 작품으로 이어 쓰기',{exact:true}).click();
+ await page.getByLabel('이어 쓸 작품').selectOption({label:'내가 낸 작품'});
+ await page.getByRole('link',{name:'이 작품으로 이어 쓰기',exact:true}).click();
+ await expect(page).not.toHaveURL(/classTask|from=/);
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+ expect(saved.title).toBe('02_집에서 쓰던 과제');
+ expect(JSON.stringify(saved.lines)).toContain('집에서 쓴 첫 문장이에요.');
+ // From now on this device continues the same copy.
+ await page.goto('/student');
+ await expect(page.getByRole('link',{name:'이어서 쓰기',exact:true})).toBeVisible();
+ await expect(page.getByText('다른 기기에서 쓰던 작품으로 이어 쓰기',{exact:true})).toHaveCount(0);
+});

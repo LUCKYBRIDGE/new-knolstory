@@ -1,4 +1,5 @@
 'use client';
+import {NumberedTitle} from './numbered-title';
 import {useEffect,useRef,useState,type CSSProperties,type ReactNode} from 'react';
 import {findLibraryBooks,libraryPage,parseLibraryView,LIBRARY_VIEW_KEY,shelfLayoutForWidth,isPersonalLibraryKind} from '../lib/library-catalog';
 import {groupBuiltinWorks,builtinShelfCoverProject,type GroupedBuiltinWork} from '../lib/builtin-works';
@@ -79,7 +80,7 @@ export function LocalBookshelf({online,accountMenu,navigation,works,onOpen,onCre
       const work=entry.work,status=online?.byLocalKey[work.key];return <article key={work.key} className={styles.card} data-shelf-book="true" data-work-id={work.builtin?.id} aria-label={`${section.title} · ${work.builtin?.title??work.project.title}`}>
        <span className={styles.plank} aria-hidden="true"/>
        <button className={styles.cover} data-shelf-cover="true" aria-label={`${shelfCoverAccessibleLabel(work.builtin?.title??work.project.title,builtinShelfCoverProject(work,classicStories),work.kind==='example'?'knolstory':work.kind)}${status?` · ${status.label}`:''}`} disabled={disabled} onClick={()=>{setSelectedRemote(null);setSelected(work.key);}}><span aria-hidden="true"><BookCover project={builtinShelfCoverProject(work,classicStories)} compact edition={work.kind==='example'?'knolstory':work.kind}/></span>{status&&<LibraryStorageBadge compact status={status}/>}</button>
-       <div className={styles.semantic}><h3>{work.builtin?.title??work.project.title}</h3><p>{work.project.description}</p><p>지은이 · {work.project.cover?.author||'아직 정하지 않았어요'}</p><p>최근 수정 · {readableUpdatedAt(work.project.updatedAt)}</p></div>
+       <div className={styles.semantic}><h3>{work.builtin?.title??<NumberedTitle title={work.project.title}/>}</h3><p>{work.project.description}</p><p>지은이 · {work.project.cover?.author||'아직 정하지 않았어요'}</p><p>최근 수정 · {readableUpdatedAt(work.project.updatedAt)}</p></div>
       </article>;
      })}
     </section>)}

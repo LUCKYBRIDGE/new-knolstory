@@ -70,6 +70,9 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   finally{setBusy(false);}
  }
 
+ const [from,setFrom]=useState('');
+ /** The editor link for this task; `source` continues from a submission or an online work. */
+ const taskHref=(source?:string)=>`${assignment.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(assignment.format==='shortstory'?{mode:'library'}:{view:'editor'}),classTask:assignment.id,...(source?{from:source}:{})})}`;
  /** A copy of the chosen work as it is now: from this device, or from the personal online space. */
  async function snapshotOf(choice:string){return choice.startsWith('online:')?withStudentTitle((await documentRead(choice.slice(7),fetch,accountId)).snapshot):localWorkSnapshot(choice);}
  async function saveFile(){
@@ -100,7 +103,12 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
    {assignment.reviewStatus==='passed'&&<span className={styles.reviewChip} data-review="passed">과제 통과</span>}{assignment.reviewStatus==='revise'&&<span className={styles.reviewChip} data-review="revise">다시 써 주세요</span>}{submitted&&!assignment.reviewStatus&&<span className={styles.reviewChip}>선생님 확인 기다려요</span>}</p>}
   {assignment.feedback&&<p className={styles.reviewFeedback}><b>{assignment.reviewStatus===null||assignment.reviewStatus===undefined?'지난 피드백':'선생님 피드백'}</b> {assignment.feedback}</p>}
   {submitted&&<div className={styles.row}><button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button><SubmissionImport assignmentId={assignment.id} accountId={accountId} csrf={csrf} disabled={busy}/></div>}
-  {assignment.open&&(draftKey||canCreate||assignment.storyKey||assignment.template||forcedStoryKey)&&<p><a className={`${styles.btn} ${styles.primary}`} href={`${assignment.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(assignment.format==='shortstory'?{mode:'library'}:{view:'editor'}),classTask:assignment.id})}`}>{draftKey?'이어서 쓰기':assignment.template?'선생님 양식으로 시작':'과제 쓰기'}</a></p>}
+  {assignment.open&&(draftKey||canCreate||assignment.storyKey||assignment.template||forcedStoryKey)&&<p><a className={`${styles.btn} ${styles.primary}`} href={taskHref()}>{draftKey?'이어서 쓰기':assignment.template?'선생님 양식으로 시작':'과제 쓰기'}</a></p>}
+  {assignment.open&&!draftKey&&(submitted||online.length>0)&&<details className={styles.continueElsewhere}><summary>다른 기기에서 쓰던 작품으로 이어 쓰기</summary>
+   <p className={styles.hint}>이 기기에는 이 과제의 작성본이 없어요. 내가 낸 작품이나 내 온라인 작품에서 이어서 쓸 수 있어요.</p>
+   <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
+    <a className={`${styles.btn} ${styles.primary}`} aria-disabled={!from} href={from?taskHref(from):undefined}>이 작품으로 이어 쓰기</a></div>
+  </details>}
   {!assignment.open?<p className={styles.hint}>제출이 마감됐어요.</p>:works.length===0&&online.length===0?<p className={styles.hint}>{canCreate||assignment.storyKey||assignment.template||forcedStoryKey?'이야기를 쓴 뒤 이곳에서 제출해 주세요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
    :<div className={styles.submitRow}><label className={styles.field}>제출할 작품<select value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
     <button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void submit()}>{submitted?'다시 제출':'제출'}</button></div>}

@@ -1,3 +1,4 @@
+import {coverTitle} from './numbered-title';
 import { resolveAsset } from '@knolstory/asset-registry';
 import { DEFAULT_COVER, COVER_THEMES, type StoryProject, type StoryCover } from '@knolstory/story-domain';
 import { COVER_FONTS, COVER_PRESET_OPTIONS, COVER_TITLE_SIZE, isStoryCoverComposition, type StoryCoverComposition, type CoverPresetId } from '@knolstory/story-domain';
@@ -86,7 +87,8 @@ function builtInCoverBoxes(cover:StoryCover):{titleBox:CoverBox;artBox:CoverBox}
 /** Canonical static cover model shared by shelf, preparation preview and start screen. */
 export function resolveBookCover(project: StoryProject, face: CoverFaceId='front') {
   const cover=resolveStoryCover(project),theme=COVER_THEMES[cover.theme],composition=cover.composition;
-  const title=project.title||'제목을 기다리는 이야기';
+  // A student's class number sorts files; it is not part of the cover design.
+  const title=coverTitle(project.title)||'제목을 기다리는 이야기';
   const context={title,description:project.description,author:cover.author,subtitle:cover.subtitle,authorNote:cover.authorNote};
   const template=builtInCoverBoxes(cover);
   const artBox:CoverBox=composition?{x:0,y:0,w:1,h:1}:template.artBox;

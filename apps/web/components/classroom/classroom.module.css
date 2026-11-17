@@ -360,3 +360,8 @@
 /* Task template line in a writing task (2026-11-18). */
 .templateRow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:6px 0}
 .templateRow>span{flex:1 1 220px;min-width:0;font-size:var(--text-small)}
+
+/* Continue a task begun on another device (2026-11-18). */
+.continueElsewhere{margin:6px 0}
+.continueElsewhere>summary{cursor:pointer;font-size:var(--text-small)}
+.continueElsewhere a[aria-disabled=true]{opacity:.5;pointer-events:none}

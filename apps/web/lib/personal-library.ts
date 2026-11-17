@@ -1,9 +1,10 @@
+import {coverTitle} from './numbered-title';
 import {DEFAULT_COVER,createStoryDocument,parseStoryDocument,type StoryProject} from '@knolstory/story-domain';
 import {preflight,readWorkspace,type WorkContext} from './workspace-storage';
 import {BUILTIN_WORKS} from './builtin-works';
 
 const PERSONAL_LABEL='[내작품]';
-export const personalCoverTitle=(title:string)=>title.startsWith(PERSONAL_LABEL+' ')?title.slice(PERSONAL_LABEL.length+1):title;
+export const personalCoverTitle=(value:string)=>{const title=coverTitle(value);return title.startsWith(PERSONAL_LABEL+' ')?title.slice(PERSONAL_LABEL.length+1):title;};
 
 export function hasDefaultPersonalCover(project:StoryProject):boolean{
  const cover=project.cover;

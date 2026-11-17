@@ -92,7 +92,8 @@ import {previewAuthoringFile} from '../lib/story-file-preview';
 import {EditorTermGuide} from './editor-term-guide';
 import {AuthoringImportDialog} from './authoring-import-dialog';
 import {StorageReloadDialog} from './storage-reload-dialog';
-import {submissionOpen,assignmentList,templateGet} from '../lib/classroom-api';
+import {submissionOpen,assignmentList} from '../lib/classroom-api';
+import {taskStartArchive,taskStartSource} from '../lib/task-continue';
 import {onlineEnabled} from '../lib/online-mode';
 import {createAuthoringArchive,encodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot,type AuthoringArchive} from '@knolstory/compatibility';
 import {importAudioResources,copyAudioWorkMetadata} from '../lib/audio-resources';
@@ -917,15 +918,17 @@ export function StoryWorkspace() {
         if(forced&&task.storyKey&&forced!==task.storyKey)throw Error('과제의 바탕 작품과 현재 편집 허용 작품이 달라요. 선생님께 확인해 주세요.');
         const bindingKey=`knolstory-class-task:${editorLimits.accountId}:${taskId}`;
         const draftKey=localStorage.getItem(bindingKey);
-        const existing=draftKey?savedProjects.current[draftKey]:undefined;
+        // A chosen source (another device's work) starts a fresh copy; otherwise the device draft continues.
+        const from=taskStartSource(url);
+        const existing=draftKey&&!from?savedProjects.current[draftKey]:undefined;
         if(existing){
           await openLibraryWork(draftKey!,'edit');
           return;
         }
         // A teacher template wins over a base work: the student continues the teacher's own work.
-        const fromTemplate=task.template?await restoreJsonbSnapshot(await templateGet(task.id,(input,init)=>fetch(input,{...init,signal:controller.signal}))):null;
+        const fromTemplate=await taskStartArchive(task,from,(input,init)=>fetch(input,{...init,signal:controller.signal}));
         if(controller.signal.aborted||sequence!==importReadSequence.current)return;
-        if(fromTemplate&&fromTemplate.format!=='knolstory')throw Error('과제 양식이 놀스토리 작품이 아니에요. 선생님께 확인해 주세요.');
+        if(fromTemplate&&fromTemplate.format!=='knolstory')throw Error('고른 작품이 놀스토리가 아니에요. 과제와 같은 종류의 작품을 골라 주세요.');
         const storyKey=fromTemplate?null:forced??task.storyKey;
         if(!fromTemplate&&!storyKey&&!editorLimits.permissions.newWorks)throw Error('새 작품을 만들 수 없어요. 선생님께 바탕 작품을 확인해 주세요.');
         // Original edition: the classic manuscript; otherwise (or for older tasks) the KnolStory adaptation.
@@ -954,7 +957,7 @@ export function StoryWorkspace() {
       finally{
         if(!controller.signal.aborted){
           setImportBusy(false);
-          if(location.href===url.href){url.searchParams.delete('classTask');history.replaceState(history.state,'',url);}
+          if(location.href===url.href){url.searchParams.delete('classTask');url.searchParams.delete('from');history.replaceState(history.state,'',url);}
         }
       }
     },0);
