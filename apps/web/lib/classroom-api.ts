@@ -39,6 +39,8 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['INVALID_DOCUMENT','이 작품은 제출할 수 없어요. 서비스에 등록된 그림과 소리만 쓸 수 있어요.'],['INVALID_REQUEST','입력한 내용을 다시 확인해 주세요.'],
  ['QR_REISSUE_REQUIRED','이전에 만든 QR을 인쇄하려면 한 번 다시 만들어야 해요. 이전 QR은 더 이상 쓸 수 없어요.'],['CLASSROOM_UNAVAILABLE','학급 정보를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.'],
  ['RATE_LIMITED','지금 요청이 많아요. 잠시 뒤 다시 시도해 주세요.'],
+ ['SERVER_BUSY','지금 제출하는 사람이 많아요. 잠시 뒤 다시 시도해 주세요.'],
+ ['REQUEST_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
 ]);
 export function classroomErrorMessage(code:string){return messages.get(code)??'학급 서비스를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.';}
 const object=(value:unknown):value is Record<string,unknown>=>!!value&&typeof value==='object'&&!Array.isArray(value);

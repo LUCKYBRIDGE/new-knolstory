@@ -8,11 +8,13 @@ import {isAbsolute,join,resolve} from 'node:path';
 import {pipeline} from 'node:stream';
 import {pathToFileURL} from 'node:url';
 
+/** Client address the ingress forwards to the internal API for rate buckets only (never auth). */
+export const CLIENT_IP_HEADER='x-knolstory-client-ip';
 const hopHeaders=['connection','keep-alive','proxy-authenticate','proxy-authorization','te','trailer','transfer-encoding','upgrade'];
 const mediaTypes={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.wasm':'application/wasm','.css':'text/css; charset=utf-8','.json':'application/json','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp','.ico':'image/x-icon','.ogg':'audio/ogg','.mp3':'audio/mpeg','.wav':'audio/wav','.woff2':'font/woff2','.ttf':'font/ttf','.txt':'text/plain; charset=utf-8','.webm':'video/webm','.mp4':'video/mp4'};
 function cleanHeaders(input){
  const nominated=String(input.connection??'').split(',').map(value=>value.trim().toLowerCase());
- return Object.fromEntries(Object.entries(input).filter(([name])=>!hopHeaders.includes(name)&&!nominated.includes(name)&&!name.startsWith('x-forwarded-')&&name!=='forwarded'&&name!==CLIENT_BUCKET_HEADER));
+ return Object.fromEntries(Object.entries(input).filter(([name])=>!hopHeaders.includes(name)&&!nominated.includes(name)&&!name.startsWith('x-forwarded-')&&name!=='forwarded'&&name!==CLIENT_BUCKET_HEADER&&name!==CLIENT_IP_HEADER));
 }
 function validateOrigin(value,api=false){
  const url=new URL(value);
@@ -27,6 +29,8 @@ function validateConfig(config){
   if(config.redirectFromOrigin===config.publicOrigin)throw Error('Invalid production ingress redirect origin.');
  }
  if(!isAbsolute(config.staticRoot)||!['127.0.0.1','0.0.0.0'].includes(config.host??'127.0.0.1')||!Number.isSafeInteger(config.timeoutMs??30000)||(config.timeoutMs??30000)<1||(config.timeoutMs??30000)>300000)throw Error('Invalid production ingress configuration.');
+
+ if(config.forwardClientIp!==undefined&&typeof config.forwardClientIp!=='boolean')throw Error('Invalid production ingress configuration.');
  if(config.clientProofKey!==undefined&&(config.trustedClient!==undefined||typeof config.clientProofKey!=='string'||!/^[a-f0-9]{64}$/.test(config.clientProofKey)))throw Error('Invalid production ingress configuration.');
  if(config.trustedClient!==undefined){
   const trusted=config.trustedClient;
@@ -43,7 +47,8 @@ export function loadProductionIngressConfig(env=process.env,read=path=>readFileS
  const trustedClient=key===undefined?{}:socketPath===undefined?{clientProofKey:key}:{trustedClient:{socketPath,key}};
  const port=Number(env.KNOLSTORY_INGRESS_PORT??15501);
  if(!Number.isSafeInteger(port)||port<1||port>65535||!/^\d+$/.test(env.KNOLSTORY_INGRESS_PORT??'15501')||!env.KNOLSTORY_STATIC_ROOT)throw Error('Invalid production ingress configuration.');
- return validateConfig({...trustedClient,port,host:env.KNOLSTORY_INGRESS_HOST??'127.0.0.1',staticRoot:env.KNOLSTORY_STATIC_ROOT,publicOrigin:env.KNOLSTORY_PUBLIC_ORIGIN??'https://story.knolquiz.com',apiOrigin:env.KNOLSTORY_API_ORIGIN??'http://127.0.0.1:15400',timeoutMs:30000,...(env.KNOLSTORY_REDIRECT_FROM_ORIGIN===undefined||env.KNOLSTORY_REDIRECT_FROM_ORIGIN===''?{}:{redirectFromOrigin:env.KNOLSTORY_REDIRECT_FROM_ORIGIN})});
+ if(env.KNOLSTORY_FORWARD_CLIENT_IP!==undefined&&env.KNOLSTORY_FORWARD_CLIENT_IP!=='cf-connecting-ip')throw Error();
+ return validateConfig({...trustedClient,...(env.KNOLSTORY_FORWARD_CLIENT_IP?{forwardClientIp:true}:{}),port,host:env.KNOLSTORY_INGRESS_HOST??'127.0.0.1',staticRoot:env.KNOLSTORY_STATIC_ROOT,publicOrigin:env.KNOLSTORY_PUBLIC_ORIGIN??'https://story.knolquiz.com',apiOrigin:env.KNOLSTORY_API_ORIGIN??'http://127.0.0.1:15400',timeoutMs:30000,...(env.KNOLSTORY_REDIRECT_FROM_ORIGIN===undefined||env.KNOLSTORY_REDIRECT_FROM_ORIGIN===''?{}:{redirectFromOrigin:env.KNOLSTORY_REDIRECT_FROM_ORIGIN})});
  }catch{throw Error('Invalid production ingress configuration.');}
 }
 function reject(res,status,headers={}){res.writeHead(status,{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers});res.end();}
@@ -104,10 +109,10 @@ async function serveStatic(req,res,root,pathname){
   if(res.headersSent)res.destroy();else reject(res,500);
  }
 }
-export function proxyIngressRequest(req,res,api,publicHost,timeoutMs,proof){
+export function proxyIngressRequest(req,res,api,publicHost,timeoutMs,proof,clientIp){
  let timedOut=false;
  const fail=()=>{if(res.destroyed||res.writableEnded)return;if(res.headersSent){res.destroy();return;}reject(res,timedOut?504:502);};
- const upstream=request({hostname:api.hostname.replace(/^\[|\]$/g,''),port:api.port||80,path:req.url,method:req.method,headers:{...cleanHeaders(req.headers),host:publicHost,...(proof?{[CLIENT_BUCKET_HEADER]:proof}:{})}},response=>{
+ const upstream=request({hostname:api.hostname.replace(/^\[|\]$/g,''),port:api.port||80,path:req.url,method:req.method,headers:{...cleanHeaders(req.headers),host:publicHost,...(proof?{[CLIENT_BUCKET_HEADER]:proof}:{}),...(clientIp?{[CLIENT_IP_HEADER]:clientIp}:{})}},response=>{
   res.writeHead(response.statusCode??502,cleanHeaders(response.headers));
   pipeline(response,res,error=>{if(error)upstream.destroy();});
  });
@@ -151,7 +156,14 @@ export async function createProductionIngress(config){
     if(values.length!==1||verify(req)===null){reject(res,403);return;}
     proof=req.headers[CLIENT_BUCKET_HEADER];
    }
-   proxyIngressRequest(req,res,api,publicOrigin.host,config.timeoutMs??30000,proof);
+   // Cloudflare Tunnel is the only route to the loopback-published port and Cloudflare overwrites
+   // cf-connecting-ip at the edge, so it names the real visitor. It only chooses a rate bucket.
+   let clientIp;
+   if(config.forwardClientIp){
+    const values=req.rawHeaders.filter((value,index)=>index%2===0&&value.toLowerCase()==='cf-connecting-ip'),ip=req.headers['cf-connecting-ip'];
+    if(values.length===1&&typeof ip==='string'&&isIP(ip))clientIp=ip;
+   }
+   proxyIngressRequest(req,res,api,publicOrigin.host,config.timeoutMs??30000,proof,clientIp);
   }else void serveStatic(req,res,root,pathname);
  });
  server.on('upgrade',(_req,socket)=>socket.end('HTTP/1.1 400 Bad Request\r\nConnection: close\r\nContent-Length: 0\r\n\r\n'));

@@ -1,3 +1,4 @@
+import cluster from 'node:cluster';
 import {createServer} from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -11,9 +12,14 @@ import {createClassroomHttpService} from './http/classroom-service';
 import {observeRequest} from './http/request-observation';
 import {createApiShutdown} from './http/api-shutdown';
 import {scheduleTrashPurge} from './documents/trash-retention';
+import {createUploadBudget} from './http/upload-budget';
+
+/** Large bodies one worker may hold at once (about ten times this in heap while parsing). */
+const UPLOAD_BUDGET_BYTES=24*1024*1024;
 
 async function main(){
- const config=loadApiConfig(),pool=new pg.Pool(config.database),auth=createAuthService(config.auth,pool),documents=createDocumentHttpService(config.auth,pool,config.classroom.adminAccountIds),classroom=createClassroomHttpService(config.auth,config.classroom,pool);
+ const loaded=loadApiConfig(),config={...loaded,auth:{...loaded.auth,uploadBudget:createUploadBudget(UPLOAD_BUDGET_BYTES)}};
+ const pool=new pg.Pool(config.database),auth=createAuthService(config.auth,pool),documents=createDocumentHttpService(config.auth,pool,config.classroom.adminAccountIds),classroom=createClassroomHttpService(config.auth,config.classroom,pool);
  handlePoolErrors(pool,message=>console.error(message));
  const migrationNames=STORAGE_MIGRATIONS;
  const checksums=await Promise.all(migrationNames.map(async name=>createHash('sha256').update(await readFile(new URL(name,import.meta.url))).digest('hex')));
@@ -41,6 +47,25 @@ async function main(){
  const stop=createApiShutdown(server,pool,{exit:code=>process.exit(code)});
  process.on('SIGTERM',()=>stop());process.on('SIGINT',()=>stop());
  server.on('error',()=>{console.error('API listener failed.');stop(1);});
- server.listen(config.port,config.host,()=>{console.info('KnolStory API listening.');scheduleTrashPurge(pool);});
+ server.listen(config.port,config.host,()=>{console.info('KnolStory API listening.');if(!cluster.isWorker||cluster.worker?.id===1)scheduleTrashPurge(pool);});
 }
-void main().catch(()=>{console.error('API startup failed.');process.exitCode=1;});
+/** Several workers share the port (round-robin). A crashed worker is replaced, so one bad request
+ * cannot take the whole API down; the others keep serving meanwhile. */
+function supervise(workers:number){
+ let stopping=false,recent:number[]=[];
+ const fork=()=>cluster.fork();
+ for(let i=0;i<workers;i++)fork();
+ cluster.on('exit',()=>{
+  if(stopping){if(Object.keys(cluster.workers??{}).length===0)process.exit(0);return;}
+  const now=Date.now();recent=[...recent.filter(time=>now-time<60_000),now];
+  // A crash loop means a configuration problem: stop so the container restart policy and health check show it.
+  if(recent.length>workers*3){console.error('API workers keep failing.');process.exit(1);}
+  console.error('API worker stopped; starting a replacement.');setTimeout(fork,500);
+ });
+ const stop=()=>{if(stopping)return;stopping=true;for(const worker of Object.values(cluster.workers??{}))worker?.process.kill('SIGTERM');setTimeout(()=>process.exit(1),15_000).unref();};
+ process.on('SIGTERM',stop);process.on('SIGINT',stop);
+}
+let workers=1;
+try{workers=loadApiConfig().workers;}catch{/* main() reports the configuration error */}
+if(workers>1&&cluster.isPrimary)supervise(workers);
+else void main().catch(()=>{console.error('API startup failed.');process.exitCode=1;});

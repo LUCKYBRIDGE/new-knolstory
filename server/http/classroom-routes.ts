@@ -6,6 +6,7 @@ import {recipientNumbers} from '../classroom/recipients';
 import {dueAt} from '../classroom/mission-contract';
 import {normalizeClassCode,validQrToken} from '../classroom/secrets';
 import {createRateClientResolver} from './rate-client';
+import {reserveUpload,type UploadBudget} from './upload-budget';
 
 type AuthState=ReturnType<typeof createAuthStateService>;
 type Limit=Readonly<{windowMs:number;maxRequests:number;maxEntries:number}>;
@@ -14,6 +15,8 @@ export type ClassroomRouterOptions=Readonly<{
  authState:AuthState;
  classroom:ClassroomService;
  clientProofKey?:string;
+ trustClientIp?:boolean;
+ uploadBudget?:UploadBudget;
  /** Per-client ceiling for every classroom request. A whole class can share one school address. */
  rateLimit?:Partial<Limit>;
  /** Failed student/QR login ceilings. `perStudent` is keyed by class code and number, `perClient` by client. */
@@ -112,11 +115,11 @@ const ROLES:Record<Exclude<Access,'public'>,readonly Role[]>={
 export function createClassroomRouter(options:ClassroomRouterOptions){
  const origin=validateAuthOrigin(options.origin),names=authCookieNames(origin),clock=options.clock??Date.now;
  const {authState,classroom}=options;
- const bodyLimit=options.bodyLimitBytes??26*1024*1024,bodyTimeout=options.bodyTimeoutMs??10000;
+ const bodyLimit=options.bodyLimitBytes??8*1024*1024,bodyTimeout=options.bodyTimeoutMs??10000;
  const general={windowMs:60_000,maxRequests:600,maxEntries:10_000,...options.rateLimit};
  for(const value of Object.values(general))if(!Number.isSafeInteger(value)||value<=0)throw Error('INVALID_CONFIG');
  const login={windowMs:600_000,perStudent:10,perClient:100,maxEntries:10_000,...options.loginRateLimit};
- const client=createRateClientResolver({origin,key:options.clientProofKey,clock:options.clock});
+ const client=createRateClientResolver({origin,key:options.clientProofKey,clock:options.clock,trustClientIp:options.trustClientIp});
  const requests=counter(general.windowMs,general.maxRequests,general.maxEntries,clock);
  const studentFailures=counter(login.windowMs,login.perStudent,login.maxEntries,clock);
  const clientFailures=counter(login.windowMs,login.perClient,login.maxEntries,clock);
@@ -319,6 +322,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
    }
    const limit=route.body==='upload'?bodyLimit:route.body==='mission'?MISSION_BODY:route.access==='public'?LOGIN_BODY:SMALL_BODY;
    framing(req,limit,route.body!=='none');
+   if(route.body==='upload'&&!reserveUpload(options.uploadBudget,req,res,limit)){res.setHeader('Retry-After','5');throw new HttpError(503,'SERVER_BUSY');}
    let body:unknown;
    if(route.body!=='none'){
     if(!/^application\/json(?:\s*;\s*charset=utf-8)?$/i.test(header(req,'content-type')))throw new HttpError(415,'UNSUPPORTED_MEDIA_TYPE');

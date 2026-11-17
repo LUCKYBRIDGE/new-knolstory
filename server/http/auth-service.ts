@@ -4,13 +4,16 @@ import {createPostgresAuthCompletion} from '../auth/postgres-auth-completion';
 import {createOidcProvider,type OidcProviderConfig,type OidcTransport} from '../auth/oidc-provider';
 import type {SqlPool} from '../storage/postgres-save-port';
 import {createAuthRouter,type AuthRouterOptions} from './auth-routes';
+import {perWorker,type RateOptions} from './rate-share';
 
 type Provider='kakao'|'google';
 export type AuthServiceConfig=AuthStateConfig & Readonly<{
  providers:Readonly<Partial<Record<Provider,Omit<OidcProviderConfig,'provider'>>>>;
  rateLimit?:AuthRouterOptions['rateLimit'];
  clientProofKey?:string;
-}>;
+}> & RateOptions;
+/** Sign-in requests per client address per minute, across all workers. */
+const AUTH_PER_MINUTE=300;
 /** Compose real HTTP, verifier and DB ports; transport injection is trusted test wiring only. */
 export function createAuthService(config:AuthServiceConfig,pool:SqlPool,transport:OidcTransport={}){
  const state=createAuthStateService(config,createPostgresAuthStatePort(pool));
@@ -23,7 +26,7 @@ export function createAuthService(config:AuthServiceConfig,pool:SqlPool,transpor
  }
  return createAuthRouter({origin:config.origin,authState:state,
   completionPort:createPostgresAuthCompletion(pool,{sessionTtlMs:config.sessionTtlMs}),
-  providers,rateLimit:config.rateLimit,clientProofKey:config.clientProofKey,
+  providers,rateLimit:config.rateLimit??{windowMs:60_000,maxRequests:perWorker(AUTH_PER_MINUTE,config.workers),maxEntries:10_000},clientProofKey:config.clientProofKey,trustClientIp:config.trustClientIp,
   // One indexed read of the provider names only; subjects never leave the database.
   linkedProviders:async accountId=>{const client=await pool.connect();try{return (await client.query("SELECT provider FROM knolstory_auth.identities WHERE account_id=$1 AND provider IN ('kakao','google') ORDER BY provider",[accountId])).rows.map(row=>row.provider as Provider);}finally{client.release();}}});
 }
