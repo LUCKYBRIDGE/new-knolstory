@@ -41,11 +41,11 @@ export function StudentTable({classroom,csrf,run,onChanged}:Props){
  </>;
 }
 function StudentRow({student,classroom,checked,onToggle,csrf,run,onChanged,open}:{student:ClassroomStudent;classroom:Classroom;checked:boolean;onToggle:()=>void;csrf:string;run:Run;onChanged:()=>void;open:(kind:'password'|'qr'|'permissions'|'delete')=>void}){
- const [name,setName]=useState(student.name),[shown,setShown]=useState(false);
+ const [name,setName]=useState(student.name),[shown,setShown]=useState(false),[more,setMore]=useState(false);
  const effective=effectivePermissions(student.permissions,classroom.defaultPermissions);
  const label=`${student.number}번`;
- return <tr data-student={student.number}>
-  <td data-label="선택"><input type="checkbox" className={styles.check} checked={checked} onChange={onToggle} aria-label={`${label} 선택`}/></td>
+ return <tr data-student={student.number} data-more={more}>
+  <td data-label="선택"><button type="button" className={styles.rowMore} aria-expanded={more} aria-label={`${label} 관리 ${more?'접기':'펼치기'}`} onClick={()=>setMore(!more)}>관리</button><input type="checkbox" className={styles.check} checked={checked} onChange={onToggle} aria-label={`${label} 선택`}/></td>
   <td data-label="번호">{student.number}번</td>
   <td data-label="이름"><div className={styles.row} style={{flexWrap:'nowrap'}}><input className={styles.cellInput} value={name} maxLength={20} size={8} aria-label={`${label} 이름`} onChange={event=>setName(event.target.value)}/>
    <button className={styles.btn} disabled={name===student.name} aria-label={`${label} 이름 저장`} onClick={()=>void run(()=>studentUpdate(student.number,{name:name.trim()},csrf)).then(done=>{if(done)onChanged();})}>수정</button></div></td>

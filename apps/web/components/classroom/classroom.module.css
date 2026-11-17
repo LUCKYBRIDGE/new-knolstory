@@ -311,3 +311,27 @@
 
 /* Phones: when the tab bar already offers 서재, the header's second way back is just noise. */
 @media(max-width:720px){.wrap:has(nav[aria-label="주 메뉴"]) .back{display:none}}
+
+/* Composer: the heading is the toggle. Open on wide screens, one line on phones until needed. */
+.card .composerFold>summary{display:grid;justify-items:start;align-items:start;gap:2px;font-size:inherit;font-weight:inherit;list-style:none;cursor:pointer;position:relative;padding-right:40px}
+.card .composerFold>summary::before{content:none}
+.composerFold>summary::-webkit-details-marker{display:none}
+.composerFold>summary::after{content:'';position:absolute;right:8px;top:50%;width:9px;height:9px;border-right:2px solid #456258;border-bottom:2px solid #456258;transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+.composerFold[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
+.composerFold>summary h2{margin:0}
+.composerFold[open]>summary{margin-bottom:10px}
+.composerFold{display:grid;gap:10px}
+/* Student rows: the per-student tools fold away on phones; wide screens show the whole table. */
+.rowMore{display:none}
+@media(max-width:720px){
+ .rowMore{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid #c7cbbc;border-radius:10px;background:#fffefa;color:#2c4b42;font:inherit;font-size:var(--text-small);font-weight:600;cursor:pointer}
+ .rowMore::after{content:'';width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+ .rowMore[aria-expanded=true]::after{transform:translateY(2px) rotate(-135deg)}
+ .table tr[data-more=false] td:nth-child(n+4){display:none}
+ .table td:first-child{align-self:center;display:flex;align-items:center;gap:4px}
+ .table td:first-child .check{margin:8px 4px}
+}
+
+/* The tab bar stays in reach on long class pages; what it scrolls to is not hidden under it. */
+.navPin{position:sticky;top:0;z-index:5;background:var(--paper,#f7f3e9)}
+.page :is(section,form,details,h2){scroll-margin-top:64px}

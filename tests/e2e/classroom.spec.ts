@@ -303,7 +303,10 @@ test('teacher manages students on a phone without horizontal scrolling',async({p
  await expect(page.getByLabel('1번 이름',{exact:true})).toHaveValue('하늘');
  const table=page.locator('table');
  expect(await table.evaluate(node=>node.getBoundingClientRect().width)).toBeLessThanOrEqual(366);
+ // Per-student tools stay folded on a phone until that student is opened.
  const password=page.getByRole('button',{name:'1번 비밀번호 보기',exact:true});
+ await expect(password).toBeHidden();
+ await page.getByRole('button',{name:'1번 관리 펼치기',exact:true}).click();
  await password.click();
  await expect(page.getByLabel('1번 비밀번호',{exact:true})).toHaveText('1234');
  await page.getByLabel('1번 선택',{exact:true}).check();
@@ -657,6 +660,9 @@ test('creating students opens their QR cards at once, with a zoomed view to show
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[{number:1,name:'하늘',password:'1234',permissions:null,hasQr:false}]};
  await page.setViewportSize({width:390,height:844});
  await page.goto('/teacher?tab=students');
+ // With students already in the class, a phone keeps the create form folded under its heading.
+ await expect(page.getByLabel('만들 학생 수',{exact:true})).toBeHidden();
+ await page.getByText('학생 만들기',{exact:true}).first().click();
  await page.getByLabel('만들 학생 수',{exact:true}).fill('3');
  await page.getByRole('button',{name:'학생 만들기',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'학생 로그인 QR',exact:true});
