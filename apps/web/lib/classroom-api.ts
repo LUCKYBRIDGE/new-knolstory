@@ -43,6 +43,7 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['SERVER_BUSY','지금 제출하는 사람이 많아요. 잠시 뒤 다시 시도해 주세요.'],
  ['WORK_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
  ['CLASSROOM_STORAGE_FULL','학급 저장 공간이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],
+ ['ASSIGNMENT_LIMIT','작품을 내는 과제는 20개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.'],
  ['STUDENT_STORAGE_FULL','내 저장 공간이 가득 차서 제출하지 못했어요. 쓰지 않는 온라인 작품을 지우거나 선생님께 알려 주세요.'],
  ['REQUEST_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
 ]);
@@ -113,6 +114,7 @@ export const classroomUpdate=async(patch:Readonly<{name?:string;regenerateCode?:
 export const studentsCreate=async(count:number,csrf:string,fetcher:Fetcher=fetch)=>asClassroom(await obj('/classroom/students',fetcher,{method:'POST',csrf:csrfOf(csrf),body:{count}}));
 export const studentUpdate=(number:number,patch:Readonly<{name?:string;password?:string;permissions?:EditingPermissions|null}>,csrf:string,fetcher:Fetcher=fetch)=>obj(`/classroom/students/${seg(number)}`,fetcher,{method:'PATCH',csrf:csrfOf(csrf),body:patch}) as Promise<unknown> as Promise<ClassroomStudent>;
 export const studentsPermissions=async(numbers:readonly number[],permissions:EditingPermissions|null,csrf:string,fetcher:Fetcher=fetch)=>asClassroom(await obj('/classroom/students/permissions',fetcher,{method:'POST',csrf:csrfOf(csrf),body:{numbers,permissions}}));
+export const assignmentDelete=async(id:string,csrf:string,fetcher:Fetcher=fetch)=>{const data=await obj(`/classroom/assignments/${seg(id)}`,fetcher,{method:'DELETE',csrf:csrfOf(csrf)});if(data.deleted!==true||typeof data.submissions!=='number')throw new ClassroomError('INVALID_RESPONSE',502);return data.submissions as number;};
 export const studentDelete=async(number:number,csrf:string,fetcher:Fetcher=fetch)=>asClassroom(await obj(`/classroom/students/${seg(number)}`,fetcher,{method:'DELETE',csrf:csrfOf(csrf)}));
 export async function studentQr(number:number,csrf:string,fetcher:Fetcher=fetch):Promise<string>{const data=await obj(`/classroom/students/${seg(number)}/qr`,fetcher,{method:'POST',csrf:csrfOf(csrf)});if(typeof data.url!=='string')throw new ClassroomError('INVALID_RESPONSE',502);return data.url;}
 export const studentLogin=(input:Readonly<{classCode:string;number:number;password:string}>,fetcher:Fetcher=fetch)=>obj('/student-login',fetcher,{method:'POST',body:input});

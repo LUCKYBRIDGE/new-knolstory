@@ -255,6 +255,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     recipients:input.recipients===undefined?null:recipientNumbers(input.recipients),
    });
   }},
+  {method:'DELETE',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.deleteAssignment(accountId,params[0]!)},
   {method:'PATCH',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'json',run({accountId,params,body}){
    const input=object(body,['title','description','open','shareUrl','dueAt','recipients']);
    if(!Object.keys(input).length||(input.open!==undefined&&typeof input.open!=='boolean'))throw bad();

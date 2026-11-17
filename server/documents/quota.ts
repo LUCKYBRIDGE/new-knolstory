@@ -14,7 +14,9 @@ export const STORAGE_LIMITS={
  teacher:{works:100},
  classroomBytes:300*MB,
  /** Homework is never refused for a full pool until it is this far over. */
- submissionOverflowBytes:330*MB,
+ submissionOverflowBytes:400*MB,
+ /** Tasks that ask for a work (each holds one work per student). Older ones must be deleted first. */
+ workTasks:20,
 } as const;
 export type StorageRole='member'|'teacher'|'student'|'admin';
 export type StorageUsage=Readonly<{
@@ -72,7 +74,7 @@ export async function assertCanStore(client:SqlClient,accountId:string,role:Stor
  if(usage.classroom&&usage.classroom.bytes+change.deltaBytes>usage.classroom.limit)throw new DocumentServiceError('CLASSROOM_STORAGE_FULL',409);
 }
 /** Homework may go past the normal student and classroom limits (it is never refused for those),
- * but not past the hard ceilings: 20MB per student and 330MB per classroom. */
+ * but not past the hard ceilings: 20MB per student and 400MB per classroom. */
 export async function assertCanSubmit(client:SqlClient,classroomId:string,studentId:string,deltaBytes:number,bytes:number):Promise<'ok'|'work-too-large'|'student-full'|'classroom-full'>{
  if(bytes>STORAGE_LIMITS.workBytes)return 'work-too-large';
  await lockPool(client,classroomId);

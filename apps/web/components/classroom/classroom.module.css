@@ -353,3 +353,6 @@
 .storage[data-level=over] .storageMessage{color:var(--danger,#b3261e)}
 .storageUsers ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px}
 .storageUsers li{display:flex;justify-content:space-between;gap:8px}
+
+/* Work task count in the create summary (20 per classroom). */
+.taskCount{font-weight:400;color:var(--ink-soft,#6b6257)}

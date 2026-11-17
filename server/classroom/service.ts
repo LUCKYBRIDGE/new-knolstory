@@ -375,10 +375,22 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   },
   async createAssignment(teacherId:string,input:Readonly<{title:string;description:string;storyKey:string|null;format?:AssignmentFormat;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;recipients?:readonly number[]|null}>):Promise<AssignmentView>{
    return transaction(async client=>{
-    const room=await teacherRoom(client,teacherId),recipients=await recipientIds(client,room.id,input.recipients??null);
+    const room=await teacherRoom(client,teacherId,true),recipients=await recipientIds(client,room.id,input.recipients??null);
+    // Each work task holds one work per student, so their number is bounded; old ones are deleted to make room.
+    const tasks=num((await client.query('SELECT count(*) AS n FROM knolstory_class.assignments WHERE classroom_id=$1',[room.id])).rows[0]?.n);
+    if(tasks>=STORAGE_LIMITS.workTasks)throw new ClassroomError(409,'ASSIGNMENT_LIMIT');
     const result=await client.query(`INSERT INTO knolstory_class.assignments AS a(id,classroom_id,title,description,story_key,format,open,created_at,share_url,due_at,edition,start_point,start_label,recipient_ids) VALUES($1,$2,$3,$4,$5,$7,true,$6,$8,$9,$10,$11,$12,$13::uuid[]) RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,${recipientNumbersSql('a')}`,
      [randomUUID(),room.id,input.title,input.description,input.storyKey,now(),assignmentFormat(input.format===undefined?'knolstory':input.format),input.shareUrl??null,input.dueAt??null,input.storyKey?input.edition??null:null,input.storyKey&&input.startPoint?input.startPoint:null,input.storyKey&&input.startPoint?input.startLabel??null:null,recipients]);
     return assignment(result.rows[0]!,false);
+   });
+  },
+  /** Deletes a work task and every submission in it (frees their space). */
+  async deleteAssignment(teacherId:string,id:string):Promise<{deleted:true;submissions:number}>{
+   return transaction(async client=>{
+    const room=await teacherRoom(client,teacherId,true);await teacherAssignment(client,room.id,id,true);
+    const removed=await client.query('DELETE FROM knolstory_class.submissions WHERE assignment_id=$1',[id]);
+    await client.query('DELETE FROM knolstory_class.assignments WHERE id=$1 AND classroom_id=$2',[id,room.id]);
+    return {deleted:true as const,submissions:removed.rowCount??0};
    });
   },
   async patchAssignment(teacherId:string,id:string,patch:Readonly<{title?:string;description?:string;open?:boolean;shareUrl?:string|null;dueAt?:number|null;recipients?:readonly number[]|null}>):Promise<AssignmentView>{

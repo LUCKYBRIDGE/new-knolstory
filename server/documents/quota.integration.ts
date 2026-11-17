@@ -71,7 +71,7 @@ describe('real PostgreSQL online storage limits',()=>{
   const task=await classroom.createAssignment(teacher,{title:'숏스토리 과제',description:'',storyKey:null,format:'shortstory'});
   await create(await context(teacher,'teacher'));await inflate(teacher,300*MB);
   expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
-  await inflate(teacher,330*MB);
+  await inflate(teacher,400*MB);
   expect(await code(classroom.submit(students[1]!,task.id,await snapshot()))).toBe('CLASSROOM_STORAGE_FULL');
   // Re-submitting the same size adds nothing, so it is still accepted.
   expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
@@ -88,6 +88,18 @@ describe('real PostgreSQL online storage limits',()=>{
   await inflate(students[0]!,20*MB);
   const other=await classroom.createAssignment(teacher,{title:'둘째 과제',description:'',storyKey:null,format:'shortstory'});
   expect(await code(classroom.submit(students[0]!,other.id,await snapshot()))).toBe('STUDENT_STORAGE_FULL');
+ });
+ it('allows twenty work tasks per class and frees a slot and its space when one is deleted',async()=>{
+  const {teacher,students}=await classWithStudent();
+  const made=[];for(let i=0;i<20;i++)made.push(await classroom.createAssignment(teacher,{title:`과제 ${i+1}`,description:'',storyKey:null,format:'shortstory'}));
+  expect(await code(classroom.createAssignment(teacher,{title:'21번째',description:'',storyKey:null,format:'shortstory'}))).toBe('ASSIGNMENT_LIMIT');
+  expect(await code(classroom.submit(students[0]!,made[0]!.id,await snapshot()))).toBe('ok');
+  const before=(await classroom.getClassroom(teacher)).storage.bytes;expect(before).toBeGreaterThan(0);
+  expect(await classroom.deleteAssignment(teacher,made[0]!.id)).toEqual({deleted:true,submissions:1});
+  expect((await classroom.getClassroom(teacher)).storage.bytes).toBe(0);
+  expect(await code(classroom.createAssignment(teacher,{title:'새 과제',description:'',storyKey:null,format:'shortstory'}))).toBe('ok');
+  const other=await classWithStudent();
+  expect(await code(classroom.deleteAssignment(other.teacher,made[1]!.id))).toBe('ASSIGNMENT_NOT_FOUND');
  });
  it('serializes writes in one pool so two saves at the limit cannot both pass',async()=>{
   const user=await context(await account('member'),'member');
