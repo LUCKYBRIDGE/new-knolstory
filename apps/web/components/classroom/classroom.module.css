@@ -320,7 +320,9 @@
 .composerFold[open]>summary::after{transform:translateY(-30%) rotate(-135deg)}
 .composerFold>summary h2{margin:0}
 .composerFold[open]>summary{margin-bottom:10px}
-.composerFold{display:grid;gap:10px}
+/* Block, not grid: a folded details keeps an empty content slot that a grid gap would turn into blank space. */
+.composerFold{display:block}
+.composerFold>:not(summary)+:not(summary){margin-top:10px}
 /* Student rows: the per-student tools fold away on phones; wide screens show the whole table. */
 .rowMore{display:none}
 @media(max-width:720px){
@@ -335,3 +337,10 @@
 /* The tab bar stays in reach on long class pages; what it scrolls to is not hidden under it. */
 .navPin{position:sticky;top:0;z-index:5;background:var(--paper,#f7f3e9)}
 .page :is(section,form,details,h2){scroll-margin-top:64px}
+
+/* Spacing details seen on the live phone screens. */
+.navPin+*{margin-top:24px}
+@media(max-width:720px){
+ .table thead th:first-child{padding:0 0 4px}
+ .table thead th:first-child .check{margin:0 8px 0 4px}
+}

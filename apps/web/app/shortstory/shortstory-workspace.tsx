@@ -58,6 +58,12 @@ function DeleteConfirmation({description,onDelete,onCancel,title='삭제 확인'
  useEffect(()=>{const opener=document.activeElement as HTMLElement|null;const dialog=ref.current;dialog?.showModal();return()=>{dialog?.close();if(opener?.isConnected&&opener!==document.body)opener.focus();else document.querySelector<HTMLElement>('main a')?.focus();};},[]);
  return <dialog ref={ref} className={`${styles.confirm} ${dialogSurface.surface}`} aria-label={title} onKeyDown={event=>trapDialogTab(event,ref.current)} onCancel={event=>{event.preventDefault();onCancel();}}><h2>{title}</h2><p>{description}</p><button autoFocus onClick={onCancel}>취소</button><button onClick={onDelete}>{action}</button></dialog>;
 }
+/** Phones start with the page list folded once: the current page is the work, and 이전·다음 쪽 move between pages. */
+function foldOnPhone(node: HTMLDetailsElement | null) {
+  if (!node || node.dataset.phoneFolded) return;
+  node.dataset.phoneFolded = '1';
+  if (window.matchMedia('(max-width:720px)').matches) node.open = false;
+}
 export function ShortStoryWorkspace() {
  const [loadedLibrary,setLibrary]=useState<ShortStoryLibrary|null>(null),[loadedProject,setProject]=useState<Project|null>(null);
  const library=loadedLibrary??emptyShortStoryLibrary(),project=loadedProject??loadingProject;
@@ -295,7 +301,7 @@ export function ShortStoryWorkspace() {
  const onlineShelf=projectOnlineShelf(onlineWorks,online.activeDocuments,shelfBindings,'shortstory');
  const coverProject=shortStoryCoverProject(project),credit=shortStoryOriginals.find(book=>book.id===project.id)?.credit;
  const workspace=(<div className={styles.workspace}>
-   <details className={styles.contents} open={editing}>
+   <details ref={foldOnPhone} className={styles.contents} open={editing}>
     <summary>전체 구성 · {project.pages.length}쪽</summary>
     <nav aria-label="그림책 쪽 목록">{project.pages.map((page,i)=>{
      const illustration=resolveAsset(page.backgroundId);
