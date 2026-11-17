@@ -78,6 +78,17 @@ describe('real PostgreSQL online storage limits',()=>{
   const size=(await pool.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1',[task.id])).rows[0];
   expect(Number(size.byte_length)).toBeGreaterThan(100);
  });
+ it('accepts homework past a student\'s 10MB but never past the 20MB ceiling',async()=>{
+  const {teacher,students}=await classWithStudent();
+  const task=await classroom.createAssignment(teacher,{title:'숏스토리 과제',description:'',storyKey:null,format:'shortstory'});
+  const student=await context(students[0]!,'student');await create(student);
+  await inflate(students[0]!,12*MB);
+  expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
+  expect(await code(create(student))).toBe('ACCOUNT_STORAGE_FULL');
+  await inflate(students[0]!,20*MB);
+  const other=await classroom.createAssignment(teacher,{title:'둘째 과제',description:'',storyKey:null,format:'shortstory'});
+  expect(await code(classroom.submit(students[0]!,other.id,await snapshot()))).toBe('STUDENT_STORAGE_FULL');
+ });
  it('serializes writes in one pool so two saves at the limit cannot both pass',async()=>{
   const user=await context(await account('member'),'member');
   for(let i=0;i<4;i++)await create(user);

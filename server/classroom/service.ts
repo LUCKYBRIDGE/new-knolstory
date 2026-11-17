@@ -448,8 +448,9 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(snapshot.content.format!==assignmentFormat(target.rows[0].format))throw new ClassroomError(422,'ASSIGNMENT_FORMAT_MISMATCH');
     // Homework is refused only for one oversized work or a pool already far past its limit.
     const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,accountId]);
-    const room=await assertCanSubmit(client,text(context.classroom_id),bytes-Number(previous.rows[0]?.byte_length??0),bytes);
+    const room=await assertCanSubmit(client,text(context.classroom_id),accountId,bytes-Number(previous.rows[0]?.byte_length??0),bytes);
     if(room==='work-too-large')throw new ClassroomError(413,'WORK_TOO_LARGE');
+    if(room==='student-full')throw new ClassroomError(409,'STUDENT_STORAGE_FULL');
     if(room==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
     const submittedAt=now();
     await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at,byte_length) VALUES($1,$2,$3::jsonb,$4,$5)

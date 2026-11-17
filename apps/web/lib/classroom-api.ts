@@ -43,6 +43,7 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['SERVER_BUSY','지금 제출하는 사람이 많아요. 잠시 뒤 다시 시도해 주세요.'],
  ['WORK_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
  ['CLASSROOM_STORAGE_FULL','학급 저장 공간이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],
+ ['STUDENT_STORAGE_FULL','내 저장 공간이 가득 차서 제출하지 못했어요. 쓰지 않는 온라인 작품을 지우거나 선생님께 알려 주세요.'],
  ['REQUEST_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
 ]);
 export function classroomErrorMessage(code:string){return messages.get(code)??'학급 서비스를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.';}
