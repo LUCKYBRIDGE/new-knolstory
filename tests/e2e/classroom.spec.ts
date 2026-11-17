@@ -1009,3 +1009,28 @@ test('teacher gives a task to chosen students and changes who gets a mission',as
  await expect(missions.getByText('1·2번 (2명)')).toBeVisible();
  expect(state.bodies.at(-1)).toEqual({recipients:[1,2]});
 });
+
+test('a student hands in a personal online work as a copy and sees both spaces',async({page})=>{
+ const MB=1024*1024,recordId='22222222-2222-4222-8222-222222222222';
+ const content=JSON.parse(await readFile('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));
+ content.document.project.title='집에서 쓴 이야기';
+ const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
+ const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
+ const {createHash}=await import('node:crypto');
+ const snapshot={payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
+ const metadata={recordId,revision:1,format:'knolstory',clientProjectId:content.document.project.id,title:'집에서 쓴 이야기',contentSha256:snapshot.contentSha256,createdAt:1,updatedAt:1,stateVersion:1,deletedAt:null};
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ await page.route('**/api/v1/class/me',route=>route.fulfill({json:{success:true,data:{role:'student',account:{id:'s'},student:{number:2,name:'하늘',classId:'c1',className:'3반',permissions:all},storage:{works:1,worksLimit:5,bytes:1.2*MB,bytesLimit:10*MB,workBytesLimit:16*MB,submissions:{bytes:0.5*MB,limit:10*MB}}}}}));
+ await page.route('**/api/v1/documents**',route=>{
+  const path=new URL(route.request().url()).pathname;
+  if(path===`/api/v1/documents/${recordId}`)return route.fulfill({json:{success:true,data:{...metadata,snapshot}}});
+  return route.fulfill({json:{success:true,data:{documents:[metadata],nextCursor:null}}});
+ });
+ await page.goto('/student');
+ await expect(page.getByLabel('내 온라인 공간')).toHaveText('개인 1.2MB / 10MB · 제출 512KB / 10MB');
+ await page.getByLabel('제출할 작품').selectOption({label:'집에서 쓴 이야기 · 내 온라인 작품'});
+ await page.getByRole('button',{name:'제출',exact:true}).click();
+ await expect(page.getByText('제출했어요.')).toBeVisible();
+ const submitted=state.submissions.a1 as {content:{document:{project:{title:string}}}};
+ expect(submitted.content.document.project.title).toBe('집에서 쓴 이야기');
+});

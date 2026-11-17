@@ -8,9 +8,8 @@ const MB=1024*1024;
 export const STORAGE_LIMITS={
  workBytes:16*MB,
  member:{works:5,bytes:30*MB},
- student:{works:5,bytes:10*MB},
- /** Homework may run a student past `student.bytes`, but never past this. */
- studentSubmissionCeilingBytes:20*MB,
+ /** A student has two spaces: personal online works, and a separate space for submitted copies. */
+ student:{works:5,bytes:10*MB,submissionBytes:10*MB},
  teacher:{works:100},
  classroomBytes:300*MB,
  /** Homework is never refused for a full pool until it is this far over. */
@@ -21,6 +20,8 @@ export const STORAGE_LIMITS={
 export type StorageRole='member'|'teacher'|'student'|'admin';
 export type StorageUsage=Readonly<{
  works:number;worksLimit:number|null;bytes:number;bytesLimit:number|null;workBytesLimit:number;
+ /** Students only: the submission space, apart from personal works. */
+ submissions?:Readonly<{bytes:number;limit:number}>;
  classroom?:Readonly<{bytes:number;limit:number}>;
 }>;
 const big=(value:unknown)=>{const result=Number(value??0);if(!Number.isSafeInteger(result)||result<0)throw new DocumentServiceError('STORAGE_CONTRACT_VIOLATION',503);return result;};
@@ -51,7 +52,7 @@ export async function studentBytes(client:SqlClient,classroomId:string):Promise<
 async function own(client:SqlClient,accountId:string,role:StorageRole){
  const docs=(await client.query('SELECT count(*) AS works,COALESCE(sum(byte_length),0) AS bytes FROM knolstory_storage.private_documents WHERE owner_account_id=$1',[accountId])).rows[0];
  const submitted=role==='student'?big((await client.query('SELECT COALESCE(sum(byte_length),0) AS bytes FROM knolstory_class.submissions WHERE student_account_id=$1',[accountId])).rows[0]?.bytes):0;
- return {works:big(docs?.works),bytes:big(docs?.bytes)+submitted};
+ return {works:big(docs?.works),bytes:big(docs?.bytes),submitted};
 }
 export async function storageUsage(client:SqlClient,accountId:string,role:StorageRole):Promise<StorageUsage>{
  const mine=await own(client,accountId,role),room=await classroomOf(client,accountId,role);
@@ -59,6 +60,7 @@ export async function storageUsage(client:SqlClient,accountId:string,role:Storag
  // A teacher without a classroom still has the classroom-sized allowance for their own works.
  const bytesLimit=limits.bytes??(role==='teacher'?STORAGE_LIMITS.classroomBytes:null);
  return {works:mine.works,worksLimit:limits.works,bytes:mine.bytes,bytesLimit,workBytesLimit:STORAGE_LIMITS.workBytes,
+  ...(role==='student'?{submissions:{bytes:mine.submitted,limit:STORAGE_LIMITS.student.submissionBytes}}:{}),
   ...(room&&role!=='admin'?{classroom:{bytes:await classroomBytes(client,room),limit:STORAGE_LIMITS.classroomBytes}}:{})};
 }
 /** Checks a personal online work write. `newWork` adds one to the count; `deltaBytes` is the size change. */
@@ -73,13 +75,13 @@ export async function assertCanStore(client:SqlClient,accountId:string,role:Stor
  if(usage.bytesLimit!==null&&usage.bytes+change.deltaBytes>usage.bytesLimit)throw new DocumentServiceError('ACCOUNT_STORAGE_FULL',409);
  if(usage.classroom&&usage.classroom.bytes+change.deltaBytes>usage.classroom.limit)throw new DocumentServiceError('CLASSROOM_STORAGE_FULL',409);
 }
-/** Homework may go past the normal student and classroom limits (it is never refused for those),
- * but not past the hard ceilings: 20MB per student and 400MB per classroom. */
+/** Homework uses the student's submission space (10MB, apart from personal works). It may run the
+ * classroom past its normal 300MB, but never past the 400MB ceiling. */
 export async function assertCanSubmit(client:SqlClient,classroomId:string,studentId:string,deltaBytes:number,bytes:number):Promise<'ok'|'work-too-large'|'student-full'|'classroom-full'>{
  if(bytes>STORAGE_LIMITS.workBytes)return 'work-too-large';
  await lockPool(client,classroomId);
  if(deltaBytes<=0)return 'ok';
- if((await own(client,studentId,'student')).bytes+deltaBytes>STORAGE_LIMITS.studentSubmissionCeilingBytes)return 'student-full';
+ if((await own(client,studentId,'student')).submitted+deltaBytes>STORAGE_LIMITS.student.submissionBytes)return 'student-full';
  if(await classroomBytes(client,classroomId)+deltaBytes>STORAGE_LIMITS.submissionOverflowBytes)return 'classroom-full';
  return 'ok';
 }

@@ -62,7 +62,7 @@ describe('real PostgreSQL online storage limits',()=>{
   expect(me.storage!.classroom!.bytes).toBeGreaterThan(300*MB-1000);
   expect(me.storage!.bytesLimit).toBe(10*MB);
   const view=await classroom.getClassroom(teacher);
-  expect(view.storage).toMatchObject({limit:300*MB,studentLimit:10*MB});
+  expect(view.storage).toMatchObject({limit:300*MB,studentLimit:20*MB});
   expect(view.students.find(s=>s.number===1)!.storageBytes).toBeGreaterThan(0);
   expect(view.students.find(s=>s.number===2)!.storageBytes).toBe(0);
  });
@@ -78,16 +78,20 @@ describe('real PostgreSQL online storage limits',()=>{
   const size=(await pool.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1',[task.id])).rows[0];
   expect(Number(size.byte_length)).toBeGreaterThan(100);
  });
- it('accepts homework past a student\'s 10MB but never past the 20MB ceiling',async()=>{
+ it('keeps personal works and submitted copies in separate 10MB spaces',async()=>{
   const {teacher,students}=await classWithStudent();
   const task=await classroom.createAssignment(teacher,{title:'숏스토리 과제',description:'',storyKey:null,format:'shortstory'});
   const student=await context(students[0]!,'student');await create(student);
-  await inflate(students[0]!,12*MB);
+  // A full personal space does not stop homework.
+  await inflate(students[0]!,10*MB);
   expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
   expect(await code(create(student))).toBe('ACCOUNT_STORAGE_FULL');
-  await inflate(students[0]!,20*MB);
+  const usage=(await classroom.me(students[0]!,'student')).storage!;
+  expect(usage.bytes).toBe(10*MB);expect(usage.submissions!.limit).toBe(10*MB);expect(usage.submissions!.bytes).toBeGreaterThan(0);
+  // A full submission space stops more homework, whatever the personal space holds.
+  await pool.query('UPDATE knolstory_class.submissions SET byte_length=$2 WHERE student_account_id=$1',[students[0]!,10*MB]);
   const other=await classroom.createAssignment(teacher,{title:'둘째 과제',description:'',storyKey:null,format:'shortstory'});
-  expect(await code(classroom.submit(students[0]!,other.id,await snapshot()))).toBe('STUDENT_STORAGE_FULL');
+  expect(await code(classroom.submit(students[0]!,other.id,await snapshot()))).toBe('SUBMISSION_STORAGE_FULL');
  });
  it('allows twenty work tasks per class and frees a slot and its space when one is deleted',async()=>{
   const {teacher,students}=await classWithStudent();

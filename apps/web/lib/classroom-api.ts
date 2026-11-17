@@ -44,7 +44,7 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['WORK_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
  ['CLASSROOM_STORAGE_FULL','학급 저장 공간이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],
  ['ASSIGNMENT_LIMIT','작품을 내는 과제는 20개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.'],
- ['STUDENT_STORAGE_FULL','내 저장 공간이 가득 차서 제출하지 못했어요. 쓰지 않는 온라인 작품을 지우거나 선생님께 알려 주세요.'],
+ ['SUBMISSION_STORAGE_FULL','과제 제출 공간(10MB)이 가득 차서 제출하지 못했어요. 선생님께 알려 주세요.'],
  ['REQUEST_TOO_LARGE','작품이 너무 커서 제출하지 못했어요. 장면이나 글을 조금 줄여 주세요.'],
 ]);
 export function classroomErrorMessage(code:string){return messages.get(code)??'학급 서비스를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.';}

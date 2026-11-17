@@ -108,7 +108,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
   const used=await studentBytes(client,text(row.id));
   return {id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:students.rows.length,createdAt:num(row.created_at),defaultPermissions:defaults(row.default_permissions),
    students:students.rows.map(student=>studentView(student,used.get(text(student.account_id))??0)),
-   storage:{bytes:await classroomBytes(client,text(row.id)),limit:STORAGE_LIMITS.classroomBytes,studentLimit:STORAGE_LIMITS.student.bytes}};
+   storage:{bytes:await classroomBytes(client,text(row.id)),limit:STORAGE_LIMITS.classroomBytes,studentLimit:STORAGE_LIMITS.student.bytes+STORAGE_LIMITS.student.submissionBytes}};
  }
  function studentView(row:Record<string,unknown>,storageBytes=0):StudentView{
   return {number:num(row.number),name:text(row.name),password:password(text(row.account_id),text(row.password_cipher)),permissions:storedPermissions(row.permissions),hasQr:row.has_qr===true,storageBytes};
@@ -462,7 +462,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,accountId]);
     const room=await assertCanSubmit(client,text(context.classroom_id),accountId,bytes-Number(previous.rows[0]?.byte_length??0),bytes);
     if(room==='work-too-large')throw new ClassroomError(413,'WORK_TOO_LARGE');
-    if(room==='student-full')throw new ClassroomError(409,'STUDENT_STORAGE_FULL');
+    if(room==='student-full')throw new ClassroomError(409,'SUBMISSION_STORAGE_FULL');
     if(room==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
     const submittedAt=now();
     await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at,byte_length) VALUES($1,$2,$3::jsonb,$4,$5)

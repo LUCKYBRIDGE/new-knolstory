@@ -4,7 +4,7 @@ const MB=1024*1024;
 export const WORK_LIMIT_BYTES=16*MB;
 export const LARGE_WORK_BYTES=8*MB;
 export const NEAR_LIMIT_BYTES=14*MB;
-export type StorageUsage=Readonly<{works:number;worksLimit:number|null;bytes:number;bytesLimit:number|null;workBytesLimit:number;classroom?:Readonly<{bytes:number;limit:number}>}>;
+export type StorageUsage=Readonly<{works:number;worksLimit:number|null;bytes:number;bytesLimit:number|null;workBytesLimit:number;submissions?:Readonly<{bytes:number;limit:number}>;classroom?:Readonly<{bytes:number;limit:number}>}>;
 
 export function formatBytes(bytes:number):string{
  if(!Number.isFinite(bytes)||bytes<=0)return '0KB';
@@ -32,7 +32,9 @@ const ratio=(used:number,limit:number|null)=>limit?used/limit:0;
 export function storageSummary(usage:StorageUsage):Readonly<{text:string;warn:boolean;full:boolean}>{
  const parts=[`온라인 ${usage.works}${usage.worksLimit!==null?`/${usage.worksLimit}`:''}개`];
  if(usage.bytesLimit!==null)parts.push(`${formatBytes(usage.bytes)} / ${formatBytes(usage.bytesLimit)}`);
+ if(usage.submissions)parts.push(`제출 ${formatBytes(usage.submissions.bytes)} / ${formatBytes(usage.submissions.limit)}`);
  if(usage.classroom)parts.push(`학급 ${formatBytes(usage.classroom.bytes)} / ${formatBytes(usage.classroom.limit)}`);
+ // The submission space is reported but never blocks personal uploads, so it does not raise the warning here.
  const highest=Math.max(ratio(usage.bytes,usage.bytesLimit),usage.classroom?ratio(usage.classroom.bytes,usage.classroom.limit):0,usage.worksLimit?usage.works/usage.worksLimit:0);
  return {text:parts.join(' · '),warn:highest>=0.8,full:highest>=1};
 }
