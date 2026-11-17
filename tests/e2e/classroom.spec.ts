@@ -3,6 +3,7 @@ import axe from 'axe-core';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 import {readFile} from 'node:fs/promises';
 import {startShelfCreation} from './library-entry';
+import {classroomSeason} from '../../apps/web/lib/classroom-season';
 // Fullscreen prompting has its own coverage.
 test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 
@@ -99,10 +100,13 @@ test('teacher builds a class, edits students, bulk-applies 글만 and runs an as
  await page.goto('/teacher');
  await expect(page.getByRole('heading',{name:'학급 만들기'})).toBeVisible();
  await page.getByLabel('학급 이름').fill('3반');await page.getByRole('button',{name:'학급 만들기',exact:true}).click();
+ // The season notice waits in settings until its last weeks, so the day's work starts higher.
+ await expect(page.getByRole('note').filter({hasText:'학급 자료는'})).toHaveCount(classroomSeason(undefined).soon?1:0);
  // The login code is visible right away on the first tab, not only in settings.
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await expect(page.getByText('학급 코드 바꾸기',{exact:true})).toHaveCount(0);
  await page.getByRole('link',{name:'학급 설정',exact:true}).click();
+ await expect(page.getByRole('note').filter({hasText:'학급 자료는'})).toBeVisible();
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await page.getByRole('navigation',{name:'주 메뉴',exact:true}).getByRole('link',{name:'학생',exact:true}).click();
  await page.getByLabel('만들 학생 수').fill('3');await page.getByRole('button',{name:'학생 만들기',exact:true}).click();

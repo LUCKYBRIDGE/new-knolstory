@@ -9,3 +9,5 @@
 .settings[aria-current="page"]{font-weight:750;color:#24594e;border-bottom-color:#2f6962;background:#e5eee33d}
 .bar a:focus-visible{outline:3px solid #2f7d68;outline-offset:2px;border-radius:4px}
 @media(max-width:480px){.bar{gap:4px}.tabs{gap:0;flex:1}.tabs a{min-width:0;flex:1;padding:10px 12px;font-size:var(--text-small)}.settings{font-size:var(--text-caption);padding:0 6px;gap:3px}}
+/* Phones: five items share one row, so the gear reads as "설정"; screen readers still hear "학급 설정". */
+@media(max-width:480px){.settingsScope{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.settings{min-width:48px}}
