@@ -355,7 +355,7 @@
 .storageUsers li{display:flex;justify-content:space-between;gap:8px}
 
 /* Work task count in the create summary (20 per classroom). */
-.taskCount{font-weight:400;color:var(--ink-soft,#6b6257)}
+.taskCount{display:block;margin-top:2px;font-size:var(--text-small);font-weight:400;color:var(--ink-soft,#6b6257)}
 
 /* Task template line in a writing task (2026-11-18). */
 .templateRow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:6px 0}
