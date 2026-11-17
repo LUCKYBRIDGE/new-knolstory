@@ -85,3 +85,15 @@ test('CLI starts on explicit loopback, rejects upgrades, and shuts down on signa
  const status=await new Promise((resolve,reject)=>{const req=request({host:'127.0.0.1',port,path:'/_next/hmr',headers:{host:'story.knolquiz.com',Connection:'Upgrade',Upgrade:'websocket'}},res=>{res.resume();resolve(res.statusCode);});req.on('error',reject);req.end();});assert.equal(status,400);
  const exited=once(live,'exit');live.kill('SIGTERM');assert.equal((await exited)[0],0);
 });
+test('forwards only the Cloudflare visitor address to the API, never a client-sent copy',async()=>{
+ const seen=[];
+ const {get}=await fixture({config:{forwardClientIp:true},api:(req,res)=>{seen.push(req.headers['x-knolstory-client-ip']);res.end('ok');}});
+ await get('/api/v1/me',{'cf-connecting-ip':'203.0.113.9','x-knolstory-client-ip':'198.51.100.1'});
+ await get('/api/v1/me',{'x-knolstory-client-ip':'198.51.100.1'});
+ await get('/api/v1/me',{'cf-connecting-ip':'not-an-ip'});
+ assert.deepEqual(seen,['203.0.113.9',undefined,undefined]);
+ const off=[];const plain=await fixture({api:(req,res)=>{off.push(req.headers['x-knolstory-client-ip']);res.end('ok');}});
+ await plain.get('/api/v1/me',{'cf-connecting-ip':'203.0.113.9'});assert.deepEqual(off,[undefined]);
+ assert.equal(loadProductionIngressConfig({KNOLSTORY_STATIC_ROOT:'/tmp/web',KNOLSTORY_FORWARD_CLIENT_IP:'cf-connecting-ip'}).forwardClientIp,true);
+ assert.throws(()=>loadProductionIngressConfig({KNOLSTORY_STATIC_ROOT:'/tmp/web',KNOLSTORY_FORWARD_CLIENT_IP:'x-real-ip'}));
+});

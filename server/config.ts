@@ -27,6 +27,10 @@ export function loadApiConfig(env:Environment=process.env,read:(path:string)=>st
   const database=env.PGDATABASE??'knolstory_next_storage_test';
   if(!/^knolstory_next(?:_[a-z0-9_]+)?$/.test(database))throw Error();
   const host=env.KNOLSTORY_BIND_HOST??'127.0.0.1';
+  // Capacity: worker processes share one port; each has its own DB pool and its share of the rate limits.
+  const workers=integer(env.KNOLSTORY_API_WORKERS,1,16),poolMax=integer(env.KNOLSTORY_DB_POOL_MAX,5,50);
+  if(env.KNOLSTORY_TRUST_CLIENT_IP!==undefined&&env.KNOLSTORY_TRUST_CLIENT_IP!=='1')throw Error();
+  const trustClientIp=env.KNOLSTORY_TRUST_CLIENT_IP==='1';
   if(!['127.0.0.1','0.0.0.0'].includes(host))throw Error();
   // Classroom: the AES key is optional so existing deployments keep starting; routes answer 503 without it.
   // Compose passes an empty secret path when the feature is not configured; treat it as unset.
@@ -36,8 +40,9 @@ export function loadApiConfig(env:Environment=process.env,read:(path:string)=>st
   if(classroomSecret!==undefined)parseClassroomSecret(classroomSecret);
   const adminAccountIds=(env.KNOL_ADMIN_ACCOUNT_IDS??'').split(',').map(value=>value.trim().toLowerCase()).filter(Boolean);
   if(adminAccountIds.length>50||adminAccountIds.some(id=>!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(id)))throw Error();
-  return {host,port:integer(env.PORT,4000,65535),auth:{origin,flowTtlMs:integer(env.KNOLSTORY_FLOW_TTL_MS,300000),sessionTtlMs:integer(env.KNOLSTORY_SESSION_TTL_MS,28800000),csrfSecret:secret('KNOLSTORY_CSRF_SECRET_FILE',4096,32),providers:{...providers,...Object.fromEntries(entries)},...(clientProofKey===undefined?{}:{clientProofKey})} satisfies AuthServiceConfig,
+  return {host,port:integer(env.PORT,4000,65535),auth:{origin,flowTtlMs:integer(env.KNOLSTORY_FLOW_TTL_MS,300000),sessionTtlMs:integer(env.KNOLSTORY_SESSION_TTL_MS,28800000),csrfSecret:secret('KNOLSTORY_CSRF_SECRET_FILE',4096,32),providers:{...providers,...Object.fromEntries(entries)},...(clientProofKey===undefined?{}:{clientProofKey}),...(trustClientIp?{trustClientIp}:{}),workers} satisfies AuthServiceConfig,
+   workers,
    classroom:{adminAccountIds:[...new Set(adminAccountIds)],...(classroomSecret===undefined?{}:{secret:classroomSecret.trim()})},
-   database:{host:env.PGHOST??'127.0.0.1',port:integer(env.PGPORT,5432,65535),database,user:env.PGUSER??'knolstory_next_storage_test',password:secret('PGPASSWORD_FILE',4096),max:5,connectionTimeoutMillis:5000,query_timeout:5000}};
+   database:{host:env.PGHOST??'127.0.0.1',port:integer(env.PGPORT,5432,65535),database,user:env.PGUSER??'knolstory_next_storage_test',password:secret('PGPASSWORD_FILE',4096),max:poolMax,connectionTimeoutMillis:5000,query_timeout:5000}};
  }catch{throw Error('Invalid API configuration.');}
 }

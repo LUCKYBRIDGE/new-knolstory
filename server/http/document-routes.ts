@@ -1,4 +1,5 @@
 import {createRateClientResolver} from './rate-client';
+import {reserveUpload,type UploadBudget} from './upload-budget';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { authCookieNames, validateAuthOrigin, type createAuthStateService } from '../auth/auth-state';
 import { DocumentServiceError, type DocumentService } from '../documents/service';
@@ -10,6 +11,8 @@ export type DocumentRouterOptions = Readonly<{
   roles: Readonly<{ roleOf(accountId: string): Promise<'member' | 'teacher' | 'student' | 'admin' | null> }>;
   rateLimit?: Readonly<{ windowMs: number; maxRequests: number; maxEntries: number }>;
   clientProofKey?: string;
+  trustClientIp?: boolean;
+  uploadBudget?: UploadBudget;
   bodyLimitBytes?: number;
   bodyTimeoutMs?: number;
 }>;
@@ -117,8 +120,8 @@ function envelope(value: unknown, saving: boolean, idempotencyKey: string) {
 /** HTTP transports authenticated context; document policy and atomic writes stay in the service. */
 export function createDocumentRouter(options: DocumentRouterOptions) {
   const origin = validateAuthOrigin(options.origin), name = authCookieNames(origin).session;
-  const limit = positive(options.bodyLimitBytes ?? 26 * 1024 * 1024), timeout = positive(options.bodyTimeoutMs ?? 10000);
-  const rateLimit = rateLimiter(options.rateLimit,createRateClientResolver({origin,key:options.clientProofKey}));
+  const limit = positive(options.bodyLimitBytes ?? 8 * 1024 * 1024), timeout = positive(options.bodyTimeoutMs ?? 10000);
+  const rateLimit = rateLimiter(options.rateLimit,createRateClientResolver({origin,key:options.clientProofKey,trustClientIp:options.trustClientIp}));
   return async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Content-Type-Options', 'nosniff'); res.setHeader('Referrer-Policy', 'no-referrer');
     try {
@@ -141,6 +144,7 @@ export function createDocumentRouter(options: DocumentRouterOptions) {
         catch (error) { if (error instanceof HttpError) throw error; throw new HttpError(403, 'INVALID_CSRF'); }
       }
       framing(req, writing, limit);
+      if (writing && !reserveUpload(options.uploadBudget, req, res, limit)) { res.setHeader('Retry-After', '5'); throw new HttpError(503, 'SERVER_BUSY'); }
       if (!writing) {
         const data = id ? await options.documents.read(context, id) : await options.documents.list(context, pagination);
         respond(res, 200, { success: true, data }); return;

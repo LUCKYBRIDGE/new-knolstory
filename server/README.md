@@ -150,9 +150,43 @@ the Mac runs only API, PostgreSQL and ingress.
   space, Docker, the production containers, a DB query, the public API and backup
   age. Problems raise a macOS notification at most hourly and are logged to
   `~/Library/Logs/knolstory-next-production/health.log`.
-- **Backups:** the daily 04:00 `pg_dump` is copied to the Toshiba backup drive.
-- **Resources:** the API and DB containers each get 1 GB and 2 CPUs. The upload
-  limit stays at 26 MB, because the editor accepts work files up to 25 MB.
+- **Backups:** the daily 04:00 `pg_dump` is written only to the Toshiba backup drive
+  (`/Volumes/Toshiba/knolstory-backups`, 180 days). Nothing is kept on the internal disk.
+
+### Capacity (2026-11-17)
+
+Docker Desktop gets 12 GB of the Mac's 24 GB (the rest stays for macOS and other apps)
+and a 1 TB disk limit.
+
+| Container | CPUs | Memory | Notes |
+|---|---|---|---|
+| API | 4 | 3.5 GB | 4 worker processes on one port, 640 MB heap and 10 DB connections each |
+| DB | 4 | 3 GB | `shared_buffers=768MB`, `effective_cache_size=2GB`, `max_connections=100` |
+| Ingress | 2 | 512 MB | forwards Cloudflare's visitor address |
+
+- **Rate buckets per visitor:** every API request reaches the API through the ingress, so the
+  API used to see one address and applied one limit to the whole service (120 requests a
+  minute in total). The ingress now forwards `cf-connecting-ip` as `x-knolstory-client-ip`
+  (dropping any client-sent copy) and the API trusts it with `KNOLSTORY_TRUST_CLIENT_IP=1`.
+  It only chooses a rate bucket; sessions and CSRF are unchanged. Totals per address per
+  minute: online works 300, sign-in 300, classroom 1,800 (a class shares a school address).
+  Each worker enforces its share, so failed-login ceilings stay the same in total.
+- **Uploads:** online works and assignment submissions use only catalog media, so they are
+  JSON text, usually tens of KB. The body limit is 8 MB. Each worker also holds at most
+  24 MB of large bodies at once; more gets `503 SERVER_BUSY` with `Retry-After` and the
+  device keeps its copy. Before this, two 8.5 MB saves at the same time exhausted the heap.
+- **Crash isolation:** a worker that stops is replaced while the others keep serving.
+
+Measured on an isolated copy with these limits (Mac mini M4 Pro):
+
+| Work | Before (1 CPU, 384 MB) | After |
+|---|---|---|
+| Open a typical work (40 KB) | 120/s | 580/s |
+| Save a typical work | 44/s | 210/s |
+| Open / save a large work (0.86 MB) | 2.4/s / 1.2/s | 26/s / 7.4/s |
+| 300 students signing in at once | 8.7 s, 4 failed | 2.5 s, all succeeded |
+| Classroom reads and submissions | 2,700/s | 7,100/s |
+| 16 saves of 6.8 MB at once | API crashed at 2 | API stayed up, extra requests got 503 |
 
 ## Actual isolated PostgreSQL storage adapter
 

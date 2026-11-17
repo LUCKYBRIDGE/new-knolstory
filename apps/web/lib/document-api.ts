@@ -11,6 +11,8 @@ const documentErrorMessages:ReadonlyMap<string,string>=new Map([
  ['SESSION_REQUIRED','다시 로그인해 주세요.'],
  ['CATALOG_MEDIA_REQUIRED','온라인 업로드에는 서비스에 등록된 그림과 소리만 사용할 수 있어요. 기기의 원고는 유지돼요.'],
  ['RATE_LIMITED','지금 요청이 많아요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 그대로 있어요.'],
+ ['SERVER_BUSY','지금 저장하는 사람이 많아요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 그대로 있어요.'],
+ ['REQUEST_TOO_LARGE','작품이 너무 커서 온라인에 올리지 못했어요. 작품 파일로 저장해 주세요. 기기의 원고는 그대로 있어요.'],
  ['INVALID_SNAPSHOT','작품 내용을 확인하지 못해 업로드하지 않았어요. 기기의 원고는 유지돼요.'],
 ]);
 export class OnlineDocumentError extends Error{
@@ -35,7 +37,7 @@ async function request(path:string,fetcher:typeof fetch,options:RequestInit={},e
  let response:Response,value:unknown;
  try{response=await fetcher(path,{credentials:'same-origin',cache:'no-store',redirect:'error',...options});value=await response.json();}catch{throw new OnlineDocumentError('SERVICE_UNAVAILABLE',503);}
  if(!response.ok){
-  const allowed=['ACCOUNT_SESSION_CHANGED','SESSION_REQUIRED','NOT_FOUND','REVISION_CONFLICT','IDEMPOTENCY_CONFLICT','DOCUMENT_IDENTITY_CONFLICT','CATALOG_MEDIA_REQUIRED','INVALID_SNAPSHOT','INVALID_REQUEST','RATE_LIMITED','DOCUMENT_TRASHED','DOCUMENT_STATE_CONFLICT'];
+  const allowed=['ACCOUNT_SESSION_CHANGED','SESSION_REQUIRED','NOT_FOUND','REVISION_CONFLICT','IDEMPOTENCY_CONFLICT','DOCUMENT_IDENTITY_CONFLICT','CATALOG_MEDIA_REQUIRED','INVALID_SNAPSHOT','INVALID_REQUEST','RATE_LIMITED','SERVER_BUSY','REQUEST_TOO_LARGE','DOCUMENT_TRASHED','DOCUMENT_STATE_CONFLICT'];
   const error=object(value)&&object(value.error)?value.error:{};
   const code=typeof error.code==='string'&&allowed.includes(error.code)?error.code:'SERVICE_UNAVAILABLE';
   throw new OnlineDocumentError(code,response.status,code==='REVISION_CONFLICT'&&integer(error.actualRevision,1)?error.actualRevision:undefined);

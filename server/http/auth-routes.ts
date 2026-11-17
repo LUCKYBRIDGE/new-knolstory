@@ -16,6 +16,7 @@ export type AuthRouterOptions = Readonly<{
   providers: Readonly<Partial<Record<Provider, OidcProvider>>>;
   clock?: () => number;
   clientProofKey?: string;
+  trustClientIp?: boolean;
   /** Which sign-in providers the account has linked; shown to the account owner only. */
   linkedProviders?: (accountId: string) => Promise<readonly Provider[]>;
   rateLimit?: Readonly<{ windowMs: number; maxRequests: number; maxEntries: number }>;
@@ -61,7 +62,7 @@ function emptyBody(req: IncomingMessage, res: ServerResponse) {
 function limiter(options: AuthRouterOptions) {
   const config = { windowMs: 60_000, maxRequests: 120, maxEntries: 10_000, ...options.rateLimit };
   for (const value of Object.values(config)) if (!Number.isSafeInteger(value) || value <= 0) throw new HttpError(500, 'INVALID_CONFIG');
-  const client=createRateClientResolver({origin:options.origin,key:options.clientProofKey,clock:options.clock});
+  const client=createRateClientResolver({origin:options.origin,key:options.clientProofKey,clock:options.clock,trustClientIp:options.trustClientIp});
   const buckets = new Map<string, Readonly<{ count: number; expiresAt: number }>>();
   return (req: IncomingMessage) => {
     const now = (options.clock ?? Date.now)();
