@@ -113,6 +113,34 @@ describe('real PostgreSQL online storage limits',()=>{
   expect(await code(documents.create(student,{payloadVersion:1,snapshot:await snapshot('02_다른 번호'),idempotencyKey:randomUUID()}))).toBe('STUDENT_NUMBER_TITLE');
   expect(await code(create(student))).toBe('ok');
  });
+ it('stores a task template in the classroom pool and hands it to students the task is open to',async()=>{
+  const {teacher,students}=await classWithStudent();
+  const task=await classroom.createAssignment(teacher,{title:'양식 과제',description:'',storyKey:null,format:'shortstory'});
+  expect(task.template).toBeNull();
+  const template=await snapshot('선생님 양식');
+  expect(await classroom.setTemplate(teacher,task.id,template)).toEqual({template:{title:'선생님 양식'}});
+  expect((await classroom.listAssignments(students[0]!,'student'))[0]!.template).toEqual({title:'선생님 양식'});
+  expect((await classroom.readTemplate(students[0]!,'student',task.id)).document).toEqual(template);
+  expect((await classroom.getClassroom(teacher)).storage.bytes).toBeGreaterThan(100);
+  // Wrong kind, closed task and removal.
+  const knol=await classroom.createAssignment(teacher,{title:'놀스토리 과제',description:'',storyKey:null,format:'knolstory'});
+  expect(await code(classroom.setTemplate(teacher,knol.id,template))).toBe('ASSIGNMENT_FORMAT_MISMATCH');
+  await classroom.patchAssignment(teacher,task.id,{open:false});
+  expect(await code(classroom.readTemplate(students[0]!,'student',task.id))).toBe('ASSIGNMENT_CLOSED');
+  expect(await classroom.setTemplate(teacher,task.id,null)).toEqual({template:null});
+  expect((await classroom.getClassroom(teacher)).storage.bytes).toBe(0);
+  expect(await code(classroom.readTemplate(teacher,'teacher',task.id))).toBe('TEMPLATE_NOT_FOUND');
+  // Another class cannot read or set it.
+  const other=await classWithStudent();
+  expect(await code(classroom.readTemplate(other.students[0]!,'student',task.id))).toBe('ASSIGNMENT_NOT_FOUND');
+  expect(await code(classroom.setTemplate(other.teacher,task.id,template))).toBe('ASSIGNMENT_NOT_FOUND');
+ });
+ it('refuses a template that would push the classroom past 300MB',async()=>{
+  const {teacher}=await classWithStudent();
+  const task=await classroom.createAssignment(teacher,{title:'큰 양식',description:'',storyKey:null,format:'shortstory'});
+  await create(await context(teacher,'teacher'));await inflate(teacher,300*MB-10);
+  expect(await code(classroom.setTemplate(teacher,task.id,await snapshot('양식')))).toBe('CLASSROOM_STORAGE_FULL');
+ });
  it('serializes writes in one pool so two saves at the limit cannot both pass',async()=>{
   const user=await context(await account('member'),'member');
   for(let i=0;i<4;i++)await create(user);
