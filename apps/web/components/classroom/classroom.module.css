@@ -365,3 +365,16 @@
 .continueElsewhere{margin:6px 0}
 .continueElsewhere>summary{cursor:pointer;font-size:var(--text-small)}
 .continueElsewhere a[aria-disabled=true]{opacity:.5;pointer-events:none}
+
+/* Reading a handed-in work in the dashboard (2026-11-18). */
+.wideDialog{width:min(720px,calc(100vw - 24px))}
+.script{max-height:min(60dvh,560px);overflow:auto;padding-right:4px}
+.script section+section{margin-top:14px}
+.script h3{margin:0 0 6px;font-size:var(--text-small);font-weight:600;color:var(--story-menu-ink)}
+.dialog .script p{margin:4px 0;color:var(--story-menu-ink);font-size:var(--text-body,1rem)}
+.script b{margin-right:8px;font-weight:600}
+
+/* The external hand-in link is a folded, secondary path (2026-11-18). */
+details.shareBox{display:block}
+details.shareBox>:not(summary){margin-top:8px}
+details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-small)}

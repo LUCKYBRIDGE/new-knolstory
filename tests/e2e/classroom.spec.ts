@@ -181,6 +181,12 @@ test('student submits and teacher opens a device copy after the assignment close
   teacherState.submissions.a1=submitted;
   await teacher.goto('/teacher');
   await teacher.getByRole('button',{name:'내 이야기 쓰기 제출 보기'}).click();
+  // Reading the work right in the dashboard needs no download or library copy.
+  await teacher.getByRole('button',{name:'2번 제출 작품 바로 보기'}).click();
+  const preview=teacher.getByRole('dialog');
+  await expect(preview).toContainText('첫 컷이에요.');
+  await preview.getByRole('button',{name:'닫기',exact:true}).click();
+  await expect(preview).toHaveCount(0);
   await teacher.getByRole('link',{name:'2번 제출 작품 열기'}).click();
   await confirmAuthoringImport(teacher);
   await expect(teacher.getByTestId('preparation-save-status')).toHaveText('임시 보관됨');

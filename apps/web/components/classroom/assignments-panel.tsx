@@ -1,4 +1,5 @@
 'use client';
+import {SubmissionPreview} from './submission-preview';
 import {TaskTemplate} from './task-template';
 import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
 import {assignmentCreate,assignmentDelete,assignmentList,assignmentUpdate,submissionList,submissionOpen,submissionReview,ClassroomError,type Assignment,type AssignmentFormat,type SubmissionRow} from '../../lib/classroom-api';
@@ -142,7 +143,8 @@ function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale}:{item:Assig
    <span className={styles.reviewChip} data-review={status??'pending'}>{status?REVIEW_LABEL[status]:'확인 전'}</span></div>
   {row.feedback&&!writing&&<p className={styles.reviewFeedback}><b>{status===null?'지난 피드백':'피드백'}</b> {row.feedback}</p>}
   <div className={styles.row}>
-   <a className={styles.btn} aria-label={`${row.number}번 제출 작품 열기`} href={href}>작품 열기</a>
+   <SubmissionPreview item={item} row={row}/>
+   <a className={styles.btn} aria-label={`${row.number}번 제출 작품 열기`} href={href}>서재에서 열기</a>
    <button className={styles.btn} aria-label={`${row.number}번 제출 작품 파일 받기`} onClick={onOpenFile}>파일 받기</button>
    <button className={`${styles.btn} ${styles.primary}`} disabled={busy||status==='passed'} aria-label={`${row.number}번 통과`} onClick={()=>void decide('passed')}>통과</button>
    <button className={styles.btn} disabled={busy} aria-label={`${row.number}번 다시 쓰기 요청`} aria-expanded={writing} onClick={()=>{setWriting(value=>!value);setError('');}}>다시 쓰기</button>

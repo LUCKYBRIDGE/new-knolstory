@@ -148,3 +148,17 @@ test('members keep online works too, see their usage, and get a plain answer at 
  const focus=await upload(page,'일반 계정 원고');
  await expect(focus.getByRole('alert')).toContainText('온라인 작품을 더 올릴 수 없어요');
 });
+
+test('the editor shows whether the online copy is current and saves it with one button',async({page})=>{
+ const remote=await onlineHarness(page);
+ await page.goto('/?view=library');await onlineReady(page);
+ await createLocal(page,'편집 화면 저장','첫 문장이에요.');
+ await page.getByRole('button',{name:/^온라인에 아직 없어요/}).click();
+ await expect(page.getByRole('button',{name:'온라인 사본도 최신이에요'})).toBeDisabled();
+ expect((remote.created() as {snapshot:{content:{document:{project:{title:string}}}}}).snapshot.content.document.project.title).toBe('편집 화면 저장');
+ await page.getByLabel('1컷 글',{exact:true}).fill('고친 문장이에요.');
+ await expect(page.getByRole('button',{name:/^온라인 사본이 예전 상태예요/})).toBeEnabled();
+ // On a phone the button keeps its place as an icon.
+ await page.setViewportSize({width:390,height:844});
+ await expect(page.getByRole('button',{name:/^온라인 사본이 예전 상태예요/})).toBeVisible();
+});
