@@ -1,4 +1,5 @@
 'use client';
+import {TaskTemplate} from './task-template';
 import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
 import {assignmentCreate,assignmentDelete,assignmentList,assignmentUpdate,submissionList,submissionOpen,submissionReview,ClassroomError,type Assignment,type AssignmentFormat,type SubmissionRow} from '../../lib/classroom-api';
 import {downloadSubmissionFile,formatSubmittedAt} from '../../lib/classroom-local';
@@ -80,6 +81,7 @@ function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:
   {item.description&&<p className={styles.hint}>{item.description}</p>}
   <div className={styles.factsRow}><TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
   <RecipientFacts title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/></div>
+  <TaskTemplate item={item} csrf={csrf} run={run} onChanged={onChanged}/>
   <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
   <div className={styles.taskActions}>
    <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 제출 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':rows?`제출 목록 새로고침 · ${rows.length}명`:'제출 보기'}</button>

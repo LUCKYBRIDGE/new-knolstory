@@ -38,7 +38,8 @@ export async function classroomBytes(client:SqlClient,classroomId:string):Promis
  const result=await client.query(`SELECT
   (SELECT COALESCE(sum(d.byte_length),0) FROM knolstory_storage.private_documents d WHERE d.owner_account_id IN
     (SELECT teacher_account_id FROM knolstory_class.classrooms WHERE id=$1 UNION ALL SELECT account_id FROM knolstory_class.students WHERE classroom_id=$1))
-  +(SELECT COALESCE(sum(s.byte_length),0) FROM knolstory_class.submissions s JOIN knolstory_class.students st ON st.account_id=s.student_account_id WHERE st.classroom_id=$1) AS bytes`,[classroomId]);
+  +(SELECT COALESCE(sum(s.byte_length),0) FROM knolstory_class.submissions s JOIN knolstory_class.students st ON st.account_id=s.student_account_id WHERE st.classroom_id=$1)
+  +(SELECT COALESCE(sum(a.template_byte_length),0) FROM knolstory_class.assignments a WHERE a.classroom_id=$1) AS bytes`,[classroomId]);
  return big(result.rows[0]?.bytes);
 }
 /** Per student: personal online works plus submissions, for the teacher's usage view. */
@@ -74,6 +75,13 @@ export async function assertCanStore(client:SqlClient,accountId:string,role:Stor
  if(change.deltaBytes<=0)return;
  if(usage.bytesLimit!==null&&usage.bytes+change.deltaBytes>usage.bytesLimit)throw new DocumentServiceError('ACCOUNT_STORAGE_FULL',409);
  if(usage.classroom&&usage.classroom.bytes+change.deltaBytes>usage.classroom.limit)throw new DocumentServiceError('CLASSROOM_STORAGE_FULL',409);
+}
+/** A task template is the teacher's upload: one work's size and the normal 300MB pool apply. */
+export async function assertCanStoreTemplate(client:SqlClient,classroomId:string,deltaBytes:number,bytes:number):Promise<'ok'|'work-too-large'|'classroom-full'>{
+ if(bytes>STORAGE_LIMITS.workBytes)return 'work-too-large';
+ await lockPool(client,classroomId);
+ if(deltaBytes>0&&await classroomBytes(client,classroomId)+deltaBytes>STORAGE_LIMITS.classroomBytes)return 'classroom-full';
+ return 'ok';
 }
 /** Homework uses the student's submission space (10MB, apart from personal works). It may run the
  * classroom past its normal 300MB, but never past the 400MB ceiling. */

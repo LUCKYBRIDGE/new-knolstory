@@ -18,7 +18,7 @@ import {ServiceNavigation} from '../../components/service-navigation';
 import {serviceLinks} from '../../lib/service-navigation';
 import {AccountMenu} from '../../components/account-menu';
 import {onlineEnabled} from '../../lib/online-mode';
-import {assignmentList,submissionOpen} from '../../lib/classroom-api';
+import {assignmentList,submissionOpen,templateGet} from '../../lib/classroom-api';
 import {useClassroomMe} from '../../components/use-classroom-me';
 import {createOnlineWorkStore,saveOnlineWork} from '../../lib/online-work-bindings';
 import type {OnlineDocument} from '../../lib/document-api';
@@ -194,11 +194,15 @@ export function ShortStoryWorkspace() {
     const base=latest.current??library;
     const existing=base.books.find(book=>`shortstory:${book.id}`===savedKey);
     if(existing){switchBook(existing.id);return;}
-    const storyKey=forced??task.storyKey;
-    if(!storyKey&&!classroom.permissions.newWorks)throw Error('선생님께 과제의 바탕 작품을 확인해 주세요.');
+    // A teacher template wins over a base book: the student continues the teacher's own book.
+    const fromTemplate=task.template?await restoreJsonbSnapshot(await templateGet(task.id,(input,init)=>fetch(input,{...init,signal:controller.signal}))):null;
+    if(controller.signal.aborted||generation!==onlineGeneration.current)return;
+    if(fromTemplate&&fromTemplate.format!=='shortstory')throw Error('과제 양식이 숏스토리 작품이 아니에요. 선생님께 확인해 주세요.');
+    const storyKey=fromTemplate?null:forced??task.storyKey;
+    if(!fromTemplate&&!storyKey&&!classroom.permissions.newWorks)throw Error('선생님께 과제의 바탕 작품을 확인해 주세요.');
     const source=isShortStoryWorkKey(storyKey)?getShortStoryOriginal(storyKey):undefined;
     if(storyKey&&!source)throw Error('바탕 그림책을 찾지 못했어요.');
-    const made=source?copyShortStoryBook(base,source):addShortStoryBook(base,{...newShortStory(),title:task.title});
+    const made=fromTemplate&&fromTemplate.format==='shortstory'?addShortStoryBook(base,{...fromTemplate.project,id:crypto.randomUUID()}):source?copyShortStoryBook(base,source):addShortStoryBook(base,{...newShortStory(),title:task.title});
     // Student works always start with the class number.
     const known=new Set(base.books.map(book=>book.id)),next={...made,books:made.books.map(book=>known.has(book.id)?book:{...book,title:studentTitle(book.title)})};
     if(!commit(next))return;

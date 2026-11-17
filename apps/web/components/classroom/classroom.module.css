@@ -356,3 +356,7 @@
 
 /* Work task count in the create summary (20 per classroom). */
 .taskCount{font-weight:400;color:var(--ink-soft,#6b6257)}
+
+/* Task template line in a writing task (2026-11-18). */
+.templateRow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:6px 0}
+.templateRow>span{flex:1 1 220px;min-width:0;font-size:var(--text-small)}
