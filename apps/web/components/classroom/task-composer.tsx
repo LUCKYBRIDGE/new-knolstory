@@ -1,4 +1,5 @@
 'use client';
+import {PhoneFold} from './phone-fold';
 import styles from './classroom.module.css';
 export type TaskRequest=Readonly<{kind:'knolstory'|'shortstory'|'provided'|'reading'|'worksheet'|'custom';nonce:number}>;
 const CHOICES:readonly {kind:TaskRequest['kind'];title:string;hint:string}[]=[
@@ -11,9 +12,11 @@ const CHOICES:readonly {kind:TaskRequest['kind'];title:string;hint:string}[]=[
 ];
 /** One place to start any task; the matching form opens below. */
 export function TaskComposer({onPick}:{onPick:(kind:TaskRequest['kind'])=>void}){
+ // Phones fold the six choices into one line so the class's tasks stay near the top; a pick folds it again.
  return <section className={`${styles.card} ${styles.composer}`} aria-label="새 과제 내기">
-  <div className={styles.sectionHeading}><div><span className={styles.eyebrow}>무엇을 낼까요?</span><h2>새 과제 내기</h2></div></div>
-  <p className={styles.hint}>종류를 고르면 알맞은 양식이 열려요. 마감일은 선택이에요. 학생은 모든 과제를 ‘할 일’ 한 목록에서 봐요.</p>
-  <ul className={styles.composerChoices}>{CHOICES.map(choice=><li key={choice.kind}><button type="button" className={styles.composerChoice} data-kind={choice.kind} onClick={()=>onPick(choice.kind)}><strong>{choice.title}</strong><small>{choice.hint}</small></button></li>)}</ul>
+  <PhoneFold eyebrow="무엇을 낼까요?" title="새 과제 내기">
+   <p className={styles.hint}>종류를 고르면 알맞은 양식이 열려요. 마감일은 선택이에요. 학생은 모든 과제를 ‘할 일’ 한 목록에서 봐요.</p>
+   <ul className={styles.composerChoices}>{CHOICES.map(choice=><li key={choice.kind}><button type="button" className={styles.composerChoice} data-kind={choice.kind} data-fold-after onClick={()=>onPick(choice.kind)}><strong>{choice.title}</strong><small>{choice.hint}</small></button></li>)}</ul>
+  </PhoneFold>
  </section>;
 }

@@ -24,9 +24,9 @@ function Gate({roles,guest,children,active='assignments'}:Omit<Props,'title'>){
  if(state.loading&&!settled)return <p className={styles.card} role="status">확인 중이에요.</p>;
  if(state.error)return <p className={styles.card} role="alert">{state.error} 잠시 뒤 다시 열어 주세요.</p>;
  if(state.loading&&state.role==='guest')return <p className={styles.card} role="status">학급 정보를 확인하고 있어요.</p>;
- if(state.role==='guest'&&guest)return <><ServiceNavigation role="student" active={active}/>{guest}</>;
- if(state.role==='guest'||!roles.includes(state.role))return <><ServiceNavigation role={state.role} active={null}/><NextStep state={state} roles={roles}/></>;
- return <><ServiceNavigation role={state.role} active={active}/>{children(state)}</>;
+ if(state.role==='guest'&&guest)return <><div className={styles.navPin}><ServiceNavigation role="student" active={active}/></div>{guest}</>;
+ if(state.role==='guest'||!roles.includes(state.role))return <><div className={styles.navPin}><ServiceNavigation role={state.role} active={null}/></div><NextStep state={state} roles={roles}/></>;
+ return <><div className={styles.navPin}><ServiceNavigation role={state.role} active={active}/></div>{children(state)}</>;
 }
 
 /** A page the account cannot open still says what to do next, with the action right there. */

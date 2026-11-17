@@ -8,6 +8,7 @@ import {MissionsPanel} from './missions-panel';
 import {PermissionEditor} from './permission-editor';
 import {StudentTable} from './student-table';
 import {SeasonNote} from './season-note';
+import {PhoneFold} from './phone-fold';
 import {TaskComposer,type TaskRequest} from './task-composer';
 import {StudentQrPrintWorkspace} from './student-qr-print';
 import styles from './classroom.module.css';
@@ -49,16 +50,16 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
    {panel==='settings'&&<details><summary>학급 코드 바꾸기</summary>{confirmCode?<div className={styles.row}><span>새 코드를 만들면 학생은 새 코드로 로그인해야 해요.</span><button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>{setConfirmCode(false);void mutate(()=>classroomUpdate({regenerateCode:true},csrf),'학급 코드를 새로 만들었어요.');}}>새로 만들기</button><button className={styles.btn} onClick={()=>setConfirmCode(false)}>취소</button></div>
     :<button className={styles.btn} disabled={busy} onClick={()=>setConfirmCode(true)}>학급 코드 새로 만들기</button>}</details>}</div>
   </section>
-  <SeasonNote createdAt={classroom.createdAt} audience="teacher"/>
+  <SeasonNote createdAt={classroom.createdAt} audience="teacher" onlyWhenSoon={panel!=='settings'}/>
   {panel==='assignments'&&<><TaskComposer onPick={kind=>setTaskRequest({kind,nonce:Date.now()})}/><AssignmentsPanel csrf={csrf} run={run} students={classroom.students} request={taskRequest}/><MissionsPanel csrf={csrf} students={classroom.students} request={taskRequest}/></>}
   {panel==='students'&&<>
-   <section className={styles.card} aria-label="학생 만들기"><h2>학생 만들기</h2>
+   <section className={styles.card} aria-label="학생 만들기"><PhoneFold title="학생 만들기" foldOnPhone={classroom.students.length>0}>
     <p className={styles.hint} id="student-create-hint">{remaining>0?<>빈 번호부터 차례로 만들어요. 지금 {classroom.students.length}명, {remaining}명 더 만들 수 있어요.</>:'학급 인원 30명을 모두 만들었어요.'}</p>
     <form className={styles.row} onSubmit={event=>{event.preventDefault();const n=Number(count);if(Number.isInteger(n)&&n>=1&&n<=remaining){const before=new Set(classroom.students.map(student=>student.number));let made:Classroom|undefined;void mutate(async()=>made=await studentsCreate(n,csrf),`학생 ${n}명을 만들었어요. 바로 QR을 보여 드릴게요.`).then(done=>{if(!done)return;setCount('1');const fresh=made?.students.map(student=>student.number).filter(number=>!before.has(number))??[];if(fresh.length)setNewQr(fresh);});}else setError(`1명에서 ${remaining}명 사이로 써 주세요.`);}}>
      <label className={styles.field}>만들 학생 수<input value={count} onChange={event=>setCount(event.target.value.replace(/[^0-9]/g,''))} inputMode="numeric" size={4} disabled={remaining<1} aria-describedby="student-create-hint"/></label>
      <button className={`${styles.btn} ${styles.primary}`} disabled={busy||remaining<1}>학생 만들기</button>
     </form>
-   </section>
+   </PhoneFold></section>
    <section className={`${styles.card} ${styles.roster}`} aria-label="학생 목록"><h2>학생</h2>
     <StudentTable classroom={classroom} csrf={csrf} run={run} onChanged={next=>void reload(next)}/>
    </section>

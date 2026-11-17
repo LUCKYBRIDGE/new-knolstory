@@ -3,6 +3,7 @@ import axe from 'axe-core';
 import {confirmAuthoringImport,parseAuthoringFile} from './authoring-file';
 import {readFile} from 'node:fs/promises';
 import {startShelfCreation} from './library-entry';
+import {classroomSeason} from '../../apps/web/lib/classroom-season';
 // Fullscreen prompting has its own coverage.
 test.beforeEach(async({page})=>{await page.addInitScript(()=>{if(window===window.top)sessionStorage.setItem('knolstory-fullscreen-offered-v1','1');});});
 
@@ -99,10 +100,13 @@ test('teacher builds a class, edits students, bulk-applies 글만 and runs an as
  await page.goto('/teacher');
  await expect(page.getByRole('heading',{name:'학급 만들기'})).toBeVisible();
  await page.getByLabel('학급 이름').fill('3반');await page.getByRole('button',{name:'학급 만들기',exact:true}).click();
+ // The season notice waits in settings until its last weeks, so the day's work starts higher.
+ await expect(page.getByRole('note').filter({hasText:'학급 자료는'})).toHaveCount(classroomSeason(undefined).soon?1:0);
  // The login code is visible right away on the first tab, not only in settings.
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await expect(page.getByText('학급 코드 바꾸기',{exact:true})).toHaveCount(0);
  await page.getByRole('link',{name:'학급 설정',exact:true}).click();
+ await expect(page.getByRole('note').filter({hasText:'학급 자료는'})).toBeVisible();
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await page.getByRole('navigation',{name:'주 메뉴',exact:true}).getByRole('link',{name:'학생',exact:true}).click();
  await page.getByLabel('만들 학생 수').fill('3');await page.getByRole('button',{name:'학생 만들기',exact:true}).click();
@@ -299,7 +303,10 @@ test('teacher manages students on a phone without horizontal scrolling',async({p
  await expect(page.getByLabel('1번 이름',{exact:true})).toHaveValue('하늘');
  const table=page.locator('table');
  expect(await table.evaluate(node=>node.getBoundingClientRect().width)).toBeLessThanOrEqual(366);
+ // Per-student tools stay folded on a phone until that student is opened.
  const password=page.getByRole('button',{name:'1번 비밀번호 보기',exact:true});
+ await expect(password).toBeHidden();
+ await page.getByRole('button',{name:'1번 관리 펼치기',exact:true}).click();
  await password.click();
  await expect(page.getByLabel('1번 비밀번호',{exact:true})).toHaveText('1234');
  await page.getByLabel('1번 선택',{exact:true}).check();
@@ -653,6 +660,9 @@ test('creating students opens their QR cards at once, with a zoomed view to show
  state.classroom={id:'c1',name:'우리 반',classCode:'ABC234',defaultPermissions:all,students:[{number:1,name:'하늘',password:'1234',permissions:null,hasQr:false}]};
  await page.setViewportSize({width:390,height:844});
  await page.goto('/teacher?tab=students');
+ // With students already in the class, a phone keeps the create form folded under its heading.
+ await expect(page.getByLabel('만들 학생 수',{exact:true})).toBeHidden();
+ await page.getByText('학생 만들기',{exact:true}).first().click();
  await page.getByLabel('만들 학생 수',{exact:true}).fill('3');
  await page.getByRole('button',{name:'학생 만들기',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'학생 로그인 QR',exact:true});
