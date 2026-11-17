@@ -9,6 +9,7 @@ import {PermissionEditor} from './permission-editor';
 import {StudentTable} from './student-table';
 import {SeasonNote} from './season-note';
 import {PhoneFold} from './phone-fold';
+import {ClassStorage} from './class-storage';
 import {TaskComposer,type TaskRequest} from './task-composer';
 import {StudentQrPrintWorkspace} from './student-qr-print';
 import styles from './classroom.module.css';
@@ -51,6 +52,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
     :<button className={styles.btn} disabled={busy} onClick={()=>setConfirmCode(true)}>학급 코드 새로 만들기</button>}</details>}</div>
   </section>
   <SeasonNote createdAt={classroom.createdAt} audience="teacher" onlyWhenSoon={panel!=='settings'}/>
+  {panel!=='students'&&<ClassStorage classroom={classroom} quiet/>}
   {panel==='assignments'&&<><TaskComposer onPick={kind=>setTaskRequest({kind,nonce:Date.now()})}/><AssignmentsPanel csrf={csrf} run={run} students={classroom.students} request={taskRequest}/><MissionsPanel csrf={csrf} students={classroom.students} request={taskRequest}/></>}
   {panel==='students'&&<>
    <section className={styles.card} aria-label="학생 만들기"><PhoneFold title="학생 만들기" foldOnPhone={classroom.students.length>0}>
@@ -60,6 +62,7 @@ export function TeacherDashboard({session,panel='assignments'}:{session:AccountS
      <button className={`${styles.btn} ${styles.primary}`} disabled={busy||remaining<1}>학생 만들기</button>
     </form>
    </PhoneFold></section>
+   <ClassStorage classroom={classroom}/>
    <section className={`${styles.card} ${styles.roster}`} aria-label="학생 목록"><h2>학생</h2>
     <StudentTable classroom={classroom} csrf={csrf} run={run} onChanged={next=>void reload(next)}/>
    </section>

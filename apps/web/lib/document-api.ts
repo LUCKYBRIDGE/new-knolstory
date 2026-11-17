@@ -1,3 +1,4 @@
+import {assertUploadSize} from './online-storage';
 import {prepareJsonbSnapshot,restoreJsonbSnapshot,type AuthoringJsonbSnapshot} from '@knolstory/compatibility';
 export type OnlineDocumentMetadata=Readonly<{recordId:string;revision:number;format:'knolstory'|'shortstory';clientProjectId:string;title:string;contentSha256:string;createdAt:number;updatedAt:number;stateVersion?:number;deletedAt?:number|null}>;
 export type OnlineDocument=OnlineDocumentMetadata&Readonly<{snapshot:AuthoringJsonbSnapshot}>;
@@ -11,6 +12,10 @@ const documentErrorMessages:ReadonlyMap<string,string>=new Map([
  ['SESSION_REQUIRED','다시 로그인해 주세요.'],
  ['CATALOG_MEDIA_REQUIRED','온라인 업로드에는 서비스에 등록된 그림과 소리만 사용할 수 있어요. 기기의 원고는 유지돼요.'],
  ['RATE_LIMITED','지금 요청이 많아요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 그대로 있어요.'],
+ ['WORK_LIMIT_REACHED','온라인 작품을 더 올릴 수 없어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요. 휴지통에 있는 작품도 개수에 들어가요. 기기의 원고는 그대로 있어요.'],
+ ['ACCOUNT_STORAGE_FULL','내 온라인 저장 공간이 가득 찼어요. 쓰지 않는 온라인 작품을 지운 뒤 다시 올려 주세요. 기기의 원고는 그대로 있어요.'],
+ ['CLASSROOM_STORAGE_FULL','학급 저장 공간이 가득 찼어요. 선생님께 알려 주세요. 기기의 원고는 그대로 있어요.'],
+ ['WORK_TOO_LARGE','작품이 너무 커서 온라인에 올리지 못했어요. 작품 파일로 저장해 주세요. 기기의 원고는 그대로 있어요.'],
  ['SERVER_BUSY','지금 저장하는 사람이 많아요. 잠시 뒤 다시 시도해 주세요. 기기의 원고는 그대로 있어요.'],
  ['REQUEST_TOO_LARGE','작품이 너무 커서 온라인에 올리지 못했어요. 작품 파일로 저장해 주세요. 기기의 원고는 그대로 있어요.'],
  ['INVALID_SNAPSHOT','작품 내용을 확인하지 못해 업로드하지 않았어요. 기기의 원고는 유지돼요.'],
@@ -37,7 +42,7 @@ async function request(path:string,fetcher:typeof fetch,options:RequestInit={},e
  let response:Response,value:unknown;
  try{response=await fetcher(path,{credentials:'same-origin',cache:'no-store',redirect:'error',...options});value=await response.json();}catch{throw new OnlineDocumentError('SERVICE_UNAVAILABLE',503);}
  if(!response.ok){
-  const allowed=['ACCOUNT_SESSION_CHANGED','SESSION_REQUIRED','NOT_FOUND','REVISION_CONFLICT','IDEMPOTENCY_CONFLICT','DOCUMENT_IDENTITY_CONFLICT','CATALOG_MEDIA_REQUIRED','INVALID_SNAPSHOT','INVALID_REQUEST','RATE_LIMITED','SERVER_BUSY','REQUEST_TOO_LARGE','DOCUMENT_TRASHED','DOCUMENT_STATE_CONFLICT'];
+  const allowed=['ACCOUNT_SESSION_CHANGED','SESSION_REQUIRED','NOT_FOUND','REVISION_CONFLICT','IDEMPOTENCY_CONFLICT','DOCUMENT_IDENTITY_CONFLICT','CATALOG_MEDIA_REQUIRED','INVALID_SNAPSHOT','INVALID_REQUEST','RATE_LIMITED','SERVER_BUSY','REQUEST_TOO_LARGE','WORK_LIMIT_REACHED','ACCOUNT_STORAGE_FULL','CLASSROOM_STORAGE_FULL','WORK_TOO_LARGE','DOCUMENT_TRASHED','DOCUMENT_STATE_CONFLICT'];
   const error=object(value)&&object(value.error)?value.error:{};
   const code=typeof error.code==='string'&&allowed.includes(error.code)?error.code:'SERVICE_UNAVAILABLE';
   throw new OnlineDocumentError(code,response.status,code==='REVISION_CONFLICT'&&integer(error.actualRevision,1)?error.actualRevision:undefined);
@@ -63,6 +68,7 @@ export async function documentRead(id:string,fetcher:typeof fetch=fetch,expected
 async function write(id:string|undefined,snapshot:AuthoringJsonbSnapshot,revision:number|undefined,key:string,csrf:string,fetcher:typeof fetch,expectedAccountId?:string):Promise<OnlineDocumentReceipt>{
  if(typeof key!=='string'||!/^[A-Za-z0-9_-]{1,128}$/.test(key)||typeof csrf!=='string'||!csrf||revision!==undefined&&!integer(revision,1))throw new OnlineDocumentError('INVALID_REQUEST',400);
  const captured=structuredClone(snapshot);
+ try{assertUploadSize(captured);}catch{throw new OnlineDocumentError('WORK_TOO_LARGE',413);}
  const data=await request('/api/v1/documents'+(id?`/${recordId(id)}`:''),fetcher,{method:id?'PUT':'POST',headers:{'content-type':'application/json','x-csrf-token':csrf,'idempotency-key':key},body:JSON.stringify({payloadVersion:1,snapshot:captured,...(revision!==undefined?{expectedRevision:revision}:{})})},expectedAccountId);
  if(typeof data.recordId!=='string'||!uuid.test(data.recordId)||!integer(data.revision,1)||typeof data.contentSha256!=='string'||!hash.test(data.contentSha256)||typeof data.replayed!=='boolean'||id!==undefined&&data.recordId!==id||data.contentSha256!==captured.contentSha256||revision!==undefined&&data.revision!==revision+1)throw invalid();
  return {recordId:data.recordId,revision:data.revision,contentSha256:data.contentSha256,replayed:data.replayed};

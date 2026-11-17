@@ -160,7 +160,7 @@ and a 1 TB disk limit.
 
 | Container | CPUs | Memory | Notes |
 |---|---|---|---|
-| API | 4 | 3.5 GB | 4 worker processes on one port, 640 MB heap and 10 DB connections each |
+| API | 4 | 5 GB | 4 worker processes on one port, 1 GB heap and 10 DB connections each |
 | DB | 4 | 3 GB | `shared_buffers=768MB`, `effective_cache_size=2GB`, `max_connections=100` |
 | Ingress | 2 | 512 MB | forwards Cloudflare's visitor address |
 
@@ -172,7 +172,9 @@ and a 1 TB disk limit.
   minute: online works 300, sign-in 300, classroom 1,800 (a class shares a school address).
   Each worker enforces its share, so failed-login ceilings stay the same in total.
 - **Uploads:** online works and assignment submissions use only catalog media, so they are
-  JSON text, usually tens of KB. The body limit is 8 MB. Each worker also holds at most
+  JSON text, usually tens of KB (the largest built-in adaptation is 1.1 MB). One work may be
+  16 MB (body limit 17 MB, 90 s to arrive; the ingress waits 95 s, under Cloudflare's 100 s).
+  Account and classroom limits are in `documents/quota.ts` and `docs/architecture/classroom-design.md`. Each worker also holds at most
   24 MB of large bodies at once; more gets `503 SERVER_BUSY` with `Retry-After` and the
   device keeps its copy. Before this, two 8.5 MB saves at the same time exhausted the heap.
 - **Crash isolation:** a worker that stops is replaced while the others keep serving.

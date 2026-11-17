@@ -105,7 +105,7 @@ import { storySceneLayout, type PreviewProfile } from "../lib/story-viewport";
 import {BookIntroduction} from './book-introduction';
 import {BookStart} from './book-start';
 import {EditorRelatedMemos} from './editor-related-memos';
-import {useEditorLimits,MEMBER_WORK_LIMIT} from './use-editor-limits';
+import {useEditorLimits} from './use-editor-limits';
 import {BUILTIN_WORKS} from '../lib/builtin-works';
 import {restrictEditorPreferences} from '../lib/editing-permissions';
 import {BookCoverEditor} from './book-cover-editor';
@@ -213,7 +213,6 @@ export function StoryWorkspace() {
   /** Why a new personal work cannot be made right now, or null. */
   function newWorkBlocked(){
     if(!editorLimits.permissions.newWorks)return '선생님이 새 작품 만들기를 막아 두었어요.';
-    if(editorLimits.role==='member'&&Object.keys(savedProjects.current).filter(isPersonalWork).length>=MEMBER_WORK_LIMIT)return `내 작품은 ${MEMBER_WORK_LIMIT}개까지 만들 수 있어요. 쓰지 않는 작품을 지운 뒤 다시 해 주세요.`;
     return null;
   }
   const editingScreen=editorPreferences.screen;

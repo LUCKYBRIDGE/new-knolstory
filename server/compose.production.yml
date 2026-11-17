@@ -63,7 +63,7 @@ services:
       # Worker processes share the port; a crashed worker is replaced while the others keep serving.
       KNOLSTORY_API_WORKERS: '4'
       KNOLSTORY_DB_POOL_MAX: '10'
-      NODE_OPTIONS: --max-old-space-size=640
+      NODE_OPTIONS: --max-old-space-size=1024
       # Only the ingress can reach the API; it forwards Cloudflare's visitor address for rate buckets.
       KNOLSTORY_TRUST_CLIENT_IP: '1'
     volumes:
@@ -72,7 +72,7 @@ services:
     networks: [database, service, outbound]
     depends_on:
       db: {condition: service_healthy}
-    mem_limit: 3584m
+    mem_limit: 5g
     cpus: 4
     init: true
     read_only: true

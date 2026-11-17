@@ -2,6 +2,8 @@
 import {useCallback,useEffect,useState} from 'react';
 import {assignmentList,submissionMine,submissionPut,ClassroomError,describeEditingPermissions,type Assignment,type ClassroomMe} from '../../lib/classroom-api';
 import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWorkSnapshot,type LocalWorkChoice} from '../../lib/classroom-local';
+import {documentList,documentRead} from '../../lib/document-api';
+import {formatBytes} from '../../lib/online-storage';
 import type {AccountSession} from '../../lib/account-api';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
@@ -16,25 +18,31 @@ import {shareLinkHost} from '../../lib/share-link';
 import styles from './classroom.module.css';
 export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSession}){
  const student=me.student!;
- const [assignments,setAssignments]=useState<Assignment[]|null>(null),[works,setWorks]=useState<LocalWorkChoice[]>([]),[error,setError]=useState('');
+ const [assignments,setAssignments]=useState<Assignment[]|null>(null),[works,setWorks]=useState<LocalWorkChoice[]>([]),[online,setOnline]=useState<OnlineChoice[]>([]),[error,setError]=useState('');
+ const accountId=session.accountId;
  const load=useCallback(async()=>{
   try{setWorks(listLocalWorks());setAssignments(await assignmentList());setError('');}
   catch(issue){setError(issue instanceof ClassroomError?issue.message:'과제와 기기의 작품을 불러오지 못했어요.');}
- },[]);
+  // Personal online works can be handed in too; the device list still works if this fails.
+  try{const list=await documentList(fetch,undefined,accountId);setOnline(list.documents.filter(item=>!item.deletedAt).map(item=>({key:`online:${item.recordId}`,title:`${item.title||'제목 없는 작품'} · 내 온라인 작품`,format:item.format})));}catch{setOnline([]);}
+ },[accountId]);
+ const storage=me.storage;
  useEffect(()=>{const timer=window.setTimeout(()=>{void load();},0);return()=>window.clearTimeout(timer);},[load]);
  const limits=describeEditingPermissions(student.permissions);
  return <>
   <section className={styles.studentBanner} aria-label="내 정보"><div className={styles.studentNumber} aria-hidden="true">{student.number}<small>번</small></div><div><span className={styles.eyebrow}>나의 이야기 자리</span><h2>{student.className} {student.number}번 {student.name}</h2>
-   <p className={styles.hint}>내 작품은 이 기기에 있어요. 과제를 낼 때 선생님께 보내져요.</p></div></section>
+   <p className={styles.hint}>내 작품은 이 기기와 내 온라인 공간에 있어요. 과제를 내면 그 순간의 작품이 제출 공간에 따로 보관돼요.</p>
+   {storage?.bytesLimit&&storage.submissions&&<p className={styles.hint} aria-label="내 온라인 공간">개인 {formatBytes(storage.bytes)} / {formatBytes(storage.bytesLimit)} · 제출 {formatBytes(storage.submissions.bytes)} / {formatBytes(storage.submissions.limit)}</p>}</div></section>
   <StudentTodo key={session.accountId} accountId={session.accountId} csrf={session.csrf} assignments={assignments} assignmentError={error} onReload={load}
-   card={item=><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(item.format==='shortstory'))} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} forcedStoryKey={student.permissions.forcedStoryKey}/>}/>
+   card={item=><AssignmentCard assignment={item} works={works.filter(work=>work.key.startsWith('shortstory:')===(item.format==='shortstory'))} online={online.filter(work=>work.format===item.format)} accountId={session.accountId} csrf={session.csrf} onDone={load} canCreate={student.permissions.newWorks} forcedStoryKey={student.permissions.forcedStoryKey}/>}/>
   {/* What to do comes first; the rules and the season's end date follow the tasks. */}
   <SeasonNote createdAt={student.classCreatedAt} audience="student"/>
   <details className={`${styles.card} ${styles.permissionNote}`}><summary>내가 고칠 수 있는 것</summary>
    {limits.length?<ul className={styles.rowsList}>{limits.map(line=><li key={line}>{line}</li>)}</ul>:<p className={styles.hint}>모두 고칠 수 있어요.</p>}</details>
  </>;
 }
-function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,accountId}:{assignment:Assignment;works:LocalWorkChoice[];csrf:string;onDone:()=>Promise<void>;canCreate:boolean;forcedStoryKey:string|null;accountId:string}){
+type OnlineChoice=Readonly<{key:string;title:string;format:'knolstory'|'shortstory'}>;
+function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forcedStoryKey,accountId}:{assignment:Assignment;works:LocalWorkChoice[];online?:readonly OnlineChoice[];csrf:string;onDone:()=>Promise<void>;canCreate:boolean;forcedStoryKey:string|null;accountId:string}){
  const [key,setKey]=useState(''),[busy,setBusy]=useState(false),[notice,setNotice]=useState(''),[error,setError]=useState('');
  const submitted=assignment.submittedAt;
  const [draftKey,setDraftKey]=useState('');
@@ -58,15 +66,17 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
   finally{setBusy(false);}
  }
 
+ /** A copy of the chosen work as it is now: from this device, or from the personal online space. */
+ async function snapshotOf(choice:string){return choice.startsWith('online:')?(await documentRead(choice.slice(7),fetch,accountId)).snapshot:localWorkSnapshot(choice);}
  async function saveFile(){
   if(!key||busy)return;setBusy(true);setError('');setNotice('');
-  try{const snapshot=await localWorkSnapshot(key);await downloadSubmissionFile(snapshot,works.find(work=>work.key===key)?.title||assignment.title);setNotice('작품 파일을 이 기기에 저장했어요. 제출 링크로 들어가 올려 주세요.');}
+  try{const snapshot=await snapshotOf(key);await downloadSubmissionFile(snapshot,[...works,...online].find(work=>work.key===key)?.title||assignment.title);setNotice('작품 파일을 이 기기에 저장했어요. 제출 링크로 들어가 올려 주세요.');}
   catch(issue){setError(issue instanceof Error?issue.message:'작품 파일을 저장하지 못했어요.');}
   finally{setBusy(false);}
  }
  async function submit(){
   if(!assignment.open||!key||busy)return;setBusy(true);setNotice('');setError('');
-  try{const snapshot=await localWorkSnapshot(key);await submissionPut(assignment.id,snapshot,csrf);setNotice('제출했어요.');await onDone();}
+  try{const snapshot=await snapshotOf(key);await submissionPut(assignment.id,snapshot,csrf);setNotice('제출했어요.');await onDone();}
   catch(issue){setError(issue instanceof ClassroomError?issue.message:issue instanceof Error?issue.message:'제출하지 못했어요.');}
   finally{setBusy(false);}
  }
@@ -87,8 +97,8 @@ function AssignmentCard({assignment,works,csrf,onDone,canCreate,forcedStoryKey,a
   {assignment.feedback&&<p className={styles.reviewFeedback}><b>{assignment.reviewStatus===null||assignment.reviewStatus===undefined?'지난 피드백':'선생님 피드백'}</b> {assignment.feedback}</p>}
   {submitted&&<button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button>}
   {assignment.open&&(draftKey||canCreate||assignment.storyKey||forcedStoryKey)&&<p><a className={`${styles.btn} ${styles.primary}`} href={`${assignment.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(assignment.format==='shortstory'?{mode:'library'}:{view:'editor'}),classTask:assignment.id})}`}>{draftKey?'이어서 쓰기':'과제 쓰기'}</a></p>}
-  {!assignment.open?<p className={styles.hint}>제출이 마감됐어요.</p>:works.length===0?<p className={styles.hint}>{canCreate||assignment.storyKey||forcedStoryKey?'이야기를 쓴 뒤 이곳에서 제출해 주세요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
-   :<div className={styles.submitRow}><label className={styles.field}>제출할 작품<select value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
+  {!assignment.open?<p className={styles.hint}>제출이 마감됐어요.</p>:works.length===0&&online.length===0?<p className={styles.hint}>{canCreate||assignment.storyKey||forcedStoryKey?'이야기를 쓴 뒤 이곳에서 제출해 주세요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
+   :<div className={styles.submitRow}><label className={styles.field}>제출할 작품<select value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
     <button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void submit()}>{submitted?'다시 제출':'제출'}</button></div>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}{error&&<p className={styles.error} role="alert">{error}</p>}
  </>;

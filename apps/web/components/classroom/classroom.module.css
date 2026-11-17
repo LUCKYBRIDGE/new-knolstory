@@ -344,3 +344,15 @@
  .table thead th:first-child{padding:0 0 4px}
  .table thead th:first-child .check{margin:0 8px 0 4px}
 }
+
+/* Class storage pool (2026-11-18): one quiet line, amber from 80%, red when over. */
+.storage{display:grid;gap:6px}
+.storageLine{display:flex;justify-content:space-between;gap:8px;margin:0;flex-wrap:wrap}
+.storage meter{width:100%;height:10px}
+.storageMessage{margin:0;font-weight:600;color:var(--warn-ink,#8a4b00)}
+.storage[data-level=over] .storageMessage{color:var(--danger,#b3261e)}
+.storageUsers ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px}
+.storageUsers li{display:flex;justify-content:space-between;gap:8px}
+
+/* Work task count in the create summary (20 per classroom). */
+.taskCount{font-weight:400;color:var(--ink-soft,#6b6257)}

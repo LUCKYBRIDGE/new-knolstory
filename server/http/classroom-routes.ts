@@ -115,7 +115,7 @@ const ROLES:Record<Exclude<Access,'public'>,readonly Role[]>={
 export function createClassroomRouter(options:ClassroomRouterOptions){
  const origin=validateAuthOrigin(options.origin),names=authCookieNames(origin),clock=options.clock??Date.now;
  const {authState,classroom}=options;
- const bodyLimit=options.bodyLimitBytes??8*1024*1024,bodyTimeout=options.bodyTimeoutMs??10000;
+ const bodyLimit=options.bodyLimitBytes??17*1024*1024,bodyTimeout=options.bodyTimeoutMs??90000;
  const general={windowMs:60_000,maxRequests:600,maxEntries:10_000,...options.rateLimit};
  for(const value of Object.values(general))if(!Number.isSafeInteger(value)||value<=0)throw Error('INVALID_CONFIG');
  const login={windowMs:600_000,perStudent:10,perClient:100,maxEntries:10_000,...options.loginRateLimit};
@@ -255,6 +255,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     recipients:input.recipients===undefined?null:recipientNumbers(input.recipients),
    });
   }},
+  {method:'DELETE',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.deleteAssignment(accountId,params[0]!)},
   {method:'PATCH',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'json',run({accountId,params,body}){
    const input=object(body,['title','description','open','shareUrl','dueAt','recipients']);
    if(!Object.keys(input).length||(input.open!==undefined&&typeof input.open!=='boolean'))throw bad();

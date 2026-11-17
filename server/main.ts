@@ -43,7 +43,7 @@ async function main(){
    else await auth(req,res);
   }catch{if(!res.headersSent)json(res,503,{success:false,error:{code:'SERVICE_UNAVAILABLE'}});else res.end();}
  });
- server.requestTimeout=15000;server.headersTimeout=10000;server.maxHeadersCount=50;
+ server.requestTimeout=100000;server.headersTimeout=10000;server.maxHeadersCount=50;
  const stop=createApiShutdown(server,pool,{exit:code=>process.exit(code)});
  process.on('SIGTERM',()=>stop());process.on('SIGINT',()=>stop());
  server.on('error',()=>{console.error('API listener failed.');stop(1);});
