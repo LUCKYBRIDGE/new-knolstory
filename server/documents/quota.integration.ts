@@ -17,8 +17,10 @@ const classroom=createClassroomService(pool,{secret:randomBytes(32),adminAccount
 const auth=createAuthStateService({origin:'https://knolstory.example',flowTtlMs:60000,sessionTtlMs:60000,csrfSecret:'s'.repeat(32)},createPostgresAuthStatePort(pool),()=>now);
 async function account(role:'member'|'teacher'){const id=randomUUID();await pool.query("INSERT INTO knolstory_auth.accounts(id,status,role) VALUES($1,'active',$2)",[id,role]);return id;}
 async function context(accountId:string,role:StorageRole):Promise<DocumentContext>{return {accountId,role,token:(await auth.issueSession(accountId)).token};}
-const snapshot=async()=>prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:newShortStory()}));
-const create=async(user:DocumentContext)=>documents.create(user,{payloadVersion:1,snapshot:await snapshot(),idempotencyKey:randomUUID()});
+const snapshot=async(title='')=>prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:{...newShortStory(),title}}));
+/** Student numbers come first in student titles (documents/student-title.ts). */
+const numbered=async(accountId:string)=>{const row=(await pool.query('SELECT number FROM knolstory_class.students WHERE account_id=$1',[accountId])).rows[0];return row?`${String(row.number).padStart(2,'0')}_작품`:'작품';};
+const create=async(user:DocumentContext)=>documents.create(user,{payloadVersion:1,snapshot:await snapshot(await numbered(user.accountId)),idempotencyKey:randomUUID()});
 async function code(action:Promise<unknown>){try{await action;}catch(error){if(error instanceof DocumentServiceError||error instanceof ClassroomError)return error.code;throw error;}return 'ok';}
 async function inflate(accountId:string,bytes:number){await pool.query('UPDATE knolstory_storage.private_documents SET byte_length=$2 WHERE record_id=(SELECT record_id FROM knolstory_storage.private_documents WHERE owner_account_id=$1 LIMIT 1)',[accountId,bytes]);}
 async function classWithStudent(){
@@ -70,11 +72,11 @@ describe('real PostgreSQL online storage limits',()=>{
   const {teacher,students}=await classWithStudent();
   const task=await classroom.createAssignment(teacher,{title:'숏스토리 과제',description:'',storyKey:null,format:'shortstory'});
   await create(await context(teacher,'teacher'));await inflate(teacher,300*MB);
-  expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
+  expect(await code(classroom.submit(students[0]!,task.id,await snapshot(await numbered(students[0]!))))).toBe('ok');
   await inflate(teacher,400*MB);
-  expect(await code(classroom.submit(students[1]!,task.id,await snapshot()))).toBe('CLASSROOM_STORAGE_FULL');
+  expect(await code(classroom.submit(students[1]!,task.id,await snapshot(await numbered(students[1]!))))).toBe('CLASSROOM_STORAGE_FULL');
   // Re-submitting the same size adds nothing, so it is still accepted.
-  expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
+  expect(await code(classroom.submit(students[0]!,task.id,await snapshot(await numbered(students[0]!))))).toBe('ok');
   const size=(await pool.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1',[task.id])).rows[0];
   expect(Number(size.byte_length)).toBeGreaterThan(100);
  });
@@ -84,26 +86,32 @@ describe('real PostgreSQL online storage limits',()=>{
   const student=await context(students[0]!,'student');await create(student);
   // A full personal space does not stop homework.
   await inflate(students[0]!,10*MB);
-  expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
+  expect(await code(classroom.submit(students[0]!,task.id,await snapshot(await numbered(students[0]!))))).toBe('ok');
   expect(await code(create(student))).toBe('ACCOUNT_STORAGE_FULL');
   const usage=(await classroom.me(students[0]!,'student')).storage!;
   expect(usage.bytes).toBe(10*MB);expect(usage.submissions!.limit).toBe(10*MB);expect(usage.submissions!.bytes).toBeGreaterThan(0);
   // A full submission space stops more homework, whatever the personal space holds.
   await pool.query('UPDATE knolstory_class.submissions SET byte_length=$2 WHERE student_account_id=$1',[students[0]!,10*MB]);
   const other=await classroom.createAssignment(teacher,{title:'둘째 과제',description:'',storyKey:null,format:'shortstory'});
-  expect(await code(classroom.submit(students[0]!,other.id,await snapshot()))).toBe('SUBMISSION_STORAGE_FULL');
+  expect(await code(classroom.submit(students[0]!,other.id,await snapshot(await numbered(students[0]!))))).toBe('SUBMISSION_STORAGE_FULL');
  });
  it('allows twenty work tasks per class and frees a slot and its space when one is deleted',async()=>{
   const {teacher,students}=await classWithStudent();
   const made=[];for(let i=0;i<20;i++)made.push(await classroom.createAssignment(teacher,{title:`과제 ${i+1}`,description:'',storyKey:null,format:'shortstory'}));
   expect(await code(classroom.createAssignment(teacher,{title:'21번째',description:'',storyKey:null,format:'shortstory'}))).toBe('ASSIGNMENT_LIMIT');
-  expect(await code(classroom.submit(students[0]!,made[0]!.id,await snapshot()))).toBe('ok');
+  expect(await code(classroom.submit(students[0]!,made[0]!.id,await snapshot(await numbered(students[0]!))))).toBe('ok');
   const before=(await classroom.getClassroom(teacher)).storage.bytes;expect(before).toBeGreaterThan(0);
   expect(await classroom.deleteAssignment(teacher,made[0]!.id)).toEqual({deleted:true,submissions:1});
   expect((await classroom.getClassroom(teacher)).storage.bytes).toBe(0);
   expect(await code(classroom.createAssignment(teacher,{title:'새 과제',description:'',storyKey:null,format:'shortstory'}))).toBe('ok');
   const other=await classWithStudent();
   expect(await code(classroom.deleteAssignment(other.teacher,made[1]!.id))).toBe('ASSIGNMENT_NOT_FOUND');
+ });
+ it('refuses a student work whose title lacks the class number',async()=>{
+  const {students}=await classWithStudent(),student=await context(students[0]!,'student');
+  expect(await code(documents.create(student,{payloadVersion:1,snapshot:await snapshot('번호 없는 작품'),idempotencyKey:randomUUID()}))).toBe('STUDENT_NUMBER_TITLE');
+  expect(await code(documents.create(student,{payloadVersion:1,snapshot:await snapshot('02_다른 번호'),idempotencyKey:randomUUID()}))).toBe('STUDENT_NUMBER_TITLE');
+  expect(await code(create(student))).toBe('ok');
  });
  it('serializes writes in one pool so two saves at the limit cannot both pass',async()=>{
   const user=await context(await account('member'),'member');

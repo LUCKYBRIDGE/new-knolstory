@@ -21,7 +21,8 @@ async function classroom(count:number){
  return {teacher,students};
 }
 const reading={title:'흥부와 놀부 읽기',description:'',criteria:'',kind:'reading',storyKey:'heungbu',readingFormat:'knolstory',questions:[]};
-async function snapshot(){return prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:newShortStory()}));}
+/** Student titles start with the class number (documents/student-title.ts). */
+async function snapshot(title='01_작품'){return prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:{...newShortStory(),title}}));}
 
 describe('real PostgreSQL task recipients',()=>{
  beforeAll(async()=>{await runStorageMigrations(pool);});

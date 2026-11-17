@@ -1,4 +1,5 @@
 'use client';
+import {TitleInput} from './title-input';
 import dialogSurface from './story-dialog-surface.module.css';
 import confirmationStyles from './authoring-import-dialog.module.css';
 import {EditorTermGuide} from './editor-term-guide';
@@ -85,7 +86,7 @@ export function BookCoverEditor({project,onApply,onCancel}:{project:StoryProject
         <div className={styles.actions}><button type="button" disabled={!history.past.length||applying} onClick={undo}>되돌리기</button><button type="button" disabled={!history.future.length||applying} onClick={redo}>다시 하기</button></div>
       </section>
       <section className={styles.fields} aria-label="표지 편집 설정">
-        <label>작품 제목<input aria-label="작품 제목" value={title} onChange={event=>setTitle(event.target.value)}/><small>표지 적용을 누르면 작품 제목에도 함께 적용돼요.</small></label>
+        <label>작품 제목<TitleInput aria-label="작품 제목" value={title} onChange={setTitle}/><small>표지 적용을 누르면 작품 제목에도 함께 적용돼요.</small></label>
         <label>지은이<input value={cover.author} onChange={event=>patch({author:event.target.value})}/></label>
         <label>표지 소개 문장<input value={cover.subtitle} onChange={event=>patch({subtitle:event.target.value})}/></label>
         <label>작가의 말<textarea value={cover.authorNote} onChange={event=>patch({authorNote:event.target.value})}/></label>

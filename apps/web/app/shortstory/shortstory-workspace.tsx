@@ -8,6 +8,8 @@ import {LocalWorkFileActions} from '../../components/local-work-file-actions';
 import {createLocalWorkFileSession} from '../../lib/local-work-file';
 import {rememberShortStoryAccountView,consumeShortStoryAccountView} from '../../lib/shortstory-account-view';
 import {OnlineWorksPanelView} from '../../components/online-works-panel';
+import {TitleInput} from '../../components/title-input';
+import {studentTitle,withStudentTitle} from '../../lib/student-title';
 import {useOnlineWorks} from '../../components/use-online-works';
 import {readOnlineShelfBindings} from '../../lib/online-work-bindings';
 import {projectOnlineShelf} from '../../lib/unified-library';
@@ -196,7 +198,9 @@ export function ShortStoryWorkspace() {
     if(!storyKey&&!classroom.permissions.newWorks)throw Error('선생님께 과제의 바탕 작품을 확인해 주세요.');
     const source=isShortStoryWorkKey(storyKey)?getShortStoryOriginal(storyKey):undefined;
     if(storyKey&&!source)throw Error('바탕 그림책을 찾지 못했어요.');
-    const next=source?copyShortStoryBook(base,source):addShortStoryBook(base,{...newShortStory(),title:task.title});
+    const made=source?copyShortStoryBook(base,source):addShortStoryBook(base,{...newShortStory(),title:task.title});
+    // Student works always start with the class number.
+    const known=new Set(base.books.map(book=>book.id)),next={...made,books:made.books.map(book=>known.has(book.id)?book:{...book,title:studentTitle(book.title)})};
     if(!commit(next))return;
     const selected=next.books.at(-1)!;
     localStorage.setItem(bindingKey,`shortstory:${selected.id}`);
@@ -271,7 +275,7 @@ export function ShortStoryWorkspace() {
   const generation=onlineGeneration.current,current=()=>isCurrent()&&generation===onlineGeneration.current&&!composing.current;
   if(!current())return;flushForOnline();
   const work=latest.current!.books.find(book=>`shortstory:${book.id}`===key);if(!work)throw Error('기기에 보관한 내 그림책을 골라 주세요.');
-  const snapshot=await prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:work}));
+  const snapshot=await withStudentTitle(await prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:work})));
   if(!current())return;flushForOnline();const result=await saveOnlineWork(onlineStore(),accountId,key,snapshot,csrf,undefined,{isCurrent:current});return {...result,includesLatest:result.includesLatest&&generation===onlineGeneration.current};
  };
  async function openOnline(remote:OnlineDocument,accountId:string,isCurrent:()=>boolean){
@@ -345,7 +349,7 @@ export function ShortStoryWorkspace() {
    <div className={styles.toolCard} role="group" aria-label="작품 정보">
     <h2 className={styles.toolTitle}>작품 정보</h2>
     <div className={styles.infoRow}><div className={styles.coverPreview} aria-hidden="true"><BookCover project={coverProject} edition={original?'original':'own'}/></div><div className={styles.infoFields}>
-     <label>이야기 제목<input value={project.title} readOnly={original||!editing} disabled={blocked} onChange={event=>update({...project,title:event.target.value})}/></label>
+     <label>이야기 제목{original||!editing?<input value={project.title} readOnly disabled={blocked}/>:<TitleInput value={project.title} disabled={blocked} onChange={title=>update({...project,title})}/>}</label>
      <label>지은이<input value={project.authorDisplayName} readOnly={original||!editing} disabled={blocked} onChange={event=>update({...project,authorDisplayName:event.target.value})}/></label>
      {!original&&<button disabled={blocked} onClick={()=>setCoverOpen(true)}>표지 꾸미기</button>}
     </div></div>

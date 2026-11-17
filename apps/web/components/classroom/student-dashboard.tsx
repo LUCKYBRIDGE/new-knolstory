@@ -4,6 +4,7 @@ import {assignmentList,submissionMine,submissionPut,ClassroomError,describeEditi
 import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWorkSnapshot,type LocalWorkChoice} from '../../lib/classroom-local';
 import {documentList,documentRead} from '../../lib/document-api';
 import {formatBytes} from '../../lib/online-storage';
+import {withStudentTitle} from '../../lib/student-title';
 import type {AccountSession} from '../../lib/account-api';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
@@ -13,7 +14,7 @@ import {groupTodos,type TodoEntry,type TodoGroup} from '../../lib/student-todo';
 import {editionLabel,missionKindLabel} from '../../lib/mission-api';
 import {dueDateLabel,dueState} from '../../lib/due-date';
 import {SeasonNote} from './season-note';
-import {currentStudentNumber,studentNumberLabel} from '../../lib/student-file-prefix';
+import {currentStudentNumber,rememberStudentNumber,studentNumberLabel} from '../../lib/student-file-prefix';
 import {shareLinkHost} from '../../lib/share-link';
 import styles from './classroom.module.css';
 export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSession}){
@@ -27,6 +28,8 @@ export function StudentDashboard({me,session}:{me:ClassroomMe;session:AccountSes
   try{const list=await documentList(fetch,undefined,accountId);setOnline(list.documents.filter(item=>!item.deletedAt).map(item=>({key:`online:${item.recordId}`,title:`${item.title||'제목 없는 작품'} · 내 온라인 작품`,format:item.format})));}catch{setOnline([]);}
  },[accountId]);
  const storage=me.storage;
+ // Uploads and hand-ins put this number in front of the title (lib/student-title.ts).
+ useEffect(()=>{rememberStudentNumber(student.number);},[student.number]);
  useEffect(()=>{const timer=window.setTimeout(()=>{void load();},0);return()=>window.clearTimeout(timer);},[load]);
  const limits=describeEditingPermissions(student.permissions);
  return <>
@@ -67,7 +70,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
  }
 
  /** A copy of the chosen work as it is now: from this device, or from the personal online space. */
- async function snapshotOf(choice:string){return choice.startsWith('online:')?(await documentRead(choice.slice(7),fetch,accountId)).snapshot:localWorkSnapshot(choice);}
+ async function snapshotOf(choice:string){return choice.startsWith('online:')?withStudentTitle((await documentRead(choice.slice(7),fetch,accountId)).snapshot):localWorkSnapshot(choice);}
  async function saveFile(){
   if(!key||busy)return;setBusy(true);setError('');setNotice('');
   try{const snapshot=await snapshotOf(key);await downloadSubmissionFile(snapshot,[...works,...online].find(work=>work.key===key)?.title||assignment.title);setNotice('작품 파일을 이 기기에 저장했어요. 제출 링크로 들어가 올려 주세요.');}

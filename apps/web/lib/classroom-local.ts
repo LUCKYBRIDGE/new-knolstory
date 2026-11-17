@@ -1,4 +1,5 @@
 import {createAuthoringArchive,encodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot,type AuthoringJsonbSnapshot} from '@knolstory/compatibility';
+import {withStudentTitle} from './student-title';
 import {parseShortStoryLibrary,SHORTSTORY_LIBRARY_KEY} from './shortstory-library';
 import {WORKSPACE_KEY,readWorkspace} from './workspace-storage';
 import {isPersonalWork} from './personal-library';
@@ -18,12 +19,12 @@ export async function localWorkSnapshot(key:string,storage:Pick<Storage,'getItem
   const raw=storage.getItem(SHORTSTORY_LIBRARY_KEY);
   const book=raw?parseShortStoryLibrary(raw).books.find(item=>`shortstory:${item.id}`===key):undefined;
   if(!book)throw Error('기기에서 그림책을 찾지 못했어요.');
-  return prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:book}));
+  return withStudentTitle(await prepareJsonbSnapshot(await createAuthoringArchive({format:'shortstory',project:book})));
  }
  const raw=storage.getItem(WORKSPACE_KEY);if(!raw)throw Error('기기에서 작품을 찾지 못했어요.');
  const project=readWorkspace(raw).works[key];if(!project||!isPersonalWork(key))throw Error('기기에서 작품을 찾지 못했어요.');
  const {audioResources,...document}=await portableStory(project);
- return prepareJsonbSnapshot(await createAuthoringArchive({format:'knolstory',document,audioResources:audioResources??[]}));
+ return withStudentTitle(await prepareJsonbSnapshot(await createAuthoringArchive({format:'knolstory',document,audioResources:audioResources??[]})));
 }
 /** Teachers get a submitted work as a .knolstory file they import into their library like any other work file. */
 export async function downloadSubmissionFile(snapshot:AuthoringJsonbSnapshot,fileName:string){

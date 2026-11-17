@@ -1,4 +1,5 @@
 "use client";
+import {studentTitle,withStudentTitle} from '../lib/student-title';
 import {refreshProvidedWorkspace} from '../lib/provided-workspace-refresh';
 import {hasUnappliedAuthoringInput,UNAPPLIED_AUTHORING_NOTICE} from '../lib/unapplied-authoring-input';
 import {WorkLeaveGuard} from './work-leave-guard';
@@ -818,7 +819,7 @@ export function StoryWorkspace() {
     if(!current())return;
     const archive=await createAuthoringArchive({format:'knolstory',document:documentForExport(portable),audioResources:portable.audioResources??[]});
     if(!current())return;
-    const snapshot=await prepareJsonbSnapshot(archive);
+    const snapshot=await withStudentTitle(await prepareJsonbSnapshot(archive));
     if(!current())return;ensureWritable();
     const result=await saveOnlineWork(onlineStore(),accountId,key,snapshot,csrf,undefined,{isCurrent:current});
     return {...result,includesLatest:result.includesLatest&&generation===onlineWorkspaceGeneration.current};
@@ -932,6 +933,8 @@ export function StoryWorkspace() {
         const start=fixture?trimToStartPoint(structuredClone(fixture.project),task.startPoint,()=>crypto.randomUUID()):undefined,base=start?.project;
         const next=fixture&&base?createCatalogEditCopy(base,crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
           :createBlankStoryProject({id:crypto.randomUUID(),chapterId:crypto.randomUUID(),lineId:crypto.randomUUID(),title:task.title});
+        // Student works always start with the class number.
+        next.title=studentTitle(next.title);
         if(fixture&&!await preserveCopyAudio(fixture.project,next))return;
         if(controller.signal.aborted||sequence!==importReadSequence.current)return;
         saveBeforeImport();

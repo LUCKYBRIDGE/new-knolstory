@@ -4,10 +4,13 @@
  * The number is kept on this device after a student signs in, so offline saves keep the prefix.
  */
 const KEY='knolstory-student-number-v1';
+export const STUDENT_NUMBER_EVENT='knolstory-student-number';
 type Store=Pick<Storage,'getItem'|'setItem'|'removeItem'>;
 const store=():Store|undefined=>{try{return typeof localStorage==='undefined'?undefined:localStorage;}catch{return undefined;}};
 export function rememberStudentNumber(number:number|null,storage:Store|undefined=store()){
  try{if(number!==null&&Number.isInteger(number)&&number>=1&&number<=30)storage?.setItem(KEY,String(number));else storage?.removeItem(KEY);}catch{/* Optional: saving still works without the prefix. */}
+ // Open title fields follow at once (components/title-input.tsx).
+ if(typeof window!=='undefined')window.dispatchEvent(new Event(STUDENT_NUMBER_EVENT));
 }
 export function currentStudentNumber(storage:Store|undefined=store()):number|null{
  try{const value=Number(storage?.getItem(KEY));return Number.isInteger(value)&&value>=1&&value<=30?value:null;}catch{return null;}

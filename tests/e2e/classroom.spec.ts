@@ -232,7 +232,7 @@ test('a specified assignment starts one draft even when new works are disabled',
  await expect(text).toHaveValue('과제에서 이어 쓰는 첫 문장.');
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project.id)).toBe(id);
  await page.goto('/student');
- await page.getByLabel('제출할 작품').selectOption({label:'[내작품] 별주부전'});
+ await page.getByLabel('제출할 작품').selectOption({label:'02_[내작품] 별주부전'});
  await page.getByRole('button',{name:'제출',exact:true}).click();
  await expect(page.getByText('제출했어요.')).toBeVisible();
 });
@@ -1032,5 +1032,19 @@ test('a student hands in a personal online work as a copy and sees both spaces',
  await page.getByRole('button',{name:'제출',exact:true}).click();
  await expect(page.getByText('제출했어요.')).toBeVisible();
  const submitted=state.submissions.a1 as {content:{document:{project:{title:string}}}};
- expect(submitted.content.document.project.title).toBe('집에서 쓴 이야기');
+ // Student works always carry the class number, even when the online copy did not.
+ expect(submitted.content.document.project.title).toBe('02_집에서 쓴 이야기');
+});
+
+test('a student\'s new work title keeps the class number fixed in front',async({page})=>{
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
+ await startShelfCreation(page);
+ await expect(page.getByTitle('내 번호예요. 바꿀 수 없어요.')).toHaveText('02_');
+ await page.getByLabel('새 작품 제목',{exact:true}).fill('03_바람의 노래');
+ await expect(page.getByLabel('새 작품 제목',{exact:true})).toHaveValue('바람의 노래');
+ await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const title=await page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return value.document.project.title;});
+ expect(title).toBe('02_바람의 노래');
 });
