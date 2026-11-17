@@ -7,7 +7,7 @@ export type DocumentRouterOptions = Readonly<{
   origin: string;
   authState: ReturnType<typeof createAuthStateService>;
   documents: DocumentService;
-  /** Personal online works are for teachers and administrators only. */
+  /** Role of the signed-in account; it selects the storage limits. */
   roles: Readonly<{ roleOf(accountId: string): Promise<'member' | 'teacher' | 'student' | 'admin' | null> }>;
   rateLimit?: Readonly<{ windowMs: number; maxRequests: number; maxEntries: number }>;
   clientProofKey?: string;
@@ -120,7 +120,7 @@ function envelope(value: unknown, saving: boolean, idempotencyKey: string) {
 /** HTTP transports authenticated context; document policy and atomic writes stay in the service. */
 export function createDocumentRouter(options: DocumentRouterOptions) {
   const origin = validateAuthOrigin(options.origin), name = authCookieNames(origin).session;
-  const limit = positive(options.bodyLimitBytes ?? 8 * 1024 * 1024), timeout = positive(options.bodyTimeoutMs ?? 10000);
+  const limit = positive(options.bodyLimitBytes ?? 17 * 1024 * 1024), timeout = positive(options.bodyTimeoutMs ?? 90000);
   const rateLimit = rateLimiter(options.rateLimit,createRateClientResolver({origin,key:options.clientProofKey,trustClientIp:options.trustClientIp}));
   return async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Content-Type-Options', 'nosniff'); res.setHeader('Referrer-Policy', 'no-referrer');
@@ -137,8 +137,8 @@ export function createDocumentRouter(options: DocumentRouterOptions) {
       if (expected !== undefined && expected !== authenticated.accountId.toLowerCase()) throw new HttpError(409, 'ACCOUNT_SESSION_CHANGED');
       const role = await options.roles.roleOf(authenticated.accountId);
       if (role === null) throw new HttpError(401, 'SESSION_REQUIRED');
-      if (role !== 'teacher' && role !== 'admin') throw new HttpError(403, 'ROLE_NOT_ALLOWED');
-      const context = { token, accountId: authenticated.accountId }, writing = req.method !== 'GET';
+      // Every signed-in role may keep online works; size and count limits live in the service (documents/quota.ts).
+      const context = { token, accountId: authenticated.accountId, role }, writing = req.method !== 'GET';
       if (writing) {
         try { await options.authState.verifyCsrf(token, header(req, 'x-csrf-token'), header(req, 'origin')); }
         catch (error) { if (error instanceof HttpError) throw error; throw new HttpError(403, 'INVALID_CSRF'); }

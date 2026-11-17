@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createDocumentRouter, type DocumentRouterOptions } from './document-routes';
 import { DocumentServiceError, type DocumentService } from '../documents/service';
 const origin = 'http://localhost:3000', token = 't'.repeat(43), recordId = '12345678-1234-4123-8123-123456789012';
-const context = { token, accountId: 'owner' };
+const context = { token, accountId: 'owner', role: 'teacher' };
 const snapshot = { document: { title: '원본 유지' } };
 const input = { payloadVersion: 1, snapshot, idempotencyKey: 'create-1' };
 const receipt = { recordId, revision: 1, hash: 'hash', createdAt: 'now', updatedAt: 'now', replayed: false };
@@ -25,14 +25,10 @@ async function harness(overrides: Partial<DocumentRouterOptions> = {}) {
   return { request, write, raw, documents, authState, roles };
 }
 describe('document HTTP boundary', () => {
-  it.each(['member', 'student'] as const)('forbids the %s role before reading bodies or calling the service', async role => {
+  it.each(['member', 'student'] as const)('lets the %s role keep online works and passes the role for storage limits', async role => {
     const h = await harness(); h.roles.roleOf.mockResolvedValue(role as never);
-    for (const [path, method] of [['', 'GET'], ['/' + recordId, 'GET'], ['', 'POST'], ['/' + recordId, 'PUT'], ['/' + recordId + '/trash', 'POST']] as const) {
-      const response = await h.request('/api/v1/documents' + path, { method, ...(method === 'GET' ? {} : { body: '{' }) });
-      expect(response.status).toBe(403); expect(await response.json()).toEqual({ success: false, error: { code: 'ROLE_NOT_ALLOWED' } });
-    }
-    for (const fn of Object.values(h.documents)) expect(fn).not.toHaveBeenCalled();
-    expect(h.roles.roleOf).toHaveBeenCalledWith('owner');
+    expect((await h.request('/api/v1/documents')).status).toBe(200);
+    expect(h.documents.list).toHaveBeenCalledWith({ ...context, role }, {});
   });
   it('allows teachers and administrators and rejects accounts without a role row', async () => {
     const h = await harness();
@@ -49,7 +45,7 @@ describe('document HTTP boundary', () => {
     const body = JSON.stringify({ payloadVersion: 1, snapshot });
     expect((await h.request(undefined, { method: 'POST', headers: { ...headers, 'content-type': 'application/json', 'idempotency-key': 'bound-create' }, body })).status).toBe(201);
     expect((await h.request('/api/v1/documents/' + recordId, { method: 'PUT', headers: { ...headers, 'content-type': 'application/json', 'idempotency-key': 'bound-save' }, body: JSON.stringify({ payloadVersion: 1, snapshot, expectedRevision: 1 }) })).status).toBe(200);
-    for (const fn of Object.values(h.documents)) expect((fn.mock.calls as readonly (readonly unknown[])[])[0]?.[0]).toEqual({ token, accountId: recordId });
+    for (const fn of Object.values(h.documents)) expect((fn.mock.calls as readonly (readonly unknown[])[])[0]?.[0]).toEqual({ token, accountId: recordId, role: 'teacher' });
   });
   it.each([['GET', ''], ['GET', '/' + recordId], ['POST', ''], ['PUT', '/' + recordId]])('rejects changed account before service or body processing: %s %s', async (method, suffix) => {
     const h = await harness();

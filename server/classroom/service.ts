@@ -1,6 +1,7 @@
 import {randomUUID} from 'node:crypto';
 import type {SqlClient,SqlPool} from '../storage/postgres-save-port';
 import {checkedSnapshot,DocumentServiceError} from '../documents/validation';
+import {assertCanSubmit,classroomBytes,storageUsage,studentBytes,uploadBytes,STORAGE_LIMITS,type StorageUsage} from '../documents/quota';
 import {ALLOW_ALL_PERMISSIONS,effectivePermissions,normalizePermissions,type EditingPermissions} from './permissions';
 import {decoyHash,decryptText,encryptText,generateClassCode,generateQrToken,generateStudentPassword,hashQrToken,hashSecret,verifySecret,validQrToken} from './secrets';
 
@@ -21,8 +22,8 @@ export type ClassroomServiceOptions=Readonly<{
  clock?:()=>number;
 }>;
 export type ClassroomSummary={id:string;name:string;classCode:string;studentCount:number;createdAt:number};
-export type StudentView={number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean};
-export type ClassroomView=ClassroomSummary&{defaultPermissions:EditingPermissions;students:StudentView[]};
+export type StudentView={number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean;storageBytes:number};
+export type ClassroomView=ClassroomSummary&{defaultPermissions:EditingPermissions;students:StudentView[];storage:{bytes:number;limit:number;studentLimit:number}};
 export type QrPrintView={className:string;classCode:string;cards:{number:number;name:string;url:string}[]};
 export type AssignmentFormat='knolstory'|'shortstory';
 export type AssignmentView={format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl:string|null;dueAt:number|null;edition:'original'|'knolstory'|null;startPoint:string|null;startLabel:string|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;recipients?:number[]|null;reviewStatus?:'passed'|'revise'|null;feedback?:string};
@@ -32,7 +33,7 @@ export type TeacherCodeView={code:string|null;paused:boolean;updatedAt:number|nu
 export type LoginMethod='kakao'|'google'|'password'|'qr';
 export type AdminAccessRow={id:string;role:'admin'|'teacher'|'student'|'member';provider:string|null;className:string|null;studentNumber:number|null;lastLoginAt:number|null;lastLoginMethod:LoginMethod|null};
 export type AdminOverview={teacherCodeUpdatedAt:number|null;accounts:{member:number;teacher:number;student:number};classrooms:{name:string;studentCount:number;assignmentCount:number;openAssignmentCount:number;missionCount:number;passedMissionCount:number;createdAt:number}[]};
-export type MeView={role:Role;account:{id:string};classroom?:ClassroomSummary;student?:{number:number;name:string;classId:string;className:string;classCreatedAt:number;permissions:EditingPermissions}};
+export type MeView={role:Role;account:{id:string};storage?:StorageUsage;classroom?:ClassroomSummary;student?:{number:number;name:string;classId:string;className:string;classCreatedAt:number;permissions:EditingPermissions}};
 
 const MAX_STUDENTS=30;
 const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
@@ -104,11 +105,13 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
  }
  async function classroomView(client:SqlClient,row:Record<string,unknown>):Promise<ClassroomView>{
   const students=await client.query('SELECT account_id,number,name,password_cipher,permissions,qr_token_hash IS NOT NULL AS has_qr FROM knolstory_class.students WHERE classroom_id=$1 ORDER BY number',[row.id]);
+  const used=await studentBytes(client,text(row.id));
   return {id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:students.rows.length,createdAt:num(row.created_at),defaultPermissions:defaults(row.default_permissions),
-   students:students.rows.map(student=>studentView(student))};
+   students:students.rows.map(student=>studentView(student,used.get(text(student.account_id))??0)),
+   storage:{bytes:await classroomBytes(client,text(row.id)),limit:STORAGE_LIMITS.classroomBytes,studentLimit:STORAGE_LIMITS.student.bytes}};
  }
- function studentView(row:Record<string,unknown>):StudentView{
-  return {number:num(row.number),name:text(row.name),password:password(text(row.account_id),text(row.password_cipher)),permissions:storedPermissions(row.permissions),hasQr:row.has_qr===true};
+ function studentView(row:Record<string,unknown>,storageBytes=0):StudentView{
+  return {number:num(row.number),name:text(row.name),password:password(text(row.account_id),text(row.password_cipher)),permissions:storedPermissions(row.permissions),hasQr:row.has_qr===true,storageBytes};
  }
  const STUDENT_COLUMNS='account_id,number,name,password_cipher,permissions,qr_token_hash IS NOT NULL AS has_qr';
  async function studentRow(client:SqlClient,classroomId:unknown,number:number){
@@ -156,14 +159,14 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    return read(async client=>{
     if(role==='student'){
      const row=await studentContext(client,accountId);
-     return {role,account:{id:accountId},student:{number:num(row.number),name:text(row.name),classId:text(row.classroom_id),className:text(row.classroom_name),classCreatedAt:num(row.classroom_created_at),permissions:effectivePermissions(row.permissions,row.default_permissions)}};
+     return {role,account:{id:accountId},storage:await storageUsage(client,accountId,role),student:{number:num(row.number),name:text(row.name),classId:text(row.classroom_id),className:text(row.classroom_name),classCreatedAt:num(row.classroom_created_at),permissions:effectivePermissions(row.permissions,row.default_permissions)}};
     }
     if(role==='teacher'||role==='admin'){
      const result=await client.query('SELECT c.id,c.name,c.class_code,c.created_at,(SELECT count(*) FROM knolstory_class.students s WHERE s.classroom_id=c.id) AS student_count FROM knolstory_class.classrooms c WHERE c.teacher_account_id=$1',[accountId]);
      const row=result.rows[0];
-     return {role,account:{id:accountId},...(row?{classroom:{id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:num(row.student_count),createdAt:num(row.created_at)}}:{})};
+     return {role,account:{id:accountId},storage:await storageUsage(client,accountId,role),...(row?{classroom:{id:text(row.id),name:text(row.name),classCode:text(row.class_code),studentCount:num(row.student_count),createdAt:num(row.created_at)}}:{})};
     }
-    return {role,account:{id:accountId}};
+    return {role,account:{id:accountId},storage:await storageUsage(client,accountId,role)};
    });
   },
   async teacherUpgrade(accountId:string,code:string):Promise<'teacher'>{
@@ -292,7 +295,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(patch.password!==undefined)await client.query('UPDATE knolstory_class.students SET password_hash=$2,password_cipher=$3 WHERE account_id=$1',[accountId,await hashSecret(patch.password),encryptText(key,patch.password,accountId)]);
     if(patch.permissions!==undefined)await client.query('UPDATE knolstory_class.students SET permissions=$2::jsonb WHERE account_id=$1',[accountId,patch.permissions===null?null:JSON.stringify(patch.permissions)]);
     const updated=await client.query(`SELECT ${STUDENT_COLUMNS} FROM knolstory_class.students WHERE account_id=$1`,[accountId]);
-    return studentView(updated.rows[0]!);
+    return studentView(updated.rows[0]!,(await studentBytes(client,text(room.id))).get(accountId)??0);
    });
   },
   async setPermissions(teacherId:string,numbers:readonly number[],permissions:EditingPermissions|null):Promise<ClassroomView>{
@@ -443,9 +446,14 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(!target.rows[0])throw new ClassroomError(404,'ASSIGNMENT_NOT_FOUND');
     if(target.rows[0].open!==true)throw new ClassroomError(409,'ASSIGNMENT_CLOSED');
     if(snapshot.content.format!==assignmentFormat(target.rows[0].format))throw new ClassroomError(422,'ASSIGNMENT_FORMAT_MISMATCH');
+    // Homework is refused only for one oversized work or a pool already far past its limit.
+    const bytes=uploadBytes(snapshot),previous=await client.query('SELECT byte_length FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,accountId]);
+    const room=await assertCanSubmit(client,text(context.classroom_id),bytes-Number(previous.rows[0]?.byte_length??0),bytes);
+    if(room==='work-too-large')throw new ClassroomError(413,'WORK_TOO_LARGE');
+    if(room==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
     const submittedAt=now();
-    await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at) VALUES($1,$2,$3::jsonb,$4)
-     ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at,review_status=NULL`,[id,accountId,JSON.stringify(snapshot),submittedAt]);
+    await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at,byte_length) VALUES($1,$2,$3::jsonb,$4,$5)
+     ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at,byte_length=EXCLUDED.byte_length,review_status=NULL`,[id,accountId,JSON.stringify(snapshot),submittedAt,bytes]);
     return {submittedAt};
    });
   },

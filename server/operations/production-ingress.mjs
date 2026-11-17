@@ -48,7 +48,7 @@ export function loadProductionIngressConfig(env=process.env,read=path=>readFileS
  const port=Number(env.KNOLSTORY_INGRESS_PORT??15501);
  if(!Number.isSafeInteger(port)||port<1||port>65535||!/^\d+$/.test(env.KNOLSTORY_INGRESS_PORT??'15501')||!env.KNOLSTORY_STATIC_ROOT)throw Error('Invalid production ingress configuration.');
  if(env.KNOLSTORY_FORWARD_CLIENT_IP!==undefined&&env.KNOLSTORY_FORWARD_CLIENT_IP!=='cf-connecting-ip')throw Error();
- return validateConfig({...trustedClient,...(env.KNOLSTORY_FORWARD_CLIENT_IP?{forwardClientIp:true}:{}),port,host:env.KNOLSTORY_INGRESS_HOST??'127.0.0.1',staticRoot:env.KNOLSTORY_STATIC_ROOT,publicOrigin:env.KNOLSTORY_PUBLIC_ORIGIN??'https://story.knolquiz.com',apiOrigin:env.KNOLSTORY_API_ORIGIN??'http://127.0.0.1:15400',timeoutMs:30000,...(env.KNOLSTORY_REDIRECT_FROM_ORIGIN===undefined||env.KNOLSTORY_REDIRECT_FROM_ORIGIN===''?{}:{redirectFromOrigin:env.KNOLSTORY_REDIRECT_FROM_ORIGIN})});
+ return validateConfig({...trustedClient,...(env.KNOLSTORY_FORWARD_CLIENT_IP?{forwardClientIp:true}:{}),port,host:env.KNOLSTORY_INGRESS_HOST??'127.0.0.1',staticRoot:env.KNOLSTORY_STATIC_ROOT,publicOrigin:env.KNOLSTORY_PUBLIC_ORIGIN??'https://story.knolquiz.com',apiOrigin:env.KNOLSTORY_API_ORIGIN??'http://127.0.0.1:15400',timeoutMs:95000,...(env.KNOLSTORY_REDIRECT_FROM_ORIGIN===undefined||env.KNOLSTORY_REDIRECT_FROM_ORIGIN===''?{}:{redirectFromOrigin:env.KNOLSTORY_REDIRECT_FROM_ORIGIN})});
  }catch{throw Error('Invalid production ingress configuration.');}
 }
 function reject(res,status,headers={}){res.writeHead(status,{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers});res.end();}

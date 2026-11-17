@@ -8,7 +8,7 @@ test.beforeEach(async({page})=>{
 });
 
 const recordId='22222222-2222-4222-8222-222222222222';
-async function onlineHarness(page:Page){
+async function onlineHarness(page:Page,me:Record<string,unknown>={role:'teacher'},createStatus?:{status:number;code:string}){
  const content=JSON.parse(readFileSync('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));const project=content.document.project;project.title='온라인에 보관한 원고';
  const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
  const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;const snapshot={payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
@@ -16,9 +16,10 @@ async function onlineHarness(page:Page){
  await page.route('**/api/v1/**',async route=>{
   const path=new URL(route.request().url()).pathname;
   if(path.endsWith('/auth/config'))return route.fulfill({json:{success:true,data:{signupProvider:'kakao',providers:{kakao:false,google:false}}}});
-  if(path.endsWith('/class/me'))return route.fulfill({json:{success:true,data:{role:'teacher',account:{id:'11111111-1111-4111-8111-111111111111'}}}});if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
+  if(path.endsWith('/class/me'))return route.fulfill({json:{success:true,data:{...me,account:{id:'11111111-1111-4111-8111-111111111111'}}}});if(path.endsWith('/me'))return route.fulfill({json:{success:true,data:{accountId:'11111111-1111-4111-8111-111111111111',csrf:'csrf'}}});
   if(path===`/api/v1/documents/${recordId}`&&route.request().method()==='GET')return route.fulfill({json:{success:true,data:{...metadata,snapshot}}});
   if(path===`/api/v1/documents/${recordId}`&&route.request().method()==='PUT'){const input=route.request().postDataJSON();expect(input.snapshot.content.document.project.id).toBe(project.id);return route.fulfill({json:{success:true,data:{recordId,revision:2,contentSha256:input.snapshot.contentSha256,replayed:false}}});}
+  if(path==='/api/v1/documents'&&route.request().method()==='POST'&&createStatus)return route.fulfill({status:createStatus.status,json:{success:false,error:{code:createStatus.code}}});
   if(path==='/api/v1/documents'&&route.request().method()==='POST'){created=route.request().postDataJSON();expect(route.request().headers()['x-csrf-token']).toBe('csrf');expect(route.request().headers()['idempotency-key']).toBeTruthy();return route.fulfill({status:201,json:{success:true,data:{recordId,revision:1,contentSha256:(created as {snapshot:{contentSha256:string}}).snapshot.contentSha256,createdAt:1,updatedAt:1,replayed:false}}});}
   return route.fulfill({json:{success:true,data:{documents:[metadata],nextCursor:null}}});
  });return {project,snapshot,created:()=>created};
@@ -136,4 +137,14 @@ test('logout completion updates newly mounted menus after leaving and returning 
  await page.route('**/api/v1/auth/logout',async route=>{started=true;await gate;signedIn=false;await route.fulfill({json:{success:true,data:{loggedOut:true}}});});
  await page.goto('/?view=library');await onlineReady(page);await page.locator('[data-account-menu]>summary').click();await page.getByRole('button',{name:'로그아웃',exact:true}).click();await expect.poll(()=>started).toBe(true);await page.keyboard.press('Escape');await createLocal(page,'로그아웃 중에도 남는 원고');await expect(page.locator('[data-account-menu]')).toHaveCount(0);await returnToLibrary(page);const before=await local(page);release();await expect(page.getByRole('button',{name:'온라인 목록 다시 확인',exact:true})).toHaveCount(0);await expect(page.locator('[aria-label="작품 보관 안내"]')).toContainText('작품은 이 기기에 저장돼요.');
  const after=await local(page);expect(Object.keys(after.works)).toEqual(Object.keys(before.works));for(const key of Object.keys(before.works))expect(after.works[key].project).toEqual(before.works[key].project);expect((await local(page)).document.project).toEqual(before.document.project);
+});
+
+test('members keep online works too, see their usage, and get a plain answer at the limit',async({page})=>{
+ const MB=1024*1024;
+ await onlineHarness(page,{role:'member',storage:{works:4,worksLimit:5,bytes:1.2*MB,bytesLimit:30*MB,workBytesLimit:16*MB}},{status:409,code:'WORK_LIMIT_REACHED'});
+ await page.goto('/?view=library');await onlineReady(page);
+ await expect(page.getByText('온라인 4/5개 · 1.2MB / 30MB · 거의 찼어요. 쓰지 않는 온라인 작품을 정리해 주세요.',{exact:true})).toBeVisible();
+ await createLocal(page,'일반 계정 원고','온라인에도 두고 싶은 글');await returnToLibrary(page);
+ const focus=await upload(page,'일반 계정 원고');
+ await expect(focus.getByRole('alert')).toContainText('온라인 작품을 더 올릴 수 없어요');
 });

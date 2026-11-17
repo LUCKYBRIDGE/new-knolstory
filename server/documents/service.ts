@@ -7,7 +7,8 @@ import {saveExisting} from '../storage/save-existing';
 import {projectSnapshot} from '../storage/snapshot-projection';
 import {checkedSnapshot,clockTime,DocumentServiceError,identifier,idempotency,listInput,positive,requestHash,requestObject,timestamp} from './validation';
 export {DocumentServiceError} from './validation';
-export type DocumentContext=Readonly<{token:string;accountId:string}>;
+import {assertCanStore,uploadBytes,type StorageRole} from './quota';
+export type DocumentContext=Readonly<{token:string;accountId:string;role?:StorageRole}>;
 export type DocumentMetadata=Readonly<{recordId:string;revision:number;format:'knolstory'|'shortstory';clientProjectId:string;title:string;contentSha256:string;createdAt:number;updatedAt:number;stateVersion:number;deletedAt:number|null}>;
 type CreateInput=Readonly<{payloadVersion:1;snapshot:unknown;idempotencyKey:string}>;
 type SaveInput=CreateInput&Readonly<{expectedRevision:number}>;
@@ -19,9 +20,11 @@ function metadata(row:Record<string,unknown>):DocumentMetadata{
  if(!['knolstory','shortstory'].includes(row.format as string)||typeof row.client_project_id!=='string'||typeof row.title!=='string'||typeof row.content_sha256!=='string'||!/^[a-f0-9]{64}$/.test(row.content_sha256))throw new DocumentServiceError('STORAGE_CONTRACT_VIOLATION',503);
  return {recordId:identifier(row.record_id),revision:positive(row.revision),format:row.format as DocumentMetadata['format'],clientProjectId:row.client_project_id,title:row.title,contentSha256:row.content_sha256,createdAt:timestamp(row.created_at),updatedAt:timestamp(row.updated_at),stateVersion:positive(row.state_version),deletedAt:row.deleted_at===null?null:timestamp(row.deleted_at)};
 }
-function capturedContext(value:DocumentContext):DocumentContext{
+function capturedContext(value:DocumentContext):DocumentContext&{role:StorageRole}{
  if(!value||typeof value.token!=='string'||! /^[A-Za-z0-9_-]{43}$/.test(value.token))throw new DocumentServiceError('SESSION_REQUIRED',401);
- try{return {accountId:identifier(value.accountId),token:value.token};}catch{throw new DocumentServiceError('SESSION_REQUIRED',401);}
+ const role=value.role??'teacher';
+ if(!['member','teacher','student','admin'].includes(role))throw new DocumentServiceError('SESSION_REQUIRED',401);
+ try{return {accountId:identifier(value.accountId),token:value.token,role};}catch{throw new DocumentServiceError('SESSION_REQUIRED',401);}
 }
 function inputRequest(value:CreateInput|SaveInput,save:boolean){
  const input=requestObject(value,save?['payloadVersion','snapshot','idempotencyKey','expectedRevision']:['payloadVersion','snapshot','idempotencyKey']);
@@ -98,10 +101,12 @@ export function createDocumentService(pool:SqlPool,options:Readonly<{clock?:()=>
     const {projection,blobs}=await projectSnapshot(snapshot);
     // Catalog-only creation cannot acquire private bytes, even if a future gate drifts.
     if(blobs.length)throw new DocumentServiceError('CATALOG_MEDIA_REQUIRED',422);
+    const bytes=uploadBytes(snapshot);
+    await assertCanStore(client,user.accountId,user.role,{newWork:true,bytes,deltaBytes:bytes});
     const recordId=randomUUID(),createdAt=clockTime(clock),content=snapshot.content;
     const project=content.format==='knolstory'?content.document.project:content.project;
     await client.query('INSERT INTO knolstory_storage.records(scope_id,record_id,client_project_id,format,revision,projection) VALUES($1,$2,$3,$4,1,$5)',[scope(user),recordId,project.id,content.format,projection]);
-    await client.query('INSERT INTO knolstory_storage.private_documents(scope_id,record_id,owner_account_id,created_at,updated_at) VALUES($1,$2,$3,$4,$4)',[scope(user),recordId,user.accountId,createdAt]);
+    await client.query('INSERT INTO knolstory_storage.private_documents(scope_id,record_id,owner_account_id,created_at,updated_at,byte_length) VALUES($1,$2,$3,$4,$4,$5)',[scope(user),recordId,user.accountId,createdAt,bytes]);
     await client.query('INSERT INTO knolstory_storage.document_creations(owner_account_id,idempotency_key,request_sha256,scope_id,record_id,content_sha256,created_at) VALUES($1,$2,$3,$4,$5,$6,$7)',[user.accountId,input.idempotencyKey,fingerprint,scope(user),recordId,snapshot.contentSha256,createdAt]);
     return {recordId,revision:1,contentSha256:snapshot.contentSha256,createdAt,updatedAt:createdAt,replayed:false};
    });
@@ -129,7 +134,9 @@ export function createDocumentService(pool:SqlPool,options:Readonly<{clock?:()=>
   async save(context:DocumentContext,value:string,request:SaveInput){
    const user=capturedContext(context),recordId=identifier(value),input=inputRequest(request,true),snapshot=await checkedSnapshot(input.snapshot);
    return transaction(user,async client=>{
-    const content=snapshot.content,project=content.format==='knolstory'?content.document.project:content.project;
+    const content=snapshot.content,project=content.format==='knolstory'?content.document.project:content.project,bytes=uploadBytes(snapshot);
+    const previous=(await client.query('SELECT byte_length FROM knolstory_storage.private_documents WHERE scope_id=$1 AND record_id=$2 AND owner_account_id=$3',[scope(user),recordId,user.accountId])).rows[0];
+    if(previous)await assertCanStore(client,user.accountId,user.role,{newWork:false,bytes,deltaBytes:bytes-Number(previous.byte_length)});
     const result=await saveExisting({scopeId:scope(user),recordId,idempotencyKey:input.idempotencyKey,expectedRevision:input.expectedRevision,snapshot},
      {authorize:async()=>true,assertCatalogAllowed:async()=>true},
      {transaction:async operation=>operation(createPostgresSaveTransaction(client,async()=>{
@@ -140,7 +147,7 @@ export function createDocumentService(pool:SqlPool,options:Readonly<{clock?:()=>
     if(result.status==='record-not-found')throw new DocumentServiceError('NOT_FOUND',404);
     if(result.status==='revision-conflict')throw new DocumentServiceError('REVISION_CONFLICT',409,result.actualRevision);
     if(result.status==='idempotency-conflict')throw new DocumentServiceError('IDEMPOTENCY_CONFLICT',409);
-    if(result.status==='saved')await client.query('UPDATE knolstory_storage.private_documents SET updated_at=GREATEST(updated_at,$3) WHERE scope_id=$1 AND record_id=$2',[scope(user),recordId,clockTime(clock)]);
+    if(result.status==='saved')await client.query('UPDATE knolstory_storage.private_documents SET updated_at=GREATEST(updated_at,$3),byte_length=$4 WHERE scope_id=$1 AND record_id=$2',[scope(user),recordId,clockTime(clock),bytes]);
     return {recordId,revision:result.receipt.revision,contentSha256:result.receipt.contentSha256,replayed:result.status==='replayed'};
    });
   },
