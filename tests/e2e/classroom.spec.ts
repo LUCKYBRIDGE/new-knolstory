@@ -1048,3 +1048,85 @@ test('a student\'s new work title keeps the class number fixed in front',async({
  const title=await page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return value.document.project.title;});
  expect(title).toBe('02_바람의 노래');
 });
+
+test('a student brings a handed-in work into personal online works and chooses on a name clash',async({page})=>{
+ const content=JSON.parse(await readFile('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));
+ content.document.project.title='02_바다 이야기';
+ const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
+ const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
+ const {createHash}=await import('node:crypto');
+ const snapshot={payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ state.assignments[0].submittedAt=1_760_000_000_000;state.submissions.a1=snapshot;
+ const existing={recordId:'33333333-3333-4333-8333-333333333333',revision:4,format:'knolstory',clientProjectId:'kept-id',title:'02_바다 이야기',contentSha256:'b'.repeat(64),createdAt:1,updatedAt:1,stateVersion:1,deletedAt:null};
+ const writes:{method:string;body:{snapshot:{content:{document:{project:{id:string;title:string}}}};expectedRevision?:number}}[]=[];
+ await page.route('**/api/v1/documents**',route=>{
+  const request=route.request();
+  if(request.method()==='GET')return route.fulfill({json:{success:true,data:{documents:[existing],nextCursor:null}}});
+  const body=request.postDataJSON();writes.push({method:request.method(),body});
+  return route.fulfill({status:request.method()==='POST'?201:200,json:{success:true,data:{recordId:existing.recordId,revision:(body.expectedRevision??0)+1,contentSha256:body.snapshot.contentSha256,createdAt:1,updatedAt:1,replayed:false}}});
+ });
+ await page.goto('/student');
+ await page.getByRole('button',{name:'내 온라인 작품으로 가져오기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'같은 이름의 작품이 있어요'});
+ await expect(dialog).toContainText('‘02_바다 이야기’이 이미 있어요');
+ await expect(dialog.getByLabel('새 이름')).toHaveValue('바다 이야기 (2)');
+ await dialog.getByRole('button',{name:'새 이름으로 가져오기',exact:true}).click();
+ await expect(page.getByText('‘02_바다 이야기 (2)’을 내 온라인 작품으로 가져왔어요.',{exact:false})).toBeVisible();
+ expect(writes[0]!.method).toBe('POST');expect(writes[0]!.body.snapshot.content.document.project.title).toBe('02_바다 이야기 (2)');
+ // Replacing the old work asks once more, then saves over it in place.
+ await page.getByRole('button',{name:'내 온라인 작품으로 가져오기',exact:true}).click();
+ await dialog.getByRole('button',{name:'기존 작품 덮어쓰기',exact:true}).click();
+ await expect(dialog).toContainText('되돌릴 수 없어요');
+ await dialog.getByRole('button',{name:'덮어쓰기',exact:true}).click();
+ await expect(dialog).toHaveCount(0);
+ expect(writes[1]!.method).toBe('PUT');expect(writes[1]!.body.expectedRevision).toBe(4);
+ expect(writes[1]!.body.snapshot.content.document.project).toMatchObject({id:'kept-id',title:'02_바다 이야기'});
+});
+
+async function templateSnapshot(title:string,firstText:string){
+ const content=JSON.parse(await readFile('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));
+ content.document.project.title=title;
+ const first=content.document.project.lines.find((line:{id:string})=>line.id===content.document.project.chapters[0].lineIds?.[0])??content.document.project.lines[0];first.text=firstText;
+ const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
+ const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
+ const {createHash}=await import('node:crypto');
+ return {payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
+}
+test('a student starts a writing task from the teacher template and keeps writing in the same copy',async({page})=>{
+ const template=await templateSnapshot('선생님이 준 이야기 틀','옛날 옛적에, 선생님이 시작한 문장.');
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ (state.assignments[0] as Record<string,unknown>).template={title:'선생님이 준 이야기 틀'};
+ await page.route('**/api/v1/class/classroom/assignments/a1/template',route=>route.fulfill({json:{success:true,data:{document:template}}}));
+ await page.goto('/student');
+ await page.getByRole('link',{name:'선생님 양식으로 시작',exact:true}).click();
+ await expect(page).not.toHaveURL(/classTask/);
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
+ expect(saved.title).toBe('02_선생님이 준 이야기 틀');
+ expect(JSON.stringify(saved.lines)).toContain('옛날 옛적에, 선생님이 시작한 문장.');
+ expect(saved.id).not.toBe(template.content.document.project.id);
+ await page.goto('/student');
+ await expect(page.getByRole('link',{name:'이어서 쓰기',exact:true})).toBeVisible();
+});
+test('a teacher attaches one of their works as a task template and can remove it',async({page})=>{
+ const state=await mockClassroom(page,'teacher');
+ state.classroom={id:'c1',name:'3반',classCode:'ABC234',defaultPermissions:all,students:[]};
+ state.assignments=[{id:'a1',title:'내 이야기 쓰기',description:'',storyKey:null,open:true,createdAt:1,submittedAt:null}];
+ const puts:unknown[]=[];
+ await page.route('**/api/v1/class/classroom/assignments/a1/template',route=>{const body=route.request().postDataJSON();puts.push(body.document);const template=body.document?{title:body.document.content.document.project.title}:null;(state.assignments[0] as Record<string,unknown>).template=template;return route.fulfill({json:{success:true,data:{template}}});});
+ await page.goto('/?view=library');await expect(page.getByTestId('library-save-status')).toHaveText('임시 보관됨');
+ await startShelfCreation(page);await page.getByLabel('새 작품 제목',{exact:true}).fill('수업용 이야기 틀');await page.getByRole('button',{name:'새 작품 생성',exact:true}).click();
+ await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
+ await page.goto('/teacher');
+ await page.getByRole('button',{name:'내 이야기 쓰기 양식 정하기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'과제 양식 정하기'});
+ await dialog.getByLabel('양식으로 쓸 작품').selectOption({label:'수업용 이야기 틀'});
+ await dialog.getByRole('button',{name:'양식으로 정하기',exact:true}).click();
+ await expect(dialog).toHaveCount(0);
+ expect((puts[0] as {content:{document:{project:{title:string}}}}).content.document.project.title).toBe('수업용 이야기 틀');
+ await expect(page.getByText('양식 · 수업용 이야기 틀')).toBeVisible();
+ await page.getByRole('button',{name:'내 이야기 쓰기 양식 빼기',exact:true}).click();
+ await expect(page.getByText('양식 없음 · 학생은 빈 작품으로 시작해요')).toBeVisible();
+ expect(puts[1]).toBeNull();
+});

@@ -2,7 +2,8 @@ import {randomUUID} from 'node:crypto';
 import type {SqlClient,SqlPool} from '../storage/postgres-save-port';
 import {checkedSnapshot,DocumentServiceError} from '../documents/validation';
 import {assertStudentTitle} from '../documents/student-title';
-import {assertCanSubmit,classroomBytes,storageUsage,studentBytes,uploadBytes,STORAGE_LIMITS,type StorageUsage} from '../documents/quota';
+import {snapshotTitle} from '../documents/student-title';
+import {assertCanStoreTemplate,assertCanSubmit,classroomBytes,storageUsage,studentBytes,uploadBytes,STORAGE_LIMITS,type StorageUsage} from '../documents/quota';
 import {ALLOW_ALL_PERMISSIONS,effectivePermissions,normalizePermissions,type EditingPermissions} from './permissions';
 import {decoyHash,decryptText,encryptText,generateClassCode,generateQrToken,generateStudentPassword,hashQrToken,hashSecret,verifySecret,validQrToken} from './secrets';
 
@@ -27,7 +28,7 @@ export type StudentView={number:number;name:string;password:string;permissions:E
 export type ClassroomView=ClassroomSummary&{defaultPermissions:EditingPermissions;students:StudentView[];storage:{bytes:number;limit:number;studentLimit:number}};
 export type QrPrintView={className:string;classCode:string;cards:{number:number;name:string;url:string}[]};
 export type AssignmentFormat='knolstory'|'shortstory';
-export type AssignmentView={format:AssignmentFormat;id:string;title:string;description:string;storyKey:string|null;shareUrl:string|null;dueAt:number|null;edition:'original'|'knolstory'|null;startPoint:string|null;startLabel:string|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;recipients?:number[]|null;reviewStatus?:'passed'|'revise'|null;feedback?:string};
+export type AssignmentView={format:AssignmentFormat;template:{title:string}|null;id:string;title:string;description:string;storyKey:string|null;shareUrl:string|null;dueAt:number|null;edition:'original'|'knolstory'|null;startPoint:string|null;startLabel:string|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;recipients?:number[]|null;reviewStatus?:'passed'|'revise'|null;feedback?:string};
 /** Service-wide numbers for the admin page. No names, passwords, codes or manuscripts. */
 export type SubmissionRow={number:number;name:string;submittedAt:number;reviewStatus:'passed'|'revise'|null;feedback:string;reviewedAt:number|null};
 export type TeacherCodeView={code:string|null;paused:boolean;updatedAt:number|null};
@@ -126,6 +127,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
  };
  const assignment=(row:Record<string,unknown>,withSubmission:boolean):AssignmentView=>({
   format:assignmentFormat(row.format),id:text(row.id),title:text(row.title),description:text(row.description),storyKey:row.story_key===null?null:text(row.story_key),shareUrl:row.share_url===null||row.share_url===undefined?null:text(row.share_url),dueAt:row.due_at===null||row.due_at===undefined?null:num(row.due_at),edition:row.edition==='original'||row.edition==='knolstory'?row.edition:null,startPoint:typeof row.start_point==='string'?row.start_point:null,startLabel:typeof row.start_label==='string'?row.start_label:null,open:row.open===true,createdAt:num(row.created_at),
+  template:typeof row.template_title==='string'?{title:row.template_title}:null,
   ...(withSubmission?{submittedAt:row.submitted_at===null||row.submitted_at===undefined?null:num(row.submitted_at)}:{recipients:readRecipients(row)}),
  });
  async function teacherAssignment(client:SqlClient,classroomId:unknown,id:string,lock=false){
@@ -361,12 +363,12 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    return read(async client=>{
     if(role==='student'){
      const context=await studentContext(client,accountId);
-     const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,s.submitted_at,s.review_status,s.feedback FROM knolstory_class.assignments a
+     const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,a.template_title,s.submitted_at,s.review_status,s.feedback FROM knolstory_class.assignments a
       LEFT JOIN knolstory_class.submissions s ON s.assignment_id=a.id AND s.student_account_id=$2 WHERE a.classroom_id=$1 AND ${forStudentSql('a','$2')} ORDER BY a.created_at DESC,a.id`,[context.classroom_id,accountId]);
      return result.rows.map(row=>({...assignment(row,true),reviewStatus:row.review_status==='passed'||row.review_status==='revise'?row.review_status:null,feedback:typeof row.feedback==='string'?row.feedback:''}));
     }
     const room=await teacherRoom(client,accountId);
-    const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,
+    const result=await client.query(`SELECT a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,a.template_title,
       (SELECT count(*)::int FROM knolstory_class.submissions s WHERE s.assignment_id=a.id) AS submitted_count,
       (SELECT count(*)::int FROM knolstory_class.submissions s WHERE s.assignment_id=a.id AND s.review_status='passed') AS passed_count,
       ${recipientNumbersSql('a')}
@@ -380,7 +382,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     // Each work task holds one work per student, so their number is bounded; old ones are deleted to make room.
     const tasks=num((await client.query('SELECT count(*) AS n FROM knolstory_class.assignments WHERE classroom_id=$1',[room.id])).rows[0]?.n);
     if(tasks>=STORAGE_LIMITS.workTasks)throw new ClassroomError(409,'ASSIGNMENT_LIMIT');
-    const result=await client.query(`INSERT INTO knolstory_class.assignments AS a(id,classroom_id,title,description,story_key,format,open,created_at,share_url,due_at,edition,start_point,start_label,recipient_ids) VALUES($1,$2,$3,$4,$5,$7,true,$6,$8,$9,$10,$11,$12,$13::uuid[]) RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,${recipientNumbersSql('a')}`,
+    const result=await client.query(`INSERT INTO knolstory_class.assignments AS a(id,classroom_id,title,description,story_key,format,open,created_at,share_url,due_at,edition,start_point,start_label,recipient_ids) VALUES($1,$2,$3,$4,$5,$7,true,$6,$8,$9,$10,$11,$12,$13::uuid[]) RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,a.template_title,${recipientNumbersSql('a')}`,
      [randomUUID(),room.id,input.title,input.description,input.storyKey,now(),assignmentFormat(input.format===undefined?'knolstory':input.format),input.shareUrl??null,input.dueAt??null,input.storyKey?input.edition??null:null,input.storyKey&&input.startPoint?input.startPoint:null,input.storyKey&&input.startPoint?input.startLabel??null:null,recipients]);
     return assignment(result.rows[0]!,false);
    });
@@ -398,7 +400,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    return transaction(async client=>{
     const room=await teacherRoom(client,teacherId),current=await teacherAssignment(client,room.id,id,true);
     const recipients=patch.recipients===undefined?current.recipient_ids??null:await recipientIds(client,room.id,patch.recipients);
-    const result=await client.query(`UPDATE knolstory_class.assignments AS a SET title=$2,description=$3,open=$4,share_url=$5,due_at=$6,recipient_ids=$7::uuid[] WHERE a.id=$1 RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,${recipientNumbersSql('a')}`,
+    const result=await client.query(`UPDATE knolstory_class.assignments AS a SET title=$2,description=$3,open=$4,share_url=$5,due_at=$6,recipient_ids=$7::uuid[] WHERE a.id=$1 RETURNING a.id,a.title,a.description,a.story_key,a.format,a.open,a.created_at,a.share_url,a.due_at,a.edition,a.start_point,a.start_label,a.template_title,${recipientNumbersSql('a')}`,
      [id,patch.title??current.title,patch.description??current.description,patch.open??current.open,patch.shareUrl===undefined?current.share_url??null:patch.shareUrl,patch.dueAt===undefined?current.due_at??null:patch.dueAt,recipients]);
     return assignment(result.rows[0]!,false);
    });
@@ -434,6 +436,43 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     const result=await client.query('SELECT document,submitted_at FROM knolstory_class.submissions WHERE assignment_id=$1 AND student_account_id=$2',[id,student.rows[0].account_id]);
     if(!result.rows[0])throw new ClassroomError(404,'SUBMISSION_NOT_FOUND');
     return {document:result.rows[0].document,submittedAt:num(result.rows[0].submitted_at)};
+   });
+  },
+  /** Attaches, replaces (document) or removes (null) the work students start this task from. */
+  async setTemplate(teacherId:string,id:string,document:unknown):Promise<{template:{title:string}|null}>{
+   let snapshot:Awaited<ReturnType<typeof checkedSnapshot>>|null=null;
+   if(document!==null){
+    try{snapshot=await checkedSnapshot(document);}
+    catch(error){if(error instanceof DocumentServiceError)throw new ClassroomError(error.status===422?422:400,'INVALID_DOCUMENT');throw error;}
+   }
+   return transaction(async client=>{
+    const room=await teacherRoom(client,teacherId,true),current=await teacherAssignment(client,room.id,id,true);
+    if(!snapshot){await client.query('UPDATE knolstory_class.assignments SET template=NULL,template_title=NULL,template_byte_length=0 WHERE id=$1',[id]);return {template:null};}
+    if(snapshot.content.format!==assignmentFormat(current.format))throw new ClassroomError(422,'ASSIGNMENT_FORMAT_MISMATCH');
+    const bytes=uploadBytes(snapshot),previous=num((await client.query('SELECT template_byte_length FROM knolstory_class.assignments WHERE id=$1',[id])).rows[0]?.template_byte_length);
+    const room_=await assertCanStoreTemplate(client,text(room.id),bytes-previous,bytes);
+    if(room_==='work-too-large')throw new ClassroomError(413,'WORK_TOO_LARGE');
+    if(room_==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
+    const title=snapshotTitle(snapshot).slice(0,400);
+    await client.query('UPDATE knolstory_class.assignments SET template=$2::jsonb,template_title=$3,template_byte_length=$4 WHERE id=$1',[id,JSON.stringify(snapshot),title,bytes]);
+    return {template:{title}};
+   });
+  },
+  /** The template, for the teacher or for a student the task is open to. */
+  async readTemplate(accountId:string,role:Role,id:string):Promise<{document:unknown}>{
+   return read(async client=>{
+    let row;
+    if(role==='student'){
+     const context=await studentContext(client,accountId);
+     row=(await client.query(`SELECT a.template,a.open FROM knolstory_class.assignments a WHERE a.id=$1 AND a.classroom_id=$2 AND ${forStudentSql('a','$3')}`,[id,context.classroom_id,accountId])).rows[0];
+     if(row&&row.open!==true)throw new ClassroomError(409,'ASSIGNMENT_CLOSED');
+    }else{
+     const room=await teacherRoom(client,accountId);
+     row=(await client.query('SELECT a.template FROM knolstory_class.assignments a WHERE a.id=$1 AND a.classroom_id=$2',[id,room.id])).rows[0];
+    }
+    if(!row)throw new ClassroomError(404,'ASSIGNMENT_NOT_FOUND');
+    if(!row.template)throw new ClassroomError(404,'TEMPLATE_NOT_FOUND');
+    return {document:row.template};
    });
   },
   async readOwnSubmission(accountId:string,id:string):Promise<{document:unknown;submittedAt:number}>{

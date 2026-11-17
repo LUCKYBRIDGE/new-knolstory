@@ -271,6 +271,9 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.listSubmissions(accountId,params[0]!)},
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions/(\\d+)/review$`),access:'teacher',body:'json',run:({accountId,params,body})=>classroom.reviewSubmission(accountId,params[0]!,studentNumber(params[1]!),body)},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions/(\\d+)$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.readSubmissionFor(accountId,params[0]!,studentNumber(params[1]!))},
+  {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/template$`),access:'teacher',body:'upload',run:({accountId,params,body})=>
+   classroom.setTemplate(accountId,params[0]!,object(body,['document'],['document']).document)},
+  {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/template$`),access:'assignments',body:'none',run:({accountId,role,params})=>classroom.readTemplate(accountId,role,params[0]!)},
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submission$`),access:'student',body:'upload',run:({accountId,params,body})=>
    classroom.submit(accountId,params[0]!,object(body,['document'],['document']).document)},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submission$`),access:'student',body:'none',run:({accountId,params})=>classroom.readOwnSubmission(accountId,params[0]!)},

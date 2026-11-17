@@ -92,7 +92,7 @@ import {previewAuthoringFile} from '../lib/story-file-preview';
 import {EditorTermGuide} from './editor-term-guide';
 import {AuthoringImportDialog} from './authoring-import-dialog';
 import {StorageReloadDialog} from './storage-reload-dialog';
-import {submissionOpen,assignmentList} from '../lib/classroom-api';
+import {submissionOpen,assignmentList,templateGet} from '../lib/classroom-api';
 import {onlineEnabled} from '../lib/online-mode';
 import {createAuthoringArchive,encodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot,type AuthoringArchive} from '@knolstory/compatibility';
 import {importAudioResources,copyAudioWorkMetadata} from '../lib/audio-resources';
@@ -922,8 +922,12 @@ export function StoryWorkspace() {
           await openLibraryWork(draftKey!,'edit');
           return;
         }
-        const storyKey=forced??task.storyKey;
-        if(!storyKey&&!editorLimits.permissions.newWorks)throw Error('새 작품을 만들 수 없어요. 선생님께 바탕 작품을 확인해 주세요.');
+        // A teacher template wins over a base work: the student continues the teacher's own work.
+        const fromTemplate=task.template?await restoreJsonbSnapshot(await templateGet(task.id,(input,init)=>fetch(input,{...init,signal:controller.signal}))):null;
+        if(controller.signal.aborted||sequence!==importReadSequence.current)return;
+        if(fromTemplate&&fromTemplate.format!=='knolstory')throw Error('과제 양식이 놀스토리 작품이 아니에요. 선생님께 확인해 주세요.');
+        const storyKey=fromTemplate?null:forced??task.storyKey;
+        if(!fromTemplate&&!storyKey&&!editorLimits.permissions.newWorks)throw Error('새 작품을 만들 수 없어요. 선생님께 바탕 작품을 확인해 주세요.');
         // Original edition: the classic manuscript; otherwise (or for older tasks) the KnolStory adaptation.
         const definition=storyKey?BUILTIN_WORKS.find(item=>item.id===storyKey):undefined;
         const fixture=storyKey?(task.edition==='original'&&definition?builtInStories.find(item=>item.project.id===definition.originalDocumentId):builtInStories.find(item=>item.id===storyKey)):undefined;
@@ -931,11 +935,12 @@ export function StoryWorkspace() {
         saveBeforeImport();
         // A start point keeps the story up to it and leaves the rest blank for the student.
         const start=fixture?trimToStartPoint(structuredClone(fixture.project),task.startPoint,()=>crypto.randomUUID()):undefined,base=start?.project;
-        const next=fixture&&base?createCatalogEditCopy(base,crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
+        const next=fromTemplate&&fromTemplate.format==='knolstory'?{...fromTemplate.document.project,id:crypto.randomUUID()}:fixture&&base?createCatalogEditCopy(base,crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
           :createBlankStoryProject({id:crypto.randomUUID(),chapterId:crypto.randomUUID(),lineId:crypto.randomUUID(),title:task.title});
         // Student works always start with the class number.
         next.title=studentTitle(next.title);
         if(fixture&&!await preserveCopyAudio(fixture.project,next))return;
+        if(fromTemplate&&fromTemplate.format==='knolstory'&&fromTemplate.audioResources.length)await importAudioResources(fromTemplate.audioResources,next.id);
         if(controller.signal.aborted||sequence!==importReadSequence.current)return;
         saveBeforeImport();
         // Open where the student's writing begins; the copy keeps cut ids, so the blank cut is still there.
