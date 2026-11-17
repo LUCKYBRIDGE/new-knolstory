@@ -45,7 +45,7 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
  const feedback=(key:string)=>target?.key===key?{notice:online.notice,error:online.error}:{};
  const stateAction=(record:OnlineDocumentMetadata,action:'trash'|'restore',key=`remote:${record.recordId}`)=>{setTarget({key,title:record.title});void online.changeState(record,action);};
  const header=<div className={styles.statusBar} aria-label="작품 보관 안내">
-  {owner&&<div className={styles.legend}><StorageIcon online/><span>구름 표시 책은 온라인에도 있어요.</span></div>}
+  {owner&&<div className={styles.legend}><StorageIcon online/><span>구름 표시 책은 온라인에도 있어요. 기기에는 자동으로 보관되고, 온라인에는 ‘온라인에 업로드’를 누를 때 올라가요.</span></div>}
   {online.account.loading?<span role="status">로그인 확인 중이에요.</span>:owner?<div className={styles.controls}><button aria-label="온라인 목록 다시 확인" disabled={unavailable} onClick={()=>void online.list(false,'active')}>새로 고침</button><button ref={trashTrigger} aria-disabled={unavailable} onClick={()=>{if(unavailable)return;setTrashOpen(true);void online.list(false,'trash');}} aria-label="온라인 휴지통">휴지통</button></div>:online.account.session?<span>{classroom.role==='student'?'작품은 이 기기에 저장돼요. 과제 제출은 위의 ‘내 과제’에서 해요.':'작품은 이 기기에 저장돼요.'}</span>:<span>{online.account.error||'작품은 이 기기에 저장돼요. 로그인하면 온라인에도 보관할 수 있어요.'}</span>}
   {owner&&summary&&<p className={styles.storageUsage} data-warn={summary.warn} role={summary.warn?'status':undefined}>{summary.text}{summary.full?(storage?.classroom&&storage.classroom.bytes>=storage.classroom.limit&&classroom.role==='student'?' · 학급 저장 공간이 가득 찼어요. 선생님께 알려 주세요.':' · 가득 찼어요. 쓰지 않는 온라인 작품을 지우면 다시 올릴 수 있어요.'):summary.warn?' · 거의 찼어요. 쓰지 않는 온라인 작품을 정리해 주세요.':''}</p>}
   {online.busy&&<p role="status">온라인 작품을 확인하고 있어요.</p>}
@@ -62,7 +62,7 @@ export function PersonalLibrary({onSaveOnline,onOpenOnline,beforeAccountNavigati
 }
 function OnlineLibraryActions({status,disabled,signedIn,size,onUpload,onOpenOnline,onTrash,notice,error}:{status:OnlineShelfStatus;disabled:boolean;signedIn:boolean;size?:number;onUpload?:()=>void;onOpenOnline?:()=>void;onTrash?:()=>void;notice?:string;error?:string}){
  const [confirming,setConfirming]=useState(false),sizeNotice=signedIn&&size!==undefined?workSizeNotice(size):null;
- return <><LibraryStorageBadge status={status}/>{onUpload&&<><p>{signedIn?'바꾼 내용은 직접 업로드할 때 온라인에 반영돼요.':'로그인하면 이 책을 온라인에도 보관할 수 있어요.'}</p>{sizeNotice&&<p className={styles.workSize} data-level={sizeNotice.level}>{sizeNotice.text}</p>}{signedIn&&<button disabled={disabled||status.kind==='unknown'||sizeNotice?.level==='block'} onClick={onUpload}>{status.kind==='linked'?'다시 업로드':'온라인에 업로드'}</button>}</>}
+ return <><LibraryStorageBadge status={status}/>{onUpload&&<>{sizeNotice&&<p className={styles.workSize} data-level={sizeNotice.level}>{sizeNotice.text}</p>}{signedIn&&<button disabled={disabled||status.kind==='unknown'||sizeNotice?.level==='block'} onClick={onUpload}>{status.kind==='linked'?'다시 업로드':'온라인에 업로드'}</button>}</>}
   {signedIn&&onOpenOnline&&<button disabled={disabled} onClick={onOpenOnline}>온라인 사본 열기</button>}
   {signedIn&&onTrash&&(confirming?<div role="group" aria-label="온라인 휴지통 이동 확인"><p>이 기기의 원고는 유지하고 온라인 작품만 휴지통으로 옮길까요?</p><button disabled={disabled} onClick={()=>setConfirming(false)}>취소</button><button disabled={disabled} onClick={onTrash}>온라인 휴지통으로 옮기기</button></div>:<button disabled={disabled||status.record?.stateVersion===undefined} onClick={()=>setConfirming(true)}>온라인 휴지통으로 이동</button>)}
   {notice&&<p role="status">{notice}</p>}{error&&<p role="alert">{error}</p>}

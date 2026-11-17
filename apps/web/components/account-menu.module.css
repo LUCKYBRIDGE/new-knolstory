@@ -25,3 +25,7 @@
 .linked ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 12px}
 .linked li[data-linked="true"]{color:var(--mint-strong,#1f7a63);font-weight:600}
 .linked li[data-linked="false"]{color:var(--ink-soft,#5d6b69)}
+
+/* Online usage line (2026-11-18). */
+.usage{margin:0;font-size:var(--text-caption);opacity:.85}
+.usage[data-warn=true]{opacity:1;font-weight:600;color:var(--warn-ink,#8a4b00)}

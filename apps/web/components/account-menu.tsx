@@ -1,4 +1,5 @@
 'use client';
+import {storageSummary} from '../lib/online-storage';
 import {useEffect,useRef,useState} from 'react';
 import {onlineEnabled} from '../lib/online-mode';
 import {accountGoogleLink} from '../lib/account-api';
@@ -73,6 +74,7 @@ function AccountMenuView({account,beforeNavigate,disabled=false,returnTo='librar
   <p>{returnTo==='shortstory'?'온라인 작품 메뉴에서 그림책을 업로드할 수 있어요.':'내 작품에서 온라인 보관 여부를 확인하고 업로드할 수 있어요.'} 작품 파일은 기기에 따로 저장해 주세요.</p>
   {callbackMessage&&<p role="status">{callbackMessage}</p>}{(notice||account.error)&&<p role="alert">{notice||account.error}</p>}
   {account.session?<>
+   {classroom.me?.storage&&(()=>{const summary=storageSummary(classroom.me.storage);return <p className={styles.usage} data-warn={summary.warn} aria-label="내 온라인 공간">{summary.text}</p>;})()}
    {linked&&<div className={styles.linked} aria-label="연결된 로그인"><span>연결된 로그인</span><ul>
     <li data-linked={linked.includes('kakao')}>{linked.includes('kakao')?'✓':'–'} 카카오</li>
     {(googleAvailable||linked.includes('google'))&&<li data-linked={linked.includes('google')}>{linked.includes('google')?'✓ Google 연결됨':'Google 연결 안 됨'}</li>}

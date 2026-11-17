@@ -1,4 +1,6 @@
 "use client";
+import {EditorOnlineSave} from './editor-online-save';
+import {NumberedTitle} from './numbered-title';
 import {studentTitle,withStudentTitle} from '../lib/student-title';
 import {refreshProvidedWorkspace} from '../lib/provided-workspace-refresh';
 import {hasUnappliedAuthoringInput,UNAPPLIED_AUTHORING_NOTICE} from '../lib/unapplied-authoring-input';
@@ -35,7 +37,7 @@ import {StoryCutPosition} from "./story-cut-context";
 import {usePreviewEditorContext} from './use-preview-editor-context';
 import {rewindReader} from '../lib/reader-rewind';
 import {useEditorKeyboard} from "./use-editor-keyboard";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   getRepresentativeStory,
   representativeStories,classicStories,resolveProvidedCatalogStory,
@@ -810,17 +812,19 @@ export function StoryWorkspace() {
   }
 
   function onlineStore(){return createOnlineWorkStore(localStorage,{assertWritable:ensureWritable});}
+  /** The exact copy an upload sends (also used to tell whether the online copy is behind). */
+  const onlineSnapshot=useCallback(async(work:StoryProject)=>{
+    const portable=await portableStory(work);
+    const archive=await createAuthoringArchive({format:'knolstory',document:documentForExport(portable),audioResources:portable.audioResources??[]});
+    return withStudentTitle(await prepareJsonbSnapshot(archive));
+  },[]);
   async function saveOnlinePersonalWork(key:string,accountId:string,csrf:string,isCurrent:()=>boolean){
     const generation=onlineWorkspaceGeneration.current;
     const current=()=>isCurrent()&&generation===onlineWorkspaceGeneration.current;
     if(!current())return;saveBeforeImport(true);
     const work=key===storyId?project:savedProjects.current[key];
     if(!isPersonalWork(key)||!work)throw Error('기기에 보관한 개인 작품을 골라 주세요.');
-    const portable=await portableStory(work);
-    if(!current())return;
-    const archive=await createAuthoringArchive({format:'knolstory',document:documentForExport(portable),audioResources:portable.audioResources??[]});
-    if(!current())return;
-    const snapshot=await withStudentTitle(await prepareJsonbSnapshot(archive));
+    const snapshot=await onlineSnapshot(work);
     if(!current())return;ensureWritable();
     const result=await saveOnlineWork(onlineStore(),accountId,key,snapshot,csrf,undefined,{isCurrent:current});
     return {...result,includesLatest:result.includesLatest&&generation===onlineWorkspaceGeneration.current};
@@ -1140,7 +1144,10 @@ export function StoryWorkspace() {
     target.addEventListener("lostpointercapture", end);
   }
   function changeWorkSection(section:WorkSection){if(stopForUnappliedInput())return;setMemoRequest(current=>({projectId:project.id,memoId:current?.projectId===project.id?current.memoId:'',lineId:current?.projectId===project.id?current.lineId:line.id,section,returnToEditor:current?.projectId===project.id?current.returnToEditor:false,editorContext:current?.projectId===project.id?current.editorContext:undefined}));setManageOpen(false);}
-  const workHeader=(children:ReactNode)=><WorkspaceManagement fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} exitActions={<><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장하지 않은 변경이 있어서 편집 화면에 머물렀어요. 작품 파일이 저장됐는지 확인해 주세요.');}}>작품 파일 저장하고 서재로</button></>} settingsExtras={<><button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<div ref={setSettingsHost}/>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong><EditorTermGuide/>
+  const onlineAction=onlineEnabled&&view==='editor'&&mode==='edit'&&editorLimits.accountId&&editorLimits.csrf&&editorLimits.role!=='guest'&&isPersonalWork(storyId)
+    ?<EditorOnlineSave className={styles.onlineSave} workKey={storyId} project={project} accountId={editorLimits.accountId} disabled={composing||importBusy} onNotice={setError}
+      snapshotOf={onlineSnapshot} save={()=>saveOnlinePersonalWork(storyId,editorLimits.accountId!,editorLimits.csrf!,()=>true)}/>:null;
+  const workHeader=(children:ReactNode)=><WorkspaceManagement onlineAction={onlineAction} fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} exitActions={<><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장하지 않은 변경이 있어서 편집 화면에 머물렀어요. 작품 파일이 저장됐는지 확인해 주세요.');}}>작품 파일 저장하고 서재로</button></>} settingsExtras={<><button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<div ref={setSettingsHost}/>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong><EditorTermGuide/>
             <p>컷 미리보기는 가로 16:9로 고정돼요. 읽기 화면에서는 16:9와 9:16 중에서 고를 수 있어요.</p>
           <button aria-pressed={reducedMotion || motionOverride} onClick={() => { setMotionOverride(value => !value); setRevision(value => value + 1); }} disabled={reducedMotion}>동작 줄이기</button>
           <button disabled={composing} onClick={()=>switchMode('play',true)}>처음부터 읽기</button></div></details>}</>} scoresEnabled={logic.scores} localFileActions={<LocalWorkFileActions registerSave={leaveTracker.registerSave} onVerifiedSave={leaveTracker.saved} onSavingChange={leaveTracker.saving} shortcutsEnabled={view==='prepare'||view==='editor'&&mode==='edit'} fileSession={localFileSession} workKey={project.id} name={project.title} extension=".knolstory" disabled={composing||!loadComplete} serialize={()=>serializeLocalWork()}/>} disabled={composing} recovery={<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>} project={project} compact={true} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={open=>{setManageOpen(open);if(open)shell.current?.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open]').forEach(detail=>{detail.open=false;});if(open&&viewToolsMenu.current)viewToolsMenu.current.open=false;}} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportArchive={archive=>{if(stopForUnappliedInput())return;setError('');setPendingArchive(archive);}} onError={setError} onLibrary={returnToLibrary} onPrepare={section=>view==='prepare'?changeWorkSection(section):prepareWork('',section)}>{children}</WorkspaceManagement>;
@@ -1263,7 +1270,7 @@ export function StoryWorkspace() {
       {view==='editor'&&workHeader(
       <section className={styles.context}>
         <div data-editor-document-info>
-          <h1>{project.title}</h1>
+          <h1><NumberedTitle title={project.title}/></h1>
           {mode==='play'&&<p>{chapterLabel(chapter)}</p>}
           {mode==='play' && compact && <p className={styles.readingHint}>세로는 말하는 인물에 집중하고, 가로는 장면을 함께 봐요.</p>}
           <p data-testid="save-status" data-save-attention={displayedSaveStatus!=='임시 보관됨'} role="status">{displayedSaveStatus}</p>
