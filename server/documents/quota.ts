@@ -8,11 +8,11 @@ const MB=1024*1024;
 export const STORAGE_LIMITS={
  workBytes:16*MB,
  member:{works:5,bytes:30*MB},
- student:{works:5,bytes:30*MB},
+ student:{works:5,bytes:10*MB},
  teacher:{works:100},
- classroomBytes:500*MB,
+ classroomBytes:300*MB,
  /** Homework is never refused for a full pool until it is this far over. */
- submissionOverflowBytes:550*MB,
+ submissionOverflowBytes:330*MB,
 } as const;
 export type StorageRole='member'|'teacher'|'student'|'admin';
 export type StorageUsage=Readonly<{

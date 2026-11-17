@@ -50,27 +50,28 @@ describe('real PostgreSQL online storage limits',()=>{
   // Leave no trash behind: the purge test counts every expired row in the shared database.
   await pool.query('UPDATE knolstory_storage.private_documents SET deleted_at=NULL WHERE record_id=$1',[made[0]!.recordId]);
  });
- it('lets students keep five works and shares one 500MB pool with the teacher',async()=>{
+ it('lets students keep five works and shares one pool with the teacher',async()=>{
   const {teacher,students}=await classWithStudent(),student=await context(students[0]!,'student');
   for(let i=0;i<5;i++)await create(student);
   expect(await code(create(student))).toBe('WORK_LIMIT_REACHED');
-  const teacherUser=await context(teacher,'teacher');await create(teacherUser);await inflate(teacher,500*MB-1000);
+  const teacherUser=await context(teacher,'teacher');await create(teacherUser);await inflate(teacher,STORAGE_LIMITS.classroomBytes-1000);
   const second=await context(students[1]!,'student');
   expect(await code(create(second))).toBe('CLASSROOM_STORAGE_FULL');
   const me=await classroom.me(students[1]!,'student');
-  expect(me.storage!.classroom).toEqual({bytes:expect.any(Number),limit:500*MB});
-  expect(me.storage!.classroom!.bytes).toBeGreaterThan(500*MB-1000);
+  expect(me.storage!.classroom).toEqual({bytes:expect.any(Number),limit:300*MB});
+  expect(me.storage!.classroom!.bytes).toBeGreaterThan(300*MB-1000);
+  expect(me.storage!.bytesLimit).toBe(10*MB);
   const view=await classroom.getClassroom(teacher);
-  expect(view.storage).toMatchObject({limit:500*MB,studentLimit:30*MB});
+  expect(view.storage).toMatchObject({limit:300*MB,studentLimit:10*MB});
   expect(view.students.find(s=>s.number===1)!.storageBytes).toBeGreaterThan(0);
   expect(view.students.find(s=>s.number===2)!.storageBytes).toBe(0);
  });
  it('still accepts homework past a full pool, up to the overflow ceiling',async()=>{
   const {teacher,students}=await classWithStudent();
   const task=await classroom.createAssignment(teacher,{title:'숏스토리 과제',description:'',storyKey:null,format:'shortstory'});
-  await create(await context(teacher,'teacher'));await inflate(teacher,500*MB);
+  await create(await context(teacher,'teacher'));await inflate(teacher,300*MB);
   expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');
-  await inflate(teacher,550*MB);
+  await inflate(teacher,330*MB);
   expect(await code(classroom.submit(students[1]!,task.id,await snapshot()))).toBe('CLASSROOM_STORAGE_FULL');
   // Re-submitting the same size adds nothing, so it is still accepted.
   expect(await code(classroom.submit(students[0]!,task.id,await snapshot()))).toBe('ok');

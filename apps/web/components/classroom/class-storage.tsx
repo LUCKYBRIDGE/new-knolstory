@@ -9,7 +9,7 @@ const messages:Record<Exclude<Level,'ok'>,string>={
  full:'거의 찼어요. 곧 학생들이 개인 작품을 온라인에 올리지 못해요. 과제 제출은 계속 받아요.',
  over:'가득 찼어요. 개인 작품 업로드가 멈췄고 과제 제출만 받고 있어요. 지난 과제나 쓰지 않는 작품을 정리해 주세요.',
 };
-/** Teacher view of the one storage pool the teacher and the class share (500MB, 2026-11-18).
+/** Teacher view of the one storage pool the teacher and the class share (300MB, 2026-11-18).
  * `quiet` hides it until it is at least 80% full, for tabs other than the student list. */
 export function ClassStorage({classroom,quiet=false}:{classroom:Classroom;quiet?:boolean}){
  const storage=classroom.storage;
