@@ -1048,3 +1048,38 @@ test('a student\'s new work title keeps the class number fixed in front',async({
  const title=await page.evaluate(()=>{const value=JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!);return value.document.project.title;});
  expect(title).toBe('02_바람의 노래');
 });
+
+test('a student brings a handed-in work into personal online works and chooses on a name clash',async({page})=>{
+ const content=JSON.parse(await readFile('docs/architecture/evidence/native-resume-2026-10-15/host-final/artifacts/score-authoring-author-cre-ac9ce-d-reload-on-compact-screens-host/score.knolstory','utf8'));
+ content.document.project.title='02_바다 이야기';
+ const canonical=(value:unknown):string=>Array.isArray(value)?`[${value.map(canonical).join(',')}]`:value&&typeof value==='object'?`{${Object.keys(value).sort().map(key=>`${JSON.stringify(key)}:${canonical((value as Record<string,unknown>)[key])}`).join(',')}}`:JSON.stringify(value);
+ const {savedAt:_savedAt,appVersion:_appVersion,...document}=content.document;
+ const {createHash}=await import('node:crypto');
+ const snapshot={payloadVersion:1,content,contentSha256:createHash('sha256').update(canonical({...content,document})).digest('hex'),assetReferences:[]};
+ const state=await mockClassroom(page,'student');state.signedIn=true;
+ state.assignments[0].submittedAt=1_760_000_000_000;state.submissions.a1=snapshot;
+ const existing={recordId:'33333333-3333-4333-8333-333333333333',revision:4,format:'knolstory',clientProjectId:'kept-id',title:'02_바다 이야기',contentSha256:'b'.repeat(64),createdAt:1,updatedAt:1,stateVersion:1,deletedAt:null};
+ const writes:{method:string;body:{snapshot:{content:{document:{project:{id:string;title:string}}}};expectedRevision?:number}}[]=[];
+ await page.route('**/api/v1/documents**',route=>{
+  const request=route.request();
+  if(request.method()==='GET')return route.fulfill({json:{success:true,data:{documents:[existing],nextCursor:null}}});
+  const body=request.postDataJSON();writes.push({method:request.method(),body});
+  return route.fulfill({status:request.method()==='POST'?201:200,json:{success:true,data:{recordId:existing.recordId,revision:(body.expectedRevision??0)+1,contentSha256:body.snapshot.contentSha256,createdAt:1,updatedAt:1,replayed:false}}});
+ });
+ await page.goto('/student');
+ await page.getByRole('button',{name:'내 온라인 작품으로 가져오기',exact:true}).click();
+ const dialog=page.getByRole('dialog',{name:'같은 이름의 작품이 있어요'});
+ await expect(dialog).toContainText('‘02_바다 이야기’이 이미 있어요');
+ await expect(dialog.getByLabel('새 이름')).toHaveValue('바다 이야기 (2)');
+ await dialog.getByRole('button',{name:'새 이름으로 가져오기',exact:true}).click();
+ await expect(page.getByText('‘02_바다 이야기 (2)’을 내 온라인 작품으로 가져왔어요.',{exact:false})).toBeVisible();
+ expect(writes[0]!.method).toBe('POST');expect(writes[0]!.body.snapshot.content.document.project.title).toBe('02_바다 이야기 (2)');
+ // Replacing the old work asks once more, then saves over it in place.
+ await page.getByRole('button',{name:'내 온라인 작품으로 가져오기',exact:true}).click();
+ await dialog.getByRole('button',{name:'기존 작품 덮어쓰기',exact:true}).click();
+ await expect(dialog).toContainText('되돌릴 수 없어요');
+ await dialog.getByRole('button',{name:'덮어쓰기',exact:true}).click();
+ await expect(dialog).toHaveCount(0);
+ expect(writes[1]!.method).toBe('PUT');expect(writes[1]!.body.expectedRevision).toBe(4);
+ expect(writes[1]!.body.snapshot.content.document.project).toMatchObject({id:'kept-id',title:'02_바다 이야기'});
+});
