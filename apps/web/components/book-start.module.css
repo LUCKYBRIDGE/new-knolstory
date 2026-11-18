@@ -73,3 +73,24 @@
 
 /* Flex buttons drop the space after the arrow; a gap keeps "← 서재로" readable. */
 .headerActions button{display:inline-flex;align-items:center;gap:.35em}
+
+/* Phones (2026-11-18): reading starts within the first screen. Smaller cover, no decorative caption,
+   and the read buttons come right after the title; the description and notes follow. */
+@media(max-width:720px) {
+  .startContent { gap:12px;margin-top:8px; }
+  .showcase { padding-top:8px; }
+  .coverStand { width:min(38vw,150px); }
+  .pedestal { width:min(52vw,200px);height:14px; }
+  .showcase figcaption { display:none; }
+  .bookDetails { display:flex;flex-direction:column; }
+  .bookDetails>* { order:10; }
+  .bookDetails>.eyebrow { order:1; }
+  .bookDetails>h1 { order:2; }
+  .bookDetails>.subtitle { order:3; }
+  .bookDetails>.startActions { order:4;margin-top:16px; }
+  .bookDetails>.missionHint { order:5; }
+  .bookDetails>.readingHint { order:6; }
+  .bookDetails>.description { order:7; }
+  .bookDetails>.author { order:8; }
+  .bookDetails>.authorNote { order:9; }
+}
