@@ -84,6 +84,17 @@ function readBody(req:IncomingMessage,limit:number,timeout:number):Promise<unkno
   if(req.aborted||req.destroyed)aborted();
  });
 }
+/** Up to five short things good work shows ("인물의 마음이 드러나요"). */
+function taskChecks(value:unknown):string[]{
+ if(!Array.isArray(value)||value.length>5)throw new HttpError(400,'INVALID_REQUEST');
+ return value.map(item=>{if(typeof item!=='string')throw new HttpError(400,'INVALID_REQUEST');const text=item.trim();if(!text||text.length>80||/[\u0000-\u001f\u007f]/.test(text))throw new HttpError(400,'INVALID_REQUEST');return text;});
+}
+/** Cuts (KnolStory) or pages (ShortStory) the task asks for, or null for no amount. */
+function taskAmount(value:unknown):number|null{
+ if(value===null)return null;
+ if(typeof value!=='number'||!Number.isInteger(value)||value<1||value>500)throw new HttpError(400,'INVALID_REQUEST');
+ return value;
+}
 const bad=()=>new HttpError(400,'INVALID_REQUEST');
 function object(value:unknown,allowed:readonly string[],required:readonly string[]=[]):Record<string,unknown>{
  if(!value||typeof value!=='object'||Array.isArray(value))throw bad();
@@ -238,7 +249,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   }},
   {method:'GET',pattern:/^\/classroom\/assignments$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listAssignments(accountId,role)},
   {method:'POST',pattern:/^\/classroom\/assignments$/,access:'teacher',body:'json',status:201,run({accountId,body}){
-   const input=object(body,['title','description','storyKey','format','shareUrl','dueAt','edition','startPoint','startLabel','recipients'],['title']);
+   const input=object(body,['title','description','storyKey','format','shareUrl','dueAt','edition','startPoint','startLabel','recipients','checks','targetAmount'],['title']);
    if(input.startPoint!==undefined&&input.startPoint!==null&&(typeof input.startPoint!=='string'||!/^(chapter|choice):[A-Za-z0-9_.:-]{1,200}$/.test(input.startPoint)))throw bad();
    if(input.edition!==undefined&&input.edition!==null&&input.edition!=='original'&&input.edition!=='knolstory')throw bad();
    if(input.format!==undefined&&input.format!=='knolstory'&&input.format!=='shortstory')throw bad();
@@ -253,11 +264,13 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     startPoint:(input.startPoint??null) as string|null,
     startLabel:input.startLabel===undefined||input.startLabel===null?null:string(input.startLabel,1,120),
     recipients:input.recipients===undefined?null:recipientNumbers(input.recipients),
+    ...(input.checks!==undefined?{checks:taskChecks(input.checks)}:{}),
+    ...(input.targetAmount!==undefined?{targetAmount:taskAmount(input.targetAmount)}:{}),
    });
   }},
   {method:'DELETE',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.deleteAssignment(accountId,params[0]!)},
   {method:'PATCH',pattern:new RegExp(`^/classroom/assignments/(${UUID})$`),access:'teacher',body:'json',run({accountId,params,body}){
-   const input=object(body,['title','description','open','shareUrl','dueAt','recipients']);
+   const input=object(body,['title','description','open','shareUrl','dueAt','recipients','checks','targetAmount']);
    if(!Object.keys(input).length||(input.open!==undefined&&typeof input.open!=='boolean'))throw bad();
    return classroom.patchAssignment(accountId,params[0]!,{
     ...(input.title!==undefined?{title:string(input.title,1,100)}:{}),
@@ -266,8 +279,17 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     ...(input.shareUrl!==undefined?{shareUrl:shareUrl(input.shareUrl)}:{}),
     ...(input.dueAt!==undefined?{dueAt:dueAt(input.dueAt)}:{}),
     ...(input.recipients!==undefined?{recipients:recipientNumbers(input.recipients)}:{}),
+    ...(input.checks!==undefined?{checks:taskChecks(input.checks)}:{}),
+    ...(input.targetAmount!==undefined?{targetAmount:taskAmount(input.targetAmount)}:{}),
    });
   }},
+  {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/progress$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.assignmentProgress(accountId,params[0]!)},
+  {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/drafts/(\\d+)$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.readDraftFor(accountId,params[0]!,studentNumber(params[1]!))},
+  {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/drafts/(\\d+)/comment$`),access:'teacher',body:'json',run:({accountId,params,body})=>
+   classroom.commentDraft(accountId,params[0]!,studentNumber(params[1]!),string(object(body,['comment'],['comment']).comment,0,300,false).trim())},
+  {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/draft$`),access:'student',body:'upload',run:({accountId,params,body})=>
+   classroom.saveDraft(accountId,params[0]!,object(body,['document'],['document']).document)},
+  {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/draft$`),access:'student',body:'none',run:({accountId,params})=>classroom.readOwnDraft(accountId,params[0]!)},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.listSubmissions(accountId,params[0]!)},
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions/(\\d+)/review$`),access:'teacher',body:'json',run:({accountId,params,body})=>classroom.reviewSubmission(accountId,params[0]!,studentNumber(params[1]!),body)},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions/(\\d+)$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.readSubmissionFor(accountId,params[0]!,studentNumber(params[1]!))},

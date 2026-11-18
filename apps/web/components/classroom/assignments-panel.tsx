@@ -1,8 +1,10 @@
 'use client';
+import {TaskProgress} from './task-progress';
+import {ChecksEditor,TaskBrief,amountUnit,cleanChecks} from './task-brief';
 import {SubmissionPreview} from './submission-preview';
 import {TaskTemplate} from './task-template';
-import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
-import {assignmentCreate,assignmentDelete,assignmentList,assignmentUpdate,submissionList,submissionOpen,submissionReview,ClassroomError,type Assignment,type AssignmentFormat,type SubmissionRow} from '../../lib/classroom-api';
+import {useCallback,useEffect,useRef,useState,type FormEvent,type ReactNode} from 'react';
+import {assignmentCreate,assignmentDelete,assignmentList,assignmentUpdate,progressList,type ProgressRow,submissionList,submissionOpen,submissionReview,ClassroomError,type Assignment,type AssignmentFormat,type SubmissionRow} from '../../lib/classroom-api';
 import {downloadSubmissionFile,formatSubmittedAt} from '../../lib/classroom-local';
 import {BUILTIN_WORKS} from '../../lib/builtin-works';
 import {ClassroomBook} from './classroom-art';
@@ -20,7 +22,7 @@ const TASK_LIMIT=20;
 export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:string;run:Run;students?:readonly RecipientStudent[];request?:TaskRequest|null}){
  const studentCount=students.length;
  const [recipients,setRecipients]=useState<Recipients>(null),[recipientError,setRecipientError]=useState('');
- const [items,setItems]=useState<Assignment[]|null>(null),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[storyKey,setStoryKey]=useState(''),[link,setLink]=useState(''),[linkError,setLinkError]=useState(''),[due,setDue]=useState(''),[formOpen,setFormOpen]=useState(false),[edition,setEdition]=useState<'original'|'knolstory'>('knolstory'),[start,setStart]=useState<{value:string;label:string}>({value:'',label:''});
+ const [items,setItems]=useState<Assignment[]|null>(null),[title,setTitle]=useState(''),[description,setDescription]=useState(''),[storyKey,setStoryKey]=useState(''),[link,setLink]=useState(''),[linkError,setLinkError]=useState(''),[due,setDue]=useState(''),[formOpen,setFormOpen]=useState(false),[edition,setEdition]=useState<'original'|'knolstory'>('knolstory'),[start,setStart]=useState<{value:string;label:string}>({value:'',label:''}),[checks,setChecks]=useState<string[]>(['']),[amount,setAmount]=useState(''),[amountError,setAmountError]=useState('');
  const formRef=useRef<HTMLDetailsElement>(null);
  const [format,setFormat]=useState<AssignmentFormat>('knolstory'),[filter,setFilter]=useState<AssignmentFormat>('knolstory');
  const [creating,setCreating]=useState(false),[loadFailed,setLoadFailed]=useState(false);
@@ -30,13 +32,15 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  const load=useCallback(async()=>{setLoadFailed(false);const list=await run(()=>assignmentList());if(list)setItems(list);else setLoadFailed(true);},[run]);
  useEffect(()=>{const timer=window.setTimeout(()=>void load(),0);return()=>window.clearTimeout(timer);},[load]);
  async function create(event:FormEvent){
-  event.preventDefault();if(!title.trim()||createLock.current)return;
+  event.preventDefault();if(!title.trim()||!description.trim()||createLock.current)return;
+  const targetAmount=amount.trim()?Number(amount):null;
+  if(targetAmount!==null&&(!Number.isInteger(targetAmount)||targetAmount<1||targetAmount>500)){setAmountError('분량은 1에서 500 사이 숫자로 적어 주세요.');return;}setAmountError('');
   const shareUrl=normalizeShareLink(link);if(link.trim()&&!shareUrl){setLinkError('https://로 시작하는 공유 링크를 넣어 주세요.');return;}setLinkError('');
   const problem=recipientProblem(recipients);if(problem){setRecipientError(problem);return;}setRecipientError('');
   createLock.current=true;setCreating(true);
   try{
-  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(storyKey?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&format==='knolstory'?{edition}:{}),...(storyKey&&format==='knolstory'&&start.value?{startPoint:start.value,startLabel:start.label.slice(0,120)}:{}),...(recipients!==null?{recipients}:{})},csrf));
-  if(made){setFilter(format);setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setStart({value:'',label:''});setRecipients(null);setFormOpen(false);await load();}
+  const made=await run(()=>assignmentCreate({format,title:title.trim(),...(description.trim()?{description:description.trim()}:{}),...(storyKey?{storyKey}:{}),...(shareUrl?{shareUrl}:{}),...(dueAtFromDate(due)!==null?{dueAt:dueAtFromDate(due)!}:{}),...(storyKey&&format==='knolstory'?{edition}:{}),...(storyKey&&format==='knolstory'&&start.value?{startPoint:start.value,startLabel:start.label.slice(0,120)}:{}),...(recipients!==null?{recipients}:{}),...(cleanChecks(checks).length?{checks:cleanChecks(checks)}:{}),...(targetAmount!==null?{targetAmount}:{})},csrf));
+  if(made){setFilter(format);setTitle('');setDescription('');setStoryKey('');setLink('');setDue('');setStart({value:'',label:''});setRecipients(null);setChecks(['']);setAmount('');setFormOpen(false);await load();}
   }finally{createLock.current=false;setCreating(false);}
  }
  return <section className={styles.card} aria-label="작품 쓰기 과제">
@@ -49,14 +53,21 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
     {storyKey&&format==='knolstory'&&<label className={styles.field}>바탕 판본<select aria-label="바탕 판본" value={edition} onChange={event=>{setEdition(event.target.value as 'original'|'knolstory');setStart({value:'',label:''});}}><option value="knolstory">각색 · 선택지가 있는 놀스토리</option><option value="original">원작 · 옛이야기 그대로</option></select></label>}
    </div>
    {storyKey&&format==='knolstory'&&<StartPointPicker key={`${storyKey}:${edition}`} storyKey={storyKey as BuiltinWorkId} edition={edition} value={start.value} onChange={(value,label)=>setStart({value,label})}/>}
-   <label className={styles.field} style={{marginTop:8}}>설명 (선택)<textarea value={description} onChange={event=>setDescription(event.target.value)} maxLength={500}/></label>
+   <label className={styles.field} style={{marginTop:8}}>무엇을 하나요<textarea aria-label="무엇을 하나요" value={description} onChange={event=>setDescription(event.target.value)} maxLength={600} rows={3}
+    placeholder={format==='shortstory'?'예: 별주부전의 한 장면을 골라 세 쪽짜리 그림책으로 다시 써요.':'예: 별주부전 3장 뒤를 내 생각대로 이어 써요. 토끼가 어떤 꾀를 낼지 상상해 봐요.'}/></label>
+   <ChecksEditor value={checks} onChange={setChecks} format={format}/>
+   <label className={styles.field} style={{marginTop:8}}>분량 (선택)<span className={styles.row}><input aria-label="분량" type="number" inputMode="numeric" min={1} max={500} value={amount} onChange={event=>setAmount(event.target.value.replace(/[^0-9]/g,''))} style={{width:'6em'}}/><span>{amountUnit(format)} 이상</span></span></label>
+   {amountError&&<p className={styles.error} role="alert">{amountError}</p>}
    <label className={styles.field} style={{marginTop:8}}>마감일 (선택)<input type="date" value={due} onChange={event=>setDue(event.target.value)}/></label>
    <RecipientPicker students={students} value={recipients} onChange={next=>{setRecipients(next);setRecipientError('');}}/>
    {recipientError&&<p className={styles.error} role="alert">{recipientError}</p>}
    <label className={styles.field} style={{marginTop:8}}>제출 링크 (선택)<input type="url" inputMode="url" value={link} onChange={event=>{setLink(event.target.value);setLinkError('');}} placeholder="예: 구글 드라이브 폴더 공유 링크" autoComplete="off"/></label>
    <p className={styles.hint}>학생 과제 화면에 ‘제출 링크 열기’로 보여요. 학생 파일 이름 앞에는 번호(01~30)가 붙어서 모아 보기 쉬워요.</p>
    {linkError&&<p className={styles.error} role="alert">{linkError}</p>}
-   <p><button className={`${styles.btn} ${styles.primary}`} disabled={creating||!title.trim()}>{creating?'만드는 중…':'과제 만들기'}</button></p>
+   <details className={styles.taskPreview}><summary>학생에게 이렇게 보여요</summary><div className={styles.taskPreviewCard}><h4>{title.trim()||'과제 제목'}</h4>
+    <TaskBrief description={description||'무엇을 하는지 적으면 여기에 보여요.'} checks={cleanChecks(checks)} targetAmount={amount.trim()?Number(amount)||null:null} format={format}/></div></details>
+   {!description.trim()&&title.trim()&&<p className={styles.hint}>‘무엇을 하나요’를 적으면 과제를 만들 수 있어요.</p>}
+   <p><button className={`${styles.btn} ${styles.primary}`} disabled={creating||!title.trim()||!description.trim()}>{creating?'만드는 중…':'과제 만들기'}</button></p>
   </fieldset></form></details>
   <div className={styles.typeTabs} role="group" aria-label="과제 유형별 보기">{(['knolstory','shortstory'] as const).map(value=><button key={value} className={styles.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}><ClassroomBook format={value} small/>{value==='knolstory'?'놀스토리':'숏스토리'}{items&&<span className={styles.tabCount}> · {items.filter(item=>item.format===value).length}</span>}</button>)}</div>
   {loadFailed?<p className={styles.error} role="alert">과제를 불러오지 못했어요. <button className={styles.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>:items===null?<p className={styles.hint} role="status">과제를 불러오고 있어요.</p>:items.filter(item=>item.format===filter).length===0?<p className={styles.hint}>이 유형의 과제가 없어요.</p>
@@ -65,10 +76,10 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
 }
 function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>;students:readonly RecipientStudent[]}){
  const studentCount=item.recipients?item.recipients.length:students.length;
- const [rows,setRows]=useState<SubmissionRow[]|null>(null),[notice,setNotice]=useState(''),[loading,setLoading]=useState(false),[confirmDelete,setConfirmDelete]=useState(false);
+ const [rows,setRows]=useState<SubmissionRow[]|null>(null),[progress,setProgress]=useState<ProgressRow[]|null>(null),[guideOpen,setGuideOpen]=useState(false),[notice,setNotice]=useState(''),[loading,setLoading]=useState(false),[confirmDelete,setConfirmDelete]=useState(false);
  async function remove(){const removed=await run(()=>assignmentDelete(item.id,csrf));if(removed!==undefined){setConfirmDelete(false);await onChanged();}}
  async function toggleOpen(){const done=await run(()=>assignmentUpdate(item.id,{open:!item.open},csrf));if(done)await onChanged();}
- async function showSubmissions(){if(loading)return;setLoading(true);try{const list=await run(()=>submissionList(item.id));if(list)setRows(list);}finally{setLoading(false);}}
+ async function showSubmissions(){if(loading)return;setLoading(true);try{const both=await run(()=>Promise.all([progressList(item.id),submissionList(item.id)]));if(both){setProgress(both[0]);setRows(both[1]);}}finally{setLoading(false);}}
  async function openCopy(row:SubmissionRow){
   setNotice('');
   const doc=await run(()=>submissionOpen(item.id,row.number));
@@ -79,18 +90,19 @@ function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:
  return <>
   <div className={styles.taskHeading}><h3>{item.title}</h3><span className={item.open?styles.badge:`${styles.badge} ${styles.off}`}>{item.open?'열림':'닫힘'}</span></div>
   <ul className={styles.taskMeta} aria-label="과제 정보"><li>{item.format==='shortstory'?'숏스토리':'놀스토리'}</li>{item.storyKey&&<li>바탕 작품 · {BUILTIN_WORKS.find(work=>work.id===item.storyKey)?.title??'기본 작품'}{item.format!=='shortstory'&&` (${editionLabel(item.edition)})`}</li>}{item.startLabel&&<li>시작 · {item.startLabel}</li>}<li>{new Date(item.createdAt).toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 만듦</li></ul>
-  {item.description&&<p className={styles.hint}>{item.description}</p>}
+  <TaskGuide item={item} csrf={csrf} run={run} onChanged={onChanged} open={guideOpen} onToggle={setGuideOpen}/>
   <div className={styles.factsRow}><TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
   <RecipientFacts title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/></div>
   <TaskTemplate item={item} csrf={csrf} run={run} onChanged={onChanged}/>
   <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
   <div className={styles.taskActions}>
-   <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 제출 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':rows?`제출 목록 새로고침 · ${rows.length}명`:'제출 보기'}</button>
+   <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':progress?'진행 새로고침':`진행 보기 · 작성 중 ${item.draftCount??0} · 냈어요 ${item.submittedCount??0}`}</button>
    <button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'과제 마감':'다시 열기'}</button>
    {!confirmDelete&&<button className={`${styles.btn} ${styles.danger}`} aria-label={`${item.title} 과제 지우기`} onClick={()=>setConfirmDelete(true)}>과제 지우기</button>}
   </div>
-  {confirmDelete&&<div className={styles.notice} role="group" aria-label={`${item.title} 과제 지우기 확인`}><p>‘{item.title}’ 과제와 학생들이 낸 작품을 모두 지울까요? 지운 뒤에는 되돌릴 수 없어요. 남겨 둘 작품은 먼저 ‘제출 보기’에서 내려받아 두세요.</p><div className={styles.row}><button className={styles.btn} onClick={()=>setConfirmDelete(false)}>취소</button><button className={`${styles.btn} ${styles.danger}`} onClick={()=>void remove()}>과제와 제출 작품 지우기</button></div></div>}
-  {rows&&(rows.length===0?<p className={styles.hint}>아직 낸 학생이 없어요.</p>:<ul className={styles.reviewList}>{rows.map(row=><li key={row.number}><SubmissionReview item={item} row={row} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/></li>)}</ul>)}
+  {confirmDelete&&<div className={styles.notice} role="group" aria-label={`${item.title} 과제 지우기 확인`}><p>‘{item.title}’ 과제와 학생들이 낸 작품을 모두 지울까요? 지운 뒤에는 되돌릴 수 없어요. 남겨 둘 작품은 먼저 ‘진행 보기’에서 내려받아 두세요.</p><div className={styles.row}><button className={styles.btn} onClick={()=>setConfirmDelete(false)}>취소</button><button className={`${styles.btn} ${styles.danger}`} onClick={()=>void remove()}>과제와 제출 작품 지우기</button></div></div>}
+  {progress&&<TaskProgress item={item} rows={progress} csrf={csrf} run={run} onChanged={async()=>{await showSubmissions();}}
+   review={(number,meta)=>{const row=rows?.find(entry=>entry.number===number);return row?<SubmissionReview meta={meta} item={item} row={row} csrf={csrf} onOpenFile={()=>void openCopy(row)} onSaved={next=>setRows(current=>current?.map(entry=>entry.number===next.number?next:entry)??null)} onStale={async()=>{await showSubmissions();await onChanged();}}/>:null;}}/>}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}
  </>;
 }
@@ -126,7 +138,7 @@ function TaskFacts({item,studentCount,csrf,run,onChanged}:{item:Assignment;stude
 
 const REVIEW_LABEL={passed:'통과',revise:'다시 쓰기'} as const;
 /** One submitted work: open it, then pass it or ask for a rewrite with feedback. */
-function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale}:{item:Assignment;row:SubmissionRow;csrf:string;onOpenFile:()=>void;onSaved:(next:SubmissionRow)=>void;onStale:()=>Promise<void>}){
+function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale,meta}:{item:Assignment;row:SubmissionRow;csrf:string;onOpenFile:()=>void;onSaved:(next:SubmissionRow)=>void;onStale:()=>Promise<void>;meta?:ReactNode}){
  const [writing,setWriting]=useState(false),[feedback,setFeedback]=useState(row.reviewStatus?row.feedback??'':''),[busy,setBusy]=useState(false),[error,setError]=useState('');
  const status=row.reviewStatus??null;
  async function decide(reviewStatus:SubmissionRow['reviewStatus']){
@@ -139,7 +151,7 @@ function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale}:{item:Assig
  }
  const href=`${item.format==='shortstory'?'/shortstory':'/'}?${new URLSearchParams({...(item.format==='shortstory'?{mode:'library'}:{view:'library'}),classAssignment:item.id,classStudent:String(row.number)})}`;
  return <div className={styles.review} data-review={status??'pending'}>
-  <div className={styles.reviewHead}><strong>{row.number}번 {row.name}</strong><span className={styles.hint}>{formatSubmittedAt(row.submittedAt)} 제출</span>
+  <div className={styles.reviewHead}><strong>{row.number}번 {row.name}</strong><span className={styles.hint}>{formatSubmittedAt(row.submittedAt)} 제출</span>{meta}
    <span className={styles.reviewChip} data-review={status??'pending'}>{status?REVIEW_LABEL[status]:'확인 전'}</span></div>
   {row.feedback&&!writing&&<p className={styles.reviewFeedback}><b>{status===null?'지난 피드백':'피드백'}</b> {row.feedback}</p>}
   <div className={styles.row}>
@@ -156,4 +168,30 @@ function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale}:{item:Assig
   </form>}
   {error&&<p className={styles.error} role="alert">{error}</p>}
  </div>;
+}
+
+/** The task's guidance in the row: what to do, the checklist and the amount, editable in place. */
+function TaskGuide({item,csrf,run,onChanged,open,onToggle}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>;open:boolean;onToggle:(open:boolean)=>void}){
+ const [editing,setEditing]=useState(false),[description,setDescription]=useState(item.description),[checks,setChecks]=useState<string[]>(item.checks?.length?[...item.checks]:['']),[amount,setAmount]=useState(item.targetAmount?String(item.targetAmount):''),[busy,setBusy]=useState(false),[error,setError]=useState('');
+ const parts=[item.checks?.length?`확인할 점 ${item.checks.length}개`:'',item.targetAmount?`${item.targetAmount}${amountUnit(item.format)} 이상`:''].filter(Boolean);
+ async function save(){
+  const target=amount.trim()?Number(amount):null;
+  if(!description.trim()){setError('무엇을 하는지 적어 주세요.');return;}
+  if(target!==null&&(!Number.isInteger(target)||target<1||target>500)){setError('분량은 1에서 500 사이 숫자로 적어 주세요.');return;}
+  setBusy(true);setError('');
+  try{const done=await run(()=>assignmentUpdate(item.id,{description:description.trim(),checks:cleanChecks(checks),targetAmount:target},csrf));if(done){setEditing(false);await onChanged();}}finally{setBusy(false);}
+ }
+ return <details className={styles.taskGuide} open={open} onToggle={event=>onToggle(event.currentTarget.open)}><summary>과제 안내{parts.length?` · ${parts.join(' · ')}`:''}{!item.description.trim()&&' · 아직 안내가 없어요'}</summary>
+  {!editing?<>
+   <TaskBrief description={item.description||'무엇을 하는지 아직 적지 않았어요.'} checks={item.checks} targetAmount={item.targetAmount??null} format={item.format}/>
+   <button className={styles.linkBtn} aria-label={`${item.title} 안내 고치기`} onClick={()=>{setDescription(item.description);setChecks(item.checks?.length?[...item.checks]:['']);setAmount(item.targetAmount?String(item.targetAmount):'');setEditing(true);}}>안내 고치기</button>
+  </>:<div>
+   <label className={styles.field}>무엇을 하나요<textarea aria-label="무엇을 하나요" rows={3} maxLength={600} value={description} onChange={event=>setDescription(event.target.value)}/></label>
+   <ChecksEditor value={checks} onChange={setChecks} format={item.format}/>
+   <label className={styles.field}>분량 (선택)<span className={styles.row}><input aria-label="분량" type="number" inputMode="numeric" min={1} max={500} value={amount} onChange={event=>setAmount(event.target.value.replace(/[^0-9]/g,''))} style={{width:'6em'}}/><span>{amountUnit(item.format)} 이상</span></span></label>
+   {error&&<p className={styles.error} role="alert">{error}</p>}
+   <div className={styles.row}><button className={styles.btn} onClick={()=>setEditing(false)}>취소</button><button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>void save()}>안내 저장</button></div>
+   <p className={styles.hint}>바꾼 안내는 학생 과제 화면에 바로 보여요.</p>
+  </div>}
+ </details>;
 }
