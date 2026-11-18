@@ -1,4 +1,5 @@
 'use client';
+import {SeasonItems} from './season-items';
 import {TaskProgress} from './task-progress';
 import {ChecksEditor,TaskBrief,amountUnit,cleanChecks} from './task-brief';
 import {SubmissionPreview} from './submission-preview';
@@ -27,6 +28,7 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
  const [format,setFormat]=useState<AssignmentFormat>('knolstory'),[filter,setFilter]=useState<AssignmentFormat>('knolstory');
  const [creating,setCreating]=useState(false),[loadFailed,setLoadFailed]=useState(false);
  const createLock=useRef(false);
+ const currentCount=items?.filter(item=>!item.archived).length??0;
  // The composer opens this form for writing tasks with the chosen format.
  useEffect(()=>{if(!request||(request.kind!=='knolstory'&&request.kind!=='shortstory'))return;const timer=window.setTimeout(()=>{setFormat(request.kind as AssignmentFormat);setFormOpen(true);requestAnimationFrame(()=>{formRef.current?.scrollIntoView({block:'start',behavior:'smooth'});formRef.current?.querySelector<HTMLInputElement>('input[name="task-title"]')?.focus({preventScroll:true});});},0);return()=>window.clearTimeout(timer);},[request]);
  const load=useCallback(async()=>{setLoadFailed(false);const list=await run(()=>assignmentList());if(list)setItems(list);else setLoadFailed(true);},[run]);
@@ -44,8 +46,8 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
   }finally{createLock.current=false;setCreating(false);}
  }
  return <section className={styles.card} aria-label="작품 쓰기 과제">
-  <div className={styles.sectionHeading}><div><span className={styles.eyebrow}>쓰고, 그리고, 내는</span><h2>작품 쓰기 과제</h2>{items&&<span className={styles.taskCount}>작품 과제 {items.length}/{TASK_LIMIT}개</span>}</div><ClassroomBook small/></div>
-  <details ref={formRef} className={styles.assignmentCreate} open={formOpen||items?.length===0} onToggle={event=>setFormOpen(event.currentTarget.open)}><summary>작품 쓰기 과제 만들기</summary>{items&&items.length>=TASK_LIMIT&&<p className={styles.error} role="status">작품을 내는 과제는 {TASK_LIMIT}개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.</p>}<form onSubmit={event=>void create(event)}><fieldset disabled={creating}>
+  <div className={styles.sectionHeading}><div><span className={styles.eyebrow}>쓰고, 그리고, 내는</span><h2>작품 쓰기 과제</h2>{items&&<span className={styles.taskCount}>작품 과제 {currentCount}/{TASK_LIMIT}개</span>}</div><ClassroomBook small/></div>
+  <details ref={formRef} className={styles.assignmentCreate} open={formOpen||items?.length===0} onToggle={event=>setFormOpen(event.currentTarget.open)}><summary>작품 쓰기 과제 만들기</summary>{items&&currentCount>=TASK_LIMIT&&<p className={styles.error} role="status">작품을 내는 과제는 {TASK_LIMIT}개까지 만들 수 있어요. 끝난 과제를 지운 뒤 새로 만들어 주세요.</p>}<form onSubmit={event=>void create(event)}><fieldset disabled={creating}>
    <label className={styles.field}>과제 유형<select aria-label="과제 유형" value={format} onChange={event=>setFormat(event.target.value as AssignmentFormat)}><option value="knolstory">놀스토리</option><option value="shortstory">숏스토리</option></select></label>
    <div className={styles.row}>
     <label className={styles.field}>과제 제목<input name="task-title" value={title} onChange={event=>setTitle(event.target.value)} maxLength={60}/></label>
@@ -71,7 +73,7 @@ export function AssignmentsPanel({csrf,run,students=[],request=null}:{csrf:strin
   </fieldset></form></details>
   <div className={styles.typeTabs} role="group" aria-label="과제 유형별 보기">{(['knolstory','shortstory'] as const).map(value=><button key={value} className={styles.btn} aria-pressed={filter===value} onClick={()=>setFilter(value)}><ClassroomBook format={value} small/>{value==='knolstory'?'놀스토리':'숏스토리'}{items&&<span className={styles.tabCount}> · {items.filter(item=>item.format===value).length}</span>}</button>)}</div>
   {loadFailed?<p className={styles.error} role="alert">과제를 불러오지 못했어요. <button className={styles.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>:items===null?<p className={styles.hint} role="status">과제를 불러오고 있어요.</p>:items.filter(item=>item.format===filter).length===0?<p className={styles.hint}>이 유형의 과제가 없어요.</p>
-   :<ul className={styles.list}>{items.filter(item=>item.format===filter).map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} students={students}/></li>)}</ul>}
+   :<SeasonItems items={items.filter(item=>item.format===filter)} render={group=><ul className={styles.list}>{group.map(item=><li key={item.id} className={styles.item} data-format={item.format}><AssignmentRow item={item} csrf={csrf} run={run} onChanged={load} students={students}/></li>)}</ul>}/>}
  </section>;
 }
 function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:string;run:Run;onChanged:()=>Promise<void>;students:readonly RecipientStudent[]}){
@@ -90,15 +92,20 @@ function AssignmentRow({item,csrf,run,onChanged,students}:{item:Assignment;csrf:
  return <>
   <div className={styles.taskHeading}><h3>{item.title}</h3><span className={item.open?styles.badge:`${styles.badge} ${styles.off}`}>{item.open?'열림':'닫힘'}</span></div>
   <ul className={styles.taskMeta} aria-label="과제 정보"><li>{item.format==='shortstory'?'숏스토리':'놀스토리'}</li>{item.storyKey&&<li>바탕 작품 · {BUILTIN_WORKS.find(work=>work.id===item.storyKey)?.title??'기본 작품'}{item.format!=='shortstory'&&` (${editionLabel(item.edition)})`}</li>}{item.startLabel&&<li>시작 · {item.startLabel}</li>}<li>{new Date(item.createdAt).toLocaleDateString('ko-KR',{month:'long',day:'numeric'})} 만듦</li></ul>
-  <TaskGuide item={item} csrf={csrf} run={run} onChanged={onChanged} open={guideOpen} onToggle={setGuideOpen}/>
+  {item.archived?<>
+   <TaskBrief description={item.description} checks={item.checks} targetAmount={item.targetAmount??null} format={item.format}/>
+   <p className={styles.hint}>{item.dueAt?`제출 마감 · ${dueDateLabel(item.dueAt)}`:'제출 마감일 없음'}</p>
+   <p className={styles.hint}>받는 학생 · {item.recipients==null?'모든 학생':item.recipients.map(number=>`${number}번`).join(', ')}</p>
+   {item.template&&<p className={styles.hint}>양식 · <strong>{item.template.title}</strong></p>}
+  </>:<><TaskGuide item={item} csrf={csrf} run={run} onChanged={onChanged} open={guideOpen} onToggle={setGuideOpen}/>
   <div className={styles.factsRow}><TaskFacts item={item} studentCount={studentCount} csrf={csrf} run={run} onChanged={onChanged}/>
   <RecipientFacts title={item.title} value={item.recipients} students={students} onSave={async next=>{const done=await run(()=>assignmentUpdate(item.id,{recipients:next},csrf));if(done)await onChanged();return !!done;}}/></div>
   <TaskTemplate item={item} csrf={csrf} run={run} onChanged={onChanged}/>
-  <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/>
+  <ShareLinkRow item={item} csrf={csrf} run={run} onChanged={onChanged}/></>}
   <div className={styles.taskActions}>
    <button className={`${styles.btn} ${styles.primary}`} aria-label={`${item.title} 진행 보기`} disabled={loading} onClick={()=>void showSubmissions()}>{loading?'불러오는 중…':progress?'진행 새로고침':`진행 보기 · 작성 중 ${item.draftCount??0} · 냈어요 ${item.submittedCount??0}`}</button>
-   <button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'과제 마감':'다시 열기'}</button>
-   {!confirmDelete&&<button className={`${styles.btn} ${styles.danger}`} aria-label={`${item.title} 과제 지우기`} onClick={()=>setConfirmDelete(true)}>과제 지우기</button>}
+   {!item.archived&&<button className={styles.btn} aria-label={`${item.title} ${item.open?'닫기':'열기'}`} onClick={()=>void toggleOpen()}>{item.open?'과제 마감':'다시 열기'}</button>}
+   {!item.archived&&!confirmDelete&&<button className={`${styles.btn} ${styles.danger}`} aria-label={`${item.title} 과제 지우기`} onClick={()=>setConfirmDelete(true)}>과제 지우기</button>}
   </div>
   {confirmDelete&&<div className={styles.notice} role="group" aria-label={`${item.title} 과제 지우기 확인`}><p>‘{item.title}’ 과제와 학생들이 낸 작품을 모두 지울까요? 지운 뒤에는 되돌릴 수 없어요. 남겨 둘 작품은 먼저 ‘진행 보기’에서 내려받아 두세요.</p><div className={styles.row}><button className={styles.btn} onClick={()=>setConfirmDelete(false)}>취소</button><button className={`${styles.btn} ${styles.danger}`} onClick={()=>void remove()}>과제와 제출 작품 지우기</button></div></div>}
   {progress&&<TaskProgress item={item} rows={progress} csrf={csrf} run={run} onChanged={async()=>{await showSubmissions();}}
@@ -158,9 +165,9 @@ function SubmissionReview({item,row,csrf,onOpenFile,onSaved,onStale,meta}:{item:
    <SubmissionPreview item={item} row={row}/>
    <a className={styles.btn} aria-label={`${row.number}번 제출 작품 열기`} href={href}>서재에서 열기</a>
    <button className={styles.btn} aria-label={`${row.number}번 제출 작품 파일 받기`} onClick={onOpenFile}>파일 받기</button>
-   <button className={`${styles.btn} ${styles.primary}`} disabled={busy||status==='passed'} aria-label={`${row.number}번 통과`} onClick={()=>void decide('passed')}>통과</button>
+   {!item.archived&&<><button className={`${styles.btn} ${styles.primary}`} disabled={busy||status==='passed'} aria-label={`${row.number}번 통과`} onClick={()=>void decide('passed')}>통과</button>
    <button className={styles.btn} disabled={busy} aria-label={`${row.number}번 다시 쓰기 요청`} aria-expanded={writing} onClick={()=>{setWriting(value=>!value);setError('');}}>다시 쓰기</button>
-   {status&&<button className={styles.linkBtn} disabled={busy} aria-label={`${row.number}번 확인 지우기`} onClick={()=>void decide(null)}>확인 지우기</button>}
+   {status&&<button className={styles.linkBtn} disabled={busy} aria-label={`${row.number}번 확인 지우기`} onClick={()=>void decide(null)}>확인 지우기</button>}</>}
   </div>
   {writing&&<form className={styles.reviewForm} onSubmit={event=>{event.preventDefault();void decide('revise');}}>
    <label className={styles.field}>{row.number}번에게 피드백<textarea value={feedback} maxLength={2000} rows={3} onChange={event=>setFeedback(event.target.value)} placeholder="무엇을 고치면 좋을지 써 주세요."/></label>

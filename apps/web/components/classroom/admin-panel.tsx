@@ -41,7 +41,7 @@ export function AdminPanel({csrf}:{csrf:string}){
        <div><dt>읽기·활동</dt><dd>{room.missionCount}{room.passedMissionCount>0&&<small> · 통과 {room.passedMissionCount}</small>}</dd></div>
       </dl>
      </li>)}</ul>}
-    <p className={shared.hint}>학급 자료는 학년도 단위로 운영해요. 3월 1일부터 이듬해 2월 말까지 연 학급은 이듬해 3월 31일에 정리돼요.</p>
+    <p className={shared.hint}>지난 학년도 과제와 제출물은 3월 동안 보거나 내려받을 수 있고 4월 1일에 삭제돼요. 학급, 계정, 개인 온라인 작품은 그대로 남아요.</p>
    </section>
   </div>
   <AccessCard/>

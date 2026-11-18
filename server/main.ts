@@ -11,6 +11,7 @@ import {createAuthService} from './http/auth-service';
 import {createClassroomHttpService} from './http/classroom-service';
 import {observeRequest} from './http/request-observation';
 import {createApiShutdown} from './http/api-shutdown';
+import {scheduleClassworkCleanup} from './classroom/season-retention';
 import {scheduleTrashPurge} from './documents/trash-retention';
 import {createUploadBudget} from './http/upload-budget';
 
@@ -47,20 +48,22 @@ async function main(){
  const stop=createApiShutdown(server,pool,{exit:code=>process.exit(code)});
  process.on('SIGTERM',()=>stop());process.on('SIGINT',()=>stop());
  server.on('error',()=>{console.error('API listener failed.');stop(1);});
- server.listen(config.port,config.host,()=>{console.info('KnolStory API listening.');if(!cluster.isWorker||cluster.worker?.id===1)scheduleTrashPurge(pool);});
+ server.listen(config.port,config.host,()=>{console.info('KnolStory API listening.');if(process.env.KNOLSTORY_CLASSROOM_MAINTENANCE==='1'||!cluster.isWorker){scheduleTrashPurge(pool);scheduleClassworkCleanup(pool);}});
 }
 /** Several workers share the port (round-robin). A crashed worker is replaced, so one bad request
  * cannot take the whole API down; the others keep serving meanwhile. */
 function supervise(workers:number){
  let stopping=false,recent:number[]=[];
- const fork=()=>cluster.fork();
- for(let i=0;i<workers;i++)fork();
- cluster.on('exit',()=>{
+ const maintenanceWorkers=new Set<number>();
+ const fork=(maintenance:boolean)=>{const worker=cluster.fork({KNOLSTORY_CLASSROOM_MAINTENANCE:maintenance?'1':'0'});if(maintenance)maintenanceWorkers.add(worker.id);};
+ for(let i=0;i<workers;i++)fork(i===0);
+ cluster.on('exit',worker=>{
+  const maintenance=maintenanceWorkers.delete(worker.id);
   if(stopping){if(Object.keys(cluster.workers??{}).length===0)process.exit(0);return;}
   const now=Date.now();recent=[...recent.filter(time=>now-time<60_000),now];
   // A crash loop means a configuration problem: stop so the container restart policy and health check show it.
   if(recent.length>workers*3){console.error('API workers keep failing.');process.exit(1);}
-  console.error('API worker stopped; starting a replacement.');setTimeout(fork,500);
+  console.error('API worker stopped; starting a replacement.');setTimeout(()=>fork(maintenance),500);
  });
  const stop=()=>{if(stopping)return;stopping=true;for(const worker of Object.values(cluster.workers??{}))worker?.process.kill('SIGTERM');setTimeout(()=>process.exit(1),15_000).unref();};
  process.on('SIGTERM',stop);process.on('SIGINT',stop);

@@ -150,8 +150,25 @@ the Mac runs only API, PostgreSQL and ingress.
   space, Docker, the production containers, a DB query, the public API and backup
   age. Problems raise a macOS notification at most hourly and are logged to
   `~/Library/Logs/knolstory-next-production/health.log`.
-- **Backups:** the daily 04:00 `pg_dump` is written only to the Toshiba backup drive
-  (`/Volumes/Toshiba/knolstory-backups`, 180 days). Nothing is kept on the internal disk.
+- **Backups:** the daily 04:00 `pg_dump` is written only to Toshiba. Retain a daily
+  copy for seven days, four weekly copies, twelve monthly copies and ten predeploy copies.
+- **월간 복원 검사:** 매월 첫 일일 백업 직후 그 백업을 PostgreSQL 16에 실제로
+  복원한다. Docker가 네트워크·공개 포트·운영 볼륨 없이 띄운 임시 컨테이너의
+  메모리에만 복원하고, 학급·계정 테이블과 연속된 migration 번호를 검사한다.
+  성공한 달만 `restore-check/last-success`에 기록한다. 실패하면 운영자에게
+  macOS 알림을 보내고 다음 일일 백업 때 다시 검사한다. 백업 로그에는 결과와
+  백업 시각만 남긴다. 검사 한도는 CPU 1개, 메모리 2 GiB, 30분이다.
+
+운영 Mac에서 `server/operations/monthly_restore.py`를 기존 백업 실행기의
+`bin/`에 권한 700으로 설치한다. 기존 04:00 작업의 `backup-db.sh` 마지막에
+다음 호출을 한 번 추가하면 해당 작업의 외장 볼륨 권한과 일정을 그대로 사용한다.
+
+```sh
+if ! /usr/bin/python3 "$(dirname "$0")/monthly_restore.py" "$dir/db.dump"; then
+  /usr/bin/osascript -e 'display notification "백업 로그를 확인하세요. 다음 백업 때 다시 검사합니다." with title "놀스토리 월간 복원 검사 실패"' || true
+  exit 1
+fi
+```
 
 ### Capacity (2026-11-17)
 

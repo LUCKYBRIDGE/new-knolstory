@@ -1,19 +1,24 @@
-import {describe,expect,it} from 'vitest';
+import {expect,it} from 'vitest';
 import {classroomSeason,seasonNotice} from './classroom-season';
-const kst=(y:number,m:number,d:number,h=12)=>Date.UTC(y,m-1,d,h-9);
-describe('classroom season',()=>{
- it('a class opened in the school year is cleared on 31 March of the next year',()=>{
-  expect(classroomSeason(kst(2026,11,13),kst(2026,11,14))).toMatchObject({season:2026,clearsOn:'2027년 3월 31일',soon:false});
-  expect(classroomSeason(kst(2027,3,1,0),kst(2027,3,2)).season).toBe(2027);
-  expect(classroomSeason(kst(2027,2,28,23),kst(2027,3,1)).season).toBe(2026);
- });
- it('counts the days left and warns in the last weeks',()=>{
-  const s=classroomSeason(kst(2026,11,13),kst(2027,3,1));expect(s.daysLeft).toBe(31);expect(s.soon).toBe(true);
-  expect(classroomSeason(kst(2026,11,13),kst(2027,4,2)).daysLeft).toBe(0);
- });
- it('falls back to the current season and words the notice per audience',()=>{
-  expect(classroomSeason(undefined,kst(2028,1,5)).season).toBe(2027);
-  const s=classroomSeason(kst(2026,4,1),kst(2026,5,1));
-  expect(seasonNotice(s,'teacher')).toContain('파일 받기');expect(seasonNotice(s,'student')).toContain('작품 파일');
- });
+import {retentionCutoff,schoolYearStart} from '../../../server/classroom/season-calendar';
+
+const midnight=(month:number,day:number)=>Date.UTC(2027,month-1,day,-9);
+const created=Date.UTC(2026,10,1);
+it('switches phases at Korean midnight and repeats the two March reminders',()=>{
+ const check=(month:number,day:number)=>classroomSeason(created,midnight(month,day));
+ expect(check(2,14).soon).toBe(false);
+ expect(check(2,15).soon).toBe(true);
+ expect(check(3,1)).toMatchObject({season:2026,archived:true,daysLeft:31});
+ expect(check(3,18).reminder).toBe(18);
+ expect(check(3,25).reminder).toBe(25);
+ expect(check(4,1)).toMatchObject({season:2027,archived:false,soon:false});
+ expect(check(3,1).clearsOn).toBe('2027년 4월 1일');
+ expect(seasonNotice(check(3,18),'teacher')).toContain('학급 자료 내려받기');
+});
+it('preserves March material and returns to the current year for newly opened rooms',()=>{
+ expect(schoolYearStart(midnight(3,1)-1)).toBe(Date.UTC(2026,2,1,-9));
+ expect(schoolYearStart(midnight(3,1))).toBe(midnight(3,1));
+ expect(retentionCutoff(midnight(4,1)-1)).toBe(Date.UTC(2026,2,1,-9));
+ expect(retentionCutoff(midnight(4,1))).toBe(midnight(3,1));
+ expect(classroomSeason(midnight(3,1),midnight(3,18))).toMatchObject({season:2027,archived:false,soon:false});
 });

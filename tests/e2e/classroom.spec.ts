@@ -13,7 +13,7 @@ type Student={number:number;name:string;password:string;permissions:typeof all|n
 type Mission={recipients?:number[]|null;id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:string|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number};
 type MissionRow={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:'passed'|'revise'|null;feedback:string;reviewedAt:number|null};
 const blankRow=():MissionRow=>({answers:{},note:'',submittedAt:null,reviewStatus:null,feedback:'',reviewedAt:null});
-type Assignment={recipients?:number[]|null;submittedCount?:number;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
+type Assignment={targetAmount?:number;recipients?:number[]|null;submittedCount?:number;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;format?:'knolstory'|'shortstory';id:string;title:string;description:string;storyKey:string|null;open:boolean;createdAt:number;submittedAt?:number|null};
 const ok=(data:unknown)=>({json:{success:true,data}});
 const fail=(status:number,code:string)=>({status,json:{success:false,error:{code}}});
 
@@ -109,12 +109,12 @@ test('teacher builds a class, edits students, bulk-applies 글만 and runs an as
  await expect(page.getByRole('heading',{name:'학급 만들기'})).toBeVisible();
  await page.getByLabel('학급 이름').fill('3반');await page.getByRole('button',{name:'학급 만들기',exact:true}).click();
  // The season notice waits in settings until its last weeks, so the day's work starts higher.
- await expect(page.getByRole('note').filter({hasText:'학급 자료는'})).toHaveCount(classroomSeason(undefined).soon?1:0);
+ await expect(page.getByRole('note').filter({hasText:'학년도 과제와 제출물은'})).toHaveCount(classroomSeason(undefined).soon?1:0);
  // The login code is visible right away on the first tab, not only in settings.
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await expect(page.getByText('학급 코드 바꾸기',{exact:true})).toHaveCount(0);
  await page.getByRole('link',{name:'학급 설정',exact:true}).click();
- await expect(page.getByRole('note').filter({hasText:'학급 자료는'})).toBeVisible();
+ await expect(page.getByRole('note').filter({hasText:'학년도 과제와 제출물은'})).toBeVisible();
  await expect(page.getByLabel('학급 코드',{exact:true})).toHaveText('ABC234');
  await page.getByRole('navigation',{name:'주 메뉴',exact:true}).getByRole('link',{name:'학생',exact:true}).click();
  await page.getByLabel('만들 학생 수').fill('3');await page.getByRole('button',{name:'학생 만들기',exact:true}).click();
@@ -452,6 +452,35 @@ test('teacher retries an assignment list failure without an endless loading mess
  await expect(page.getByText('과제를 불러오고 있어요.')).toHaveCount(0);
  await retry.click();
  await expect(page.getByText('이 유형의 과제가 없어요.')).toBeVisible();
+});
+
+test('picture book writers see their own page count in the assignment brief',async({page})=>{
+ const student=await mockClassroom(page,'student');student.signedIn=true;
+ student.permissions=all;
+ student.assignments=[{...student.assignments[0],format:'shortstory',storyKey:'rabbit',targetAmount:2}];
+ await page.goto('/shortstory?classTask=a1');
+ const brief=page.locator('[data-task-action]');
+ await brief.locator('summary').click({timeout:8000});
+ await expect(brief.getByRole('meter',{name:'지금 0쪽, 목표 2쪽'})).toBeVisible();
+ await brief.locator('summary').click();
+ await page.getByLabel('이 쪽의 이야기',{exact:true}).fill('내가 새롭게 쓴 첫 장면이에요.');
+ await brief.locator('summary').click();
+ await expect(brief.getByRole('meter',{name:'지금 1쪽, 목표 2쪽'})).toBeVisible();
+ for(const width of [390,1280]){
+  await page.setViewportSize({width,height:844});
+  const bounds=await brief.getByRole('group',{name:'이 작품의 과제'}).boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.x).toBeGreaterThanOrEqual(0);
+  expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(width);
+ }
+ await brief.getByRole('link',{name:'과제 화면에서 중간 저장·제출하기'}).click();
+ await page.getByRole('button',{name:'저장하지 않고 이동',exact:true}).click();
+ await expect(page).toHaveURL(/\/student\/?$/);
+ await page.getByRole('link',{name:'이어서 쓰기',exact:true}).click();
+ await expect(page.getByLabel('이 쪽의 이야기',{exact:true})).toHaveValue('내가 새롭게 쓴 첫 장면이에요.');
+ await expect(brief.locator('summary')).toBeVisible();
+ await page.getByRole('button',{name:'그림책 보관함 열기'}).click();
+ await expect(brief).toHaveCount(0);
 });
 
 test('an existing picture book task stays resumable after new work creation is disabled',async({page})=>{

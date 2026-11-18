@@ -852,14 +852,4 @@
 
 /* The task a student is writing, from the editor's top bar (2026-11-18). */
 .shell.editorShell:not(.playMode)>.header>.taskAction{order:3;flex:none;position:relative}
-.taskAction>summary{list-style:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:44px;height:44px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--white);cursor:pointer;font-size:var(--text-small)}
-.taskAction>summary::-webkit-details-marker{display:none}
-.taskAction[open]>summary{background:var(--mint);border-color:var(--mint-strong)}
-.taskAction>div{position:fixed;z-index:40;top:56px;right:12px;width:min(420px,calc(100vw - 24px));max-height:calc(100dvh - 72px);overflow:auto;display:grid;gap:8px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--white);box-shadow:0 12px 32px #18333126;color:var(--ink)}
-.taskAction>div>strong{font-size:var(--text-body)}
-.taskAction>div>p{margin:0;font-size:var(--text-small)}
-.taskAction>div>p[data-tone=late]{color:#9b2c1c;font-weight:600}
-.taskAction>div>a{justify-self:start;font-size:var(--text-small);font-weight:600}
 @media(max-width:700px){.shell.editorShell:not(.playMode)>.header>.taskAction>summary{width:44px;padding:6px}.taskAction>summary>span{display:none}}
-.taskAction>summary::marker{content:""}
-.taskAction>summary::before,.taskAction>summary::after{content:none!important}

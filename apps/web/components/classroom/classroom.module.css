@@ -242,7 +242,9 @@
 .typeTabs>.btn[aria-pressed="false"]{color:var(--class-muted)}
 .taskMeta{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none;font-size:var(--text-small);color:var(--class-muted)}
 .taskMeta li{padding:2px 10px;border-radius:12px;background:#f1f3ea}
-.seasonNote{display:flex;gap:10px;align-items:flex-start;margin:0 0 16px;padding:12px 14px;border-radius:12px;border:1px solid #e3d6b3;background:#fdf7e6;color:#5b4a26;font-size:var(--text-small);line-height:1.6;word-break:keep-all}
+.seasonNote{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start;margin:0 0 16px;padding:12px 14px;border-radius:12px;border:1px solid #e3d6b3;background:#fdf7e6;color:#5b4a26;font-size:var(--text-small);line-height:1.6;word-break:keep-all}
+.seasonNote>span{flex:1 1 320px;min-width:0;overflow-wrap:anywhere}
+.seasonNote>a{max-width:100%;white-space:normal;text-align:center;overflow-wrap:anywhere}
 .seasonNote[data-soon=true]{border-color:#e7b98f;background:#fdeee0;color:#7a3f12}
 /* Teacher hand-in link: one quiet line on the card, a small form when editing. */
 .shareLine{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:8px 0 0;font-size:var(--text-small);color:var(--class-muted)}

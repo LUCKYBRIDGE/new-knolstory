@@ -23,6 +23,7 @@
 - **과제다운 작품 과제 (2026-11-18, migration 020)**
   - 교사는 '무엇을 하나요'(필수), '잘 썼는지 확인할 점'(5개까지, 도구 조작이 아닌 이야기의 질을 묻는 문장), '분량'(컷·쪽 수, 선택)을 적고 '학생에게 이렇게 보여요'로 미리 본 뒤 만든다. 만든 뒤에도 '안내 고치기'로 바꿀 수 있다.
   - 학생 과제 카드: 마감 D-day(오늘·지남 강조), 단계 막대(시작하기 → 쓰기 → 선생님께 중간 저장 → 내기), 안내와 확인할 점(스스로 체크, 기기에만 저장), 분량 진행(지금 n컷/목표), 선생님 한마디.
+  - 학생이 과제 사본을 쓰는 동안 놀스토리·숏스토리 편집기의 ‘과제’에서 같은 안내와 분량을 확인하고 과제 화면으로 돌아간다. 바탕 작품에서 글을 바꾸거나 새로 글을 쓴 컷·쪽만 센다.
   - **중간 저장**(`PUT/GET …/assignments/:id/draft`, 표 `submission_drafts`): 학생이 직접 누를 때만 그때의 작품이 교사에게 '작성 중'으로 보인다. 과제마다 학생당 하나, 제출 공간(10MB)에 들어가고 과제를 지우면 함께 지워진다.
   - **진행 보기**(`GET …/progress`): 받는 학생 모두의 단계(시작 전·작성 중·냈어요·다시 쓰는 중·통과)와 분량(컷·쪽, 글자 수), 늦게 낸 제출을 한 번에 보여 준다. 교사는 중간본을 바로 보고 한마디(`PUT …/drafts/:number/comment`, 300자)를 남긴다.
 - **과제 양식 (2026-11-18)**: 교사는 작품 쓰기 과제에 자기 작품(이 기기 또는 내 온라인 작품)을 양식으로 붙일 수 있다(`PUT/GET /classroom/assignments/:id/template`, migration 019). 학생은 '선생님 양식으로 시작'으로 사본을 만들어 이어 쓰고, 다음부터는 같은 사본으로 이어 쓴다. 양식은 바탕 작품보다 먼저 쓰이고, 바꿔도 이미 시작한 사본은 그대로다. 양식 크기는 학급 공간(300MB)에 들어간다.
@@ -188,3 +189,14 @@ type MissionStudentProgress = MissionProgress & {number:number; name:string};
 - 미션 만들기와 제출은 요청 본문 한도 64KiB를 쓴다(한글 2,000자 답변 8개와 남길 말이 약 54KiB). 열림/마감과 확인은 일반 한도 16KiB다.
 - 오류 코드: `MISSION_NOT_FOUND`, `MISSION_CLOSED`, `MISSION_SUBMISSION_CHANGED`, `MISSION_UNAVAILABLE`와 기존 `ROLE_NOT_ALLOWED`·`CLASSROOM_NOT_FOUND`·`STUDENT_NOT_FOUND`·`INVALID_REQUEST`·`REQUEST_TOO_LARGE`. 다른 학급의 미션은 `MISSION_NOT_FOUND`로 답한다.
 - 데이터베이스(migration `011-classroom-missions.sql`): `missions(id, classroom_id, title, description, criteria, kind, story_key, reading_format, questions jsonb, open, created_at)`, `mission_progress(mission_id, student_account_id, answers jsonb, note, submitted_at, review_status, feedback, reviewed_at, PK(mission_id, student_account_id))`. 학급·학생을 지우면 함께 지워진다.
+
+
+## 학년도 정리와 학급 자료 내려받기 — 2026-11-19
+
+학년도는 한국 시각 3월 1일에 시작하며, 과제·미션을 만든 시각으로 나눈다. 2월 15일부터 교사 화면에 정리 안내를 보여 주고 학급 설정에서는 언제든 해당 학년도 자료를 받을 수 있다. 3월에는 기존 학급에 지난 학년 안내를 표시하며 3월 18일·25일에 알림을 강조한다. 알림은 화면 안내이며 별도 메일·푸시를 보내지 않는다.
+
+3월 1일부터 지난 학년 과제·미션은 ‘지난 학년’에 접어 둔다. 안내·진행·학생 답변·피드백 확인과 파일 내려받기만 가능하고 제출·중간 저장·피드백·대상 변경·다시 열기·과제 지우기는 서버에서도 거절한다(`409 SEASON_ARCHIVED`). 올해 작품 과제 20개 상한에는 지난 학년 과제를 세지 않지만, 4월 정리 전까지 학급 저장 공간에는 포함한다.
+
+`GET /api/v1/class/classroom/archive/:year.zip`은 로그인한 교사·관리자의 자기 학급만 제공한다. ZIP에는 그해 과제 안내와 양식, 학생 번호별 중간본·제출본과 피드백, 미션 질문·답변·확인 기록을 넣는다. 작품 파일은 기존 파일 열기로 다시 열 수 있다. 접속 코드·비밀번호·QR·계정 ID·개인 온라인 작품은 넣지 않는다. 한 worker에서 동시에 한 건만 만들며 DB 읽기 스냅샷과 커서, ZIP 스트림을 사용하고 연결이 끊기거나 제한 시간(5분)이 지나면 중단한다.
+
+4월 1일 한국 시각부터 지난 학년 과제·미션을 자동 삭제한다. 연결된 제출본·중간본·답변·피드백도 FK cascade로 함께 지운다. 학급·학생 계정과 개인 온라인 작품은 남긴다. API 시작 때와 매시 정각에 한 maintenance worker가 실행하고, 실패하면 다음 시간에 재시도한다. 애플리케이션과 DB의 날짜 경계를 비교하여 더 이른 삭제 기준만 적용한다. 운영 배포 전에는 삭제 대상 건수를 읽기로 확인하며, 실제 운영 삭제는 사용자 확인을 따른다.

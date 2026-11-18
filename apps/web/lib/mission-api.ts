@@ -2,7 +2,7 @@ import {ClassroomError} from './classroom-api';
 import type {BuiltinWorkId} from './builtin-works';
 
 export type MissionProgress={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:'passed'|'revise'|null;feedback:string;reviewedAt:number|null};
-export type Mission={id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:BuiltinWorkId|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number;dueAt?:number|null;recipients?:readonly number[]|null;progress?:MissionProgress};
+export type Mission={archived?:true;id:string;title:string;description:string;criteria:string;kind:'reading'|'worksheet'|'custom';storyKey:BuiltinWorkId|null;readingFormat:'original'|'knolstory'|'shortstory';questions:{id:string;prompt:string}[];open:boolean;createdAt:number;dueAt?:number|null;recipients?:readonly number[]|null;progress?:MissionProgress};
 export type MissionKind=Mission['kind'];
 export type ReadingFormat=Mission['readingFormat'];
 /** What a teacher sends to assign a mission; also the shape of a provided mission before it is copied. */

@@ -1,11 +1,12 @@
 import {randomUUID} from 'node:crypto';
 import type {SqlClient,SqlPool} from '../storage/postgres-save-port';
 import {ClassroomError} from './errors';
+import {schoolYearStart} from './season-calendar';
 import {dueAt as dueAtInput,missionInput,missionPatch,missionReview,missionSubmission,type MissionInput} from './mission-contract';
 import type {Role} from './service';
 import {forStudentSql,readRecipients,recipientIds,recipientNumbers,recipientNumbersSql} from './recipients';
 export type MissionProgress={answers:Record<string,string>;note:string;submittedAt:number|null;reviewStatus:null|'passed'|'revise';feedback:string;reviewedAt:number|null};
-export type MissionView=MissionInput&{id:string;open:boolean;createdAt:number;dueAt:number|null;recipients?:number[]|null;progress?:MissionProgress};
+export type MissionView=MissionInput&{archived?:true;id:string;open:boolean;createdAt:number;dueAt:number|null;recipients?:number[]|null;progress?:MissionProgress};
 export type MissionStudentProgress=MissionProgress&{number:number;name:string};
 const unavailable=()=>new ClassroomError(503,'MISSION_UNAVAILABLE');
 const id=(value:unknown)=>{if(typeof value!=='string'||!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(value))throw new ClassroomError(400,'INVALID_REQUEST');return value;};
@@ -41,9 +42,11 @@ export function createMissionService(pool:SqlPool,clock:()=>number=Date.now){
   id(accountId);const row=(await client.query("SELECT s.classroom_id FROM knolstory_class.students s JOIN knolstory_auth.accounts a ON a.id=s.account_id WHERE s.account_id=$1 AND a.status='active'",[accountId])).rows[0];
   if(!row)throw new ClassroomError(403,'ROLE_NOT_ALLOWED');return text(row.classroom_id);
  }
- async function lockedMission(client:SqlClient,classroomId:string,missionId:string){
+ async function lockedMission(client:SqlClient,classroomId:string,missionId:string,write=true){
   id(missionId);const row=(await client.query('SELECT * FROM knolstory_class.missions WHERE id=$1 AND classroom_id=$2 FOR UPDATE',[missionId,classroomId])).rows[0];
-  if(!row)throw new ClassroomError(404,'MISSION_NOT_FOUND');return row;
+  if(!row)throw new ClassroomError(404,'MISSION_NOT_FOUND');
+  if(write&&time(row.created_at)<schoolYearStart(now()))throw new ClassroomError(409,'SEASON_ARCHIVED');
+  return row;
  }
  return {
   async listMissions(accountId:string,role:Role):Promise<MissionView[]>{
@@ -52,7 +55,7 @@ export function createMissionService(pool:SqlPool,clock:()=>number=Date.now){
     const room=role==='student'?await studentRoom(client,accountId):await teacherRoom(client,accountId);
     const student=role==='student';
     const result=await client.query(`SELECT m.*,p.answers,p.note,p.submitted_at,p.review_status,p.feedback,p.reviewed_at,${recipientNumbersSql('m')} FROM knolstory_class.missions m LEFT JOIN knolstory_class.mission_progress p ON p.mission_id=m.id AND p.student_account_id=$2 WHERE m.classroom_id=$1${student?` AND ${forStudentSql('m','$2')}`:''} ORDER BY m.created_at DESC,m.id`,[room,student?accountId:null]);
-    return result.rows.map(row=>mission(row,role==='student'));
+    return result.rows.map(row=>({...mission(row,role==='student'),...(time(row.created_at)<schoolYearStart(now())?{archived:true as const,open:false}:{})}));
    });
   },
   async createMission(teacherId:string,value:unknown):Promise<MissionView>{
@@ -83,7 +86,7 @@ export function createMissionService(pool:SqlPool,clock:()=>number=Date.now){
   },
   async listMissionProgress(teacherId:string,missionId:string):Promise<MissionStudentProgress[]>{
    return transaction(async client=>{
-    const room=await teacherRoom(client,teacherId),row=await lockedMission(client,room,missionId);
+    const room=await teacherRoom(client,teacherId),row=await lockedMission(client,room,missionId,false);
     const result=await client.query(`SELECT s.number,s.name,p.answers,p.note,p.submitted_at,p.review_status,p.feedback,p.reviewed_at FROM knolstory_class.students s LEFT JOIN knolstory_class.mission_progress p ON p.student_account_id=s.account_id AND p.mission_id=$2 WHERE s.classroom_id=$1 AND ($3::uuid[] IS NULL OR s.account_id=ANY($3::uuid[])) ORDER BY s.number`,[room,missionId,row.recipient_ids??null]);
     return result.rows.map(row=>({...progress(row),number:time(row.number),name:text(row.name)}));
    });
