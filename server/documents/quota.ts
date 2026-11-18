@@ -39,20 +39,23 @@ export async function classroomBytes(client:SqlClient,classroomId:string):Promis
   (SELECT COALESCE(sum(d.byte_length),0) FROM knolstory_storage.private_documents d WHERE d.owner_account_id IN
     (SELECT teacher_account_id FROM knolstory_class.classrooms WHERE id=$1 UNION ALL SELECT account_id FROM knolstory_class.students WHERE classroom_id=$1))
   +(SELECT COALESCE(sum(s.byte_length),0) FROM knolstory_class.submissions s JOIN knolstory_class.students st ON st.account_id=s.student_account_id WHERE st.classroom_id=$1)
-  +(SELECT COALESCE(sum(a.template_byte_length),0) FROM knolstory_class.assignments a WHERE a.classroom_id=$1) AS bytes`,[classroomId]);
+  +(SELECT COALESCE(sum(a.template_byte_length),0) FROM knolstory_class.assignments a WHERE a.classroom_id=$1)
+  +(SELECT COALESCE(sum(d.byte_length),0) FROM knolstory_class.submission_drafts d JOIN knolstory_class.students st ON st.account_id=d.student_account_id WHERE st.classroom_id=$1) AS bytes`,[classroomId]);
  return big(result.rows[0]?.bytes);
 }
 /** Per student: personal online works plus submissions, for the teacher's usage view. */
 export async function studentBytes(client:SqlClient,classroomId:string):Promise<Map<string,number>>{
  const result=await client.query(`SELECT st.account_id,
   (SELECT COALESCE(sum(d.byte_length),0) FROM knolstory_storage.private_documents d WHERE d.owner_account_id=st.account_id)
-  +(SELECT COALESCE(sum(s.byte_length),0) FROM knolstory_class.submissions s WHERE s.student_account_id=st.account_id) AS bytes
+  +(SELECT COALESCE(sum(s.byte_length),0) FROM knolstory_class.submissions s WHERE s.student_account_id=st.account_id)
+  +(SELECT COALESCE(sum(d.byte_length),0) FROM knolstory_class.submission_drafts d WHERE d.student_account_id=st.account_id) AS bytes
   FROM knolstory_class.students st WHERE st.classroom_id=$1`,[classroomId]);
  return new Map(result.rows.map(row=>[String(row.account_id),big(row.bytes)]));
 }
 async function own(client:SqlClient,accountId:string,role:StorageRole){
  const docs=(await client.query('SELECT count(*) AS works,COALESCE(sum(byte_length),0) AS bytes FROM knolstory_storage.private_documents WHERE owner_account_id=$1',[accountId])).rows[0];
- const submitted=role==='student'?big((await client.query('SELECT COALESCE(sum(byte_length),0) AS bytes FROM knolstory_class.submissions WHERE student_account_id=$1',[accountId])).rows[0]?.bytes):0;
+ // The submission space holds final hand-ins and mid-way drafts shown to the teacher.
+ const submitted=role==='student'?big((await client.query('SELECT (SELECT COALESCE(sum(byte_length),0) FROM knolstory_class.submissions WHERE student_account_id=$1)+(SELECT COALESCE(sum(byte_length),0) FROM knolstory_class.submission_drafts WHERE student_account_id=$1) AS bytes',[accountId])).rows[0]?.bytes):0;
  return {works:big(docs?.works),bytes:big(docs?.bytes),submitted};
 }
 export async function storageUsage(client:SqlClient,accountId:string,role:StorageRole):Promise<StorageUsage>{

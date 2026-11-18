@@ -32,3 +32,16 @@ export async function downloadSubmissionFile(snapshot:AuthoringJsonbSnapshot,fil
  downloadArtifact(await encodeAuthoringArchive(archive),`${fileName.replace(/[\\/:*?"<>|]/g,'_')}.${archive.format}`,'application/octet-stream');
 }
 export function formatSubmittedAt(value:number|null|undefined){return value?new Date(value).toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}):'';}
+/** How much a device work holds (cuts with words, or pages with words), for a task's amount line. */
+export function localWorkAmount(key:string,storage:Pick<Storage,'getItem'>=localStorage):number|null{
+ try{
+  if(key.startsWith('shortstory:')){
+   const raw=storage.getItem(SHORTSTORY_LIBRARY_KEY);
+   const book=raw?parseShortStoryLibrary(raw).books.find(item=>`shortstory:${item.id}`===key):undefined;
+   return book?book.pages.filter(page=>page.text.trim()).length:null;
+  }
+  const raw=storage.getItem(WORKSPACE_KEY);if(!raw)return null;
+  const project=readWorkspace(raw).works[key];
+  return project?project.lines.filter(line=>(line.text??'').trim()).length:null;
+ }catch{return null;}
+}

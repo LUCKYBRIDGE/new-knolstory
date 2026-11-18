@@ -1,7 +1,8 @@
 'use client';
 import {useCallback,useEffect,useState} from 'react';
-import {assignmentList,submissionMine,submissionPut,ClassroomError,describeEditingPermissions,type Assignment,type ClassroomMe} from '../../lib/classroom-api';
-import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWorkSnapshot,type LocalWorkChoice} from '../../lib/classroom-local';
+import {assignmentList,draftPut,submissionMine,submissionPut,ClassroomError,describeEditingPermissions,type Assignment,type ClassroomMe} from '../../lib/classroom-api';
+import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWorkAmount,localWorkSnapshot,type LocalWorkChoice} from '../../lib/classroom-local';
+import {TaskBrief} from './task-brief';
 import {documentList,documentRead} from '../../lib/document-api';
 import {formatBytes} from '../../lib/online-storage';
 import {withStudentTitle} from '../../lib/student-title';
@@ -81,17 +82,33 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   catch(issue){setError(issue instanceof Error?issue.message:'작품 파일을 저장하지 못했어요.');}
   finally{setBusy(false);}
  }
+ /** Shows the work as it is now to the teacher, without handing it in. */
+ async function shareDraft(){
+  if(!assignment.open||!key||busy)return;setBusy(true);setNotice('');setError('');
+  try{const snapshot=await snapshotOf(key);await draftPut(assignment.id,snapshot,csrf);setNotice('선생님께 중간 저장했어요. 선생님이 지금까지 쓴 작품을 볼 수 있어요.');await onDone();}
+  catch(issue){setError(issue instanceof ClassroomError?issue.message:issue instanceof Error?issue.message:'중간 저장하지 못했어요.');}
+  finally{setBusy(false);}
+ }
  async function submit(){
   if(!assignment.open||!key||busy)return;setBusy(true);setNotice('');setError('');
-  try{const snapshot=await snapshotOf(key);await submissionPut(assignment.id,snapshot,csrf);setNotice('제출했어요.');await onDone();}
+  try{const snapshot=await snapshotOf(key);await submissionPut(assignment.id,snapshot,csrf);setNotice('제출했어요. 선생님이 확인하면 여기에 알려 줘요.');await onDone();}
   catch(issue){setError(issue instanceof ClassroomError?issue.message:issue instanceof Error?issue.message:'제출하지 못했어요.');}
   finally{setBusy(false);}
  }
- const status=<span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{submitted?`제출함 · ${formatSubmittedAt(submitted)}`:'아직 안 냈어요'}</span>;
+ const status=<span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{submitted?`제출함 · ${formatSubmittedAt(submitted)}`:assignment.draftSavedAt?'작성 중':'아직 안 냈어요'}</span>;
+ const due=dueState(assignment.dueAt);
+ const amountKey=draftKey||(key&&!key.startsWith('online:')?key:'');
+ const current=amountKey?localWorkAmount(amountKey):null;
+ // 시작하기 → 쓰기 → 중간 저장 → 내기: where this student is now.
+ const stage=submitted?3:assignment.draftSavedAt?2:draftKey?1:0;
+ const steps=['시작하기','쓰기','선생님께 중간 저장','내기'];
  return <>
   {/* Like the reading/activity cards, the corner shows the student's own state; a closed task says so instead. */}
   <div className={styles.taskHeading}><h4>{assignment.title}</h4>{assignment.open?status:<span className={`${styles.badge} ${styles.off}`}>닫힘</span>}</div>
-  {assignment.description&&<p className={styles.hint}>{assignment.description}</p>}
+  {assignment.dueAt&&due&&<p className={styles.dueLine} data-tone={due.tone}><b>{due.label}</b> {dueDateLabel(assignment.dueAt)}{due.tone==='late'&&assignment.open&&!submitted?' · 늦었지만 아직 낼 수 있어요':''}</p>}
+  {assignment.open&&<ol className={styles.stageBar} aria-label="과제 단계">{steps.map((step,index)=><li key={step} data-state={index<stage||(index===3&&submitted)?'done':index===stage?'current':'todo'} aria-current={index===stage&&!(index===3&&submitted)?'step':undefined}>{step}</li>)}</ol>}
+  <TaskBrief description={assignment.description} checks={assignment.checks} targetAmount={assignment.targetAmount??null} format={assignment.format} current={current} selfCheckKey={`knolstory-task-check:${accountId}:${assignment.id}`}/>
+  {assignment.draftComment&&<p className={styles.reviewFeedback} data-tone="note"><b>선생님 한마디</b> {assignment.draftComment}</p>}
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
 
   {(!assignment.open||assignment.reviewStatus||submitted)&&<p className={styles.submissionStatus}>{!assignment.open&&status}
@@ -106,7 +123,9 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   </details>}
   {!assignment.open?<p className={styles.hint}>제출이 마감됐어요.</p>:works.length===0&&online.length===0?<p className={styles.hint}>{canCreate||assignment.storyKey||assignment.template||forcedStoryKey?'이야기를 쓴 뒤 이곳에서 제출해 주세요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
    :<div className={styles.submitRow}><label className={styles.field}>제출할 작품<select value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
+    <button className={styles.btn} disabled={!key||busy} onClick={()=>void shareDraft()} title="아직 내지 않고, 지금까지 쓴 것을 선생님이 볼 수 있게 해요">선생님께 중간 저장</button>
     <button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void submit()}>{submitted?'다시 제출':'제출'}</button></div>}
+  {assignment.open&&(works.length>0||online.length>0)&&<p className={styles.hint}>{assignment.draftSavedAt?`${formatSubmittedAt(assignment.draftSavedAt)}에 중간 저장했어요. `:''}중간 저장은 선생님이 지금까지 쓴 것을 볼 수 있게 해요. 다 쓰면 ‘제출’을 눌러요.</p>}
   {assignment.shareUrl&&<details className={styles.shareBox}>
    <summary>선생님이 정한 제출 링크로도 낼 수 있어요</summary>
    <ol><li>아래에서 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
