@@ -13,6 +13,11 @@ describe('student todo',()=>{
   expect(groups.waiting.map(e=>e.item.id).sort()).toEqual(['pending','sent']);
   expect(groups.done.map(e=>e.item.id).sort()).toEqual(['closed','done','passed']);
  });
+ it('keeps past work out of the current year counts',()=>{
+  const groups=groupTodos([task('지난 작품',{archived:true})],[mission('지난 활동',{archived:true})]);
+  expect(groups.archived).toHaveLength(2);
+  expect([...groups.todo,...groups.waiting,...groups.done]).toHaveLength(0);
+ });
  it('orders by the nearest due date, undated last, newest first among equals',()=>{
   const groups=groupTodos([task('later',{dueAt:300}),task('none',{createdAt:9}),task('soon',{dueAt:100})],[mission('mid',{dueAt:200})]);
   expect(groups.todo.map(e=>e.item.id)).toEqual(['soon','mid','later','none']);

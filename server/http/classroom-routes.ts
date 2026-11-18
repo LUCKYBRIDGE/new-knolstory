@@ -1,4 +1,7 @@
 import type {IncomingMessage,ServerResponse} from 'node:http';
+import {Readable} from 'node:stream';
+import {pipeline} from 'node:stream/promises';
+import {classroomZip} from '../classroom/season-export';
 import {AuthStateError,authCookieNames,serializeAuthCookie,validateAuthOrigin,type createAuthStateService} from '../auth/auth-state';
 import {ClassroomError,type ClassroomService,type Role} from '../classroom/service';
 import {PermissionsError,normalizePermissions} from '../classroom/permissions';
@@ -143,6 +146,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
  const clientFailures=counter(login.windowMs,login.perClient,login.maxEntries,clock);
  const upgradeFailures=counter(login.windowMs,login.perStudent,login.maxEntries,clock);
  const age=(expiresAt:number)=>Math.max(0,Math.ceil((expiresAt-clock())/1000));
+ let exporting=false;
 
  async function startStudentSession(req:IncomingMessage,res:ServerResponse,accountId:string,method:'password'|'qr'){
   let issued;
@@ -167,6 +171,20 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
  function requireOrigin(req:IncomingMessage){if(header(req,'origin')!==origin)throw new HttpError(403,'INVALID_CSRF');}
 
  const routes:Route[]=[
+  {method:'GET',pattern:/^\/classroom\/archive\/(\d{4})\.zip$/,access:'teacher',body:'none',async run({accountId,params,res}){
+   if(exporting){res.setHeader('Retry-After','5');throw new HttpError(503,'SERVER_BUSY');}
+   exporting=true;
+   const year=Number(params[0]),zip=classroomZip(classroom.exportSeason(accountId,year));
+   try{
+    const first=await zip.next();
+    res.setHeader('Content-Type','application/zip');
+    res.setHeader('Content-Disposition',`attachment; filename="knolstory-class-${year}.zip"; filename*=UTF-8''${encodeURIComponent(year+'학년도 학급 자료.zip')}`);
+    async function* body(){if(!first.done)yield first.value;yield* zip;}
+    await pipeline(Readable.from(body(),{objectMode:false}),res,{signal:AbortSignal.timeout(300_000)});
+   }finally{
+    try{await zip.return(undefined);}finally{exporting=false;}
+   }
+  }},
   {method:'GET',pattern:/^\/me$/,access:'any',body:'none',async run({accountId,role}){
    const me=await classroom.me(accountId,role);
    return me;
@@ -363,8 +381,10 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
     if(req.aborted||req.socket.destroyed)throw bad();
    }
    const data=await route.run({accountId,role,params,body,req,res});
+   if(res.writableEnded)return;
    respond(res,route.status??200,{success:true,data});
   }catch(error){
+   if(res.destroyed||res.headersSent){res.destroy();return;}
    res.setHeader('Connection','close');
    if(error instanceof HttpError||error instanceof ClassroomError)respond(res,error.status,{success:false,error:{code:error.code}});
    else if(error instanceof PermissionsError)respond(res,400,{success:false,error:{code:'INVALID_REQUEST'}});

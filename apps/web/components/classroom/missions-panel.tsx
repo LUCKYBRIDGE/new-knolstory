@@ -1,4 +1,5 @@
 'use client';
+import {SeasonItems} from './season-items';
 import {useCallback,useEffect,useRef,useState,type FormEvent} from 'react';
 import {missionCreate,missionList,missionProgress,missionReview,missionSetDue,missionSetOpen,missionSetRecipients,missionKindLabel,readingFormatLabel,MissionError,MISSION_LIMITS,
  type Mission,type MissionDraft,type MissionKind,type MissionStudentProgress,type ReadingFormat} from '../../lib/mission-api';
@@ -63,8 +64,8 @@ export function MissionsPanel({csrf,request=null,students=[]}:{csrf:string;reque
   {loadError?<p className={shared.error} role="alert">{loadError} <button className={shared.btn} onClick={()=>void load()}>과제 다시 불러오기</button></p>
    :missions===null?<p className={shared.hint} role="status">과제를 불러오고 있어요.</p>
    :missions.length===0?(!draft&&!picker&&<p className={styles.empty}>아직 낸 과제가 없어요. 제공 과제를 가져오면 바로 시작할 수 있어요.</p>)
-   :<ul className={`${shared.list} ${styles.missions}`}>{missions.map(mission=><li key={mission.id} className={styles.mission} data-kind={mission.kind}>
-     <MissionRow mission={mission} csrf={csrf} students={students} onChanged={next=>setMissions(current=>current?.map(item=>item.id===next.id?next:item)??null)}/></li>)}</ul>}
+   :<SeasonItems items={missions} render={group=><ul className={`${shared.list} ${styles.missions}`}>{group.map(mission=><li key={mission.id} className={styles.mission} data-kind={mission.kind}>
+     <MissionRow mission={mission} csrf={csrf} students={students} onChanged={next=>setMissions(current=>current?.map(item=>item.id===next.id?next:item)??null)}/></li>)}</ul>}/>}
  </section>;
 }
 
@@ -150,11 +151,11 @@ function MissionRow({mission,csrf,students,onChanged}:{mission:Mission;csrf:stri
  return <>
   <div className={shared.taskHeading}><div><span className={styles.kind} data-kind={mission.kind}>{missionKindLabel(mission.kind)}</span><h3>{mission.title}</h3></div><span className={mission.open?shared.badge:`${shared.badge} ${shared.off}`}>{mission.open?'열림':'마감'}</span></div>
   <p className={styles.meta}>{[work&&`${work} · ${readingFormatLabel(mission.readingFormat)}`,mission.questions.length?`질문 ${mission.questions.length}개`:mission.kind==='custom'?'온라인 답변 없이 확인':'읽고 확인 요청'].filter(Boolean).join('  ·  ')}</p>
-  <div className={shared.factsRow}><MissionDue mission={mission} csrf={csrf} onChanged={onChanged}/>
-  <RecipientFacts title={mission.title} value={mission.recipients} students={students} onSave={async next=>{setError('');try{onChanged(await missionSetRecipients(mission.id,next,csrf));if(open)await load();return true;}catch(issue){setError(text(issue,'받는 학생을 바꾸지 못했어요.'));return false;}}}/></div>
+  {!mission.archived&&<div className={shared.factsRow}><MissionDue mission={mission} csrf={csrf} onChanged={onChanged}/>
+  <RecipientFacts title={mission.title} value={mission.recipients} students={students} onSave={async next=>{setError('');try{onChanged(await missionSetRecipients(mission.id,next,csrf));if(open)await load();return true;}catch(issue){setError(text(issue,'받는 학생을 바꾸지 못했어요.'));return false;}}}/></div>}
   <div className={shared.taskActions}>
    <button className={`${shared.btn} ${shared.primary}`} aria-expanded={open} aria-label={`${mission.title} 학생 확인`} onClick={()=>void toggleRoster()}>{open?'학생 목록 접기':'학생 확인하기'}</button>
-   <button className={shared.btn} disabled={toggling} aria-label={`${mission.title} ${mission.open?'마감':'다시 열기'}`} onClick={()=>void toggleOpen()}>{mission.open?'과제 마감':'다시 열기'}</button>
+   {!mission.archived&&<button className={shared.btn} disabled={toggling} aria-label={`${mission.title} ${mission.open?'마감':'다시 열기'}`} onClick={()=>void toggleOpen()}>{mission.open?'과제 마감':'다시 열기'}</button>}
   </div>
   {error&&<p className={shared.error} role="alert">{error}</p>}
   {open&&<div className={styles.roster}>
@@ -194,13 +195,13 @@ function StudentReview({mission,row,csrf,onSaved,onStale}:{mission:Mission;row:M
     {row.note&&<div className={styles.answer}><p className={styles.prompt}>{mission.questions.length?'선생님께 남긴 말':'읽고 남긴 말'}</p><p className={styles.reply}>{row.note}</p></div>}
     {!mission.questions.length&&!row.note&&<p className={shared.hint}>남긴 말 없이 확인을 요청했어요.</p>}
    </>:<p className={shared.hint}>온라인으로 낸 답변이 없어요. 종이 활동지나 교실 활동을 직접 확인했다면 바로 통과시킬 수 있어요.</p>}
-   {!row.reviewStatus&&row.feedback&&<div className={styles.answer}><p className={styles.prompt}>지난 피드백</p><p className={styles.reply}>{row.feedback}</p></div>}
-   <label className={shared.field}>학생에게 남길 말 <textarea aria-label={`${who} 학생에게 남길 말`} rows={2} value={feedback} maxLength={MISSION_LIMITS.text} disabled={busy} onChange={event=>setFeedback(event.target.value)} placeholder="잘한 점이나 다시 쓸 점을 적어 주세요."/></label>
+   {(mission.archived||!row.reviewStatus)&&row.feedback&&<div className={styles.answer}><p className={styles.prompt}>지난 피드백</p><p className={styles.reply}>{row.feedback}</p></div>}
+   {!mission.archived&&<><label className={shared.field}>학생에게 남길 말 <textarea aria-label={`${who} 학생에게 남길 말`} rows={2} value={feedback} maxLength={MISSION_LIMITS.text} disabled={busy} onChange={event=>setFeedback(event.target.value)} placeholder="잘한 점이나 다시 쓸 점을 적어 주세요."/></label>
    <div className={styles.decide}>
     <button className={`${shared.btn} ${shared.primary}`} disabled={busy} aria-label={`${who} 통과`} onClick={()=>void decide('passed')}>{row.submittedAt?'통과':'직접 확인하고 통과'}</button>
     <button className={shared.btn} disabled={busy} aria-label={`${who} 다시 쓰기`} onClick={()=>void decide('revise')}>다시 쓰기</button>
     {row.reviewStatus&&<button className={`${shared.btn} ${shared.danger}`} disabled={busy} aria-label={`${who} 확인 상태 지우기`} onClick={()=>void decide(null)}>확인 상태 지우기</button>}
-   </div>
+   </div></>}
    {error&&<p className={shared.error} role="alert">{error}</p>}{notice&&<p className={shared.notice} role="status">{notice}</p>}
   </div>
  </details>;

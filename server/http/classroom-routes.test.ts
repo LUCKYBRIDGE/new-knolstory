@@ -24,6 +24,7 @@ async function harness(overrides:Partial<ClassroomRouterOptions>={}){
  };
  const authState=createAuthStateService({origin,flowTtlMs:10000,sessionTtlMs:60000,csrfSecret:'s'.repeat(32)},port,()=>now);
  const service={
+  exportSeason:vi.fn(async function*(){yield {name:'학급.json',data:'{}'};}),
   roleOf:vi.fn(async(id:string)=>accounts.get(id)??null),
   me:vi.fn(async(id:string,role:Role)=>({role,account:{id}})),
   teacherUpgrade:vi.fn(async()=>'teacher' as const),
@@ -408,5 +409,30 @@ describe('classroom routes: admin overview',()=>{
   expect((await json(response)).data).toEqual({teacherCodeUpdatedAt:123,accounts:{member:1,teacher:1,student:3},classrooms:[]});
   for(const who of [teacherId,studentId,memberId])expect(await code(await h.as(await h.login(who))('/admin/overview'))).toBe('ROLE_NOT_ALLOWED');
   expect(await code(await h.guest('/admin/overview'))).toBe('SESSION_REQUIRED');
+ });
+});
+
+
+describe('classroom archive download',()=>{
+ it('streams a private ZIP only for teachers and admins and forwards the selected year',async()=>{
+  const h=await harness();
+  expect((await h.guest('/classroom/archive/2026.zip')).status).toBe(401);
+  for(const role of [studentId,memberId])expect((await h.as(await h.login(role))('/classroom/archive/2026.zip')).status).toBe(403);
+  for(const role of [teacherId,adminId]){
+   const response=await h.as(await h.login(role))('/classroom/archive/2026.zip');
+   expect(response.status).toBe(200);
+   expect(response.headers.get('content-type')).toBe('application/zip');
+   expect(response.headers.get('cache-control')).toBe('no-store');
+   expect(response.headers.get('content-disposition')).toContain('2026');
+   const {unzipSync,strFromU8}=await import('fflate');
+   expect(strFromU8(unzipSync(new Uint8Array(await response.arrayBuffer()))['학급.json']!)).toBe('{}');
+   expect(h.service.exportSeason).toHaveBeenLastCalledWith(role,2026);
+  }
+ });
+ it('returns a normal error before streaming and permits a later retry',async()=>{
+  const h=await harness(),get=h.as(await h.login(teacherId));
+  h.service.exportSeason.mockImplementationOnce(async function*(){throw new ClassroomError(404,'NOT_FOUND');});
+  expect(await code(await get('/classroom/archive/2025.zip'))).toBe('NOT_FOUND');
+  expect((await get('/classroom/archive/2026.zip')).status).toBe(200);
  });
 });

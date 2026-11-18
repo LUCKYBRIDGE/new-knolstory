@@ -41,7 +41,7 @@ function DraftRow({item,row,csrf,run,amount,onChanged}:{item:Assignment;row:Prog
   {saved&&!writing&&<p className={styles.reviewFeedback}><b>내 한마디</b> {saved}</p>}
   <div className={styles.row}>
    <SubmissionPreview item={item} row={{number:row.number,name:row.name,savedAt:draft.savedAt}} draft/>
-   <button className={styles.btn} aria-expanded={writing} aria-label={`${row.number}번 한마디 ${saved?'고치기':'남기기'}`} onClick={()=>setWriting(value=>!value)}>{saved?'한마디 고치기':'한마디 남기기'}</button>
+   {!item.archived&&<button className={styles.btn} aria-expanded={writing} aria-label={`${row.number}번 한마디 ${saved?'고치기':'남기기'}`} onClick={()=>setWriting(value=>!value)}>{saved?'한마디 고치기':'한마디 남기기'}</button>}
   </div>
   {writing&&<div className={styles.row}><input aria-label={`${row.number}번에게 한마디`} value={comment} maxLength={300} placeholder="예: 장면 묘사를 조금 더 해 보자" onChange={event=>setComment(event.target.value)}/>
    <button className={`${styles.btn} ${styles.primary}`} disabled={busy} onClick={()=>void save()}>{comment.trim()?'남기기':'지우기'}</button></div>}

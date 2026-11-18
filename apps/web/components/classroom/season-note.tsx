@@ -9,6 +9,7 @@ export function SeasonNote({createdAt,audience,onlyWhenSoon=false}:{createdAt?:n
  const season=classroomSeason(createdAt,now);
  if(onlyWhenSoon&&!season.soon)return null;
  return <p className={styles.seasonNote} data-soon={season.soon} role="note">
-  <span>{seasonNotice(season,audience)}{season.soon&&<b> {season.daysLeft}일 남았어요.</b>}</span>
+  <span>{season.reminder&&<b>3월 {season.reminder}일 알림 · </b>}{seasonNotice(season,audience)}{season.soon&&<b> {season.daysLeft}일 남았어요.</b>}</span>
+  {audience==='teacher'&&<a className={styles.btn} href={`/api/v1/class/classroom/archive/${season.season}.zip`} download>{season.season}학년도 학급 자료 내려받기</a>}
  </p>;
 }

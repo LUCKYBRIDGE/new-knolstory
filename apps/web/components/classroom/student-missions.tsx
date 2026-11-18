@@ -42,7 +42,7 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
  useEffect(()=>{
   const timer=window.setTimeout(()=>{
    try{
-    const raw=localStorage.getItem(key);
+    const raw=mission.archived?null:localStorage.getItem(key);
     if(raw!==null){
      const value=JSON.parse(raw),ids=new Set(mission.questions.map(question=>question.id));
      if(value?.version!==1||typeof value.note!=='string'||value.note.length>2000||!value.answers||typeof value.answers!=='object'||Array.isArray(value.answers)||Object.entries(value.answers).some(([id,answer])=>!ids.has(id)||typeof answer!=='string'||answer.length>2000))throw Error('INVALID_DRAFT');
@@ -58,7 +58,7 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
   return()=>{window.clearTimeout(timer);request.current?.abort();window.removeEventListener('beforeunload',leave);};
  // Mission questions are immutable after publication; a different mission/account remounts this card.
  // eslint-disable-next-line react-hooks/exhaustive-deps
- },[key]);
+ },[key,mission.archived]);
  function change(next:Draft){
   setDraft(next);setNotice('');
   if(blockedStorage.current){volatile.current=true;return;}
@@ -80,6 +80,7 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
  }
  const progress=mission.progress,passed=progress?.reviewStatus==='passed',revise=progress?.reviewStatus==='revise';
  const href=missionReadingHref(mission),again=!!progress?.submittedAt,work=BUILTIN_WORKS.find(item=>item.id===mission.storyKey);
+ const visibleDraft=mission.archived?initialDraft(mission):draft;
  const state=passed?'passed':revise?'revise':progress?.submittedAt?'pending':'none';
  return <article className={styles.card} data-mission={mission.id} data-status={state} data-kind={mission.kind}>
   <div className={styles.titleRow}><div><h3>{mission.title}</h3></div>
@@ -92,8 +93,8 @@ export function MissionCard({mission,accountId,csrf,onProgress}:{mission:Mission
   {!mission.open&&<p className={shared.hint}>마감된 과제예요. 작성한 내용과 선생님 확인을 볼 수 있어요.</p>}
   <details className={styles.activity} open={mission.open&&(revise||state==='none'&&mission.questions.length>0)||undefined}><summary>{passed||!mission.open?'내가 낸 내용 보기':mission.questions.length?(again?'활동지 고쳐 쓰기':'활동지 작성'):mission.kind==='reading'?'읽고 확인 요청하기':'수행 내용 남기기'}</summary>
    <form onSubmit={event=>void submit(event)}><fieldset disabled={busy||!ready||!mission.open}>
-    {mission.questions.map((question,index)=><label className={styles.question} key={question.id}><span>{index+1}. {question.prompt}</span><textarea aria-label={question.prompt} value={draft.answers[question.id]??''} maxLength={2000} rows={4} required onChange={event=>change({...draft,answers:{...draft.answers,[question.id]:event.target.value}})}/></label>)}
-    <label className={styles.question}><span>선생님께 남길 말 <small>(선택)</small></span><textarea aria-label="선생님께 남길 말" value={draft.note} maxLength={2000} rows={3} onChange={event=>change({...draft,note:event.target.value})}/></label>
+    {mission.questions.map((question,index)=><label className={styles.question} key={question.id}><span>{index+1}. {question.prompt}</span><textarea aria-label={question.prompt} value={visibleDraft.answers[question.id]??''} maxLength={2000} rows={4} required onChange={event=>change({...draft,answers:{...draft.answers,[question.id]:event.target.value}})}/></label>)}
+    <label className={styles.question}><span>선생님께 남길 말 <small>(선택)</small></span><textarea aria-label="선생님께 남길 말" value={visibleDraft.note} maxLength={2000} rows={3} onChange={event=>change({...draft,note:event.target.value})}/></label>
     {mission.open&&<><p className={shared.hint}>{passed?'새로 요청하면 선생님 확인을 다시 받아요.':'수행 여부와 통과는 선생님이 확인해요.'}</p><button className={`${shared.btn} ${shared.primary}`} disabled={busy||!ready} aria-label={`${mission.title} ${again?'다시 확인 요청':'확인 요청'}`}>{busy?'요청 중…':again?'다시 확인 요청':'확인 요청'}</button></>}
    </fieldset></form>
   </details>

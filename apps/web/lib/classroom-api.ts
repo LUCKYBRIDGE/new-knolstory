@@ -8,7 +8,7 @@ export type ClassroomSummary=Readonly<{id:string;name:string;classCode:string;st
 export type ClassroomStudent=Readonly<{number:number;name:string;password:string;permissions:EditingPermissions|null;hasQr:boolean;storageBytes?:number}>;
 export type Classroom=ClassroomSummary&Readonly<{defaultPermissions:EditingPermissions;students:readonly ClassroomStudent[];storage?:Readonly<{bytes:number;limit:number;studentLimit:number}>}>;
 export type AssignmentFormat='knolstory'|'shortstory';
-export type Assignment=Readonly<{format:AssignmentFormat;template?:Readonly<{title:string}>|null;checks?:readonly string[];targetAmount?:number|null;draftCount?:number;draftSavedAt?:number|null;draftComment?:string;draftCommentedAt?:number|null;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;recipients?:readonly number[]|null;reviewStatus?:ReviewStatus;feedback?:string}>;
+export type Assignment=Readonly<{archived?:true;format:AssignmentFormat;template?:Readonly<{title:string}>|null;checks?:readonly string[];targetAmount?:number|null;draftCount?:number;draftSavedAt?:number|null;draftComment?:string;draftCommentedAt?:number|null;id:string;title:string;description:string;storyKey:string|null;shareUrl?:string|null;dueAt?:number|null;edition?:'original'|'knolstory'|null;startPoint?:string|null;startLabel?:string|null;open:boolean;createdAt:number;submittedAt?:number|null;submittedCount?:number;passedCount?:number;recipients?:readonly number[]|null;reviewStatus?:ReviewStatus;feedback?:string}>;
 export type ReviewStatus='passed'|'revise'|null;
 export type SubmissionRow=Readonly<{number:number;name:string;submittedAt:number;reviewStatus?:ReviewStatus;feedback?:string;reviewedAt?:number|null}>;
 export type SubmissionDocument=Readonly<{document:AuthoringJsonbSnapshot;submittedAt:number}>;
@@ -36,6 +36,7 @@ const messages:ReadonlyMap<string,string>=new Map([
  ['CLASSROOM_EXISTS','이미 학급이 있어요.'],['CLASSROOM_NOT_FOUND','학급을 찾지 못했어요.'],
  ['STUDENT_LIMIT','학생은 30명까지 만들 수 있어요.'],['STUDENT_NOT_FOUND','학생을 찾지 못했어요.'],
  ['INVALID_LOGIN','학급 코드, 번호 또는 비밀번호를 다시 확인해 주세요.'],['INVALID_TEACHER_CODE','교사 등록 코드가 맞지 않아요.'],['SUBMISSION_CHANGED','학생이 그사이 다시 냈어요. 새 작품을 확인한 뒤 정해 주세요.'],['TEACHER_CODE_PAUSED','지금은 교사 등록을 잠시 멈췄어요. 관리자에게 문의해 주세요.'],['TEACHER_CODE_NOT_SET','먼저 교사 등록 코드를 정해 주세요.'],
+ ['SEASON_ARCHIVED','지난 학년 자료는 보거나 내려받을 수 있어요.'],
  ['ASSIGNMENT_FORMAT_MISMATCH','과제 유형과 같은 작품을 선택해 주세요. 놀스토리·숏스토리를 확인해 주세요.'],['ASSIGNMENT_CLOSED','이미 닫힌 과제예요.'],['ASSIGNMENT_NOT_FOUND','과제를 찾지 못했어요.'],
  ['INVALID_DOCUMENT','이 작품은 제출할 수 없어요. 서비스에 등록된 그림과 소리만 쓸 수 있어요.'],['INVALID_REQUEST','입력한 내용을 다시 확인해 주세요.'],
  ['QR_REISSUE_REQUIRED','이전에 만든 QR을 인쇄하려면 한 번 다시 만들어야 해요. 이전 QR은 더 이상 쓸 수 없어요.'],['CLASSROOM_UNAVAILABLE','학급 정보를 확인하지 못했어요. 잠시 뒤 다시 시도해 주세요.'],

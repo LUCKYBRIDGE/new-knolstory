@@ -108,7 +108,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
  const writeLabel=review==='revise'?'고쳐 쓰기':draftKey?'이어서 쓰기':assignment.template?'선생님 양식으로 시작':'과제 쓰기';
  const brief=<TaskBrief description={assignment.description} checks={assignment.checks} targetAmount={assignment.targetAmount??null} format={assignment.format} current={written?.amount??null} selfCheckKey={`knolstory-task-check:${accountId}:${assignment.id}`}/>;
  const elsewhere=assignment.open&&!draftKey&&(!!submitted||online.length>0);
- const moreWays=!!submitted||elsewhere||!!assignment.shareUrl;
+ const moreWays=!!submitted||elsewhere||(!assignment.archived&&!!assignment.shareUrl);
  return <>
   <div className={styles.taskHeading}><h4>{assignment.title}</h4>{status}</div>
   {assignment.dueAt&&due&&phase!=='passed'&&<p className={styles.dueLine} data-tone={due.tone}><b>{due.label}</b> {dueDateLabel(assignment.dueAt)}{due.tone==='late'&&assignment.open&&!submitted?' · 늦었지만 아직 낼 수 있어요':''}</p>}
@@ -116,6 +116,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
   {phase==='waiting'&&<div className={styles.taskStatus} data-tone="waiting" role="status"><strong>냈어요 · 선생님 확인을 기다려요</strong><small>{formatSubmittedAt(submitted)}에 냈어요. 더 고치고 싶으면 이어서 쓴 뒤 다시 낼 수 있어요.</small></div>}
   {phase==='passed'&&<div className={styles.taskStatus} data-tone="passed" role="status"><strong>과제 통과! 잘했어요</strong>{assignment.feedback&&<p>{assignment.feedback}</p>}</div>}
   {phase==='closed'&&<div className={styles.taskStatus} data-tone="closed" role="status"><strong>제출이 마감됐어요</strong>{submitted?<small>{formatSubmittedAt(submitted)}에 낸 작품이 선생님께 있어요.</small>:<small>선생님께 확인해 주세요.</small>}</div>}
+  {assignment.archived&&assignment.feedback&&<p className={styles.reviewFeedback}><b>선생님 피드백</b> {assignment.feedback}</p>}
   {assignment.draftComment&&phase!=='passed'&&<p className={styles.reviewFeedback} data-tone="note"><b>선생님 한마디</b> {assignment.draftComment}</p>}
   {(phase==='working'||phase==='revise')&&<ol className={styles.stageBar} aria-label="과제 단계">{steps.map((step,index)=><li key={step} data-state={index<stage?'done':index===stage?'current':'todo'} aria-current={index===stage?'step':undefined}>{step}</li>)}</ol>}
   {phase==='working'||phase==='revise'?brief:<details className={styles.taskGuide}><summary>과제 안내 다시 보기</summary>{brief}</details>}
@@ -136,7 +137,7 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
    {elsewhere&&<div className={styles.continueElsewhere}><p className={styles.hint}>다른 기기에서 쓰던 작품이 있나요? 내가 낸 작품이나 내 온라인 작품에서 이어서 쓸 수 있어요.</p>
     <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
      <a className={`${styles.btn} ${styles.primary}`} aria-disabled={!from} href={from?taskHref(from):undefined}>이 작품으로 이어 쓰기</a></div></div>}
-   {assignment.shareUrl&&<div className={styles.shareBox}><strong>선생님이 정한 제출 링크로 내기</strong>
+   {!assignment.archived&&assignment.shareUrl&&<div className={styles.shareBox}><strong>선생님이 정한 제출 링크로 내기</strong>
     <ol><li>위에서 낼 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
     <div className={styles.row}><button className={styles.btn} disabled={!key||busy} onClick={()=>void saveFile()}>작품 파일로 저장</button><a className={`${styles.btn} ${styles.primary}`} href={assignment.shareUrl} target="_blank" rel="noopener noreferrer">제출 링크 열기 ↗</a></div>
     <small>{shareLinkHost(assignment.shareUrl)}로 이동해요.</small></div>}
@@ -166,9 +167,9 @@ function StudentTodo({accountId,csrf,assignments,assignmentError,onReload,card}:
    {total>0&&<span className={styles.todoCount} aria-label={`할 일 ${total}개 가운데 ${finished}개 끝냄`}><MissionSeal small earned={finished>0&&finished===total}/><span><b>{finished}</b> / {total} 끝</span></span>}</div>
   {assignmentError&&<div role="alert"><p className={styles.error}>{assignmentError}</p><button className={styles.btn} onClick={()=>void onReload()}>다시 불러오기</button></div>}
   {missions.error&&<div role="alert"><p className={styles.error}>{missions.error}</p><button className={styles.btn} disabled={missions.loading} onClick={()=>void missions.load()}>과제 다시 불러오기</button></div>}
-  {loading?<p className={styles.hint} role="status">할 일을 불러오고 있어요.</p>:total===0?<p className={styles.card}>아직 선생님이 낸 할 일이 없어요.</p>
+  {loading?<p className={styles.hint} role="status">할 일을 불러오고 있어요.</p>:total===0&&!groups.archived.length?<p className={styles.card}>아직 선생님이 낸 할 일이 없어요.</p>
    /* One list for all groups: a card that moves (submitted, passed) keeps its state and its message. */
    :<ul className={styles.todoList}>{GROUPS.flatMap(({group,title,empty})=>{const list=groups[group];if(!list.length&&!empty)return [];
-    return [<li key={`group:${group}`} className={styles.todoGroupHead} data-group={group}><h3>{title} <small>{list.length}</small></h3>{!list.length&&<p className={styles.hint}>{empty}</p>}</li>,...list.map(render)];})}</ul>}
+    return [<li key={`group:${group}`} className={styles.todoGroupHead} data-group={group}><h3>{title} <small>{list.length}</small></h3>{!list.length&&<p className={styles.hint}>{empty}</p>}</li>,...list.map(render)];})}{groups.archived.length>0&&<li><details><summary>지난 학년 · {groups.archived.length}개</summary><ul className={styles.todoList}>{groups.archived.map(render)}</ul></details></li>}</ul>}
  </section>;
 }
