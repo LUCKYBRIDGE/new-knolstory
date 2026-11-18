@@ -1,3 +1,7 @@
+/** The student's own share, as counted on their device, never more than the work holds. */
+export function ownAmount(total:{amount:number;chars:number},written?:{amount:number;chars:number}){
+ return written?{amount:Math.min(written.amount,total.amount),chars:Math.min(written.chars,total.chars)}:total;
+}
 /** How much a handed-in or saved work holds, for progress at a glance: cuts (KnolStory) or pages
  * (ShortStory) that have words, and the number of characters written. */
 export function workAmount(snapshot:unknown):{amount:number;chars:number}{

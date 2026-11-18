@@ -20,18 +20,19 @@ export function TaskBrief({description,checks=[],targetAmount=null,format,curren
  const reached=targetAmount!==null&&current!==null&&current>=targetAmount;
  return <div className={styles.taskBrief}>
   {description.trim()&&<section><h5>무엇을 하나요</h5><p>{description}</p></section>}
-  {checks.length>0&&<section><h5>이렇게 하면 잘한 거예요</h5><ul className={styles.checkList}>{checks.map((check,index)=><li key={index}>
+  {checks.length>0&&<section><h5>잘 썼는지 확인해요</h5><ul className={styles.checkList}>{checks.map((check,index)=><li key={index}>
    {selfCheckKey?<label><input type="checkbox" checked={ticked.includes(index)} onChange={()=>toggle(index)}/><span>{check}</span></label>:<span>{check}</span>}
-  </li>)}</ul>{selfCheckKey&&<p className={styles.hint}>스스로 확인해 보며 체크해요. 체크는 이 기기에만 남아요.</p>}</section>}
+  </li>)}</ul>{selfCheckKey&&<p className={styles.hint}>다 됐으면 스스로 체크해 봐요. 선생님께는 보이지 않아요.</p>}</section>}
   {targetAmount!==null&&<section><h5>분량</h5><p className={styles.amountLine} data-reached={reached}><span>{targetAmount}{unit} 이상</span>
    {current!==null&&<><meter min={0} max={targetAmount} value={Math.min(current,targetAmount)} aria-label={`지금 ${current}${unit}, 목표 ${targetAmount}${unit}`}/><b>지금 {current}{unit}{reached?' · 다 썼어요':''}</b></>}</p></section>}
  </div>;
 }
 /** Up to five short checks the teacher writes for a task. */
 export function ChecksEditor({value,onChange,format}:{value:readonly string[];onChange:(next:string[])=>void;format:AssignmentFormat}){
- const examples=format==='shortstory'?['그림과 글이 잘 어울려요','처음·가운데·끝이 있어요','인물의 마음이 드러나요']:['인물의 마음이 대사에 드러나요','장면이 바뀔 때 배경을 골랐어요','이야기의 끝을 맺었어요'];
+ // Examples ask about the story itself, in words a student understands — never about using the editor.
+ const examples=format==='shortstory'?['그림과 글이 같은 장면을 이야기해요','처음·가운데·끝이 있어요','인물이 어떤 마음인지 드러나요']:['인물이 어떤 마음인지 대사로 보여 줘요','처음·가운데·끝이 이어져요','내가 생각한 새 사건이 있어요'];
  const items=value.length?value:[''];
- return <fieldset className={styles.checksEditor}><legend>이렇게 하면 잘한 거예요 (선택, 5개까지)</legend>
+ return <fieldset className={styles.checksEditor}><legend>잘 썼는지 확인할 점 (선택, 5개까지)</legend>
   {items.map((check,index)=><div key={index} className={styles.row}>
    <input aria-label={`확인할 점 ${index+1}`} value={check} maxLength={80} placeholder={`예: ${examples[index%examples.length]}`} onChange={event=>{const next=[...items];next[index]=event.target.value;onChange(next);}}/>
    {items.length>1&&<button type="button" className={styles.linkBtn} aria-label={`확인할 점 ${index+1} 빼기`} onClick={()=>onChange(items.filter((_,i)=>i!==index))}>빼기</button>}

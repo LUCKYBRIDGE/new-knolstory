@@ -164,7 +164,7 @@ test('student submits and teacher opens a device copy after the assignment close
  await expect(page.getByText('아직 안 냈어요')).toBeVisible();
  await page.getByLabel('제출할 작품').selectOption({label:'하늘의 이야기'});
  await page.getByRole('button',{name:'제출',exact:true}).click();
- await expect(page.getByText('제출했어요.')).toBeVisible();await expect(page.getByText(/^제출함 ·/)).toBeVisible();
+ await expect(page.getByText(/^제출했어요./)).toBeVisible();await expect(page.getByRole('status').filter({hasText:'냈어요 · 선생님 확인을 기다려요'})).toBeVisible();
  await expect(page.getByRole('button',{name:'다시 제출'})).toBeVisible();
  const submitted=state.submissions.a1 as {content:{format:string;document:{project:{title:string}}}};
  expect(submitted.content.format).toBe('knolstory');expect(submitted.content.document.project.title).toContain('하늘의 이야기');
@@ -174,6 +174,7 @@ test('student submits and teacher opens a device copy after the assignment close
  await expect(page.getByRole('listitem').filter({has:page.getByRole('heading',{name:'내 이야기 쓰기',exact:true})})).toContainText('닫힘');
  await expect(page.getByRole('button',{name:'다시 제출'})).toHaveCount(0);
  const downloading=page.waitForEvent('download');
+ await page.getByText('다른 방법',{exact:true}).click();
  await page.getByRole('button',{name:'내 제출본 파일 받기'}).click();
  const downloaded=await downloading;
  expect(downloaded.suggestedFilename()).toMatch(/\.knolstory$/);
@@ -246,7 +247,8 @@ test('a specified assignment starts one draft even when new works are disabled',
  await expect(text).toHaveValue('과제에서 이어 쓰는 첫 문장.');
  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project.id)).toBe(id);
  await page.goto('/student');
- await page.getByLabel('제출할 작품').selectOption({label:'02_[내작품] 별주부전'});
+ // A task copy is named after the task.
+ await page.getByLabel('제출할 작품').selectOption({label:'02_내 이야기 쓰기'});
  await page.getByRole('button',{name:'제출',exact:true}).click();
  await expect(page.getByText('제출했어요.')).toBeVisible();
 });
@@ -1081,6 +1083,7 @@ test('a student brings a handed-in work into personal online works and chooses o
   return route.fulfill({status:request.method()==='POST'?201:200,json:{success:true,data:{recordId:existing.recordId,revision:(body.expectedRevision??0)+1,contentSha256:body.snapshot.contentSha256,createdAt:1,updatedAt:1,replayed:false}}});
  });
  await page.goto('/student');
+ await page.getByText('다른 방법',{exact:true}).click();
  await page.getByRole('button',{name:'내 온라인 작품으로 가져오기',exact:true}).click();
  const dialog=page.getByRole('dialog',{name:'같은 이름의 작품이 있어요'});
  await expect(dialog).toContainText('‘02_바다 이야기’이 이미 있어요');
@@ -1117,7 +1120,8 @@ test('a student starts a writing task from the teacher template and keeps writin
  await expect(page).not.toHaveURL(/classTask/);
  await expect(page.getByTestId('save-status')).toHaveText('임시 보관됨');
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('knolstory-next-workspace-v1')!).document.project);
- expect(saved.title).toBe('02_선생님이 준 이야기 틀');
+ // A new task copy is named after the task, whatever the template was called.
+ expect(saved.title).toBe('02_내 이야기 쓰기');
  expect(JSON.stringify(saved.lines)).toContain('옛날 옛적에, 선생님이 시작한 문장.');
  expect(saved.id).not.toBe(template.content.document.project.id);
  await page.goto('/student');
@@ -1149,7 +1153,7 @@ test('on another device a student continues a task from the work they handed in'
  const state=await mockClassroom(page,'student');state.signedIn=true;
  state.assignments[0].submittedAt=1_760_000_000_000;state.submissions.a1=handed;
  await page.goto('/student');
- await page.getByText('다른 기기에서 쓰던 작품으로 이어 쓰기',{exact:true}).click();
+ await page.getByText('다른 방법',{exact:true}).click();
  await page.getByLabel('이어 쓸 작품').selectOption({label:'내가 낸 작품'});
  await page.getByRole('link',{name:'이 작품으로 이어 쓰기',exact:true}).click();
  await expect(page).not.toHaveURL(/classTask|from=/);
@@ -1160,7 +1164,7 @@ test('on another device a student continues a task from the work they handed in'
  // From now on this device continues the same copy.
  await page.goto('/student');
  await expect(page.getByRole('link',{name:'이어서 쓰기',exact:true})).toBeVisible();
- await expect(page.getByText('다른 기기에서 쓰던 작품으로 이어 쓰기',{exact:true})).toHaveCount(0);
+ await expect(page.getByLabel('이어 쓸 작품')).toHaveCount(0);
 });
 
 test('a teacher writes what to do, a checklist and an amount, and sees the student view first',async({page})=>{
@@ -1177,7 +1181,7 @@ test('a teacher writes what to do, a checklist and an amount, and sees the stude
  await writing.getByLabel('분량',{exact:true}).fill('10');
  await writing.getByText('학생에게 이렇게 보여요').click();
  const preview=writing.locator('[class*=taskPreviewCard]');
- await expect(preview).toContainText('용궁 뒷이야기');await expect(preview).toContainText('이렇게 하면 잘한 거예요');await expect(preview).toContainText('10컷 이상');
+ await expect(preview).toContainText('용궁 뒷이야기');await expect(preview).toContainText('잘 썼는지 확인해요');await expect(preview).toContainText('10컷 이상');
  await writing.getByRole('button',{name:'과제 만들기'}).click();
  const created=state.bodies.find(body=>(body as {title?:string}).title==='용궁 뒷이야기') as {description:string;checks:string[];targetAmount:number};
  expect(created).toMatchObject({description:'별주부전 3장 뒤를 내 생각대로 이어 써요.',checks:['인물의 마음이 대사에 드러나요','이야기의 끝을 맺었어요'],targetAmount:10});
@@ -1223,3 +1227,4 @@ test('a student sees the due date, the steps and the checklist, and shares a mid
   await expect(teacher.getByText('바다 장면을 조금 더 그려 보자')).toBeVisible();
  }finally{await teacherContext.close();}
 });
+

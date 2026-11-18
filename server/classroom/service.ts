@@ -2,7 +2,7 @@ import {randomUUID} from 'node:crypto';
 import type {SqlClient,SqlPool} from '../storage/postgres-save-port';
 import {checkedSnapshot,DocumentServiceError} from '../documents/validation';
 import {assertStudentTitle} from '../documents/student-title';
-import {workAmount} from './work-amount';
+import {ownAmount,workAmount} from './work-amount';
 import {snapshotTitle} from '../documents/student-title';
 import {assertCanStoreTemplate,assertCanSubmit,classroomBytes,storageUsage,studentBytes,uploadBytes,STORAGE_LIMITS,type StorageUsage} from '../documents/quota';
 import {ALLOW_ALL_PERMISSIONS,effectivePermissions,normalizePermissions,type EditingPermissions} from './permissions';
@@ -486,7 +486,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
    });
   },
   /** A mid-way copy the student chooses to show the teacher. Uses the submission space; no review. */
-  async saveDraft(accountId:string,id:string,document:unknown):Promise<{savedAt:number}>{
+  async saveDraft(accountId:string,id:string,document:unknown,written?:{amount:number;chars:number}):Promise<{savedAt:number}>{
    let snapshot;
    try{snapshot=await checkedSnapshot(document);}
    catch(error){if(error instanceof DocumentServiceError)throw new ClassroomError(error.status===422?422:400,'INVALID_DOCUMENT');throw error;}
@@ -502,7 +502,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(room==='work-too-large')throw new ClassroomError(413,'WORK_TOO_LARGE');
     if(room==='student-full')throw new ClassroomError(409,'SUBMISSION_STORAGE_FULL');
     if(room==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
-    const savedAt=now(),{amount,chars}=workAmount(snapshot);
+    const savedAt=now(),{amount,chars}=ownAmount(workAmount(snapshot),written);
     await client.query(`INSERT INTO knolstory_class.submission_drafts(assignment_id,student_account_id,document,byte_length,amount,chars,saved_at) VALUES($1,$2,$3::jsonb,$4,$5,$6,$7)
      ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,byte_length=EXCLUDED.byte_length,amount=EXCLUDED.amount,chars=EXCLUDED.chars,saved_at=EXCLUDED.saved_at`,[id,accountId,JSON.stringify(snapshot),bytes,amount,chars,savedAt]);
     return {savedAt};
@@ -564,7 +564,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     return {document:result.rows[0].document,submittedAt:num(result.rows[0].submitted_at)};
    });
   },
-  async submit(accountId:string,id:string,document:unknown):Promise<{submittedAt:number}>{
+  async submit(accountId:string,id:string,document:unknown,written?:{amount:number;chars:number}):Promise<{submittedAt:number}>{
    let snapshot;
    try{snapshot=await checkedSnapshot(document);}
    catch(error){
@@ -585,7 +585,7 @@ export function createClassroomService(pool:SqlPool,options:ClassroomServiceOpti
     if(room==='student-full')throw new ClassroomError(409,'SUBMISSION_STORAGE_FULL');
     if(room==='classroom-full')throw new ClassroomError(409,'CLASSROOM_STORAGE_FULL');
     const submittedAt=now();
-    const {amount,chars}=workAmount(snapshot);
+    const {amount,chars}=ownAmount(workAmount(snapshot),written);
     await client.query(`INSERT INTO knolstory_class.submissions(assignment_id,student_account_id,document,submitted_at,byte_length,amount,chars) VALUES($1,$2,$3::jsonb,$4,$5,$6,$7)
      ON CONFLICT(assignment_id,student_account_id) DO UPDATE SET document=EXCLUDED.document,submitted_at=EXCLUDED.submitted_at,byte_length=EXCLUDED.byte_length,amount=EXCLUDED.amount,chars=EXCLUDED.chars,review_status=NULL`,[id,accountId,JSON.stringify(snapshot),submittedAt,bytes,amount,chars]);
     return {submittedAt};

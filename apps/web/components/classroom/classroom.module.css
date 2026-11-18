@@ -426,3 +426,22 @@ details.shareBox>summary{cursor:pointer;font-weight:600;font-size:var(--text-sma
 .lateChip{padding:0 8px;border-radius:999px;background:#f7dcd5;color:#9b2c1c;font-weight:600}
 .reviewChip[data-review=draft]{background:#e8f0f7;color:#2d4f6b}
 @media(max-width:720px){.stageBar li{letter-spacing:-.03em}.taskBrief{padding:12px}}
+
+/* Student task card (2026-11-18 review): one status box leads, a clear write action, a tidy hand-in. */
+.taskStatus{display:grid;gap:4px;margin:0 0 10px;padding:12px 14px;border-radius:12px;border:1px solid var(--class-line);background:#f6f3ea}
+.taskStatus strong{font-size:var(--text-body)}
+.taskStatus p{margin:0;font-size:var(--text-small);line-height:1.7;white-space:pre-wrap}
+.taskStatus small{font-size:var(--text-caption);color:var(--class-muted)}
+.taskStatus[data-tone=revise]{background:#fff3e4;border-color:#f0cfa2}
+.taskStatus[data-tone=revise] strong{color:#8a4316}
+.taskStatus[data-tone=waiting]{background:#eef5f0;border-color:#cfe0d5}
+.taskStatus[data-tone=passed]{background:#2b5b4b;border-color:#2b5b4b;color:#fff}
+.taskStatus[data-tone=passed] p{color:#e9f3ee}
+.writeAction{min-width:160px}
+.handIn{display:grid;gap:8px;margin-top:6px;padding-top:12px;border-top:1px solid var(--class-line)}
+.handIn select{width:100%}
+.handInActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.handIn .hint{margin:0}
+.moreWays{margin-top:10px;border-top:1px dashed var(--class-line)}
+.moreWays>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:var(--text-small);color:var(--class-muted)}
+.moreWays>*+*{margin-top:8px}

@@ -1,7 +1,7 @@
 'use client';
 import {useCallback,useEffect,useState} from 'react';
 import {assignmentList,draftPut,submissionMine,submissionPut,ClassroomError,describeEditingPermissions,type Assignment,type ClassroomMe} from '../../lib/classroom-api';
-import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWorkAmount,localWorkSnapshot,type LocalWorkChoice} from '../../lib/classroom-local';
+import {downloadSubmissionFile,formatSubmittedAt,listLocalWorks,localWrittenAmount,localWorkSnapshot,snapshotWritten,type LocalWorkChoice} from '../../lib/classroom-local';
 import {TaskBrief} from './task-brief';
 import {documentList,documentRead} from '../../lib/document-api';
 import {formatBytes} from '../../lib/online-storage';
@@ -85,54 +85,62 @@ function AssignmentCard({assignment,works,online=[],csrf,onDone,canCreate,forced
  /** Shows the work as it is now to the teacher, without handing it in. */
  async function shareDraft(){
   if(!assignment.open||!key||busy)return;setBusy(true);setNotice('');setError('');
-  try{const snapshot=await snapshotOf(key);await draftPut(assignment.id,snapshot,csrf);setNotice('선생님께 중간 저장했어요. 선생님이 지금까지 쓴 작품을 볼 수 있어요.');await onDone();}
+  try{const snapshot=await snapshotOf(key);await draftPut(assignment.id,snapshot,csrf,fetch,snapshotWritten(snapshot,accountId,assignment.id));setNotice('선생님께 중간 저장했어요. 선생님이 지금까지 쓴 작품을 볼 수 있어요.');await onDone();}
   catch(issue){setError(issue instanceof ClassroomError?issue.message:issue instanceof Error?issue.message:'중간 저장하지 못했어요.');}
   finally{setBusy(false);}
  }
  async function submit(){
   if(!assignment.open||!key||busy)return;setBusy(true);setNotice('');setError('');
-  try{const snapshot=await snapshotOf(key);await submissionPut(assignment.id,snapshot,csrf);setNotice('제출했어요. 선생님이 확인하면 여기에 알려 줘요.');await onDone();}
+  try{const snapshot=await snapshotOf(key);await submissionPut(assignment.id,snapshot,csrf,fetch,snapshotWritten(snapshot,accountId,assignment.id));setNotice('제출했어요. 선생님이 확인하면 여기에 알려 줘요.');await onDone();}
   catch(issue){setError(issue instanceof ClassroomError?issue.message:issue instanceof Error?issue.message:'제출하지 못했어요.');}
   finally{setBusy(false);}
  }
- const status=<span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{submitted?`제출함 · ${formatSubmittedAt(submitted)}`:assignment.draftSavedAt?'작성 중':'아직 안 냈어요'}</span>;
+ const review=assignment.reviewStatus??null;
+ // One phase decides what the card leads with: the work to do, the wait, a rewrite, or a pass.
+ const phase=!assignment.open?'closed':review==='passed'?'passed':review==='revise'?'revise':submitted?'waiting':'working';
+ const status=<span className={submitted?styles.badge:`${styles.badge} ${styles.off}`}>{!assignment.open?'닫힘':review==='passed'?'통과':review==='revise'?'다시 써 주세요':submitted?'냈어요':assignment.draftSavedAt?'작성 중':'아직 안 냈어요'}</span>;
  const due=dueState(assignment.dueAt);
  const amountKey=draftKey||(key&&!key.startsWith('online:')?key:'');
- const current=amountKey?localWorkAmount(amountKey):null;
- // 시작하기 → 쓰기 → 중간 저장 → 내기: where this student is now.
+ const written=amountKey?localWrittenAmount(amountKey,accountId,assignment.id):null;
  const stage=submitted?3:assignment.draftSavedAt?2:draftKey?1:0;
  const steps=['시작하기','쓰기','선생님께 중간 저장','내기'];
+ const canStart=!!(draftKey||canCreate||assignment.storyKey||assignment.template||forcedStoryKey);
+ const writeLabel=review==='revise'?'고쳐 쓰기':draftKey?'이어서 쓰기':assignment.template?'선생님 양식으로 시작':'과제 쓰기';
+ const brief=<TaskBrief description={assignment.description} checks={assignment.checks} targetAmount={assignment.targetAmount??null} format={assignment.format} current={written?.amount??null} selfCheckKey={`knolstory-task-check:${accountId}:${assignment.id}`}/>;
+ const elsewhere=assignment.open&&!draftKey&&(!!submitted||online.length>0);
+ const moreWays=!!submitted||elsewhere||!!assignment.shareUrl;
  return <>
-  {/* Like the reading/activity cards, the corner shows the student's own state; a closed task says so instead. */}
-  <div className={styles.taskHeading}><h4>{assignment.title}</h4>{assignment.open?status:<span className={`${styles.badge} ${styles.off}`}>닫힘</span>}</div>
-  {assignment.dueAt&&due&&<p className={styles.dueLine} data-tone={due.tone}><b>{due.label}</b> {dueDateLabel(assignment.dueAt)}{due.tone==='late'&&assignment.open&&!submitted?' · 늦었지만 아직 낼 수 있어요':''}</p>}
-  {assignment.open&&<ol className={styles.stageBar} aria-label="과제 단계">{steps.map((step,index)=><li key={step} data-state={index<stage||(index===3&&submitted)?'done':index===stage?'current':'todo'} aria-current={index===stage&&!(index===3&&submitted)?'step':undefined}>{step}</li>)}</ol>}
-  <TaskBrief description={assignment.description} checks={assignment.checks} targetAmount={assignment.targetAmount??null} format={assignment.format} current={current} selfCheckKey={`knolstory-task-check:${accountId}:${assignment.id}`}/>
-  {assignment.draftComment&&<p className={styles.reviewFeedback} data-tone="note"><b>선생님 한마디</b> {assignment.draftComment}</p>}
+  <div className={styles.taskHeading}><h4>{assignment.title}</h4>{status}</div>
+  {assignment.dueAt&&due&&phase!=='passed'&&<p className={styles.dueLine} data-tone={due.tone}><b>{due.label}</b> {dueDateLabel(assignment.dueAt)}{due.tone==='late'&&assignment.open&&!submitted?' · 늦었지만 아직 낼 수 있어요':''}</p>}
+  {phase==='revise'&&<div className={styles.taskStatus} data-tone="revise" role="status"><strong>선생님이 다시 써 달래요</strong>{assignment.feedback&&<p>{assignment.feedback}</p>}<small>고친 뒤 아래에서 ‘다시 제출’을 눌러요.</small></div>}
+  {phase==='waiting'&&<div className={styles.taskStatus} data-tone="waiting" role="status"><strong>냈어요 · 선생님 확인을 기다려요</strong><small>{formatSubmittedAt(submitted)}에 냈어요. 더 고치고 싶으면 이어서 쓴 뒤 다시 낼 수 있어요.</small></div>}
+  {phase==='passed'&&<div className={styles.taskStatus} data-tone="passed" role="status"><strong>과제 통과! 잘했어요</strong>{assignment.feedback&&<p>{assignment.feedback}</p>}</div>}
+  {phase==='closed'&&<div className={styles.taskStatus} data-tone="closed" role="status"><strong>제출이 마감됐어요</strong>{submitted?<small>{formatSubmittedAt(submitted)}에 낸 작품이 선생님께 있어요.</small>:<small>선생님께 확인해 주세요.</small>}</div>}
+  {assignment.draftComment&&phase!=='passed'&&<p className={styles.reviewFeedback} data-tone="note"><b>선생님 한마디</b> {assignment.draftComment}</p>}
+  {(phase==='working'||phase==='revise')&&<ol className={styles.stageBar} aria-label="과제 단계">{steps.map((step,index)=><li key={step} data-state={index<stage?'done':index===stage?'current':'todo'} aria-current={index===stage?'step':undefined}>{step}</li>)}</ol>}
+  {phase==='working'||phase==='revise'?brief:<details className={styles.taskGuide}><summary>과제 안내 다시 보기</summary>{brief}</details>}
   {baseWork&&<p className={styles.hint}>바탕 작품 · {baseWork.title}{assignment.format!=='shortstory'&&` (${editionLabel(assignment.edition)})`}{assignment.startLabel&&<> · 시작 {assignment.startLabel}</>}{assignment.format!=='shortstory'&&<> · <a href={`/?${new URLSearchParams({view:'library',readWork:baseWork.id,readEdition:assignment.edition==='original'?'original':'knolstory'})}`}>작품 전체 읽기</a></>}</p>}
-
-  {(!assignment.open||assignment.reviewStatus||submitted)&&<p className={styles.submissionStatus}>{!assignment.open&&status}
-   {assignment.reviewStatus==='passed'&&<span className={styles.reviewChip} data-review="passed">과제 통과</span>}{assignment.reviewStatus==='revise'&&<span className={styles.reviewChip} data-review="revise">다시 써 주세요</span>}{submitted&&!assignment.reviewStatus&&<span className={styles.reviewChip}>선생님 확인 기다려요</span>}</p>}
-  {assignment.feedback&&<p className={styles.reviewFeedback}><b>{assignment.reviewStatus===null||assignment.reviewStatus===undefined?'지난 피드백':'선생님 피드백'}</b> {assignment.feedback}</p>}
-  {submitted&&<div className={styles.row}><button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button><SubmissionImport assignmentId={assignment.id} accountId={accountId} csrf={csrf} disabled={busy}/></div>}
-  {assignment.open&&(draftKey||canCreate||assignment.storyKey||assignment.template||forcedStoryKey)&&<p><a className={`${styles.btn} ${styles.primary}`} href={taskHref()}>{draftKey?'이어서 쓰기':assignment.template?'선생님 양식으로 시작':'과제 쓰기'}</a></p>}
-  {assignment.open&&!draftKey&&(submitted||online.length>0)&&<details className={styles.continueElsewhere}><summary>다른 기기에서 쓰던 작품으로 이어 쓰기</summary>
-   <p className={styles.hint}>이 기기에는 이 과제의 작성본이 없어요. 내가 낸 작품이나 내 온라인 작품에서 이어서 쓸 수 있어요.</p>
-   <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
-    <a className={`${styles.btn} ${styles.primary}`} aria-disabled={!from} href={from?taskHref(from):undefined}>이 작품으로 이어 쓰기</a></div>
-  </details>}
-  {!assignment.open?<p className={styles.hint}>제출이 마감됐어요.</p>:works.length===0&&online.length===0?<p className={styles.hint}>{canCreate||assignment.storyKey||assignment.template||forcedStoryKey?'이야기를 쓴 뒤 이곳에서 제출해 주세요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
-   :<div className={styles.submitRow}><label className={styles.field}>제출할 작품<select value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
-    <button className={styles.btn} disabled={!key||busy} onClick={()=>void shareDraft()} title="아직 내지 않고, 지금까지 쓴 것을 선생님이 볼 수 있게 해요">선생님께 중간 저장</button>
-    <button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void submit()}>{submitted?'다시 제출':'제출'}</button></div>}
-  {assignment.open&&(works.length>0||online.length>0)&&<p className={styles.hint}>{assignment.draftSavedAt?`${formatSubmittedAt(assignment.draftSavedAt)}에 중간 저장했어요. `:''}중간 저장은 선생님이 지금까지 쓴 것을 볼 수 있게 해요. 다 쓰면 ‘제출’을 눌러요.</p>}
-  {assignment.shareUrl&&<details className={styles.shareBox}>
-   <summary>선생님이 정한 제출 링크로도 낼 수 있어요</summary>
-   <ol><li>아래에서 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
-   <div className={styles.row}><button className={styles.btn} disabled={!key||busy} onClick={()=>void saveFile()}>작품 파일로 저장</button><a className={`${styles.btn} ${styles.primary}`} href={assignment.shareUrl} target="_blank" rel="noopener noreferrer">제출 링크 열기 ↗</a></div>
-   <small>{shareLinkHost(assignment.shareUrl)}로 이동해요.</small>
-  </details>}
+  {assignment.open&&phase!=='passed'&&canStart&&<p><a className={`${styles.btn} ${styles.primary} ${styles.writeAction}`} href={taskHref()}>{writeLabel}</a></p>}
+  {assignment.open&&phase!=='passed'&&(works.length===0&&online.length===0?<p className={styles.hint}>{canStart?'쓰기 화면에서 작품을 만든 뒤 이곳에서 제출해요.':'제출할 작품이 없어요. 선생님께 과제 시작 방법을 확인해 주세요.'}</p>
+   :<div className={styles.handIn}>
+    <label className={styles.field}>낼 작품<select aria-label="제출할 작품" value={key} onChange={event=>setKey(event.target.value)}><option value="">작품을 골라 주세요</option>{works.length>0&&<optgroup label="이 기기">{works.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}{online.length>0&&<optgroup label="내 온라인 작품">{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</optgroup>}</select></label>
+    <div className={styles.handInActions}>
+     <button className={styles.btn} disabled={!key||busy} onClick={()=>void shareDraft()}>선생님께 중간 저장</button>
+     <button className={`${styles.btn} ${styles.primary}`} disabled={!key||busy} onClick={()=>void submit()}>{submitted?'다시 제출':'제출'}</button>
+    </div>
+    <p className={styles.hint}>{assignment.draftSavedAt?`${formatSubmittedAt(assignment.draftSavedAt)}에 중간 저장했어요. `:''}중간 저장은 아직 내지 않고 선생님께 보여 주는 거예요. 다 쓰면 ‘{submitted?'다시 제출':'제출'}’을 눌러요.</p>
+   </div>)}
   {notice&&<p className={styles.notice} role="status">{notice}</p>}{error&&<p className={styles.error} role="alert">{error}</p>}
+  {moreWays&&<details className={styles.moreWays}><summary>다른 방법</summary>
+   {submitted&&<div className={styles.row}><button className={styles.btn} disabled={busy} onClick={()=>void download()}>내 제출본 파일 받기</button><SubmissionImport assignmentId={assignment.id} accountId={accountId} csrf={csrf} disabled={busy}/></div>}
+   {elsewhere&&<div className={styles.continueElsewhere}><p className={styles.hint}>다른 기기에서 쓰던 작품이 있나요? 내가 낸 작품이나 내 온라인 작품에서 이어서 쓸 수 있어요.</p>
+    <div className={styles.submitRow}><label className={styles.field}>이어 쓸 작품<select aria-label="이어 쓸 작품" value={from} onChange={event=>setFrom(event.target.value)}><option value="">작품을 골라 주세요</option>{submitted&&<option value="submission">내가 낸 작품</option>}{online.map(work=><option key={work.key} value={work.key}>{work.title}</option>)}</select></label>
+     <a className={`${styles.btn} ${styles.primary}`} aria-disabled={!from} href={from?taskHref(from):undefined}>이 작품으로 이어 쓰기</a></div></div>}
+   {assignment.shareUrl&&<div className={styles.shareBox}><strong>선생님이 정한 제출 링크로 내기</strong>
+    <ol><li>위에서 낼 작품을 고르고 <b>작품 파일로 저장</b>을 눌러요. 파일 이름 앞에 내 번호{(()=>{const n=currentStudentNumber();return n?` ${studentNumberLabel(n)}`:'';})()}이 붙어요.</li><li><b>제출 링크 열기</b>로 들어가 저장한 파일을 올려요.</li></ol>
+    <div className={styles.row}><button className={styles.btn} disabled={!key||busy} onClick={()=>void saveFile()}>작품 파일로 저장</button><a className={`${styles.btn} ${styles.primary}`} href={assignment.shareUrl} target="_blank" rel="noopener noreferrer">제출 링크 열기 ↗</a></div>
+    <small>{shareLinkHost(assignment.shareUrl)}로 이동해요.</small></div>}
+  </details>}
  </>;
 }
 
