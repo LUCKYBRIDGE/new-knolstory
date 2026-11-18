@@ -219,7 +219,7 @@ describe('classroom routes: upgrade and student endpoints',()=>{
  it('lets a student submit, read and list while ignoring teacher-only endpoints',async()=>{
   const h=await harness(),s=h.as(await h.login(studentId)),document={payloadVersion:1};
   expect(await json(await s(`/classroom/assignments/${assignmentId}/submission`,'PUT',{document}))).toEqual({success:true,data:{submittedAt:9}});
-  expect(h.service.submit).toHaveBeenCalledWith(studentId,assignmentId,document);
+  expect(h.service.submit).toHaveBeenCalledWith(studentId,assignmentId,document,undefined);
   await s(`/classroom/assignments/${assignmentId}/submission`);expect(h.service.readOwnSubmission).toHaveBeenCalledWith(studentId,assignmentId);
   await s('/classroom/assignments');expect(h.service.listAssignments).toHaveBeenCalledWith(studentId,'student');
   await s('/me');expect(h.service.me).toHaveBeenCalledWith(studentId,'student');

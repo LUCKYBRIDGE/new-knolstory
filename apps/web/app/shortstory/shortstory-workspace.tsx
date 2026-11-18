@@ -20,6 +20,7 @@ import {AccountMenu} from '../../components/account-menu';
 import {onlineEnabled} from '../../lib/online-mode';
 import {assignmentList,submissionOpen} from '../../lib/classroom-api';
 import {taskStartArchive,taskStartSource} from '../../lib/task-continue';
+import {saveTaskBaseline,workItems} from '../../lib/task-baseline';
 import {useClassroomMe} from '../../components/use-classroom-me';
 import {createOnlineWorkStore,saveOnlineWork} from '../../lib/online-work-bindings';
 import type {OnlineDocument} from '../../lib/document-api';
@@ -207,10 +208,13 @@ export function ShortStoryWorkspace() {
     if(storyKey&&!source)throw Error('바탕 그림책을 찾지 못했어요.');
     const made=fromTemplate&&fromTemplate.format==='shortstory'?addShortStoryBook(base,{...fromTemplate.project,id:crypto.randomUUID()}):source?copyShortStoryBook(base,source):addShortStoryBook(base,{...newShortStory(),title:task.title});
     // Student works always start with the class number.
-    const known=new Set(base.books.map(book=>book.id)),next={...made,books:made.books.map(book=>known.has(book.id)?book:{...book,title:studentTitle(book.title)})};
+    // A new task copy is named after the task; a copy continued from another device keeps its name.
+    const known=new Set(base.books.map(book=>book.id)),next={...made,books:made.books.map(book=>known.has(book.id)?book:{...book,title:studentTitle(from?book.title:task.title)})};
     if(!commit(next))return;
     const selected=next.books.at(-1)!;
     localStorage.setItem(bindingKey,`shortstory:${selected.id}`);
+    // Only the student's own pages count toward the task amount, not the copied base book.
+    if(!from)saveTaskBaseline(classroom.session!.accountId,taskId,workItems(selected));
     leaveTracker.created(selected.id);setProject(selected);setIndex(0);setEditing(true);setLibraryView(false);setPrintPreview(false);
    }catch(issue){if(!controller.signal.aborted)setError(issue instanceof Error?issue.message:'과제를 시작하지 못했어요.');}
    finally{

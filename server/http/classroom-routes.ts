@@ -84,6 +84,13 @@ function readBody(req:IncomingMessage,limit:number,timeout:number):Promise<unkno
   if(req.aborted||req.destroyed)aborted();
  });
 }
+/** What the student wrote themself (counted on the device against the task copy's start). */
+function writtenOf(value:unknown):{amount:number;chars:number}|undefined{
+ if(value===undefined)return undefined;
+ const input=object(value,['amount','chars'],['amount','chars']),ok=(n:unknown)=>typeof n==='number'&&Number.isInteger(n)&&n>=0&&n<=10_000_000;
+ if(!ok(input.amount)||!ok(input.chars))throw new HttpError(400,'INVALID_REQUEST');
+ return {amount:input.amount as number,chars:input.chars as number};
+}
 /** Up to five short things good work shows ("인물의 마음이 드러나요"). */
 function taskChecks(value:unknown):string[]{
  if(!Array.isArray(value)||value.length>5)throw new HttpError(400,'INVALID_REQUEST');
@@ -288,7 +295,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/drafts/(\\d+)/comment$`),access:'teacher',body:'json',run:({accountId,params,body})=>
    classroom.commentDraft(accountId,params[0]!,studentNumber(params[1]!),string(object(body,['comment'],['comment']).comment,0,300,false).trim())},
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/draft$`),access:'student',body:'upload',run:({accountId,params,body})=>
-   classroom.saveDraft(accountId,params[0]!,object(body,['document'],['document']).document)},
+   {const input=object(body,['document','written'],['document']);return classroom.saveDraft(accountId,params[0]!,input.document,writtenOf(input.written));}},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/draft$`),access:'student',body:'none',run:({accountId,params})=>classroom.readOwnDraft(accountId,params[0]!)},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions$`),access:'teacher',body:'none',run:({accountId,params})=>classroom.listSubmissions(accountId,params[0]!)},
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submissions/(\\d+)/review$`),access:'teacher',body:'json',run:({accountId,params,body})=>classroom.reviewSubmission(accountId,params[0]!,studentNumber(params[1]!),body)},
@@ -297,7 +304,7 @@ export function createClassroomRouter(options:ClassroomRouterOptions){
    classroom.setTemplate(accountId,params[0]!,object(body,['document'],['document']).document)},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/template$`),access:'assignments',body:'none',run:({accountId,role,params})=>classroom.readTemplate(accountId,role,params[0]!)},
   {method:'PUT',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submission$`),access:'student',body:'upload',run:({accountId,params,body})=>
-   classroom.submit(accountId,params[0]!,object(body,['document'],['document']).document)},
+   {const input=object(body,['document','written'],['document']);return classroom.submit(accountId,params[0]!,input.document,writtenOf(input.written));}},
   {method:'GET',pattern:new RegExp(`^/classroom/assignments/(${UUID})/submission$`),access:'student',body:'none',run:({accountId,params})=>classroom.readOwnSubmission(accountId,params[0]!)},
   // Missions: the service validates every field (server/classroom/mission-contract.ts) and scopes each call to the caller's class.
   {method:'GET',pattern:/^\/classroom\/missions$/,access:'assignments',body:'none',run:({accountId,role})=>classroom.listMissions(accountId,role)},

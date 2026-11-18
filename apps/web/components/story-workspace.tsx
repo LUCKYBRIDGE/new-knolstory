@@ -1,4 +1,5 @@
 "use client";
+import {TaskAction} from './task-action';
 import {EditorOnlineSave} from './editor-online-save';
 import {NumberedTitle} from './numbered-title';
 import {studentTitle,withStudentTitle} from '../lib/student-title';
@@ -96,6 +97,7 @@ import {AuthoringImportDialog} from './authoring-import-dialog';
 import {StorageReloadDialog} from './storage-reload-dialog';
 import {submissionOpen,assignmentList} from '../lib/classroom-api';
 import {taskStartArchive,taskStartSource} from '../lib/task-continue';
+import {saveTaskBaseline,workItems} from '../lib/task-baseline';
 import {onlineEnabled} from '../lib/online-mode';
 import {createAuthoringArchive,encodeAuthoringArchive,prepareJsonbSnapshot,restoreJsonbSnapshot,type AuthoringArchive} from '@knolstory/compatibility';
 import {importAudioResources,copyAudioWorkMetadata} from '../lib/audio-resources';
@@ -945,7 +947,8 @@ export function StoryWorkspace() {
         const next=fromTemplate&&fromTemplate.format==='knolstory'?{...fromTemplate.document.project,id:crypto.randomUUID()}:fixture&&base?createCatalogEditCopy(base,crypto.randomUUID(),new Date().toISOString(),savedProjects.current)
           :createBlankStoryProject({id:crypto.randomUUID(),chapterId:crypto.randomUUID(),lineId:crypto.randomUUID(),title:task.title});
         // Student works always start with the class number.
-        next.title=studentTitle(next.title);
+        // A new task copy is named after the task; a copy continued from another device keeps its name.
+        next.title=studentTitle(from?next.title:task.title);
         if(fixture&&!await preserveCopyAudio(fixture.project,next))return;
         if(fromTemplate&&fromTemplate.format==='knolstory'&&fromTemplate.audioResources.length)await importAudioResources(fromTemplate.audioResources,next.id);
         if(controller.signal.aborted||sequence!==importReadSequence.current)return;
@@ -956,6 +959,8 @@ export function StoryWorkspace() {
           {...snapshot(),storyId:key,lineId:first.id,editingPath:[first.id],playback:createPlayback(next),mode:'edit',view:'editor'});
         savedProjects.current=stored.works;contexts.current=stored.contexts;
         localStorage.setItem(bindingKey,key);
+        // Only the student's own cuts count toward the task amount, not the copied base story.
+        if(!from&&editorLimits.accountId)saveTaskBaseline(editorLimits.accountId,taskId,workItems(next));
         await openLibraryWork(key,'edit');
       }catch(issue){if(!controller.signal.aborted)setError(issueText(issue));}
       finally{
@@ -1147,7 +1152,9 @@ export function StoryWorkspace() {
   const onlineAction=onlineEnabled&&view==='editor'&&mode==='edit'&&editorLimits.accountId&&editorLimits.csrf&&editorLimits.role!=='guest'&&isPersonalWork(storyId)
     ?<EditorOnlineSave className={styles.onlineSave} workKey={storyId} project={project} accountId={editorLimits.accountId} disabled={composing||importBusy} onNotice={setError}
       snapshotOf={onlineSnapshot} save={()=>saveOnlinePersonalWork(storyId,editorLimits.accountId!,editorLimits.csrf!,()=>true)}/>:null;
-  const workHeader=(children:ReactNode)=><WorkspaceManagement onlineAction={onlineAction} fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} exitActions={<><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장하지 않은 변경이 있어서 편집 화면에 머물렀어요. 작품 파일이 저장됐는지 확인해 주세요.');}}>작품 파일 저장하고 서재로</button></>} settingsExtras={<><button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<div ref={setSettingsHost}/>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong><EditorTermGuide/>
+  const taskAction=onlineEnabled&&view==='editor'&&mode==='edit'&&editorLimits.role==='student'&&editorLimits.accountId&&isPersonalWork(storyId)
+    ?<TaskAction className={styles.taskAction} accountId={editorLimits.accountId} workKey={storyId} project={project}/>:null;
+  const workHeader=(children:ReactNode)=><WorkspaceManagement onlineAction={<>{taskAction}{onlineAction}</>} fullscreen={fullscreen} onFullscreen={fullscreenAvailable?()=>{const menu=shell.current?.querySelector<HTMLDetailsElement>('[data-work-menu]');if(menu)menu.open=false;setManageOpen(false);void toggleFullscreen();}:undefined} unifiedSettings={view==='editor'&&mode==='edit'} exitActions={<><button disabled={composing} onClick={()=>{setManageOpen(false);void toggleFullscreen();}}>{fullscreen?'전체 화면 해제':'전체 화면'}</button><button disabled={composing||!loadComplete} onClick={async()=>{const result=await leaveTracker.saveCurrent();if(result==='saved'&&!leaveTracker.hasRisk()&&!document.querySelector('[data-unsaved-draft="true"], [aria-invalid="true"]'))completeLibraryReturn();else setError(result==='download-requested'?'파일 다운로드를 요청했어요. 완료와 내용을 확인한 뒤 서재로 이동해 주세요.':'저장하지 않은 변경이 있어서 편집 화면에 머물렀어요. 작품 파일이 저장됐는지 확인해 주세요.');}}>작품 파일 저장하고 서재로</button></>} settingsExtras={<><button disabled={composing} onClick={()=>returnToInsertedCut(addCut())} aria-label="현재 컷 뒤에 추가">컷 추가</button>{mode==='edit'&&<button disabled={composing} onClick={()=>returnToInsertedCut(addChapter())}>장 추가</button>}<div ref={setSettingsHost}/>{<details ref={viewToolsMenu} className={styles.viewTools} onToggle={event=>{if(event.currentTarget.open){event.currentTarget.style.setProperty('--view-menu-top',`${event.currentTarget.getBoundingClientRect().bottom+4}px`);}}}><summary aria-label="보기 설정" title="보기 설정">보기 설정</summary><div className={styles.controls}><strong>{project.title}</strong><EditorTermGuide/>
             <p>컷 미리보기는 가로 16:9로 고정돼요. 읽기 화면에서는 16:9와 9:16 중에서 고를 수 있어요.</p>
           <button aria-pressed={reducedMotion || motionOverride} onClick={() => { setMotionOverride(value => !value); setRevision(value => value + 1); }} disabled={reducedMotion}>동작 줄이기</button>
           <button disabled={composing} onClick={()=>switchMode('play',true)}>처음부터 읽기</button></div></details>}</>} scoresEnabled={logic.scores} localFileActions={<LocalWorkFileActions registerSave={leaveTracker.registerSave} onVerifiedSave={leaveTracker.saved} onSavingChange={leaveTracker.saving} shortcutsEnabled={view==='prepare'||view==='editor'&&mode==='edit'} fileSession={localFileSession} workKey={project.id} name={project.title} extension=".knolstory" disabled={composing||!loadComplete} serialize={()=>serializeLocalWork()}/>} disabled={composing} recovery={<StoryRecoveryPanel restoreDisabled={composing} project={project} disabled={!hydrated||!storageWritable||composing} refreshToken={checkpointRefresh} onCreate={createCheckpoint} onRestore={restoreCheckpoint} onExport={checkpoint=>exportFile(checkpoint.project)}/>} project={project} compact={true} manageOpen={manageOpen} hydrated={hydrated} loadComplete={loadComplete} onManage={open=>{setManageOpen(open);if(open)shell.current?.querySelectorAll<HTMLDetailsElement>('[data-additional-dock]>details[open]').forEach(detail=>{detail.open=false;});if(open&&viewToolsMenu.current)viewToolsMenu.current.open=false;}} onExport={()=>void exportFile()} onSave={saveNow} onImportFile={file=>void importFile(file)} onImportArchive={archive=>{if(stopForUnappliedInput())return;setError('');setPendingArchive(archive);}} onError={setError} onLibrary={returnToLibrary} onPrepare={section=>view==='prepare'?changeWorkSection(section):prepareWork('',section)}>{children}</WorkspaceManagement>;
