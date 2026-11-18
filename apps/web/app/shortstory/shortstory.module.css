@@ -151,3 +151,13 @@
 .shortLabel{display:none}
 @media(max-width:720px){.header .actions .longLabel{display:none}.header .actions .shortLabel{display:inline}}
 @media(max-width:720px){.header .actions{flex-wrap:wrap}.header .actions button,.header .actions>*>button{padding:6px 8px}}
+
+/* Reading (2026-11-18): picture sized to the screen so the words show with it, page turns under the text. */
+.tools[hidden] { display:none; }
+.reading .art { width:min(100%, calc(min(46vh, 480px) * 16 / 9)); margin-inline:auto; }
+.reading .storyText { max-width:42em; margin:0 auto; }
+.readNav { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:20px; }
+.readNav span { min-width:56px; text-align:center; color:var(--ink-soft); font-variant-numeric:tabular-nums; }
+.readNav button { min-height:48px; padding:8px 18px; }
+.readNav .readNext { min-width:140px; font-weight:600; }
+@media(max-width:720px) { .reading { padding:16px; } .reading .art { width:100%; } .readNav { gap:8px; } .readNav .readNext { flex:1; } }

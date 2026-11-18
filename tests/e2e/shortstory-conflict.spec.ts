@@ -57,7 +57,7 @@ test('a reading tab that cannot keep the library never migrates, recovers or war
  await expect(other.locator('html')).toHaveAttribute('data-local-writer','unavailable');
  await expect(storageWarning(other)).toHaveCount(0);
  // Turning pages only moves the reading position: no warning and the reading goes on.
- const pages=other.getByRole('navigation',{name:'숏스토리 쪽 이동',exact:true});await pages.getByRole('button',{name:'다음 쪽',exact:true}).click();
+ const pages=other.getByRole('navigation',{name:'읽기 쪽 넘기기',exact:true});await pages.getByRole('button',{name:'다음 쪽',exact:true}).click();
  await expect(pages).toContainText('2 /');await expect(other.getByText(/보관하지 못했어요|다른 탭/)).toHaveCount(0);
  await expect(other.getByRole('button',{name:'보관함 새로 시작'})).toHaveCount(0);
  expect(await other.evaluate(key=>localStorage.getItem(key),key)).toBe(saved);
