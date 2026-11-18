@@ -1181,7 +1181,7 @@ test('a teacher writes what to do, a checklist and an amount, and sees the stude
  await writing.getByLabel('분량',{exact:true}).fill('10');
  await writing.getByText('학생에게 이렇게 보여요').click();
  const preview=writing.locator('[class*=taskPreviewCard]');
- await expect(preview).toContainText('용궁 뒷이야기');await expect(preview).toContainText('이렇게 하면 잘한 거예요');await expect(preview).toContainText('10컷 이상');
+ await expect(preview).toContainText('용궁 뒷이야기');await expect(preview).toContainText('잘 썼는지 확인해요');await expect(preview).toContainText('10컷 이상');
  await writing.getByRole('button',{name:'과제 만들기'}).click();
  const created=state.bodies.find(body=>(body as {title?:string}).title==='용궁 뒷이야기') as {description:string;checks:string[];targetAmount:number};
  expect(created).toMatchObject({description:'별주부전 3장 뒤를 내 생각대로 이어 써요.',checks:['인물의 마음이 대사에 드러나요','이야기의 끝을 맺었어요'],targetAmount:10});
